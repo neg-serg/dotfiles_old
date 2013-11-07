@@ -1,0 +1,469 @@
+*vinarise.txt*	Ultimate hex editing system with Vim.
+
+Version: 0.3
+Author : Shougo <Shougo.Matsu@gmail.com>
+License: MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+CONTENTS					*vinarise-contents*
+
+Introduction		|vinarise-introduction|
+Install			|vinarise-install|
+Interface		|vinarise-interface|
+  Commands		  |vinarise-commands|
+  Variables		  |vinarise-variables|
+  Plugins		  |vinarise-plugins|
+Examples		|vinarise-examples|
+Changelog		|vinarise-changelog|
+
+==============================================================================
+INTRODUCTION					*vinarise-introduction*
+
+==============================================================================
+USAGE						*vinarise-usage*
+
+==============================================================================
+INSTALL						*vinarise-install*
+
+==============================================================================
+INTERFACE					*vinarise-interface*
+
+------------------------------------------------------------------------------
+COMMANDS 					*vinarise-commands*
+
+:Vinarise [{options}...] [{path}]				*:Vinarise*
+		Edit {path} binary file.
+		If omit {path}, used current buffer file name.
+
+						*vinarise-options*
+		{options} are options for a vinarise buffer.  You may give the
+		following parameters for a option; you must escape with \ when
+		it contains spaces.
+
+						*vinarise-options-split*
+		-split
+		Split vinarise buffer window. |vinarise-options-split-command|
+		is used.
+
+						*vinarise-options-split-command*
+		-split-command={command-name}
+		Specify split command.
+		If omitted it, |:split| is used.
+
+						*vinarise-options-encoding*
+		-encoding={encoding-name}
+		Specify file encoding type.
+		If omitted it, "latin1" is used.
+		Note: "latin1" is only supported less than Vim 7.3.
+		Note: "latin1", "utf-8", "cp932", "euc-jp", "utf-16le",
+		"utf-16be", "ucs-2le" or "ucs-2be" encodings are supported in
+		this version.
+
+The commands of plugins				*:vinarise-sources-commands*
+
+:VinariseDump {file}				*:VinariseDump*
+		View executable file with objdump.
+
+:VinarisePluginViewBitmapView			*:VinarisePluginBitmapView*
+		View the file with Bitmap View.
+		Note: This command is available in vinarise buffer.
+
+------------------------------------------------------------------------------
+VARIABLES 					*vinarise-variables*
+
+g:vinarise_enable_auto_detect			*g:vinarise_enable_auto_detect*
+		If this variable is 1, vinarise detects binary file or large
+		file automatically.
+		
+		Default value is 0.
+
+g:vinarise_detect_large_file_size		*g:vinarise_detect_large_file_size*
+		This variable is |vinarise| detect large file size.
+		If this variable value is less equal than 0, will disable large
+		file detection.
+		Note: This variable is valid in |g:vinarise_enable_auto_detect|
+		is 1.
+		
+		Default value is 10000000.
+
+g:vinarise_cursor_ascii_highlight		*g:vinarise_cursor_ascii_highlight*
+		This variable is cursor ascii character highlight.
+		
+		Default value is "Search".
+
+g:vinarise_objdump_command			*g:vinarise_objdump_command*
+		The command name of objdump.
+		
+		Default value is "objdump".
+
+------------------------------------------------------------------------------
+PLUGINS 					*vinarise-plugins*
+
+						*vinarise-plugins-bitmapview*
+bitmapview	View the file with Bitmap View.
+		NULL(0x00), control character(0x01~0x1f), ascii
+		character(0x20~0x7f), escaped character(0x80~0xff) are
+		separated by color.
+
+------------------------------------------------------------------------------
+KEY MAPPINGS 					*vinarise-key-mappings*
+
+VINARISE BUFFER KEY MAPPINGS 			*vinarise-buffer-key-mappings*
+
+<Plug>(vinarise_edit_with_vim)			*<Plug>(vinarise_edit_with_vim)*
+		Edit current file by vim.
+
+<Plug>(vinarise_hide)				*<Plug>(vinarise_hide)*
+		Hide vinarise buffer.
+
+<Plug>(vinarise_exit)				*<Plug>(vinarise_exit)*
+		Exit vinarise buffer.
+
+<Plug>(vinarise_next_col)			*<Plug>(vinarise_next_col)*
+		Move to next col address in vinarise buffer.
+
+<Plug>(vinarise_prev_col)			*<Plug>(vinarise_prev_col)*
+		Move to previous col address in vinarise buffer.
+
+<Plug>(vinarise_move_to_line_first_address)	*<Plug>(vinarise_line_first_address)*
+		Move to first address in the current line.
+
+<Plug>(vinarise_move_to_line_last_address)	*<Plug>(vinarise_line_last_address)*
+		Move to last address in the current line.
+
+<Plug>(vinarise_next_line)			*<Plug>(vinarise_next_line)*
+		Move to next line address in vinarise buffer.
+
+<Plug>(vinarise_prev_line)			*<Plug>(vinarise_prev_line)*
+		Move to previous line address in vinarise buffer.
+
+<Plug>(vinarise_next_screen)			*<Plug>(vinarise_next_screen)*
+		Move to next screen address in vinarise buffer.
+
+<Plug>(vinarise_prev_screen)			*<Plug>(vinarise_prev_screen)*
+		Move to previous screen address in vinarise buffer.
+
+<Plug>(vinarise_next_half_screen)		*<Plug>(vinarise_next_half_screen)*
+		Move to next a harf of screen address in vinarise buffer.
+
+<Plug>(vinarise_prev_half_screen)		*<Plug>(vinarise_prev_half_screen)*
+		Move to previous a harf of screen address in vinarise buffer.
+
+<Plug>(vinarise_print_current_position)		*<Plug>(vinarise_print_current_position)*
+		Print current portion.
+
+<Plug>(vinarise_change_current_address)		*<Plug>(vinarise_change_current_address)*
+		Change value in current address.
+
+<Plug>(vinarise_overwrite_from_current_address)
+						*<Plug>(vinarise_overwrite_from_current_address)*
+		Overwrite values from current address.
+
+<Plug>(vinarise_move_to_input_address)		*<Plug>(vinarise_move_to_input_address)*
+		Move to input address. Hexadecimal and decimal are supported.
+		Note: If you input like "50%", move to 50% of filesize.
+
+<Plug>(vinarise_move_by_input_offset)		*<Plug>(vinarise_move_by_input_offset)*
+		Move by input offset relative to current position.
+		Hexadecimal and decimal are supported.
+		Note: If you input like "50%", move by 50% of filesize
+		      relative to current position.
+
+<Plug>(vinarise_move_to_first_address)		*<Plug>(vinarise_move_to_first_address)*
+		Move to first address in the binary file.
+
+<Plug>(vinarise_move_to_last_address)		*<Plug>(vinarise_move_to_last_address)*
+		Move to last address in the binary file.
+
+<Plug>(vinarise_search_binary)			*<Plug>(vinarise_search_binary)*
+		Search the binary address in the binary file.
+		Hexadecimal and decimal are supported.
+		Note: "!" is not pattern. Ex: "!0x00"
+
+<Plug>(vinarise_search_binary_reverse)		*<Plug>(vinarise_search_binary_reverse)*
+		Search the binary address in the binary file by reverse.
+		Hexadecimal and decimal are supported.
+
+<Plug>(vinarise_search_string)			*<Plug>(vinarise_search_string)*
+		Search the string address in the binary file.
+
+<Plug>(vinarise_search_string_reverse)		*<Plug>(vinarise_search_string_reverse)*
+		Search the string address in the binary file by reverse.
+
+<Plug>(vinarise_search_regexp)			*<Plug>(vinarise_search_regexp)*
+		Search the regexp pattern address in the binary file.
+
+<Plug>(vinarise_search_last_pattern)		*<Plug>(vinarise_search_last_pattern)*
+		Search the last pattern repeatedly in the binary file.
+
+<Plug>(vinarise_search_last_pattern_reverse)	*<Plug>(vinarise_search_last_pattern_reverse)*
+		Search the last pattern repeatedly in the binary file by reverse.
+
+<Plug>(vinarise_change_encoding)		*<Plug>(vinarise_change_encoding)*
+		Change vinarise buffer encoding.
+
+<Plug>(vinarise_redraw)				*<Plug>(vinarise_redraw)*
+		Redraw current vinarise buffer.
+
+<Plug>(vinarise_reload)				*<Plug>(vinarise_reload)*
+		Reload opening file.
+
+Normal mode key mappings.
+
+Normal mode default key mappings.
+{lhs}			{rhs}
+--------		-----------------------------
+V			<Plug>(vinarise_edit_with_vim)
+q			<Plug>(vinarise_hide)
+Q			<Plug>(vinarise_exit)
+l			<Plug>(vinarise_next_col)
+h			<Plug>(vinarise_next_col)
+gh			<Plug>(vinarise_line_first_address)
+0			<Plug>(vinarise_line_first_address)
+^			<Plug>(vinarise_line_first_address)
+gl			<Plug>(vinarise_line_last_address)
+$			<Plug>(vinarise_line_last_address)
+j			<Plug>(vinarise_next_line)
+k			<Plug>(vinarise_prev_line)
+<C-f>			<Plug>(vinarise_next_screen)
+<C-b>			<Plug>(vinarise_prev_screen)
+<C-d>			<Plug>(vinarise_next_half_screen)
+<C-u>			<Plug>(vinarise_prev_half_screen)
+<C-g>			<Plug>(vinarise_print_current_position)
+r			<Plug>(vinarise_change_current_address)
+R			<Plug>(vinarise_overwrite_from_current_address)
+gG			<Plug>(vinarise_move_to_input_address)
+go			<Plug>(vinarise_move_by_input_offset)
+gg			<Plug>(vinarise_move_to_first_address)
+G			<Plug>(vinarise_move_to_last_address)
+/			<Plug>(vinarise_search_binary)
+?			<Plug>(vinarise_search_binary_reverse)
+g/			<Plug>(vinarise_search_string)
+g?			<Plug>(vinarise_search_string_reverse)
+e/			<Plug>(vinarise_search_regexp)
+n			<Plug>(vinarise_search_last_pattern)
+N			<Plug>(vinarise_search_last_pattern_reverse)
+E			<Plug>(vinarise_change_encoding)
+<C-l>			<Plug>(vinarise_redraw)
+g<C-l>			<Plug>(vinarise_reload)
+
+==============================================================================
+EXAMPLES					*vinarise-examples*
+>
+	
+	
+	
+>
+==============================================================================
+CHANGELOG					*vinarise-changelog*
+
+2012-05-30
+- Fixed filename completion.
+
+2012-05-28
+- Deleted debug message.
+
+2012-05-27
+- Fixed for cpo.
+
+2012-05-19
+- Added <Plug>(vinarise_reload) mapping.
+- Fixed g:vinarise_detect_large_file_size problem.
+
+2012-05-17
+- Fixed auto detection error.
+
+2012-05-16
+- Fixed completion behavior.
+
+2012-05-14
+- Fixed display byte.
+
+2012-05-04
+- Improved empty file behavior.
+- Improved cursor move.
+
+2012-05-03
+- Fixed for vim-fugitive ":Gstatus".
+
+2012-05-02
+- Fixed change window size behavior in vinarise bitmapview.
+
+2012-04-28
+- Updated vital.
+
+2012-04-23
+- Fixed vimfiler dependency.
+- Fixed unite dependency.
+
+2012-04-22
+- Improved bitmapview behavior.
+
+2012-04-13
+- Supported euc-jp.
+
+2012-04-05
+- Fixed search pattern.
+
+2012-03-31
+- Fixed for cmdwin.
+
+2012-03-28
+- Improved encoding completion.
+- Added <Plug>(vinarise_overwrite_from_current_address) mapping.
+
+2012-03-27
+- Added wrapper functions.
+- Supported UTF-16.
+- Improved get_chars().
+
+2012-03-26
+- Silent edit.
+
+2012-03-25
+- Supported Cp932 encoding.
+- Improved highlight cursor.
+
+2012-03-20
+- Fixed :match.
+- Implemented UTF-8 encoding.
+- Fixed address parse.
+
+2012-03-19
+- Added encoding option.
+- Implemented completion.
+- Added <Plug>(vinarise_change_encoding) and <Plug>(vinarise_redraw) mappings.
+- Supported UTF-8 encoding(imcomplete).
+
+2012-03-18
+- Improved search patterns.
+
+2012-03-05
+- Fixed vimproc independation.
+- Fixed offset bug.
+- Implemented Vim version check.
+
+2012-02-26
+- Fixed unite dependency.
+
+2012-02-25
+- Changed <Plug>(vinarise_move_to_last_address) default mapping.
+- Improved bitmapview behavior.
+- Fixed moving address bug.
+
+2012-02-24
+- Implemented bitmapview.
+- Fixed exit error.
+- Fixed width problem.
+- Fixed parse address.
+- Updated documentation.
+
+2012-02-22
+- Fixed print_lines errors.
+- Fixed find regexp.
+- Improved <Plug>(vinarise_search_binary) behavior.
+
+2012-02-21
+- Added some moving mappings.
+- Improved Python API interface.
+- Implemented search API.
+- Added regexp search(incomplete).
+- Added search regexp keymapping.
+
+2012-02-20
+- Fixed file write.
+- Added <Plug>(vinarise_move_to_last_address) mapping.
+- Improved cursor moving behavior.
+- Added <Plug>(vinarise_move_to_first_address) mapping.
+
+2012-02-17
+- Added <Plug>(vinarise_move_to_input_address) mapping.
+- Improved filesize.
+- Added some moving mappings.
+
+2012-02-16
+- Added <Plug>(vinarise_change_current_address) mapping.
+- Check modified flag.
+- Implemented write.
+- Improved opening file behavior.
+- Improved mapping max.
+
+2012-02-14
+- Improved parse address.
+- Added g:vinarise_cursor_ascii_highlight option.
+
+2012-02-12
+- Added g:vinarise_detect_large_file_size option.
+- Improved initialize context.
+- Fixed open mode.
+- Fixed python script.
+- Fixed range address.
+
+2012-02-11
+- Re implemented using Python interface.
+- Added move mappings.
+- Improved auto detect behavior.
+- Added <Plug>(vinarise_print_current_position) mapping.
+- Improved syntax highlight.
+- Improved file open.
+- Check file is empty.
+- Fixed buflisted check.
+- Implemented close.
+
+2012-02-10
+- Refactored.
+- Vitalized.
+- Added options.
+- Added mappings.
+- Check file size.
+
+2011-01-08
+- Use python interface(2.6 or above).
+- Optimized view range.
+
+2010-11-07
+- Improved modeline.
+
+2010-10-21
+- 80 column safe.
+
+2010-08-15
+- Python interface test.
+
+2010-08-14
+- Improved syntax.
+
+2010-08-13
+- Added :VinariseDump command.
+- Added g:vinarise_enable_auto_detect option.
+- Added g:vinarise_objdump_command option.
+
+2010-08-12
+- Improved print.
+- Added syntax file.
+
+2010-08-11
+- Use vimproc.
+
+2010-08-09
+- Initial version.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:fdl=0:

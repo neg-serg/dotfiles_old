@@ -1,0 +1,53 @@
+*vital-web-http.txt*				simple HTTP client library.
+
+Maintainer: mattn <mattn.jp@gmail.com>
+
+==============================================================================
+CONTENTS				*Vital.Web.Http-contents*
+
+INTRODUCTION				|Vital.Web.Http-introduction|
+INTERFACE				|Vital.Web.Http-interface|
+  Functions				|Vital.Web.Http-functions|
+  Response				|Vital.Web.Http-response|
+
+==============================================================================
+INTRODUCTION				*Vital.Web.Http-introduction*
+
+*Vital.Web.Http* is HTTP Utilities Library. It provides simple HTTP client.
+
+==============================================================================
+INTERFACE				*Vital.Web.Http-interface*
+------------------------------------------------------------------------------
+FUNCTIONS				*Vital.Web.Http-functions*
+
+get(url, param, header)			*Vital.Web.Http.get()*
+	Send GET request to url.
+
+post(url, param, header)		*Vital.Web.Http.post()*
+	Send POST request to url.
+
+encodeURI(param)			*Vital.Web.Http.encodeURI()*
+	Encode params as URI query.
+
+decodeURI(str)				*Vital.Web.Http.decodeURI()*
+	Decode string as URI params.
+
+encodeURIComponent(str)			*Vital.Web.Http.encodeURIComponent()*
+	Encode param as URI components.
+
+------------------------------------------------------------------------------
+RESPONSE				*Vital.Web.Http-response*
+
+|Vital.Web.Http.get| and |Vital.Web.Http.post| return data structure as
+|Directory| like following.
+>
+	{
+	  "header": [
+	    "Content-Type: text/html",
+	    "Content-Length: 310"
+	  ],
+	  "content": "<html> ....."
+	}
+<
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

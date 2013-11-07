@@ -1,0 +1,95 @@
+
+"  __     ___
+"  \ \   / (_)_ __ ___
+"   \ \ / /| | '_ ` _ \  
+"    \ V / | | | | | | |
+"     \_/  |_|_| |_| |_|  
+"
+
+scriptencoding utf-8
+ if has('vim_starting')
+  set nocompatible               " Be iMproved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
+"------------------------------------------------------------------------------------------------------------
+"--[ Bundles ]-----------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'SirVer/ultisnips.git'              "snippets for ycm
+NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc 
+" NeoBundle 'djjcast/mirodark.git'              "main colorscheme
+NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
+NeoBundle 'kien/ctrlp.vim'                    "for MRU
+NeoBundle 'godlygeek/tabular'                 "tabularize!
+NeoBundle 'mileszs/ack.vim'                   "ack wrapper
+NeoBundle 'tpope/vim-repeat'                  "repeat everything!
+NeoBundle 'sjl/gundo.vim.git'                 "fancy undo tree
+NeoBundle 'tpope/vim-eunuch.git'              "for SudoWrite, Locate, Find etc
+NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc      
+NeoBundle 'vim-scripts/compview.git'          "interactive search
+NeoBundle 'vim-scripts/vim-tmuxify.git'       "use vim with tmux
+NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
+NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
+NeoBundle 'kien/rainbow_parentheses.vim'      "rainbow ()[]
+NeoBundle 'tomtom/tcomment_vim.git'
+"------------------------------------------------------------------------------------------------------------
+"--[ new ]---------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------ 
+NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
+NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on
+NeoBundle 'sickill/vim-pasta'                 "better nnoremap p p`[v`]=
+NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
+NeoBundle 'trapd00r/vim-syntax-vidir-ls.git'  "vidir syntax. Make for it standalone vimv/vidir/vils conf!
+NeoBundle 'benmills/vimux'                    "some easy to use wrapper for tmux
+NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
+NeoBundle 'vim-scripts/sessionman.vim'        "session manager
+NeoBundle 'matchit.zip'                       " % for everything
+NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
+NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like emacs/bash
+"------------------------------------------------------------------------------------------------------------
+"--[ haskell ]-----------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
+" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
+" NeoBundle 'Twinside/vim-haskellConceal'       "unicode operators in haskell without changing of code
+" NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
+"------------------------------------------------------------------------------------------------------------
+"--[ java/scala ]--------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'derekwyatt/vim-scala'              "different initial scala support for vim
+NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
+"------------------------------------------------------------------------------------------------------------
+"--[ misc ]--------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
+NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
+NeoBundle 'majutsushi/tagbar'                 "tagbar
+NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
+NeoBundle 'nathanaelkane/vim-indent-guides'   "indent
+NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
+NeoBundle 'bling/vim-airline.git'             "fancy statusline
+"------------------------------------------------------------------------------------------------------------
+"--[ good but not useful yet ]-------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+" NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
+" NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
+" NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
+syntax on
+filetype plugin indent on
+NeoBundleCheck
+
+source ~/.vim/01-settings.vim
+source ~/.vim/04-autocmds.vim
+source ~/.vim/10-keymaps.vim
+source ~/.vim/11-emacs-keys.vim
+"source ~/.vim/30-vim-swap-words.vim
+" source ~/.vim/func/vim-transpose-words.vim
+
+" source ~/.vim/.trash/99-test.vim
+" source ~/.vim/.trash/99-trash.vim
+" source ~/.vim/.trash/99-trash-bundle.vim
+" source ~/.vim/.trash/99-trash-modules-lang.vim
+" source ~/.vim/.trash/99-trash-modules-colors.vim
+source ~/.vim/20-additional-hightLight.vim
