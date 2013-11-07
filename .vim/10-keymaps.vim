@@ -295,4 +295,8 @@ map zh zH
     nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 "}
 
-"TEST
+nmap <silent> <F11>                        <Plug>FontsizeBegin
+nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
+nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
+nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
+

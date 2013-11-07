@@ -27,6 +27,13 @@ if has("gui_running")
     " Paste from PRIMARY and CLIPBOARD
     inoremap <silent> <M-v> <Esc>"+p`]a
     inoremap <silent> <S-Insert> <Esc>"*p`]a
+    let g:mirodark_enable_higher_contrast_mode=0
+    colorscheme mirodark
+    " let g:solarized_termcolors=256
+    " let g:solarized_termtrans=1
+    " let g:solarized_contrast="normal"
+    " let g:solarized_visibility="normal"
+    " colorscheme solarized
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -93,7 +100,7 @@ set splitbelow                      " Puts new split windows to the bottom of th
 set matchpairs+=<:>                 " Match, to be used with %
 "set matchpairs+==:;                " Match, to be used with %
 "set matchpairs+=<:>                " Match, to be used with %
-set pastetoggle=<F12>               " pastetoggle (sane indentation on pastes)
+set pastetoggle=<F1>                " pastetoggle (sane indentation on pastes)
 set autoindent                      " Indent at the same level of the previous line
 set smartindent                     " does the right thing (mostly) in programs
 set cindent                         " stricter rules for C programs
@@ -230,8 +237,6 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 set magic
 
 set path=**
-" set complete=.,w,b,u,t,i
-" set complete-=i
 " Fuck you, help key.
 "noremap  <F1> :set invfullscreen<CR>
 "inoremap <F1> <ESC>:set invfullscreen<CR>a
@@ -259,9 +264,6 @@ set path=**
 
 let g:ycm_confirm_extra_conf = 0
 let g:mirodark_enable_higher_contrast_mode=0
-colorscheme mirodark
-"--[Leader]--
-"--
 let mapleader=','
 let maplocalleader=','
 let g:mapleader = ","
@@ -275,19 +277,6 @@ let g:yankring_history_dir="/home/neg/.vim/"
 let g:yankring_history_file="yankring"
 
 let LustyExplorerDefaultMappings=0
-" LaTeX-suite 
-let g:Tex_PromptedEnvironments = 'align*,array,lstlisting,verbatim,center,itemize,enumerate,description'
-let g:Tex_HotKeyMappings       = 'align*'
-let g:Tex_SmartKeyDot          = 0
-let g:Tex_SmartKeyQuote        = 0
-let g:Tex_CompileRule_dvi      = 'latex -src-specials -interaction=nonstopmode $*'
-let g:Tex_UseEditorSettingInDVIViewer = 1
-let g:Tex_ViewRule_pdf         = 'zathura'
-"let g:Tex_DefaultTargetFormat  = 'pdf'
-let g:tex_flavor               = 'latex'
-let g:tex_no_error=1
-let g:tex_fold_enabled=1
-let g:tex_indent_items=0
 " -----------------------------------------------------------------
 " When using the taglist plugin, don't attempt to resize the terminal
 let Tlist_Inc_Winwidth=0
