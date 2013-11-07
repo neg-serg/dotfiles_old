@@ -68,7 +68,8 @@ NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
-NeoBundle 'drmikehenry/vim-fontsize.git'
+NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
+NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 "------------------------------------------------------------------------------------------------------------
 "--[ good but not useful yet ]-------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------

@@ -548,7 +548,7 @@ call s:HI(   "CursorColumn", s:dblk,     "",     "" )
 call s:HI(    "ColorColumn", s:lblk,     "",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
 call s:HI(     "SignColumn", "NONE",     "",     "" )
-call s:HI(   "CursorLineNr", "",     s:dmag,     "" )
+call s:HI(   "CursorLineNr", "",     s:lylw,     "" )
 " call s:HI(   "CursorLineNr", s:dwht, s:lblk,     "" )
 " }}}
 

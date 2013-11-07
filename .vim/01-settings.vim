@@ -2,12 +2,9 @@
 " colorscheme solarized
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
-    " set gfn=Consolas\ 17
-    " set gfn=Inconsolata\ 18
-    " set gfn=WerfProFont\ 17
     " set lsp=-1
     set lsp=1
-    set go=ac
+    set go=c
     set background=dark
     set noantialias
     set clipboard=unnamed
@@ -34,6 +31,23 @@ if has("gui_running")
     " let g:solarized_contrast="normal"
     " let g:solarized_visibility="normal"
     " colorscheme solarized
+    hi CursorLineNr gui=none
+
+    highlight iCursor guifg=white   guibg=#005E6D
+    hi iCursorLine    guibg=#121212 gui=none
+    hi Error          cterm=NONE guibg=NONE
+
+    hi Pmenu  term=reverse ctermfg=0 ctermbg=7 gui=reverse guifg=#000000 guibg=#F8F8F8  
+    hi PmenuSbar  term=reverse ctermfg=3 ctermbg=7 guifg=#8A95A7 guibg=#F8F8F8  
+    hi PmenuThumb   term=reverse ctermfg=7 ctermbg=3 guifg=#F8F8F8 guibg=#8A95A7   
+    hi PmenuSel  term=reverse ctermfg=8 ctermbg=0 gui=reverse guifg=#586e75 guibg=#eee8d5
+    " Automatically open and close the popup menu / preview window
+    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+
+    " hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1 
+    " hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
+    " hi DiffDelete     xxx term=bold ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
+    " hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red   
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -208,7 +222,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-" set nolist
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
 set printoptions+=left:2,right:2,top:2,bottom:2
@@ -238,8 +251,6 @@ set magic
 
 set path=**
 " Fuck you, help key.
-"noremap  <F1> :set invfullscreen<CR>
-"inoremap <F1> <ESC>:set invfullscreen<CR>a
 " indent_guides {
     if !exists('g:spf13_no_indent_guides_autocolor')
         let g:indent_guides_auto_colors = 1
@@ -262,22 +273,13 @@ set path=**
     endif
 " }
 
-let g:ycm_confirm_extra_conf = 0
-let g:mirodark_enable_higher_contrast_mode=0
 let mapleader=','
 let maplocalleader=','
 let g:mapleader = ","
 
-" $q is super useful when browsing on the command line
-let g:tex_flavor = "latex"
-let g:tex_flavor='latex'
-let c_syntax_for_h=""
-" Settings for yankring
-let g:yankring_history_dir="/home/neg/.vim/"
-let g:yankring_history_file="yankring"
-
+let g:LustyJugglerDefaultMappings=0
 let LustyExplorerDefaultMappings=0
-" -----------------------------------------------------------------
+" -------------------------------------------------------------------
 " When using the taglist plugin, don't attempt to resize the terminal
 let Tlist_Inc_Winwidth=0
 " shell is bash
@@ -286,7 +288,6 @@ let g:is_bash=1
 let g:clj_highlight_builtins=1
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlPMRUFiles'
-let g:LustyJugglerDefaultMappings = 0
 let g:haddock_browser = "dwb"
 
 "Add existing project to project tree
@@ -313,6 +314,7 @@ let g:airline_symbols.linenr = ''
 
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
 let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
+let g:ycm_confirm_extra_conf = 0
 
 let g:ycm_filetype_blacklist = {
       \ 'notes' : 1,
