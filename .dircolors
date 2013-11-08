@@ -1,0 +1,452 @@
+# ----------------------------------------
+# file: $HOME/.dir_colors
+# author: jason ryan http:/jasonwryan.com
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:
+# ----------------------------------------
+#
+# Based on: https://github.com/trapd00r/LS_COLORS/blob/master/LS_COLORS
+
+# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not
+# pipes. 'all' adds color characters to all output. 'none' shuts colorization
+# off.
+COLOR all
+
+# Extra command line options for ls go here.
+# Basically these ones are:
+#  -F = show '/' for dirs, '*' for executables, etc.
+#  -T 0 = don't trust tab spacing when formatting ls output.
+# -b = better support for special characters
+OPTIONS -F -b -T 0
+
+# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
+EIGHTBIT 1
+
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes: 
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+ 
+# NORMAL         00         # global default, although everything should be something.
+# FILE           00         # normal file
+DIR            00;34      # directory
+LINK 00;38;5;5 # symbolic link. (If you set this to 'target' instead of a
+# numerical value, the color is as for the file pointed to.)
+# MULTIHARDLINK 00 # regular file with more than one link
+# LINK           35         # symbolic link
+FIFO           40;33      # pipe
+SOCK           01;35      # socket
+BLK            38;5;24   # block device driver
+CHR            38;5;24   # character device driver
+ORPHAN         01;30
+# This is for files with execute permission:
+# EXEC 04;04
+EXEC    00;38;5;244 
+NORMAL 00;38;5;244 # no color code at all
+FILE 00 # regular file: use no color at all
+RESET 0 # reset to "normal" color
+#DIR 00;38;5;33 # directory 01;34
+#FIFO 48;5;230;38;5;136;01 # pipe
+#SOCK 48;5;230;38;5;136;01 # socket
+#DOOR 48;5;230;38;5;136;01 # door
+# BLK 48;5;230;38;5;244;01 # block device driver
+# CHR 48;5;230;38;5;244;01 # character device driver
+# ORPHAN 48;5;235;38;5;160 # symlink to nonexistent file, or non-stat'able file
+# SETUID 48;5;160;38;5;230 # file that is setuid (u+s)
+# SETGID 48;5;136;38;5;230 # file that is setgid (g+s)
+# #CAPABILITY 30;41 # file with capability
+# STICKY_OTHER_WRITABLE 48;5;64;38;5;230 # dir that is sticky and other-writable (+t,o+w)
+# OTHER_WRITABLE 48;5;235;38;5;33 # dir that is other-writable (o+w) and not sticky
+# STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writable
+
+.cmd           01;32 # executables (bright green)
+.exe           01;32
+.com           01;32
+.btm           01;32
+.bat           01;32
+
+## Archives or compressed (violet + bold for compression)
+.tar    00;38;5;61
+.tgz    01;38;5;61
+.arj    01;38;5;61
+.taz    01;38;5;61
+.lzh    01;38;5;61
+.lzma   01;38;5;61
+.tlz    01;38;5;61
+.txz    01;38;5;61
+.zip    01;38;5;61
+.ZIP    01;38;5;61
+.z      01;38;5;61
+.Z      01;38;5;61
+.dz     01;38;5;61
+.gz     01;38;5;61
+.gem    01;38;5;61
+.lz     01;38;5;61
+.xz     01;38;5;61
+.bz2    01;38;5;61
+.bz     01;38;5;61
+.tbz    01;38;5;61
+.tbz2   01;38;5;61
+.tz     01;38;5;61
+.deb    01;38;5;61
+.rpm    01;38;5;61
+.jar    01;38;5;61
+.rar    01;38;5;61
+.ace    01;38;5;61
+.zoo    01;38;5;61
+.cpio   01;38;5;61
+.7z     01;38;5;61
+.lrz    01;38;5;61
+.rz     01;38;5;61
+.apk    01;38;5;61
+.z      01;38;5;61
+.Z      01;38;5;61
+
+# Image formats 
+.jpg    00;38;5;66
+.JPG    00;38;5;66 #stupid but needed
+.jpeg   00;38;5;66
+.gif    00;38;5;66
+.bmp    00;38;5;66
+.pbm    00;38;5;66
+.pgm    00;38;5;66
+.ppm    00;38;5;66
+.tga    00;38;5;66
+.xbm    00;38;5;66
+.xpm    00;38;5;66
+.tif    00;38;5;66
+.tiff   00;38;5;66
+.png    00;38;5;66
+.svg    00;38;5;66
+.svgz   00;38;5;66
+.mng    00;38;5;66
+.pcx    00;38;5;66
+.dl     00;38;5;66
+.xcf    00;38;5;66
+.xwd    00;38;5;66
+.yuv    00;38;5;66
+.cgm    00;38;5;66
+.emf    00;38;5;66
+.eps    00;38;5;66
+.CR2    00;38;5;66
+.ico    00;38;5;66
+
+# "unimportant" files as logs and backups (base01)
+.log        00;38;5;240
+.bak        00;38;5;240
+.aux        00;38;5;240
+.bbl        00;38;5;240
+.blg        00;38;5;240
+*~          00;38;5;240
+*#          00;38;5;240
+.part       00;38;5;240
+.incomplete 00;38;5;240
+.swp        00;38;5;240
+.tmp        00;38;5;240
+.temp       00;38;5;240
+.o          00;38;5;240
+.pyc        00;38;5;240
+.class      00;38;5;240
+.cache      00;38;5;240
+
+.djvu      00;38;5;250
+.pdf       00;38;5;250
+.epub      00;38;5;250
+.dvi       00;38;5;240
+.ps        00;38;5;250
+.chm       00;38;5;250
+.markdown  00;38;5;245
+.mkd       00;38;5;110
+.md        00;38;5;245
+.txt       00;38;5;29
+.rtf       00;38;5;29
+.doc       00;38;5;29
+.docx      00;38;5;29
+.odt       00;38;5;29
+.xls       00;38;5;22
+.xlsx      00;38;5;22
+.xlsm      00;38;5;22
+.ods         38;5;29
+.odp         38;5;29
+.odb         38;5;29
+.tex       00;38;5;245
+.textile   00;38;5;245
+.owl       00;38;5;245
+.n3        00;38;5;245
+.rc        00;38;5;245
+
+# all of the rest
+.PL            00;36
+.asm           00;36
+.asoundrc      00;36
+.awk           00;36
+.bak           01;31
+.coffee        00;36
+.conf          00;36
+.cs            00;36
+.css           00;36
+.csv           00;36
+.dir_colors    01;33
+.enc           00;36
+.eps           00;36
+.etx           00;36
+.ex            00;36
+.example       00;36
+.fehbg         00;36
+.fonts         00;36
+.git           00;36
+.gitignore     00;36
+.htm           01;38;5;23
+.html          01;38;5;23
+.hgrc          01;38;5;23
+.hgignore      01;38;5;23
+.go            01;38;5;23
+.h             01;38;5;23
+.hs            01;38;5;23
+.htoprc        01;38;5;23
+.info          01;38;5;23
+.ini           01;38;5;23
+.java          01;38;5;23
+.jhtm          01;38;5;23
+.js            01;38;5;23
+.jsm           01;38;5;23
+.jsm           01;38;5;23
+.json          01;38;5;23
+.jsp           01;38;5;23
+.lisp          01;38;5;23
+.lesshst       01;38;5;23
+.log           01;38;5;23
+.lua           01;38;5;23
+.map           01;32
+.mf            01;32
+.mfasl         01;32
+.mi            01;32
+.msmtprc       01;32
+.mtx           01;32
+.muttrc        01;32
+.nfo           01;32
+.netrc         01;31
+.offlineimaprc 01;32
+.pacnew        01;31
+
+.patch         01;31
+.diff          01;33 
+
+.pc            00;31
+.pfa           00;31
+.php           00;31
+.pid           00;31
+.pl            00;31
+.pm            00;31
+.pod           00;31
+.py            00;31
+.rc            00;31
+.rb            00;31
+.ru            00;31
+.sed           00;31
+.signature     00;31
+.sty           01;35
+.sug           01;35
+.t             01;35
+.tcl           01;35
+.tdy           01;35
+.tfm           01;35
+.tfnt          01;35
+.theme         01;35
+.viminfo       01;35
+.yml           01;35
+.sh            01;38;5;103
+.sh*           01;38;5;103
+.bash          01;38;5;103
+.bashrc        01;38;5;103
+.bash_history  01;38;5;103
+.bash_profile  01;38;5;103
+.zsh           01;38;5;103
+.ttytterrc     01;35
+.urlview       01;35
+.vim           01;35
+.vimrc         01;35
+.xinitrc       01;31 
+.Xauthority    01;31
+.Xmodmap       00;31
+.Xresources    01;33
+.iso           01;38;5;141
+.ISO           01;38;5;141
+.nrg           01;38;5;141
+.mdf           01;38;5;141
+
+# Files of special interest (base1 + bold)
+.tex             01;38;5;245
+.rdf             01;38;5;245
+.owl             01;38;5;245
+.n3              01;38;5;245
+.ttl             01;38;5;245
+.nt              01;38;5;245
+.torrent         01;38;5;245
+.jidgo           01;38;5;245
+.xml             01;38;5;245
+*build.xml       01;38;5;245
+*rc              01;38;5;245
+*1               01;38;5;245
+.nfo             01;38;5;245
+*README          01;38;5;245
+*README.txt      01;38;5;245
+*readme.txt      01;38;5;245
+*Makefile        01;38;5;245
+*Rakefile        01;38;5;245
+.md              01;38;5;245
+*README.markdown 01;38;5;245
+.ini             01;38;5;245
+.yml             01;38;5;245
+.cfg             01;38;5;245
+.conf            01;38;5;245
+.c               00;38;5;5
+.cpp             00;38;5;5
+.cc              00;38;5;5
+*TODO            01;38;5;91
+
+# Audio formats (orange)
+.aac    00;38;5;13
+.au     00;38;5;13
+.flac   00;38;5;13
+.mid    00;38;5;13
+.midi   00;38;5;13
+.mka    00;38;5;13
+.mp3    00;38;5;13
+.mpc    00;38;5;13
+.ogg    00;38;5;13
+.ra     00;38;5;13
+.wav    00;38;5;13
+.m4a    00;38;5;13
+.axa    00;38;5;13
+.oga    00;38;5;13
+.spx    00;38;5;13
+.xspf   00;38;5;13
+# Video formats (as audio + bold)
+.mov    01;38;5;13
+.mpg    01;38;5;13
+.mpeg   01;38;5;13
+.m2v    01;38;5;13
+.mkv    01;38;5;13
+.ogm    01;38;5;13
+.mp4    01;38;5;13
+.VOB    01;38;5;13
+.m4v    01;38;5;13
+.mp4v   01;38;5;13
+.vob    01;38;5;13
+.qt     01;38;5;13
+.nuv    01;38;5;13
+.wmv    01;38;5;13
+.asf    01;38;5;13
+.rm     01;38;5;13
+.rmvb   01;38;5;13
+.flc    01;38;5;13
+.avi    01;38;5;13
+.AVI    01;38;5;13
+.fli    01;38;5;13
+.flv    01;38;5;13
+.gl     01;38;5;13
+.m2ts   01;38;5;13
+.divx   01;38;5;13
+.webm   01;38;5;13
+
+# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
+.axv 01;38;5;13
+.anx 01;38;5;13
+.ogv 01;38;5;13
+.ogx 01;38;5;13
+.srt 01;38;5;116
+.ttf 01;38;5;65
+.pcf 01;38;5;65
+.bdf 01;38;5;65
+
+# systemd units
+# http://www.freedesktop.org/software/systemd/man/systemd.unit.html
+.service              38;5;81
+*@.service            38;5;45
+.socket               38;5;75
+.device               38;5;24
+.mount                38;5;115
+.automount            38;5;114
+.swap                 38;5;113
+.target               38;5;73
+.path                 38;5;116
+.timer                38;5;111
+.snapshot             38;5;139
+     
+# Bel01;38;5;ow, there should be one TERM entry for each termtype that is colorizable
+TERM Eterm
+TERM ansi
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM eterm-color
+TERM gnome
+TERM gnome-256color
+TERM jfbterm
+TERM konsole
+TERM kterm
+TERM linux
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM putty
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode-256color
+TERM rxvt-unicode256
+TERM screen
+TERM screen-256color
+TERM screen-256color-bce
+TERM screen-bce
+TERM screen-w
+TERM screen.rxvt
+TERM screen.linux
+TERM terminator
+TERM vt100
+TERM xterm
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian 
+#
+#------------ Solarized ----------------
+
+# Dark 256 color solarized theme for the color GNU ls utility.
+# Used and tested with dircolors (GNU coreutils) 8.5
+#
+# @author  {@link http://sebastian.tramp.name Sebastian Tramp}
+# @license http://sam.zoy.org/wtfpl/  Do What The Fuck You Want To Public License (WTFPL)
+#
+# More Information at
+# https://github.com/seebi/dircolors-solarized
+
+# 256 color support
+# see here: http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html)
+#
+# Text 256 color coding:
+# 38;5;COLOR_NUMBER
+# Background 256 color coding:
+# 48;5;COLOR_NUMBER
+
+### Special files
+

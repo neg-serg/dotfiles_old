@@ -38,9 +38,7 @@ nmap <silent> <leader>r :LustyBufferExplorer<CR>
 nmap <silent> <leader>g :LustyBufferGrep<CR>
 nmap <silent> <leader>b :LustyJuggler<CR>
 
-map ,e ^wy$:r!"
-nnoremap <Leader>a ggVG
-inoremap <CR> <C-g>u<CR>
+" inoremap <CR> <C-g>u<CR>
 nnoremap ! :%!
 xnoremap ! :!
 
