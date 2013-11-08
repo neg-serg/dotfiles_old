@@ -78,7 +78,7 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                    " don't call fsync() or sync(); let linux handle it
-"set autowrite                      " Automatically write a file when leaving a modified buffer
+set autowrite                       " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
@@ -108,6 +108,8 @@ set directory=~/trash
 set undofile                        " So is persistent undo ...
 set undolevels=1000                 " Maximum number of changes that can be undone
 set undoreload=10000                " Maximum number lines to save for undo on a buffer reload
+
+set noshowmode                      " For flickering disable showmode unneeded with airline/powerline
 
 " set list
 " set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
@@ -142,8 +144,8 @@ set nofoldenable                    "dont fold by default
 " set formatoptions+=r    " continue the comment header automatically on <CR>
 " set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
 " set formatoptions+=q    " allow formatting of comments with gq
-" "set formatoptions-=w   " double-carriage-return indicates paragraph
-" "set formatoptions-=a   " don't reformat automatically
+" set formatoptions-=w   " double-carriage-return indicates paragraph
+" set formatoptions-=a   " don't reformat automatically
 " set formatoptions+=n    " recognize numbered lists when autoindenting
 " set formatoptions+=2    " use second line of paragraph when autoindenting
 " set formatoptions-=v    " don't worry about vi compatiblity
@@ -271,7 +273,8 @@ else
 endif
 
 let g:airline_powerline_fonts = 0 " Use airline fonts
-let g:airline#extensions#hunks#enabled = 1 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#checks = []
 
 let g:airline_exclude_preview=1

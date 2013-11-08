@@ -1,6 +1,4 @@
 " NeoBundle 'myusuf3/numbers.vim'
-" NeoBundle 'airblade/vim-gitgutter'
-
 "-------------go
 " NeoBundle 'jnwhiteh/vim-golang'
 " NeoBundle 'spf13/vim-gocode'
@@ -33,16 +31,10 @@
 "
 " NeoBundle 'mattn/gist-vim'
 " NeoBundle 'Lokaltog/vim-easymotion'
-"
-"
-" NeoBundle 'ujihisa/neco-ghc.git'              "useful haskell mode
-" NeoBundle 'eagletmt/ghcmod-vim.git'           "mod for happy haskell work. ghc-mod must be installed
-" NeoBundle 'ervandew/supertab.git'             "use <tab> for everything. As I know work with ycm
-"
-"
 " NeoBundle 'adinapoli/cumino'                  "to prepare haskell recipies ghci+vim+tmux
 NeoBundle 'lukerandall/haskellmode-vim'       "haskell mode for vim
 " NeoBundle 'bitc/vim-hdevtools'              "
 "
 " NeoBundle 'Twinside/vim-haskellConceal'       "unicode operators in haskell without changing of code
 " NeoBundle 'wesleyche/SrcExpl.git'             "explorer for functions; only for tags/ctags %(
+" NeoBundle 'airblade/vim-gitgutter'          "show what line was changed/deleted / did not work with realtime TOOOOOO SLOOW
