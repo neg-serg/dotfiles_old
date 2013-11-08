@@ -39,7 +39,7 @@ xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 
 #echo 'keycode 58 = 1' >> /usr/local/share/kbd/caps_to_esc
 #loadkeys -q /usr/local/share/kbd/caps_to_esc
-export GPG_AGENT_INFO
+# export GPG_AGENT_INFO
 
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
@@ -81,12 +81,14 @@ urxvtd -q -f -o
 ${HOME}/bin/urxvt 
 amixer -q set Master 0% mute
 [ -z $(pidof udiskie) ]     && udiskie &
-# [ -z $(pidof transmission-daemon) ] && transmission-daemon # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
+# [ -z $(pidof transmission-daemon) ] && transmission-daemon
+# [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
 
+keychain ~/.ssh/id_rsa &
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
 
 exec notion
