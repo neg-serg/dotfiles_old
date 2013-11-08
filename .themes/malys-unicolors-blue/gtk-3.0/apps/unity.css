@@ -1,0 +1,61 @@
+UnityPanelWidget,
+.unity-panel {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (alpha (#dbdbdb, 1.0)),
+                                     color-stop (1.0, shade (#8F8F8F, 1.1)),
+                                     to (alpha (#a6a6a6, 0.8)));
+    border-width: 0 0 1 0;
+    border-radius: 1;
+    padding: 4;
+    -unico-outer-stroke-gradient:  -gtk-gradient (linear, left top, left bottom,
+                                                 from (alpha (#D9D9D9, 1.0)),
+                                                 to (alpha (#D9D9D9, 1.0)));
+    -unico-outer-stroke-width: 0 0 1 0;
+
+
+
+}
+
+.unity-panel.menubar,
+.unity-panel .menubar {
+}
+
+.unity-panel.menuitem,
+.unity-panel .menuitem {
+    border-width: 1;
+    color: alpha (#363636, 0.7);
+    text-shadow: 0 1 alpha (#C2C2C2, 0.60);
+    icon-shadow: 0 1 alpha (#f2f2f2, 0.7);
+}
+
+.unity-panel.menubar.menuitem:hover,
+.unity-panel.menubar .menuitem *:hover {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (alpha (#dbdbdb, 1.0)),
+                                     to (alpha (#dbdbdb, 1.0)));
+ 
+
+     border-width: 0;
+    -unico-inner-stroke-width: 1 1 0 1;
+
+    -unico-glow-color: shade (#f2f2f2, 1.0);
+    -unico-glow-radius: 2;
+    -unico-border-gradient: -gtk-gradient (linear,
+                              left top, left bottom,
+                              from (alpha (#8fb0bf, 0.7)),
+                              to (alpha (#8fb0bf, 0.7)));
+    -unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+                                                 from (alpha (#8fb0bf, 1.0)),
+                                                 to (alpha (#8fb0bf, 1.0)));
+
+    -unico-outer-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+                                                 from (alpha (#f2f2f2, 0.75)),
+                                                 to (alpha (#f2f2f2, 0.75)));
+    -unico-outer-stroke-width: 1 1 0 1;
+
+
+    border-style: solid;
+    border-radius: 10 10 0 0;
+
+
+}

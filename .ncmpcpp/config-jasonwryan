@@ -1,0 +1,41 @@
+#----------------------------------------------------
+# file:     ~/.ncmpcpp/config                         
+# author:   jason ryan - http://jasonwryan.com/    
+# vim:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
+#----------------------------------------------------
+
+mpd_host = "localhost"
+mpd_port = "6600"
+mpd_music_dir = "/mnt/quiver/Music"
+mpd_connection_timeout = "5"
+playlist_disable_highlight_delay = "3"
+message_delay_time = "4"
+song_list_format = "{%a - }{%t}|{$5%f$9}$R{$7(%l)$9}"
+song_status_format = "{{%a{ \"%b\"{ (%y)}} - }{%t}}|{%f}"
+song_window_title_format = "{%a - }{%t}|{%f}"
+song_columns_list_format = "(5f)[black]{l} (33)[green]{t} (32)[cyan]{a} (30)[blue]{b}"
+playlist_display_mode = "columns" (classic/columns)
+browser_display_mode = "columns" (classic/columns)
+progressbar_look = "->"
+user_interface = "classic" (classic/alternative)
+media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
+header_visibility = "no"
+statusbar_visibility = "no"
+header_text_scrolling = "yes"
+fancy_scrolling = "yes"
+display_remaining_time = "yes"
+ignore_leading_the = "yes"
+empty_tag_marker = ""
+enable_window_title = "yes"
+colors_enabled = "yes"
+header_window_color = "magenta"
+volume_color = "green"
+state_line_color = "blue"
+state_flags_color = "blue"
+main_window_color = "cyan"
+color1 = "cyan"
+color2 = "blue"
+main_window_highlight_color = "cyan"
+progressbar_color = "magenta"
+statusbar_color = "cyan" 
+active_column_color = "cyan"

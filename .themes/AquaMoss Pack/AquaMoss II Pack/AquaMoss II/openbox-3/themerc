@@ -1,0 +1,136 @@
+#AquaMoss II OpenBox Theme
+
+# Window geometry
+padding.width: 1
+border.width: 1
+window.client.padding.width: 1
+window.client.padding.height: 1
+window.handle.width: 0
+
+#Menu geometry
+menu.border.width: 1
+menu.overlap: -6
+
+# Border colors
+window.active.border.color: #296460
+window.inactive.border.color: #296460
+menu.border.color: #296460
+window.active.client.color: #121313
+window.inactive.client.color: #121313
+
+# Text shadows
+window.active.label.text.font: shadow=n
+window.inactive.label.text.font: shadow=n
+menu.items.font: shadow=n
+menu.title.text.font: shadow=n
+
+# Window title justification
+window.label.text.justify: left
+
+# Active window
+window.active.title.bg: Flat
+window.active.title.bg.color: #121313
+window.active.label.bg: Parentrelative
+window.active.label.text.color: #121313
+
+window.active.handle.bg: Flat
+window.active.handle.bg.color: #296460
+window.active.grip.bg: Flat
+window.active.grip.bg.color: #296460
+
+window.active.button.unpressed.bg: Flat
+window.active.button.unpressed.bg.color: #121313
+window.active.button.unpressed.bg.border.color: #121313
+window.active.button.unpressed.image.color: #296460
+
+window.active.button.pressed.bg: Flat
+window.active.button.pressed.bg.color: #121313
+window.active.button.pressed.bg.border.color: #121313
+window.active.button.pressed.image.color: #296460
+
+window.active.button.disabled.bg: Flat
+window.active.button.disabled.bg.color: #121313
+window.active.button.disabled.bg.border.color: #121313
+window.active.button.disabled.image.color: #296460
+
+window.active.button.toggled.bg: Flat
+window.active.button.toggled.bg.color: #121313
+window.active.button.toggled.bg.border.color: #121313
+window.active.button.toggled.image.color: #296460
+
+window.active.button.hover.bg: Flat
+window.active.button.hover.bg.color: #121313
+window.active.button.hover.bg.border.color: #121313
+window.active.button.hover.image.color: #4ff2d8
+
+# Inactive windows
+window.inactive.title.bg: Flat
+window.inactive.title.bg.color: #121313
+window.inactive.label.bg: Parentrelative
+window.inactive.label.text.color: #121313
+
+window.inactive.handle.bg: Flat
+window.inactive.handle.bg.color: #296460
+window.inactive.grip.bg: Flat
+window.inactive.grip.bg.color: #296460
+
+window.inactive.button.unpressed.bg: Flat
+window.inactive.button.unpressed.bg.color: #121313
+window.inactive.button.unpressed.bg.border.color: #121313
+window.inactive.button.unpressed.image.color: #296460
+
+window.inactive.button.pressed.bg: Flat
+window.inactive.button.pressed.bg.color: #121313
+window.inactive.button.pressed.bg.border.color: #121313
+window.inactive.button.pressed.image.color: #296460
+
+window.inactive.button.disabled.bg: Flat
+window.inactive.button.disabled.bg.color: #121313
+window.inactive.button.disabled.bg.border.color: #121313
+window.inactive.button.disabled.image.color: #296460
+
+window.inactive.button.toggled.bg: Flat
+window.inactive.button.toggled.bg.color: #121313
+window.inactive.button.toggled.bg.border.color: #121313
+window.inactive.button.toggled.image.color: #296460
+
+window.inactive.button.hover.bg: Flat
+window.inactive.button.hover.bg.color: #121313
+window.inactive.button.hover.bg.border.color: #121313
+window.inactive.button.hover.image.color: #4ff2d8
+
+# Menus
+menu.title.bg: flat 
+menu.title.bg.color: #121313
+menu.title.text.color: #3baf9d
+menu.title.text.justify: right
+
+menu.items.bg: Flat Solid
+menu.items.bg.color: #121313
+menu.items.text.color: #296460
+menu.items.disabled.text.color: #343434
+
+menu.items.active.bg: flat diagonal gradient
+menu.items.active.bg.color: #121313
+menu.items.active.bg.colorTo: #121313
+menu.items.active.text.color: #3baf9d
+menu.items.active.disabled.text.color: #343434
+
+#separator
+menu.separator.color: #296460
+menu.separator.width: 1
+menu.separator.padding.width: 3
+menu.separator.padding.height: 3
+
+
+#osd
+osd.border.width: 1
+osd.border.color:  #121313
+
+osd.bg: flat border
+osd.bg.color: #296460
+osd.bg.border.color: #121313
+
+osd.label.bg: parentrelative
+
+osd.label.text.color: #121313

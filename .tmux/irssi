@@ -1,0 +1,12 @@
+#---------------------------------------------------------------
+# file:     ~/.tmux/irc                         
+# author:   jason ryan - http://jasonwryan.com/    
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
+#---------------------------------------------------------------
+
+# session initialization
+new -s IRC -n Tyrs tyrs
+#neww -n irssi /home/jason/Scripts/startirssi.sh
+neww -n RSS newsbeuter
+neww zsh
+selectw -t 1

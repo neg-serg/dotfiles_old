@@ -1,0 +1,15 @@
+#---------------------------------------------------------------
+# file:     ~/.tmux/standard                         
+# author:   jason ryan - http://jasonwryan.com/    
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
+#---------------------------------------------------------------
+
+# session initialization
+new -s Standard -n Tyrs tyrs
+neww -n RSS newsbeuter
+neww -n vifm/ncmpcpp vifm
+splitw -h -p 50 -t 0 music
+neww bash
+selectw -t 1
+
+

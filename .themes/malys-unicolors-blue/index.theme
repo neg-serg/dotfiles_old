@@ -1,0 +1,11 @@
+[X-GNOME-Metatheme]
+Name=malys-uniSEX
+Type=X-GNOME-Metatheme
+Comment=GTK3 THEME for UBUNTU with GNOMESHELL :) ..::malys::.. 2012
+Version=1.0
+Encoding=UTF-8
+GtkTheme=malys-uniSEX
+MetacityTheme=malys-MTC
+IconTheme=malys-uniblue
+CursorTheme=Adwaita
+CursorSize=24

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Boje-Turquoise
+Comment=Slick and simple dark theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Boje-Turquoise
+MetacityTheme=Boje-Turquoise
+IconTheme=nouveGnomeGray
+CursorTheme=Shere_Khan_X
+ButtonLayout=:minimize,maximize,close
