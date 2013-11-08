@@ -1,0 +1,103 @@
+map <S-j> 10<C-e>
+map <S-k> 10<C-y>
+noremap <A-v> <C-u>
+noremap w b
+map <C-x><C-f> <C-d><C-o>
+map <A-Left> :tabmove! -1<CR>
+map <A-Right> :tabmove! +1<CR>
+map <C-c>s :noscript toggletemp<CR>
+map <C-c>S :noscript popup<CR>
+map <C-c>q set complete=l
+map <C-c>w set complete=sl
+map <C-c>e set complete=S
+
+map <silent> <C-m> :execute ":styletoggle http://*"<CR>
+map <C-c>t :exe ":tinyurl "+getBrowser().contentWindow.location.href<CR>
+map , ?
+map ё `
+map й q
+map ц w
+map у e
+map к r
+map е t
+map н y
+map г u
+map ш i
+map щ o
+map з p
+map х [
+map ъ ]
+map ф a
+map ы s
+map в d
+map а f
+map п g
+map р h
+map о j
+map л k
+map д l
+map ж ;
+map э '
+map я z
+map ч x
+map с c
+map м v
+map и b
+map т n
+map ь m
+map б ,
+map ю .
+map . ~
+map Й Q
+map Ц W
+map У E
+map К R
+map Е T
+map Н Y
+map Г U
+map Ш I
+map Щ O
+map З P
+map Х {
+map Ъ }
+map Ф A
+map Ы S
+map В D
+map А F
+map П G
+map Р H
+map О J
+map Л K
+map Д L
+map Ж :
+map Э "
+map Я Z
+map Ч X
+map С C
+map М V
+map И B
+map Т N
+map Ь M
+map Б <
+map Ю >
+map . /
+map ъъ ]] 
+map хх [[
+map пп gg
+noremap c i
+
+set wim=full
+map <F1> <NOP>
+map пш gi
+map gw :downloads<cr>
+" Copy selected text to the clipboard with C-w 
+inoremap <C-c> <C-v><C-c><Esc>
+tnoremap <C-c> <C-v><C-c><Esc>
+" Yank (i.e. paste) the current clipboard selection with C-y
+inoremap <C-y> <S-Ins>
+tnoremap <C-y> i_<S-Ins>
+noremap  <C-y> <S-Ins>
+cnoremap <C-y> <S-Ins>
+vnoremap <C-y> <S-Ins>
+map s :sidebar<SPACE>
+map S :sbclose<CR>

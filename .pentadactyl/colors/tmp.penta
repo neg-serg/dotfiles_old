@@ -1,0 +1,52 @@
+"
+"  Pentadactyl color scheme
+"  vim: ft=vimperator fdm=marker
+"
+"###############################################
+
+" Statusline {{{
+
+
+hi StatusLine                   background:#EAEAEA; font-size: 8pt; font-family: Sans; color: #000; padding:0 4px; border:1px solid #A4A4A4; border-top:1px solid #EAEAEA;background-image: -moz-linear-gradient( center bottom, rgb(213,213,213) 35%, rgb(234,234,234) 77%);
+hi StatusLineNormal             background:#EAEAEA; font-size: 8pt; font-family: Sans; color: #000; padding:0 4px; border:1px solid #A4A4A4; border-top:1px solid #EAEAEA;background-image: -moz-linear-gradient( center bottom, rgb(213,213,213) 35%, rgb(234,234,234) 77%);
+hi StatusLineBroken             color:#faa; background:#EAEAEA;  padding:0 4px; border:1px solid #A4A4A4; border-top:1px solid #d9d9d9;background-image: -moz-linear-gradient( center bottom, rgb(213,213,213) 35%, rgb(234,234,234) 77%);
+hi StatusLineSecure             color:#afa; background:#EAEAEA;  padding:0 4px; border:1px solid #A4A4A4; border-top:1px solid #d9d9d9;background-image: -moz-linear-gradient( center bottom, rgb(213,213,213) 35%, rgb(234,234,234) 77%);
+" }}}
+
+" Command-line {{{
+hi Bell                                 display: none;
+hi CmdLine                              font-family: Sans; font-size: 8pt; color: #000000 !important; padding:4px;
+hi CmdOutput                    font-family: Sans; font-size: 8pt; color: #000000 !important; padding:4px; 
+" }}}
+
+" Completion {{{
+hi CompResult                   font-family:Sans; background: #FFF; color: #000; font-size:8pt; width:30%; overflow:hidden;
+hi CompDesc                             color:#000 !important; background:#FFF; font-size: 8pt; padding-left: 15px; font-family:Sans; width:70%;
+
+hi CompItem                             font-size: 8pt; color:#000; background:#FFF; width:30%; overflow:hidden;
+hi CompItem[selected]   color:#fff !important; font-weight:bold !important;
+
+hi CompTitle                    background:#FFF; font-size: 8pt; color: #000 !important; padding: 3px 0 3px 3px; line-height: 1.5; font-weight: bold;
+hi CompGroup                    background:#FFF !important;
+hi CompMore                             background:#FFF !important;
+hi CompMore::after              background:#FFF !important;
+hi CompTitle                    background:#FFF !important;
+" }}}
+
+" Hints {{
+hi Hint                                 font-family:Sans; line-height: 12px; padding:3px 5px; font-size: 8pt; font-weight: bold; color: white; background-color: rgba(29, 29, 29, 0.75); -moz-border-radius: 3px; border-bottom: 1px solid rgba(0, 0, 0, 0.25); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+
+hi HintElem                             background-color: rgba(109, 163, 189, 0.5) !important; -moz-border-radius: 3px; padding:0;
+hi HintActive                   background-color: rgba(29,29,29,0.75) !important; color:#fff !important; -moz-border-radius: 3px;
+"}}
+
+
+" Messages {{
+hi ErrorMsg                             background:#EAEAEA !important; color: #fff !important;
+hi WarningMsg                   background:#EAEAEA !important; color: #fff !important;
+hi InfoMsg                              background:#EAEAEA !important; color: #fff !important;
+hi ModeMsg                              background:#EAEAEA !important; color: #fff !important; padding:0;
+"}}
+
+hi TabClose                             display:none;

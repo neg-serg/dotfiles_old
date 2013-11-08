@@ -1,0 +1,64 @@
+" ==Pentadactyl_Color_Scheme==
+" name: Neverland
+"  url: http://github.com/trapd00r/pentadactyl-neverland
+"
+" ==Neverland_Colorscheme_Settings==
+
+hi BufTab               color: #af875f; background: #1c1c1c; font-weight: normal;
+hi BufTabSelected       color: #ff5f00; background: #1c1c1c; font-weight: bold;
+
+hi StatusLine           color: #ff5f00 ; background: #161616; font-size: 9pt;
+hi StatusLineBroken     color: #e4e4e4 ; background: #161616; font-size: 9pt;
+hi StatusLineSecure     color: #e4e4e4 ; background: #161616; font-size: 9pt;
+
+hi Normal               color: #afff00; background: #161616; font-weight: normal;
+hi CmdLine              color: #afd700; background: #161616; font-weight: normal;
+
+hi CompDesc             color: #af875f; background: #161616; font-weight: normal; font-size: 9pt; width: 75%;
+hi CompTitle            color: #af875f; background: #161616; font-weight: normal;
+hi CompItem[selected]   color: #ffff00; background: -moz-linear-gradient(top, #303030, #121212) !important; font-weight: bold;
+hi CompTitle>*          padding: 0 0.5ex;
+hi Filter               color: #af875f; background: #161616; font-weight: bold;
+
+hi CompIcon             width: 16px; min-width: 16px; display: inline-block; margin-right: 0.5ex;
+
+hi CompLess             text-align: center; height:    0; line-height: 0.5ex; padding-top: 1ex;
+hi CompMore             text-align: center; height: .5ex; line-height: 0.5ex; margin-bottom: -0.5ex;
+
+hi CompMsg              color: #af875f;
+hi CompResult           color: #af875f; background: #161616; font-weight: normal; font-size: 10pt; width: 45%; overflow: hidden;
+
+
+hi Gradient             height: 1px; margin-bottom: -1px; margin-top: -1px;
+hi FrameIndicator       background: #161616; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+
+hi Bell                 border: 0 none; background: #161616;
+hi ErrorMsg             color: #ffffff; background: red; font-weight: bold;
+
+hi Hint                 color: #ff5f00; background: #161616; font-family: Terminus; font-weight: bold; font-size: 20px;
+hi HintActive           color: #333333; background: #F18C96;
+hi HintElem             color: #000D18;
+hi HintImage            opacity: .2;
+hi Hint::after          content: attr(number);
+
+hi Message              white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
+hi InfoMsg              color: #afafaf; background: #161616;
+hi WarningMsg           color: #ff0000; background: #161616;
+hi ModeMsg              color: #afafaf; background: #161616;
+hi MoreMsg              color: #afafaf; background: #161616;
+
+hi NonText              color: #1c1c1c; min-height: 16px; padding-left: 2px;
+hi Question             color: #e5e5e5; background: #161616; font-weight: bold;
+hi Search               color: #ffd700; background: #303030; font-weight:bold; font-size: inherit; padding: 0;
+
+hi Function             color: #afd700; background: #161616;
+hi Number               color: #0087ff; background: #161616;
+hi String               color: #afaf5f; background: #161616;
+hi Tag                  color: #afaf5f; background: #161616;
+hi Title                color: #afaf5f; background: #161616; font-weight: bold;
+hi URL                  color: #0087ff; background: #161616; text-decoration: none;
+hi URL:hover            text-decoration: underline; cursor: pointer;
+hi LineNr               color: #626262; background: #161616;
+
+
+" vim: set ft=vim tw=0:

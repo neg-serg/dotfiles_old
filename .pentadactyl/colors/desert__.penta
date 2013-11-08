@@ -1,0 +1,34 @@
+" ==Vimperator_Color_Scheme==
+" name: Desert
+" ==Desert_Color_Scheme==
+
+hi Normal    background: #FFFFFF; color: #437C17; font-size: 10pt; font-family: monospace; 
+hi CmdLine   background: #FFFFFF; color: #437C17; font-size: 10pt; font-family: monospace; font-weight: normal; padding:  0px 3px;
+
+hi CompGroup          background: #FFFFFF; color: #437C17; 
+hi CompTitle          background: #FFFFFF; color: #437C17; font-weight: bold;
+hi CompItem           background: #FFFFFF; color: #437C17; padding: 0px 3px;
+hi CompItem[selected] background: #FFFF22; color: #437C17; 
+hi CompDesc           background: #FFFFFF; color: #437C17; 
+hi CompDesc[selected] background: #FFFF22; color: #437C17; 
+hi CompMsg            background: #FFFFFF; color: #437C17; 
+
+hi Gradient           background: #FFFFFF;
+hi GradientLeft       background: #FFFFFF;
+hi GradientRight      background: #FFFFFF;
+
+hi ErrorMsg           background: #ff6565; color: #ffffff;
+hi Filter             color: red; font-weight: bold; 
+
+hi StatusLine         font-family: monospace; font-size: 12pt; font-weight: normal; color: #FFFFFF; background: #437C17;
+hi StatusLineBroken   font-family: monospace; font-size: 12pt; font-weight: normal; color: #FFFFFF; background: #afafff;
+hi StatusLineSecure   font-family: monospace; font-size: 12pt; font-weight: normal; color: #FFFFFF; background: #afffaf;
+
+hi Hint               font-family: monospace; font-size: 12pt; font-weight: normal; color: #fff; background-color: #666; padding: 0px 1px; border: 1px solid #FFFFFF;
+
+hi Title              font-size: 12pt; color: #FFFFFF; background: #437C17;
+
+style -name statusbar chrome://* <<EOM
+#status-bar statusbarpanel { padding: 0 1px !important; }
+statusbarpanel > * { margin: 0 !important; padding: 0 2px 0 0 !important; }
+EOM

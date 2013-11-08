@@ -1,0 +1,119 @@
+function StylishVimperator() {
+  var popup = document.getElementById("stylish-popup");
+  if (!popup){ // < stylish 1.0
+    popup = document.getElementById("stylish-status-popup");
+  }
+
+  popup.addEventListener('popupshown', popupshown, true);
+  popup.addEventListener('popuphidden', popuphidden, true);
+
+  function popupshown(event){
+    if (event.target == popup){
+      window.addEventListener("keypress", keypress, true);
+    }
+  }
+
+  function popuphidden(event){
+    if (event.target == popup){
+      window.removeEventListener("keypress", keypress, true);
+    }
+  }
+
+  function keypress(event){
+    var keyCode = null;
+    switch(String.fromCharCode(event.which)){
+      case "j":
+        keyCode = 40;
+        break;
+      case "k":
+        keyCode = 38;
+        break;
+      case "l":
+        keyCode = 39;
+        break;
+      case "h":
+        keyCode = 37;
+        break;
+      default:
+        break;
+    }
+
+    if (keyCode){
+      var newEvent = window.document.createEvent('KeyboardEvent');
+      newEvent.initKeyEvent(
+        "keypress", true, true, null, false, false, false, false, keyCode, 0);
+      popup.dispatchEvent(newEvent);
+    }
+  }
+
+  return {
+    popup: function(){
+      popup.openPopup();
+    },
+
+    sidebar: function(){
+      if (typeof(stylishBrowserOverlay) != 'undefined'){ // < stylish 1.0
+        stylishBrowserOverlay.openSidebar();
+      }else{
+        var em = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+          .getService(Components.interfaces.nsIWindowMediator)
+          .getMostRecentWindow(name);
+        if (em) {
+          em.toggleSidebar('viewStylishSidebar');
+        }
+      }
+    },
+
+    toggle: function(){
+      var applicableStyles;
+      if (typeof(stylishBrowserOverlay) != 'undefined'){ // < stylish 1.0
+        applicableStyles = stylishBrowserOverlay.getApplicableStyles();
+      }else{
+        applicableStyles = stylishOverlay.service.findForUrl(
+          content.location.href, false, 0, {});
+      }
+
+      if (applicableStyles.length > 0) {
+        for each (style in applicableStyles){
+          style.enabled = !style.enabled;
+          if (typeof(StylishStyle) == 'undefined'){ // >= stylish 1.0
+            style.save();
+          }
+        }
+        if (typeof(StylishStyle) != 'undefined'){ // < stylish 1.0
+          StylishStyle.prototype.ds.save();
+          stylishCommon.reloadManage();
+        }
+      }
+    },
+
+    _execute: function(args){
+      var name = args.shift();
+      var cmd = sv[name];
+      if (!cmd){
+        liberator.echoerr('Unsupported stylish command: ' + name);
+        return false;
+      }
+      return cmd(args);
+    },
+
+    _completer: function(context){
+      var commands = [];
+      for (var name in sv){
+        if (name.indexOf('_') !== 0 && sv.hasOwnProperty(name)){
+          commands.push(name);
+        }
+      }
+      context.completions = [[c, ''] for each (c in commands)];
+    }
+  };
+}
+
+var sv = StylishVimperator();
+
+commands.addUserCommand(["stylish"],
+  "Execute stylish commands",
+  function(args) { sv._execute(args); },
+  { argCount: '1', completer: sv._completer }
+);
+

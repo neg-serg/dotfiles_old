@@ -1,0 +1,92 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+
+* {
+    font-family: aller !important;
+    font-size: 12px !important;
+}
+
+#main-window:not([disablechrome]) #navigator-toolbox[tabsontop="true"] {
+    border: 0px !important;
+}
+
+menu > menubar { /* todo */
+    background-color: #383838 !important;
+}
+
+.tabbrowser-arrowscrollbox > .scrollbutton-up,
+.tabbrowser-arrowscrollbox > .scrollbutton-down,
+toolbarbutton#appmenu-toolbar-button,
+toolbarbutton#alltabs-button,
+toolbarbutton#new-tab-button,
+.tabs-closebutton-box,
+.tab-close-button { 
+    display: none !important;
+}
+
+tabs#tabbrowser-tabs, tabs#tabbrowser-tabs * {
+    -moz-appearance: none !important;
+    -moz-border-radius: 0px !important;
+    border: 0px !important;
+    /*margin: 0 !important; makes tabs flash */
+    padding: 0 !important;
+    background-image: none !important;
+    background-color: #383838 !important;
+    font-family: aller !important;
+    margin-right: 1px !important;
+}
+
+tabs#tabbrowser-tabs {
+    background: transparent !important;
+}
+
+.tabbrowser-tab {
+    min-height: 18px !important;
+    color: #F1F1E0 !important;
+    background-color: #383838 !important;
+}
+
+.tabbrowser-tab[selected=true] {
+    background-color: #383838 !important;
+    /*background: #515151 !important;*/
+/*    color: #6397DE !important;*/
+    color: #5A89C9 !important;
+}
+
+.tabbrowser-tab:hover {
+    color: #5A89C9 !important;
+}
+
+.tabs-newtab-button {
+    display: none !important;
+}
+
+/* autohide bookmark bar */
+#PersonalToolbar {
+    /*visibility: collapse !important;*/
+    visibility: collapse !important;
+    background: #383838 !important;
+    font-size: 10px !important;
+    -moz-box-ordinal-group: 6 !important;
+    padding: 0 !important;
+}
+
+#PersonalToolbar * {
+    color: #F1F1E0 !important;
+}
+
+/*#navigator-toolbox:hover > #PersonalToolbar {
+    visibility: visible !important;
+}*/
+
+/* Toolbar Icons - Shrink and Reduce Margins */
+#PersonalToolbar toolbarbutton {
+    margin: 0 -5px 0 -1px !important;
+}
+
+#PersonalToolbar .toolbarbutton-icon {
+    display: none !important;
+}
+
+#bookmarks-menu {
+    display: none !important;
+}
