@@ -45,5 +45,4 @@ NeoBundle 'lukerandall/haskellmode-vim'       "haskell mode for vim
 " NeoBundle 'bitc/vim-hdevtools'              "
 "
 " NeoBundle 'Twinside/vim-haskellConceal'       "unicode operators in haskell without changing of code
-" NeoBundle 'airblade/vim-gitgutter'            "show what line was changed/deleted / work with bug %(
 " NeoBundle 'wesleyche/SrcExpl.git'             "explorer for functions; only for tags/ctags %(

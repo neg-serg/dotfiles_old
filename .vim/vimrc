@@ -32,7 +32,8 @@ NeoBundle 'vim-scripts/vim-tmuxify.git'       "use vim with tmux
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'kien/rainbow_parentheses.vim'      "rainbow ()[]
-NeoBundle 'tomtom/tcomment_vim.git'
+NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
+NeoBundle 'bling/vim-airline.git'             "fancy statusline
 "------------------------------------------------------------------------------------------------------------
 "--[ new ]---------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------ 
@@ -66,12 +67,12 @@ NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
-NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
-"------------------------------------------------------------------------------------------------------------
-"--[ good but not useful yet ]-------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+NeoBundle 'airblade/vim-gitgutter'            "show what line was changed/deleted / did not work with realtime
+" ------------------------------------------------------------------------------------------------------------
+" --[ good but not useful yet ]-------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------------------------------------
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook

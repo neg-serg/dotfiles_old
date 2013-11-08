@@ -51,8 +51,6 @@ endif
 
 syntax sync minlines=256
 set completeopt=menu
-" Powerline
-"set rtp+=/home/neg/.vim/bundle/powerline/powerline/bindings/vim
 "syn sync minlines=1000
 "probably it will increase lusty+gundo speed
 let g:gundo_playback_delay = 240
@@ -64,7 +62,7 @@ set showmatch                   " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
 set winminheight=0              " Windows can be 0 line high
-" set winminwidth=0             " Windows can be 0 line width
+set winminwidth=0               " Windows can be 0 line width
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
@@ -77,12 +75,8 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 " set foldenable                  " Auto fold code
 "map ; :
-set autowrite           " write before a make
 set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
-set equalalways                     " keep windows equal when splitting (default)
-set eadirection=hor                 " ver/hor/both - where does equalalways apply
-set winheight=6                     " height of current window
 "set swapsync=""                    " don't call fsync() or sync(); let linux handle it
 "set autowrite                      " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
@@ -95,13 +89,15 @@ set expandtab                       " Tabs are spaces, not tabs
 set tabstop=4                       " An indentation every four columns
 set softtabstop=4                   " Let backspace delete indent
 set nojoinspaces                    " Prevents inserting two spaces after punctuation on a join (J)
-set splitright                      " Puts new vsplit windows to the right of the current
-set splitbelow                      " Puts new split windows to the bottom of the current
 set matchpairs+=<:>                 " Match, to be used with %
 "set matchpairs+==:;                " Match, to be used with %
 "set matchpairs+=<:>                " Match, to be used with %
+" set splitright                    " Puts new vsplit windows to the right of the current
+" set splitbelow                    " Puts new split windows to the bottom of the current
+" set equalalways                   " keep windows equal when splitting (default)
+" set eadirection=hor               " ver/hor/both - where does equalalways apply
 
-set pastetoggle=<F1>                " pastetoggle (sane indentation on pastes)
+set pastetoggle=<F2>                " pastetoggle (sane indentation on pastes)
 
 set cindent                         " stricter rules for C programs
 set laststatus=2                    " requied by PowerLine
@@ -113,10 +109,6 @@ set undofile                        " So is persistent undo ...
 set undolevels=1000                 " Maximum number of changes that can be undone
 set undoreload=10000                " Maximum number lines to save for undo on a buffer reload
 
-set background=dark                 " needed for colorschemes
-set sidescroll=5                    " scrolling not at the end
-set sidescrolloff=5                 " scrolling not at the end
-
 " set list
 " set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 " set listchars=tab:»·,trail:·    " how to display some special chars
@@ -125,40 +117,39 @@ set sidescrolloff=5                 " scrolling not at the end
 " --[ change undo file location ]----------------------------------
 " -----------------------------------------------------------------
 if exists("+undofile")
-" undofile - This allows you to use undos after exiting and restarting
-" This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-" :help undo-persistence
-" This is only present in 7.3+
-if isdirectory($HOME . '/.vim/undo') == 0
-  :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-endif
-set undodir=./.vim-undo//
-set undodir+=~/.vim/undo//
-set undofile
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
 endif
 " ---------------- Folds ----------------------------
 set cpoptions=aAceFsBd
 set foldmethod=indent               "fold based on indent
 set foldnestmax=3                   "deepest fold is 3 levels
 set nofoldenable                    "dont fold by default
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-set formatoptions+=t    " auto-wrap using textwidth (not comments)
-set formatoptions+=c    " auto-wrap comments too
-set formatoptions+=r    " continue the comment header automatically on <CR>
-set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-set formatoptions+=q    " allow formatting of comments with gq
-"set formatoptions-=w   " double-carriage-return indicates paragraph
-"set formatoptions-=a   " don't reformat automatically
-set formatoptions+=n    " recognize numbered lists when autoindenting
-set formatoptions+=2    " use second line of paragraph when autoindenting
-set formatoptions-=v    " don't worry about vi compatiblity
-set formatoptions-=b    " don't worry about vi compatiblity
-set formatoptions+=l    " don't break long lines in insert mode
-set formatoptions+=1    " don't break lines after one-letter words, if possible
+" " This makes vim act like all other editors, buffers can
+" " exist in the background without being in a window.
+" " http://items.sjbach.com/319/configuring-vim-right
+" set hidden
+" set formatoptions+=t    " auto-wrap using textwidth (not comments)
+" set formatoptions+=c    " auto-wrap comments too
+" set formatoptions+=r    " continue the comment header automatically on <CR>
+" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+" set formatoptions+=q    " allow formatting of comments with gq
+" "set formatoptions-=w   " double-carriage-return indicates paragraph
+" "set formatoptions-=a   " don't reformat automatically
+" set formatoptions+=n    " recognize numbered lists when autoindenting
+" set formatoptions+=2    " use second line of paragraph when autoindenting
+" set formatoptions-=v    " don't worry about vi compatiblity
+" set formatoptions-=b    " don't worry about vi compatiblity
+" set formatoptions+=l    " don't break long lines in insert mode
+" set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 set-option -g default-terminal "rxvt-256color"
                     " case-sensitive otherwise
@@ -173,7 +164,7 @@ set ts=2 sts=2 sw=2 autochdir
 " INDENTATION 
 " set shiftround
 " set diffopt=filler,iwhite     " ignore all whitespace and sync
-"  -- [Backup options] --
+
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 " make vim message not to annoy
 " set shortmess=aoOIT
@@ -200,10 +191,10 @@ elseif has ('gui')          " On mac and Windows, use * register for copy-paste
 endif
 
 " No sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" set noerrorbells
+" set novisualbell
+" set t_vb=
+" set tm=500
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
 set printoptions+=left:2,right:2,top:2,bottom:2
@@ -232,7 +223,6 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 set magic
 
 set path=**
-" Fuck you, help key.
 " indent_guides {
     if !exists('g:spf13_no_indent_guides_autocolor')
         let g:indent_guides_auto_colors = 1
@@ -304,3 +294,6 @@ let g:ycm_filetype_blacklist = {
       \ 'text' : 1,
       \ 'unite' : 1,
       \}
+
+" https://github.com/airblade/vim-gitgutter/issues/106
+let g:gitgutter_realtime = 0
