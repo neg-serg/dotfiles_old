@@ -1,0 +1,12 @@
+
+!URxvt.font:xft:pragmatapro:medium:pixelsize=14:antialias=false
+!URxvt.boldFont:xft:pragmatapro:medium:pixelsize=14:antialias=false
+!URxvt.italicFont:xft:pragmatapro:italic:pixelsize=14:antialias=false
+!URxvt.boldItalicFont:xft:pragmatapro:italic:pixelsize=14:antialias=false
+
+URxvt.font:xft:anonymous pro:style=regular:pixelsize=15
+URxvt.boldFont:xft:anonymous pro:style=regular:pixelsize=15
+URxvt.italicFont:xft:anonymous pro:style=italic:pixelsize=15
+URxvt.boldItalicFont:xftanonymous pro:style=italic:pixelsize=15
+
+! vim:ft=xdefaults

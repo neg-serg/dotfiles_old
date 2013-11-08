@@ -1,0 +1,18 @@
+#!/bin/sh
+#setsid urxvt -name URxvt.shiva -e zsh -c \
+#  "xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'; \
+#   exec zsh"
+#stty ixany
+#stty ixoff -ixon
+
+CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
+                            -fb -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
+                            -fi -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r "
+
+#CMD="-tr -name MainTerminal -fn -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r \
+#                            -fb -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r \
+#                            -fi -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r "
+
+if [ -z $(pidof tmux) ]; then urxvtc ${CMD} -e tmux; else urxvtc ${CMD} -e tmux a; fi
+#if [ -z $(pidof tmux) ]; then ${CMD} -e tmux; else ${CMD} -e tmux a; fi
+# urxvtc ${CMD} -e tmux a ;

@@ -1,0 +1,1 @@
+urxvtc -e zsh -c "pickyfont ter3;/usr/bin/aria2c $@"

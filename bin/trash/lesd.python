@@ -1,0 +1,139 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+
+
+import time
+import os
+
+class Led:
+  """Led class"""
+ 
+  def __init__(self, type = 'file', **kwargs):
+    """Init led and get status
+ 
+    Keyword Arguments:
+    type -- String
+    adress -- String
+    on -- String
+    off -- String
+ 
+    Returns: None
+ 
+    """
+    self.type = type
+    if type == 'file':
+      self.adress = kwargs<'adress'>
+      file = open(self.adress, 'r')
+      self.status = int(file.read())
+      file.close()
+    elif type == 'command':
+      for arg in kwargs:
+  setattr(self, arg, kwargs<arg>)
+  self.status = 0
+ 
+  def push(self, data):
+    """Change led file value
+ 
+    Keyword Arguments:
+    data -- Int
+ 
+    Returns: None
+ 
+    """
+    file = open(self.adress, 'w')
+    file.write(str(data))
+    file.close()
+ 
+  def action(self, type):
+    """Run on/off command
+ 
+    Keyword Arguments:
+    type -- Int
+ 
+    Returns: None
+ 
+    """
+    os.system(getattr(self, type and 'on' or 'off'))
+ 
+  def change_status(self, value = -1):
+    """Change led status"
+ 
+    Keyword Arguments:
+    value -- Int
+ 
+    Returns: None
+ 
+    """
+    if value == -1:
+      value = 1 - self.status
+    if self.type == 'file':
+      self.push(value)
+    elif self.type == 'command':
+      self.action(value)
+    self.status = value
+
+class Leds:
+  """Flashing leds class"""
+  leds = 
+
+ 
+  def __init__(self, *args, **kwargs):
+    """Init leds
+ 
+    Keyword Arguments:
+    *args -- Led init data
+ 
+    Returns: None
+ 
+    """
+    try:
+      self.interval = kwargs<'interval'>
+    except NameError:
+      pass
+    for led in args:
+      self.append(led)
+ 
+  def append(self, adress):
+    """Add led to leds array
+ 
+    Keyword Arguments:
+    adress -- String or Tuple
+ 
+    Returns: None
+ 
+    """
+    if type(adress) == str:
+      self.leds.append(Led(type='file', adress=adress))
+    elif type(adress) == tuple:
+      self.leds.append(Led(type='command', on=adress<0>, off=adress<1>))
+ 
+  def run(self):
+    """Start led flashing"""
+    while True:
+      for led in self.leds:
+  led.change_status()
+  time.sleep(self.interval)
+ 
+ 
+if __name__ == '__main__':
+  leds = Leds(
+        '/sys/devices/platform/asus_laptop/wlan',
+        '/sys/devices/platform/asus_laptop/bluetooth',
+        ('streamer -c /dev/video0 -b 16 -o /dev/null&', 'killall streamer'),
+        interval=0.5,
+        )
+  leds.run()</arg>

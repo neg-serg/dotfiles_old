@@ -1,0 +1,90 @@
+#!/bin/bash
+# $Id: mailcap_bg 4036 2010-04-13 23:16:41Z agriffis $
+#
+# Mutt mailcap helper -- this program copies the file to be viewed
+# prior to starting the viewer in the background.  This allows mutt to
+# zero and delete the temporary file without disturbing the viewer.
+#
+# Syntax: mailcap_bg filename prog [args]
+#
+# Latest version always available from
+# http://agriffis.n01se.net/skel.hg/?file/tip/bin/mailcap_bg
+#
+# Copyright 2003, 2006-2007, 2009 Aron Griffis <agriffis@n01se.net>
+# released under the GNU General Public License version 2
+
+# Uncomment this section for debugging
+#PS4="+${0##*/}(\$\$) "
+#mkdir -p ~/log/mailcap_bg
+#log=$(mktemp ~/log/mailcap_bg/$$.XXXXXX) || exit 1
+#exec 1>>"$log" 2>&1
+#set -x
+
+# Setup global variables.
+need_wait=no
+fname=$1 ; shift
+prog=$1 ; shift
+declare -a args=("${@}")
+
+# Link the file so that mutt can delete the original.
+# Using a temp dir instead of a temp file preserves the original
+# extension.  Note that fname should always be an absolute path.
+#
+# In the case of attachments read from received messages, mutt creates
+# a temporary file which mutt zeroes then deletes after the viewer
+# returns control.  That means that using a hard link here doesn't
+# work because mutt will obliterate the file content.
+#
+# In the case of attachments read from draft messages, mutt passes the
+# to-be-attached file directly to the viewer.  That means that
+# renaming the file here, as a substitute for ln, doesn't work because
+# it moves the attachement out from under mutt.
+#
+# It seems the only failsafe method is to cp the file, since that
+# works for both situations.  Thanks to Adam Spiers for figuring this
+# out...
+[[ $fname == /* ]] || fname=$PWD/$fname
+tname=$(mktemp -d "${fname%/*}/mailcap_bg.XXXXXX") \
+    && cp "${fname}" "${tname}/${fname##*/}" \
+    && tname="${tname}/${fname##*/}"
+if [[ $? != 0 ]]; then
+    # Can't background, unfortunately
+    need_wait=yes
+    tname=${fname}
+fi
+
+# Run the viewer in the background
+(
+    # replace @s if it exists in the viewer string
+    if [[ "${args[*]}" == *@s* ]]; then
+        args=("${args[@]//@s/$tname}")
+    else 
+        args=("${args[@]}" "${tname}")
+    fi
+
+    # run the program
+    "$prog" "${args[@]}"
+
+    # delete the temp file when it's no longer in use.
+    # this is important for mozilla, for example, which can return
+    # immediately once it has signalled a running instance.
+    # An hour is pretty arbitrary and arguably too low and high.
+    if [[ $tname != $fname ]]; then
+        while true; do
+            sleep $((60*60))                        # 1 hour
+            [[ -f $tname ]] || break                # no longer exists
+            fuser "$tname" &>/dev/null && continue  # still in use
+            rm -f "$tname"
+            rmdir "${tname%/*}"  # tname is a file in a temporary directory
+            break
+        done &
+    fi
+) &
+
+# Only wait if we have to (couldn't hard link)... this could lead to
+# problems because of the 1-hour pause
+[[ $need_wait == yes ]] && wait
+
+# If we exit non-zero, mutt will do its wait_key prompt which is
+# annoying.
+exit 0

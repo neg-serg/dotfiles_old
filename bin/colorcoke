@@ -1,0 +1,215 @@
+#!/usr/bin/perl
+our $APP     = 'colorcoke';
+our $VERSION = '0.412';
+
+use strict;
+use Getopt::Long;
+use Pod::Usage;
+use Term::ExtendedColor qw(fg bg);
+use Term::ExtendedColor::Xresources qw(set_xterm_color);
+
+my $DEBUG = $ENV{DEBUG};
+
+our($opt_r_step, $opt_g_step, $opt_b_step) = (10) x 3;
+our $opt_hex            = '000000';
+our $opt_starting_point = 17;  # Start from 17
+our $opt_endpoint       = 231; # End at 231
+our $opt_ansi_only      = 0;
+our $opt_random         = 0;
+our $opt_random_r       = 256;
+our $opt_random_g       = 256;
+our $opt_random_b       = 256;
+our $opt_single_hex     = 0;
+our @opt_single_color   = ();
+our @opt_do_not_modify  = (0,7,15,232);
+
+if(!@ARGV) {
+  print "$APP $VERSION\n\n";
+  pod2usage(verbose => 1);
+}
+
+GetOptions(
+  'c|color:s'       => \$opt_hex,
+  'r|red:i'         => \$opt_r_step,
+  'g|green:i'       => \$opt_g_step,
+  'b|blue:i'        => \$opt_b_step,
+  '1|single:s{2}'   => \@opt_single_color,
+  's|start:i'       => \$opt_starting_point,
+  'end:i'           => \$opt_endpoint,
+  'ansi'            => \$opt_ansi_only,
+  'random'          => \$opt_random,
+  'rr|rand-red:i'   => \$opt_random_r,
+  'rg|rand-green:i' => \$opt_random_g,
+  'rb|rand-blue:i'  => \$opt_random_b,
+  'no:i{1,}'        => \@opt_do_not_modify,
+  'h|help'          => sub { print "$APP $VERSION\n"; pod2usage(verbose => 1) },
+  'm|man'           => sub { pod2usage(verbose => 3) and exit(0); },
+  'v|version'       => sub { print "$APP v$VERSION\n" and exit(0); },
+  'debug'           => \$DEBUG,
+);
+
+if(scalar(@opt_single_color) == 2) {
+  set_single_color({ @opt_single_color });
+  exit(0);
+}
+
+set_shade(make_shade());
+
+sub set_single_color {
+  my $index_to_hex = shift;
+
+  print values %{ set_xterm_color( $index_to_hex ) };
+
+}
+
+sub set_shade {
+  my @colors = @_;
+
+  my $i = $opt_starting_point;
+
+  for my $color(@colors) {
+    unless($i ~~ @opt_do_not_modify) {
+      $color = substr($color, 0, 6);
+      print for values %{ set_xterm_color({ $i => $color }) };
+      if(($i +1) % 10 == 0) {
+        print bg($i, fg(0, sprintf(" %03d ", $i))), "\n";
+      }
+      else {
+        print bg($i, fg(0, sprintf(" %03d ", $i)));
+      }
+    }
+    $i++;
+  }
+  print "\n";
+}
+
+sub make_shade {
+  my @tint = ();
+  my ($r, $g, $b) = $opt_hex =~ /(..)(..)(..)/; #FIXME
+
+  $r = hex($r);
+  $g = hex($g);
+  $b = hex($b);
+
+  $opt_starting_point = 0   if($opt_starting_point == 1); # Include ANSI
+  $opt_endpoint       = 255 if($opt_endpoint == 1);       # Include greyscale
+
+
+  if($opt_ansi_only) {
+    $opt_starting_point = 0;
+    $opt_endpoint       = 16;
+  }
+
+  for ($opt_starting_point .. $opt_endpoint) {
+
+    if($opt_random) {
+
+      $r = int(rand($opt_random_r) % 256);
+      $g = int(rand($opt_random_g) % 256);
+      $b = int(rand($opt_random_b) % 256);
+
+    }
+
+    $r = (($r + $opt_r_step) < (256 - ($opt_r_step + $r)))
+      ? ($r + $opt_r_step)
+      : ($r + $opt_r_step)
+      #: (256 - ($opt_r_step))
+      ;
+
+    $g = (($g + $opt_g_step) < (256 - ($opt_g_step + $g)))
+      ? ($g + $opt_g_step)
+      : ($g + $opt_g_step)
+      #: (256 - ($opt_g_step))
+      ;
+
+    $b = (($b + $opt_b_step) < (256 - ($opt_b_step + $b)))
+      ? ($b + $opt_b_step)
+      : ($b + $opt_b_step)
+      #: (256 - ($opt_b_step))
+      ;
+
+      #$opt_r_step++ if($opt_random);
+      #$opt_g_step++ if($opt_random);
+      #$opt_b_step++ if($opt_random);
+    my $hex_r = sprintf("%02x", $r);
+    my $hex_g = sprintf("%02x", $g);
+    my $hex_b = sprintf("%02x", $b);
+
+
+    push(@tint, "$hex_r$hex_g$hex_b");
+
+  }
+  return(@tint);
+}
+
+=pod
+
+=head1 NAME
+
+colorcoke - modify the extended, non-ANSI terminal colorset
+
+=head1 DESCRIPTION
+
+B<colorcoke> shows off some cool things you can do with the L<Term::ExtendedColor>
+family of modules.
+
+colorcoke lets one modify the extended colorset (88-16 or 256-16 colors,
+respectively) for a running terminal session. The change takes effect
+immediately - no need to restart the terminal.
+
+Shades and tints can be generated for an arbitary number of ranges.
+
+The ANSI colors can be left untouched, be included in a shade or set
+separately. One can also exclude everything but the ANSI colors.
+The ANSI colors is untouched by default.
+
+The grey scale ramp (extended color index 232-255) is left untouched by
+default. To include them, set the end point to 255.
+
+Additional colors can be left untouched by specifying their index with the
+C<--no flag>. This can also be configured in the configuration file.
+
+The base color to use is specified with the -c flag, and the stepping
+is controlled with the -r, -g and -b flag - red, green and blue channel.
+
+Red, green and blue amount is specified with C<-rr>, C<-rg> and C<-rb> when the
+randomizing option is used.
+
+=head1 OPTIONS
+
+  -c,   --color       the base color
+  -r,   --red         red channel stepping
+  -g,   --green       green channel stepping
+  -b,   --blue        blue channel stepping
+  -s,   --start       first color index to operate on (default: 17)
+  -e,   --end         last  color index to operate on (default: 231)
+  -a,   --ansi        modify the ANSI color range only
+  -1,   --single      set a single color (HEX, index)
+        --random      randomize the colors
+  -rr,  --rand-red    control amount of red
+  -rg,  --rand-green  control amount of green
+  -rb,  --rand-blue   control amount of blue
+  -n,   --no          do not modify color index n
+
+  -h,   --help        show the help and exit
+  -v,   --version     show version info and exit
+  -m,   --man         show the manpage and exit
+
+=head1 AUTHOR
+
+  Magnus Woldrich
+  CPAN ID: WOLDRICH
+  magnus@trapd00r.se
+  http://japh.se
+
+=head1 SEE ALSO
+
+L<Term::ExtendedColor>, L<Term::ExtendedColor::Xresources>, L<Term::ExtendedColor::TTY>
+
+=head1 COPYRIGHT
+
+Copyright 2010, 2011 Magnus Woldrich <magnus@trapd00r.se>. This program is free
+software; you may redistribute it and/or modify it under the same terms as
+Perl itself.
+
+=cut

@@ -1,0 +1,40 @@
+#!/bin/bash
+# cp2clip - copy to the clipboard the contents of a file
+
+# Program name from it's filename
+prog=${0##*/}
+
+# Text color variables
+bldblu='\e[1;34m'         # blue
+bldred='\e[1;31m'         # red
+bldwht='\e[1;37m'         # white
+txtbld=$(tput bold)       # bold
+txtund=$(tput sgr 0 1)    # underline
+txtrst='\e[0m'            # text reset
+info=${bldwht}*${txtrst}
+pass=${bldblu}*${txtrst}
+warn=${bldred}!${txtrst}
+
+filename=$@
+
+# Display usage if full argument isn't given
+if [[ -z $filename ]]; then
+    echo " $prog <filename> - copy a file to the clipboard"
+    exit
+fi
+
+# Check that file exists
+if [[ ! -f $filename ]]; then
+  echo -e "$warn File ${txtund}$filename${txtrst} doesn't exist"
+  exit
+fi
+
+# Check user is not root (root doesn't have access to user xorg server)
+if [[ $(whoami) == root ]]; then
+  echo -e "$warn Must be regular user to copy a file to the clipboard"
+  exit
+fi
+
+# Copy file to clipboard, give feedback
+xclip -in -selection c < "$filename"
+echo -e "$pass ${txtund}"${filename##*/}"${txtrst} copied to clipboard"

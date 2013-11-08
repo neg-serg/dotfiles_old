@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export PRIMUS_libGLa='/usr/lib64/nvidia-bumblebee/libGL.so.1'
+export LD_LIBRARY_PATH=/usr/lib64/nvidia-bumblebee/
+
+#this is to get sudo to work properly with vmware
+export XAUTHORITY=/home/neg/.Xauthority
+XAUTHORITY=/home/neg/.Xauthority sudo -E primusrun vmware

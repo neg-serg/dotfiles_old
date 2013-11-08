@@ -1,0 +1,20 @@
+#!/bin/bash
+# battery status script
+
+batt=/sys/class/power_supply/BAT0/
+
+current=$(<"${batt}"/charge_now)
+full=$(<"${batt}"/charge_full)
+state=$(<"${batt}"/status)
+
+charge=$(( $current * 100 / $full )) 
+
+
+case "${state}" in
+          Full) batstat="=" ;;
+      Charging) batstat="+" ;;
+   Discharging) batstat="-" ;;
+esac
+
+printf '%s\n' "${batstat}${charge}%"
+

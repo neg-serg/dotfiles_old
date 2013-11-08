@@ -1,0 +1,1 @@
+ffmpeg -f video4linux2 -i /dev/video0 -f image2 snapshot.png 2>/dev/null

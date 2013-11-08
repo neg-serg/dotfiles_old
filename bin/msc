@@ -1,0 +1,3 @@
+#!/bin/zsh
+[ -z $(pgrep mpd) ] && mpd && mpdscribble --conf /home/neg/.config/mpdscribble/neg/mpdscribble.conf
+/bin/urxvtc -fn -misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1 -fb -misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1 -fi -misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1 -name mpd-pad -e ncmpcpp -c /home/neg/.ncmpcpp/mini_conf
