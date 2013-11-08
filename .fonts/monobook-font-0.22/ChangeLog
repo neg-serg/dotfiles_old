@@ -1,0 +1,26 @@
+0.22 (2009/12/23)
+	* Changed shape of V, v and Cyrillic_ge;
+	* More detailed README; Added README.ru at the request of some workers;
+	* Nothing else. If you like old V, v and ge, use 0.21.
+
+0.21 (2008/11/27)
+	* Fixed some bugs.
+
+0.2 (2008/11/04)
+	* Added 28 size;
+	* bdftopsf.pl and ucstoani.pl scripts borowed from terminus,
+	changed Makefile;
+	* Some minor fixes.
+
+0.1 (2008/09/11)
+	* Added 12 and 16 sizes.
+
+0.0.2 (2008/09/05)
+	* Added 24px size;
+	* Changed some letters (N, n, R, S, s, U, u, Cyrillic_DE,
+	Cyrillic_I, Cyrillic_i, Cyrillic_TSE, Cyrillic_tse, Cyrillic_SHCHA,
+	Cyrillic_shcha, quotes, comma and some others).
+
+0.0.1 (2008/08/25)
+	* First version. 20px size only.
+
