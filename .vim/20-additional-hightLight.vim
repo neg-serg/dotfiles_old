@@ -15,3 +15,5 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
 " hi DiffDelete     xxx term=bold ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
 " hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red   
+" For solarized
+" highlight SpellBad term=underline gui=undercurl guisp=Orange 

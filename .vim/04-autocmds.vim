@@ -1,3 +1,4 @@
+au GuiEnter * set visualbell t_vb=
 " experimental
 "   " OmniComplete {
 if has("autocmd") && exists("+omnifunc")
@@ -22,16 +23,17 @@ autocmd BufReadPost *
 "---------------------
 " --- [ Autocmds ] ---
 "---------------------
-autocmd BufNewFile,BufRead  *          if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
-autocmd BufRead,BufNewFile  *.viki     setlocal ft=viki
-autocmd BufNewFile,BufRead  *.t2t      setlocal ft=txt2tags
-autocmd Filetype            txt2tags   source   $HOME/.vim/syntax/txt2tags.vim
-autocmd FileType            make       setlocal noexpandtab
-autocmd FileType            javascript setlocal noautoindent nosmartindent
-autocmd BufWritePre         *.py       mark z | %s/ *$//e | 'z
-autocmd BufNewFile,BufRead  *.t2t      setlocal wrap
-autocmd BufNewFile,BufRead  *.t2t      setlocal lbr
-autocmd! BufRead,BufNewFile *.json     setlocal filetype=json foldmethod=syntax 
+autocmd BufNewFile,BufRead  *             if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
+autocmd BufRead,BufNewFile  *.viki        setlocal ft=viki
+autocmd BufNewFile,BufRead  *.t2t         setlocal ft=txt2tags
+autocmd Filetype            txt2tags      source   $HOME/.vim/syntax/txt2tags.vim
+autocmd FileType            make          setlocal noexpandtab
+autocmd FileType            javascript    setlocal noautoindent nosmartindent
+autocmd BufWritePre         *.py          mark z | %s/ *$//e | 'z
+autocmd BufNewFile,BufRead  *.t2t         setlocal wrap
+autocmd BufNewFile,BufRead  *.t2t         setlocal lbr
+autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax 
+autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
 
 augroup mkd
   autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -48,18 +50,22 @@ autocmd BufReadPost *.odt silent %!odt2txt "%"
 "Sourced from vim tip: http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
 autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 "autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-" Compile programs using Makefile (and do not jump to first error)
-" Use LaTeX to compile LaTeX sources
+" Enable omni completion.
 autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a
 autocmd FileType c,cc,h,s      nmap <C-c>m :make!<CR>
 autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR>
-autocmd FileType clojure       call TurnOnClojureFolding()
+
+" Omni-completion
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python        setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType ruby          setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell       setlocal omnifunc=necoghc#omnifunc
+
 autocmd BufWritePost *.rb call Compile()
 function! JavaScriptFold()
     setl foldmethod=syntax
@@ -75,15 +81,13 @@ au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au BufRead,BufNewFile *.textile setf textile
 augroup filetypedetect
-
-autocmd BufReadPost,BufNewFile .sawmillrc,.sawfishrc,*.jl setfiletype lisp
-autocmd BufReadPost,BufNewFile *.tmpl                     setfiletype html
-autocmd BufReadPost,BufNewFile *.wiki                     setfiletype Wikipedia
-autocmd BufReadPost,BufNewFile *wikipedia.org.*           setfiletype Wikipedia
-autocmd BufReadPost,BufNewFile hpedia.fc.hp.com.*         setfiletype Wikipedia
-autocmd BufReadPost,BufNewFile hpedia.hp.com.*            setfiletype Wikipedia
-autocmd BufReadPost,BufNewFile griffis1.net.*             setfiletype Wikipedia
-
+    autocmd BufReadPost,BufNewFile .sawmillrc,.sawfishrc,*.jl setfiletype lisp
+    autocmd BufReadPost,BufNewFile *.tmpl                     setfiletype html
+    autocmd BufReadPost,BufNewFile *.wiki                     setfiletype Wikipedia
+    autocmd BufReadPost,BufNewFile *wikipedia.org.*           setfiletype Wikipedia
+    autocmd BufReadPost,BufNewFile hpedia.fc.hp.com.*         setfiletype Wikipedia
+    autocmd BufReadPost,BufNewFile hpedia.hp.com.*            setfiletype Wikipedia
+    autocmd BufReadPost,BufNewFile griffis1.net.*             setfiletype Wikipedia
 augroup END
 "=================================== XML ===================================
 function! LoadTypeXML()
@@ -103,7 +107,6 @@ autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWri
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
-
 
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 " Restore cursor to file position in previous editing session
@@ -126,20 +129,9 @@ augroup END
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 if !executable("ghcmod")
     autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 endif
-
 
 " Strip whitespace {
 function! StripTrailingWhitespace()

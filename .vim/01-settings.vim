@@ -9,7 +9,6 @@ if has("gui_running")
     set noantialias
     set clipboard=unnamed
     set colorcolumn=0
-    highlight SpellBad term=underline gui=undercurl guisp=Orange 
     set mousehide                 " hide the mouse pointer while typing
     set mousemodel=popup	        " right mouse button pops up a menu in the GUI
     set mouse=a         " enable full mouse support
@@ -17,7 +16,7 @@ if has("gui_running")
     set ttyfast         " more redrawing characters sent to terminal
 
     set guicursor=n-v-c:block-Cursor
-    set guicursor+=i:ver40-iCursor     "it set cursor width in insert mode
+    set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
 
@@ -41,7 +40,7 @@ set fileencodings=utf-8,cp1251,koi8-r,cp866
 
 set timeout timeoutlen=250 ttimeoutlen=250
 set t_Co=256
-
+  
 " Clipboard
 if has('unnamedplus-that-really-truly-works')
     set clipboard=unnamedplus   " use X11 SYSTEM clipboard
@@ -77,7 +76,7 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                    " don't call fsync() or sync(); let linux handle it
-set autowrite                       " Automatically write a file when leaving a modified buffer
+" set autowrite                       " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
@@ -91,33 +90,12 @@ set nojoinspaces                    " Prevents inserting two spaces after punctu
 set matchpairs+=<:>                 " Match, to be used with %
 "set matchpairs+==:;                " Match, to be used with %
 "set matchpairs+=<:>                " Match, to be used with %
-" set splitright                    " Puts new vsplit windows to the right of the current
-" set splitbelow                    " Puts new split windows to the bottom of the current
-" set equalalways                   " keep windows equal when splitting (default)
-" set eadirection=hor               " ver/hor/both - where does equalalways apply
+set splitright                    " Puts new vsplit windows to the right of the current
+set splitbelow                    " Puts new split windows to the bottom of the current
+set equalalways                   " keep windows equal when splitting (default)
+set eadirection=hor               " ver/hor/both - where does equalalways apply
 
 set pastetoggle=<F2>                " pastetoggle (sane indentation on pastes)
-
-set cindent                         " stricter rules for C programs
-set laststatus=2                    " requied by PowerLine
-
-set backup
-set backupdir=~/trash
-set directory=~/trash
-set undofile                        " So is persistent undo ...
-set undolevels=1000                 " Maximum number of changes that can be undone
-set undoreload=10000                " Maximum number lines to save for undo on a buffer reload
-
-set noshowmode                      " For flickering disable showmode unneeded with airline/powerline
-
-set cursorline                      " highlight current line
-set hidden                          " do not hide current mode. It needed for lusty*
-"set cursorcolumn                   " highlight current column
-
-" set list
-" set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-" set listchars=tab:»·,trail:·    " how to display some special chars
-
 " -----------------------------------------------------------------
 " --[ change undo file location ]----------------------------------
 " -----------------------------------------------------------------
@@ -133,42 +111,45 @@ if exists("+undofile")
   set undodir+=~/.vim/undo//
   set undofile
 endif
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set formatoptions+=t    " auto-wrap using textwidth (not comments)
+set formatoptions+=c    " auto-wrap comments too
+set formatoptions+=r    " continue the comment header automatically on <CR>
+set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+set formatoptions+=q    " allow formatting of comments with gq
+" set formatoptions-=w   " double-carriage-return indicates paragraph
+" set formatoptions-=a   " don't reformat automatically
+set formatoptions+=n    " recognize numbered lists when autoindenting
+set formatoptions+=2    " use second line of paragraph when autoindenting
+set formatoptions-=v    " don't worry about vi compatiblity
+set formatoptions-=b    " don't worry about vi compatiblity
+set formatoptions+=l    " don't break long lines in insert mode
+set formatoptions+=1    " don't break lines after one-letter words, if possible
+set cindent             " stricter rules for C programs
+
+set laststatus=2        " requied by PowerLine/Airline
+
+set cursorline          " highlight current line
+set backup              " backuping is good
+
+set backupdir=~/trash
+set directory=~/trash
+set undofile            " So is persistent undo ...
+set undolevels=1000     " Maximum number of changes that can be undone
+set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 " ---------------- Folds ----------------------------
 set cpoptions=aAceFsBd
 set foldmethod=indent               "fold based on indent
 set foldnestmax=3                   "deepest fold is 3 levels
 set nofoldenable                    "dont fold by default
-" " This makes vim act like all other editors, buffers can
-" " exist in the background without being in a window.
-" " http://items.sjbach.com/319/configuring-vim-right
-" set formatoptions+=t    " auto-wrap using textwidth (not comments)
-" set formatoptions+=c    " auto-wrap comments too
-" set formatoptions+=r    " continue the comment header automatically on <CR>
-" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-" set formatoptions+=q    " allow formatting of comments with gq
-" set formatoptions-=w   " double-carriage-return indicates paragraph
-" set formatoptions-=a   " don't reformat automatically
-" set formatoptions+=n    " recognize numbered lists when autoindenting
-" set formatoptions+=2    " use second line of paragraph when autoindenting
-" set formatoptions-=v    " don't worry about vi compatiblity
-" set formatoptions-=b    " don't worry about vi compatiblity
-" set formatoptions+=l    " don't break long lines in insert mode
-" set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 set fillchars=vert:│
 set maxfuncdepth=1000
 set maxmemtot=200000
-set bs=2 ai ruler lazyredraw ai cin autoread nocompatible
-set ts=2 sts=2 sw=2 autochdir
-"set ww=b,s,h,l,<,>,[,]  
-" INDENTATION 
-" set shiftround
-" set diffopt=filler,iwhite     " ignore all whitespace and sync
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-" make vim message not to annoy
-" set shortmess=aoOIT
-"set shortmess=at      " shorten error messages
 set modeline          " enable modelines
 set grepprg=grep\ -nH\ $*
 
@@ -183,7 +164,6 @@ if has("cscope")
     cs add cscope.out
   endif
 endif
-
 if has ('x') && has ('gui') " On Linux use + register for copy-paste
     set clipboard=unnamedplus
 elseif has ('gui')          " On mac and Windows, use * register for copy-paste
@@ -244,7 +224,6 @@ set path=**
         let &tags = &tags . ',' . gitroot . '/.git/tags'
     endif
 " }
-
 let mapleader=','
 let maplocalleader=','
 let g:mapleader = ","
