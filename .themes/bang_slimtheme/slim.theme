@@ -1,0 +1,38 @@
+# Bang theme for SLIM
+# Author : Samir Kahvedžić
+# Contact : akirapowered@gmail.com
+
+# Messages 
+msg_color               #86d90e
+msg_font                Verdana:size=16:bold
+msg_shadow_xoffset 1
+msg_shadow_yoffset 1
+msg_shadow_color   #111111
+
+# Screen background style. Valid values: stretch, tile
+background_style        stretch
+
+# Input controls
+input_panel_x           40%
+input_panel_y           70%
+input_name_x            316
+input_name_y            140
+input_pass_x            316
+input_pass_y            183
+
+input_font          	Verdana:size=12
+input_color		#86d90e
+input_bgcolor           #111111
+input_fgcolor           #86d90e
+
+
+username_msg            
+username_font           Verdana:size=14:bold
+username_color		#86d90e
+username_x              354
+username_y		127
+
+password_msg		
+password_color		#86d90e
+password_x              354
+password_y              170

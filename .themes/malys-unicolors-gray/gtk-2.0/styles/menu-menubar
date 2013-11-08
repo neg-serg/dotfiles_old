@@ -1,0 +1,165 @@
+style "menu"="default"
+{
+xthickness=6
+ythickness=6
+  bg[NORMAL] = "#dbdbdb"
+  fg[NORMAL] = "#363636"
+  fg[PRELIGHT] = "#363636"
+  fg[SELECTED] = "#cccccc"
+  fg[ACTIVE] = "#cccccc"
+  fg[INSENSITIVE] = "#999999"
+  text[NORMAL] = "#363636"
+  text[PRELIGHT] = "#363636"
+  text[SELECTED] = "#cccccc"
+  text[ACTIVE] = "#cccccc"
+  text[INSENSITIVE] = "#999999"
+
+  engine "pixmap"
+  {
+    image
+    {
+      function			= BOX
+   #   recolorable    	= TRUE
+      detail				= "menu"
+      file				= "Menu-Menubar/menu.png"
+      border			= { 15, 15, 15, 15 }
+      stretch			= TRUE
+    }
+  }
+}
+
+style "menuitem"
+{
+ xthickness				= 4
+ ythickness            			= 4
+   fg[NORMAL] = "#aaaaaa"
+  fg[PRELIGHT] = "#363636"
+  fg[SELECTED] = "#cccccc"
+  fg[ACTIVE] = "#cccccc"
+  fg[INSENSITIVE] = "#999999"
+  text[NORMAL] = "#aaaaaa"
+  text[PRELIGHT] = "#363636"
+  text[SELECTED] = "#cccccc"
+  text[ACTIVE] = "#cccccc"
+  text[INSENSITIVE] = "#999999"       
+   engine "pixmap"
+  {
+    image
+    {
+      function			= BOX
+      recolorable		= TRUE
+      file				= "Menu-Menubar/menuitem.png"
+      border			= { 12, 12, 10, 10 }
+      stretch			= TRUE
+    }
+    image
+    {
+      function				= ARROW
+      recolorable			= TRUE
+      state					= NORMAL
+      overlay_file			= "Menu-Menubar/arrow-right.png"
+      overlay_stretch	= FALSE
+      arrow_direction	= RIGHT
+    }
+  image
+    {
+      function				= ARROW
+      recolorable			= TRUE
+      state					= PRELIGHT
+      overlay_file			= "Menu-Menubar/arrow-right-prelight.png"
+      overlay_stretch	= FALSE
+      arrow_direction	= RIGHT
+    }
+  image 
+	{
+		function			= HLINE
+	 	recolorable		= TRUE
+	 	file				= "Menu-Menubar/menuline.png"
+		border			= { 0, 0, 1, 0 }
+		stretch			= TRUE
+	}
+  }
+}
+style "tearoffmenuitem"	= "menuitem"
+{
+        
+  engine "pixmap"
+  {
+    image
+    {
+      function				= ARROW
+      file					= "Arrows/arrow-left.png"
+      stretch				= TRUE
+      arrow_direction	= LEFT
+    }
+  }
+}
+
+style "menubar"		
+
+{
+  xthickness			= 0
+  ythickness			= 0
+  fg[NORMAL] = "#363636"
+  fg[PRELIGHT] = "#464646"
+  fg[SELECTED] = "#262626"
+  fg[ACTIVE] = "#bbbbbb"
+  fg[INSENSITIVE] = "#999999"
+  text[NORMAL] = "#363636"
+  text[PRELIGHT] = "#464646"
+  text[SELECTED] = "#262626"
+  text[ACTIVE] = "#cccccc"
+  text[INSENSITIVE] = "#999999"
+	engine "pixmap"
+	{
+		image
+		{
+			function	= BOX
+			state = NORMAL
+			file		= "Menu-Menubar/menubar.png"
+			border	= { 5, 5, 5, 5 }
+			stretch	= TRUE
+    		}
+
+		image
+		{
+			function	= BOX
+			state = ACTIVE
+			file		= "Menu-Menubar/menubar.png"
+			border	= { 5, 5, 5, 5 }
+			stretch	= TRUE
+    		}
+
+		image
+		{
+			function	= BOX
+			state = INSENSITIVE
+			file		= "Menu-Menubar/menubar.png"
+			border	= { 5, 5, 5, 5 }
+			stretch	= TRUE
+    		}
+
+  image
+    {
+      function			= BOX
+      recolorable		= TRUE
+			state = PRELIGHT
+     file				= "Menu-Menubar/menubar-item.png"
+
+      border			= { 7, 7, 7, 7 }
+      stretch			= TRUE
+    }
+
+ 	}
+}
+
+
+
+
+class "GtkMenu"       			style "menu"
+widget_class "*<GtkMenu>*"              style "menu"
+widget_class "*<GtkMenuItem>"		style "menuitem"
+class "GtkMenuItem"           		style "menuitem"
+class "GtkTearoffMenuItem"		style "menuitem"
+class "GtkMenuBar*" 		     	style "menubar"
+widget_class "*MenuBar.*"  		style "menubar"

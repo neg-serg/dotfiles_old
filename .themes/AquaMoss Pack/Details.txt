@@ -1,0 +1,43 @@
+AquaMoss I & II Themes
+
+Includes OpenBox Themes, GTKs, tint2rc, and 2 2048x1200 wallpapers.
+
+The only difference between the 2 themes is that the aquamarine hue in AquaMoss I is around 1 f-stop brighter than AquaMoss II.
+This pack also contains a separate folder with alternative GTKs based on Zenburn. Some people might find the Alt GTKs more comfortable. I've named them accordingly (for example, AquaMoss Alt I is made to go with the AquaMoss I OBT)
+
+Warning: Do not copy-paste the Folders with "Pack" at the end directly into your ~/.themes folder. Open each one for the appropriate folder. 
+As a guide, the only 4 folders to be pasted into .themes are exactly titled ;
+-AquaMoss I  (can be found in AquaMoss I Pack folder)
+-Aquamoss I Alt  (can befound in Alternative GTK Pack folder)
+-AquaMoss II  (can be found in AquaMoss II Pack folder)
+-Aquamoss II Alt  (can be found in Alternative GTK Pack folder)
+
+tint2rc files go with the themes in the forders they're contained in, obviously.
+
+Additional Details:
+
+If you want matching icons, 
+download the "Any Color You Like" icon set from gnome-look.org,
+(http://gnome-look.org/content/show.php/Any+Color+You+Like?content=102435)
+Install the icon pack and run the script,
+Select the "Set Gradient", then select "Set Gradient for All Icons", and then select "Linear", 
+In order to match the gradients in the OBmenu theme, when you reach the part that asks to set colours;
+Set first colour to #348781
+Set second colour to #296460
+All other choices (Vertical, Horizontal, Diagonal) are up to you, and you're free to use different values if you don't agree with mine.
+
+I find that Terminus goes well as a universal font (for both GUI and Terminal Apps), but certain Artwiz fonts like Glisp, Drift and Nu also work well (in my arrogant opinion, at least).... You're free to use whatever thingamajig font you want, of course.
+
+Xcompmgr;
+If you decide to use the GrungeSplatterMoss (yes, I have horrible naming sense) wallpaper, the standard "xcompmgr -c" is more than adequate if you intend to use drop-shadow compositing, since the default heavy shadows complement the interlacing effect. compositing isn't required though, and I find the themes work just as well without drop-shadows. 
+
+Note:
+tint2rc was made for a tiny netbook screen, so all you rich bastids might have to play with the tint2 settings a bit to get it to display just the way you want on your big-ass 69" monitors.
+
+Cheers~
+
+P.S
+I would appreciate constructive criticism if you have any issues with the themes. Whether I'll listen to you or not depends on how drunk I am, though.
+:-P
+
+

@@ -1,0 +1,92 @@
+#---------------------------------------------
+# TINT2 CONFIG FILE
+#---------------------------------------------
+
+#---------------------------------------------
+# BACKGROUND AND BORDER
+#---------------------------------------------
+rounded = 0
+border_width = 0
+background_color = #121313 100
+border_color = #296460 100
+
+rounded = 0
+border_width = 1
+background_color = #121313 100
+border_color = #296460 100
+
+rounded = 0
+border_width = 0
+background_color = #f0f0f0 0
+border_color = #111111 00
+
+#---------------------------------------------
+# PANEL
+#---------------------------------------------
+panel_monitor = all
+panel_position = bottom center
+panel_size = 99% 19
+panel_margin = 0 4
+panel_padding = 0 0
+font_shadow = 0
+panel_background_id = 2
+wm_menu = 1
+#---------------------------------------------
+# TASKBAR
+#---------------------------------------------
+taskbar_mode = single_desktop
+taskbar_padding = 0 0 0
+taskbar_background_id = 1
+
+#---------------------------------------------
+# TASKS
+#---------------------------------------------
+task_icon = 0
+task_text = 1
+task_width = 134
+task_centered = 1
+task_padding = 8 0
+task_font = Terminus 7
+task_font_color = #296460 100
+task_active_font_color = #3baf9d 100
+task_background_id = 3
+task_active_background_id = 3
+
+#---------------------------------------------
+# SYSTRAYBAR
+#---------------------------------------------
+#systray_padding = 4 2 2
+#systray_background_id = 1
+
+#---------------------------------------------
+# CLOCK
+#---------------------------------------------
+time1_format =%a %H:%M:%S
+time1_font = Terminus 6
+#time2_format = %a %d %B %y
+#time2_font = Terminus 7
+clock_font_color = #296460 100
+clock_padding =  7 0
+clock_background_id = 1
+
+#---------------------------------------------
+# BATTERY
+#---------------------------------------------
+#battery = 0
+#battery_low_status = 7
+#battery_low_cmd = notify-send "battery low"
+#bat1_font = sans 8
+#bat2_font = sans 6
+#battery_font_color = #296460 100
+#battery_padding = 1 0
+#battery_background_id = 0
+
+
+#---------------------------------------------
+# MOUSE ACTION ON TASK
+#---------------------------------------------
+mouse_middle = none
+mouse_right = none
+mouse_scroll_up = toggle
+mouse_scroll_down = iconify
+
