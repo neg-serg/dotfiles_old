@@ -54,7 +54,6 @@ set completeopt=menu
 "syn sync minlines=1000
 "probably it will increase lusty+gundo speed
 let g:gundo_playback_delay = 240
-set noshowmode
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
@@ -111,6 +110,9 @@ set undoreload=10000                " Maximum number lines to save for undo on a
 
 set noshowmode                      " For flickering disable showmode unneeded with airline/powerline
 
+set cursorline                      " highlight current line
+"set cursorcolumn                   " highlight current column
+
 " set list
 " set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 " set listchars=tab:»·,trail:·    " how to display some special chars
@@ -154,9 +156,6 @@ set nofoldenable                    "dont fold by default
 " set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 set-option -g default-terminal "rxvt-256color"
-                    " case-sensitive otherwise
-"set cursorcolumn 
-set cursorline 
 set fillchars=vert:│
 set maxfuncdepth=1000
 set maxmemtot=200000
