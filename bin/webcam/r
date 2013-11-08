@@ -1,0 +1,12 @@
+#!/bin/bash
+
+f_rec(){
+        mencoder tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0:alsa:forceaudio:amode=0:adevice=hw.0,0    -ovc lavc -lavcopts vcodec=mpeg4 -oac mp3lame -lameopts vbr=3:br=32:mode=3 -af volnorm -o ~/rec-$(date +%y%m%d_%H%M).avi &>/dev/null&
+#       echo $! >> /tmp/f_rec.pid
+}
+
+#if [ -f /tmp/f_rec.pid ]; then
+#        kill $(cat /tmp/f_rec.pid) && rm /tmp/f_rec.pid
+#else
+#        f_rec
+#fi

@@ -1,0 +1,84 @@
+#! /usr/bin/env python2
+# -*- coding: utf-8 -*-
+
+import re
+import sys
+from PIL import Image, ImageDraw
+from math import ceil
+from getopt import getopt
+
+output_name = 'output.png'
+horizontal_squares = 8
+output_square_side = 30
+square_gap = 0
+ignore_duplicates = False
+
+def usage():
+    print('usage: hex2img [-i|--ignore-duplicates][-n|--num-horizontal-squares NUM_HORIZ][-s|--square-side SQUARE_SIDE] [OUTPUT_NAME]')
+    sys.exit()
+
+def remove_duplicates(seq, idfun=None): 
+    if idfun is None:
+        def idfun(x): return x
+    seen = {}
+    result = []
+    for item in seq:
+        marker = idfun(item)
+        if marker in seen: continue
+        seen[marker] = 1
+        result.append(item)
+    return result
+
+opts, args = getopt(sys.argv[1:], 'hin:s:g:', ['help', 'ignore-duplicates', 'num-horizontal-squares=', 'square-side=', 'square-gap='])
+
+for opt, val in opts:
+    if opt in ('-h', '--help'):
+        usage()
+    elif opt in ('-i', '--ignore-duplicates'):
+        ignore_duplicates = True
+    elif opt in ('-n', '--num-horizontal-squares'):
+        horizontal_squares = int(val)
+    elif opt in ('-s', '--square-side'):
+        output_square_side = int(val)
+    elif opt in ('-g', '--square-gap'):
+        square_gap = int(val)
+
+if len(args) > 0:
+    output_name = args[0]
+
+palette = []
+for line in sys.stdin:
+    color_codes = re.findall('#[0-9a-f]{6}', line, flags=re.IGNORECASE)
+    palette.extend(color_codes)
+
+if ignore_duplicates:
+    palette = remove_duplicates(palette)
+
+if len(palette) < 1:
+    print >> sys.stderr, 'no color found'
+    sys.exit(1)
+
+print(len(palette))
+
+horizontal_squares = min(horizontal_squares, len(palette))
+vertical_squares = int(ceil(len(palette) / float(horizontal_squares)))
+output_width = horizontal_squares * output_square_side + square_gap * (horizontal_squares + 1)
+output_height = vertical_squares * output_square_side + square_gap * (vertical_squares + 1)
+output = Image.new('RGBA', (output_width, output_height))
+draw = ImageDraw.Draw(output)
+
+x = y = square_gap
+
+for c in palette:
+    tlx = x
+    tly = y
+    brx = x + output_square_side - 1
+    bry = y + output_square_side - 1
+    draw.rectangle([tlx, tly, brx, bry], fill=c)
+    x = x + output_square_side + square_gap
+    if x >= output_width:
+        x = square_gap
+        y = y + output_square_side + square_gap
+
+output.save(output_name)
+

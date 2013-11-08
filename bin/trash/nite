@@ -1,0 +1,312 @@
+#!/bin/bash
+# $Id: nite 4389 2011-07-27 12:46:33Z agriffis $
+#
+# nite -- toggle settings, especially xterms and gnome-terminals, 
+#         between light and dark backgrounds
+#
+# Copyright 2007 Aron Griffis <agriffis@n01se.net>
+# Released under the GNU GPL v2
+#
+# To use this, put in your .Xdefaults something like:
+#   #ifdef MODE_day
+#   #define wterm XTerm
+#   nite*mode: day
+#   #else
+#   #define bterm XTerm
+#   nite*mode: nite
+#   #endif
+#
+# then define color settings for bterm and wterm, for example:
+#   wterm*VT100*background: white
+#   wterm*VT100*foreground: black
+#   wterm*VT100*color0:     #000000
+#   wterm*VT100*color1:     #AE0000
+#   wterm*VT100*color2:     #11AE11
+#   wterm*VT100*color3:     #804500
+#   wterm*VT100*color4:     #4949A6
+#   wterm*VT100*color5:     #B027B0
+#   wterm*VT100*color6:     #008A8A
+#   wterm*VT100*color7:     #D9D9D9
+#   wterm*VT100*color8:     #4C4C4C
+#   wterm*VT100*color9:     #FF0000
+#   wterm*VT100*color10:    #19D719
+#   wterm*VT100*color11:    #D1D100
+#   wterm*VT100*color12:    #7878DC
+#   wterm*VT100*color13:    #DC49DC
+#   wterm*VT100*color14:    #4BE3E3
+#   wterm*VT100*color15:    #FFFFFF
+#
+# Any gnome-terminals with a profile ending in "-Flex" will update to match the
+# xterm colors.
+#
+# Finally, you should be able to toggle between nite and day modes just by
+# running "nite"
+
+oldxrdb=$(xrdb -query)
+
+if [[ $1 == here ]]; then
+    here=true
+    [[ $(xtermcontrol -f --get-bg) == *:0000/0000/0000 ]] \
+    && mode=day oldmode=nite || mode=nite oldmode=day
+else
+    here=false
+    grep -q 'nite.mode:.*day' <<<"$oldxrdb" \
+    && mode=nite oldmode=day || mode=day oldmode=nite
+    echo $mode > ~/.nite
+fi
+
+declare -a xterm_colors
+unset xterm_foreground xterm_background
+
+update_xrdb() {
+    xrdb -DMODE_$mode -UMODE_$oldmode ~/.Xdefaults
+    declare xrdb_query=$(xrdb -query)
+    eval "$(sed -rn <<<"$xrdb_query" -e \
+      's/^XTerm.vt100.color([0-9]+):[[:blank:]]*(.*)/xterm_colors[\1]="\2"/ip
+       s/^XTerm.vt100.background:[[:blank:]]*(.*)/xterm_background="\1"/ip
+       s/^XTerm.vt100.foreground:[[:blank:]]*(.*)/xterm_foreground="\1"/ip
+       s/^XTerm.vt100.cursorColor:[[:blank:]]*(.*)/xterm_cursor="\1"/ip
+       ')"
+}
+
+update_xterm() {
+    type xtermcontrol &>/dev/null || return
+
+    # figure out the cmdline
+    declare opts="\
+        $(for ((x=0; x<16; x++)); do 
+                [[ -n ${xterm_colors[x]} ]] || continue
+                printf '%q ' "--color$x=${xterm_colors[x]}"
+            done
+            [[ -n $xterm_background ]] && printf '%q ' "--bg=$xterm_background"
+            [[ -n $xterm_foreground ]] && printf '%q ' "--fg=$xterm_foreground"
+        )"
+
+    # collect pids
+    declare -a pids
+    declare p pp pcmd
+    while read p pp cmd; do
+        pids+=( $p )
+        eval "declare cmd_$p=\$cmd ppid_$p=\$pp"
+    done <<<"$(ps -eo pid= -o ppid= -o comm=)"
+    $here && pids=( $PPID )
+
+    # subshell because we want to avoid all the killed this and that messages...
+    (
+
+    # operate on pids where the parent is xterm or rxvt
+    declare -a xtpids
+    for p in ${pids[*]}; do
+            eval "pp=\$ppid_$p"
+            eval "pcmd=\$cmd_$pp"
+            [[ $pcmd == xterm || $pcmd == *rxvt || $pcmd = *rxvtd ]] || continue
+            [[ -w /proc/$p/fd/1 ]] || continue
+            (
+                eval "xtermcontrol -f $opts"
+                # set the border on rxvt too
+                [[ $pcmd == *rxvt || $pcmd == *rxvtd ]] && \
+                xtermcontrol -f --raw=$'\e]708;'"$xterm_background"$'\a'
+            ) < /proc/$p/fd/0 > /proc/$p/fd/1 &
+            xtpids=( "${xtpids[@]}" $! )
+    done
+
+    # goodbye kill messages
+    exec 2>/dev/null
+
+    # set a sleeper to kill any that get hung up
+    (
+        sleep 10
+        kill "${xtpids[@]}"
+        sleep 0.5
+        kill -9 "${xtpids[@]}"
+    ) &>/dev/null &
+    declare killer=$!
+
+    for p in "${xtpids[@]}"; do
+        wait $p
+    done
+    kill $killer
+
+    ) # end no-kill-messages subshell
+
+    return 0
+}
+
+48bit() {
+    declare -a rgb
+    rgb[0]=$(( 0x${1:1:2} * 0xffff / 0xff ))
+    rgb[1]=$(( 0x${1:3:2} * 0xffff / 0xff ))
+    rgb[2]=$(( 0x${1:5:2} * 0xffff / 0xff ))
+    printf '#%04x%04x%04x' "${rgb[@]}"
+}
+
+update_gnome_terminal() {
+    type gconftool-2 &>/dev/null || return
+
+    # what flex profiles have we?
+    declare -a profiles
+    profiles=( $(gconftool-2 -S visible_name | \
+        sed -rn "s,^ */apps/gnome-terminal/profiles/(.*)/visible_name = .*$1\$,\\1,p") )
+    [[ -n $profiles ]] || return
+
+    # translate the colors to 48-bit
+    declare -a gnome_colors
+    declare gnome_foreground gnome_background x
+    for ((x=0; x<16; x++)); do
+        gnome_colors[x]=$(48bit "${xterm_colors[x]}")
+    done
+    gnome_foreground=$(48bit "$xterm_foreground")
+    gnome_background=$(48bit "$xterm_background")
+
+    # make this into a palette
+    declare gnome_palette="${gnome_colors[0]}$(printf ':%s' "${gnome_colors[@]:1}")"
+
+    # cycle over the profiles and settings
+    for x in "${profiles[@]}"; do
+        gconftool-2 -t string -s "/apps/gnome-terminal/profiles/$x/palette" "$gnome_palette"
+        gconftool-2 -t string -s "/apps/gnome-terminal/profiles/$x/background_color" "$gnome_background"
+        gconftool-2 -t string -s "/apps/gnome-terminal/profiles/$x/foreground_color" "$gnome_foreground"
+    done
+}
+
+update_xfce_terminal() {
+    declare xfce_config
+    declare i
+
+    mkdir -p ~/.config/Terminal
+    if [[ -s ~/.config/Terminal/terminalrc ]]; then
+        xfce_config=$(grep -v \
+            -e '^ColorPalette[0-9]*=' \
+            -e '^ColorForeground=' \
+            -e '^ColorBackground=' \
+            ~/.config/Terminal/terminalrc)
+    else
+        read -d '' xfce_config <<EOT
+[Configuration]
+MiscAlwaysShowTabs=TRUE
+MiscMenubarDefault=FALSE
+MiscMouseAutohide=TRUE
+MiscToolbarsDefault=FALSE
+MiscTabCloseButtons=FALSE
+ScrollingBar=TERMINAL_SCROLLBAR_NONE
+AccelNewTab=<Super>t
+AccelNewWindow=<Shift><Control>n
+AccelDetachTab=
+AccelCloseTab=
+AccelCloseWindow=
+AccelShowMenubar=<Shift><Control>m
+AccelPrevTab=<Super>p
+AccelNextTab=<Super>n
+AccelSwitchToTab1=
+AccelSwitchToTab2=
+AccelSwitchToTab3=
+AccelSwitchToTab4=
+AccelSwitchToTab5=
+AccelSwitchToTab6=
+AccelSwitchToTab7=
+AccelSwitchToTab8=
+AccelSwitchToTab9=
+ShortcutsNoMenukey=TRUE
+ShortcutsNoMnemonics=TRUE
+ScrollingOnOutput=FALSE
+EOT
+    fi
+
+    {
+        echo "$xfce_config"
+        for ((i=0; i<16; i++)); do
+            echo "ColorPalette$((i+1))=$(48bit "${xterm_colors[i]}")"
+        done
+        echo "ColorForeground=$(48bit "$xterm_foreground")"
+        echo "ColorBackground=$(48bit "$xterm_background")"
+    } > ~/.config/Terminal/terminalrc
+}
+
+update_roxterm() {
+    declare flex="$HOME/.config/roxterm.sourceforge.net/Colours/Flex"
+    declare x cs
+
+    (
+        mkdir -p "$(dirname "$flex")"
+        exec > "$flex"
+        echo "[roxterm colour scheme]"
+        echo "foreground=$(48bit "$xterm_foreground")"
+        echo "background=$(48bit "$xterm_background")"
+        for ((x=0; x<16; x++)); do
+            echo "$x=$(48bit "${xterm_colors[x]}")"
+        done
+        echo "cursor=$(48bit "$xterm_cursor")"
+        echo "palette_size=16"
+    )
+
+    declare -a roxterm_ids
+    roxterm_ids=$(
+        for x in /proc/*/environ; do
+            [[ -r $x ]] || continue
+            xargs -0r printf "%s\n" < $x | \
+                sed -n 's/^ROXTERM_ID=//p'
+        done | sort -u)
+
+    if [[ -n $roxterm_ids ]]; then
+        for cs in foo Flex; do
+            for x in $roxterm_ids; do
+                dbus-send --session /net/sf/roxterm/Options \
+                    net.sf.roxterm.Options.SetColourScheme \
+                    "string:$x" "string:$cs"
+            done
+            sleep 1 # without this, the second dbus-send doesn't work
+        done
+    fi
+}
+
+update_gtk_colors() {
+    [[ -f ~/.gtk_color_scheme.$mode ]] || return
+    if [[ -s ~/.gtk_color_scheme.$mode ]]; then
+        gconftool-2 --set --type string /desktop/gnome/interface/gtk_color_scheme "$(<~/.gtk_color_scheme.$mode)"
+    else
+        gconftool-2 --unset /desktop/gnome/interface/gtk_color_scheme
+    fi
+}
+
+update_irssi() {
+    declare x theme=light
+    [[ $mode == nite ]] && theme=dark
+    for x in irssi; do
+        screen -q -ls $x
+        if [[ $? == 11 ]]; then
+            ( # can't ctrl-u a blank line, so add a temporary X
+              screen -S $x -X stuff $'X\cu'
+              sleep 0.2 # seems to be necessary
+              screen -S $x -X stuff "/set theme $theme"$'\n'
+              sleep 0.2
+              screen -S $x -X stuff $'\cy'
+              sleep 0.2
+              screen -S $x -X stuff $'\b' # remove the X
+            ) &
+        fi
+    done
+    wait
+}
+
+update_desktop() {
+    gconftool-2 --get /desktop/gnome/background/picture_filename > ~/.gnome_background.$oldmode
+    if [[ -f ~/.gnome_background.$mode ]]; then
+        gconftool-2 --type string --set /desktop/gnome/background/picture_filename "$(<~/.gnome_background.$mode)"
+    fi
+}
+
+if $here; then
+    update_xrdb
+    update_xterm
+    xrdb <<<"$oldxrdb"
+else
+    update_xrdb
+    update_gnome_terminal Flex &
+    update_roxterm &
+    update_xfce_terminal &
+#   update_gtk_colors &
+    update_xterm
+    update_desktop
+    update_irssi
+fi
+wait

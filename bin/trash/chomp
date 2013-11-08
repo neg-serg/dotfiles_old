@@ -1,0 +1,27 @@
+#!/bin/bash
+# upload images to ompldr and return urls
+#
+# needs: curl, awk, xsel
+
+main() {
+   local bbcodes=$(mktemp)
+   local tmpout=$(mktemp)
+
+   while [ $# -gt 0 ]; do
+      [[ -t 1 ]] && printf '%s \033[1;36m%s\033[0m\n' "Chomping" "$1" || echo "Chomping $1"
+      curl -# -F "file1=@$1" "http://ompldr.org/upload" -o "$tmpout"
+      if [[ $? -eq 0 ]]; then
+         awk '/BBCode:/ { gsub(/<[^<]*?\/?>/, ""); $1=$1; sub(/^[^:]*:/, ""); print }' "$tmpout" >> "$bbcodes"
+         if [[ -t 1 ]]; then
+            awk '/Info:|File:|Thumbnail:|BBCode:/ { gsub(/<[^<]*?\/?>/, ""); $1=$1; sub(/^/, "\033[1;30m"); sub(/:/, "\033[0m: "); print }' "$tmpout"
+         else
+            awk '/Info:|File:|Thumbnail:|BBCode:/ { gsub(/<[^<]*?\/?>/, ""); $1=$1; sub(/:/, ": "); print }' "$tmpout"
+         fi
+      fi
+      shift
+   done
+
+   [[ -s "$bbcodes" ]] && cat "$bbcodes" | xsel -bi
+   rm "$tmpout" "$bbcodes"
+}
+main $@

@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+
+import subprocess
+
+import utils
+
+subprocess.call(["dmenu_run"] + utils.DMENU_OPTS)

@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# commandlinefu - Simple shell script using commandlinefu.com API
+#
+# All commands sorted by date:
+# % commandlinefu
+#
+# All commands sorted by votes:
+# % commandlinefu -v
+#
+# Search results for the query 'ssh' sorted by date:
+# % commandlinefu ssh
+#
+# Search results for the query 'ssh' sorted by votes:
+# % commandlinefu -v ssh
+#
+# You can learn more about commandlinefu.com API at the following link:
+# http://www.commandlinefu.com/site/api
+#
+# Original script:
+# http://commandlinefu.uservoice.com/forums/11102-general/suggestions/116596-provide-bash-client-to-integrate-site-into-cli
+#
+# Seungwon Jeong <seungwon0@gmail.com>
+#
+# Copyright (C) 2011 by Seungwon Jeong
+
+set -e
+
+if test "$1" = -v; then
+sort=sort-by-votes
+shift
+fi
+
+base_url=http://www.commandlinefu.com/commands
+
+if test "$1"; then
+query=$1
+base64=`echo -n $query | base64`
+command_set=matching/$query/$base64
+else
+command_set=browse
+fi
+
+if test "$sort"; then
+command_set=$command_set/$sort
+fi
+
+format=plaintext
+
+url=$base_url/$command_set/$format
+
+if test -t 1; then
+curl -s $url | source-highlight -s sh -f esc #| less -R
+else
+curl -s $url
+fi

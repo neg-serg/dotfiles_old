@@ -1,0 +1,7 @@
+
+URxvt.font:xft:DejaVu Sans Mono:style=Book:pixelsize=14
+URxvt.boldFont:xft:DejaVu Sans Mono:style=Book:pixelsize=14
+URxvt.italicFont:xft:DejaVu Sans Mono:style=Oblique:pixelsize=14
+URxvt.boldItalicFont:xft:DejaVu Sans Mono:style=Oblique:pixelsize=14
+
+! vim:ft=xdefaults

@@ -1,0 +1,366 @@
+#!/bin/bash
+# $Id: cronwrap 4313 2011-03-08 15:41:59Z agriffis $
+#
+# cronwrap -- locking, logging and conditional email for cron jobs
+# Copyright 2008 Aron Griffis <agriffis@n01se.net>
+# Released under the GNU General Public License v2
+#
+
+export CRONWRAP=1
+
+unset tmpfiles
+trap 'rm -f "${tmpfiles[@]}"; exit' 0 1 2 15
+
+die() {
+    printf '%s: ' "${0##*/}" >&2
+    printf '%s\n' "$@" >&2
+    exit 1
+}
+
+usage() {
+    cat <<EOT
+usage: cronwrap [options] command
+       cronwrap [options] -z file
+
+    -a  --always        Always send mail, regardless of exit status
+        --cmptime NUM   Compare seconds, max delta of NUM [$opt_cmptime]
+        --cmpsed EXPR   Compare output using sed expression
+    -f  --full          Show the full log (modulus --head/--tail)
+    -d  --logdir DIR    Save log to DIR
+        --logfile FILE  Save log to FILE (relative prepends logdir)
+    -e  --env FILE      Source file for environment settings
+    -k  --keychain      Load ssh-agent vars from keychain
+    -h  --help          Show this help
+    -l  --lock FILE     Lock on ~/.cronwrap.lock.FILE
+        --number        Number the outputted logfile
+        --quiet-lock    Don't emit error message on lock failure
+        --head LINES    Include only top LINES in the mailed output
+        --tail LINES    Include only bottom LINES in the mailed output
+    -z  --analyze FILE  Analyze logfile instead of running command
+
+Normally cronwrap conditionally echoes to stdout, trusting cron to
+send email.  Specifying --to causes cronwrap to send email instead.
+Note that --to, --cc, --bcc and --hdr can be specified multiple times
+and are cumulative.
+
+        --to ADDR       Instead of outputting to stdout, send email
+        --from ADDR     From address for sending email
+        --cc ADDR       Carbon copy
+        --bcc ADDR      Blind carbon copy
+        --subj SUBJ     Subject for email
+        --hdr TEXT      Additional header for email
+EOT
+}
+
+main() {
+    declare cmd=${0##*/}
+    declare dum version
+    read dum version dum <<<'$Revision: 4313 $'
+
+    # Use /usr/bin/getopt which supports GNU-style long options
+    unset ${!opt_*}
+    declare opt_always=false
+    declare opt_analyze=false
+    declare opt_env=
+    declare opt_full=false
+    declare opt_head=
+    declare opt_keychain=false
+    declare opt_lock=
+    declare opt_quiet_lock=false
+    declare opt_logdir=
+    declare opt_logfile=
+    declare opt_cmptime=10
+    declare opt_cmpsed=
+    declare opt_tail=
+    declare opt_number=false
+    declare opt_unified=0
+    declare -a opt_to
+    declare opt_from=
+    declare opt_sendmail_from=
+    declare -a opt_cc
+    declare -a opt_bcc
+    declare opt_subj=
+    declare -a opt_hdr
+    declare args getopt_long=$(set | sed '
+        /^opt_/!d; s/^opt_//; s/_/-/g; s/=\(false\|true\)$//; s/=.*/:/' | \
+        xargs | sed 's/ /,/g')
+    args=$(POSIXLY_CORRECT=1 getopt -o ad:e:fhkl:U:z \
+        --long "$getopt_long,help,version" -n "$0" -- "$@") || return
+    eval set -- "$args"
+    while true; do
+        case $1 in
+            -a|--always) opt_always=true; shift ;;
+            -d|--logdir) opt_logdir=$2; shift 2 ;;
+               --logfile) opt_logfile=$2; shift 2 ;;
+            -e|--env) opt_env=$2; shift 2 ;;
+            -f|--full) opt_full=true; shift ;;
+            -h|--help) usage; exit 0 ;;
+            -k|--keychain) opt_keychain=true; shift ;;
+               --cmptime) opt_cmptime=$2; shift 2 ;;
+               --cmpsed) opt_cmpsed=$2; shift 2 ;;
+            -l|--lock) opt_lock=$2; shift 2 ;;
+               --quiet-lock) opt_quiet_lock=true; shift ;;
+            -z|--analyze) opt_analyze=true; shift ;;
+               --head) opt_head=$2; shift 2 ;;
+               --tail) opt_tail=$2; shift 2 ;;
+               --number) opt_number=true; shift ;;
+            -U|--unified) opt_unified=$2; shift 2 ;;
+               --to) opt_to=( "${opt_to[@]}" "$2" ); shift 2 ;;
+               --from) opt_from=$2; shift 2 ;;
+               --sendmail-from) opt_sendmail_from=$2; shift 2 ;;
+               --cc) opt_cc=( "${opt_cc[@]}" "$2" ); shift 2 ;;
+               --bcc) opt_bcc=( "${opt_bcc[@]}" "$2" ); shift 2 ;;
+               --subj) opt_subj=$2; shift 2 ;;
+               --hdr) opt_hdr=( "${opt_hdr[@]}" "$2" ); shift 2 ;;
+               --version) echo "$cmd $version"; exit 0 ;;
+            --) shift; break ;;
+            *) die "failed to process cmdline args" ;;
+        esac
+    done
+
+    # do this early so that opt_* can be set
+    if [[ -n $opt_env ]]; then
+        declare env env_out
+        env="$(<$opt_env)" || die "failed to read $opt_env"
+        eval "set -a
+            $env
+            set +a
+            true" || die "failed to source $opt_env"
+    fi
+
+    # declare these here for the sake of analyze()
+    declare logfile seconds status
+
+    declare anal
+    if $opt_analyze; then
+        declare x
+        for x; do
+            anal=$(analyze "$x" 2>&1) || continue
+            printf "%s\n%s\n\n" "$x" "$anal"
+        done
+    else
+        run "$@" || exit
+        if anal=$(analyze "$logfile") || $opt_always; then
+            if [[ -n $opt_to ]]; then
+                exec > >(/usr/sbin/sendmail -t ${opt_sendmail_from:+-f "$opt_sendmail_from"})
+                hdr From: "$opt_from"
+                hdr To: "${opt_to[@]}"
+                hdr Cc: "${opt_cc[@]}"
+                hdr Bcc: "${opt_bcc[@]}"
+                if [[ $opt_subj == GREP ]]; then
+                    grep -m1 '^Subject: ' "$logfile"
+                elif [[ $opt_subj == SED:* ]]; then
+                    printf "Subject: %s\n" "$(sed -rne "${opt_subj#SED:}" "$logfile")"
+                else
+                    hdr Subject: "${opt_subj:-$*}"
+                fi
+                if [[ -n $opt_hdr ]]; then
+                    printf '%s\n' "${opt_hdr[@]}"
+                fi
+                echo
+            fi
+            if [[ -n $anal ]]; then
+                printf '%s\n\n' "$anal"
+            fi
+            if [[ -n $opt_tail || -n $opt_head ]]; then
+                if (( ${opt_tail:-0} + ${opt_head:-0} > $(wc -l <"$logfile") )); then
+                    if [[ -n $opt_head ]]; then
+                        catn "$logfile" | head -n "$opt_head"
+                    fi
+                    echo "[...snip...]"
+                    if [[ -n $opt_tail ]]; then
+                        catn "$logfile" | tail -n "$opt_tail"
+                    fi
+                else
+                    catn "$logfile"
+                fi
+            elif $opt_full; then
+                catn "$logfile"
+            fi
+        fi
+    fi
+    exit 0
+}
+
+catn() { cat $($opt_number && printf "%s" "-n") "$@"; }
+
+hdr() {
+    [[ -n $2 ]] || return
+    printf '%s %s' "$1 $2"
+    shift 2
+    while [[ $# -gt 0 ]]; do
+        printf ',\n\t%s' "$1"
+        shift
+    done
+    echo
+}
+
+# this is transplanted straight from run(), just to make
+# the code there shorter
+startlog() {
+    if [[ -n $opt_logfile ]]; then
+        if [[ $opt_logfile == /* ]]; then
+            # absolute logfile, base logdir on it
+            opt_logdir=$(dirname "$opt_logfile")
+            mkdir -p "$opt_logdir"
+            logfile=$opt_logfile
+        elif [[ -n $opt_logdir ]]; then
+            # relative logfile, prepend logdir
+            mkdir -p "$opt_logdir"
+            logfile=$opt_logdir/$opt_logfile
+        else
+            die "need a logdir for relative logfile"
+        fi
+        [[ -f $logfile ]] && die "failed to create unique $logfile"
+
+    elif [[ -n $opt_logdir ]]; then
+        # no logfile specified, make one up
+        mkdir -p "$opt_logdir"
+        declare logname=${1##*/}
+        logname=${logname%% *}
+        logfile="$opt_logdir/$startdate-$logname"
+        [[ -f $logfile ]] && die "failed to create unique $logfile"
+
+    else
+        logfile=$(mktemp) || return 1
+        tmpfiles+=( "$logfile" )
+    fi
+
+    exec 3>&1 4>&2
+    exec >"$logfile" 2>&1
+}
+
+stoplog2() {
+    exec 2>&4 4>&-
+}
+
+stoplog1() {
+    exec 1>&3 3>&-
+}
+
+# this is transplanted straight from run(), just to make
+# the code there shorter
+getlock() {
+    [[ -z $opt_lock ]] && return
+    declare lockfile
+    if [[ $opt_lock == /*/* ]]; then
+        lockfile=$opt_lock
+    elif [[ $opt_lock == */* ]]; then
+        lockfile="$HOME/$opt_lock"
+    else
+        lockfile="$HOME/.cronwrap.lock.$opt_lock"
+    fi
+    ( $opt_quiet_lock && exec 2>/dev/null
+      lockfile -r0 "$lockfile" ) || return
+    tmpfiles+=( "$lockfile" )
+}
+
+run() {
+    getlock || return
+    declare dfmt='%Y%m%d-%T%z'
+    declare startdate=$(date +"$dfmt")  # used in startlog
+    startlog "$1" || return
+
+    if $opt_keychain; then
+        source ~/.keychain/$HOSTNAME-sh &>/dev/null
+        ssh-add -l &>/dev/null || die "ssh-agent dead or useless"
+    fi
+
+    declare startsecs=$(date +%s)
+    echo "### Started at $startdate"
+    if [[ $# == 1 ]]; then
+        echo "### $1"
+        eval "$1"
+    else
+        echo "### $(printf '%q ' "$@")"
+        "$@"
+    fi
+    status=$?
+    declare enddate=$(date +"$dfmt")
+    declare endsecs=$(date +%s)
+    seconds=$((endsecs - startsecs))
+    stoplog2    # flush stderr to log
+    echo "### Finished at $enddate ($seconds seconds)"
+    echo "### Exited with status $status"
+    stoplog1    # flush stdout to log
+
+    return 0
+}
+
+get_status() {
+    tail -n10 "$1" | \
+        awk '/^### Exited with status/{print $NF;exit}'
+}
+
+get_seconds() {
+    tail -n10 "$1" | \
+        grep '^### Finished at' | \
+        grep -o '[0-9]\+ seconds' | grep -o '[0-9]\+'
+}
+
+analyze() {
+    declare thislog=$1 showlog=false
+
+    # since this might be called by --analyze, don't assume that main()
+    # variables are populated
+    declare status=${status:-$(get_status "$thislog")}
+    declare seconds=${seconds:-$(get_seconds "$thislog")}
+    declare opt_logdir=$opt_logdir
+    if $opt_analyze; then
+        if [[ -z $opt_logdir ]]; then
+            opt_logdir=$(dirname "$thislog")
+        fi
+    fi
+
+    # compare to the previous log.
+    declare prevlog
+    if [[ -n $opt_logdir ]]; then
+        # don't glob here since the dir might be too full for globbing
+        prevlog=$(ls -t "$opt_logdir/" | \
+            grep -A1 -m1 -Fxe "${thislog##*/}" | sed '1d')
+        [[ -n $prevlog ]] && prevlog="$opt_logdir/$prevlog"
+    fi
+
+    # status
+    declare prevstatus
+    if [[ -f $prevlog ]]; then
+        prevstatus=$(get_status "$prevlog")
+    fi
+    if [[ $status != 0 ]]; then
+        echo "### Non-zero status $status (previous was ${prevstatus:-unknown})"
+        showlog=true
+    elif [[ -n $opt_logdir && $status != $prevstatus ]]; then
+        echo "### Status changed from ${prevstatus:-unknown} to $status"
+        showlog=true
+    fi
+
+    # time
+    if [[ -f $prevlog && $opt_cmptime != 0 ]]; then
+        declare prevsecs=$(get_seconds "$prevlog")
+        declare larger=$(( (prevsecs > seconds) ? prevsecs : seconds ))
+        declare smaller=$(( (prevsecs < seconds) ? prevsecs : seconds ))
+        declare delta=$(( larger - smaller ))
+        if (( (larger < 60) ?  (delta > opt_cmptime) :
+            (delta > opt_cmptime * larger / 60) ))
+        then
+            echo "### Time delta: $seconds (this) vs $prevsecs (previous)"
+            showlog=true
+        fi
+    fi
+
+    # content
+    if [[ -f $prevlog && -n $opt_cmpsed ]]; then
+        declare prevout=$(grep -v '^### ' "$prevlog" | sed -re "$opt_cmpsed" | cat -s)
+        declare thisout=$(grep -v '^### ' "$thislog" | sed -re "$opt_cmpsed" | cat -s)
+        declare diffout
+        if ! diffout=$(diff -U$opt_unified -b <(echo "$prevout") <(echo "$thisout")); then
+            echo "### Significant content changed:"
+            echo "$diffout"
+            showlog=true
+        fi
+    fi
+
+    $showlog
+}
+
+main "$@"

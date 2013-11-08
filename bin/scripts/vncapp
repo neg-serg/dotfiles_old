@@ -1,0 +1,39 @@
+#!/bin/sh
+# Turn any application to vnc app
+#
+# needs: Xvfb, arecord, rsound, x11vnc
+
+err() { echo "$@"; exit 1; }
+main() {
+   [ "$1" ] && [ "$2" ] && [ "$3" ] || err "usage: vncapp [width] [height] [program]"
+
+   local HOST=pandora
+   local L=800
+   local S=485
+   [ $1 -gt $2 ] && RL=$1 && RS=$2
+   [ $1 -lt $2 ] && RL=$2 && RS=$1
+   scaler=$(echo "scale=9;$S/$RS" | bc)
+   TH=$RS
+   TW=$(echo "$RL+(($L-($RL*$scaler))/$scaler)" | bc)
+
+   echo "--calculate--"
+   echo "${TW}x${TH} : $scaler"
+
+   Xvfb :1 -screen 0 ${TW}x${TH}x24 &> /dev/null &
+   XVFB_PID=$!
+   sleep 2
+
+   arecord -f cd | rsdplay $HOST &> /dev/null &
+   RSOUND_PID=$!
+
+   DISPLAY=:1 $3 &
+   GAME_PID=$!
+
+   sleep 2
+   echo "connect to $HOSTNAME with client"
+   x11vnc -once -nocursor -scale $scaler:nb -display :1 &> /dev/null
+
+   kill $GAME_PID
+   kill $RSOUND_PID
+   kill $XVFB_PID
+}

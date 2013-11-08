@@ -1,0 +1,11 @@
+#!/bin/bash
+
+RXB=$(</sys/class/net/eth0/statistics/rx_bytes)
+TXB=$(</sys/class/net/eth0/statistics/tx_bytes)
+sleep 2 
+RXBN=$(</sys/class/net/eth0/statistics/rx_bytes)
+TXBN=$(</sys/class/net/eth0/statistics/tx_bytes)
+RXDIF=$(echo $((RXBN - RXB)) )
+TXDIF=$(echo $((TXBN - TXB)) )
+
+echo -e "\x04$((RXDIF / 1024 / 2))K/s \x06$((TXDIF / 1024 / 2))K/s\x01"

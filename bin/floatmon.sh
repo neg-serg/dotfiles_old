@@ -1,0 +1,1 @@
+/home/neg/bin/herbst/floatmon.sh

@@ -1,0 +1,173 @@
+#!/bin/bash
+# $Id: vimmerge 4036 2010-04-13 23:16:41Z agriffis $
+#
+# vimmerge -- 2-way or 3-way merging with vim
+#
+# Copyright 2005 Aron Griffis <agriffis@gentoo.org>
+# Released under the GNU GPL v2
+#
+# This script can run in one of five modes:
+#   1. 2-way merge, this is the same as vimdiff
+#   2. 2-way merge with output to a new file
+#   3. 3-way merge with output to "mine"
+#   4. 3-way merge with output to a new file
+#   5. 2-way merge with all input coming from one file, 
+#      which uses markup similar to the output of RCS merge.
+#      In this case, only a single input file is given on the cmdline.
+#
+# By default it assumes the same file ordering as diff3, but unlike diff3 it
+# will save the results in "mine" by default:
+#   vimmerge mine older yours
+#
+# To write to a new file, use -w:
+#   vimmerge -w merged mine older yours
+#
+# To completely change the order of the incoming parameters, either specify them
+# explicitly or use --order:
+#   vimmerge -o older -y yours -m mine -w merged
+#   vimmerge --order oymw older yours mine merged
+#
+# To use mode 5, where the input file is the result of running RCS merge,
+# simply specify a single input file, optionally specifying an alternate output
+# file.
+#   vimmerge conflicted
+#   vimmerge -w merged conflicted
+
+cmd=${0%merge}
+cmd=${cmd##*/}
+unset mine older yours write order
+backup=false
+unset backup_mv_flags
+quiet=false
+
+# Use /usr/bin/getopt which supports GNU-style long options
+args=$(getopt -o m:y:o:w:bq --long mine:,yours:,older:,write:,quiet,backup -n "$0" -- "$@") || exit
+eval set -- "$args"
+
+while true; do
+    case $1 in
+        -b|--backup) backup=true; shift ;;
+        -m|--mine)  mine=$2; shift 2 ;;
+        -o|--older) older=$2; shift 2 ;;
+        -y|--yours) yours=$2; shift 2 ;;
+        -w|--write) write=$2; shift 2 ;;
+        --order) order=$2; shift 2 ;;
+        -q|--quiet) quiet=true; shift ;;
+        --) shift; break ;;
+        *) echo "failed to process cmdline args" >&2; exit 1 ;;
+    esac
+done
+
+# This --order hack is for programs that expect a certain command-line order and
+# aren't configurable
+if [[ -z $order ]]; then
+    # if order isn't specified, assume the same order as diff3
+    [[ -z $mine ]] && { mine=$1; shift; }
+    [[ -z $older && -n $2 ]] && { older=$1; shift; }
+    [[ -z $yours ]] && { yours=$1; shift; }
+else
+    while [[ -n $order ]]; do
+        o=${order:0:1}
+        order=${order:1}
+        case $o in
+            m) [[ -z $mine ]] && { mine=$1; shift; } ;;
+            o) [[ -z $older ]] && { older=$1; shift; } ;;
+            y) [[ -z $yours ]] && { yours=$1; shift; } ;;
+            w) [[ -z $write ]] && { write=$1; shift; } ;;
+            *) echo "error: valid --order chars are moyw" >&2; exit 1 ;;
+        esac
+    done
+fi
+
+if [[ -z $mine ]]; then
+    echo "syntax: ${cmd}merge [options] mine [[older] yours]" >&2
+    exit 1
+fi
+
+# Default output file is $mine
+: ${write:=$mine}
+
+# 3-way and RCS merge require temporary files
+if [[ -z $yours || -n $older ]]; then
+    unset tmp_mine tmp_yours
+    trap 'rm -f "$tmp_mine" "$tmp_yours"' 0 1 2 15
+    tmp_mine=$(mktemp -t mine.XXXXXX) || exit 1
+    tmp_yours=$(mktemp -t conflicts.XXXXXX) || exit 1
+fi
+
+if [[ -z $yours ]]; then
+    # Process the results of RCS merge
+    sed -n "
+        /^<<<<<<< /,/^>>>>>>> /{
+            /^<<<<<<< /,/^=======\$/{
+                /^<<<<<<< /d    # skip the start marker
+                /^=======\$/!{  # skip the end marker
+                    w $tmp_mine
+                }
+            }
+            /^=======\$/,/^>>>>>>> /{
+                /^=======\$/d   # skip the start marker
+                /^>>>>>>> /!{   # skip the end marker
+                    w $tmp_yours
+                }
+            }
+            d
+        }
+        w $tmp_mine
+        w $tmp_yours" < "$mine" || exit 1
+    yours="$tmp_yours"
+    mine="$tmp_mine"
+    # falls through to 2-way merge
+fi
+
+# 3-way merge
+if [[ -n $older ]]; then
+    unset tmp_mine tmp_yours
+
+    trap 'rm -f "$tmp_mine" "$tmp_yours"' 0 1 2 15
+    tmp_mine=$(mktemp -t mine.XXXXXX) || exit 1
+    tmp_yours=$(mktemp -t conflicts.XXXXXX) || exit 1
+
+    diff3 --easy-only --merge "$mine" "$older" "$yours" > "$tmp_mine"
+    [[ $? == 2 ]] && exit 2  # 2 == trouble
+
+    diff3 --easy-only --merge "$yours" "$older" "$mine" > "$tmp_yours"
+    [[ $? == 2 ]] && exit 2  # 2 == trouble
+
+    # was the simple merge fully successful?
+    if cmp --quiet "$tmp_mine" "$tmp_yours"; then
+        $backup && backup_mv_flags="--backup=simple --suffix=.orig"
+        mv $backup_mv_flags "$tmp_mine" "$write" || exit 1
+        $quiet || echo "Simple merge successful ($write)"
+        exit 0
+    fi
+
+    # call vim to complete the merge
+    if $backup && [[ -f "$write" ]]; then
+        mv -f "$write" "$write.orig" || exit 1
+    fi
+    $cmd -f +diffthis +"vert new $write" +"0r $tmp_mine" +diffthis "$tmp_yours"
+    exit 0
+fi
+
+# 2-way merge
+if cmp --quiet "$mine" "$yours"; then
+    $quiet || echo "Files are identical"
+    exit 0
+elif [[ $write == "$mine" ]]; then
+    if $backup && [[ -f "$mine" ]]; then
+        cp -f "$mine" "$mine.orig" || exit 1
+    fi
+    $cmd -f -d "$mine" "$yours"
+    exit $?
+else
+    if [[ -f "$write" ]] && $backup; then
+        mv -f "$write" "$write.orig" || exit 1
+    fi
+    $cmd -f +diffthis +"vert new $write" +"normal dG" +"r $mine" +"normal kdd" +diffthis "$yours"
+    status=$?
+    if [[ ! -f "$write" ]] && $backup; then
+        mv -f "$write.orig" "$write" || exit 1
+    fi
+    exit $status
+fi

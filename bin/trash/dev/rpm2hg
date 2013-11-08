@@ -1,0 +1,158 @@
+#!/bin/bash
+# $Id: rpm2hg 4181 2010-10-17 22:18:22Z agriffis $
+#
+# rpm2hg: load rpm into a mercurial repo for tracking
+# 
+# Copyright 2007 Aron Griffis <agriffis@n01se.net>
+# Released under the GNU General Public License v2
+#
+
+main()  {
+declare cmd=${0##*/}
+declare usage
+read -d '' usage <<EOT
+usage: rpm2hg [-hv] [-b repo] pkg-1.0.src.rpm [pkg-rpm]
+
+    -b repo  --build          rpmbuild -bp output to repo
+             --help           Show this help message
+             --version        Show version information
+EOT
+declare dum version
+read dum version dum <<<'$Revision: 4181 $'
+
+# Use /usr/bin/getopt which supports GNU-style long options
+declare opt_build
+declare args=$(getopt -n "$0" \
+    -o b:hV --long build:,help,version -- "$@") || exit
+eval set -- "$args"
+while true; do
+    case $1 in
+        -b|--build) opt_build=$2; shift 2 ;;
+        --help) echo "$usage"; exit 0 ;;
+        --version) echo "$cmd $version"; exit 0 ;;
+        --) shift; break ;;
+        *) echo "failed to process cmdline args" >&2; exit 1 ;;
+    esac
+done
+
+if [[ -z $1 ]]; then
+    die "missing argument, try --help"
+elif [[ ! -r $1 ]]; then
+    die "can't read: $1"
+fi
+
+declare rpm=$1 repo=$2
+if [[ -z $repo ]]; then
+    repo=${rpm%%-[0-9]*}        # trim trailing -version.*
+    repo=${repo##*/}            # trim leading path
+fi
+
+trap 'cleanup; exit' 0 1 2
+
+set -e
+
+# Create the repo the first time
+if [[ ! -d $repo ]]; then
+    mkdir $repo
+    pushd $repo
+    hg init
+    cat >.hgignore <<EOF
+^BUILD/
+^RPMS/
+^SRPMS/
+^index.cgi$
+^rpmbuild.*out$
+EOF
+    mkdir -p {BUILD,RPMS,SOURCES,SPECS,SRPMS}
+    touch {BUILD,RPMS,SOURCES,SPECS,SRPMS}/.keep
+    hg add
+    hg ci -m "initial commit"
+    popd
+
+# Check for uncommitted modifications
+elif hg -R $repo st | grep -q .; then
+    die "repo $repo isn't clean"
+fi
+
+# Unpack the rpm into the repo
+rm -f $repo/SOURCES/* $repo/SPECS/*
+rpm2cpio $rpm | ( cd $repo/SOURCES; cpio -imd; )
+mv $repo/SOURCES/*.spec $repo/SPECS
+hg -R $repo addremove
+hg -R $repo ci -m $rpm
+
+# If a build-repo was given, prep the sources into it
+if [[ -n $opt_build ]]; then
+    if [[ ! -d $opt_build ]]; then
+        mkdir $opt_build
+        pushd $opt_build
+        hg init
+        popd
+    elif hg -R $opt_build st | grep -q .; then
+        die "repo $opt_build isn't clean"
+    fi
+
+    declare tmpd clone
+    if [[ $opt_build == /* ]]; then
+        tmpd=$(mktemp -d "$(dirname "$opt_build")/$cmd.tmp.XXXXXX")
+    else
+        tmpd=$(mktemp -d "$PWD/$(dirname "$opt_build")/$cmd.tmp.XXXXXX")
+    fi
+    prepend_cleanup "rm -rf $tmpd"
+    clone=$tmpd/${repo##*/}
+    hg clone $repo $clone
+    mkdir -p $clone/BUILD
+    rpmbuild --nodeps -bp $clone/SPECS/*.spec
+    rm -rf $opt_build/*
+    cp -al $clone/BUILD/* $opt_build
+    pushd $opt_build
+    hg addremove 2>&1 | grep -v '^not removing'
+    hg ci -m $rpm
+    popd
+fi
+} # main()
+
+echo() {
+    printf '%s\n' "$*"
+}
+
+die() {
+    declare status=1
+    if [[ $1 == ?* && $1 != *[!0-9]* ]]; then
+        status=$1
+        shift
+    fi
+    echo "$cmd: ${*:-error}" >&2
+    exit $status
+}
+
+pushd() {
+    command pushd "$1" >/dev/null
+}
+
+popd() {
+    command popd >/dev/null
+}
+
+cleanup() {
+    true
+}
+
+prepend_cleanup() {
+    eval "cleanup() {
+        $*
+        $(type cleanup | sed '1,3d;$d')
+    }"
+}
+
+rpmbuild() {
+    declare x topdir
+    for x; do
+        [[ $x == *.spec ]] || continue
+        topdir=$(cd $(dirname $x)/..; pwd)
+        break
+    done
+    command rpmbuild ${topdir:+--define="_topdir $topdir"} "$@"
+}
+
+main "$@"

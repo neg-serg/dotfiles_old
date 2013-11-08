@@ -1,0 +1,59 @@
+#!/bin/bash
+# 
+# mime-unzipper -- mailcap hack to unzip a file then recurse into mailcap
+#
+# requires unzip, run-mailcap (mime-support) and file-roller
+#
+# Copyright 2009 Aron Griffis <agriffis@n01se.net>
+# Released under the GNU General Public License v2
+
+# uncomment for debugging
+#exec 2>&1; set -x
+
+if [[ $1 == --dump ]]; then
+    opt_action=dump
+    shift
+else
+    opt_action=view
+fi
+
+f=$1
+
+punt() {
+    if [[ $opt_action == dump ]]; then
+        echo "$content"
+        exit 0
+    elif [[ -n $DISPLAY ]] && type -P file-roller &>/dev/null; then
+        file-roller "$f"
+        exit $?
+    else
+        echo "mime-unzipper: need \$DISPLAY and file-roller" >&2
+        exit 1
+    fi
+}
+
+case $f in
+    *.zip|*.exe)
+        content=$(unzip -l "$f")
+        [[ $(tail -n1 <<<"$content") == *"1 file" ]] || punt
+        filename=$(sed '1,/^ ---/d;/^ ---/,$d' <<<"$content" | perl -pe 's/^.*?\S\s{3}//')
+        cmd=( unzip -p "$f" )
+        ;;
+
+    *.tar.gz|*.tgz|*.tar.bz2|*.tbz2|*.tbz)
+        content=$(tar tf "$f")
+        [[ $(grep -cv '/$' <<<"$content") == 1 ]] || punt
+        filename=$(grep -v '/$' <<<"$content")
+        cmd=( tar xOf "$f" )
+        ;;
+
+    *)
+        echo "mime-unzipper: don't know how to handle $f" >&2
+        exit 1
+        ;;
+esac
+
+[[ -n $filename ]] || punt
+mimetype=$(detect-mimetype "$filename")
+[[ -n $mimetype ]] || punt
+"${cmd[@]}" | run-mailcap --action=$opt_action "$mimetype:-"

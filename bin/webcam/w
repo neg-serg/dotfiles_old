@@ -1,0 +1,1 @@
+mplayer  -vo x11 tv:// -tv device=/dev/video0 -zoom

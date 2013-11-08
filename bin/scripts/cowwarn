@@ -1,0 +1,3 @@
+#!/bin/bash
+
+notify-send -u critical "$(cowsay -p "$*" | sed "1 s/^ /../" | sed "s/$/\\\n/")"

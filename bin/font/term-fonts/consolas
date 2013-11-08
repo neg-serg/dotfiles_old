@@ -1,0 +1,7 @@
+
+mpd-pad.font:xft:consolas:style=regular:pixelsize=14:antialias=false
+mpd-pad.boldFont:xft:consolas:style=regular:pixelsize=14:antialias=false
+mpd-pad.italicFont:xft:consolas:style=italic:pixelsize=14:antialias=false
+mpd-pad.boldItalicFont:xft:consolas:style=italic:pixelsize=14:antialias=false
+
+! vim:ft=xdefaults
