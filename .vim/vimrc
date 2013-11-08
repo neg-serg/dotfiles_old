@@ -50,9 +50,8 @@ NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like e
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
-" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
-" NeoBundle 'Twinside/vim-haskellConceal'       "unicode operators in haskell without changing of code
-" NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
+NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
+NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
 "------------------------------------------------------------------------------------------------------------
 "--[ java/scala ]--------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -65,7 +64,7 @@ NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
-NeoBundle 'nathanaelkane/vim-indent-guides'   "indent
+NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
@@ -76,20 +75,18 @@ NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
+NeoBundleCheck
 syntax on
 filetype plugin indent on
-NeoBundleCheck
 
 source ~/.vim/01-settings.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
 source ~/.vim/11-emacs-keys.vim
 source ~/.vim/20-additional-hightLight.vim
-"source ~/.vim/30-vim-swap-words.vim
-" source ~/.vim/func/vim-transpose-words.vim
 
-" source ~/.vim/.trash/99-test.vim
-" source ~/.vim/.trash/99-trash.vim
-" source ~/.vim/.trash/99-trash-bundle.vim
-" source ~/.vim/.trash/99-trash-modules-lang.vim
-" source ~/.vim/.trash/99-trash-modules-colors.vim
+" ~/.vim/.trash/99-test.vim
+" ~/.vim/.trash/99-trash.vim
+" ~/.vim/.trash/99-trash-bundle.vim
+" ~/.vim/.trash/99-trash-modules-lang.vim
+" ~/.vim/.trash/99-trash-modules-colors.vim
