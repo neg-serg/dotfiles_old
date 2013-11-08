@@ -1,0 +1,12 @@
+elite1  => {
+  name  => 'Elite laptop Bold             [ 28px ] (72-72-c-140)',
+  font  => '-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r',
+},
+elite2  => {
+  name  => 'Elite terminal Bold           [ 14px ] (72-72-c-80)',
+  font  => '-elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r'
+},
+elite3  => {
+  name  => 'Elite light Medium            [ 12px ] (72-72-c-60)',
+  font  => '-elite-light-medium-r-normal--12-120-72-72-c-60-koi8-r'
+},

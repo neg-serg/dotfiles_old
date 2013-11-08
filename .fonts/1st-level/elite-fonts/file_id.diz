@@ -1,0 +1,72 @@
+                   лллллллЛ ллЛ      ллЛ ллллллллЛ лллллллЛ
+            лллллЛ ллЩЭЭЭЭМ ллК      ллК ШЭЭллЩЭЭМ ллЩЭЭЭЭМ лллллЛ
+     лллллЛ ШЭЭЭЭМ лллллЛ   ллК      ллК    ллК    лллллЛ   ШЭЭЭЭМ лллллЛ
+     ШЭЭЭЭМ лллллЛ ллЩЭЭМ   ллК      ллК    ллК    ллЩЭЭМ   лллллЛ ШЭЭЭЭМ
+            ШЭЭЭЭМ лллллллЛ лллллллЛ ллК    ллК    лллллллЛ ШЭЭЭЭМ
+                   ШЭЭЭЭЭЭМ ШЭЭЭЭЭЭМ ШЭМ    ШЭМ    ШЭЭЭЭЭЭМ
+ 
+			   [[ -=Elite=- ]]
+			  2005 [(] Warl0ck
+
+		     What do you think about it ?
+			   <warl0ck@eml.cc>
+
+This package contains fonts for all events of life: for dos, for *nix
+console, windoze terminals, x window system.. 
+
+package listing:
+
+elite.com       - standalone vga screen driver
+elite.fnt       - font resource for screen drivers and kbd
+elite.fon       - TUI font for md95/98/me
+eliteNT.fon     - TUI font for mdnt/2k/xp/2k3
+file_id.diz     - this file
+light.pcf.gz    - gziped light matrix font (X-win) designed for  playlists,
+	          monitors, indicators etc..
+terminal.pcf.gz - gziped matrix font (X-win) designed for terminals
+elite-laptop.pcf.gz - gziped matrix font (X-win) designed for terminals with
+big resolution (1280x800).
+
+-- Instalation:
+	-- *nix:
+	    -- console: copy "elite.fnt" to your fonts dir, and add to
+	   	        you   rc.font   strings  
+			mapscrn koi8-r_to_uni 
+			setfont elite
+	    -- X-win:	copy "light.pcf.gz" and "light.pcf.gz" to you
+			XW fonts dir and execute this commands :
+			mkfontdir && xset +fp `/path/to/elite/` && xset fp 
+								    rehash
+			Write it all (wo mkfontdir 8)) to you xinit file, 
+			or for all users write to XF86Config string 
+			FontPath "/path/to/elite/" and restart X.
+			Now you can  select  fonts with xfontsel.
+			-elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r
+			-elite-light-medium-r-normal--12-120-72-72-c-60-koi8-r
+			are they names. 
+
+	-- DOS:		You can use "elite.fnt" for keyrus or other font
+			driver - follow  they  instructions, you can add 
+			to  your  autoexec.bat  "elite.com"  for  simple 
+			instalation.. choose your path.
+
+
+	-- MustDie:
+	    -- all:    start %windir%\explorer.exe %windir%\fonts
+		       select menu "file" -> "install fonts"
+		       specify font drive/directory
+		       select "Terminal" for non-NT family 
+		       or "Elite" for NT family
+		       click "install font" button.
+		       brrr.. mouse - dirty animal. 
+		       select font 8x16 in your console window properties
+		       nothing else. reboot not needed.
+
+Yeah, for thЅ time being it all. Wait for update. In progress
+development of a big, more friendly for reading ebooks, font for xterminal. 
+
+Concussion of the walls: Amon Amarth - Death In Fire
+
+
+
+
