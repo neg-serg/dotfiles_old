@@ -1,0 +1,101 @@
+! UXTerm {{{
+UXTerm*renderFont: false
+UXTerm*allowColorOps: 1
+UXTerm*allowFontOps: 1
+UXTerm*allowTcapOps: 1
+UXTerm*allowTitleOps: 1
+UXTerm*allowWindowOps: 1
+UXTerm*dynamicColors: 1
+
+UXTerm*faceName: FONT_NORMAL
+UXTerm*font: FONT_NORMAL
+UXTerm*boldFont: FONT_BOLD
+UXTerm*italicFont: FONT_ITALIC
+UXTerm*foreground: #FFFFFF
+UXTerm*background: #000000
+UXTerm*colorBD: #ffc200
+UXTerm*colorBDMode: 1
+UXTerm*colorMode: 1
+UXTerm*colorUL: #FFFFFF
+UXTerm*colorULMode: 1
+
+UXTerm*jumpScroll: 1
+UXTerm*metaSendsEscape: 0
+UXTerm*multiScroll: 1
+UXTerm*vt100.scrollBar: 0
+UXTerm*SaveLines: 2500
+UXTerm*scrollBar: 0
+
+/* http://shallowsky.com/linux/noaltscreen.html */
+UXTerm*titeInhibit: 1
+UXTerm*termName: xterm-256color
+
+! vte {{{
+  vte*font: FONT_NORMAL
+  vte*boldFont: FONT_BOLD
+  vte*italicFont: FONT_ITALIC
+  vte*background: #121212
+  vte*foreground: #d6d6d6
+  vte*scrollBar: false
+!}}}
+!xcalc-----------------------------------------------------------------------
+
+xcalc*geometry: 200x275
+xcalc.ti.bevel.background: #111111
+xcalc.ti.bevel.screen.background: #000000
+xcalc.ti.bevel.screen.DEG.background: #000000
+xcalc.ti.bevel.screen.DEG.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.GRAD.background: #000000
+xcalc.ti.bevel.screen.GRAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.RAD.background: #000000
+xcalc.ti.bevel.screen.RAD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.INV.background: #000000
+xcalc.ti.bevel.screen.INV.foreground: Red
+xcalc.ti.bevel.screen.LCD.background: #000000
+xcalc.ti.bevel.screen.LCD.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.LCD.shadowWidth: 0
+xcalc.ti.bevel.screen.M.background: #000000
+xcalc.ti.bevel.screen.M.foreground: LightSeaGreen
+xcalc.ti.bevel.screen.P.background: #000000
+xcalc.ti.bevel.screen.P.foreground: Yellow
+xcalc.ti.Command.foreground: White
+xcalc.ti.Command.background: #777777
+xcalc.ti.button5.background: Orange3
+xcalc.ti.button19.background: #611161
+xcalc.ti.button18.background: #611161
+xcalc.ti.button20.background: #611111
+!uncomment to change label on division button
+!xcalc.ti.button20.label: /
+xcalc.ti.button25.background: #722222
+xcalc.ti.button30.background: #833333
+xcalc.ti.button35.background: #944444
+xcalc.ti.button40.background: #a55555
+xcalc.ti.button22.background: #222262
+xcalc.ti.button23.background: #222262
+xcalc.ti.button24.background: #222272
+xcalc.ti.button27.background: #333373
+xcalc.ti.button28.background: #333373
+xcalc.ti.button29.background: #333373
+xcalc.ti.button32.background: #444484
+xcalc.ti.button33.background: #444484
+xcalc.ti.button34.background: #444484
+xcalc.ti.button37.background: #555595
+xcalc.ti.button38.background: #555595
+xcalc.ti.button39.background: #555595
+XCalc*Cursor: hand2
+XCalc*ShapeStyle: rectangle
+
+
+! ![0]: https://github.com/trapd00r/rxvt-unicode
+! ![1]: https://github.com/trapd00r/colorcoke
+! ![2]: https://github.com/trapd00r/Term-ExtendedColor-Xresources
+! ![3]: https://github.com/trapd00r/pickyfont
+! !#include "/home/scp1/etc/Xcolors/trapd00r_new.Xresources"
+! !include "/home/scp1/etc/Xcolors/better_defaults.Xresources"
+! !#include "/home/scp1/etc/Xcolors/matrix.Xresources"
+! !#include "/home/scp1/etc/Xcolors/random_selection.Xresources"
+! !#include "/home/scp1/etc/Xcolors/trapd00r_correct_ansi.Xresources"
+! !#include "/home/scp1/etc/Xcolors/trapd00r_default.Xresources"
+! !#include "/home/scp1/etc/Xcolors/trasmatta.Xresources"
+! !#include "/home/scp1/etc/Xcolors/xterm_default.Xresources"
+

@@ -111,6 +111,7 @@ set undoreload=10000                " Maximum number lines to save for undo on a
 set noshowmode                      " For flickering disable showmode unneeded with airline/powerline
 
 set cursorline                      " highlight current line
+set hidden                          " do not hide current mode. It needed for lusty*
 "set cursorcolumn                   " highlight current column
 
 " set list
@@ -140,7 +141,6 @@ set nofoldenable                    "dont fold by default
 " " This makes vim act like all other editors, buffers can
 " " exist in the background without being in a window.
 " " http://items.sjbach.com/319/configuring-vim-right
-" set hidden
 " set formatoptions+=t    " auto-wrap using textwidth (not comments)
 " set formatoptions+=c    " auto-wrap comments too
 " set formatoptions+=r    " continue the comment header automatically on <CR>
@@ -155,7 +155,6 @@ set nofoldenable                    "dont fold by default
 " set formatoptions+=l    " don't break long lines in insert mode
 " set formatoptions+=1    " don't break lines after one-letter words, if possible
 
-set-option -g default-terminal "rxvt-256color"
 set fillchars=vert:│
 set maxfuncdepth=1000
 set maxmemtot=200000
