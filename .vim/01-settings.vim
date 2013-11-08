@@ -69,7 +69,10 @@ set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+
+set nowrap
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 " set foldenable                  " Auto fold code
@@ -97,15 +100,22 @@ set splitbelow                      " Puts new split windows to the bottom of th
 set matchpairs+=<:>                 " Match, to be used with %
 "set matchpairs+==:;                " Match, to be used with %
 "set matchpairs+=<:>                " Match, to be used with %
+
 set pastetoggle=<F1>                " pastetoggle (sane indentation on pastes)
-set autoindent                      " Indent at the same level of the previous line
-set smartindent                     " does the right thing (mostly) in programs
+
 set cindent                         " stricter rules for C programs
 set laststatus=2                    " requied by PowerLine
 
+set backup
+set backupdir=~/trash
+set directory=~/trash
 set undofile                        " So is persistent undo ...
 set undolevels=1000                 " Maximum number of changes that can be undone
 set undoreload=10000                " Maximum number lines to save for undo on a buffer reload
+
+set background=dark                 " needed for colorschemes
+set sidescroll=5                    " scrolling not at the end
+set sidescrolloff=5                 " scrolling not at the end
 
 " set list
 " set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
@@ -150,8 +160,7 @@ set formatoptions-=b    " don't worry about vi compatiblity
 set formatoptions+=l    " don't break long lines in insert mode
 set formatoptions+=1    " don't break lines after one-letter words, if possible
 
-"set-option -g default-terminal "screen-256color"
-" set smartcase     " ignore case if search pattern is all lowercase,
+set-option -g default-terminal "rxvt-256color"
                     " case-sensitive otherwise
 "set cursorcolumn 
 set cursorline 
@@ -162,25 +171,15 @@ set bs=2 ai ruler lazyredraw ai cin autoread nocompatible
 set ts=2 sts=2 sw=2 autochdir
 "set ww=b,s,h,l,<,>,[,]  
 " INDENTATION 
-set shiftround
-set diffopt=filler,iwhite     " ignore all whitespace and sync
+" set shiftround
+" set diffopt=filler,iwhite     " ignore all whitespace and sync
 "  -- [Backup options] --
-set backup
-set backupdir=~/trash
-set directory=~/trash
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 " make vim message not to annoy
-set shortmess=aoOIT
+" set shortmess=aoOIT
 "set shortmess=at      " shorten error messages
 set modeline          " enable modelines
 set grepprg=grep\ -nH\ $*
-set background=dark
-set sidescroll=5
-set sidescrolloff=5
-"@indents
-set showcmd 
-set noswapfile
-set enc=utf-8
 
 set iminsert=0
 set cmdheight=1

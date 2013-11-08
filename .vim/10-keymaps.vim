@@ -220,8 +220,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:Ultisnips_ListSnippets=""
 
-map <S-H> gT
-map <S-L> gt
+"easier tabs
+" map <S-H> gT
+" map <S-L> gt
 
 " Stupid shift key fixes
     if has("user_commands")
