@@ -17,6 +17,9 @@ map I_<C-w> I_<C-BS>
 map -builtin <C-d> -silent :sidebar Downloads<CR>
 map -builtin B -silent :bmarks<CR>
 
+map <F4> :set complete=lS<CR>
+map <F5> :set complete=bookmark<CR>
+
 imap <c-a> <home>
 cmap <c-a> <home>
 imap <a-f> <S-Right>

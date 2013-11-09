@@ -14,7 +14,7 @@
 # export LANG="en_US.UTF-8"
 # export LC_ALL="en_US.UTF-8"
 # export LC_CTYPE="en_US.UTF-8" 
-# eval $(keychain --eval --agents ssh ~/.ssh/{nopasswd,id_rsa})
+eval $(keychain --eval --agents ssh ~/.ssh/id_rsa)
 
 # [ -z $(pidof mpd) ]                       && mpd 
 # [ -z $(pidof mpdscribble) ]               &&  mpdscribble --conf ~/.config/mpdscribble/neg/mpdscribble.conf     &
@@ -88,7 +88,6 @@ amixer -q set Master 0% mute
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
 
-keychain ~/.ssh/id_rsa &
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
 
 exec notion

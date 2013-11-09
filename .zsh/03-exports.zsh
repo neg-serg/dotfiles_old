@@ -8,6 +8,7 @@
 # Don't change. The following determines where YADR is installed.
 # export PERLBREW_ROOT=${HOME}/bin/perl5/perlbrew
 # export yadr=$HOME/.yadr 
+unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export LESSCHARSET=UTF-8
 

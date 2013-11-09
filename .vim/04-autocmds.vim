@@ -1,4 +1,3 @@
-au GuiEnter * set visualbell t_vb=
 " experimental
 "   " OmniComplete {
 if has("autocmd") && exists("+omnifunc")
