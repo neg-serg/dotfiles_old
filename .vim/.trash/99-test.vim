@@ -1,5 +1,4 @@
 "-----------------------------------------------------------------------------------
-" set hidden                          " do not hide current mode. It needed for lusty*
 " set noshowmode                      " For flickering disable showmode unneeded with airline/powerline
 "set cursorcolumn                   " highlight current column
 "-------------------------------------------------------------------------------------------

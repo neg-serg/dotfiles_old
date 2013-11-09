@@ -78,6 +78,7 @@ set clipboard-=autoselect clipboard+=autoselectml
 "set swapsync=""                    " don't call fsync() or sync(); let linux handle it
 " set autowrite                       " Automatically write a file when leaving a modified buffer
 set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+set shm=                            " ---------------experimental---------------
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=onemore             " Allow for cursor beyond last character
 set history=1000                    " Store a ton of history (default is 20)
@@ -90,15 +91,16 @@ set nojoinspaces                    " Prevents inserting two spaces after punctu
 set matchpairs+=<:>                 " Match, to be used with %
 "set matchpairs+==:;                " Match, to be used with %
 "set matchpairs+=<:>                " Match, to be used with %
-set splitright                    " Puts new vsplit windows to the right of the current
-set splitbelow                    " Puts new split windows to the bottom of the current
-set equalalways                   " keep windows equal when splitting (default)
-set eadirection=hor               " ver/hor/both - where does equalalways apply
+set splitright                      " Puts new vsplit windows to the right of the current
+set splitbelow                      " Puts new split windows to the bottom of the current
+set equalalways                     " keep windows equal when splitting (default)
+set eadirection=hor                 " ver/hor/both - where does equalalways apply
 
-set pastetoggle=<F2>                " pastetoggle (sane indentation on pastes)
-" -----------------------------------------------------------------
-" --[ change undo file location ]----------------------------------
-" -----------------------------------------------------------------
+set pastetoggle=<F2>                " Pastetoggle (sane indentation on pastes)
+set hidden                          " It hides buffers instead of closing them
+"" -----------------------------------------------------------------
+"" --[ change undo file location ]----------------------------------
+"" -----------------------------------------------------------------
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
