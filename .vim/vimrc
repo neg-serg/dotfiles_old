@@ -72,7 +72,7 @@ NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
-" NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
+NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
 NeoBundleCheck
