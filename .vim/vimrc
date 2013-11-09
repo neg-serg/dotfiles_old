@@ -17,10 +17,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 "------------------------------------------------------------------------------------------------------------
 "--[ Bundles ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'SirVer/ultisnips.git'              "snippets for ycm
 NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc 
 NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
 NeoBundle 'kien/ctrlp.vim'                    "for MRU
+NeoBundle 'SirVer/ultisnips.git'              "snippets for ycm
 NeoBundle 'godlygeek/tabular'                 "tabularize!
 NeoBundle 'mileszs/ack.vim'                   "ack wrapper
 NeoBundle 'tpope/vim-repeat'                  "repeat everything!
@@ -34,9 +34,9 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'kien/rainbow_parentheses.vim'      "rainbow ()[]
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
-"------------------------------------------------------------------------------------------------------------
-"--[ new ]---------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------ 
+" "------------------------------------------------------------------------------------------------------------
+" "--[ new ]---------------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------ 
 NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
@@ -47,20 +47,20 @@ NeoBundle 'vim-scripts/sessionman.vim'        "session manager
 NeoBundle 'matchit.zip'                       " % for everything
 NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
 NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like emacs/bash
-"------------------------------------------------------------------------------------------------------------
-"--[ haskell ]-----------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
+" "--[ haskell ]-----------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
 NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
 NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
-"------------------------------------------------------------------------------------------------------------
-"--[ java/scala ]--------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
+" "--[ java/scala ]--------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
 NeoBundle 'derekwyatt/vim-scala'              "different initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
-"------------------------------------------------------------------------------------------------------------
-"--[ misc ]--------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
+" "--[ misc ]--------------------------------------------------------------------------------------------------
+" "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 NeoBundle 'majutsushi/tagbar'                 "tagbar
@@ -85,9 +85,8 @@ source ~/.vim/10-keymaps.vim
 source ~/.vim/11-emacs-keys.vim
 source ~/.vim/20-additional-hightLight.vim
 
-" ~/.vim/.trash/99-test.vim
+" source ~/.vim/.trash/99-test.vim
 " ~/.vim/.trash/99-trash.vim
 " ~/.vim/.trash/99-trash-bundle.vim
 " ~/.vim/.trash/99-trash-modules-lang.vim
 " ~/.vim/.trash/99-trash-modules-colors.vim
-
