@@ -9,11 +9,11 @@ if has("gui_running")
     set noantialias
     set clipboard=unnamed
     set colorcolumn=0
-    set mousehide                 " hide the mouse pointer while typing
-    set mousemodel=popup	        " right mouse button pops up a menu in the GUI
-    set mouse=a         " enable full mouse support
-    set ttymouse=xterm2 " more accurate mouse tracking
-    set ttyfast         " more redrawing characters sent to terminal
+    set mousehide                      " hide the mouse pointer while typing
+    set mousemodel=popup               " right mouse button pops up a menu in the GUI
+    set mouse=a                        " enable full mouse support
+    set ttymouse=xterm2                " more accurate mouse tracking
+    set ttyfast                        " more redrawing characters sent to terminal
 
     set guicursor=n-v-c:block-Cursor
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
