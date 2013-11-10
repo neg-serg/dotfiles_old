@@ -3,19 +3,19 @@
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
     " set lsp=-1
-    set lsp=1
-    set go=c
-    set background=dark
-    set noantialias
-    set clipboard=unnamed
-    set colorcolumn=0
+    set lsp=1                          " Space between lines
+    set go=c                           " For text messages instead of gui
+    set background=dark                " Usable for colorschemes
+    set noantialias                    " Disable antialiasing
+    set clipboard=unnamed              " Default copy to unnamed
+    set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
     set mouse=a                        " enable full mouse support
     set ttymouse=xterm2                " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
 
-    set guicursor=n-v-c:block-Cursor
+    set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
@@ -34,12 +34,12 @@ endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
-set encoding=utf-8
-set termencoding=utf8
-set fileencodings=utf-8,cp1251,koi8-r,cp866
+set encoding=utf-8                          " Set default enc to utf-8
+set termencoding=utf8                       " Set termencoding to utf-8
+set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
 
-set timeout timeoutlen=250 ttimeoutlen=250
-set t_Co=256
+set timeout timeoutlen=250 ttimeoutlen=250  " Usable for fast keybindings
+set t_Co=256                                " I use 256-color terminals
   
 " Clipboard
 if has('unnamedplus-that-really-truly-works')
@@ -66,7 +66,7 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
-set nowrap
+set nowrap                      " Do not wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
 set scrolljump=5                " Lines to scroll when cursor leaves screen
@@ -75,29 +75,28 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 "map ; :
 set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
-"set swapsync=""                    " don't call fsync() or sync(); let linux handle it
-" set autowrite                       " Automatically write a file when leaving a modified buffer
-set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-set shm=                            " ---------------experimental---------------
+"set swapsync=""                " don't call fsync() or sync(); let linux handle it
+" set autowrite                   " Automatically write a file when leaving a modified buffer
+set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-set virtualedit=onemore             " Allow for cursor beyond last character
-set history=1000                    " Store a ton of history (default is 20)
-" set spell                         " Spell checking on
-set shiftwidth=4                    " Use indents of 4 spaces
-set expandtab                       " Tabs are spaces, not tabs
-set tabstop=4                       " An indentation every four columns
-set softtabstop=4                   " Let backspace delete indent
-set nojoinspaces                    " Prevents inserting two spaces after punctuation on a join (J)
-set matchpairs+=<:>                 " Match, to be used with %
-"set matchpairs+==:;                " Match, to be used with %
-"set matchpairs+=<:>                " Match, to be used with %
-set splitright                      " Puts new vsplit windows to the right of the current
-set splitbelow                      " Puts new split windows to the bottom of the current
-set equalalways                     " keep windows equal when splitting (default)
-set eadirection=hor                 " ver/hor/both - where does equalalways apply
+set virtualedit=onemore         " Allow for cursor beyond last character
+set history=1000                " Store a ton of history (default is 20)
+" set spell                     " Spell checking on
+set shiftwidth=4                " Use indents of 4 spaces
+set expandtab                   " Tabs are spaces, not tabs
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+set matchpairs+=<:>             " Match, to be used with %
+"set matchpairs+==:;            " Match, to be used with %
+"set matchpairs+=<:>            " Match, to be used with %
+set splitright                  " Puts new vsplit windows to the right of the current
+set splitbelow                  " Puts new split windows to the bottom of the current
+set equalalways                 " keep windows equal when splitting (default)
+set eadirection=hor             " ver/hor/both - where does equalalways apply
 
-set pastetoggle=<F2>                " Pastetoggle (sane indentation on pastes)
-set hidden                          " It hides buffers instead of closing them
+set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
+set hidden                      " It hides buffers instead of closing them
 "" -----------------------------------------------------------------
 "" --[ change undo file location ]----------------------------------
 "" -----------------------------------------------------------------
@@ -171,12 +170,6 @@ if has ('x') && has ('gui') " On Linux use + register for copy-paste
 elseif has ('gui')          " On mac and Windows, use * register for copy-paste
     set clipboard=unnamed
 endif
-
-" No sound on errors
-" set noerrorbells
-" set novisualbell
-" set t_vb=
-" set tm=500
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
 set printoptions+=left:2,right:2,top:2,bottom:2

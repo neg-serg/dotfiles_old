@@ -61,8 +61,8 @@ NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
 " "------------------------------------------------------------------------------------------------------------
 " "--[ misc ]--------------------------------------------------------------------------------------------------
 " "------------------------------------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
-NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
+" NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
+" NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy

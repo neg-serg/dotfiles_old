@@ -14,12 +14,12 @@
 # export LANG="en_US.UTF-8"
 # export LC_ALL="en_US.UTF-8"
 # export LC_CTYPE="en_US.UTF-8" 
-eval $(keychain --eval --agents ssh ~/.ssh/id_rsa)
+# eval $(keychain --eval --agents ssh ~/.ssh/id_rsa)
 
 # [ -z $(pidof mpd) ]                       && mpd 
 # [ -z $(pidof mpdscribble) ]               &&  mpdscribble --conf ~/.config/mpdscribble/neg/mpdscribble.conf     &
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # export _JAVA_AWT_WM_NONREPARENTING=1 
 wmname LG3D
@@ -63,6 +63,7 @@ xset r rate 200 50
 # hsetroot -full /home/neg/pic/wl/blame.png
 # hsetroot -full /home/neg/pic/wl/88292728.jpg
 # hsetroot -full /home/neg/pic/wl/87577.jpg
+# hsetroot -center /home/neg/pic/wl/wallpaper-477302.jpg
 hsetroot -center /home/neg/pic/wl/88292728.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d 
@@ -84,8 +85,9 @@ amixer -q set Master 0% mute
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
-[ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
+# [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
+[ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
 
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
