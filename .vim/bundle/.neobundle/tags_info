@@ -2,6 +2,7 @@ TeX-9
 YouCompleteMe
 ack.vim
 compview
+csapprox
 ctrlp.vim
 emmet-vim
 ghcmod-vim
@@ -12,7 +13,6 @@ matchit.zip
 neco-ghc
 neobundle.vim
 rainbow_parentheses.vim
-sessionman.vim
 syntastic
 tabular
 tagbar

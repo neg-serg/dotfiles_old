@@ -10,9 +10,7 @@ scriptencoding utf-8
  if has('vim_starting')
   set nocompatible               " Be iMproved
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
+endif call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 "------------------------------------------------------------------------------------------------------------
 "--[ Bundles ]-----------------------------------------------------------------------------------------------
@@ -34,47 +32,47 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'kien/rainbow_parentheses.vim'      "rainbow ()[]
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
-" "------------------------------------------------------------------------------------------------------------
-" "--[ new ]---------------------------------------------------------------------------------------------------
-" "------------------------------------------------------------------------------------------------------------ 
+"------------------------------------------------------------------------------------------------------------
+"--[ new ]---------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------ 
 NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 NeoBundle 'trapd00r/vim-syntax-vidir-ls.git'  "vidir syntax. Make for it standalone vimv/vidir/vils conf!
 NeoBundle 'benmills/vimux'                    "some easy to use wrapper for tmux
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
-NeoBundle 'vim-scripts/sessionman.vim'        "session manager
 NeoBundle 'matchit.zip'                       " % for everything
 NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
 NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like emacs/bash
-" "------------------------------------------------------------------------------------------------------------
-" "--[ haskell ]-----------------------------------------------------------------------------------------------
-" "------------------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+"--[ haskell ]-----------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
 NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
 NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
-" "------------------------------------------------------------------------------------------------------------
-" "--[ java/scala ]--------------------------------------------------------------------------------------------
-" "------------------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+"--[ java/scala ]--------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
 NeoBundle 'derekwyatt/vim-scala'              "different initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
-" "------------------------------------------------------------------------------------------------------------
-" "--[ misc ]--------------------------------------------------------------------------------------------------
-" "------------------------------------------------------------------------------------------------------------
-" NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
-" NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
+"------------------------------------------------------------------------------------------------------------
+"--[ misc ]--------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
+NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
-NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
+" NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
+" NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
+" NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
-NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
+" NeoBundle 'vim-scripts/sessionman.vim'        "session manager
 NeoBundleCheck
 syntax on
 filetype plugin indent on
