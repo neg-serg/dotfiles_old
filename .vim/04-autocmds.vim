@@ -107,6 +107,13 @@ autocmd FileType go                                               autocmd BufWri
 autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig
 
+" hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1 
+" hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
+" hi DiffDelete     xxx term=bold ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
+" hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red   
+" For solarized
+" highlight SpellBad term=underline gui=undercurl guisp=Orange 
+
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 " Restore cursor to file position in previous editing session
 " To disable this, add the following to your .vimrc.before.local file:
