@@ -65,7 +65,6 @@ NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
 " NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
-NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
@@ -75,6 +74,7 @@ NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
+NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundleCheck
 syntax on
 filetype plugin indent on

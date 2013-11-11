@@ -36,7 +36,8 @@ let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
 set termencoding=utf8                       " Set termencoding to utf-8
-set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
+" set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
+set fileencodings=utf-8,cp1251              " Set fileenc list
 
 set timeout timeoutlen=250 ttimeoutlen=250  " Usable for fast keybindings
 set t_Co=256                                " I use 256-color terminals
@@ -143,7 +144,7 @@ set undoreload=10000    " Maximum number lines to save for undo on a buffer relo
 " ---------------- Folds ----------------------------
 set cpoptions=aAceFsBd
 set foldmethod=indent               "fold based on indent
-set foldnestmax=3                   "deepest fold is 3 levels
+" set foldnestmax=3                   "deepest fold is 3 levels
 set nofoldenable                    "dont fold by default
 
 set fillchars=vert:│
@@ -199,13 +200,10 @@ set magic
 
 set path=**
 " indent_guides {
-    if !exists('g:spf13_no_indent_guides_autocolor')
-        let g:indent_guides_auto_colors = 1
-    else
-        " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
-        autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
-    endif
+    let g:indent_guides_auto_colors = 1
+    " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
     let g:indent_guides_enable_on_vim_startup = 1

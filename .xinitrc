@@ -85,7 +85,7 @@ amixer -q set Master 0% mute
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
-# [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
+[ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
 # [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
