@@ -32,8 +32,7 @@ noremap L g_
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
-nmap <silent> <leader>l :LustyFilesystemExplorer<CR>
-"nmap <silent> <leader>r :LustyFilesystemExplorerFromHere<CR>
+nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 nmap <silent> <leader>r :LustyBufferExplorer<CR>
 nmap <silent> <leader>g :LustyBufferGrep<CR>
 nmap <silent> <leader>b :LustyJuggler<CR>
