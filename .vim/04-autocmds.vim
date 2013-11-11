@@ -103,9 +103,9 @@ augroup END
 
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType go                                               autocmd BufWritePre <buffer> Fmt
+autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig
 
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 " Restore cursor to file position in previous editing session

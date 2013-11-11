@@ -132,7 +132,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-tgz         'fg=35;1'
   filetype-zip         'fg=61'
   filetype-xz          'fg=61'
-  filetype-part        'fg=61,1'
+  filetype-part        'fg=240'
 
   filetype-iso         'fg=141'
   filetype-mdf         'fg=141'
