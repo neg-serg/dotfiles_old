@@ -6,6 +6,7 @@ ctrlp.vim
 ghcmod-vim
 gundo.vim
 hasksyn
+indentLine
 lusty
 matchit.zip
 neco-ghc
@@ -24,7 +25,6 @@ vim-endwise
 vim-eunuch
 vim-fontsize
 vim-fugitive
-vim-indent-guides
 vim-multiple-cursors
 vim-repeat
 vim-sbt
