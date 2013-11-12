@@ -64,10 +64,11 @@ NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
-NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
+NeoBundle 'Yggdroot/indentLine.git'           "indent tabs visualy
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 " NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
