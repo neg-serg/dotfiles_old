@@ -1,7 +1,7 @@
 " ------[ GUI settings ]-----------------------------------------------------
 " colorscheme solarized
 if has("gui_running")
-    set gfn=PragmataPro\ for\ Powerline\ 14
+    set gfn=PragmataPro\ for\ Powerline\ 15
     " set lsp=-1
     set lsp=1                          " Space between lines
     set go=c                           " For text messages instead of gui
@@ -72,8 +72,6 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-" set foldenable                  " Auto fold code
-"map ; :
 set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
@@ -84,10 +82,11 @@ set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
-set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
+set shiftwidth=4                " Use indents of 4 spaces
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
+set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
 "set matchpairs+==:;            " Match, to be used with %
@@ -142,11 +141,12 @@ set directory=~/trash
 set undofile            " So is persistent undo ...
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
-" ---------------- Folds ----------------------------
 set cpoptions=aAceFsBd
-set foldmethod=indent               "fold based on indent
+" ---------------- Folds --------------------------------------
+" set foldmethod=indent               "fold based on indent
+" set foldenable                      "fold by default
 " set foldnestmax=3                   "deepest fold is 3 levels
-set nofoldenable                    "dont fold by default
+" set nofoldenable                    "dont fold by default
 
 set fillchars=vert:│
 set maxfuncdepth=1000

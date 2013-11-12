@@ -297,3 +297,7 @@ nmap <silent> <F11>                       <Plug>FontsizeBegin
 nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
 nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
 nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
+
+xnoremap <space>c :!octave --silent \| cut -c8-<cr>
+
+
