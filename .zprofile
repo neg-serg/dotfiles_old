@@ -1,0 +1,1 @@
+/home/neg/.zsh/.zprofile
