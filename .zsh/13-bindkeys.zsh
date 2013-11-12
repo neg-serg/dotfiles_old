@@ -107,6 +107,7 @@ bindkey ",." zleiab
 # zle -N backward-kill-default-word _backward_kill_default_word
 # bindkey '\e=' backward-kill-default-word   # = is next to backspace
 
+bindkey -M emacs "^[w"  vi-cmd-mode
 bindkey -M emacs "^X^V" vi-cmd-mode
 bindkey -M emacs "^X^F" vi-find-next-char
 bindkey -M emacs "^[|"  vi-goto-column
