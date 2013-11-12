@@ -78,10 +78,10 @@ set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
 " set autowrite                   " Automatically write a file when leaving a modified buffer
+set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-set virtualedit=onemore         " Allow for cursor beyond last character
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
 set shiftwidth=4                " Use indents of 4 spaces
@@ -243,15 +243,15 @@ else
     set makeprg=gcc\ -Wall\ -o\ %<\ %
 endif
 
-let g:airline_powerline_fonts = 0 " Use airline fonts
+let g:airline_powerline_fonts = 1 " Use airline fonts
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#checks = []
 
 let g:airline_exclude_preview=1
 let g:airline_symbols = {}
-let g:airline_left_sep = ' '
-let g:airline_left_alt_sep = ' '
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
