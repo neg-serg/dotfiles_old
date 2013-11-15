@@ -26,19 +26,19 @@ if has("gui_running")
     inoremap <silent> <S-Insert> <Esc>"*p`]a
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
-    " let g:solarized_termcolors=256
-    " let g:solarized_termtrans=1
-    " let g:solarized_contrast="normal"
-    " let g:solarized_visibility="normal"
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
     " colorscheme solarized
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
-" set encoding=utf-8                          " Set default enc to utf-8
-" set termencoding=utf8                       " Set termencoding to utf-8
-" set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
-" set fileencodings=utf-8,cp1251              " Set fileenc list
+set encoding=utf-8                          " Set default enc to utf-8
+set termencoding=utf8                       " Set termencoding to utf-8
+set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
+set fileencodings=utf-8,cp1251              " Set fileenc list
 
 set timeout timeoutlen=250 ttimeoutlen=250  " Usable for fast keybindings
 set t_Co=256                                " I use 256-color terminals
@@ -54,7 +54,6 @@ syntax sync minlines=256
 set completeopt=menu
 "syn sync minlines=1000
 "probably it will increase lusty+gundo speed
-let g:gundo_playback_delay = 240
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
@@ -219,6 +218,8 @@ set path=**
         let &tags = &tags . ',' . gitroot . '/.git/tags'
     endif
 " }
+let g:gundo_playback_delay = 240
+
 let mapleader=','
 let maplocalleader=','
 let g:mapleader = ","
