@@ -67,7 +67,7 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 
-set nowrap                      " Do not wrap lines
+" set nowrap                      " Do not wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
 set scrolljump=5                " Lines to scroll when cursor leaves screen

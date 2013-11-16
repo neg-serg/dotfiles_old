@@ -1,3 +1,4 @@
+CCTree
 TeX-9
 YouCompleteMe
 ack.vim
@@ -20,12 +21,15 @@ ultisnips
 vim-abolish
 vim-airline
 vim-colors-solarized
+vim-debug
 vim-endwise
 vim-eunuch
 vim-fontsize
 vim-fugitive
 vim-indent-guides
+vim-markdown
 vim-multiple-cursors
+vim-preview
 vim-repeat
 vim-sbt
 vim-scala

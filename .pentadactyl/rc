@@ -20,6 +20,9 @@ map -builtin B -silent :bmarks<CR>
 map <F4> :set complete=lS<CR>
 map <F5> :set complete=bookmark<CR>
 
+" remap 'o' to 'e'
+" nmap -builtin e o
+
 imap <c-a> <home>
 cmap <c-a> <home>
 imap <a-f> <S-Right>
@@ -262,37 +265,37 @@ EOM
 " Style: Github and Gist fonts {{{
 " -----------------------------------------------------------------------------
 
-style -name github-font https://github.com/* <<EOM
-  #dashboard .filter-bar .filter_input,
-  #missing-readme,
-  .boxed-group.flush ul.boxed-group-list.settings-repos>li h3 small,
-  .bubble#files .file .meta .info,
-  .connected,
-  .file-comments,
-  .forgot_password_form form input[type=submit],
-  .homehead input.search,
-  .line-comments,
-  .line_numbers.comment-count .counter,
-  .login_form form input[type=submit],
-  .minibutton,
-  .pagehead>ul.tabs li a .counter,
-  .profilecols .filter-bar .filter_input,
-  a.button.classy,
-  a.button.classy.disabled,
-  a.button.classy.disabled:disabled:hover,
-  a.button.classy.disabled:hover,
-  a.button.classy.disabled:hover:disabled,
-  a.button.classy:disabled,
-  a.button.classy:disabled:hover,
-  body,
-  body.page-profile-next .profilecols .filter-bar .filter_input,
-  button.classy,
-  button.classy.disabled,
-  button.classy.disabled:disabled:hover,
-  button.classy:disabled,
-  button.classy:disabled:hover,
-  dl.keyboard-mappings dt em,
-  span.diffstat {
-    font-family: "sans-serif" !important;
-  }
-EOM
+" style -name github-font https://github.com/* <<EOM
+"   #dashboard .filter-bar .filter_input,
+"   #missing-readme,
+"   .boxed-group.flush ul.boxed-group-list.settings-repos>li h3 small,
+"   .bubble#files .file .meta .info,
+"   .connected,
+"   .file-comments,
+"   .forgot_password_form form input[type=submit],
+"   .homehead input.search,
+"   .line-comments,
+"   .line_numbers.comment-count .counter,
+"   .login_form form input[type=submit],
+"   .minibutton,
+"   .pagehead>ul.tabs li a .counter,
+"   .profilecols .filter-bar .filter_input,
+"   a.button.classy,
+"   a.button.classy.disabled,
+"   a.button.classy.disabled:disabled:hover,
+"   a.button.classy.disabled:hover,
+"   a.button.classy.disabled:hover:disabled,
+"   a.button.classy:disabled,
+"   a.button.classy:disabled:hover,
+"   body,
+"   body.page-profile-next .profilecols .filter-bar .filter_input,
+"   button.classy,
+"   button.classy.disabled,
+"   button.classy.disabled:disabled:hover,
+"   button.classy:disabled,
+"   button.classy:disabled:hover,
+"   dl.keyboard-mappings dt em,
+"   span.diffstat {
+"     font-family: "sans-serif" !important;
+"   }
+" EOM

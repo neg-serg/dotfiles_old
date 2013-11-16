@@ -1,17 +1,28 @@
+" Traverse buffers, quickly
+
+nnoremap <PageUp> :bp<CR>
+nnoremap <PageDown> :bn<CR>
+" nnoremap <Return> <C-]>
+
 nmap ;w :w!<cr>
 nmap ;q :q<cr>
 nmap ;d :bd<cr>
 
-" Wrapped lines goes down/up to next row, rather than next line in file.
-noremap j gj
-noremap k gk
+" like firefox tabs
+nmap <A-w> :bd<cr> 
 
-" Same for 0, home, end, etc
-noremap $ g$
-noremap <End> g<End>
-noremap 0 g0
-noremap <Home> g<Home>
-noremap ^ g^
+map <leader>r mz<bar>:retab!<bar>:normal gg=G<cr>`z
+
+" " Wrapped lines goes down/up to next row, rather than next line in file.
+" noremap j gj
+" noremap k gk
+" 
+" " Same for 0, home, end, etc
+" noremap $ g$
+" noremap <End> g<End>
+" noremap 0 g0
+" noremap <Home> g<Home>
+" noremap ^ g^
 
 " Toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
@@ -33,7 +44,7 @@ noremap L g_
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-nmap <silent> <leader>r :LustyBufferExplorer<CR>
+" nmap <silent> <leader>r :LustyBufferExplorer<CR>
 nmap <silent> <leader>g :LustyBufferGrep<CR>
 nmap <silent> <leader>b :LustyJuggler<CR>
 

@@ -65,13 +65,16 @@ NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitut
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
+NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
+NeoBundle 'jaredly/vim-debug.git'             "debug python in vim install by hand
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'klen/python-mode.git'              "vim all-in-one python mode
 " NeoBundle 'Yggdroot/indentLine.git'         "indent tabs visualy
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
-" NeoBundle 'tpope/vim-markdown'              "markdown helper for vim
-" NeoBundle 'spf13/vim-preview'               "markdown preview for vim
+NeoBundle 'tpope/vim-markdown'              "markdown helper for vim
+NeoBundle 'spf13/vim-preview'               "markdown preview for vim
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
 " NeoBundle 'vim-scripts/sessionman.vim'      "session manager

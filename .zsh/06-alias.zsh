@@ -188,3 +188,5 @@ alias sd='fasd -sid'
 alias sf='fasd -sif'
 alias d='fasd -d'
 alias f='fasd -f'
+
+alias ym='~/bin/scripts/yandex.mount > /dev/null'

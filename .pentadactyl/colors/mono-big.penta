@@ -5,7 +5,8 @@ hi StatusLineBroken color: #808080; background: #28000C;  font-family:PragmataPr
 hi GradientLeft background-color: black;
 hi CompTitle color: #cccccc ; background: #000000; font-family: PragmataPro ;  font-weight: Normal; font-family: PragmataPro; 
 hi CompItem color: #bbbbbb; background: black;font-family: PragmataPro ;  font-weight: Normal; font-size: 12pt; 
-hi CompItem[selected] background: -moz-linear-gradient(60deg,#3579A8 , black); font-family: PragmataPro; font-size: 12pt;
+"hi CompItem[selected] background: -moz-linear-gradient(60deg,#3579A8 , black); font-family: PragmataPro; font-size: 12pt;
+hi CompItem[selected] background: -moz-linear-gradient(60deg,#006259, black); font-family: PragmataPro; font-size: 12pt;
 hi CompResult color: background: #446044;font-family: PragmataPro; font-size: 12pt;
 hi CompTitleSep height: 1px; background: -moz-linear-gradient(60deg,#6666A8 , black);
 hi Search color:#287373; background: #449044; font-family: PragmataPro; font-size: 12pt;
@@ -29,7 +30,4 @@ hi URL color: #808080; font-family: PragmataPro;font-size: 12pt;
 hi TabNumber color: #808080; font-family: PragmataPro;font-size: 12pt;
 hi TabText color: black; font-family: PragmataPro;font-size: 12pt;
 hi FontFixed  font-family: PragmataPro; font-size: 12pt;
-"hi HintElem background-color: #8C8C8C  !important; color: black !important;
-"hi HintActive background-color: #801C40 !important; color: black !important;
 hi HintElem background-color: #cccccc !important; color: black !important; 
-

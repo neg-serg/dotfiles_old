@@ -169,9 +169,10 @@ RESET 0 # reset to "normal" color
 .xls       00;38;5;22
 .xlsx      00;38;5;22
 .xlsm      00;38;5;22
-.ods         38;5;29
-.odp         38;5;29
-.odb         38;5;29
+.ods          38;5;29
+.odp          38;5;29
+.odb          38;5;29
+.db           38;5;60
 .tex       00;38;5;245
 .textile   00;38;5;245
 .owl       00;38;5;245
