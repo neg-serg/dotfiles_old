@@ -26,7 +26,7 @@ URxvt.perl-ext-common: default,url-select
 *.colorUL: #86a2be
 *scrollBar: False
 !*saveLines: 3000
-*shading: 10
+*shading: 40
 !*tintColor: #FFFFFF
 !*.letterSpace: 0
 !*.selection.pattern-0: ( at .*? line \\d+[,.])
