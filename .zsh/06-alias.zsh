@@ -163,7 +163,7 @@ alias     gc='git commit'
 alias    glp='gl -p'
 alias    gcu='git commit -m "updates"'
 #alias     gd='PAGER="" git diff $ | skate --language diff -'A
-alias            R='rehash'
+alias       R='rehash'
 
 alias       :q='exit'
 
