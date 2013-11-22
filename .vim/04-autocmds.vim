@@ -135,9 +135,9 @@ augroup END
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
-if !executable("ghcmod")
-    autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-endif
+" if !executable("ghcmod")
+"     autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+" endif
 
 " Strip whitespace {
 function! StripTrailingWhitespace()

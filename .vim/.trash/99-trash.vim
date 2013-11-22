@@ -1424,3 +1424,25 @@ There
 " " Automatically open and close the popup menu / preview window
 " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " "----------------------------------------------------------------------------------------------------------------------------
+"
+" Configure mapping timeout in milliseconds (default 1000).
+" Controls how long Vim waits for partially complete mapping
+" before timing out and using prefix directly.
+set timeout timeoutlen=3000
+
+" Configure keycode timeout in milliseconds (default -1).
+" Controls how long Vim waits for partially complete
+" keycodes (such as <ESC>OH which is the <Home> key).
+" If negative, uses 'timeoutlen'.
+" Note that in insert mode, there is a special-case hack in the Vim
+" source that checks for <Esc> and if there are no additional characters
+" immediately waiting, Vim pretends to leave insert mode immediately.
+" But Vim is still waiting for 'ttimeoutlen' milliseconds for keycodes,
+" so if in insert mode you press <Esc>OH in console Vim (on Linux) within
+" 'ttimeoutlen' milliseconds, you'll get <Home> instead of opening a new
+" line above and inserting "H".
+" Note: 120 words per minute ==> 10 character per second ==> 100 ms between,
+" and 50 ms ==> 240 words per minute.
+" Also, Tim Pope's vim-sensible plugin uses 50 ms as a reasonable value.
+set ttimeout ttimeoutlen=40
+

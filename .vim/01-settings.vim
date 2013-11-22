@@ -36,11 +36,42 @@ endif
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
+
+" Automatically re-read files that have changed as long as there
+" are no outstanding edits in the buffer.
+set autoread
+
+" 'fileencodings' contains a list of possible encodings to try when reading
+" a file.  When 'encoding' is a unicode value (such as utf-8), the
+" value of fileencodings defaults to ucs-bom,utf-8,default,latin1.
+"   ucs-bom  Treat as unicode-encoded file if and only if BOM is present
+"   utf-8    Use utf-8 encoding
+"   default  Value from environment LANG
+"   latin1   8-bit encoding typical of DOS
+" Setting this value explicitly, though to the default value.
+set fileencodings=ucs-bom,utf-8,default,latin1,cp1251,koi8-r,cp866
+
 set termencoding=utf8                       " Set termencoding to utf-8
-set fileencodings=utf-8,cp1251,koi8-r,cp866 " Set fileenc list
 set fileencodings=utf-8,cp1251              " Set fileenc list
 
-set timeout timeoutlen=250 ttimeoutlen=250  " Usable for fast keybindings
+set timeout timeoutlen=250
+set ttimeout ttimeoutlen=40  " Usable for fast keybindings
+"--------------------------------------------------------------------------
+" Where file browser's directory should begin:
+"   last    - same directory as last file browser
+"   buffer  - directory of the related buffer
+"   current - current directory (pwd)
+"   {path}  - specified directory
+set browsedir=buffer
+
+" What to do when opening a new buffer. May be empty or may contain
+" comma-separated list of the following words:
+"   useopen   - use existing windows if possible.
+"   usetab    - like useopen but also checks other tabs
+"   split     - split current window before loading a buffer
+" 'useopen' may be useful for re-using QuickFix window.
+set switchbuf=
+
 set t_Co=256                                " I use 256-color terminals
   
 " Clipboard
@@ -76,7 +107,7 @@ set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
 " set autowrite                   " Automatically write a file when leaving a modified buffer
-set virtualedit=onemore         " Allow for cursor beyond last character
+" set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility

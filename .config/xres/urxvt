@@ -1,10 +1,10 @@
-!---------new-------------
 !URxvt.lineSpace: 0
 !URxvt.letterSpace: -1
+URxvt.perl-ext-common: default,url-select
+!URxvt.font: xft:Inconsolata:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13,xft:Droid Sans Fallback:pixelsize=13
 *.imLocale: en_US.utf8
 !-------------------------
 
-URxvt.perl-ext-common: default,url-select
 !URxvt.depth: 32
 !URxvt.background: rgba:0000/0000/0000/bbbb
 !URxvt.perl-ext-common: default,url-select
@@ -26,7 +26,7 @@ URxvt.perl-ext-common: default,url-select
 *.colorUL: #86a2be
 *scrollBar: False
 !*saveLines: 3000
-*shading: 40
+*shading: 10
 !*tintColor: #FFFFFF
 !*.letterSpace: 0
 !*.selection.pattern-0: ( at .*? line \\d+[,.])
@@ -37,7 +37,6 @@ URxvt.perl-ext-common: default,url-select
 
 
 !URxvt.modifier: alt
-!URxvt.font: xft:Inconsolata:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13,xft:Droid Sans Fallback:pixelsize=13
 !URxvt.boldFont: xft:Inconsolata:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13,xft:Droid Sans Fallback:pixelsize=13
 !URxvt.italicFont: xft:Inconsolata:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13,xft:Droid Sans Fallback:pixelsize=13
 !URxvt.boldItalicFont: xft:Inconsolata:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13,xft:Droid Sans Fallback:pixelsize=13
@@ -106,6 +105,9 @@ URxvt.perl-ext-common: default,url-select
 !URxvt.keysym.M-c: perl:clipboard:copy
 !URxvt.keysym.M-v: perl:clipboard:paste
 !URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!URxvt.colorIT:            #cacaca
+!URxvt.colorBD:            #ae8510
+!URxvt.colorUL:            #a28c64
 
 !---------------------[!-ed]------------------------------
 
@@ -114,9 +116,9 @@ URxvt.perl-ext-common: default,url-select
 !   !URxvt.perl-lib:    HOME/.perl/urxvt
 !   !URxvt.perl-ext:    default,searchable-scrollback<C-S-plus>,matcher<C-1>,selection-pastebin,remote-clipboard,selection-autotransform
 !   !URxvt.perl-eval:   push @{ $urxvt::TERM->{selection_popup_hook} }, \n\
-!   !	sub { /\\n/ ? ("join lines with spaces" => sub {  s{^\\s+}{}mg; s/ \*\\n/ /g; s{ $}{}; }) : () }, \n\
-!   !	sub { /./ ? ("string quote" => sub {  s([\\\\\\042$@]|#[{])(\\\\$&)g; s{\\n}{\\\\n}g; s{\\t}{\\\\t}g; s{\\r}{\\\\r}g; s{[\\000-\\037]}{sprintf("%03o",ord($&))}eg; $_ = qq("$_"); }) : () }, \n\
-!   !	sub { /\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/ ? ("quote for irc" => sub { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; }) : () };
+!   !   sub { /\\n/ ? ("join lines with spaces" => sub {  s{^\\s+}{}mg; s/ \*\\n/ /g; s{ $}{}; }) : () }, \n\
+!   !   sub { /./ ? ("string quote" => sub {  s([\\\\\\042$@]|#[{])(\\\\$&)g; s{\\n}{\\\\n}g; s{\\t}{\\\\t}g; s{\\r}{\\\\r}g; s{[\\000-\\037]}{sprintf("%03o",ord($&))}eg; $_ = qq("$_"); }) : () }, \n\
+!   !   sub { /\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/ ? ("quote for irc" => sub { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; }) : () };
 !   !URxvt.urlLauncher: sensible-browser
 !   !URxvt.selection-pastebin.cmd: scp -p % tpo.pe:pastes
 !   !URxvt.selection-pastebin.url: http:\/\/tpo.pe/pastes/%
@@ -194,250 +196,245 @@ URxvt*scrollTtyKeypress: true
 !URxvt.keysym.Page_Down       : \033[6~ !breaks scrolling in Rxvt
 !URxvt.keysym.Home            : \033[H  !breaks navigation in Vim
 !URxvt.keysym.End             : \033[F  !breaks navigation in Vim
-URxvt.keysym.S-Up             : \033[1;2A
-URxvt.keysym.S-Down           : \033[1;2B
-URxvt.keysym.S-Right          : \033[1;2C
-URxvt.keysym.S-Left           : \033[1;2D
 !URxvt.keysym.S-Page_Up       : captured by terminal for scrolling
 !URxvt.keysym.S-Page_Down     : captured by terminal for scrolling
-URxvt.keysym.S-Home           : \033[1;2H
-URxvt.keysym.S-End            : \033[1;2F
-URxvt.keysym.M-Up             : \033[1;3A
-URxvt.keysym.M-Down           : \033[1;3B
-URxvt.keysym.M-Right          : \033[1;3C
-URxvt.keysym.M-Left           : \033[1;3D
-URxvt.keysym.M-Page_Up        : \033[5;3~
-URxvt.keysym.M-Page_Down      : \033[6;3~
-URxvt.keysym.M-Home           : \033[1;3H
-URxvt.keysym.M-End            : \033[1;3F
-URxvt.keysym.M-S-Up           : \033[1;4A
-URxvt.keysym.M-S-Down         : \033[1;4B
-URxvt.keysym.M-S-Right        : \033[1;4C
-URxvt.keysym.M-S-Left         : \033[1;4D
 !URxvt.keysym.M-S-Page_Up     : seen as Rxvt.keysym.S-Page_Up
 !URxvt.keysym.M-S-Page_Down   : seen as Rxvt.keysym.S-Page_Down
-URxvt.keysym.M-S-Home         : \033[1;4H
-URxvt.keysym.M-S-End          : \033[1;4F
-URxvt.keysym.C-Up             : \033[1;5A
-URxvt.keysym.C-Down           : \033[1;5B
-URxvt.keysym.C-Right          : \033[1;5C
-URxvt.keysym.C-Left           : \033[1;5D
-URxvt.keysym.C-Page_Up        : \033[5;5~
-URxvt.keysym.C-Page_Down      : \033[6;5~
-URxvt.keysym.C-Home           : \033[1;5H
-URxvt.keysym.C-End            : \033[1;5F
-URxvt.keysym.C-S-Up           : \033[1;6A
-URxvt.keysym.C-S-Down         : \033[1;6B
-URxvt.keysym.C-S-Right        : \033[1;6C
-URxvt.keysym.C-S-Left         : \033[1;6D
 !URxvt.keysym.C-S-Page_Up     : seen as Rxvt.keysym.S-Page_Up
 !URxvt.keysym.C-S-Page_Down   : seen as Rxvt.keysym.S-Page_Down
-URxvt.keysym.C-S-Home         : \033[1;6H
-URxvt.keysym.C-S-End          : \033[1;6F
-URxvt.keysym.M-C-Up           : \033[1;7A
-URxvt.keysym.M-C-Down         : \033[1;7B
-URxvt.keysym.M-C-Right        : \033[1;7C
-URxvt.keysym.M-C-Left         : \033[1;7D
-URxvt.keysym.M-C-Page_Up      : \033[5;7~
-URxvt.keysym.M-C-Page_Down    : \033[6;7~
-URxvt.keysym.M-C-Home         : \033[1;7H
-URxvt.keysym.M-C-End          : \033[1;7F
-URxvt.keysym.M-C-S-Up         : \033[1;8A
-URxvt.keysym.M-C-S-Down       : \033[1;8B
-URxvt.keysym.M-C-S-Right      : \033[1;8C
-URxvt.keysym.M-C-S-Left       : \033[1;8D
 !URxvt.keysym.M-C-S-Page_Up   : seen as Rxvt.keysym.S-Page_Up
 !URxvt.keysym.M-C-S-Page_Down : seen as Rxvt.keysym.S-Page_Down
-URxvt.keysym.M-C-S-Home       : \033[1;8H
-URxvt.keysym.M-C-S-End        : \033[1;8F
-
-! Normal
-*URxvt*keysym.Home:		\033OH
-*URxvt*keysym.End:		\033OF
-*URxvt*keysym.F1:		\033OP
-*URxvt*keysym.F2:		\033OQ
-*URxvt*keysym.F3:		\033OR
-*URxvt*keysym.F4:		\033OS
-
-! Shift
 ! paste conflict
-!*URxvt*keysym.S-Insert:	\033[2;2~
-*URxvt*keysym.S-Delete:		\033[3;2~
-*URxvt*keysym.S-Home:		\033[1;2H
-*URxvt*keysym.S-End:		\033[1;2F
+!*URxvt*keysym.S-Insert:    \033[2;2~
 ! scrolling conflict
-!*URxvt*keysym.S-Page_Up:	\033[5;2~
-!*URxvt*keysym.S-Page_Down:	\033[6;2~
+!*URxvt*keysym.S-Page_Up:   \033[5;2~
+!*URxvt*keysym.S-Page_Down: \033[6;2~
+*keysym.S-Up             : \033[1;2A
+*keysym.S-Down           : \033[1;2B
+*keysym.S-Right          : \033[1;2C
+*keysym.S-Left           : \033[1;2D
+*keysym.S-Home           : \033[1;2H
+*keysym.S-End            : \033[1;2F
+*keysym.M-Up             : \033[1;3A
+*keysym.M-Down           : \033[1;3B
+*keysym.M-Right          : \033[1;3C
+*keysym.M-Left           : \033[1;3D
+*keysym.M-Page_Up        : \033[5;3~
+*keysym.M-Page_Down      : \033[6;3~
+*keysym.M-Home           : \033[1;3H
+*keysym.M-End            : \033[1;3F
+*keysym.M-S-Up           : \033[1;4A
+*keysym.M-S-Down         : \033[1;4B
+*keysym.M-S-Right        : \033[1;4C
+*keysym.M-S-Left         : \033[1;4D
+*keysym.M-S-Home         : \033[1;4H
+*keysym.M-S-End          : \033[1;4F
+*keysym.C-Up             : \033[1;5A
+*keysym.C-Down           : \033[1;5B
+*keysym.C-Right          : \033[1;5C
+*keysym.C-Left           : \033[1;5D
+*keysym.C-Page_Up        : \033[5;5~
+*keysym.C-Page_Down      : \033[6;5~
+*keysym.C-Home           : \033[1;5H
+*keysym.C-End            : \033[1;5F
+*keysym.C-S-Up           : \033[1;6A
+*keysym.C-S-Down         : \033[1;6B
+*keysym.C-S-Right        : \033[1;6C
+*keysym.C-S-Left         : \033[1;6D
+*keysym.C-S-Home         : \033[1;6H
+*keysym.C-S-End          : \033[1;6F
+*keysym.M-C-Up           : \033[1;7A
+*keysym.M-C-Down         : \033[1;7B
+*keysym.M-C-Right        : \033[1;7C
+*keysym.M-C-Left         : \033[1;7D
+*keysym.M-C-Page_Up      : \033[5;7~
+*keysym.M-C-Page_Down    : \033[6;7~
+*keysym.M-C-Home         : \033[1;7H
+*keysym.M-C-End          : \033[1;7F
+*keysym.M-C-S-Up         : \033[1;8A
+*keysym.M-C-S-Down       : \033[1;8B
+*keysym.M-C-S-Right      : \033[1;8C
+*keysym.M-C-S-Left       : \033[1;8D
+*keysym.M-C-S-Home       : \033[1;8H
+*keysym.M-C-S-End        : \033[1;8F
+!--- Normal-----------------------------
+*keysym.Home:       \033OH
+*keysym.End:        \033OF
+*keysym.F1:     \033OP
+*keysym.F2:     \033OQ
+*keysym.F3:     \033OR
+*keysym.F4:     \033OS
 
-*URxvt*keysym.S-F1:		\033[1;2P
-*URxvt*keysym.S-F2:		\033[1;2Q
-*URxvt*keysym.S-F3:		\033[1;2R
-*URxvt*keysym.S-F4:		\033[1;2S
-*URxvt*keysym.S-F5:		\033[15;2~
-*URxvt*keysym.S-F6:		\033[17;2~
-*URxvt*keysym.S-F7:		\033[18;2~
-*URxvt*keysym.S-F8:		\033[19;2~
-*URxvt*keysym.S-F9:		\033[20;2~
-*URxvt*keysym.S-F10:		\033[21;2~
-*URxvt*keysym.S-F11:		\033[23;2~
-*URxvt*keysym.S-F12:		\033[24;2~
+!--- Shift------------------------------
+*keysym.S-Delete:       \033[3;2~
+*keysym.S-Home:     \033[1;2H
+*keysym.S-End:      \033[1;2F
+
+*keysym.S-F1:       \033[1;2P
+*keysym.S-F2:       \033[1;2Q
+*keysym.S-F3:       \033[1;2R
+*keysym.S-F4:       \033[1;2S
+*keysym.S-F5:       \033[15;2~
+*keysym.S-F6:       \033[17;2~
+*keysym.S-F7:       \033[18;2~
+*keysym.S-F8:       \033[19;2~
+*keysym.S-F9:       \033[20;2~
+*keysym.S-F10:      \033[21;2~
+*keysym.S-F11:      \033[23;2~
+*keysym.S-F12:      \033[24;2~
 
 ! Alt
-*URxvt*keysym.M-Insert:		\033[2;3~
-*URxvt*keysym.M-Delete:		\033[3;3~
-*URxvt*keysym.M-Home:		\033[1;3H
-*URxvt*keysym.M-End:		\033[1;3F
-*URxvt*keysym.M-Page_Up:	\033[5;3~
-*URxvt*keysym.M-Page_Down:	\033[6;3~
+*keysym.M-Insert:       \033[2;3~
+*keysym.M-Delete:       \033[3;3~
+*keysym.M-Home:     \033[1;3H
+*keysym.M-End:      \033[1;3F
+*keysym.M-Page_Up:  \033[5;3~
+*keysym.M-Page_Down:    \033[6;3~
 
-*URxvt*keysym.M-F1:		\033[1;3P
-*URxvt*keysym.M-F2:		\033[1;3Q
-*URxvt*keysym.M-F3:		\033[1;3R
-*URxvt*keysym.M-F4:		\033[1;3S
-*URxvt*keysym.M-F5:		\033[15;3~
-*URxvt*keysym.M-F6:		\033[17;3~
-*URxvt*keysym.M-F7:		\033[18;3~
-*URxvt*keysym.M-F8:		\033[19;3~
-*URxvt*keysym.M-F9:		\033[20;3~
-*URxvt*keysym.M-F10:		\033[21;3~
-*URxvt*keysym.M-F11:		\033[23;3~
-*URxvt*keysym.M-F12:		\033[24;3~
+*keysym.M-F1:       \033[1;3P
+*keysym.M-F2:       \033[1;3Q
+*keysym.M-F3:       \033[1;3R
+*keysym.M-F4:       \033[1;3S
+*keysym.M-F5:       \033[15;3~
+*keysym.M-F6:       \033[17;3~
+*keysym.M-F7:       \033[18;3~
+*keysym.M-F8:       \033[19;3~
+*keysym.M-F9:       \033[20;3~
+*keysym.M-F10:      \033[21;3~
+*keysym.M-F11:      \033[23;3~
+*keysym.M-F12:      \033[24;3~
 
-*URxvt*keysym.M-Up:		\033[1;3A
-*URxvt*keysym.M-Down:		\033[1;3B
-*URxvt*keysym.M-Right:		\033[1;3C
-*URxvt*keysym.M-Left:		\033[1;3D
+*keysym.M-Up:       \033[1;3A
+*keysym.M-Down:     \033[1;3B
+*keysym.M-Right:        \033[1;3C
+*keysym.M-Left:     \033[1;3D
 
 ! Shift+Alt
-*URxvt*keysym.S-M-F1:		\033[1;4P
-*URxvt*keysym.S-M-F2:		\033[1;4Q
-*URxvt*keysym.S-M-F3:		\033[1;4R
-*URxvt*keysym.S-M-F4:		\033[1;4S
-*URxvt*keysym.S-M-F5:		\033[15;4~
-*URxvt*keysym.S-M-F6:		\033[17;4~
-*URxvt*keysym.S-M-F7:		\033[18;4~
-*URxvt*keysym.S-M-F8:		\033[19;4~
-*URxvt*keysym.S-M-F9:		\033[20;4~
-*URxvt*keysym.S-M-F10:		\033[21;4~
-*URxvt*keysym.S-M-F11:		\033[23;4~
-*URxvt*keysym.S-M-F12:		\033[24;4~
+*keysym.S-M-F1:     \033[1;4P
+*keysym.S-M-F2:     \033[1;4Q
+*keysym.S-M-F3:     \033[1;4R
+*keysym.S-M-F4:     \033[1;4S
+*keysym.S-M-F5:     \033[15;4~
+*keysym.S-M-F6:     \033[17;4~
+*keysym.S-M-F7:     \033[18;4~
+*keysym.S-M-F8:     \033[19;4~
+*keysym.S-M-F9:     \033[20;4~
+*keysym.S-M-F10:    \033[21;4~
+*keysym.S-M-F11:    \033[23;4~
+*keysym.S-M-F12:    \033[24;4~
 
-*URxvt*keysym.S-M-Insert:	\033[2;4~
-*URxvt*keysym.S-M-Delete:	\033[3;4~
-*URxvt*keysym.S-M-Home:		\033[1;4H
-*URxvt*keysym.S-M-End:		\033[1;4F
-*URxvt*keysym.S-M-Page_Up:	\033[5;4~
-*URxvt*keysym.S-M-Page_Down:	\033[6;4~
+*keysym.S-M-Insert: \033[2;4~
+*keysym.S-M-Delete: \033[3;4~
+*keysym.S-M-Home:       \033[1;4H
+*keysym.S-M-End:        \033[1;4F
+*keysym.S-M-Page_Up:    \033[5;4~
+*keysym.S-M-Page_Down:  \033[6;4~
 
-*URxvt*keysym.S-M-Up:		\033[1;4A
-*URxvt*keysym.S-M-Down:		\033[1;4B
-*URxvt*keysym.S-M-Right:	\033[1;4C
-*URxvt*keysym.S-M-Left:		\033[1;4D
+*keysym.S-M-Up:       \033[1;4A
+*keysym.S-M-Down:     \033[1;4B
+*keysym.S-M-Right:    \033[1;4C
+*keysym.S-M-Left:     \033[1;4D
 
 ! Control
-*URxvt*keysym.C-F1:		\033[1;5P
-*URxvt*keysym.C-F2:		\033[1;5Q
-*URxvt*keysym.C-F3:		\033[1;5R
-*URxvt*keysym.C-F4:		\033[1;5S
-*URxvt*keysym.C-F5:		\033[15;5~
-*URxvt*keysym.C-F6:		\033[17;5~
-*URxvt*keysym.C-F7:		\033[18;5~
-*URxvt*keysym.C-F8:		\033[19;5~
-*URxvt*keysym.C-F9:		\033[20;5~
-*URxvt*keysym.C-F10:		\033[21;5~
-*URxvt*keysym.C-F11:		\033[23;5~
-*URxvt*keysym.C-F12:		\033[24;5~
+*keysym.C-F1:     \033[1;5P
+*keysym.C-F2:     \033[1;5Q
+*keysym.C-F3:     \033[1;5R
+*keysym.C-F4:     \033[1;5S
+*keysym.C-F5:     \033[15;5~
+*keysym.C-F6:     \033[17;5~
+*keysym.C-F7:     \033[18;5~
+*keysym.C-F8:     \033[19;5~
+*keysym.C-F9:     \033[20;5~
+*keysym.C-F10:    \033[21;5~
+*keysym.C-F11:    \033[23;5~
+*keysym.C-F12:    \033[24;5~
 
-!*URxvt*keysym.C-Insert:		\033[2;5~
-*URxvt*keysym.C-Delete:		\033[3;5~
-*URxvt*keysym.C-Home:		\033[1;5H
-*URxvt*keysym.C-End:		\033[1;5F
-*URxvt*keysym.C-Page_Up:	\033[5;5~
-*URxvt*keysym.C-Page_Down:	\033[6;5~
+!*URxvt*keysym.C-Insert:        \033[2;5~
+*keysym.C-Delete:     \033[3;5~
+*keysym.C-Home:       \033[1;5H
+*keysym.C-End:        \033[1;5F
+*keysym.C-Page_Up:    \033[5;5~
+*keysym.C-Page_Down:  \033[6;5~
 
-*URxvt*keysym.C-Up:		\033[1;5A
-*URxvt*keysym.C-Down:		\033[1;5B
-*URxvt*keysym.C-Right:		\033[1;5C
-*URxvt*keysym.C-Left:		\033[1;5D
+*keysym.C-Up:     \033[1;5A
+*keysym.C-Down:       \033[1;5B
+*keysym.C-Right:      \033[1;5C
+*keysym.C-Left:       \033[1;5D
 
 ! Shift+Control
-*URxvt*keysym.S-C-F1:		\033[1;6P
-*URxvt*keysym.S-C-F2:		\033[1;6Q
-*URxvt*keysym.S-C-F3:		\033[1;6R
-*URxvt*keysym.S-C-F4:		\033[1;6S
-*URxvt*keysym.S-C-F5:		\033[15;6~
-*URxvt*keysym.S-C-F6:		\033[17;6~
-*URxvt*keysym.S-C-F7:		\033[18;6~
-*URxvt*keysym.S-C-F8:		\033[19;6~
-*URxvt*keysym.S-C-F9:		\033[20;6~
-*URxvt*keysym.S-C-F10:		\033[21;6~
-*URxvt*keysym.S-C-F11:		\033[23;6~
-*URxvt*keysym.S-C-F12:		\033[24;6~
+*keysym.S-C-F1:       \033[1;6P
+*keysym.S-C-F2:       \033[1;6Q
+*keysym.S-C-F3:       \033[1;6R
+*keysym.S-C-F4:       \033[1;6S
+*keysym.S-C-F5:       \033[15;6~
+*keysym.S-C-F6:       \033[17;6~
+*keysym.S-C-F7:       \033[18;6~
+*keysym.S-C-F8:       \033[19;6~
+*keysym.S-C-F9:       \033[20;6~
+*keysym.S-C-F10:      \033[21;6~
+*keysym.S-C-F11:      \033[23;6~
+*keysym.S-C-F12:      \033[24;6~
 
-*URxvt*keysym.S-C-Insert:	\033[2;6~
-*URxvt*keysym.S-C-Delete:	\033[3;6~
-*URxvt*keysym.S-C-Home:		\033[1;6H
-*URxvt*keysym.S-C-End:		\033[1;6F
-*URxvt*keysym.S-C-Page_Up:	\033[5;6~
-*URxvt*keysym.S-C-Page_Down:	\033[6;6~
+*keysym.S-C-Insert:   \033[2;6~
+*keysym.S-C-Delete:   \033[3;6~
+*keysym.S-C-Home:     \033[1;6H
+*keysym.S-C-End:      \033[1;6F
+*keysym.S-C-Page_Up:  \033[5;6~
+*keysym.S-C-Page_Down:    \033[6;6~
 
-*URxvt*keysym.S-C-Up:		\033[1;6A
-*URxvt*keysym.S-C-Down:		\033[1;6B
-*URxvt*keysym.S-C-Right:	\033[1;6C
-*URxvt*keysym.S-C-Left:		\033[1;6D
+*keysym.S-C-Up:       \033[1;6A
+*keysym.S-C-Down:     \033[1;6B
+*keysym.S-C-Right:    \033[1;6C
+*keysym.S-C-Left:     \033[1;6D
 
 ! Alt+Control
-*URxvt*keysym.M-C-F1:		\033[1;7P
-*URxvt*keysym.M-C-F2:		\033[1;7Q
-*URxvt*keysym.M-C-F3:		\033[1;7R
-*URxvt*keysym.M-C-F4:		\033[1;7S
-*URxvt*keysym.M-C-F5:		\033[15;7~
-*URxvt*keysym.M-C-F6:		\033[17;7~
-*URxvt*keysym.M-C-F7:		\033[18;7~
-*URxvt*keysym.M-C-F8:		\033[19;7~
-*URxvt*keysym.M-C-F9:		\033[20;7~
-*URxvt*keysym.M-C-F10:		\033[21;7~
-*URxvt*keysym.M-C-F11:		\033[23;7~
-*URxvt*keysym.M-C-F12:		\033[24;7~
+*keysym.M-C-F1:       \033[1;7P
+*keysym.M-C-F2:       \033[1;7Q
+*keysym.M-C-F3:       \033[1;7R
+*keysym.M-C-F4:       \033[1;7S
+*keysym.M-C-F5:       \033[15;7~
+*keysym.M-C-F6:       \033[17;7~
+*keysym.M-C-F7:       \033[18;7~
+*keysym.M-C-F8:       \033[19;7~
+*keysym.M-C-F9:       \033[20;7~
+*keysym.M-C-F10:      \033[21;7~
+*keysym.M-C-F11:      \033[23;7~
+*keysym.M-C-F12:      \033[24;7~
 
-*URxvt*keysym.M-C-Insert:	\033[2;7~
-*URxvt*keysym.M-C-Delete:	\033[3;7~
-*URxvt*keysym.M-C-Home:		\033[1;7H
-*URxvt*keysym.M-C-End:		\033[1;7F
-*URxvt*keysym.M-C-Page_Up:	\033[5;7~
-*URxvt*keysym.M-C-Page_Down:	\033[6;7~
+*keysym.M-C-Insert:   \033[2;7~
+*keysym.M-C-Delete:   \033[3;7~
+*keysym.M-C-Home:     \033[1;7H
+*keysym.M-C-End:      \033[1;7F
+*keysym.M-C-Page_Up:  \033[5;7~
+*keysym.M-C-Page_Down:    \033[6;7~
 
-*URxvt*keysym.M-C-Up:		\033[1;7A
-*URxvt*keysym.M-C-Down:		\033[1;7B
-*URxvt*keysym.M-C-Right:	\033[1;7C
-*URxvt*keysym.M-C-Left:		\033[1;7D
+*keysym.M-C-Up:       \033[1;7A
+*keysym.M-C-Down:     \033[1;7B
+*keysym.M-C-Right:    \033[1;7C
+*keysym.M-C-Left:     \033[1;7D
 
 ! Shift+Alt+Control
-*URxvt*keysym.S-M-C-F1:		\033[1;8P
-*URxvt*keysym.S-M-C-F2:		\033[1;8Q
-*URxvt*keysym.S-M-C-F3:		\033[1;8R
-*URxvt*keysym.S-M-C-F4:		\033[1;8S
-*URxvt*keysym.S-M-C-F5:		\033[15;8~
-*URxvt*keysym.S-M-C-F6:		\033[17;8~
-*URxvt*keysym.S-M-C-F7:		\033[18;8~
-*URxvt*keysym.S-M-C-F8:		\033[19;8~
-*URxvt*keysym.S-M-C-F9:		\033[20;8~
-*URxvt*keysym.S-M-C-F10:	\033[21;8~
-*URxvt*keysym.S-M-C-F11:	\033[23;8~
-*URxvt*keysym.S-M-C-F12:	\033[24;8~
+*keysym.S-M-C-F1:     \033[1;8P
+*keysym.S-M-C-F2:     \033[1;8Q
+*keysym.S-M-C-F3:     \033[1;8R
+*keysym.S-M-C-F4:     \033[1;8S
+*keysym.S-M-C-F5:     \033[15;8~
+*keysym.S-M-C-F6:     \033[17;8~
+*keysym.S-M-C-F7:     \033[18;8~
+*keysym.S-M-C-F8:     \033[19;8~
+*keysym.S-M-C-F9:     \033[20;8~
+*keysym.S-M-C-F10:    \033[21;8~
+*keysym.S-M-C-F11:    \033[23;8~
+*keysym.S-M-C-F12:    \033[24;8~
 
-*URxvt*keysym.S-M-C-Insert:	\033[2;8~
-*URxvt*keysym.S-M-C-Delete:	\033[3;8~
-*URxvt*keysym.S-M-C-Home:	\033[1;8H
-*URxvt*keysym.S-M-C-End:	\033[1;8F
-*URxvt*keysym.S-M-C-Page_Up:	\033[5;8~
-*URxvt*keysym.S-M-C-Page_Down:	\033[6;8~
+*keysym.S-M-C-Insert: \033[2;8~
+*keysym.S-M-C-Delete: \033[3;8~
+*keysym.S-M-C-Home:   \033[1;8H
+*keysym.S-M-C-End:    \033[1;8F
+*keysym.S-M-C-Page_Up:    \033[5;8~
+*keysym.S-M-C-Page_Down:  \033[6;8~
 
-*URxvt*keysym.S-M-C-Up:		\033[1;8A
-*URxvt*keysym.S-M-C-Down:	\033[1;8B
-*URxvt*keysym.S-M-C-Right:	\033[1;8C
-*URxvt*keysym.S-M-C-Left:	\033[1;8D
-!URxvt.colorIT:            #cacaca
-!URxvt.colorBD:            #ae8510
-!URxvt.colorUL:            #a28c64
-
+*keysym.S-M-C-Up:     \033[1;8A
+*keysym.S-M-C-Down:   \033[1;8B
+*keysym.S-M-C-Right:  \033[1;8C
+*keysym.S-M-C-Left:   \033[1;8D

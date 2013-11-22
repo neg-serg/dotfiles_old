@@ -1,28 +1,3 @@
-dehdr() {
-    CFLAGS="-Werror -Wfatal-errors" deheader "$@" | sed -n 's/.*: *remove *\(.*\) *from *\(.*\)/\2: \1/p'
-}
-vgrep() {
-for pro in $(grep -l $1 /proc/[0-9]*/environ 2>/dev/null); do
-  dir=$(dirname $pro)
-  printf "\033[38;5;78m[%0.4d]\033[38;5;111m %s\n" \
-      $(basename $dir) "$(cat $dir/cmdline 2>/dev/null)"
-  list="$(grep --binary-files=text -o "[A-Z0-9_]*$1[A-Z0-9_]*" \
-      $pro 2>/dev/null)"
-  echo -en "   \033[38;5;229m"
-  for entry in $list; do
-    echo -n " $entry"
-  done
-  echo -e "\033[0m"
-done
-}
-function urldecode(){
-    #f5# RFC 2396 URL encoding in Z-Shell
-    emulate -L zsh
-    setopt extendedglob
-    input=( ${(s::)1} )
-    print ${(j::)input/(#b)([^A-Za-z0-9_.!~*\'\(\)-])/%${(l:2::0:)$(([##16]#match))}}
-}
-
 magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
@@ -56,13 +31,9 @@ done
 function spectrum_ls() {
   for code in {000..255}; print -P -- "$code: %F{$code}Test%f"
 }
-zc() {
-  for z in $HOME/.zsh/*.zsh $HOME/.zshrc; do
-    zcompile $z
-    echo "Compiled $z"
-  done
-}
-#f1# are we running within an utf environment?
+
+zc() { for z in $HOME/.zsh/*.zsh $HOME/.zshrc; do zcompile $z; echo "Compiled $z"; done }
+
 isutfenv() {
     case "$LANG $CHARSET $LANGUAGE" in
         *utf*) return 0 ;;
@@ -327,10 +298,6 @@ zleiab() {
 }
 
 zle -N zleiab 
-#f# display contents of assoc array $abk
-help-show-abk()
-{ zle -M "$(print "Type ,. after these abbreviations to expand them:"; print -a -C 2 ${(kv)abk})" }
-#k# Display list of abbreviations that expand when followed by ,.
 
 #======== get.ls.colors
 function getlscolors(){
@@ -352,7 +319,6 @@ function getlscolors(){
     names[ow]="other writable"
     names[st]="sticky"
     names[ex]="executable"
-
     for i in ${(s.:.)LS_COLORS}
     do
         key=${i%\=*}
@@ -532,69 +498,6 @@ simple-extract() {
     return $RC
 }
 
-
-whatwhen()  {
-    emulate -L zsh
-    local usage help ident format_l format_s first_char remain first last
-    usage='USAGE: whatwhen [options] <searchstring> <search range>'
-    help='Use `whatwhen -h'\'' for further explanations.'
-    ident=${(l,${#${:-Usage: }},, ,)}
-    format_l="${ident}%s\t\t\t%s\n"
-    format_s="${format_l//(\\t)##/\\t}"
-    # Make the first char of the word to search for case
-    # insensitive; e.g. [aA]
-    first_char=[${(L)1[1]}${(U)1[1]}]
-    remain=${1[2,-1]}
-    # Default search range is `-100'.
-    first=${2:-\-100}
-    # Optional, just used for `<first> <last>' given.
-    last=$3
-    case $1 in
-        ("")
-            printf '%s\n\n' 'ERROR: No search string specified. Aborting.'
-            printf '%s\n%s\n\n' ${usage} ${help} && return 1
-        ;;
-        (-h)
-            printf '%s\n\n' ${usage}
-            print 'OPTIONS:'
-            printf $format_l '-h' 'show help text'
-            print '\f'
-            print 'SEARCH RANGE:'
-            printf $format_l "'0'" 'the whole history,'
-            printf $format_l '-<n>' 'offset to the current history number; (default: -100)'
-            printf $format_s '<[-]first> [<last>]' 'just searching within a give range'
-            printf '\n%s\n' 'EXAMPLES:'
-            printf ${format_l/(\\t)/} 'whatwhen grml' '# Range is set to -100 by default.'
-            printf $format_l 'whatwhen zsh -250'
-            printf $format_l 'whatwhen foo 1 99'
-        ;;
-        (\?)
-            printf '%s\n%s\n\n' ${usage} ${help} && return 1
-        ;;
-        (*)
-            # -l list results on stout rather than invoking $EDITOR.
-            # -i Print dates as in YYYY-MM-DD.
-            # -m Search for a - quoted - pattern within the history.
-            fc -li -m "*${first_char}${remain}*" $first $last
-        ;;
-    esac
-}
-
-
-# Find out which libs define a symbol
-lcheck() {
-    if [[ -n "$1" ]] ; then
-        nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
-    else
-        echo "Usage: lcheck <function>" >&2
-    fi
-}
-
-prep() { # [pattern] [filename unless STDOUT]
-    perl -nle 'print if /'"$1"'/;' $2
-}
-say() { print "$1\n" }
-
 function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd` }
 function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd` }
 zle -N up-one-dir
@@ -619,10 +522,6 @@ zle -N rationalise-dot
 #f1# Reload an autoloadable function
 freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 compdef _functions freload
-
-# press esc-m for inserting last typed word again (thanks to caphuso!)
-insert-last-typed-word() { zle insert-last-word -- 0 -1 };
-zle -N insert-last-typed-word
 
 # zsh profiling
 profile() { ZSH_PROFILE_RC=1 $SHELL "$@" }
@@ -733,36 +632,6 @@ imv() {
 pstop() {
     ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
     head "${@:--n 20}"
-}
-
-# Rename pictures based on information found in exif headers
-function jpegrename(){
-    if [[ $# -lt 1 ]] ; then
-        echo 'Usage: jpgrename $FILES' >& 2
-        return 1
-    else
-        echo -n 'Checking for jhead with version newer than 1.9: '
-        jhead_version=`jhead -h | \
-                    grep 'used by most Digital Cameras.  v.*' | \
-                    awk '{print $6}' | tr -d v`
-        if [[ $jhead_version > '1.9' ]]; then
-            echo 'success - now running jhead.'
-            jhead -n%Y-%m-%d_%Hh%M_%f $*
-        else
-            echo 'failed - exiting.'
-        fi
-    fi
-}
-
-function cp_progress(){
-    for pid in $(pgrep -x cp) ; do
-        for fd in 4 3 ; do
-            symlink="/proc/${pid}/fd/${fd}"
-            if [ -L "$symlink" ] ; then
-                ls -sh "$(readlink "$symlink")"
-            fi
-        done
-    done
 }
 
 function finfo(){
@@ -891,8 +760,7 @@ zle -N expand-or-complete-and-highlight expand-or-complete-and-highlight
 
 function pcp(){
 #pcp - copy files matching pattern $1 to $2
-find . -regextype awk -iregex ".*$1.*" -print0 \
-  | xargs -0 cp -vR -t "$2"
+find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2"
 }
 
 fasd_cache="$HOME/bin/.fasd-init-cache"
@@ -902,4 +770,3 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 alias v='f -e vim'
-# alias e='a -e open'

@@ -48,8 +48,9 @@ NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like e
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
-NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
+" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
 NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
 "------------------------------------------------------------------------------------------------------------
 "--[ java/scala ]--------------------------------------------------------------------------------------------
@@ -60,21 +61,20 @@ NeoBundle 'derekwyatt/vim-sbt'                "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'majutsushi/tagbar'                 "tagbar
-NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
-NeoBundle 'jaredly/vim-debug.git'             "debug python in vim install by hand
+NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
+NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'jaredly/vim-debug.git'             "debug python in vim install by hand
 " NeoBundle 'klen/python-mode.git'              "vim all-in-one python mode
 " NeoBundle 'Yggdroot/indentLine.git'         "indent tabs visualy
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
-NeoBundle 'tpope/vim-markdown'              "markdown helper for vim
-NeoBundle 'spf13/vim-preview'               "markdown preview for vim
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
 " NeoBundle 'vim-scripts/sessionman.vim'      "session manager
@@ -87,9 +87,11 @@ source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
 source ~/.vim/11-emacs-keys.vim
 source ~/.vim/20-additional-hightLight.vim
+source ~/.vim/21-langmap.vim
 
 " source ~/.vim/.trash/99-test.vim
 " ~/.vim/.trash/99-trash.vim
 " ~/.vim/.trash/99-trash-bundle.vim
 " ~/.vim/.trash/99-trash-modules-lang.vim
 " ~/.vim/.trash/99-trash-modules-colors.vim
+

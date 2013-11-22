@@ -4,7 +4,6 @@ YouCompleteMe
 ack.vim
 compview
 ctrlp.vim
-ghcmod-vim
 gundo.vim
 hasksyn
 lusty
@@ -21,7 +20,6 @@ ultisnips
 vim-abolish
 vim-airline
 vim-colors-solarized
-vim-debug
 vim-endwise
 vim-eunuch
 vim-fontsize
