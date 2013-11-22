@@ -920,3 +920,115 @@ stty speed 4000000 &> /dev/null
 #ffmpeg -y -i $1 -r 30000/1001 -b:v 1M -bt 2M -vcodec libx264 -pass 2 -flags +loop -me_method umh -g 250 -qcomp 0.6 -qmin 10 -qmax 51 -qdiff 4 -bf 16 -b_strategy 1 -i_qfactor 0.71 -cmp +chroma -subq 8 -me_range 16 -coder 1 -sc_threshold 40 -flags2 +bpyramid+wpred+mixed_refs+dct8x8+fastpskip -keyint_min 25 -refs 4 -trellis 1 -directpred 3 -partitions +parti8x8+parti4x4+partp8x8+partb8x8 -acodec aac -ac 2 -ar 44100 -ab 128k -strict -2 output.mp4
 
 #ffmpeg -y -i "$1" -r 30000/1001 -b:v 1M -bt 2M -vcodec libx264 -flags +loop -me_method umh -g 250 -qcomp 0.6 -qmin 10 -qmax 51 -qdiff 4 -bf 16 -b_strategy 1 -i_qfactor 0.71 -cmp +chroma -subq 8 -me_range 16 -coder 1 -sc_threshold 40 -flags2 +bpyramid+wpred+mixed_refs+dct8x8+fastpskip -keyint_min 25 -refs 4 -trellis 1 -directpred 3 -partitions +parti8x8+parti4x4+partp8x8+partb8x8 -acodec aac -ac 2 -ar 44100 -ab 61.1k -strict -2 "${1%.rmvb}.mp4"
+#
+#
+# dehdr() {
+#     CFLAGS="-Werror -Wfatal-errors" deheader "$@" | sed -n 's/.*: *remove *\(.*\) *from *\(.*\)/\2: \1/p'
+# }
+# vgrep() {
+# for pro in $(grep -l $1 /proc/[0-9]*/environ 2>/dev/null); do
+#   dir=$(dirname $pro)
+#   printf "\033[38;5;78m[%0.4d]\033[38;5;111m %s\n" \
+#       $(basename $dir) "$(cat $dir/cmdline 2>/dev/null)"
+#   list="$(grep --binary-files=text -o "[A-Z0-9_]*$1[A-Z0-9_]*" \
+#       $pro 2>/dev/null)"
+#   echo -en "   \033[38;5;229m"
+#   for entry in $list; do
+#     echo -n " $entry"
+#   done
+#   echo -e "\033[0m"
+# done
+# }
+# function urldecode(){
+#     #f5# RFC 2396 URL encoding in Z-Shell
+#     emulate -L zsh
+#     setopt extendedglob
+#     input=( ${(s::)1} )
+#     print ${(j::)input/(#b)([^A-Za-z0-9_.!~*\'\(\)-])/%${(l:2::0:)$(([##16]#match))}}
+# }
+
+#f# display contents of assoc array $abk
+# help-show-abk()
+# { zle -M "$(print "Type ,. after these abbreviations to expand them:"; print -a -C 2 ${(kv)abk})" }
+#k# Display list of abbreviations that expand when followed by ,.
+
+# 
+# 
+# whatwhen()  {
+#     emulate -L zsh
+#     local usage help ident format_l format_s first_char remain first last
+#     usage='USAGE: whatwhen [options] <searchstring> <search range>'
+#     help='Use `whatwhen -h'\'' for further explanations.'
+#     ident=${(l,${#${:-Usage: }},, ,)}
+#     format_l="${ident}%s\t\t\t%s\n"
+#     format_s="${format_l//(\\t)##/\\t}"
+#     # Make the first char of the word to search for case
+#     # insensitive; e.g. [aA]
+#     first_char=[${(L)1[1]}${(U)1[1]}]
+#     remain=${1[2,-1]}
+#     # Default search range is `-100'.
+#     first=${2:-\-100}
+#     # Optional, just used for `<first> <last>' given.
+#     last=$3
+#     case $1 in
+#         ("")
+#             printf '%s\n\n' 'ERROR: No search string specified. Aborting.'
+#             printf '%s\n%s\n\n' ${usage} ${help} && return 1
+#         ;;
+#         (-h)
+#             printf '%s\n\n' ${usage}
+#             print 'OPTIONS:'
+#             printf $format_l '-h' 'show help text'
+#             print '\f'
+#             print 'SEARCH RANGE:'
+#             printf $format_l "'0'" 'the whole history,'
+#             printf $format_l '-<n>' 'offset to the current history number; (default: -100)'
+#             printf $format_s '<[-]first> [<last>]' 'just searching within a give range'
+#             printf '\n%s\n' 'EXAMPLES:'
+#             printf ${format_l/(\\t)/} 'whatwhen grml' '# Range is set to -100 by default.'
+#             printf $format_l 'whatwhen zsh -250'
+#             printf $format_l 'whatwhen foo 1 99'
+#         ;;
+#         (\?)
+#             printf '%s\n%s\n\n' ${usage} ${help} && return 1
+#         ;;
+#         (*)
+#             # -l list results on stout rather than invoking $EDITOR.
+#             # -i Print dates as in YYYY-MM-DD.
+#             # -m Search for a - quoted - pattern within the history.
+#             fc -li -m "*${first_char}${remain}*" $first $last
+#         ;;
+#     esac
+# }
+#
+# prep() { # [pattern] [filename unless STDOUT]
+#     perl -nle 'print if /'"$1"'/;' $2
+# }
+# say() { print "$1\n" }
+# 
+#
+# # Find out which libs define a symbol
+# lcheck() {
+#     if [[ -n "$1" ]] ; then
+#         nm -go /usr/lib/lib*.a 2>/dev/null | grep ":[[:xdigit:]]\{8\} . .*$1"
+#     else
+#         echo "Usage: lcheck <function>" >&2
+#     fi
+# }
+# 
+#
+# press esc-m for inserting last typed word again (thanks to caphuso!)
+# insert-last-typed-word() { zle insert-last-word -- 0 -1 };
+# zle -N insert-last-typed-word
+
+# function cp_progress(){
+#     for pid in $(pgrep -x cp) ; do
+#         for fd in 4 3 ; do
+#             symlink="/proc/${pid}/fd/${fd}"
+#             if [ -L "$symlink" ] ; then
+#                 ls -sh "$(readlink "$symlink")"
+#             fi
+#         done
+#     done
+# }
+# 

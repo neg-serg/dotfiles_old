@@ -72,8 +72,8 @@ alias v='gvim --remote-silent'
 alias vim='gvim --remote-silent'
 alias vi='gvim --remote-silent'
 alias vz="v ~/.zshrc"
-alias vv="v ~/.vimrc"
-alias vw="(cd ~/.notion; v cfg_notion.lua)"
+# alias vv="v ~/.vimrc"
+# alias vw="(cd ~/.notion; v cfg_notion.lua)"
 #alias vi="~/bin/v"
 #alias v="~/bin/v"
 alias D0='DISPLAY=":0"'
