@@ -2,3 +2,32 @@ mpd-pad.font:xft:terminus:style=regular:pixelsize=14:antialias=false
 mpd-pad.boldFont:xft:terminus:style=regular:pixelsize=14:antialias=false
 mpd-pad.italicFont:xft:terminus:style=italic:pixelsize=14:antialias=false
 mpd-pad.boldItalicFont:xft:terminus:style=italic:pixelsize=14:antialias=false
+
+!--[ Color settings ]------
+!--------------------------
+mpd-pad.background: #000000
+mpd-pad.foreground: #999999
+!-------Black--------------
+mpd-pad.color0: #292929
+mpd-pad.color8: #393939
+!-------Red----------------
+mpd-pad.color1: #2f4d80
+mpd-pad.color9: #7791e0
+!-------Green--------------
+mpd-pad.color2: #424242
+mpd-pad.color10: #828a8c
+!-------Yellow-------------
+mpd-pad.color3: #6b8ba3
+mpd-pad.color11: #8ebdde
+!-------Blue---------------
+mpd-pad.color4: #273a87
+mpd-pad.color12: #3955c4
+!-------Magenta------------
+mpd-pad.color5: #74637d
+mpd-pad.color13: #927d9e
+!-------Cyan---------------
+mpd-pad.color6: #556c85
+mpd-pad.color14: #6e98b8
+!-------White--------------
+mpd-pad.color7: #c0c0c0
+mpd-pad.color15: #ffffff

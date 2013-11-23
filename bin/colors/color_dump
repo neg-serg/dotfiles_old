@@ -1,6 +1,9 @@
 #! /bin/bash
 
-ANSI_COLORS="$(xrdb -query | grep -Ei urxvt[.*]color[01-9] | sort -n -tr -k2 | cut -d: -f2 | tr -d '[:blank:]')"
+app=$@;
+
+ANSI_COLORS="$(xrdb -query | grep -Ei ${app}[.*]color[01-9] | sort -n -tr -k2 | cut -d: -f2 | tr -d '[:blank:]')"
+# ANSI_COLORS="$(xrdb -query | grep -Ei urxvt[.*]color[01-9] | sort -n -tr -k2 | cut -d: -f2 | tr -d '[:blank:]')"
 
 echo "
    BLK      RED      GRN      YEL      BLU      MAG      CYN      WHT  "
