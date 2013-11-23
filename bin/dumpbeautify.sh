@@ -1,1 +1,0 @@
-/home/neg/bin/herbst/dumpbeautify.sh
