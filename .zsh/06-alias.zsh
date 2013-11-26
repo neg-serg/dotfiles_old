@@ -190,3 +190,4 @@ alias d='fasd -d'
 alias f='fasd -f'
 
 alias ym='~/bin/scripts/yandex.mount > /dev/null'
+alias ftpfs='curlftpfs -o codepage=cp1251 ftp://192.168.1.1 /media/ftp'
