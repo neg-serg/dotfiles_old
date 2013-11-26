@@ -119,7 +119,7 @@ mycompletion() {
             list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
     zstyle ':completion:*:*:perl:*'        file-patterns '*'
     zstyle ':completion:*:*:zathura:*'       tag-order files
-    zstyle ':completion:*:*:zathura:*'       file-patterns '*.{pdf,djvu}'
+    zstyle ':completion:*:*:zathura:*'       file-patterns '*(/)|*.{pdf,djvu}'
     # run rehash on completion so new installed program are found automatically:
     _force_rehash() {
         (( CURRENT == 1 )) && rehash

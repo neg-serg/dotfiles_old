@@ -64,7 +64,8 @@ xset r rate 200 50
 # hsetroot -full /home/neg/pic/wl/88292728.jpg
 # hsetroot -full /home/neg/pic/wl/87577.jpg
 # hsetroot -center /home/neg/pic/wl/wallpaper-477302.jpg
-hsetroot -center /home/neg/pic/wl/88292728.jpg
+hsetroot -fill /home/neg/pic/wl/679737392.jpg
+# hsetroot -center /home/neg/pic/wl/88292728.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d 
 
