@@ -99,3 +99,159 @@ XCalc*ShapeStyle: rectangle
 ! !#include "/home/scp1/etc/Xcolors/trasmatta.Xresources"
 ! !#include "/home/scp1/etc/Xcolors/xterm_default.Xresources"
 
+!! XTERM
+
+!! Required for emacs title
+!XTerm*allowWindowOps: true
+
+!XTerm*loginShell: true
+!XTerm*termName: xterm-256color
+!XTerm*saveLines: 5120
+!XTerm*keepSelection: true
+!XTerm*bellIsUrgent: true
+!XTerm*eightBitInput: true
+!XTerm*metaSendsEscape: false
+!XTerm*eightBitOutput: true
+!XTerm*locale: false
+!XTerm*utf8: 0
+!XTerm*wideChars: false
+!XTerm*font: *-misc-fixed-medium-r-normal-*-13-*-*-*-*-80-iso8859-1
+!XTerm*boldFont: *-misc-fixed-bold-r-normal-*-13-*-*-*-*-80-iso8859-1
+!XTerm*font1: *-misc-fixed-medium-r-normal-*-15-*-*-*-*-90-iso8859-1
+!XTerm*iconPixmap: /home/mntnoe/.local/share/pixmaps/term.xbm
+!XTerm*iconMask: /home/mntnoe/.local/share/pixmaps/term-mask.xbm
+!XTerm*boldMode: true
+!XTerm*geometry: 80x25
+!XTerm*cursorOffTime: 500
+!XTerm*cursorOnTime: 500
+!XTerm*scrollBar: false
+!XTerm*internalBorder: 2
+
+!! Fix <Left><Right> keys in Vim
+!XTerm*vt100*allowTcapOps: false
+
+!! I use xclip to copy from primary selection to clipboard
+!XTerm*vt100*translations: #replace\n\
+!    <Btn1Down>: select-start()\n\
+!    <Btn1Motion>: select-extend()\n\
+!    <Btn1Up>: select-end(PRIMARY) \n\
+!    Shift <Btn2Down>: insert-selection(CLIPBOARD) \n\
+!    <Btn2Down>: ignore()\n\
+!    <Btn2Up>: ignore()\n\
+!    <Btn3Down>: start-extend()\n\
+!    <Btn3Up>: ignore()\n\
+!    <Btn4Down>: scroll-back(1,halfpage)\n\
+!    <Btn5Down>: scroll-forw(1,halfpage)\n\
+!    \
+!    :!Mod2 Shift <Key> Prior: scroll-back(1,halfpage)\n\
+!    :! Shift <Key> Prior: scroll-back(1,halfpage)\n\
+!    :!Mod2 Shift <Key> Next: scroll-forw(1,halfpage)\n\
+!    :! Shift <Key> Next: scroll-forw(1,halfpage)\n\
+!    \
+!    !Mod2 Ctrl <Key> 7: string("zbg") string(0x0d)\n\
+!    ! Ctrl <Key> 7: string("zbg") string(0x0d)\n\
+!    !Mod2 Ctrl <Key> 8: keymap(scroll)\n\
+!    ! Ctrl <Key> 8: keymap(scroll)\n\
+!    !Mod2 Ctrl <Key> 9: insert-selection(PRIMARY) \n\
+!    ! Ctrl <Key> 9: insert-selection(PRIMARY) \n\
+!    !Mod2 Ctrl <Key> 0: insert-selection(CLIPBOARD) \n\
+!    ! Ctrl <Key> 0: insert-selection(CLIPBOARD) \n\
+!    !Mod2 Ctrl <Key> minus: dabbrev-expand()\n\
+!    ! Ctrl <Key> minus: dabbrev-expand()\n\
+!    !Mod2 Meta <Key> F9: set-vt-font(d) \n\
+!    ! Meta <Key> F9: set-vt-font(d) \n\
+!    !Mod2 Meta <Key> F10: set-vt-font(1) \n\
+!    ! Meta <Key> F10: set-vt-font(1) \n\
+!    \
+!    Mod5 Shift <Key> O: string("¿")\n\
+!    Mod5 Shift <Key> apostrophe: string("¿")\n\
+!    Mod5 Shift <Key> braceleft: string("¿")\n\
+!    Mod5 <Key> O: string("¿")\n\
+!    Mod5 <Key> apostrophe: string("¿")\n\
+!    Mod5 <Key> braceleft: string("¿")\n\
+!    \
+!    !:Mod2 Ctrl Shift <Key> Return: string("[27;6;13~")\n\
+!    !: Ctrl Shift <Key> Return: string("[27;6;13~")\n\
+!    !:Mod2 Meta Shift <Key> Return: string("[27;13;13~")\n\
+!    !: Meta Shift <Key> Return: string("[27;13;13~")\n\
+!    !:Mod2 Ctrl <Key> Return: string("[27;5;13~")\n\
+!    !: Ctrl <Key> Return: string("[27;5;13~")\n\
+!    !:Mod2 Shift <Key> Return: string("[27;2;13~")\n\
+!    !: Shift <Key> Return: string("[27;2;13~")\n\
+!    !:Mod2 <Key> Home: string("[7~")\n\
+!    !: <Key> Home: string("[7~")\n\
+!    !:Mod2 <Key> End: string("[4~")\n\
+!    !: <Key> End: string("[4~")\n\
+!    \
+!    Meta <Key> N: string(0x0d)\n\
+!    Meta <Key> E: string(" ")\n\
+!    Ctrl Meta <Key> H: string("¿")\n\
+!    Meta <Key> BackSpace: string("¿")\n\
+!    Ctrl <Key> H: string("¿")\n\
+!    \
+!    !Mod2 Shift <Key> space: string("¿")\n\
+!    ! Shift <Key> space: string("¿")\n\
+!    !Mod2 Ctrl <Key> comma: string("¿")\n\
+!    ! Ctrl <Key> comma: string("¿")\n\
+!    !Mod2 Ctrl <Key> period: string("¿")\n\
+!    ! Ctrl <Key> period: string("¿")\n\
+!    \
+!    ~Meta <Key>: insert-seven-bit()\n\
+!    Meta <Key>: insert-eight-bit()
+
+!XTerm*vt100*scrollKeymap*translations: #override \
+!    <Key> n: scroll-forw(1,line)\n\
+!    <Key> e: scroll-back(1,line)\n\
+!    <Key> j: scroll-forw(1,halfpage)\n\
+!    <Key> k: scroll-back(1,halfpage)\n\
+!    <Key> Escape: keymap(None) string(" ")\n\
+!    <Key>: ignore()\n
+
+!XTerm*on2Clicks: word
+!XTerm*on3Clicks: regex [a-zA-Z_]*
+!XTerm*on4Clicks: regex [^ ]*
+!XTerm*on5Clicks: line
+!XTerm*charClass: 33:48,35-38:48,43:48,45-47:48,58:48,61:48,63-64:48,126:48
+
+!! 0=black 1=red 2=green 3=yellow 4=blue 5=magenta 6=cyan 7=white
+!! 8=black 9=red 10=green 11=yellow 12=blue 13=magenta 14=cyan 15=white
+!XTerm*background: #182227
+!XTerm*foreground: #b2b2b2
+!XTerm*cursorColor: #808080
+!XTerm*color0: #686868
+!XTerm*color1: #ee5454
+!XTerm*color2: #24ed24
+!XTerm*color3: #ffff54
+!XTerm*color4: #398af6
+!XTerm*color5: #df54df
+!XTerm*color6: #54ffff
+!XTerm*color7: #ffffff
+!XTerm*color8: #686868
+!XTerm*color9: #ee5454
+!XTerm*color10: #24ed24
+!XTerm*color11: #ffff54
+!XTerm*color12: #398af6
+!XTerm*color13: #df54df
+!XTerm*color14: #54ffff
+!XTerm*color15: #ffffff
+
+!xterm-light*background: #ffffff
+!xterm-light*foreground: #000000
+!xterm-light*cursorColor: #404040
+!xterm-light*color0: #343434
+!xterm-light*color1: #ee2a2a
+!xterm-light*color2: #02bc02
+!xterm-light*color3: #debe0a
+!xterm-light*color4: #1c45f6
+!xterm-light*color5: #de2ade
+!xterm-light*color6: #0acefe
+!xterm-light*color7: #7f7f7f
+!xterm-light*color8: #343434
+!xterm-light*color9: #ee2a2a
+!xterm-light*color10: #02bc02
+!xterm-light*color11: #debe0a
+!xterm-light*color12: #1c45f6
+!xterm-light*color13: #de2ade
+!xterm-light*color14: #0acefe
+!xterm-light*color15: #7f7f7f
+

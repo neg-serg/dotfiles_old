@@ -186,10 +186,3 @@ URxvt*scrollTtyKeypress: true
 !URxvt*borderLess: true
 !URxvt*externalBorder:0
 !URxvt*internalBorder:0
-!--- Normal-----------------------------
-*keysym.Home:       \033OH
-*keysym.End:        \033OF
-*keysym.F1:     \033OP
-*keysym.F2:     \033OQ
-*keysym.F3:     \033OR
-*keysym.F4:     \033OS

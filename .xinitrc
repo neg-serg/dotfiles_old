@@ -18,8 +18,8 @@
 
 # [ -z $(pidof mpd) ]                       && mpd 
 # [ -z $(pidof mpdscribble) ]               &&  mpdscribble --conf ~/.config/mpdscribble/neg/mpdscribble.conf     &
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # export _JAVA_AWT_WM_NONREPARENTING=1 
 wmname LG3D

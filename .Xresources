@@ -3,9 +3,7 @@
 #include </home/neg/.config/xres/xscreenserver>
 #include </home/neg/.config/xres/xfontsel>
 #include </home/neg/.config/xres/xterm_fix>
-#include </home/neg/.config/xres/xresources_trash>
 #include </home/neg/.config/xres/alsamixer>
-#include </home/neg/.config/xres/bashpad>
 #include </home/neg/.config/xres/emacs>
 #include </home/neg/.config/xres/xrenoise>
 #include </home/neg/.config/xres/urxvt>
@@ -16,3 +14,5 @@
 #include </home/neg/.config/xres/mpd-pad>
 #include </home/neg/.config/xres/xv>
 #include </home/neg/.config/xres/fonts>
+!#include </home/neg/.config/xres/bashpad>
+!#include </home/neg/.config/xres/xresources_trash>

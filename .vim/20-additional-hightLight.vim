@@ -15,3 +15,7 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red   
 " For solarized
 " highlight SpellBad term=underline gui=undercurl guisp=Orange 
+
+syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>" contains=@Spell
+syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>" contains=@Spell
+

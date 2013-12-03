@@ -97,12 +97,10 @@ if zrcautoload edit-command-line && zle -N edit-command-line ; then
     bindkey '\ee' edit-command-line
 fi
 
-#k# prepend the current command with "sudo"
-bindkey "^os" sudo-command-line
 #k# jump to after first word (for adding options)
-bindkey '^x1' jump_after_first_word
-bindkey " " magic-space # do history expansion on space
-bindkey ",." zleiab
+bindkey '^x1'           jump_after_first_word
+bindkey " "             magic-space # do history expansion on space
+bindkey ",."            zleiab
 
 # zle -N backward-kill-default-word _backward_kill_default_word
 # bindkey '\e=' backward-kill-default-word   # = is next to backspace
@@ -150,9 +148,9 @@ bindkey -M emacs "^Z" fg-widget
 bindkey -M vicmd "^Z" fg-widget
 bindkey -M viins "^Z" fg-widget
 
-bindkey -s "i" 'l'        # A-i to do ls++ alias
-bindkey -s "c" ' cd -'    # A-c to do cycle throw last directory
+bindkey -s "c" ' cd -'     # A-c to do cycle throw last directory
 
-bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
-bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
-bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)
+bindkey "i" fasd-complete      # A-i to do ls++ alias
+bindkey '^X^A' fasd-complete     # C-x C-a to do fasd-complete (files and directories)
+bindkey '^X^F' fasd-complete-f   # C-x C-f to do fasd-complete-f (only files)
+bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directories)
