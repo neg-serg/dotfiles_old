@@ -12,9 +12,7 @@ unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export LESSCHARSET=UTF-8
 
-export PWS="$HOME/.safe/pws"
 export PYTHONIOENCODING='utf-8'
-export TEXINPUTS=".:$XDG_DATA_HOME/texmf//:"
 # export GREP_COLORS='ms=1;33:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 export GREP_COLORS="38;5;230:sl=38;5;240:cs=38;5;100:mt=38;5;161;1:fn=38;5;197:ln=38;5;212:bn=38;5;44:se=38;5;166"
 
@@ -38,6 +36,9 @@ export LESS_TERMCAP_so=$'\e[1;40;36m'  # begin standout - info box
 export LESS_TERMCAP_se=$'\e[0m'        # end standout
 export LESS_TERMCAP_us=$'\e[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\e[0m'        # end underline
+
+export PWS="$XDG_DATA_HOME/safe/pws"
+export TEXINPUTS=".:$XDG_DATA_HOME/texmf//:"
 
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
 export COLORTERM="yes"

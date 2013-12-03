@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/neg/.vim/snippets/c'
 let g:netrw_dirhist_2='pkg'
 let g:netrw_dirhist_3='/mnt/home/dw/Conky/.conky'
@@ -7,3 +7,5 @@ let g:netrw_dirhist_4='/mnt/home/dw/Conky'
 let g:netrw_dirhist_5='/mnt/home/dev/src/1st_level/notion/mod_statusbar'
 let g:netrw_dirhist_6='/home/neg/.vim/bundle/vim-debug'
 let g:netrw_dirhist_7='/home/neg/.offlineimap'
+let g:netrw_dirhist_8='/home/neg/.config/dunst'
+let g:netrw_dirhist_9='/home/neg/.offlineimap'

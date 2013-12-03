@@ -12,6 +12,10 @@ set shell='/bin/zsh'
 set shellcmdflag='-c'
 "show current link in a command line
 "set showstatuslinks='command'
+" custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map , <leader>
+nmap -builtin <Leader>, :noh<CR>
+
 map I_<C-w> I_<C-BS>
  
 "map -builtin <C-a> -silent :sidebar Scrapbook<CR>
@@ -26,10 +30,10 @@ map <F5> :set complete=bookmark<CR>
 
 imap <c-a> <home>
 cmap <c-a> <home>
-imap <a-f> <S-Right>
-cmap <a-f> <S-Right>
-imap <a-b> <S-Left>
-cmap <a-b> <S-Left>
+imap <a-f> <C-Right>
+cmap <a-f> <C-Right>
+imap <a-b> <C-Left>
+cmap <a-b> <C-Left>
 imap <c-e> <end>
 cmap <c-e> <end>
 
@@ -48,13 +52,11 @@ let (pref = permissions.default.image)
 tabs.reload(config.browser.mCurrentTab);
 EOF
 
-
 set titlestring=firefox
 set history=900
 autocmd LocationChange ^https?://(docs|mail)\.google\.(com|ru)/ :normal! <C-z>
 set showtabline=never
 set loadplugins='\.(css|js|penta)$'
-"set mapleader=,
 "set hintkeys=qwerasdf
 "set hintkeys="fdsahjkl;'"
 set hintkeys=12345
@@ -65,21 +67,13 @@ map -builtin J h
 map -builtin K l
 "" U list closed tabs
 map -builtin U :undo<Space>
-"map -builtin o e
-"" display download
-"unmap q
-"map -builtin e o
-"map -builtin o :sidebar Downloads<CR>
+map -builtin <leader>b :sidebar Bookmarks<CR>
+
 "" jumping at hint mode, seee http://code.google.com/p/dactyl/issues/detail?id=158
-"map -modes hints <C-f> -ex normal! <C-f>
-"map -modes hints <C-b> -ex normal! <C-b>
+map -modes hints <C-f> -ex normal! <C-f>
+map -modes hints <C-b> -ex normal! <C-b>
 map C-tab nop
 map <C-tab> <Nop>
-"map <C-Tab> <Nop>"" open things at new tab
-"set newtab=all
-
-"" highlight search
-"set hlfind
 
 "" complete search engine suguest
 set complete=lS
@@ -94,9 +88,6 @@ map S :sbcl<CR>
 map -builtin w b
 map $ <End>
 
-" custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map , <Leader>
-nmap -builtin <Leader>, :noh<CR>
 " toggle styles """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 map -b -m base,caret,normal,visual <C-g> <Esc>
@@ -123,7 +114,6 @@ map -b <C-x>~ ~
 map -b <C-x>x <C-^>
 map -b <C-x>u gu
 map -b <C-x><C-u> gU
-
 
 " Russian language keyboard mappings (UTF-8)
 map ё `
@@ -196,7 +186,6 @@ map . /
 
 " Style: Minimalistic Tabs {{{
 " -----------------------------------------------------------------------------
-
 style -name minitabs chrome://* <<EOM
 #TabsToolbar toolbarbutton {
   display: none !important;
@@ -233,44 +222,5 @@ style -name minitabs chrome://* <<EOM
   background: #282a2e !important;
   color: #f0c674 !important;
 }
+@-moz-document url-prefix(about:blank) {*{background-color:#000000;}}
 EOM
-
-"}}}
-
-" Style: Github and Gist fonts {{{
-" -----------------------------------------------------------------------------
-
-" style -name github-font https://github.com/* <<EOM
-"   #dashboard .filter-bar .filter_input,
-"   #missing-readme,
-"   .boxed-group.flush ul.boxed-group-list.settings-repos>li h3 small,
-"   .bubble#files .file .meta .info,
-"   .connected,
-"   .file-comments,
-"   .forgot_password_form form input[type=submit],
-"   .homehead input.search,
-"   .line-comments,
-"   .line_numbers.comment-count .counter,
-"   .login_form form input[type=submit],
-"   .minibutton,
-"   .pagehead>ul.tabs li a .counter,
-"   .profilecols .filter-bar .filter_input,
-"   a.button.classy,
-"   a.button.classy.disabled,
-"   a.button.classy.disabled:disabled:hover,
-"   a.button.classy.disabled:hover,
-"   a.button.classy.disabled:hover:disabled,
-"   a.button.classy:disabled,
-"   a.button.classy:disabled:hover,
-"   body,
-"   body.page-profile-next .profilecols .filter-bar .filter_input,
-"   button.classy,
-"   button.classy.disabled,
-"   button.classy.disabled:disabled:hover,
-"   button.classy:disabled,
-"   button.classy:disabled:hover,
-"   dl.keyboard-mappings dt em,
-"   span.diffstat {
-"     font-family: "sans-serif" !important;
-"   }
-" EOM
