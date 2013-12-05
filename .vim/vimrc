@@ -67,7 +67,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
-NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
+NeoBundle 'gerw/vim-latex-suite.git'
+" NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
