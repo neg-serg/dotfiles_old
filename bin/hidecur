@@ -1,0 +1,99 @@
+#!/bin/zsh
+############################################################################
+# author: milomouse <vincent[at]fea.st>                                    #
+# detail: banish the mouse cursor to bottom-right corner of the screen and #
+#         disable touchpad (optional); also undo this by returning mouse   #
+#         to last position (or center of screen) and enabling touchpad.    #
+############################################################################
+# depend: xdotool: for controlling the mouse                               #
+#         xdpyinfo: for finding screen dimensions                          #
+#         synclient: for controlling the touchpad in laptops (optional)    #
+############################################################################
+unsetopt nomatch
+scriptname=$(print - $0(^:t))
+
+## VARIABLE: set a temporary file for storing mouse position.
+FILE="/tmp/user-keep/${USER}/.${scriptname}"
+
+## CODE: do not edit below this line unless you know what you are doing.
+function _help() {
+  << EOF
+usage: ${scriptname} [option]
+options:
+    -t | --toggle    Enable or disable mouse
+    -d | --disable   Force disabling of mouse
+    -e | --enable    Force enabling of mouse
+    -s | --show      Display \$FILE location
+    -h | --help      Display this message
+
+depends:
+    xdotool ($(print ${${${:-=xdotool}/=*/not found}/\/*/installed}))
+    xdpyinfo ($(print ${${${:-=xdpyinfo}/=*/not found}/\/*/installed}))
+    synclient ($(print ${${${:-=synclient}/=*/not found}/\/*/installed})) [optional]
+EOF
+exit
+}
+
+function __dimensions() {
+  for exe in xdotool xdpyinfo; do
+    which ${exe} &>/dev/null || { print "Missing required program: ${exe}" ; _err=1 }
+  done
+  [[ ${+_err} == 1 ]] && exit 1
+  xy=${${${${${(M)${"$(xdpyinfo 2>/dev/null)"}#*dimensions:*\)}#*dimensions*:}/pixels*}// }/x/ }
+  x=${${(s: :)xy}[1]}
+  y=${${(s: :)xy}[2]}
+}
+
+function _mayberat() {
+  if [[ ${+FILE} == "0" ]]; then
+    print "You must set a temp file; see source code." && exit 1
+  fi
+  if [[ ! -d ${FILE:h} ]]; then
+    print "Directory for file does not existing, attempting to create..."
+    mkdir -p ${FILE:h} || { print "Could not create \"${FILE:h}\", make sure you have proper write permissions." ; exit 1 }
+  fi
+  if [[ -f ${FILE} ]]; then
+    _yesrat
+  else
+    _norat
+  fi
+}
+
+function _yesrat() {
+  __dimensions
+  if [[ ${+DISPLAY} == 1 ]]; then
+    if [[ -f ${FILE} && ${#$(<${FILE})} -eq 2 ]]; then
+      xdotool mousemove $(<${FILE}) &>/dev/null
+      rm -f ${FILE} &>/dev/null
+    else
+      xdotool mousemove $(($(print ${x})/2)) $(($(print ${y})/2)) &>/dev/null
+      rm -f ${FILE} &>/dev/null
+    fi
+    which synclient &>/dev/null && synclient TouchpadOff=0 &>/dev/null
+  else
+    print "\$DISPLAY unavailable, aborting."
+    exit 1
+  fi
+}
+
+function _norat() {
+  __dimensions
+  if [[ ${+DISPLAY} == 1 ]]; then
+    print ${${${$(xdotool getmouselocation 2>/dev/null)[1,2]//:/}#x}#y} >>! ${FILE}
+    xdotool mousemove $(print ${xy}) &>/dev/null
+    which synclient &>/dev/null && synclient TouchpadOff=1 &>/dev/null
+  else
+    print "\$DISPLAY unavailable, aborting."
+    exit 1
+  fi
+}
+
+[[ -z $1 ]] && _help
+case $1 in
+  '-t'|'--toggle')  _mayberat ;;
+  '-d'|'--disable') _norat ;;
+  '-e'|'--enable')  _yesrat ;;
+  '-s'|'--show')    print ${FILE} ; exit ;;
+  '-h'|'--help')    _help ;;
+  *) [[ -z $@ ]] && _help || { print "unrecognized operation: $@ (see --help for usage)" ; exit 1 } ;;
+esac
