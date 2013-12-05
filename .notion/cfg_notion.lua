@@ -25,21 +25,6 @@ ioncore.set{
 
 --------------------------------[[ DOPATH ]]-----------------------------------------
 
--- dopath("mod_dock")
---dopath("exec_show")
---dopath("collapse")
---dopath("mpd")
---dopath("named_floating_groupws")
---dopath("send_to_ws")
---dopath("mod_xinerama")
---dopath("xinerama-stuff")
---dopath("mod_notionflux")
---dopath("cfg_query")
---dopath("statusbar_wsname.lua")
---dopath("ewmh_pager.lua")
---dopath("zoom")
---dopath("vim_bindings") --[[already deprecated]]
---dopath("dzen")
 dopath("mod_xrandr")        dopath("mod_notionflux")  dopath("cfg_xrandr")
 dopath("cfg_layouts.lua")   dopath("app")             dopath("mod_sp")  
 dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
@@ -48,7 +33,6 @@ dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
 dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
---defwinprop{class = "*",instance = "*",float = true}
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term",lazy_resize=true
