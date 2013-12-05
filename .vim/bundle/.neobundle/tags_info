@@ -1,5 +1,4 @@
 CCTree
-TeX-9
 YouCompleteMe
 ack.vim
 compview
@@ -25,6 +24,7 @@ vim-eunuch
 vim-fontsize
 vim-fugitive
 vim-indent-guides
+vim-latex-suite
 vim-markdown
 vim-multiple-cursors
 vim-preview
