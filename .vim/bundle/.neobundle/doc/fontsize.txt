@@ -1,0 +1,180 @@
+*fontsize.txt*   Plugin for modifying guifont size
+*fontsize*       Version 0.3.1
+
+==============================================================================
+1.  Introduction                                    |fontsize-intro|
+2.  Installation                                    |fontsize-installation|
+3.  Usage                                           |fontsize-usage|
+4.  Customization                                   |fontsize-customization|
+5.  ChangeLog                                       |fontsize-changelog|
+6.  Credits                                         |fontsize-credits|
+
+==============================================================================
+1.  Introduction                                    *fontsize-intro*
+
+This plugin provides convenient mappings for changing the font size in Gvim.
+It defines a new "font size" mode wherein only a single keypress is needed to
+continue to increase or decrease the font size.
+
+===============================================================================
+2.  Installation                                    *fontsize-installation*
+
+To install directly in your personal |vimfiles| directory (~/.vim under
+unix or %HOMEPATH%\vimfiles under windows), unpack the downloaded archive
+to yield these files: >
+
+  autoload/fontsize.vim
+  plugin/fontsize.vim
+  doc/fontsize.txt
+
+Then, re-generate your help tags with Vim's |:helptags| command, e.g.: >
+
+  :helptags ~/.vim/doc
+
+You may also install fontdetect using a tool like pathogen[1] by unpacking
+the downloaded archive into a bundle directory, e.g.: >
+
+  ~/.vim/bundle/fontdetect
+
+[1]: https://github.com/tpope/vim-pathogen
+
+==============================================================================
+3.  Usage                                           *fontsize-usage*
+
+Each of the following mappings is invoked from normal mode:
+
+  <Leader><Leader>=    Begin "font size" mode
+  <Leader><Leader>+    Increment font size
+  <Leader><Leader>-    Decrement font size
+  <Leader><Leader>0    Revert to default font size
+
+Note that by default, <Leader> is the backslash character, so for example
+<Leader><Leader>+ is invoked by pressing \\+ from normal mode.
+
+The above mappings also initiate a "font size" mode in which the following
+additional individual keys become active:
+
+  +          Increment font size (may also use = to avoid shift key)
+  -          Decrement font size
+  0          Revert to default font size
+  !          Save current size as new default
+  q          Quit "font size" mode
+  <SPACE>    Quit "font size" mode
+  <CR>       Quit "font size" mode
+
+Other keys pressed will exit "font size" mode and then perform their normal
+function (e.g., pressing "j" will cancel "font size" mode and move down one
+line).
+
+In addition, "font size" mode will automatically timeout after |timeoutlen|
+milliseconds have elapsed without a keypress, because "font size" mode is
+based on mappings.
+
+While "font size" mode is active, the prompt "(fontsize)" will be shown if
+'showcmd' is set.
+
+Details on customization are found in the |fontsize-customization| section
+of the included documentation.
+
+===============================================================================
+4.  Customization                                   *fontsize-customization*
+
+The default value of |timeoutlen| is 1000 milliseconds (1 second), which might
+be too fast.  The author uses the following setting in his |vimrc|: >
+
+  " Slow down mapping timeout from default 1000 milliseconds.
+  set timeoutlen=3000
+
+You may change the mappings that initiate "font size" mode by creating
+your own mappings in your |vimrc|file.  For example, use these mappings
+to use <Leader> instead of <Leader><Leader> as a prefix:
+
+  nmap <silent> <Leader>=  <Plug>FontsizeBegin
+  nmap <silent> <Leader>+  <Plug>FontsizeInc
+  nmap <silent> <Leader>-  <Plug>FontsizeDec
+  nmap <silent> <Leader>0  <Plug>FontsizeDefault
+
+Or, use a single mapping to begin "font size" mode and disable other mappings:
+
+  nmap <silent> <F8>                        <Plug>FontsizeBegin
+  nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
+  nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
+  nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
+
+Any mapping to <Plug>FontsizeXxx overrides the default mappings, even if that
+mapping is meaningless like <SID>SomeRandomName.
+
+Normally, the plugin detects the default font size from 'guifont".  This may
+be overridden in the |vimrc| file.  E.g., to set the default to 12: >
+
+  let g:fontsize#defaultSize = 12
+
+If your Gvim uses a different encoding for 'guifont' than what's found in
+'encoding', you can set g:fontsize#encoding in your |vimrc| file to convert
+the font names.  For example, on Chinese Windows XP, the fonts are encoded in
+"gbk", so if you use "utf8" for your 'encoding', you'd use the following: >
+
+  let g:fontsize#encoding = "gbk"
+
+(Converting font name encodings requires the +iconv feature.)
+
+===============================================================================
+5.  ChangeLog                                       *fontsize-changelog*
+
+Version 0.3.1    Date    2013-10-03                 *fontsize-changelog-0.3.1*
+
+  - Documentation reorganization.
+
+Version 0.3.0    Date    2013-10-03                 *fontsize-changelog-0.3.0*
+
+  - Switch default key bindings to <Leader><Leader>x instead of <Leader>xx.
+
+  - Convert to bundle-based installation instructions.
+
+  - Use getfontname() instead of reading 'guifont', allowing fontsize to work
+    when 'guifont' was not set or was set to a comma-separated list of fonts
+    where the first font was not valid.
+
+  - Use "(fontsize)" string for prettier-looking 'showcmd' output.
+
+Version 0.2.1    Date    2013-09-24                 *fontsize-changelog-0.2.1*
+
+  - Properly restore 'cpoptions'.
+
+Version 0.2.0    Date    2009-10-21                 *fontsize-changelog-0.2.0*
+
+  - Changed <Leader>== to enter "font size" mode without changing the 
+    font size.
+
+  - Fixed regex for win32 and others to not require colon after size field
+    (e.g., "fontname:h12" works, don't need "fontname:h12:cANSI").  Added
+    regex support for other platforms.
+
+  - Added g:fontsize_encoding feature to handle different encodings for
+    &guifont and &guifontwide.
+
+  - Handles empty &guifont better now (but cannot change font size in that
+    case).
+
+  - Added documentation sections for TODO, ChangeLog.
+
+Version 0.1.0    Date    2009-10-11                 *fontsize-changelog-0.1.0*
+
+  - Initial release.
+
+===============================================================================
+6.  Credits                                         *fontsize-credits*
+
+Developed by Michael Henry (vim at drmikehenry.com).
+
+Distributed under Vim's |license|.
+
+Git repository:       https://github.com/drmikehenry/vim-fontsize
+
+Thanks to Andy Wokula, author of the bufmru plugin
+(http://www.vim.org/scripts/script.php?script_id=2346),
+for writing a clever plugin from which I learned to use
+chained keymaps to implement "modes".
+
+===============================================================================
+vim:sts=2:et:ai:tw=78:fo=tcq2:ft=help:
