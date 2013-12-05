@@ -1,0 +1,143 @@
+---- Improvement by Matthieu MOY : initializes tgt to ws:current().
+---- The current frame becomes the unique frame of this workspace.
+--function collapse.collapse(ws)
+--    local l=ws:managed_list()
+--    local tgt=ws:current() -- This was not initialized.
+--    for _, f in l do
+--        if obj_is(f, "WIonFrame") then
+--            if tgt ~= f then -- This has changed also.
+--                collapse.move_managed(tgt, f)
+--                f:close()
+--            end
+--        end
+--    end
+--end
+--
+--
+---- Simpler, but moves the windows around 
+---- more, which doesn't look good.
+--function collapse.collapse2(ws)
+--    local l=ws:managed_list()
+--    local prevf
+--    for _, f in l do
+--        if obj_is(f, "WIonFrame") then
+--            if prevf then
+--                prevf:relocate_and_close()
+--            end
+--            prevf=f
+--        end
+--    end
+--end
+--
+---- Move current window in a frame to another frame in specified direction
+--
+--move_current={}
+--function move_current.move(ws, dir)
+--    local frame=ws:current()
+--    local cwin=frame:current()
+--    local frame2=ioncore.navi_next(frame,dir)
+--    
+--    if frame2 then
+--        frame2:attach(cwin, { switchto=true })
+--    end
+--    cwin:goto()
+--end
+--
+--function mytab()
+--    mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )
+--    --ioncore.goto_next(_chld, 'right')
+--end
+--
+----local floatsbscr=ioncore.find_screen_id(0)
+----local floatsb
+--
+----floatsb=floatsbscr:attach_new{ -- Example of floating toggleable statusbar
+--    --type="WStatusBar", 
+--    --unnumbered=true, 
+--    --sizepolicy='northwest', 
+--    --template='/ %date /', 
+--    --passive=true, 
+--    --level=2
+----}
+--
+----local function toggle_floatsb() floatsbscr:set_hidden(floatsb, 'toggle') end
+----ioncore.defbindings("WScreen", { kpress("Mod1+D", toggle_floatsb) })
+--
+--
+----function exists(n)
+----local f = assert(io.open(n, "r"))
+----io.close(f)
+----return not (f==nil)
+----end
+--
+----function my_url_handler (ws)
+----ioncore.request_selection(
+----    -- this is an anonymous function that is called with the selected text
+----    function (str)  
+----        if (string.find(str, "http://") ~= nil) then
+----            ioncore.exec_on (ws, "firefox -new-tab " .. string.shell_safe(str))
+----        elseif (exists(str)) then
+----            -- my vim is compiled from source and not in the PATH available to lua
+----            ioncore.exec_on (ws, "/usr/local/bin/gvim " .. safe)
+----        end
+----    end)
+----end
+--
+----defbindings("WScreen", { 
+----kpress("Mod4+U", "my_url_handler(_)"),
+----})
+--
+--
+--local function do_warp_alt(reg)
+--  -- Make sure this is enough to always identify a scratchpad.
+--  if reg.mode and reg:mode() == "unknown" then
+--    return true
+--  end
+--  return false
+--end
+--
+--local function setup_hooks()
+--  local hook
+--
+--  hook = ioncore.get_hook("region_do_warp_alt")
+--  if hook then
+--    hook:add(do_warp_alt)
+--  end
+--end
+--
+---- Auto-generated Debian menu definitions
+--if os and os.execute("test -x /usr/bin/update-menus") == 0 then
+--    if notioncore.is_i18n() then
+--        dopath("debian-menu-i18n")
+--    else
+--        dopath("debian-menu")
+--    end
+--end
+--
+
+--dofile( "/home/neg/.notion/print_table_to_file.lua" )
+--
+--function print_windows()
+--    --local file = io.open("/tmp/example.txt", "w")
+--    local entries={}
+--    ioncore.clientwin_i(addto(entries))
+--    sort(entries)
+--    assert( table.save( entries, "/home/neg/.notion/test_tbl.lua" ) == nil )
+--end
+
+--dofile('/home/neg/.notion/print_table_to_file.lua')
+--
+--function oni_match_class()
+--    local result = {}
+--    result = WStatusBar.get_template_table()
+--    table.save( result, "/home/neg/.notion/test_tbl.lua" ) 
+--end
+--
+--load={
+--	update_interval=10*1000,
+--},
+--net	= {
+  --wlan0	= { interface   = "wlan0", interval		= 1 *1000, show_essid	= true },
+  --eth0	= { interface   = "eth0",  interval		= 1 *1000,  },
+  --ppp0	= { interface   = "ppp0",  interval		= 10*1000,  },
+--},
