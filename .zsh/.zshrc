@@ -12,7 +12,6 @@
 . ~/.zsh/12-vi_additions.zsh
 . ~/.zsh/13-bindkeys.zsh
 . ~/.zsh/14-dirjumps.zsh
-# . ~/.zsh/etc/zce.zsh
 # ------------------------------------------
 # . ~/.zsh/99-trash.zsh
 # ------------------------------------------

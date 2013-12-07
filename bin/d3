@@ -1,6 +1,7 @@
 #!/bin/bash
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
-playonlinux &
+# playonlinux &
+urxvt &
 exec 2bwm
 

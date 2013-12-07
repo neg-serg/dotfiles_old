@@ -769,4 +769,4 @@ fasd --init auto >| "$fasd_cache"
 fi
 source "$fasd_cache"
 unset fasd_cache
-alias v='f -e vim'
+alias vv='f -e vim'

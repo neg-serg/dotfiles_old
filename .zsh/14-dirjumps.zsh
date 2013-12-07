@@ -9,7 +9,6 @@ jump_dirs=(
 
 for index in $(seq 1 $((${#jump_dirs[@]} )))
 do
-    # echo "jump_dir ${index} is ${jump_dirs[$index]}"
     bindkey -s "${index}" "cd ${jump_dirs[$index]}"
 done
   
