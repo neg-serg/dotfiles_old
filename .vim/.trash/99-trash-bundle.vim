@@ -140,3 +140,4 @@ Bundle 'tsaleh/vim-matchit'                " % for everything
 " NeoBundle 'dag/vim2hs'                        "very and very good additions and hi for hs. Allow gf&go TOOOOOOOO SLOW!!!!!!!
 "
 " NeoBundle 'sickill/vim-pasta'                 "better nnoremap p p`[v`]=
+" NeoBundle 'gerw/vim-latex-suite.git'          "tex autocompletion TOOOOOOOOOOOOOO SLOOOOOW

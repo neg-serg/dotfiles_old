@@ -1,6 +1,8 @@
 CCTree
+LaTeX-Box
 YouCompleteMe
 ack.vim
+auctex.vim
 compview
 ctrlp.vim
 gundo.vim
@@ -24,7 +26,6 @@ vim-eunuch
 vim-fontsize
 vim-fugitive
 vim-indent-guides
-vim-latex-suite
 vim-markdown
 vim-multiple-cursors
 vim-preview
