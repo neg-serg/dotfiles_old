@@ -54,7 +54,7 @@ EOF
 
 set titlestring=firefox
 set history=900
-autocmd LocationChange ^https?://(docs|mail)\.google\.(com|ru)/ :normal! <C-z>
+" autocmd LocationChange ^https?://(docs|mail)\.google\.(com|ru)/ :normal! <C-z>
 set showtabline=never
 set loadplugins='\.(css|js|penta)$'
 "set hintkeys=qwerasdf
