@@ -157,6 +157,7 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
   filetype-flv         'fg=13'
   filetype-avi         'fg=13'
+  filetype-m4v         'fg=13'
   filetype-mkv         'fg=13'
   filetype-mov         'fg=13'
   filetype-MOV         'fg=13'
@@ -637,6 +638,7 @@ _zsh_highlight_main_highlighter()
         *.mf)          style=$ZSH_HIGHLIGHT_STYLES[filetype-mf];;
         *.mi)          style=$ZSH_HIGHLIGHT_STYLES[filetype-mi];;
         *.mkd)         style=$ZSH_HIGHLIGHT_STYLES[filetype-mkd];;
+        *.m4v)         style=$ZSH_HIGHLIGHT_STYLES[filetype-m4v];;
         *.mkv)         style=$ZSH_HIGHLIGHT_STYLES[filetype-mkv];;
         *.mod)         style=$ZSH_HIGHLIGHT_STYLES[filetype-mod];;
         *.mov)         style=$ZSH_HIGHLIGHT_STYLES[filetype-mov];;
@@ -866,6 +868,7 @@ _zsh_highlight_main_highlighter()
         *.zip)         style=$ZSH_HIGHLIGHT_STYLES[filetype-zip];;
         *.zsh)         style=$ZSH_HIGHLIGHT_STYLES[filetype-zsh];;
         *.doc)         style=$ZSH_HIGHLIGHT_STYLES[filetype-doc];;
+        *.docx)         style=$ZSH_HIGHLIGHT_STYLES[filetype-docx];;
         *.xls)         style=$ZSH_HIGHLIGHT_STYLES[filetype-xls];;
         *.xlsm)         style=$ZSH_HIGHLIGHT_STYLES[filetype-xlsm];;
         *.n3)          style=$ZSH_HIGHLIGHT_STYLES[filetype-n3];;

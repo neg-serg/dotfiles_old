@@ -1,4 +1,20 @@
 :q
+:e
+:q
+:q
+:q
+:q
+:reload
+:e
+:q
+:reload
+:e
+main
+:q
+:q
+:q
+:q
+:q
 :q
 :q
 X
@@ -82,19 +98,3 @@ sum
 sum 4 5
 sum
 perfects
-let perfects = [x|x<-[2..256], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[1..256], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-let perfects = [x|x<-[1..256], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[2..256], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[1..256], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[1..128], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[1..1000000], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[1..], sum ([y|y<-[1..x],mod x y == 0]) == x ]
-perfects
-let perfects = [x|x<-[2..], sum ([y|y<-[1..x],mod x y == 0]) == x ]
