@@ -1,11 +1,3 @@
-# ----------------------------------------
-# file: $HOME/.dir_colors
-# author: jason ryan http:/jasonwryan.com
-# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:
-# ----------------------------------------
-#
-# Based on: https://github.com/trapd00r/LS_COLORS/blob/master/LS_COLORS
-
 # COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not
 # pipes. 'all' adds color characters to all output. 'none' shuts colorization
 # off.
@@ -33,10 +25,8 @@ EIGHTBIT 1
 # NORMAL         00         # global default, although everything should be something.
 # FILE           00         # normal file
 DIR            00;34      # directory
-LINK 00;38;5;5 # symbolic link. (If you set this to 'target' instead of a
 # numerical value, the color is as for the file pointed to.)
 # MULTIHARDLINK 00 # regular file with more than one link
-# LINK           35         # symbolic link
 FIFO           40;33      # pipe
 SOCK           01;35      # socket
 BLK            38;5;24   # block device driver
@@ -46,21 +36,21 @@ ORPHAN         01;30
 # EXEC 04;04
 EXEC    00;38;5;244 
 NORMAL 00;38;5;244 # no color code at all
-FILE 00 # regular file: use no color at all
+FIFO                  38;5;126
+FILE                  38;5;253
+LINK                  target
+MULTIHARDLINK         38;5;220;1
+# "NORMAL don't reset the bold attribute -
+# https://github.com/trapd00r/LS_COLORS/issues/11
+#NORMAL                38;5;254
+ORPHAN                48;5;196;38;5;232;1
+OTHER_WRITABLE        38;5;220;1
+SETGID                48;5;234;38;5;100;1
+SETUID                38;5;137
+STICKY                38;5;86;48;5;234
+STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 RESET 0 # reset to "normal" color
-#DIR 00;38;5;33 # directory 01;34
-#FIFO 48;5;230;38;5;136;01 # pipe
-#SOCK 48;5;230;38;5;136;01 # socket
-#DOOR 48;5;230;38;5;136;01 # door
-# BLK 48;5;230;38;5;244;01 # block device driver
-# CHR 48;5;230;38;5;244;01 # character device driver
-# ORPHAN 48;5;235;38;5;160 # symlink to nonexistent file, or non-stat'able file
-# SETUID 48;5;160;38;5;230 # file that is setuid (u+s)
-# SETGID 48;5;136;38;5;230 # file that is setgid (g+s)
-# #CAPABILITY 30;41 # file with capability
-# STICKY_OTHER_WRITABLE 48;5;64;38;5;230 # dir that is sticky and other-writable (+t,o+w)
-# OTHER_WRITABLE 48;5;235;38;5;33 # dir that is other-writable (o+w) and not sticky
-# STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writable
+*LS_COLORS 48;5;89;38;5;197;1;3;4;7 # :-)
 
 .cmd           01;32 # executables (bright green)
 .exe           01;32
@@ -109,7 +99,6 @@ RESET 0 # reset to "normal" color
 .jpg    00;38;5;66
 .JPG    00;38;5;66 #stupid but needed
 .jpeg   00;38;5;66
-.gif    00;38;5;66
 .bmp    00;38;5;66
 .pbm    00;38;5;66
 .pgm    00;38;5;66
@@ -132,7 +121,8 @@ RESET 0 # reset to "normal" color
 .emf    00;38;5;66
 .eps    00;38;5;66
 .CR2    00;38;5;66
-.ico    00;38;5;66
+.gif    38;5;72
+.ico    38;5;73
 
 # "unimportant" files as logs and backups (base01)
 .log        00;38;5;240
@@ -204,7 +194,6 @@ RESET 0 # reset to "normal" color
 .html          01;38;5;23
 .hgrc          01;38;5;23
 .hgignore      01;38;5;23
-.go            01;38;5;23
 .h             01;38;5;23
 .hs            01;38;5;23
 .htoprc        01;38;5;23
@@ -304,9 +293,6 @@ RESET 0 # reset to "normal" color
 .yml             01;38;5;245
 .cfg             01;38;5;245
 .conf            01;38;5;245
-.c               00;38;5;5
-.cpp             00;38;5;5
-.cc              00;38;5;5
 *TODO            01;38;5;91
 
 # Audio formats (orange)
@@ -377,7 +363,47 @@ RESET 0 # reset to "normal" color
 .path                 38;5;116
 .timer                38;5;111
 .snapshot             38;5;139
+
+#-------------new----------------
+.C                    38;5;24;1
+.cp                   38;5;24;1
+.cpp                  38;5;24;1
+.cxx                  38;5;24;1
+.c++                  38;5;24;1
+.ii                   38;5;24;1
+.cs                   38;5;74;1
+.go                   38;5;36;1
+
+.H                    38;5;29
+.hpp                  38;5;29
+.hxx                  38;5;29
+.h++                  38;5;29
+.tcc                  38;5;29
+.f                    38;5;29
+.for                  38;5;29
+.ftn                  38;5;29
+.s                    38;5;29
+.S                    38;5;29
+.sx                   38;5;29
+
+.am                   38;5;242
+.in                   38;5;242
+.old                  38;5;242
+
+# tcpdump
+.pcap                 38;5;29
+.cap                  38;5;29
+.dmp                  38;5;29
      
+.am                   38;5;242
+.in                   38;5;242
+.old                  38;5;242
+
+# tcpdump
+.pcap                 38;5;29
+.cap                  38;5;29
+.dmp                  38;5;29
+
 # Bel01;38;5;ow, there should be one TERM entry for each termtype that is colorizable
 TERM Eterm
 TERM ansi
@@ -429,25 +455,3 @@ TERM xterm-256color
 TERM xterm-88color
 TERM xterm-color
 TERM xterm-debian 
-#
-#------------ Solarized ----------------
-
-# Dark 256 color solarized theme for the color GNU ls utility.
-# Used and tested with dircolors (GNU coreutils) 8.5
-#
-# @author  {@link http://sebastian.tramp.name Sebastian Tramp}
-# @license http://sam.zoy.org/wtfpl/  Do What The Fuck You Want To Public License (WTFPL)
-#
-# More Information at
-# https://github.com/seebi/dircolors-solarized
-
-# 256 color support
-# see here: http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html)
-#
-# Text 256 color coding:
-# 38;5;COLOR_NUMBER
-# Background 256 color coding:
-# 48;5;COLOR_NUMBER
-
-### Special files
-

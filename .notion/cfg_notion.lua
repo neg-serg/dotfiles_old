@@ -31,7 +31,7 @@ dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
 dopath("mod_tiling")        dopath("min_tabs")        dopath("mod_statusbar")
 dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
 dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
--- dopath("cfg_tiling")
+dopath("cfg_tiling")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
@@ -237,7 +237,6 @@ defbindings("WMPlex.toplevel", {
         kpress("t", "ioncore.exec_on(_, 'urxvt')"),
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
         kpress("s", "ioncore.exec_on(_, 'skype')"),
-        kpress("e", "ioncore.exec_on(_, 'skype')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         --kpress("r", "app.byinstance('FBReader', 'FBReader', 'FBReader')"),
@@ -289,8 +288,11 @@ defbindings("WScreen", {
         --Backward-circulate focus
         --kpress("AnyModifier+Tab", "ioncore.goto_next(_chld, 'left')", "_chld:non-nil"),
         --Raise focused object, if possible
+        -- kpress("AnyModifier+E", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("AnyModifier+L", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
+        kpress("AnyModifier+Shift+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
+    kpress("Mod1+s","WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
 
     kpress("F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     kpress("Mod4+grave", "ioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
