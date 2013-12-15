@@ -76,6 +76,7 @@
 'syntastic_check_on_open'	syntastic.txt	/*'syntastic_check_on_open'*
 'syntastic_check_on_wq'	syntastic.txt	/*'syntastic_check_on_wq'*
 'syntastic_debug'	syntastic.txt	/*'syntastic_debug'*
+'syntastic_debug_file'	syntastic.txt	/*'syntastic_debug_file'*
 'syntastic_delayed_redraws'	syntastic.txt	/*'syntastic_delayed_redraws'*
 'syntastic_echo_current_error'	syntastic.txt	/*'syntastic_echo_current_error'*
 'syntastic_enable_balloons'	syntastic.txt	/*'syntastic_enable_balloons'*
@@ -173,6 +174,7 @@
 :SyntasticErrors	syntastic.txt	/*:SyntasticErrors*
 :SyntasticInfo	syntastic.txt	/*:SyntasticInfo*
 :SyntasticReset	syntastic.txt	/*:SyntasticReset*
+:SyntasticSetLoclist	syntastic.txt	/*:SyntasticSetLoclist*
 :SyntasticToggleMode	syntastic.txt	/*:SyntasticToggleMode*
 :TComment	tcomment.txt	/*:TComment*
 :TCommentAs	tcomment.txt	/*:TCommentAs*
@@ -328,6 +330,7 @@ VimuxSendKeys	vimux.txt	/*VimuxSendKeys*
 VimuxSendText	vimux.txt	/*VimuxSendText*
 VimuxTslimeReplacement	vimux.txt	/*VimuxTslimeReplacement*
 VimuxUsage	vimux.txt	/*VimuxUsage*
+VimuxZoomRunner	vimux.txt	/*VimuxZoomRunner*
 [%	matchit.txt	/*[%*
 ]%	matchit.txt	/*]%*
 abolish	abolish.txt	/*abolish*
@@ -374,6 +377,7 @@ airline-syntastic	airline.txt	/*airline-syntastic*
 airline-tabline	airline.txt	/*airline-tabline*
 airline-tagbar	airline.txt	/*airline-tagbar*
 airline-themes	airline.txt	/*airline-themes*
+airline-tmuxline	airline.txt	/*airline-tmuxline*
 airline-troubleshooting	airline.txt	/*airline-troubleshooting*
 airline-virtualenv	airline.txt	/*airline-virtualenv*
 airline-whitespace	airline.txt	/*airline-whitespace*
@@ -555,6 +559,7 @@ g:neobundle#install_process_timeout	neobundle.txt	/*g:neobundle#install_process_
 g:neobundle#log_filename	neobundle.txt	/*g:neobundle#log_filename*
 g:neobundle#rm_command	neobundle.txt	/*g:neobundle#rm_command*
 g:neobundle#types#git#default_protocol	neobundle.txt	/*g:neobundle#types#git#default_protocol*
+g:neobundle#types#git#enable_submodule	neobundle.txt	/*g:neobundle#types#git#enable_submodule*
 g:neobundle#types#hg#default_protocol	neobundle.txt	/*g:neobundle#types#hg#default_protocol*
 g:neobundle#types#raw#calc_hash_command	neobundle.txt	/*g:neobundle#types#raw#calc_hash_command*
 g:neobundle_default_git_protocol	neobundle.txt	/*g:neobundle_default_git_protocol*
@@ -570,6 +575,7 @@ g:stdinencoding	vimproc.txt	/*g:stdinencoding*
 g:stdoutencoding	vimproc.txt	/*g:stdoutencoding*
 g:tagbar_autoclose	tagbar.txt	/*g:tagbar_autoclose*
 g:tagbar_autofocus	tagbar.txt	/*g:tagbar_autofocus*
+g:tagbar_autopreview	tagbar.txt	/*g:tagbar_autopreview*
 g:tagbar_autoshowtag	tagbar.txt	/*g:tagbar_autoshowtag*
 g:tagbar_compact	tagbar.txt	/*g:tagbar_compact*
 g:tagbar_ctags_bin	tagbar.txt	/*g:tagbar_ctags_bin*
@@ -578,6 +584,7 @@ g:tagbar_foldlevel	tagbar.txt	/*g:tagbar_foldlevel*
 g:tagbar_iconchars	tagbar.txt	/*g:tagbar_iconchars*
 g:tagbar_indent	tagbar.txt	/*g:tagbar_indent*
 g:tagbar_left	tagbar.txt	/*g:tagbar_left*
+g:tagbar_previewwin_pos	tagbar.txt	/*g:tagbar_previewwin_pos*
 g:tagbar_show_linenumbers	tagbar.txt	/*g:tagbar_show_linenumbers*
 g:tagbar_show_visibility	tagbar.txt	/*g:tagbar_show_visibility*
 g:tagbar_singleclick	tagbar.txt	/*g:tagbar_singleclick*
@@ -586,11 +593,12 @@ g:tagbar_status_func	tagbar.txt	/*g:tagbar_status_func*
 g:tagbar_systemenc	tagbar.txt	/*g:tagbar_systemenc*
 g:tagbar_updateonsave_maxlines	tagbar.txt	/*g:tagbar_updateonsave_maxlines*
 g:tagbar_width	tagbar.txt	/*g:tagbar_width*
+g:tcomment#blank_lines	tcomment.txt	/*g:tcomment#blank_lines*
 g:tcomment#ignore_char_type	tcomment.txt	/*g:tcomment#ignore_char_type*
 g:tcomment#replacements_c	tcomment.txt	/*g:tcomment#replacements_c*
 g:tcomment#replacements_xml	tcomment.txt	/*g:tcomment#replacements_xml*
+g:tcomment#rstrip_on_uncomment	tcomment.txt	/*g:tcomment#rstrip_on_uncomment*
 g:tcomment#syntax_substitute	tcomment.txt	/*g:tcomment#syntax_substitute*
-g:tcommentBlankLines	tcomment.txt	/*g:tcommentBlankLines*
 g:tcommentBlockC2	tcomment.txt	/*g:tcommentBlockC2*
 g:tcommentBlockXML	tcomment.txt	/*g:tcommentBlockXML*
 g:tcommentGuessFileType	tcomment.txt	/*g:tcommentGuessFileType*
@@ -618,6 +626,7 @@ g:tcommentTextObjectInlineComment	tcomment.txt	/*g:tcommentTextObjectInlineComme
 g:tcomment_types	tcomment.txt	/*g:tcomment_types*
 g:unite_source_neobundle_install_max_processes	neobundle.txt	/*g:unite_source_neobundle_install_max_processes*
 g:vim_program	latex-box.txt	/*g:vim_program*
+g:vimproc#disable	vimproc.txt	/*g:vimproc#disable*
 g:vimproc#dll_path	vimproc.txt	/*g:vimproc#dll_path*
 g:vimproc#password_pattern	vimproc.txt	/*g:vimproc#password_pattern*
 g:vimproc#popen2_commands	vimproc.txt	/*g:vimproc#popen2_commands*
@@ -628,6 +637,7 @@ g:ycm_add_preview_to_completeopt	youcompleteme.txt	/*g:ycm_add_preview_to_comple
 g:ycm_allow_changing_updatetime	youcompleteme.txt	/*g:ycm_allow_changing_updatetime*
 g:ycm_auto_start_csharp_server	youcompleteme.txt	/*g:ycm_auto_start_csharp_server*
 g:ycm_auto_stop_csharp_server	youcompleteme.txt	/*g:ycm_auto_stop_csharp_server*
+g:ycm_auto_trigger	youcompleteme.txt	/*g:ycm_auto_trigger*
 g:ycm_autoclose_preview_window_after_completion	youcompleteme.txt	/*g:ycm_autoclose_preview_window_after_completion*
 g:ycm_autoclose_preview_window_after_insertion	youcompleteme.txt	/*g:ycm_autoclose_preview_window_after_insertion*
 g:ycm_cache_omnifunc	youcompleteme.txt	/*g:ycm_cache_omnifunc*
@@ -651,13 +661,14 @@ g:ycm_key_list_select_completion	youcompleteme.txt	/*g:ycm_key_list_select_compl
 g:ycm_max_diagnostics_to_display	youcompleteme.txt	/*g:ycm_max_diagnostics_to_display*
 g:ycm_min_num_identifier_candidate_chars	youcompleteme.txt	/*g:ycm_min_num_identifier_candidate_chars*
 g:ycm_min_num_of_chars_for_completion	youcompleteme.txt	/*g:ycm_min_num_of_chars_for_completion*
+g:ycm_path_to_python_interpreter	youcompleteme.txt	/*g:ycm_path_to_python_interpreter*
 g:ycm_register_as_syntastic_checker	youcompleteme.txt	/*g:ycm_register_as_syntastic_checker*
 g:ycm_seed_identifiers_with_syntax	youcompleteme.txt	/*g:ycm_seed_identifiers_with_syntax*
 g:ycm_semantic_triggers	youcompleteme.txt	/*g:ycm_semantic_triggers*
-g:ycm_server_idle_suicide_seconds	youcompleteme.txt	/*g:ycm_server_idle_suicide_seconds*
 g:ycm_server_keep_logfiles	youcompleteme.txt	/*g:ycm_server_keep_logfiles*
 g:ycm_server_log_level	youcompleteme.txt	/*g:ycm_server_log_level*
 g:ycm_server_use_vim_stdout	youcompleteme.txt	/*g:ycm_server_use_vim_stdout*
+g:ycm_use_ultisnips_completer	youcompleteme.txt	/*g:ycm_use_ultisnips_completer*
 gundo.txt	gundo.txt	/*gundo.txt*
 gundo_auto_preview	gundo.txt	/*gundo_auto_preview*
 gundo_close_on_revert	gundo.txt	/*gundo_close_on_revert*
@@ -761,6 +772,9 @@ neobundle#is_sourced()	neobundle.txt	/*neobundle#is_sourced()*
 neobundle#local()	neobundle.txt	/*neobundle#local()*
 neobundle#rc()	neobundle.txt	/*neobundle#rc()*
 neobundle#source()	neobundle.txt	/*neobundle#source()*
+neobundle#tap()	neobundle.txt	/*neobundle#tap()*
+neobundle#tapped	neobundle.txt	/*neobundle#tapped*
+neobundle#untap()	neobundle.txt	/*neobundle#untap()*
 neobundle-commands	neobundle.txt	/*neobundle-commands*
 neobundle-contents	neobundle.txt	/*neobundle-contents*
 neobundle-examples	neobundle.txt	/*neobundle-examples*
@@ -815,6 +829,7 @@ preview.txt	preview.txt	/*preview.txt*
 remove_statusline_func	airline.txt	/*remove_statusline_func*
 scala	scala.txt	/*scala*
 scala-commands	scala.txt	/*scala-commands*
+scala.txt	scala.txt	/*scala.txt*
 slime	vim-slime.txt	/*slime*
 slime-author	vim-slime.txt	/*slime-author*
 slime-configuration	vim-slime.txt	/*slime-configuration*
@@ -855,6 +870,7 @@ syntastic-error-window	syntastic.txt	/*syntastic-error-window*
 syntastic-fish	syntastic.txt	/*syntastic-fish*
 syntastic-functionality	syntastic.txt	/*syntastic-functionality*
 syntastic-global-options	syntastic.txt	/*syntastic-global-options*
+syntastic-highlighting	syntastic.txt	/*syntastic-highlighting*
 syntastic-intro	syntastic.txt	/*syntastic-intro*
 syntastic-license	syntastic.txt	/*syntastic-license*
 syntastic-notes	syntastic.txt	/*syntastic-notes*
@@ -877,6 +893,7 @@ tagbar-extend	tagbar.txt	/*tagbar-extend*
 tagbar-features	tagbar.txt	/*tagbar-features*
 tagbar-highlight	tagbar.txt	/*tagbar-highlight*
 tagbar-history	tagbar.txt	/*tagbar-history*
+tagbar-ignore	tagbar.txt	/*tagbar-ignore*
 tagbar-installation	tagbar.txt	/*tagbar-installation*
 tagbar-intro	tagbar.txt	/*tagbar-intro*
 tagbar-issues	tagbar.txt	/*tagbar-issues*
@@ -928,6 +945,7 @@ vim-colors-solarized	solarized.txt	/*vim-colors-solarized*
 vim-multiple-cursors	multiple_cursors.txt	/*vim-multiple-cursors*
 vim-multiple-cursors.txt	multiple_cursors.txt	/*vim-multiple-cursors.txt*
 vim-sub-autoclose	youcompleteme.txt	/*vim-sub-autoclose*
+vimproc	vimproc.txt	/*vimproc*
 vimproc#cmd#system()	vimproc.txt	/*vimproc#cmd#system()*
 vimproc#delete_trash()	vimproc.txt	/*vimproc#delete_trash()*
 vimproc#dll_version()	vimproc.txt	/*vimproc#dll_version()*
@@ -971,11 +989,11 @@ vimux.txt	vimux.txt	/*vimux.txt*
 without	solarized.txt	/*without*
 yS	surround.txt	/*yS*
 ySS	surround.txt	/*ySS*
-youcompleteme	youcompleteme.txt	/*youcompleteme*
 youcompleteme-c-family-semantic-completion-engine-usage	youcompleteme.txt	/*youcompleteme-c-family-semantic-completion-engine-usage*
 youcompleteme-c-semantic-completion	youcompleteme.txt	/*youcompleteme-c-semantic-completion*
 youcompleteme-client-server-architecture	youcompleteme.txt	/*youcompleteme-client-server-architecture*
 youcompleteme-commands	youcompleteme.txt	/*youcompleteme-commands*
+youcompleteme-completion-doesnt-work-with-c-standard-library-headers	youcompleteme.txt	/*youcompleteme-completion-doesnt-work-with-c-standard-library-headers*
 youcompleteme-completion-string-ranking	youcompleteme.txt	/*youcompleteme-completion-string-ranking*
 youcompleteme-contact	youcompleteme.txt	/*youcompleteme-contact*
 youcompleteme-faq	youcompleteme.txt	/*youcompleteme-faq*
@@ -983,6 +1001,7 @@ youcompleteme-full-installation-guide	youcompleteme.txt	/*youcompleteme-full-ins
 youcompleteme-general-semantic-completion-engine-usage	youcompleteme.txt	/*youcompleteme-general-semantic-completion-engine-usage*
 youcompleteme-general-usage	youcompleteme.txt	/*youcompleteme-general-usage*
 youcompleteme-i-cannot-get-syntastic-integration-to-work	youcompleteme.txt	/*youcompleteme-i-cannot-get-syntastic-integration-to-work*
+youcompleteme-i-get-an-internal-compiler-error-when-installing	youcompleteme.txt	/*youcompleteme-i-get-an-internal-compiler-error-when-installing*
 youcompleteme-i-get-annoying-messages-in-vims-status-area-when-i-type	youcompleteme.txt	/*youcompleteme-i-get-annoying-messages-in-vims-status-area-when-i-type*
 youcompleteme-i-get-weird-window-at-top-of-my-file-when-i-use-semantic-engine	youcompleteme.txt	/*youcompleteme-i-get-weird-window-at-top-of-my-file-when-i-use-semantic-engine*
 youcompleteme-i-have-homebrew-python-and-or-macvim-cant-compile-sigabrt-when-starting	youcompleteme.txt	/*youcompleteme-i-have-homebrew-python-and-or-macvim-cant-compile-sigabrt-when-starting*
@@ -992,6 +1011,7 @@ youcompleteme-is-there-sort-of-ycm-mailing-list-i-have-questions	youcompleteme.t
 youcompleteme-it-appears-that-ycm-is-not-working	youcompleteme.txt	/*youcompleteme-it-appears-that-ycm-is-not-working*
 youcompleteme-license	youcompleteme.txt	/*youcompleteme-license*
 youcompleteme-mac-os-x-super-quick-installation	youcompleteme.txt	/*youcompleteme-mac-os-x-super-quick-installation*
+youcompleteme-on-very-rare-occasions-vim-crashes-when-i-tab-through-completion-menu	youcompleteme.txt	/*youcompleteme-on-very-rare-occasions-vim-crashes-when-i-tab-through-completion-menu*
 youcompleteme-options	youcompleteme.txt	/*youcompleteme-options*
 youcompleteme-python-semantic-completion	youcompleteme.txt	/*youcompleteme-python-semantic-completion*
 youcompleteme-references	youcompleteme.txt	/*youcompleteme-references*
@@ -1010,5 +1030,6 @@ youcompleteme-ycm-auto-inserts-completion-strings-i-dont-want	youcompleteme.txt	
 youcompleteme-ycm-conflicts-with-ultisnips-tab-key-usage	youcompleteme.txt	/*youcompleteme-ycm-conflicts-with-ultisnips-tab-key-usage*
 youcompleteme-ycm-does-not-read-identifiers-from-my-tags-files	youcompleteme.txt	/*youcompleteme-ycm-does-not-read-identifiers-from-my-tags-files*
 youcompleteme-ycmcompleter-subcommands	youcompleteme.txt	/*youcompleteme-ycmcompleter-subcommands*
+youcompleteme.txt	youcompleteme.txt	/*youcompleteme.txt*
 ys	surround.txt	/*ys*
 yss	surround.txt	/*yss*
