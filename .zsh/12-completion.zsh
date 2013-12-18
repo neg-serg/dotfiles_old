@@ -11,7 +11,7 @@ mycompletion() {
     zstyle ':completion:*:correct:*'       insert-unambiguous true
     zstyle ':completion:*:corrections'     format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
     zstyle ':completion:*:correct:*'       original true
-    zstyle ':completion:*:-tilde-:*' group-order 'named-directories'
+    zstyle ':completion:*:-tilde-:*'       group-order 'named-directories'
     # insert all expansions for expand completer
     zstyle ':completion:*:expand:*'        tag-order all-expansions
     zstyle ':completion:*:history-words'   list false
@@ -21,39 +21,38 @@ mycompletion() {
     zstyle ':completion:*:history-words'   remove-all-dups yes
     zstyle ':completion:*:history-words'   stop yes
     # match uppercase from lowercase
-    zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+    zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
     # separate matches into groups
-    zstyle ':completion:*:matches'           group 'yes'
-    zstyle ':completion:*'                   group-name ''
-    zstyle ':completion:*'                   menu select=5
-    zstyle ':completion:*:messages'          format '%d'
-    zstyle ':completion:*:options'           auto-description '%d'
-    zstyle ':completion:*:options'           description 'yes'
+    zstyle ':completion:*:matches'         group 'yes'
+    zstyle ':completion:*'                 group-name ''
+    zstyle ':completion:*'                 menu select=5
+    zstyle ':completion:*:messages'        format '%d'
+    zstyle ':completion:*:options'         auto-description '%d'
+    zstyle ':completion:*:options'         description 'yes'
 
-    zstyle ':completion:*:*:-subscript-:*'    tag-order indexes parameters
-    zstyle ':completion:*'                    verbose true
-    zstyle ':completion:*:-command-:*:'       verbose false
-    zstyle ':completion:*:warnings'           format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
-    zstyle ':completion:*:*:zcompile:*'       ignored-patterns '(*~|*.zwc)'
-    zstyle ':completion:correct:'             prompt 'correct to: %e'
+    zstyle ':completion:*:*:-subscript-:*'  tag-order indexes parameters
+    zstyle ':completion:*'                  verbose true
+    zstyle ':completion:*:-command-:*:'     verbose false
+    zstyle ':completion:*:warnings'         format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
+    zstyle ':completion:*:*:zcompile:*'     ignored-patterns '(*~|*.zwc)'
+    zstyle ':completion:correct:'           prompt 'correct to: %e'
     zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
-    zstyle ':completion:*:manuals'            separate-sections true
-    zstyle ':completion:*:manuals.*'          insert-sections   true
-    zstyle ':completion:*:man:*'              menu yes select
-    zstyle ':completion:*'                    special-dirs ..
-    zstyle ':completion:*'                    use-perl 'yes'
+    zstyle ':completion:*:manuals'          separate-sections true
+    zstyle ':completion:*:manuals.*'        insert-sections   true
+    zstyle ':completion:*:man:*'            menu yes select
+    zstyle ':completion:*'                  special-dirs ..
+    zstyle ':completion:*'                  use-perl 'yes'
     # mplayer                                                                    {{{
     zstyle ':completion:*:(mv|cp|file|m|mplayer|mpv):*'  ignored-patterns '(#i)*.(url|mht)'
-    zstyle ':completion:*:*:mplayer:*'           tag-order files
-    zstyle ':completion:*:*:mplayer:*'           file-sort name
-    zstyle ':completion:*:*:mplayer:*'           menu select auto
+    zstyle ':completion:*:*:mplayer:*'      tag-order files
+    zstyle ':completion:*:*:mplayer:*'      file-sort name
+    zstyle ':completion:*:*:mplayer:*'      menu select auto
 
-    zstyle ':completion:*:*:mpv:*'               tag-order files
-    zstyle ':completion:*:*:mpv:*'               file-sort name
-    zstyle ':completion:*:*:mpv:*'               menu select auto
+    zstyle ':completion:*:*:mpv:*'          tag-order files
+    zstyle ':completion:*:*:mpv:*'          file-sort name
+    zstyle ':completion:*:*:mpv:*'          menu select auto
     
-    zstyle ':completion:*:*:(*mplayer*|m|ms):*' file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
-    zstyle ':completion:*:*:(*mpv*):*' file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mpv\ play *(-/):directories:directories'
+    zstyle ':completion:*:*:(*mplayer*|*mpv*):*' file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
     zstyle ':completion:*:default' list-colors ${${(s.:.)LS_COLORS}%ec=*}
     #----------------CLEAR OLD STUFF!!!!!!1
     zstyle ':completion:*:descriptions' format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%}%{${reset_color}%}"
@@ -70,28 +69,23 @@ mycompletion() {
         "- %{${fg_no_bold[red]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
     zstyle ':completion:*' group-name ''
     ### manual pages are sorted into sections
-    zstyle ':completion:*:manuals'       separate-sections true
-    zstyle ':completion:*:manuals.(^1*)' insert-sections   true
-    zstyle ':completion:*:wine:*' file-patterns '*.(exe|EXE):exe'
+    zstyle ':completion:*:manuals'        separate-sections true
+    zstyle ':completion:*:manuals.(^1*)'  insert-sections   true
+    zstyle ':completion:*:wine:*'         file-patterns '*.(exe|EXE):exe'
     ### highlight parameters with uncommon names
-        zstyle ':completion:*:parameters' \
-            list-colors "=[^a-zA-Z]*=$color[red]"
+        zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"
     ### highlight aliases
-        zstyle ':completion:*:aliases' \
-            list-colors "=*=$color[green]"
+        zstyle ':completion:*:aliases'    list-colors "=*=$color[green]"
     ## show that _* functions are not for normal use
     ## (not needed, since I don't complete _* functions at all)
-    zstyle ':completion:*:functions' \
-        list-colors "=_*=$color[red]"
+    zstyle ':completion:*:functions'      list-colors "=_*=$color[red]"
     ### highlight the original input.
-        zstyle ':completion:*:original' \
-            list-colors "=*=$color[red];$color[bold]"
+    zstyle ':completion:*:original'       list-colors "=*=$color[red];$color[bold]"
     ### highlight words like 'esac' or 'end'
-        zstyle ':completion:*:reserved-words' \
-            list-colors "=*=$color[red]"
+    zstyle ':completion:*:reserved-words' list-colors "=*=$color[red]"
     ### colorize processlist for 'kill'
-        zstyle ':completion:*:*:kill:*:processes' \
-            list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
+    zstyle ':completion:*:*:kill:*:processes' \
+        list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
     zstyle ':completion:*:*:perl:*'        file-patterns '*'
     zstyle ':completion:*:*:zathura:*'     tag-order files
     zstyle ':completion:*:*:zathura:*'     file-patterns '*(/)|*.{pdf,djvu}'

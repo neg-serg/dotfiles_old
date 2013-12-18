@@ -26,21 +26,21 @@ function fold {
             print -- "ERROR fold use at least 2 arguments" >&2
             return 1
         }
-        if (($#<3)) {
-                print -- $2
-                return 0
-            } else {
-                local acc
-                local right
-                local func_name=$1
-                local init_value=$2
-                local first_value=$3
-                shift 3
-                right=$( fold $func_name $init_value $@ )
-                acc=$( eval "$func_name $first_value $right" )
-                print -- $acc
-                return 0
-            }
+    if (($#<3)) {
+            print -- $2
+            return 0
+        } else {
+            local acc
+            local right
+            local func_name=$1
+            local init_value=$2
+            local first_value=$3
+            shift 3
+            right=$( fold $func_name $init_value $@ )
+            acc=$( eval "$func_name $first_value $right" )
+            print -- $acc
+            return 0
+        }
 }
 
 # usage:

@@ -30,5 +30,10 @@ if [ "$TERM" = "linux" ]; then
     clear
 fi
 
-
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && [ -z `pgrep xinit` ] && exec startx
+# startx if on tty1 and tmux on tty2
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && [ -z `pgrep xinit` ]; then
+    exec startx -- vt1 &>/dev/null
+    logout
+elif [[ $(tty) = /dev/tty2 ]]; then
+    tmux -f $HOME/.tmux.conf new -s ~/1st_level/main.socket
+fi
