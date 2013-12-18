@@ -1032,3 +1032,14 @@ stty speed 4000000 &> /dev/null
 #     done
 # }
 # 
+#
+# Aliases / functions leveraging the cb() function
+# ------------------------------------------------
+# Copy contents of a file
+# function cbf() { cat "$1" | cb; }  
+# Copy SSH public key
+# alias cbssh="cb ~/.ssh/id_rsa.pub"  
+# Copy current working directory
+# alias cbwd="pwd | cb"  
+# Copy most recent command in bash history
+# alias cbhs="cat $HISTFILE | tail -n 1 | cb"  

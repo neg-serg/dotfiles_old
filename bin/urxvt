@@ -15,4 +15,4 @@ CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-
 
 if [ -z $(pidof tmux) ]; then urxvtc ${CMD} -e tmux; else urxvtc ${CMD} -e tmux a; fi
 #if [ -z $(pidof tmux) ]; then ${CMD} -e tmux; else ${CMD} -e tmux a; fi
-# urxvtc ${CMD} -e tmux a ;
+ 

@@ -31,7 +31,7 @@ dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
 dopath("mod_tiling")        dopath("min_tabs")        dopath("mod_statusbar")
 dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
 dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
-dopath("cfg_tiling")
+dopath("cfg_tiling")        dopath("dbg")             dopath("sp_app")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}

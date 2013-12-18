@@ -11,7 +11,7 @@ Copyright (c) Etan Reisner 2007
 -- Usage: This will create a scratchpad named example_sp
 --          kpress(MOD4.."space", "named_scratchpad(_, 'example_sp')")
 
-function named_scratchpad(reg, name)
+function named_scratchpad(reg, name, mode)
     local named_sp
     local default_w, default_h = 640, 480
     local scr = reg:screen_of()
@@ -39,7 +39,34 @@ function named_scratchpad(reg, name)
                                    geom=geom_loc,
                                   })
                               end
-    mod_sp.set_shown(named_sp, "toggle")
+    if not mode then
+        mode = "toggle"
+    end
+    mod_sp.set_shown(named_sp, mode)
+    named_sp:rqorder("front")
+    return named_sp
+end
+
+--[[
+function toggle_scratch_app(reg, cmdline, class)
+    if reg:current():name() == class then
+        named_scratchpad(reg, class)
+    else
+        named_scratchpad(reg, class, "set")
+        app.byclass(cmdline, class)
+        ioncore.lookup_region(class, "WFrame"):rqorder("front")
+    end
+end
+--]]
+
+function named_sp_raiseorhide(reg, name)
+    dbg.echo(reg:current():name())
+    if reg:current():name() == name then
+        named_scratchpad(reg, name, "unset")
+    else
+        local sp=named_scratchpad(reg, name, "set")
+        sp:rqorder("front")
+    end
 end
 
 -- vim: set expandtab sw=4:
