@@ -127,6 +127,8 @@ vnoremap ci[ f[ci[
 nnoremap <C-n>     :bnext<CR>
 nnoremap <C-p>     :bprev<CR>
 
+map p [p
+
 "call Cabbrev('/',   '/\v')
 "call Cabbrev('?',   '?\v')
 "call Cabbrev('s/',  's/\v')
@@ -146,8 +148,6 @@ nnoremap <C-p>     :bprev<CR>
 "call Cabbrev("'<,'>s!", "'<,'>s!\v")
 "vnoremap /        /\v
 
-nnoremap p ]p
-nnoremap <c-p> p
 " save and build
 nmap <LocalLeader>wm  :w<cr>:make<cr>
 " Bindings for ctk

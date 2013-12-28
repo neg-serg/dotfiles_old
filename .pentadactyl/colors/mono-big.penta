@@ -31,3 +31,4 @@ hi TabNumber color: #808080; font-family: PragmataPro;font-size: 12pt;
 hi TabText color: black; font-family: PragmataPro;font-size: 12pt;
 hi FontFixed  font-family: PragmataPro; font-size: 12pt;
 hi HintElem background-color: #cccccc !important; color: black !important; 
+hi StatusWarningMsg color: 0094F4!important; background: transparent !important; 

@@ -1,4 +1,3 @@
-
 "  __     ___
 "  \ \   / (_)_ __ ___
 "   \ \ / /| | '_ ` _ \  
@@ -50,7 +49,6 @@ NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like e
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
-" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
 NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
 "------------------------------------------------------------------------------------------------------------
 "--[ java/scala ]--------------------------------------------------------------------------------------------
@@ -67,11 +65,14 @@ NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'      "use latex-box for the auto-compile
+NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'      "use latex-box for the auto-compile
+" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
+" NeoBundle 'Valodim/vim-zsh-completion'      " zsh notify
 " NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 " NeoBundle 'jaredly/vim-debug.git'             "debug python in vim install by hand
 " NeoBundle 'klen/python-mode.git'              "vim all-in-one python mode
@@ -96,4 +97,3 @@ source ~/.vim/21-langmap.vim
 " ~/.vim/.trash/99-trash-bundle.vim
 " ~/.vim/.trash/99-trash-modules-lang.vim
 " ~/.vim/.trash/99-trash-modules-colors.vim
-

@@ -89,6 +89,16 @@ mycompletion() {
     zstyle ':completion:*:*:perl:*'        file-patterns '*'
     zstyle ':completion:*:*:zathura:*'     tag-order files
     zstyle ':completion:*:*:zathura:*'     file-patterns '*(/)|*.{pdf,djvu}'
+    # make them a little less short, after all (mostly adds -l option to the whatis calll)
+    zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*; _call_whatis -l -s 6 -r .\* 2>/dev/null'
+    zstyle :complete-recent-args use-histbang yes
+    #-------new ----------------------
+    # command completion: highlight matching part of command, and 
+    zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;45'\'' )'
+
+    # This is needed to workaround a bug in _setup:12, causing almost 2 seconds delay for bigger LS_COLORS
+    # UPDATE: not sure if this is required anymore, with the -command- style above.. keeping it here just to be sure
+    zstyle ':completion:*:*:-command-:*' list-colors ''
     # run rehash on completion so new installed program are found automatically:
     _force_rehash() {
         (( CURRENT == 1 )) && rehash
@@ -129,6 +139,37 @@ mycompletion() {
     # see upgrade function in this file
     # compdef _hosts upgrade
 }
+
+() {
+
+    local -a coreutils
+    coreutils=(
+        # /bin
+        cat chgrp chmod chown cp date dd df dir ln ls mkdir mknod mv readlink
+        rm rmdir vdir sleep stty sync touch uname mktemp
+        # /usr/bin
+        install hostid nice who users pinky stdbuf base64 basename chcon cksum
+        comm csplit cut dircolors dirname du env expand factor fmt fold groups
+        head id join link logname md5sum mkfifo nl nproc nohup od paste pathchk
+        pr printenv ptx runcon seq sha1sum sha224sum sha256sum sha384sum
+        sha512sum shred shuf sort split stat sum tac tail tee timeout tr
+        truncate tsort tty unexpand uniq unlink wc whoami yes arch touch
+    )
+
+    for i in $coreutils; do
+        # all which don't already have one
+        # at time of this writing, those are:
+        # /bin
+        #   chgrp chmod chown cp date dd df ln ls mkdir rm rmdir stty sync
+        #   touch uname
+        # /usr/bin
+        #   nice comm cut du env groups id join logname md5sum nohup printenv
+        #   sort stat unexpand uniq whoami
+        (( $+_comps[$i] )) || compdef _gnu_generic $i 
+    done
+
+}
+
 mycompletion
 
 

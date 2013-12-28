@@ -12,6 +12,13 @@
 . ~/.zsh/12-vi_additions.zsh
 . ~/.zsh/13-bindkeys.zsh
 . ~/.zsh/14-dirjumps.zsh
+. ~/.zsh/20-rehash-hook.zsh
+. ~/.zsh/50-title.zsh
+. ~/.zsh/50-vicursor.zsh
+. ~/.zsh/60-localhist.zsh
+. ~/.zsh/72-bracket-paste.zsh
+. ~/.zsh/72-return.zsh
+. ~/.zsh/96-vcs_info-cdpath.zsh
 # ------------------------------------------
 # . ~/.zsh/99-trash.zsh
 # ------------------------------------------

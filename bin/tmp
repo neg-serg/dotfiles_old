@@ -1,6 +1,0 @@
-#!/bin/bash
-mp3s = ( *.mp3 )
-for mp3 in "${mp3s[@]}"
-do
-    echo "Mp3 file: $mp3"
-done

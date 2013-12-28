@@ -25,13 +25,13 @@ ioncore.set{
 
 --------------------------------[[ DOPATH ]]-----------------------------------------
 
-dopath("mod_xrandr")        dopath("mod_notionflux")  dopath("cfg_xrandr")
 dopath("cfg_layouts.lua")   dopath("app")             dopath("mod_sp")  
 dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
 dopath("mod_tiling")        dopath("min_tabs")        dopath("mod_statusbar")
 dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
 dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
 dopath("cfg_tiling")        dopath("dbg")             dopath("sp_app")
+dopath("mod_xrandr")        dopath("mod_notionflux")  dopath("cfg_xrandr")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
@@ -83,9 +83,9 @@ defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=tru
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -------------------------------------[[ VM ]]--------------------------------------
-defwinprop{class="vmware",instance="Vmware" ,jumpto=true, float=true,target="vm"}
-defwinprop{class="VirtualBox", jumpto=false,target="vm",lazy_resize=true}
-defwinprop{class="Vmware", jumpto=false,target="vm",lazy_resize=true}
+defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
+defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
+defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
 -------------------------------------[[   GIMP  ]]-----------------------------
 --defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",target="g-win"}
 --defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",target="g-win"}

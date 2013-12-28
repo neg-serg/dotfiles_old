@@ -35,7 +35,6 @@ function zrcautoload() {
 }
 
 # DIRSTACKSIZE=8
-# setopt autopushd pushdminus pushdsilent pushdtohome
 # 
 # # Restore directory stack
 # source ~/.dirstack
@@ -70,8 +69,11 @@ setopt histignorespace \
        completeinword \
        nohup \
        auto_pushd \
-       nobeep \
+       pushdminus \
+       pushdsilent \
+       pushdtohome \
        pushd_ignore_dups \
+       nobeep \
        noglobdots \
        noshwordsplit 
 
@@ -79,7 +81,10 @@ setopt C_BASES  # print $(( [#16] 0xff ))
 setopt prompt_subst
 # make sure to use right prompt only when not running a command
 setopt transient_rprompt
- 
+
+# ~ substitution and tab completion after a = (for --x=filename args)
+setopt magicequalsubst
+
 # watch for everyone but me and root
 watch=(notme root)
 
@@ -111,7 +116,6 @@ done
 zmodload -a  zsh/stat    zstat
 zmodload -a  zsh/zpty    zpty
 zmodload -ap zsh/mapfile mapfile
-
 
 # Use hard limits, except for a smaller stack and no core dumps
 unlimit
