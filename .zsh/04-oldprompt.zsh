@@ -2,6 +2,7 @@
 # PROMPT='%{$(pwd|grep --color=always /)%${#PWD}G%} %(!.%F{red}.%F{cyan})%n%f@%F{yellow}%m%f%(!.%F{red}.)%#%f '
 # PROMPT='%{$(pwd|([[ $EUID == 0 ]] && GREP_COLORS="mt=01;36" grep --color=always /|| GREP_COLORS="mt=01;36" grep --color=always /))%${#PWD}G%} >> '
 # PROMPT='[%{$(pwd|grep --color=always /)%${#PWD}G%}] >> '
+# export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}» $NO_COLOUR"
 export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}>> $NO_COLOUR"
 # . ~/.zsh/fizsh-prompt
 # PROMPT='%40<..<`fizsh-prompt`'

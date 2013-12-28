@@ -119,9 +119,6 @@ bindkey -M emacs "^X^B" vi-match-bracket
 bindkey -M menuselect '^o' accept-and-infer-next-history
 # fi
 
-#k# Insert last typed word
-bindkey "\em" insert-last-typed-word
-
 bindkey -M menuselect 'h'     vi-backward-char                
 bindkey -M menuselect 'j'     vi-down-line-or-history         
 bindkey -M menuselect 'k'     vi-up-line-or-history           

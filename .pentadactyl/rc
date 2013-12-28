@@ -4,7 +4,7 @@ source ~/.pentadactyl/tomorrownight.rc
 colorscheme mono-big
 "colorscheme solarized-dark
 
-set downloadsort='-time'
+" set downloadsort='-time'
 set findcase='smart'
 set noincfind
 set maxitems=9

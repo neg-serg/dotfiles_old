@@ -225,13 +225,13 @@ function mod_xrandr.rearrangeworkspaces()
             move_if_needed(workspace, screen_id)
         end
     end
-    mod_xinerama.populate_empty_screens()
+    -- mod_xinerama.populate_empty_screens()
 end
 
 -- refresh xinerama and rearrange workspaces on screen layout updates
 function mod_xrandr.screenlayoutupdated()
     notioncore.profiling_start('notion_xrandrrefresh.prof')
-    mod_xinerama.refresh()
+    -- mod_xinerama.refresh()
     mod_xrandr.rearrangeworkspaces()
     notioncore.profiling_stop()
 end

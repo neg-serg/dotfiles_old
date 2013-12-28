@@ -1043,3 +1043,8 @@ stty speed 4000000 &> /dev/null
 # alias cbwd="pwd | cb"  
 # Copy most recent command in bash history
 # alias cbhs="cat $HISTFILE | tail -n 1 | cb"  
+# ---- helper --------------------------------
+# :h () {
+#     vim +":h '$1'" +":resize"
+# }
+# #

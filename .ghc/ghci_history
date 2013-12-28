@@ -1,4 +1,6 @@
 :q
+:q
+:q
 :e
 :q
 :q
@@ -96,5 +98,3 @@ print sum 4 4
 print sum 4
 sum
 sum 4 5
-sum
-perfects

@@ -224,4 +224,5 @@ ZSH_HIGHLIGHT_PATTERNS+=("[&;]"                 "fg=blue")
 ZSH_HIGHLIGHT_PATTERNS+=("[<>]([<>]|)([|!]|)"   "fg=blue")
 ZSH_HIGHLIGHT_PATTERNS+=("&[|!]"                "fg=blue")
 ZSH_HIGHLIGHT_PATTERNS+=('\|'                    fg=blue)
+ZSH_HIGHLIGHT_MAXLENGTH=300
 # ZSH_HIGHLIGHT_PATTERNS+=('/'                     fg=239)
