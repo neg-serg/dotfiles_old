@@ -30,10 +30,14 @@ if [ "$TERM" = "linux" ]; then
     clear
 fi
 
+if [[ -o LOGIN ]]; then
+    (( $#commands[tmux] )) && tmux list-sessions 2>/dev/null
+fi
+
 # startx if on tty1 and tmux on tty2
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && [ -z `pgrep xinit` ]; then
     exec startx -- vt1 &>/dev/null
     logout
-elif [[ $(tty) = /dev/tty2 ]]; then
+elif [[ $(tty) = /dev/tty4 ]]; then
     tmux -f $HOME/.tmux.conf new -s ~/1st_level/main.socket
 fi

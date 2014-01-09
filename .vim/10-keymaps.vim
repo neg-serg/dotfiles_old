@@ -124,8 +124,8 @@ vnoremap ci[ f[ci[
 "nnoremap d= f=d$a=
 "nnoremap d> f>d$a>
 
-nnoremap <C-n>     :bnext<CR>
-nnoremap <C-p>     :bprev<CR>
+" nnoremap <C-n>     :bnext<CR>
+" nnoremap <C-p>     :bprev<CR>
 
 map p [p
 

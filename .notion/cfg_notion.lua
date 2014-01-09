@@ -30,8 +30,9 @@ dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
 dopath("mod_tiling")        dopath("min_tabs")        dopath("mod_statusbar")
 dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
 dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
-dopath("cfg_tiling")        dopath("dbg")             dopath("sp_app")
+dopath("cfg_tiling")        dopath("dbg")             
 dopath("mod_xrandr")        dopath("mod_notionflux")  dopath("cfg_xrandr")
+-- dopath("sp_app")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
@@ -50,6 +51,11 @@ defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="we
 defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
+defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
+    max_size = {w=800,h=600},
+    min_size = {w=512,h=368},
+    float=true
+}
 defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{class="Iceweasel",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
 defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
@@ -71,11 +77,11 @@ defwinprop{class="libreoffice*", instance="*", target="doc",lazy_resize=true}
 defwinprop{class="Cr3", instance="cr3",target="doc",lazy_resize=true}
 -------------------------------------[[ MEDIA ]]---------------------------------------
 defwinprop{class="gmpc",    target="media",  lazy_resize=true}
-defwinprop{class="MPlayer",  jumpto=true, transient_mode="on", target="media"}
-defwinprop{class="mplayer2", jumpto=true, transient_mode="on", target="media"}
-defwinprop{class="mpv",      jumpto=true, transient_mode="on", target="media"}
-defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="on", float=true,lazy_resize=true}
---defwinprop{class="Sxiv",    instance="sxiv", jumpto="on", transient_mode="on", target="media",lazy_resize=true}
+defwinprop{class="MPlayer",  jumpto=true, transient_mode="off", target="media"}
+defwinprop{class="mplayer2", jumpto=true, transient_mode="off", target="media"}
+defwinprop{class="mpv",      jumpto=true, transient_mode="off", target="media"}
+defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
+--defwinprop{class="Sxiv",    instance="sxiv", jumpto="off", transient_mode="off", target="media",lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off" 
 --,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
@@ -83,10 +89,11 @@ defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=tru
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -------------------------------------[[ VM ]]--------------------------------------
-defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
-defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
-defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
+-- defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
+-- defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
+-- defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
 -------------------------------------[[   GIMP  ]]-----------------------------
+defwinprop{class = "Gimp",acrobatic = true}
 --defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",target="g-win"}
 --defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",target="g-win"}
 --defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",target="g-win"}
@@ -129,11 +136,12 @@ defwinprop{class="*",instance="*", transparent=true,lazy_resize=true}
 -------------------------------------------------------------------------------------
 --[  KEY BINDINGS   ]------------------------------
 ---------------------
+-- local vmtable={class="vmware",instance="Vmware"}
+
 defbindings("WMPlex.toplevel", {
     --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),	
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
-    kpress("Mod4+b",           "named_groupws(_, 'vm1')"),
     kpress("Mod1+space",       "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
     kpress("Mod1+grave",       "mod_query.query_exec(_)"),
     kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
@@ -141,7 +149,9 @@ defbindings("WMPlex.toplevel", {
     --kpress("Mod1+G", "mod_query.query_fuzzy_gotoclient(_)"),
     kpress("Mod1+G",           "mod_menu.menu(_, _sub, 'windowlist')"),
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
-    kpress("Mod4+3",           "named_scratchpad(_, 'ranger')"),
+    -- kpress("Mod4+3",           "named_scratchpad(_, 'ranger')"),
+    -- kpress("Mod4+4",           "sp_app(_, 'vmware', vmtable)"),
+    -- kpress("Mod4+4",           "sp_app.toggle(_,'urxvt -tr -name testme',{name=\"ranger\",class=\"URxvt\",instance=\"testme\"})"),
 
     kpress("Mod4+Control+G",   "mod_query.query_workspace(_)"),
     --kpress("Mod1+Control+G", "mod_query.query_gotoclient(_)"),

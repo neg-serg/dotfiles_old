@@ -92,7 +92,7 @@ amixer -q set Master 0% mute
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
-# [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
+[ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
 

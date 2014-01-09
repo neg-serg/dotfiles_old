@@ -51,12 +51,18 @@ stty ixoff -ixon
 [[ -f ~/.dircolors ]] && eval $(dircolors ~/.dircolors)
 
 # No core dumps for now
-# ulimit -c 0
+ulimit -c 0
 
 setopt append_history \
        share_history \
        extended_history \
        histignorealldups 
+
+setopt hist_expire_dups_first
+setopt hist_ignore_dups # ignore duplication command history list
+setopt hist_verify
+setopt inc_append_history
+
 # remove command lines from the history list when the first character on the
 # line is a space
 setopt histignorespace \
