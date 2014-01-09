@@ -184,3 +184,16 @@ _simple_extract(){
         '*:Archive Or Uri:__archive_or_uri'
 }
 compdef _simple_extract simple-extract
+
+autoload -U select-word-style backward-kill-word-match backward-word-match forward-word-match
+select-word-style shell
+
+zle -N backward-kill-word-match
+zle -N backward-word-match
+zle -N forward-word-match
+
+# for backward-kill, all but / are word chars (ie, delete word up to last directory)
+zstyle ':zle:backward-kill-word*' word-style standard
+zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
+
+

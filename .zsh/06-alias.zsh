@@ -160,3 +160,17 @@ alias f='fasd -f'
 alias ym='~/bin/scripts/yandex.mount > /dev/null'
 alias ftpfs='curlftpfs -o codepage=cp1251 ftp://192.168.1.1 /media/ftp'
 alias td='[ -z $(pidof transmission-daemon) ] && transmission-daemon'
+
+alias t='tmux neww'
+alias sdmesg='while true; do sudo dmesg -c; sleep 1; done'
+
+alias -- -='cd -'
+alias awk="$(whence gawk || whence awk)"
+alias history='history 0'
+alias l.='ls -d .*'
+alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
+
+alias kqed='mplayer -cache-min 4 \
+            http://kqed-ice.streamguys.org:80/kqedradio-ew-e1'
+alias ipr='mplayer -cache-min 4 http://voxsc1.somafm.com:8070'
+alias npr='mplayer -cache-min 4 http://npr.ic.llnwd.net/stream/npr_live24'

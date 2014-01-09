@@ -67,9 +67,12 @@ NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
+NeoBundle 'vim-scripts/LanguageTool.git'      "Language tool for cheking style
+NeoBundle 'vim-scripts/fu.git'                "Cool colorscheme
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'vim-scripts/YankRing.vim.git'      "YankRing is for prevent paste garbage by d_ ***test****
 " NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'      "use latex-box for the auto-compile
 " NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
 " NeoBundle 'Valodim/vim-zsh-completion'      " zsh notify
@@ -81,6 +84,8 @@ NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlig
 " NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
 " NeoBundle 'vim-scripts/sessionman.vim'      "session manager
+" NeoBundle 'github.com/maxbrunsfeld/vim-yankstack.git'
+
 NeoBundleCheck
 syntax on
 filetype plugin indent on

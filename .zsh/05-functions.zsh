@@ -759,9 +759,12 @@ function expand-or-complete-and-highlight() {
 zle -N expand-or-complete-and-highlight expand-or-complete-and-highlight
 
 function pcp(){
-#pcp - copy files matching pattern $1 to $2
-find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2"
+    #pcp - copy files matching pattern $1 to $2
+    find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2"
 }
+
+# usage: *(o+rand) or *(+rand)
+function rand() { REPLY=$RANDOM; (( REPLY > 16383 )) }
 
 fasd_cache="$HOME/bin/.fasd-init-cache"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
@@ -770,3 +773,69 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 alias vv='f -e vim'
+
+function copy-to-clipboard() {
+    (( $+commands[xclip] )) || return
+    echo -E -n - "$BUFFER" | xclip -i
+}
+zle -N copy-to-clipboard
+
+# expand-or-complete, but sets buffer to "cd" if it's empty
+function expand-or-complete-or-cd() {
+    if [[ $#BUFFER == 0 ]]; then
+        BUFFER="cd "
+        CURSOR=3
+        # don't want that after all
+        # zle menu-expand-or-complete
+        zle menu-expand-or-complete
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N expand-or-complete-or-cd
+
+function accept-line-rdate() {
+    local old=$RPROMPT
+    RPROMPT=$(date +%T 2>/dev/null)
+    zle reset-prompt
+    RPROMPT=$old
+    zle accept-line
+};
+zle -N accept-line-rdate
+
+ff() {
+    find ./ -iname "$@*" |& ls_color 
+}
+
+function magnet_to_torrent() {
+    [[ "$1" =~ xt=urn:btih:([^\&/]+) ]] || return 1
+    hashh=${match[1]}
+    if [[ "$1" =~ dn=([^\&/]+) ]];then
+      filename=${match[1]}
+    else
+      filename=$hashh
+    fi
+    echo "d10:magnet-uri${#1}:${1}e" > "$filename.torrent"
+}
+
+colorize_via_pygmentize() {
+    if [ ! -x $(which pygmentize) ]; then
+        echo package \'pygmentize\' is not installed!
+        exit -1
+    fi
+
+    if [ $# -eq 0 ]; then
+        pygmentize -g $@
+    fi
+
+    for FNAME in $@
+    do
+        filename=$(basename "$FNAME")
+        lexer=`pygmentize -N \"$filename\"`
+        if [ "Z$lexer" != "Ztext" ]; then
+            pygmentize -l $lexer "$FNAME"
+        else
+            pygmentize -g "$FNAME"
+        fi
+    done
+}
