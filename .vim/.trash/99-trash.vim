@@ -1445,4 +1445,11 @@ set timeout timeoutlen=3000
 " and 50 ms ==> 240 words per minute.
 " Also, Tim Pope's vim-sensible plugin uses 50 ms as a reasonable value.
 set ttimeout ttimeoutlen=40
+" if has('gui_gtk') && has('gui_running')
+" let s:border = synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui')
+" exe 'silent !echo ''style "vimfix" { bg[NORMAL] = "' . escape(s:border, '#') . '" }'''.
+"             \' > ~/.gtkrc-2.0'
+" exe 'silent !echo ''widget "vim-main-window.*GtkForm" style "vimfix"'''.
+"             \' >> ~/.gtkrc-2.0'
+" endif
 

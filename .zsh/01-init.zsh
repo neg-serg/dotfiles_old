@@ -87,6 +87,7 @@ setopt C_BASES  # print $(( [#16] 0xff ))
 setopt prompt_subst
 # make sure to use right prompt only when not running a command
 setopt transient_rprompt
+setopt interactivecomments
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
@@ -128,4 +129,29 @@ unlimit
 limit stack 8192
 #isgrmlcd && limit core 0 # important for a live-cd-system
 limit -s
+
+# Keeps track of the last used working directory and automatically jumps
+# into it for new shells.
+export ZSH=~/.zsh
+
+# dirstack handling
+
+DIRSTACKSIZE=${DIRSTACKSIZE:-20}
+DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${HOME}}/.zdirs}
+
+if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
+    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+    # "cd -" won't work after login by just setting $OLDPWD, so
+    [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+fi
+
+chpwd() {
+    local -ax my_stack
+    my_stack=( ${PWD} ${dirstack} )
+    # if is42 ; then
+    builtin print -l ${(u)my_stack} >! ${DIRSTACKFILE}
+    # else
+    #     uprint my_stack >! ${DIRSTACKFILE}
+    # fi
+}
 
