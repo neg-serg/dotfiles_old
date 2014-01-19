@@ -58,15 +58,6 @@ xbindkeys
 xset m 1 1
 xset r rate 200 50
 
-# hsetroot -full /home/neg/pic/wl/new_desk-light.png
-# hsetroot -full /home/neg/pic/wl/96800.jpg
-# hsetroot -full /home/neg/pic/wl/blame.png
-# hsetroot -full /home/neg/pic/wl/88292728.jpg
-# hsetroot -full /home/neg/pic/wl/87577.jpg
-# hsetroot -center /home/neg/pic/wl/wallpaper-477302.jpg
-# hsetroot -fill /home/neg/pic/wl/679737392.jpg
-# hsetroot -center /home/neg/pic/wl/88292728.jpg
-# hsetroot -fill /home/neg/pic/wl/wallpaper-768108.jpg
 hsetroot -fill /home/neg/pic/wl/Bizzare_landscape_by_rakkin23.jpg
 
 # disable trackpad while typing
