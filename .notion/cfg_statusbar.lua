@@ -6,10 +6,11 @@ mod_statusbar.create{
     fullsize=true,
     systray=true,
     template="%date"..
-    "[ %>workspace_name ]"..
-    "[ %exec_xkb ]"..
+        "[ %>workspace_name ]"..
+        "[ %exec_xkb ]"..
     "[ net: %netmon_kbsin/%netmon_kbsout ]"..
     "%filler"..
+    -- "%linuxbatt"..
     "%>exec_kt"
     --" | %net_essid_wlan0 %net_strength_wlan0 :: %net_in_eth0/%net_out_eth0 :: %net_in_ppp0/%net_out_ppp0"
     --" | %systray_cpu %laptopstatus_temperature"..

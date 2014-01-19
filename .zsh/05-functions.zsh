@@ -249,15 +249,11 @@ zle -N Accept-Line
 zle -N Accept-Line-HandleContext
 
 declare -A abk
-setopt extendedglob
-setopt interactivecomments
 abk=(
-#   key   # value                  (#d additional doc string)
-#A# start
+   #key    # value                  (#d additional doc string)
     'BG'   '& exit'
     'C'    '| wc -l'
-    #'G'    '|& grep  -i '${grep_options:+"${grep_options[*]} "}
-    'G'    '|& ack '
+    'G'    '|& ag -i '
     'H'    '| head'
     'Hl'   ' --help |& less -r'    #d (Display help in pager)
     'LL'   '|& less -r'
@@ -267,13 +263,10 @@ abk=(
     'T'    '| tail'
     'W'    '|& ls_color'
     'V'    '|& v -'
-#A# end
     'co'   './configure && make'
-
     "findf" 'find . -maxdepth 1 -type f -printf "%P\n" | \
         perl -e "@_=<>; print sort grep {! /^[.]/ } @_; print sort grep { /^[.]/ } @_" | \
         ls_color'
-
     "jj"         "!$"
     "jk"         "!-2$"
     "jjk"        "!-3$"
@@ -614,10 +607,6 @@ function __tmux-sessions() {
     _describe -t sessions 'sessions' sessions "$@"
 }
 compdef __tmux-sessions tm 
-
-function _backward_kill_default_word() {
-    WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
-}
 
 imv() {
   local src dst

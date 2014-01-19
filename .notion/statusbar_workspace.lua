@@ -85,6 +85,9 @@ local function update_workspace()
             name_pager_plus=name_pager_plus.." ["..tmpws:name().."]"
             name_pager=name_pager.." ["..tmpws:name().."]"
 	    pager=pager.." ["..(i)..c.."] "
+        local file = io.open("/tmp/example.txt", "w")
+        file:write(tmpws:name())
+        file:close()
 	else
             name_pager_plus=name_pager_plus.." "..(i)..":"..tmpws:name()
             name_pager=name_pager.." "..tmpws:name()
@@ -102,10 +105,10 @@ local function update_workspace()
     update_frame()
 
     ioncore.defer( function()
-	mod_statusbar.inform('workspace_pager', pager)
+	-- mod_statusbar.inform('workspace_pager', pager)
 	mod_statusbar.inform('workspace_name', curws:name())
-        mod_statusbar.inform('workspace_name_pager', name_pager)
-        mod_statusbar.inform('workspace_num_name_pager', name_pager_plus)
+    -- mod_statusbar.inform('workspace_name_pager', name_pager)
+    -- mod_statusbar.inform('workspace_num_name_pager', name_pager_plus)
 	mod_statusbar.update()
     end)
 end

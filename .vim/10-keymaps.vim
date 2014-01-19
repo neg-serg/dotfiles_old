@@ -311,4 +311,5 @@ nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
 
 xnoremap <space>c :!octave --silent \| cut -c8-<cr>
 
-
+nnoremap ;p :call FancyPaste('"')<CR>
+nnoremap ;P :call FancyPaste('+')<CR>

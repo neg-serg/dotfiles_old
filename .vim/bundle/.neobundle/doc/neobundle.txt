@@ -157,24 +157,27 @@ neobundle#exists_not_installed_bundles()
 neobundle#get_not_installed_bundle_names()
 		Returns the names of bundles that are not installed.
 
-				*neobundle#is_installed()*
+						*neobundle#is_installed()*
 neobundle#is_installed({bundle-name})
 		Checks if bundle {bundle-name} is installed.
 
-				*neobundle#is_sourced()*
+						*neobundle#is_sourced()*
 neobundle#is_sourced({bundle-name})
 		Checks if bundle {bundle-name} is loaded.
 
-neobundle#local({directory}, [{options}])		 *neobundle#local()*
+						 *neobundle#local()*
+neobundle#local({directory}, [{options}, [{names}]])
 		Adds the subdirectories in {directory} to
 		runtimepath, like |pathogen| does. See |neobundle-options| for
 		keys to set in {options}.
+		If {names} is given, {names} directories are only loaded.
 		Note: |:NeoBundleLocal| is a shortcut for this function.
-		Note: Unlike |:NeoBundleLocal|, all plugins in {directory}
-		get loaded.
 >
 		" Load plugin from "~/.vim/bundle".
 		call neobundle#local("~/.vim/bundle", {})
+		" Load plugin1 and plugin2 from "~/.vim/bundle".
+		call neobundle#local("~/.vim/bundle",
+		\   {}, ['plugin1', 'plugin2'])
 <
 neobundle#get({bundle-name})			 *neobundle#get()*
 		Get the neobundle options dictionary for {bundle-name}.
@@ -340,32 +343,21 @@ COMMANDS 					*neobundle-commands*
 :NeoBundleDocs					*:NeoBundleDocs*
 		Execute |:helptags| for all bundles manually.
 
-						*:NeoBundleDepends*
-:NeoBundleDepends {repository} [, {options}]
-		Registers a bundle and installs the plugin.  This command is
-		useful for defining Vim plugin dependencies.
-		Note: This command does not overwrite user neobundle
-		configuration.
->
-		if exists(':NeoBundleDepends') == 2
-		  NeoBundleDepends 'Shougo/unite.vim.git'
-		endif
-<
 						*:NeoBundleDirectInstall*
 :NeoBundleDirectInstall {repository} [, {options}]
 		Registers a bundle, and installs it directly.
-		Note: The settings are saved in "direct_bundles.vim" in
+		Note: The settings are saved in "extra_bundles.vim" in
 		|neobundle#rc()| directory.
 		Note: To uninstall direct installed bundles, you must delete
-		plugin settings manually in "direct_bundles.vim" in
+		plugin settings manually in "extra_bundles.vim" in
 		|neobundle#rc()| directory and execute |:NeoBundleClean|
 		command.
 >
 		NeoBundleDirectInstall 'Shougo/neocomplcache'
 <
-						*:NeoBundleDirectEdit*
-:NeoBundleDirectEdit
-		Edit direct installed bundles easily.
+						*:NeoBundleEditExtra*
+:NeoBundleEditExtra
+		Edit extra bundles configuration easily.
 
 :NeoBundleDisable {name}...			*:NeoBundleDisable*
 		Disables bundles specified by {name}.  If a bundle is
@@ -740,6 +732,13 @@ OPTIONS 					*neobundle-options*
 		lazy			(Number)
 		If set to 1, neobundle doesn't add the path to user
 		runtimepath.
+
+						*neobundle-options-force*
+		force			(Number)
+		If set to 1, neobundle will load plugin files in the plugin
+		repository forcelly.
+		Note: It is useful for using Bundle within bundle.
+		https://github.com/Shougo/neobundle.vim/issues/199
 
 						*neobundle-options-overwrite*
 		overwrite		(Number)
@@ -1169,8 +1168,8 @@ Actions for each of the sources
 neobundle/search			*unite-action-neobundle-search*
 	yank		Yank plugin settings (Default action).
 	install		Direct install plugins from repository.
-			Note: The settings is saved in ".direct_bundles" in
-			bundle directory.
+			Note: The settings are saved in "extra_bundles.vim" in
+			|neobundle#rc()| directory.
 	start		Browse github plugin page.
 	open		Open the recipe file.
 

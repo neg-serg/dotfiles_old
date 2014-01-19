@@ -1048,3 +1048,58 @@ stty speed 4000000 &> /dev/null
 #     vim +":h '$1'" +":resize"
 # }
 # #
+#
+# eval "insert-cycledleft () { zle push-line; LBUFFER='pushd -q +1'; zle accept-line }"
+# zle -N insert-cycledleft
+# bindkey "^[9" insert-cycledleft
+# eval "insert-cycledright () { zle push-line; LBUFFER='pushd -q -0'; zle accept-line }"
+# zle -N insert-cycledright
+# bindkey "^[0" insert-cycledright
+#----------------------------------------------------------------------------------------------------
+#
+# # Initialization
+#
+# # add a function path
+# fpath=($ZSH/functions $ZSH/subs/**/functions(N) $fpath)
+# path+=($ZSH/bin)
+#
+# [[ -d $ZSH/subs/zsh-completions/src ]] && fpath+=( $ZSH/subs/zsh-completions/src )
+#
+# if [[ ! -a $ZSH/subs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+#     echo 'Missing subs/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh, and probably others.'
+#     echo 'Did you git submodule init && git submodule update ?'
+# fi
+#
+# # load all config files from config/, module/ and local/ we do some sorting
+# # magic here: the files from all three directories are ordered by their
+# # filename without regard to their path, meaning it's possible to specify at
+# # what point the files in local/ will be loaded. if two filenames are the same,
+# # the one in local/ will be loaded first. the ^-@ ignores dead symlinks, which
+# # are probably the result of missing submodles.
+# for config_file in $ZSH/(local|config|modules|lib)/*.zsh(Noe!'REPLY=${REPLY:t}'!oe!'[[ $REPLY == *local* ]] && REPLY=0 || REPLY=1'!^-@); source $config_file
+#----------------------------------------------------------------------------------------------------
+#Usage: find [dir] [mask1] [mask2]...
+# #where maskN will become <<-iname '*maskN*'>> param for 'find'
+# #'dir' should be an existing directory. otherwise it will be recognized as mask.
+# function findm {
+#         local HLCOLOR="\x1b[30;47m"
+#         local NOCOLOR="\x1b[0m"
+#
+#         local it cl sp;
+#         [ -d "$1" ] && cl="'$1'" && shift;
+#         for it in "$@"; do
+#                 cl="${cl} -iname '*${it}*' -or";
+#                 sp="${sp}${it}\\|";
+#         done;   
+#         cl="${cl%-or}";
+#         sp="s/\\(${sp%\\|}\\)/${HLCOLOR}\\0${NOCOLOR}/ig";
+#         eval find ${cl} | sed -e "${sp}";
+# }
+#
+# #
+#
+# function _backward_kill_default_word() {
+#     WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
+# }
+
+#

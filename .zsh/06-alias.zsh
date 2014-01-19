@@ -174,3 +174,5 @@ alias kqed='mplayer -cache-min 4 \
             http://kqed-ice.streamguys.org:80/kqedradio-ew-e1'
 alias ipr='mplayer -cache-min 4 http://voxsc1.somafm.com:8070'
 alias npr='mplayer -cache-min 4 http://npr.ic.llnwd.net/stream/npr_live24'
+
+alias wd='~/bin/wd.sh'

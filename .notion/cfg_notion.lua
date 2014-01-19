@@ -24,15 +24,27 @@ ioncore.set{
 }
 
 --------------------------------[[ DOPATH ]]-----------------------------------------
-
-dopath("cfg_layouts.lua")   dopath("app")             dopath("mod_sp")  
-dopath("named_scratchpad")  dopath("mod_query")       dopath("mod_menu")
-dopath("mod_tiling")        dopath("min_tabs")        dopath("mod_statusbar")
-dopath("bookmarks")         dopath("net_client_list") dopath("move_current")
-dopath("direction2")        dopath("dynamic_view")    dopath("mod_fuzzy_query")
-dopath("cfg_tiling")        dopath("dbg")             
-dopath("mod_xrandr")        dopath("mod_notionflux")  dopath("cfg_xrandr")
--- dopath("sp_app")
+dopath("mod_statusbar")
+dopath("cfg_layouts.lua")
+dopath("app")
+dopath("mod_sp")
+dopath("named_scratchpad")
+dopath("mod_query")
+dopath("mod_menu")
+dopath("mod_tiling")
+dopath("min_tabs")        
+dopath("bookmarks")
+dopath("net_client_list")
+dopath("move_current")
+dopath("direction2")
+dopath("dynamic_view")    
+-- dopath("mod_fuzzy_query")
+dopath("cfg_tiling")
+dopath("dbg")             
+dopath("mod_xrandr")
+dopath("mod_notionflux")
+dopath("cfg_xrandr")
+dopath("sp_app")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
@@ -52,8 +64,8 @@ defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",targe
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
-    max_size = {w=800,h=600},
-    min_size = {w=512,h=368},
+    max_size = {w=1024,h=768},
+    min_size = {w=800,h=600},
     float=true
 }
 defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true}
@@ -84,7 +96,7 @@ defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", 
 --defwinprop{class="Sxiv",    instance="sxiv", jumpto="off", transient_mode="off", target="media",lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off" 
---,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
+-- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}

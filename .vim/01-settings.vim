@@ -31,7 +31,11 @@ if has("gui_running")
     let g:solarized_contrast="normal"
     let g:solarized_visibility="normal"
     " colorscheme solarized
-    set ttyscroll=0
+    set ttyscroll=1024
+endif
+
+if !has("gui_running")
+    colorscheme miromiro
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -39,6 +43,7 @@ let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
 set noautowrite                             " NoAutowrite by default
+set autochdir                               " Change pwd automaticly
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
@@ -312,6 +317,8 @@ let g:airline_mode_map = {
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
 let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_confirm_extra_conf = 0
+" let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_tags_files = 0
 
 let g:ycm_filetype_blacklist = {
       \ 'notes' : 1,
@@ -323,4 +330,5 @@ let g:ycm_filetype_blacklist = {
 " https://github.com/airblade/vim-gitgutter/issues/106
 let g:gitgutter_realtime = 0
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:yankring_history_file = '/tmp/yankring_hist'
