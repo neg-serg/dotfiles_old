@@ -22,9 +22,13 @@ NeoBundle 'SirVer/ultisnips.git'              "snippets for ycm
 NeoBundle 'godlygeek/tabular'                 "tabularize!
 NeoBundle 'mileszs/ack.vim'                   "ack wrapper
 NeoBundle 'tpope/vim-repeat'                  "repeat everything!
-NeoBundle 'sjl/gundo.vim.git'                 "fancy undo tree
+" browse the vim undo tree
+NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 NeoBundle 'tpope/vim-eunuch.git'              "for SudoWrite, Locate, Find etc
 NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc      
+NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'],
+            \ 'autoload':{'commands':'Gitv'}} " Git viewer 
+NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 NeoBundle 'vim-scripts/compview.git'          "interactive search
 NeoBundle 'vim-scripts/vim-tmuxify.git'       "use vim with tmux
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
@@ -32,6 +36,10 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'kien/rainbow_parentheses.vim'      "rainbow ()[]
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
+NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
+NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
+NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
+            \ { 'commands' : 'Transpose'}}
 "------------------------------------------------------------------------------------------------------------
 "--[ new ]---------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------ 
@@ -39,15 +47,19 @@ NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 NeoBundle 'trapd00r/vim-syntax-vidir-ls.git'  "vidir syntax. Make for it standalone vimv/vidir/vils conf!
-NeoBundle 'benmills/vimux'                    "some easy to use wrapper for tmux
-NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
+NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}} " Tmux config file syntax 
 NeoBundle 'matchit.zip'                       " % for everything
-NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
-NeoBundle 'vim-scripts/transpose-words.git'   "simulate <m-t> transposing like emacs/bash
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'Shougo/vimproc'                    "useful for async NeoBundleIntall
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'ujihisa/neco-ghc'                  "autocomplete for hs using ghc-mod
 NeoBundle 'travitch/hasksyn'                  "simple highlight for normal haskell code 
 "------------------------------------------------------------------------------------------------------------
@@ -77,9 +89,80 @@ NeoBundle 'xolox/vim-easytags.git'            "Autoupdate tags
 NeoBundle 'vim-scripts/bufkill.vim.git'       "Experimental bufkill
 NeoBundle 'vim-scripts/gtags.vim.git'         "Gtags wrapper for vim
 NeoBundle '5t111111/alt-gtags.vim.git'        "Newer grags wrapper for vim
+NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
+            \ 'commands' : [
+                             \ 'ColorV', 'ColorVView', 'ColorVPreview',
+                             \ 'ColorVPicker', 'ColorVEdit', 'ColorVEditAll',
+                             \ 'ColorVInsert', 'ColorVList', 'ColorVName',
+                             \ 'ColorVScheme', 'ColorVSchemeFav',
+                             \ 'ColorVSchemeNew', 'ColorVTurn2'],
+            \ }}
+NeoBundle 'Raimondi/delimitMate.git'          "Add pairs to brackets
+NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
+NeoBundleLazy 'Shougo/junkfile.vim', {
+            \'autoload':{'commands':'JunkfileOpen',
+            \ 'unite_sources':['junkfile','junkfile/new']}} "Create temporary file for memo, testing, ... 
+NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
+NeoBundle 'jimsei/winresizer.git'             "Resize window simply
+NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
+            \{'commands' : 'ZoomWinTabToggle'}}
+NeoBundle 'kshenoy/vim-signature.git'         "Extended marking
+"---------------[  textobj  ]----------------------------------------
+NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer
+NeoBundle 'kana/vim-textobj-indent.git'       "Textobj for indented block of linesA
+NeoBundle 'kana/vim-textobj-lastpat.git'      "Textobj for the last searched pattern
+NeoBundle 'kana/vim-textobj-line.git'         "Textobj for the current line
+NeoBundle 'kana/vim-textobj-underscore.git'   "Textobj for underscore 
+NeoBundle 'kana/vim-textobj-user.git'         "To create your own objects
+"---------------[  unite  ]----------------------------------------
+NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
+NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
+NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
+NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':
+            \ 'colorscheme'}}
+NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
+NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' :
+            \ ['history/command', 'history/search']}}
+NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' :
+            \ 'filetype', }}
+NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
+            \ ['quickfix', 'location_list']}}
+NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
+NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
+
+NeoBundleLazy 'othree/html5.vim', {'autoload':
+            \ {'filetypes': ['html', 'xhttml', 'css']}}
+
+NeoBundleLazy 'mattn/emmet-vim', {'autoload':
+            \ {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
+
+NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
+            \ 'commands' : [
+                             \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
+                             \ 'CoffeeRun', 'CoffeeWatch'],
+            \ 'filetypes' : ['coffee']
+            \ }}
+
+NeoBundleLazy 'joedicastro/vim-pentadactyl', {
+            \ 'autoload': {'filetypes': ['pentadactyl']}}
+NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
+NeoBundleLazy 'vim-scripts/po.vim--gray', {'autoload': {'filetypes': ['po']}}
+"-----------[  python  ]---------------------------------------------------
+" Admin virtualenvs
+NeoBundle 'jmcantrell/vim-virtualenv'
+" Show indent lines
+NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
+" Show reports from coverage.py
+NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
+" Sort imports
+ NeoBundle 'fisadev/vim-isort', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'godlygeek/csapprox', { 'autoload' :
+        \ { 'commands' : ['CSApprox', 'CSApproxSnapshot']}} " Make terminal themes from GUI themes 
+
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'airblade/vim-gitgutter.git'      "Shows changes Tooooooo slow
 " NeoBundle 'vim-scripts/YankRing.vim.git'      "YankRing is for prevent paste garbage by d_ ***test****
 " NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'      "use latex-box for the auto-compile
 " NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
@@ -89,17 +172,20 @@ NeoBundle '5t111111/alt-gtags.vim.git'        "Newer grags wrapper for vim
 " NeoBundle 'klen/python-mode.git'              "vim all-in-one python mode
 " NeoBundle 'Yggdroot/indentLine.git'         "indent tabs visualy
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
-NeoBundle 'godlygeek/csapprox'              "support gvim themes for vim
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
 " NeoBundle 'vim-scripts/sessionman.vim'      "session manager
-" NeoBundle 'github.com/maxbrunsfeld/vim-yankstack.git'
-
+" NeoBundle 'maxbrunsfeld/vim-yankstack.git'
+" NeoBundle 'alfredodeza/coveragepy.vim.git'  "help integrate Ned Batchelder's excellent coverage.py
+" NeoBundle 'Rykka/easydigraph.vim.git'       "EasyDigraph tries to make inputting special characters easier
+" NeoBundle 'othree/html5.vim.git'            "HTML5+inline SVG omnicomplete funtion,indent and syntax for Vim.
+" NeoBundle 'Shougo/vinarise.vim.git'         "Ultimate hex editing system with Vim
 NeoBundleCheck
 syntax on
 filetype plugin indent on
 
 source ~/.vim/01-settings.vim
 source ~/.vim/04-autocmds.vim
+source ~/.vim/06-settings.vim
 source ~/.vim/10-keymaps.vim
 source ~/.vim/11-emacs-keys.vim
 source ~/.vim/20-additional-hightLight.vim
@@ -110,3 +196,4 @@ source ~/.vim/21-langmap.vim
 " ~/.vim/.trash/99-trash-bundle.vim
 " ~/.vim/.trash/99-trash-modules-lang.vim
 " ~/.vim/.trash/99-trash-modules-colors.vim
+

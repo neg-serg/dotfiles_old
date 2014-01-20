@@ -34,6 +34,7 @@ autocmd BufNewFile,BufRead  *.t2t         setlocal lbr
 autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax 
 autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
 
+autocmd FileType git set nofoldenable
 augroup mkd
   autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
   au BufRead,BufNewFile *.go           set filetype=go
@@ -63,9 +64,16 @@ autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python        setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType ruby          setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell       setlocal omnifunc=necoghc#omnifunc
+" markdown filetype file
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+autocmd FileType markdown NeoBundleSource vim-markdown
+autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
+
+au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
+au FileType python setlocal foldlevel=1000
+au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 autocmd BufWritePost *.rb call Compile()
 function! JavaScriptFold()
@@ -108,6 +116,10 @@ autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWri
 autocmd FileType go                                               autocmd BufWritePre <buffer> Fmt
 autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig
+augroup json_autocmd
+  autocmd FileType json set foldmethod=syntax
+augroup END
+
 
 " hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1 
 " hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
@@ -154,3 +166,44 @@ function! StripTrailingWhitespace()
     call cursor(l, c)
 endfunction
 " }
+
+" Execution permissions by default to shebang (#!) files {{{
+
+augroup shebang_chmod
+  autocmd!
+  autocmd BufNewFile  * let b:brand_new_file = 1
+  autocmd BufWritePost * unlet! b:brand_new_file
+  autocmd BufWritePre *
+        \ if exists('b:brand_new_file') |
+        \   if getline(1) =~ '^#!' |
+        \     let b:chmod_post = '+x' |
+        \   endif |
+        \ endif
+  autocmd BufWritePost,FileWritePost *
+        \ if exists('b:chmod_post') && executable('chmod') |
+        \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
+        \   unlet b:chmod_post |
+        \ endif
+augroup END
+
+" }}}
+function! GHDashboard (...)
+  if &filetype == 'github-dashboard'
+    " first variable is the statusline builder
+    let builder = a:1
+
+    call builder.add_section('airline_a', 'GitHub ')
+    call builder.add_section('airline_b',
+                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
+                \ 1, ""), ":"), 0, "")} ')
+    call builder.add_section('airline_c',
+                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
+                \ 2, ""), "]"), 0, "")} ')
+
+    " tell the core to use the contents of the builder
+    return 1
+  endif
+endfunction
+
+autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard')
+
