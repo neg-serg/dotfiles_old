@@ -1,0 +1,126 @@
+*po.txt*		Vim ftplugin for PO file (GNU gettext) editing.
+
+==============================================================================
+Content
+
+	1. Description					|po-introduction|
+	2. Mappings						|po-mappings|
+	3. Others functionalities		|po-func|
+	4. History						|po-history|
+
+==============================================================================
+1. Introduction												*po-introduction*
+
+This file is a Vim ftplugin for editing PO files (GNU gettext -- the GNU
+i18n and l10n system). It automates over a dozen frequent tasks that
+occur while editing files of this type.
+
+Latest version of this script:
+http://gitorious.org/local-etc/local-etc/blobs/master/vim/ftplugin/po.vim
+
+Latest version of the help doc: (thanks to Emmanuel Trillaud ;-)
+http://gitorious.org/local-etc/local-etc/blobs/master/vim/doc/po.txt
+
+(Sorry for the inconvenience that separate them, I think it's too small to
+form a stand-along project)
+==============================================================================
+2. Key mappings												*po-mappings*
+
+Insert mode mapping~
+    Actions			                           Key mappings
+    -------------------------------------------------------
+    Move to a string (transl. or untransl) forward      \m
+    Move to a string (transl. or untransl) backward     \M
+    Begin to comment this entry                         \C
+    Move to an untransl. string forward                 \u
+    Move to an untransl. string backward                \U
+    Copy the msgid string to msgstr                     \c
+    Delete the msgstr string                            \d
+    Move to the next fuzzy translation                  \f
+    Move to the previous fuzzy translation              \F
+    Label the translation fuzzy                         \z
+    Remove the fuzzy label                              \Z
+    Show msgfmt statistics for the file(*)              \s
+    Browse through msgfmt errors for the file(*)        \e
+    Put the translator info in the header               \t
+    Put the lang. team info in the header               \l
+    Format the whole file(wrap the lines etc.)          \W
+    -------------------------------------------------------
+    (*) Only available on UNIX computers.
+
+Normal mode mappings~
+    Actions			                           Key mappings
+    -------------------------------------------------------
+    Move to a string (transl. or untransl) forward      \m
+    Move to a string (transl. or untransl) backward     \M
+    Begin to comment this entry                         \C
+    Move to an untransl. string forward                 \u
+    Move to an untransl. string backward                \U
+    Move to the next fuzzy translation                  \f
+    Move to the previous fuzzy translation              \F
+    Label the translation fuzzy                         \z
+    Remove the fuzzy label                              \Z
+    Split-open the file under cursor                    gf
+    Show msgfmt statistics for the file(*)              \s
+    Browse through msgfmt errors for the file(*)        \e
+    Put the translator info in the header               \t
+    Put the lang. team info in the header               \l
+    Format the whole file(wrap the lines etc.)          \W
+    -------------------------------------------------------
+    (*) Only available on UNIX computers.
+
+==============================================================================
+3. Other Functionalities										*po-func*
+
+Information about the translator and language team is supplied by two
+global variables: 'g:po_translator' and 'g:po_lang_team'.  They should be
+defined in the ".vimrc" (UNIX) or "_vimrc" (Windows) file.  If they are not
+defined, the default values (descriptive strings) are put instead.
+
+Vim's "gf" Normal mode command is remapped (local to the PO buffer, of
+course).  It will only function on lines starting with "#: ".  Search
+for the file is performed in the directories specified by the 'path'
+option.  The user can supply its own addition to this option via the
+'g:po_path' global variable.  Its default value for PO files can be
+found by typing ":set path?" from within a PO buffer.  For the correct
+format please see ":help 'path'".  Warning messages are printed if no
+or more than one file is found.
+
+Vim's Quickfix mode (see ":help quickfix") is used for browsing
+through msgfmt-reported errors for the file.  No MO file is created
+when running the msgfmt program since its output is directed to
+"/dev/null".  The user can supply command-line arguments to the msgfmt
+program via the global variable 'g:po_msgfmt_args'.  All arguments are
+allowed except the "-o" for output file.  The default value is
+"-vv -c".
+
+Format the whole file is actually using msgmerge a.po a.po -o a.po.
+Since we must reload the file that has been modified, you could not
+do any Undo once you run this function.
+
+But there's even more!
+
+Every time the PO file is saved, a PO-formatted time stamp is
+automatically added to the file header.  Note that if the file is marked
+'fuzzy', i.e, there is a "#, fuzzy" in the head of the file, the time
+stamp will not be updated.
+
+==============================================================================
+4. History														*po-history*
+
+This script is a fork version of Aleksandar Jelenak's script.  Since the
+last change by the original creator is long time ago and I failed to get in
+touch with him via email, I started this project by myself.  Nearly 90% of
+the script is written by Aleksandar Jelenak.  I fixed two bugs and add three
+other functions and remapped the keys.  Thanks to Aleksandar Jelenak a lot.
+
+Besides, great thanks to Emmanuel Trillaud for provide this help doc.
+
+Original Creator:	Aleksandar Jelenak <ajelenak AT yahoo.com>
+Modifier: Grissiom <chaos.proton AT gmail.com>
+Last Changes by Original Creator:	Tue, 12 Apr 2005 13:49:55 -0400
+Latest version of original script:
+http://www.vim.org/scripts/script.php?script_id=695
+
+==============================================================================
+vim: tw=78 fo+=2 ts=4 ft=help

@@ -313,3 +313,115 @@ xnoremap <space>c :!octave --silent \| cut -c8-<cr>
 
 nnoremap ;p :call FancyPaste('"')<CR>
 nnoremap ;P :call FancyPaste('+')<CR>
+
+nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>go :Gread<CR>
+nnoremap <Leader>gR :Gremove<CR>
+nnoremap <Leader>gm :Gmove<Space>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gB :Gbrowse<CR>
+nnoremap <Leader>gp :Git! push<CR>
+nnoremap <Leader>gP :Git! pull<CR>
+nnoremap <Leader>gi :Git!<Space>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gE :Gedit<Space>
+nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit
+            \ quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
+            \ quickfix"<CR>:redraw!<CR>
+nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
+nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
+nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite
+            \ quickfix -no-quit<CR>
+nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
+            \Unite -no-quit quickfix'<CR>
+nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
+            \Unite -no-quit quickfix'<CR>
+
+nnoremap <Leader>ggc :silent! Ggrep -i<Space>
+
+" for the diffmode
+noremap <Leader>du :diffupdate<CR>
+if !exists(":Gdiffoff")
+    command Gdiffoff diffoff | q | Gedit
+endif
+noremap <Leader>dq :Gdiffoff<CR>
+" }}}
+
+nnoremap <silent> <leader>gv :Gitv --all<CR>
+nnoremap <silent> <leader>gV :Gitv! --all<CR>
+vnoremap <silent> <leader>gV :Gitv! --all<CR>
+
+nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
+nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
+map <Leader>z :ZoomWinTabToggle<CR>
+
+map <Leader>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
+map <Leader>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
+map <Leader>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
+map <Leader>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
+
+map <Leader>rc :VimuxPromptCommand<CR>
+map <Leader>rl :VimuxRunLastCommand<CR>
+map <Leader>rs :VimuxInterruptRunner<CR>
+map <Leader>ri :VimuxInspectRunner<CR>
+map <Leader>rq :VimuxCloseRunner<CR>
+
+map <Leader>j :Utl <CR><Bar>:redraw!<CR>
+
+nnoremap <Leader>u :GundoToggle<CR>
+map <Leader>x :call RangerChooser()<CR>
+"----[ Unite ]-----------------------------------------
+" files
+nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
+nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/async<CR>
+nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
+" buffers
+nnoremap <silent><Leader>b :Unite -silent buffer<CR>
+" tabs
+nnoremap <silent><Leader>B :Unite -silent tab<CR>
+" buffer search
+nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
+            \ line<CR>
+nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview
+            \ line<CR>
+" yankring
+nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
+" grep
+nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>
+" help
+nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
+" tasks
+nnoremap <silent><Leader>; :Unite -silent -toggle
+            \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
+" outlines (also ctags)
+nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
+            \ -direction=topleft -toggle outline<CR>
+" junk files
+nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
+
+" menu prefix key (for all Unite menus) {{{
+nnoremap [menu] <Nop>
+nmap <LocalLeader> [menu]
+" menus menu
+nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
+nnoremap <silent>[menu]k :Unite -silent menu:markdown<CR>
+nnoremap <silent>[menu]m :Unite -silent menu:bookmarks<CR>
+nnoremap <silent>[menu]c :Unite -silent menu:colorv<CR>
+nnoremap <silent>[menu]v :Unite menu:vim -silent -start-insert<CR>
+
+nnoremap <silent>[menu]o :Unite -silent -winheight=17 -start-insert
+nnoremap <silent>[menu]a :Unite -silent menu:grep<CR>
+nnoremap <silent>[menu]b :Unite -silent menu:navigation<CR>
+nnoremap <silent>[menu]f :Unite -silent menu:searching<CR>
+nnoremap <silent>[menu]i :Unite -silent menu:registers<CR>
+nnoremap <silent>[menu]s :Unite -silent menu:spelling<CR>
+nnoremap <silent>[menu]e :Unite -silent -winheight=20 menu:text <CR>
+nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
+nnoremap <silent>[menu]g :Unite -silent -winheight=29 -start-insert menu:git<CR>
+nnoremap <silent>[menu]p :Unite -silent -winheight=42 menu:code<CR>
+
