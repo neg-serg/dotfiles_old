@@ -84,8 +84,8 @@ NeoBundle 'vim-scripts/fu.git'                "Cool colorscheme
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'xolox/vim-misc.git'                "Helpers for easytags
-NeoBundle 'xolox/vim-easytags.git'            "Autoupdate tags
+" NeoBundle 'xolox/vim-misc.git'                "Helpers for easytags
+" NeoBundle 'xolox/vim-easytags.git'            "Autoupdate tags   ;; test it! Too slow
 NeoBundle 'vim-scripts/bufkill.vim.git'       "Experimental bufkill
 NeoBundle 'vim-scripts/gtags.vim.git'         "Gtags wrapper for vim
 NeoBundle '5t111111/alt-gtags.vim.git'        "Newer grags wrapper for vim
@@ -97,7 +97,6 @@ NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
                              \ 'ColorVScheme', 'ColorVSchemeFav',
                              \ 'ColorVSchemeNew', 'ColorVTurn2'],
             \ }}
-NeoBundle 'Raimondi/delimitMate.git'          "Add pairs to brackets
 NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
 NeoBundleLazy 'Shougo/junkfile.vim', {
             \'autoload':{'commands':'JunkfileOpen',
@@ -106,7 +105,6 @@ NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 NeoBundle 'jimsei/winresizer.git'             "Resize window simply
 NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
             \{'commands' : 'ZoomWinTabToggle'}}
-NeoBundle 'kshenoy/vim-signature.git'         "Extended marking
 "---------------[  textobj  ]----------------------------------------
 NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer
 NeoBundle 'kana/vim-textobj-indent.git'       "Textobj for indented block of linesA
@@ -163,13 +161,13 @@ NeoBundleLazy 'godlygeek/csapprox', { 'autoload' :
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
 " NeoBundle 'airblade/vim-gitgutter.git'      "Shows changes Tooooooo slow
-" NeoBundle 'vim-scripts/YankRing.vim.git'      "YankRing is for prevent paste garbage by d_ ***test****
-" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'      "use latex-box for the auto-compile
-" NeoBundle 'eagletmt/ghcmod-vim'               "ghc-mod happy hacking integration for vim
+" NeoBundle 'vim-scripts/YankRing.vim.git'    "YankRing is for prevent paste garbage by d_ ***test****
+" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git'    "use latex-box for the auto-compile
+" NeoBundle 'eagletmt/ghcmod-vim'             "ghc-mod happy hacking integration for vim
 " NeoBundle 'Valodim/vim-zsh-completion'      " zsh notify
-" NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
-" NeoBundle 'jaredly/vim-debug.git'             "debug python in vim install by hand
-" NeoBundle 'klen/python-mode.git'              "vim all-in-one python mode
+" NeoBundle 'vim-scripts/TeX-9.git'           "tex autocompetion
+" NeoBundle 'jaredly/vim-debug.git'           "debug python in vim install by hand
+" NeoBundle 'klen/python-mode.git'            "vim all-in-one python mode
 " NeoBundle 'Yggdroot/indentLine.git'         "indent tabs visualy
 " NeoBundle 'mattn/emmet-vim'                 "high-speed editing for html and css
 " NeoBundle 'mhinz/vim-startify'              "cute, very cute startup screen. Use it for notebook
@@ -179,6 +177,9 @@ NeoBundleLazy 'godlygeek/csapprox', { 'autoload' :
 " NeoBundle 'Rykka/easydigraph.vim.git'       "EasyDigraph tries to make inputting special characters easier
 " NeoBundle 'othree/html5.vim.git'            "HTML5+inline SVG omnicomplete funtion,indent and syntax for Vim.
 " NeoBundle 'Shougo/vinarise.vim.git'         "Ultimate hex editing system with Vim
+" NeoBundle 'Raimondi/delimitMate.git'        "Add pairs to brackets
+" NeoBundle 'kshenoy/vim-signature.git'       "Extended marking
+" NeoBundle 'tomasr/molokai.git'              "Molokai colorscheme
 NeoBundleCheck
 syntax on
 filetype plugin indent on
@@ -196,4 +197,3 @@ source ~/.vim/21-langmap.vim
 " ~/.vim/.trash/99-trash-bundle.vim
 " ~/.vim/.trash/99-trash-modules-lang.vim
 " ~/.vim/.trash/99-trash-modules-colors.vim
-

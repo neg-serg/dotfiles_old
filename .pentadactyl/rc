@@ -88,6 +88,9 @@ map S :sbcl<CR>
 map -builtin w b
 map $ <End>
 
+" Set the external editor
+set editor='/usr/bin/gvim -f +<line> <file>'
+
 " toggle styles """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 map -b -m base,caret,normal,visual <C-g> <Esc>

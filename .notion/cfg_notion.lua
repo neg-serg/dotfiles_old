@@ -98,6 +98,12 @@ defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", 
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off" 
 -- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
+defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",
+    max_size = {w=1584,h=864},
+    min_size = {w=1584,h=864},
+    -- float=true
+-- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
+}
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -------------------------------------[[ VM ]]--------------------------------------
