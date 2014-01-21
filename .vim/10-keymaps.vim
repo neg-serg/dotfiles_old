@@ -1,3 +1,5 @@
+nmap <LocalLeader> <C-e>
+
 " Traverse buffers, quickly
 
 nnoremap <PageUp> :bp<CR>
@@ -379,15 +381,13 @@ map <Leader>x :call RangerChooser()<CR>
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/async<CR>
-nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
+nnoremap <silent><Leader>m :Unite -silent -start-insert file_mru<CR>
 " buffers
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 " tabs
 nnoremap <silent><Leader>B :Unite -silent tab<CR>
 " buffer search
 nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
-            \ line<CR>
-nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
 " yankring
 nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
@@ -405,23 +405,24 @@ nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 
 " menu prefix key (for all Unite menus) {{{
-nnoremap [menu] <Nop>
-nmap <LocalLeader> [menu]
+nnoremap <C-e> <Nop>
 " menus menu
-nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>
-nnoremap <silent>[menu]k :Unite -silent menu:markdown<CR>
-nnoremap <silent>[menu]m :Unite -silent menu:bookmarks<CR>
-nnoremap <silent>[menu]c :Unite -silent menu:colorv<CR>
-nnoremap <silent>[menu]v :Unite menu:vim -silent -start-insert<CR>
+nnoremap <silent><C-e>u :Unite -silent -start-insert -winheight=20 menu<CR>
+nnoremap <silent><C-e>k :Unite -silent -start-insert menu:markdown<CR>
+nnoremap <silent><C-e>m :Unite -silent -start-insert menu:bookmarks<CR>
+nnoremap <silent><C-e>c :Unite -silent -start-insert menu:colorv<CR>
+nnoremap <silent><C-e>v :Unite menu:vim -silent -start-insert<CR>
 
-nnoremap <silent>[menu]o :Unite -silent -winheight=17 -start-insert
-nnoremap <silent>[menu]a :Unite -silent menu:grep<CR>
-nnoremap <silent>[menu]b :Unite -silent menu:navigation<CR>
-nnoremap <silent>[menu]f :Unite -silent menu:searching<CR>
-nnoremap <silent>[menu]i :Unite -silent menu:registers<CR>
-nnoremap <silent>[menu]s :Unite -silent menu:spelling<CR>
-nnoremap <silent>[menu]e :Unite -silent -winheight=20 menu:text <CR>
-nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>
-nnoremap <silent>[menu]g :Unite -silent -winheight=29 -start-insert menu:git<CR>
-nnoremap <silent>[menu]p :Unite -silent -winheight=42 menu:code<CR>
+nnoremap <silent><C-e>o :Unite -silent -start-insert -winheight=17 -start-insert
+nnoremap <silent><C-e>a :Unite -silent -start-insert menu:grep<CR>
+nnoremap <silent><C-e>b :Unite -silent -start-insert menu:navigation<CR>
+nnoremap <silent><C-e>f :Unite -silent -start-insert menu:searching<CR>
+nnoremap <silent><C-e>i :Unite -silent -start-insert menu:registers<CR>
+nnoremap <silent><C-e>s :Unite -silent -start-insert menu:spelling<CR>
+nnoremap <silent><C-e>e :Unite -silent -start-insert -winheight=20 menu:text <CR>
+nnoremap <silent><C-e>g :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
+nnoremap <silent><C-e>p :Unite -silent -start-insert -winheight=42 menu:code<CR>
+nnoremap <silent><C-e>8 :UniteWithCursorWord -silent -no-split -auto-preview
+            \ line<CR>
+nnoremap <silent><C-e>n :Unite -silent -start-insert menu:neobundle<CR>
 

@@ -12,7 +12,6 @@ compview
 coveragepy.vim
 csapprox
 ctrlp.vim
-delimitMate
 emmet-vim
 fu
 gitv
@@ -47,7 +46,6 @@ vim-abolish
 vim-airline
 vim-coffee-script
 vim-colors-solarized
-vim-easytags
 vim-endwise
 vim-eunuch
 vim-fontsize
@@ -57,14 +55,12 @@ vim-indent-guides
 vim-isort
 vim-json
 vim-markdown
-vim-misc
 vim-multiple-cursors
 vim-pentadactyl
 vim-preview
 vim-repeat
 vim-sbt
 vim-scala
-vim-signature
 vim-slime
 vim-surround
 vim-syntax-vidir-ls

@@ -1,8 +1,8 @@
 " ------[ GUI settings ]-----------------------------------------------------
 " colorscheme solarized
 if has("gui_running")
-    set gfn=PragmataPro\ for\ Powerline\ 14
-    " set gfn=PragmataPro\ for\ Powerline\ 15
+    " set gfn=PragmataPro\ for\ Powerline\ 14
+    set gfn=PragmataPro\ for\ Powerline\ 15
     " set lsp=-1
     set lsp=1                          " Space between lines
     set go=c                           " For text messages instead of gui
@@ -32,6 +32,7 @@ if has("gui_running")
     let g:solarized_visibility="normal"
     " colorscheme solarized
     set ttyscroll=1024
+    set lazyredraw
 endif
 
 if !has("gui_running")

@@ -51,7 +51,7 @@ export GTK_IM_MODULE=xim
 export QT_IM_MODULE=xim
 
 setxkbmap -option keypad:pointerkeys
-setxkbmap -layout 'us,ru' -option 'grp:alt_shift_toggle'
+setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
 xhost     +localhost
 
 xbindkeys
@@ -86,5 +86,8 @@ amixer -q set Master 0% mute
 [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
+
+# autocutsel -fork &
+# autocutsel -selection PRIMARY -fork &
 
 exec notion
