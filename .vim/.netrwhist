@@ -1,4 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/mnt/home/dev/src/dtfiles22'
 let g:netrw_dirhist_2='/mnt/home/dev/linux'
+let g:netrw_dirhist_3='/mnt/home/dev/src/notion'
+let g:netrw_dirhist_4='/home/neg/.notion'
+let g:netrw_dirhist_5='/mnt/home/dev/src/notion'
+let g:netrw_dirhist_6='/mnt/home/dev/src/notion/de'
+let g:netrw_dirhist_7='/mnt/home/dev/src/notion'
+let g:netrw_dirhist_8='/mnt/home/dev/src/1st_level/notion'
+let g:netrw_dirhist_9='/home/neg/.vim'

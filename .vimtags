@@ -1,0 +1,820 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+[F	/home/neg/.vim/10-keymaps.vim	/^imap [F \$$/;"	m	language:Vim
+[F	/home/neg/.vim/10-keymaps.vim	/^map [F \$$/;"	m	language:Vim
+[H	/home/neg/.vim/10-keymaps.vim	/^imap [H g0$/;"	m	language:Vim
+[H	/home/neg/.vim/10-keymaps.vim	/^map [H g0$/;"	m	language:Vim
+!	/home/neg/.vim/10-keymaps.vim	/^nnoremap ! :%!$/;"	m	language:Vim
+#	/home/neg/.vim/10-keymaps.vim	/^nnoremap # #zzzv$/;"	m	language:Vim
+#	/home/neg/.vim/10-keymaps.vim	/^vnoremap <silent> # :<C-U>$/;"	m	language:Vim
+$c	/home/neg/.vim/10-keymaps.vim	/^cno $c e <C-\\>eCurrentFileDir("e")<cr>$/;"	m	language:Vim
+$PATH	/home/neg/.vim/01-settings.vim	/^let $PATH = $PATH . ':' . expand("~\/.cabal\/bin")$/;"	v	language:Vim
+$q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	language:Vim
+*	/home/neg/.vim/10-keymaps.vim	/^nnoremap * *N$/;"	m	language:Vim
+*	/home/neg/.vim/10-keymaps.vim	/^nnoremap * *zzzv$/;"	m	language:Vim
+*	/home/neg/.vim/10-keymaps.vim	/^vnoremap * y :execute ":let @\/=@\\""<CR> :execute "set hlsearch"<CR>$/;"	m	language:Vim
+*	/home/neg/.vim/10-keymaps.vim	/^vnoremap <silent> * :<C-U>$/;"	m	language:Vim
+.	/home/neg/.vim/10-keymaps.vim	/^vnoremap . :normal .<CR>$/;"	m	language:Vim
+;d	/home/neg/.vim/10-keymaps.vim	/^nmap ;d :bd<cr>$/;"	m	language:Vim
+;p	/home/neg/.vim/10-keymaps.vim	/^nnoremap ;p :call FancyPaste('"')<CR>$/;"	m	language:Vim
+;P	/home/neg/.vim/10-keymaps.vim	/^nnoremap ;P :call FancyPaste('+')<CR>$/;"	m	language:Vim
+;q	/home/neg/.vim/10-keymaps.vim	/^nmap ;q :q<cr>$/;"	m	language:Vim
+;w	/home/neg/.vim/10-keymaps.vim	/^nmap ;w :w!<cr>$/;"	m	language:Vim
+<	/home/neg/.vim/10-keymaps.vim	/^vnoremap < <gv$/;"	m	language:Vim
+<	/home/neg/.vim/10-keymaps.vim	/^vnoremap < <gv$/;"	m	language:Vim
+<A-w>	/home/neg/.vim/10-keymaps.vim	/^nmap <A-w> :bd<cr> $/;"	m	language:Vim
+<C-c>gt	/home/neg/.vim/10-keymaps.vim	/^map <C-c>gt :!ctags -a *.c *.h<CR>$/;"	m	language:Vim
+<C-c>gT	/home/neg/.vim/10-keymaps.vim	/^map <C-c>gT :!ctags -Ra *.c *.h<CR>$/;"	m	language:Vim
+<C-c>l	/home/neg/.vim/10-keymaps.vim	/^imap <C-c>l <Esc>:copen<CR>$/;"	m	language:Vim
+<C-c>l	/home/neg/.vim/10-keymaps.vim	/^nmap <C-c>l :copen<CR>$/;"	m	language:Vim
+<C-c>np	/home/neg/.vim/10-keymaps.vim	/^map <C-c>np :emenu NewProj.<TAB>$/;"	m	language:Vim
+<C-c>sw	/home/neg/.vim/10-keymaps.vim	/^imap <C-c>sw <Esc>:AT<CR>$/;"	m	language:Vim
+<C-c>sw	/home/neg/.vim/10-keymaps.vim	/^nmap <C-c>sw :AT<CR>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-e> <Nop>$/;"	m	language:Vim
+<C-e>8	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>8 :UniteWithCursorWord -silent -no-split -auto-preview$/;"	m	language:Vim
+<C-e>a	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>a :Unite -silent menu:grep<CR>$/;"	m	language:Vim
+<C-e>b	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>b :Unite -silent menu:navigation<CR>$/;"	m	language:Vim
+<C-e>c	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>c :Unite -silent menu:colorv<CR>$/;"	m	language:Vim
+<C-e>e	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>e :Unite -silent -winheight=20 menu:text <CR>$/;"	m	language:Vim
+<C-e>f	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>f :Unite -silent menu:searching<CR>$/;"	m	language:Vim
+<C-e>g	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>g :Unite -silent -winheight=29 -start-insert menu:git<CR>$/;"	m	language:Vim
+<C-e>i	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>i :Unite -silent menu:registers<CR>$/;"	m	language:Vim
+<C-e>k	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>k :Unite -silent menu:markdown<CR>$/;"	m	language:Vim
+<C-e>m	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>m :Unite -silent menu:bookmarks<CR>$/;"	m	language:Vim
+<C-e>n	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>n :Unite -silent -start-insert menu:neobundle<CR>$/;"	m	language:Vim
+<C-e>o	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>o :Unite -silent -winheight=17 -start-insert$/;"	m	language:Vim
+<C-e>p	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>p :Unite -silent -winheight=42 menu:code<CR>$/;"	m	language:Vim
+<C-e>s	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>s :Unite -silent menu:spelling<CR>$/;"	m	language:Vim
+<C-e>u	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>u :Unite -silent -winheight=20 menu<CR>$/;"	m	language:Vim
+<C-e>v	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><C-e>v :Unite menu:vim -silent -start-insert<CR>$/;"	m	language:Vim
+<C-F8>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-F8> :nohlsearch<CR>$/;"	m	language:Vim
+<C-g>	/home/neg/.vim/10-keymaps.vim	/^map <C-g> g<C-g>$/;"	m	language:Vim
+<C-h>	/home/neg/.vim/10-keymaps.vim	/^noremap <C-h>  <C-w>h$/;"	m	language:Vim
+<C-h>	/mnt/home/dev/src/dt3/vim/vimrc	/^  map <C-h> <C-w>h$/;"	m	language:Vim
+<C-h>	/mnt/home/dev/src/dt3/vim/vimrc	/^  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>$/;"	m	language:Vim
+<C-h>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <C-h> <C-w>h$/;"	m	language:Vim
+<C-j>	/home/neg/.vim/10-keymaps.vim	/^noremap <C-j>  <C-w>j$/;"	m	language:Vim
+<C-j>	/mnt/home/dev/src/dt3/vim/vimrc	/^  map <C-j> <C-w>j$/;"	m	language:Vim
+<C-j>	/mnt/home/dev/src/dt3/vim/vimrc	/^  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>$/;"	m	language:Vim
+<C-j>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <C-j> <C-w>j$/;"	m	language:Vim
+<C-k>	/home/neg/.vim/10-keymaps.vim	/^noremap <C-k>  <C-w>k$/;"	m	language:Vim
+<C-k>	/mnt/home/dev/src/dt3/vim/vimrc	/^  map <C-k> <C-w>k$/;"	m	language:Vim
+<C-k>	/mnt/home/dev/src/dt3/vim/vimrc	/^  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>$/;"	m	language:Vim
+<C-k>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <C-k> <C-w>k$/;"	m	language:Vim
+<C-l>	/home/neg/.vim/10-keymaps.vim	/^noremap <C-l>  <C-w>l$/;"	m	language:Vim
+<C-l>	/mnt/home/dev/src/dt3/vim/vimrc	/^  map <C-l> <C-w>l$/;"	m	language:Vim
+<C-l>	/mnt/home/dev/src/dt3/vim/vimrc	/^  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>$/;"	m	language:Vim
+<C-l>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <C-l> <C-w>l$/;"	m	language:Vim
+<C-w>#	/home/neg/.vim/10-keymaps.vim	/^nmap <C-w>#  <C-w>v<C-w>l:redraw<CR>#$/;"	m	language:Vim
+<C-w>*	/home/neg/.vim/10-keymaps.vim	/^nmap <C-w>*  <C-w>v<C-w>l:redraw<CR>*$/;"	m	language:Vim
+<C-w>/	/home/neg/.vim/10-keymaps.vim	/^nmap <C-w>\/  <C-w>v<C-w>l:redraw<CR>\/$/;"	m	language:Vim
+<down>	/mnt/home/dev/src/dt3/vim/vimrc	/^inoremap <down> <nop>$/;"	m	language:Vim
+<down>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <down> <nop>$/;"	m	language:Vim
+<Esc>OF	/home/neg/.vim/10-keymaps.vim	/^imap <Esc>OF <Plug>delimitMateEnd$/;"	m	language:Vim
+<Esc>OH	/home/neg/.vim/10-keymaps.vim	/^imap <Esc>OH <Plug>delimitMateHome$/;"	m	language:Vim
+<F10>	/home/neg/.vim/10-keymaps.vim	/^nmap <F10> :SCCompileRun<cr> $/;"	m	language:Vim
+<F11>	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <F11>                       <Plug>FontsizeBegin$/;"	m	language:Vim
+<F12>	/home/neg/.vim/10-keymaps.vim	/^imap <F12> <esc>:call UpdateCscopeDb()<cr>$/;"	m	language:Vim
+<F12>	/home/neg/.vim/10-keymaps.vim	/^nmap <F12> :call UpdateCscopeDb()<cr>$/;"	m	language:Vim
+<F12>	/home/neg/.vim/10-keymaps.vim	/^vmap <F12> <esc>:call UpdateCscopeDb()<cr>$/;"	m	language:Vim
+<F6>	/mnt/home/dev/src/dt3/vim/vimrc	/^map <F6> :Vinarise<CR>$/;"	m	language:Vim
+<F9>	/home/neg/.vim/10-keymaps.vim	/^nmap <F9> :SCCompile<cr>$/;"	m	language:Vim
+<leader>/	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>\/ :set invhlsearch<CR>$/;"	m	language:Vim
+<leader>/	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <leader>\/ :execute 'vimgrep \/'.@\/.'\/g %'<CR>:copen<CR>$/;"	m	language:Vim
+<Leader>;	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>; :Unite -silent -toggle$/;"	m	language:Vim
+<Leader>;	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>; :Unite -silent -toggle$/;"	m	language:Vim
+<leader><leader>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <leader><leader> :nohlsearch<CR>$/;"	m	language:Vim
+<leader><Tab>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <leader><Tab> :b#<CR>$/;"	m	language:Vim
+<Leader>a	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>$/;"	m	language:Vim
+<Leader>a	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>$/;"	m	language:Vim
+<Leader>a&	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a& :Tabularize \/&<CR>$/;"	m	language:Vim
+<Leader>a&	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a& :Tabularize \/&<CR>$/;"	m	language:Vim
+<Leader>a,	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a, :Tabularize \/,<CR>$/;"	m	language:Vim
+<Leader>a,	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a, :Tabularize \/,<CR>$/;"	m	language:Vim
+<Leader>a,,	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a,, :Tabularize \/,\\zs<CR>$/;"	m	language:Vim
+<Leader>a,,	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a,, :Tabularize \/,\\zs<CR>$/;"	m	language:Vim
+<Leader>a:	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a: :Tabularize \/:<CR>$/;"	m	language:Vim
+<Leader>a:	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a: :Tabularize \/:<CR>$/;"	m	language:Vim
+<Leader>a::	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a:: :Tabularize \/:\\zs<CR>$/;"	m	language:Vim
+<Leader>a::	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a:: :Tabularize \/:\\zs<CR>$/;"	m	language:Vim
+<Leader>a<Bar>	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a<Bar> :Tabularize \/<Bar><CR>$/;"	m	language:Vim
+<Leader>a<Bar>	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a<Bar> :Tabularize \/<Bar><CR>$/;"	m	language:Vim
+<Leader>a=	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
+<Leader>a=	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
+<leader>b	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>b :LustyJuggler<CR>$/;"	m	language:Vim
+<Leader>b	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>b :Unite -silent buffer<CR>$/;"	m	language:Vim
+<Leader>B	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>B :Unite -silent tab<CR>$/;"	m	language:Vim
+<Leader>b	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>b :Unite -silent buffer<CR>$/;"	m	language:Vim
+<Leader>B	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>B :Unite -silent tab<CR>$/;"	m	language:Vim
+<Leader>c	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>c <Plug>CommentaryLine$/;"	m	language:Vim
+<leader>cc	/home/neg/.vim/10-keymaps.vim	/^map <leader>cc :botright cope<cr>$/;"	m	language:Vim
+<Leader>d	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>d :Unite -silent junkfile\/new junkfile<CR>$/;"	m	language:Vim
+<Leader>d	/mnt/home/dev/src/dt3/vim/vimrc	/^  nnoremap <silent><Leader>d :Unite -silent junkfile\/new junkfile<CR>$/;"	m	language:Vim
+<Leader>dq	/home/neg/.vim/10-keymaps.vim	/^noremap <Leader>dq :Gdiffoff<CR>$/;"	m	language:Vim
+<Leader>dq	/mnt/home/dev/src/dt3/vim/vimrc	/^noremap <Leader>dq :Gdiffoff<CR>$/;"	m	language:Vim
+<Leader>du	/home/neg/.vim/10-keymaps.vim	/^noremap <Leader>du :diffupdate<CR>$/;"	m	language:Vim
+<Leader>du	/mnt/home/dev/src/dt3/vim/vimrc	/^noremap <Leader>du :diffupdate<CR>$/;"	m	language:Vim
+<Leader>ef	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>ef :Unite output:WordFrequency<CR>$/;"	m	language:Vim
+<Leader>eh	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>eh :set list!<CR>$/;"	m	language:Vim
+<Leader>eq	/mnt/home/dev/src/dt3/vim/vimrc	/^map <silent><Leader>eq :set invhlsearch<CR>$/;"	m	language:Vim
+<Leader>es	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>es g<C-G>$/;"	m	language:Vim
+<Leader>et	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent><Leader>et :let _s=@\/<Bar>:%s\/\\s\\+$\/\/e<Bar>:let @\/=_s<Bar>:nohl<CR>$/;"	m	language:Vim
+<Leader>ew	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent><Leader>ew :call ToggleWrap()<CR>$/;"	m	language:Vim
+<Leader>f	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview$/;"	m	language:Vim
+<Leader>f	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview$/;"	m	language:Vim
+<leader>fc	/home/neg/.vim/10-keymaps.vim	/^map <leader>fc \/\\v^[<\\|=>]{7}( .*\\|$)<CR>$/;"	m	language:Vim
+<Leader>ff	/home/neg/.vim/10-keymaps.vim	/^nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\\t"<CR>$/;"	m	language:Vim
+<leader>g	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>g :LustyBufferGrep<CR>$/;"	m	language:Vim
+<Leader>gA	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>$/;"	m	language:Vim
+<Leader>gA	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>$/;"	m	language:Vim
+<leader>gb	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gb :Gblame<CR>$/;"	m	language:Vim
+<Leader>gb	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gb :Gblame<CR>$/;"	m	language:Vim
+<Leader>gB	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gB :Gbrowse<CR>$/;"	m	language:Vim
+<Leader>gb	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gb :Gblame<CR>$/;"	m	language:Vim
+<Leader>gB	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gB :Gbrowse<CR>$/;"	m	language:Vim
+<leader>gc	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gc :Gcommit<CR>$/;"	m	language:Vim
+<Leader>gc	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gc :Gcommit<CR>$/;"	m	language:Vim
+<Leader>gc	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gc :Gcommit<CR>$/;"	m	language:Vim
+<leader>gd	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gd :Gdiff<CR>$/;"	m	language:Vim
+<Leader>gD	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>$/;"	m	language:Vim
+<Leader>gd	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gd :Gdiff<CR>$/;"	m	language:Vim
+<Leader>gD	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>$/;"	m	language:Vim
+<Leader>gd	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gd :Gdiff<CR>$/;"	m	language:Vim
+<leader>ge	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>ge :Gedit<CR>$/;"	m	language:Vim
+<Leader>ge	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>ge :Gedit<CR>$/;"	m	language:Vim
+<Leader>gE	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gE :Gedit<Space>$/;"	m	language:Vim
+<Leader>ge	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>ge :Gedit<CR>$/;"	m	language:Vim
+<Leader>gE	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gE :Gedit<Space>$/;"	m	language:Vim
+<leader>gg	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gg :GitGutterToggle<CR>$/;"	m	language:Vim
+<Leader>gg	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite$/;"	m	language:Vim
+<Leader>gg	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite$/;"	m	language:Vim
+<Leader>ggc	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>ggc :silent! Ggrep -i<Space>$/;"	m	language:Vim
+<Leader>ggc	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>ggc :silent! Ggrep -i<Space>$/;"	m	language:Vim
+<Leader>ggm	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>$/;"	m	language:Vim
+<Leader>ggm	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>$/;"	m	language:Vim
+<Leader>ggt	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>$/;"	m	language:Vim
+<Leader>ggt	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>$/;"	m	language:Vim
+<Leader>gi	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gi :Git!<Space>$/;"	m	language:Vim
+<Leader>gi	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gi :Git!<Space>$/;"	m	language:Vim
+<leader>gl	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gl :Glog<CR>$/;"	m	language:Vim
+<Leader>gL	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit$/;"	m	language:Vim
+<Leader>gl	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit$/;"	m	language:Vim
+<Leader>gL	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit$/;"	m	language:Vim
+<Leader>gl	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit$/;"	m	language:Vim
+<Leader>gm	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gm :Gmove<Space>$/;"	m	language:Vim
+<Leader>gm	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gm :Gmove<Space>$/;"	m	language:Vim
+<Leader>gn	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gn :Unite output:echo\\ system("git\\ init")<CR>$/;"	m	language:Vim
+<Leader>gn	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gn :Unite output:echo\\ system("git\\ init")<CR>$/;"	m	language:Vim
+<Leader>go	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>go :Gread<CR>$/;"	m	language:Vim
+<Leader>go	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>go :Gread<CR>$/;"	m	language:Vim
+<leader>gp	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gp :Git push<CR>$/;"	m	language:Vim
+<Leader>gP	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gP :Git! pull<CR>$/;"	m	language:Vim
+<Leader>gp	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gp :Git! push<CR>$/;"	m	language:Vim
+<Leader>gP	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gP :Git! pull<CR>$/;"	m	language:Vim
+<Leader>gp	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gp :Git! push<CR>$/;"	m	language:Vim
+<leader>gr	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>$/;"	m	language:Vim
+<Leader>gR	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gR :Gremove<CR>$/;"	m	language:Vim
+<Leader>gR	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gR :Gremove<CR>$/;"	m	language:Vim
+<leader>gs	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gs :Gstatus<CR>$/;"	m	language:Vim
+<Leader>gS	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>$/;"	m	language:Vim
+<Leader>gs	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gs :Gstatus<CR>$/;"	m	language:Vim
+<Leader>gS	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>$/;"	m	language:Vim
+<Leader>gs	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gs :Gstatus<CR>$/;"	m	language:Vim
+<Leader>gt	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gt :!tig<CR>:redraw!<CR>$/;"	m	language:Vim
+<Leader>gt	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gt :!tig<CR>:redraw!<CR>$/;"	m	language:Vim
+<leader>gv	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <leader>gv :Gitv --all<CR>$/;"	m	language:Vim
+<leader>gV	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <leader>gV :Gitv! --all<CR>$/;"	m	language:Vim
+<leader>gV	/home/neg/.vim/10-keymaps.vim	/^vnoremap <silent> <leader>gV :Gitv! --all<CR>$/;"	m	language:Vim
+<leader>gv	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent> <leader>gv :Gitv --all<CR>$/;"	m	language:Vim
+<leader>gV	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent> <leader>gV :Gitv! --all<CR>$/;"	m	language:Vim
+<leader>gV	/mnt/home/dev/src/dt3/vim/vimrc	/^vnoremap <silent> <leader>gV :Gitv! --all<CR>$/;"	m	language:Vim
+<leader>gw	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>$/;"	m	language:Vim
+<Leader>gw	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>gw :Gwrite<CR>$/;"	m	language:Vim
+<Leader>gw	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>gw :Gwrite<CR>$/;"	m	language:Vim
+<Leader>h	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>h <C-w>s$/;"	m	language:Vim
+<Leader>i	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>i :Unite -silent history\/yank<CR>$/;"	m	language:Vim
+<Leader>i	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>i :Unite -silent history\/yank<CR>$/;"	m	language:Vim
+<Leader>j	/home/neg/.vim/10-keymaps.vim	/^map <Leader>j :Utl <CR><Bar>:redraw!<CR>$/;"	m	language:Vim
+<Leader>j	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>j :Utl <CR><Bar>:redraw!<CR>$/;"	m	language:Vim
+<Leader>k	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>k <C-w>c$/;"	m	language:Vim
+<Leader>K	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>K :bd<CR>$/;"	m	language:Vim
+<Leader>L	/home/neg/.vim/01-settings.vim	/^map <silent> <Leader>L :IndentLinesToggle<CR>$/;"	m	language:Vim
+<Leader>L	/home/neg/.vim/01-settings.vim	/^map <silent> <Leader>L :IndentLinesToggle<CR>$/;"	m	language:Vim
+<leader>l	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>$/;"	m	language:Vim
+<Leader>L	/mnt/home/dev/src/dt3/vim/vimrc	/^map <silent> <Leader>L :IndentLinesToggle<CR>$/;"	m	language:Vim
+<Leader>l	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>l :call ToggleRelativeAbsoluteNumber()<CR>$/;"	m	language:Vim
+<Leader>m	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>m :Unite -silent file_mru<CR>$/;"	m	language:Vim
+<Leader>m	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>m :Unite -silent file_mru<CR>$/;"	m	language:Vim
+<Leader>n	/home/neg/.vim/01-settings.vim	/^nmap <silent><Leader>n :PymodeLint<CR>$/;"	m	language:Vim
+<leader>n	/home/neg/.vim/10-keymaps.vim	/^map <leader>n :cn<cr>$/;"	m	language:Vim
+<Leader>n	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent><Leader>n :PymodeLint<CR>$/;"	m	language:Vim
+<Leader>N	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>$/;"	m	language:Vim
+<Leader>o	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>$/;"	m	language:Vim
+<Leader>O	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec\/async<CR>$/;"	m	language:Vim
+<Leader>o	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>$/;"	m	language:Vim
+<Leader>O	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec\/async<CR>$/;"	m	language:Vim
+<leader>p	/home/neg/.vim/10-keymaps.vim	/^map <leader>p :cp<cr>$/;"	m	language:Vim
+<Leader>p	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>p "*p$/;"	m	language:Vim
+<Leader>P	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>P :set invpaste<CR>$/;"	m	language:Vim
+<Leader>q	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent> <Leader>q :ToggleQuickfix<CR>$/;"	m	language:Vim
+<leader>r	/home/neg/.vim/10-keymaps.vim	/^map <leader>r mz<bar>:retab!<bar>:normal gg=G<cr>`z$/;"	m	language:Vim
+<Leader>r3	/home/neg/.vim/10-keymaps.vim	/^map <Leader>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>r3	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rc	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rc :VimuxPromptCommand<CR>$/;"	m	language:Vim
+<Leader>rc	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rc :VimuxPromptCommand<CR>$/;"	m	language:Vim
+<Leader>ri	/home/neg/.vim/10-keymaps.vim	/^map <Leader>ri :VimuxInspectRunner<CR>$/;"	m	language:Vim
+<Leader>ri	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>ri :VimuxInspectRunner<CR>$/;"	m	language:Vim
+<Leader>rl	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rl :VimuxRunLastCommand<CR>$/;"	m	language:Vim
+<Leader>rl	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rl :VimuxRunLastCommand<CR>$/;"	m	language:Vim
+<Leader>rp	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rp	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rq	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rq :VimuxCloseRunner<CR>$/;"	m	language:Vim
+<Leader>rq	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rq :VimuxCloseRunner<CR>$/;"	m	language:Vim
+<Leader>rr	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rr	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rs	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rs :VimuxInterruptRunner<CR>$/;"	m	language:Vim
+<Leader>rs	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rs :VimuxInterruptRunner<CR>$/;"	m	language:Vim
+<Leader>rt	/home/neg/.vim/10-keymaps.vim	/^map <Leader>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rt	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>$/;"	m	language:Vim
+<Leader>rw	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>rw :CoffeeWatch vert<CR>$/;"	m	language:Vim
+<Leader>sa	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>sa zg$/;"	m	language:Vim
+<leader>sc	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>sc  :set syn=config <CR> :syntax sync fromstart <CR>$/;"	m	language:Vim
+<Leader>sc	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>sc ]sz=$/;"	m	language:Vim
+<Leader>se	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>se :setlocal spell spelllang=en<CR>$/;"	m	language:Vim
+<leader>sf	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>sf  :set syn=conf   <CR> :syntax sync fromstart <CR>$/;"	m	language:Vim
+<leader>sl	/home/neg/.vim/10-keymaps.vim	/^    nmap <leader>sl :SessionList<CR>$/;"	m	language:Vim
+<Leader>sn	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>sn ]s$/;"	m	language:Vim
+<Leader>so	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>so :setlocal nospell <CR>$/;"	m	language:Vim
+<leader>sp	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>sp  :set syn=perl   <CR> :syntax sync fromstart <CR>$/;"	m	language:Vim
+<Leader>sp	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>sp z=$/;"	m	language:Vim
+<leader>ss	/home/neg/.vim/10-keymaps.vim	/^    nmap <leader>ss :SessionSave<CR>$/;"	m	language:Vim
+<Leader>ss	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <Leader>ss :setlocal spell spelllang=es<CR>$/;"	m	language:Vim
+<leader>sv	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>sv  :set syn=vim    <CR> :syntax sync fromstart <CR>$/;"	m	language:Vim
+<leader>sz	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>sz  :set syn=sh     <CR> :syntax sync fromstart <CR>$/;"	m	language:Vim
+<Leader>t	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40$/;"	m	language:Vim
+<Leader>t	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40$/;"	m	language:Vim
+<leader>tt	/home/neg/.vim/10-keymaps.vim	/^    nnoremap <silent> <leader>tt :TagbarToggle<CR>$/;"	m	language:Vim
+<Leader>u	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Leader>u :GundoToggle<CR>$/;"	m	language:Vim
+<Leader>u	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>u :GundoToggle<CR>$/;"	m	language:Vim
+<Leader>v	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>v <C-w>v$/;"	m	language:Vim
+<Leader>w	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent> <Leader>w :update<CR>$/;"	m	language:Vim
+<Leader>x	/home/neg/.vim/10-keymaps.vim	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
+<Leader>x	/home/neg/.vimrc	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
+<Leader>x	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
+<Leader>X	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>X :VimFiler<CR>$/;"	m	language:Vim
+<Leader>y	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>y "*y$/;"	m	language:Vim
+<Leader>z	/home/neg/.vim/10-keymaps.vim	/^map <Leader>z :ZoomWinTabToggle<CR>$/;"	m	language:Vim
+<Leader>z	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>z :ZoomWinTabToggle<CR>$/;"	m	language:Vim
+<Leader>``	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>`` :qa!<CR>$/;"	m	language:Vim
+<Left>	/home/neg/.vim/10-keymaps.vim	/^map <Left> <Nop>$/;"	m	language:Vim
+<left>	/mnt/home/dev/src/dt3/vim/vimrc	/^inoremap <left> <nop>$/;"	m	language:Vim
+<left>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <left> <nop>$/;"	m	language:Vim
+<LocalLeader>	/home/neg/.vim/10-keymaps.vim	/^nmap <LocalLeader> <C-e>$/;"	m	language:Vim
+<LocalLeader>	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <LocalLeader> [menu]$/;"	m	language:Vim
+<LocalLeader>C	/home/neg/.vim/10-keymaps.vim	/^nnoremap <LocalLeader>C :CC<cr>$/;"	m	language:Vim
+<LocalLeader>wm	/home/neg/.vim/10-keymaps.vim	/^nmap <LocalLeader>wm  :w<cr>:make<cr>$/;"	m	language:Vim
+<M-Backspace>	/home/neg/.vim/10-keymaps.vim	/^noremap! <M-Backspace> <C-W>$/;"	m	language:Vim
+<M-H>	/home/neg/.vim/10-keymaps.vim	/^inoremap <M-H> h$/;"	m	language:Vim
+<M-J>	/home/neg/.vim/10-keymaps.vim	/^inoremap <M-J> <C-g>j$/;"	m	language:Vim
+<M-K>	/home/neg/.vim/10-keymaps.vim	/^inoremap <M-K> <C-g>k$/;"	m	language:Vim
+<M-L>	/home/neg/.vim/10-keymaps.vim	/^inoremap <M-L> l$/;"	m	language:Vim
+<M-Left>	/home/neg/.vim/10-keymaps.vim	/^noremap! <M-Left> <C-Left>$/;"	m	language:Vim
+<M-Right>	/home/neg/.vim/10-keymaps.vim	/^noremap! <M-Right> <C-Right>$/;"	m	language:Vim
+<M-v>	/home/neg/.vim/01-settings.vim	/^    inoremap <silent> <M-v> <Esc>"+p`]a$/;"	m	language:Vim
+<PageDown>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <PageDown> :bn<CR>$/;"	m	language:Vim
+<PageUp>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <PageUp> :bp<CR>$/;"	m	language:Vim
+<Right>	/home/neg/.vim/10-keymaps.vim	/^map <Right> <Nop>$/;"	m	language:Vim
+<right>	/mnt/home/dev/src/dt3/vim/vimrc	/^inoremap <right> <nop>$/;"	m	language:Vim
+<right>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <right> <nop>$/;"	m	language:Vim
+<S-Down>	/home/neg/.vim/10-keymaps.vim	/^inoremap <S-Down> <Down>$/;"	m	language:Vim
+<S-Down>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <S-Down> <Down>$/;"	m	language:Vim
+<S-Down>	/home/neg/.vim/10-keymaps.vim	/^vnoremap <S-Down> <Down>$/;"	m	language:Vim
+<S-Insert>	/home/neg/.vim/01-settings.vim	/^    inoremap <silent> <S-Insert> <Esc>"*p`]a$/;"	m	language:Vim
+<S-Insert>	/home/neg/.vim/10-keymaps.vim	/^imap <S-Insert> <C-o>p$/;"	m	language:Vim
+<S-Up>	/home/neg/.vim/10-keymaps.vim	/^inoremap <S-Up> <Up>$/;"	m	language:Vim
+<S-Up>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <S-Up> <Up>$/;"	m	language:Vim
+<S-Up>	/home/neg/.vim/10-keymaps.vim	/^vnoremap <S-Up> <Up>$/;"	m	language:Vim
+<SID>DisableFontsizeDec	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec$/;"	m	language:Vim
+<SID>DisableFontsizeDefault	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault$/;"	m	language:Vim
+<SID>DisableFontsizeInc	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc$/;"	m	language:Vim
+<up>	/mnt/home/dev/src/dt3/vim/vimrc	/^inoremap <up> <nop>$/;"	m	language:Vim
+<up>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <up> <nop>$/;"	m	language:Vim
+>	/home/neg/.vim/10-keymaps.vim	/^vnoremap > >gv$/;"	m	language:Vim
+acquireAllCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void acquireAllCapabilities(Capability *cap, Task *task)$/;"	f	language:C	file:
+acquireAllCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void acquireAllCapabilities(Capability *cap, Task *task);$/;"	p	language:C	file:
+ag_xml	/home/neg/.vim/04-autocmds.vim	/^augroup ag_xml$/;"	a	language:Vim
+ArgumentParser	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from argparse import ArgumentParser, RawDescriptionHelpFormatter$/;"	i	language:Python
+arguments	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def arguments():$/;"	f	language:Python
+awful.button({ }, 1, function (c) client.focus 	/mnt/home/dev/src/dt3/awesome/rc.lua	/^    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),$/;"	f	language:Lua
+blocked_queue_hd	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO *blocked_queue_hd = NULL;$/;"	v	language:C
+blocked_queue_tl	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO *blocked_queue_tl = NULL;$/;"	v	language:C
+check_and_create	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static void check_and_create()$/;"	f	language:C	file:
+check_execs	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from check_execs import check_execs$/;"	i	language:Python
+ci(	/home/neg/.vim/10-keymaps.vim	/^nnoremap ci( f(ci($/;"	m	language:Vim
+ci(	/home/neg/.vim/10-keymaps.vim	/^vnoremap ci( f(ci($/;"	m	language:Vim
+ci[	/home/neg/.vim/10-keymaps.vim	/^nnoremap ci[ f[ci[$/;"	m	language:Vim
+ci[	/home/neg/.vim/10-keymaps.vim	/^vnoremap ci[ f[ci[$/;"	m	language:Vim
+ci{	/home/neg/.vim/10-keymaps.vim	/^nnoremap ci{ f{ci{$/;"	m	language:Vim
+ci{	/home/neg/.vim/10-keymaps.vim	/^vnoremap ci{ f{ci{$/;"	m	language:Vim
+copy	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from shutil import copy$/;"	i	language:Python
+create	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create(WMPlex *mplex, int flags)$/;"	f	language:C	file:
+create_config_file	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def create_config_file(original_file, copy_file):$/;"	f	language:Python
+create_frame_scratchpad	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create_frame_scratchpad(WWindow *parent, const WFitParams *fp,$/;"	f	language:C	file:
+create_scratchws	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create_scratchws(WWindow *parent, const WFitParams *fp, $/;"	f	language:C	file:
+datetime	/home/neg/bin/vimv	/^import datetime$/;"	i	language:Python
+deleteAllThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^deleteAllThreads ( Capability *cap )$/;"	f	language:C	file:
+deleteAllThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteAllThreads (Capability *cap);$/;"	p	language:C	file:
+deleteThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^deleteThread (Capability *cap STG_UNUSED, StgTSO *tso)$/;"	f	language:C	file:
+deleteThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteThread (Capability *cap, StgTSO *tso);$/;"	p	language:C	file:
+deleteThread_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^deleteThread_(Capability *cap, StgTSO *tso)$/;"	f	language:C	file:
+deleteThread_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteThread_(Capability *cap, StgTSO *tso);$/;"	p	language:C	file:
+delimitMate_expand_space	/mnt/home/dev/src/dt3/vim/vimrc	/^let delimitMate_expand_space = 1$/;"	v	language:Vim
+do_try	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int do_try(const char *dir, const char *file, ExtlTryConfigFn *tryfn,$/;"	f	language:C	file:
+dummy_tso	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO dummy_tso;$/;"	v	language:C
+E	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file E e<bang> <args>$/;"	c	language:Vim
+ensuredir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static bool ensuredir(char *f)$/;"	f	language:C	file:
+exitScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^exitScheduler (rtsBool wait_foreign USED_IF_THREADS)$/;"	f	language:C
+extl_add_searchdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_add_searchdir(const char *dir)$/;"	f	language:C
+EXTL_EXPORT_AS	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^EXTL_EXPORT_AS(extl, read_savefile)$/;"	f	language:C
+extl_get_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^char *extl_get_savefile(const char *basename)$/;"	f	language:C
+extl_lookup_script	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^char *extl_lookup_script(const char *file, const char *sp)$/;"	f	language:C
+extl_read_config	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_read_config(const char *file, const char *sp, bool warn_nx)$/;"	f	language:C
+extl_read_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_read_savefile(const char *basename, ExtlTab *tabret)$/;"	f	language:C
+extl_searchpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^const char *extl_searchpath()$/;"	f	language:C
+extl_sessiondir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^const char *extl_sessiondir()$/;"	f	language:C
+extl_set_searchpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_set_searchpath(const char *path)$/;"	f	language:C
+extl_set_sessiondir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_set_sessiondir(const char *session)$/;"	f	language:C
+extl_set_userdirs	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_set_userdirs(const char *appname)$/;"	f	language:C
+extl_try_config	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^int extl_try_config(const char *fname, const char *cfdir,$/;"	f	language:C
+extl_userdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^const char *extl_userdir()$/;"	f	language:C
+extl_write_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_write_savefile(const char *basename, ExtlTab tab)$/;"	f	language:C
+filetypedetect	/home/neg/.vim/04-autocmds.vim	/^augroup filetypedetect$/;"	a	language:Vim
+findall	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from re import findall$/;"	i	language:Python
+findRetryFrameHelper	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^findRetryFrameHelper (Capability *cap, StgTSO *tso)$/;"	f	language:C
+fn	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^    ExtlFn fn;$/;"	m	language:C	struct:__anon1	file:
+forkProcess	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^forkProcess(HsStablePtr *entry$/;"	f	language:C
+FORKPROCESS_PRIMOP_SUPPORTED	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	116;"	d	language:C	file:
+freeScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^freeScheduler( void )$/;"	f	language:C
+g:ackprg	/home/neg/.vim/01-settings.vim	/^let g:ackprg = 'ag --nogroup --nocolor --column'$/;"	v	language:Vim
+g:airline#extensions#branch#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#branch#enabled = 1$/;"	v	language:Vim
+g:airline#extensions#hunks#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#hunks#enabled = 1$/;"	v	language:Vim
+g:airline#extensions#hunks#non_zero_only	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:airline#extensions#hunks#non_zero_only = 1$/;"	v	language:Vim
+g:airline#extensions#whitespace#checks	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#whitespace#checks = []$/;"	v	language:Vim
+g:airline_detect_whitespace	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:airline_detect_whitespace = 1$/;"	v	language:Vim
+g:airline_enable_branch	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:airline_enable_branch=1$/;"	v	language:Vim
+g:airline_exclude_preview	/home/neg/.vim/01-settings.vim	/^let g:airline_exclude_preview=1$/;"	v	language:Vim
+g:airline_left_alt_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_left_alt_sep = ' '$/;"	v	language:Vim
+g:airline_left_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_left_sep = ' '$/;"	v	language:Vim
+g:airline_mode_map	/home/neg/.vim/01-settings.vim	/^let g:airline_mode_map = {$/;"	v	language:Vim
+g:airline_powerline_fonts	/home/neg/.vim/01-settings.vim	/^let g:airline_powerline_fonts = 1 " Use airline fonts$/;"	v	language:Vim
+g:airline_powerline_fonts	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:airline_powerline_fonts=1$/;"	v	language:Vim
+g:airline_right_alt_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_right_alt_sep = ''$/;"	v	language:Vim
+g:airline_right_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_right_sep = ''$/;"	v	language:Vim
+g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols = {}$/;"	v	language:Vim
+g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.branch = ''$/;"	v	language:Vim
+g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.linenr = ''$/;"	v	language:Vim
+g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.readonly = ''$/;"	v	language:Vim
+g:airline_theme	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:airline_theme='powerlineish'$/;"	v	language:Vim
+g:clj_highlight_builtins	/home/neg/.vim/01-settings.vim	/^let g:clj_highlight_builtins=1$/;"	v	language:Vim
+g:colorv_cache_fav	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:colorv_cache_fav=$HOME.'\/.vim\/tmp\/vim_colorv_cache_fav'$/;"	v	language:Vim
+g:colorv_cache_file	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:colorv_cache_file=$HOME.'\/.vim\/tmp\/vim_colorv_cache'$/;"	v	language:Vim
+g:ctrlp_cmd	/home/neg/.vim/01-settings.vim	/^let g:ctrlp_cmd = 'CtrlPMRUFiles'$/;"	v	language:Vim
+g:ctrlp_map	/home/neg/.vim/01-settings.vim	/^let g:ctrlp_map = '<leader>p'$/;"	v	language:Vim
+g:EasyDigraph_nmap	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:EasyDigraph_nmap = '<Leader>dd'$/;"	v	language:Vim
+g:gitgutter_realtime	/home/neg/.vim/01-settings.vim	/^let g:gitgutter_realtime = 0$/;"	v	language:Vim
+g:Gitv_DoNotMapCtrlKey	/home/neg/.vim/01-settings.vim	/^let g:Gitv_DoNotMapCtrlKey = 1$/;"	v	language:Vim
+g:Gitv_DoNotMapCtrlKey	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:Gitv_DoNotMapCtrlKey = 1$/;"	v	language:Vim
+g:Gitv_OpenHorizontal	/home/neg/.vim/01-settings.vim	/^let g:Gitv_OpenHorizontal = 'auto'$/;"	v	language:Vim
+g:Gitv_OpenHorizontal	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:Gitv_OpenHorizontal = 'auto'$/;"	v	language:Vim
+g:Gitv_WipeAllOnClose	/home/neg/.vim/01-settings.vim	/^let g:Gitv_WipeAllOnClose = 1$/;"	v	language:Vim
+g:Gitv_WipeAllOnClose	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:Gitv_WipeAllOnClose = 1$/;"	v	language:Vim
+g:gundo_playback_delay	/home/neg/.vim/01-settings.vim	/^let g:gundo_playback_delay = 240$/;"	v	language:Vim
+g:gundo_preview_bottom	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:gundo_preview_bottom = 1$/;"	v	language:Vim
+g:haddock_browser	/home/neg/.vim/01-settings.vim	/^let g:haddock_browser = "dwb"$/;"	v	language:Vim
+g:indentLine_char	/home/neg/.vim/01-settings.vim	/^let g:indentLine_char = '┊'$/;"	v	language:Vim
+g:indentLine_char	/home/neg/.vim/01-settings.vim	/^let g:indentLine_char = '┊'$/;"	v	language:Vim
+g:indentLine_char	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:indentLine_char = '┊'$/;"	v	language:Vim
+g:indentLine_color_term	/home/neg/.vim/01-settings.vim	/^let g:indentLine_color_term = 239$/;"	v	language:Vim
+g:indentLine_color_term	/home/neg/.vim/01-settings.vim	/^let g:indentLine_color_term = 239$/;"	v	language:Vim
+g:indentLine_color_term	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:indentLine_color_term = 239$/;"	v	language:Vim
+g:indentLine_enabled	/home/neg/.vim/01-settings.vim	/^let g:indentLine_enabled = 0$/;"	v	language:Vim
+g:indentLine_enabled	/home/neg/.vim/01-settings.vim	/^let g:indentLine_enabled = 0$/;"	v	language:Vim
+g:indentLine_enabled	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:indentLine_enabled = 0$/;"	v	language:Vim
+g:indent_guides_auto_colors	/home/neg/.vim/01-settings.vim	/^    let g:indent_guides_auto_colors = 1$/;"	v	language:Vim
+g:indent_guides_enable_on_vim_startup	/home/neg/.vim/01-settings.vim	/^    let g:indent_guides_enable_on_vim_startup = 1$/;"	v	language:Vim
+g:indent_guides_guide_size	/home/neg/.vim/01-settings.vim	/^    let g:indent_guides_guide_size = 1$/;"	v	language:Vim
+g:indent_guides_start_level	/home/neg/.vim/01-settings.vim	/^    let g:indent_guides_start_level = 2$/;"	v	language:Vim
+g:is_bash	/home/neg/.vim/01-settings.vim	/^let g:is_bash=1$/;"	v	language:Vim
+g:junkfile#directory	/home/neg/.vim/01-settings.vim	/^let g:junkfile#directory=expand($HOME."\/.vim\/tmp\/junk")$/;"	v	language:Vim
+g:junkfile#directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:junkfile#directory=expand($HOME."\/.vim\/tmp\/junk")$/;"	v	language:Vim
+g:LustyJugglerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let g:LustyJugglerDefaultMappings=0$/;"	v	language:Vim
+g:mapleader	/home/neg/.vim/01-settings.vim	/^let g:mapleader = ","$/;"	v	language:Vim
+g:mirodark_enable_higher_contrast_mode	/home/neg/.vim/01-settings.vim	/^    let g:mirodark_enable_higher_contrast_mode=0$/;"	v	language:Vim
+g:neobundle#log_filename	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neobundle#log_filename = $HOME.'\/.vim\/tmp\/neobundle.log'$/;"	v	language:Vim
+g:neocomplete#data_directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#data_directory = $HOME.'\/.vim\/tmp\/neocomplete'$/;"	v	language:Vim
+g:neocomplete#enable_at_startup	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_at_startup = 1$/;"	v	language:Vim
+g:neocomplete#enable_auto_select	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_auto_select = 1$/;"	v	language:Vim
+g:neocomplete#enable_refresh_always	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_refresh_always = 1$/;"	v	language:Vim
+g:neocomplete#enable_smart_case	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_smart_case = 1$/;"	v	language:Vim
+g:neocomplete#max_list	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#max_list = 30$/;"	v	language:Vim
+g:neocomplete#min_keyword_length	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#min_keyword_length = 1$/;"	v	language:Vim
+g:neocomplete#sources#omni#input_patterns	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:neocomplete#sources#omni#input_patterns = {}$/;"	v	language:Vim
+g:neocomplete#sources#omni#input_patterns	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#sources#omni#input_patterns.python='\\%([^. \\t]\\.\\|^\\s*@\\|^\\s*from\\s.\\+import \\|^\\s*from \\|^\\s*import \\)\\w*'$/;"	v	language:Vim
+g:neocomplete#sources#syntax#min_keyword_length	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#sources#syntax#min_keyword_length = 1$/;"	v	language:Vim
+g:po_translator	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:po_translator = "joe di castro <joe@joedicastro.com>"$/;"	v	language:Vim
+g:pymode_breakpoint_bind	/home/neg/.vim/01-settings.vim	/^let g:pymode_breakpoint_bind = '<Leader>B'$/;"	v	language:Vim
+g:pymode_breakpoint_bind	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_breakpoint_bind = '<Leader>B'$/;"	v	language:Vim
+g:pymode_lint	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint = 1$/;"	v	language:Vim
+g:pymode_lint	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_lint = 1$/;"	v	language:Vim
+g:pymode_lint_checkers	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']$/;"	v	language:Vim
+g:pymode_lint_checkers	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']$/;"	v	language:Vim
+g:pymode_lint_ignore	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_ignore = ''$/;"	v	language:Vim
+g:pymode_lint_ignore	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_lint_ignore = ''$/;"	v	language:Vim
+g:pymode_lint_on_write	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_on_write = 0$/;"	v	language:Vim
+g:pymode_lint_on_write	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_lint_on_write = 0$/;"	v	language:Vim
+g:pymode_rope	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope = 1$/;"	v	language:Vim
+g:pymode_rope	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_rope = 1$/;"	v	language:Vim
+g:pymode_rope_complete_on_dot	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope_complete_on_dot = 1$/;"	v	language:Vim
+g:pymode_rope_complete_on_dot	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_rope_complete_on_dot = 1$/;"	v	language:Vim
+g:pymode_rope_completion	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope_completion = 0$/;"	v	language:Vim
+g:pymode_rope_completion	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_rope_completion = 0$/;"	v	language:Vim
+g:pymode_virtualenv	/home/neg/.vim/01-settings.vim	/^let g:pymode_virtualenv = 0$/;"	v	language:Vim
+g:pymode_virtualenv	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:pymode_virtualenv = 0$/;"	v	language:Vim
+g:solarized_contrast	/home/neg/.vim/01-settings.vim	/^    let g:solarized_contrast="normal"$/;"	v	language:Vim
+g:solarized_termcolors	/home/neg/.vim/01-settings.vim	/^    let g:solarized_termcolors=256$/;"	v	language:Vim
+g:solarized_termtrans	/home/neg/.vim/01-settings.vim	/^    let g:solarized_termtrans=1$/;"	v	language:Vim
+g:solarized_visibility	/home/neg/.vim/01-settings.vim	/^    let g:solarized_visibility="normal"$/;"	v	language:Vim
+g:syntastic_error_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_error_symbol='✗'$/;"	v	language:Vim
+g:syntastic_error_symbol	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_error_symbol='✗'$/;"	v	language:Vim
+g:syntastic_mode_map	/home/neg/.vim/01-settings.vim	/^let g:syntastic_mode_map = { 'mode': 'active',$/;"	v	language:Vim
+g:syntastic_mode_map	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_mode_map = { 'mode': 'active',$/;"	v	language:Vim
+g:syntastic_python_pylint_exe	/home/neg/.vim/01-settings.vim	/^let g:syntastic_python_pylint_exe = "pylint2"$/;"	v	language:Vim
+g:syntastic_python_pylint_exe	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_python_pylint_exe = "pylint2"$/;"	v	language:Vim
+g:syntastic_style_error_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_style_error_symbol  = '⚡'$/;"	v	language:Vim
+g:syntastic_style_error_symbol	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_style_error_symbol  = '⚡'$/;"	v	language:Vim
+g:syntastic_style_warning_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_style_warning_symbol  = '⚡'$/;"	v	language:Vim
+g:syntastic_style_warning_symbol	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_style_warning_symbol  = '⚡'$/;"	v	language:Vim
+g:syntastic_warning_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_warning_symbol='⚠'$/;"	v	language:Vim
+g:syntastic_warning_symbol	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:syntastic_warning_symbol='⚠'$/;"	v	language:Vim
+g:UltiSnipsExpandTrigger	/home/neg/.vim/10-keymaps.vim	/^let g:UltiSnipsExpandTrigger="<c-j>"$/;"	v	language:Vim
+g:UltiSnipsJumpBackwardTrigger	/home/neg/.vim/10-keymaps.vim	/^let g:UltiSnipsJumpBackwardTrigger="<c-k>"$/;"	v	language:Vim
+g:UltiSnipsJumpForwardTrigger	/home/neg/.vim/10-keymaps.vim	/^let g:UltiSnipsJumpForwardTrigger="<c-j>"$/;"	v	language:Vim
+g:Ultisnips_ListSnippets	/home/neg/.vim/10-keymaps.vim	/^let g:Ultisnips_ListSnippets=""$/;"	v	language:Vim
+g:unite_candidate_icon	/home/neg/.vim/01-settings.vim	/^let g:unite_candidate_icon="▷"$/;"	v	language:Vim
+g:unite_data_directory	/home/neg/.vim/01-settings.vim	/^let g:unite_data_directory = $HOME.'\/.vim\/tmp\/unite'$/;"	v	language:Vim
+g:unite_data_directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_data_directory = $HOME.'\/.vim\/tmp\/unite'$/;"	v	language:Vim
+g:unite_enable_short_source_mes	/home/neg/.vim/01-settings.vim	/^let g:unite_enable_short_source_mes = 0$/;"	v	language:Vim
+g:unite_enable_short_source_mes	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_enable_short_source_mes = 0$/;"	v	language:Vim
+g:unite_enable_start_insert	/home/neg/.vim/01-settings.vim	/^let g:unite_enable_start_insert = 0$/;"	v	language:Vim
+g:unite_enable_start_insert	/home/neg/.vim/01-settings.vim	/^let g:unite_enable_start_insert = 1$/;"	v	language:Vim
+g:unite_enable_start_insert	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_enable_start_insert = 0$/;"	v	language:Vim
+g:unite_force_overwrite_statusline	/home/neg/.vim/01-settings.vim	/^let g:unite_force_overwrite_statusline = 0$/;"	v	language:Vim
+g:unite_force_overwrite_statusline	/home/neg/.vim/01-settings.vim	/^let g:unite_force_overwrite_statusline = 0$/;"	v	language:Vim
+g:unite_force_overwrite_statusline	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_force_overwrite_statusline = 0$/;"	v	language:Vim
+g:unite_marked_icon	/home/neg/.vim/01-settings.vim	/^let g:unite_marked_icon = '✓'$/;"	v	language:Vim
+g:unite_marked_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_marked_icon = '✓'$/;"	v	language:Vim
+g:unite_prompt	/home/neg/.vim/01-settings.vim	/^let g:unite_prompt = '>>> '$/;"	v	language:Vim
+g:unite_prompt	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_prompt = '>>> '$/;"	v	language:Vim
+g:unite_source_buffer_time_format	/home/neg/.vim/01-settings.vim	/^let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_buffer_time_format	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_directory_mru_time_format	/home/neg/.vim/01-settings.vim	/^let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_directory_mru_time_format	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_file_mru_time_format	/home/neg/.vim/01-settings.vim	/^let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_file_mru_time_format	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '$/;"	v	language:Vim
+g:unite_source_grep_command	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_command='ack'$/;"	v	language:Vim
+g:unite_source_grep_command	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_command='ag'$/;"	v	language:Vim
+g:unite_source_grep_command	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_command='ack'$/;"	v	language:Vim
+g:unite_source_grep_command	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_command='ag'$/;"	v	language:Vim
+g:unite_source_grep_default_opts	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_default_opts='--no-group --no-color'$/;"	v	language:Vim
+g:unite_source_grep_default_opts	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_default_opts='--nocolor --nogroup -a -S'$/;"	v	language:Vim
+g:unite_source_grep_default_opts	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_default_opts='--no-group --no-color'$/;"	v	language:Vim
+g:unite_source_grep_default_opts	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_default_opts='--nocolor --nogroup -a -S'$/;"	v	language:Vim
+g:unite_source_grep_recursive_opt	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_recursive_opt=''$/;"	v	language:Vim
+g:unite_source_grep_recursive_opt	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_recursive_opt=''$/;"	v	language:Vim
+g:unite_source_grep_recursive_opt	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_recursive_opt=''$/;"	v	language:Vim
+g:unite_source_grep_recursive_opt	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_recursive_opt=''$/;"	v	language:Vim
+g:unite_source_grep_search_word_highlight	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_search_word_highlight = 1$/;"	v	language:Vim
+g:unite_source_grep_search_word_highlight	/home/neg/.vim/01-settings.vim	/^    let g:unite_source_grep_search_word_highlight = 1$/;"	v	language:Vim
+g:unite_source_grep_search_word_highlight	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_search_word_highlight = 1$/;"	v	language:Vim
+g:unite_source_grep_search_word_highlight	/mnt/home/dev/src/dt3/vim/vimrc	/^    let g:unite_source_grep_search_word_highlight = 1$/;"	v	language:Vim
+g:unite_source_history_yank_enable	/home/neg/.vim/01-settings.vim	/^let g:unite_source_history_yank_enable = 1$/;"	v	language:Vim
+g:unite_source_history_yank_enable	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_history_yank_enable = 1$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus = {}$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.bookmarks = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.bookmarks.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.code = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.code.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.colorv = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.colorv.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.files = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.files.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.git = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.git.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.grep = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.grep.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.markdown = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.markdown.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.navigation = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.navigation.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.neobundle = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.neobundle.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.registers = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.registers.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.searching = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.searching.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.spelling = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.spelling.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.text = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.text.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.vim = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/home/neg/.vim/01-settings.vim	/^let g:unite_source_menu_menus.vim.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus = {}$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.bookmarks = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.bookmarks.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.code = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.code.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.colorv = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.colorv.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.files = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.files.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.git = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.git.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.grep = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.grep.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.markdown = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.markdown.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.navigation = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.navigation.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.neobundle = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.neobundle.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.registers = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.registers.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.searching = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.searching.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.spelling = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.spelling.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.text = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.text.command_candidates = [$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.vim = {$/;"	v	language:Vim
+g:unite_source_menu_menus	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_source_menu_menus.vim.command_candidates = [$/;"	v	language:Vim
+g:unite_split_rule	/home/neg/.vim/01-settings.vim	/^let g:unite_split_rule = "botright"$/;"	v	language:Vim
+g:unite_split_rule	/home/neg/.vim/01-settings.vim	/^let g:unite_split_rule = 'botright'$/;"	v	language:Vim
+g:unite_split_rule	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_split_rule = 'botright'$/;"	v	language:Vim
+g:unite_update_time	/home/neg/.vim/01-settings.vim	/^let g:unite_update_time = 200$/;"	v	language:Vim
+g:unite_update_time	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_update_time = 200$/;"	v	language:Vim
+g:unite_winheight	/home/neg/.vim/01-settings.vim	/^let g:unite_winheight = 10$/;"	v	language:Vim
+g:unite_winheight	/home/neg/.vim/01-settings.vim	/^let g:unite_winheight = 15$/;"	v	language:Vim
+g:unite_winheight	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:unite_winheight = 15$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_application_pdf	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_application_pdf	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_gif	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_gif	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_jpeg	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_jpeg	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_png	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_mt_image_png	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'$/;"	v	language:Vim
+g:utl_cfg_hdl_scm_http_system	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"$/;"	v	language:Vim
+g:utl_cfg_hdl_scm_http_system	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"$/;"	v	language:Vim
+g:vimfiler_as_default_explorer	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_as_default_explorer = 1$/;"	v	language:Vim
+g:vimfiler_data_directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_data_directory = $HOME.'\/.vim\/tmp\/vimfiler'$/;"	v	language:Vim
+g:vimfiler_file_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_file_icon = '┄'$/;"	v	language:Vim
+g:vimfiler_force_overwrite_statusline	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_force_overwrite_statusline = 0$/;"	v	language:Vim
+g:vimfiler_marked_file_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_marked_file_icon = '✓'$/;"	v	language:Vim
+g:vimfiler_readonly_file_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_readonly_file_icon = '✗'$/;"	v	language:Vim
+g:vimfiler_time_format	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_time_format = '%d-%m-%Y %H:%M:%S'$/;"	v	language:Vim
+g:vimfiler_tree_closed_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_tree_closed_icon = '─'$/;"	v	language:Vim
+g:vimfiler_tree_leaf_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_tree_leaf_icon = '├'$/;"	v	language:Vim
+g:vimfiler_tree_opened_icon	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vimfiler_tree_opened_icon = '┐'$/;"	v	language:Vim
+g:VimuxUseNearestPane	/home/neg/.vim/01-settings.vim	/^let g:VimuxUseNearestPane = 1$/;"	v	language:Vim
+g:VimuxUseNearestPane	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:VimuxUseNearestPane = 1$/;"	v	language:Vim
+g:vinarise_enable_auto_detect	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:vinarise_enable_auto_detect = 1$/;"	v	language:Vim
+g:virtualenv_auto_activate	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:virtualenv_auto_activate = 1$/;"	v	language:Vim
+g:virtualenv_stl_format	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:virtualenv_stl_format = '(%n)'$/;"	v	language:Vim
+g:winresizer_keycode_finish	/home/neg/.vim/01-settings.vim	/^let g:winresizer_keycode_finish = 27$/;"	v	language:Vim
+g:winresizer_keycode_finish	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:winresizer_keycode_finish = 27$/;"	v	language:Vim
+g:winresizer_start_key	/home/neg/.vim/01-settings.vim	/^let g:winresizer_start_key = '<C-C><C-W>'$/;"	v	language:Vim
+g:winresizer_start_key	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:winresizer_start_key = '<C-C><C-W>'$/;"	v	language:Vim
+g:yankring_history_file	/home/neg/.vim/01-settings.vim	/^let g:yankring_history_file = '\/tmp\/yankring_hist'$/;"	v	language:Vim
+g:ycm_autoclose_preview_window_after_insertion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_autoclose_preview_window_after_insertion = 1$/;"	v	language:Vim
+g:ycm_collect_identifiers_from_tags_files	/home/neg/.vim/01-settings.vim	/^let g:ycm_collect_identifiers_from_tags_files = 0$/;"	v	language:Vim
+g:ycm_confirm_extra_conf	/home/neg/.vim/01-settings.vim	/^let g:ycm_confirm_extra_conf = 0$/;"	v	language:Vim
+g:ycm_extra_conf_globlist	/home/neg/.vim/01-settings.vim	/^let g:ycm_extra_conf_globlist = ['~\/dev\/*','!~\/*']$/;"	v	language:Vim
+g:ycm_filetype_blacklist	/home/neg/.vim/01-settings.vim	/^let g:ycm_filetype_blacklist = {$/;"	v	language:Vim
+g:ycm_global_ycm_extra_conf	/home/neg/.vim/01-settings.vim	/^let g:ycm_global_ycm_extra_conf = '~\/.vim\/ycm_extra.conf.py'$/;"	v	language:Vim
+g:ycm_key_invoke_completion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_key_invoke_completion = '<A-x>'$/;"	v	language:Vim
+g:ycm_key_list_previous_completion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']$/;"	v	language:Vim
+g:ycm_key_list_select_completion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']$/;"	v	language:Vim
+g<C-h>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>$/;"	m	language:Vim
+g<C-h>	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>$/;"	m	language:Vim
+Gdiffoff	/home/neg/.vim/10-keymaps.vim	/^    command Gdiffoff diffoff | q | Gedit$/;"	c	language:Vim
+Gdiffoff	/mnt/home/dev/src/dt3/vim/vimrc	/^    command Gdiffoff diffoff | q | Gedit$/;"	c	language:Vim
+GetColorFormat	/home/neg/.vim/01-settings.vim	/^function! GetColorFormat()$/;"	f	language:Vim
+GetColorFormat	/mnt/home/dev/src/dt3/vim/vimrc	/^function! GetColorFormat()$/;"	f	language:Vim
+GetColorMethod	/home/neg/.vim/01-settings.vim	/^function! GetColorMethod()$/;"	f	language:Vim
+GetColorMethod	/mnt/home/dev/src/dt3/vim/vimrc	/^function! GetColorMethod()$/;"	f	language:Vim
+gettempdir	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from tempfile import gettempdir$/;"	i	language:Python
+GHDashboard	/home/neg/.vim/04-autocmds.vim	/^function! GHDashboard (...)$/;"	f	language:Vim
+GHDashboard	/mnt/home/dev/src/dt3/vim/vimrc	/^function! GHDashboard (...)$/;"	f	language:Vim
+gitroot	/home/neg/.vim/01-settings.vim	/^    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\\n\\r]', '', 'g')$/;"	v	language:Vim
+H	/home/neg/.vim/10-keymaps.vim	/^noremap H ^$/;"	m	language:Vim
+heap_overflow	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^rtsBool heap_overflow = rtsFalse;$/;"	v	language:C
+HISTORY_FILE	/home/neg/bin/vimv	/^HISTORY_FILE = '~\/.vimv_history'$/;"	v	language:Python
+iCanHazNeoBundle	/mnt/home/dev/src/dt3/vim/vimrc	/^    let iCanHazNeoBundle=0$/;"	v	language:Vim
+iCanHazNeoBundle	/mnt/home/dev/src/dt3/vim/vimrc	/^let iCanHazNeoBundle=1$/;"	v	language:Vim
+initScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^initScheduler(void)$/;"	f	language:C
+interruptStgRts	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^interruptStgRts(void)$/;"	f	language:C
+is_scratchpad	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static bool is_scratchpad(WRegion *reg)$/;"	f	language:C	file:
+JavaScriptFold	/home/neg/.vim/04-autocmds.vim	/^function! JavaScriptFold()$/;"	f	language:Vim
+jk	/home/neg/.vim/10-keymaps.vim	/^inoremap jk <ESC>$/;"	m	language:Vim
+json_autocmd	/mnt/home/dev/src/dt3/vim/vimrc	/^augroup json_autocmd$/;"	a	language:Vim
+KEEP_LOCKCLOSURE	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	10;"	d	language:C	file:
+L	/home/neg/.vim/10-keymaps.vim	/^noremap L g_$/;"	m	language:Vim
+LinesOfCode	/mnt/home/dev/src/dt3/vim/vimrc	/^function! LinesOfCode()$/;"	f	language:Vim
+LoadTypeXML	/home/neg/.vim/04-autocmds.vim	/^function! LoadTypeXML()$/;"	f	language:Vim
+Logger	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from logger import Logger$/;"	i	language:Python
+logging	/home/neg/bin/vimv	/^import logging$/;"	i	language:Python
+LustyExplorerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let LustyExplorerDefaultMappings=0$/;"	v	language:Vim
+main	/home/neg/bin/vimv	/^def main():$/;"	f	language:Python
+main	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def main():$/;"	f	language:Python
+MakeDirIfNoExists	/mnt/home/dev/src/dt3/vim/vimrc	/^function! MakeDirIfNoExists(path)$/;"	f	language:Vim
+mapleader	/home/neg/.vim/01-settings.vim	/^let mapleader=','$/;"	v	language:Vim
+mapleader	/mnt/home/dev/src/dt3/vim/vimrc	/^let mapleader=','$/;"	v	language:Vim
+maplocalleader	/home/neg/.vim/01-settings.vim	/^let maplocalleader=','$/;"	v	language:Vim
+maplocalleader	/mnt/home/dev/src/dt3/vim/vimrc	/^let maplocalleader= ' '$/;"	v	language:Vim
+markScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^void markScheduler (evac_fn evac USED_IF_NOT_THREADS, $/;"	f	language:C
+mkd	/home/neg/.vim/04-autocmds.vim	/^augroup mkd$/;"	a	language:Vim
+mod_sp_deinit	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^void mod_sp_deinit()$/;"	f	language:C
+mod_sp_init	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^bool mod_sp_init()$/;"	f	language:C
+mod_sp_ion_api_version	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^char mod_sp_ion_api_version[]=ION_API_VERSION;$/;"	v	language:C
+mod_sp_set_shown	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^bool mod_sp_set_shown(WFrame *sp, const char *how)$/;"	f	language:C
+mod_sp_set_shown_on	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^bool mod_sp_set_shown_on(WMPlex *mplex, const char *how)$/;"	f	language:C
+n	/home/neg/.vim/10-keymaps.vim	/^nnoremap n nzzzv$/;"	m	language:Vim
+N	/home/neg/.vim/10-keymaps.vim	/^nnoremap N Nzzzv$/;"	m	language:Vim
+NamedTemporaryFile	/home/neg/bin/vimv	/^from tempfile import NamedTemporaryFile$/;"	i	language:Python
+neobundle_readme	/mnt/home/dev/src/dt3/vim/vimrc	/^let neobundle_readme=expand($HOME.'\/.vim\/bundle\/neobundle.vim\/README.md')$/;"	v	language:Vim
+n_failed_trygrab_idles	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat n_failed_trygrab_idles = 0, n_idle_caps = 0;$/;"	v	language:C	file:
+n_idle_caps	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat n_failed_trygrab_idles = 0, n_idle_caps = 0;$/;"	v	language:C	file:
+OptionParser	/home/neg/bin/vimv	/^from optparse import OptionParser$/;"	i	language:Python
+os	/home/neg/bin/vimv	/^import os$/;"	i	language:Python
+os	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    import os$/;"	i	language:Python
+p	/home/neg/.vim/10-keymaps.vim	/^map p [p$/;"	m	language:Vim
+performGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performGC(void)$/;"	f	language:C
+performGC_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performGC_(rtsBool force_major)$/;"	f	language:C	file:
+performMajorGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performMajorGC(void)$/;"	f	language:C
+PIPE	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from subprocess import Popen, PIPE, STDOUT$/;"	i	language:Python
+plugin_commentary	/mnt/home/dev/src/dt3/vim/vimrc	/^augroup plugin_commentary$/;"	a	language:Vim
+Popen	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from subprocess import Popen, PIPE, STDOUT$/;"	i	language:Python
+previous_title	/mnt/home/dev/src/dt3/vim/vimrc	/^  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\\n', '', '')$/;"	v	language:Vim
+Q	/home/neg/.vim/10-keymaps.vim	/^        command! -bang Q q<bang>$/;"	c	language:Vim
+Q	/home/neg/.vim/10-keymaps.vim	/^map Q gq$/;"	m	language:Vim
+q/	/home/neg/.vim/10-keymaps.vim	/^nnoremap q\/ <Nop>$/;"	m	language:Vim
+q:	/home/neg/.vim/10-keymaps.vim	/^nnoremap q: <Nop>$/;"	m	language:Vim
+q?	/home/neg/.vim/10-keymaps.vim	/^nnoremap q? <Nop>$/;"	m	language:Vim
+QA	/home/neg/.vim/10-keymaps.vim	/^        command! -bang QA qa<bang>$/;"	c	language:Vim
+Qa	/home/neg/.vim/10-keymaps.vim	/^        command! -bang Qa qa<bang>$/;"	c	language:Vim
+qq	/home/neg/.vim/10-keymaps.vim	/^cmap     qq     qa!<CR>  " quit really, really fast$/;"	m	language:Vim
+QuickfixToggle	/mnt/home/dev/src/dt3/vim/vimrc	/^function! s:QuickfixToggle()$/;"	f	language:Vim
+raiseExceptionHelper	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^raiseExceptionHelper (StgRegTable *reg, StgTSO *tso, StgClosure *exception)$/;"	f	language:C
+RangerChooser	/home/neg/.vimrc	/^fun! RangerChooser()$/;"	f	language:Vim
+RangerChooser	/mnt/home/dev/src/dt3/vim/vimrc	/^fun! RangerChooser()$/;"	f	language:Vim
+RawDescriptionHelpFormatter	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from argparse import ArgumentParser, RawDescriptionHelpFormatter$/;"	i	language:Python
+recent_activity	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^volatile StgWord recent_activity = ACTIVITY_YES;$/;"	v	language:C
+recoverSuspendedTask	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^recoverSuspendedTask (Capability *cap, Task *task)$/;"	f	language:C
+releaseAllCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void releaseAllCapabilities(Capability *cap, Task *task)$/;"	f	language:C	file:
+releaseAllCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void releaseAllCapabilities(Capability *cap, Task *task);$/;"	p	language:C	file:
+removeFromRunQueue	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^removeFromRunQueue (Capability *cap, StgTSO *tso)$/;"	f	language:C
+requestSync	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat requestSync (Capability **pcap, Task *task, nat sync_type)$/;"	f	language:C	file:
+requestSync	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat requestSync (Capability **pcap, Task *task, nat sync_type);$/;"	p	language:C	file:
+resCur	/home/neg/.vim/04-autocmds.vim	/^augroup resCur$/;"	a	language:Vim
+ResCur	/home/neg/.vim/04-autocmds.vim	/^function! ResCur()$/;"	f	language:Vim
+resumeThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^resumeThread (void *task_)$/;"	f	language:C
+resurrectThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^resurrectThreads (StgTSO *threads)$/;"	f	language:C
+RotatingFileHandler	/home/neg/bin/vimv	/^from logging.handlers import RotatingFileHandler$/;"	i	language:Python
+run_once	/mnt/home/dev/src/dt3/awesome/rc.lua	/^function run_once(cmd)$/;"	f	language:Lua
+s:vimcustomfile	/mnt/home/dev/src/dt3/vim/vimrc	/^let s:vimcustomfile = $HOME.'\/.vim\/custom.vim'$/;"	v	language:Vim
+schedule	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^schedule (Capability *initialCapability, Task *task)$/;"	f	language:C	file:
+schedule	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static Capability *schedule (Capability *initialCapability, Task *task);$/;"	p	language:C	file:
+scheduleActivateSpark	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleActivateSpark(Capability *cap)$/;"	f	language:C	file:
+scheduleActivateSpark	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleActivateSpark(Capability *cap);$/;"	p	language:C	file:
+scheduleCheckBlockedThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleCheckBlockedThreads(Capability *cap USED_IF_NOT_THREADS)$/;"	f	language:C	file:
+scheduleCheckBlockedThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleCheckBlockedThreads (Capability *cap);$/;"	p	language:C	file:
+scheduleDetectDeadlock	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleDetectDeadlock (Capability **pcap, Task *task)$/;"	f	language:C	file:
+scheduleDetectDeadlock	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleDetectDeadlock (Capability **pcap, Task *task);$/;"	p	language:C	file:
+scheduleDoGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleDoGC (Capability **pcap, Task *task USED_IF_THREADS,$/;"	f	language:C	file:
+scheduleDoGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleDoGC(Capability **pcap, Task *task, rtsBool force_major);$/;"	p	language:C	file:
+scheduleFindWork	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleFindWork (Capability **pcap)$/;"	f	language:C	file:
+scheduleFindWork	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleFindWork (Capability **pcap);$/;"	p	language:C	file:
+scheduleHandleHeapOverflow	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleHandleHeapOverflow( Capability *cap, StgTSO *t )$/;"	f	language:C	file:
+scheduleHandleHeapOverflow	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static rtsBool scheduleHandleHeapOverflow( Capability *cap, StgTSO *t );$/;"	p	language:C	file:
+scheduleHandleThreadBlocked	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleHandleThreadBlocked( StgTSO *t$/;"	f	language:C	file:
+scheduleHandleThreadBlocked	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleHandleThreadBlocked( StgTSO *t );$/;"	p	language:C	file:
+scheduleHandleThreadFinished	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleHandleThreadFinished (Capability *cap STG_UNUSED, Task *task, StgTSO *t)$/;"	f	language:C	file:
+scheduleHandleThreadFinished	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static rtsBool scheduleHandleThreadFinished( Capability *cap, Task *task,$/;"	p	language:C	file:
+scheduleHandleYield	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleHandleYield( Capability *cap, StgTSO *t, nat prev_what_next )$/;"	f	language:C	file:
+scheduleHandleYield	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static rtsBool scheduleHandleYield( Capability *cap, StgTSO *t,$/;"	p	language:C	file:
+scheduleNeedHeapProfile	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleNeedHeapProfile( rtsBool ready_to_gc STG_UNUSED )$/;"	f	language:C	file:
+scheduleNeedHeapProfile	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static rtsBool scheduleNeedHeapProfile(rtsBool ready_to_gc);$/;"	p	language:C	file:
+schedulePostRunThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^schedulePostRunThread (Capability *cap, StgTSO *t)$/;"	f	language:C	file:
+schedulePostRunThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void schedulePostRunThread(Capability *cap, StgTSO *t);$/;"	p	language:C	file:
+schedulePreLoop	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^schedulePreLoop(void)$/;"	f	language:C	file:
+schedulePreLoop	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void schedulePreLoop (void);$/;"	p	language:C	file:
+scheduleProcessInbox	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleProcessInbox (Capability **pcap USED_IF_THREADS)$/;"	f	language:C	file:
+scheduleProcessInbox	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleProcessInbox(Capability **cap);$/;"	p	language:C	file:
+schedulePushWork	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^schedulePushWork(Capability *cap USED_IF_THREADS, $/;"	f	language:C	file:
+schedulePushWork	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void schedulePushWork(Capability *cap, Task *task);$/;"	p	language:C	file:
+scheduleSendPendingMessages	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleSendPendingMessages(void)$/;"	f	language:C	file:
+scheduleStartSignalHandlers	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleStartSignalHandlers(Capability *cap STG_UNUSED)$/;"	f	language:C	file:
+scheduleStartSignalHandlers	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleStartSignalHandlers(Capability *cap)$/;"	f	language:C	file:
+scheduleStartSignalHandlers	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleStartSignalHandlers (Capability *cap);$/;"	p	language:C	file:
+scheduleThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleThread(Capability *cap, StgTSO *tso)$/;"	f	language:C
+scheduleThreadOn	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleThreadOn(Capability *cap, StgWord cpu USED_IF_THREADS, StgTSO *tso)$/;"	f	language:C
+scheduleWaitThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleWaitThread (StgTSO* tso, \/*[out]*\/HaskellObj* ret, Capability **pcap)$/;"	f	language:C
+scheduleWorker	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^void scheduleWorker (Capability *cap, Task *task)$/;"	f	language:C
+scheduleYield	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^scheduleYield (Capability **pcap, Task *task)$/;"	f	language:C	file:
+scheduleYield	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleYield (Capability **pcap, Task *task);$/;"	p	language:C	file:
+sched_mutex	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^Mutex sched_mutex;$/;"	v	language:C
+sched_state	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^volatile StgWord sched_state = SCHED_RUNNING;$/;"	v	language:C
+scriptpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *scriptpath=NULL;$/;"	v	language:C	file:
+sessiondir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *sessiondir=NULL;$/;"	v	language:C	file:
+setNumCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^setNumCapabilities (nat new_n_capabilities USED_IF_THREADS)$/;"	f	language:C
+shebang_chmod	/home/neg/.vim/04-autocmds.vim	/^augroup shebang_chmod$/;"	a	language:Vim
+shebang_chmod	/mnt/home/dev/src/dt3/vim/vimrc	/^augroup shebang_chmod$/;"	a	language:Vim
+shouldYieldCapability	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^shouldYieldCapability (Capability *cap, Task *task, rtsBool didGcLast)$/;"	f	language:C
+shutting_down_scheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^rtsBool shutting_down_scheduler = rtsFalse;$/;"	v	language:C
+sleep	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from time import sleep$/;"	i	language:Python
+sleeping_queue	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO *sleeping_queue = NULL;    \/\/ perhaps replace with a hash table?$/;"	v	language:C
+SPWS_NAME	/mnt/home/dev/src/Ion3/mod_sp/main.c	46;"	d	language:C	file:
+SP_NAME	/mnt/home/dev/src/Ion3/mod_sp/main.c	45;"	d	language:C	file:
+startWorkerTasks	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^startWorkerTasks (nat from USED_IF_THREADS, nat to USED_IF_THREADS)$/;"	f	language:C	file:
+startWorkerTasks	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void startWorkerTasks (nat from USED_IF_THREADS, nat to USED_IF_THREADS);$/;"	p	language:C	file:
+status	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^    int status;$/;"	m	language:C	struct:__anon1	file:
+STDOUT	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from subprocess import Popen, PIPE, STDOUT$/;"	i	language:Python
+StripTrailingWhitespace	/home/neg/.vim/04-autocmds.vim	/^function! StripTrailingWhitespace()$/;"	f	language:Vim
+suspendTask	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^suspendTask (Capability *cap, Task *task)$/;"	f	language:C
+suspendThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^suspendThread (StgRegTable *reg, rtsBool interruptible)$/;"	f	language:C
+sys	/home/neg/bin/vimv	/^import sys$/;"	i	language:Python
+sys	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    import sys$/;"	i	language:Python
+tab	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^    ExtlTab tab;$/;"	m	language:C	struct:__anon1	file:
+Tabe	/home/neg/.vim/10-keymaps.vim	/^    cmap Tabe tabe$/;"	m	language:Vim
+Tlist_Inc_Winwidth	/home/neg/.vim/01-settings.vim	/^let Tlist_Inc_Winwidth=0$/;"	v	language:Vim
+TmuxOrSplitSwitch	/mnt/home/dev/src/dt3/vim/vimrc	/^  function! TmuxOrSplitSwitch(wincmd, tmuxdir)$/;"	f	language:Vim
+ToggleQuickfix	/mnt/home/dev/src/dt3/vim/vimrc	/^command! ToggleQuickfix call <SID>QuickfixToggle()$/;"	c	language:Vim
+ToggleRelativeAbsoluteNumber	/mnt/home/dev/src/dt3/vim/vimrc	/^function! ToggleRelativeAbsoluteNumber()$/;"	f	language:Vim
+ToggleWrap	/mnt/home/dev/src/dt3/vim/vimrc	/^function! ToggleWrap()$/;"	f	language:Vim
+TryCallParam	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^} TryCallParam;$/;"	t	language:C	typeref:struct:__anon1	file:
+try_call	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_call(const char *file, TryCallParam *param)$/;"	f	language:C	file:
+try_dir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_dir(const char *const *files, const char *cfdir,$/;"	f	language:C	file:
+try_etcpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_etcpath(const char *const *files, $/;"	f	language:C	file:
+try_load	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_load(const char *file, TryCallParam *param)$/;"	f	language:C	file:
+try_lookup	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_lookup(const char *file, char **ptr)$/;"	f	language:C	file:
+try_read_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_read_savefile(const char *file, TryCallParam *param)$/;"	f	language:C	file:
+usage	/home/neg/bin/git-large-files.pl	/^sub usage { die "usage: git-large-files <size[b|k|m]> [<git-log arguments ...>]\\n" }$/;"	s	language:Perl
+userdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *userdir=NULL;$/;"	v	language:C	file:
+W	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file W w<bang> <args>$/;"	c	language:Vim
+w!!	/home/neg/.vim/10-keymaps.vim	/^cmap w!! w !sudo tee % >\/dev\/null$/;"	m	language:Vim
+w!!	/mnt/home/dev/src/dt3/vim/vimrc	/^cmap w!! w !sudo tee % >\/dev\/null<CR>:e!<CR><CR>$/;"	m	language:Vim
+Wa	/home/neg/.vim/10-keymaps.vim	/^        command! -bang Wa wa<bang>$/;"	c	language:Vim
+WA	/home/neg/.vim/10-keymaps.vim	/^        command! -bang WA wa<bang>$/;"	c	language:Vim
+wakeUpRts	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^void wakeUpRts(void)$/;"	f	language:C
+walk_tree	/home/neg/bin/git-large-files.pl	/^sub walk_tree {$/;"	s	language:Perl
+WordFrequency	/mnt/home/dev/src/dt3/vim/vimrc	/^command! -range=% WordFrequency <line1>,<line2>call WordFrequency()$/;"	c	language:Vim
+WordFrequency	/mnt/home/dev/src/dt3/vim/vimrc	/^function! WordFrequency() range$/;"	f	language:Vim
+Wq	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file Wq wq<bang> <args>$/;"	c	language:Vim
+WQ	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file WQ wq<bang> <args>$/;"	c	language:Vim
+wqq	/home/neg/.vim/10-keymaps.vim	/^cmap     wqq    qw<CR>   " quit really, really fast(with saving)$/;"	m	language:Vim
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+A", function(ws) move_current.move(ws, "left") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+D", function(ws) move_current.move(ws, "right") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+S", function(ws) move_current.move(ws, "down") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),$/;"	f	language:Lua
+Y	/home/neg/.vim/10-keymaps.vim	/^nnoremap Y y\$$/;"	m	language:Vim
+Y	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap Y y\$$/;"	m	language:Vim
+zh	/home/neg/.vim/10-keymaps.vim	/^map zh zH$/;"	m	language:Vim
+zl	/home/neg/.vim/10-keymaps.vim	/^map zl zL$/;"	m	language:Vim
+[menu]	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap [menu] <Nop>$/;"	m	language:Vim
+[menu]8	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview$/;"	m	language:Vim
+[menu]a	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]a :Unite -silent menu:grep<CR>$/;"	m	language:Vim
+[menu]b	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]b :Unite -silent menu:navigation<CR>$/;"	m	language:Vim
+[menu]c	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]c :Unite -silent menu:colorv<CR>$/;"	m	language:Vim
+[menu]e	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]e :Unite -silent -winheight=20 menu:text <CR>$/;"	m	language:Vim
+[menu]f	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]f :Unite -silent menu:searching<CR>$/;"	m	language:Vim
+[menu]g	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]g :Unite -silent -winheight=29 -start-insert menu:git<CR>$/;"	m	language:Vim
+[menu]i	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]i :Unite -silent menu:registers<CR>$/;"	m	language:Vim
+[menu]k	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]k :Unite -silent menu:markdown<CR>$/;"	m	language:Vim
+[menu]m	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]m :Unite -silent menu:bookmarks<CR>$/;"	m	language:Vim
+[menu]n	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]n :Unite -silent -start-insert menu:neobundle<CR>$/;"	m	language:Vim
+[menu]o	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]o :Unite -silent -winheight=17 -start-insert$/;"	m	language:Vim
+[menu]p	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]p :Unite -silent -winheight=42 menu:code<CR>$/;"	m	language:Vim
+[menu]s	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]s :Unite -silent menu:spelling<CR>$/;"	m	language:Vim
+[menu]u	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]u :Unite -silent -winheight=20 menu<CR>$/;"	m	language:Vim
+[menu]v	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]v :Unite menu:vim -silent -start-insert<CR>$/;"	m	language:Vim
+\	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap \\ za$/;"	m	language:Vim
+\	/mnt/home/dev/src/dt3/vim/vimrc	/^vnoremap \\ za$/;"	m	language:Vim
+__author__	/mnt/home/dev/src/dt3/awesome/awdt.py	/^__author__ = "joe di castro <joe@joedicastro.com>"$/;"	v	language:Python
+__date__	/mnt/home/dev/src/dt3/awesome/awdt.py	/^__date__ = "2013-11-17"$/;"	v	language:Python
+__license__	/mnt/home/dev/src/dt3/awesome/awdt.py	/^__license__ = "GNU General Public License version 3"$/;"	v	language:Python
+__version__	/home/neg/bin/vimv	/^__version__ = '0.2.0'$/;"	v	language:Python
+__version__	/mnt/home/dev/src/dt3/awesome/awdt.py	/^__version__ = "0.6"$/;"	v	language:Python

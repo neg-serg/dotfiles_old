@@ -87,7 +87,4 @@ amixer -q set Master 0% mute
 
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
 
-# autocutsel -fork &
-# autocutsel -selection PRIMARY -fork &
-
 exec notion

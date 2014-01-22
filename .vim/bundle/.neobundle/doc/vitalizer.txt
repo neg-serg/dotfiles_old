@@ -1,0 +1,70 @@
+*vitalizer.txt*	vital.vim for you.
+
+==============================================================================
+CONTENTS					*vitalizer-contents*
+
+INTRODUCTION			|vitalizer-introduction|
+INTERFACE			|vitalizer-interface|
+  COMMANDS			  |vitalizer-commands|
+  FUNCTIONS			  |vitalizer-functions|
+CUSTOMIZING			|vitalizer-customizing|
+
+
+
+==============================================================================
+INTRODUCTION					*vitalizer-introduction*
+
+*vitalizer* is a Vim plugin to vitalize the |Vital| to your plugin.
+
+
+
+==============================================================================
+INTERFACE					*vitalizer-interface*
+
+------------------------------------------------------------------------------
+COMMANDS					*vitalizer-commands*
+
+:Vitalize [options] {target-dir} [{module} ...]	*:Vitalize*
+	{target-dir} is root directory of your plugin.  It must be like a
+	one of 'runtimepath'.
+	List of {module} is module names you want.  It is necessary to
+	specify one or more.
+	The Prelude module(|Vital.Prelude|) is always included.
+	List of {module} is recorded to your Vital.  This is used after next
+	time if {module} is omitted.
+	You can use +/- prefix to {module}.  This adds or removes the
+	specified module.
+>
+	:Vitalize path/to/plugin +Web.HTTP -DateTime
+<
+	options ~
+	--name={name}
+		Specifies a name of your Vital.  If omitted, name of
+		{target-dir} is used.
+	--hash={hash}
+		Specifies a hash of git.
+	--help
+		Shows a simple help text.
+
+
+------------------------------------------------------------------------------
+FUNCTIONS					*vitalizer-functions*
+
+						*vitalizer#vitalize()*
+vitalizer#vitalize({name}, {target-dir}, {modules}, {hash})
+	Function version of |:Vitalize|.
+
+
+
+==============================================================================
+CUSTOMIZING					*vitalizer-customizing*
+
+g:vitalizer#vital_dir				*g:vitalizer#vital_dir*
+	Base directory of Vital.  This is usually set automatically.
+	When you are using the Vital by Git submodule and symbolic link on MS
+	Windows, it may be necessary to set this.
+
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

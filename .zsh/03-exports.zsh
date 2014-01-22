@@ -100,3 +100,4 @@ HELP_ZLE_CACHE_FILE=~/.cache/zsh_help_zle_lines.zsh
 export MPV_HOME="~/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=~/bin/go
+export KEYTIMEOUT=5 # allow to use ,<key> fast

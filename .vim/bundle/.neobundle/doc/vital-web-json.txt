@@ -1,0 +1,29 @@
+*vital-web-json.txt*			JSON parser written in pure Vim script.
+
+Maintainer: mattn <mattn.jp@gmail.com>
+
+==============================================================================
+CONTENTS				*Vital.Web.JSON-contents*
+
+INTRODUCTION				|Vital.Web.JSON-introduction|
+INTERFACE				|Vital.Web.JSON-interface|
+  Functions				|Vital.Web.JSON-functions|
+
+==============================================================================
+INTRODUCTION				*Vital.Web.JSON-introduction*
+
+*Vital.Web.JSON* is JSON parser Library.
+
+==============================================================================
+INTERFACE				*Vital.Web.JSON-interface*
+------------------------------------------------------------------------------
+FUNCTIONS				*Vital.Web.JSON-functions*
+
+encode({object})			*Vital.Web.JSON.encode()*
+	Encode object into JSON string.
+
+decode({json})				*Vital.Web.JSON.decode()*
+	Decode JSON string into variable that vim can treat.
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

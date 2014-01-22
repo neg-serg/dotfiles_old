@@ -89,9 +89,9 @@ noremap! <M-Right> <C-Right>
 " => Cope
 "---------------------------------------------------------------
 " Do :help cope if you are unsure what cope is. It's super useful!
-map <leader>cc :botright cope<cr>
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+" map <leader>cc :botright cope<cr>
+" map <leader>n :cn<cr>
+" map <leader>p :cp<cr>
 
 imap <C-c>sw <Esc>:AT<CR>
 nmap <C-c>sw :AT<CR>
@@ -381,7 +381,6 @@ map <Leader>x :call RangerChooser()<CR>
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/async<CR>
-nnoremap <silent><Leader>m :Unite -silent -start-insert file_mru<CR>
 " buffers
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 " tabs
@@ -426,3 +425,9 @@ nnoremap <silent><C-e>8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
 nnoremap <silent><C-e>n :Unite -silent -start-insert menu:neobundle<CR>
 
+nnoremap <leader>gg :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+nnoremap <leader>gc :execute 'Unite gtags/context'<CR>
+nnoremap <leader>gr :execute 'Unite gtags/ref'<CR>
+nnoremap <leader>ge :execute 'Unite gtags/grep'<CR>
+nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru<CR>
+vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>

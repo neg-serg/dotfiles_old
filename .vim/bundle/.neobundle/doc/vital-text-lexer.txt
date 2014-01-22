@@ -1,0 +1,64 @@
+*vital-text-lexer.txt*	lexer library.
+
+Maintainer: rbtnn <naru123456789@gmail.com>
+
+==============================================================================
+CONTENTS			                *Vital.Text.Lexer-contents*
+
+INTRODUCTION		                 |Vital.Lexer-introduction|
+INTERFACE		                 |Vital.Lexer-interface|
+  FUNCTIONS			         |Vital.Lexer-functions|
+OBJECTS			                 |Vital.Lexer-objects|
+  Lexer Object   	                 |Vital.Lexer-Lexer|
+EXAMPLES	                 	 |Vital.Lexer-examples|
+
+==============================================================================
+INTRODUCTION			                *Vital.Lexer-introduction*
+
+*Vital.Lexer* is lexer library.
+
+==============================================================================
+INTERFACE			                *Vital.Lexer-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS			                *Vital.Lexer-functions*
+
+lexer(patterns)		                        *Vital.Lexer.lexer()*
+	Creates a new Lexer object.
+	{patterns} is a format such as "[ [label,regex] , ... ]".
+	A Lexer object has exec(expr).
+
+==============================================================================
+OBJECTS				                *Vital.Lexer-objects*
+
+------------------------------------------------------------------------------
+Lexer Object		                        *Vital.Lexer-Lexer*
+
+Lexer.exec(expr)		                *Vital.Lexer-Lexer.exec()*
+	Evaluates {expr}.
+        This returns a list of dictionaries which have the following keys.
+		'matched_text' : matched text in {expr}.
+		'col' : index of 'matched_text' in {expr}.
+		'label' : label of 'matched_text'.
+
+==============================================================================
+EXAMPLES					*Vital.Lexer-examples*
+
+lexer example                    		*Vital.Lexer-lexer-example*
+>
+	let V = vital#of('vital')
+	let L = V.import('Text.Lexer')
+	try
+	  echo L.lexer([['digit','\d\+'],['whitespace','\s\+']]).exec('53  4')
+	  " [
+	  "   {'col': 0, 'label': 'digit', 'matched_text': '53'},
+	  "   {'col': 2, 'label': 'whitespace', 'matched_text': '  '},
+	  "   {'col': 4, 'label': 'digit', 'matched_text': '4'}
+	  " ]
+	catch  '[Text.Lexer]'
+	  echo v:exception
+	endtry
+<
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

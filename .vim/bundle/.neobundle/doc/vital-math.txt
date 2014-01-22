@@ -1,0 +1,51 @@
+*vital-math.txt*	Mathematical functions
+
+Maintainer: ujihisa <ujihisa at gmail com>
+
+==============================================================================
+CONTENTS					*Vital.Math-contents*
+
+INTRODUCTION			|Vital.Math-introduction|
+INTERFACE			|Vital.Math-interface|
+  FUNCTIONS			  |Vital.Math-functions|
+
+
+
+==============================================================================
+INTRODUCTION					*Vital.Math-introduction*
+
+*Vital.Math* provides some bitwise operators.
+If vim provides builtin functions, uses these directly.
+
+
+
+==============================================================================
+INTERFACE					*Vital.Math-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS					*Vital.Math-functions*
+
+fib({number})				*Vital.Math.fib()*
+	{number}th fib, begins with 0, 1.
+>
+	fib(0) == 0
+	fib(1) == 1
+	fib(10) == 55
+	fib(48) == 512559680
+	fib(49) == -811192543
+<
+	Note that Vim cannot handle big numbers. This is not
+	|Vital.Math.fib()|'s issue but Vim's limitation.
+
+modulo({m}, {n})			*Vital.Math.modulo()*
+	Return modulo.  This behaves like Scheme's one.
+>
+	modulo(10, 3) == 1
+	modulo(-10, 3) == 2
+	modulo(10, -3) == -2
+	modulo(-10, -3) == -1
+<
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
