@@ -110,6 +110,11 @@
 'syntastic_style_warning_symbol'	syntastic.txt	/*'syntastic_style_warning_symbol'*
 'syntastic_warning_symbol'	syntastic.txt	/*'syntastic_warning_symbol'*
 :Abolish	abolish.txt	/*:Abolish*
+:Ack	ack.txt	/*:Ack*
+:AckAdd	ack.txt	/*:AckAdd*
+:AckFile	ack.txt	/*:AckFile*
+:AckFromSearch	ack.txt	/*:AckFromSearch*
+:AckHelp	ack.txt	/*:AckHelp*
 :Ag	ag.txt	/*:Ag*
 :AgAdd	ag.txt	/*:AgAdd*
 :AgFile	ag.txt	/*:AgFile*
@@ -178,6 +183,9 @@
 :IndentGuidesEnable	indent_guides.txt	/*:IndentGuidesEnable*
 :IndentGuidesToggle	indent_guides.txt	/*:IndentGuidesToggle*
 :Join	Join.txt	/*:Join*
+:LAck	ack.txt	/*:LAck*
+:LAckAdd	ack.txt	/*:LAckAdd*
+:LAckHelp	ack.txt	/*:LAckHelp*
 :LAg	ag.txt	/*:LAg*
 :LAgAdd	ag.txt	/*:LAgAdd*
 :LAgHelp	ag.txt	/*:LAgHelp*
@@ -1333,6 +1341,10 @@ abolish-patterns	abolish.txt	/*abolish-patterns*
 abolish-search	abolish.txt	/*abolish-search*
 abolish-substitute	abolish.txt	/*abolish-substitute*
 abolish.txt	abolish.txt	/*abolish.txt*
+ack	ack.txt	/*ack*
+ack-author	ack.txt	/*ack-author*
+ack-mappings	ack.txt	/*ack-mappings*
+ack.txt	ack.txt	/*ack.txt*
 add_statusline_func	airline.txt	/*add_statusline_func*
 ag	ag.txt	/*ag*
 ag-mappings	ag.txt	/*ag-mappings*
