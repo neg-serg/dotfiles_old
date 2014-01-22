@@ -80,7 +80,7 @@ local defaults = {
 	top_sym = "¯" or string.char(175), 	-- string.char(183), if your locals are not UTF-8
 	low_sym = "-" or "_", 			-- ".",
 	both_sym = "=", 			-- ":",
-	empty_sym = [[ ]] or string.char(32),	--  string.char(168) --> 164, 168, 176, 179 ??
+	empty_sym = [[.]] or string.char(32),	--  string.char(168) --> 164, 168, 176, 179 ??
 	color = "normal" 			-- "critical", "important", ...(white, red, green, etc.)
 						-- It is not color, just and alias for alarm-types.
 }

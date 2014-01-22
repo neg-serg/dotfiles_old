@@ -1,3 +1,18 @@
+" NeoBundle 'mattn/zencoding-vim'             "web
+" NeoBundle 'matthias-guenther/hammer.vim'    "web
+" NeoBundle 'Shougo/echodoc.git'              "haskell stuff
+" NeoBundle 'davidhalter/jedi-vim'            "jedi completion for python
+" NeoBundle 'ardagnir/united-front'           "share registers with all vim instances
+" NeoBundle 'jmcantrell/vim-virtualenv'       "virtualenv for python
+" NeoBundle 'vim-scripts/UnconditionalPaste'  "to insert that yanked text in the middle of some other line (or vice versa)
+" conflict with tcomment
+" NeoBundle 'Shougo/vinarise.git'             "Hex editor
+" NeoBundle 'vim-scripts/restore_view.vim'    "allow you to restore view on last git commit
+" NeoBundle 'dag/vim2hs'                      "very and very good additions and hi for hs. Allow gf&go TOOOOOOOO SLOW!!!!!!!
+" NeoBundle 'gerw/vim-latex-suite.git'        "tex autocompletion TOOOOOOOOOOOOOO SLOOOOOW
+" NeoBundle 'itchyny/thumbnail.vim.git'       "Thumbnail-style buffer selector(nice!)
+" NeoBundle 'matze/vim-move.git'              "Move text in vim(works!)
+
 " " Settings for VimClojure
 " let g:vimclojure#HighlightBuiltins=1 " Highlight Clojure's builtins
 " let g:vimclojure#ParenRainbow=1 " Rainbow parentheses'!
@@ -1477,4 +1492,31 @@ set ttimeout ttimeoutlen=40
 "   map <C-l> <C-w>l
 " endif
 "
+" Insert Mode <C-k> -- kill line from current to eol "{{{
+" func! s:kill_line()
+"   let curcol = col('.')
+"   if curcol == col('$')
+"     join!
+"     call cursor(line('.'), curcol)
+"   else
+"     normal! D
+"   endif
+" endfunc
+" inoremap <C-k> <C-o>:<C-u>call <SID>kill_line()<CR>
+" cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+" "}}}
 "
+" " Normal Mode <C-k> -- kill buffer, not close window {{{
+" " http://nanasi.jp/articles/vim/kwbd_vim.html
+" :com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn
+" nnoremap <C-k> :Kwbd<CR>
+" map <silent> <Leader>L :IndentLinesToggle<CR>
+" let g:indentLine_enabled = 0
+" let g:indentLine_char = '┊'
+" let g:indentLine_color_term = 239
+"
+" map <silent> <Leader>L :IndentLinesToggle<CR>
+" let g:indentLine_enabled = 0
+" let g:indentLine_char = '┊'
+" let g:indentLine_color_term = 239
+" "}}}"

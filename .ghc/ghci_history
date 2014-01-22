@@ -1,4 +1,9 @@
 :q
+..
+wavefront 10
+:q
+:q
+:q
 :q
 :q
 :e
@@ -93,8 +98,3 @@ removeEmpty2 ["weqqewqw","","qewqew"]
 removeEmpty ["weqqewqw","","qewqew"]
 removeEmpty3 ["weqqewqw","","qewqew"]
 :q
-print sum (4 4)
-print sum 4 4
-print sum 4
-sum
-sum 4 5

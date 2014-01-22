@@ -6,8 +6,9 @@ mod_statusbar.create{
     fullsize=true,
     systray=true,
     template="%date"..
-        "[ %>workspace_name ]"..
-        "[ %exec_xkb ]"..
+    -- template="[ %binclock_10]"..
+    "[ %>workspace_name ]"..
+    "[ %exec_xkb ]"..
     "[ net: %netmon_kbsin/%netmon_kbsout ]"..
     "%filler"..
     -- "%linuxbatt"..

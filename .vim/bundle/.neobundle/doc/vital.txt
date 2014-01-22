@@ -1,0 +1,123 @@
+*vital.txt*		A comprehensive Vim utility functions for Vim plugins.
+
+==============================================================================
+CONTENTS				*Vital-contents*
+
+INTRODUCTION			|Vital-introduction|
+USAGE				|Vital-usage|
+INTERFACE			|Vital-interface|
+  FUNCTIONS			  |Vital-functions|
+  Vital object			  |Vital-Vital-object|
+  VARIABLES			  |Vital-variables|
+LINKS				|Vital-links|
+
+
+
+==============================================================================
+INTRODUCTION				*Vital-introduction*
+
+This is like a plugin which has both aspects of Bundler and jQuery at the
+same time.
+
+ Bundler: http://gembundler.com/
+ jQuery:  http://jquery.com/
+
+If you are a Vim user who doesn't make Vim plugins, please ignore this page.
+If you are a Vim plugin author, please check this out.
+
+==============================================================================
+USAGE					*Vital-usage*
+
+Assuming your Vim plugin name is "ujihisa", you can define your utility
+function set 'ujihisa#util' just by
+>
+    let V = vital#of('ujihisa')
+    function! ujihisa#util#system(...)
+      return call(V.system, a:000, V)
+    endfunction
+<
+and then you can call functions by 'ujihisa#util#system()', without taking
+care of |vital.vim| itself. It's all hidden.
+
+|Vital| has module system. The below is an example to import/load a module
+"data/ordered_set" and to call a function "f()" of the module.
+>
+    let V = vital#of('ujihisa')
+    let O = V.import('Data.OrderedSet')
+    call O.f()
+<
+or
+>
+    let V = vital#of('ujihisa')
+    call V.load('Data.OrderedSet')
+    call V.Data.OrderedSet.f()
+<
+or
+>
+    let V = vital#of('ujihisa')
+    call V.import('Data.OrderedSet', s:)
+    call s:f()
+<
+We recommend you to use a capital letter for a Vital module dictionary to
+assign as Vital convention. That makes your code more readable among Vital
+programmers.
+
+
+
+==============================================================================
+INTERFACE				*Vital-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS 				*Vital-functions*
+
+vital#of({plugin-name})			*vital#of()*
+	Creates a new Vital object(|Vital-Vital-object|).
+
+------------------------------------------------------------------------------
+Vital object 				*Vital-Vital-object*
+
+Vital.import({module-name} [, {to}])	*Vital-Vital.import()*
+	Imports a single module specified by {module-name} to {to} or empty
+	dictionary, and returns it.
+>
+	let List = V.import('Data.List')
+	echo List.uniq([1,1,2])
+
+Vital.load({module-name})		*Vital-Vital.load()*
+	Loads a module to the Vital directly.
+>
+	call V.load('Data.List')
+	echo V.Data.List.uniq([1,1,2])
+
+------------------------------------------------------------------------------
+VARIABLES 				*Vital-variables*
+
+g:vital_debug				*g:vital_debug*
+	Default: 0
+
+	Vital.import and Vital.load ignore functions which name begins with
+	underscore, but this option enables importing/loading such functions.
+>
+	let g:vital_debug = 1
+<
+	Note that this option is only for Vital plugin developers; not for
+	Vital users.
+
+
+
+==============================================================================
+LINKS					*Vital-links*
+
+ Delegation in Vim script:
+   http://ujihisa.blogspot.com/2011/02/delegation-in-vim-script.html
+ How to use Vital modules (in Japanese):
+   http://rbtnn.github.com/how-to-use-vital.vim/
+ Core concept of vital (in Japanese):
+   http://d.hatena.ne.jp/thinca/20110310/1299768323
+ How to make a vital module (in Japanese):
+   http://d.hatena.ne.jp/thinca/20110311/1299769233
+ API Reference (in Japanese):
+   http://d.hatena.ne.jp/kanno_kanno/20120107/1325949855
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

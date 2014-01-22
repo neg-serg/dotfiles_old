@@ -1,0 +1,43 @@
+*vital-system-file.txt*		filesystem utilities library.
+
+Maintainer: Shougo  <Shougo.Matsu@gmail.com>
+            tyru    <tyru.exe@gmail.com>
+
+==============================================================================
+CONTENTS				*Vital.System.File-contents*
+
+INTRODUCTION			|Vital.System.File-introduction|
+INTERFACE			|Vital.System.File-interface|
+  Functions			  |Vital.System.File-functions|
+
+==============================================================================
+INTRODUCTION				*Vital.System.File-introduction*
+
+*Vital.System.File* is Filesystem Utilities Library.
+It provides some functions for file system.
+
+==============================================================================
+INTERFACE				*Vital.System.File-interface*
+------------------------------------------------------------------------------
+FUNCTIONS				*Vital.System.File-functions*
+
+open({filename})			*Vital.System.File.open()*
+	Open a file specified as {filename}.  It can be a file or a directory.
+
+move_file({src}, {dest})		*Vital.System.File.move_file()*
+	Move a file {src} to {dest}
+
+copy_file({src}, {dest})		*Vital.System.File.copy_file()*
+	Copy a file {src} to {dest}
+
+mkdir_nothrow({name} [, {path} [, {prot}]])
+					*Vital.System.File.mkdir_nothrow()*
+	Creates a directory {name} without throwing any exception.
+
+rmdir({path}, [{flags}])		*Vital.System.File.rmdir()*
+	Remove a directory {path}.
+	If {flags} contains "r", this removes the directory and its contents
+	recursively.
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

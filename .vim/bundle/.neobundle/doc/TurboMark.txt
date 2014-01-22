@@ -1,0 +1,39 @@
+*TurboMark.vim*	Plugin for quickly finding lines in your open buffers
+                                                                       
+This plugin offers commands and mappings to quickly mark lines and then finding
+them using the quickfix window.
+                                                                       
+Commands:
+:TurboMark                                              *:TurboMark*
+                            Mark the line currently under the cursor to the
+                            marklist. If the line already exists, it will
+                            bubble up to the top of the list.
+                                                                       
+:TurboFind                                              *:TurboFind*
+                            Populate the quickfix window with all the entries
+                            in the marklist, open the quickfix window and enter
+                            search mode. This allows you to quickly find any
+                            line you've marked; just remember to press a double
+                            RETURN after your search, one to end your search
+                            and one to navigate to the file/line you want.
+
+                            You might want to close the quickfix window with
+                            :cclose after you're done.
+
+: TurboClear                                            *:TurboClear*
+                            Delete all entries from the marklist.
+                                                                       
+Mappings:
+m
+                            Call TurboMark. Replaces the 'm' command from vim
+                            which is very difficult to use anyway.
+
+'
+                            Call TurboFind. Replaces the ' command from vim
+                            which is very difficult to use anyway.
+                                                                       
+                                                        *TurboMark-settings*
+You can override the above mappings in your .vimrc, like this:
+
+    nmap <silent> mm :TurboMark<CR>
+    nmap <silent> '' :TurboFind<CR>
