@@ -48,7 +48,6 @@ nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " nmap <silent> <leader>r :LustyBufferExplorer<CR>
 nmap <silent> <leader>g :LustyBufferGrep<CR>
-nmap <silent> <leader>b :LustyJuggler<CR>
 
 " inoremap <CR> <C-g>u<CR>
 nnoremap ! :%!
@@ -80,6 +79,8 @@ vnoremap < <gv
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
 nnoremap q? <Nop>
+map <Right> <Nop>
+map <Left> <Nop>
 
 noremap! <M-Backspace> <C-W>
 noremap! <M-Left> <C-Left>
@@ -195,11 +196,6 @@ nnoremap # #zzzv
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" search helper {{{
-nmap <C-w>/  <C-w>v<C-w>l:redraw<CR>/
-nmap <C-w>*  <C-w>v<C-w>l:redraw<CR>*
-nmap <C-w>#  <C-w>v<C-w>l:redraw<CR>#
-
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -212,8 +208,6 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 "}
-map <Right> <Nop>
-map <Left> <Nop>
 
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
@@ -293,19 +287,6 @@ map zh zH
 " TagBar {
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
-" Fugitive {
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    nnoremap <silent> <leader>gg :GitGutterToggle<CR>
-"}
-
 nmap <silent> <F11>                       <Plug>FontsizeBegin
 nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
 nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
@@ -361,73 +342,74 @@ vnoremap <silent> <leader>gV :Gitv! --all<CR>
 nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
 nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
 map <Leader>z :ZoomWinTabToggle<CR>
-
-map <Leader>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
-map <Leader>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
-map <Leader>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
-map <Leader>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
-
-map <Leader>rc :VimuxPromptCommand<CR>
-map <Leader>rl :VimuxRunLastCommand<CR>
-map <Leader>rs :VimuxInterruptRunner<CR>
-map <Leader>ri :VimuxInspectRunner<CR>
-map <Leader>rq :VimuxCloseRunner<CR>
+"----[ ViMux ]
+map <C-e>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
+map <C-e>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
+map <C-e>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
+map <C-e>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
+map <C-e>rc :VimuxPromptCommand<CR>
+map <C-e>rl :VimuxRunLastCommand<CR>
+map <C-e>rs :VimuxInterruptRunner<CR>
+map <C-e>ri :VimuxInspectRunner<CR>
+map <C-e>rq :VimuxCloseRunner<CR>
 
 map <Leader>j :Utl <CR><Bar>:redraw!<CR>
 
 nnoremap <Leader>u :GundoToggle<CR>
 map <Leader>x :call RangerChooser()<CR>
 "----[ Unite ]-----------------------------------------
-" files
-nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
-nnoremap <silent><Leader>O :Unite -silent -start-insert file_rec/async<CR>
-" buffers
-nnoremap <silent><Leader>b :Unite -silent buffer<CR>
-" tabs
-nnoremap <silent><Leader>B :Unite -silent tab<CR>
-" buffer search
-nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview
-            \ line<CR>
-" yankring
-nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
-" grep
-nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>
-" help
-nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
-" tasks
-nnoremap <silent><Leader>; :Unite -silent -toggle
-            \ grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
-" outlines (also ctags)
-nnoremap <silent><Leader>t :Unite -silent -vertical -winwidth=40
-            \ -direction=topleft -toggle outline<CR>
-" junk files
-nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
-
-" menu prefix key (for all Unite menus) {{{
+" map ff as default f
+nnoremap ff f
+" map f as unite prefix key
+nmap f [unite]
+xmap f [unite]
+nnoremap [unite] <Nop>
+xnoremap [unite] <Nop>
 nnoremap <C-e> <Nop>
+" menu prefix key (for all Unite menus) {{{
 " menus menu
-nnoremap <silent><C-e>u :Unite -silent -start-insert -winheight=20 menu<CR>
-nnoremap <silent><C-e>k :Unite -silent -start-insert menu:markdown<CR>
-nnoremap <silent><C-e>m :Unite -silent -start-insert menu:bookmarks<CR>
-nnoremap <silent><C-e>c :Unite -silent -start-insert menu:colorv<CR>
-nnoremap <silent><C-e>v :Unite menu:vim -silent -start-insert<CR>
+nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
+nnoremap <silent>[unite]k :Unite -silent -start-insert menu:markdown<CR>
+nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
+nnoremap <silent>[unite]v :Unite menu:vim -silent -start-insert<CR>
 
-nnoremap <silent><C-e>o :Unite -silent -start-insert -winheight=17 -start-insert
-nnoremap <silent><C-e>a :Unite -silent -start-insert menu:grep<CR>
-nnoremap <silent><C-e>b :Unite -silent -start-insert menu:navigation<CR>
-nnoremap <silent><C-e>f :Unite -silent -start-insert menu:searching<CR>
-nnoremap <silent><C-e>i :Unite -silent -start-insert menu:registers<CR>
-nnoremap <silent><C-e>s :Unite -silent -start-insert menu:spelling<CR>
-nnoremap <silent><C-e>e :Unite -silent -start-insert -winheight=20 menu:text <CR>
-nnoremap <silent><C-e>g :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
-nnoremap <silent><C-e>p :Unite -silent -start-insert -winheight=42 menu:code<CR>
-nnoremap <silent><C-e>8 :UniteWithCursorWord -silent -no-split -auto-preview
+nnoremap <silent>[unite]o :Unite -silent -start-insert -winheight=17 -start-insert
+nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
+nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
+nnoremap <silent>[unite]g :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
+nnoremap <silent>[unite]p :Unite -silent -start-insert -winheight=42 menu:code<CR>
+nnoremap <silent>[unite]8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
-nnoremap <silent><C-e>n :Unite -silent -start-insert menu:neobundle<CR>
+nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>
 
-nnoremap <leader>gg :execute 'Unite gtags/def:'.expand('<cword>')<CR>
-nnoremap <leader>gc :execute 'Unite gtags/context'<CR>
-nnoremap <leader>gr :execute 'Unite gtags/ref'<CR>
-nnoremap <leader>ge :execute 'Unite gtags/grep'<CR>
+" mapping for Unite functions
+nnoremap <silent> [unite]r :UniteResume<CR>
+nnoremap [unite]R :Unite ref/
+nnoremap <silent> [unite]b :UniteWithBufferDir file file/new<CR>
+nnoremap <silent> <expr> [unite]h ':UniteWithInput -buffer-name=files file file/new -input='. substitute($HOME, '\' ,'/', 'g') .'/<CR>'
+nnoremap <silent> [unite]t :Unite tab<CR>
+nnoremap <silent> [unite]y :Unite register<CR>
+nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]p :Unite bookmark -default-action=cd -no-start-insert<CR>
+nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
+nnoremap <silent> [unite]j :Unite buffer_tab -no-start-insert<CR>
+nnoremap <silent> [unite]* :UniteWithCursorWord line<CR>
+nnoremap <silent> [unite]o :Unite -buffer-name=outline outline<CR>
+nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
+nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru<CR>
+nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
+nnoremap <silent> [unite]b :Unite -silent buffer<CR>
+nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
+"-------[ Unite-svn ]-----------------------------------------------
+nnoremap <silent> [unite]sd :Unite svn/diff<CR>
+nnoremap <silent> [unite]sb :Unite svn/blame<CR>
+nnoremap <silent> [unite]ss :Unite svn/status<CR>
+nnoremap [unite]s<SPACE> :Unite svn/
+"-------[ Unite-gtags ]---------------------------------------------
+nnoremap [unite]gg :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+nnoremap [unite]gc :execute 'Unite gtags/context'<CR>
+nnoremap [unite]gr :execute 'Unite gtags/ref'<CR>
+nnoremap [unite]ge :execute 'Unite gtags/grep'<CR>
+nnoremap <C-j> :Unite gtags/context<CR>
 vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
