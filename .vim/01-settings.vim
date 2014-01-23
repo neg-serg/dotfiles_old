@@ -132,7 +132,7 @@ set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
 " set autowrite                   " Automatically write a file when leaving a modified buffer
-" set virtualedit=onemore         " Allow for cursor beyond last character
+set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
