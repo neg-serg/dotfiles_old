@@ -6,7 +6,6 @@ TeX-9
 TextObjectify
 TurboMark
 YouCompleteMe
-ack.vim
 ag.vim
 auctex.vim
 bufkill.vim
@@ -16,7 +15,6 @@ compview
 coveragepy.vim
 ctrlp.vim
 emmet-vim
-eskk.vim
 gitv
 gtags-cscope-vim-plugin
 gundo.vim
@@ -96,7 +94,6 @@ vim-virtualenv
 vim-watchdogs
 vimerl
 vimfiler
-vimpanel
 vimproc
 vital.vim
 winresizer
