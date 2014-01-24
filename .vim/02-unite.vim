@@ -32,20 +32,6 @@ for key_number in [1, 2, 3, 4, 5, 6, 7, 8, 9]
 endfor
 " unite.vim "{{{
 
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-let g:unite_enable_start_insert = 1
-let g:unite_enable_split_vertically = 0
-let g:unite_source_file_mru_limit = 300
-let g:unite_source_file_rec_min_cache_files = 300
-let g:unite_source_file_rec_max_depth = 10
-let g:unite_kind_openable_cd_command = 'TabpageCD'
-let g:unite_kind_openable_lcd_command = 'TabpageCD'
-let g:unite_winheight = 20
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_bookmark_directory = $HOME . "/.unite/bookmark"
-
-let g:unite_source_gtags_treelize = 1
 function! s:unite_my_settings()
   nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
   nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
@@ -231,10 +217,6 @@ let g:unite_source_menu_menus.text = {
         \                                          ⌘ [space]e',
     \}
 let g:unite_source_menu_menus.text.command_candidates = [
-    \['▷ toggle search results highlight                            ⌘ ,eq',
-        \'set invhlsearch'],
-    \['▷ toggle line numbers                                        ⌘ ,l',
-        \'call ToggleRelativeAbsoluteNumber()'],
     \['▷ toggle wrapping                                            ⌘ ,ew',
         \'call ToggleWrap()'],
     \['▷ show hidden chars                                          ⌘ ,eh',
@@ -363,14 +345,6 @@ let g:unite_source_menu_menus.code = {
         \                                            ⌘ [space]p',
     \}
 let g:unite_source_menu_menus.code.command_candidates = [
-    \['▷ run python code                            (pymode)        ⌘ ,r',
-        \'PymodeRun'],
-    \['▷ show docs for the current word             (pymode)        ⌘ K',
-        \'normal K'],
-    \['▷ insert a breakpoint                        (pymode)        ⌘ ,B',
-        \'normal ,B'],
-    \['▷ pylint check                               (pymode)        ⌘ ,n',
-        \'PymodeLint'],
     \['▷ run with python2 in tmux panel             (vimux)         ⌘ ,rr',
         \'normal ,rr'],
     \['▷ run with python3 in tmux panel             (vimux)         ⌘ ,r3',
@@ -389,50 +363,6 @@ let g:unite_source_menu_menus.code.command_candidates = [
         \'VimuxInspectRunner'],
     \['▷ close tmux panel                           (vimux)         ⌘ ,rq',
         \'VimuxCloseRunner'],
-    \['▷ sort imports                               (isort)',
-        \'Isort'],
-    \['▷ go to definition                           (pymode-rope)   ⌘ C-C g',
-        \'call pymode#rope#goto_definition()'],
-    \['▷ find where a function is used              (pymode-rope)   ⌘ C-C f',
-        \'call pymode#rope#find_it()'],
-    \['▷ show docs for current word                 (pymode-rope)   ⌘ C-C d',
-        \'call pymode#rope#show_doc()'],
-    \['▷ reorganize imports                         (pymode-rope)   ⌘ C-C r o',
-        \'call pymode#rope#organize_imports()'],
-    \['▷ refactorize - rename                       (pymode-rope)   ⌘ C-C r r',
-        \'call pymode#rope#rename()'],
-    \['▷ refactorize - inline                       (pymode-rope)   ⌘ C-C r i',
-        \'call pymode#rope#inline()'],
-    \['▷ refactorize - move                         (pymode-rope)   ⌘ C-C r v',
-        \'call pymode#rope#move()'],
-    \['▷ refactorize - use function                 (pymode-rope)   ⌘ C-C r u',
-        \'call pymode#rope#use_function()'],
-    \['▷ refactorize - change signature             (pymode-rope)   ⌘ C-C r s',
-        \'call pymode#rope#signature()'],
-    \['▷ refactorize - rename current module        (pymode-rope)   ⌘ C-C r 1 r',
-        \'PymodeRopeRenameModule'],
-    \['▷ refactorize - module to package            (pymode-rope)   ⌘ C-C r 1 p',
-        \'PymodeRopeModuleToPackage'],
-    \['▷ syntastic toggle                           (syntastic)',
-        \'SyntasticToggleMode'],
-    \['▷ syntastic check & errors                   (syntastic)     ⌘ ,N',
-        \'normal ,N'],
-    \['▷ list virtualenvs                           (virtualenv)',
-        \'Unite output:VirtualEnvList'],
-    \['▷ activate virtualenv                        (virtualenv)',
-        \'VirtualEnvActivate'],
-    \['▷ deactivate virtualenv                      (virtualenv)',
-        \'VirtualEnvDeactivate'],
-    \['▷ run coverage2                              (coveragepy)',
-        \'call system("coverage2 run ".bufname("%")) | Coveragepy report'],
-    \['▷ run coverage3                              (coveragepy)',
-        \'call system("coverage3 run ".bufname("%")) | Coveragepy report'],
-    \['▷ toggle coverage report                     (coveragepy)',
-        \'Coveragepy session'],
-    \['▷ toggle coverage marks                      (coveragepy)',
-        \'Coveragepy show'],
-    \['▷ coffeewatch                                (coffeescript)  ⌘ ,rw',
-        \'CoffeeWatch vert'],
     \['▷ count lines of code',
         \'Unite -default-action= output:call\\ LinesOfCode()'],
     \]
@@ -461,91 +391,6 @@ let g:unite_source_menu_menus.bookmarks.command_candidates = [
         \'UniteBookmarkAdd'],
     \]
 
-" colorv menu
-function! GetColorFormat()
-    let formats = {'r' : 'RGB',
-                  \'n' : 'NAME',
-                  \'s' : 'HEX',
-                  \'ar': 'RGBA',
-                  \'pr': 'RGBP',
-                  \'pa': 'RGBAP',
-                  \'m' : 'CMYK',
-                  \'l' : 'HSL',
-                  \'la' : 'HSLA',
-                  \'h' : 'HSV',
-                  \}
-    let formats_menu = ["\n"]
-    for [k, v] in items(formats)
-        call add(formats_menu, "  ".k."\t".v."\n")
-    endfor
-    let fsel = get(formats, input('Choose a format: '.join(formats_menu).'? '))
-    return fsel
-endfunction
-
-function! GetColorMethod()
-    let methods = {
-                   \'h' : 'Hue',
-                   \'s' : 'Saturation',
-                   \'v' : 'Value',
-                   \'m' : 'Monochromatic',
-                   \'a' : 'Analogous',
-                   \'3' : 'Triadic',
-                   \'4' : 'Tetradic',
-                   \'n' : 'Neutral',
-                   \'c' : 'Clash',
-                   \'q' : 'Square',
-                   \'5' : 'Five-Tone',
-                   \'6' : 'Six-Tone',
-                   \'2' : 'Complementary',
-                   \'p' : 'Split-Complementary',
-                   \'l' : 'Luma',
-                   \'g' : 'Turn-To',
-                   \}
-    let methods_menu = ["\n"]
-    for [k, v] in items(methods)
-        call add(methods_menu, "  ".k."\t".v."\n")
-    endfor
-    let msel = get(methods, input('Choose a method: '.join(methods_menu).'? '))
-    return msel
-endfunction
-
-let g:unite_source_menu_menus.colorv = {
-    \ 'description' : '         color management
-        \                                      ⌘ [space]c',
-    \}
-let g:unite_source_menu_menus.colorv.command_candidates = [
-    \['▷ open colorv                                                ⌘ ,cv',
-        \'ColorV'],
-    \['▷ open colorv with the color under the cursor                ⌘ ,cw',
-        \'ColorVView'],
-    \['▷ preview colors                                             ⌘ ,cpp',
-        \'ColorVPreview'],
-    \['▷ color picker                                               ⌘ ,cd',
-        \'ColorVPicker'],
-    \['▷ edit the color under the cursor                            ⌘ ,ce',
-        \'ColorVEdit'],
-    \['▷ edit the color under the cursor (and all the concurrences) ⌘ ,cE',
-        \'ColorVEditAll'],
-    \['▷ insert a color                                             ⌘ ,cii',
-        \'exe "ColorVInsert " .GetColorFormat()'],
-    \['▷ color list relative to the current                         ⌘ ,cgh',
-        \'exe "ColorVList " .GetColorMethod() "
-        \ ".input("number of colors? (optional): ")
-        \ " ".input("number of steps?  (optional): ")'],
-    \['▷ show colors list (Web W3C colors)                          ⌘ ,cn',
-        \'ColorVName'],
-    \['▷ choose color scheme (ColourLovers, Kuler)                  ⌘ ,css',
-        \'ColorVScheme'],
-    \['▷ show favorite color schemes                                ⌘ ,csf',
-        \'ColorVSchemeFav'],
-    \['▷ new color scheme                                           ⌘ ,csn',
-        \'ColorVSchemeNew'],
-    \['▷ create hue gradation between two colors',
-        \'exe "ColorVTurn2 " " ".input("Color 1 (hex): ")
-        \" ".input("Color 2 (hex): ")'],
-    \]
-" }}}
-
 " vim menu {{{
 let g:unite_source_menu_menus.vim = {
     \ 'description' : '            vim
@@ -572,10 +417,6 @@ let g:unite_source_menu_menus.vim.command_candidates = [
         \'Unite output'],
     \['▷ unite sources',
         \'Unite source'],
-    \['▷ kill process',
-        \'Unite -default-action=sigkill -start-insert process'],
-    \['▷ launch executable (dmenu like)',
-        \'Unite -start-insert launcher'],
     \]
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -583,29 +424,39 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
             \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
 
-let g:unite_source_history_yank_enable = 1
-let g:unite_enable_short_source_mes = 0
-let g:unite_force_overwrite_statusline = 0
-let g:unite_prompt = '>>> '
-let g:unite_marked_icon = '✓'
-" let g:unite_candidate_icon = '∘'
-let g:unite_winheight = 15
-let g:unite_update_time = 200
-let g:unite_split_rule = 'botright'
-let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
-let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_enable_ignore_case               = 1
+let g:unite_enable_smart_case                = 1
+let g:unite_enable_start_insert              = 1
+let g:unite_enable_split_vertically          = 0
+let g:unite_source_file_mru_limit            = 300
+let g:unite_source_file_rec_min_cache_files  = 300
+let g:unite_source_file_rec_max_depth        = 10
+let g:unite_kind_openable_cd_command         = 'TabpageCD'
+let g:unite_kind_openable_lcd_command        = 'TabpageCD'
+let g:unite_source_history_yank_enable       = 1
+let g:unite_source_bookmark_directory        = $HOME . "/.unite/bookmark"
+let g:unite_source_gtags_treelize            = 1
+let g:unite_source_history_yank_enable       = 1
+let g:unite_enable_short_source_mes          = 0
+let g:unite_force_overwrite_statusline       = 0
+let g:unite_prompt                           = '>> '
+let g:unite_marked_icon                      = '✓'
+let g:unite_winheight                        = 15
+let g:unite_update_time                      = 200
+let g:unite_split_rule                       = 'botright'
+let g:unite_data_directory                   = $HOME.'/.vim/tmp/unite'
+let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_source_file_mru_time_format      = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 
 if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -a -S'
-    let g:unite_source_grep_recursive_opt=''
+    let g:unite_source_grep_command               = 'ag'
+    let g:unite_source_grep_default_opts          = '--nocolor --nogroup -a -S'
+    let g:unite_source_grep_recursive_opt         = ''
     let g:unite_source_grep_search_word_highlight = 1
 elseif executable('ack')
-    let g:unite_source_grep_command='ack'
-    let g:unite_source_grep_default_opts='--no-group --no-color'
-    let g:unite_source_grep_recursive_opt=''
+    let g:unite_source_grep_command               = 'ack'
+    let g:unite_source_grep_default_opts          = '--no-group --no-color'
+    let g:unite_source_grep_recursive_opt         = ''
     let g:unite_source_grep_search_word_highlight = 1
 endif
-

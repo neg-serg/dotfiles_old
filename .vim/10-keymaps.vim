@@ -367,7 +367,6 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 nnoremap <C-e> <Nop>
 " menu prefix key (for all Unite menus) {{{
-" menus menu
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
 nnoremap <silent>[unite]k :Unite -silent -start-insert menu:markdown<CR>
 nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
