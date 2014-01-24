@@ -38,10 +38,11 @@ NeoBundle 'tpope/vim-repeat'                  "repeat everything!
 " browse the vim undo tree
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 NeoBundle 'tpope/vim-eunuch.git'              "for SudoWrite, Locate, Find etc
+NeoBundle 'gregsexton/gitv',                  "Git viewer  
+" NeoBundleLazy 'gregsexton/gitv',            "Git viewer  
+"             \ {'depends':['tpope/vim-fugitive'],
+"             \ 'autoload':{'commands':'Gitv'}} 
 NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc      
-NeoBundleLazy 'gregsexton/gitv',              "Git viewer  
-            \ {'depends':['tpope/vim-fugitive'],
-            \ 'autoload':{'commands':'Gitv'}} 
 NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 NeoBundle 'vim-scripts/compview.git'          "interactive search
 
@@ -68,9 +69,9 @@ NeoBundle 'matchit.zip'                       " % for everything
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
       \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
+      \     'cygwin'  : 'make -f make_cygwin.mak',
+      \     'mac'     : 'make -f make_mac.mak',
+      \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
 NeoBundleLazy 'ujihisa/neco-ghc'             "autocomplete for hs using ghc-mod
@@ -100,14 +101,6 @@ NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundleLazy 'Rykka/colorv.vim', {'autoload' : {
-            \ 'commands' : [
-                             \ 'ColorV', 'ColorVView', 'ColorVPreview',
-                             \ 'ColorVPicker', 'ColorVEdit', 'ColorVEditAll',
-                             \ 'ColorVInsert', 'ColorVList', 'ColorVName',
-                             \ 'ColorVScheme', 'ColorVSchemeFav',
-                             \ 'ColorVSchemeNew', 'ColorVTurn2'],
-            \ }}
 NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
 NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 NeoBundle 'jimsei/winresizer.git'             "Resize window simply
@@ -177,20 +170,16 @@ NeoBundleLazy 'thinca/vim-quickrun', { 'autoload' : {
       \ 'mappings' : ['nxo', '<Plug>(quickrun)'],
       \ 'commands' : ['QuickRun', 'UniteQuickRunConfig'],
       \ }}
-"
 NeoBundle 'osyo-manga/vim-anzu.git'
 NeoBundleLazy 'Shougo/vimfiler.git', { 'autoload' : {
     \ 'commands' : ['VimFiler', 'VimFilerSimple'],
     \ }}
-
 NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git'
 " NeoBundle 'vim-scripts/gtags.vim.git'       "Gtags wrapper for vim
 " NeoBundle '5t111111/alt-gtags.vim.git'      "Newer gtags wrapper for vim
 " NeoBundle 'namhyung/global.git'             "gtags wrapper for vim
-"
-NeoBundle 'tyru/eskk.vim.git'                 " I dont know
+
 NeoBundle 'tyru/restart.vim.git'              "add restart support
-NeoBundle 'mihaifm/vimpanel.git'              "NerdTree replacer
 NeoBundle 'goldfeld/vim-seek.git'             "Navigate fast like with f
 NeoBundle 'Keithbsmiley/investigate.vim'      "Search for under cursor info
 NeoBundle 'Zuckonit/vim-gnote.git'            "For gmail notes
@@ -207,19 +196,19 @@ NeoBundle 'kbairak/TurboMark.git'             "Simple marking
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
-" NeoBundle 'glts/vim-cottidie'                 "tips :)
-" NeoBundle 'vim-scripts/LanguageTool.git'      "Language tool for cheking style
-" NeoBundle 'svermeulen/vim-easyclip'         "Try to not garbage copy/paste(work) add dd append
-" NeoBundle 'sickill/vim-pasta.git'           "Test it again for pasting
 " NeoBundle 'kien/rainbow_parentheses.vim'    "rainbow ()[]
 " NeoBundle 'amdt/vim-niji.git'               "rainbox ()[] replacement
+" NeoBundle 'glts/vim-cottidie'               "tips :)
+" NeoBundle 'vim-scripts/LanguageTool.git'    "Language tool for cheking style
+" NeoBundle 'svermeulen/vim-easyclip'         "Try to not garbage copy/paste(work) add dd append
+" NeoBundle 'sickill/vim-pasta.git'           "Test it again for pasting
 " NeoBundle 'Raimondi/delimitMate.git'        "Add pairs to brackets
 " NeoBundle 'airblade/vim-gitgutter.git'      "Shows changes Tooooooo slow
 " NeoBundle 'xolox/vim-easytags.git'          "Autoupdate tags ;; test it! Too slow
 " NeoBundle 'xolox/vim-session.git'           "Session managment for vim
 " NeoBundle 'eagletmt/ghcmod-vim'             "ghc-mod happy hacking integration for vim
 " NeoBundle 'vim-scripts/sessionman.vim'      "session manager
-" NeoBundle 'nelstrom/vim-visual-star-search'
+" NeoBundle 'nelstrom/vim-visual-star-search' "Probably it's star operator replacement
 
 NeoBundleCheck
 catch /117/
@@ -230,9 +219,7 @@ filetype plugin indent on
 
 source ~/.vim/06-functions.vim
 source ~/.vim/01-settings.vim
-source ~/.vim/02-eskk.vim
 source ~/.vim/02-quickfix.vim
-source ~/.vim/02-quickrun.vim
 source ~/.vim/02-unite.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim

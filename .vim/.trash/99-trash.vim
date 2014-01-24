@@ -1520,3 +1520,24 @@ set ttimeout ttimeoutlen=40
 " let g:indentLine_char = '┊'
 " let g:indentLine_color_term = 239
 " "}}}"
+" " Fugitive {
+"     nnoremap <silent> <leader>gs :Gstatus<CR>
+"     nnoremap <silent> <leader>gd :Gdiff<CR>
+"     nnoremap <silent> <leader>gc :Gcommit<CR>
+"     nnoremap <silent> <leader>gb :Gblame<CR>
+"     nnoremap <silent> <leader>gl :Glog<CR>
+"     nnoremap <silent> <leader>gp :Git push<CR>
+"     nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
+"     nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+"     nnoremap <silent> <leader>ge :Gedit<CR>
+"     nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+" "}
+"---------------------------------------------------------------
+" => Cope
+"---------------------------------------------------------------
+" Do :help cope if you are unsure what cope is. It's super useful!
+" map <leader>cc :botright cope<cr>
+" map <leader>n :cn<cr>
+" map <leader>p :cp<cr>
+
+"

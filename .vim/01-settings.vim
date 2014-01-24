@@ -2,6 +2,7 @@
 " colorscheme solarized
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
+    set guifontwide=PragmataPro\ for\ Powerline\ 14
     " set gfn=PragmataPro\ for\ Powerline\ 15
     " set lsp=-1
     set lsp=1                          " Space between lines
@@ -263,10 +264,10 @@ set path=**
 " indent_guides {
     let g:indent_guides_auto_colors = 1
     " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121 ctermbg=3
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
-    let g:indent_guides_start_level = 2
-    let g:indent_guides_guide_size = 1
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
+    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
+    let g:indent_guides_start_level           = 2
+    let g:indent_guides_guide_size            = 1
     let g:indent_guides_enable_on_vim_startup = 1
 " }
 " Ctags {
@@ -288,13 +289,14 @@ let g:LustyJugglerDefaultMappings=0
 let LustyExplorerDefaultMappings=0
 " -------------------------------------------------------------------
 " When using the taglist plugin, don't attempt to resize the terminal
-let Tlist_Inc_Winwidth=0
-" shell is bash
-let g:is_bash=1
-" clojure syntax config
-let g:clj_highlight_builtins=1
+let Tlist_Inc_Winwidth = 0
+let g:is_bash          = 1
+
+let g:clj_highlight_builtins = 1
+
 " let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlPMRUFiles'
+let g:ctrlp_cmd   = 'CtrlPMRUFiles'
+
 let g:haddock_browser = "dwb"
 
 "Add existing project to project tree
@@ -305,22 +307,23 @@ else
     set makeprg=gcc\ -Wall\ -o\ %<\ %
 endif
 
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1 " Use airline fonts
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#checks = []
 
-let g:airline_exclude_preview=1
-let g:airline_symbols = {}
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-let g:airline_left_sep = ' '
-let g:airline_left_alt_sep = ' '
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
+let g:airline_exclude_preview  = 1
+let g:airline_symbols          = {}
+" let g:airline_left_sep       = ''
+" let g:airline_left_alt_sep   = ''
+let g:airline_left_sep         = ' '
+let g:airline_left_alt_sep     = ' '
+let g:airline_right_sep        = ''
+let g:airline_right_alt_sep    = ''
+let g:airline_symbols.branch   = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_symbols.linenr   = ''
 let g:airline_mode_map = {
   \ '__' : '-',
   \ 'n'  : 'N',
@@ -338,14 +341,26 @@ let g:airline_mode_map = {
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
 let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_confirm_extra_conf = 0
+
+let g:ycm_semantic_triggers =  {
+\   'c' : ['->', '.'],
+\   'objc' : ['->', '.'],
+\   'cpp,objcpp' : ['->', '.', '::'],
+\   'perl' : ['->'],
+\   'php' : ['->', '::'],
+\   'cs,java,javascript,d,vim,rubyythonerl6,scala,vb,elixir,go' : ['.'],
+\   'lua' : ['.', ':'],
+\   'erlang' : [':'],
+\ }
+
 " let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_tags_files = 0
 
 let g:ycm_filetype_blacklist = {
-      \ 'notes' : 1,
+      \ 'notes'    : 1,
       \ 'markdown' : 1,
-      \ 'text' : 1,
-      \ 'unite' : 1,
+      \ 'text'     : 1,
+      \ 'unite'    : 1,
       \}
 
 " https://github.com/airblade/vim-gitgutter/issues/106
@@ -353,17 +368,6 @@ let g:gitgutter_realtime = 0
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:yankring_history_file = '/tmp/yankring_hist'
-
-" Автоматический insert mode
-let g:unite_enable_start_insert = 1
-" Отображаем Unite в нижней части экрана
-let g:unite_split_rule = "botright"
-" Отключаем замену статус строки
-let g:unite_force_overwrite_statusline = 0
-" Размер окна Unite
-let g:unite_winheight = 10
-" Красивые стрелочки
-let g:unite_candidate_icon="▷"
 
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'

@@ -58,8 +58,8 @@ xbindkeys
 xset m 1 1
 xset r rate 200 50
 
-hsetroot -fill /home/neg/pic/wl/Bizzare_landscape_by_rakkin23.jpg
-
+# hsetroot -fill /home/neg/pic/wl/Bizzare_landscape_by_rakkin23.jpg
+hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 

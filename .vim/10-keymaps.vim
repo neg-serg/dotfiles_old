@@ -376,7 +376,6 @@ nnoremap <silent>[unite]o :Unite -silent -start-insert -winheight=17 -start-inse
 nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
 nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
 nnoremap <silent>[unite]g :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
-nnoremap <silent>[unite]p :Unite -silent -start-insert -winheight=42 menu:code<CR>
 nnoremap <silent>[unite]8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
 nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>

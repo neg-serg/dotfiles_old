@@ -448,6 +448,8 @@ let g:unite_data_directory                   = $HOME.'/.vim/tmp/unite'
 let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format      = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_winheight                        = 10
+let g:unite_candidate_icon                   = "▷"
 
 if executable('ag')
     let g:unite_source_grep_command               = 'ag'
