@@ -1,34 +1,8 @@
 #!/usr/bin/env zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without modification, are permitted
-# provided that the following conditions are met:
-#
-#  * Redistributions of source code must retain the above copyright notice, this list of conditions
-#    and the following disclaimer.
-#  * Redistributions in binary form must reproduce the above copyright notice, this list of
-#    conditions and the following disclaimer in the documentation and/or other materials provided
-#    with the distribution.
-#  * Neither the name of the zsh-syntax-highlighting contributors nor the names of its contributors
-#    may be used to endorse or promote products derived from this software without specific prior
-#    written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
-# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-# FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-# IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
-# OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# -------------------------------------------------------------------------------------------------
 # -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
-
-
 # -------------------------------------------------------------------------------------------------
 # Core highlighting update system
 # -------------------------------------------------------------------------------------------------
@@ -40,8 +14,7 @@ typeset -ga ZSH_HIGHLIGHT_HIGHLIGHTERS
 #
 # Invokes each highlighter that needs updating.
 # This function is supposed to be called whenever the ZLE state changes.
-_zsh_highlight()
-{
+_zsh_highlight(){
   setopt localoptions nowarncreateglobal
 
   # Store the previous command return code to restore it whatever happens.
@@ -103,29 +76,18 @@ _zsh_highlight()
 typeset -gA ZSH_HIGHLIGHT_STYLES
 
 # Whether the command line buffer has been modified or not.
-#
 # Returns 0 if the buffer has changed since _zsh_highlight was last called.
-_zsh_highlight_buffer_modified()
-{
-  [[ ${_ZSH_HIGHLIGHT_PRIOR_BUFFER:-} != $BUFFER ]]
-}
+_zsh_highlight_buffer_modified() { [[ ${_ZSH_HIGHLIGHT_PRIOR_BUFFER:-} != $BUFFER ]] }
 
 # Whether the cursor has moved or not.
-#
 # Returns 0 if the cursor has moved since _zsh_highlight was last called.
-_zsh_highlight_cursor_moved()
-{
-  [[ -n $CURSOR ]] && [[ -n ${_ZSH_HIGHLIGHT_PRIOR_CURSOR-} ]] && (($_ZSH_HIGHLIGHT_PRIOR_CURSOR != $CURSOR))
-}
-
-
+_zsh_highlight_cursor_moved() { [[ -n $CURSOR ]] && [[ -n ${_ZSH_HIGHLIGHT_PRIOR_CURSOR-} ]] && (($_ZSH_HIGHLIGHT_PRIOR_CURSOR != $CURSOR)) }
 # -------------------------------------------------------------------------------------------------
 # Setup functions
 # -------------------------------------------------------------------------------------------------
 
 # Rebind all ZLE widgets to make them invoke _zsh_highlights.
-_zsh_highlight_bind_widgets()
-{
+_zsh_highlight_bind_widgets(){
   # Load ZSH module zsh/zleparameter, needed to override user defined widgets.
   zmodload zsh/zleparameter 2>/dev/null || {
     echo 'zsh-syntax-highlighting: failed loading zsh/zleparameter.' >&2
@@ -164,8 +126,7 @@ _zsh_highlight_bind_widgets()
 #
 # Arguments:
 #   1) Path to the highlighters directory.
-_zsh_highlight_load_highlighters()
-{
+_zsh_highlight_load_highlighters(){
   # Check the directory exists.
   [[ -d "$1" ]] || {
     echo "zsh-syntax-highlighting: highlighters directory '$1' not found." >&2
@@ -190,7 +151,6 @@ _zsh_highlight_load_highlighters()
 # -------------------------------------------------------------------------------------------------
 # Setup
 # -------------------------------------------------------------------------------------------------
-
 # Try binding widgets.
 _zsh_highlight_bind_widgets || {
   echo 'zsh-syntax-highlighting: failed binding ZLE widgets, exiting.' >&2
@@ -204,8 +164,7 @@ _zsh_highlight_load_highlighters "${ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR:-${0:h}/highl
 }
 
 # Reset scratch variables when commandline is done.
-_zsh_highlight_preexec_hook()
-{
+_zsh_highlight_preexec_hook(){
   _ZSH_HIGHLIGHT_PRIOR_BUFFER=
   _ZSH_HIGHLIGHT_PRIOR_CURSOR=
 }
