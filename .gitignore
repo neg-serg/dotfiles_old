@@ -14,4 +14,5 @@ bin/go/go-mtpfs
 .themes/bang_slimtheme/background.png_bck
 .themes/Valium/valium-preview.png
 .vim/undo/%mnt%home%.wine%user.reg
+.vim/tmp/unite/*
 .viminfo
