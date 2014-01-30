@@ -1,16 +1,103 @@
-#!/bin/bash
+#!/bin/sh
 #!/usr/bin/env vim
 #! This is a bash script that executes itself as a vimscript to do its work
+#! Based on _v by Magnus Woldrich: https://github.com/trapd00r/utils/blob/master/_v
 
 : if 0
-  tmpfile=$(mktemp -t vimcat.XXXXXXXX)
-  exec 9<>"$tmpfile"
-  rm "$tmpfile"
+  # Just pass through if not on a tty
+  if [ ! -t 1 ]; then
+    exec cat "${@}"
+  fi
+# try to find a better shell, especially on Solaris
 
-  [[ "${0:0:1}" == "/" ]] && script="$0" || script="$PWD/$0"
+  PATH=/usr/local/bin:/opt/csw/bin:/opt/local/bin:/usr/dt/bin:/usr/xpg4/bin:/usr/bin:/bin:$PATH
 
-  /usr/bin/vim -e -X -R "$@" -c "source $script" -c "visual" -c "bufdo call AnsiHighlight()" -c qa >/dev/null 2>/dev/null
-  exec cat <&9
+  if [ -z "$IN_BASH" ] && command -v bash >/dev/null; then
+    IN_BASH=1
+    export IN_BASH
+    exec bash "$0" "$@"
+  elif [ -z "$IN_BASH" ] && [ -z "$IN_KSH" ]; then
+    if command -v dtksh >/dev/null; then
+      IN_KSH=1
+      export IN_KSH
+      exec dtksh "$0" "$@"
+    elif [ -x /usr/xpg4/bin/sh ]; then
+      IN_KSH=1
+      export IN_KSH
+      exec /usr/xpg4/bin/sh "$0" "$@"
+    elif command -v ksh93 >/dev/null; then
+      IN_KSH=1
+      export IN_KSH
+      exec ksh93 "$0" "$@"
+    elif command -v ksh >/dev/null; then
+      IN_KSH=1
+      export IN_KSH
+      exec ksh "$0" "$@"
+    else
+      echo "$0 requires either bash or ksh" >&2
+      exit
+    fi
+  fi
+
+  # hopefully we're now POSIX
+
+  tmp_file=/tmp/vimcat_${$}
+  trap "rm -f ${tmp_file}" HUP INT QUIT ILL TRAP KILL BUS TERM
+
+  script=$(command -v ${0})
+
+  # check for arguments to pass to vim
+  while [ $# -gt 0 ] ; do
+    case "${1}" in
+      "-c") shift; extra_c="${1}"; shift ;; 
+        -*) echo "bad option '${1}'" ; exit 1 ;;
+         *) break ;;
+    esac
+  done
+
+  files=("${@}")
+
+  if [ "${#}" -eq 0 ]; then
+    files[1]="-"
+  fi
+
+  for file in "${files[@]}"
+  do
+    if [ "${#files[@]}" -ge 2 ]; then
+      echo "==> ${file} <=="
+    fi
+
+    if [ -f ~/.vimcatrc ]; then
+        vimcatrc_arg="-u ~/.vimcatrc"
+    else
+        vimcatrc_arg=""
+    fi
+
+    if [ "${file}" = "-" ]; then
+      cat - >${tmp_file}
+      file=${tmp_file}
+    fi
+
+    # Check that the file exists
+    if test -r "${file}" -a -f "${file}"; then
+      vim -E -X -R -i NONE $vimcatrc_arg -c "source ${script} | ${extra_c} | visual | call AnsiHighlight(\"${tmp_file}\") | q" "${file}" </dev/tty >/dev/null 2>&1
+      cat ${tmp_file}
+      echo
+    else
+      echo "$0: Cannot read file: ${file}" >&2
+    fi
+  done
+
+  rm -f "${tmp_file}"
+
+  exit
+
+: endfor
+: endwhile
+: endif
+: endif
+: endif
+: endif
 : endif
 
 " AnsiHighlight: Allows for marking up a file, using ANSI color escapes when
@@ -94,11 +181,6 @@ function! s:GroupToAnsi(groupnum)
     let fg = temp
   endif
 
-  if fg >= 8 && fg < 16
-    let fg -= 8
-    let bd = 1
-  endif
-
   if fg == "" || fg == -1
     unlet fg
   endif
@@ -114,7 +196,7 @@ function! s:GroupToAnsi(groupnum)
     unlet bg
   endif
 
-  if !exists('bg') && !groupnum == hlID('Normal')
+  if !exists('bg')
     let bg = synIDattr(hlID('Normal'), 'bg', s:type)
     if bg == "" || bg == -1
       unlet bg
@@ -129,14 +211,22 @@ function! s:GroupToAnsi(groupnum)
 
   if exists('fg') && fg < 8
     let retv .= ";3" . fg
-  elseif exists('fg')
+  elseif exists('fg')  && fg < 16    "use aixterm codes
+    let retv .= ";9" . (fg - 8)
+  elseif exists('fg')                "use xterm256 codes
     let retv .= ";38;5;" . fg
+  else
+    let retv .= ";39"
   endif
 
   if exists('bg') && bg < 8
     let retv .= ";4" . bg
-  elseif exists('bg')
+  elseif exists('bg') && bg < 16     "use aixterm codes
+    let retv .= ";10" . (bg - 8)
+  elseif exists('bg')                "use xterm256 codes
     let retv .= ";48;5;" . bg
+  else
+    let retv .= ";49"
   endif
 
   let retv .= "m"
@@ -146,7 +236,7 @@ function! s:GroupToAnsi(groupnum)
   return retv
 endfunction
 
-function! AnsiHighlight()
+function! AnsiHighlight(output_file)
   let retv = []
 
   for lnum in range(1, line('$'))
@@ -173,5 +263,12 @@ function! AnsiHighlight()
   " Reset the colors to default after displaying the file
   let retv[-1] .= "\<Esc>[0m"
 
-  return writefile(retv, '/proc/self/fd/9')
+  return writefile(retv, a:output_file)
 endfunction
+
+" See copyright in the vimscript above.
+"
+" The list of contributors is at the bottom of the vimpager script in this
+" project.
+"
+" vim: sw=2 sts=2 et ft=vim

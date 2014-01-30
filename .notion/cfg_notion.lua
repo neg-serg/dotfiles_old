@@ -20,7 +20,7 @@ ioncore.set{
     screen_notify=false,
     autosave_layout=false,
     autoraise=true,
-    --edge_resistance=2,
+	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
 }
 
 --------------------------------[[ DOPATH ]]-----------------------------------------
@@ -34,7 +34,7 @@ dopath("mod_menu")
 dopath("mod_tiling")
 dopath("min_tabs")        
 dopath("bookmarks")
-dopath("net_client_list")
+-- dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
 dopath("dynamic_view")    
@@ -60,6 +60,7 @@ defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=tru
 defwinprop{class="Chromium-browser",transient_mode="off",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true}
+defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
 defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
@@ -95,14 +96,14 @@ defwinprop{class="mpv",      jumpto=true, transient_mode="off", target="media"}
 defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
 --defwinprop{class="Sxiv",    instance="sxiv", jumpto="off", transient_mode="off", target="media",lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
-defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off" 
+defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
 -- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
 defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",
-    max_size = {w=1584,h=864},
-    min_size = {w=1584,h=864},
+    -- max_size = {w=1584,h=864},
+    -- min_size = {w=1584,h=864},
     -- float=true
--- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
+ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
@@ -148,7 +149,8 @@ defwinprop{instance="htop", winlist_ignore=true,transient_mode="off",target="top
 defwinprop{instance="gcolor2", winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{instance="gpick", winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
 defwinprop{class="Vuze", winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true}
-defwinprop{class="*",instance="*", transparent=true,lazy_resize=true}
+defwinprop{class="Anamnesis", winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
+defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
 
 -------------------------------------------------------------------------------------
@@ -157,7 +159,7 @@ defwinprop{class="*",instance="*", transparent=true,lazy_resize=true}
 -- local vmtable={class="vmware",instance="Vmware"}
 
 defbindings("WMPlex.toplevel", {
-    --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),	
+    --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),  
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
     kpress("Mod1+space",       "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
@@ -234,6 +236,7 @@ defbindings("WMPlex.toplevel", {
     --kpress("Mod4+b", "app.byclass('', 'mplayer2')"),
     kpress("Mod4+b", "app.byclass('', 'mpv')"),
     kpress("Mod4+x", "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
+    -- kpress("Mod4+w", "app.byinstance('dwb', 'Dwb','dwb')"),
     kpress("Mod4+w", "app.byinstance('firefox', 'Firefox','Navigator')"),
     -- kpress("Mod4+w", "app.byinstance('icecat', 'Firefox','Navigator')"),
     --kpress("Mod4+w", "app.byclass('firefox', 'Iceweasel')"),
@@ -253,6 +256,7 @@ defbindings("WMPlex.toplevel", {
 --------------
     kpress("Mod4+Control+Q", "WRegion.rqclose_propagate(_, _sub)"),
     kpress("Mod4+F4",        "ioncore.exec_on(_, 'eject')"),
+    kpress("Mod4+Control+P", "ioncore.exec_on(_, 'anamnesis --browser')"),
     kpress("Mod4+U",         "ioncore.exec_on(_, 'udiskie-umount -a')"),
     kpress("Mod4+Shift+F",   "app.instance('libreoffice-writer', 'VCLSalFrame', 'libreoffice-writer')"),
     -- kpress("Mod4+Shift+F",   "app.class('libreoffice-writer', '')"),
@@ -292,6 +296,8 @@ defbindings("WMenu", {
 
 })
 defbindings("WScreen", {
+    -- kpress("Mod4+F3",        "_:attach_new({type='WGroupWS'})"),        
+    kpress("Mod4+F3",           "_:attach_new({type='WTiling', name='Instant Messaging'}):goto()"),
     submap("Mod1+E", { 
             kpress("I", "ioncore.goto_activity()"),
             kpress("T", "ioncore.tagged_clear()"), 
@@ -358,6 +364,7 @@ defbindings("WMPlex",{
 -- Frames for transient windows ignore this bindmap
 defbindings("WFrame", {
     kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ), 
+    -- kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WGroupWS'), 'unset' )" ), 
     submap("Mod1+E", {
       kpress("H", "WFrame.maximize_horiz(_)"),
       kpress("V", "WFrame.maximize_vert(_)"),
@@ -454,28 +461,31 @@ defbindings("WTiling", {
     kpress("Mod4+l",    "ioncore.goto_next(_sub, 'right', {no_ascend=_})"),
     --kpress("Mod1+Tab",  "ioncore.goto_next(_sub, 'right')"),
     --submap("Mod4+s",{
-        kpress("Mod4+Control+H", "WTiling.split_at(_, _sub, 'right', true)"),
-        kpress("Mod4+Control+L", "WTiling.split_at(_, _sub, 'left', true)"),
-        kpress("Mod4+Control+K", "WTiling.split_at(_, _sub, 'bottom', true)"),
-        kpress("Mod4+Control+J", "WTiling.split_at(_, _sub, 'top', true)"),
-        --Destroy current frame
-        kpress("Mod4+Control+X", "WTiling.unsplit_at(_, _sub)"),
-        kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),
-        kpress("Mod4+Control+S", function(ws) move_current.move(ws, "down") end),
-        kpress("Mod4+Control+A", function(ws) move_current.move(ws, "left") end),
-        kpress("Mod4+Control+D", function(ws) move_current.move(ws, "right") end),
+    kpress("Mod4+Control+H", "WTiling.split_at(_, _sub, 'right', true)"),
+    kpress("Mod4+Control+L", "WTiling.split_at(_, _sub, 'left', true)"),
+    kpress("Mod4+Control+K", "WTiling.split_at(_, _sub, 'bottom', true)"),
+    kpress("Mod4+Control+J", "WTiling.split_at(_, _sub, 'top', true)"),
+    --Destroy current frame
+    kpress("Mod4+Control+X", "WTiling.unsplit_at(_, _sub)"),
+    kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),
+    kpress("Mod4+Control+S", function(ws) move_current.move(ws, "down") end),
+    kpress("Mod4+Control+A", function(ws) move_current.move(ws, "left") end),
+    kpress("Mod4+Control+D", function(ws) move_current.move(ws, "right") end),
     --})
 })
 -- Frame bindings
 defbindings("WFrame.floating", {
-    submap(META.."E", {
-       --Tile frame, if no tiling exists on the workspace
-        kpress("B", "mod_tiling.mkbottom(_)"),
-    }),
+    submap(META.."E", { kpress("B", "mod_tiling.mkbottom(_)"), }),
 })
 
 
 defctxmenu("WFrame.floating", "Floating frame", {
     append=true,
     menuentry("New tiling", "mod_tiling.mkbottom(_)"),
+})
+
+defmenu("menuattach", {
+    -- _:attach_new(ioncore.getlayout("default")) -- works
+    menuentry("Float WS", "_:attach_new({type=\"WGroupWS\", switchto=true})"),
+    menuentry("Tiling WS", "_:attach_new({type=\"WGroupWS\", switchto=true}):attach_new({type=\"WTiling\", sizepolicy=\"full\", bottom=true})"),
 })

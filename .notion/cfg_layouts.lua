@@ -1,5 +1,12 @@
 ---------------------------------[[ LAYOUTS ]]-------------------------------------
-local a_frame={type="WSplitRegion",regparams={type="WFrame",frame_style="frame-tiled"}}
+local a_frame={
+    type="WSplitRegion",
+    regparams={
+        type="WFrame",
+        frame_style="frame-tiled",
+        -- sizepolicy="full",
+    }
+}
 local function mksplit(dir, tl, br, float)
 return {
     type = (float and "WSplitFloat" or "WSplitSplit"),
