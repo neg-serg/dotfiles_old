@@ -33,3 +33,11 @@ hi TabText color: black; font-family: PragmataPro;font-size: 12pt;
 hi FontFixed  font-family: PragmataPro; font-size: 12pt;
 hi HintElem background-color: #cccccc !important; color: black !important; 
 hi StatusWarningMsg color: 0094F4!important; background: transparent !important; 
+" Statusline {{{
+" style -name=yourUglyStatusline * #dactyl-statusline-field-container { padding-left: 2px; }
+" style -name=yourUglyStatuslineMozSelection * #dactyl-statusline-field-container *::-moz-selection { background: rgba(0,0,0,0.2); }
+" style -name=yourUglyStatuslineChildren * #dactyl-statusline-field-container * { text-shadow: 1px 1px 0px rgba(255,255,255,0.3); font-family: "Lucida Grande"; font-size: 8pt; font-weight: normal; }
+" style -name=yourUglyStatuslineZoomLevel * #dactyl-statusline-field-container #dactyl-statusline-field-zoomlevel { display: none; }
+" style -name=yourUglyStatuslineBufferPosition * #dactyl-statusline-field-container #dactyl-statusline-field-bufferposition { display: none; }
+" style -name=yourUglyStatuslineTabCount * #dactyl-statusline-field-container #dactyl-statusline-field-tabcount { display: none; }
+" style -name=yourUglyStatuslineProgress * #dactyl-statusline-field-container #dactyl-statusline-field-progress { display: none; }

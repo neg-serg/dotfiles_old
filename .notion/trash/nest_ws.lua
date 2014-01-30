@@ -26,8 +26,8 @@ function nest_ws_menu(frame, cwin, name)
 local framemenu = ioncore.getmenu("ctxmenu")(frame, cwin)
 local nestmenu = {}
 
-if mod_ionws then
-table.insert(nestmenu, menuentry("WIonWS", "_:attach_new({type=\"WIonWS\" }):goto()"))
+if mod_wtiling then
+table.insert(nestmenu, menuentry("WTiling", "_:attach_new({type=\"WTiling\" }):goto()"))
 end
 
 if mod_floatws then
@@ -55,10 +55,10 @@ end
 
 -- Legacy
 defmenu("menuattach", {
-    menuentry("WIonWS", "_:attach_new({type=\"WIonWS\" }):goto()"),
+    menuentry("WTiling", "_:attach_new({type=\"WTiling\" }):goto()"),
     menuentry("WFloatWS", "_:attach_new({type=\"WFloatWS\"}):goto()"),
     menuentry("WPaneWS", "_:attach_new({type=\"WPaneWS\" }):goto()"),
 })
-defbindings("WFrame", {
-            kpress("Mod1+M", "nest_ws_menu(_, 'Context menu: ', 'Attach')"), -- Query menu
-        })
+-- defbindings("WFrame", {
+--             kpress("Mod1+M", "nest_ws_menu(_, 'Context menu: ', 'Attach')"), -- Query menu
+--         })

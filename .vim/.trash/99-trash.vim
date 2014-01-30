@@ -12,6 +12,7 @@
 " NeoBundle 'gerw/vim-latex-suite.git'        "tex autocompletion TOOOOOOOOOOOOOO SLOOOOOW
 " NeoBundle 'itchyny/thumbnail.vim.git'       "Thumbnail-style buffer selector(nice!)
 " NeoBundle 'matze/vim-move.git'              "Move text in vim(works!)
+" NeoBundle 'kbairak/TurboMark.git'             "Simple marking
 
 " " Settings for VimClojure
 " let g:vimclojure#HighlightBuiltins=1 " Highlight Clojure's builtins

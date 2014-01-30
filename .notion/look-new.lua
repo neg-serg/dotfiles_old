@@ -1,7 +1,7 @@
 --FONT="-hell-monobook-bold-r-normal--20-20-72-72-m-100-iso10646-1"
-FONT="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
 -- FONT="-hell-monobook-medium-r-normal--28-280-72-72-m-140-iso10646-1"
--- FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
+FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
+FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 if not gr.select_engine("de") then return end
 de.reset()
 
@@ -40,6 +40,19 @@ de.defstyle("frame", {
         --border_style="inlaid",
         transparent_background = true,
     }),
+    de.substyle("scratchpad", {
+        shadow_colour = "#2222ff",
+        border_sides=tnl,
+        highlight_colour = "#2222ff",
+        padding_colour = "#000000",
+        background_colour = "#000000",
+        foreground_colour = "#ffffff",
+        padding_pixels = 0,
+        highlight_pixels = 0,
+        shadow_pixels = 0,
+        --border_style="inlaid",
+        transparent_background = false,
+    }),
     shadow_colour = "#000000",
     border_sides=tnl,
     highlight_colour = "#000000",
@@ -58,6 +71,34 @@ de.defstyle("frame-ionframe",{
     border_style = "inlaid",
     padding_pixels = 0,
     spacing = 0,
+})
+
+-- de.defstyle("scratchpad",{
+--     border_style = "inlaid",
+--     padding_pixels = 0,
+--     spacing = 0,
+--     border_sides=tnl,
+--     shadow_colour = "#0000ff",
+--     highlight_colour = "#0000ff",
+--     padding_colour = "#000000",
+--     background_colour = "#000000",
+--     foreground_colour = "#ffffff",
+--     padding_pixels = 0,
+--     highlight_pixels = 0,
+--     shadow_pixels = 0,
+--     transparent_background = false,
+-- })
+de.defstyle("frame-tiled-alt", {
+    -- bar = "inside",
+    -- spacing = 0,
+    shadow_colour = "#000000",
+    highlight_colour = "#000000",
+    padding_colour = "#000000",
+    background_colour = "#000000",
+    foreground_colour = "#000000",
+    padding_pixels = 0,
+    highlight_pixels = 0,
+    shadow_pixels = 0,
 })
 
 de.defstyle("frame-floatframe", {based_on = "frame",border_style = "ridge"})
@@ -166,7 +207,8 @@ de.defstyle("input", {
 
 de.defstyle("stdisp", {
   based_on = "*",
-	padding_colour = "#000000",
+  font=FONT_STATUS,
+  padding_colour = "#000000",
   shadow_colour = "#3579a8",
   highlight_colour = "#3579a8",
   --shadow_colour = "#1f3b4f",
@@ -177,17 +219,21 @@ de.defstyle("stdisp", {
   --transparent_background = true,
   background_colour = "#000000",
   foreground_colour = "#AAAAAA",
-  padding_pixels = 2,
-  highlight_pixels = 1,
-  shadow_pixels = 1,
-  spacing = 0,
-  --border_sides = lr,
-  --border_style = "inlaid",
+  padding_pixels    = 2,
+  highlight_pixels  = 1,
+  shadow_pixels     = 1,
+  spacing           = 0,
+  --border_sides    = lr,
+  --border_style    = "inlaid",
 
-
+  de.substyle("green",     { foreground_colour = "#00ff00", }),
+  de.substyle("blue",      { foreground_colour = "#0000ff", }),
+  de.substyle("cyan",      { foreground_colour = "#00ffff", }),
+  de.substyle("magenta",   { foreground_colour = "#ff00ff", }),
+  de.substyle("yellow",    { foreground_colour = "#ffff00", }),
   de.substyle("important", { foreground_colour = "orange", }),
-  de.substyle("critical", { foreground_colour = "red", }),
-  de.substyle("gray", { foreground_colour = "#505050", }),
-  de.substyle("red", { foreground_colour = "#ff0000", })
+  de.substyle("red",       { foreground_colour = "#ff0000", }),
+  de.substyle("critical",  { foreground_colour = "red", }),
+  de.substyle("gray",      { foreground_colour = "#505050", }),
 })
 gr.refresh()

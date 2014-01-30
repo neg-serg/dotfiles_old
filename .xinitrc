@@ -33,6 +33,7 @@ synclient TapButton1=1 HorizTwoFingerScroll=1 VertTwoFingerScroll=1
 
 # mouse acceleration
 xset m 3/2 6
+# xset dpms 0 0 0
 xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 
 #exec 3>&2 2>/dev/null
@@ -80,10 +81,11 @@ amixer -q set Master 0% mute
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
+[ ! -x "`which anamnesis 2>/dev/null`"  ] ||  anamnesis --start
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
-[ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
+# [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
 
