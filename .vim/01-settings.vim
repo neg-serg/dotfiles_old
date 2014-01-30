@@ -53,14 +53,13 @@ if !has("gui_running")
     set lazyredraw
     " colorscheme mirodark
     colorscheme miromiro
-    set convert-meta on
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
-set noautowrite                             " NoAutowrite by default
+set noautowrite                             " Don't autowrite by default
 set autochdir                               " Change pwd automaticly
 
 " Automatically re-read files that have changed as long as there
@@ -211,7 +210,8 @@ set maxmemtot=200000
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 set modeline          " enable modelines
-set grepprg=grep\ -nH\ $*
+set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
+" set grepprg=grep\ -nH\ $*
 
 set iminsert=0
 set cmdheight=1
@@ -296,6 +296,10 @@ let g:clj_highlight_builtins = 1
 
 " let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd   = 'CtrlPMRUFiles'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
 
 let g:haddock_browser = "dwb"
 
@@ -341,6 +345,7 @@ let g:airline_mode_map = {
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
 let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_show_diagnostics_ui = 0
 
 let g:ycm_semantic_triggers =  {
 \   'c' : ['->', '.'],
@@ -365,6 +370,7 @@ let g:ycm_filetype_blacklist = {
 
 " https://github.com/airblade/vim-gitgutter/issues/106
 let g:gitgutter_realtime = 0
+
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:yankring_history_file = '/tmp/yankring_hist'
