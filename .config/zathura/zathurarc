@@ -1,0 +1,53 @@
+set default-bg "#1d1f21"
+set default-fg "#969896"
+set font "Pragmata Pro 11"
+set statusbar-bg "#060606"
+set statusbar-fg "#666666"
+
+set inputbar-bg "#1d1f21"
+set inputbar-fg "#f0c674"
+
+map ; focus_inputbar ":"
+
+set inputbar-bg "#000000"
+set inputbar-fg "#a488d7"
+
+set completion-bg "#232323"
+set completion-fg "#bbbbbb"
+
+set tabbar-bg "#191919"
+set tabbar-fg "#98a7b6"
+set tabbar-focus-bg "#232323"
+set tabbar-focus-fg "#a488d9"
+
+set completion-group-bg "#101010"
+set completion-group-fg "#eeeeee"
+set completion-highlight-bg "#98a7b2"
+set completion-highlight-fg "#232323"
+
+set notification-error-bg "#d554dd"
+set notification-error-fg "#eeeeee"
+set notification-warning-bg "#98a7b6"
+set notification-warning-fg "#000000"
+
+set recolor-darkcolor "#cccccc"
+set recolor-lightcolor "#121212"
+
+# set statusbar-bg "#191919"
+set statusbar-fg "#9f8bab"
+
+# set adjust-open width
+
+# set zoom-step 10
+# set database sqlite
+
+map <C-[> abort
+map <F11> toggle_fullscreen
+map <C-l> reload
+map R rotate rotate-ccw
+map <PageUp> navigate previous
+map <PageDown> navigate next
+map <A-1> set "pages-per-row 1"
+map <A-2> set "pages-per-row 2"
+map <C-1> set "first-page-column 1"
+map <C-2> set "first-page-column 2"
