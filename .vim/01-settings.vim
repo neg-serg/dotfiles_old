@@ -27,31 +27,21 @@ if has("gui_running")
     inoremap <silent> <S-Insert> <Esc>"*p`]a
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    let g:solarized_visibility="normal"
+
+    " let g:solarized_termcolors=256
+    " let g:solarized_termtrans=1
+    " let g:solarized_contrast="high"
+    " let g:solarized_visibility="normal"
     " colorscheme solarized
+    " source ~/.vim/colors/99-solarized.vim
+
     set ttyscroll=1024
     set lazyredraw
 endif
 
 if !has("gui_running")
-    " fix meta-keys which generate <Esc>a .. <Esc>z
-    let c='a'
-    while c <= 'z'
-      exec "set <M-".toupper(c).">=\e".c
-      exec "imap \e".c." <M-".toupper(c).">"
-      let c = nr2char(1+char2nr(c))
-    endw
-    for i in range(65,90) + range(97,122)
-      let c = nr2char(i)
-      exec "map \e".c." <M-".c.">"
-      exec "map! \e".c." <M-".c.">"
-    endfor
     set ttyscroll=1024
     set lazyredraw
-    " colorscheme mirodark
     colorscheme miromiro
 endif
 "----------------------------------------------------------------------------
@@ -419,3 +409,9 @@ let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 1
 
 let g:Gitv_CommitStep = 1024
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchIMappings = ['ru']
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so' 
+" let g:XkbSwitchLoadRuMappings = 1
+

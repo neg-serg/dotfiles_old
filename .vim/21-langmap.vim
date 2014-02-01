@@ -1,26 +1,23 @@
-" ============НАСТРОЙКА КЛАВИАТУРЫ И МЫШИ============
-" Настраиваем переключение раскладок клавиатуры по <C-^>
+let s:enabled = 0
+
 set keymap=russian-jcukenwin
-" Раскладка по умолчанию - английская
 set iminsert=0
-" аналогично для строки поиска и ввода команд
 set imsearch=0
-"==============Переключение раскладок и индикация выбранной=============
-"" Переключение раскладок будет производиться по <C-S>
-""
-"" При английской раскладке статусная строка текущего окна будет синего
-"" цвета, а при русской - белого.
 function MyKeyMapHighlight()
         if &iminsert == 0
-                hi StatusLine ctermfg=DarkBlue guifg=DarkBlue
+                if s:enabled
+                    let s:enabled = 0
+                    inoremap jk <esc>
+                endif
         else
-                hi StatusLine ctermfg=white guifg=white
+            if !s:enabled
+                " hi StatusLine ctermfg=white guifg=white
+                let s:enabled = 1
+                iunmap jk
+            endif
         endif
 endfunction
-" Вызываем функцию, чтобы она установила цвета при запуске Vim'a
 call MyKeyMapHighlight()
-" При изменении активного окна будет выполняться обновление
-" индикации текущей раскладки
 au WinEnter * :call MyKeyMapHighlight()
 cmap <silent> <C-S> <C-^>
 imap <silent> <C-S> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
