@@ -28,13 +28,6 @@ if has("gui_running")
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
 
-    " let g:solarized_termcolors=256
-    " let g:solarized_termtrans=1
-    " let g:solarized_contrast="high"
-    " let g:solarized_visibility="normal"
-    " colorscheme solarized
-    " source ~/.vim/colors/99-solarized.vim
-
     set ttyscroll=1024
     set lazyredraw
 endif
@@ -43,6 +36,14 @@ if !has("gui_running")
     set ttyscroll=1024
     set lazyredraw
     colorscheme miromiro
+
+    let g:solarized_termcolors=256
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="high"
+    let g:solarized_visibility="normal"
+   "  colorscheme solarized
+    source ~/.vim/colors/99-solarized.vim
+    
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -143,6 +144,7 @@ set equalalways                 " keep windows equal when splitting (default)
 set eadirection=hor             " ver/hor/both - where does equalalways apply
 
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
+set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
 "" -----------------------------------------------------------------
 "" --[ change undo file location ]----------------------------------
@@ -315,6 +317,11 @@ let g:airline_left_sep         = ' '
 let g:airline_left_alt_sep     = ' '
 let g:airline_right_sep        = ''
 let g:airline_right_alt_sep    = ''
+" let g:airline_left_sep         = '⮀ '
+" let g:airline_left_alt_sep     = '⮁ '
+" let g:airline_right_sep        = '⮂'
+" let g:airline_right_alt_sep    = '⮃'
+ 
 let g:airline_symbols.branch   = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr   = ''
@@ -338,15 +345,15 @@ let g:ycm_confirm_extra_conf = 0
 let g:ycm_show_diagnostics_ui = 0
 
 let g:ycm_semantic_triggers =  {
-\   'c' : ['->', '.'],
-\   'objc' : ['->', '.'],
-\   'cpp,objcpp' : ['->', '.', '::'],
-\   'perl' : ['->'],
-\   'php' : ['->', '::'],
-\   'cs,java,javascript,d,vim,rubyythonerl6,scala,vb,elixir,go' : ['.'],
-\   'lua' : ['.', ':'],
-\   'erlang' : [':'],
-\ }
+    \   'c' : ['->', '.'],
+    \   'objc' : ['->', '.'],
+    \   'cpp,objcpp' : ['->', '.', '::'],
+    \   'perl' : ['->'],
+    \   'php' : ['->', '::'],
+    \   'cs,java,javascript,d,vim,rubyythonerl6,scala,vb,elixir,go' : ['.'],
+    \   'lua' : ['.', ':'],
+    \   'erlang' : [':'],
+    \ }
 
 " let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_tags_files = 0
@@ -356,6 +363,7 @@ let g:ycm_filetype_blacklist = {
       \ 'markdown' : 1,
       \ 'text'     : 1,
       \ 'unite'    : 1,
+      \ 'asm'      : 1,
       \}
 
 " https://github.com/airblade/vim-gitgutter/issues/106
@@ -413,5 +421,7 @@ let g:Gitv_CommitStep = 1024
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so' 
-" let g:XkbSwitchLoadRuMappings = 1
 
+let g:ConqueGdb_Leader = '\'             "<leader>, by default is painful
+
+let g:EclimCompletionMethod = 'omnifunc' "To provide ycm autocompletion
