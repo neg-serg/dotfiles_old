@@ -54,9 +54,9 @@ autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | se
 autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a
 autocmd FileType c,cc,h,s      nmap <C-c>m :make!<CR>
 autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR>
-autocmd FileType tex :NoMatchParen
-au FileType tex setlocal nocursorline
-" autocmd FileType tex           map  ; <LocalLeader>
+autocmd FileType tex           :NoMatchParen
+autocmd FileType tex           setlocal nocursorline
+
 " Omni-completion
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

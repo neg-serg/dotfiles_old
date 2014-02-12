@@ -369,7 +369,6 @@ xnoremap [unite] <Nop>
 nnoremap <C-e> <Nop>
 " menu prefix key (for all Unite menus) {{{
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
-nnoremap <silent>[unite]k :Unite -silent -start-insert menu:markdown<CR>
 nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
 nnoremap <silent>[unite]v :Unite menu:vim -silent -start-insert<CR>
 
@@ -391,14 +390,14 @@ nnoremap <silent> [unite]y :Unite register<CR>
 nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]p :Unite bookmark -default-action=cd -no-start-insert<CR>
 nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
-nnoremap <silent> [unite]j :Unite buffer_tab -no-start-insert<CR>
+nnoremap <silent> [unite]j :Unite buffer_tab <CR>
 nnoremap <silent> [unite]* :UniteWithCursorWord line<CR>
 nnoremap <silent> [unite]o :Unite -buffer-name=outline outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap [unite]<SPACE> :Unite local<CR>
-nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
 nnoremap <silent> [unite]b :Unite -silent buffer<CR>
+nnoremap <silent><Leader>. :Unite -silent -start-insert file_mru<CR>
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-svn ]-----------------------------------------------
 nnoremap <silent> [unite]sd :Unite svn/diff<CR>
