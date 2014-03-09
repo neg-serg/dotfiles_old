@@ -35,7 +35,8 @@ autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=synt
 autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
 
 autocmd FileType git set nofoldenable
-augroup mkd
+autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
+
   autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
   au BufRead,BufNewFile *.go           set filetype=go
 augroup END
@@ -113,6 +114,8 @@ augroup END
 
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
+autocmd FileType cpp hi Function guifg=#85A2CC
 autocmd FileType go                                               autocmd BufWritePre <buffer> Fmt
 autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig
@@ -231,5 +234,3 @@ augroup vimrcEx
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
-
-
