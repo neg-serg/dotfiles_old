@@ -18,15 +18,18 @@ export GREP_COLORS='ms=1;35:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 export EDITOR="vim"
 export VISUAL="gvim --remote-silent"
 
+export BROWSER="firefox"
+
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_DOWNLOAD_DIR="${HOME}/dw"
 export XDG_MUSIC_DIR="${HOME}/music"
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.cabal/bin:/opt/intel/bin:/opt/math/bin:/opt/java6/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/intel/bin:/opt/math/bin:/opt/java6/bin"
 export PAGER="vimpager"
 alias less=$PAGER
 alias zless=$PAGER
-#export MAIL=${MAIL:-/var/mail/$USER}
+# export MAIL=/home/neg/.local/mail
+export MAIL=${MAIL:-/home/neg/.local/mail}
 export SHELL='/bin/zsh'
 export X_OSD_COLOR='#00ffff'
 # support colors in less
@@ -103,3 +106,4 @@ export MPV_HOME="~/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=~/bin/go
 export KEYTIMEOUT=5 # allow to use ,<key> fast
+export OSSLIBDIR=/usr/lib/oss

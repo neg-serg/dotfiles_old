@@ -170,9 +170,14 @@ alias history='history 0'
 alias l.='ls -d .*'
 alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
 
-alias kqed='mplayer -cache-min 4 \
-            http://kqed-ice.streamguys.org:80/kqedradio-ew-e1'
-alias ipr='mplayer -cache-min 4 http://voxsc1.somafm.com:8070'
-alias npr='mplayer -cache-min 4 http://npr.ic.llnwd.net/stream/npr_live24'
-
 alias wd='~/bin/wd.sh'
+
+# cli pastebin client
+alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
+
+# copy/paste for linux machines (Mac style)
+alias pbcopy='xclip -selection clipboard'       # copy to clipboard, ctrl+c, ctrl+shift+c
+alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, ctrl+shitt+v
+alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
+alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
+

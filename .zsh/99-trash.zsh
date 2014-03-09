@@ -1101,5 +1101,9 @@ stty speed 4000000 &> /dev/null
 # function _backward_kill_default_word() {
 #     WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
 # }
+#
+# alias kqed='mp -cache-min 4 http://kqed-ice.streamguys.org:80/kqedradio-ew-e1'
+# alias ipr='mp -cache-min 4 http://voxsc1.somafm.com:8070'
+# alias npr='mp -cache-min 4 http://npr.ic.llnwd.net/stream/npr_live24'
 
 #

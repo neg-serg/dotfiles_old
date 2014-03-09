@@ -248,50 +248,6 @@ zle -N accept-line
 zle -N Accept-Line
 zle -N Accept-Line-HandleContext
 
-declare -A abk
-abk=(
-   #key    # value                  (#d additional doc string)
-    'BG'   '& exit'
-    'C'    '| wc -l'
-    'G'    '|& ag -i '
-    'H'    '| head'
-    'Hl'   ' --help |& less -r'    #d (Display help in pager)
-    'LL'   '|& less -r'
-    'N'    '&>/dev/null'           #d (No Output)
-    'R'    '| tr A-z N-za-m'       #d (ROT13)
-    'S'    '| sort -h '
-    'T'    '| tail'
-    'W'    '|& ls_color'
-    'V'    '|& v -'
-    'co'   './configure && make'
-    "findf" 'find . -maxdepth 1 -type f -printf "%P\n" | \
-        perl -e "@_=<>; print sort grep {! /^[.]/ } @_; print sort grep { /^[.]/ } @_" | \
-        ls_color'
-    "jj"         "!$"
-    "jk"         "!-2$"
-    "jjk"        "!-3$"
-    "jkk"        "!-4$"
-    "kk"         "!-5$"
-    "kj"         "!-6$"
-)
-
-zleiab() {
-    emulate -L zsh
-    setopt extendedglob
-    local MATCH
-
-    if (( NOABBREVIATION > 0 )) ; then
-        LBUFFER="${LBUFFER},."
-        return 0
-    fi
-
-    matched_chars='[.-|_a-zA-Z0-9]#'
-    LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
-    LBUFFER+=${abk[$MATCH]:-$MATCH}
-}
-
-zle -N zleiab 
-
 #======== get.ls.colors
 function getlscolors(){
     typeset -A names
@@ -828,3 +784,90 @@ colorize_via_pygmentize() {
         fi
     done
 }
+
+# jump to previous directory by integer or reg-exp, also list dirs,
+# else jump to last visited directory if no argument supplied:
+# NOTE: try to remember to use ZSH directory stack instead... ( cd [-|+]^Tab )
+function back {
+  if [[ $# == 1 ]]; then
+    case $1 {
+      <->)  pushd -q +$1 >& - ;;
+      --)   dirs -lpv|sed '2s|$| \[last\]|' ;;
+      *)    [[ -n $(dirs -lpv|grep -i $1|grep -v ${PWD}) ]] && \
+              pushd -q +${$(dirs -lpv|grep -i $1|grep -v ${PWD})[1]}
+    }
+  else pushd -q - >& - ; fi
+}
+
+# go up Nth amount of directories:
+function up {
+  local arg=${1:-1};
+  while [ ${arg} -gt 0 ]; do
+    cd .. >& -;
+    arg=$((${arg} - 1));
+  done
+}
+
+# copy and follow file(s) to new dir:
+function cpf {
+  if [[ -d $*[-1] ]]; then
+    cp $* && cd $*[-1]
+  elif [[ -d ${*[-1]%/*} ]]; then
+    cp $* && cd ${*[-1]%/*}
+  fi
+}
+
+# function to quickly view StarDict word definitions:
+function sd {
+  case $1 in
+    '-ru') sdcv --utf8-output -u "dictd_www.freedict.de_eng-rus" ${@:/$1} 2>/dev/null ;;
+    '-re') sdcv --utf8-output -u "Full Russian-English" ${@:/$1} 2>/dev/null ;;
+    '-er') sdcv --utf8-output -u "Full English-Russian" ${@:/$1} 2>/dev/null ;;
+    '-t') sdcv --utf8-output -u "English Thesaurus" ${@:/$1} 2>/dev/null ;;
+    '-w') sdcv --utf8-output -u "WordNet" -u "English Thesaurus" ${@:/$1} 2>/dev/null ;;
+    '-a') sdcv --utf8-output ${@:/$1} 2>/dev/null ;;
+    *) sdcv --utf8-output -u "WordNet" ${@} 2>/dev/null ;;
+  esac
+}
+
+# un-smart function for viewing sectioned partitions:
+function dfu() {
+  local FSTYPES
+  FSTYPES=(nilfs2 btrfs ext2 ext3 ext4 jfs xfs zfs reiserfs reiser4 minix ntfs ntfs-3g fat vfat fuse)
+  df -hTP -x rootfs -x devtmpfs -x tmpfs -x none ; print
+  df -hTP $(for f in $FSTYPES; { print - " -x $f" })
+}
+
+doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
+
+discover () {
+        keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
+        locate -ir $keyword
+}
+
+# # quickly check/initiate pulseaudio and mifo daemons:
+# function mpx {
+#   case $1:l {
+#     stop|disable)
+#       print - "stopping : pulseaudio"
+#       pulseaudio -k
+#       print - "stopping : mifo"
+#       mifo --quit
+#     ;;
+#     *)
+#       pulseaudio --check
+#       if [[ $? != 0 ]] {
+#         print - "initiate : pulseaudio"
+#         pulseaudio --start --log-target=syslog --daemonize
+#       } else { print - "running  : pulseaudio" }
+#       mifo --instance quiet
+#       if [[ $? != 0 ]] {
+#         print - "initiate : mifo"
+#         mifo --init
+#       } else { print - "running  : mifo" }
+#     ;;
+# };}
+#
+# one-liners/micro functions:
+# function startx { [[ ${+DISPLAY} -eq 1 ]] || /usr/bin/xinit ${XDG_CONFIG_DIR:-${HOME}}/xorg/xinitrc -auth ${XDG_CONFIG_DIR:-${HOME}}/xorg/.serverauth.${RANDOM[1,4]} -nolisten tcp -once -retro }
+# function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root } function flashproc { for f (${$(file /proc/$(pidof dwb)/fd/*|gawk '/\/tmp\/Flash/ { print $1}')//:}){ print - "$f" }}
