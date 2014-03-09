@@ -1,3 +1,18 @@
+" Get Rid of stupid Goddamned help keys
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+
+" copy or paste from X11 clipboard
+" http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
+" requires: xclip
+" usage: visual mode select then hit F6 to copy
+"       hit F7 to paste from GUI to vim without formating issues
+vmap <F6> :!xclip -f -sel clip<CR>
+map <F7> mz:-1r !xclip -o -sel clip<CR>`z
 nmap <LocalLeader> <C-e>
 
 " Traverse buffers, quickly
@@ -6,9 +21,18 @@ nnoremap <PageUp> :bp<CR>
 nnoremap <PageDown> :bn<CR>
 " nnoremap <Return> <C-]>
 
+" nnoremap ; :
+" nnoremap : ;
+" vnoremap ; :
+" vnoremap : ;
+" map ; :
 nmap ;w :w!<cr>
 nmap ;q :q<cr>
 nmap ;d :bd<cr>
+nnoremap ;p :call FancyPaste('"')<CR>
+nnoremap ;P :call FancyPaste('+')<CR>
+
+nnoremap <silent> gA :A<CR>
 
 " like firefox tabs
 nmap <A-w> :bd<cr> 
@@ -168,9 +192,6 @@ noremap <C-l>  <C-w>l
 
 map <C-c>np :emenu NewProj.<TAB>
 
-imap <Esc>OH <Plug>delimitMateHome
-imap <Esc>OF <Plug>delimitMateEnd
-
 cno $q <C-\>eDeleteTillSlash()<cr>
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
@@ -293,10 +314,7 @@ nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
 nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
 
 xnoremap <space>c :!octave --silent \| cut -c8-<cr>
-
-nnoremap ;p :call FancyPaste('"')<CR>
-nnoremap ;P :call FancyPaste('+')<CR>
-
+"----[ Git ]---------------------------------------------------
 nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gw :Gwrite<CR>
@@ -324,7 +342,6 @@ nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
             \Unite -no-quit quickfix'<CR>
 nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
             \Unite -no-quit quickfix'<CR>
-
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 
 " for the diffmode
@@ -409,7 +426,7 @@ nnoremap [unite]gg :execute 'Unite gtags/def:'.expand('<cword>')<CR>
 nnoremap [unite]gc :execute 'Unite gtags/context'<CR>
 nnoremap [unite]gr :execute 'Unite gtags/ref'<CR>
 nnoremap [unite]ge :execute 'Unite gtags/grep'<CR>
-nnoremap <C-j> :Unite gtags/context<CR>
+nnoremap <C-1> :Unite gtags/context<CR>
 vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
 "-------[ Quickfix ]------------------------------------------------
 " use Q for q
@@ -455,3 +472,31 @@ nnoremap <silent> [Quickfix]wm :<C-u>lmake<CR>
 nnoremap [Quickfix]wM q:lmake<Space>
 nnoremap [Quickfix]w<Space> q:lmake<Space>
 nnoremap [Quickfix]wg q:lgrep<Space>
+
+imap <Esc>OH <Plug>delimitMateHome
+imap <Esc>OF <Plug>delimitMateEnd
+
+inoremap <expr><BS> pumvisible()? "\<C-y>\<BS>" : "\<BS>"
+inoremap <expr><C-h> pumvisible()? "\<C-y>\<C-h>" : "\<C-h>"
+
+vmap c1 "1yy<ESC>i
+nmap c1 "1yy
+vmap c2 "2yy<ESC>i
+nmap c2 "2yy
+vmap c3 "3yy<ESC>i
+nmap c3 "3yy
+vmap c4 "4yy<ESC>i
+nmap c4 "4yy
+vmap c5 "5yy<ESC>i
+nmap c5 "5yy
+vmap c6 "6yy<ESC>i
+nmap c6 "6yy
+vmap c7 "7yy<ESC>i
+nmap c7 "7yy
+vmap c8 "8yy<ESC>i
+nmap c8 "8yy
+vmap c9 "9yy<ESC>i
+nmap c9 "9yy
+vmap c0 "0yy<ESC>i
+nmap c0 "0yy
+

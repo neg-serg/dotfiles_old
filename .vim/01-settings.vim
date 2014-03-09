@@ -1,4 +1,5 @@
 " ------[ GUI settings ]-----------------------------------------------------
+set t_Co=256                                " I use 256-color terminals
 " colorscheme solarized
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
@@ -25,6 +26,10 @@ if has("gui_running")
     " Paste from PRIMARY and CLIPBOARD
     inoremap <silent> <M-v> <Esc>"+p`]a
     inoremap <silent> <S-Insert> <Esc>"*p`]a
+
+    set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
+    set guitablabel=%-0.12t%M
+
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
 
@@ -33,17 +38,19 @@ if has("gui_running")
 endif
 
 if !has("gui_running")
+    " ENABLE CTRL INTERPRETING FOR VIM
+    silent !stty -ixon > /dev/null 2>/dev/null
+    
     set ttyscroll=1024
     set lazyredraw
     colorscheme miromiro
 
-    let g:solarized_termcolors=256
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="high"
-    let g:solarized_visibility="normal"
+   "  let g:solarized_termcolors=256
+   "  let g:solarized_termtrans=1
+   "  let g:solarized_contrast="high"
+   "  let g:solarized_visibility="normal"
    "  colorscheme solarized
-    source ~/.vim/colors/99-solarized.vim
-    
+   "  source ~/.vim/colors/99-solarized.vim
 endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -88,8 +95,6 @@ set browsedir=buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=
 
-set t_Co=256                                " I use 256-color terminals
-  
 " Clipboard
 if has('unnamedplus-that-really-truly-works')
     set clipboard=unnamedplus   " use X11 SYSTEM clipboard
@@ -98,7 +103,9 @@ else
 endif
 
 syntax sync minlines=256
-set completeopt=menu
+" set completeopt=menu
+set completeopt=menu,menuone,longest
+set switchbuf=useopen,usetab
 "syn sync minlines=1000
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
@@ -113,6 +120,7 @@ set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set matchtime=3                 " Default time to hi brackets too long for me
 
 " set nowrap                      " Do not wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
@@ -211,7 +219,7 @@ set cmdheight=1
 if has("cscope")
   set csprg=/usr/bin/gtags-cscope
   set csto=0
-  set cst
+  set cscopetag
   " set csprg=/usr/bin/cscope
   " if filereadable("cscope.out")
   "   cs add cscope.out
@@ -339,10 +347,53 @@ let g:airline_mode_map = {
   \ '' : 'S',
   \ }
 
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol  = '⚡'
+let g:syntastic_style_warning_symbol  = '⚡'
+let g:syntastic_python_pylint_exe = "pylint2"
+let g:syntastic_mode_map = { 'mode': 'active',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['python'] }
+
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+
+let g:syntastic_c_compiler_options = "-std=gnu11
+                                  \  -Wall -Wextra -Wshadow -Wpointer-arith
+                                  \  -Wcast-align -Wwrite-strings -Wmissing-prototypes
+                                  \  -Wmissing-declarations -Wredundant-decls -Wnested-externs
+                                  \  -Winline -Wno-long-long -Wuninitialized -Wconversion
+                                  \  -Wstrict-prototypes -pedantic"
+let g:syntastic_stl_format = '[=> ln:%F (%t)]'
+let g:syntastic_aggregate_errors=1
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_c_no_include_search = 1
+let g:syntastic_c_auto_refresh_includes = 1
+let g:syntastic_c_check_header = 1
+
+" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+" let g:ycm_extra_conf_globlist = ['~/dev/*','*']
+
+let g:ycm_extra_conf_globlist = []
+" let g:ycm_filepath_completion_use_working_dir = 1
+" let g:ycm_extra_conf_globlist = ['!~/*', '~/dev/*']
+" let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm/*','!~/*', '~/st/*','~/dev/*']
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
-let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
-let g:ycm_confirm_extra_conf = 0
+" let g:ycm_filepath_completion_use_working_dir = 1
+
+let g:ycm_confirm_extra_conf = 1
 let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_min_num_of_chars_for_completion = 4
+" let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_seed_identifiers_with_syntax = 0
+let g:ycm_use_ultisnips_completer = 0
+
 
 let g:ycm_semantic_triggers =  {
     \   'c' : ['->', '.'],
@@ -359,11 +410,12 @@ let g:ycm_semantic_triggers =  {
 let g:ycm_collect_identifiers_from_tags_files = 0
 
 let g:ycm_filetype_blacklist = {
-      \ 'notes'    : 1,
-      \ 'markdown' : 1,
-      \ 'text'     : 1,
-      \ 'unite'    : 1,
-      \ 'asm'      : 1,
+      \ 'notes'       : 1,
+      \ 'markdown'    : 1,
+      \ 'text'        : 1,
+      \ 'unite'       : 1,
+      \ 'conqueterm'  : 1,
+      \ 'asm'         : 1,
       \}
 
 " https://github.com/airblade/vim-gitgutter/issues/106
@@ -373,14 +425,6 @@ let g:gitgutter_realtime = 0
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:yankring_history_file = '/tmp/yankring_hist'
 
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol  = '⚡'
-let g:syntastic_style_warning_symbol  = '⚡'
-let g:syntastic_python_pylint_exe = "pylint2"
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['python'] }
 
 let g:Gitv_OpenHorizontal = 'auto'
 let g:Gitv_WipeAllOnClose = 1
@@ -422,6 +466,41 @@ let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so' 
 
-let g:ConqueGdb_Leader = '\'             "<leader>, by default is painful
+let g:ConqueGdb_Leader          = '\'        "<leader>, by default is painful
+let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
+let GtagsCscope_Auto_Map        = 1
+let GtagsCscope_Use_Old_Key_Map = 0
+let GtagsCscope_Ignore_Case     = 1
+let GtagsCscope_Absolute_Path   = 1
+let GtagsCscope_Keep_Alive      = 1
+let GtagsCscope_Auto_Load       = 0
 
-let g:EclimCompletionMethod = 'omnifunc' "To provide ycm autocompletion
+"rainbow parentheses - Подсвечивание парных скобок.
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+let g:delimitMate_expand_space = 1
+let g:delimitMate_expand_cr    = 0
+let g:delimitMate_smart_quotes = 1
+let g:delimitMate_balance_matchpairs = 1
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
