@@ -1,6 +1,7 @@
 --FONT="-hell-monobook-bold-r-normal--20-20-72-72-m-100-iso10646-1"
 -- FONT="-hell-monobook-medium-r-normal--28-280-72-72-m-140-iso10646-1"
 FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
+-- FONT_STATUS="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 if not gr.select_engine("de") then return end
 de.reset()
@@ -71,34 +72,6 @@ de.defstyle("frame-ionframe",{
     border_style = "inlaid",
     padding_pixels = 0,
     spacing = 0,
-})
-
--- de.defstyle("scratchpad",{
---     border_style = "inlaid",
---     padding_pixels = 0,
---     spacing = 0,
---     border_sides=tnl,
---     shadow_colour = "#0000ff",
---     highlight_colour = "#0000ff",
---     padding_colour = "#000000",
---     background_colour = "#000000",
---     foreground_colour = "#ffffff",
---     padding_pixels = 0,
---     highlight_pixels = 0,
---     shadow_pixels = 0,
---     transparent_background = false,
--- })
-de.defstyle("frame-tiled-alt", {
-    -- bar = "inside",
-    -- spacing = 0,
-    shadow_colour = "#000000",
-    highlight_colour = "#000000",
-    padding_colour = "#000000",
-    background_colour = "#000000",
-    foreground_colour = "#000000",
-    padding_pixels = 0,
-    highlight_pixels = 0,
-    shadow_pixels = 0,
 })
 
 de.defstyle("frame-floatframe", {based_on = "frame",border_style = "ridge"})

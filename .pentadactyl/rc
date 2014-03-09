@@ -1,6 +1,7 @@
-loadplugins
 "so ~/.pentadactyl/stylesheets/user.css
 so ~/.pentadactyl/styles.rc
+map -builtin <F3> :styletoggle<Space>-name<Space>tomorrownight<CR>
+map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 so ~/.pentadactyl/tomorrownight.rc
 
 "set guioptions=rbms
@@ -26,6 +27,7 @@ map I_<C-w> I_<C-BS>
 "map -builtin <C-a> -silent :sidebar Scrapbook<CR>
 map -builtin <C-d> -silent :sidebar Downloads<CR>
 map -builtin B -silent :bmarks<CR>
+map -builtin gr gT
 
 map <F4> :set complete=lS<CR>
 map <F5> :set complete=bookmark<CR>
@@ -255,3 +257,63 @@ command! wirify :open javascript:(function(){wf_bookmarklet='1.1';if(typeof%20wf
 "nmap <F9> :sbclose<CR>
 "nmap <M-S-U> :dia selectionsource<CR>
 "nmap <M-S-J> :jstoggle<CR>
+
+" " Will not show menu and bookmarks tab
+" "set go=Bbr
+" " Will show menu and bookmarks tab
+" " set go+=mTbB
+" 
+" " To prevent ff focusing google's search 
+" " input field on open
+" "set focuscontent=on
+" 
+" " Will highlight search results during typing
+" "set incsearch=on
+" 
+" " I want ignorecase to work without exceptions
+" " set smartcase=off
+" 
+" " Buggy for now
+" set editor="urxvt -e vim '+set ft=mail'"
+" 
+" "set toolbars=noaddons,bookmarks,nomenu,nonavigation,tabs
+" 
+" "set titlestring="Mozilla Aurora"
+" 
+" " Fullscreen-like commands
+" "map <F10> :set go=brB<CR>
+" "map <F11> :set go=brmTB<CR>
+" map <F9> :set toolbars=noaddons,bookmarks,menu,navigation,tabs<CR>
+" map <F11> :set toolbars=noaddons,nobookmarks,nomenu,nonavigation,tabs<CR>
+" 
+" imap <A-b> <C-Left>
+" imap <A-f> <C-Right>
+" imap <A-d> <C-S-Right><Del>
+" cmap <A-b> <C-Left>
+" cmap <A-f> <C-Right>
+" cmap <A-d> <C-S-Right><Del>
+" 
+" imap <A-и> <C-Left>
+" imap <A-а> <C-Right>
+" imap <A-в> <C-S-Right><Del>
+" cmap <A-и> <C-Left>
+" cmap <A-а> <C-Right>
+" cmap <A-в> <C-S-Right><Del>
+" 
+" map gr gT
+" map пк gT
+" map пе gt
+" 
+" map <A-q> gT
+" map <A-й> gT
+" map <A-w> gt
+" map <A-ц> gt
+" map <A-3> :tabmove +1<cr>
+" map <A-`> :tabmove -1<cr>
+" "map <C-v> <C-v><C-v>
+" map <C-c> <C-v><C-c>
+" map q :tabclose<cr>
+" 
+" " Will focus left tab after closing
+" map d D
+" 

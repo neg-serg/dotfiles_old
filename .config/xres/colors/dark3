@@ -1,9 +1,10 @@
 *background:            #000000
 *foreground:            #666666
 *cursorColor:           #5E468C
-
-*color0:  #020202
-*color8:  #5E5E5E
+!5E468C
+*color0:#020202
+!*color0:#0a1825
+*color8:#5E5E5E
 *color1:#8A2F58
 *color9:#CF4F88
 *color2:#287373
@@ -18,4 +19,3 @@
 *color14:#47959E
 *color7:#899CA1
 *color15:#C0C0C0
-

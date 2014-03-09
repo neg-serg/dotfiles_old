@@ -102,10 +102,11 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[  development  ]--------------
 #---------------------------------
-  filetype-coffee      'fg=5'
-  filetype-c           'fg=5'
-  filetype-cc          'fg=5'
-  filetype-cpp         'fg=5'
+  filetype-coffee      'fg=24'
+  filetype-c           'fg=24'
+  filetype-cc          'fg=24'
+  filetype-cpp         'fg=24'
+  filetype-cxx         'fg=24'
   filetype-cs          'fg=74,1'
   filetype-go          'fg=36,1'
   filetype-h           'fg=81'
@@ -129,9 +130,11 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-tar.gz      'fg=61'
   filetype-tar.xz      'fg=61'
   filetype-tar.lrz     'fg=61'
+  filetype-tbz         'fg=35;1'
   filetype-tgz         'fg=35;1'
   filetype-zip         'fg=61'
   filetype-xz          'fg=61'
+  filetype-apk         'fg=61'
   filetype-part        'fg=240'
 
   filetype-iso         'fg=141'
@@ -448,6 +451,7 @@ _zsh_highlight_main_highlighter()
         *.chm)         style=$ZSH_HIGHLIGHT_STYLES[filetype-chm];;
         *.coffee)      style=$ZSH_HIGHLIGHT_STYLES[filetype-coffee];;
         *.conf)        style=$ZSH_HIGHLIGHT_STYLES[filetype-conf];;
+        *.cxx)         style=$ZSH_HIGHLIGHT_STYLES[filetype-cxx];;
         *.cpp)         style=$ZSH_HIGHLIGHT_STYLES[filetype-cpp];;
         *.css)         style=$ZSH_HIGHLIGHT_STYLES[filetype-css];;
         *.cs)          style=$ZSH_HIGHLIGHT_STYLES[filetype-cs];;
@@ -568,6 +572,7 @@ _zsh_highlight_main_highlighter()
         *.qcow)        style=$ZSH_HIGHLIGHT_STYLES[filetype-qcow];;
         *.gz)          style=$ZSH_HIGHLIGHT_STYLES[filetype-gz];;
         *.rar)         style=$ZSH_HIGHLIGHT_STYLES[filetype-rar];;
+        *.rar)         style=$ZSH_HIGHLIGHT_STYLES[filetype-apk];;
         *.vob)         style=$ZSH_HIGHLIGHT_STYLES[filetype-vob];;
         *.webm)        style=$ZSH_HIGHLIGHT_STYLES[filetype-webm];;
         *.rb)          style=$ZSH_HIGHLIGHT_STYLES[filetype-rb];;
@@ -606,6 +611,7 @@ _zsh_highlight_main_highlighter()
         *.textile)     style=$ZSH_HIGHLIGHT_STYLES[filetype-textile];;
         *.tfm)         style=$ZSH_HIGHLIGHT_STYLES[filetype-tfm];;
         *.tfnt)        style=$ZSH_HIGHLIGHT_STYLES[filetype-tfnt];;
+        *.tbz)         style=$ZSH_HIGHLIGHT_STYLES[filetype-tbz];;
         *.tgz)         style=$ZSH_HIGHLIGHT_STYLES[filetype-tgz];;
         *.theme)       style=$ZSH_HIGHLIGHT_STYLES[filetype-theme];;
         *.tmp)         style=$ZSH_HIGHLIGHT_STYLES[filetype-tmp];;

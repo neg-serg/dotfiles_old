@@ -1,3 +1,5 @@
+unmap q
+#map <c-q> :quit<cr>
 set default-bg "#1d1f21"
 set default-fg "#969896"
 set font "Pragmata Pro 11"

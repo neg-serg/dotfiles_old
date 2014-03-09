@@ -361,6 +361,7 @@ if has("gui_running") ||
         let s:conf_dblk_hex="3d3d3d" " configuration-based dark black hexadecimal
         let s:conf_lblk_hex="5e5e5e" " configuration-based light black hexadecimal
     else
+       "  let s:conf_bclr_hex="04111c"
         let s:conf_bclr_hex="000000"
         let s:conf_dblk_hex="121212"
         let s:conf_lblk_hex="3d3d3d"
@@ -531,7 +532,7 @@ call s:HI(       "WildMenu", s:lwht, s:dmag,     "" )
 call s:HI(         "Folded", s:bclr, s:dwht,     "" )
 call s:HI(         "Search", "#262626", "#899ca1",     "bold,underline" )
 call s:HI(      "IncSearch", s:dcnn, s:dwht,     "" )
-call s:HI(     "WarningMsg", s:dblk, s:dred,     "" )
+call s:HI(     "WarningMsg", s:dblk, "#666666",     "" )
 call s:HI(       "Question", s:lwht, s:lgrn,     "" )
 call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
 call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
