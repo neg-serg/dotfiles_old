@@ -54,7 +54,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 8388614,
+                                                    ["windowid"] = 8388617,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
@@ -83,7 +83,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 8388630,
+                                                    ["windowid"] = 8388639,
                                                     ["checkcode"] = 2,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {

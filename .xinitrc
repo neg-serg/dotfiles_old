@@ -60,13 +60,19 @@ xset m 1 1
 xset r rate 200 50
 
 # hsetroot -fill /home/neg/pic/wl/Bizzare_landscape_by_rakkin23.jpg
-hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-2704933.png
+hsetroot -fill /home/neg/pic/wl/wallpaper-2990607.jpg
+
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
 [ -f $HOME/.Xresources ] && xrdb   -merge $HOME/.Xresources
+xmodmap -e "remove Lock = Caps_Lock"
+xmodmap -e "add mod3 = Caps_Lock"
 [ -f $HOME/.Xmodmap ]    && xmodmap       $HOME/.Xmodmap
 
+xset +fp $HOME/.fonts
 xset +fp $HOME/.fonts/monobook-font-0.22/pcf
 xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
@@ -81,7 +87,7 @@ amixer -q set Master 0% mute
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
-[ ! -x "`which anamnesis 2>/dev/null`"  ] ||  anamnesis --start
+# [ ! -x "`which anamnesis 2>/dev/null`"  ] ||  anamnesis --start
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 # [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &

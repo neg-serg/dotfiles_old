@@ -1,3 +1,7 @@
+" NeoBundle '5t111111/alt-gtags.vim.git'      "no tagstack :(, use unite 
+" NeoBundleLazy 'tacahiroy/ctrlp-funky'         "jump to function without tags
+" NeoBundle 'roman/golden-ratio.git'          "buggy and not compatible with  unite for me
+" NeoBundle 'kablamo/vim-git-log.git'           "There is no need in it, not fancy
 " NeoBundle 'mattn/zencoding-vim'             "web
 " NeoBundle 'matthias-guenther/hammer.vim'    "web
 " NeoBundle 'Shougo/echodoc.git'              "haskell stuff
@@ -13,6 +17,7 @@
 " NeoBundle 'itchyny/thumbnail.vim.git'       "Thumbnail-style buffer selector(nice!)
 " NeoBundle 'matze/vim-move.git'              "Move text in vim(works!)
 " NeoBundle 'kbairak/TurboMark.git'             "Simple marking
+" NeoBundle 'dpwright/vim-gf-ext'               "open external program with gf
 
 " " Settings for VimClojure
 " let g:vimclojure#HighlightBuiltins=1 " Highlight Clojure's builtins
@@ -1541,4 +1546,38 @@ set ttimeout ttimeoutlen=40
 " map <leader>n :cn<cr>
 " map <leader>p :cp<cr>
 
+" fix meta-keys which generate <Esc>a .. <Esc>z
+" let c='a'
+" while c <= 'z'
+"   exec "set <M-".toupper(c).">=\e".c
+"   exec "imap \e".c." <M-".toupper(c).">"
+"   let c = nr2char(1+char2nr(c))
+" endw
+" for i in range(65,90) + range(97,122)
+"   let c = nr2char(i)
+"   exec "map \e".c." <M-".c.">"
+"   exec "map! \e".c." <M-".c.">"
+" endfor
+" " Map key to toggle opt
+" function MapToggle(key, opt)
+"   let cmd = ':set '.a:opt.'! \| set '.a:opt."?\<CR>"
+"   exec 'nnoremap '.a:key.' '.cmd
+"   exec 'inoremap '.a:key." \<C-O>".cmd
+" endfunction
+" command -nargs=+ MapToggle call MapToggle(<f-args>)
+" let g:unite_source_menu_menus.fenc = {
+"       \     'description' : 'Change file fenc option.',
+"       \ }
+" let g:unite_source_menu_menus.fenc.command_candidates = [
+"       \       ['utf8',      'set fenc=utf8'],
+"       \       ['iso2022jp', 'set fenc=Iso2022jp'],
+"       \       ['cp932',     'set fenc=Cp932'],
+"       \       ['euc',       'set fenc=Euc'],
+"       \       ['utf16',     'set fenc=Utf16'],
+"       \       ['utf16-be',  'set fenc=Utf16be'],
+"       \       ['jis',       'set fenc=Jis'],
+"       \       ['sjis',      'set fenc=Sjis'],
+"       \       ['unicode',   'set fenc=Unicode'],
+"       \     ]
 "
+" "

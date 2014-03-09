@@ -25,5 +25,3 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 " hi! Visual ctermbg=233
 " hi! Type gui=bold
 " hi! EasyMotionTarget guifg=#4CE660 gui=bold
-"
-

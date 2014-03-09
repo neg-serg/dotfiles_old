@@ -1,5 +1,3 @@
-map -builtin <F3> :styletoggle<Space>-name<Space>tomorrownight<CR>
-map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 style -name tomorrownight http://*,https://*,file://*,about:blank <<EOM
 * {
   color: #969896 !important;

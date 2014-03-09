@@ -263,7 +263,6 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <Leader>v	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <Leader>v <C-w>v$/;"	m	language:Vim
 <Leader>w	/mnt/home/dev/src/dt3/vim/vimrc	/^nmap <silent> <Leader>w :update<CR>$/;"	m	language:Vim
 <Leader>x	/home/neg/.vim/10-keymaps.vim	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
-<Leader>x	/home/neg/.vimrc	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
 <Leader>x	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>x :call RangerChooser()<CR>$/;"	m	language:Vim
 <Leader>X	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent><Leader>X :VimFiler<CR>$/;"	m	language:Vim
 <Leader>y	/mnt/home/dev/src/dt3/vim/vimrc	/^map <Leader>y "*y$/;"	m	language:Vim
@@ -321,6 +320,9 @@ ci[	/home/neg/.vim/10-keymaps.vim	/^vnoremap ci[ f[ci[$/;"	m	language:Vim
 ci{	/home/neg/.vim/10-keymaps.vim	/^nnoremap ci{ f{ci{$/;"	m	language:Vim
 ci{	/home/neg/.vim/10-keymaps.vim	/^vnoremap ci{ f{ci{$/;"	m	language:Vim
 copy	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from shutil import copy$/;"	i	language:Python
+count_pair1	/mnt/home/dev/st/straustrup/pairs2.cpp	/^size_t count_pair1(const string str, char a, char b) {$/;"	f	language:C++
+count_pair2	/mnt/home/dev/st/straustrup/pairs2.cpp	/^int  count_pair2(const char* str, char a, char b) {$/;"	f	language:C++
+count_pair2	/mnt/home/dev/st/straustrup/pairs2.cpp	/^int  count_pair2(const char* str, char a, char b);$/;"	p	language:C++	file:
 create	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create(WMPlex *mplex, int flags)$/;"	f	language:C	file:
 create_config_file	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def create_config_file(original_file, copy_file):$/;"	f	language:Python
 create_frame_scratchpad	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create_frame_scratchpad(WWindow *parent, const WFitParams *fp,$/;"	f	language:C	file:
@@ -415,6 +417,8 @@ g:LustyJugglerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let g:LustyJuggle
 g:mapleader	/home/neg/.vim/01-settings.vim	/^let g:mapleader = ","$/;"	v	language:Vim
 g:mirodark_enable_higher_contrast_mode	/home/neg/.vim/01-settings.vim	/^    let g:mirodark_enable_higher_contrast_mode=0$/;"	v	language:Vim
 g:neobundle#log_filename	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neobundle#log_filename = $HOME.'\/.vim\/tmp\/neobundle.log'$/;"	v	language:Vim
+g:neobundle#types#git#default_protocol	/home/neg/.vimrc	/^  let g:neobundle#types#git#default_protocol = 'git'$/;"	v	language:Vim
+g:neobundle#types#git#default_protocol	/home/neg/.vimrc	/^  let g:neobundle#types#git#default_protocol = 'https'$/;"	v	language:Vim
 g:neocomplete#data_directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#data_directory = $HOME.'\/.vim\/tmp\/neocomplete'$/;"	v	language:Vim
 g:neocomplete#enable_at_startup	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_at_startup = 1$/;"	v	language:Vim
 g:neocomplete#enable_auto_select	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#enable_auto_select = 1$/;"	v	language:Vim
@@ -640,6 +644,7 @@ logging	/home/neg/bin/vimv	/^import logging$/;"	i	language:Python
 LustyExplorerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let LustyExplorerDefaultMappings=0$/;"	v	language:Vim
 main	/home/neg/bin/vimv	/^def main():$/;"	f	language:Python
 main	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def main():$/;"	f	language:Python
+main	/mnt/home/dev/st/straustrup/pairs2.cpp	/^int  main(void) {$/;"	f	language:C++
 MakeDirIfNoExists	/mnt/home/dev/src/dt3/vim/vimrc	/^function! MakeDirIfNoExists(path)$/;"	f	language:Vim
 mapleader	/home/neg/.vim/01-settings.vim	/^let mapleader=','$/;"	v	language:Vim
 mapleader	/mnt/home/dev/src/dt3/vim/vimrc	/^let mapleader=','$/;"	v	language:Vim
@@ -679,7 +684,6 @@ Qa	/home/neg/.vim/10-keymaps.vim	/^        command! -bang Qa qa<bang>$/;"	c	lang
 qq	/home/neg/.vim/10-keymaps.vim	/^cmap     qq     qa!<CR>  " quit really, really fast$/;"	m	language:Vim
 QuickfixToggle	/mnt/home/dev/src/dt3/vim/vimrc	/^function! s:QuickfixToggle()$/;"	f	language:Vim
 raiseExceptionHelper	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^raiseExceptionHelper (StgRegTable *reg, StgTSO *tso, StgClosure *exception)$/;"	f	language:C
-RangerChooser	/home/neg/.vimrc	/^fun! RangerChooser()$/;"	f	language:Vim
 RangerChooser	/mnt/home/dev/src/dt3/vim/vimrc	/^fun! RangerChooser()$/;"	f	language:Vim
 RawDescriptionHelpFormatter	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from argparse import ArgumentParser, RawDescriptionHelpFormatter$/;"	i	language:Python
 recent_activity	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^volatile StgWord recent_activity = ACTIVITY_YES;$/;"	v	language:C

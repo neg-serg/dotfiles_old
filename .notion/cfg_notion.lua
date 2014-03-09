@@ -34,7 +34,7 @@ dopath("mod_menu")
 dopath("mod_tiling")
 dopath("min_tabs")        
 dopath("bookmarks")
--- dopath("net_client_list")
+dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
 dopath("dynamic_view")    
@@ -97,7 +97,7 @@ defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", 
 --defwinprop{class="Sxiv",    instance="sxiv", jumpto="off", transient_mode="off", target="media",lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
--- ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
+-- ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
 }
 defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",
     -- max_size = {w=1584,h=864},
@@ -133,6 +133,7 @@ defwinprop{class="stalonetray",target="*dock*"}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
+defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
 --defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
@@ -271,7 +272,8 @@ defbindings("WMPlex.toplevel", {
         kpress("s", "ioncore.exec_on(_, 'skype')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
-        --kpress("r", "app.byinstance('FBReader', 'FBReader', 'FBReader')"),
+        kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
+        kpress("Shift+r", "app.byinstance('~/bin/term_ranger', 'URxvt', 'Ranger')"),
     }),
 ----------------------------[[ TRANPARENCY  ]]---------------------------------
 --  submap("Mod4+J", {
