@@ -153,3 +153,17 @@ bindkey '^X^F' fasd-complete-f   # C-x C-f to do fasd-complete-f (only files)
 bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directories)
 
 bindkey '^X^X' copy-to-clipboard
+
+# add missing vim hotkeys
+# fixes backspace deletion issues
+# http://zshwiki.org/home/zle/vi-mode
+bindkey -a u undo
+bindkey -a '^R' redo
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# history search in vim mode
+# http://zshwiki.org./home/zle/bindkeys#why_isn_t_control-r_working_anymore
+bindkey -M viins '^s' history-incremental-search-backward
+bindkey -M vicmd '^s' history-incremental-search-backward
+
