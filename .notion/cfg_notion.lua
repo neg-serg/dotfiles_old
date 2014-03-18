@@ -52,7 +52,7 @@ defwinprop{lazy_resize=true}
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term",lazy_resize=true
 ,ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
-defwinprop{class="URxvt",instance="mutt",transient_mode="off",target="mail",lazy_resize=true}
+defwinprop{class="URxvt",instance="mutt",transient_mode="off",target="float2",lazy_resize=true}
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true, target="notes",lazy_resize=true}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true, lazy_resize=true, float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
@@ -142,6 +142,7 @@ defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true
 defwinprop{class="Conky",winlist_ignore=true,instance="Conky",target="conky",lazy_resize=true}
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
+defwinprop{class="URxvt", instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{class="Pavucontrol", instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",lazy_resize=true}
 defwinprop{instance="wicd", winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
 defwinprop{instance="ranger", winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
@@ -202,8 +203,8 @@ defbindings("WMPlex.toplevel", {
     --kpress("XF86AudioStop",      "ioncore.exec_on(_, 'mpc stop')"),
     --kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -1')"),
     --kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +1')"),
-    kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'ncmpcpp volume -1')"),
-    kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'ncmpcpp volume +1')"),
+    kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -1')"),
+    kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +1')"),
     kpress("Mod4+Control+T",       "ioncore.exec_on(_, 'dipser -S')"),
     kpress("Mod4+8",               "ioncore.exec_on(_, 'amixer -q set Master 0% mute')"),
     kpress("Mod4+8+Shift",         "ioncore.exec_on(_, 'amixer -q set Master 100% unmute ')"),
@@ -269,11 +270,12 @@ defbindings("WMPlex.toplevel", {
         kpress("r", "mod_query.query_renameframe(_)"),
         kpress("t", "ioncore.exec_on(_, 'urxvt')"),
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
+        kpress("m", "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
         kpress("s", "ioncore.exec_on(_, 'skype')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
-        kpress("Shift+r", "app.byinstance('~/bin/term_ranger', 'URxvt', 'Ranger')"),
+        kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
     }),
 ----------------------------[[ TRANPARENCY  ]]---------------------------------
 --  submap("Mod4+J", {

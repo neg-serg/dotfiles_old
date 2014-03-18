@@ -9,7 +9,6 @@ sfm-user() { link=$(echo "lastfm://user/$@" | sed 's/ /+/g'); shell-fm $link ;}
 sfm-globaltags() { link=$(echo "lastfm://globaltags/$@" | sed 's/ /+/g'); shell-fm $link ;}
 sfm-tag() { link=$(echo "lastfm://tag/$@" | sed 's/ /+/g'); shell-fm $link ;}
 
-
 # lastfm://user/$USER/loved
 # lastfm://user/$USER/personal
 # lastfm://usertags/$USER/$TAG

@@ -10,6 +10,7 @@ mod_statusbar.create{
     "[ %>workspace_name ]"..
     "[ %exec_xkb ]"..
     "[ net: %netmon_kbsin/%netmon_kbsout ]"..
+   --  "[ %linuxbatt ]"..
     "%filler"..
     -- "%linuxbatt"..
     "%>exec_kt"
