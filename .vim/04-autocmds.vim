@@ -58,6 +58,8 @@ autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR>
 autocmd FileType tex           :NoMatchParen
 autocmd FileType tex           setlocal nocursorline
 
+au FileType mail setl spell fo=wantq1 smc=0
+
 " Omni-completion
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags

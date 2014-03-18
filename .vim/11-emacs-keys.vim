@@ -47,21 +47,21 @@ imap <C-e> <End>
 vmap <C-e> <End>
 omap <C-e> <End>
 
-inoremap <M-a> <C-o>(
-vnoremap <M-a> (
-onoremap <M-a> (
-
-inoremap <M-e> <C-o>)
-vnoremap <M-e> )
-onoremap <M-e> )
-
-inoremap <M-<> <C-o>1G<C-o>0
-vnoremap <M-<> 1G0
-onoremap <M-<> 1G0
-
-inoremap <M->> <C-o>G<C-o>$
-vnoremap <M->> G$
-onoremap <M->> G$
+" inoremap <M-a> <C-o>(
+" vnoremap <M-a> (
+" onoremap <M-a> (
+"
+" inoremap <M-e> <C-o>)
+" vnoremap <M-e> )
+" onoremap <M-e> )
+"
+" inoremap <M-<> <C-o>1G<C-o>0
+" vnoremap <M-<> 1G0
+" onoremap <M-<> 1G0
+"
+" inoremap <M->> <C-o>G<C-o>$
+" vnoremap <M->> G$
+" onoremap <M->> G$
 
 inoremap <M-Left> <S-Left>
 vnoremap <M-Left> <S-Left>

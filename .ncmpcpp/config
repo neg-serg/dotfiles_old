@@ -27,8 +27,9 @@ empty_tag_color = "white"
 
 progressbar_color = "white"
 progressbar_elapsed_color = "cyan"
-progressbar_look = "─╸·"
-
+# progressbar_look = "─╸·"
+progressbar_look = "▉▉▉"
+progressbar_color = "grey"  
 now_playing_prefix = "$b$1"
 now_playing_suffix = "$/b"
 

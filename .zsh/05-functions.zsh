@@ -845,6 +845,29 @@ discover () {
         locate -ir $keyword
 }
 
+sprunge() {
+    if [ -t 0 ]; then
+      echo Running interactively, checking for arguments... >&2
+      if [ "$*" ]; then
+        echo Arguments present... >&2
+        if [ -f "$*" ]; then
+          echo Uploading the contents of "$*"... >&2
+          cat "$*"
+        else
+          echo Uploading the text: \""$*"\"... >&2
+          echo "$*"
+        fi | curl -F 'sprunge=<-' http://sprunge.us
+      else
+        echo No arguments found, printing USAGE and exiting. >&2
+        usage
+      fi
+    else
+      echo Using input from a pipe or STDIN redirection... >&2
+      curl -F 'sprunge=<-' http://sprunge.us
+    fi
+}
+
+
 # # quickly check/initiate pulseaudio and mifo daemons:
 # function mpx {
 #   case $1:l {

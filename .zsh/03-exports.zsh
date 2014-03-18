@@ -28,8 +28,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/
 export PAGER="vimpager"
 alias less=$PAGER
 alias zless=$PAGER
-# export MAIL=/home/neg/.local/mail
-export MAIL=${MAIL:-/home/neg/.local/mail}
+export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
+# export MAIL=${MAIL:-/home/neg/.local/mail}
 export SHELL='/bin/zsh'
 export X_OSD_COLOR='#00ffff'
 # support colors in less

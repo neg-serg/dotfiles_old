@@ -16,6 +16,7 @@
 . ~/.zsh/13-bindkeys.zsh
 . ~/.zsh/14-dirjumps.zsh
 . ~/.zsh/20-rehash-hook.zsh
+. ~/.zsh/40-gpg-agent.zsh
 . ~/.zsh/50-title.zsh
 # . ~/.zsh/50-vicursor.zsh
 # . ~/.zsh/65-fastfile.zsh
@@ -26,7 +27,6 @@
 . ~/.zsh/90-systemadmin.zsh        #test it
 . ~/.zsh/90-github.plugin.zsh 
 . ~/.zsh/96-vcs_info-cdpath.zsh    #test it
-. ~/.zsh/97-sprunge.plugin.zsh
 . ~/.zsh/97-lastfm.zsh
 # ------------------------------------------
 # . ~/.zsh/99-trash.zsh

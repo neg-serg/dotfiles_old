@@ -1,9 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/mnt/home/dev/kern/linux-git/dush/linux-omap-2.6/block'
-let g:netrw_dirhist_2='/mnt/home/dev/kern/linux-git/dush/linux-omap-2.6'
-let g:netrw_dirhist_3='/mnt/home/dev'
-let g:netrw_dirhist_4='/home/neg/.vim'
-let g:netrw_dirhist_5='/tmp/ncmpcpp/pkg'
-let g:netrw_dirhist_6='/mnt/home/dev/st/straustrup'
-let g:netrw_dirhist_7='/mnt/home/dev/src/1st_level/trapd00r/trapd00r-configs'
+let g:netrw_dirhist_cnt =0

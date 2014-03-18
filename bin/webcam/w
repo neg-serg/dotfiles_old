@@ -1,1 +1,1 @@
-mpv  -vo x11 tv:// -tv device=/dev/video0
+mpv  -fps 60 -vo x11 tv:// -tv device=/dev/video0
