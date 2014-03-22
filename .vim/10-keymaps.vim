@@ -154,7 +154,7 @@ vnoremap ci[ f[ci[
 " nnoremap <C-n>     :bnext<CR>
 " nnoremap <C-p>     :bprev<CR>
 
-map p [p
+" map p [p
 
 "call Cabbrev('/',   '/\v')
 "call Cabbrev('?',   '?\v')
@@ -183,7 +183,8 @@ nnoremap <LocalLeader>C :CC<cr>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr> 
 
-imap <S-Insert> <C-o>p
+inoremap <S-Ins> <C-r><C-o>*
+" imap <S-Insert> <C-o>p
 " Easy buffer navigation
 " noremap <C-h>  <C-w>h
 " noremap <C-j>  <C-w>j
@@ -201,9 +202,9 @@ inoremap jk <ESC>
 cmap     qq     qa!<CR>  " quit really, really fast
 cmap     wqq    qw<CR>   " quit really, really fast(with saving)
 
-nmap <F12> :call UpdateCscopeDb()<cr>
-vmap <F12> <esc>:call UpdateCscopeDb()<cr>
-imap <F12> <esc>:call UpdateCscopeDb()<cr>
+" nmap <F12> :call UpdateCscopeDb()<cr>
+" vmap <F12> <esc>:call UpdateCscopeDb()<cr>
+" imap <F12> <esc>:call UpdateCscopeDb()<cr>
 
 " " Use sane regexes.
 " nnoremap / /\v
@@ -383,7 +384,7 @@ nmap f [unite]
 xmap f [unite]
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
-nnoremap <C-e> <Nop>
+" nnoremap <C-e> <Nop>
 " menu prefix key (for all Unite menus) {{{
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
 nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
@@ -392,7 +393,7 @@ nnoremap <silent>[unite]v :Unite menu:vim -silent -start-insert<CR>
 nnoremap <silent>[unite]o :Unite -silent -start-insert -winheight=17 -start-insert
 nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
 nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
-nnoremap <silent>[unite]g :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
+nnoremap <silent>[unite]l :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
 nnoremap <silent>[unite]8 :UniteWithCursorWord -silent -no-split -auto-preview
             \ line<CR>
 nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>
@@ -422,11 +423,10 @@ nnoremap <silent> [unite]sb :Unite svn/blame<CR>
 nnoremap <silent> [unite]ss :Unite svn/status<CR>
 nnoremap [unite]s<SPACE> :Unite svn/
 "-------[ Unite-gtags ]---------------------------------------------
-nnoremap [unite]gg :execute 'Unite gtags/def:'.expand('<cword>')<CR>
-nnoremap [unite]gc :execute 'Unite gtags/context'<CR>
-nnoremap [unite]gr :execute 'Unite gtags/ref'<CR>
-nnoremap [unite]ge :execute 'Unite gtags/grep'<CR>
-nnoremap <C-1> :Unite gtags/context<CR>
+nnoremap <C-e>d :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+nnoremap <C-e>c :execute 'Unite gtags/context'<CR>
+nnoremap <C-e>r :execute 'Unite gtags/ref'<CR>
+nnoremap <C-e>g :execute 'Unite gtags/grep'<CR>
 vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
 "-------[ Quickfix ]------------------------------------------------
 " use Q for q
