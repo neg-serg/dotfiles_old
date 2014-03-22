@@ -1,5 +1,5 @@
 " ------[ GUI settings ]-----------------------------------------------------
-set t_Co=256                                " I use 256-color terminals
+set t_Co=256                           " I use 256-color terminals
 " colorscheme solarized
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
@@ -14,14 +14,20 @@ if has("gui_running")
     set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
-    set mouse=a                        " enable full mouse support
+   "  set mouse=a                         " enable full mouse support
+    set mouse=                          " enable full mouse support
     set ttymouse=xterm2                " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
+    
+    set selection=exclusive            " exclusive selection is better [?]
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
+    
+    set winaltkeys=no                  " 
+    set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
 
     " Paste from PRIMARY and CLIPBOARD
     inoremap <silent> <M-v> <Esc>"+p`]a
@@ -44,6 +50,58 @@ if !has("gui_running")
     set ttyscroll=1024
     set lazyredraw
     colorscheme miromiro
+
+    set <M-1>=1
+    set <M-2>=2
+    set <M-3>=3
+    set <M-4>=4
+    set <M-5>=5
+    set <M-6>=6
+    set <M-7>=7
+    set <M-8>=8
+    set <M-9>=9
+    set <M-0>=0
+    set <M-a>=a
+    set <M-b>=b
+    set <M-c>=c
+    set <M-d>=d
+    set <M-e>=e
+    set <M-f>=f
+    set <M-g>=g
+    set <M-h>=h
+    set <M-i>=i
+    set <M-j>=j
+    set <M-k>=k
+    set <M-l>=l
+    set <M-m>=m
+    set <M-n>=n
+    set <M-o>=o
+    set <M-p>=p
+    set <M-q>=q
+    set <M-r>=r
+    set <M-s>=s
+    set <M-t>=t
+    set <M-u>=u
+    set <M-v>=v
+    set <M-w>=w
+    set <M-x>=x
+    set <M-y>=y
+    set <M-z>=z
+    set <M->=
+    set <M-/>=/
+    " Doing "set <M->>=^[>" throws up an error, so we be dodgey and use Char-190
+    " instead, which is ASCII 62 ('>' + 128).
+    set <Char-190>=>
+    " Probably don't need both of these ;)
+    set <Char-188>=<
+    set <M-<>=<
+    set <M-0>=0
+
+    set <M-%>=%
+    set <M-*>=*
+    set <M-.>=.
+    set <M-^>=^
+    
 
    "  let g:solarized_termcolors=256
    "  let g:solarized_termtrans=1
