@@ -122,10 +122,9 @@ inoremap <silent> <M-g> <C-o>:call <SID>GotoLine()<CR>
 vnoremap <silent> <M-g> :<C-u>call <SID>GotoLine()<CR>
 onoremap <silent> <M-g> :call <SID>GotoLine()<CR>
 
-inoremap <silent> <C-k> <C-r>=<SID>KillLine()<CR>
+inoremap <silent> <M-k> <C-r>=<SID>KillLine()<CR>
 " Thanks to Benji Fisher for helping me with getting <C-k> to work!
 " inoremap <M-0><C-k> <C-o>d0
-inoremap <M-k> <C-o>d)
 inoremap <M-z> <C-o>dt
 
 function! <SID>KillWord()

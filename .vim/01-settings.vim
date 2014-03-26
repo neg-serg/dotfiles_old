@@ -19,7 +19,7 @@ if has("gui_running")
     set ttymouse=xterm2                " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
     
-    set selection=exclusive            " exclusive selection is better [?]
+   "  set selection=exclusive            " exclusive selection is better [?]
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
@@ -33,7 +33,7 @@ if has("gui_running")
     inoremap <silent> <M-v> <Esc>"+p`]a
     inoremap <silent> <S-Insert> <Esc>"*p`]a
 
-    set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
+    " set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
     set guitablabel=%-0.12t%M
 
     let g:mirodark_enable_higher_contrast_mode=0
@@ -501,8 +501,6 @@ let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'
 let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'
 let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'
 
-let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
-
 " PythonMode {{{ -------------------------------------------------------------
 nmap <silent><Leader>n :PymodeLint<CR>
 
@@ -562,3 +560,5 @@ let g:delimitMate_smart_quotes = 1
 let g:delimitMate_balance_matchpairs = 1
 
 let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
+
+let g:livepreview_previewer = 'zathura'
