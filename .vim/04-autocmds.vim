@@ -57,6 +57,7 @@ autocmd FileType c,cc,h,s      nmap <C-c>m :make!<CR>
 autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR>
 autocmd FileType tex           :NoMatchParen
 autocmd FileType tex           setlocal nocursorline
+autocmd Filetype tex           setlocal updatetime=1
 
 au FileType mail setl spell fo=wantq1 smc=0
 

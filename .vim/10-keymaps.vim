@@ -176,9 +176,9 @@ vnoremap ci[ f[ci[
 "vnoremap /        /\v
 
 " save and build
-nmap <LocalLeader>wm  :w<cr>:make<cr>
+" nmap <LocalLeader>wm  :w<cr>:make<cr>
 " Bindings for ctk
-nnoremap <LocalLeader>C :CC<cr>
+" nnoremap <LocalLeader>C :CC<cr>
 
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr> 
@@ -234,21 +234,20 @@ vnoremap <silent> # :<C-U>
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
 
-"------------ YouCompleteMe ----------------------------------
+"-----------[ YouCompleteMe ]---------------------------------
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_key_invoke_completion = '<A-x>'
 " let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
-"------------ UltiSnips ----------------------------------
+"-----------[ UltiSnips ]-------------------------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:Ultisnips_ListSnippets=""
 
-"easier tabs
-" map <S-H> gT
-" map <S-L> gt
+map <S-h> gT
+map <S-l> gt
 
 " Stupid shift key fixes
     if has("user_commands")
