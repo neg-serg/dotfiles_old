@@ -867,7 +867,6 @@ sprunge() {
     fi
 }
 
-
 # # quickly check/initiate pulseaudio and mifo daemons:
 # function mpx {
 #   case $1:l {

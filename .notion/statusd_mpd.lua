@@ -23,7 +23,7 @@ local defaults={
     
     -- a default template
     --template = "%artist - %num - %title (%pos / %len)"
-    template = "[>>][ <%num> %artist - %title %pos/%len ]"
+    template = "[>>][ %artist - %title %pos/%len ]"
 }
 
 local settings=table.join(statusd.get_config("mpd"), defaults)

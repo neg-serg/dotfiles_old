@@ -12,6 +12,7 @@ mod_statusbar.create{
     "[ net: %netmon_kbsin/%netmon_kbsout ]"..
    --  "[ %linuxbatt ]"..
     "%filler"..
+   --  "%mpd"
     -- "%linuxbatt"..
     "%>exec_kt"
     --" | %net_essid_wlan0 %net_strength_wlan0 :: %net_in_eth0/%net_out_eth0 :: %net_in_ppp0/%net_out_ppp0"
@@ -28,9 +29,8 @@ mod_statusbar.launch_statusd{
   },
 
 exec = {
-    xkb={program = "~/bin/mon/klay.sh",retry_delay = 1 * 300,},
-    mounted={program ="~/bin/mon/mounts.sh",retry_delay=2 * 1000,},
-    kt     ={program ="~/bin/mon/crntsng.sh",retry_delay=1 * 1000,},
+    xkb={program = "~/bin/mon/klay",retry_delay = 1 * 300,},
+    kt={program ="~/bin/mon/crntsng.sh",retry_delay=1 * 1000,},
 }
 
 }

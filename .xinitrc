@@ -16,10 +16,8 @@
 # export LC_CTYPE="en_US.UTF-8
 # eval $(keychain --eval --agents ssh ~/.ssh/id_rsa)
 
-# [ -z $(pidof mpd) ]                       && mpd
-# [ -z $(pidof mpdscribble) ]               &&  mpdscribble --conf ~/.config/mpdscribble/neg/mpdscribble.conf     &
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # export _JAVA_AWT_WM_NONREPARENTING=1
 wmname LG3D
@@ -53,7 +51,7 @@ export QT_IM_MODULE=xim
 
 setxkbmap -option keypad:pointerkeys
 setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
-xhost     +localhost
+xhost +localhost
 
 xbindkeys
 xset m 1 1
@@ -62,15 +60,17 @@ xset r rate 200 50
 # hsetroot -fill /home/neg/pic/wl/Bizzare_landscape_by_rakkin23.jpg
 # hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
 # hsetroot -fill /home/neg/pic/wl/wallpaper-2704933.png
-hsetroot -fill /home/neg/pic/wl/wallpaper-2990607.jpg
-
+# hsetroot -fill /home/neg/pic/wl/wallpaper-2990607.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-1961545.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-1063778.jpg
+hsetroot -fill /home/neg/pic/wl/wallpaper-2509469.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
-[ -f $HOME/.Xresources ] && xrdb   -merge $HOME/.Xresources
+[ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
 xmodmap -e "remove Lock = Caps_Lock"
 xmodmap -e "add mod3 = Caps_Lock"
-[ -f $HOME/.Xmodmap ]    && xmodmap       $HOME/.Xmodmap
+[ -f ${HOME}/.config/keymaps/.xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/.xmodmaprc
 
 xset +fp $HOME/.fonts
 xset +fp $HOME/.fonts/monobook-font-0.22/pcf
@@ -86,13 +86,15 @@ amixer -q set Master 0% mute
 [ -z $(pidof udiskie) ]     && udiskie &
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which pulseaudio 2>/dev/null`" ] ||  pulseaudio --start
-[ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents  &
+[ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 # [ ! -x "`which anamnesis 2>/dev/null`"  ] ||  anamnesis --start
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
-# [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit                          &
+# [ ! -x "`which clipit 2>/dev/null`" ] ||  clipit &
 # [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
 
-font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses                                &
+font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses &
 
 exec notion
+# sxhkd -c ${HOME}/.config/herbstluftwm/sxhkdrc 
+# exec herbstluftwm -l

@@ -50,15 +50,13 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 # my new aliases
 alias mk="mkdir -p"
-alias mp="mpv"
-alias mpa="mpv -fs -ao null"
+alias mp="mpv ~/.config/mpv"
+alias mpa="mpv ~/.config/mpv -fs -ao null"
 alias mpr="~/bin/mpv.rb" 
 alias i="ipython"
 alias grep="grep --color=auto"
 #vim aliases
 alias v='gvim --remote-silent'
-alias vim='gvim --remote-silent'
-alias vi='gvim --remote-silent'
 alias vz="v ~/.zshrc"
 alias vpad="vim +set\ buftype=nofile +startinsert"
 

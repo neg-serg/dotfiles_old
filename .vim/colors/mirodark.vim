@@ -628,4 +628,6 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>" contains=@Spell
 syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>" contains=@Spell
 
+" highlight ColorColumn ctermbg=magenta
+" call matchadd('ColorColumn', '\%81v', 100)
 " vim: foldenable foldmethod=marker foldmarker={{{,}}} foldlevel=0:

@@ -7,12 +7,12 @@ set statusbar-bg "#060606"
 set statusbar-fg "#666666"
 
 set inputbar-bg "#1d1f21"
-set inputbar-fg "#f0c674"
+set inputbar-fg "#9f9f9f"
 
 map ; focus_inputbar ":"
 
 set inputbar-bg "#000000"
-set inputbar-fg "#a488d7"
+set inputbar-fg "#cccccc"
 
 set completion-bg "#232323"
 set completion-fg "#bbbbbb"
@@ -36,7 +36,7 @@ set recolor-darkcolor "#cccccc"
 set recolor-lightcolor "#121212"
 
 # set statusbar-bg "#191919"
-set statusbar-fg "#9f8bab"
+set statusbar-fg "#cccccc"
 
 # set adjust-open width
 
