@@ -12,10 +12,6 @@ return {
             ["program"] = "~/bin/mon/crntsng.sh",
             ["retry_delay"] = 1000,
         },
-        ["mounted"] = {
-            ["program"] = "~/bin/mon/mounts.sh",
-            ["retry_delay"] = 2000,
-        },
     },
 }
 

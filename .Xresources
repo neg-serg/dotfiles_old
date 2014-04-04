@@ -14,5 +14,6 @@
 #include </home/neg/.config/xres/mpd-pad>
 #include </home/neg/.config/xres/xv>
 #include </home/neg/.config/xres/fonts>
+#include </home/neg/.config/xres/colors/1st_level/_jwr_light>
 !#include </home/neg/.config/xres/bashpad>
 !#include </home/neg/.config/xres/xresources_trash>

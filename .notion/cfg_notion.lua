@@ -272,6 +272,7 @@ defbindings("WMPlex.toplevel", {
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
         kpress("m", "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
         kpress("s", "ioncore.exec_on(_, 'skype')"),
+        kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),

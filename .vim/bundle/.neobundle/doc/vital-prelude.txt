@@ -12,49 +12,66 @@ INTERFACE			|Vital.Prelude-interface|
 ==============================================================================
 INTRODUCTION				*Vital.Prelude-introduction*
 
-*Vital.Prelude* is a special module that you don't have to explicitly import
-but can use anywhere. Some Vital modules implicitly depend on Prelude
-functions.
+*Vital.Prelude* is a module for basic functions in Vim script.
+
+NOTE: Some Vital modules implicitly depend on Prelude, because this was used
+to be a special module that you could use anywhere without having to
+explicitly import.
+
+functions:
+See #140 for the details (Japanese).
+https://github.com/vim-jp/vital.vim/issues/140
 
 ==============================================================================
 INTERFACE				*Vital.Prelude-interface*
 ------------------------------------------------------------------------------
 FUNCTIONS				*Vital.Prelude-functions*
 
+glob({expr})					*Vital.Prelude.glob()*
+	A |glob()| wrapper which returns List and 'wildignore' does not affect
+	this function's return value.
+
+globpath({path}, {expr})			*Vital.Prelude.globpath()*
+	globpath() wrapper which returns List and 'suffixes' and 'wildignore'
+	does not affect this function's return value.
+
+is_numeric({value})				*Vital.Prelude.is_numeric()*
+	Returns non-zero if {value} is a |Number| or a |Float|, zero otherwise.
+		Examples: >
+		:let g:V = vital#of('vital')
+		:let g:P = g:V.import('Prelude')
+		:echo g:P.is_numeric(123)
+    <		1 >
+		:echo g:P.is_numeric(1.23)
+    <		1 >
+		:echo g:P.is_numeric("hoge")
+<		0
+
 is_number({value})				*Vital.Prelude.is_number()*
 	Returns non-zero if {value} is a |Number|, zero otherwise.
 		Examples: >
 		:let g:V = vital#of('vital')
-		:echo g:V.is_number(123)
+		:let g:P = g:V.import('Prelude')
+		:echo g:P.is_number(123)
 <		1 >
-		:echo g:V.is_number(1.23)
+		:echo g:P.is_number(1.23)
 <		0 >
-		:echo g:V.is_number("hoge")
+		:echo g:P.is_number("hoge")
 <		0
 
-is_float({value})				*g:V.Prelude.is_float()*
+is_float({value})				*Vital.Prelude.is_float()*
 	Returns non-zero if {value} is a |Float|, zero otherwise.
 		Examples: >
 		:let g:V = vital#of('vital')
-		:echo g:V.is_number(123)
+		:let g:P = g:V.import('Prelude')
+		:echo g:P.is_float(123)
 <		0 >
-		:echo g:V.is_number(1.23)
+		:echo g:P.is_float(1.23)
 <		1 >
-		:echo g:V.is_number("hoge")
+		:echo g:P.is_float("hoge")
 <		0
 
-is_numeric({value})				*g:V.Prelude.is_numeric()*
-	Returns non-zero if {value} is a |Number| or a |Float|, zero otherwise.
-		Examples: >
-		:let g:V = vital#of('vital')
-		:echo g:V.is_number(123)
-<		1 >
-		:echo g:V.is_number(1.23)
-<		1 >
-		:echo g:V.is_number("hoge")
-<		0
-
-is_string({value})				*g:V.Prelude.is_string()*
+is_string({value})				*Vital.Prelude.is_string()*
 	Returns non-zero if {value} is a String (|expr-string|), zero otherwise.
 
 is_funcref({value})				*Vital.Prelude.is_funcref()*
@@ -65,6 +82,27 @@ is_list({value})				*Vital.Prelude.is_list()*
 
 is_dict({value})				*Vital.Prelude.is_dict()*
 	Returns non-zero if {value} is a |Dictionary|, zero otherwise.
+
+					*Vital.Prelude.truncate_smart()*
+truncate_smart({str}, {max}, {footer-width}, {separator})
+	Deprecated. Use Prelude.truncate_skipping() instead; they are
+	equivalent.
+
+					*Vital.Prelude.truncate_skipping()*
+truncate_skipping({str}, {max}, {footer-width}, {separator})
+	TODO
+
+truncate({str}, {width})			*Vital.Prelude.truncate()*
+	TODO
+
+strwidthpart({str}, {width})			*Vital.Prelude.strwidthpart()*
+	TODO
+
+strwidthpart_reverse({str}, {width})	*Vital.Prelude.strwidthpart_reverse()*
+	TODO
+
+wcswidth({str})					*Vital.Prelude.wcswidth()*
+	TODO
 
 is_windows()					*Vital.Prelude.is_windows()*
 	Returns non-zero if Vim is a MS-Windows version, zero otherwise.
@@ -80,11 +118,16 @@ is_unix()					*Vital.Prelude.is_unix()*
 	Returns non-zero if Vim is a MS-Windows version, zero otherwise.
 	Note that this returns non-zero if Vim is a Cygwin version.
 
-print_error({message})				*Vital.Prelude.print_error()*
-	TODO
-
 smart_execute_command({action}, {word})	*Vital.Prelude.smart_execute_command()*
-	TODO
+	Like a combination of |printf()| and |:execute|.
+>
+	let x = 123
+	call smart_execute_command('echo', x)
+<
+	becomes
+>
+	execute 'echo' 123
+<
 
 escape_file_searching({str})		*Vital.Prelude.escape_file_searching()*
 	TODO
@@ -92,54 +135,87 @@ escape_file_searching({str})		*Vital.Prelude.escape_file_searching()*
 escape_pattern({str})			*Vital.Prelude.escape_pattern()*
 	TODO
 
-iconv({expr}, {from}, {to})			*Vital.Prelude.iconv()*
-	TODO
-
 getchar(...)					*Vital.Prelude.getchar()*
-	TODO
+	This is like builtin |getchar()| but always returns string.
 
 getchar_safe(...)				*Vital.Prelude.getchar_safe()*
-	TODO
+	This is like builtin |getchar()| but always returns string,
+	and also does |inputsave()|/|inputrestore()| before/after |getchar()|.
 
 input_safe(...)					*Vital.Prelude.input_safe()*
-	TODO
+	Like builtin getchar() but do |inputsave()|/|inputrestore()|
+	before/after |input()|.
 
 input_helper({funcname}, {args})		*Vital.Prelude.input_helper()*
-	TODO
+	Do |inputsave()|/|inputrestore()| before/after calling |a:funcname|.
 
 set_default({var}, {val})			*Vital.Prelude.set_default()*
-	TODO
+	Assign a {val} to a variable which name is {var} if the {var} is
+	undefined. Even if the {var} is already defined, if the type of {val}
+	is different to the value of {var}, it'll assign anyways.
+
+	For example,
+>
+	" not exactly same!
+	call set_default('g:aaa', 'bbb')
+<
+	Is similar to
+>
+	" not exactly same!
+	let g:aaa = get(g:, 'aaa', 'bbb')
+<
+	But not exactly same when the type of aaa is not |expr-string|.
 
 				*Vital.Prelude.set_dictionary_helper()*
 set_dictionary_helper({variable}, {keys}, {pattern})
-	TODO
+	TODO (deprecated)
+>
+	let x = {'b': 123}
+	call V.set_dictionary_helper('x', 'a, b, c', 999)
+<
+	is same to
+>
+	let x = {'b': 123}
+	let x.a = 999
+	let x.c = 999
+<
 
 				*Vital.Prelude.substitute_path_separator()*
 substitute_path_separator({path})
 	TODO
+>
+	echo V.substitute_path_separator('a/b/c')
+<
+	is same to
+>
+	echo 'a/b/c'
+<
+	in most cases but only on Windows it is same to the following.
+>
+	echo 'a\\b\\c'
+<
 
 path2directory({path})			*Vital.Prelude.path2directory()*
 	TODO
+>
+	P.path2directory('a/b/c.txt')
+<
+	is equivalent to
+>
+	P.substitute_path_separator(fnamemodify('a/b/c.txt', ':p:h'))
+<
+	and
+>
+	P.path2directory('a/b/d') " d is a directory
+<
+	is equivalent to
+>
+	P.substitute_path_separator('a/b/d')
+<
 
 				*Vital.Prelude.path2project_directory()*
 path2project_directory({path}[, {is_allow_empty}])
 	TODO
-
-has_vimproc()					*Vital.Prelude.has_vimproc()*
-	Returns non-zero if |vimproc| is installed, zero otherwise.
-	You can download the |vimproc| from http://github.com/Shougo/vimproc/.
-
-system({expr} [, {input} [, {timeout}]])	*Vital.Prelude.system()*
-	Gets the output of the shell command {expr}.
-	This function calls |vimproc#system()| if |has_vimproc()| returns
-	non-zero, otherwise |system()|.
-	If {timeout} is specified, the command will be killed after {timeout}
-	milliseconds.  Note that {timeout} is available only when
-	|has_vimproc()| returns non-zero.
-
-get_last_status()			*Vital.Prelude.get_last_status()*
-	Returns the result of the last shell command either via |vimproc| or
-	not.
 
 ==============================================================================
 vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

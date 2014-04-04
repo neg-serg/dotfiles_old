@@ -559,6 +559,6 @@ let g:delimitMate_expand_cr    = 0
 let g:delimitMate_smart_quotes = 1
 let g:delimitMate_balance_matchpairs = 1
 
-let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
+" let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
 
 let g:livepreview_previewer = 'zathura'

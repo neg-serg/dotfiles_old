@@ -1,1 +1,0 @@
-/home/neg/.vim/snippets/support_functions.vim

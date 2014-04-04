@@ -88,6 +88,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
+NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
+NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
 NeoBundle 'tyru/restart.vim.git'              "add restart support
 NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
@@ -135,11 +137,8 @@ NeoBundleLazy 'vim-scripts/IndentConsistencyCop.git'
 " NeoBundle 'ntpeters/vim-better-whitespace'
 " NeoBundle 'mhinz/vim-signify'
 NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
-"------------------------------------------------------------------------------------------------------------
-"---------------[  markdown ]--------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+NeoBundle 'rsmenon/vim-mathematica.git'       "Mathematica syntax and omnicomp
 NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
-NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -158,6 +157,7 @@ NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'vim-jp/vital.vim.git'              "improve unity perf
 NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
+NeoBundle 'Shougo/neomru.vim.git'             "MRU plugin for unite
 NeoBundleLazy 'Shougo/junkfile.vim', {
             \'autoload':{'commands':'JunkfileOpen',
             \ 'unite_sources':['junkfile','junkfile/new']}} "Create temporary file for memo, testing, ... 
@@ -244,7 +244,7 @@ source ~/.vim/01-settings.vim
 source ~/.vim/02-unite.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
-source ~/.vim/11-emacs-keys.vim
+source ~/.vim/11-vimacs.vim
 source ~/.vim/21-langmap.vim
 " source ~/.vim/etc/lightline.vim
 

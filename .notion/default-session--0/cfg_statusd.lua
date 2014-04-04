@@ -5,16 +5,12 @@ return {
     },
     ["exec"] = {
         ["xkb"] = {
-            ["program"] = "~/bin/mon/klay.sh",
+            ["program"] = "~/bin/mon/klay",
             ["retry_delay"] = 300,
         },
         ["kt"] = {
             ["program"] = "~/bin/mon/crntsng.sh",
             ["retry_delay"] = 1000,
-        },
-        ["mounted"] = {
-            ["program"] = "~/bin/mon/mounts.sh",
-            ["retry_delay"] = 2000,
         },
     },
 }

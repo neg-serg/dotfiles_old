@@ -24,7 +24,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_DOWNLOAD_DIR="${HOME}/dw"
 export XDG_MUSIC_DIR="${HOME}/music"
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/intel/bin:/opt/math/bin:/opt/java6/bin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/trinity/bin/"
 export PAGER="vimpager"
 alias less=$PAGER
 alias zless=$PAGER
@@ -55,7 +55,7 @@ export LS_COLORS GREP_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 # export WORDCHARS="${WORDCHARS:s#/#}"
 
-fpath=(~/.zsh/zsh-completions/src $fpath)
+fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
 #export EXT_LLVM_DIR=/home/neg/build/git/extempore/llvm-3.0/Build
 ZSHDIR=$HOME/.zsh
@@ -89,21 +89,14 @@ if zrcautoload colors && colors 2>/dev/null ; then
     NO_COLOUR="%{${reset_color}%}"
 fi
 
-# setting some default values
-NOCOR=${NOCOR:-0}
-NOMENU=${NOMENU:-0}
-COMMAND_NOT_FOUND=${COMMAND_NOT_FOUND:-0}
-BATTERY=${BATTERY:-0}
-ZSH_NO_DEFAULT_LOCALE=${ZSH_NO_DEFAULT_LOCALE:-0}
-
 ## shell functions
 #v1# set number of lines to display per page
 HELP_LINES_PER_PAGE=20
 #v1# set location of help-zle cache file
-HELP_ZLE_CACHE_FILE=~/.cache/zsh_help_zle_lines.zsh
+HELP_ZLE_CACHE_FILE=${HOME}/.cache/zsh_help_zle_lines.zsh
 
-export MPV_HOME="~/.config/mpv"
+export MPV_HOME="${HOME}/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
-export GOPATH=~/bin/go
+export GOPATH=${HOME}/bin/go
 export KEYTIMEOUT=5 # allow to use ,<key> fast
 export OSSLIBDIR=/usr/lib/oss

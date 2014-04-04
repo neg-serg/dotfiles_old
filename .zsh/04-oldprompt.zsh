@@ -59,4 +59,3 @@ case ${UID} in
     fi
     ;;
 esac
-

@@ -1,8 +1,10 @@
 --FONT="-hell-monobook-bold-r-normal--20-20-72-72-m-100-iso10646-1"
 -- FONT="-hell-monobook-medium-r-normal--28-280-72-72-m-140-iso10646-1"
-FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
 -- FONT_STATUS="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
+--
+FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
 FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
+
 if not gr.select_engine("de") then return end
 de.reset()
 

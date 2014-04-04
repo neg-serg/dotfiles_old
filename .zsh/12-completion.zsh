@@ -94,7 +94,7 @@ mycompletion() {
     zstyle :complete-recent-args use-histbang yes
     #-------new ----------------------
     # command completion: highlight matching part of command, and 
-    zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;45'\'' )'
+    zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;248'\'' )'
 
     # This is needed to workaround a bug in _setup:12, causing almost 2 seconds delay for bigger LS_COLORS
     # UPDATE: not sure if this is required anymore, with the -command- style above.. keeping it here just to be sure
@@ -105,25 +105,18 @@ mycompletion() {
         return 1
     }
     ## correction
-    # some people don't like the automatic correction - so run 'NOCOR=1 zsh' to deactivate it
-    if [[ "$NOCOR" -gt 0 ]] ; then
-        zstyle ':completion:*' completer _oldlist _expand _force_rehash _complete _files _ignored
-        setopt nocorrect
-    else
-        # try to be smart about when to use what completer...
-        setopt correct
-        zstyle -e ':completion:*' completer '
-            if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
-                _last_try="$HISTNO$BUFFER$CURSOR"
-                reply=(_complete _match _ignored _prefix _files)
+    setopt correct
+    zstyle -e ':completion:*' completer '
+        if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
+            _last_try="$HISTNO$BUFFER$CURSOR"
+            reply=(_complete _match _ignored _prefix _files)
+        else
+            if [[ $words[1] == (rm|mv) ]] ; then
+                reply=(_complete _files)
             else
-                if [[ $words[1] == (rm|mv) ]] ; then
-                    reply=(_complete _files)
-                else
-                    reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
-                fi
-            fi'
-    fi
+                reply=(_oldlist _expand _force_rehash _complete _ignored _correct _approximate _files)
+            fi
+        fi'
 
     # command for process lists, the local web server details and host completion
     # zstyle ':completion:*:urls' local 'www' '/var/www/' 'public_html'

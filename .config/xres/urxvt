@@ -1,3 +1,6 @@
+!--[ Dirty hack to between ncurses apps and term ]-----
+!--*.keysym.C-M-Tab:                  command:\033[?47t
+
 !*.imLocale:                     en_US.utf8
 mutt.colorUL:                   #0172ae
 *shading:                       10
@@ -14,7 +17,7 @@ MainTerminal.termName:          screen-256color
 MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
 MainTerminal.colorUL:                      #86a2be
 
-!------------------ test new features --------------------------------------------------------
+!-----------------[ Test new features ]-------------------------------------------------------
 !--- test C-1 del from matcher(use urlselect instead)
 !MainTerminal.perl-ext:    default,searchable-scrollback<C-S-plus>,matcher<C-1>,selection-pastebin,remote-clipboard,selection-autotransform
 !MainTerminal.letterSpace:  -1
@@ -46,28 +49,18 @@ MainTerminal.selection-autotransform.1: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg
 MainTerminal.selection-autotransform.2: if(m{^[ab]/}) { s{^[ab]/}{}g; }
 MainTerminal.selection-autotransform.3: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
 
-!MainTerminal.keysym.M-slash:       perl:aAtt:complete
-!MainTerminal.keysym.M-Escape:      perl:keyboard-select:activate
-!MainTerminal.keysym:M-s:           perl:keyboard-select:search
-!MainTerminal.keysym.M-C-v:         perl:clipboard:paste_escaped
-!MainTerminal.keysym.C-Up:          perl:font-size:increase
-!MainTerminal.keysym.C-Down:        perl:font-size:decrease
-!MainTerminal.keysym.S-Up:          command:\033]720;1\007
-!MainTerminal.keysym.S-Down:        command:\033]721;1\007
-!MainTerminal.keysym.C-Return:      command:\033[?25t
-!MainTerminal.keysym.C-Tab:         command:\033[?47t
-!MainTerminal.keysym.M-slash:       perl:aAtt:complete
-!MainTerminal.keysym.M-Escape:      perl:keyboard-select:activate
-!MainTerminal.keysym:M-s:           perl:keyboard-select:search
-!MainTerminal.keysym.M-u:           perl:url-select:select_next
-!MainTerminal.keysym.M-C-v:         perl:clipboard:paste_escaped
-!MainTerminal.keysym.C-M-Up:        perl:font-size:increase
-!MainTerminal.keysym.C-M-Down:      perl:font-size:decrease
-!MainTerminal.keysym.S-Up:          command:\033]720;1\007
-!MainTerminal.keysym.S-Down:        command:\033]721;1\007
-!MainTerminal.keysym.C-Return:      command:\033[?25t
-!MainTerminal.keysym.C-Tab:         command:\033[?47t
+MainTerminal.keysym.M-slash:       perl:aAtt:complete
+MainTerminal.keysym.M-Escape:      perl:keyboard-select:activate
+MainTerminal.keysym:M-s:           perl:keyboard-select:search
+MainTerminal.keysym.M-C-v:         perl:clipboard:paste_escaped
+MainTerminal.keysym.M-slash:       perl:aAtt:complete
 
+*.keysym.M-Escape:                 perl:keyboard-select:activate
+*.keysym:M-s:                      perl:keyboard-select:search
+*.keysym.M-u:                      perl:url-select:select_next
+*.keysym.M-C-v:                    perl:clipboard:paste_escaped
+*.keysym.C-M-Up:                   perl:font-size:increase
+*.keysym.C-M-Down:                 perl:font-size:decrease
 
 !URxvt.lineSpace: 0
 !URxvt.letterSpace: -1

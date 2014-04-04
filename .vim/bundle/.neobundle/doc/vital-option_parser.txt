@@ -12,6 +12,8 @@ INTERFACE			|Vital.OptionParser-interface|
 OBJECTS				|Vital.OptionParser-objects|
   PARSER OBJECT				|Vital.OptionParser-Parser|
 SPECIAL OPTIONS			|Vital.OptionParser-special-options|
+BUILT-IN COMPLETERS		|Vital.OptionParser-built-in-completer|
+REAL WORLD EXAMPLES		|Vital.OptionParser-real-world-examples|
 
 
 
@@ -19,19 +21,20 @@ SPECIAL OPTIONS			|Vital.OptionParser-special-options|
 INTRODUCTION				*Vital.OptionParser-introduction*
 
 *Vital.OptionParser* is an option parser library for Vim script.
-It can parse key-value style options(like --foo=bar) in Vim commands and
+It can parse key-value style options (like --foo=bar) in Vim commands and
 |:command| attributes like <count>, <bang>, <range> and so on.
 A great advantage of key-value type options is that you need not take care of
-the order of options.
+the order of options.  And it provides completion for option names and you can
+add your own completion for the option values.
 
 
 
 ==============================================================================
 USAGE					*Vital.OptionParser-usage*
 
-At first, make new instance of a parser with |Vital.OptionParser.new()|, then
-define options you want to parse with |Vital.OptionParser::on()|.  At last,
-define command with |Vital.OptionParser::parse()|.
+At first, make a new instance of a parser with |Vital.OptionParser.new()|, then
+define options you want to parse with |Vital.OptionParser-Parser.on()|.  At last,
+define a command with |Vital.OptionParser-Parser.parse()|.
 This library's interface is inspired by OptionParser in Ruby.
 >
   " make option parser instance
@@ -39,35 +42,55 @@ This library's interface is inspired by OptionParser in Ruby.
   let s:O = s:V.import('OptionParser')
   let s:parser = s:O.new()
 
-  " define option
-  call s:parser.on('--foo=VALUE', 'description of foo, must have value')
+  " user-defined option completion (see :help :command-completion-customlist)
+  "   Note: optlead is *NOT* arglead (when '--baz=h', 'h' is optlead.)
+  function! CompleteBazOption(optlead, cmdline, cursorpos)
+    return filter(['sushi', 'yakiniku', 'yakitori'],
+            \ 'a:optlead == "" ? 1 : (v:val =~# a:optlead)')
+  endfunction
+
+  " define options
+  call s:parser.on('--hoge=VALUE', 'description of hoge, must have value')
   call s:parser.on('--foo', 'description of foo')
-  " definitions can chain
-  call s:parser.on('--[no-]bar', 'description of bar, deniable')
-           \.on('--baz', '-b', 'description of baz, has short option')
+  " Note: definitions can chain
+  call s:parser.on('--[no-]bar', 'description of bar, deniable', {'completion' : 'file'})
+              \.on('--baz', 'description of baz, has short option',
+                      \ {'short' : '-b', 'completion' : function('CompleteBazOption')})
+              \.on('--qux', 'description of qux, defaults to "aaa"', {'default' : 'aaa'})
+
+  " set complete function for unknown options
+  let s:parser.unknown_options_completion = 'file'
+
+  " prepare for a completion function
+  function! CompleteHoge(arglead, cmdline, cursorpos)
+    return s:parser.complete(a:arglead, a:cmdline, a:cursorpos)
+  endfunction
 
   " define command with the parser
-  command! -nargs=* -count -bang Foo echo s:parser.parse(<q-args>, <count>, <q-bang>)
+  command! -nargs=* -count -bang -complete=customlist,CompleteHoge
+                  \ Hoge echo s:parser.parse(<q-args>, <count>, <q-bang>)
 
   " execute!
-  :Foo! --foo=aaa --no-bar bbb -b
+  Hoge! --hoge=huga --no-bar poyo -b
   " => {
   "      '__count__' : 0,
   "      '__bang__' : '!',
-  "      'foo' : 'aaa',
+  "      'hoge' : 'huga',
   "      'bar' : 0,
   "      'baz' : 1,
-  "      '__unknown_args__' : ['bbb'],
+  "      'qux' : 'aaa',
+  "      '__unknown_args__' : ['poyo'],
   "    }
 
   " show help
-  :Foo --help
+  Hoge --help
   " echo following message
   "   Options:
-  "     --foo=VALUE : description of foo, must have value
+  "     --hoge=VALUE : description of hoge, must have value
   "     --foo        : description of foo
   "     --[no-]bar   : description of bar, deniable
   "     --baz, -b    : description of baz, has short option
+  "     --qux        : description of qux, defaults to "aaa" (DEFAULT: 'aaa')
   "
   " => {
   "      '__count__' : 0,
@@ -97,9 +120,9 @@ OBJECTS					*Vital.OptionParser-objects*
 PARSER OBJECT				*Vital.OptionParser-Parser*
 
 					*Vital.OptionParser-Parser.on()*
-Parser.on({name} [, {short-name}], {description})
+Parser.on({name}, {description} [, {extra}])
 
-	Define a option to parse.  You should call this function every option.
+	Define an option to parse.  You should call this function every option.
 
 	- {name} (required)
 	  |String| value.  A name of option.
@@ -124,12 +147,39 @@ Parser.on({name} [, {short-name}], {description})
 		  will be 0.
 
 	- {short-name} (optional)
-	  |String| value.  Alias of {name}.  It must starts with "-" and one
-	  alphabet must follow it like "-f".
+	  |String| value.  Alias of {name}.
 
 	- {description} (required)
 	  |String| value.  Description of option.  This is used for "--help"
 	  argument.
+
+	- {extra} (optional)
+	  If {extra} is |Dictionary| value, it can contain below keys; "short",
+	  "default" or "completion".
+	  Otherwise, {extra} is dealt with a default value of the option.
+
+	  - "short"
+	    If {extra} has "short" key, its value should be |String| and means
+	    an alias of {name}.  It must start with "-" and one alphabet must
+	    follow it like "-f".
+
+	  - "default"
+	    If {extra} has "default" key, its value means a default value of the
+	    option.  When the option is omitted, the default value would be
+	    used.
+
+	  - "completion"
+	  Value of "completion" key must be |Funcref| or |String|.  If |String|, it
+	  means a name of default completer.  See
+	  |Vital.OptionParser-built-in-completer| to know default completers.  If
+	  |Funcref|, it is called when the value of the option should be completed.
+	  The |Funcref| should have 3 arguments, {optlead}, {cmdline}, {cursorpos}.
+	  {optlead} is the lead portion of the VALUE of the option.  {cmdline}
+	  is the |String| of command line.  {cursorpos} is the place of cursor.
+	  For example, if you set |Funcref| for "--hoge=VALUE" option, it will be
+	  called when a user inputs "--hoge=".  When the user inputs "--hoge=h",
+	  "h" will be passed to {optlead}.  {optlead} is NOT ArgLead of
+	  |:command-completion-custom|.
 
 					*Vital.OptionParser-Parser.parse()*
 Parser.parse({q-args} [, {cmd-attributes}...])
@@ -164,6 +214,34 @@ Parser.help()				*Vital.OptionParser-Parser.help()*
 
 	Make output for "--help" option and return it as |String|.
 
+					*Vital.OptionParser-Parser.complete()*
+Parser.complete({arglead}, {cmdline}, {cursorpos})
+
+	It is |Funcref| to complete options in command line.  This function is
+	assumed to pass to the function for customlist of command.  You must
+	wrap it with a global or autoload function like below.
+>
+  function! CompleteFunctionForHoge(arglead, cmdline, cursorpos)
+      return s:opt.complete(a:arglead, a:cmdline, a:cursorpos)
+  endfunction
+  command! -complete=customlist,CompleteFunctionForHoge Hoge ...
+<
+	This is because "customlist" cannot take |Funcref|.
+	And this function return |List| of candidates.  You must use "customlist"
+	and must not use "custom" in |:command|.
+
+			*Vital.OptionParser-Parser.unknown_options_completion*
+Parser.unknown_options_completion
+
+	It is |String| or |Funcref| and used when options which OptionParser doesn't
+	know should be completed.  If |String|, it means a name of default
+	completer.  See |Vital.OptionParser-built-in-completer| to know default
+	completers.  If |Funcref|, it is used directly when the value of the
+	option should be completed.  The interface of the function is the same
+	as "completion" of {extra}.  For example, when a user input
+	":SomeCommand unknown", "unknown" will be passed to {optlead} of the
+	complete function.
+
 
 
 ==============================================================================
@@ -173,11 +251,12 @@ SPECIAL OPTIONS				*Vital.OptionParser-special-options*
 parsed by |Vital.OptionParser|.  If "--help" echoes usage of the command.
 Below is an output example.
 >
- Options:
-   --foo=VALUE : description of foo, must have value
-   --foo        : description of foo
-   --[no-]bar   : description of bar, deniable
-   --baz, -b    : description of baz, has short option
+  Options:
+    --foo=VALUE : description of foo, must have value
+    --foo        : description of foo
+    --[no-]bar   : description of bar, deniable
+    --baz, -b    : description of baz, has short option
+    --qux        : description of qux, defaults to "aaa" (DEFAULT: 'aaa')
 <
 If you don't want to use "--help", set OptionParser.disable_auto_help to 1.
 >
@@ -186,6 +265,28 @@ If you don't want to use "--help", set OptionParser.disable_auto_help to 1.
   let s:parser = s:O.new()
   let s:parser.disable_auto_help = 1
 <
+
+
+==============================================================================
+BUILT-IN COMPLETERS			*Vital.OptionParser-built-in-completer*
+
+- 'file'
+  It completes file or directory names.
+
+
+
+==============================================================================
+REAL WORLD EXAMPLES			*Vital.OptionParser-real-world-examples*
+
+- wandbox-vim
+https://github.com/rhysd/wandbox-vim
+
+- vim-duzzle
+https://github.com/deris/vim-duzzle
+
+- translategoogle.vim
+https://github.com/daisuzu/translategoogle.vim
+
 
 
 ==============================================================================

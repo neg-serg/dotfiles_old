@@ -31,6 +31,7 @@ matchit.zip
 multichange.vim
 neco-ghc
 neobundle.vim
+neomru.vim
 patchreview-vim
 po.vim--gray
 restart.vim
@@ -68,7 +69,9 @@ vim-fugitive
 vim-github-dashboard
 vim-indent-guides
 vim-json
+vim-latex-live-preview
 vim-markdown
+vim-mathematica
 vim-multiple-cursors
 vim-obsession
 vim-pentadactyl
