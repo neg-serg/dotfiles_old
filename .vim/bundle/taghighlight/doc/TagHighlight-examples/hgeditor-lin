@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# This is an example of using HGEDITOR to create of diff to review the
+# changes while commiting.
+EDITOR='gvim -f' 
+PROJ_ROOT=${PWD}
+
+HGTMP=""
+cleanup_exit() {
+    rm -rf "$HGTMP"
+}
+
+# Remove temporary files even if we get interrupted
+trap "cleanup_exit" 0 # normal exit
+trap "exit 255" HUP INT QUIT ABRT TERM
+
+HGTMP=$(mktemp -d /tmp/hgeditor.XXXXXX)
+[ x$HGTMP != x -a -d $HGTMP ] || {
+  echo "Could not create temporary directory! Exiting." 1>&2
+  exit 1
+}
+
+(
+    grep '^HG: changed' "$1" | cut -b 13- | while read changed; do
+        $HG diff "$changed" >> "$HGTMP/changes.diff"
+    done
+)
+
+cat "$1" > "$HGTMP/msg.hg"
+
+MD5=$(which md5sum 2>/dev/null) || \
+    MD5=$(which md5 2>/dev/null)
+[ -x "${MD5}" ] && CHECKSUM=`${MD5} "$HGTMP/msg.hg"`
+if [ -s "$HGTMP/changes.diff" ]; then
+    $EDITOR -c "cd ${PROJ_ROOT}" -c "let g:TagHighlightSettings['IgnoreFileScope'] = 1" -c vertical\ pedit\ "$HGTMP/changes.diff" "$HGTMP/msg.hg" || exit $?
+else
+    $EDITOR -c "cd ${PROJ_ROOT}" -c "let g:TagHighlightSettings['IgnoreFileScope'] = 1" "$HGTMP/msg.hg" || exit $?
+fi
+[ -x "${MD5}" ] && (echo "$CHECKSUM" | ${MD5} -c >/dev/null 2>&1 && exit 13)
+
+mv "$HGTMP/msg.hg" "$1"
+
+exit $?
