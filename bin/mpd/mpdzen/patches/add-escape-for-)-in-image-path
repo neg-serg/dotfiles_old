@@ -1,0 +1,27 @@
+--- a/draw.c
++++ b/draw.c
+@@ -167,13 +167,20 @@
+ 
+ int
+ get_tokval(const char* line, char **retdata) {
+-	int i;
++	int i, j;
+ 	char tokval[ARGLEN];
+ 
+-	for(i=0; i < ARGLEN && (*(line+i) != ')'); i++)
+-		tokval[i] = *(line+i);
++	for(i=0, j=0; i < ARGLEN && (*(line+i) != ')'); i++) {
++		// If this is a \ followed by a ), add the ). The +1 can never go bad even if we overstep our limit.
++		if((*(line+i) == '\\') && (*(line+i+1) == ')')) {
++			tokval[j++] = ')';
++			// This will skip the next char as well, which is the )
++			i++;
++		} else
++			tokval[j++] = *(line+i);
++	}
+ 
+-	tokval[i] = '\0';
++	tokval[j] = '\0';
+ 	*retdata = strdup(tokval);
+ 
+ 	return i+1;

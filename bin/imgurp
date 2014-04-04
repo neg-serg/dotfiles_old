@@ -1,0 +1,95 @@
+#!/bin/bash
+# Take a screenshot, upload it to imgur and output BBCode to stdout and XClipboard.
+# Depends on curl, scrot and xsel.
+
+# Variables
+p="-s" # Set to '-s' for no progressbar and '-#' for a simple progressbar on upload
+quiet=false
+imagedir="$HOME"
+size="m"
+ssname=scrot-$(date +'%y-%m-%d-%H%M%S').png
+sspath="$imagedir/$ssname"
+sscmd="scrot"
+
+# Functions
+upload() {
+	curl $p -F "image=@$1" -F "key=1913b4ac473c692372d108209958fd15" \
+	http://api.imgur.com/2/upload.xml | grep -Eo "<original>(.)*</original>" \
+	| grep -Eo "http://i.imgur.com/[^<]*"
+}
+
+usage() {
+	cat << EOF
+	$(basename $0) - Take a screenshot, upload it to imgur and output BBCode to stdout and XClipboard.
+ Usage: $(basename $0) [-c <cmd>] [-h] [-p] [-q] [-s <size>] [filename]
+	filename	Image to use, $(basename $0) won't take a screenshot if given.
+
+ Options:
+ 	-c <cmd>	Screenshot command [scrot]
+	-h		Print this help and exit.
+	-p		Show upload progress
+	-q		Quiet operation
+	-s <size>	Size of the thumbnail. Either s(mall), [m](iddle) or l(arge)
+
+ Depends on curl, scrot and xsel.
+EOF
+}
+
+# Parse Options
+TEMP=$(getopt -o c:hpqs: -- "$@")
+
+if [ $? != 0 ]; then
+	usage >&2
+	exit 1
+fi
+
+eval set -- "$TEMP"
+
+while true; do
+	case "$1" in
+		-c) sscmd="$2"; shift 2;;
+		-h) usage; exit 0;;
+		-p) p="-#"; shift;;
+		-q) quiet=true; shift;;
+		-s) size="$2"; shift 2;;
+		--) shift; break;;
+		*) usage >&2; exit 1;;
+	esac
+done
+
+if [ ! -z "$1" ]; then
+	filename="$1"
+	sspath=$filename
+fi
+
+
+# Get to work
+# Check size
+if [ ! "$size" == "s" ] && [ ! "$size" == "m" ] && [ ! "$size" == "l" ]; then
+	echo "Error: Size must be either 's', 'm' or 'l'." >&2
+	exit 1
+fi
+
+# Take Screenshot
+if [ $quiet == false ] && [ -z $filename ]; then
+	echo -en "Taking Screenshot\r"
+fi
+if [ -z $filename ]; then
+	$sscmd $sspath
+fi
+
+# Upload Screenshot
+if [ $quiet == false ]; then
+	echo -en "Uploading Screenshot\r"
+fi
+url="$(upload $sspath)"
+thumburl="$(echo ${url%%.png}${size}.png)"
+
+# Print BBCode
+if [ $quiet == false ]; then
+	echo -en "Finished            \n"
+echo "[url=$url][img]$thumburl[/img][/url]"
+fi
+echo "[url=$url][img]$thumburl[/img][/url]" | xsel -bi
+
+exit 0

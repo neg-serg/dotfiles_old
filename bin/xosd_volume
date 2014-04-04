@@ -1,0 +1,52 @@
+#!/bin/bash
+
+OFF=false
+if amixer sget Master | grep off;
+then
+        OFF=true
+fi
+
+case "x$1" in
+        "x-h" | "x--help")
+                NM=$(basename $0)
+                echo "Use $NM without args to show current volume level in percents"
+                echo "Use $NM [down|up|toggle] to change volume before display of current level."
+                echo ""
+                echo "Created by Queria Sa-Tas (public@sa-tas.net) and released into Public Domain"
+                exit 1
+                ;;
+        "xup")
+                amixer sset Master,0 5+ > /dev/null
+                ;;
+        "xdown")
+                amixer sset Master,0 5- > /dev/null
+                ;;
+        "xtoggle")
+                if $OFF; then
+                        amixer sset Master,0 on > /dev/null
+                        amixer sset PCM,0 on > /dev/null
+                else
+                        amixer sset Master,0 off > /dev/null
+                fi
+                ;;
+esac
+
+VOLPERC=$(amixer sget Master|grep "%"|head -n 1| sed "s/.*\[\([0-9]\+\)%.*/\\1/")
+if amixer sget Master | grep off;
+then
+        VOLPERC=0
+fi
+
+echo $VOLPERC
+
+OSDOPT=""
+OSDOPT="${OSDOPT} -p bottom"
+OSDOPT="${OSDOPT} -A center"
+OSDOPT="${OSDOPT} -o 60"
+OSDOPT="${OSDOPT} -d 1"
+OSDOPT="${OSDOPT} -c white"
+OSDOPT="${OSDOPT} -s 1"
+OSDOPT="${OSDOPT} -b percentage"
+osd_cat ${OSDOPT} -P ${VOLPERC}
+
+

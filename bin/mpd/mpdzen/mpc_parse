@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+
+mpdst=( ${(f)"$(mpc -h ${1:-localhost} status -f "%artist%\n%album%\n%title%")"} )
+ARTIST=$mpdst[1]
+ALBUM=$mpdst[2]
+SONG=$mpdst[3]
+
+setopt rematchpcre
+# parse statusline
+[[ $mpdst[4] =~ '\[(\w+)\]\s+#(\d+)/(\d+)\s+(\d+:\d+)/(\d+:\d+)\s+\((\d+)%\)' ]] || return 1
+MPDSTATE=$match[1]
+PL_NOW=$match[2]
+PL_TOTAL=$match[3]
+TIME_NOW=$match[4]
+TIME_TOTAL=$match[5]
+PERCENT=$match[6]
+
+STATUS=$mpdst[5]

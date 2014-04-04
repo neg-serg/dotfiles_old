@@ -1,0 +1,20 @@
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};0;0m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;0;${i};0m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;0;0;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};128;128m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;128;${i};128m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;128;128;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};192;192m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;192;${i};192m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;192;192;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};224;224m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;224;${i};224m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;224;224;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};64;64m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;64;${i};64m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;64;64;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;${i};32;32m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;32;${i};32m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;32;32;${i}m█"; done; echo
+for i in $(seq 0 255); do echo -e -n "\033[38;2;255;255;${i}m█"; done; echo
+
