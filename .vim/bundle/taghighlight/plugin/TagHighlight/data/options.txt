@@ -1,0 +1,462 @@
+#####################
+# Vim-only options: #
+#####################
+
+Projects:
+	Type:dict
+	Default:{}
+	Help:Project-specific configuration options.
+
+NonProjectOptions:
+	Type:dict
+	Default:{}
+	Help:Configuration options for code that's not part of a project.
+
+LanguageDetectionMethods:
+	Type:list
+	Default:Extension
+	Help:Specify methods to use for determining language for the file when reading highlight definitions.
+
+FileTypeLanguageOverrides:
+	Type:dict
+	Default:{}
+	Help:Match file types to languages manually (if FileType language detection method is enabled).
+
+ExtensionLanguageOverrides:
+	Type:dict
+	Default:{}
+	Help:Match extensions to languages manually (if Extension language detection method is enabled).
+
+SyntaxLanguageOverrides:
+	Type:dict
+	Default:{}
+	Help:Match syntaxes to languages manually (if Syntax language detection method is enabled).
+
+DisableTypeParsing:
+	Type:bool
+	Default:False
+	Help:Do not read types when opening a file
+
+ParsingSkipList:
+	Type:list
+	Default:[]
+	Help:List of files for which the type reading should be disabled
+
+DefaultDirModePriority:
+	Type:list
+	Default:[]
+	Help:List of methods (in order) to use when searching for tags/types etc
+	Note:Default is overridden in TagHighlight#Option#GetOption()
+
+MaxDirSearchLevels:
+	Type:int
+	Default:0
+	Help:How far up to search in UpFromFile or UpFromCurrent mode
+
+ProjectConfigFileName:
+	Type:string
+	Default:taghl_config.txt
+	Help:File name for project specific configuration items
+
+TagFileDirModePriority:
+	Type:list
+	Default:Default
+	Help:Optional override for dir mode priority for tag files specifically
+
+TypesFileDirModePriority:
+	Type:list
+	Default:Default
+	Help:Optional override for dir mode priority for types files specifically
+
+ProjectConfigFileDirModePriority:
+	Type:list
+	Default:Default
+	Help:Optional override for dir mode priority for project config files specifically
+
+CscopeFileDirModePriority:
+	Type:list
+	Default:Default
+	Help:Optional override for dir mode priority for cscope files specifically
+
+TagFileDirectory:
+	Type:string
+	Default:None
+	Help:Explicitly specified location for tag file (corresponding to Explicit search mode)
+
+DisableTagManager:
+	Type:bool
+	Default:False
+	Help:Disable automatic management of tags option
+
+TypesFileDirectory:
+	Type:string
+	Default:None
+	Help:Explicitly specified location for types file (corresponding to Explicit search mode)
+
+ProjectConfigFileDirectory:
+	Type:string
+	Default:None
+	Help:Explicitly specified location for project config file (corresponding to Explicit search mode)
+
+DefaultDirModeSearchWildcards:
+	Type:list
+	Default:OPT(TagFileName),OPT(ProjectConfigFileName),OPT(CscopeFileName)
+	Help:When searching directories, wildcards to match against (if any matches, we'll use this directory)
+
+ProjectConfigFileSearchWildcards:
+	Type:list
+	Default:Default
+	Help:When searching directories for project config files, wildcards to match against (if any matches, we'll use this directory)
+
+CscopeFileSearchWildcards:
+	Type:list
+	Default:Default
+	Help:When searching directories for cscope files, wildcards to match against (if any matches, we'll use this directory)
+
+TagFileSearchWildcards:
+	Type:list
+	Default:Default
+	Help:When searching directories for tag files, wildcards to match against (if any matches, we'll use this directory)
+
+TypesFileSearchWildcards:
+	Type:list
+	Default:Default
+	Help:When searching directories for types files, wildcards to match against (if any matches, we'll use this directory)
+
+CtagsExecutable:
+	Type:string
+	Default:None
+	Help:Name of the ctags executable, or full path to it
+
+CscopeExecutable:
+	Type:string
+	Default:None
+	Help:Name of the cscope executable, or full path to it
+
+ForcedPythonVariant:
+	Type:string
+	Default:None
+	Help:Force the use of a specific variant (see help for PythonVariantPriority)
+
+PythonVariantPriority:
+	Type:list
+	Default:if_pyth3,if_pyth,python,compiled
+	Help:Search order for deciding which variant to use
+
+PathToPython:
+	Type:string
+	Default:None
+	Help:Location of the python executable or None to search the path
+
+PreReadHooks:
+	Type:list
+	Default:[]
+	Help:List of function names to run before reading types.
+
+PostReadHooks:
+	Type:list
+	Default:[]
+	Help:List of function names to run after reading types.
+
+PreUpdateHooks:
+	Type:list
+	Default:[]
+	Help:List of function names to run before updating types.
+
+PostUpdateHooks:
+	Type:list
+	Default:[]
+	Help:List of function names to run after updating types.
+
+Hooks:
+	Type:dict
+	Default:{'PreUpdate': [], 'PostUpdate': [], 'PreRead': [], 'PostRead': []}
+	Help:Hooks dictionary (each entry is a list of strings containing functions to call; read functions take current file name and types suffix as parameters).
+
+ForcedStandardLibraries:
+	Type:list
+	Default:[]
+	Help:List of standard libraries which we should load regardless of whether the matchers match (as long as suffix is correct).
+
+DisableStandardLibraries:
+	Type:bool
+	Default:False
+	Help:Don't try to load standard libraries.
+
+UserLibraries:
+	Type:list
+	Default:[]
+	Help:List of user libraries to load (either relative to UserLibraryDir or absolute).
+
+UserLibraryDir:
+	Type:string
+	Default:.
+	Help:Location of user libraries that are specified with relative paths.
+
+DoNotGenerateTagsIfPresent:
+	Type:bool
+	Default:False
+	Help:Do not generate tags if a tag file already exists.
+
+OnlyGenerateTypesIfPresent:
+	Type:bool
+	Default:False
+	Help:Only generate tags/types if a types file already exists.
+
+ReloadColourScheme:
+	Type:bool
+	Default:False
+	Help:Reload the colour scheme after reading types file (in case colours don't work properly)
+
+SetWorkingDir:
+	Type:bool
+	Default:False
+	Help:When loading a highlight file, set the working directory for the buffer to the types file path.
+
+CscopeOnlyIfPresent:
+	Type:bool
+	Default:False
+	Help:Only generate cscope database if one already exists
+
+ProjectRepository:
+	Type:string
+	Default:None
+	Help:Central repository in which to store tags and types highlighter.
+
+UseProjectRepository:
+	Type:bool
+	Default:False
+	Help:Enable storing of tags and types files in central repository.
+
+##########################
+# Python script options: #
+##########################
+
+TagRelative:
+	CommandLineSwitches:--tagrelative
+	Type:bool
+	Default:False
+	Help:Used to set tagrelative for vim/ctags interaction.
+
+DebugLevel:
+	CommandLineSwitches:--debug
+	Type:string
+	Default:Error
+	Help:Debug level for printing (how much debug output to produce)
+
+EnableCscope:
+	CommandLineSwitches:--enable-cscope
+	Type:bool
+	Default:False
+	Help:Enable cscope support in TagHighlight
+
+CscopeOnlyIfCCode:
+	CommandLineSwitches:--cscope-only-if-c-code
+	Type:bool
+	Default:True
+	Help:Only generate cscope database if one exists or if code is C code.
+
+CscopeFileName:
+	CommandLineSwitches:--cscope-filename
+	Type:string
+	Default:cscope.out
+	Help:Filename for cscope database
+
+CscopeFileDirectory:
+	CommandLineSwitches:--cscope-file-directory
+	Type:string
+	Default:None
+	Help:Explicitly specified location for cscope file (corresponding to Explicit search mode)
+
+DebugFile:
+	CommandLineSwitches:--debug-file
+	Type:string
+	Default:None
+	Help:Debug log file into which messages should be stored
+
+DisableDuplicateCheck:
+	CommandLineSwitches:--disable-duplicate-check
+	Type:bool
+	Default:False
+	Help:Don't check for duplicates (may speed up generation on large code-bases).
+
+LanguageTagTypes:
+	CommandLineSwitches:--language-tag-types
+	Type:dict
+	Default:{}
+	Help:Explicit filter on tag types for a given language (pass as key:value or key:value,value,value).
+
+DebugPrintTime:
+	CommandLineSwitches:--print-time-with-debug
+	Type:bool
+	Default:False
+	Help:Print the time with each debug message in the log
+
+IgnoreFileScope:
+	CommandLineSwitches:--ignore-file-scope
+	Type:bool
+	Default:False
+	Help:Ignore file-scope specified in tags file
+
+SourceDir:
+	CommandLineSwitches:-d,--source-root
+	Type:string
+	Default:None
+	Help:Location of source files to scan
+
+Recurse:
+	CommandLineSwitches:--no-recurse
+	Type:bool
+	Default:True
+	Help:Recurse into subdirectories
+ 
+TagFileName:
+	CommandLineSwitches:--ctags-file
+	Type:string
+	Default:tags
+	Help:CTAGS output filename
+
+CtagsFileLocation:
+	CommandLineSwitches:--ctags-file-dir
+	Type:string
+	Default:.
+	Help:Location in which to store or find CTAGS output file
+
+CscopeFileLocation:
+	CommandLineSwitches:--cscope-file-dir
+	Type:string
+	Default:.
+	Help:Location in which to store or find cscope output file
+
+TypesFileNameForce:
+	CommandLineSwitches:--types-file-name-override
+	Type:string
+	Default:None
+	Help:Force types filename to be a specific string (as opposed to prefix + _ + suffix + . + extension).
+
+TypesFilePrefix:
+	CommandLineSwitches:--types-file-prefix
+	Type:string
+	Default:types
+	Help:Vim Types file prefix
+
+TypesFileExtension:
+	CommandLineSwitches:--types-file-extension
+	Type:string
+	Default:taghl
+	Help:Extension for types file (by default 'taghl', which with default prefix gives types_c.taghl for C files).
+
+SkipPatterns:
+	CommandLineSwitches:--add-skip-pattern
+	Type:list
+	Default:[]
+	Help:List of (Python) regular expressions to match against keywords which should be excluded from the types file.
+
+SkipReservedKeywords:
+	CommandLineSwitches:--skip-reserved-keywords
+	Type:bool
+	Default:True
+	Help:Don't highlight keywords that are reserved in a given language.
+ 
+CtagsExeFull:
+	CommandLineSwitches:--ctags-exe-full-path
+	Type:string
+	Default:ctags
+	Help:CTAGS Executable Directory
+
+CscopeExeFull:
+	CommandLineSwitches:--cscope-exe-full-path
+	Type:string
+	Default:cscope
+	Help:Cscope Executable Directory
+
+CtagsArguments:
+	CommandLineSwitches:--add-ctags-argument
+	Type:list
+	Default:[]
+	Help:Explicit list of arguments to pass to ctags (for use with non-recognised ctags implementations).
+
+CtagsExtraArguments:
+	CommandLineSwitches:--add-extra-ctags-argument
+	Type:list
+	Default:[]
+	Help:List of extra arguments to pass to ctags.
+
+CtagsVariant:
+	CommandLineSwitches:--ctags-variant
+	Type:string
+	Default:exuberant
+	Help:Tells TagHighlight which variant of ctags is being used: some have different requirements for their arguments.
+ 
+IncludeDocs:
+	CommandLineSwitches:--include-docs
+	PythonOnly:True
+	Type:bool
+	Default:False
+	Help:Include docs or Documentation directory (stripped by default for speed)
+ 
+CheckKeywords:
+	CommandLineSwitches:--do-not-check-keywords
+	PythonOnly:True
+	Type:bool
+	Default:True
+	Help:Do not check validity of keywords (for speed)
+ 
+IncludeSynMatches:
+	CommandLineSwitches:--include-invalid-keywords-as-matches
+	Type:bool
+	Default:False
+	Help:Include invalid keywords as regular expression matches (may slow it loading)
+ 
+SkipVimKeywords:
+	CommandLineSwitches:--exclude-vim-keywords
+	Type:bool
+	Default:False
+	Help:Don't include Vim keywords (they have to be matched with regular expression matches, which is slower)
+ 
+ParseConstants:
+	CommandLineSwitches:--do-not-analyse-constants
+	PythonOnly:True
+	Type:bool
+	Default:True
+	Help:Do not treat constants as separate entries
+ 
+Languages:
+	CommandLineSwitches:--include-language
+	Type:list
+	Default:[]
+	Help:Only include specified languages
+ 
+TypesFileLocation:
+	CommandLineSwitches:--types-file-location
+	Type:string
+	Default:.
+	Help:Specify the location for the generated types files
+ 
+IncludeLocals:
+	CommandLineSwitches:--include-locals
+	Type:bool
+	Default:False
+	Help:Include local variables in the database
+ 
+DoNotGenerateTags:
+	CommandLineSwitches:--use-existing-tagfile
+	Type:bool
+	Default:False
+	Help:Do not generate tags: use an existing file
+ 
+PrintPyVersion:
+	CommandLineSwitches:--pyversion
+	PythonOnly:True
+	Type:bool
+	Default:False
+	Help:Just print the version of python
+
+PrintConfig:
+	CommandLineSwitches:--print-config
+	PythonOnly:True
+	Type:bool
+	Default:False
+	Help:Parse the various options and then print the configuration and exit (for debugging)
+
+# vim: ff=unix:noet
