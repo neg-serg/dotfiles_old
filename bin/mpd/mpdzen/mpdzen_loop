@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+mpc -h ${1:-localhost} idleloop | while read s; do
+    # debug stuff
+    # echo $s
+    if [[ $s == "player" ]]; then
+        mpdzen ${1:-localhost} &!
+    fi
+done;

@@ -1,0 +1,6 @@
+#!/bin/sh
+CMD="-name Ranger -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
+                  -fb -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
+                  -fi -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r "
+
+urxvtc ${CMD} -e ranger
