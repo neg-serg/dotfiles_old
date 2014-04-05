@@ -109,7 +109,9 @@ NeoBundle 'tpope/vim-unimpaired.git'          "good mappings and toggles
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
+NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'airblade/vim-rooter.git'           "Clever set pwd for projects
 NeoBundle 'vim-scripts/gdbmgr.git'            "Obsolete, but test it plz
 NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
@@ -124,7 +126,6 @@ NeoBundle 'tpope/vim-obsession.git'           "Session manager
 NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
 NeoBundle 'derekwyatt/vim-protodef'           "Автоматическое создание cpp файла, по заголовочному
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
-NeoBundle 'a.vim'                             "switch to header from src quickly
 NeoBundleLazy 'gcmt/surfer.vim.git'           "Yet another natigator for tags [test]
 NeoBundleLazy 'jszakmeister/vim-togglecursor' "Test it for some terminals
 NeoBundleLazy 'drmikehenry/vim-fixkey'        "fixes key codes for console Vim
@@ -231,6 +232,8 @@ NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work wi
 " NeoBundle 'mjbrownie/swapit'                "Generic swapper too complicate for me
 " NeoBundle 'justinmk/vim-sneak'              " S with two chars
 " NeoBundle 'https://bitbucket.org/ZyX_I/aurum' "hg/git and others wrapper
+" NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
+" NeoBundle 'a.vim'                             "switch to header from src quickly
 
 NeoBundleCheck
 catch /117/

@@ -1,0 +1,50 @@
+macro generic "<esc>1" ":set sendmail=\"/usr/local/bin/msmtp -a toxalan\""
+macro generic "<esc>2" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
+macro generic "<esc>3" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
+macro generic "<esc>4" ":set sendmail=\"/usr/local/bin/msmtp -a xxx\""
+
+bind pager <UP> previous-page   # I hate default mutt keybindings
+bind pager <DOWN> next-page     # so I use UP & DOWN to VIEW message,
+bind pager p previous-unread    # NOT to JUMP to next/prev one!
+bind pager n next-unread        # It's better to use p & p for this
+bind pager ,p print-message     # Print message when viewing it
+macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+macro pager   W        "|urlview\n"
+macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
+macro pager   G       "!getmail\r"  # call getmail from anythere inside mutt
+macro browser G       "!getmail\r"
+macro index   G       "!getmail\r"
+macro pager,browser,index   E       "!getmail -r ~/.getmail/getmailrc2\r"
+macro index   z       "|sa-learn --no-sync --spam\n"
+macro pager   z       "|sa-learn --no-sync --spam\n"
+macro index   Z       "|sa-learn --no-sync --ham\n"
+macro pager   Z       "|sa-learn --no-sync --ham\n"
+macro index   ",d"     "c=default" 
+macro index   ",y"     "c=yesodweb"
+macro index   ",r"     "c=ruby-talk"
+macro index   ",p"     "c=postponed"
+macro index   ",j"     "c=junk" 
+macro index   ",v"     "c=vfolder" 
+
+bind editor <Tab> complete-query
+bind editor ^T complete
+
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+
+macro index p "<enter-command>set pager_index_lines=30"
+macro index P "<enter-command>set pager_index_lines=0"
+
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index u        sync-mailbox
+bind index <space>  collapse-thread
+bind index _        collapse-all
+
+bind compose p postpone-message
+
+macro index,pager d "<save-message>=[Gmail].Corbeille<enter>"           "move message to the trash"
+macro index,pager S "<save-message>=/[Gmail].Spam<enter>"                "mark message as spam"
+
+# vim:ft=muttrc

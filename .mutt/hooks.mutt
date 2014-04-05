@@ -1,0 +1,37 @@
+#send-hook '~t @freebsd\.org' 'my_hdr From: Toxa <xx@xxxxxx.ru>'
+#send-hook '~t @openbsd\.org' 'my_hdr From: Toxa <xxx@xxxxxx.ru>'
+#send-hook '~t @openbsd\.ru' 'my_hdr From: Toxa <xxx@xxxxxx.ru>'
+#send-hook '~t @mutt\.org' 'my_hdr From: Toxa <xxx@xxxxxxx.ru>'
+#send-hook '~t @openssl\.org' 'my_hdr From: Toxa <xxx@xxxxx.ru>'
+#send-hook '~t @toxa\.lan' 'set sendmail="/usr/local/bin/msmtp -a toxalan"'
+#send-hook '~t @toxa\.lan' 'my_hdr From: Toxa <toxa@xxxx.lan>'
+
+# Most people don't want, or can't handle GPG encryption.
+
+send-hook . unset pgp_autoencrypt
+
+# But these can.
+
+send-hook '~t ^user@xxxx\.ru$' 'set pgp_autosign'
+
+# aliases for broken MUAs
+
+charset-hook x-unknown ISO-8859-1
+charset-hook windows-1250 CP1250
+charset-hook windows-1251 CP1251
+charset-hook windows-1252 CP1252
+charset-hook windows-1253 CP1253
+charset-hook windows-1254 CP1254
+charset-hook windows-1255 CP1255
+charset-hook windows-1256 CP1256
+charset-hook windows-1257 CP1257
+charset-hook windows-1258 CP1258
+
+# I want to see real names of brave developers in mailing lists :)
+
+#save-hook '~f @freebsd.org' 'unsubscribe current'
+#save-hook '~f @openbsd.org' 'unsubscribe misc'
+#save-hook '~f @cvs.openbsd.org' 'unsubscribe misc'
+
+#folder-hook freebsd-lists set pager_index_lines=5 # message index at the top (like in GUI MUAs)
+# vim:ft=muttrc

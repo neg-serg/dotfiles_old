@@ -111,9 +111,7 @@ amixer -q set Master 0% mute
 # [ ! -x "`which anamnesis 2>/dev/null`"  ] ||  anamnesis --start
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
-[ ! -x "`which clipmenud 2>/dev/null`" ] ||  clipmenud &
-# [ ! -x "`which clipbored 2>/dev/null`" ] || clipbored
-
+~/bin/clipd.rb &
 font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses &
 
 exec notion

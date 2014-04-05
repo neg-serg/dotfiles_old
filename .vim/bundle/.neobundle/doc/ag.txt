@@ -106,6 +106,14 @@ window is opened, or what size it is.  Example: >
   let g:ag_qhandler="copen 20"
 <
 
+                                                       *g:ag_mapping_message*
+Whether or not to show the message explaining the extra mappings that are
+added to the results list this plugin populates.  This message is not shown if
+the mappings are not applied (see |g:ag_apply_qmappings| and
+|g:ag_apply_lmappings| for more info.  Default 1.  Example: >
+  let g:ag_mapping_message=0
+<
+
 ==============================================================================
 MAPPINGS                                                        *ag-mappings*
 

@@ -258,13 +258,14 @@ defbindings("WMPlex.toplevel", {
 --------------
     kpress("Mod4+Control+Q", "WRegion.rqclose_propagate(_, _sub)"),
     kpress("Mod4+F4",        "ioncore.exec_on(_, 'eject')"),
-    kpress("Mod4+Control+P", "ioncore.exec_on(_, 'anamnesis --browser')"),
+    -- kpress("Mod4+Control+P", "ioncore.exec_on(_, 'anamnesis --browser')"),
     kpress("Mod4+U",         "ioncore.exec_on(_, 'udiskie-umount -a')"),
     kpress("Mod4+Shift+F",   "app.instance('libreoffice-writer', 'VCLSalFrame', 'libreoffice-writer')"),
     -- kpress("Mod4+Shift+F",   "app.class('libreoffice-writer', '')"),
     -- kpress("Mod4+F12",       "ioncore.exec_on(_, 'switch-sound-output.sh')"),
     --kpress("Mod4+F6",        "ioncore.exec_on(_, '~/bin/misc/music')"),
     -- Rename frame --
+    kpress("Mod4+c",        "ioncore.exec_on(_, 'ruby ~/bin/clipd.rb menu')"),
     submap("Mod1+E",{
         kpress("p", "ioncore.exec_on(_, 'pavucontrol')"),
         kpress("r", "mod_query.query_renameframe(_)"),
@@ -272,6 +273,7 @@ defbindings("WMPlex.toplevel", {
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
         kpress("m", "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
         kpress("s", "ioncore.exec_on(_, 'skype')"),
+        kpress("q", "ioncore.exec_on(_, '~/bin/mpd_sel.sh')"),
         kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
