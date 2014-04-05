@@ -16,7 +16,9 @@ export PYTHONIOENCODING='utf-8'
 export GREP_COLORS='ms=1;35:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
 export EDITOR="vim"
-export VISUAL="gvim --remote-silent"
+export VISUAL="gvim -f --remote-silent"
+
+export INPUTRC=${HOME}/.config/inputrc
 
 export BROWSER="firefox"
 
@@ -24,6 +26,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_DOWNLOAD_DIR="${HOME}/dw"
 export XDG_MUSIC_DIR="${HOME}/music"
+
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/trinity/bin/"
 export PAGER="vimpager"
 alias less=$PAGER
