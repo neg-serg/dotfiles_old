@@ -5,20 +5,13 @@ if [ $# -ne 2 ] ; then
     exit 1
 fi
 
-FONT='PragmataPro-18'
-
-NORMAL_BACKGROUND='#000000'
-NORMAL_FOREGROUND='#CCCCCC'
-SELECTED_BACKGROUND='#CCCCCC'
-SELECTED_FOREGROUND='#000000'
-
 action=$1
 shift
 fp=$1
 cmd=mv
 
 DATA_FILE="$XDG_DATA_HOME/sxiv_do.data"
-LAST_ACTION="XDG_DATA_HOME/sxiv_do.last"
+LAST_ACTION="$XDG_DATA_HOME/sxiv_do.last"
 
 if [ "$action" = "repeat" ] ; then
     action=$(cat "$LAST_ACTION")
@@ -27,15 +20,16 @@ fi
 
 case $action in
     rename)
-        dest=$(printf "%s" "$(basename "$fp")" | dmenu -l 10 -i -fn "$FONT" -nb "$NORMAL_BACKGROUND" -nf "$NORMAL_FOREGROUND" -sb "$SELECTED_BACKGROUND" -sf "$SELECTED_FOREGROUND")
+        dest=$(printf "%s" "$(basename "$fp")" | dmenu_select)
         if [ -n "$dest" ] ; then
             $cmd "$fp" "$(dirname "$fp")/$dest"
         fi
         ;;
     copy|move)
         if [ -z "$dest" ] ; then
-            dest=$(Z -i "$DATA_FILE" | sed 's:^'$HOME':~:' | dmenu -l 10 -i -fn "$FONT" -nb "$NORMAL_BACKGROUND" -nf "$NORMAL_FOREGROUND" -sb "$SELECTED_BACKGROUND" -sf "$SELECTED_FOREGROUND" | sed 's:^~:'$HOME':')
+            dest=$(Z -i "$DATA_FILE" | sed 's:^'$HOME':~:' | dmenu_select | sed 's:^~:'$HOME':')
         fi
+        [ -z "$dest" ] && exit 0
         if [ -d "$dest" ] ; then
             [ "$action" = "copy" ] && cmd=cp
             $cmd "$fp" "$dest"
@@ -48,7 +42,7 @@ case $action in
     comment)
         tmp=$(mktemp)
         gm identify -format '%c' "$fp" | perl -pe 's/^\n//' > "$tmp"
-        urxvt -e editor "$tmp"
+        termite -e "vim '$tmp'"
         gm mogrify -comment @"$tmp" "$fp"
         rm "$tmp"
         ;;

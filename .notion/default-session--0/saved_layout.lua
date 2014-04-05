@@ -54,7 +54,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 8388809,
+                                                    ["windowid"] = 4194313,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
@@ -202,23 +202,14 @@ return {
                             ["h"] = 900,
                         },
                         ["split_tree"] = {
-                            ["tls"] = 878,
-                            ["tl"] = {
-                                ["regparams"] = {
-                                    ["mode"] = 2,
-                                    ["type"] = "WFrame",
-                                    ["name"] = "Tiling Frame<2>",
-                                    ["managed"] = {
-                                    },
+                            ["regparams"] = {
+                                ["mode"] = 2,
+                                ["type"] = "WFrame",
+                                ["name"] = "Tiling Frame<2>",
+                                ["managed"] = {
                                 },
-                                ["type"] = "WSplitRegion",
                             },
-                            ["dir"] = "vertical",
-                            ["brs"] = 22,
-                            ["br"] = {
-                                ["type"] = "WSplitST",
-                            },
-                            ["type"] = "WSplitSplit",
+                            ["type"] = "WSplitRegion",
                         },
                     },
                 },
@@ -353,6 +344,35 @@ return {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
+                    [1] = {
+                        ["type"] = "WGroupCW",
+                        ["name"] = "WGroupCW<2>",
+                        ["geom"] = {
+                            ["y"] = 1,
+                            ["x"] = 1,
+                            ["w"] = 1116,
+                            ["h"] = 688,
+                        },
+                        ["switchto"] = true,
+                        ["sizepolicy"] = "full",
+                        ["managed"] = {
+                            [1] = {
+                                ["type"] = "WClientWin",
+                                ["bottom"] = true,
+                                ["windowid"] = 25165833,
+                                ["checkcode"] = 2,
+                                ["sizepolicy"] = "full",
+                                ["geom"] = {
+                                    ["y"] = 0,
+                                    ["x"] = 0,
+                                    ["w"] = 1116,
+                                    ["h"] = 688,
+                                },
+                                ["level"] = 1,
+                            },
+                        },
+                        ["level"] = 0,
+                    },
                 },
                 ["unnumbered"] = true,
                 ["name"] = "float2",
@@ -387,6 +407,35 @@ return {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
+                    [1] = {
+                        ["type"] = "WGroupCW",
+                        ["name"] = "WGroupCW<1>",
+                        ["geom"] = {
+                            ["y"] = 1,
+                            ["x"] = 1,
+                            ["w"] = 634,
+                            ["h"] = 326,
+                        },
+                        ["switchto"] = true,
+                        ["sizepolicy"] = "full",
+                        ["managed"] = {
+                            [1] = {
+                                ["type"] = "WClientWin",
+                                ["bottom"] = true,
+                                ["windowid"] = 4194335,
+                                ["checkcode"] = 3,
+                                ["sizepolicy"] = "full",
+                                ["geom"] = {
+                                    ["y"] = 0,
+                                    ["x"] = 0,
+                                    ["w"] = 634,
+                                    ["h"] = 326,
+                                },
+                                ["level"] = 1,
+                            },
+                        },
+                        ["level"] = 0,
+                    },
                 },
                 ["unnumbered"] = true,
                 ["name"] = "wicd",

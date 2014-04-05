@@ -1,3 +1,7 @@
+chpwd() {
+    [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
+}
+
 magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}

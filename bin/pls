@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/.config/dmenu_pulse/config
+source $HOME/.config/dmenu/pulse
 
 function dmenu_t () {
     if [ "$dmenu_trans" == "1" ]; then
