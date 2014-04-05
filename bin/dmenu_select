@@ -1,0 +1,7 @@
+#! /bin/dash
+
+. ~/.config/dmenu/default
+
+FONT='PragmataPro-12'
+
+dmenu -l 14 -i -fn "$FONT" -nb "$nb" -nf "$nf" -sb "$sb" -sf "$sf"
