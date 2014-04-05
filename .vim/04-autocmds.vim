@@ -115,10 +115,20 @@ augroup ag_xml
   autocmd FileType html,xml,xslt,htmldjango call LoadTypeXML()
 augroup END
 
+au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
 autocmd FileType cpp hi Function guifg=#85A2CC
+" This handles c++ files with the ".cc" extension.
+augroup ccfiles
+  au!
+  au BufEnter *.cc let b:fswitchdst  = 'h,hxx'
+  au BufEnter *.cc let b:fswitchlocs = './,reg:/src/include/,reg:|src|include/**|,../include'
+  au BufEnter *.h  let b:fswitchdst  = 'cpp,cc,c'
+  au BufEnter *.h  let b:fswitchlocs = './,reg:/include/src/,reg:/include.*/src/,../src'
+augroup END
+
 autocmd FileType go                                               autocmd BufWritePre <buffer> Fmt
 autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig

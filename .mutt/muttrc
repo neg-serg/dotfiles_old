@@ -1,0 +1,204 @@
+source ~/.mutt/headers.mutt
+source ~/.mutt/gpg.mutt
+source ~/.mutt/bindings.mutt
+source ~/.mutt/aliases.mutt
+source ~/.mutt/hooks.mutt
+source ~/.mutt/sidebar.mutt
+source ~/.mutt/gmail.mutt
+source ~/.mutt/themes/trans-green
+source "gpg2 -dq $HOME/.config/.pass |"
+# set alias_file=~/.mutt/aliases.mutt 
+
+source ~/.mutt/mailboxes
+
+set query_command = "abook --mutt-query '%s'"
+set shell="/bin/bash"
+set realname="Sergey Miroshnichenko" 
+set charset=utf-8      # Local charset
+set send_charset="utf-8" 
+# set sendmail="/usr/bin/sendmail"
+set use_from=no         # I want to generate "From:" using my_hdr
+set attribution="On %d, %n wrote:" # Quoting subject
+set editor="vim +':set textwidth=70' %s"
+unset markers
+set delete=yes          # purge deleted messages without asking
+set copy=ask-no         # ask to save a copy of outgoing message?
+set postpone=ask-no     # ask to postpone message if i want to
+set print=ask-yes       # ask for printing message if i want to
+set record=ask-no       # ask to save sent message into 'sent' mailbox
+set include=yes         # include the message in replies (reply quoting)
+# set quit=ask-yes        # Do you REALLY want to exit mutt? :)
+set quit
+set recall=ask-yes      # ask for working with unsent messages 
+# set reply_regexp= "^(re|RE|Re):[ \t]*"
+#set use_from=no
+#set status_on_top      # status on top
+#unset save_empty       # remove mbox when last message is removed. sucks with maildir
+unset confirmappend     # prompt for confirm when appending message to ex. mbox
+set allow_8bit          # encoding
+set check_new           # search for new messages
+set abort_nosubject=no  # Abort, if message has no subject
+#set hide_limited=yes
+#set arrow_cursor       # little arrow instead of line-marker
+set attach_split        # do not merge attaches into one file?
+set fast_reply          # do not asr For:, To:, Subj:, then replying
+set fcc_attach          # keep attaches then doing Fcc:
+set followup_to         # add Mail-Followup-To header, for maillists
+unset metoo             # do not send reply to myself when replyin' to group
+unset reply_self        # do not reply myself after all
+unset read_only         # I wanna r/w access to my mailboxes
+unset collapse_unread   # do not collapse threads with new mail
+unset mark_old          # unread old messages are still unread after quitting
+set suspend             # allow Ctrl-Z to shutdown mutt
+unset beep              # fuckin' noizy pc-speaker
+unset beep_new
+set askcc=no            # ask for cc when creating new message?
+set print_command="muttprint" 
+set signature="~/.mutt/scripts/signature"  # This is a script executable
+set forward_format="Fwd: %s"
+set help
+# MIME types handering - - -  - - - - - - - - - - - - - - - - - - - - - - #
+set implicit_autoview   # try to understand MIME types
+alternative_order text/enriched text/plain text/html
+
+
+set mailcap_path="~/.mailcap"   # see MIME types in mailcap database
+set mailcap_sanitize=yes        # remove mailcap ugly chars
+set menu_scroll
+set narrow_tree         # To make deep threads to fit on the screen
+set user_agent = no     # let them take fake useragent from my_hdr above
+
+set pager=builtin
+set pager_stop             # don't show the next msg after current
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# set status_format="%v  [%f] [%m msgs (%l), %n new, %p unsent, %d deleted]"
+set folder_format="%N %F %2l %-8.8u %-8.8g %8s %d %f"
+# set index_format = "[%Z]  %D  %-20.20F  %s"
+set index_format="%3C %Z %{%b %d} %-20.20L (%?l?%4l&%4c?) %s"
+
+# set sort=reverse-threads                   # sorting the mails in threads
+# set sort = date
+# set sort_aux = reverse-last-date-received  # like gmail
+# set sort_aux = last-date-received  # like gmail
+# set sort_aux=date-sent  # sort brother mails inside threads
+
+set sort = 'reverse-threads'
+set sort_aux = 'last-date-received'
+set sort_re                                # thread based on regex
+
+set uncollapse_jump                        # don't collapse on an unread message
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+unlists *
+unsubscribe *
+lists   ruby-talk yesodweb 
+subscribe ruby-talk yesodweb
+
+# A basic .muttrc for use with Gmail
+
+set imap_user = "serg.zorg@gmail.com"
+set imap_pass=$my_pw_personal
+set smtp_pass=$my_pw_personal
+set smtp_url = "smtp://serg.zorg@smtp.gmail.com:587/"
+set from = "serg.zorg@gmail.com"
+set realname = "Sergey Miroshnichenko"
+
+# --[ For future test ]-------------------------------------------------------
+# # boxes
+# mailboxes +JWR/INBOX +JWR/Archive +JWR/Sent +JWR/Draft +JWR/Trash
+# mailboxes +GMail/INBOX +GMail/Sent Mail +GMail/Drafts +GMail/Trash
+# mailboxes +Miromiro/INBOX Miromiro/Sent +Miromiro/Draft +Miromiro/Trash
+# mailboxes +Fastmail/INBOX +Fastmail/Sent +Fastmail/Drafts +Fastmail/Trash
+# # account specific sources
+# folder-hook JWR/* source ~/.mutt/jwr.muttrc
+# folder-hook GMail/* source ~/.mutt/gmail.muttrc 
+# folder-hook Miromiro/* source ~/.mutt/miromiro.muttrc
+# folder-hook Fastmail/* source ~/.mutt/fastmail.muttrc
+
+# Basic config, you can leave this as is
+# set folder = "imaps://imap.gmail.com:993"
+# set spoolfile = "+INBOX"
+set folder      = /home/neg/.local/mail/gmail
+set spoolfile   = "+[Gmail].All Mail"
+set mbox_type     = "Maildir"
+set mbox          = "+[Gmail].All Mail"
+# set postponed   = "+[Gmail]/Drafts"
+unset record
+
+set imap_check_subscribed
+
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+# set hostname = gmail.com
+# set postponed = "+[GMail]/Drafts"
+# set record = "+[GMail]/Sent Mail"
+set move = no
+set include
+set auto_tag = yes
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop 
+
+# Gmail-style keyboard shortcuts
+macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[GMail]/Trash\"\n <delete-message>" "Gmail delete message"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
+macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+
+# goobook integration
+set query_command = "goobook query '%s'"
+macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
+
+# performs a notmuch query, showing only the results
+macro index Z "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+# 'A' shows all messages again (supersedes default <alias> binding)
+macro index A "<limit>all\n" "show all messages (undo limit)"
+
+macro index,pager,attach,compose go "\
+<enter-command> set my_pipe_decode=~4~pipe_decode pipe_decode<Enter>\
+<pipe-message> urlview<Enter>\
+<enter-command> set pipe_decode=~4~my_pipe_decode; unset my_pipe_decode<Enter>" \
+"call urlview to extract URLs out of a message"
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
+macro index,pager,attach gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"
+macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
+macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
+macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
+
+macro index,pager a "<save-message>=[Gmail].All Mail<enter><enter><sync-mailbox>" "Archive"
+macro index,pager d "<save-message>=[Gmail].Trash<enter><enter><sync-mailbox>" "Trash"
+macro index,pager * "<save-message>=[Gmail].Starred<enter><enter><sync-mailbox>" "Star"

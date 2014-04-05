@@ -13,7 +13,6 @@ set pastetoggle=<F2>
 "       hit F7 to paste from GUI to vim without formating issues
 vmap <F6> :!xclip -f -sel clip<CR>
 map <F7> mz:-1r !xclip -o -sel clip<CR>`z
-nmap <LocalLeader> <C-e>
 
 " Traverse buffers, quickly
 
@@ -240,6 +239,7 @@ let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_key_invoke_completion = '<A-x>'
 " let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
+nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 "-----------[ UltiSnips ]-------------------------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
@@ -300,11 +300,6 @@ map zh zH
     nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 " }
-" Session List {
-    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <leader>sl :SessionList<CR>
-    nmap <leader>ss :SessionSave<CR>
-" }
 " TagBar {
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 
@@ -336,7 +331,7 @@ nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
             \ quickfix"<CR>:redraw!<CR>
 nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
 nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
-nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite
+nnoremap <Leader>gg :exe 'silent Gvimrcgrep -i '.input("Pattern: ")<Bar>Unite
             \ quickfix -no-quit<CR>
 nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
             \Unite -no-quit quickfix'<CR>
@@ -499,3 +494,15 @@ nmap c9 "9yy
 vmap c0 "0yy<ESC>i
 nmap c0 "0yy
 
+"--[ fswitch ]--------------------------------------------------
+" A "companion" file is a .cpp file to an .h file and vice versa
+" Opens the companion file in the current window
+nnoremap <Leader>sh :FSHere<cr>
+" Opens the companion file in the window to the left (window needs to exist)
+" This is actually a duplicate of the :FSLeft command which for some reason
+" doesn't work.
+nnoremap <Leader>sl :call FSwitch('%', 'wincmd l')<cr>
+" Same as above, only opens it in window to the right
+nnoremap <Leader>sr :call FSwitch('%', 'wincmd r')<cr>
+" Creates a new window on the left and opens the companion file in it
+nnoremap <Leader>sv :FSSplitLeft<cr>

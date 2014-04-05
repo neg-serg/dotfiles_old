@@ -311,7 +311,7 @@ KEY MAPPINGS                                                     *tagbar-keys*
 
 The following mappings are valid in the Tagbar window:
 
-<F1>          Display key mapping help.
+<F1>/?        Display key mapping help.
                 Map option: tagbar_map_help
 <CR>/<Enter>  Jump to the tag under the cursor. Doesn't work for pseudo-tags
               or generic headers.
@@ -331,6 +331,9 @@ P             Open the tag in a |preview-window|.
 <Space>       Display the prototype of the current tag (i.e. the line defining
               it) in the command line.
                 Map option: tagbar_map_showproto
+v             Hide tags that are declared non-public. Tags without any
+              visibility information will still be shown.
+                Map option: tagbar_map_hidenonpublic
 +/zo          Open the fold under the cursor.
                 Map option: tagbar_map_openfold
 -/zc          Close the fold under the cursor or the current one if there is
@@ -396,6 +399,22 @@ Width of the Tagbar window in characters.
 Example:
 >
         let g:tagbar_width = 30
+<
+
+                                                          *g:tagbar_zoomwidth*
+g:tagbar_zoomwidth~
+Default: 1
+
+Width of the Tagbar window when zoomed.
+
+Possible values are:
+  1: Use the maximum width available.
+  0: Use the width of the longest currently visible tag.
+  >1: Use this width in characters.
+
+Example:
+>
+        let g:tagbar_zoomwidth = 0
 <
 
                                                           *g:tagbar_autoclose*
@@ -488,6 +507,19 @@ Possible values are:
 Example:
 >
         let g:tagbar_show_linenumbers = 2
+<
+
+                                                     *g:tagbar_hide_nonpublic*
+g:tagbar_hide_nonpublic~
+Default: 0
+
+Hide tags that are declared non-public. Tags without any visibility
+information will still be shown. This can also be toggled with a key, see
+|tagbar-keys|.
+
+Example:
+>
+        let g:tagbar_hide_nonpublic = 1
 <
 
                                                              *g:tagbar_expand*
@@ -1173,11 +1205,22 @@ If you set the |g:tagbar_ctags_bin| variable you probably have to use the same
 value here instead of simply "ctags".
 
 If Tagbar doesn't seem to work at all, but you don't get any error messages,
-you can use Tagbar's debug mode to try to find the source of the problem (see
-|tagbar-commands| on how to invoke it). In that case you should especially pay
-attention to the reported file type and the ctags command line in the log
-file.
+you can use Tagbar's debug mode to try to find the source of the problem. Use
+it like this:
 
+  1. Open Vim without loading any files.
+  2. Call :TagbarDebug.
+  3. Open the file you are having problems with.
+  4. Open Tagbar.
+  5. Exit Vim.
+
+This should leave a file called "tagbardebug.log" in the current directory.
+See |tagbar-commands| for more information on the debug commands. When you
+look at the file you should especially pay attention to the reported file type
+and the ctags command line in the log file.
+
+
+Known issues~
 
   - jsctags has to be newer than 2011-01-06 since it needs the "-f" option to
     work. Also, the output of jsctags seems to be a bit unreliable at the

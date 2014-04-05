@@ -16,7 +16,7 @@ shows the results in a split window.
     Search recursively in {directory} (which defaults to the current
     directory) for the {pattern}.  Behaves just like the |:grep| command, but
     will open the |Quickfix| window for you. If [!] is not given the first
-    error is jumped to.
+    occurence is jumped to.
 
 :AckAdd [options] {pattern} [{directory}]                            *:AckAdd*
 
@@ -45,13 +45,23 @@ shows the results in a split window.
 
 :AckHelp[!] [options] {pattern}                                      *:AckHelp*
 
-    Search vim documentation files for the {pattern}.  Behaves just like the 
+    Search vim documentation files for the {pattern}.  Behaves just like the
     |:Ack| command, but searches only vim documentation .txt files
 
 :LAckHelp [options] {pattern}                                        *:LAckHelp*
 
     Just like |:AckHelp| but instead of the |quickfix| list, matches are placed
     in the current |location-list|.
+
+:AckWindow[!] [options] {pattern}                                 *:AckWindow*
+
+    Search all buffers visible in the screen (current tab page only) files for
+    the {pattern}.
+
+:LAckWindow [options] {pattern}                                   *:LAckWindow*
+
+    Just like |:AckWindow| but instead of the |quickfix| list, matches are
+    placed in the current |location-list|.
 
 Files containing the search term will be listed in the split window, along
 with the line number of the occurrence, once for each occurrence.  <Enter> on
@@ -60,12 +70,67 @@ line.
 
 See http://betterthangrep.com/ for more information.
 
+
+==============================================================================
+CONFIGURATION                                              *ack-configuration*
+
+                                                                    *g:ackprg*
+g:ackprg
+Default for ubuntu: "ack-grep -H --nocolor --nogroup --column"
+Default for other systems: "ack -H --nocolor --nogroup --column"
+
+Use this option to specify the ack command and its options
+
+Example:
+>
+        let g:ackprg =
+              \ "ack -H --nocolor --nogroup --column --smart-case --follow"
+<
+
+                                                             *g:ack_autoclose*
+g:ack_autoclose
+Default: 0
+
+Use this option to specify whether to close the quickfix window after
+using any of the shortcuts.
+
+Example:
+>
+        let g:ack_autoclose = 1
+<
+
+                                                              *g:ackhighlight*
+
+g:ackhighlight
+Default: 0
+
+Use this option to highlight the searched term
+
+Example:
+>
+        let g:ackhighlight
+<
+
+                                                                *g:ackpreview*
+
+g:ackpreview
+Default: 0
+
+Use this option to automagically open the file with 'j' or 'k'.
+
+Example:
+>
+        let g:ackpreview = 1
+<
+
 ==============================================================================
 MAPPINGS                                                        *ack-mappings*
 
 The following keyboard shortcuts are available in the quickfix window:
 
 o                   open file (same as enter).
+
+O                   open file and close quickfix window.
 
 go                  preview file (open but maintain focus on ack.vim results).
 

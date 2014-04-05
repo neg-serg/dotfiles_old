@@ -1,5 +1,14 @@
+"--[ experimental ]-------------------------------------
+set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 " ------[ GUI settings ]-----------------------------------------------------
 set t_Co=256                           " I use 256-color terminals
+if v:version >= 704
+  " The new Vim regex engine is currently slooooow as hell which makes syntax
+  " highlighting slow, which introduces typing latency.
+  " Consider removing this in the future when the new regex engine becomes
+  " faster.
+  set regexpengine=1
+endif
 " colorscheme solarized
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
@@ -562,3 +571,4 @@ let g:delimitMate_balance_matchpairs = 1
 " let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
 
 let g:livepreview_previewer = 'zathura'
+

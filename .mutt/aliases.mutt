@@ -1,0 +1,4 @@
+set alias_file=~/.mutt/aliases.mutt
+
+alias current FreeBSD-CURRENT <current@freebsd.org>
+alias misc OpenBSD-MISC <misc@openbsd.org>
