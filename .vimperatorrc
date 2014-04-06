@@ -14,6 +14,28 @@ set shell='/bin/zsh'
 set shellcmdflag='-c'
 "show current link in a command line
 "set showstatuslinks='command'
+
+
+" feedSomeKeys_3.js {{{
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+lazy fmaps -u='mail\.google\.com/mail' -events=vkeydown,keypress,vkeyup j k
+lazy fmaps -u='mail\.google\.com/mail' c n p o u x s r a ? gi gs gt gd ga gc U
+lazy fmaps -u='mail\.google\.com/mail' -p=<Leader> d,# s,! e
+lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' c j,n k,p n,j p,k o u x s r a ? gi gs gt gd ga gc
+lazy fmaps -u='mail\.google\.com/mail/.*/[0-9a-f]+$' -p=<Leader> d,# s,! e
+
+lazy fmaps -u='(fastladder|livedoor)\.com/reader' j k n,s s a p o r v c m i,p J,<Space> K,<S-Space> z b < > q w e,g
+
+lazy fmaps -u='www\.facebook\.com' -events=vkeydown j k l c
+
+lazy fmaps -u='wri\.pe' -events=vkeydown n i d c s h j k l o e
+lazy fmaps -u='trello\.com/b/' -events=vkeydown j k d l e n v w
+
+lazy fmaps -u='reblog\.machine\.mamemomonga\.com/dashboard' j k t l m
+lazy fmaps -u='www\.pixiv\.net/member_illust\.php\?mode=manga' -events=vkeydown j k z 0
+" }}}
+
+
 " custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map  <F3> :styletoggle<Space>-name<Space>tomorrownight<CR>
 map  <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
