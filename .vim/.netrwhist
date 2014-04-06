@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/neg/.vim/bundle/ultisnips/pythonx/UltiSnips/snippet/source'
 let g:netrw_dirhist_2='/home/neg/.config/mpv'
 let g:netrw_dirhist_3='/home/neg/.vim'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/neg/.config/mpv'
 let g:netrw_dirhist_6='/tmp/oh-my-zsh/plugins/dircycle'
 let g:netrw_dirhist_7='/tmp/zsh-syntax-highlighting'
 let g:netrw_dirhist_8='/tmp/bin'
+let g:netrw_dirhist_9='/mnt/home/dev/src/1st_level/sxiv'

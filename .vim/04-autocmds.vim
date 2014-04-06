@@ -115,7 +115,7 @@ augroup ag_xml
   autocmd FileType html,xml,xslt,htmldjango call LoadTypeXML()
 augroup END
 
-au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
+" au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"

@@ -245,7 +245,11 @@ RESET 0 # reset to "normal" color
 .tfm           01;35
 .tfnt          01;35
 .theme         01;35
-.viminfo       01;35
+
+.viminfo       01;38;5;53
+.vim           01;38;5;53
+.vimrc         01;38;5;53
+
 .yml           01;35
 .sh            01;38;5;103
 .sh*           01;38;5;103
@@ -256,8 +260,6 @@ RESET 0 # reset to "normal" color
 .zsh           01;38;5;103
 .ttytterrc     01;35
 .urlview       01;35
-.vim           01;35
-.vimrc         01;35
 .xinitrc       01;31 
 .Xauthority    01;31
 .Xmodmap       00;31
