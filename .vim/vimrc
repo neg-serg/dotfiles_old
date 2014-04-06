@@ -234,6 +234,7 @@ NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work wi
 " NeoBundle 'https://bitbucket.org/ZyX_I/aurum' "hg/git and others wrapper
 " NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
 " NeoBundle 'a.vim'                             "switch to header from src quickly
+" NeoBundle 'bling/vim-bufferline.git'          "Show buffers in statusline
 
 NeoBundleCheck
 catch /117/
