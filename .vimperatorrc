@@ -1,0 +1,300 @@
+set gui=none
+colorscheme vimpwhite
+
+so ~/.pentadactyl/styles.rc
+so ~/.pentadactyl/tomorrownight.rc
+
+set cpt=l
+"" complete search engine suguest
+set complete=lS
+
+" set downloadsort='-time'
+set maxitems=9
+set shell='/bin/zsh'
+set shellcmdflag='-c'
+"show current link in a command line
+"set showstatuslinks='command'
+" custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map  <F3> :styletoggle<Space>-name<Space>tomorrownight<CR>
+map  <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
+
+map , <leader>
+nmap  <Leader>, :noh<CR>
+
+map I_<C-w> I_<C-BS>
+ 
+"map  <C-a> -silent :sidebar Scrapbook<CR>
+"map  <C-d> -silent :sidebar Downloads<CR>
+map  B -silent :bmarks<CR>
+map  gr gT
+
+map <F4> :set complete=lS<CR>
+map <F5> :set complete=bookmark<CR>
+
+" remap 'o' to 'e'
+" nmap  e o
+
+imap <c-a> <home>
+cmap <c-a> <home>
+imap <a-f> <C-Right>
+cmap <a-f> <C-Right>
+imap <a-b> <C-Left>
+cmap <a-b> <C-Left>
+imap <c-e> <end>
+cmap <c-e> <end>
+
+"unmap gf 
+"unmap gh 
+"-------------[ Noscript ]---------------------------
+nmap  <leader>A     :noscript toggleperm<CR>
+nmap  <leader>a     :noscript toggletemp<CR>
+
+map <A-i> -js <<EOF
+
+set titlestring=firefox
+set history=900
+
+"" J/K move left/right
+map  J h
+map  K l
+"" U list closed tabs
+map  U :undo<Space>
+map  <leader>b :sidebar Bookmarks<CR>
+
+"" jumping at hint mode, seee http://code.google.com/p/dactyl/issues/detail?id=158
+" map -modes hints <C-f> -ex normal! <C-f>
+" map -modes hints <C-b> -ex normal! <C-b>
+map C-tab nop
+map <C-tab> <Nop>
+
+
+imap  <C-y> <S-Ins>
+" tmap  <C-y> i_<S-Ins>
+map  <C-y> <S-Ins>
+cmap  <C-y> <S-Ins>
+vmap  <C-y> <S-Ins>
+map s :sidebar<SPACE>
+map S :sbcl<CR>
+map  w b
+map $ <End>
+
+" Set the external editor
+set editor='/usr/bin/gvim -f +<line> <file>'
+
+" toggle styles """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" map base,caret,normal,visual <C-g> <Esc>
+"
+" map base,normal,caret,insert,visual <C-n> <Down>
+" map base,normal,caret,insert,visual <C-p> <Up>
+" map caret,insert,visual <C-b> <Left>
+" map caret,insert,visual <C-f> <Right>
+"
+" map command-line <C-n> <Tab>
+" map command-line <C-p> <S-Tab>
+"
+" map command,command-line,insert <C-/> <C-v><C-z>
+" map command,caret,command-line,insert,visual <A-w> <C-v><C-c>
+"
+" map command,command-line,insert <C-y> <C-v><C-v>
+
+map <C-a> 0
+" map -m normal <C-b> <A-left>
+map <C-e> $
+" map -m normal <C-f> <A-right>
+
+map <C-x>~ ~
+map <C-x>x <C-^>
+map <C-x>u gu
+map <C-x><C-u> gU
+
+" Russian language keyboard mappings (UTF-8)
+map ё `
+map й q
+map ц w
+map у e
+map к r
+map е t
+map н y
+map г u
+map ш i
+map щ o
+map з p
+map х [
+map ъ ]
+map ф a
+map ы s
+map в d
+map а f
+map п g
+map р h
+map о j
+map л k
+map д l
+map ж ;
+map э '
+map я z
+map ч x
+map с c
+map м v
+map и b
+map т n
+map ь m
+map б ,
+map ю .
+map Ё ~
+map Й Q
+map Ц W
+map У E
+map К R
+map Е T
+map Н Y
+map Г U
+map Ш I
+map Щ O
+map З P
+map Х {
+map Ъ }
+map Ф A
+map Ы S
+map В D
+map А F
+map П G
+map Р H
+map О J
+map Л K
+map Д L
+map Ж :
+map Э "
+map Я Z
+map Ч X
+map С C
+map М V
+map И B
+map Т N
+map Ь M
+map Б <
+map Ю >
+map . /
+
+"  " Style: Minimalistic Tabs {{{
+"  " -----------------------------------------------------------------------------
+"  style -name minitabs chrome://* <<EOM
+"  #TabsToolbar toolbarbutton {
+"    display: none !important;
+"  }
+"  .tabbrowser-tabs {
+"    background: #282a2e !important;
+"  }
+"  .tabbrowser-tab {
+"    -moz-appearance: none !important;
+"    -moz-border-radius: 0 !important;
+"    background: #282a2e !important;
+"    border: none !important;
+"    color: #707880 !important;
+"    font-family: Terminus !important;
+"    font-size: 9pt !important;
+"    height: 18px !important;
+"    margin: 0 !important;
+"    min-height: 0 !important;
+"    padding: 0 0.5ex !important;
+"  }
+"  .tabbrowser-tab:not([pinned]) {
+"    max-width: 100px !important;
+"    min-width: 100px !important;
+"  }
+"  .tabbrowser-tab:not([fadein]) {
+"    max-width: 1px !important;
+"    min-width: 1px !important;
+"  }
+"  .tabbrowser-tab:hover {
+"    background: #f0c674 !important;
+"    color: #282a2e !important;
+"  }
+"  .tabbrowser-tab[selected] {
+"    background: #282a2e !important;
+"    color: #f0c674 !important;
+"  }
+"  @-moz-document url-prefix(about:blank) {*{background-color:#000000;}}
+"  EOM
+
+" command! jstoggle :js (function() { var p = "javascript.enabled"; prefs.set(p, !prefs.get(p)); dactyl.echo(p+" is now set to "+prefs.get(p)+"\n") })()
+" 
+" command! read :open javascript:function%20iptxt(){var%20d=document;try{if(!d.body)throw(0);window.location='http://www.instapaper.com/text?u='+encodeURIComponent(d.location.href);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iptxt();void(0)
+" command! delicious :open javascript:(function(){f='http://www.delicious.com/save?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&v=5&';a=function(){if(!window.open(f+'noui=1&jump=doclose','deliciousuiv5','location=yes,links=no,scrollbars=no,toolbar=no,width=550,height=550'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})()
+" command! valid :open javascript:void(location='http://validator.w3.org/check?uri='+escape(location))
+" command! firebug :open javascript:(function(F,i,r,e,b,u,g,L,I,T,E){if(F.getElementById(b))return;E=F[i+'NS']&&F.documentElement.namespaceURI;E=E?F[i+'NS'](E,'script'):F[i]('script');E[r]('id',b);E[r]('src',I+g+T);E[r](b,u);(F[e]('head')[0]||F[e]('body')[0]).appendChild(E);E=new%20Image;E[r]('src',I+L);})(document,'createElement','setAttribute','getElementsByTagName','FirebugLite','4','firebug-lite.js','releases/lite/latest/skin/xp/sprite.png','https://getfirebug.com/','#startOpened');
+" command! ghfinder :open javascript:(function(){var%20a=(new%20RegExp("github.com/(.+)","i")).exec(window.location.href);var%20f=a?a[1].split("/"):[];var%20b=f[0];var%20d=f[1];var%20e=f[3];var%20c="http://sr3d.github.com/GithubFinder/?utm_source=bml"+(a?"&user_id="+b+"&repo="+d+(e?"&branch="+e:""):"");if(!c){alert("Invalid%20Github%20URL");return}window.open(c)})()
+" command! wirify :open javascript:(function(){wf_bookmarklet='1.1';if(typeof%20wfInit=='undefined'){document.body.appendChild(document.createElement('script')).src=(document.location.protocol=='https:'?'https:':'http:')+'//www.volkside.com/tools/wirify/wirify.min.js?'+parseInt(new%20Date().getTime()/43200000);}else{wfInit();}})();
+" }}}
+
+"" Add some of our own mappings
+"nmap <Leader>d :tabclose<CR>
+"nmap <C-g> :pa<CR>
+"nmap u :emenu Affichage.Code source de la page<CR>
+"nmap J :jumps<CR>
+"nmap <M-l> :later<CR>
+"nmap <M-d> :delicious<CR>
+"nmap <S-r> O<CR>
+"nmap <M-S-S> :set um!<CR>
+"nmap <F9> :sbclose<CR>
+"nmap <M-S-U> :dia selectionsource<CR>
+"nmap <M-S-J> :jstoggle<CR>
+
+" " Will not show menu and bookmarks tab
+" "set go=Bbr
+" " Will show menu and bookmarks tab
+" " set go+=mTbB
+" 
+" " To prevent ff focusing google's search 
+" " input field on open
+" "set focuscontent=on
+" 
+" " Will highlight search results during typing
+" 
+" " I want ignorecase to work without exceptions
+" " set smartcase=off
+" 
+" " Buggy for now
+" set editor="urxvt -e vim '+set ft=mail'"
+" 
+" "set toolbars=noaddons,bookmarks,nomenu,nonavigation,tabs
+" 
+" "set titlestring="Mozilla Aurora"
+" 
+" " Fullscreen-like commands
+" "map <F10> :set go=brB<CR>
+" "map <F11> :set go=brmTB<CR>
+" map <F9> :set toolbars=noaddons,bookmarks,menu,navigation,tabs<CR>
+" map <F11> :set toolbars=noaddons,nobookmarks,nomenu,nonavigation,tabs<CR>
+" 
+" imap <A-b> <C-Left>
+" imap <A-f> <C-Right>
+" imap <A-d> <C-S-Right><Del>
+" cmap <A-b> <C-Left>
+" cmap <A-f> <C-Right>
+" cmap <A-d> <C-S-Right><Del>
+" 
+" imap <A-и> <C-Left>
+" imap <A-а> <C-Right>
+" imap <A-в> <C-S-Right><Del>
+" cmap <A-и> <C-Left>
+" cmap <A-а> <C-Right>
+" cmap <A-в> <C-S-Right><Del>
+" 
+" map gr gT
+" map пк gT
+" map пе gt
+" 
+" map <A-q> gT
+" map <A-й> gT
+" map <A-w> gt
+" map <A-ц> gt
+" map <A-3> :tabmove +1<cr>
+" map <A-`> :tabmove -1<cr>
+" "map <C-v> <C-v><C-v>
+" map <C-c> <C-v><C-c>
+" map q :tabclose<cr>
+" 
+" " Will focus left tab after closing
+" map d D
