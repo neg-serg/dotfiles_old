@@ -1,8 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/mnt/home/dev/src/vimperator-labs/vimperator'
-let g:netrw_dirhist_2='/mnt/home/dev/src/vimperator-labs'
-let g:netrw_dirhist_3='/home/neg/.vimperator/plugin'
-let g:netrw_dirhist_4='/mnt/home/dev/src/vimperator-plugins'
-let g:netrw_dirhist_5='/tmp'
-let g:netrw_dirhist_6='/mnt/home/dev/src/1st_level/sxiv-git/src/sxiv'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/neg/.vim'
+let g:netrw_dirhist_2='/mnt/home/dev/src/1st_level/sxiv-git/src/sxiv'
+let g:netrw_dirhist_3='/mnt/home/dev/src/1st_level/sxiv-git_bck2/src/sxiv'
+let g:netrw_dirhist_4='/mnt/home/dev/src/1st_level/sxiv-git/src/sxiv'

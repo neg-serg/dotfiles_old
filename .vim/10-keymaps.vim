@@ -179,8 +179,8 @@ vnoremap ci[ f[ci[
 " Bindings for ctk
 " nnoremap <LocalLeader>C :CC<cr>
 
-nmap <F9> :SCCompile<cr>
-nmap <F10> :SCCompileRun<cr> 
+nmap <F9> :AsyncMake<cr>
+nmap <F10> :AsyncMake<cr> 
 
 inoremap <S-Ins> <C-r><C-o>*
 " imap <S-Insert> <C-o>p

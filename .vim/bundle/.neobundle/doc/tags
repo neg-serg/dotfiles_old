@@ -1814,6 +1814,7 @@ asynchandler#quickfix_add	asynccommand.txt	/*asynchandler#quickfix_add*
 asynchandler#rename	asynccommand.txt	/*asynchandler#rename*
 asynchandler#split	asynccommand.txt	/*asynchandler#split*
 b:TagHighlightSettings	TagHighlight.txt	/*b:TagHighlightSettings*
+b:dispatch	dispatch.txt	/*b:dispatch*
 b:indentconsistencycop_result	IndentConsistencyCop.txt	/*b:indentconsistencycop_result*
 b:match_col	matchit.txt	/*b:match_col*
 b:match_debug	matchit.txt	/*b:match_debug*
@@ -1833,6 +1834,7 @@ b:ref_clojure_precode	ref-clojure.txt	/*b:ref_clojure_precode*
 b:ref_noenter	ref.txt	/*b:ref_noenter*
 b:ref_perldoc_mode	ref-perldoc.txt	/*b:ref_perldoc_mode*
 b:ref_perldoc_word	ref-perldoc.txt	/*b:ref_perldoc_word*
+b:start	dispatch.txt	/*b:start*
 before	solarized.txt	/*before*
 bibtex	latexhelp.txt	/*bibtex*
 book-class	latexhelp.txt	/*book-class*
@@ -1986,6 +1988,15 @@ delimitMateTodo	delimitMate.txt	/*delimitMateTodo*
 description	latexhelp.txt	/*description*
 diffreview	patchreview.txt	/*diffreview*
 diffreview-usage	patchreview.txt	/*diffreview-usage*
+dispatch	dispatch.txt	/*dispatch*
+dispatch-:Copen	dispatch.txt	/*dispatch-:Copen*
+dispatch-:Dispatch	dispatch.txt	/*dispatch-:Dispatch*
+dispatch-:FocusDispatch	dispatch.txt	/*dispatch-:FocusDispatch*
+dispatch-:Make	dispatch.txt	/*dispatch-:Make*
+dispatch-:Start	dispatch.txt	/*dispatch-:Start*
+dispatch-commands	dispatch.txt	/*dispatch-commands*
+dispatch-strategies	dispatch.txt	/*dispatch-strategies*
+dispatch.txt	dispatch.txt	/*dispatch.txt*
 displaymath	latexhelp.txt	/*displaymath*
 draft	latexhelp.txt	/*draft*
 ds	surround.txt	/*ds*
@@ -2285,6 +2296,7 @@ g:ctrlp_mru_files	ctrlp.txt	/*g:ctrlp_mru_files*
 g:ctrlp_open_multi	ctrlp.txt	/*g:ctrlp_open_multi*
 g:ctrlp_persistent_input	ctrlp.txt	/*g:ctrlp_persistent_input*
 g:ctrlp_regexp_search	ctrlp.txt	/*g:ctrlp_regexp_search*
+g:dispatch_compilers	dispatch.txt	/*g:dispatch_compilers*
 g:easy_align_bang_interactive_modes	easy_align.txt	/*g:easy_align_bang_interactive_modes*
 g:easy_align_bypass_fold	easy_align.txt	/*g:easy_align_bypass_fold*
 g:easy_align_delimiter_align	easy_align.txt	/*g:easy_align_delimiter_align*

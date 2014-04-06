@@ -126,6 +126,7 @@ NeoBundle 'tpope/vim-obsession.git'           "Session manager
 NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
 NeoBundle 'derekwyatt/vim-protodef'           "Автоматическое создание cpp файла, по заголовочному
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
+NeoBundle 'tpope/vim-dispatch.git'            "Should providy async build
 NeoBundleLazy 'gcmt/surfer.vim.git'           "Yet another natigator for tags [test]
 NeoBundleLazy 'jszakmeister/vim-togglecursor' "Test it for some terminals
 NeoBundleLazy 'drmikehenry/vim-fixkey'        "fixes key codes for console Vim

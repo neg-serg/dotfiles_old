@@ -125,7 +125,7 @@ let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
-set autochdir                               " Change pwd automaticly
+set noautochdir                             " Dont't change pwd automaticly
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
