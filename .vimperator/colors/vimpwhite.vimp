@@ -35,7 +35,8 @@ hi Key                 color: #CCCCCC; font-weight: bold;  font-family: "Pragmat
 hi Keyword             color: #001742;  font-family: "PragmataPro"; font-size: 12pt;
 hi LineNr              color: orange; background: black;  font-family: "PragmataPro"; font-size: 12pt;
 hi Message             color: #CCCCCC; black-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;  font-family: "PragmataPro"; font-size: 12pt;
-hi ModeMsg             color: #CCCCCC; background: white; border-radius: 1px; padding: 0px 5px;  font-family: "PragmataPro"; font-size: 12pt;
+" hi ModeMsg             color: #CCCCCC; background: white; border-radius: 1px; padding: 0px 5px;  font-family: "PragmataPro"; font-size: 12pt;
+hi ModeMsg             background-color: #CCCCCC !important; color: black !important; border-radius: 1px; padding: 0px 5px; font-family: "PragmataPro"; font-size: 12pt; font-weight: bold;
 hi MoreMsg             color: #CCCCCC; color: #1C793D; background: black;  font-family: "PragmataPro"; font-size: 12pt;
 hi NonText             color: #CCCCCC; color: #2774FB; min-height: 16px; padding-left: 2px;  font-family: "PragmataPro"; font-size: 12pt;
 hi Normal              color: #CCCCCC; background: black;  font-family: "PragmataPro"; font-size: 12pt;
