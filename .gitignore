@@ -16,3 +16,4 @@ bin/go/go-mtpfs
 .vim/undo/%mnt%home%.wine%user.reg
 .vim/tmp/*
 .viminfo
+.vim/bundle/*
