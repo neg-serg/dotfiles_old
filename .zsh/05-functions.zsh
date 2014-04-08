@@ -36,7 +36,7 @@ function spectrum_ls() {
   for code in {000..255}; print -P -- "$code: %F{$code}Test%f"
 }
 
-zc() { for z in $HOME/.zsh/*.zsh $HOME/.zshrc; do zcompile $z; echo "Compiled $z"; done }
+zc() { for z in $HOME/.zsh/**/**.zsh $HOME/.zshrc; do zcompile $z; echo "Compiled $z"; done }
 
 isutfenv() {
     case "$LANG $CHARSET $LANGUAGE" in

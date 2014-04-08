@@ -35,7 +35,7 @@ autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=synt
 autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
 
 autocmd FileType git set nofoldenable
-autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
+"autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
 
   autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
   au BufRead,BufNewFile *.go           set filetype=go

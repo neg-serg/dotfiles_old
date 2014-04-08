@@ -1,5 +1,5 @@
 . ~/.zsh/01-init.zsh
-. ~/.zsh/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ~/.zsh/03-exports.zsh
 . ~/.zsh/04-oldprompt.zsh
 . ~/.zsh/04-zleiab.zsh
