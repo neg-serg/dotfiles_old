@@ -1,15 +1,3 @@
-# TMUX
-# if which tmux 2>&1 >/dev/null; then
-#     # if no session is started, start a new session
-#     test -z ${TMUX} && tmux
-# 
-#     # when quitting tmux, try to attach
-#     while test -z ${TMUX}; do
-#         tmux attach || break
-#     done
-# fi
-# tmux run-shell ~/bin/stx
-
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0000000" #black
     echo -en "\e]P83d3d3d" #darkgrey
@@ -29,6 +17,13 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFc0c0c0" #white
     clear
 fi
+
+# Set our default path
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_DOWNLOAD_DIR="${HOME}/dw"
+export XDG_MUSIC_DIR="${HOME}/music" 
+export GREP_COLORS=ms=1;35:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30
 
 if [[ -o LOGIN ]]; then
     (( $#commands[tmux] )) && tmux list-sessions 2>/dev/null
