@@ -1,0 +1,5 @@
+scriptencoding utf-8
+
+syntax on
+filetype plugin indent on
+source ~/.vim/99-hi-settings.vim

@@ -1,5 +1,3 @@
-"--[ experimental ]-------------------------------------
-set noshowmode          " don't show the mode ("-- INSERT --") at the bottom
 " ------[ GUI settings ]-----------------------------------------------------
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
@@ -126,6 +124,7 @@ set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
 set noautochdir                             " Dont't change pwd automaticly
+set showmode                                " show the mode ("-- INSERT --") at the bottom
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
