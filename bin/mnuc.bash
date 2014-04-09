@@ -6,7 +6,7 @@
 # Copyright (c) 2013 Vyacheslav Levit
 # Licensed under The MIT License: http://opensource.org/licenses/MIT
 
-MUSIC_DIR=$HOME/Music
+MUSIC_DIR=$HOME/music
 DARKEN=50 # 0 - original image colors, 100 - absolutely black background
 
 TMP=/tmp
