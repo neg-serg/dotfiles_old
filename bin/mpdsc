@@ -1,16 +1,10 @@
-#!/bin/bash
+#!/bin/zsh
 source $HOME/.config/dplay/config
-function dmenu_t () {
-    if [ "$dmenu_trans" == "1" ]; then
-        dmenu -o 0.9 -i -l 20 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
-    else
-        dmenu -i -l 20 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
-    fi
-}
+DMENU="${HOME}/bin/dmenu_select"
 
 case $1 in
     -a)
-     ALBUM=$(echo -e "$(mpc list album)" | dmenu_t -p "$2 Album:");
+     ALBUM=$(echo -e "$(mpc list album)" | $DMENU -p "$2 Album:");
      if [[ "$ALBUM" = "" ]]
          then echo "no selection made"
      else
@@ -24,7 +18,7 @@ case $1 in
      fi
 ;;
     -t)
-     TRACK=$(echo -e "$(mpc listall)" | dmenu_t -p "$2 Track:");
+     TRACK=$(echo -e "$(mpc listall)" | $DMENU -p "$2 Track:");
      if [[ "$TRACK" = "" ]]
          then echo "no selection made"
      else
