@@ -26,6 +26,7 @@ hi Function            color: #CCCCCC; font-family: "PragmataPro"; font-size: 12
 hi HintActive          background-color: #001742; color: white;
 " hi Hint                background-color: #001742; border-radius: 2px; font-family: "PragmataPro"; color:#477275; font-weight: bold;
 hi Hint                background-color: #001742; border-radius: 4px; font-family: "PragmataPro"; font-size: 10pt;color:#89CDD2; font-weight: bold;
+hi Hint[active]        background: black; background: #000000; border-radius: 4px; font-family: "PragmataPro"; font-size: 10pt;color:#89CDD2; font-weight: bold;
 hi HintImage           opacity: .5;  font-family: "PragmataPro"; font-size: 12pt;
 hi HintElem            background-color: #CCCCCC !important; color: black !important; border-radius: 2px; 
 
@@ -56,3 +57,4 @@ hi Title               color: magenta; background: black; font-weight: bold; fon
 hi URL                 color: #CCCCCC; text-decoration: none; color: #1C793D; font-family: "PragmataPro"; font-size: 12pt;
 hi URL:hover           color: #CCCCCC; text-decoration: underline; cursor: pointer; font-family: "PragmataPro"; font-size: 12pt;
 hi WarningMsg          color: #001742; background: black; font-family: "PragmataPro"; font-size: 12pt;
+
