@@ -112,8 +112,6 @@ amixer -q set Master 0% mute
 # [ -z $(pidof transmission-daemon) ] && transmission-daemon
 # [ -x /usr/bin/xcape ] && /usr/bin/xcape &
 ~/bin/clipd.rb &
-font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses &
+# font='-misc-ohsnapu-medium-r-normal--14-101-100-100-c-70-iso10646-1';urxvtcd -fn  $font -name wicd  -e wicd-curses &
 
 exec notion
-# sxhkd -c ${HOME}/.config/herbstluftwm/sxhkdrc 
-# exec herbstluftwm -l
