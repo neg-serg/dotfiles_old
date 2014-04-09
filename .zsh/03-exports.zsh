@@ -1,13 +1,4 @@
-# XDG_DESKTOP_DIR="/home/user/"
-# XDG_TEMPLATES_DIR="/home/user/dir"
-# XDG_PUBLICSHARE_DIR="/home/user/dir"
-# XDG_DOCUMENTS_DIR="/home/user/dir"
-# XDG_PICTURES_DIR="/home/user/dir"
-# XDG_VIDEOS_DIR="/home/user/dir"
 
-# Don't change. The following determines where YADR is installed.
-# export PERLBREW_ROOT=${HOME}/bin/perl5/perlbrew
-# export yadr=$HOME/.yadr 
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export LESSCHARSET=UTF-8
@@ -26,6 +17,20 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_DOWNLOAD_DIR="${HOME}/dw"
 export XDG_MUSIC_DIR="${HOME}/music"
+export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
+export XDG_TEMPLATES_DIR=${XDG_DESKTOP_DIR}
+export XDG_DOCUMENTS_DIR="${HOME}/doc/"
+export XDG_PICTURES_DIR="${HOME}/pic"
+export XDG_VIDEOS_DIR="${HOME}/vid"
+
+export ACKRC="${XDG_CONFIG_HOME}/ackrc"
+export GIMP2_DIRECTORY=${HOME}/etc/gimp-2.8
+export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
+
+export ESCDELAY=1
+export NCURSES_ASSUMED_COLORS=3,0
+export NCURSES_NO_MAGIC_COOKIES=1
+export NCURSES_NO_PADDING=1
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/trinity/bin/"
 export PAGER="vimpager"

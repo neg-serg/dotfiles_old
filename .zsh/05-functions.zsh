@@ -871,29 +871,17 @@ sprunge() {
     fi
 }
 
-# # quickly check/initiate pulseaudio and mifo daemons:
-# function mpx {
-#   case $1:l {
-#     stop|disable)
-#       print - "stopping : pulseaudio"
-#       pulseaudio -k
-#       print - "stopping : mifo"
-#       mifo --quit
-#     ;;
-#     *)
-#       pulseaudio --check
-#       if [[ $? != 0 ]] {
-#         print - "initiate : pulseaudio"
-#         pulseaudio --start --log-target=syslog --daemonize
-#       } else { print - "running  : pulseaudio" }
-#       mifo --instance quiet
-#       if [[ $? != 0 ]] {
-#         print - "initiate : mifo"
-#         mifo --init
-#       } else { print - "running  : mifo" }
-#     ;;
-# };}
-#
-# one-liners/micro functions:
-# function startx { [[ ${+DISPLAY} -eq 1 ]] || /usr/bin/xinit ${XDG_CONFIG_DIR:-${HOME}}/xorg/xinitrc -auth ${XDG_CONFIG_DIR:-${HOME}}/xorg/.serverauth.${RANDOM[1,4]} -nolisten tcp -once -retro }
-# function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root } function flashproc { for f (${$(file /proc/$(pidof dwb)/fd/*|gawk '/\/tmp\/Flash/ { print $1}')//:}){ print - "$f" }}
+# un-smart function for viewing/editing history file (still use 'fc/history'):
+function zhist {
+  if [[ $# -ge 1 ]]; then
+    case $1 {
+      '-a'|'-all') <${ZDOTDIR:-${HOME}/zsh}/.history | ${PAGER:-less} ;;
+      '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ${ZDOTDIR:-${HOME}/zsh}/.history ;;
+      '-f'|'--find') [[ -n $2 ]] && <${ZDOTDIR:-${HOME}/zsh}/.history|grep -i "${${@:/$1}// /\|}" ;;
+    }
+  else
+    print - "options: -e (edit), -f (find), -a (all)"
+  fi
+}
+
+# function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
