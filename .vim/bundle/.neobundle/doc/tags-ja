@@ -50,6 +50,14 @@ g:unite_source_outline_highlight	unite-outline.jax	/*g:unite_source_outline_high
 g:unite_source_outline_indent_width	unite-outline.jax	/*g:unite_source_outline_indent_width*
 g:unite_source_outline_info	unite-outline.jax	/*g:unite_source_outline_info*
 g:unite_source_outline_max_headings	unite-outline.jax	/*g:unite_source_outline_max_headings*
+l9	l9.jax	/*l9*
+l9-about	l9.jax	/*l9-about*
+l9-author	l9.jax	/*l9-author*
+l9-contact	l9.jax	/*l9-contact*
+l9-installation	l9.jax	/*l9-installation*
+l9-introduction	l9.jax	/*l9-introduction*
+l9-usage	l9.jax	/*l9-usage*
+l9.txt	l9.jax	/*l9.txt*
 ref#available_source_names()	ref.jax	/*ref#available_source_names()*
 ref#available_sources()	ref.jax	/*ref#available_sources()*
 ref#cache()	ref.jax	/*ref#cache()*

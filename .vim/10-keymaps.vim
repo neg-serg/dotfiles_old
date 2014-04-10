@@ -15,10 +15,19 @@ vmap <F6> :!xclip -f -sel clip<CR>
 map <F7> mz:-1r !xclip -o -sel clip<CR>`z
 
 " Traverse buffers, quickly
-
 nnoremap <PageUp> :bp<CR>
 nnoremap <PageDown> :bn<CR>
 " nnoremap <Return> <C-]>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
+" Now we don't have to move our fingers so far when we want to scroll through
+" the command history; also, don't forget the q: command (see :h q: for more
+" info)
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
 
 " nnoremap ; :
 " nnoremap : ;
@@ -36,7 +45,8 @@ nnoremap <silent> gA :A<CR>
 " like firefox tabs
 nmap <A-w> :bd<cr> 
 
-map <leader>r mz<bar>:retab!<bar>:normal gg=G<cr>`z
+"--[ Experimental indent file ]--------------------
+map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
 
 " " Wrapped lines goes down/up to next row, rather than next line in file.
 " noremap j gj
@@ -49,8 +59,10 @@ map <leader>r mz<bar>:retab!<bar>:normal gg=G<cr>`z
 " noremap <Home> g<Home>
 " noremap ^ g^
 
-" Toggle search highlighting
-nmap <silent> <leader>/ :set invhlsearch<CR>
+" Toggles '/' to mean eregex search or normal Vim search
+nnoremap <leader>/ :call eregex#toggle()<CR>
+" " Toggle search highlighting
+" nmap <silent> <leader>/ :set invhlsearch<CR>
 " Toggle hlsearch for current results
 nnoremap <leader><leader> :nohlsearch<CR>
 
@@ -66,7 +78,6 @@ noremap H ^
 noremap L g_
 
 " Open a Quickfix window for the last search.
-nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 " nmap <silent> <leader>r :LustyBufferExplorer<CR>
@@ -241,10 +252,18 @@ let g:ycm_key_invoke_completion = '<A-x>'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 "-----------[ UltiSnips ]-------------------------------------
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:Ultisnips_ListSnippets=""
+" we can't use <tab> as our snippet key since we use that with YouCompleteMe
+let g:UltiSnipsSnippetsDir         = $HOME . '/dotfiles/vim/UltiSnips'
+if has("gui_macvim")
+  " Ctrl conflicts with "Dvorak-Qwerty Command"
+  let g:UltiSnipsExpandTrigger       = "<m-s>"
+else
+  " Alt conflicts with Xmonad
+  let g:UltiSnipsExpandTrigger="<m-s>"
+  let g:UltiSnipsJumpForwardTrigger="<m-s>"
+  let g:UltiSnipsJumpBackwardTrigger="<m-w>"
+  let g:UltiSnipsListSnippets        = "<c-m-s>"
+endif
 
 map <S-h> gT
 map <S-l> gt
@@ -263,8 +282,16 @@ map <S-l> gt
 
     cmap Tabe tabe
 endif
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
+
+
+nnoremap <leader>r :YRShow<CR>
+
+" this makes Y yank from the cursor to the end of the line, which makes more
+" sense than the default of yanking the whole current line (we can use yy for
+" that)
+function! YRRunAfterMaps()
+    nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+endfunction
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
@@ -506,3 +533,14 @@ nnoremap <Leader>sl :call FSwitch('%', 'wincmd l')<cr>
 nnoremap <Leader>sr :call FSwitch('%', 'wincmd r')<cr>
 " Creates a new window on the left and opens the companion file in it
 nnoremap <Leader>sv :FSSplitLeft<cr>
+
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+" nnoremap ' `
+" nnoremap ` '
+
+" g<c-]> is jump to tag if there's only one matching tag, but show list of
+" options when there is more than one definition
+" nnoremap <leader>g g<c-]>
+

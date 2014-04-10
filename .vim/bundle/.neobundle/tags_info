@@ -5,8 +5,11 @@ Conque-Shell
 DirDiff.vim
 IndentConsistencyCop
 Join
+ListToggle
+MatchTagAlways
 SingleCompile
 TeX-9
+YankRing.vim
 YouCompleteMe
 ack.vim
 ag.vim
@@ -18,7 +21,6 @@ csv.vim
 ctrlp.vim
 delimitMate
 emmet-vim
-gdbmgr
 gitv
 gtags-cscope-vim-plugin
 gundo.vim
@@ -33,6 +35,8 @@ neobundle.vim
 neomru.vim
 patchreview-vim
 po.vim--gray
+python-indent
+rename.vim
 restart.vim
 slimux
 splice.vim
@@ -70,7 +74,9 @@ vim-fswitch
 vim-fugitive
 vim-github-dashboard
 vim-indent-guides
+vim-instant-markdown
 vim-json
+vim-l9
 vim-latex-live-preview
 vim-markdown
 vim-mathematica
@@ -99,5 +105,6 @@ vimproc
 vimux
 vital.vim
 winresizer
+xmledit
 yate
 zoomwintab.vim

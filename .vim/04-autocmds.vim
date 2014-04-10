@@ -1,5 +1,10 @@
-" experimental
-"   " OmniComplete {
+" We reset the vimrc augroup. Autocommands are added to this group throughout
+" the file
+augroup vimrc
+    autocmd!
+augroup END
+
+" OmniComplete {
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
         \if &omnifunc == "" |
@@ -7,8 +12,8 @@ if has("autocmd") && exists("+omnifunc")
         \endif
 endif
 
-"forced powerline redraw
-" au FocusGained * :redraw!
+" forced powerline/airline redraw
+au FocusGained * :redraw!
 
 " autocmd VimEnter * echo "Welcome back Sergey :)"
 " autocmd VimLeave * echo "Cya in Hell."
@@ -19,9 +24,9 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-"---------------------
-" --- [ Autocmds ] ---
-"---------------------
+"--------------------------------------------------------------------------------------------
+" --- [ Autocmds ] --------------------------------------------------------------------------
+"--------------------------------------------------------------------------------------------
 autocmd BufNewFile,BufRead  *             if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
 autocmd BufRead,BufNewFile  *.viki        setlocal ft=viki
 autocmd BufNewFile,BufRead  *.t2t         setlocal ft=txt2tags
@@ -65,7 +70,6 @@ au FileType mail setl spell fo=wantq1 smc=0
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python        setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby          setlocal omnifunc=rubycomplete#Complete
@@ -76,7 +80,6 @@ autocmd FileType markdown NeoBundleSource vim-markdown
 autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
-au FileType python setlocal foldlevel=1000
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 autocmd BufWritePost *.rb call Compile()
@@ -135,7 +138,6 @@ autocmd BufNewFile,BufRead *.html.twig                            set filetype=h
 augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
-
 
 " hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1 
 " hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
@@ -247,3 +249,35 @@ augroup vimrcEx
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 augroup END
+
+" UltiSnips is missing a setf trigger for snippets on BufEnter
+autocmd vimrc BufEnter *.snippets setf snippets
+
+" In UltiSnips snippet files, we want actual tabs instead of spaces for indents.
+" US will use those tabs and convert them to spaces if expandtab is set when the
+" user wants to insert the snippet.
+autocmd vimrc FileType snippets set noexpandtab
+
+" The stupid python filetype plugin overrides our settings!
+autocmd vimrc FileType python
+      \ set tabstop=2 |
+      \ set shiftwidth=2 |
+      \ set softtabstop=2 |
+      \ setlocal omnifunc=pythoncomplete#Complete |
+      \ setlocal foldlevel=1000
+
+augroup vimrc
+  " Automatically delete trailing DOS-returns and whitespace on file open and
+  " write.
+  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
+augroup END
+
+" cindent is a bit too smart for its own good and triggers in text files when
+" you're typing inside parens and then hit enter; it aligns the text with the
+" opening paren and we do NOT want this in text files!
+autocmd vimrc FileType text,markdown,gitcommit set nocindent
+
+" Turn on spell checking by default for git commit messages
+au vimrc FileType gitcommit setlocal spell! spelllang=en_us
+autocmd vimrc FileType markdown setlocal spell! spelllang=en_us
+
