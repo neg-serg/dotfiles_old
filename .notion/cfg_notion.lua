@@ -361,7 +361,7 @@ defbindings("WClientWin", {
 })
 
 defbindings("WGroupCW", { 
-    kpress_wait("Mod1+Control+Return", "WGroup.set_fullscreen(_, 'toggle')"),
+    kpress_wait("Mod4+Return", "WGroup.set_fullscreen(_, 'toggle')"),
     kpress_wait("Mod4+Q", "WGroup.set_fullscreen(_, 'toggle')"),
 })
 defbindings("WMPlex",{

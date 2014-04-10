@@ -155,6 +155,7 @@ RESET 0 # reset to "normal" color
 .doc       00;38;5;29
 .docx      00;38;5;29
 .odt       00;38;5;29
+.xla       00;38;5;22
 .xls       00;38;5;22
 .xlsx      00;38;5;22
 .xlsm      00;38;5;22

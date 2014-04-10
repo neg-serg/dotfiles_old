@@ -1,3 +1,20 @@
+" With this map, we can select some text in visual mode and by invoking the map,
+" have the selection automatically filled in as the search text and the cursor
+" placed in the position for typing the replacement text. Also, this will ask
+" for confirmation before it replaces any instance of the search text in the
+" file.
+" NOTE: We're using %S here instead of %s; the capital S version comes from the
+" eregex.vim plugin and uses Perl-style regular expressions.
+" vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+
+" for testing out custom vim scripts
+" set rtp+=$HOME/vim_test,$HOME/vim_test/after,$HOME/repos/YouCompleteMe
+
+" Home away from home. We store some config files and snippets here and the
+" whole dotfiles dir is a git repo. Should be the last entry in rtp (for
+" UltiSnips).
+" set rtp+=$HOME/dotfiles/vim
+
 " ------[ GUI settings ]-----------------------------------------------------
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
@@ -17,7 +34,6 @@ if has("gui_running")
     set go=c                           " For text messages instead of gui
     set background=dark                " Usable for colorschemes
     set noantialias                    " Disable antialiasing
-    set clipboard=unnamed              " Default copy to unnamed
     set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
@@ -117,6 +133,12 @@ if !has("gui_running")
    "  colorscheme solarized
    "  source ~/.vim/colors/99-solarized.vim
 endif
+
+if has ('x') && has ('gui') " On Linux use + register for copy-paste
+    set clipboard=unnamedplus
+elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+    set clipboard=unnamed
+endif
 "----------------------------------------------------------------------------
 let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
@@ -145,6 +167,8 @@ set fileencodings=utf-8,cp1251              " Set fileenc list
 
 set timeout timeoutlen=250
 set ttimeout ttimeoutlen=40  " Usable for fast keybindings
+
+
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
 "   last    - same directory as last file browser
@@ -161,14 +185,32 @@ set browsedir=buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=
 
-" Clipboard
-if has('unnamedplus-that-really-truly-works')
-    set clipboard=unnamedplus   " use X11 SYSTEM clipboard
+if has('unnamedplus')
+  " By default, Vim will not use the system clipboard when yanking/pasting to
+  " the default register. This option makes Vim use the system default
+  " clipboard.
+  " Note that on X11, there are _two_ system clipboards: the "standard" one, and
+  " the selection/mouse-middle-click one. Vim sees the standard one as register
+  " '+' (and this option makes Vim use it by default) and the selection one as
+  " '*'.
+  " See :h 'clipboard' for details.
+  set clipboard=unnamedplus,unnamed
 else
-    set clipboard=unnamed       " use X11 PRIMARY clipboard (selection)
+  " Vim now also uses the selection system clipboard for default yank/paste.
+  set clipboard+=unnamed
 endif
 
-syntax sync minlines=256
+" Unicode support (taken from http://vim.wikia.com/wiki/Working_with_Unicode)
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
+syntax sync minlines=128
 " set completeopt=menu
 set completeopt=menu,menuone,longest
 set switchbuf=useopen,usetab
@@ -186,14 +228,16 @@ set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set matchtime=3                 " Default time to hi brackets too long for me
+set matchtime=2                 " Default time to hi brackets too long for me
+
+" allow backspace and cursor keys to cross line boundaries
+set gdefault            " this makes search/replace global by default
 
 " set nowrap                      " Do not wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-set clipboard-=autoselect clipboard+=autoselectml
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
 " set autowrite                   " Automatically write a file when leaving a modified buffer
@@ -204,9 +248,10 @@ set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatib
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
 set expandtab                   " Tabs are spaces, not tabs
-set shiftwidth=4                " Use indents of 4 spaces
-set tabstop=4                   " An indentation every four columns
-set softtabstop=4               " Let backspace delete indent
+set shiftwidth=2        " spaces for autoindents
+set shiftround          " makes indenting a multiple of shiftwidth
+set tabstop=2                   " An indentation every four columns
+set softtabstop=2               " Let backspace delete indent
 set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
@@ -238,21 +283,31 @@ endif
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
-set formatoptions+=t    " auto-wrap using textwidth (not comments)
-set formatoptions+=c    " auto-wrap comments too
-set formatoptions+=r    " continue the comment header automatically on <CR>
-set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-set formatoptions+=q    " allow formatting of comments with gq
-" set formatoptions-=w   " double-carriage-return indicates paragraph
-" set formatoptions-=a   " don't reformat automatically
-set formatoptions+=n    " recognize numbered lists when autoindenting
-set formatoptions+=2    " use second line of paragraph when autoindenting
-set formatoptions-=v    " don't worry about vi compatiblity
-set formatoptions-=b    " don't worry about vi compatiblity
-set formatoptions+=l    " don't break long lines in insert mode
-set formatoptions+=1    " don't break lines after one-letter words, if possible
-set cindent             " stricter rules for C programs
 
+" options for formatting text; see :h formatoptions
+set formatoptions=tcroqnj
+
+" set formatoptions+=t    " auto-wrap using textwidth (not comments)
+" set formatoptions+=c    " auto-wrap comments too
+" set formatoptions+=r    " continue the comment header automatically on <CR>
+" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+" set formatoptions+=q    " allow formatting of comments with gq
+" " set formatoptions-=w   " double-carriage-return indicates paragraph
+" " set formatoptions-=a   " don't reformat automatically
+" set formatoptions+=n    " recognize numbered lists when autoindenting
+" set formatoptions+=2    " use second line of paragraph when autoindenting
+" set formatoptions-=v    " don't worry about vi compatiblity
+" set formatoptions-=b    " don't worry about vi compatiblity
+" set formatoptions+=l    " don't break long lines in insert mode
+" set formatoptions+=1    " don't break lines after one-letter words, if possible
+
+" this can cause problems with other filetypes
+" see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
+"set smartindent         " smart auto indenting
+set autoindent          " on new lines, match indent of previous line
+set copyindent          " copy the previous indentation on autoindenting
+set cindent             " smart indenting for c-like code
+set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
 set laststatus=2        " requied by PowerLine/Airline
 
 set cursorline          " highlight current line
@@ -294,11 +349,6 @@ if has("cscope")
   " cscope add  expand(:pwd)/GTAGS
   " endif
 endif
-if has ('x') && has ('gui') " On Linux use + register for copy-paste
-    set clipboard=unnamedplus
-elseif has ('gui')          " On mac and Windows, use * register for copy-paste
-    set clipboard=unnamed
-endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
 set printoptions+=left:2,right:2,top:2,bottom:2
@@ -327,6 +377,13 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 set magic
 
 set path=**
+
+" this makes sure that shell scripts are highlighted
+" as bash scripts and not sh scripts
+let g:is_posix = 1
+"--[ vimpager isn't actually a plug but a script ]----------------
+let vimpager_use_gvim = 1
+
 " indent_guides {
     let g:indent_guides_auto_colors = 1
     " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
@@ -335,9 +392,10 @@ set path=**
     let g:indent_guides_start_level           = 2
     let g:indent_guides_guide_size            = 1
     let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent  = 7
 " }
 " Ctags {
-    set tags=./tags;/,~/.vim/tags
+    set tags=./tags;/;~/.vim/tags
 
     " Make tags placed in .git/tags file available in all levels of a repository
     let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
@@ -348,7 +406,7 @@ set path=**
 let g:gundo_playback_delay = 240
 
 let mapleader=','
-let maplocalleader=','
+let maplocalleader=' '
 let g:mapleader = ","
 
 let g:LustyJugglerDefaultMappings=0
@@ -443,6 +501,7 @@ let g:syntastic_c_no_include_search = 1
 let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_c_check_header = 1
 
+"--[ YouCompleteMe ]----------------------------------------------------------
 " let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 " let g:ycm_extra_conf_globlist = ['~/dev/*','*']
 
@@ -456,10 +515,8 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_min_num_of_chars_for_completion = 4
-" let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_use_ultisnips_completer = 0
-
 
 let g:ycm_semantic_triggers =  {
     \   'c' : ['->', '.'],
@@ -484,11 +541,20 @@ let g:ycm_filetype_blacklist = {
       \ 'asm'         : 1,
       \}
 
+
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_min_num_identifier_candidate_chars = 4
+let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+
 " https://github.com/airblade/vim-gitgutter/issues/106
 let g:gitgutter_realtime = 0
 
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" this is so that single char deletes don't end up in the yankring
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 14
 let g:yankring_history_file = '/tmp/yankring_hist'
 
 
@@ -571,3 +637,18 @@ let g:delimitMate_balance_matchpairs = 1
 
 let g:livepreview_previewer = 'zathura'
 
+let g:lt_location_list_toggle_map = '<c-e>i'
+let g:lt_quickfix_list_toggle_map = '<c-e>u'
+let g:lt_height = 25
+
+let g:eregex_default_enable = 0
+
+
+"--[ MatchTagAlways ]-------------
+let g:mta_use_matchparen_group = 0
+
+"--[ Zencoding ]------------------
+let g:user_zen_leader_key = '<c-b>'
+let g:user_zen_settings = {
+      \  'indentation' : '  '
+      \}
