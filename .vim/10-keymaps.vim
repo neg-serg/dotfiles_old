@@ -43,7 +43,7 @@ nnoremap ;P :call FancyPaste('+')<CR>
 nnoremap <silent> gA :A<CR>
 
 " like firefox tabs
-nmap <A-w> :bd<cr> 
+nmap <A-w> :bd<cr>
 
 "--[ Experimental indent file ]--------------------
 map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
@@ -51,7 +51,7 @@ map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
 " " Wrapped lines goes down/up to next row, rather than next line in file.
 " noremap j gj
 " noremap k gk
-" 
+"
 " " Same for 0, home, end, etc
 " noremap $ g$
 " noremap <End> g<End>
@@ -191,7 +191,7 @@ vnoremap ci[ f[ci[
 " nnoremap <LocalLeader>C :CC<cr>
 
 nmap <F9> :AsyncMake<cr>
-nmap <F10> :AsyncMake<cr> 
+nmap <F10> :AsyncMake<cr>
 
 inoremap <S-Ins> <C-r><C-o>*
 " imap <S-Insert> <C-o>p
@@ -279,7 +279,6 @@ map <S-l> gt
         command! -bang Q q<bang>
         command! -bang QA qa<bang>
         command! -bang Qa qa<bang>
-
     cmap Tabe tabe
 endif
 
