@@ -41,15 +41,15 @@ if has("gui_running")
     set mouse=                          " enable full mouse support
     set ttymouse=xterm2                " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
-    
+
    "  set selection=exclusive            " exclusive selection is better [?]
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
-    
-    set winaltkeys=no                  " 
+
+    set winaltkeys=no                  "
     set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
 
     " Paste from PRIMARY and CLIPBOARD
@@ -69,7 +69,7 @@ endif
 if !has("gui_running")
     " ENABLE CTRL INTERPRETING FOR VIM
     silent !stty -ixon > /dev/null 2>/dev/null
-    
+
     set ttyscroll=1024
     set lazyredraw
     colorscheme miromiro
@@ -124,7 +124,7 @@ if !has("gui_running")
     set <M-*>=*
     set <M-.>=.
     set <M-^>=^
-    
+
 
    "  let g:solarized_termcolors=256
    "  let g:solarized_termtrans=1
@@ -360,7 +360,7 @@ set pumheight=10
 
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-" Options initiating with ?m? 
+" Options initiating with ?m?
 " [global] |'magic'| Set 'magic' patterns ;)
 " Examples:
 "  \v       \m       \M       \V         matches ~
@@ -453,7 +453,7 @@ let g:airline_right_alt_sep    = ''
 " let g:airline_left_alt_sep     = '⮁ '
 " let g:airline_right_sep        = '⮂'
 " let g:airline_right_alt_sep    = '⮃'
- 
+
 let g:airline_symbols.branch   = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr   = ''
@@ -555,7 +555,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " this is so that single char deletes don't end up in the yankring
 let g:yankring_min_element_length = 2
 let g:yankring_window_height = 14
-let g:yankring_history_file = '/tmp/yankring_hist'
+let g:yankring_history_dir = '/tmp'
+let g:yankring_history_file = 'yankring_hist'
 
 
 let g:Gitv_OpenHorizontal = 'auto'
@@ -594,7 +595,7 @@ let g:Gitv_CommitStep = 1024
 
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so' 
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
 
 let g:ConqueGdb_Leader          = '\'        "<leader>, by default is painful
 let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
