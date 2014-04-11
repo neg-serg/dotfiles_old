@@ -1,4 +1,4 @@
- --_:attach_new({type="WFloatWS", layer=2}):goto() 
+ --_:attach_new({type="WFloatWS", layer=2}):goto()
 --------------------------------[[ CONSTS ]]----------------------------------------
 META="Mod1+"
 --------------------------------[[ IONCORE ]]---------------------------------------
@@ -32,15 +32,15 @@ dopath("named_scratchpad")
 dopath("mod_query")
 dopath("mod_menu")
 dopath("mod_tiling")
-dopath("min_tabs")        
+dopath("min_tabs")
 dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
-dopath("dynamic_view")    
+dopath("dynamic_view")
 -- dopath("mod_fuzzy_query")
 dopath("cfg_tiling")
-dopath("dbg")             
+dopath("dbg")
 dopath("mod_xrandr")
 dopath("mod_notionflux")
 dopath("cfg_xrandr")
@@ -161,7 +161,7 @@ defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- local vmtable={class="vmware",instance="Vmware"}
 
 defbindings("WMPlex.toplevel", {
-    --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),  
+    --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
     kpress("Mod1+space",       "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
@@ -180,7 +180,7 @@ defbindings("WMPlex.toplevel", {
 
     kpress("Mod4+M",           "mod_query.query_menu(_, _sub, 'ctxmenu', 'Context menu:')"),
     kpress("Mod4+Shift+D", "ioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
- 
+
 -------------------------------------------------------------------------------------
 --[[ SCRATCHPADS  ]]--------------------------------
 --------------------
@@ -293,21 +293,21 @@ defbindings("WMPlex.toplevel", {
 defbindings("WMenu", {
     kpress("Escape",    "WMenu.cancel(_)"), kpress("Control+G", "WMenu.cancel(_)"),
     kpress("Return",    "WMenu.finish(_)"), kpress("Control+M", "WMenu.finish(_)"),
-    kpress("Control+N", "WMenu.select_next(_)"), 
+    kpress("Control+N", "WMenu.select_next(_)"),
     kpress("Control+P", "WMenu.select_prev(_)"),
     kpress("Down",      "WMenu.select_next(_)"),
-    kpress("Up",        "WMenu.select_prev(_)"),        
+    kpress("Up",        "WMenu.select_prev(_)"),
     --Clear the menu's typeahead find buffer
     kpress("BackSpace", "WMenu.typeahead_clear(_)"),
     kpress("Control+H", "WMenu.typeahead_clear(_)"),
 
 })
 defbindings("WScreen", {
-    -- kpress("Mod4+F3",        "_:attach_new({type='WGroupWS'})"),        
+    -- kpress("Mod4+F3",        "_:attach_new({type='WGroupWS'})"),
     kpress("Mod4+F3",           "_:attach_new({type='WTiling', name='Instant Messaging'}):goto()"),
-    submap("Mod1+E", { 
+    submap("Mod1+E", {
             kpress("I", "ioncore.goto_activity()"),
-            kpress("T", "ioncore.tagged_clear()"), 
+            kpress("T", "ioncore.tagged_clear()"),
             kpress("K", "mod_menu.grabmenu(_, _sub, 'focuslist')"),
             }),
 
@@ -325,7 +325,7 @@ defbindings("WScreen", {
     mpress("Button3", "mod_menu.pmenu(_, _sub, 'mainmenu')"),
     --Display the window list menu
     mpress("Button2", "mod_menu.pmenu(_, _sub, 'windowlist')"),
-    submap("Mod1+E", { 
+    submap("Mod1+E", {
         --Backward-circulate focus
         --kpress("AnyModifier+Tab", "ioncore.goto_next(_chld, 'left')", "_chld:non-nil"),
         --Raise focused object, if possible
@@ -333,7 +333,7 @@ defbindings("WScreen", {
         kpress("AnyModifier+L", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("AnyModifier+Shift+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
-    kpress("Mod1+s","WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
+    -- kpress("Mod1+Shift+s","WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
 
     kpress("F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     kpress("Mod4+grave", "ioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
@@ -360,7 +360,7 @@ defbindings("WClientWin", {
         kpress("Mod1+comma", " WClientWin.quote_next(_)"),
 })
 
-defbindings("WGroupCW", { 
+defbindings("WGroupCW", {
     kpress_wait("Mod4+Return", "WGroup.set_fullscreen(_, 'toggle')"),
     kpress_wait("Mod4+Q", "WGroup.set_fullscreen(_, 'toggle')"),
 })
@@ -370,8 +370,8 @@ defbindings("WMPlex",{
 })
 -- Frames for transient windows ignore this bindmap
 defbindings("WFrame", {
-    kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ), 
-    -- kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WGroupWS'), 'unset' )" ), 
+    kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ),
+    -- kpress( "Mod4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WGroupWS'), 'unset' )" ),
     submap("Mod1+E", {
       kpress("H", "WFrame.maximize_horiz(_)"),
       kpress("V", "WFrame.maximize_vert(_)"),
@@ -426,18 +426,18 @@ defbindings("WFrame.floating", {
 defbindings("WMoveresMode", {
     kpress("AnyModifier+Escape", "WMoveresMode.cancel(_)"),
     kpress("AnyModifier+Return", "WMoveresMode.finish(_)"),
-    kpress("Left",               "WMoveresMode.resize(_, 1, 0, 0, 0)"), 
-    kpress("Right",              "WMoveresMode.resize(_, 0, 1, 0, 0)"), 
-    kpress("Up",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"), 
-    kpress("Down",               "WMoveresMode.resize(_, 0, 0, 0, 1)"), 
-    kpress("Shift+Left",         "WMoveresMode.resize(_,-1, 0, 0, 0)"), 
-    kpress("Shift+Right",        "WMoveresMode.resize(_, 0,-1, 0, 0)"), 
-    kpress("Shift+Up",           "WMoveresMode.resize(_, 0, 0,-1, 0)"), 
-    kpress("Shift+Down",         "WMoveresMode.resize(_, 0, 0, 0,-1)"), 
-    kpress("Mod1+Left",          "WMoveresMode.move(_,-1, 0)"),         
-    kpress("Mod1+Right",         "WMoveresMode.move(_, 1, 0)"),         
-    kpress("Mod1+Up",            "WMoveresMode.move(_, 0,-1)"),         
-    kpress("Mod1+Down",          "WMoveresMode.move(_, 0, 1)"),         
+    kpress("Left",               "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("Right",              "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("Up",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("Down",               "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+    kpress("Shift+Left",         "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Shift+Right",        "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Shift+Up",           "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Shift+Down",         "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+    kpress("Mod1+Left",          "WMoveresMode.move(_,-1, 0)"),
+    kpress("Mod1+Right",         "WMoveresMode.move(_, 1, 0)"),
+    kpress("Mod1+Up",            "WMoveresMode.move(_, 0,-1)"),
+    kpress("Mod1+Down",          "WMoveresMode.move(_, 0, 1)"),
 
     kpress("F",                  "WMoveresMode.resize(_, 1, 0, 0, 0)"),
     kpress("B",                  "WMoveresMode.resize(_, 0, 1, 0, 0)"),
