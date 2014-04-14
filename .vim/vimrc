@@ -29,6 +29,7 @@ NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
 NeoBundle 'kien/ctrlp.vim'                    "for MRU
 NeoBundle 'SirVer/ultisnips.git'              "Snippets with ycm compatibility
 NeoBundle 'godlygeek/tabular'                 "tabularize!
+NeoBundle 'junegunn/vim-easy-align'           "easy tabular
 NeoBundle 'mileszs/ack.vim'                   "ack wrapper
 if executable("ag")
     NeoBundle 'rking/ag.vim.git'              "ag (ack replacement) wrapper
@@ -49,7 +50,6 @@ NeoBundle 'gregsexton/gitv'                   "Git viewer
 " NeoBundleLazy 'gregsexton/gitv',            "Git viewer
 "             \ {'depends':['tpope/vim-fugitive'],
 "             \ 'autoload':{'commands':'itv'}}
-"
 NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 NeoBundle 'vim-scripts/compview.git'          "interactive search
 NeoBundle 'tpope/vim-git'                     "syntax, indent, and filetype plugin files for git
@@ -87,6 +87,11 @@ NeoBundleLazy 'derekwyatt/vim-sbt'           "basic SBT support for vim
 "------------------------------------------------------------------------------------------------------------
 "--[ misc ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+NeoBundle 'drmikehenry/vim-fixkey'            "fixes key codes for console Vim
+NeoBundle 'thinca/vim-ref.git'                "integrated reference viewer man/perldoc etc
+NeoBundle 'danro/rename.vim.git'              "Rename file in vim
+NeoBundle 'othree/eregex.vim'                 "Perl-like extended regex for vim
+NeoBundle 'chrisbra/Join.git'                 "Extended and fast Join for vim
 NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
@@ -140,39 +145,23 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'othree/eregex.vim'                 "Perl-like regex for vim
-NeoBundle 'xolox/vim-misc'                    "for vim notes
-NeoBundle 'xolox/vim-notes'                   "vim notes
-NeoBundle 'wting/rust.vim'                    "rust bindings for vim
-NeoBundle 'suxpert/vimcaps.git'               "non systemwide handling of caps-lock
-NeoBundle 'gcmt/wildfire.vim.git'             "<enter> for visualmode
-NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend
+"NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend
 NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
 NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
 " Requires extra binaries; see docs
 NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
 NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
-NeoBundle 'danro/rename.vim.git'              "Rename file in vim
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
 NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
-NeoBundle 'jimsei/winresizer.git'             "Resize window simply
 NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
             \{'commands' : 'ZoomWinTabToggle'}}
-NeoBundle 'chrisbra/Join.git'                 "Extended Join for vim
 NeoBundle 'tpope/vim-obsession.git'           "Session manager
 NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
-NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
 NeoBundle 'tpope/vim-dispatch.git'            "Should providy async build
-NeoBundleLazy 'gcmt/surfer.vim.git'           "Yet another natigator for tags [test]
-NeoBundleLazy 'jszakmeister/vim-togglecursor' "Test it for some terminals
-NeoBundleLazy 'drmikehenry/vim-fixkey'        "fixes key codes for console Vim
-NeoBundle 'junegunn/vim-easy-align'           "easy tabular
-NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper
-NeoBundle 'thinca/vim-ref.git'                "integrated reference viewer
-NeoBundleLazy 'junkblocker/patchreview-vim'   "codereview for dvcs
-NeoBundleLazy 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
+NeoBundle 'junkblocker/patchreview-vim'   "codereview for dvcs
+NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
@@ -187,8 +176,8 @@ NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 " NeoBundle 'kana/vim-textobj-entire.git'       "gives you `e` for entire document. so vae, and etc
 " NeoBundle 'kana/vim-textobj-function.git'     "gives you `f` textobj. so vaf to select a function
 " NeoBundle 'vim-scripts/argtextobj.vim.git'    "This plugin provides a text-object 'a' (argument)
-"---------------[  unite  ]----------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+"---------------[  unite  ]----------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'vim-jp/vital.vim.git'              "improve unity perf
 NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
@@ -225,15 +214,17 @@ NeoBundleLazy 'joedicastro/vim-pentadactyl', {
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
 NeoBundleLazy 'vim-scripts/po.vim--gray', {'autoload': {'filetypes': ['po']}}
 NeoBundleLazy 'chrisbra/csv.vim', {'autoload' : {'filetypes' : ['csv']}}
-"Mathematica syntax and omnicomp
+" Mathematica syntax and omnicomp
 NeoBundleLazy 'rsmenon/vim-mathematica.git', {'autoload' : {'filetypes' : ['mm']}}
+" rust bindings for vim syntax hi
+NeoBundleLazy 'wting/rust.vim', {'autoload' : {'filetypes' : ['rust']}}
 "------------------------------------------------------------------------------------------------------------
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 " Very good navigation, but no stack
 NeoBundleLazy 'hewes/unite-gtags.git', {'autoload':{'unite_sources':['gtags', 'gtags/def', 'gtags/context', 'gtags/ref', 'gtags/grep', 'gtags/def' ]}}
 NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
-NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
+" NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
 " ------------------------------------------------------------------------------------------------------------
@@ -257,7 +248,6 @@ NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work wi
 "                                             "not useful and probably slowpoke
 " NeoBundle 'vim-scripts/SearchComplete.git'  "Tab completion for search
 " NeoBundle 'Keithbsmiley/investigate.vim'    "Search for under cursor info
-" NeoBundle 'Zuckonit/vim-gnote.git'          "For gmail notes
 " NeoBundle 'itchyny/lightline.vim.git'       "fancy statusline
 " NeoBundle 'gavinbeatty/dragvisuals.vim.git' "drag test visually
 " NeoBundle 'mjbrownie/swapit'                "Generic swapper too complicate for me
@@ -271,6 +261,16 @@ NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work wi
 " NeoBundle 'Valloric/vim-operator-highlight'   "hi for []()\, too bright for me
 " NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
 " NeoBundle 'ardagnir/pterosaur.git'            "edit text with vim in pentadactyl, didn't work, bad
+" NeoBundle 'jimsei/winresizer.git'             "Resize window simply
+" NeoBundle 'gcmt/wildfire.vim.git'             "<enter> for visualmode
+" NeoBundle 'gcmt/surfer.vim.git'               "Yet another natigator for tags // ctags //
+" NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
+" NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper. I like to use astyle manually
+
+" --[ Make additional config for it"  ]-----------------------
+" NeoBundle 'xolox/vim-misc'                    "for vim notes
+" NeoBundle 'xolox/vim-notes'                   "vim notes
+" NeoBundle 'Zuckonit/vim-gnote.git'            "For gmail notes
 
 NeoBundleCheck
 catch /117/

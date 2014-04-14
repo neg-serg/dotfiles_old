@@ -12,8 +12,10 @@ if has("autocmd") && exists("+omnifunc")
         \endif
 endif
 
+
 " forced powerline/airline redraw
-au FocusGained * :redraw!
+" " I think there is bug with airline
+" au FocusGained * :redraw!
 
 " autocmd VimEnter * echo "Welcome back Sergey :)"
 " autocmd VimLeave * echo "Cya in Hell."
@@ -36,7 +38,7 @@ autocmd FileType            javascript    setlocal noautoindent nosmartindent
 autocmd BufWritePre         *.py          mark z | %s/ *$//e | 'z
 autocmd BufNewFile,BufRead  *.t2t         setlocal wrap
 autocmd BufNewFile,BufRead  *.t2t         setlocal lbr
-autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax 
+autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax
 autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
 
 autocmd FileType git set nofoldenable
@@ -139,12 +141,12 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 
-" hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1 
+" hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1
 " hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
 " hi DiffDelete     xxx term=bold ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
-" hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red   
+" hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red
 " For solarized
-" highlight SpellBad term=underline gui=undercurl guisp=Orange 
+" highlight SpellBad term=underline gui=undercurl guisp=Orange
 
 " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
 " Restore cursor to file position in previous editing session
@@ -265,12 +267,6 @@ autocmd vimrc FileType python
       \ set softtabstop=2 |
       \ setlocal omnifunc=pythoncomplete#Complete |
       \ setlocal foldlevel=1000
-
-augroup vimrc
-  " Automatically delete trailing DOS-returns and whitespace on file open and
-  " write.
-  autocmd BufRead,BufWritePre,FileWritePre * silent! %s/[\r \t]\+$//
-augroup END
 
 " cindent is a bit too smart for its own good and triggers in text files when
 " you're typing inside parens and then hit enter; it aligns the text with the

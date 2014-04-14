@@ -1,8 +1,8 @@
-(){
-    local p=$(cope_path)
-    for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
-    alias df="$p/df -h"
-}
+# (){
+#     local p=$(cope_path)
+#     for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
+#     alias df="$p/df -h"
+# }
 
 alias '?=bc -l <<<'
 # alias gvim="STTY='intr \^C' gvim" # C-x mapping fucks up gvim
