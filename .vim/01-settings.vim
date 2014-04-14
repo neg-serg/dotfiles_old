@@ -645,7 +645,6 @@ let g:lt_height = 25
 
 let g:eregex_default_enable = 0
 
-
 "--[ MatchTagAlways ]-------------
 let g:mta_use_matchparen_group = 0
 

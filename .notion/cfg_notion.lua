@@ -274,6 +274,7 @@ defbindings("WMPlex.toplevel", {
         kpress("m", "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
         kpress("s", "ioncore.exec_on(_, 'skype')"),
         kpress("q", "ioncore.exec_on(_, '~/bin/mpd_sel.sh')"),
+        kpress("i", "ioncore.exec_on(_, '~/bin/pls -output')"),
         kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),

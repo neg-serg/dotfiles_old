@@ -520,6 +520,9 @@ nmap c9 "9yy
 vmap c0 "0yy<ESC>i
 nmap c0 "0yy
 
+nmap J :Join<CR>
+vmap J :Join<CR>
+
 "--[ fswitch ]--------------------------------------------------
 " A "companion" file is a .cpp file to an .h file and vice versa
 " Opens the companion file in the current window
@@ -536,10 +539,9 @@ nnoremap <Leader>sv :FSSplitLeft<cr>
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
-" nnoremap ' `
-" nnoremap ` '
+nnoremap ' `
+nnoremap ` '
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-" nnoremap <leader>g g<c-]>
-
+nnoremap <space>g g<c-]>
