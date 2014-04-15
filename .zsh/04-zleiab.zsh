@@ -3,7 +3,7 @@ abk=(
    #key    # value                  (#d additional doc string)
     'BG'   '& exit'
     'C'    '| wc -l'
-    'G'    '|& ag -i '
+    'G'    '|& ack -i '
     'H'    '| head'
     'Hl'   ' --help |& ${PAGER} -r'    #d (Display help in pager)
     'LL'   '|& ${PAGER} -r'
