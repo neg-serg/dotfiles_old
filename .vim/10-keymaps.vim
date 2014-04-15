@@ -545,3 +545,5 @@ nnoremap ` '
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <space>g g<c-]>
+
+nmap <F4> :Utl ol<cr>

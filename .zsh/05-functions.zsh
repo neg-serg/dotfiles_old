@@ -252,7 +252,6 @@ zle -N accept-line
 zle -N Accept-Line
 zle -N Accept-Line-HandleContext
 
-#======== get.ls.colors
 function getlscolors(){
     typeset -A names
     names[no]="global default"

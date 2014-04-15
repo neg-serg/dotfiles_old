@@ -2231,7 +2231,6 @@ g:multi_cursor_quit_key	multiple_cursors.txt	/*g:multi_cursor_quit_key*
 g:multi_cursor_skip_key	multiple_cursors.txt	/*g:multi_cursor_skip_key*
 g:multi_cursor_start_key	multiple_cursors.txt	/*g:multi_cursor_start_key*
 g:multi_cursor_use_default_mapping	multiple_cursors.txt	/*g:multi_cursor_use_default_mapping*
-g:multichange_mapping	multichange.txt	/*g:multichange_mapping*
 g:neobundle#default_options	neobundle.txt	/*g:neobundle#default_options*
 g:neobundle#default_site	neobundle.txt	/*g:neobundle#default_site*
 g:neobundle#enable_name_conversion	neobundle.txt	/*g:neobundle#enable_name_conversion*
@@ -2687,15 +2686,6 @@ math:	latexhelp.txt	/*math:*
 math;	latexhelp.txt	/*math;*
 matn!	latexhelp.txt	/*matn!*
 minipage	latexhelp.txt	/*minipage*
-multichange	multichange.txt	/*multichange*
-multichange-contents	multichange.txt	/*multichange-contents*
-multichange-installation	multichange.txt	/*multichange-installation*
-multichange-internals	multichange.txt	/*multichange-internals*
-multichange-issues	multichange.txt	/*multichange-issues*
-multichange-settings	multichange.txt	/*multichange-settings*
-multichange-todo	multichange.txt	/*multichange-todo*
-multichange-usage	multichange.txt	/*multichange-usage*
-multichange.txt	multichange.txt	/*multichange.txt*
 multiple-cursors-contents	multiple_cursors.txt	/*multiple-cursors-contents*
 multiple-cursors-contributing	multiple_cursors.txt	/*multiple-cursors-contributing*
 multiple-cursors-credit	multiple_cursors.txt	/*multiple-cursors-credit*

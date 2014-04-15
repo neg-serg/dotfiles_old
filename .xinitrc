@@ -18,6 +18,7 @@
 
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
+xrandr --dpi 102
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # export _JAVA_AWT_WM_NONREPARENTING=1
 

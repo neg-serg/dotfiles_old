@@ -145,7 +145,6 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-"NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend
 NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
 NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
 " Requires extra binaries; see docs
@@ -158,7 +157,7 @@ NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
             \{'commands' : 'ZoomWinTabToggle'}}
 NeoBundle 'tpope/vim-obsession.git'           "Session manager
-NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
+" NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
 NeoBundle 'tpope/vim-dispatch.git'            "Should providy async build
 NeoBundle 'junkblocker/patchreview-vim'   "codereview for dvcs
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
@@ -266,6 +265,7 @@ NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 " NeoBundle 'gcmt/surfer.vim.git'               "Yet another natigator for tags // ctags //
 " NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
 " NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper. I like to use astyle manually
+" NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend tooo buggy for now
 
 " --[ Make additional config for it"  ]-----------------------
 " NeoBundle 'xolox/vim-misc'                    "for vim notes
