@@ -61,6 +61,7 @@ NeoBundle 'gregsexton/gitv'                   "Git viewer
 NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 NeoBundle 'vim-scripts/compview.git'          "interactive search
 NeoBundle 'tpope/vim-git'                     "syntax, indent, and filetype plugin files for git
+NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
 "--[ Be careful with fugitive ]-------------------------------------------------------------------------------
 NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 "------------------------------------------------------------------------------------------------------------
@@ -107,6 +108,9 @@ NeoBundle 'tyru/restart.vim.git'              "add restart support
 NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
+NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
+NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
+NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
 "------------------------------------------------------------------------------------------------------------
 "--[ dev ]---------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -123,6 +127,12 @@ NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for b
 NeoBundle 'matchit.zip'                       "Improves % match for everything
 NeoBundle 'tpope/vim-unimpaired.git'          "good mappings and toggles
 NeoBundle 'airblade/vim-rooter.git'           "Clever set pwd for projects
+NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
+NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
+NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
+NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
+NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
+NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend tooo buggy for now
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -153,23 +163,12 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
-NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
-" Requires extra binaries; see docs
-NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
-NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
-NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
-NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
-NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :
-            \{'commands' : 'ZoomWinTabToggle'}}
 NeoBundle 'tpope/vim-obsession.git'           "Session manager
-" NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
-NeoBundle 'tpope/vim-dispatch.git'            "Should providy async build
 NeoBundle 'junkblocker/patchreview-vim'   "codereview for dvcs
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
-NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
+NeoBundle 'dbakker/vim-projectroot.git'   "experimental replacement for project-root
+" NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -273,7 +272,6 @@ NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 " NeoBundle 'gcmt/surfer.vim.git'               "Yet another natigator for tags // ctags //
 " NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
 " NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper. I like to use astyle manually
-" NeoBundle 'gilligan/vim-lldb.git'             "vim lldb frontend tooo buggy for now
 
 " --[ Make additional config for it"  ]-----------------------
 " NeoBundle 'xolox/vim-misc'                    "for vim notes

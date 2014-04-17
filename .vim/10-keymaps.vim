@@ -1,3 +1,5 @@
+nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>
+
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -526,15 +528,15 @@ vmap J :Join<CR>
 "--[ fswitch ]--------------------------------------------------
 " A "companion" file is a .cpp file to an .h file and vice versa
 " Opens the companion file in the current window
-nnoremap <Leader>sh :FSHere<cr>
+nnoremap <Space>sh :FSHere<cr>
 " Opens the companion file in the window to the left (window needs to exist)
 " This is actually a duplicate of the :FSLeft command which for some reason
 " doesn't work.
-nnoremap <Leader>sl :call FSwitch('%', 'wincmd l')<cr>
+nnoremap <Space>sl :call FSwitch('%', 'wincmd l')<cr>
 " Same as above, only opens it in window to the right
-nnoremap <Leader>sr :call FSwitch('%', 'wincmd r')<cr>
+nnoremap <Space>sr :call FSwitch('%', 'wincmd r')<cr>
 " Creates a new window on the left and opens the companion file in it
-nnoremap <Leader>sv :FSSplitLeft<cr>
+nnoremap <Space>sv :FSSplitLeft<cr>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
