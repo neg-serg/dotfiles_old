@@ -64,11 +64,11 @@ xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
 
-# export GTK_IM_MODULE=fcitx
-# export QT_IM_MODULE=fcitx
-# export XMODIFIERS="@im=fcitx"
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+# export GTK_IM_MODULE=xim
+# export QT_IM_MODULE=xim
 
 setxkbmap -option keypad:pointerkeys
 setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
