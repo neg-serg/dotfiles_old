@@ -1,8 +1,6 @@
-"so ~/.pentadactyl/stylesheets/user.css
-so ~/.pentadactyl/styles.rc
-map -builtin <F3> :styletoggle<Space>-name<Space>tomorrownight<CR>
-map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 so ~/.pentadactyl/tomorrownight.rc
+map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
+map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 
 "set guioptions=rbms
 set cpt=l

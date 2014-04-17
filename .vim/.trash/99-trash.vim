@@ -19,6 +19,53 @@
 " NeoBundle 'kbairak/TurboMark.git'             "Simple marking
 " NeoBundle 'dpwright/vim-gf-ext'               "open external program with gf
 
+" ------------------------------------------------------------------------------------------------------------
+" --[ good but not useful yet ]-------------------------------------------------------------------------------
+" ------------------------------------------------------------------------------------------------------------
+" NeoBundle 'edkolev/tmuxline.vim.git'        "Tmuxline for tmux  :
+" NeoBundle 'edkolev/promptline.vim.git'      "Promptline for zsh : should be maked standalone
+
+" NeoBundle 'goldfeld/vim-seek.git'           "Navigate fast like with f
+" NeoBundle 'kien/rainbow_parentheses.vim'    "rainbow ()[]
+" NeoBundle 'amdt/vim-niji.git'               "rainbox ()[] replacement
+" NeoBundle 'glts/vim-cottidie'               "tips :)
+" NeoBundle 'vim-scripts/LanguageTool.git'    "Language tool for cheking style
+" NeoBundle 'svermeulen/vim-easyclip'         "Try to not garbage copy/paste(work) add dd append
+" NeoBundle 'sickill/vim-pasta.git'           "Test it again for pasting
+" NeoBundle 'airblade/vim-gitgutter.git'      "Shows changes Tooooooo slow
+" NeoBundle 'xolox/vim-session.git'           "Session managment for vim
+" NeoBundle 'eagletmt/ghcmod-vim'             "ghc-mod happy hacking integration for vim
+" NeoBundle 'vim-scripts/sessionman.vim'      "session manager
+" NeoBundle 'nelstrom/vim-visual-star-search' "Probably it's star operator replacement
+" NeoBundle 'wikitopian/hardmode.git'         "Nice stuff (:
+" NeoBundle 'henrik/vim-indexed-search.git'   "when you do searches will show you 'Match 2 of 4' in the status line
+"                                             "not useful and probably slowpoke
+" NeoBundle 'vim-scripts/SearchComplete.git'  "Tab completion for search
+" NeoBundle 'Keithbsmiley/investigate.vim'    "Search for under cursor info
+" NeoBundle 'itchyny/lightline.vim.git'       "fancy statusline
+" NeoBundle 'gavinbeatty/dragvisuals.vim.git' "drag test visually
+" NeoBundle 'mjbrownie/swapit'                "Generic swapper too complicate for me
+" NeoBundle 'justinmk/vim-sneak'              " S with two chars
+" NeoBundle 'https://bitbucket.org/ZyX_I/aurum' "hg/git and others wrapper
+" NeoBundle 'a.vim'                             "switch to header from src quickly
+" NeoBundle 'bling/vim-bufferline.git'          "Show buffers in statusline
+" NeoBundle 'mhinz/vim-signify'                 "Show diff information +/- like counts
+" NeoBundle 'ntpeters/vim-better-whitespace'    "hi for whitespaces
+" NeoBundle 'xuhdev/SingleCompile'              "for only one file compilation
+" NeoBundle 'Valloric/vim-operator-highlight'   "hi for []()\, too bright for me
+" NeoBundle 'spf13/vim-preview'                 "markdown preview for vim
+" NeoBundle 'ardagnir/pterosaur.git'            "edit text with vim in pentadactyl, didn't work, bad
+" NeoBundle 'jimsei/winresizer.git'             "Resize window simply
+" NeoBundle 'gcmt/wildfire.vim.git'             "<enter> for visualmode
+" NeoBundle 'gcmt/surfer.vim.git'               "Yet another natigator for tags // ctags //
+" NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
+" NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper. I like to use astyle manually
+" NeoBundle 'tpope/vim-afterimage.git'    "some nice stuff for edit xpm
+
+" --[ Make additional config for it"  ]-----------------------
+" NeoBundle 'xolox/vim-misc'                    "for vim notes
+" NeoBundle 'xolox/vim-notes'                   "vim notes
+" NeoBundle 'Zuckonit/vim-gnote.git'            "For gmail notes
 " " Settings for VimClojure
 " let g:vimclojure#HighlightBuiltins=1 " Highlight Clojure's builtins
 " let g:vimclojure#ParenRainbow=1 " Rainbow parentheses'!

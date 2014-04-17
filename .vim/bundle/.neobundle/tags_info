@@ -73,6 +73,7 @@ vim-instant-markdown
 vim-json
 vim-l9
 vim-latex-live-preview
+vim-lldb
 vim-markdown
 vim-mathematica
 vim-multiple-cursors
@@ -99,4 +100,3 @@ vimproc
 vimux
 vital.vim
 xmledit
-zoomwintab.vim
