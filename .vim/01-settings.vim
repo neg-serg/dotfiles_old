@@ -1,20 +1,3 @@
-" With this map, we can select some text in visual mode and by invoking the map,
-" have the selection automatically filled in as the search text and the cursor
-" placed in the position for typing the replacement text. Also, this will ask
-" for confirmation before it replaces any instance of the search text in the
-" file.
-" NOTE: We're using %S here instead of %s; the capital S version comes from the
-" eregex.vim plugin and uses Perl-style regular expressions.
-" vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
-
-" for testing out custom vim scripts
-" set rtp+=$HOME/vim_test,$HOME/vim_test/after,$HOME/repos/YouCompleteMe
-
-" Home away from home. We store some config files and snippets here and the
-" whole dotfiles dir is a git repo. Should be the last entry in rtp (for
-" UltiSnips).
-" set rtp+=$HOME/dotfiles/vim
-
 " ------[ GUI settings ]-----------------------------------------------------
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
@@ -163,7 +146,6 @@ set autoread
 set fileencodings=ucs-bom,utf-8,default,latin1,cp1251,koi8-r,cp866
 
 set termencoding=utf8                       " Set termencoding to utf-8
-set fileencodings=utf-8,cp1251              " Set fileenc list
 
 set timeout timeoutlen=250
 set ttimeout ttimeoutlen=40  " Usable for fast keybindings
@@ -201,14 +183,14 @@ else
 endif
 
 " Unicode support (taken from http://vim.wikia.com/wiki/Working_with_Unicode)
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-  set fileencodings=ucs-bom,utf-8,latin1
-endif
+" if has("multi_byte")
+"   if &termencoding == ""
+"     let &termencoding = &encoding
+"   endif
+"   set encoding=utf-8
+"   setglobal fileencoding=utf-8
+"   set fileencodings=ucs-bom,utf-8,latin1
+" endif
 
 syntax sync minlines=128
 " set completeopt=menu
@@ -333,7 +315,6 @@ set maxmemtot=200000
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 set modeline          " enable modelines
 set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
-" set grepprg=grep\ -nH\ $*
 
 set iminsert=0
 set cmdheight=1
@@ -342,13 +323,6 @@ if has("cscope")
   set csprg=/usr/bin/gtags-cscope
   set csto=0
   set cscopetag
-  " set csprg=/usr/bin/cscope
-  " if filereadable("cscope.out")
-  "   cs add cscope.out
-  " endif
-  " if filereadable("GTAGS")
-  " cscope add  expand(:pwd)/GTAGS
-  " endif
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
@@ -381,7 +355,7 @@ set path=**
 
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
-let g:is_posix = 1
+let g:is_posix        = 1
 "--[ vimpager isn't actually a plug but a script ]----------------
 let vimpager_use_gvim = 1
 
@@ -395,23 +369,22 @@ let vimpager_use_gvim = 1
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_color_change_percent  = 7
 " }
-" Ctags {
+"--[ Ctags ]----------------------
     set tags=./tags;/;~/.vim/tags
-
     " Make tags placed in .git/tags file available in all levels of a repository
     let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
     if gitroot != ''
         let &tags = &tags . ',' . gitroot . '/.git/tags'
     endif
-" }
+
 let g:gundo_playback_delay = 240
 
-let mapleader=','
-let maplocalleader=' '
-let g:mapleader = ","
+let mapleader      = ','
+let maplocalleader = ' '
+let g:mapleader    = ","
 
-let g:LustyJugglerDefaultMappings=0
-let LustyExplorerDefaultMappings=0
+let g:LustyJugglerDefaultMappings = 0
+let LustyExplorerDefaultMappings  = 0
 " -------------------------------------------------------------------
 " When using the taglist plugin, don't attempt to resize the terminal
 let Tlist_Inc_Winwidth = 0
@@ -435,7 +408,7 @@ if filereadable("Makefile")
 else
     set makeprg=gcc\ -Wall\ -o\ %<\ %
 endif
-
+"--[ Vim-Airline ]----------------
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1 " Use airline fonts
 let g:airline#extensions#hunks#enabled = 1
@@ -444,16 +417,10 @@ let g:airline#extensions#whitespace#checks = []
 
 let g:airline_exclude_preview  = 1
 let g:airline_symbols          = {}
-" let g:airline_left_sep       = ''
-" let g:airline_left_alt_sep   = ''
 let g:airline_left_sep         = ' '
 let g:airline_left_alt_sep     = ' '
 let g:airline_right_sep        = ''
 let g:airline_right_alt_sep    = ''
-" let g:airline_left_sep         = '⮀ '
-" let g:airline_left_alt_sep     = '⮁ '
-" let g:airline_right_sep        = '⮂'
-" let g:airline_right_alt_sep    = '⮃'
 
 let g:airline_symbols.branch   = ''
 let g:airline_symbols.readonly = ''
@@ -471,7 +438,7 @@ let g:airline_mode_map = {
   \ 'S'  : 'S',
   \ '' : 'S',
   \ }
-
+"--[ Syntastic ]------------------
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
@@ -501,21 +468,13 @@ let g:syntastic_always_populate_loc_list=1
 let g:syntastic_c_no_include_search = 1
 let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_c_check_header = 1
-
-"--[ YouCompleteMe ]----------------------------------------------------------
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-" let g:ycm_extra_conf_globlist = ['~/dev/*','*']
-
+"--[ YouCompleteMe ]--------------
 let g:ycm_extra_conf_globlist = []
 " let g:ycm_filepath_completion_use_working_dir = 1
-" let g:ycm_extra_conf_globlist = ['!~/*', '~/dev/*']
-" let g:ycm_extra_conf_globlist = ['~/.vim/bundle/YouCompleteMe/cpp/ycm/*','!~/*', '~/st/*','~/dev/*']
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
-" let g:ycm_filepath_completion_use_working_dir = 1
 
 let g:ycm_confirm_extra_conf = 1
-let g:ycm_show_diagnostics_ui = 0
-" let g:ycm_min_num_of_chars_for_completion = 4
+let g:ycm_show_diagnostics_ui = 1 " syntastic enabling
 let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_use_ultisnips_completer = 0
 
@@ -547,37 +506,27 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 
-" https://github.com/airblade/vim-gitgutter/issues/106
-let g:gitgutter_realtime = 0
-
-
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
+"--[ YankRing ]-------------------
 " this is so that single char deletes don't end up in the yankring
 let g:yankring_min_element_length = 2
 let g:yankring_window_height = 14
 let g:yankring_history_dir = '/tmp'
 let g:yankring_history_file = 'yankring_hist'
-
-
-let g:Gitv_OpenHorizontal = 'auto'
-let g:Gitv_WipeAllOnClose = 1
-let g:Gitv_DoNotMapCtrlKey = 1
-
+"--[ Winresizer ]-----------------
 let g:winresizer_start_key = '<C-C><C-W>'
 " cancel with ESC
-" let g:winresizer_finish_with_escape = 1
+let g:winresizer_finish_with_escape = 1
 let g:winresizer_keycode_finish = 27
-
+"--[ Vimux ]----------------------
 let g:VimuxUseNearestPane = 1
-
+"--[ Utl exec ]-------------------
 let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
 let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'
 let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'
 let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'
 let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'
-
-" PythonMode {{{ -------------------------------------------------------------
+"--[ PythonMode ]-----------------
 nmap <silent><Leader>n :PymodeLint<CR>
 
 let g:pymode_breakpoint_bind = '<Leader>B'
@@ -591,23 +540,30 @@ let g:pymode_rope = 1
 
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 1
-
+"--[ Gitv ]-----------------------
+let g:Gitv_OpenHorizontal = 'auto'
+let g:Gitv_WipeAllOnClose = 1
+let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_CommitStep = 1024
-
+"--[ Gitgutter ]------------------
+" https://github.com/airblade/vim-gitgutter/issues/106
+let g:gitgutter_realtime = 0
+"--[ xkbSwitchWrapper ]-----------
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-
+"--[ Conque gdb wrapper ]---------
 let g:ConqueGdb_Leader          = '\'        "<leader>, by default is painful
+"--[ Eclim ]----------------------
 let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
+"--[ Gtags-cscope ]---------------
 let GtagsCscope_Auto_Map        = 1
 let GtagsCscope_Use_Old_Key_Map = 0
 let GtagsCscope_Ignore_Case     = 1
 let GtagsCscope_Absolute_Path   = 1
 let GtagsCscope_Keep_Alive      = 1
 let GtagsCscope_Auto_Load       = 0
-
-"rainbow parentheses - Подсвечивание парных скобок.
+"--[ Rainbow Parentheses ]--------
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -626,28 +582,23 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
-
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
-
+"--[ DelimitMate ]----------------
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr    = 0
 let g:delimitMate_smart_quotes = 1
 let g:delimitMate_balance_matchpairs = 1
-
-" let g:UltiSnipsSnippetDirectories=["~/.vim/UltiSnips"]
-
+"--[ LivePreview ]----------------
 let g:livepreview_previewer = 'zathura'
-
+"--[ ListToggle ]-----------------
 let g:lt_location_list_toggle_map = '<c-e>i'
 let g:lt_quickfix_list_toggle_map = '<c-e>u'
 let g:lt_height = 25
-
+"--[ Eregexx ]--------------------
 let g:eregex_default_enable = 0
-
 "--[ MatchTagAlways ]-------------
 let g:mta_use_matchparen_group = 0
-
 "--[ Zencoding ]------------------
 let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
