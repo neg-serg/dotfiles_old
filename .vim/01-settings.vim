@@ -401,13 +401,6 @@ endif
 
 let g:haddock_browser = "dwb"
 
-"Add existing project to project tree
-"Works through ass, but WORKS!
-if filereadable("Makefile")
-    set makeprg=make
-else
-    set makeprg=gcc\ -Wall\ -o\ %<\ %
-endif
 "--[ Vim-Airline ]----------------
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1 " Use airline fonts
