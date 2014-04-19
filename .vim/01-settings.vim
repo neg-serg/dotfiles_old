@@ -39,7 +39,12 @@ if has("gui_running")
     inoremap <silent> <M-v> <Esc>"+p`]a
     inoremap <silent> <S-Insert> <Esc>"*p`]a
 
-    " set listchars=tab:▸\ ,eol:¬         " Invisibles using the Textmate style
+    if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
+      let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
+      let &fillchars = "vert:\u259a,fold:\u00b7"
+    else
+      set listchars=tab:>\ ,trail:-,extends:>,precedes:<
+    endif
     set guitablabel=%-0.12t%M
 
     let g:mirodark_enable_higher_contrast_mode=0
@@ -356,8 +361,6 @@ set path=**
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix        = 1
-"--[ vimpager isn't actually a plug but a script ]----------------
-let vimpager_use_gvim = 1
 
 " indent_guides {
     let g:indent_guides_auto_colors = 1
@@ -382,6 +385,9 @@ let g:gundo_playback_delay = 240
 let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
+
+let g:session_autoload = "no"
+let g:session_autosave = "yes"
 
 let g:LustyJugglerDefaultMappings = 0
 let LustyExplorerDefaultMappings  = 0
@@ -534,7 +540,7 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 1
 "--[ Gitv ]-----------------------
-let g:Gitv_OpenHorizontal = 'auto'
+let g:Gitv_OpenHorizontal = 0
 let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_CommitStep = 1024
@@ -588,7 +594,7 @@ let g:livepreview_previewer = 'zathura'
 let g:lt_location_list_toggle_map = '<c-e>i'
 let g:lt_quickfix_list_toggle_map = '<c-e>u'
 let g:lt_height = 25
-"--[ Eregexx ]--------------------
+"--[ Eregex ]---------------------
 let g:eregex_default_enable = 0
 "--[ MatchTagAlways ]-------------
 let g:mta_use_matchparen_group = 0

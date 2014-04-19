@@ -1,6 +1,6 @@
 " ~/.vim/sessions/default.vim:
 " Vim session script.
-" Created by session.vim 2.4.9 on 22 January 2014 at 18:17:40.
+" Created by session.vim 2.4.9 on 19 April 2014 at 11:54:03.
 " Open this file in Vim and run :source % to restore your session.
 
 set guioptions=c
@@ -24,7 +24,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-" args insert-mode-motion-for-emacs
+" argglobal
+silent! argdel *
+argadd /tmp/dotvim/UltiSnips/c.snippets
+argadd ~/.vim/UltiSnips
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -38,6 +41,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
+lcd /mnt/home/1st_level
 tabnext 1
 if exists('s:wipebuf')
 "   silent exe 'bwipe ' . s:wipebuf

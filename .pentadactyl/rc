@@ -2,19 +2,18 @@ so ~/.pentadactyl/tomorrownight.rc
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 
-"set guioptions=rbms
 set cpt=l
 set autocomplete=".*"
 colorscheme vimpwhite
 
-" set downloadsort='-time'
+set downloadsort='-time'
 set findcase='smart'
 set noincfind
 set maxitems=9
 set shell='/bin/zsh'
 set shellcmdflag='-c'
 "show current link in a command line
-"set showstatuslinks='command'
+set showstatuslinks='command'
 " custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map , <leader>
 nmap -builtin <Leader>, :noh<CR>
@@ -30,7 +29,7 @@ map <F4> :set complete=lS<CR>
 map <F5> :set complete=bookmark<CR>
 
 " remap 'o' to 'e'
-" nmap -builtin e o
+nmap -builtin e o
 
 imap <c-a> <home>
 cmap <c-a> <home>

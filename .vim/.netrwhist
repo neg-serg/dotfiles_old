@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/mnt/home/dev/src/1st_level/notion'
-let g:netrw_dirhist_2='/home/neg/.vim'
-let g:netrw_dirhist_3='/home/neg'
-let g:netrw_dirhist_4='/home'
-let g:netrw_dirhist_5='/home/neg'
-let g:netrw_dirhist_6='/home/neg/.vim'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/neg/.vim/UltiSnips'

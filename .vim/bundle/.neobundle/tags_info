@@ -23,6 +23,7 @@ gitv
 gtags-cscope-vim-plugin
 gundo.vim
 hasksyn
+jellybeans.vim
 junkfile.vim
 lusty
 matchit.zip
@@ -55,7 +56,6 @@ unite-outline
 unite-quickfix
 unite.vim
 utl.vim
-vim-abolish
 vim-airline
 vim-colors-solarized
 vim-dispatch
@@ -73,9 +73,9 @@ vim-instant-markdown
 vim-json
 vim-l9
 vim-latex-live-preview
-vim-lldb
 vim-markdown
 vim-mathematica
+vim-misc
 vim-multiple-cursors
 vim-obsession
 vim-pentadactyl
@@ -86,6 +86,7 @@ vim-repeat
 vim-rooter
 vim-sbt
 vim-scala
+vim-session
 vim-slime
 vim-surround
 vim-tbone

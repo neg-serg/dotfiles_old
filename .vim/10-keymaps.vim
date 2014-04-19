@@ -1,3 +1,4 @@
+nmap <space> <Nop>
 nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Get Rid of stupid Goddamned help keys
@@ -24,6 +25,11 @@ nnoremap <PageDown> :bn<CR>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
+
+" nnoremap <up> <c-w>+
+" nnoremap <down> <c-w>-
+" nnoremap <left> <c-w><
+" nnoremap <right> <c-w>>
 
 " Now we don't have to move our fingers so far when we want to scroll through
 " the command history; also, don't forget the q: command (see :h q: for more
@@ -192,8 +198,7 @@ vnoremap ci[ f[ci[
 " Bindings for ctk
 " nnoremap <LocalLeader>C :CC<cr>
 
-nmap <F9> :AsyncMake<cr>
-nmap <F10> :AsyncMake<cr>
+nmap <F9> :Make<cr>
 
 inoremap <S-Ins> <C-r><C-o>*
 " imap <S-Insert> <C-o>p

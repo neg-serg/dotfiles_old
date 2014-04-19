@@ -1,3 +1,3 @@
 #! /bin/dash
 
-echo -n $@ | xsel -bi
+echo -n $@ | xsel -bi && notify-send $@
