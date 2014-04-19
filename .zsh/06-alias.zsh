@@ -31,8 +31,8 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-alias l="ls++"
 alias sl='ls'
+alias l="ls++"
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
 alias lss='ls -sShr'
@@ -55,8 +55,21 @@ alias mpa="mpv ~/.config/mpv -fs -ao null"
 alias mpr="~/bin/mpv.rb" 
 alias i="ipython"
 alias grep="grep --color=auto"
-#vim aliases
-alias v='gvim --remote-silent'
+
+function v {
+  if [ ! -z $DISPLAY ]; then
+    if [ -z $(pidof gvim) ] ; then
+      gvim --remote-silent $@
+      notionflux -e "app.byclass('gvim', 'Gvim')" 
+    else  
+      notionflux -e "app.byclass('gvim', 'Gvim')" 
+      gvim --remote-silent $@
+    fi
+  else 
+    vim $@
+  fi
+}
+
 alias vz="v ~/.zshrc"
 alias vpad="vim +set\ buftype=nofile +startinsert"
 
@@ -66,7 +79,6 @@ alias D1='DISPLAY=":1"'
 alias m="sudo mount"
 alias u="sudo umount"
 alias s="sudo"
-#alias e="okular"
 alias e="zathura"
 alias rd="rmdir"
 
@@ -91,27 +103,27 @@ alias "mvv=\mv"
 
 alias "mount=sudo mount"
 alias "umount=sudo umount"
-alias "skillall=sudo killall"
-alias "skill=sudo kill"
 alias "chmod=sudo chmod"
 alias "chown=sudo chown"
 alias "reboot=sudo reboot"
 alias "halt=sudo halt"
 alias "lsm=cat /proc/mounts"
+
 alias "ifconfig=sudo ifconfig"
 alias "ip=sudo ip"
-alias "apt-get=sudo apt-get"
-
-alias "dpkg=sudo dpkg"
 alias "ifup=sudo ifup"
 alias "ifdown=sudo ifdown"
+
+alias "apt-get=sudo apt-get"
+alias "pacman=sudo pacman"
+alias "dpkg=sudo dpkg"
+
 alias "smbclient=sudo smbclient"
 
 alias "tree=tree --dirsfirst -C"
 
 alias "acpi=acpi -V"
 alias "youtube-dl=tsocks youtube-dl"
-#alias "mutt=tsocks mutt"
 alias "vncviewer=vncviewer -passwd ~/.vnc/passwd"
 alias se=simple-extract
 
@@ -177,5 +189,5 @@ alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
 alias pbcopy='xclip -selection clipboard'       # copy to clipboard, ctrl+c, ctrl+shift+c
 alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, ctrl+shitt+v
 alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
-alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
 
+alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server

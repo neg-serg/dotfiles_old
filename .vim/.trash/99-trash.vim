@@ -61,6 +61,10 @@
 " NeoBundle 'derekwyatt/vim-protodef'           "automake cpp by hpp
 " NeoBundle 'Chiel92/vim-autoformat'            "astyle wrapper. I like to use astyle manually
 " NeoBundle 'tpope/vim-afterimage.git'    "some nice stuff for edit xpm
+" NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
+" NeoBundle 'gilligan/vim-lldb.git'             "lldb frontend tooo buggy for now
+" NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution replaced by egrep
+" NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
 
 " --[ Make additional config for it"  ]-----------------------
 " NeoBundle 'xolox/vim-misc'                    "for vim notes

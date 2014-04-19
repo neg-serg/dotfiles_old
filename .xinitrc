@@ -18,6 +18,12 @@
 
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
+#
+# {
+#   while xrandr --auto; do
+#     sleep 5
+#   done
+# } &
 xrandr --dpi 102
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # export _JAVA_AWT_WM_NONREPARENTING=1
@@ -78,7 +84,7 @@ xbindkeys
 xset m 1 1
 xset r rate 200 50
 
-hsetroot -fill /home/neg/pic/wl/wallpaper-2509469.jpg
+hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
