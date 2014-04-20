@@ -54,7 +54,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 4194466,
+                                                    ["windowid"] = 8388819,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
@@ -161,14 +161,23 @@ return {
                             ["h"] = 900,
                         },
                         ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "Notion WFrame<1>",
-                                ["managed"] = {
+                            ["tls"] = 878,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "Notion WFrame<1>",
+                                    ["managed"] = {
+                                    },
                                 },
+                                ["type"] = "WSplitRegion",
                             },
-                            ["type"] = "WSplitRegion",
+                            ["dir"] = "vertical",
+                            ["brs"] = 22,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
                         },
                     },
                 },

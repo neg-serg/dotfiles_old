@@ -49,7 +49,8 @@ fi
 
 wmname LG3D
 swarp  1600 900
-synclient TapButton1=1 HorizTwoFingerScroll=1 VertTwoFingerScroll=1
+# synclient TapButton1=1 HorizTwoFingerScroll=1 VertTwoFingerScroll=1
+synclient PalmDetect=1
 
 # sudo mkdir /var/run/lirc/
 # sudo touch /var/run/lirc/lircd.pid

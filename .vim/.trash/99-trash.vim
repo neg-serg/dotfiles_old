@@ -1,7 +1,7 @@
 " NeoBundle '5t111111/alt-gtags.vim.git'      "no tagstack :(, use unite 
-" NeoBundleLazy 'tacahiroy/ctrlp-funky'         "jump to function without tags
+" NeoBundleLazy 'tacahiroy/ctrlp-funky'       "jump to function without tags
 " NeoBundle 'roman/golden-ratio.git'          "buggy and not compatible with  unite for me
-" NeoBundle 'kablamo/vim-git-log.git'           "There is no need in it, not fancy
+" NeoBundle 'kablamo/vim-git-log.git'         "There is no need in it, not fancy
 " NeoBundle 'mattn/zencoding-vim'             "web
 " NeoBundle 'matthias-guenther/hammer.vim'    "web
 " NeoBundle 'Shougo/echodoc.git'              "haskell stuff
@@ -16,8 +16,12 @@
 " NeoBundle 'gerw/vim-latex-suite.git'        "tex autocompletion TOOOOOOOOOOOOOO SLOOOOOW
 " NeoBundle 'itchyny/thumbnail.vim.git'       "Thumbnail-style buffer selector(nice!)
 " NeoBundle 'matze/vim-move.git'              "Move text in vim(works!)
-" NeoBundle 'kbairak/TurboMark.git'             "Simple marking
-" NeoBundle 'dpwright/vim-gf-ext'               "open external program with gf
+" NeoBundle 'kbairak/TurboMark.git'           "Simple marking
+" NeoBundle 'dpwright/vim-gf-ext'             "open external program with gf
+" NeoBundle 'junkblocker/patchreview-vim'     "codereview for dvcs
+" NeoBundle 'junkblocker/VimSpy.git'          "browse through almost all vim structs
+" NeoBundle 'AndrewRadev/multichange.vim.git' "Test
+" NeoBundle 'dbakker/vim-projectroot.git'     "experimental replacement for project-root
 
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
