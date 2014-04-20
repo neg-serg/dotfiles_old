@@ -512,11 +512,6 @@ let g:yankring_min_element_length = 2
 let g:yankring_window_height = 14
 let g:yankring_history_dir = '/tmp'
 let g:yankring_history_file = 'yankring_hist'
-"--[ Winresizer ]-----------------
-let g:winresizer_start_key = '<C-C><C-W>'
-" cancel with ESC
-let g:winresizer_finish_with_escape = 1
-let g:winresizer_keycode_finish = 27
 "--[ Vimux ]----------------------
 let g:VimuxUseNearestPane = 1
 "--[ Utl exec ]-------------------

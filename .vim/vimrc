@@ -51,6 +51,12 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
 "------------------------------------------------------------------------------------------------------------
+"--[ Sessions ]----------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'tpope/vim-obsession.git'           "Session manager
+NeoBundle 'xolox/vim-misc'                    "for vim notes
+NeoBundle 'xolox/vim-session.git'             "More powerful session manager
+"------------------------------------------------------------------------------------------------------------
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
@@ -131,6 +137,7 @@ NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
+NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -159,19 +166,6 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 " NeoBundleLazy 'skammer/vim-css-color', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml']}}
 " NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload': \ {'filetypes': ['html', 'xhttml', 'css']}}
 " NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['html', 'xhttml','xml']}}
-"------------------------------------------------------------------------------------------------------------
-"--[ experimental ]------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-NeoBundle 'joedicastro/DirDiff.vim.git'       "Recursive diff on two directories and generate a diff 'window'
-NeoBundle 'tpope/vim-obsession.git'           "Session manager
-
-NeoBundle 'xolox/vim-misc'                    "for vim notes
-NeoBundle 'xolox/vim-session.git'             "More powerful session manager
-
-NeoBundle 'junkblocker/patchreview-vim'   "codereview for dvcs
-NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
-NeoBundle 'dbakker/vim-projectroot.git'   "experimental replacement for project-root
-" NeoBundle 'AndrewRadev/multichange.vim.git'   "Test
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -234,9 +228,6 @@ NeoBundleLazy 'wting/rust.vim', {'autoload' : {'filetypes' : ['rust']}}
 " Very good navigation, but no stack
 NeoBundleLazy 'hewes/unite-gtags.git', {'autoload':{'unite_sources':['gtags', 'gtags/def', 'gtags/context', 'gtags/ref', 'gtags/grep', 'gtags/def' ]}}
 NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
-" NeoBundle 'bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
-" NeoBundle 'gilligan/vim-lldb.git'             "lldb frontend tooo buggy for now
-" NeoBundle 'tpope/vim-abolish.git'             "advanced abbreviation & substitution replaced by egrep
 
 NeoBundleCheck
 catch /117/

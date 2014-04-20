@@ -276,6 +276,7 @@ defbindings("WMPlex.toplevel", {
         kpress("q", "ioncore.exec_on(_, '~/bin/mpd_sel.sh')"),
         kpress("i", "ioncore.exec_on(_, '~/bin/pls -output')"),
         kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
+        kpress("Shift+o", "ioncore.exec_on(_, '~/bin/pls -vol')"),
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),

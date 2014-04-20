@@ -7,7 +7,8 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
+nnoremap <A-z> :set invpaste paste?<CR>
+set pastetoggle=<A-z>
 
 " copy or paste from X11 clipboard
 " http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
@@ -288,7 +289,6 @@ map <S-l> gt
         command! -bang Qa qa<bang>
     cmap Tabe tabe
 endif
-
 
 nnoremap <leader>r :YRShow<CR>
 
