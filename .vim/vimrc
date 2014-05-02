@@ -29,7 +29,7 @@ endif
 
 NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 "------------------------------------------------------------------------------------------------------------
-"--[ Bundles ]-----------------------------------------------------------------------------------------------
+"--[ Main ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'https://bitbucket.org/ns9tks/vim-l9' "Utility library for vim
 NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
@@ -49,7 +49,19 @@ NeoBundle 'tpope/vim-eunuch.git'              "for SudoWrite, Locate, Find etc
 NeoBundle 'Raimondi/delimitMate.git'          "Add pairs to brackets
 NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
-NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visualy
+NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visually with |-es too slow
+NeoBundle 'trapd00r/vim-highlight-default-highlight-groups.git' "test hi
+
+"--[ New ]--------------------------------------------------------
+NeoBundle 'reedes/vim-thematic.git'             "manage themes easy
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'https://bitbucket.org/abudden/tagsignature'
+NeoBundle 'tsukkee/unite-tag.git'               "unite tag wrapper
+NeoBundle 'Lokaltog/vim-easymotion'             "easymotion navigation
+NeoBundle 'zepto/unite-tmux'
+NeoBundle 'yuku-t/unite-git'
+
+" NeoBundle 'Yggdroot/indentLine.git'           "indent tabs visually with bg color
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -60,6 +72,7 @@ NeoBundle 'xolox/vim-session.git'             "More powerful session manager
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
+NeoBundle 'int3/vim-extradite'                "Git commit browser/log wrapper for vim
 NeoBundle 'gregsexton/gitv'                   "Git viewer
 " NeoBundleLazy 'gregsexton/gitv',            "Git viewer
 "             \ {'depends':['tpope/vim-fugitive'],
@@ -110,7 +123,7 @@ NeoBundle 'chrisbra/Join.git'                 "Extended and fast Join for vim
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
 NeoBundle 'tyru/restart.vim.git'              "add restart support
-NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb
+NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
@@ -124,7 +137,9 @@ NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
 NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
+NeoBundle 'reedes/vim-colors-pencil.git'      "fancy pencil dark and light colorscheme
 NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
+NeoBundle 'vim-scripts/Lucius.git'            "fancy lucius colorscheme
 NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
             \ { 'commands' : 'Transpose'}}
 NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
@@ -138,12 +153,14 @@ NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
+NeoBundle 'vim-scripts/perl-support.vim.git'  "perl-support for vim
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
 NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
+NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
 "------------------------------------------------------------------------------------------------------------
 "--[ latex ]-------------------------------------------------------------------------------------------------
@@ -185,35 +202,26 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 NeoBundle 'vim-jp/vital.vim.git'              "improve unity perf
 NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
 NeoBundle 'Shougo/neomru.vim.git'             "MRU plugin for unite
-NeoBundleLazy 'Shougo/junkfile.vim', {
-            \'autoload':{'commands':'JunkfileOpen',
-            \ 'unite_sources':['junkfile','junkfile/new']}} "Create temporary file for memo, testing, ...
-NeoBundleLazy 'Shougo/unite-build.git', {'autoload' : {
-    \ 'unite_sources' : 'build',
-    \ }}
+"--[ Create temporary file for memo, testing, ... ]----------------
+NeoBundleLazy 'Shougo/junkfile.vim', { 'autoload':{'commands':'JunkfileOpen', 'unite_sources':['junkfile','junkfile/new']}} 
+NeoBundleLazy 'Shougo/unite-build.git', {'autoload' : { 'unite_sources' : 'build', }}
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
-NeoBundleLazy 'kmnk/vim-unite-svn.git', {'autoload' : {
-    \ 'unite_sources' : ['svn/status', 'svn/info', 'svn/blame', 'svn/diff'],
-    \ }}
+NeoBundleLazy 'kmnk/vim-unite-svn.git', {'autoload' : { 'unite_sources' : ['svn/status', 'svn/info', 'svn/blame', 'svn/diff'], }}
 NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':
-            \ 'colorscheme'}}
+NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
 NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' :
-            \ ['history/command', 'history/search']}}
-NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' :
-            \ 'filetype', }}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':
-            \ ['quickfix', 'location_list']}}
+NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
+NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' : 'filetype', }}
+NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
 NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 NeoBundleLazy 'mattn/unite-gist.git' , {'autoload':{'unite_sources':'gist'}}
 "------------------------------------------------------------------------------------------------------------
 "---------------[ other filetypes ]--------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}} " Tmux config file syntax
-NeoBundleLazy 'joedicastro/vim-pentadactyl', {
-            \ 'autoload': {'filetypes': ['pentadactyl']}}
+"--[ Tmux config file syntax ]----------------------------------------
+NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}} 
+NeoBundleLazy 'joedicastro/vim-pentadactyl', { 'autoload': {'filetypes': ['pentadactyl']}}
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
 NeoBundleLazy 'vim-scripts/po.vim--gray', {'autoload': {'filetypes': ['po']}}
 NeoBundleLazy 'chrisbra/csv.vim', {'autoload' : {'filetypes' : ['csv']}}

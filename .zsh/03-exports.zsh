@@ -27,7 +27,7 @@ export ACKRC="${XDG_CONFIG_HOME}/ackrc"
 export GIMP2_DIRECTORY=${HOME}/etc/gimp-2.8
 export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
 
-export VAGRANT_HOME=/mnt/home/vagrant
+export VAGRANT_HOME="/mnt/home/vagrant"
 
 export ESCDELAY=1
 export NCURSES_ASSUMED_COLORS=3,0
@@ -35,10 +35,13 @@ export NCURSES_NO_MAGIC_COOKIES=1
 export NCURSES_NO_PADDING=1
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/trinity/bin/"
+
 export PAGER="vimpager"
+export SDCV_PAGER=$PAGER
 alias less=$PAGER
 alias zless=$PAGER
-export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
+
+# export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
 # export MAIL=${MAIL:-/home/neg/.local/mail}
 export SHELL='/bin/zsh'
 export X_OSD_COLOR='#00ffff'

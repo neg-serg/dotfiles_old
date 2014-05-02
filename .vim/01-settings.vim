@@ -1,4 +1,8 @@
-" ------[ GUI settings ]-----------------------------------------------------
+if exists('$WINDIR') || !executable('zsh')
+  set shell=bash
+else
+  set shell=zsh
+endif
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
   " The new Vim regex engine is currently slooooow as hell which makes syntax
@@ -8,6 +12,7 @@ if v:version >= 704
   set regexpengine=1
 endif
 " colorscheme solarized
+" ------[ GUI settings ]-----------------------------------------------------
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
     set guifontwide=PragmataPro\ for\ Powerline\ 14
@@ -25,15 +30,24 @@ if has("gui_running")
     set ttymouse=xterm2                " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
 
+    set synmaxcol=256                  " improve hi performance
+    syntax sync minlines=256
+    set ttyscroll=32
+    set lazyredraw
+
    "  set selection=exclusive            " exclusive selection is better [?]
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
+    set previewheight=8                " Preview window should be minimal
 
     set winaltkeys=no                  "
     set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
+    
+    " set ballooneval                    " add popups for gui
+    " set balloondelay=400               " popups delay
 
     " Paste from PRIMARY and CLIPBOARD
     inoremap <silent> <M-v> <Esc>"+p`]a
@@ -49,9 +63,7 @@ if has("gui_running")
 
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
-
-    set ttyscroll=1024
-    set lazyredraw
+    
 endif
 
 if !has("gui_running")
@@ -128,7 +140,8 @@ elseif has ('gui')          " On mac and Windows, use * register for copy-paste
     set clipboard=unnamed
 endif
 "----------------------------------------------------------------------------
-let $PATH = $PATH . ':' . expand("~/.cabal/bin")
+set keywordprg=:help
+" let $PATH = $PATH . ':' . expand("~/.cabal/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
@@ -197,11 +210,9 @@ endif
 "   set fileencodings=ucs-bom,utf-8,latin1
 " endif
 
-syntax sync minlines=128
 " set completeopt=menu
 set completeopt=menu,menuone,longest
 set switchbuf=useopen,usetab
-"syn sync minlines=1000
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -230,16 +241,17 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 " set autowrite                   " Automatically write a file when leaving a modified buffer
 set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
-set shortmess+=a                " Abbrev. of messages (avoids 'hit enter')
+set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
+set nomore                      " ----------------------------------------
 " set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
 set expandtab                   " Tabs are spaces, not tabs
-set shiftwidth=2        " spaces for autoindents
-set shiftround          " makes indenting a multiple of shiftwidth
-set tabstop=2                   " An indentation every four columns
-set softtabstop=2               " Let backspace delete indent
+set shiftwidth=4                " spaces for autoindents
+set shiftround                  " makes indenting a multiple of shiftwidth
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
 set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
@@ -362,23 +374,25 @@ set path=**
 " as bash scripts and not sh scripts
 let g:is_posix        = 1
 
-" indent_guides {
-    let g:indent_guides_auto_colors = 1
-    " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
-    let g:indent_guides_start_level           = 2
-    let g:indent_guides_guide_size            = 1
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_color_change_percent  = 7
-" }
+"--[ Indent_guides ]--------------
+let g:indent_guides_auto_colors = 1
+" For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
+let g:indent_guides_start_level           = 2
+let g:indent_guides_guide_size            = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent  = 7
+
+let g:indentLine_char = '│'
+let g:indentLine_faster = 1
 "--[ Ctags ]----------------------
-    set tags=./tags;/;~/.vim/tags
-    " Make tags placed in .git/tags file available in all levels of a repository
-    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-    if gitroot != ''
-        let &tags = &tags . ',' . gitroot . '/.git/tags'
-    endif
+set tags=./tags;/;~/.vim/tags
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+    let &tags = &tags . ',' . gitroot . '/.git/tags'
+endif
 
 let g:gundo_playback_delay = 240
 
@@ -403,6 +417,19 @@ let g:ctrlp_cmd   = 'CtrlPMRUFiles'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
+endif
+
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+        \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+        \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
 endif
 
 let g:haddock_browser = "dwb"
@@ -492,19 +519,23 @@ let g:ycm_semantic_triggers =  {
 let g:ycm_collect_identifiers_from_tags_files = 0
 
 let g:ycm_filetype_blacklist = {
-      \ 'notes'       : 1,
-      \ 'markdown'    : 1,
-      \ 'text'        : 1,
-      \ 'unite'       : 1,
-      \ 'conqueterm'  : 1,
-      \ 'asm'         : 1,
+      \ 'notes'      : 1,
+      \ 'markdown'   : 1,
+      \ 'text'       : 1,
+      \ 'unite'      : 1,
+      \ 'conqueterm' : 1,
+      \ 'asm'        : 1,
+      \ 'tagbar'     : 1,
+      \ 'qf'         : 1,
+      \ 'vimwiki'    : 1,
+      \ 'pandoc'     : 1,
+      \ 'mail'       : 1
       \}
 
-
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_add_preview_to_completeopt                = 1
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
-
 let g:ackprg = 'ag --nogroup --nocolor --column'
 "--[ YankRing ]-------------------
 " this is so that single char deletes don't end up in the yankring
@@ -535,7 +566,8 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 1
 "--[ Gitv ]-----------------------
-let g:Gitv_OpenHorizontal = 0
+let g:Gitv_OpenHorizontal = 'auto'
+let g:Gitv_OpenPreviewOnLaunch = 1
 let g:Gitv_WipeAllOnClose = 1
 let g:Gitv_DoNotMapCtrlKey = 1
 let g:Gitv_CommitStep = 1024
@@ -546,6 +578,7 @@ let g:gitgutter_realtime = 0
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
+let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
 "--[ Conque gdb wrapper ]---------
 let g:ConqueGdb_Leader          = '\'        "<leader>, by default is painful
 "--[ Eclim ]----------------------
@@ -588,7 +621,7 @@ let g:livepreview_previewer = 'zathura'
 "--[ ListToggle ]-----------------
 let g:lt_location_list_toggle_map = '<c-e>i'
 let g:lt_quickfix_list_toggle_map = '<c-e>u'
-let g:lt_height = 25
+let g:lt_height = 10
 "--[ Eregex ]---------------------
 let g:eregex_default_enable = 0
 "--[ MatchTagAlways ]-------------
@@ -598,3 +631,10 @@ let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
       \  'indentation' : '  '
       \}
+"--[ Easymotion ]-----------------
+let g:EasyMotion_leader_key = '<Leader>e'
+
+" Provides the equivalent of <Leader>s, which is forwards/backwards search for a
+" character.
+" has to be 'nmap', 'noremap' doesn't work
+nmap s <Plug>(easymotion-s)

@@ -44,7 +44,4 @@ bind index _        collapse-all
 
 bind compose p postpone-message
 
-macro index,pager d "<save-message>=[Gmail].Corbeille<enter>"           "move message to the trash"
-macro index,pager S "<save-message>=/[Gmail].Spam<enter>"                "mark message as spam"
-
 # vim:ft=muttrc

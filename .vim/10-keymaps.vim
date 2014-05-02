@@ -1,10 +1,17 @@
+"Annoying %)
+nnoremap q: <Nop>
+nnoremap q/ <Nop>
+nnoremap q? <Nop>
+map <Right> <Nop>
+map <Left> <Nop>
 nmap <space> <Nop>
-nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>
 
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
+
+nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>
 
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
@@ -27,10 +34,10 @@ nnoremap <PageDown> :bn<CR>
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
 
-" nnoremap <up> <c-w>+
-" nnoremap <down> <c-w>-
-" nnoremap <left> <c-w><
-" nnoremap <right> <c-w>>
+" nnoremap <C-up> <c-w>+
+" nnoremap <C-down> <c-w>-
+" nnoremap <C-left> <c-w><
+" nnoremap <C-right> <c-w>>
 
 " Now we don't have to move our fingers so far when we want to scroll through
 " the command history; also, don't forget the q: command (see :h q: for more
@@ -38,11 +45,6 @@ nnoremap <silent> zk O<Esc>j
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
-" nnoremap ; :
-" nnoremap : ;
-" vnoremap ; :
-" vnoremap : ;
-" map ; :
 nmap ;w :w!<cr>
 nmap ;q :q<cr>
 nmap ;d :bd<cr>
@@ -118,12 +120,6 @@ nnoremap <S-Down> <Down>
 " Indent fun
 "vnoremap > >gv
 vnoremap < <gv
-" Annoying
-nnoremap q: <Nop>
-nnoremap q/ <Nop>
-nnoremap q? <Nop>
-map <Right> <Nop>
-map <Left> <Nop>
 
 noremap! <M-Backspace> <C-W>
 noremap! <M-Left> <C-Left>
@@ -175,25 +171,6 @@ vnoremap ci[ f[ci[
 
 " map p [p
 
-"call Cabbrev('/',   '/\v')
-"call Cabbrev('?',   '?\v')
-"call Cabbrev('s/',  's/\v')
-"call Cabbrev('%s/', '%s/\v')
-"call Cabbrev('s#',  's#\v')
-"call Cabbrev('%s#', '%s#\v')
-"call Cabbrev('s@',  's@\v')
-"call Cabbrev('%s@', '%s@\v')
-"call Cabbrev('s!',  's!\v')
-"call Cabbrev('%s!', '%s!\v')
-"call Cabbrev('s%',  's%\v')
-"call Cabbrev('%s%', '%s%\v')
-"call Cabbrev('/',   '/\v')
-"call Cabbrev("'<,'>s/", "'<,'>s/\v")
-"call Cabbrev("'<,'>s#", "'<,'>s#\v")
-"call Cabbrev("'<,'>s@", "'<,'>s@\v")
-"call Cabbrev("'<,'>s!", "'<,'>s!\v")
-"vnoremap /        /\v
-
 " save and build
 " nmap <LocalLeader>wm  :w<cr>:make<cr>
 " Bindings for ctk
@@ -223,12 +200,6 @@ cmap     wqq    qw<CR>   " quit really, really fast(with saving)
 " nmap <F12> :call UpdateCscopeDb()<cr>
 " vmap <F12> <esc>:call UpdateCscopeDb()<cr>
 " imap <F12> <esc>:call UpdateCscopeDb()<cr>
-
-" " Use sane regexes.
-" nnoremap / /\v
-" vnoremap / /\v
-" nnoremap ? ?\v
-" vnoremap ? ?\v
 
 " Keep search matches in the middle of the window.
 nnoremap * *zzzv
@@ -261,15 +232,14 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 "-----------[ UltiSnips ]-------------------------------------
 " we can't use <tab> as our snippet key since we use that with YouCompleteMe
-let g:UltiSnipsSnippetsDir         = $HOME . '/dotfiles/vim/UltiSnips'
+let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
 if has("gui_macvim")
-  " Ctrl conflicts with "Dvorak-Qwerty Command"
+  " Ctrl conflicts with Dvorak-Qwerty Command
   let g:UltiSnipsExpandTrigger       = "<m-s>"
 else
-  " Alt conflicts with Xmonad
   let g:UltiSnipsExpandTrigger="<m-s>"
   let g:UltiSnipsJumpForwardTrigger="<m-s>"
-  let g:UltiSnipsJumpBackwardTrigger="<m-w>"
+  let g:UltiSnipsJumpBackwardTrigger="<m-f>"
   let g:UltiSnipsListSnippets        = "<c-m-s>"
 endif
 
@@ -411,7 +381,6 @@ nmap f [unite]
 xmap f [unite]
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
-" nnoremap <C-e> <Nop>
 " menu prefix key (for all Unite menus) {{{
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
 nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
@@ -442,7 +411,8 @@ nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
 nnoremap <silent> [unite]b :Unite -silent buffer<CR>
-nnoremap <silent><Leader>. :Unite -silent -start-insert file_mru<CR>
+nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
+" nnoremap <silent><Leader>. :Unite -silent -start-insert file_mru<CR>
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-svn ]-----------------------------------------------
 nnoremap <silent> [unite]sd :Unite svn/diff<CR>

@@ -15,7 +15,9 @@ for i in ${NOGLOB_LIST[@]}; alias ${i}="noglob ${i}";
 alias "zmv=noglob zmv -v"
 
 alias fevil='find . -regextype posix-extended -regex'
+
 alias sp='du -shc ./* | sort -h'
+alias cdu=cdu -idh
 
 if [[ $UID != 0 ]]
 then
@@ -31,7 +33,6 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-alias sl='ls'
 alias l="ls++"
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
@@ -60,6 +61,7 @@ function v {
   if [ ! -z $DISPLAY ]; then
     if [ -z $(pidof gvim) ] ; then
       gvim --remote-silent $@
+      sleep .4
       notionflux -e "app.byclass('gvim', 'Gvim')" 
     else  
       notionflux -e "app.byclass('gvim', 'Gvim')" 
@@ -171,7 +173,6 @@ alias ym='~/bin/scripts/yandex.mount > /dev/null'
 alias ftpfs='curlftpfs -o codepage=cp1251 ftp://192.168.1.1 /media/ftp'
 alias td='[ -z $(pidof transmission-daemon) ] && transmission-daemon'
 
-alias t='tmux neww'
 alias sdmesg='while true; do sudo dmesg -c; sleep 1; done'
 
 alias -- -='cd -'
@@ -180,7 +181,7 @@ alias history='history 0'
 alias l.='ls -d .*'
 alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
 
-alias wd='~/bin/wd.sh'
+alias wd="${HOME}/bin/wd.sh"
 
 # cli pastebin client
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
@@ -191,3 +192,6 @@ alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, 
 alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
 
 alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
+
+alias objdump='objdump -M intel -d'
+alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"

@@ -2,6 +2,9 @@ so ~/.pentadactyl/tomorrownight.rc
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 
+" Shut up.
+javascript dactyl.beep = function() { return false; }
+
 set cpt=l
 set autocomplete=".*"
 colorscheme vimpwhite
