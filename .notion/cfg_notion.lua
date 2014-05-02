@@ -105,7 +105,7 @@ defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=tru
     -- float=true
 ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
 }
-defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true}
+defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -------------------------------------[[ VM ]]--------------------------------------
 -- defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
@@ -113,14 +113,16 @@ defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -- defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
 -------------------------------------[[   GIMP  ]]-----------------------------
 defwinprop{class = "Gimp",acrobatic = true}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",target="g-win"}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",target="g-win"}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",target="g-win"}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-new",transient_mode="off",target="g-win"}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",target="g-win"}
---defwinprop{class="Gimp",instance="gimp",role="gimp-toolbox",transient_mode="on",target="g-right-b"}
---defwinprop{class="Gimp",instance="gimp",role="gimp-*tool",transient_mode="on",target="g-right-b"}
---defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-window",transient_mode="off",target="g-win"}
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-window",transient_mode="off",target="g-win"}
+--
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",target="g-win",float=true}
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",target="g-win",float=true}
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",target="g-win",float=true}
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-new",transient_mode="off",target="g-win",float=true}
+-- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",target="g-win",float=true}
+--
+-- defwinprop{class="Gimp",instance="gimp",role="gimp-toolbox",transient_mode="on",target="g-right-b",acrobatic = true}
+-- defwinprop{class="Gimp",instance="gimp",role="gimp-*tool",transient_mode="on",target="g-right-b",acrobatic = true}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
 --defwinprop{is_dockapp = true,statusbar = "systray",
            --max_size = {w=8,h=8},
@@ -167,9 +169,10 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod1+space",       "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
     kpress("Mod1+grave",       "mod_query.query_exec(_)"),
     kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
-    --kpress("Mod4+space",     "named_scratchpad(_, 'misc')"),
-    --kpress("Mod1+G", "mod_query.query_fuzzy_gotoclient(_)"),
+    -- kpress("Mod4+space",       "named_scratchpad(_, 'misc')"),
+    -- kpress("Mod1+G",           "mod_query.query_fuzzy_gotoclient(_)"),
     kpress("Mod1+G",           "mod_menu.menu(_, _sub, 'windowlist')"),
+    -- kpress("Mod1+G",           "mod_query.query_gotoclient(_)"),
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
     -- kpress("Mod4+3",           "named_scratchpad(_, 'ranger')"),
     -- kpress("Mod4+4",           "sp_app(_, 'vmware', vmtable)"),
@@ -474,6 +477,8 @@ defbindings("WTiling", {
     kpress("Mod4+Control+L", "WTiling.split_at(_, _sub, 'left', true)"),
     kpress("Mod4+Control+K", "WTiling.split_at(_, _sub, 'bottom', true)"),
     kpress("Mod4+Control+J", "WTiling.split_at(_, _sub, 'top', true)"),
+    kpress("Mod4+2", "WTiling.transpose_at(_, _sub)"),
+    kpress("Mod4+3", "WTiling.flip_at(_, _sub)"),
     --Destroy current frame
     kpress("Mod4+Control+X", "WTiling.unsplit_at(_, _sub)"),
     kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),

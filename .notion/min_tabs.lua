@@ -47,12 +47,12 @@ function show_only_necessary_tabs_in_frame(fp)
 
     -- Assume the tabbar should be shown.
     local show_bar = true
-   --if WMPlex.mx_count(fp) == 1 then
-	local rg = fp:mx_nth(0)
-	if not rg:is_tagged() then
-	    show_bar = false
-	end
-    --end
+  -- if WMPlex.mx_count(fp) != 1 then
+    local rg = fp:mx_nth(0)
+    if not rg:is_tagged() then
+        show_bar = false
+    end
+  -- end
 
     -- Propagate choice
     ioncore.defer(function()

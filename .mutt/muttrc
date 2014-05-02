@@ -10,6 +10,8 @@ source "gpg2 -dq $HOME/.config/.pass |"
 # set alias_file=~/.mutt/aliases.mutt 
 
 source ~/.mutt/mailboxes
+mailboxes "~/.local/mail/gmail/INBOX" "~/.local/mail/gmail/[Gmail].All Mail" "~/.local/mail/gmail/archive"
+mailboxes "~/.local/mail/gmail/[Gmail].Sent" "~/.local/mail/gmail/[Gmail].Mail" "~/.local/mail/gmail/[Gmail].Drafts" "~/.local/mail/gmail/[Gmail].Trash"
 
 set query_command = "abook --mutt-query '%s'"
 set shell="/bin/bash"
@@ -141,11 +143,12 @@ set realname = "Sergey Miroshnichenko"
 # set folder = "imaps://imap.gmail.com:993"
 # set spoolfile = "+INBOX"
 set folder      = /home/neg/.local/mail/gmail
-set spoolfile   = "+[Gmail].All Mail"
-set mbox_type     = "Maildir"
-set mbox          = "+[Gmail].All Mail"
-# set postponed   = "+[Gmail]/Drafts"
-unset record
+set spoolfile   = "+INBOX"
+set mbox_type   = "Maildir"
+set postponed   = "+[Gmail].Drafts"
+set mbox        = "+[Gmail].All Mail"
+# set record      = "+[GMail].Sent Mail"
+# unset record
 
 set imap_check_subscribed
 
@@ -153,8 +156,6 @@ set mail_check = 120
 set timeout = 300
 set imap_keepalive = 300
 # set hostname = gmail.com
-# set postponed = "+[GMail]/Drafts"
-# set record = "+[GMail]/Sent Mail"
 set move = no
 set include
 set auto_tag = yes
@@ -169,12 +170,11 @@ bind editor ^T complete
 bind editor <space> noop 
 
 # Gmail-style keyboard shortcuts
-macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
-macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[GMail]/Trash\"\n <delete-message>" "Gmail delete message"
+macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
-macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
-macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+macro index,pager ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
+macro index,pager gs "<change-folder>=[Gmail].Starred<enter>" "Go to starred messages"
+macro index,pager gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
 
 # goobook integration
 set query_command = "goobook query '%s'"
@@ -199,6 +199,9 @@ macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to draft
 macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
 macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
 
+macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
 macro index,pager a "<save-message>=[Gmail].All Mail<enter><enter><sync-mailbox>" "Archive"
-macro index,pager d "<save-message>=[Gmail].Trash<enter><enter><sync-mailbox>" "Trash"
+# macro index,pager d "<save-message>=[Gmail].Trash<enter><enter><sync-mailbox>" "Trash"
 macro index,pager * "<save-message>=[Gmail].Starred<enter><enter><sync-mailbox>" "Star"
+
+account-hook $folder "set imap_user=serg.zorg@gmail.com imap_pass=$my_pw_personal

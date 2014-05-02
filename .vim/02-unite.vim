@@ -424,6 +424,8 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
             \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
+" call unite#custom#source( 'neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
+call unite#custom#profile('neomru/file', 'filters', 'sorter_ftime')
 
 let g:unite_enable_ignore_case               = 1
 let g:unite_enable_smart_case                = 1
@@ -432,8 +434,8 @@ let g:unite_enable_split_vertically          = 0
 let g:unite_source_file_mru_limit            = 300
 let g:unite_source_file_rec_min_cache_files  = 300
 let g:unite_source_file_rec_max_depth        = 10
-let g:unite_kind_openable_cd_command         = 'TabpageCD'
-let g:unite_kind_openable_lcd_command        = 'TabpageCD'
+" let g:unite_kind_openable_cd_command         = 'TabpageCD'
+" let g:unite_kind_openable_lcd_command        = 'TabpageCD'
 let g:unite_source_history_yank_enable       = 1
 let g:unite_source_bookmark_directory        = $HOME . "/.config/unite/bookmark"
 let g:unite_data_directory                   = $HOME.'/.config/unite'
@@ -444,7 +446,6 @@ let g:unite_enable_short_source_mes          = 0
 let g:unite_force_overwrite_statusline       = 0
 let g:unite_prompt                           = '>> '
 let g:unite_marked_icon                      = '✓'
-let g:unite_winheight                        = 15
 let g:unite_update_time                      = 200
 let g:unite_split_rule                       = 'botright'
 let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
@@ -465,4 +466,3 @@ elseif executable('ack')
     let g:unite_source_grep_recursive_opt         = ''
     let g:unite_source_grep_search_word_highlight = 1
 endif
-

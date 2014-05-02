@@ -35,18 +35,13 @@ autocmd BufNewFile,BufRead  *.t2t         setlocal ft=txt2tags
 autocmd Filetype            txt2tags      source   $HOME/.vim/syntax/txt2tags.vim
 autocmd FileType            make          setlocal noexpandtab
 autocmd FileType            javascript    setlocal noautoindent nosmartindent
-autocmd BufWritePre         *.py          mark z | %s/ *$//e | 'z
+" autocmd BufWritePre         *.py          mark z | %s/ *$//e | 'z
 autocmd BufNewFile,BufRead  *.t2t         setlocal wrap
 autocmd BufNewFile,BufRead  *.t2t         setlocal lbr
 autocmd BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax
-autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=vim
+autocmd BufNewFile,BufRead .pentadactylrc setlocal filetype=pentadactyl
 
 autocmd FileType git set nofoldenable
-"autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
-
-  autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
-  au BufRead,BufNewFile *.go           set filetype=go
-augroup END
 
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -56,15 +51,10 @@ autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
 autocmd BufReadPost *.doc silent %!antiword "%"
 autocmd BufReadPost *.odt silent %!odt2txt "%"
 "Sourced from vim tip: http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
-autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-"autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 " Enable omni completion.
 autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a
 autocmd FileType c,cc,h,s      nmap <C-c>m :make!<CR>
-autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR>
-autocmd FileType tex           :NoMatchParen
-autocmd FileType tex           setlocal nocursorline
-autocmd Filetype tex           setlocal updatetime=1
+autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR> | :NoMatchParen | setlocal nocursorline | setlocal updatetime=1
 
 au FileType mail setl spell fo=wantq1 smc=0
 
@@ -84,7 +74,6 @@ autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-autocmd BufWritePost *.rb call Compile()
 function! JavaScriptFold()
     setl foldmethod=syntax
     setl foldlevelstart=1
@@ -95,7 +84,6 @@ function! JavaScriptFold()
     endfunction
     setl foldtext=FoldText()
 endfunction
-au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 au BufRead,BufNewFile *.textile setf textile
 augroup filetypedetect
@@ -120,11 +108,8 @@ augroup ag_xml
   autocmd FileType html,xml,xslt,htmldjango call LoadTypeXML()
 augroup END
 
-" au vimrc BufReadCmd *.epub call zip#Browse( expand( "<amatch>" ) )
-
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"
-autocmd FileType cpp hi Function guifg=#85A2CC
+autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
   au!
@@ -165,10 +150,6 @@ augroup resCur
 augroup END
 
 
-" Instead of reverting the cursor to the last position in the buffer, we
-" set it to the first line when editing a git commit message
-au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
-
 " if !executable("ghcmod")
 "     autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 " endif
@@ -189,22 +170,22 @@ endfunction
 
 " Execution permissions by default to shebang (#!) files {{{
 
-augroup shebang_chmod
-  autocmd!
-  autocmd BufNewFile  * let b:brand_new_file = 1
-  autocmd BufWritePost * unlet! b:brand_new_file
-  autocmd BufWritePre *
-        \ if exists('b:brand_new_file') |
-        \   if getline(1) =~ '^#!' |
-        \     let b:chmod_post = '+x' |
-        \   endif |
-        \ endif
-  autocmd BufWritePost,FileWritePost *
-        \ if exists('b:chmod_post') && executable('chmod') |
-        \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
-        \   unlet b:chmod_post |
-        \ endif
-augroup END
+" augroup shebang_chmod
+"   autocmd!
+"   autocmd BufNewFile  * let b:brand_new_file = 1
+"   autocmd BufWritePost * unlet! b:brand_new_file
+"   autocmd BufWritePre *
+"         \ if exists('b:brand_new_file') |
+"         \   if getline(1) =~ '^#!' |
+"         \     let b:chmod_post = '+x' |
+"         \   endif |
+"         \ endif
+"   autocmd BufWritePost,FileWritePost *
+"         \ if exists('b:chmod_post') && executable('chmod') |
+"         \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
+"         \   unlet b:chmod_post |
+"         \ endif
+" augroup END
 
 " }}}
 function! GHDashboard (...)
@@ -227,30 +208,30 @@ endfunction
 
 autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard')
 
-augroup vimrcEx
-  autocmd!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-  " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-augroup END
+" augroup vimrcEx
+"   autocmd!
+"
+"   " For all text files set 'textwidth' to 78 characters.
+"   autocmd FileType text setlocal textwidth=78
+"
+"   " When editing a file, always jump to the last known cursor position.
+"   " Don't do it for commit messages, when the position is invalid, or when
+"   " inside an event handler (happens when dropping a file on gvim).
+"   autocmd BufReadPost *
+"     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal g`\"" |
+"     \ endif
+"
+"   " Set syntax highlighting for specific file types
+"   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+"   autocmd BufRead,BufNewFile *.md set filetype=markdown
+"
+"   " Enable spellchecking for Markdown
+"   autocmd FileType markdown setlocal spell
+"
+"   " Automatically wrap at 80 characters for Markdown
+"   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+" augroup END
 
 " UltiSnips is missing a setf trigger for snippets on BufEnter
 autocmd vimrc BufEnter *.snippets setf snippets
@@ -267,6 +248,14 @@ autocmd vimrc FileType python
       \ set softtabstop=2 |
       \ setlocal omnifunc=pythoncomplete#Complete |
       \ setlocal foldlevel=1000
+
+" autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
+"   autocmd BufRead       *.mkd          set ai formatoptions=tcroqn2 comments=n:&gt;
+"   au BufRead,BufNewFile *.go           set filetype=go
+" augroup END
+" Instead of reverting the cursor to the last position in the buffer, we
+" set it to the first line when editing a git commit message
+" au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 " cindent is a bit too smart for its own good and triggers in text files when
 " you're typing inside parens and then hit enter; it aligns the text with the

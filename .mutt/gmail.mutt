@@ -1,7 +1,7 @@
 # Gmail information
 
 unset record # gmail does this automatically
-set postponed=+"gmail/drafts"
+set postponed   = "+[Gmail].Drafts"
 unset signature
 
 # use msmtp to send outgoing mail to the mailserver

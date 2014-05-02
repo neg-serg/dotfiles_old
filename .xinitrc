@@ -18,7 +18,7 @@
 
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
-#
+
 # {
 #   while xrandr --auto; do
 #     sleep 5
@@ -109,4 +109,5 @@ amixer -q set Master 0% mute
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
+~/bin/scripts/email_notifier.py &
 exec notion

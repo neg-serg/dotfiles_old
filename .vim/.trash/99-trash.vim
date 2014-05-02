@@ -22,6 +22,8 @@
 " NeoBundle 'junkblocker/VimSpy.git'          "browse through almost all vim structs
 " NeoBundle 'AndrewRadev/multichange.vim.git' "Test
 " NeoBundle 'dbakker/vim-projectroot.git'     "experimental replacement for project-root
+" NeoBundle 'reedes/vim-one.git'              "only 1 vim for osx
+" NeoBundle 'vim-scripts/vim-cmake-project.git'
 
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
@@ -141,8 +143,6 @@
 "let g:EclimHtmlValidate = 0
 "let g:EclimPhpValidate = 0
 
-
-"
 "
 "" EASYGREP
 " let g:EasyGrepMode=1
@@ -162,7 +162,6 @@
 " let g:EasyGrepReplaceAllPerFile=0
 " 
 "
-"
 " " ,nn will toggle NERDTree on and off
 " " html conversion (:help 2html.vim)
 " let g:html_use_css = 1
@@ -175,7 +174,6 @@
 " " Switch syntax highlighting on, when the terminal has colors
 " " Also switch on highlighting the last used search pattern.
 " 
-"
 "
 
 " NerdTree {
@@ -195,7 +193,6 @@
 " let g:buftabs_marker_start = "["
 " let g:buftabs_marker_end = "]"
 " let g:buftabs_marker_modified = "*"
-"
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- New-New-New!
@@ -261,8 +258,6 @@ elseif &term =~ '^screen'
         autocmd VimLeave * :silent :!echo -ne "\033P\033]12;rgb:FF/F5/9B\007\033\\"
     augroup END
 endif
-endif
-
 
 " " ==== FILE SPECIFIED OPTIONS ===============================
 " fun! s:setup_exec_cmd()
@@ -304,7 +299,6 @@ endif
 "   "au bufread,bufnewfile *.cpp  nm <c-f7> :!g++ -wall % -o %:r.out<cr>
 "   "au bufread,bufnewfile *.cpp  :set makeprg=g++\ -wall\ %\ -o\ %:r.out
 " endf  
-" 
 " 
 " "                                                                                             }}}
 " "   html code                                                                                 
@@ -356,7 +350,6 @@ endif
 "   nmap sf  ?^fu\%[nction]!?\s\+<CR>V/^endf\%[unction]<CR>
 " endf
 "
-"
 " fun! s:init_perl()
 "   "check perl code with :make
 "   set makeprg=perl\ -c\ %\ $*
@@ -388,7 +381,6 @@ endif
 "   let jifty_fold_template           = 1
 "   let jifty_fold_tags               = 1
 "   let jifty_fold_dispatcher         = 1
-" 
 " 
 "   " run perl code
 "   " nmap <C-c><C-c>  :!perl %<CR>
@@ -425,9 +417,6 @@ endif
 " endf
 " 
 " autocmd BufReadPost *.t :cal s:perl_test_rc()
-"
-"
-"
 "
 "==================================== C ====================================
 "" Default options for C files
@@ -478,11 +467,9 @@ endif
 "  autocmd FileType c,cpp call LoadTypeC()
 "augroup END
 "
-"
 " map <LocalLeader>tf :FriendsTwitter<cr>
 " map <LocalLeader>ts :let twitvim_login=inputdialog('Twitter USER:PASS? ')<cr>
 " map <LocalLeader>tw :PosttoTwitter<cr>
-"
 "
 "" Eclim settings
 "" ,i imports whatever is needed for current line
@@ -582,7 +569,6 @@ endif
 " set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 "set statusline=%<[%02n]\ %F%(\ %m%h%w%y%r%)\ %a%=\ %8l,%c%V/%L\ (%P)\ [%08O:%02B]A
 "
-"
 " vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
 "
 " "  In visual mode when you press * or # to search for the current selection
@@ -678,12 +664,10 @@ endif
 "     endif
 " endfunction
 "
-"
 " set keymap=russian-jcukenwin
 
 "set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 "set fillchars=diff:⣿
-"
 "
 " " Source some Files 
 " " Note: The "expand" is necessary to evaluate ~dope
@@ -693,7 +677,6 @@ endif
 " if filereadable(VBLOCK)
 "         exec "source " VBLOCK
 " endif
-"
 "
 " if ! has('gui_running')
 " set ttimeoutlen=10
@@ -735,7 +718,6 @@ endif
 " let g:Powerline_colorscheme="skwp"
 " let g:Powerline_mode_n = 'N'
 "
-"
 " " Autocommands {{{
 "   function! s:CreateAutocmds()
 "     augroup PowerlineMain
@@ -762,9 +744,6 @@ endif
 "     autocmd VimEnter * call s:CreateAutocmds() | call Pl#UpdateStatusline(1)
 "   augroup END
 " " }}}
-"
-"
-"
 "
 " augroup FastEscape
 "   autocmd!
@@ -796,7 +775,6 @@ endif
 " " use ctrl-f to open file in current buffer
 " map <c-t> :call DmenuOpen("tabe")<cr>
 " map <c-f> :call DmenuOpen("e")<cr>
-"
 "
 " let g:airline_powerline_fonts = 1
 " let g:airline_theme='solarized'
@@ -898,13 +876,6 @@ endif
 " Bundle 'zweifisch/pipe2eval'
 " " Bundle 'epeli/slimux'
 " " Bundle 'suan/vim-instant-markdown'
-" " Bundle ''
-" " Bundle ''
-" " Bundle ''
-" " Bundle ''
-" " Bundle ''
-" " Bundle ''
-" " Bundle ''
 " " Bundle ''
 " 
 " filetype plugin indent on
@@ -1312,16 +1283,12 @@ endif
 " 
 " let g:startify_custom_header = [
 "             \' ',
-"             \' ',
 "             \' _| _| _| ',
 "             \' _| _| _|_|_| _|_| ',
 "             \' _| _| _| _| _| _| ',
-"             \' _| _| _| _| _| _| ',
 "             \' _| _| _| _| _| ',
 "             \' ',
-"             \' ',
 "             \]
-" 
 " 
 " " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " " SWITCH BETWEEN TEST AND PRODUCTION CODE
@@ -1386,11 +1353,6 @@ endif
 " " " Write the file and run tests for the given filename
 " " :w
 " " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-" " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-" " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-" " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-" " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-" " :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
 " " if match(a:filename, '\.feature$') != -1
 " " exec ":!script/features " . a:filename
 " " else
@@ -1400,7 +1362,6 @@ endif
 " " exec ":!zeus rspec --color --format=nested --order default " . a:filename
 " " else
 " " exec ":!spec --color --format=nested " . a:filename
-" " end
 " " end
 " " endfunction
 " "
@@ -1423,7 +1384,6 @@ endif
 " " " Delete empty trailing line
 " " :normal dd
 " " endfunction
-"
 "
  " " let g:airline#extensions#tabline#enabled = 1 " Enable airline tabs
  " " let g:airline#extensions#tabline#fnamemod = ':t' " :help filename-modifiers
@@ -1477,7 +1437,6 @@ There
 " nmap <C-c>t :TlistToggle<CR>:TlistUpdate<CR>
 " map <C-c>add :execute ProjectAdd()<CR>
 " nmap <S-k> :exe ":Man " expand("<cword>")<CR>
-"
 "
 " "----------------------------------------------------------------------------------------------------------------------------
 " au Colorscheme hi CursorLineNr gui=none

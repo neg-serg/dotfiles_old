@@ -1,3 +1,5 @@
+# disable annoying pc speaker
+setterm -bfreq 0
 if [ "$TERM" = "linux" ]; then
     echo -en "\e]P0000000" #black
     echo -en "\e]P83d3d3d" #darkgrey

@@ -1,5 +1,5 @@
 fun! RangerChooser()
-    exec "silent !urxvtc -e ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+    exec "silent !urxvt -e ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
     if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
@@ -71,15 +71,4 @@ function! s:gtags_update()
     call s:system("gtags -i")
 endfunction
 command! GtagsUpdate call s:gtags_update()
-
-function! s:toggle_quickfix_window()
-  let _ = winnr('$')
-  cclose
-  if _ == winnr('$')
-    copen
-    setlocal nowrap
-    setlocal whichwrap=b,s
-  endif
-endfunction
-"}}}
 

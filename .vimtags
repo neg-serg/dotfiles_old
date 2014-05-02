@@ -308,6 +308,8 @@ acquireAllCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void 
 ag_xml	/home/neg/.vim/04-autocmds.vim	/^augroup ag_xml$/;"	a	language:Vim
 ArgumentParser	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from argparse import ArgumentParser, RawDescriptionHelpFormatter$/;"	i	language:Python
 arguments	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def arguments():$/;"	f	language:Python
+author	/mnt/home/dev/src/voltron/setup.py	/^    author = "snare",$/;"	v	language:Python
+author_email	/mnt/home/dev/src/voltron/setup.py	/^    author_email = "snare@ho.ax",$/;"	v	language:Python
 awful.button({ }, 1, function (c) client.focus 	/mnt/home/dev/src/dt3/awesome/rc.lua	/^    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),$/;"	f	language:Lua
 blocked_queue_hd	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO *blocked_queue_hd = NULL;$/;"	v	language:C
 blocked_queue_tl	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO *blocked_queue_tl = NULL;$/;"	v	language:C
@@ -327,6 +329,7 @@ create	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create(WMPlex *mpl
 create_config_file	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def create_config_file(original_file, copy_file):$/;"	f	language:Python
 create_frame_scratchpad	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create_frame_scratchpad(WWindow *parent, const WFitParams *fp,$/;"	f	language:C	file:
 create_scratchws	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static WRegion *create_scratchws(WWindow *parent, const WFitParams *fp, $/;"	f	language:C	file:
+data_files	/mnt/home/dev/src/voltron/setup.py	/^    data_files=['voltron.gdb', 'dbgentry.py'],$/;"	v	language:Python
 datetime	/home/neg/bin/vimv	/^import datetime$/;"	i	language:Python
 deleteAllThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^deleteAllThreads ( Capability *cap )$/;"	f	language:C	file:
 deleteAllThreads	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteAllThreads (Capability *cap);$/;"	p	language:C	file:
@@ -335,10 +338,14 @@ deleteThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteThre
 deleteThread_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^deleteThread_(Capability *cap, StgTSO *tso)$/;"	f	language:C	file:
 deleteThread_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void deleteThread_(Capability *cap, StgTSO *tso);$/;"	p	language:C	file:
 delimitMate_expand_space	/mnt/home/dev/src/dt3/vim/vimrc	/^let delimitMate_expand_space = 1$/;"	v	language:Vim
+dependency_links	/mnt/home/dev/src/voltron/setup.py	/^    dependency_links = ["https:\/\/github.com\/snarez\/scruffy\/tarball\/master#egg=scruffy"]$/;"	v	language:Python
+description	/mnt/home/dev/src/voltron/setup.py	/^    description = ("A UI for GDB & LLDB"),$/;"	v	language:Python
+dichotomy	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double dichotomy(double a, double b, double eps, double x, math_ff ff) {$/;"	f	language:C++
 do_try	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int do_try(const char *dir, const char *file, ExtlTryConfigFn *tryfn,$/;"	f	language:C	file:
 dummy_tso	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^StgTSO dummy_tso;$/;"	v	language:C
 E	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file E e<bang> <args>$/;"	c	language:Vim
 ensuredir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static bool ensuredir(char *f)$/;"	f	language:C	file:
+entry_points	/mnt/home/dev/src/voltron/setup.py	/^    entry_points = {$/;"	v	language:Python
 exitScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^exitScheduler (rtsBool wait_foreign USED_IF_THREADS)$/;"	f	language:C
 extl_add_searchdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_add_searchdir(const char *dir)$/;"	f	language:C
 EXTL_EXPORT_AS	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^EXTL_EXPORT_AS(extl, read_savefile)$/;"	f	language:C
@@ -354,13 +361,18 @@ extl_set_userdirs	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_set_us
 extl_try_config	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^int extl_try_config(const char *fname, const char *cfdir,$/;"	f	language:C
 extl_userdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^const char *extl_userdir()$/;"	f	language:C
 extl_write_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^bool extl_write_savefile(const char *basename, ExtlTab tab)$/;"	f	language:C
+f	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double f(double x) {$/;"	f	language:C++
+f1	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double f1(double x) {$/;"	f	language:C++
 filetypedetect	/home/neg/.vim/04-autocmds.vim	/^augroup filetypedetect$/;"	a	language:Vim
 findall	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from re import findall$/;"	i	language:Python
 findRetryFrameHelper	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^findRetryFrameHelper (Capability *cap, StgTSO *tso)$/;"	f	language:C
 fn	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^    ExtlFn fn;$/;"	m	language:C	struct:__anon1	file:
 forkProcess	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^forkProcess(HsStablePtr *entry$/;"	f	language:C
 FORKPROCESS_PRIMOP_SUPPORTED	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	116;"	d	language:C	file:
+fpclear	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^int fpclear(FILE *fp) {$/;"	f	language:C++
 freeScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^freeScheduler( void )$/;"	f	language:C
+f_derivat1	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double f_derivat1(double x) {$/;"	f	language:C++
+f_derivat2	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double f_derivat2(double x) {$/;"	f	language:C++
 g:ackprg	/home/neg/.vim/01-settings.vim	/^let g:ackprg = 'ag --nogroup --nocolor --column'$/;"	v	language:Vim
 g:airline#extensions#branch#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#branch#enabled = 1$/;"	v	language:Vim
 g:airline#extensions#hunks#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#hunks#enabled = 1$/;"	v	language:Vim
@@ -417,6 +429,8 @@ g:LustyJugglerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let g:LustyJuggle
 g:mapleader	/home/neg/.vim/01-settings.vim	/^let g:mapleader = ","$/;"	v	language:Vim
 g:mirodark_enable_higher_contrast_mode	/home/neg/.vim/01-settings.vim	/^    let g:mirodark_enable_higher_contrast_mode=0$/;"	v	language:Vim
 g:neobundle#log_filename	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neobundle#log_filename = $HOME.'\/.vim\/tmp\/neobundle.log'$/;"	v	language:Vim
+g:neobundle#types#git#default_protocol	/home/neg/.vim/vimrc	/^  let g:neobundle#types#git#default_protocol = 'git'$/;"	v	language:Vim
+g:neobundle#types#git#default_protocol	/home/neg/.vim/vimrc	/^  let g:neobundle#types#git#default_protocol = 'https'$/;"	v	language:Vim
 g:neobundle#types#git#default_protocol	/home/neg/.vimrc	/^  let g:neobundle#types#git#default_protocol = 'git'$/;"	v	language:Vim
 g:neobundle#types#git#default_protocol	/home/neg/.vimrc	/^  let g:neobundle#types#git#default_protocol = 'https'$/;"	v	language:Vim
 g:neocomplete#data_directory	/mnt/home/dev/src/dt3/vim/vimrc	/^let g:neocomplete#data_directory = $HOME.'\/.vim\/tmp\/neocomplete'$/;"	v	language:Vim
@@ -624,19 +638,25 @@ gettempdir	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from tempfile import gett
 GHDashboard	/home/neg/.vim/04-autocmds.vim	/^function! GHDashboard (...)$/;"	f	language:Vim
 GHDashboard	/mnt/home/dev/src/dt3/vim/vimrc	/^function! GHDashboard (...)$/;"	f	language:Vim
 gitroot	/home/neg/.vim/01-settings.vim	/^    let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\\n\\r]', '', 'g')$/;"	v	language:Vim
+golden_section	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double golden_section(double a, double b, double eps) {$/;"	f	language:C++
 H	/home/neg/.vim/10-keymaps.vim	/^noremap H ^$/;"	m	language:Vim
 heap_overflow	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^rtsBool heap_overflow = rtsFalse;$/;"	v	language:C
 HISTORY_FILE	/home/neg/bin/vimv	/^HISTORY_FILE = '~\/.vimv_history'$/;"	v	language:Python
 iCanHazNeoBundle	/mnt/home/dev/src/dt3/vim/vimrc	/^    let iCanHazNeoBundle=0$/;"	v	language:Vim
 iCanHazNeoBundle	/mnt/home/dev/src/dt3/vim/vimrc	/^let iCanHazNeoBundle=1$/;"	v	language:Vim
 initScheduler	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^initScheduler(void)$/;"	f	language:C
+install_package_data	/mnt/home/dev/src/voltron/setup.py	/^    install_package_data = True,$/;"	v	language:Python
+install_requires	/mnt/home/dev/src/voltron/setup.py	/^    install_requires = ['rl', 'scruffy'],$/;"	v	language:Python
 interruptStgRts	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^interruptStgRts(void)$/;"	f	language:C
 is_scratchpad	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^static bool is_scratchpad(WRegion *reg)$/;"	f	language:C	file:
 JavaScriptFold	/home/neg/.vim/04-autocmds.vim	/^function! JavaScriptFold()$/;"	f	language:Vim
 jk	/home/neg/.vim/10-keymaps.vim	/^inoremap jk <ESC>$/;"	m	language:Vim
 json_autocmd	/mnt/home/dev/src/dt3/vim/vimrc	/^augroup json_autocmd$/;"	a	language:Vim
 KEEP_LOCKCLOSURE	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	10;"	d	language:C	file:
+keywords	/mnt/home/dev/src/voltron/setup.py	/^    keywords = "voltron gdb lldb",$/;"	v	language:Python
 L	/home/neg/.vim/10-keymaps.vim	/^noremap L g_$/;"	m	language:Vim
+LAMBDA	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^const double LAMBDA = 1.618033989;$/;"	v	language:C++
+license	/mnt/home/dev/src/voltron/setup.py	/^    license = "Buy snare a beer",$/;"	v	language:Python
 LinesOfCode	/mnt/home/dev/src/dt3/vim/vimrc	/^function! LinesOfCode()$/;"	f	language:Vim
 LoadTypeXML	/home/neg/.vim/04-autocmds.vim	/^function! LoadTypeXML()$/;"	f	language:Vim
 Logger	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from logger import Logger$/;"	i	language:Python
@@ -644,6 +664,7 @@ logging	/home/neg/bin/vimv	/^import logging$/;"	i	language:Python
 LustyExplorerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let LustyExplorerDefaultMappings=0$/;"	v	language:Vim
 main	/home/neg/bin/vimv	/^def main():$/;"	f	language:Python
 main	/mnt/home/dev/src/dt3/awesome/awdt.py	/^def main():$/;"	f	language:Python
+main	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^int main() {$/;"	f	language:C++
 main	/mnt/home/dev/st/straustrup/pairs2.cpp	/^int  main(void) {$/;"	f	language:C++
 MakeDirIfNoExists	/mnt/home/dev/src/dt3/vim/vimrc	/^function! MakeDirIfNoExists(path)$/;"	f	language:Vim
 mapleader	/home/neg/.vim/01-settings.vim	/^let mapleader=','$/;"	v	language:Vim
@@ -659,14 +680,18 @@ mod_sp_set_shown	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^bool mod_sp_set_shown(WF
 mod_sp_set_shown_on	/mnt/home/dev/src/Ion3/mod_sp/main.c	/^bool mod_sp_set_shown_on(WMPlex *mplex, const char *how)$/;"	f	language:C
 n	/home/neg/.vim/10-keymaps.vim	/^nnoremap n nzzzv$/;"	m	language:Vim
 N	/home/neg/.vim/10-keymaps.vim	/^nnoremap N Nzzzv$/;"	m	language:Vim
+name	/mnt/home/dev/src/voltron/setup.py	/^    name = "voltron",$/;"	v	language:Python
 NamedTemporaryFile	/home/neg/bin/vimv	/^from tempfile import NamedTemporaryFile$/;"	i	language:Python
 neobundle_readme	/mnt/home/dev/src/dt3/vim/vimrc	/^let neobundle_readme=expand($HOME.'\/.vim\/bundle\/neobundle.vim\/README.md')$/;"	v	language:Vim
+newton	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^newton_ret *newton(double x, double epsilon) {$/;"	f	language:C++
 n_failed_trygrab_idles	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat n_failed_trygrab_idles = 0, n_idle_caps = 0;$/;"	v	language:C	file:
 n_idle_caps	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static nat n_failed_trygrab_idles = 0, n_idle_caps = 0;$/;"	v	language:C	file:
 OptionParser	/home/neg/bin/vimv	/^from optparse import OptionParser$/;"	i	language:Python
 os	/home/neg/bin/vimv	/^import os$/;"	i	language:Python
 os	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    import os$/;"	i	language:Python
 p	/home/neg/.vim/10-keymaps.vim	/^map p [p$/;"	m	language:Vim
+packages	/mnt/home/dev/src/voltron/setup.py	/^    packages=['voltron'],$/;"	v	language:Python
+package_data	/mnt/home/dev/src/voltron/setup.py	/^    package_data = {'voltron': ['config\/*']},$/;"	v	language:Python
 performGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performGC(void)$/;"	f	language:C
 performGC_	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performGC_(rtsBool force_major)$/;"	f	language:C	file:
 performMajorGC	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^performMajorGC(void)$/;"	f	language:C
@@ -743,8 +768,10 @@ scheduleYield	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^static void scheduleY
 sched_mutex	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^Mutex sched_mutex;$/;"	v	language:C
 sched_state	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^volatile StgWord sched_state = SCHED_RUNNING;$/;"	v	language:C
 scriptpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *scriptpath=NULL;$/;"	v	language:C	file:
+search	/usr/bin/yaourt	/^search() {$/;"	f	language:Sh
 sessiondir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *sessiondir=NULL;$/;"	v	language:C	file:
 setNumCapabilities	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^setNumCapabilities (nat new_n_capabilities USED_IF_THREADS)$/;"	f	language:C
+setup	/mnt/home/dev/src/voltron/setup.py	/^from setuptools import setup$/;"	i	language:Python
 shebang_chmod	/home/neg/.vim/04-autocmds.vim	/^augroup shebang_chmod$/;"	a	language:Vim
 shebang_chmod	/mnt/home/dev/src/dt3/vim/vimrc	/^augroup shebang_chmod$/;"	a	language:Vim
 shouldYieldCapability	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^shouldYieldCapability (Capability *cap, Task *task, rtsBool didGcLast)$/;"	f	language:C
@@ -760,6 +787,7 @@ STDOUT	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    from subprocess import Popen,
 StripTrailingWhitespace	/home/neg/.vim/04-autocmds.vim	/^function! StripTrailingWhitespace()$/;"	f	language:Vim
 suspendTask	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^suspendTask (Capability *cap, Task *task)$/;"	f	language:C
 suspendThread	/mnt/home/dev/src/ghc-7.6.3/rts/Schedule.c	/^suspendThread (StgRegTable *reg, rtsBool interruptible)$/;"	f	language:C
+swap	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^void swap(double x_1, double x_2) {$/;"	f	language:C++
 sys	/home/neg/bin/vimv	/^import sys$/;"	i	language:Python
 sys	/mnt/home/dev/src/dt3/awesome/awdt.py	/^    import sys$/;"	i	language:Python
 tab	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^    ExtlTab tab;$/;"	m	language:C	struct:__anon1	file:
@@ -776,8 +804,12 @@ try_etcpath	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_etcpath
 try_load	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_load(const char *file, TryCallParam *param)$/;"	f	language:C	file:
 try_lookup	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_lookup(const char *file, char **ptr)$/;"	f	language:C	file:
 try_read_savefile	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static int try_read_savefile(const char *file, TryCallParam *param)$/;"	f	language:C	file:
+url	/mnt/home/dev/src/voltron/setup.py	/^    url = "https:\/\/github.com\/snarez\/voltron",$/;"	v	language:Python
 usage	/home/neg/bin/git-large-files.pl	/^sub usage { die "usage: git-large-files <size[b|k|m]> [<git-log arguments ...>]\\n" }$/;"	s	language:Perl
+usage	/usr/bin/yaourt	/^usage() {$/;"	f	language:Sh
 userdir	/mnt/home/dev/src/Ion3/libextl/readconfig.c	/^static char *userdir=NULL;$/;"	v	language:C	file:
+version	/mnt/home/dev/src/voltron/setup.py	/^    version = "0.1",$/;"	v	language:Python
+version	/usr/bin/yaourt	/^version() {$/;"	f	language:Sh
 W	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file W w<bang> <args>$/;"	c	language:Vim
 w!!	/home/neg/.vim/10-keymaps.vim	/^cmap w!! w !sudo tee % >\/dev\/null$/;"	m	language:Vim
 w!!	/mnt/home/dev/src/dt3/vim/vimrc	/^cmap w!! w !sudo tee % >\/dev\/null<CR>:e!<CR><CR>$/;"	m	language:Vim
@@ -790,13 +822,20 @@ WordFrequency	/mnt/home/dev/src/dt3/vim/vimrc	/^function! WordFrequency() range$
 Wq	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file Wq wq<bang> <args>$/;"	c	language:Vim
 WQ	/home/neg/.vim/10-keymaps.vim	/^        command! -bang -nargs=* -complete=file WQ wq<bang> <args>$/;"	c	language:Vim
 wqq	/home/neg/.vim/10-keymaps.vim	/^cmap     wqq    qw<CR>   " quit really, really fast(with saving)$/;"	m	language:Vim
-ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+A", function(ws) move_current.move(ws, "left") end),$/;"	f	language:Lua
-ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+D", function(ws) move_current.move(ws, "right") end),$/;"	f	language:Lua
-ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+S", function(ws) move_current.move(ws, "down") end),$/;"	f	language:Lua
-ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^        kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^    kpress("Mod4+Control+A", function(ws) move_current.move(ws, "left") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^    kpress("Mod4+Control+D", function(ws) move_current.move(ws, "right") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^    kpress("Mod4+Control+S", function(ws) move_current.move(ws, "down") end),$/;"	f	language:Lua
+ws) move_current.move	/home/neg/.notion/cfg_notion.lua	/^    kpress("Mod4+Control+W", function(ws) move_current.move(ws, "up") end),$/;"	f	language:Lua
 Y	/home/neg/.vim/10-keymaps.vim	/^nnoremap Y y\$$/;"	m	language:Vim
 Y	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap Y y\$$/;"	m	language:Vim
+yaourt_install_packages	/usr/bin/yaourt	/^yaourt_install_packages() {$/;"	f	language:Sh
+yaourt_interactive	/usr/bin/yaourt	/^yaourt_interactive() {$/;"	f	language:Sh
+yaourt_no_action	/usr/bin/yaourt	/^yaourt_no_action() {$/;"	f	language:Sh
+yaourt_query	/usr/bin/yaourt	/^yaourt_query() {$/;"	f	language:Sh
+yaourt_query_type	/usr/bin/yaourt	/^yaourt_query_type() {$/;"	f	language:Sh
+yaourt_sync	/usr/bin/yaourt	/^yaourt_sync() {$/;"	f	language:Sh
 zh	/home/neg/.vim/10-keymaps.vim	/^map zh zH$/;"	m	language:Vim
+zip_safe	/mnt/home/dev/src/voltron/setup.py	/^    zip_safe = False,$/;"	v	language:Python
 zl	/home/neg/.vim/10-keymaps.vim	/^map zl zL$/;"	m	language:Vim
 [menu]	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap [menu] <Nop>$/;"	m	language:Vim
 [menu]8	/mnt/home/dev/src/dt3/vim/vimrc	/^nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview$/;"	m	language:Vim
