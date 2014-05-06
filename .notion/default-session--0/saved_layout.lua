@@ -252,23 +252,14 @@ return {
                             ["h"] = 900,
                         },
                         ["split_tree"] = {
-                            ["tls"] = 878,
-                            ["tl"] = {
-                                ["regparams"] = {
-                                    ["mode"] = 2,
-                                    ["type"] = "WFrame",
-                                    ["name"] = "Tiling Frame<3>",
-                                    ["managed"] = {
-                                    },
+                            ["regparams"] = {
+                                ["mode"] = 2,
+                                ["type"] = "WFrame",
+                                ["name"] = "Tiling Frame<3>",
+                                ["managed"] = {
                                 },
-                                ["type"] = "WSplitRegion",
                             },
-                            ["dir"] = "vertical",
-                            ["brs"] = 22,
-                            ["br"] = {
-                                ["type"] = "WSplitST",
-                            },
-                            ["type"] = "WSplitSplit",
+                            ["type"] = "WSplitRegion",
                         },
                     },
                 },
@@ -345,6 +336,35 @@ return {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
+                    [1] = {
+                        ["type"] = "WGroupCW",
+                        ["name"] = "WGroupCW<3>",
+                        ["geom"] = {
+                            ["y"] = 1,
+                            ["x"] = 1,
+                            ["w"] = 886,
+                            ["h"] = 364,
+                        },
+                        ["switchto"] = true,
+                        ["sizepolicy"] = "full",
+                        ["managed"] = {
+                            [1] = {
+                                ["type"] = "WClientWin",
+                                ["bottom"] = true,
+                                ["windowid"] = 25165830,
+                                ["checkcode"] = 2,
+                                ["sizepolicy"] = "full",
+                                ["geom"] = {
+                                    ["y"] = 0,
+                                    ["x"] = 0,
+                                    ["w"] = 886,
+                                    ["h"] = 364,
+                                },
+                                ["level"] = 1,
+                            },
+                        },
+                        ["level"] = 0,
+                    },
                 },
                 ["unnumbered"] = true,
                 ["name"] = "ncmpcpp",
@@ -370,8 +390,8 @@ return {
                 ["geom"] = {
                     ["y"] = 0,
                     ["x"] = 480,
-                    ["w"] = 1118,
-                    ["h"] = 690,
+                    ["w"] = 1113,
+                    ["h"] = 686,
                 },
                 ["level"] = 1,
             },

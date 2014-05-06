@@ -457,7 +457,6 @@ zle -N back-one-dir
 
 xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
 xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
-XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 # just type '...' to get '../..'
 rationalise-dot() {
 local MATCH
@@ -685,7 +684,6 @@ function clip(){
     echo -e "$pass ${txtund}"${filename##*/}"${txtrst} copied to clipboard"
 }
 
-
 fg-widget() {
   stty icanon echo -inlcr < /dev/tty
   stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
@@ -870,6 +868,7 @@ sprunge() {
     fi
 }
 
+XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
   if [[ $# -ge 1 ]]; then

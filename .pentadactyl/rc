@@ -1,3 +1,5 @@
+set showtabline=never
+
 so ~/.pentadactyl/tomorrownight.rc
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
@@ -5,9 +7,14 @@ map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 " Shut up.
 javascript dactyl.beep = function() { return false; }
 
+"Do it fast!
+set timeoutlen=200
+
 set cpt=l
 set autocomplete=".*"
 colorscheme vimpwhite
+
+imap jk <Esc>
 
 set downloadsort='-time'
 set findcase='smart'
@@ -17,14 +24,36 @@ set shell='/bin/zsh'
 set shellcmdflag='-c'
 "show current link in a command line
 set showstatuslinks='command'
+
+"--[ Test it!!  ]-------------------------------------------------------------------------
+" BOOKMARKLET {{{
+"   nmap <Leader>b :bml-
+"   nmap <Leader>s :bml-subscribe<CR>
+" 
+"   "http://www.instapaper.com/u
+" command! bml-instapaper -description "Bookmarklet: A simple tool to save web pages for reading later" open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/bQ1lnqqYCoKr?u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)
+" "http://www.readability.com/bookmarklets
+"   command! bml-readability -description "Bookmarklet: Make webpage readable using readability" open javascript:%20((function%20()%20{%20window.baseUrl%20=%20'http://www.readability.com';%20window.readabilityToken%20=%20'';%20var%20s%20=%20document.createElement('script');%20s.setAttribute('type',%20'text/javascript');%20s.setAttribute('charset',%20'UTF-8');%20s.setAttribute('src',%20baseUrl%20+%20'/bookmarklet/read.js');%20document.documentElement.appendChild(s);%20})())
+"   "http://readable.tastefulwords.com/
+" command! bml-readable -description "Bookmarklet: Make webpage readable" open javascript:(function(){_readableOptions={'text_font':'quote(Palatino%20Linotype),%20Palatino,%20quote(Book%20Antigua),%20Georgia,%20serif','text_font_monospace':'quote(Courier%20New),%20Courier,%20monospace','text_font_header':'quote(Times%20New%20Roman),%20Times,%20serif','text_size':'18px','text_line_height':'1.5','box_width':'30em','color_text':'#282828','color_background':'#F5F5F5','color_links':'#0000FF','text_align':'normal','base':'blueprint','custom_css':''};if(document.getElementsByTagName('body').length>0);else{return;}if(window.$readable){if(window.$readable.bookmarkletTimer){return;}}else{window.$readable={};}window.$readable.bookmarkletTimer=true;window.$readable.options=_readableOptions;if(window.$readable.bookmarkletClicked){window.$readable.bookmarkletClicked();return;}_readableScript=document.createElement('script');_readableScript.setAttribute('src','http://readable-static.tastefulwords.com/target.js?rand='+encodeURIComponent(Math.random()));document.getElementsByTagName('body')[0].appendChild(_readableScript);})()
+" "http://readitlaterlist.com/add.php
+"   command! bml-readitlater -description "Bookmarklet: A simple tool to save web pages for reading later" open javascript:%20(function%20()%20{%20ISRIL_H%20=%20'5979';%20ISRIL_SCRIPT%20=%20document.createElement('SCRIPT');%20ISRIL_SCRIPT.type%20=%20'text/javascript';%20ISRIL_SCRIPT.src%20=%20'http://readitlaterlist.com/b/r.js';%20document.getElementsByTagName('head')[0].appendChild(ISRIL_SCRIPT)%20})();
+"   command! bml-shareit -description "Bookmarklet: Universal sharing" open javascript:void((function(svc)%20{var%20d=document,w=window,p=0,b=function(){if(!p){p=1;if(_atc.xol)_adr.onReady();if(w.addthis_sendto)addthis_sendto(svc||%27bkmore%27,{product:%27bmt-%27+_atc.ver})}else{p=0;if(_atw)_atw.clb()}};if(!w._atc){var%20ol=w.addthis_onload||[],o=d.createElement(%27script%27);w.addthis_product%20=%20%27bmt-250%27;o.src=%27//s7.addthis.com/js/250/addthis_widget.js#domready=1&username=bookmarklet%27;ol.push(b);w.addthis_onload=ol;d.getElementsByTagName(%27body%27)[0].appendChild(o)}else%20b()})())
+"   command! bml-subscribe -description "Bookmarklet: Subscribe using Google reader" open javascript:var%20b=document.body;var%20GR________bookmarklet_domain='http://www.google.com';if(b&&!document.xmlVersion){void(z=document.createElement('script'));void(z.src='http://www.google.com/reader/ui/subscribe-bookmarklet.js');void(b.appendChild(z));}else{location='http://www.google.com/reader/view/feed/'+encodeURIComponent(location.href)}
+"   "http://labs.microsofttranslator.com/bookmarklet/
+" command! bml-translate -description "Bookmarklet: Translate any page with the simple click" open javascript:(function(){var%20s%20=%20document.createElement('script');%20s.type%20=%20'text/javascript';%20s.src%20=%20'http://labs.microsofttranslator.com/bookmarklet/default.aspx?f=js&to=en';%20document.body.insertBefore(s,%20document.body.firstChild);})()
+" "https://dev.twitter.com/docs/share-bookmarklet
+"   command! bml-twitter -description "Bookmarklet: Share on Twitter" open javascript:(function(){window.twttr=window.twttr||{};var%20D=550,A=450,C=screen.height,B=screen.width,H=Math.round((B/2)-(D/2)),G=0,F=document,E;if(C>A){G=Math.round((C/2)-(A/2))}window.twttr.shareWin=window.open('http://twitter.com/share','','left='+H+',top='+G+',width='+D+',height='+A+',personalbar=0,toolbar=0,scrollbars=1,resizable=1');E=F.createElement('script');E.src='http://platform.twitter.com/bookmarklets/share.js?v=1';F.getElementsByTagName('head')[0].appendChild(E)}());
+" " }}}
+
 " custom mappings """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map , <leader>
 nmap -builtin <Leader>, :noh<CR>
 
 map I_<C-w> I_<C-BS>
  
-"map -builtin <C-a> -silent :sidebar Scrapbook<CR>
-map -builtin <C-d> -silent :sidebar Downloads<CR>
+" map -builtin <C-a> -silent :sidebar Scrapbook<CR>
+" map -builtin <C-d> -silent :sidebar Downloads<CR>
 map -builtin B -silent :bmarks<CR>
 map -builtin gr gT
 
@@ -80,13 +109,42 @@ tabs.reload(config.browser.mCurrentTab);
 EOF
 
 set titlestring=firefox
-set history=900
+
+" maximum number of Ex commands and find patterns to store in the command-line history
+set history=100
+
 " autocmd LocationChange ^https?://(docs|mail)\.google\.(com|ru)/ :normal! <C-z>
-set showtabline=never
 set loadplugins='\.(css|js|penta)$'
+
+"--[ Hints ]-------------------------------------------------------------------------
 "set hintkeys=qwerasdf
 "set hintkeys="fdsahjkl;'"
 set hintkeys=12345
+"" jumping at hint mode, seee http://code.google.com/p/dactyl/issues/detail?id=158
+map -modes hints <C-f> -ex normal! <C-f>
+map -modes hints <C-b> -ex normal! <C-b>
+set followhints=0
+set hinttimeout=0
+
+" " Bookmarklets (<cmd-0...9> shortcuts) {{{
+"     " pinboard bookmarklet
+"     map <M-1> -ex open javascript:if(document.getSelection){s=document.getSelection();}else{s='';};document.location='https://pinboard.in/add?next=same&url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title)
+"     " map <M-1> -ex open javascript:q=location.href;if(document.getSelection){d=document.getSelection();}else{d='';};p=document.title;void(open('http://pinboard.in/add?url='+encodeURIComponent(q)+'&description='+encodeURIComponent(d)+'&title='+encodeURIComponent(p),'Pinboard',%20'toolbar=no,width=700,height=350'))
+"     " map <M-1> -ex open javascript:if(document.getSelection){s=document.getSelection();}else{s='';};document.location='https://pinboard.in/add?next=same&url='+encodeURIComponent(location.href)+'&description='+encodeURIComponent(s)+'&title='+encodeURIComponent(document.title)
+"     " map <M-1> -ex open javascript:if(document.getSelection){d=document.getSelection();}else{d='';};p=document.title;void(open('https://pinboard.in/add?url='+encodeURIComponent(q)+'&description='+encodeURIComponent(d)+'&title='+encodeURIComponent(p),'Pinboard','toolbar=no,width=700,height=350'))
+"     map <M-2> -ex open http://pinboard.in/u:mt3_666
+"     map <M-3> -ex open http://scholar.google.ca/scholar?q=
+"     " instapaper bookmarklet
+"     map <M-6> -ex open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/WsSoRZGjTo8a?u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)
+"     map <M-6> -ex open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body,l=d.location;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src',l.protocol+'//www.instapaper.com/j/WsSoRZGjTo8a?u='+encodeURIComponent(l.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0)
+"     map <M-7> -ex open javascript:(function(){ISRIL_H='f833';PKT_D='getpocket.com';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='http://'+PKT_D+'/b/r.js';document.getElementsByTagName('head')[0].appendChild(ISRIL_SCRIPT)})();
+"     " tumblr bookmarklet
+"     map <M-8> -ex open javascript:var%20d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),f='http://www.tumblr.com/share',l=d.location,e=encodeURIComponent,p='?v=3&u='+e(l.href)%20+'&t='+e(d.title)%20+'&s='+e(s),u=f+p;try{if(!/^(.*\.)?tumblr[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u,'t','toolbar=0,resizable=0,status=1,width=450,height=430'))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)
+"     " pinboard read later bookmarklet TODO not working
+"     map <M-9> -ex open javascript:if(document.getSelection){s=document.getSelection();}else{s='';};document.location='https://pinboard.in/add?later=yes&noui=yes&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)
+"     "map <M-9> -ex open javascript:q=location.href;p=document.title;void(t=open('https://pinboard.in/add?later=yes&noui=yes&jump=close&url='+encodeURIComponent(q)+'&title='+encodeURIComponent(p),'Pinboard','toolbar=no,width=100,height=100'));t.blur();
+" " }}}
+
 "map -builtin -silent / :findhere<CR>
 "map -builtin -silent ? :findhere!<CR>
 "" J/K move left/right
@@ -96,9 +154,6 @@ map -builtin K l
 map -builtin U :undo<Space>
 map -builtin <leader>b :sidebar Bookmarks<CR>
 
-"" jumping at hint mode, seee http://code.google.com/p/dactyl/issues/detail?id=158
-map -modes hints <C-f> -ex normal! <C-f>
-map -modes hints <C-b> -ex normal! <C-b>
 map C-tab nop
 map <C-tab> <Nop>
 
@@ -117,6 +172,15 @@ map $ <End>
 
 " Set the external editor
 set editor='/usr/bin/gvim -f +<line> <file>'
+
+
+" Yank (copy) to default clipboard with Y
+" Will not yank to default clipboard by default.
+" See:
+" Issue 719 - dactyl - Copy with 'Y' is not pasted - A Vim-like five-fingered
+" interface for Firefox and other XULRunner-based apps. - Google Project Hosting
+" https://code.google.com/p/dactyl/issues/detail?id=719#c10
+js editor.defaultRegister="+"
 
 " toggle styles """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -214,44 +278,28 @@ map Б <
 map Ю >
 map . /
 
-" Style: Minimalistic Tabs {{{
-" -----------------------------------------------------------------------------
-" style -name minitabs chrome://* <<EOM
-" #TabsToolbar toolbarbutton {
-"   display: none !important;
-" }
-" .tabbrowser-tabs {
-"   background: #282a2e !important;
-" }
-" .tabbrowser-tab {
-"   -moz-appearance: none !important;
-"   -moz-border-radius: 0 !important;
-"   background: #282a2e !important;
-"   border: none !important;
-"   color: #707880 !important;
-"   font-family: Terminus !important;
-"   font-size: 9pt !important;
-"   height: 18px !important;
-"   margin: 0 !important;
-"   min-height: 0 !important;
-"   padding: 0 0.5ex !important;
-" }
-" .tabbrowser-tab:not([pinned]) {
-"   max-width: 100px !important;
-"   min-width: 100px !important;
-" }
-" .tabbrowser-tab:not([fadein]) {
-"   max-width: 1px !important;
-"   min-width: 1px !important;
-" }
-" .tabbrowser-tab:hover {
-"   background: #f0c674 !important;
-"   color: #282a2e !important;
-" }
-" .tabbrowser-tab[selected] {
-"   background: #282a2e !important;
-"   color: #f0c674 !important;
-" }
-" @-moz-document url-prefix(about:blank) {*{background-color:#000000;}}
-" EOM
+" Make Gmail usable: don't take the focus away when moving
+set strictfocus='google.com':laissez-faire,*:moderate,'chrome:*':laissez-faire,*:moderate
 
+" And pass through some useful navigation and jump keys in gmail
+set passkeys+=mail\.google\.com:jkv<CR>rau#T/<space><S-space>?,gi,gl,*u,*i,*n,gi,gc,gl
+
+silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
+silent qmark b http://clinki.es/
+silent qmark d https://www.diigo.com/user/chrisl
+silent qmark c http://cpb.passiontask.com/
+silent qmark C http://cpb.passiontask.com/wp-admin/
+silent qmark f http://facebook.com/
+silent qmark F http://chrislott.org/fever/
+silent qmark g http://geek.chrislott.org/
+silent qmark G http://geek.chrislott.org/wp-admin/
+silent qmark h https://hootsuite.com/dashboard
+silent qmark k http://katannuta.passiontask.com/
+silent qmark K http://www.tumblr.com/blog/katannuta/new/text
+silent qmark m http://mail.chrislott.org/
+silent qmark p http://blog.passiontask.com/
+silent qmark P http://blog.passiontask.com/wp-admin/
+silent qmark r http://chrislott.org/
+silent qmark R http://chrislott.org/wp-admin/
+silent qmark s http://www.scoop.it/u/chris-lott
+silent qmark t http://toodledo.com/

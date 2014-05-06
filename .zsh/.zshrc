@@ -7,7 +7,7 @@
 . ~/.zsh/06-alias.zsh
 . ~/.zsh/07-misc.zsh
 . ~/.zsh/09-cb.zsh
-. ~/.zsh/10-safe-paste.plugin.zsh
+# . ~/.zsh/10-safe-paste.plugin.zsh
 . ~/.zsh/10-hashes.zsh
 . ~/.zsh/10-jump.zsh
 . ~/.zsh/11-open.zsh

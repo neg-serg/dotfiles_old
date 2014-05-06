@@ -24,12 +24,13 @@ export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
 
 export ACKRC="${XDG_CONFIG_HOME}/ackrc"
-export GIMP2_DIRECTORY=${HOME}/etc/gimp-2.8
+export GIMP2_DIRECTORY=${XDG_CONFIG_HOME}/gimp-2.8
 export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
 
 export VAGRANT_HOME="/mnt/home/vagrant"
 
 export ESCDELAY=1
+
 export NCURSES_ASSUMED_COLORS=3,0
 export NCURSES_NO_MAGIC_COOKIES=1
 export NCURSES_NO_PADDING=1

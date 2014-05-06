@@ -46,8 +46,8 @@ if has("gui_running")
     set winaltkeys=no                  "
     set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
     
-    " set ballooneval                    " add popups for gui
-    " set balloondelay=400               " popups delay
+    set ballooneval                    " add popups for gui
+    set balloondelay=400               " popups delay
 
     " Paste from PRIMARY and CLIPBOARD
     inoremap <silent> <M-v> <Esc>"+p`]a
@@ -377,8 +377,8 @@ let g:is_posix        = 1
 "--[ Indent_guides ]--------------
 let g:indent_guides_auto_colors = 1
 " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
 let g:indent_guides_start_level           = 2
 let g:indent_guides_guide_size            = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -631,10 +631,3 @@ let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
       \  'indentation' : '  '
       \}
-"--[ Easymotion ]-----------------
-let g:EasyMotion_leader_key = '<Leader>e'
-
-" Provides the equivalent of <Leader>s, which is forwards/backwards search for a
-" character.
-" has to be 'nmap', 'noremap' doesn't work
-nmap s <Plug>(easymotion-s)

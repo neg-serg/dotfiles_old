@@ -1134,3 +1134,19 @@ stty speed 4000000 &> /dev/null
 #     zle_line_init_functions+=( zle-keymap-select-vicursor )
 #
 # fi
+#
+# 
+
+# #--[ arch stuff ]---------------------
+#
+# alias  y='yaourt -S --noconfirm'
+# alias yu='yaourt -Syu --aur --noconfirm'
+# alias ya='yaourt -Syu --aur'
+#
+# alias yi='yaourt -Si'
+# alias ys='yaourt -Ss'
+#
+# alias yr='yaourt -Rns'
+# alias yd='yaourt -Rdd'
+#
+# alias pacman='sudo pacman'
