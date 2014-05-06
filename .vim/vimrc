@@ -54,10 +54,8 @@ NeoBundle 'trapd00r/vim-highlight-default-highlight-groups.git' "test hi
 
 "--[ New ]--------------------------------------------------------
 NeoBundle 'reedes/vim-thematic.git'             "manage themes easy
-NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'https://bitbucket.org/abudden/tagsignature'
 NeoBundle 'tsukkee/unite-tag.git'               "unite tag wrapper
-NeoBundle 'Lokaltog/vim-easymotion'             "easymotion navigation
+NeoBundle 'godlygeek/csapprox.git'
 NeoBundle 'zepto/unite-tmux'
 NeoBundle 'yuku-t/unite-git'
 
@@ -118,11 +116,11 @@ NeoBundleLazy 'derekwyatt/vim-sbt'           "basic SBT support for vim
 NeoBundle 'drmikehenry/vim-fixkey'            "fixes key codes for console Vim
 NeoBundle 'thinca/vim-ref.git'                "integrated reference viewer man/perldoc etc
 NeoBundle 'danro/rename.vim.git'              "Rename file in vim
+NeoBundle 'tyru/restart.vim.git'              "add restart support
 NeoBundle 'othree/eregex.vim'                 "Perl-like extended regex for vim
 NeoBundle 'chrisbra/Join.git'                 "Extended and fast Join for vim
 NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
-NeoBundle 'tyru/restart.vim.git'              "add restart support
 NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
@@ -130,16 +128,19 @@ NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
 NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
 "------------------------------------------------------------------------------------------------------------
+"--[ colorschemes ]------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
+NeoBundle 'reedes/vim-colors-pencil.git'      "fancy pencil dark and light colorscheme
+NeoBundle 'chriskempson/base16-vim'           "set of good colorschemes
+NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
+NeoBundle 'vim-scripts/Lucius.git'            "fancy lucius colorscheme
+"------------------------------------------------------------------------------------------------------------
 "--[ dev ]---------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'majutsushi/tagbar'                 "tagbar
-NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and ccglue
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
-NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
-NeoBundle 'reedes/vim-colors-pencil.git'      "fancy pencil dark and light colorscheme
-NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
-NeoBundle 'vim-scripts/Lucius.git'            "fancy lucius colorscheme
 NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
             \ { 'commands' : 'Transpose'}}
 NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#

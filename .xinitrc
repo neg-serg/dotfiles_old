@@ -71,9 +71,9 @@ xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
 
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+# export XMODIFIERS="@im=fcitx"
 # export GTK_IM_MODULE=xim
 # export QT_IM_MODULE=xim
 
@@ -85,7 +85,8 @@ xbindkeys
 xset m 1 1
 xset r rate 200 50
 
-hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
+# hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
+hsetroot -fill /mnt/home/pic/wl/wallpaper-2372455.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 

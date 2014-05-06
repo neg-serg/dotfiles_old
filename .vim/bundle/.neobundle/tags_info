@@ -1,5 +1,4 @@
 AsyncCommand
-CCTree
 Conque-GDB
 Conque-Shell
 IndentConsistencyCop
@@ -16,6 +15,7 @@ base16-vim
 bufkill.vim
 clam.vim
 compview
+csapprox
 csv.vim
 ctrlp.vim
 delimitMate
@@ -43,7 +43,6 @@ syntastic
 tabular
 tagbar
 taghighlight
-tagsignature
 tcomment_vim
 ultisnips
 unite-build
@@ -67,7 +66,6 @@ vim-colors-pencil
 vim-colors-solarized
 vim-dispatch
 vim-easy-align
-vim-easymotion
 vim-endwise
 vim-eunuch
 vim-extradite

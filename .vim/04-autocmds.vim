@@ -1,5 +1,8 @@
 " We reset the vimrc augroup. Autocommands are added to this group throughout
 " the file
+" Didn't work for a while %(
+" autocmd InsertEnter * :setlocal nohlsearch
+
 augroup vimrc
     autocmd!
 augroup END
