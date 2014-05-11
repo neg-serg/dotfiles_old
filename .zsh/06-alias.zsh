@@ -51,8 +51,8 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 # my new aliases
 alias mk="mkdir -p"
-alias mp="mpv ~/.config/mpv"
-alias mpa="mpv ~/.config/mpv -fs -ao null"
+alias mp="mpv"
+alias mpa="mpv -fs -ao null"
 alias mpr="~/bin/mpv.rb" 
 alias i="ipython"
 alias grep="grep --color=auto"
@@ -107,8 +107,17 @@ alias "mount=sudo mount"
 alias "umount=sudo umount"
 alias "chmod=sudo chmod"
 alias "chown=sudo chown"
-alias "reboot=sudo reboot"
-alias "halt=sudo halt"
+
+if [[ -x /usr/bin/systemctl ]]; then
+    alias reboot="sudo systemctl reboot"
+    alias poweroff="sudo systemctl poweroff"
+    alias halt="sudo systemctl halt"
+else
+    alias "reboot=sudo reboot"
+    alias "halt=sudo halt"
+    alias "poweroff=sudo poweroff"
+fi
+
 alias "lsm=cat /proc/mounts"
 
 alias "ifconfig=sudo ifconfig"

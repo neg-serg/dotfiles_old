@@ -4,7 +4,7 @@ inoremap <silent> <M-d> <C-r>=<SID>KillWord()<CR>
 "--[ Buffers ]-----------------------------------
 inoremap <C-x>b <C-o>:Unite -silent buffer<CR>
 
-imap <C-b> <Left>
+" imap <C-b> <Left>
 vmap <C-b> <Left>
 omap <C-b> <Left>
 "------
@@ -96,11 +96,6 @@ cnoremap <C-y> <C-r><C-o>"
 cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 cnoremap <C-k> <C-f>d$<C-c><End>
-
-cmap <C-b> <Left>
-cmap <C-f> <Right>
-cmap <C-a> <Home>
-cmap <C-e> <End>
 
 " command-T window
 " let g:CommandTCursorLeftMap = ['<Left>', '<C-b>']

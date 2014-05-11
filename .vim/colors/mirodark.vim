@@ -549,7 +549,7 @@ call s:HI(   "CursorColumn", s:dblk,     "",     "" )
 call s:HI(    "ColorColumn", s:lblk,     "",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
 call s:HI(     "SignColumn", "NONE",     "",     "" )
-call s:HI(   "CursorLineNr", "",     s:lylw,     "" )
+call s:HI(   "CursorLineNr", s:dblk,     s:lylw,     "" )
 " call s:HI(   "CursorLineNr", s:dwht, s:lblk,     "" )
 " }}}
 
@@ -606,7 +606,7 @@ if has("spell")
     call s:HI( "SpellLocal", "", "", "underline" )
 endif
 " }}}
-hi CursorLineNr        gui=none
+" hi CursorLineNr        gui=none
 hi iCursor guifg=white guibg=#005E6D
 hi iCursorLine         guibg=#121212 gui=none
 hi Error               cterm=NONE guibg=NONE

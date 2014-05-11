@@ -32,8 +32,8 @@ set notification-error-fg "#eeeeee"
 set notification-warning-bg "#98a7b6"
 set notification-warning-fg "#000000"
 
-set recolor-darkcolor "#cccccc"
-set recolor-lightcolor "#121212"
+# set recolor-darkcolor "#cccccc"
+# set recolor-lightcolor "#121212"
 
 # set statusbar-bg "#191919"
 set statusbar-fg "#cccccc"
@@ -51,5 +51,31 @@ map <PageUp> navigate previous
 map <PageDown> navigate next
 map <A-1> set "pages-per-row 1"
 map <A-2> set "pages-per-row 2"
+map <A-w> set recolor "true"
 map <C-1> set "first-page-column 1"
 map <C-2> set "first-page-column 2"
+
+set notification-error-bg "#AC4142" #08
+set notification-error-fg "#151515" #00
+
+set notification-warning-bg "#AC4142" #08
+set notification-warning-fg "#151515" #00
+
+set highlight-color "#F4BF75" #0A
+set highlight-active-color "#6A9FB5" #0D
+
+set completion-highlight-fg "#303030" #02
+set completion-highlight-bg "#75B5AA" #0C
+
+set completion-bg "#303030" #02
+set completion-fg "#75B5AA" #0C
+
+set notification-bg "#90A959" #0B
+set notification-fg "#151515" #00
+
+set recolor-lightcolor "#151515" #00
+set recolor-darkcolor "#E0E0E0" #06
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, it'll just be black and white
+set recolor-keephue "true"

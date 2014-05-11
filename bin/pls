@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $HOME/.config/dmenu/pulse
+source ${HOME}/.config/dmenu/pulse
 
 function dmenu_t () {
     if [ "$dmenu_trans" == "1" ]; then
@@ -35,14 +35,14 @@ case $1 in
     ;;
     -sink)
         shift
-        source $HOME/.config/dmenu/pulse
+        source ${HOME}/.config/dmenu/pulse
         client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients:" $@)
         sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink" $@)
         pacmd move-sink-input $(echo "$client" | awk '{print $1}') $(echo $sink)
     ;;
     -output)
         shift
-        source $HOME/.config/dmenu/pulse
+        source ${HOME}/.config/dmenu/pulse
         client=$(pacmd list-source-outputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients:" $@)
         sink=$(pacmd list-sources | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink" $@)
         pacmd move-source-output $(echo "$client" | awk '{print $1}') $(echo $sink)

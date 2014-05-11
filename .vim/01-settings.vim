@@ -631,3 +631,6 @@ let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
       \  'indentation' : '  '
       \}
+"--[ Netrw ]----------------------
+let g:netrw_liststyle = 3
+let g:netrw_list_hide = '.git,.sass-cache,.jpg,.png,.svg'
