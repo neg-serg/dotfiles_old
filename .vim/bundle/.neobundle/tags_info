@@ -15,9 +15,7 @@ base16-vim
 bufkill.vim
 clam.vim
 compview
-csapprox
 csv.vim
-ctrlp.vim
 delimitMate
 eregex.vim
 github-issues.vim
@@ -50,15 +48,12 @@ unite-colorscheme
 unite-filetype
 unite-fold
 unite-gist
-unite-git
 unite-gtags
 unite-help
 unite-locate
 unite-mark
 unite-outline
 unite-quickfix
-unite-tag
-unite-tmux
 unite.vim
 utl.vim
 vim-airline
@@ -110,3 +105,4 @@ vimshell.vim
 vimux
 vital.vim
 xmledit
+yate

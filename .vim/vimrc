@@ -34,7 +34,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 NeoBundle 'https://bitbucket.org/ns9tks/vim-l9' "Utility library for vim
 NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
 NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
-NeoBundle 'kien/ctrlp.vim'                    "for MRU
 NeoBundle 'SirVer/ultisnips.git'              "Snippets with ycm compatibility
 NeoBundle 'godlygeek/tabular'                 "tabularize!
 NeoBundle 'junegunn/vim-easy-align'           "easy tabular
@@ -51,14 +50,9 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visually with |-es too slow
 NeoBundle 'trapd00r/vim-highlight-default-highlight-groups.git' "test hi
-
 "--[ New ]--------------------------------------------------------
-NeoBundle 'reedes/vim-thematic.git'             "manage themes easy
-NeoBundle 'tsukkee/unite-tag.git'               "unite tag wrapper
-NeoBundle 'godlygeek/csapprox.git'
-NeoBundle 'zepto/unite-tmux'
-NeoBundle 'yuku-t/unite-git'
-
+NeoBundle 'https://bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
+NeoBundle 'reedes/vim-thematic.git'           "manage themes easy
 " NeoBundle 'Yggdroot/indentLine.git'           "indent tabs visually with bg color
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
@@ -148,7 +142,6 @@ NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for b
 NeoBundle 'matchit.zip'                       "Improves % match for everything
 NeoBundle 'tpope/vim-unimpaired.git'          "good mappings and toggles
 NeoBundle 'airblade/vim-rooter.git'           "Clever set pwd for projects
-NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
 NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
@@ -163,6 +156,7 @@ NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
 NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
+NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
 "------------------------------------------------------------------------------------------------------------
 "--[ latex ]-------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------

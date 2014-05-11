@@ -24,6 +24,7 @@
 " NeoBundle 'dbakker/vim-projectroot.git'     "experimental replacement for project-root
 " NeoBundle 'reedes/vim-one.git'              "only 1 vim for osx
 " NeoBundle 'vim-scripts/vim-cmake-project.git'
+" NeoBundle 'zepto/unite-tmux'
 
 " ------------------------------------------------------------------------------------------------------------
 " --[ good but not useful yet ]-------------------------------------------------------------------------------
