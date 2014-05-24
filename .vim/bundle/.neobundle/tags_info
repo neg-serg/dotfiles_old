@@ -1,10 +1,8 @@
 AsyncCommand
-Conque-GDB
-Conque-Shell
+CCTree
 IndentConsistencyCop
 Join
 ListToggle
-Lucius
 TeX-9
 YankRing.vim
 YouCompleteMe
@@ -42,6 +40,8 @@ tabular
 tagbar
 taghighlight
 tcomment_vim
+tern_for_vim
+tslime.vim
 ultisnips
 unite-build
 unite-colorscheme
@@ -76,6 +76,8 @@ vim-instant-markdown
 vim-json
 vim-l9
 vim-latex-live-preview
+vim-lldb
+vim-lua-ftplugin
 vim-markdown
 vim-mathematica
 vim-misc
@@ -89,10 +91,8 @@ vim-rooter
 vim-sbt
 vim-scala
 vim-session
-vim-slime
 vim-surround
 vim-tbone
-vim-thematic
 vim-tmux
 vim-transpose
 vim-unimpaired

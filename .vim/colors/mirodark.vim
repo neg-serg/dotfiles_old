@@ -488,7 +488,7 @@ endfun
 call s:HI(         "Normal", s:bclr, s:lwht,     "" )
 call s:HI(         "Ignore",     "", s:lblk,     "" )
 call s:HI(        "Comment",     "", s:dwht,     "" )
-call s:HI(         "LineNr",     "", s:lblk,     "" )
+call s:HI(         "LineNr",     "#040404", s:lblk,     "" )
 call s:HI(          "Float",     "", s:dylw,     "" )
 call s:HI(        "Include",     "", s:dmag,     "" )
 call s:HI(         "Define",     "", s:dgrn,     "" )
@@ -530,7 +530,8 @@ call s:HI(     "MatchParen", s:dwht, s:dblk,     "" )
 call s:HI(       "ErrorMsg", "NONE", s:dred,     "" )
 call s:HI(       "WildMenu", s:lwht, s:dmag,     "" )
 call s:HI(         "Folded", s:bclr, s:dwht,     "" )
-call s:HI(         "Search", "#262626", "#899ca1",     "bold,underline" )
+" call s:HI(         "Search", "#262626", "#899ca1",     "bold,underline" )
+call s:HI(         "Search", "#232030", "#afa0f0",     "bold,underline" )
 call s:HI(      "IncSearch", s:dcnn, s:dwht,     "" )
 call s:HI(     "WarningMsg", s:dblk, "#666666",     "" )
 call s:HI(       "Question", s:lwht, s:lgrn,     "" )
@@ -543,8 +544,8 @@ call s:HI(      "VertSplit", s:lblk, s:dblk,     "" )
 call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
 call s:HI(    "TabLineFill",     "", s:dblk,     "" )
 call s:HI(     "TabLineSel", s:dblk, s:dwht,     "" )
-call s:HI(         "Cursor", s:lblk,     "",     "" )
-call s:HI(     "CursorLine", s:dblk,     "", "none" )
+call s:HI(         "Cursor", "#b0d0f0",  "#151515",     "" )
+call s:HI(     "CursorLine", "#080808",     "", "none" )
 call s:HI(   "CursorColumn", s:dblk,     "",     "" )
 call s:HI(    "ColorColumn", s:lblk,     "",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
@@ -631,3 +632,55 @@ syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>" cont
 " highlight ColorColumn ctermbg=magenta
 " call matchadd('ColorColumn', '\%81v', 100)
 " vim: foldenable foldmethod=marker foldmarker={{{,}}} foldlevel=0:
+
+if exists( 'g:loaded_operator_highlight' )
+  finish
+else
+  let g:loaded_operator_highlight = 1
+endif
+
+if !exists( 'g:ophigh_color' )
+  let g:ophigh_color = "#2b768d"
+endif
+
+if !exists( 'g:ophigh_filetypes_to_ignore' )
+  let g:ophigh_filetypes_to_ignore = {}
+endif
+
+fun! s:IgnoreFiletypeIfNotSet( file_type )
+  if get( g:ophigh_filetypes_to_ignore, a:file_type, 1 )
+    let g:ophigh_filetypes_to_ignore[ a:file_type ] = 1
+  endif
+endfunction
+
+call s:IgnoreFiletypeIfNotSet('help')
+call s:IgnoreFiletypeIfNotSet('markdown')
+call s:IgnoreFiletypeIfNotSet('qf') " This is for the quickfix window
+call s:IgnoreFiletypeIfNotSet('conque_term')
+call s:IgnoreFiletypeIfNotSet('diff')
+call s:IgnoreFiletypeIfNotSet('html')
+call s:IgnoreFiletypeIfNotSet('css')
+call s:IgnoreFiletypeIfNotSet('less')
+call s:IgnoreFiletypeIfNotSet('xml')
+" call s:IgnoreFiletypeIfNotSet('sh')
+" call s:IgnoreFiletypeIfNotSet('bash')
+" call s:IgnoreFiletypeIfNotSet('zsh')
+call s:IgnoreFiletypeIfNotSet('tex')
+call s:IgnoreFiletypeIfNotSet('notes')
+call s:IgnoreFiletypeIfNotSet('jinja')
+call s:IgnoreFiletypeIfNotSet('lua')
+
+fun! s:HighlightOperators()
+  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
+    return
+  endif
+
+  " for the last element of the regex, see :h /\@!
+  " basically, searching for "/" is more complex since we want to avoid
+  " matching against "//" or "/*" which would break C++ comment highlighting
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+  exec "hi OperatorChars guifg=" . g:ophigh_color . " gui=NONE"
+endfunction
+
+au Syntax * call s:HighlightOperators()
+

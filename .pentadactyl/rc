@@ -282,7 +282,7 @@ map . /
 set strictfocus='google.com':laissez-faire,*:moderate,'chrome:*':laissez-faire,*:moderate
 
 " And pass through some useful navigation and jump keys in gmail
-set passkeys+=mail\.google\.com:jkv<CR>rau#T/<space><S-space>?,gi,gl,*u,*i,*n,gi,gc,gl
+set passkeys+=mail\.google\.com:jkv<CR>rau#T/<space><S-space>?,gl,*u,*i,*n,gi,gc,gl
 
 silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
 silent qmark b http://clinki.es/

@@ -305,6 +305,7 @@ map zh zH
 " }
 " TagBar {
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
+    nnoremap <silent> <leader>T :NERDTreeCWD<CR>
 
 nmap <silent> <F11>                       <Plug>FontsizeBegin
 nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc

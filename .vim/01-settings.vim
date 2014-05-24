@@ -337,9 +337,17 @@ set iminsert=0
 set cmdheight=1
 
 if has("cscope")
-  set csprg=/usr/bin/gtags-cscope
-  set csto=0
-  set cscopetag
+    set csprg=/usr/bin/gtags-cscope
+    set csto=0
+    set cscopetag
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+  
+    let GtagsCscope_Auto_Map        = 1
+    let GtagsCscope_Use_Old_Key_Map = 0
+    let GtagsCscope_Ignore_Case     = 1
+    let GtagsCscope_Absolute_Path   = 1
+    let GtagsCscope_Keep_Alive      = 1
+    let GtagsCscope_Auto_Load       = 0
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
@@ -495,14 +503,20 @@ let g:syntastic_c_no_include_search = 1
 let g:syntastic_c_auto_refresh_includes = 1
 let g:syntastic_c_check_header = 1
 "--[ YouCompleteMe ]--------------
-let g:ycm_extra_conf_globlist = []
-" let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra.conf.py'
+" let g:ycm_extra_conf_globlist = ['~/*','/mnt/home/*']
+" let g:ycm_extra_conf_globlist = []
+" let g:ycm_extra_conf_globlist = ['~/*','/mnt/home/*']
+" let g:ycm_extra_conf_globlist = ['~/dev/*', '~/kern/*', './']
+let g:ycm_filepath_completion_use_working_dir = 1
+" let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/dev/kern/linux/.ycm_extra.conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
-let g:ycm_confirm_extra_conf = 1
-let g:ycm_show_diagnostics_ui = 1 " syntastic enabling
+let g:ycm_confirm_extra_conf           = 0
+"--[ syntastic enabling ]-----------------
+let g:ycm_show_diagnostics_ui          = 1 
 let g:ycm_seed_identifiers_with_syntax = 0
-let g:ycm_use_ultisnips_completer = 0
+let g:ycm_use_ultisnips_completer      = 0
 
 let g:ycm_semantic_triggers =  {
     \   'c' : ['->', '.'],
@@ -580,16 +594,9 @@ let g:XkbSwitchIMappings = ['ru']
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
 let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
 "--[ Conque gdb wrapper ]---------
-let g:ConqueGdb_Leader          = '\'        "<leader>, by default is painful
+let g:ConqueGdb_Leader          = '\\'       "<leader>, by default is painful
 "--[ Eclim ]----------------------
 let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
-"--[ Gtags-cscope ]---------------
-let GtagsCscope_Auto_Map        = 1
-let GtagsCscope_Use_Old_Key_Map = 0
-let GtagsCscope_Ignore_Case     = 1
-let GtagsCscope_Absolute_Path   = 1
-let GtagsCscope_Keep_Alive      = 1
-let GtagsCscope_Auto_Load       = 0
 "--[ Rainbow Parentheses ]--------
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -631,6 +638,5 @@ let g:user_zen_leader_key = '<c-b>'
 let g:user_zen_settings = {
       \  'indentation' : '  '
       \}
-"--[ Netrw ]----------------------
-let g:netrw_liststyle = 3
-let g:netrw_list_hide = '.git,.sass-cache,.jpg,.png,.svg'
+"--[ Lua ]------------------------
+let g:lua_complete_omni = 1

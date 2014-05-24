@@ -5,14 +5,6 @@
 "     \_/  |_|_| |_| |_|
 "
 
-" for testing out custom vim scripts
-" set rtp+=$HOME/vim_test,$HOME/vim_test/after,$HOME/repos/YouCompleteMe
-
-" Home away from home. We store some config files and snippets here and the
-" whole dotfiles dir is a git repo. Should be the last entry in rtp (for
-" UltiSnips).
-" set rtp+=$HOME/dotfiles/vim
-
 scriptencoding utf-8
  if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -50,10 +42,6 @@ NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visually with |-es too slow
 NeoBundle 'trapd00r/vim-highlight-default-highlight-groups.git' "test hi
-"--[ New ]--------------------------------------------------------
-NeoBundle 'https://bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
-NeoBundle 'reedes/vim-thematic.git'           "manage themes easy
-" NeoBundle 'Yggdroot/indentLine.git'           "indent tabs visually with bg color
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -66,9 +54,6 @@ NeoBundle 'xolox/vim-session.git'             "More powerful session manager
 NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
 NeoBundle 'int3/vim-extradite'                "Git commit browser/log wrapper for vim
 NeoBundle 'gregsexton/gitv'                   "Git viewer
-" NeoBundleLazy 'gregsexton/gitv',            "Git viewer
-"             \ {'depends':['tpope/vim-fugitive'],
-"             \ 'autoload':{'commands':'itv'}}
 NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 NeoBundle 'vim-scripts/compview.git'          "interactive search
 NeoBundle 'tpope/vim-git'                     "syntax, indent, and filetype plugin files for git
@@ -81,7 +66,6 @@ NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 NeoBundle 'tpope/vim-tbone.git'               "another tmux wrapper for vim
 NeoBundle 'epeli/slimux.git'                  "tmux wrapper with gvim support
 NeoBundle 'benmills/vimux.git'                "tmux wrapper
-" NeoBundle 'vim-scripts/vim-tmuxify.git'     "use vim with tmux
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -128,7 +112,6 @@ NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
 NeoBundle 'reedes/vim-colors-pencil.git'      "fancy pencil dark and light colorscheme
 NeoBundle 'chriskempson/base16-vim'           "set of good colorschemes
 NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
-NeoBundle 'vim-scripts/Lucius.git'            "fancy lucius colorscheme
 "------------------------------------------------------------------------------------------------------------
 "--[ dev ]---------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -137,22 +120,26 @@ NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
 NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
             \ { 'commands' : 'Transpose'}}
-NeoBundle 'jpalardy/vim-slime.git'            "to work with lisp, clojure, f#
+NeoBundle 'lord-garbage/tslime.vim.git'       "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on in ruby
 NeoBundle 'matchit.zip'                       "Improves % match for everything
 NeoBundle 'tpope/vim-unimpaired.git'          "good mappings and toggles
 NeoBundle 'airblade/vim-rooter.git'           "Clever set pwd for projects
 NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
-NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'vim-scripts/perl-support.vim.git'  "perl-support for vim
+NeoBundle 'xolox/vim-lua-ftplugin.git'        "lua support for vim
+NeoBundle 'hari-rangarajan/CCTree'            "call-tree for c
+NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
+NeoBundle 'gilligan/tern_for_vim.git'         "js-omni completion
+NeoBundle 'gilligan/vim-lldb.git'             "lldb-plugin for vim
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
-NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
+" NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
+" NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
 NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
@@ -231,6 +218,7 @@ NeoBundleLazy 'wting/rust.vim', {'autoload' : {'filetypes' : ['rust']}}
 " Very good navigation, but no stack
 NeoBundleLazy 'hewes/unite-gtags.git', {'autoload':{'unite_sources':['gtags', 'gtags/def', 'gtags/context', 'gtags/ref', 'gtags/grep', 'gtags/def' ]}}
 NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
+NeoBundle 'https://bitbucket.org/madevgeny/yate.git'  "Alternative workground to work with cscope
 
 NeoBundleCheck
 catch /117/
