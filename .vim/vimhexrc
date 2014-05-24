@@ -54,6 +54,8 @@ NeoBundle 'vim-scripts/CCTree.git'            "show codeflow by cscope ctags and
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
+
+NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
 "------------------------------------------------------------------------------------------------------------
 "--[ experimental ]------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------

@@ -35,7 +35,7 @@ export NCURSES_ASSUMED_COLORS=3,0
 export NCURSES_NO_MAGIC_COOKIES=1
 export NCURSES_NO_PADDING=1
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/trinity/bin/"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/bin:/home/neg/.gem/ruby/2.0.0/bin:/home/neg/.gem/ruby/2.1.0/bin:/home/neg/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/sage"
 
 export PAGER="vimpager"
 export SDCV_PAGER=$PAGER

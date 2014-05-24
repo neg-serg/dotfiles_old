@@ -45,6 +45,8 @@ dopath("mod_xrandr")
 dopath("mod_notionflux")
 dopath("cfg_xrandr")
 dopath("sp_app")
+dopath("vim_bindings")
+
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
@@ -108,9 +110,10 @@ ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizei
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 -------------------------------------[[ VM ]]--------------------------------------
--- defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
--- defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
--- defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
+defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
+defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
+defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
+defwinprop{class="QEMU", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
 -------------------------------------[[   GIMP  ]]-----------------------------
 defwinprop{class = "Gimp",acrobatic = true}
 -- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-window",transient_mode="off",target="g-win"}
@@ -192,7 +195,8 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+d",         "named_scratchpad(_, 'float')"),
     kpress("Mod4+p",         "named_scratchpad(_, 'float2')"),
     kpress("Mod1+p",         "named_scratchpad(_, 'torrent')"),
-    kpress("Mod4+F",         "named_scratchpad(_, 'ncmpcpp')"),
+    kpress("Mod4+F",      "named_scratchpad(_, 'ncmpcpp')"),
+    -- kpress("Mod4+F",         "ncmpcpp(_)"),
     kpress("Mod4+E",         "named_scratchpad(_, 'im')"),
     kpress("Mod4+Control+9", "named_scratchpad(_, 'wicd')"),
     kpress("Mod4+Control+2", "named_scratchpad(_, 'alsa')"),
@@ -203,9 +207,7 @@ defbindings("WMPlex.toplevel", {
     kpress("XF86AudioPrev",        "ioncore.exec_on(_, 'mpc prev')"),
     kpress("XF86AudioNext",        "ioncore.exec_on(_, 'mpc next')"),
     kpress("XF86AudioPlay",        "ioncore.exec_on(_, 'mpc toggle')"),
-    --kpress("XF86AudioStop",      "ioncore.exec_on(_, 'mpc stop')"),
-    --kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -1')"),
-    --kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +1')"),
+    kpress("XF86AudioStop",      "ioncore.exec_on(_, 'mpc stop')"),
     kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -5')"),
     kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +5')"),
     kpress("Mod4+Control+T",       "ioncore.exec_on(_, 'dipser -S')"),
@@ -252,7 +254,7 @@ defbindings("WMPlex.toplevel", {
     --kpress("Mod4+o", "app.byclass('okular', 'Okular')"),
     kpress("Mod4+o", "app.byclass('zathura','Zathura')"),
     kpress("Mod4+1", "app.byclass('gvim', 'Gvim')"),
-    kpress("Mod4+Control+C", "app.byclass('sxiv', 'Sxiv')"),
+    kpress("Mod4+Control+C", "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
     --kpress("Mod4+e", "app.byclass('kopete', 'Kopete')"),
     --kpress("Mod4+Control+R", "app.byclass('skype', 'Skype')"),
     --kpress("Mod4+f", "app.byinstance('mpd-pad')"),
@@ -284,6 +286,7 @@ defbindings("WMPlex.toplevel", {
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
+        kpress("Shift+k", "ioncore.exec_on(_, 'keynav')"),
     }),
 ----------------------------[[ TRANPARENCY  ]]---------------------------------
 --  submap("Mod4+J", {
@@ -431,32 +434,31 @@ defbindings("WFrame.floating", {
 defbindings("WMoveresMode", {
     kpress("AnyModifier+Escape", "WMoveresMode.cancel(_)"),
     kpress("AnyModifier+Return", "WMoveresMode.finish(_)"),
+
     kpress("Left",               "WMoveresMode.resize(_, 1, 0, 0, 0)"),
     kpress("Right",              "WMoveresMode.resize(_, 0, 1, 0, 0)"),
     kpress("Up",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"),
     kpress("Down",               "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+
+    kpress("h",               "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("l",              "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("k",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("j",               "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+
     kpress("Shift+Left",         "WMoveresMode.resize(_,-1, 0, 0, 0)"),
     kpress("Shift+Right",        "WMoveresMode.resize(_, 0,-1, 0, 0)"),
     kpress("Shift+Up",           "WMoveresMode.resize(_, 0, 0,-1, 0)"),
     kpress("Shift+Down",         "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+
+    kpress("Shift+h",         "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Shift+l",        "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Shift+k",           "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Shift+j",         "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+
     kpress("Mod1+Left",          "WMoveresMode.move(_,-1, 0)"),
     kpress("Mod1+Right",         "WMoveresMode.move(_, 1, 0)"),
     kpress("Mod1+Up",            "WMoveresMode.move(_, 0,-1)"),
     kpress("Mod1+Down",          "WMoveresMode.move(_, 0, 1)"),
-
-    kpress("F",                  "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("B",                  "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("P",                  "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("N",                  "WMoveresMode.resize(_, 0, 0, 0, 1)"),
-    kpress("Shift+F",            "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Shift+B",            "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Shift+P",            "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Shift+N",            "WMoveresMode.resize(_, 0, 0, 0,-1)"),
-    kpress(META.."F",            "WMoveresMode.move(_,-1, 0)"),
-    kpress(META.."B",            "WMoveresMode.move(_, 1, 0)"),
-    kpress(META.."P",            "WMoveresMode.move(_, 0,-1)"),
-    kpress(META.."N",            "WMoveresMode.move(_, 0, 1)"),
-
 })
 --------------------------------------------------------------------------------------------
 ---------------------------  [[ Tiling  ]]  ------------------------------------
@@ -503,3 +505,9 @@ defmenu("menuattach", {
     menuentry("Float WS", "_:attach_new({type=\"WGroupWS\", switchto=true})"),
     menuentry("Tiling WS", "_:attach_new({type=\"WGroupWS\", switchto=true}):attach_new({type=\"WTiling\", sizepolicy=\"full\", bottom=true})"),
 })
+
+--
+-- function ncmpcpp()
+--     os.execute("/home/neg/bin/scripts/ncmpcpp")
+--     named_scratchpad(_, 'ncmpcpp')
+-- end
