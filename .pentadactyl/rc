@@ -55,7 +55,7 @@ map I_<C-w> I_<C-BS>
 " map -builtin <C-a> -silent :sidebar Scrapbook<CR>
 " map -builtin <C-d> -silent :sidebar Downloads<CR>
 map -builtin B -silent :bmarks<CR>
-map -builtin gr gT
+nmap -builtin gr gT
 
 map <F4> :set complete=lS<CR>
 map <F5> :set complete=bookmark<CR>

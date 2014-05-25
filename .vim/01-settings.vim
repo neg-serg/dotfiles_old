@@ -640,3 +640,8 @@ let g:user_zen_settings = {
       \}
 "--[ Lua ]------------------------
 let g:lua_complete_omni = 1
+"--[ EasyTags ]-------------------
+let g:easytags_updatetime_min = 4000
+let g:easytags_dynamic_files  = 1
+let g:easytags_events         = ['BufWritePost']
+let g:easytags_python_enabled = 1

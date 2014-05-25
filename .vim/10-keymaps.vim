@@ -1,3 +1,14 @@
+"----[ ViMux ]
+" map <C-e>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
+" map <C-e>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
+" map <C-e>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
+" map <C-e>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
+" map <C-e>rc :VimuxPromptCommand<CR>
+" map <C-e>rl :VimuxRunLastCommand<CR>
+" map <C-e>rs :VimuxInterruptRunner<CR>
+" map <C-e>ri :VimuxInspectRunner<CR>
+" map <C-e>rq :VimuxCloseRunner<CR>
+
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
@@ -110,43 +121,11 @@ imap [H g0
 " For when you forget to sudo.. Really Write the file.
 cmap w!! w !sudo tee % >/dev/null
 
-" S-arrows suck
-vnoremap <S-Up> <Up>
-inoremap <S-Up> <Up>
-nnoremap <S-Up> <Up>
-vnoremap <S-Down> <Down>
-inoremap <S-Down> <Down>
-nnoremap <S-Down> <Down>
 " Indent fun
 "vnoremap > >gv
 vnoremap < <gv
 
-noremap! <M-Backspace> <C-W>
-noremap! <M-Left> <C-Left>
-noremap! <M-Right> <C-Right>
-
-"---------------------------------------------------------------
-" => Cope
-"---------------------------------------------------------------
-" Do :help cope if you are unsure what cope is. It's super useful!
-" map <leader>cc :botright cope<cr>
-" map <leader>n :cn<cr>
-" map <leader>p :cp<cr>
-
-imap <C-c>sw <Esc>:AT<CR>
-nmap <C-c>sw :AT<CR>
-
-map <C-c>gt :!ctags -a *.c *.h<CR>
-map <C-c>gT :!ctags -Ra *.c *.h<CR>
-
-" List of errors
-imap <C-c>l <Esc>:copen<CR>
-nmap <C-c>l :copen<CR>
 map <C-g> g<C-g>
-inoremap <M-H> h
-inoremap <M-L> l
-inoremap <M-K> <C-g>k
-inoremap <M-J> <C-g>j
 
 nmap <silent> <leader>sp  :set syn=perl   <CR> :syntax sync fromstart <CR>
 nmap <silent> <leader>sv  :set syn=vim    <CR> :syntax sync fromstart <CR>
@@ -166,9 +145,6 @@ vnoremap ci[ f[ci[
 "nnoremap d= f=d$a=
 "nnoremap d> f>d$a>
 
-" nnoremap <C-n>     :bnext<CR>
-" nnoremap <C-p>     :bprev<CR>
-
 " map p [p
 
 " save and build
@@ -179,27 +155,16 @@ vnoremap ci[ f[ci[
 nmap <F9> :Make<cr>
 
 inoremap <S-Ins> <C-r><C-o>*
-" imap <S-Insert> <C-o>p
-" Easy buffer navigation
-" noremap <C-h>  <C-w>h
-" noremap <C-j>  <C-w>j
-" noremap <C-k>  <C-w>k
-" noremap <C-l>  <C-w>l
 
 map <C-c>np :emenu NewProj.<TAB>
 
 cno $q <C-\>eDeleteTillSlash()<cr>
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
-"inoremap jj <ESC> "Better insert-mode interrupting
 inoremap jk <ESC>
 
 cmap     qq     qa!<CR>  " quit really, really fast
 cmap     wqq    qw<CR>   " quit really, really fast(with saving)
-
-" nmap <F12> :call UpdateCscopeDb()<cr>
-" vmap <F12> <esc>:call UpdateCscopeDb()<cr>
-" imap <F12> <esc>:call UpdateCscopeDb()<cr>
 
 " Keep search matches in the middle of the window.
 nnoremap * *zzzv
@@ -223,6 +188,9 @@ vnoremap <silent> # :<C-U>
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
 
+map <S-h> gT
+map <S-l> gt
+
 "-----------[ YouCompleteMe ]---------------------------------
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
@@ -242,9 +210,6 @@ else
   let g:UltiSnipsJumpBackwardTrigger="<m-f>"
   let g:UltiSnipsListSnippets        = "<c-m-s>"
 endif
-
-map <S-h> gT
-map <S-l> gt
 
 " Stupid shift key fixes
     if has("user_commands")
@@ -358,25 +323,15 @@ vnoremap <silent> <leader>gV :Gitv! --all<CR>
 nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
 nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
 map <Leader>z :ZoomWinTabToggle<CR>
-"----[ ViMux ]
-map <C-e>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
-map <C-e>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
-map <C-e>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
-map <C-e>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
-map <C-e>rc :VimuxPromptCommand<CR>
-map <C-e>rl :VimuxRunLastCommand<CR>
-map <C-e>rs :VimuxInterruptRunner<CR>
-map <C-e>ri :VimuxInspectRunner<CR>
-map <C-e>rq :VimuxCloseRunner<CR>
 
+nmap <F4> :Utl ol<cr>
 map <Leader>j :Utl <CR><Bar>:redraw!<CR>
 
 nnoremap <Leader>u :GundoToggle<CR>
 map <Leader>x :call RangerChooser()<CR>
 "----[ Unite ]-----------------------------------------
-" map ff as default f
-nnoremap ff f
-map e ff
+" map ff as default f to remap f to e
+nnoremap ff f | nnoremap e ff
 " map f as unite prefix key
 nmap f [unite]
 xmap f [unite]
@@ -523,8 +478,6 @@ nnoremap ` '
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <space>g g<c-]>
-
-nmap <F4> :Utl ol<cr>
 
 " With this map, we can select some text in visual mode and by invoking the map,
 " have the selection automatically filled in as the search text and the cursor

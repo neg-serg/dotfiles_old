@@ -112,7 +112,8 @@ augroup ag_xml
 augroup END
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
+autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}" 
+" autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
   au!
@@ -122,9 +123,9 @@ augroup ccfiles
   au BufEnter *.h  let b:fswitchlocs = './,reg:/include/src/,reg:/include.*/src/,../src'
 augroup END
 
-autocmd FileType go                                               autocmd BufWritePre <buffer> Fmt
-autocmd FileType haskell                                          setlocal expandtab shiftwidth=2 softtabstop=2
-autocmd BufNewFile,BufRead *.html.twig                            set filetype=html.twig
+autocmd FileType go                         autocmd BufWritePre <buffer> Fmt
+autocmd FileType haskell                    setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd BufNewFile,BufRead *.html.twig      set filetype=html.twig
 augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END

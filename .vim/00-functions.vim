@@ -71,4 +71,3 @@ function! s:gtags_update()
     call s:system("gtags -i")
 endfunction
 command! GtagsUpdate call s:gtags_update()
-
