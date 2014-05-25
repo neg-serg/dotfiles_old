@@ -31,8 +31,10 @@ case ${UID} in
     # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}>> $NO_COLOUR"
     # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}❯ $NO_COLOUR"
     # . ~/.zsh/fizsh-prompt
+    DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
+    _fizsh_user_pretoken="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){
-        PROMPT=`~/.zsh/modules/syntax/fizsh-prompt.zsh`
+        export PS1="$_fizsh_user_pretoken%40<..<`~/.zsh/modules/syntax/fizsh-prompt.zsh`"
     }
     # PROMPT='%40<..<`/home/neg/.zsh/neg-prompt`'
     # secondary prompt, printed when the shell needs more information to complete a
