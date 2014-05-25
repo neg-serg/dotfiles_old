@@ -77,7 +77,7 @@ BLACK="%{"$'\033[00m'"%}"
   IFS=$_fizsh_saveIFS
   [[ ${_fizsh_full_path/$HOME/\~} != $_fizsh_full_path ]] && _fizsh_dyn_pwd=${_fizsh_dyn_pwd/\/~/~}
   # remove the slash in front of $HOME
-  _fizsh_prompt="$_fizsh_user_pretoken%F${_fizsh_promptcolor}$_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
+  _fizsh_prompt="%F${_fizsh_promptcolor}$_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
   # _fizsh_prompt="%n@%m%F${_fizsh_promptcolor} $_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
   echo $_fizsh_prompt
 #}
