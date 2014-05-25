@@ -28,10 +28,12 @@ case ${UID} in
     #   PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
     #   SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
     #   RPROMPT="%1(v|%F{green}%1v%f|)${CURRENT_DIR}$RESET_COLOR"
-    export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}>> $NO_COLOUR"
+    # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}>> $NO_COLOUR"
     # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}❯ $NO_COLOUR"
     # . ~/.zsh/fizsh-prompt
-    # PS1=`~/.zsh/fizsh-prompt`
+    function precmd(){
+        PROMPT=`~/.zsh/modules/syntax/fizsh-prompt.zsh`
+    }
     # PROMPT='%40<..<`/home/neg/.zsh/neg-prompt`'
     # secondary prompt, printed when the shell needs more information to complete a
     # command.

@@ -13,6 +13,7 @@ base16-vim
 bufkill.vim
 clam.vim
 compview
+context_filetype.vim
 csv.vim
 delimitMate
 eregex.vim
@@ -28,6 +29,7 @@ matchit.zip
 neco-ghc
 neobundle.vim
 neomru.vim
+nerdtree
 perl-support.vim
 po.vim--gray
 rename.vim
@@ -38,7 +40,6 @@ splice.vim
 syntastic
 tabular
 tagbar
-taghighlight
 tcomment_vim
 tern_for_vim
 tslime.vim
@@ -46,11 +47,9 @@ ultisnips
 unite-build
 unite-colorscheme
 unite-filetype
-unite-fold
 unite-gist
 unite-gtags
 unite-help
-unite-locate
 unite-mark
 unite-outline
 unite-quickfix
@@ -61,6 +60,7 @@ vim-colors-pencil
 vim-colors-solarized
 vim-dispatch
 vim-easy-align
+vim-easytags
 vim-endwise
 vim-eunuch
 vim-extradite
@@ -70,7 +70,6 @@ vim-fswitch
 vim-fugitive
 vim-git
 vim-github-dashboard
-vim-highlight-default-highlight-groups
 vim-indent-guides
 vim-instant-markdown
 vim-json

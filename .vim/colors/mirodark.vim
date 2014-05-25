@@ -535,8 +535,8 @@ call s:HI(         "Search", "#232030", "#afa0f0",     "bold,underline" )
 call s:HI(      "IncSearch", s:dcnn, s:dwht,     "" )
 call s:HI(     "WarningMsg", s:dblk, "#666666",     "" )
 call s:HI(       "Question", s:lwht, s:lgrn,     "" )
-call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
-call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
+" call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
+" call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
 call s:HI(         "Visual", s:dcnn, s:dwht,     "" )
 call s:HI(     "StatusLine", s:dblk, s:dwht, "none" )
 call s:HI(   "StatusLineNC", s:lblk, s:dblk,     "" )
@@ -610,11 +610,20 @@ endif
 " hi CursorLineNr        gui=none
 hi iCursor guifg=white guibg=#005E6D
 hi iCursorLine         guibg=#121212 gui=none
-hi Error               cterm=NONE guibg=NONE
-hi Pmenu               term=reverse ctermfg=0 ctermbg=7 gui=reverse guifg=#000000 guibg=#F8F8F8  
-hi PmenuSbar           term=reverse ctermfg=3 ctermbg=7 guifg=#8A95A7 guibg=#F8F8F8  
-hi PmenuThumb          term=reverse ctermfg=7 ctermbg=3 guifg=#F8F8F8 guibg=#8A95A7   
+" hi Error               cterm=NONE guibg=NONE
+hi Error               term=underline ctermfg=15 ctermbg=12 gui=underline guifg=#cc6666 guibg=#5f0000
+
+" hi Pmenu               term=reverse ctermfg=0 ctermbg=7 gui=reverse guifg=#000000 guibg=#F8F8F8  
+" hi PmenuSbar           term=reverse ctermfg=3 ctermbg=7 guifg=#8A95A7 guibg=#F8F8F8  
+" hi PmenuThumb          term=reverse ctermfg=7 ctermbg=3 guifg=#F8F8F8 guibg=#8A95A7   
+" hi PmenuSel            term=reverse ctermfg=8 ctermbg=0 gui=reverse guifg=#586e75 guibg=#eee8d5
+
+hi Pmenu                 ctermfg=0 ctermbg=13 guifg=#c5c8c6 guibg=#373b41
 hi PmenuSel            term=reverse ctermfg=8 ctermbg=0 gui=reverse guifg=#586e75 guibg=#eee8d5
+" hi PmenuSel              term=reverse ctermfg=8 ctermbg=0 gui=reverse guifg=#c5c8c6 guibg=#373b41
+hi PmenuSbar             ctermbg=7 guibg=Grey
+hi PmenuThumb            ctermbg=15 guibg=White
+
 " Automatically open and close the popup menu / preview window
 " au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
@@ -684,3 +693,6 @@ endfunction
 
 au Syntax * call s:HighlightOperators()
 
+" hi Function     gui=#586e75
+hi Function     gui=NONE
+hi cFunctionTag gui=NONE

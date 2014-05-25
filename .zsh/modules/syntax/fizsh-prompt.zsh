@@ -32,8 +32,14 @@
 
 RED="%{"$'\033[03;31m'"%}"
 GREEN="%{"$'\033[03;32m'"%}"
+WHITE="%{"$'\033[00;38;5;245m'"%}"
+DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
+BLUE="%{"$'\033[00;38;5;61m'"%}"
+PURPLE="%{"$'\033[00;38;5;91m'"%}"
+# PURPLE="%{"$'\033[00;38;5;129m'"%}"
 BLACK="%{"$'\033[00m'"%}"
-[[ $UID -ne 0 ]] && _fizsh_promptcolor=$GREEN && _fizsh_user_token="> "
+[[ $UID -ne 0 ]] && _fizsh_promptcolor=$GREEN && _fizsh_user_pretoken="${DARK_BLUE}[${NOCOLOR}"
+[[ $UID -ne 0 ]] && _fizsh_promptcolor=$GREEN && _fizsh_user_token="${DARK_BLUE}] ${PURPLE}>>${NOCOLOR} "
 [[ $UID -eq 0 ]] && _fizsh_promptcolor=$RED && _fizsh_user_token="# "
 
 #fizsh-prompt() { # turning this file into function does not work for some reason
@@ -62,7 +68,8 @@ BLACK="%{"$'\033[00m'"%}"
       _fizsh_dyn_pwd=$_fizsh_dyn_pwd$_fizsh_to_be_added
     else
       _fizsh_to_be_added=$_fizsh_split_path[i]
-      _fizsh_to_be_added=$_fizsh_to_be_added[1,1]'/'
+      _fizsh_to_be_added=$_fizsh_to_be_added"${BLUE}/${WHITE}"
+      # _fizsh_to_be_added=$_fizsh_to_be_added[1,1]'/'
       _fizsh_dyn_pwd=$_fizsh_dyn_pwd$_fizsh_to_be_added
     fi
   done
@@ -70,6 +77,7 @@ BLACK="%{"$'\033[00m'"%}"
   IFS=$_fizsh_saveIFS
   [[ ${_fizsh_full_path/$HOME/\~} != $_fizsh_full_path ]] && _fizsh_dyn_pwd=${_fizsh_dyn_pwd/\/~/~}
   # remove the slash in front of $HOME
-  _fizsh_prompt="%n@%m%F${_fizsh_promptcolor} $_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
+  _fizsh_prompt="$_fizsh_user_pretoken%F${_fizsh_promptcolor}$_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
+  # _fizsh_prompt="%n@%m%F${_fizsh_promptcolor} $_fizsh_dyn_pwd[0,-2]${BLACK}$_fizsh_user_token%b%k%f"
   echo $_fizsh_prompt
 #}

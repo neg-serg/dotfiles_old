@@ -41,12 +41,22 @@ NeoBundle 'Raimondi/delimitMate.git'          "Add pairs to brackets
 NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visually with |-es too slow
-NeoBundle 'trapd00r/vim-highlight-default-highlight-groups.git' "test hi
+NeoBundle 'xolox/vim-misc'                    "for vim notes
+NeoBundle 'xolox/vim-easytags.git'            "easy autoupdate and highlight for ctags
+NeoBundle 'scrooloose/nerdtree.git'           "for cwd
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin'  : 'make -f make_cygwin.mak',
+      \     'mac'     : 'make -f make_mac.mak',
+      \     'unix'    : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-obsession.git'           "Session manager
-NeoBundle 'xolox/vim-misc'                    "for vim notes
 NeoBundle 'xolox/vim-session.git'             "More powerful session manager
 "------------------------------------------------------------------------------------------------------------
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
@@ -69,14 +79,6 @@ NeoBundle 'benmills/vimux.git'                "tmux wrapper
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin'  : 'make -f make_cygwin.mak',
-      \     'mac'     : 'make -f make_mac.mak',
-      \     'unix'    : 'make -f make_unix.mak',
-      \    },
-      \ }
 NeoBundleLazy 'ujihisa/neco-ghc'             "autocomplete for hs using ghc-mod
     \ {'autoload': {'filetypes': 'hs'}}
 NeoBundleLazy 'travitch/hasksyn'             "simple highlight for normal haskell code
@@ -125,7 +127,6 @@ NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for b
 NeoBundle 'matchit.zip'                       "Improves % match for everything
 NeoBundle 'tpope/vim-unimpaired.git'          "good mappings and toggles
 NeoBundle 'airblade/vim-rooter.git'           "Clever set pwd for projects
-NeoBundle 'https://bitbucket.org/abudden/taghighlight' "test it for performance
 NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list <leader>l by def
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
@@ -191,11 +192,9 @@ NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 NeoBundleLazy 'kmnk/vim-unite-svn.git', {'autoload' : { 'unite_sources' : ['svn/status', 'svn/info', 'svn/blame', 'svn/diff'], }}
 NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
 NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources': 'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
 NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources' : ['history/command', 'history/search']}}
 NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' : 'filetype', }}
 NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 NeoBundleLazy 'mattn/unite-gist.git' , {'autoload':{'unite_sources':'gist'}}
 "------------------------------------------------------------------------------------------------------------
