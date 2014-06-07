@@ -1,8 +1,9 @@
-if exists('$WINDIR') || !executable('zsh')
-  set shell=bash
-else
-  set shell=zsh
-endif
+" if exists('$WINDIR') || !executable('zsh')
+"   set shell=bash
+" else
+"   set shell=zsh
+" endif
+set shell=bash
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
   " The new Vim regex engine is currently slooooow as hell which makes syntax
@@ -11,7 +12,6 @@ if v:version >= 704
   " faster.
   set regexpengine=1
 endif
-" colorscheme solarized
 " ------[ GUI settings ]-----------------------------------------------------
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
@@ -37,10 +37,6 @@ if has("gui_running")
 
    "  set selection=exclusive            " exclusive selection is better [?]
 
-    set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
-    set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
-    set guicursor+=n-v-c:blinkon0      " Disable all blinking:
-    set guicursor+=a:blinkon0          " Disable all blinking:
     set previewheight=8                " Preview window should be minimal
 
     set winaltkeys=no                  "
@@ -63,16 +59,22 @@ if has("gui_running")
 
     let g:mirodark_enable_higher_contrast_mode=0
     colorscheme mirodark
-    
+
+    set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
+    set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
+    set guicursor+=n-v-c:blinkon0      " Disable all blinking:
+    set guicursor+=a:blinkon0          " Disable all blinking:
+
+    NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 endif
 
 if !has("gui_running")
+    colorscheme wim
     " ENABLE CTRL INTERPRETING FOR VIM
-    silent !stty -ixon > /dev/null 2>/dev/null
+    " silent !stty -ixon > /dev/null 2>/dev/null
 
     set ttyscroll=1024
     set lazyredraw
-    colorscheme miromiro
 
     set <M-1>=1
     set <M-2>=2
@@ -124,14 +126,6 @@ if !has("gui_running")
     set <M-*>=*
     set <M-.>=.
     set <M-^>=^
-
-
-   "  let g:solarized_termcolors=256
-   "  let g:solarized_termtrans=1
-   "  let g:solarized_contrast="high"
-   "  let g:solarized_visibility="normal"
-   "  colorscheme solarized
-   "  source ~/.vim/colors/99-solarized.vim
 endif
 
 if has ('x') && has ('gui') " On Linux use + register for copy-paste
@@ -139,6 +133,11 @@ if has ('x') && has ('gui') " On Linux use + register for copy-paste
 elseif has ('gui')          " On mac and Windows, use * register for copy-paste
     set clipboard=unnamed
 endif
+
+command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
+command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>
+command! -nargs=1 IndentationLocal silent setlocal ts=<args> shiftwidth=<args>
+
 "----------------------------------------------------------------------------
 set keywordprg=:help
 " let $PATH = $PATH . ':' . expand("~/.cabal/bin")
@@ -336,6 +335,14 @@ set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
 set iminsert=0
 set cmdheight=1
 
+"--[ Ctags ]----------------------
+set tags=./tags;/;~/.vim/tags
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+    let &tags = &tags . ',' . gitroot . '/.git/tags'
+endif
+
 if has("cscope")
     set csprg=/usr/bin/gtags-cscope
     set csto=0
@@ -384,9 +391,11 @@ let g:is_posix        = 1
 
 "--[ Indent_guides ]--------------
 let g:indent_guides_auto_colors = 1
+
 " For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=3
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=4
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=236
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=237
+"
 let g:indent_guides_start_level           = 2
 let g:indent_guides_guide_size            = 1
 let g:indent_guides_enable_on_vim_startup = 1
@@ -394,13 +403,6 @@ let g:indent_guides_color_change_percent  = 7
 
 let g:indentLine_char = '│'
 let g:indentLine_faster = 1
-"--[ Ctags ]----------------------
-set tags=./tags;/;~/.vim/tags
-" Make tags placed in .git/tags file available in all levels of a repository
-let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-if gitroot != ''
-    let &tags = &tags . ',' . gitroot . '/.git/tags'
-endif
 
 let g:gundo_playback_delay = 240
 
@@ -641,7 +643,13 @@ let g:user_zen_settings = {
 "--[ Lua ]------------------------
 let g:lua_complete_omni = 1
 "--[ EasyTags ]-------------------
-let g:easytags_updatetime_min = 4000
+let g:easytags_updatetime_min = 9000
 let g:easytags_dynamic_files  = 1
 let g:easytags_events         = ['BufWritePost']
 let g:easytags_python_enabled = 1
+let g:easytags_auto_update    = 1
+"--[ cctree ]---------------------
+let g:CCTreeUsePerl        = 1
+let g:CCTreeUseUTF8Symbols = 1
+"--[ vimshell ]-------------------
+let g:vimshell_environment_term       = 'rxvt-256color'

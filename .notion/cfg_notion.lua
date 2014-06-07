@@ -254,6 +254,7 @@ defbindings("WMPlex.toplevel", {
     --kpress("Mod4+o", "app.byclass('okular', 'Okular')"),
     kpress("Mod4+o", "app.byclass('zathura','Zathura')"),
     kpress("Mod4+1", "app.byclass('gvim', 'Gvim')"),
+    -- kpress("Mod4+1", "app.byclass('~/bin/wim', 'wim')"),
     kpress("Mod4+Control+C", "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
     --kpress("Mod4+e", "app.byclass('kopete', 'Kopete')"),
     --kpress("Mod4+Control+R", "app.byclass('skype', 'Skype')"),

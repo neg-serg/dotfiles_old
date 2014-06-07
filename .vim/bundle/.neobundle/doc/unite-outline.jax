@@ -70,6 +70,12 @@ License : MIT license {{{
 	インストールに成功すると :Unite outline でバッファの見出し一覧を表示で
 	きます。（そのファイルタイプ用の outline info が存在する場合）
 
+
+	C, C++, Java, etc~
+
+		* Exuberant Ctags（必須）
+		  http://ctags.sourceforge.net/
+
 ==============================================================================
 使い方					*unite-outline-usage*
 
@@ -726,7 +732,7 @@ HOOKS ~
 	グラムが実行可能である（PATH が通っており、|system()|から呼び出せる）
 	必要があります。
 
-	C, C++, Java ~
+	C, C++, Java, etc~
 
 		* Exuberant Ctags（必須）
 		  http://ctags.sourceforge.net/

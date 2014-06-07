@@ -52,7 +52,13 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
+" NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
+NeoBundle 'jszakmeister/vim-togglecursor.git'
+NeoBundle 'shaneharper/vim-rtags.git'
+"------------------------------------------------------------------------------------------------------------
+"--[ New ]---------------------------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+NeoBundle 'dbakker/vim-projectroot'           "better rooter
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -90,16 +96,17 @@ NeoBundleLazy 'derekwyatt/vim-scala'         "different initial scala support fo
     \ {'autoload': {'filetypes': 'scala'}}
 NeoBundleLazy 'derekwyatt/vim-sbt'           "basic SBT support for vim
     \ {'autoload': {'filetypes': 'scala'}}
+" NeoBundle 'tpope/vim-classpath'            "sets path for jvm
 "------------------------------------------------------------------------------------------------------------
 "--[ misc ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+NeoBundle 'kien/ctrlp.vim.git'                "ctrlp for omnisharp
 NeoBundle 'drmikehenry/vim-fixkey'            "fixes key codes for console Vim
+NeoBundle 'ReekenX/vim-rename2.git'           "rename for files even with spaces in filename
 NeoBundle 'thinca/vim-ref.git'                "integrated reference viewer man/perldoc etc
-NeoBundle 'danro/rename.vim.git'              "Rename file in vim
 NeoBundle 'tyru/restart.vim.git'              "add restart support
 NeoBundle 'othree/eregex.vim'                 "Perl-like extended regex for vim
 NeoBundle 'chrisbra/Join.git'                 "Extended and fast Join for vim
-NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
 NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
 NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
@@ -136,6 +143,8 @@ NeoBundle 'hari-rangarajan/CCTree'            "call-tree for c
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git'         "js-omni completion
 NeoBundle 'gilligan/vim-lldb.git'             "lldb-plugin for vim
+NeoBundle 'nosami/Omnisharp.git'              "omnisharp completion
+NeoBundle 'jeetsukumaran/vim-buffersaurus.git' "search and replace between buffers
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -185,6 +194,7 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 NeoBundle 'vim-jp/vital.vim.git'              "improve unity perf
 NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
 NeoBundle 'Shougo/neomru.vim.git'             "MRU plugin for unite
+" NeoBundle 'junkblocker/unite-codesearch.git'  "for google-codesearch
 "--[ Create temporary file for memo, testing, ... ]----------------
 NeoBundleLazy 'Shougo/junkfile.vim', { 'autoload':{'commands':'JunkfileOpen', 'unite_sources':['junkfile','junkfile/new']}} 
 NeoBundleLazy 'Shougo/unite-build.git', {'autoload' : { 'unite_sources' : 'build', }}

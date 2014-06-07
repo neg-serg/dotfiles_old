@@ -1,4 +1,8 @@
 :q
+main
+main
+run
+:q
 :q
 ..
 wavefront 10
@@ -94,7 +98,3 @@ let getPositive = filter (\x -> x > 0)
 :q
 /tmp
 :reload 
-:reload 
-removeEmpty2 ["weqqewqw","","qewqew"]
-removeEmpty ["weqqewqw","","qewqew"]
-removeEmpty3 ["weqqewqw","","qewqew"]
