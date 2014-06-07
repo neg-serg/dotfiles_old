@@ -67,8 +67,7 @@ autocmd BufReadPost *.doc silent %!antiword "%"
 autocmd BufReadPost *.odt silent %!odt2txt "%"
 "Sourced from vim tip: http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
 " Enable omni completion.
-autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a
-autocmd FileType c,cc,h,s      nmap <C-c>m :make!<CR>
+autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a | nmap <C-c>m :make!<CR>
 autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR> | :NoMatchParen | setlocal nocursorline | setlocal updatetime=1
 
 au FileType mail setl spell fo=wantq1 smc=0

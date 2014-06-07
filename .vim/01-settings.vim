@@ -347,7 +347,7 @@ if has("cscope")
     set csprg=/usr/bin/gtags-cscope
     set csto=0
     set cscopetag
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    " set cscopequickfix=s-,c-,d-,i-,t-,e-
   
     let GtagsCscope_Auto_Map        = 1
     let GtagsCscope_Use_Old_Key_Map = 0
