@@ -163,9 +163,6 @@ cno $c e <C-\>eCurrentFileDir("e")<cr>
 
 inoremap jk <ESC>
 
-cmap     qq     qa!<CR>  " quit really, really fast
-cmap     wqq    qw<CR>   " quit really, really fast(with saving)
-
 " Keep search matches in the middle of the window.
 nnoremap * *zzzv
 nnoremap # #zzzv
@@ -406,7 +403,9 @@ nmap [Quickfix]m [make]
 nnoremap [Quickfix]M q:make<Space>
 nnoremap [Quickfix]g q:grep<Space>
 " Toggle quickfix window.
-nnoremap <silent> [Quickfix]<Space> :<C-u>call <SID>toggle_quickfix_window()<CR>
+let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
+let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
+" nnoremap <silent> [Quickfix]<Space> :<C-u>call <SID>toggle_quickfix_window()<CR>
 " For location list (mnemonic: Quickfix list for the current Window)
 nnoremap <silent> [Quickfix]wn :<C-u>lnext<CR>
 nnoremap <silent> [Quickfix]wp :<C-u>lprevious<CR>

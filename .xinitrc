@@ -1,4 +1,3 @@
-# vim: ft=sh smc=80 cc= fdm=marker fen fmr=#<,#>:
 #< output
 #xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate left --output HDMI-0 --mode 1920x1080 --pos 1080x528 --rotate normal
 #xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate left --output HDMI-0 --mode 1920x1080 --rotate left --pos 1080x525 &

@@ -282,7 +282,10 @@ vcscommand   <http://www.vim.org/scripts/script.php?script_id=90>
 
 * use vcscommand.vim if available >
   let g:airline#extensions#branch#use_vcscommand = 0
-<
+
+* truncate long branch names to a fixed length >
+  let g:airline#extensions#branch#displayed_head_limit = 10
+
 -------------------------------------                    *airline-syntastic*
 syntastic <https://github.com/scrooloose/syntastic>
 
@@ -314,6 +317,7 @@ csv.vim <https://github.com/chrisbra/csv.vim>
 -------------------------------------                        *airline-hunks*
 vim-gitgutter <https://github.com/airblade/vim-gitgutter>
 vim-signify <https://github.com/mhinz/vim-signify>
+changesPlugin <https://github.com/chrisbra/changesPlugin>
 
 * enable/disable showing a summary of changed hunks under source control. >
   let g:airline#extensions#hunks#enabled = 1

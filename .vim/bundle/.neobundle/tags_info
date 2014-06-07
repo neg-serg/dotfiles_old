@@ -3,6 +3,7 @@ CCTree
 IndentConsistencyCop
 Join
 ListToggle
+Omnisharp
 TeX-9
 YankRing.vim
 YouCompleteMe
@@ -13,8 +14,8 @@ base16-vim
 bufkill.vim
 clam.vim
 compview
-context_filetype.vim
 csv.vim
+ctrlp.vim
 delimitMate
 eregex.vim
 github-issues.vim
@@ -32,7 +33,6 @@ neomru.vim
 nerdtree
 perl-support.vim
 po.vim--gray
-rename.vim
 restart.vim
 rust.vim
 slimux
@@ -56,6 +56,7 @@ unite-quickfix
 unite.vim
 utl.vim
 vim-airline
+vim-buffersaurus
 vim-colors-pencil
 vim-colors-solarized
 vim-dispatch
@@ -65,7 +66,6 @@ vim-endwise
 vim-eunuch
 vim-extradite
 vim-fixkey
-vim-fontsize
 vim-fswitch
 vim-fugitive
 vim-git
@@ -83,16 +83,20 @@ vim-misc
 vim-multiple-cursors
 vim-obsession
 vim-pentadactyl
+vim-projectroot
 vim-python-pep8-indent
 vim-ref
+vim-rename2
 vim-repeat
 vim-rooter
+vim-rtags
 vim-sbt
 vim-scala
 vim-session
 vim-surround
 vim-tbone
 vim-tmux
+vim-togglecursor
 vim-transpose
 vim-unimpaired
 vim-unite-history

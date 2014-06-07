@@ -66,6 +66,12 @@ INSTALL					*unite-outline-install*
 	outline" command if you succeeded the installation (and unite-outline
 	supports the filetype of the buffer).
 
+
+	C, C++, Java, etc~
+
+		* Exuberant Ctags (Required)
+		  http://ctags.sourceforge.net/
+
 ==============================================================================
 USAGE					*unite-outline-usage*
 
@@ -255,6 +261,18 @@ VARIABLES				*unite-outline-variables*
 		defined in each filetypes' outline infos.
 
 		See |unite-outline-info-highlight_rules|.
+
+					*g:unite_source_outline_ctags_program*
+	g:unite_source_outline_ctags_program
+
+		String pointing to the absolute path of the ctags executable.
+
+		Default value is ''
+
+		Example: >
+		let g:unite_source_outline_ctags_program =
+		      \ '/usr/local/bin/ctags'
+<
 
 ------------------------------------------------------------------------------
 SETTINGS EXAMPLE			*unite-outline-settings-example*
@@ -761,7 +779,7 @@ EXTERNAL PROGRAMS			*unite-outline-info-external-programs*
 	must be able to be executed by |system()| with the proper setting of
 	PATH environment variable.
 
-	C, C++, Java ~
+	C, C++, Java, etc~
 
 		* Exuberant Ctags (Required)
 		  http://ctags.sourceforge.net/

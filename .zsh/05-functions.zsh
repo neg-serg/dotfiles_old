@@ -318,75 +318,21 @@ simple-extract() {
     zparseopts -D -E "d=DELETE_ORIGINAL"
     for ARCHIVE in "${@}"; do
         case $ARCHIVE in
-            *.(tar.bz2|tbz2|tbz))
-                DECOMP_CMD="tar -xvjf -"
-                USES_STDIN=true
-                USES_STDOUT=false
-                ;;
-            *.(tar.gz|tgz))
-                DECOMP_CMD="tar -xvzf -"
-                USES_STDIN=true
-                USES_STDOUT=false
-                ;;
-            *.(tar.xz|txz|tar.lzma))
-                DECOMP_CMD="tar -xvJf -"
-                USES_STDIN=true
-                USES_STDOUT=false
-                ;;
-            *.tar)
-                DECOMP_CMD="tar -xvf -"
-                USES_STDIN=true
-                USES_STDOUT=false
-                ;;
-            *.rar)
-                DECOMP_CMD="unrar x"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.lzh)
-                DECOMP_CMD="lha x"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.7z)
-                DECOMP_CMD="7z x"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.wim)
-                DECOMP_CMD="7z x"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.(zip|jar))
-                DECOMP_CMD="unzip"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.deb)
-                DECOMP_CMD="ar -x"
-                USES_STDIN=false
-                USES_STDOUT=false
-                ;;
-            *.bz2)
-                DECOMP_CMD="bzip2 -d -c -"
-                USES_STDIN=true
-                USES_STDOUT=true
-                ;;
-            *.(gz|Z))
-                DECOMP_CMD="gzip -d -c -"
-                USES_STDIN=true
-                USES_STDOUT=true
-                ;;
-            *.(xz|lzma))
-                DECOMP_CMD="xz -d -c -"
-                USES_STDIN=true
-                USES_STDOUT=true
-                ;;
+            *.(tar.bz2|tbz2|tbz))    DECOMP_CMD="tar -xvjf -" USES_STDIN=true USES_STDOUT=false ;;
+            *.(tar.gz|tgz))          DECOMP_CMD="tar -xvzf -" USES_STDIN=true USES_STDOUT=false ;;
+            *.(tar.xz|txz|tar.lzma)) DECOMP_CMD="tar -xvJf -" USES_STDIN=true USES_STDOUT=false ;;
+            *.tar)                   DECOMP_CMD="tar -xvf -" USES_STDIN=true USES_STDOUT=false ;;
+            *.rar)                   DECOMP_CMD="unrar x" USES_STDIN=false USES_STDOUT=false ;;
+            *.lzh)                   DECOMP_CMD="lha x" USES_STDIN=false USES_STDOUT=false ;;
+            *.7z)                    DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
+            *.wim)                   DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
+            *.(zip|jar))             DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
+            *.deb)                   DECOMP_CMD="ar -x" USES_STDIN=false USES_STDOUT=false ;;
+            *.bz2)                   DECOMP_CMD="bzip2 -d -c -" USES_STDIN=true USES_STDOUT=true ;;
+            *.(gz|Z))                DECOMP_CMD="gzip -d -c -" USES_STDIN=true USES_STDOUT=true ;;
+            *.(xz|lzma))             DECOMP_CMD="xz -d -c -" USES_STDIN=true USES_STDOUT=true ;;
             *)
-                print "ERROR: '$ARCHIVE' has unrecognized archive type." >&2
-                RC=$((RC+1))
-                continue
+                print "ERROR: '$ARCHIVE' has unrecognized archive type." >&2; RC=$((RC+1)); continue
                 ;;
         esac
 

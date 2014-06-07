@@ -7,6 +7,18 @@ augroup vimrc
     autocmd!
 augroup END
 
+  
+augroup cline
+	au!
+	au WinLeave * set nocursorline
+	au WinEnter * set cursorline
+
+	au InsertEnter * set nocursorline
+	au InsertLeave * set cursorline
+
+	au VimEnter * set cursorline
+augroup END
+
 " OmniComplete {
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *

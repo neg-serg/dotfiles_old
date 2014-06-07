@@ -372,7 +372,8 @@ if has("gui_running") ||
     let s:dblk_hex=s:conf_dblk_hex " dark black hexadecimal    (color 0)
     let s:lblk_hex=s:conf_lblk_hex " light black hexadecimal   (color 8)
     let s:dred_hex="8a2f58"        " dark red hexadecimal      (color 1)
-    let s:lred_hex="cf4f88"        " light red hexadecimal     (color 9)
+    let s:lred_hex="a44fcf"        " light red hexadecimal     (color 9)
+    " let s:lred_hex="cf4f88"        " light red hexadecimal     (color 9)
     let s:dgrn_hex="287373"        " dark green hexadecimal    (color 2)
     let s:lgrn_hex="53a6a6"        " light green hexadecimal   (color 10)
     let s:dylw_hex="914e89"        " dark yellow hexadecimal   (color 3)
@@ -538,8 +539,8 @@ call s:HI(       "Question", s:lwht, s:lgrn,     "" )
 " call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
 " call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
 call s:HI(         "Visual", s:dcnn, s:dwht,     "" )
-call s:HI(     "StatusLine", s:dblk, s:dwht, "none" )
-call s:HI(   "StatusLineNC", s:lblk, s:dblk,     "" )
+" call s:HI(     "StatusLine", s:dblk, s:dwht, "none" )
+" call s:HI(   "StatusLineNC", s:lblk, s:dblk,     "" )
 call s:HI(      "VertSplit", s:lblk, s:dblk,     "" )
 call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
 call s:HI(    "TabLineFill",     "", s:dblk,     "" )
@@ -694,5 +695,5 @@ endfunction
 au Syntax * call s:HighlightOperators()
 
 " hi Function     gui=#586e75
-hi Function     gui=NONE
-hi cFunctionTag gui=NONE
+hi Function     gui=NONE guifg=NONE
+hi cFunctionTag gui=NONE guifg=NONE
