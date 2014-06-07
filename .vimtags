@@ -596,6 +596,7 @@ enc_utf8	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/sr
 end	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  row_col_t         end;        \/* one character past end point              *\/$/;"	m	language:C++	struct:selection_t
 envv	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  stringvec      *argv, *envv;        \/* if != 0, will be freed at destroy time *\/$/;"	m	language:C++	struct:rxvt_term
 ERASE	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ERASE  = +2,$/;"	e	language:C++	enum:__anon5
+Error	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^function! s:Error(msg)$/;"	f	language:Vim
 event_handler	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^  event_handler ()$/;"	f	language:C++	struct:event_handler
 event_handler	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^static struct event_handler$/;"	s	language:C++	file:
 event_handler	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^} event_handler;$/;"	v	language:C++	typeref:struct:event_handler	file:
@@ -999,12 +1000,22 @@ grey_level	/home/neg/1st_level/all_colors	/^    fun! s:grey_level(n)$/;"	f	langu
 grey_number	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:grey_number(x)$/;"	f	language:Vim
 grey_number	/home/neg/.vim/colors/vombatidae.vim	/^    fun <SID>grey_number(x)$/;"	f	language:Vim
 grey_number	/home/neg/1st_level/all_colors	/^    fun! s:grey_number(x)$/;"	f	language:Vim
+GtagsCscope	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^command! -nargs=0 GtagsCscope call s:GtagsCscope()$/;"	c	language:Vim
+GtagsCscope	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^function! s:GtagsCscope()$/;"	f	language:Vim
 GtagsCscope_Absolute_Path	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Absolute_Path   = 1$/;"	v	language:Vim
+GtagsCscope_Absolute_Path	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Absolute_Path = 0$/;"	v	language:Vim
 GtagsCscope_Auto_Load	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Auto_Load       = 0$/;"	v	language:Vim
+GtagsCscope_Auto_Load	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Auto_Load = 0$/;"	v	language:Vim
 GtagsCscope_Auto_Map	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Auto_Map        = 1$/;"	v	language:Vim
+GtagsCscope_Auto_Map	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Auto_Map = 0$/;"	v	language:Vim
+GtagsCscope_GtagsRoot	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^function! s:GtagsCscope_GtagsRoot()$/;"	f	language:Vim
 GtagsCscope_Ignore_Case	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Ignore_Case     = 1$/;"	v	language:Vim
+GtagsCscope_Ignore_Case	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Ignore_Case = 0$/;"	v	language:Vim
 GtagsCscope_Keep_Alive	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Keep_Alive      = 1$/;"	v	language:Vim
+GtagsCscope_Keep_Alive	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Keep_Alive = 0$/;"	v	language:Vim
+GtagsCscope_Quiet	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Quiet = 0$/;"	v	language:Vim
 GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Use_Old_Key_Map = 0$/;"	v	language:Vim
+GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Use_Old_Key_Map = 0$/;"	v	language:Vim
 H	/home/neg/.vim/10-keymaps.vim	/^noremap H ^$/;"	m	language:Vim
 h	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int x, y, w, h; \/\/ overlay dimensions$/;"	m	language:C++	struct:overlay_base
 HAVE_BG_PIXMAP	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	82;"	d	language:C++
@@ -1175,6 +1186,7 @@ LINE_FILTER	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources
 LINE_FILTERED	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	781;"	d	language:C++
 LINE_LONGER	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	780;"	d	language:C++
 line_t	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^struct line_t$/;"	s	language:C++
+loaded_gtags_cscope	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^let loaded_gtags_cscope = 1$/;"	v	language:Vim
 LoadTypeXML	/home/neg/.vim/04-autocmds.vim	/^function! LoadTypeXML()$/;"	f	language:Vim
 locale	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  char           *locale;$/;"	m	language:C++	struct:rxvt_term
 localise_env	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  localise_env (char **new_env)$/;"	f	language:C++	struct:localise_env
@@ -1944,6 +1956,8 @@ s:fclr	/home/neg/1st_level/all_colors	/^    let s:fclr=""$/;"	v	language:Vim
 s:fclr	/home/neg/1st_level/all_colors	/^    let s:fclr=""$/;"	v	language:Vim
 s:fclr_hex	/home/neg/.vim/colors/mirodark.vim	/^    let s:fclr_hex="999999"        " foreground color hexadecimal$/;"	v	language:Vim
 s:fclr_hex	/home/neg/1st_level/all_colors	/^    let s:fclr_hex="999999"        " foreground color hexadecimal$/;"	v	language:Vim
+s:global_command	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^        let s:global_command = "global"$/;"	v	language:Vim
+s:global_command	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^let s:global_command = $GTAGSGLOBAL$/;"	v	language:Vim
 s:I1	/home/neg/.vim/bundle/vim-airline/autoload/airline/themes/mirodark_wim.vim	/^let s:I1 = [ '' , '' , 231 , 64 ]$/;"	v	language:Vim
 s:I1	/home/neg/.vim/bundle/vim-airline/autoload/airline/themes/wim.vim	/^let s:I1 = [ '#ffffff' , '#003623' , 231 , 64 ]$/;"	v	language:Vim
 s:I1	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let s:I1 = [ '#ffffff' , '#003623' , 231 , 64 ]$/;"	v	language:Vim
