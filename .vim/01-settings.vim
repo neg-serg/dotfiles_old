@@ -392,10 +392,6 @@ let g:is_posix        = 1
 "--[ Indent_guides ]--------------
 let g:indent_guides_auto_colors = 1
 
-" For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#000936 ctermbg=236
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#000A40 ctermbg=237
-"
 let g:indent_guides_start_level           = 2
 let g:indent_guides_guide_size            = 1
 let g:indent_guides_enable_on_vim_startup = 1

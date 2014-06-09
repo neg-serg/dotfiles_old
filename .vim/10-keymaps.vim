@@ -22,7 +22,8 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <silent> <leader>cd :ProjectRootCD<cr>
 
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
@@ -394,7 +395,7 @@ nnoremap <silent> [Quickfix]P :<C-u>clast<CR>
 nnoremap <silent> [Quickfix]fn :<C-u>cnfile<CR>
 nnoremap <silent> [Quickfix]fp :<C-u>cpfile<CR>
 nnoremap <silent> [Quickfix]l :<C-u>clist<CR>
-nnoremap <silent> [Quickfix]q :<C-u>cc<CR>
+" nnoremap <silent> [Quickfix]q :<C-u>cc<CR>
 nnoremap <silent> [Quickfix]en :<C-u>cnewer<CR>
 nnoremap <silent> [Quickfix]ep :<C-u>colder<CR>
 nnoremap <silent> [Quickfix]o :<C-u>copen<CR>

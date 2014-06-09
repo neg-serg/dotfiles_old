@@ -15,11 +15,11 @@ bufkill.vim
 clam.vim
 compview
 csv.vim
-ctrlp.vim
 delimitMate
 eregex.vim
 github-issues.vim
 gitv
+gotags
 gtags-cscope-vim-plugin
 gundo.vim
 hasksyn
@@ -70,6 +70,8 @@ vim-fswitch
 vim-fugitive
 vim-git
 vim-github-dashboard
+vim-gocode
+vim-golang
 vim-indent-guides
 vim-instant-markdown
 vim-json
@@ -88,7 +90,6 @@ vim-python-pep8-indent
 vim-ref
 vim-rename2
 vim-repeat
-vim-rooter
 vim-rtags
 vim-sbt
 vim-scala
