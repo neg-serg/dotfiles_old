@@ -396,8 +396,8 @@ simple-extract() {
     return $RC
 }
 
-function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd` }
-function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd` }
+function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd`;  }
+function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd`;  }
 zle -N up-one-dir
 zle -N back-one-dir
 

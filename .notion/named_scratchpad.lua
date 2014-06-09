@@ -46,6 +46,7 @@ function named_scratchpad(reg, name, mode)
     end
     mod_sp.set_shown(named_sp, mode)
     named_sp:rqorder("front")
+    named_sp:set_grattr("scratchpad", "set")
     return named_sp
 end
 

@@ -83,6 +83,7 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <Leader>a<Bar>	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a<Bar> :Tabularize \/<Bar><CR>$/;"	m	language:Vim
 <Leader>a=	/home/neg/.vim/10-keymaps.vim	/^    nmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
 <Leader>a=	/home/neg/.vim/10-keymaps.vim	/^    vmap <Leader>a= :Tabularize \/=<CR>$/;"	m	language:Vim
+<leader>cd	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <leader>cd :ProjectRootCD<cr>$/;"	m	language:Vim
 <Leader>d	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent><Leader>d :Unite -silent junkfile\/new junkfile<CR>$/;"	m	language:Vim
 <Leader>dq	/home/neg/.vim/10-keymaps.vim	/^noremap <Leader>dq :Gdiffoff<CR>$/;"	m	language:Vim
 <Leader>du	/home/neg/.vim/10-keymaps.vim	/^noremap <Leader>du :diffupdate<CR>$/;"	m	language:Vim
@@ -173,7 +174,7 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <SID>DisableFontsizeDefault	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault$/;"	m	language:Vim
 <SID>DisableFontsizeInc	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc$/;"	m	language:Vim
 <space>	/home/neg/.vim/10-keymaps.vim	/^nmap <space> <Nop>$/;"	m	language:Vim
-<space>cd	/home/neg/.vim/10-keymaps.vim	/^nnoremap <space>cd :lcd %:p:h<CR>:pwd<CR>$/;"	m	language:Vim
+<space>cd	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>$/;"	m	language:Vim
 <space>g	/home/neg/.vim/10-keymaps.vim	/^nnoremap <space>g g<c-]>$/;"	m	language:Vim
 <Space>sh	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Space>sh :FSHere<cr>$/;"	m	language:Vim
 <Space>sl	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Space>sl :call FSwitch('%', 'wincmd l')<cr>$/;"	m	language:Vim
@@ -193,11 +194,28 @@ alt	/mnt/home/dev/wrk/emm_sph/emm_sph.c	/^    float  alt;          \/\/ level ab
 alt	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	/^    float  alt;          \/\/ level above sea in meters$/;"	m	language:C	struct:point_input	file:
 altmax	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    double altmax;    \/* Max height of model. *\/$/;"	m	language:C	struct:init_state	file:
 altmin	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    double altmin;    \/* Min height of selected model. *\/$/;"	m	language:C	struct:init_state	file:
+app.byclass	/home/neg/.notion/app.lua	/^function app.byclass(prog, class, where)$/;"	f	language:Lua
+app.byinstance	/home/neg/.notion/app.lua	/^function app.byinstance(prog, class, instance, where)$/;"	f	language:Lua
+app.byname	/home/neg/.notion/app.lua	/^function app.byname(prog, name, where)$/;"	f	language:Lua
+app.emacs_eval	/home/neg/.notion/app.lua	/^function app.emacs_eval(expr)$/;"	f	language:Lua
+app.match_class	/home/neg/.notion/app.lua	/^function app.match_class(class, instance)$/;"	f	language:Lua
+app.query_editfile	/home/neg/.notion/app.lua	/^function app.query_editfile(mplex, dir) $/;"	f	language:Lua
 arg	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^    const char     *arg;	\/* argument *\/$/;"	m	language:C++	struct:__anon1	file:
 argv	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  stringvec      *argv, *envv;        \/* if != 0, will be freed at destroy time *\/$/;"	m	language:C++	struct:rxvt_term
 array	/mnt/home/dw/main.s	/^array: .space 400$/;"	l	language:Asm
-BADFUNCS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^BADFUNCS='[^_.>a-zA-Z0-9](str(n?cpy|n?cat|xfrm|n?dup|str|pbrk|tok|_))|stpn?cpy|a?sn?printf|byte_'$/;"	m	language:Make
-BADFUNCS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^BADFUNCS='[^_.>a-zA-Z0-9](str(n?cpy|n?cat|xfrm|n?dup|str|pbrk|tok|_))|stpn?cpy|a?sn?printf|byte_'$/;"	m	language:Make
+atom_net_active_window	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_active_window=0;$/;"	v	language:C	file:
+atom_net_supported	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_supported=0;$/;"	v	language:C	file:
+atom_net_supporting_wm_check	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_supporting_wm_check=0;$/;"	v	language:C	file:
+atom_net_virtual_roots	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_virtual_roots=0;$/;"	v	language:C	file:
+atom_net_wm_allowed_actions	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_allowed_actions=0;$/;"	v	language:C	file:
+atom_net_wm_moveresize	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_moveresize=0;$/;"	v	language:C	file:
+atom_net_wm_name	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_name=0;$/;"	v	language:C	file:
+atom_net_wm_state	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_state=0;$/;"	v	language:C	file:
+atom_net_wm_state_demands_attention	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_state_demands_attention=0;$/;"	v	language:C	file:
+atom_net_wm_state_fullscreen	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_state_fullscreen=0;$/;"	v	language:C	file:
+atom_net_wm_user_time	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static Atom atom_net_wm_user_time=0;$/;"	v	language:C	file:
+BADFUNCS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^BADFUNCS='[^_.>a-zA-Z0-9](str(n?cpy|n?cat|xfrm|n?dup|str|pbrk|tok|_)|stpn?cpy|a?sn?printf|byte_)'$/;"	m	language:Make
+BADFUNCS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^BADFUNCS='[^_.>a-zA-Z0-9](str(n?cpy|n?cat|xfrm|n?dup|str|pbrk|tok|_)|stpn?cpy|a?sn?printf|byte_)'$/;"	m	language:Make
 beg	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  row_col_t         beg;        \/* beginning of selection   <= mark          *\/$/;"	m	language:C++	struct:selection_t
 bell_cb	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void bell_cb (ev::timer &w, int revents); ev::timer bell_ev;$/;"	p	language:C++	struct:rxvt_term
 bell_cb	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C	/^rxvt_term::bell_cb (ev::timer &w, int revents)$/;"	f	language:C++	class:rxvt_term
@@ -224,6 +242,7 @@ build	/home/neg/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/PKGBU
 build	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/PKGBUILD	/^build() {$/;"	f	language:Sh
 build	/mnt/home/dev/src/1st_level/vim-urxvt-patched/gvim-hg/PKGBUILD	/^build() {$/;"	f	language:Sh
 build	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/PKGBUILD	/^build() {$/;"	f	language:Sh
+build	/mnt/home/dev/src/core/linux/PKGBUILD	/^build() {$/;"	f	language:Sh
 build	/mnt/home/dev/src/rxvt-unicode-multi_display-256xresources/PKGBUILD	/^build() {$/;"	f	language:Sh
 build	/tmp/yaourt-tmp-neg/aur-p7zip-natspec/PKGBUILD	/^build() {$/;"	f	language:Sh
 BUILTIN_GLYPHS	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	64;"	d	language:C++
@@ -323,7 +342,7 @@ ccfiles	/home/neg/.vim/04-autocmds.vim	/^augroup ccfiles$/;"	a	language:Vim
 centerAlign	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  centerAlign = 50,$/;"	e	language:C++	enum:__anon2
 CFLAGS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)$/;"	m	language:Make
 CFLAGS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra $(OPTFLAGS)$/;"	m	language:Make
-CFLAGS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -Iinclude -rdynamic -DNDEBUG $(OPTFLAGS)$/;"	m	language:Make
+CFLAGS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)$/;"	m	language:Make
 CFLAGS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra $(OPTFLAGS)$/;"	m	language:Make
 CFLAGS	/mnt/home/dev/wrk/emm/emm_sph/Makefile	/^CFLAGS=-O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)$/;"	m	language:Make
 CFLAGS	/mnt/home/dev/wrk/emm/emm_sph/Makefile	/^dev: CFLAGS=-g -Wall -Isrc -Wall -Wextra $(OPTFLAGS)$/;"	m	language:Make
@@ -446,6 +465,7 @@ copy_line	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/s
 copy_line	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C	/^rxvt_term::copy_line (line_t &dst, line_t &src)$/;"	f	language:C++	class:rxvt_term
 copy_line	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C.orig	/^rxvt_term::copy_line (line_t &dst, line_t &src)$/;"	f	language:C++	class:rxvt_term
 copy_line	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/screen.C	/^rxvt_term::copy_line (line_t &dst, line_t &src)$/;"	f	language:C++	class:rxvt_term
+count_screens	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^int count_screens()$/;"	f	language:C
 cov_filenames	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^typedef struct cov_filenames {$/;"	s	language:C	file:
 Cov_filenames	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^} *Cov_filenames;$/;"	t	language:C	typeref:struct:cov_filenames	file:
 cov_filenames	/mnt/home/dev/wrk/emm_sph/emm_sph.c	/^typedef struct cov_filenames {$/;"	s	language:C	file:
@@ -763,6 +783,7 @@ g:clj_highlight_builtins	/home/neg/.vim/01-settings.vim	/^let g:clj_highlight_bu
 g:colors_name	/home/neg/.vim/amy.vim	/^let g:colors_name="amy"$/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/colors/amy.vim	/^let g:colors_name="amy"$/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/colors/vombatidae.vim	/^let g:colors_name="vombatidae"$/;"	v	language:Vim
+g:colors_name	/home/neg/.vim/colors/wterm.vim	/^let g:colors_name="term"$/;"	v	language:Vim
 g:ConqueGdb_Leader	/home/neg/.vim/01-settings.vim	/^let g:ConqueGdb_Leader          = '\\\\'       "<leader>, by default is painful$/;"	v	language:Vim
 g:ctrlp_cmd	/home/neg/.vim/01-settings.vim	/^let g:ctrlp_cmd   = 'CtrlPMRUFiles'$/;"	v	language:Vim
 g:ctrlp_user_command	/home/neg/.vim/01-settings.vim	/^  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'$/;"	v	language:Vim
@@ -796,6 +817,8 @@ g:indentLine_char	/home/neg/.vim/01-settings.vim	/^let g:indentLine_char = '│'
 g:indentLine_faster	/home/neg/.vim/01-settings.vim	/^let g:indentLine_faster = 1$/;"	v	language:Vim
 g:indent_guides_autocmds_enabled	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_autocmds_enabled         = 0$/;"	v	language:Vim
 g:indent_guides_auto_colors	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_auto_colors = 1$/;"	v	language:Vim
+g:indent_guides_auto_colors	/home/neg/.vim/04-autocmds.vim	/^let g:indent_guides_auto_colors = 0$/;"	v	language:Vim
+g:indent_guides_auto_colors	/home/neg/.vim/colors/mirodark.vim	/^let g:indent_guides_auto_colors = 0$/;"	v	language:Vim
 g:indent_guides_color_change_percent	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_color_change_percent  = 7$/;"	v	language:Vim
 g:indent_guides_color_hex_guibg_pattern	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_color_hex_guibg_pattern  = 'guibg=\\zs' . g:indent_guides_color_hex_pattern . '\\ze'$/;"	v	language:Vim
 g:indent_guides_color_hex_pattern	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_color_hex_pattern        = '#[0-9A-Fa-f]\\{6\\}'$/;"	v	language:Vim
@@ -1018,6 +1041,7 @@ GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope
 GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Use_Old_Key_Map = 0$/;"	v	language:Vim
 H	/home/neg/.vim/10-keymaps.vim	/^noremap H ^$/;"	m	language:Vim
 h	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int x, y, w, h; \/\/ overlay dimensions$/;"	m	language:C++	struct:overlay_base
+handler	/home/neg/.notion/app.lua	/^   local function handler(file)$/;"	f	language:Lua
 HAVE_BG_PIXMAP	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	82;"	d	language:C++
 HAVE_IMG	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	83;"	d	language:C++
 height	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            height;        \/* window height                   [pixels] *\/$/;"	m	language:C++	struct:TermWin_t
@@ -1123,6 +1147,8 @@ input_mode	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/
 input_style	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  XIMStyle input_style;$/;"	m	language:C++	struct:rxvt_term
 INSERT	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  INSERT = -1,				\/* don't change these values *\/$/;"	e	language:C++	enum:__anon5
 int_bwidth	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            int_bwidth;    \/* internal border width                    *\/$/;"	m	language:C++	struct:TermWin_t
+ioncore_screens_updated	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void ioncore_screens_updated(WRootWin *rw)$/;"	f	language:C
+ioncore_update_net_state	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void ioncore_update_net_state(WClientWin *cwin)$/;"	f	language:C
 iso14755buf	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  unicode_t iso14755buf;$/;"	m	language:C++	struct:rxvt_term
 iso14755_51	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::iso14755_51 (unicode_t ch, rend_t r, int x, int y, int y2)$/;"	f	language:C++	class:rxvt_term
 iso14755_51	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void iso14755_51 (unicode_t ch, rend_t r = DEFAULT_RSTYLE, int x = 0, int y = -1, int y2 = -1);$/;"	p	language:C++	struct:rxvt_term
@@ -1174,7 +1200,7 @@ LIBS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m	la
 LIBS	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m	language:Make
 LIBS	/mnt/home/dev/wrk/emm/emm_sph/Makefile	/^LIBS=-ldl $(OPTLIBS)$/;"	m	language:Make
 LIBS	/mnt/home/dev/wrk/emm_sph/Makefile	/^LIBS=-lm -lsph $(OPTLIBS)$/;"	m	language:Make
-lib_file	/mnt/home/dev/st/lthw/c/ex29/tests/ex29_tests.c	/^const char *lib_file = "build\/libYOUR_LIBRARY.so";$/;"	v	language:C
+lib_file	/mnt/home/dev/st/lthw/c/ex29/tests/ex29_tests.c	/^const char *lib_file = "build\/libex29.so";$/;"	v	language:C
 lib_function	/mnt/home/dev/st/lthw/c/ex29/ex29.c	/^typedef int (*lib_function)(const char *data);$/;"	t	language:C	file:
 lib_function	/mnt/home/dev/st/lthw/c/ex29/tests/ex29_tests.c	/^typedef int (*lib_function)(const char *data);$/;"	t	language:C	file:
 LINENO	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	737;"	d	language:C++
@@ -1275,6 +1301,7 @@ MAG_YearToDate	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_YearToDate(MAGtype_Date
 main	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/rxvtc.C	/^main (int argc, const char *const *argv)$/;"	f	language:C++
 main	/mnt/home/dev/st/lthw/c/ex27/never_trust_input.c	/^int main() {$/;"	f	language:C
 main	/mnt/home/dev/st/lthw/c/ex29/ex29.c	/^int main(int argc, char *argv[])$/;"	f	language:C
+main	/mnt/home/dev/st/lthw/c/ex31/ex31.c	/^int main(int argc, char const* argv[]) {$/;"	f	language:C
 main	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^int main() {$/;"	f	language:C++
 main	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^int main() {$/;"	f	language:C++
 main	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^int main(int argc, char* argv[]) {$/;"	f	language:C++
@@ -1333,6 +1360,7 @@ mouse_report	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresource
 mouse_report	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void mouse_report (XButtonEvent &ev);$/;"	p	language:C++	struct:rxvt_term
 mouse_row	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  mouse_row,$/;"	m	language:C++	struct:rxvt_term
 mouse_slip_wheel_speed	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  mouse_slip_wheel_speed,$/;"	m	language:C++	struct:rxvt_term
+moveapp.byclass	/home/neg/.notion/app.lua	/^function moveapp.byclass(ws, class)$/;"	f	language:Lua
 mu_assert	/mnt/home/dev/st/lthw/c/ex29/minunit.h	11;"	d	language:C++
 mu_assert	/mnt/home/dev/st/lthw/c/ex29/tests/minunit.h	11;"	d	language:C++
 mu_run_test	/mnt/home/dev/st/lthw/c/ex29/minunit.h	12;"	d	language:C++
@@ -1365,11 +1393,14 @@ n	/home/neg/.vim/10-keymaps.vim	/^nnoremap n nzzzv$/;"	m	language:Vim
 N	/home/neg/.vim/10-keymaps.vim	/^nnoremap N Nzzzv$/;"	m	language:Vim
 n	/mnt/home/dw/main.s	/^n:	.int 0$/;"	l	language:Asm
 name	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^  const char    *name;$/;"	m	language:C++	struct:keysym_vocabulary_t	file:
+named_scratchpad	/home/neg/.notion/named_scratchpad.lua	/^function named_scratchpad(reg, name, mode)$/;"	f	language:Lua
+named_sp_raiseorhide	/home/neg/.notion/named_scratchpad.lua	/^function named_sp_raiseorhide(reg, name)$/;"	f	language:Lua
 NaN	/mnt/home/dev/work/emm/emm_sph/emm_sph_file.c	9;"	d	language:C	file:
 NaN	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	9;"	d	language:C	file:
 NaN	/mnt/home/dev/wrk/emm_all/EMM2010_sph_windows_linux/emm_sph_file.c	37;"	d	language:C	file:
 NaN	/mnt/home/dev/wrk/emm_sph/emm_sph.c	9;"	d	language:C	file:
 NaN	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	9;"	d	language:C	file:
+ncmpcpp	/home/neg/.notion/cfg_notion.lua	/^function ncmpcpp(ws)$/;"	f	language:Lua
 ncol	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            ncol;          \/* window columns              [characters] *\/$/;"	m	language:C++	struct:TermWin_t
 NDEBUG	/mnt/home/dev/st/lthw/c/ex27/never_trust_input.c	1;"	d	language:C	file:
 NDEBUG	/mnt/home/dev/st/lthw/c/ex29/minunit.h	1;"	d	language:C++
@@ -1378,6 +1409,19 @@ need_blur	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/s
 need_tint	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  bool need_tint ()$/;"	f	language:C++	struct:image_effects
 NERDTreeIgnore	/home/neg/1st_level/vimrcrc	/^let NERDTreeIgnore=['\\.so$', '\\.o$', '\\.la$', '\\.a$', '\\.class$', '\\~$', '\\.beam$', '^Mnesia.', 'deps\/', '\\.hi$', 'vendor\/']$/;"	v	language:Vim
 NERDTreeIgnore	/mnt/home/dev/src/vimmeh/vimrc	/^let NERDTreeIgnore=['\\.so$', '\\.o$', '\\.la$', '\\.a$', '\\.class$', '\\~$', '\\.beam$', '^Mnesia.', 'deps\/', '\\.hi$', 'vendor\/']$/;"	v	language:Vim
+netwm_active_window_rq	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static void netwm_active_window_rq(WClientWin *cwin,$/;"	f	language:C	file:
+netwm_check_initial_fullscreen	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^bool netwm_check_initial_fullscreen(WClientWin *cwin)$/;"	f	language:C
+netwm_check_manage_user_time	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_check_manage_user_time(WClientWin *cwin, WManageParams *param)$/;"	f	language:C
+netwm_delete_state	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_delete_state(WClientWin *cwin)$/;"	f	language:C
+netwm_get_name	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^char **netwm_get_name(WClientWin *cwin)$/;"	f	language:C
+netwm_handle_client_message	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_handle_client_message(const XClientMessageEvent *ev)$/;"	f	language:C
+netwm_handle_property	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^bool netwm_handle_property(WClientWin *cwin, const XPropertyEvent *ev)$/;"	f	language:C
+netwm_init	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_init()$/;"	f	language:C
+netwm_init_rootwin	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_init_rootwin(WRootWin *rw)$/;"	f	language:C
+netwm_set_active	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_set_active(WRegion *reg)$/;"	f	language:C
+netwm_state_change_rq	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^static void netwm_state_change_rq(WClientWin *cwin,$/;"	f	language:C	file:
+netwm_update_allowed_actions	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_update_allowed_actions(WClientWin *cwin)$/;"	f	language:C
+netwm_update_state	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void netwm_update_state(WClientWin *cwin)$/;"	f	language:C
 newton	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^Newton_ret *newton(double x, double epsilon) {$/;"	f	language:C++
 newton	/mnt/home/dev/test.cpp	/^Newton_ret *newton(double x, double epsilon) {$/;"	f	language:C++
 newton	/mnt/home/dev/test.cpp	/^Newton_ret *newton(double x, double epsilon);$/;"	p	language:C++	file:
@@ -1477,6 +1521,7 @@ NSCREENS	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/sr
 NUM_RESOURCES	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  NUM_RESOURCES$/;"	e	language:C++	enum:__anon9
 num_scr	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int             num_scr;              \/* screen: number of lines scrolled *\/$/;"	m	language:C++	struct:rxvt_term
 num_scr_allow	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  num_scr_allow:1,$/;"	m	language:C++	struct:rxvt_term
+N_NETWM	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	40;"	d	language:C	file:
 objectiveFunction	/mnt/home/dev/st/po41/optimization/lab3.cpp	/^double objectiveFunction(vector < vector<double> > &data, int n, int m) {$/;"	f	language:C++
 objectiveFunction	/mnt/home/dev/st/po41/optimization/lab3.cpp	/^double objectiveFunction(vector < vector<double> > &data, int n, int m);$/;"	p	language:C++	file:
 OBJECTS	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^OBJECTS=$(patsubst %.c,%.o,$(SOURCES))$/;"	m	language:Make
@@ -1561,6 +1606,7 @@ popen_printer	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresourc
 PREFIX	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^PREFIX?=\/usr\/local$/;"	m	language:Make
 PREFIX	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^PREFIX?=\/usr\/local$/;"	m	language:Make
 PREFIX	/mnt/home/dev/wrk/emm/emm_sph/Makefile	/^PREFIX?=\/usr\/local$/;"	m	language:Make
+prepare	/mnt/home/dev/src/core/linux/PKGBUILD	/^prepare() {$/;"	f	language:Sh
 prepare	/tmp/yaourt-tmp-neg/aur-p7zip-natspec/PKGBUILD	/^prepare() {$/;"	f	language:Sh
 prev_ncol	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int             prev_ncol,            \/* screen: previous number of columns *\/$/;"	m	language:C++	struct:rxvt_term
 prev_nrow	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  prev_nrow;            \/* screen: previous number of rows *\/$/;"	m	language:C++	struct:rxvt_term
@@ -2217,6 +2263,9 @@ SOURCES	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^SOURCES=$(wildcard src\/**
 SOURCES	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^SOURCES=$(wildcard src\/**\/*.c src\/*.c)$/;"	m	language:Make
 SOURCES	/mnt/home/dev/wrk/emm/emm_sph/Makefile	/^SOURCES=$(wildcard *.c)$/;"	m	language:Make
 SOURCES	/mnt/home/dev/wrk/emm_sph/Makefile	/^SOURCES=$(wildcard *.c)$/;"	m	language:Make
+SOURCE_APPLICATION	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	45;"	d	language:C	file:
+SOURCE_PAGER	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	46;"	d	language:C	file:
+SOURCE_UNKNOWN	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	44;"	d	language:C	file:
 SO_TARGET	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m	language:Make
 SO_TARGET	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m	language:Make
 spot	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  XPoint   spot; \/\/ most recently sent spot position$/;"	m	language:C++	struct:rxvt_term
@@ -2252,7 +2301,7 @@ TABSIZE	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display
 TABSIZE	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C.orig	41;"	d	language:C++	file:
 TABSIZE	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/screen.C	41;"	d	language:C++	file:
 TARGET	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^TARGET=build\/libYOUR_LIBRARY.a$/;"	m	language:Make
-TARGET	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^TARGET=build\/libex29.a$/;"	m	language:Make
+TARGET	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^TARGET=build\/libYOUR_LIBRARY.a$/;"	m	language:Make
 TERMENV	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	363;"	d	language:C++
 TERMENV	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	365;"	d	language:C++
 termlist	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  static vector<rxvt_term *> termlist; \/\/ a vector of all running rxvt_term's$/;"	m	language:C++	struct:rxvt_term
@@ -2288,6 +2337,7 @@ tlen_t_	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src
 Tlist_Inc_Winwidth	/home/neg/.vim/01-settings.vim	/^let Tlist_Inc_Winwidth = 0$/;"	v	language:Vim
 toggle_higher_contrast_mode	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
 toggle_higher_contrast_mode	/home/neg/1st_level/all_colors	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
+toggle_scratch_app	/home/neg/.notion/named_scratchpad.lua	/^function toggle_scratch_app(reg, cmdline, class)$/;"	f	language:Lua
 top_row	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            top_row;       \/* topmost row index of scrollback          *\/$/;"	m	language:C++	struct:TermWin_t
 TOTAL_COLORS	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  TOTAL_COLORS$/;"	e	language:C++	enum:colour_list
 total_rows	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            total_rows;    \/* total number of rows in this terminal    *\/$/;"	m	language:C++	struct:TermWin_t
@@ -2325,6 +2375,7 @@ URxvt_version	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresourc
 URxvt_view_down	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  URxvt_view_down        = 721,$/;"	e	language:C++	enum:__anon8
 URxvt_view_up	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  URxvt_view_up          = 720,$/;"	e	language:C++	enum:__anon8
 v	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  vector<compose_char> v;$/;"	m	language:C++	class:rxvt_composite_vec
+VALGRIND	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^       VALGRIND="valgrind --log-file=\/tmp\/valgrind-%p.log" $(MAKE)$/;"	m	language:Make
 valid	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^   bool valid ()$/;"	f	language:C++	struct:line_t
 value	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^  unsigned short value;$/;"	m	language:C++	struct:keysym_vocabulary_t	file:
 view_start	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            view_start;    \/* scrollback view starts here              *\/$/;"	m	language:C++	struct:TermWin_t
@@ -2440,7 +2491,6 @@ zl	/home/neg/.vim/10-keymaps.vim	/^map zl zL$/;"	m	language:Vim
 [Quickfix]o	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]o :<C-u>copen<CR>$/;"	m	language:Vim
 [Quickfix]P	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]P :<C-u>clast<CR>$/;"	m	language:Vim
 [Quickfix]p	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]p :<C-u>cprevious<CR>$/;"	m	language:Vim
-[Quickfix]q	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]q :<C-u>cc<CR>$/;"	m	language:Vim
 [Quickfix]r	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]r :<C-u>crewind<CR>$/;"	m	language:Vim
 [Quickfix]w<Space>	/home/neg/.vim/10-keymaps.vim	/^nnoremap [Quickfix]w<Space> q:lmake<Space>$/;"	m	language:Vim
 [Quickfix]wc	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [Quickfix]wc :<C-u>lclose<CR>$/;"	m	language:Vim
@@ -2492,6 +2542,7 @@ zl	/home/neg/.vim/10-keymaps.vim	/^map zl zL$/;"	m	language:Vim
 _minunit_h	/mnt/home/dev/st/lthw/c/ex29/minunit.h	3;"	d	language:C++
 _minunit_h	/mnt/home/dev/st/lthw/c/ex29/tests/minunit.h	3;"	d	language:C++
 _mwmhints	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef struct _mwmhints$/;"	s	language:C++
+_package	/mnt/home/dev/src/core/linux/PKGBUILD	/^_package() {$/;"	f	language:Sh
 `	/home/neg/.vim/10-keymaps.vim	/^nnoremap ` '$/;"	m	language:Vim
 ~localise_env	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ~localise_env ()$/;"	f	language:C++	struct:localise_env
 ~rxvt_term	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ~rxvt_term ();$/;"	p	language:C++	struct:rxvt_term

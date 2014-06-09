@@ -1,10 +1,15 @@
-#< output
 #xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate left --output HDMI-0 --mode 1920x1080 --pos 1080x528 --rotate normal
 #xrandr --output DVI-D-0 --mode 1920x1080 --pos 0x0 --rotate left --output HDMI-0 --mode 1920x1080 --rotate left --pos 1080x525 &
 # xrandr --output DVI-D-0 --mode 1920x1080 --pos 1080x0 --rotate left --output HDMI-0 --mode 1920x1080 --rotate left --pos 0x0 &
 
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
+
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --setprovideroutputsource 0x45 0x2b0
+xrandr --output LVDS-0 --on
+xrandr --auto 
+
 # xrandr --newmode "1600x900_59.90"  118.80  1600 1696 1864 2128  900 901 904 932  -HSync +Vsync
 # xrandr --addmode LVDS-0 1600x900_59.90
 # xrandr --output LVDS-0 --mode 1600x900_59.90
@@ -109,4 +114,5 @@ amixer -q set Master 0% mute
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
 ~/bin/scripts/email_notifier.py &
+# exec enlightenment_start
 exec notion

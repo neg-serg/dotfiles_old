@@ -33,7 +33,7 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-alias l="ls++"
+if [[ ! -x "ls++" ]]; then alias l="ls -l"; else alias l="ls++"; fi
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
 alias lss='ls -sShr'

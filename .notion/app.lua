@@ -82,11 +82,11 @@ function app.query_editfile(mplex, dir)
       app.emacs_eval("(find-file \""..file.."\")")
    end
 
-   mod_query.do_query(mplex,
-		     'Edit file:',
-		     dir or mod_query.get_initdir(),
-		     handler,
-		     mod_query.file_completor)
+    mod_query.do_query(mplex,
+        'Edit file:',
+        dir or mod_query.get_initdir(),
+        handler,
+        mod_query.file_completor)
 end
 
 moveapp={}

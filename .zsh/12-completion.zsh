@@ -43,7 +43,7 @@ mycompletion() {
     zstyle ':completion:*'                  special-dirs ..
     zstyle ':completion:*'                  use-perl 'yes'
     # mplayer                                                                    {{{
-    zstyle ':completion:*:(mv|cp|file|m|mplayer|mpv):*'  ignored-patterns '(#i)*.(url|mht)'
+    zstyle ':completion:*:(mv|cp|file|m|mplayer|mp|mpv):*'  ignored-patterns '(#i)*.(url|mht)'
     zstyle ':completion:*:*:mplayer:*'      tag-order files
     zstyle ':completion:*:*:mplayer:*'      file-sort name
     zstyle ':completion:*:*:mplayer:*'      menu select auto
@@ -60,29 +60,29 @@ mycompletion() {
     zstyle ':completion:*:corrections'  format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%} - (%{${fg[cyan]}%}errors %e%{${reset_color}%})"
     zstyle ':completion:*:default'      \
         select-prompt \
-        "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[red]}%}  %p%{${reset_color}%}"
+        "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
         zstyle ':completion:*:default'      \
         list-prompt   \
         "%{${fg[cyan]}%}Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[cyan]}%}  Continue?%{${reset_color}%}"
         zstyle ':completion:*:warnings'     \
         format        \
-        "- %{${fg_no_bold[red]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
+        "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
     zstyle ':completion:*' group-name ''
     ### manual pages are sorted into sections
     zstyle ':completion:*:manuals'        separate-sections true
     zstyle ':completion:*:manuals.(^1*)'  insert-sections   true
     zstyle ':completion:*:wine:*'         file-patterns '*.(exe|EXE):exe'
     ### highlight parameters with uncommon names
-        zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[red]"
+        zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[blue]"
     ### highlight aliases
         zstyle ':completion:*:aliases'    list-colors "=*=$color[green]"
     ## show that _* functions are not for normal use
     ## (not needed, since I don't complete _* functions at all)
-    zstyle ':completion:*:functions'      list-colors "=_*=$color[red]"
+    zstyle ':completion:*:functions'      list-colors "=_*=$color[blue]"
     ### highlight the original input.
-    zstyle ':completion:*:original'       list-colors "=*=$color[red];$color[bold]"
+    zstyle ':completion:*:original'       list-colors "=*=$color[blue];$color[bold]"
     ### highlight words like 'esac' or 'end'
-    zstyle ':completion:*:reserved-words' list-colors "=*=$color[red]"
+    zstyle ':completion:*:reserved-words' list-colors "=*=$color[blue]"
     ### colorize processlist for 'kill'
     zstyle ':completion:*:*:kill:*:processes' \
         list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
@@ -118,9 +118,6 @@ mycompletion() {
             fi
         fi'
 
-    # command for process lists, the local web server details and host completion
-    # zstyle ':completion:*:urls' local 'www' '/var/www/' 'public_html'
-    # caching
     [[ -d $ZSHDIR/cache ]] && zstyle ':completion:*' use-cache yes && \
                               zstyle ':completion::complete:*' cache-path $ZSHDIR/cache/
     # use generic completion system for programs not yet defined; (_gnu_generic works
@@ -134,7 +131,6 @@ mycompletion() {
 }
 
 () {
-
     local -a coreutils
     coreutils=(
         # /bin
@@ -165,7 +161,6 @@ mycompletion() {
 
 mycompletion
 
-
 __archive_or_uri(){
     _alternative \
         'files:Archives:_files -g "*.(#l)(tar.bz2|tbz2|tbz|tar.gz|tgz|tar.xz|txz|tar.lzma|tar|rar|lzh|7z|zip|jar|deb|bz2|gz|Z|xz|lzma)"' \
@@ -188,5 +183,3 @@ zle -N forward-word-match
 # for backward-kill, all but / are word chars (ie, delete word up to last directory)
 zstyle ':zle:backward-kill-word*' word-style standard
 zstyle ':zle:*kill*' word-chars '*?_-.[]~=&;!#$%^(){}<>'
-
-

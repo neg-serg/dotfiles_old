@@ -46,6 +46,7 @@ dopath("mod_notionflux")
 dopath("cfg_xrandr")
 dopath("sp_app")
 dopath("vim_bindings")
+dopath("goto-by-tag")
 
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
@@ -63,17 +64,18 @@ defwinprop{class="Chromium-browser",transient_mode="off",transient_mode="off",ta
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
-defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
-defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
-defwinprop{class="Firefox",instance="Dialog",float=true}
+defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
+defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true,tag="browser"}
+defwinprop{class="Firefox",instance="Dialog",float=true,tag="browser"}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
     max_size = {w=1024,h=768},
     min_size = {w=800,h=600},
-    float=true
+    float=true,
+    tag="browser"
 }
-defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true}
-defwinprop{class="Iceweasel",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
-defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
+defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true,tag="browser"}
+defwinprop{class="Iceweasel",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
+defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
 -------------------------------------[[ IM ]]---------------------------------------
 defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
@@ -195,8 +197,8 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+d",         "named_scratchpad(_, 'float')"),
     kpress("Mod4+p",         "named_scratchpad(_, 'float2')"),
     kpress("Mod1+p",         "named_scratchpad(_, 'torrent')"),
-    kpress("Mod4+F",      "named_scratchpad(_, 'ncmpcpp')"),
-    -- kpress("Mod4+F",         "ncmpcpp(_)"),
+    -- kpress("Mod4+F",      "named_scratchpad(_, 'ncmpcpp')"),
+    kpress("Mod4+F",         "ncmpcpp(_)"),
     kpress("Mod4+E",         "named_scratchpad(_, 'im')"),
     kpress("Mod4+Control+9", "named_scratchpad(_, 'wicd')"),
     kpress("Mod4+Control+2", "named_scratchpad(_, 'alsa')"),
@@ -508,7 +510,7 @@ defmenu("menuattach", {
 })
 
 --
--- function ncmpcpp()
---     os.execute("/home/neg/bin/scripts/ncmpcpp")
---     named_scratchpad(_, 'ncmpcpp')
--- end
+function ncmpcpp(ws)
+    ioncore.exec_on(ws, '/home/neg/bin/msc')
+    named_scratchpad(ws, 'ncmpcpp')
+end

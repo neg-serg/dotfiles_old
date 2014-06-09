@@ -697,3 +697,8 @@ au Syntax * call s:HighlightOperators()
 " hi Function     gui=#586e75
 hi Function     gui=NONE guifg=NONE
 hi cFunctionTag gui=NONE guifg=NONE
+
+" For some colorschemes, autocolor will not work (eg: 'desert', 'ir_black')
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  guibg=#030303 ctermbg=236
+autocmd VimEnter,Colorscheme * hi IndentGuidesEven guibg=#080808 ctermbg=237

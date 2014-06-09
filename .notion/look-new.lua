@@ -1,4 +1,3 @@
--- FONT="-hell-monobook-bold-r-normal--20-20-72-72-m-100-iso10646-1"
 -- FONT="-hell-monobook-medium-r-normal--28-280-72-72-m-140-iso10646-1"
 -- FONT_STATUS="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 --
@@ -30,6 +29,30 @@ de.defstyle("*", {
 
 de.defstyle("frame", {
     --based_on = "*",
+    shadow_colour = "#000000",
+    border_sides=tnl,
+    highlight_colour = "#000000",
+    padding_colour = "#000000",
+    background_colour = "#000000",
+    foreground_colour = "#ffffff",
+    padding_pixels = 0,
+    highlight_pixels = 1,
+    shadow_pixels = 1,
+    border_style="elevated",
+    transparent_background = true,
+    de.substyle("*-*-active-scratchpad", {
+        shadow_colour = "#287373",
+        border_sides=tnl,
+        highlight_colour = "#287373",
+        padding_colour = "#000000",
+        background_colour = "#000000",
+        foreground_colour = "#ffffff",
+        padding_pixels = 2,
+        highlight_pixels = 2,
+        shadow_pixels = 2,
+        spacing = 3,
+        transparent_background = false,
+    }),
     de.substyle("active", {
         shadow_colour = "#222222",
         border_sides=tnl,
@@ -43,31 +66,8 @@ de.defstyle("frame", {
         --border_style="inlaid",
         transparent_background = true,
     }),
-    de.substyle("scratchpad", {
-        shadow_colour = "#2222ff",
-        border_sides=tnl,
-        highlight_colour = "#2222ff",
-        padding_colour = "#000000",
-        background_colour = "#000000",
-        foreground_colour = "#ffffff",
-        padding_pixels = 0,
-        highlight_pixels = 0,
-        shadow_pixels = 0,
-        --border_style="inlaid",
-        transparent_background = false,
-    }),
-    shadow_colour = "#000000",
-    border_sides=tnl,
-    highlight_colour = "#000000",
-    padding_colour = "#000000",
-    background_colour = "#000000",
-    foreground_colour = "#ffffff",
-    padding_pixels = 0,
-    highlight_pixels = 1,
-    shadow_pixels = 1,
-    border_style="elevated",
-    transparent_background = true,
 })
+
 
 de.defstyle("frame-ionframe",{
     based_on = "frame",
