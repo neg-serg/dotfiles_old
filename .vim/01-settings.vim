@@ -126,6 +126,17 @@ if !has("gui_running")
     set <M-*>=*
     set <M-.>=.
     set <M-^>=^
+
+    if &term =~ "xterm\\|rxvt"
+    " use an orange cursor in insert mode
+    let &t_SI = "\<Esc>]12;rgb:32/4c/80\x7"
+    " use a red cursor otherwise
+    let &t_EI = "\<Esc>]12;rgb:b0/d0/f0\x7"
+    silent !echo -ne "\033]12;rgb:b0/d0/f0\x7"
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\033]112\x7"
+    " use \003]12;gray\007 for gnome-terminal
+    endif
 endif
 
 if has ('x') && has ('gui') " On Linux use + register for copy-paste
