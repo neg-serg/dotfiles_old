@@ -1,4 +1,3 @@
-"  __     ___
 "  \ \   / (_)_ __ ___
 "   \ \ / /| | '_ ` _ \
 "    \ V / | | | | | | |
@@ -52,9 +51,12 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
+
 " NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
 NeoBundle 'jszakmeister/vim-togglecursor.git'
 NeoBundle 'shaneharper/vim-rtags.git'
+NeoBundle 'justinmk/vim-sneak.git'
+
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
