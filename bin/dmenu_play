@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+song=$(mpc playlist -f 'p:%position% a:%artist% t:%title% b:%album%' |
+	dmenu "$@" | sed -e 's/^p:\([0-9]*\).*$/\1/')
+[ -n "$song" ] && mpc -q play "$song"

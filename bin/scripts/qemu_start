@@ -1,0 +1,1 @@
+qemu-system-x86_64 -machine type=pc,accel=kvm -m 2048 -smp 4 -vga qxl -spice port=5930,disable-ticketing -device virtio-serial-pci -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 -chardev spicevmc,id=spicechannel0,name=vdagent -drive file=win7.qcow2,if=virtio -qmp tcp:localhost:4444,server --monitor stdio -usb -usbdevice disk:/dev/sdc

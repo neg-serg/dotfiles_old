@@ -3,7 +3,7 @@ hi clear
 if exists("syntax on")
     syntax reset
 endif
-let colors_name="mirodark"
+let colors_name="wim"
 
 let s:venv="cterm"
 let s:bclr=""
@@ -45,7 +45,7 @@ call s:HI(      "PreCondit",     "", s:lmag,     "" )
 call s:HI(        "NonText",     "", s:dcyn,     "" )
 call s:HI(      "Directory",     "", s:dcyn,     "" )
 call s:HI(     "SpecialKey",     "", s:lylw,     "" )
-call s:HI(           "Type",     "", s:dcyn,     "" )
+call s:HI(           "Type",     "", s:dcyn,     "bold" )
 call s:HI(         "String",     "", s:dgrn,     "" )
 call s:HI(       "Constant",     "", s:lmag,     "" )
 call s:HI(        "Special",     "", s:lgrn,     "" )

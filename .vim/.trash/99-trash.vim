@@ -1,3 +1,17 @@
+"------------------------------------------------------------------------------------------------------------
+"---------------[  textobj  ]--------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------------------
+" NeoBundle 'paradigm/TextObjectify'            "Textjob main plugin
+" NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer
+" NeoBundle 'kana/vim-textobj-indent.git'       "Textobj for indented block of lines
+" NeoBundle 'kana/vim-textobj-lastpat.git'      "Textobj for the last searched pattern
+" NeoBundle 'kana/vim-textobj-line.git'         "Textobj for the current line
+" NeoBundle 'kana/vim-textobj-underscore.git'   "Textobj for underscore
+" NeoBundle 'kana/vim-textobj-user.git'         "To create your own objects
+" NeoBundle 'kana/vim-textobj-entire.git'       "gives you `e` for entire document. so vae, and etc
+" NeoBundle 'kana/vim-textobj-function.git'     "gives you `f` textobj. so vaf to select a function
+" NeoBundle 'vim-scripts/argtextobj.vim.git'    "This plugin provides a text-object 'a' (argument)
+
 " NeoBundle '5t111111/alt-gtags.vim.git'      "no tagstack :(, use unite 
 " NeoBundleLazy 'tacahiroy/ctrlp-funky'       "jump to function without tags
 " NeoBundle 'roman/golden-ratio.git'          "buggy and not compatible with  unite for me

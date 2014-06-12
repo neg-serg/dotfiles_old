@@ -1,0 +1,17 @@
+#!/bin/sh
+# mirrorlist update
+set -e
+
+msg() { printf '\e[1;34m::\e[0m %s\n' "$*"; }
+
+msg "Copying mirrorlist to /etc/pacman.d/mirrorlist.backup"
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+
+msg "Sorting with Reflector..."
+reflector -l 15 --sort rate --save /tmp/mirrorlist
+
+msg "Copying sorted mirrorlist to /etc/pacman.d/mirrorlist"
+sudo cp /tmp/mirrorlist /etc/pacman.d/mirrorlist
+sudo rm /tmp/mirrorlist
+
+sudo "${PACMAN:-pacman}" -Syyu

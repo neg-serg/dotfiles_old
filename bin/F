@@ -1,0 +1,3 @@
+#!/bin/bash
+sack__vim_shortcut=$(sed -n "$1p" < /home/neg/.sack_shortcuts)
+vim +$sack__vim_shortcut

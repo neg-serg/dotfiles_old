@@ -1,8 +1,3 @@
-" if exists('$WINDIR') || !executable('zsh')
-"   set shell=bash
-" else
-"   set shell=zsh
-" endif
 set shell=bash
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
@@ -12,6 +7,7 @@ if v:version >= 704
   " faster.
   set regexpengine=1
 endif
+
 " ------[ GUI settings ]-----------------------------------------------------
 if has("gui_running")
     set gfn=PragmataPro\ for\ Powerline\ 14
@@ -25,14 +21,14 @@ if has("gui_running")
     set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
-   "  set mouse=a                         " enable full mouse support
-    set mouse=                          " enable full mouse support
-    set ttymouse=xterm2                " more accurate mouse tracking
+    "  set mouse=a                     " enable full mouse support
+    set mouse=                         " enable full mouse support
+    set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
     syntax sync minlines=256
-    set ttyscroll=32
+    set ttyscroll=40
     set lazyredraw
 
    "  set selection=exclusive            " exclusive selection is better [?]
@@ -41,7 +37,7 @@ if has("gui_running")
 
     set winaltkeys=no                  "
     set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
-    
+
     set ballooneval                    " add popups for gui
     set balloondelay=400               " popups delay
 
@@ -72,71 +68,31 @@ if !has("gui_running")
     colorscheme wim
     " ENABLE CTRL INTERPRETING FOR VIM
     " silent !stty -ixon > /dev/null 2>/dev/null
+    set ttyscroll=256
+    set ttymouse=urxvt                 " more accurate mouse tracking
+    set ttyfast                        " more redrawing characters sent to terminal
 
-    set ttyscroll=1024
+    set synmaxcol=256                  " improve hi performance
+    syntax sync minlines=256
     set lazyredraw
 
-    set <M-1>=1
-    set <M-2>=2
-    set <M-3>=3
-    set <M-4>=4
-    set <M-5>=5
-    set <M-6>=6
-    set <M-7>=7
-    set <M-8>=8
-    set <M-9>=9
-    set <M-0>=0
-    set <M-a>=a
-    set <M-b>=b
-    set <M-c>=c
-    set <M-d>=d
-    set <M-e>=e
-    set <M-f>=f
-    set <M-g>=g
-    set <M-h>=h
-    set <M-i>=i
-    set <M-j>=j
-    set <M-k>=k
-    set <M-l>=l
-    set <M-m>=m
-    set <M-n>=n
-    set <M-o>=o
-    set <M-p>=p
-    set <M-q>=q
-    set <M-r>=r
-    set <M-s>=s
-    set <M-t>=t
-    set <M-u>=u
-    set <M-v>=v
-    set <M-w>=w
-    set <M-x>=x
-    set <M-y>=y
-    set <M-z>=z
-    set <M->=
-    set <M-/>=/
-    " Doing "set <M->>=^[>" throws up an error, so we be dodgey and use Char-190
-    " instead, which is ASCII 62 ('>' + 128).
-    set <Char-190>=>
-    " Probably don't need both of these ;)
-    set <Char-188>=<
-    set <M-<>=<
-    set <M-0>=0
+    " if &term =~ "xterm\\|rxvt"
+    "     " use an orange cursor in insert mode
+    "     let &t_SI = "\<Esc>]12;rgb:32/4c/80\x7"
+    "     " use a red cursor otherwise
+    "     let &t_EI = "\<Esc>]12;rgb:b0/d0/f0\x7"
+    "     silent !echo -ne "\033]12;rgb:b0/d0/f0\x7"
+    "     " reset cursor when vim exits
+    "     autocmd VimLeave * silent !echo -ne "\033]112\x7"
+    "     " use \003]12;gray\007 for gnome-terminal
+    " endif
+    
+    autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+    let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
+    let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+    autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
 
-    set <M-%>=%
-    set <M-*>=*
-    set <M-.>=.
-    set <M-^>=^
-
-    if &term =~ "xterm\\|rxvt"
-    " use an orange cursor in insert mode
-    let &t_SI = "\<Esc>]12;rgb:32/4c/80\x7"
-    " use a red cursor otherwise
-    let &t_EI = "\<Esc>]12;rgb:b0/d0/f0\x7"
-    silent !echo -ne "\033]12;rgb:b0/d0/f0\x7"
-    " reset cursor when vim exits
-    autocmd VimLeave * silent !echo -ne "\033]112\x7"
-    " use \003]12;gray\007 for gnome-terminal
-    endif
+    autocmd VimEnter,VimLeave * silent !tmux set status
 endif
 
 if has ('x') && has ('gui') " On Linux use + register for copy-paste
@@ -171,13 +127,11 @@ set autoread
 "   default  Value from environment LANG
 "   latin1   8-bit encoding typical of DOS
 " Setting this value explicitly, though to the default value.
-set fileencodings=ucs-bom,utf-8,default,latin1,cp1251,koi8-r,cp866
+set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 
 set termencoding=utf8                       " Set termencoding to utf-8
-
 set timeout timeoutlen=250
-set ttimeout ttimeoutlen=40  " Usable for fast keybindings
-
+set ttimeout ttimeoutlen=40                 " Usable for fast keybindings
 
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
@@ -193,7 +147,7 @@ set browsedir=buffer
 "   usetab    - like useopen but also checks other tabs
 "   split     - split current window before loading a buffer
 " 'useopen' may be useful for re-using QuickFix window.
-set switchbuf=
+set switchbuf=useopen,usetab
 
 if has('unnamedplus')
   " By default, Vim will not use the system clipboard when yanking/pasting to
@@ -210,19 +164,8 @@ else
   set clipboard+=unnamed
 endif
 
-" Unicode support (taken from http://vim.wikia.com/wiki/Working_with_Unicode)
-" if has("multi_byte")
-"   if &termencoding == ""
-"     let &termencoding = &encoding
-"   endif
-"   set encoding=utf-8
-"   setglobal fileencoding=utf-8
-"   set fileencodings=ucs-bom,utf-8,latin1
-" endif
-
 " set completeopt=menu
 set completeopt=menu,menuone,longest
-set switchbuf=useopen,usetab
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
@@ -340,7 +283,7 @@ set maxfuncdepth=1000
 set maxmemtot=200000
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-set modeline          " enable modelines
+set nomodeline       " enable modelines
 set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
 
 set iminsert=0
