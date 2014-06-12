@@ -3452,17 +3452,6 @@ titlepage	latexhelp.txt	/*titlepage*
 toggle-background	solarized.txt	/*toggle-background*
 toggle-bg	solarized.txt	/*toggle-bg*
 togglebg	solarized.txt	/*togglebg*
-togglecursor	togglecursor.txt	/*togglecursor*
-togglecursor-about	togglecursor.txt	/*togglecursor-about*
-togglecursor-limitations	togglecursor.txt	/*togglecursor-limitations*
-togglecursor-options	togglecursor.txt	/*togglecursor-options*
-togglecursor-supported	togglecursor.txt	/*togglecursor-supported*
-togglecursor-tips	togglecursor.txt	/*togglecursor-tips*
-togglecursor.txt	togglecursor.txt	/*togglecursor.txt*
-togglecursor_default	togglecursor.txt	/*togglecursor_default*
-togglecursor_disable_tmux	togglecursor.txt	/*togglecursor_disable_tmux*
-togglecursor_insert	togglecursor.txt	/*togglecursor_insert*
-togglecursor_leave	togglecursor.txt	/*togglecursor_leave*
 toolbox	toolbox.txt	/*toolbox*
 toolbox-make	toolboxmake.txt	/*toolbox-make*
 toolbox-make-api	toolboxmake.txt	/*toolbox-make-api*

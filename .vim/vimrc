@@ -1,9 +1,3 @@
-"  \ \   / (_)_ __ ___
-"   \ \ / /| | '_ ` _ \
-"    \ V / | | | | | | |
-"     \_/  |_|_| |_| |_|
-"
-
 scriptencoding utf-8
  if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -53,10 +47,9 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 
 " NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
-NeoBundle 'jszakmeister/vim-togglecursor.git'
+" NeoBundle 'justinmk/vim-sneak.git'
+" NeoBundle 'vim-scripts/vim-cmake-project.git'
 NeoBundle 'shaneharper/vim-rtags.git'
-NeoBundle 'justinmk/vim-sneak.git'
-
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -175,19 +168,6 @@ NeoBundle 'Valloric/xmledit'                  "xml editing
 " NeoBundleLazy 'skammer/vim-css-color', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml']}}
 " NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload': \ {'filetypes': ['html', 'xhttml', 'css']}}
 " NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['html', 'xhttml','xml']}}
-"------------------------------------------------------------------------------------------------------------
-"---------------[  textobj  ]--------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-" NeoBundle 'paradigm/TextObjectify'            "Textjob main plugin
-" NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer
-" NeoBundle 'kana/vim-textobj-indent.git'       "Textobj for indented block of lines
-" NeoBundle 'kana/vim-textobj-lastpat.git'      "Textobj for the last searched pattern
-" NeoBundle 'kana/vim-textobj-line.git'         "Textobj for the current line
-" NeoBundle 'kana/vim-textobj-underscore.git'   "Textobj for underscore
-" NeoBundle 'kana/vim-textobj-user.git'         "To create your own objects
-" NeoBundle 'kana/vim-textobj-entire.git'       "gives you `e` for entire document. so vae, and etc
-" NeoBundle 'kana/vim-textobj-function.git'     "gives you `f` textobj. so vaf to select a function
-" NeoBundle 'vim-scripts/argtextobj.vim.git'    "This plugin provides a text-object 'a' (argument)
 "------------------------------------------------------------------------------------------------------------
 "---------------[  unite  ]----------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------

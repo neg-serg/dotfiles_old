@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import requests
+import threading
+
+try:
+    from urllib.request import urlretrieve
+except ImportError:  # Python 2 fallback
+    from urllib import urlretrieve
+
+
+def album_id_from_url(url):
+    return url.split("/")[-1][:5]
+
+
+def query_api(album_id):
+    r_handle = requests.get(
+        "https://api.imgur.com/3/album/%s.json" % album_id,
+        headers={
+            "Authorization": "Client-ID a76b0733b2ba03a"
+        },
+    )
+    return r_handle.json()
+
+
+def filter_image_urls(api_response):
+    return (x["link"] for x in api_response["data"]["images"])
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        raise SyntaxError("Usage: %s id" % os.path.basename(sys.argv[0]))
+
+    album_id = album_id_from_url(sys.argv[1])
+    api_response = query_api(album_id)
+    urls = list(filter_image_urls(api_response))
+
+    threads = []
+    padding = len(str(len(urls)))
+    filename_format = "%%0%dd-%%s" % padding
+
+    for i, url in enumerate(urls):
+        threads.append(threading.Thread(
+            target=urlretrieve,
+            kwargs={
+                "url": url,
+                "filename": filename_format % (i, url.rsplit("/", 1)[-1]),
+            },
+        ))
+
+    for thread in threads:
+        thread.start()
+
+    for thread in threads:
+        thread.join()

@@ -1,0 +1,17 @@
+#!/bin/sh
+# Put on key to escape flash without touching the mouse
+
+WINID="$(xdotool getactivewindow)"
+WININFO="$(xwininfo -shape -id $WINID)"
+
+getnum() {
+	echo "$WININFO" | grep "$1" | tr -cd [:digit:]
+}
+
+x=$(getnum "Absolute upper-left X:")
+y=$(getnum "Absolute upper-left Y:")
+w=$(getnum "Width:")
+h=$(getnum "Height:")
+
+xdotool mousemove "$(expr "$x+$w")" "$(expr "$y+$hh")" \
+	click --window $WINID 2 # 2 is left click

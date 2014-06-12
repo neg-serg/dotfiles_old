@@ -33,7 +33,7 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-if [[ ! -x "ls++" ]]; then alias l="ls -l"; else alias l="ls++"; fi
+if [[ ! -x "/usr/bin/vendor_perl/ls++" ]]; then alias l="ls -aChkopl --group-directories-first --color=auto"; else alias l="ls++"; fi
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
 alias lss='ls -sShr'
@@ -57,19 +57,31 @@ alias mpr="~/bin/mpv.rb"
 alias i="ipython"
 alias grep="grep --color=auto"
 
-function v {
+function vg {
   if [ ! -z $DISPLAY ]; then
     if [ -z $(pidof gvim) ] ; then
-      gvim --remote-silent $@
+      gvim --servername GVIM --remote-silent $@
       sleep .4
       notionflux -e "app.byclass('gvim', 'Gvim')" 
     else  
       notionflux -e "app.byclass('gvim', 'Gvim')" 
-      gvim --remote-silent $@
+      gvim --servername GVIM --remote-silent $@
     fi
   else 
     vim $@
   fi
+}
+
+
+function v {
+    if [ -z $(pidof vim) ] ; then
+      vim --servername VIM --remote-silent $@
+      sleep .4
+      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
+    else  
+      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
+      vim --servername VIM --remote-silent $@
+    fi
 }
 
 alias vz="v ~/.zshrc"
@@ -140,8 +152,6 @@ alias se=simple-extract
 
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 alias mgcc='gcc -ansi -pedantic -Wextra -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all -D_FORTIFY_SOURCE=2'
-alias mgccc='gcc -ansi -pedantic -Wall'
-alias csyntax='gcc -fsyntax-only'
 
 alias gs='git status --short -b'
 alias gt='git tag|sort --reverse'
@@ -204,3 +214,4 @@ alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
 
 alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
+alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'

@@ -47,6 +47,7 @@ dopath("cfg_xrandr")
 dopath("sp_app")
 dopath("vim_bindings")
 dopath("goto-by-tag")
+dopath("sp_app")
 
 -------------------------------------[[ KLUDGES ]]----------------------------------
 --[ Set all windows float ]------------------------
@@ -238,6 +239,7 @@ defbindings("WMPlex.toplevel", {
 -------------------------------------------------------------------------------------
 --[[  PROGS RUN by APP  ]]-----------------------------
 --------------------------
+    kpress("Mod4+1", "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
     --kpress("Help", "ioncore.exec_on(_, 'urxvt -fn xft:terminus -e ncmpcpp')"),
     --kpress("Mod1+Control+a", "app.byinstance('~/bin/virt.sh', 'VirtualBox')"),
     kpress("Mod1+Control+a", "app.byinstance('', 'Vmware')"),
@@ -255,8 +257,7 @@ defbindings("WMPlex.toplevel", {
     --kpress("Mod4+o", "app.byinstance('evince', 'Evince','evince')"),
     --kpress("Mod4+o", "app.byclass('okular', 'Okular')"),
     kpress("Mod4+o", "app.byclass('zathura','Zathura')"),
-    kpress("Mod4+1", "app.byclass('gvim', 'Gvim')"),
-    -- kpress("Mod4+1", "app.byclass('~/bin/wim', 'wim')"),
+    -- kpress("Mod4+1", "app.byclass('gvim', 'Gvim')"),
     kpress("Mod4+Control+C", "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
     --kpress("Mod4+e", "app.byclass('kopete', 'Kopete')"),
     --kpress("Mod4+Control+R", "app.byclass('skype', 'Skype')"),
@@ -509,7 +510,6 @@ defmenu("menuattach", {
     menuentry("Tiling WS", "_:attach_new({type=\"WGroupWS\", switchto=true}):attach_new({type=\"WTiling\", sizepolicy=\"full\", bottom=true})"),
 })
 
---
 function ncmpcpp(ws)
     ioncore.exec_on(ws, '/home/neg/bin/msc')
     named_scratchpad(ws, 'ncmpcpp')
