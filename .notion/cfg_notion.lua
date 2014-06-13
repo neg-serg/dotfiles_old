@@ -269,7 +269,7 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+F4",        "ioncore.exec_on(_, 'eject')"),
     -- kpress("Mod4+Control+P", "ioncore.exec_on(_, 'anamnesis --browser')"),
     kpress("Mod4+U",         "ioncore.exec_on(_, 'udiskie-umount -a')"),
-    kpress("Mod4+Shift+F",   "app.instance('libreoffice-writer', 'VCLSalFrame', 'libreoffice-writer')"),
+    kpress("Mod4+Shift+F",   "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
     -- kpress("Mod4+Shift+F",   "app.class('libreoffice-writer', '')"),
     -- kpress("Mod4+F12",       "ioncore.exec_on(_, 'switch-sound-output.sh')"),
     --kpress("Mod4+F6",        "ioncore.exec_on(_, '~/bin/misc/music')"),

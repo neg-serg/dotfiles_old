@@ -29,12 +29,42 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <A-w>	/home/neg/.vim/10-keymaps.vim	/^nmap <A-w> :bd<cr>$/;"	m	language:Vim
 <A-z>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <A-z> :set invpaste paste?<CR>$/;"	m	language:Vim
 <BS>	/home/neg/.vim/10-keymaps.vim	/^inoremap <expr><BS> pumvisible()? "\\<C-y>\\<BS>" : "\\<BS>"$/;"	m	language:Vim
+<C-*>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-*> <c-a>$/;"	m	language:Vim
+<C-<>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-<> <C-o>:call <SID>StartMarkSel()<CR><C-o>v1G0o$/;"	m	language:Vim
+<C->>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C->> <C-o>:call <SID>StartMarkSel()<CR><C-o>vG$o$/;"	m	language:Vim
+<c-a>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-a> <home>$/;"	m	language:Vim
+<C-a>	/home/neg/.vim/11-vimacs.vim	/^imap <C-a> <Home>$/;"	m	language:Vim
+<c-a>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <c-a> <esc>I$/;"	m	language:Vim
+<C-a>	/home/neg/.vim/11-vimacs.vim	/^omap <C-a> <Home>$/;"	m	language:Vim
+<C-a>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-a> <Home>$/;"	m	language:Vim
+<C-a>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-a> <Home>$/;"	m	language:Vim
+<c-b>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-b> <left>$/;"	m	language:Vim
+<C-b>	/home/neg/.vim/11-vimacs.vim	/^omap <C-b> <Left>$/;"	m	language:Vim
+<C-b>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-b> <Left>$/;"	m	language:Vim
 <C-c>np	/home/neg/.vim/10-keymaps.vim	/^map <C-c>np :emenu NewProj.<TAB>$/;"	m	language:Vim
+<c-d>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-d> <del>$/;"	m	language:Vim
+<C-d>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-d> <Del>$/;"	m	language:Vim
+<C-d>	/home/neg/.vim/11-vimacs.vim	/^onoremap <C-d> <Del>$/;"	m	language:Vim
+<C-d>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <C-d> <Del>$/;"	m	language:Vim
+<C-Down>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-Down> <C-o>}$/;"	m	language:Vim
+<C-Down>	/home/neg/.vim/11-vimacs.vim	/^onoremap <C-Down> }$/;"	m	language:Vim
+<C-Down>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <C-Down> }$/;"	m	language:Vim
+<c-e>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-e> <end>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^imap <C-e> <End>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^imap <C-e> <End>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^omap <C-e> <End>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^omap <C-e> <End>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-e> <End>$/;"	m	language:Vim
+<C-e>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-e> <End>$/;"	m	language:Vim
 <C-e>c	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-e>c :execute 'Unite gtags\/context'<CR>$/;"	m	language:Vim
 <C-e>d	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-e>d :execute 'Unite gtags\/def:'.expand('<cword>')<CR>$/;"	m	language:Vim
 <C-e>g	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-e>g :execute 'Unite gtags\/grep'<CR>$/;"	m	language:Vim
 <C-e>r	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-e>r :execute 'Unite gtags\/ref'<CR>$/;"	m	language:Vim
 <C-F8>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <C-F8> :nohlsearch<CR>$/;"	m	language:Vim
+<c-f>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-f> <right>$/;"	m	language:Vim
+<C-f>	/home/neg/.vim/11-vimacs.vim	/^imap <C-f> <Right>$/;"	m	language:Vim
+<C-f>	/home/neg/.vim/11-vimacs.vim	/^omap <C-f> <Right>$/;"	m	language:Vim
+<C-f>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-f> <Right>$/;"	m	language:Vim
 <C-g>	/home/neg/.vim/10-keymaps.vim	/^map <C-g> g<C-g>$/;"	m	language:Vim
 <C-h>	/home/neg/.vim/10-keymaps.vim	/^inoremap <expr><C-h> pumvisible()? "\\<C-y>\\<C-h>" : "\\<C-h>"$/;"	m	language:Vim
 <C-h>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-h> :wincmd h<CR>$/;"	m	language:Vim
@@ -43,15 +73,37 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <C-j>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-j> :wincmd j<CR>$/;"	m	language:Vim
 <C-j>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-j> :wincmd j<CR>$/;"	m	language:Vim
 <c-k>	/home/neg/.vim/10-keymaps.vim	/^cnoremap <c-k> <up>$/;"	m	language:Vim
+<C-k>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-k> <C-f>d$<C-c><End>$/;"	m	language:Vim
 <C-k>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-k> :wincmd k<CR>$/;"	m	language:Vim
 <C-k>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-k> :wincmd k<CR>$/;"	m	language:Vim
 <C-l>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-l> :wincmd l<CR>$/;"	m	language:Vim
 <C-l>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-l> :wincmd l<CR>$/;"	m	language:Vim
+<C-M-5>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-M-5> <C-o>:call <SID>QueryReplaceRegexp()<CR>$/;"	m	language:Vim
+<c-n>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-n> <down>$/;"	m	language:Vim
+<C-n>	/home/neg/.vim/11-vimacs.vim	/^imap <C-n> <Down>$/;"	m	language:Vim
+<C-n>	/home/neg/.vim/11-vimacs.vim	/^omap <C-n> <Down>$/;"	m	language:Vim
+<C-n>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-n> <Down>$/;"	m	language:Vim
+<c-p>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <c-p> <up>$/;"	m	language:Vim
+<C-p>	/home/neg/.vim/11-vimacs.vim	/^imap <C-p> <Up>$/;"	m	language:Vim
+<C-p>	/home/neg/.vim/11-vimacs.vim	/^omap <C-p> <Up>$/;"	m	language:Vim
+<C-p>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-p> <Up>$/;"	m	language:Vim
 <C-r>	/home/neg/.vim/10-keymaps.vim	/^vnoremap <C-r> "hy:%S\/<C-r>h\/\/c<left><left>$/;"	m	language:Vim
+<C-Space>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <C-Space> <C-r>=<SID>StartVisualMode()<CR>$/;"	m	language:Vim
+<C-t>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-t> <Left><C-o>x<C-o>p$/;"	m	language:Vim
 <C-T>	/home/neg/1st_level/vimrcrc	/^map <silent> <C-T> :tabnew<CR>$/;"	m	language:Vim
 <C-T>	/mnt/home/dev/src/vimmeh/vimrc	/^map <silent> <C-T> :tabnew<CR>$/;"	m	language:Vim
+<C-Up>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-Up> <C-o>{$/;"	m	language:Vim
+<C-Up>	/home/neg/.vim/11-vimacs.vim	/^onoremap <C-Up> {$/;"	m	language:Vim
+<C-Up>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <C-Up> {$/;"	m	language:Vim
+<C-w>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <C-w> "1d$/;"	m	language:Vim
 <C-W>	/home/neg/1st_level/vimrcrc	/^map <silent> <C-W> :tabclose<CR>$/;"	m	language:Vim
 <C-W>	/mnt/home/dev/src/vimmeh/vimrc	/^map <silent> <C-W> :tabclose<CR>$/;"	m	language:Vim
+<C-x>b	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-x>b <C-o>:Unite -silent buffer<CR>$/;"	m	language:Vim
+<C-x>h	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-x>h <C-o>:call <SID>StartMarkSel()<CR><Esc>1G0vGo$/;"	m	language:Vim
+<C-y>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-y> <C-r><C-o>"$/;"	m	language:Vim
+<C-y>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <C-y> <C-o>:call <SID>ResetKillRing()<CR><C-r><C-o>"$/;"	m	language:Vim
+<C-_>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-_> <c-f>$/;"	m	language:Vim
+<C-_>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-_> <C-o>u$/;"	m	language:Vim
 <Enter>	/home/neg/1st_level/vimrcrc	/^vnoremap <silent> <Enter> :EasyAlign<CR>$/;"	m	language:Vim
 <Enter>	/mnt/home/dev/src/vimmeh/vimrc	/^vnoremap <silent> <Enter> :EasyAlign<CR>$/;"	m	language:Vim
 <Esc>OF	/home/neg/.vim/10-keymaps.vim	/^imap <Esc>OF <Plug>delimitMateEnd$/;"	m	language:Vim
@@ -122,7 +174,6 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <Leader>ig	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^  nmap <silent><unique> <Leader>ig <Plug>IndentGuidesToggle$/;"	m	language:Vim
 <Leader>j	/home/neg/.vim/10-keymaps.vim	/^map <Leader>j :Utl <CR><Bar>:redraw!<CR>$/;"	m	language:Vim
 <leader>l	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>$/;"	m	language:Vim
-<Leader>n	/home/neg/.vim/01-settings.vim	/^nmap <silent><Leader>n :PymodeLint<CR>$/;"	m	language:Vim
 <Leader>N	/home/neg/1st_level/vimrcrc	/^nmap <Leader>N :NERDTreeToggle<CR>$/;"	m	language:Vim
 <Leader>n	/home/neg/1st_level/vimrcrc	/^nmap <Leader>n :nohlsearch<CR>$/;"	m	language:Vim
 <Leader>N	/mnt/home/dev/src/vimmeh/vimrc	/^nmap <Leader>N :NERDTreeToggle<CR>$/;"	m	language:Vim
@@ -155,13 +206,44 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <Leader>y	/mnt/home/dev/src/vimmeh/vimrc	/^nmap <Leader>y :YcmShowDetailedDiagnostic<CR>$/;"	m	language:Vim
 <Leader>z	/home/neg/.vim/10-keymaps.vim	/^map <Leader>z :ZoomWinTabToggle<CR>$/;"	m	language:Vim
 <Left>	/home/neg/.vim/10-keymaps.vim	/^map <Left> <Nop>$/;"	m	language:Vim
+<M-5>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-5> <C-o>:call <SID>QueryReplace()<CR>$/;"	m	language:Vim
+<M-a>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-a> <C-o>($/;"	m	language:Vim
+<M-b>	/home/neg/.vim/11-vimacs.vim	/^cmap <M-b> <S-Left>$/;"	m	language:Vim
+<M-b>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <M-b> <S-Left>$/;"	m	language:Vim
+<M-b>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-b> <C-Left>$/;"	m	language:Vim
+<M-b>	/home/neg/.vim/11-vimacs.vim	/^onoremap <M-b> <C-Left>$/;"	m	language:Vim
+<M-b>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <M-b> <C-Left>$/;"	m	language:Vim
+<M-d>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <M-d> <S-Right><C-w>$/;"	m	language:Vim
+<M-d>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <M-d> <C-r>=<SID>KillWord()<CR>$/;"	m	language:Vim
+<M-e>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-e> <C-o>)$/;"	m	language:Vim
+<M-f>	/home/neg/.vim/11-vimacs.vim	/^cmap <M-f> <S-Right>$/;"	m	language:Vim
+<M-f>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <M-f> <S-Right>$/;"	m	language:Vim
+<M-f>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-f> <C-o>e<Right>$/;"	m	language:Vim
+<M-f>	/home/neg/.vim/11-vimacs.vim	/^onoremap <M-f> e<Right>$/;"	m	language:Vim
+<M-f>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <M-f> e<Right>$/;"	m	language:Vim
+<M-g>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <M-g> <C-o>:call <SID>GotoLine()<CR>$/;"	m	language:Vim
+<M-g>	/home/neg/.vim/11-vimacs.vim	/^onoremap <silent> <M-g> :call <SID>GotoLine()<CR>$/;"	m	language:Vim
+<M-g>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <silent> <M-g> :<C-u>call <SID>GotoLine()<CR>$/;"	m	language:Vim
+<M-h>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-h> <C-o>:call <SID>StartMarkSel()<CR><C-o>vap$/;"	m	language:Vim
+<M-k>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <M-k> <C-r>=<SID>KillLine()<CR>$/;"	m	language:Vim
+<M-Left>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-Left> <S-Left>$/;"	m	language:Vim
+<M-Left>	/home/neg/.vim/11-vimacs.vim	/^onoremap <M-Left> <S-Left>$/;"	m	language:Vim
+<M-Left>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <M-Left> <S-Left>$/;"	m	language:Vim
+<M-m>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-m> <C-o>^$/;"	m	language:Vim
+<M-Right>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-Right> <S-Right>$/;"	m	language:Vim
+<M-Right>	/home/neg/.vim/11-vimacs.vim	/^onoremap <M-Right> <S-Right>$/;"	m	language:Vim
+<M-Right>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <M-Right> <S-Right>$/;"	m	language:Vim
+<M-Space>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-Space> <C-o>:call <SID>StartMarkSel()<CR><C-o>viw$/;"	m	language:Vim
 <M-v>	/home/neg/.vim/01-settings.vim	/^    inoremap <silent> <M-v> <Esc>"+p`]a$/;"	m	language:Vim
+<M-y>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-y> <C-o>:call <SID>YankPop()<CR>$/;"	m	language:Vim
+<M-z>	/home/neg/.vim/11-vimacs.vim	/^inoremap <M-z> <C-o>dt$/;"	m	language:Vim
 <PageDown>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <PageDown> :bn<CR>$/;"	m	language:Vim
 <PageUp>	/home/neg/.vim/10-keymaps.vim	/^nnoremap <PageUp> :bp<CR>$/;"	m	language:Vim
 <Plug>IndentGuidesDisable	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^nnoremap <unique><script> <Plug>IndentGuidesDisable :IndentGuidesDisable<CR>$/;"	m	language:Vim
 <Plug>IndentGuidesEnable	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^nnoremap <unique><script> <Plug>IndentGuidesEnable  :IndentGuidesEnable<CR>$/;"	m	language:Vim
 <Plug>IndentGuidesToggle	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^nnoremap <unique><script> <Plug>IndentGuidesToggle  :IndentGuidesToggle<CR>$/;"	m	language:Vim
 <Right>	/home/neg/.vim/10-keymaps.vim	/^map <Right> <Nop>$/;"	m	language:Vim
+<S-Del>	/home/neg/.vim/11-vimacs.vim	/^vnoremap <S-Del> "_d$/;"	m	language:Vim
 <S-h>	/home/neg/.vim/10-keymaps.vim	/^map <S-h> gT$/;"	m	language:Vim
 <S-H>	/home/neg/1st_level/vimrcrc	/^map <silent> <S-H> :tabprevious<CR>$/;"	m	language:Vim
 <S-H>	/mnt/home/dev/src/vimmeh/vimrc	/^map <silent> <S-H> :tabprevious<CR>$/;"	m	language:Vim
@@ -174,6 +256,7 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <SID>DisableFontsizeDefault	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault$/;"	m	language:Vim
 <SID>DisableFontsizeInc	/home/neg/.vim/10-keymaps.vim	/^nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc$/;"	m	language:Vim
 <space>	/home/neg/.vim/10-keymaps.vim	/^nmap <space> <Nop>$/;"	m	language:Vim
+<Space>	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^map <Space> :call g:cmake_on_space_clicked()<CR>$/;"	m	language:Vim
 <space>cd	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>$/;"	m	language:Vim
 <space>g	/home/neg/.vim/10-keymaps.vim	/^nnoremap <space>g g<c-]>$/;"	m	language:Vim
 <Space>sh	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Space>sh :FSHere<cr>$/;"	m	language:Vim
@@ -181,9 +264,12 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <Space>sr	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Space>sr :call FSwitch('%', 'wincmd r')<cr>$/;"	m	language:Vim
 <Space>sv	/home/neg/.vim/10-keymaps.vim	/^nnoremap <Space>sv :FSSplitLeft<cr>$/;"	m	language:Vim
 >	/home/neg/.vim/10-keymaps.vim	/^vnoremap > >gv$/;"	m	language:Vim
+AdjustWindowHeight	/home/neg/.vim/04-autocmds.vim	/^function! AdjustWindowHeight(minheight, maxheight)$/;"	f	language:Vim
 ag_xml	/home/neg/.vim/04-autocmds.vim	/^augroup ag_xml$/;"	a	language:Vim
 alias_color	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void alias_color (int dst, int src);$/;"	p	language:C++	struct:rxvt_term
 alloc	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^   void alloc ()$/;"	f	language:C++	struct:line_t
+alloc	/tmp/malloc2.c	/^static int  alloc(unsigned long num);$/;"	p	language:C	file:
+alloc	/tmp/malloc2.c	/^static int alloc(unsigned long num) {$/;"	f	language:C	file:
 allocated	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  vector<void *> allocated;           \/\/ free these memory blocks with free()$/;"	m	language:C++	struct:rxvt_term
 allowedxerror	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  allowedxerror;$/;"	m	language:C++	struct:rxvt_term
 all_tests	/mnt/home/dev/st/lthw/c/ex29/tests/ex29_tests.c	/^char *all_tests() {$/;"	f	language:C
@@ -253,6 +339,8 @@ button_press	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresource
 button_release	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::button_release (XButtonEvent &ev)$/;"	f	language:C++	class:rxvt_term
 button_release	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void button_release (XButtonEvent &ev);$/;"	p	language:C++	struct:rxvt_term
 bypass_keystate	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  bypass_keystate:1,$/;"	m	language:C++	struct:rxvt_term
+c	/home/neg/.vim/01-settings.vim	/^  let c = nr2char(1+char2nr(c))$/;"	v	language:Vim
+c	/home/neg/.vim/01-settings.vim	/^let c='a'$/;"	v	language:Vim
 c0	/home/neg/.vim/10-keymaps.vim	/^nmap c0 "0yy$/;"	m	language:Vim
 c0	/home/neg/.vim/10-keymaps.vim	/^vmap c0 "0yy<ESC>i$/;"	m	language:Vim
 C0_ACK	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^          C0_SOH, C0_STX, C0_ETX, C0_EOT, C0_ENQ, C0_ACK, C0_BEL,$/;"	e	language:C++	enum:__anon7
@@ -383,6 +471,12 @@ cline	/home/neg/.vim/04-autocmds.vim	/^augroup cline$/;"	a	language:Vim
 clipboard_time	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  clipboard_time;$/;"	m	language:C++	struct:rxvt_term
 clip_len	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  unsigned int      clip_len;   \/* length of clipboard text                  *\/$/;"	m	language:C++	struct:selection_t
 clip_text	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  wchar_t          *clip_text;  \/* text copied to the clipboard              *\/$/;"	m	language:C++	struct:selection_t
+CMakeBar	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^command -nargs=0 -bar CMakeBar call s:cmake_show_bar()$/;"	c	language:Vim
+CMakeGen	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^command -nargs=1 -complete=file CMakeGen call s:cmake_gen_project(<f-args>)$/;"	c	language:Vim
+cmake_gen_project	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:cmake_gen_project(i_directory) abort$/;"	f	language:Vim
+cmake_on_space_clicked	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:cmake_on_space_clicked() abort$/;"	f	language:Vim
+cmake_print_file_tree	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:cmake_print_file_tree() abort$/;"	f	language:Vim
+cmake_show_bar	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:cmake_show_bar() abort$/;"	f	language:Vim
 cmdbuf_append	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::cmdbuf_append (const char *str, size_t count)$/;"	f	language:C++	class:rxvt_term
 cmdbuf_append	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void cmdbuf_append (const char *str, size_t count);$/;"	p	language:C++	struct:rxvt_term
 cmdbuf_base	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  char            cmdbuf_base[CBUFSIZ];$/;"	m	language:C++	struct:rxvt_term
@@ -691,11 +785,8 @@ f_derivat2	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^d_vector f_derivat2(d_v
 f_derivat2	/mnt/home/dev/test.cpp	/^double f_derivat2(double x) {$/;"	f	language:C++
 f_derivat2	/mnt/home/dev/test.cpp	/^double f_derivat2(double x);$/;"	p	language:C++	file:
 f_derivat3	/mnt/home/dev/test.cpp	/^double f_derivat3(double x);$/;"	p	language:C++	file:
-g:ackprg	/home/neg/.vim/01-settings.vim	/^let g:ackprg = 'ag --nogroup --nocolor --column'$/;"	v	language:Vim
-g:airline#extensions#branch#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#branch#enabled = 1$/;"	v	language:Vim
-g:airline#extensions#hunks#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#hunks#enabled = 1$/;"	v	language:Vim
-g:airline#extensions#tabline#enabled	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#tabline#enabled = 0$/;"	v	language:Vim
-g:airline#extensions#whitespace#checks	/home/neg/.vim/01-settings.vim	/^let g:airline#extensions#whitespace#checks = []$/;"	v	language:Vim
+g"	/home/neg/.vim/11-vimacs.vim	/^vnoremap <silent> g" <esc>:call <sid>SwapVisualWithCut()<cr>$/;"	m	language:Vim
+g'	/home/neg/.vim/11-vimacs.vim	/^vnoremap <silent> g' <esc>:call <sid>SwapVisualWithCut2()<cr>$/;"	m	language:Vim
 g:airline#themes#mirodark_wim#palette	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let g:airline#themes#mirodark_wim#palette = {}$/;"	v	language:Vim
 g:airline#themes#mirodark_wim#palette	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let g:airline#themes#mirodark_wim#palette.accents = {$/;"	v	language:Vim
 g:airline#themes#mirodark_wim#palette	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let g:airline#themes#mirodark_wim#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)$/;"	v	language:Vim
@@ -766,74 +857,31 @@ g:airline#themes#wim#palette	/home/neg/wim.vim	/^let g:airline#themes#wim#palett
 g:airline#themes#wim#palette	/home/neg/wim.vim	/^let g:airline#themes#wim#palette.tabline = {$/;"	v	language:Vim
 g:airline#themes#wim#palette	/home/neg/wim.vim	/^let g:airline#themes#wim#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)$/;"	v	language:Vim
 g:airline#themes#wim#palette	/home/neg/wim.vim	/^let g:airline#themes#wim#palette.visual.airline_warning =$/;"	v	language:Vim
-g:airline_exclude_preview	/home/neg/.vim/01-settings.vim	/^let g:airline_exclude_preview  = 1$/;"	v	language:Vim
-g:airline_left_alt_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_left_alt_sep     = ' '$/;"	v	language:Vim
-g:airline_left_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_left_sep         = ' '$/;"	v	language:Vim
-g:airline_mode_map	/home/neg/.vim/01-settings.vim	/^let g:airline_mode_map = {$/;"	v	language:Vim
-g:airline_powerline_fonts	/home/neg/.vim/01-settings.vim	/^let g:airline_powerline_fonts = 1 " Use airline fonts$/;"	v	language:Vim
-g:airline_right_alt_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_right_alt_sep    = ''$/;"	v	language:Vim
-g:airline_right_sep	/home/neg/.vim/01-settings.vim	/^let g:airline_right_sep        = ''$/;"	v	language:Vim
-g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols          = {}$/;"	v	language:Vim
-g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.branch   = ''$/;"	v	language:Vim
-g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.linenr   = ''$/;"	v	language:Vim
-g:airline_symbols	/home/neg/.vim/01-settings.vim	/^let g:airline_symbols.readonly = ''$/;"	v	language:Vim
-g:CCTreeUsePerl	/home/neg/.vim/01-settings.vim	/^let g:CCTreeUsePerl        = 1$/;"	v	language:Vim
 g:CCTreeUsePerl	/home/neg/1st_level/vimrcrc	/^let g:CCTreeUsePerl        = 1$/;"	v	language:Vim
 g:CCTreeUsePerl	/mnt/home/dev/src/vimmeh/vimrc	/^let g:CCTreeUsePerl        = 1$/;"	v	language:Vim
-g:CCTreeUseUTF8Symbols	/home/neg/.vim/01-settings.vim	/^let g:CCTreeUseUTF8Symbols = 1$/;"	v	language:Vim
 g:CCTreeUseUTF8Symbols	/home/neg/1st_level/vimrcrc	/^let g:CCTreeUseUTF8Symbols = 1$/;"	v	language:Vim
 g:CCTreeUseUTF8Symbols	/mnt/home/dev/src/vimmeh/vimrc	/^let g:CCTreeUseUTF8Symbols = 1$/;"	v	language:Vim
-g:clj_highlight_builtins	/home/neg/.vim/01-settings.vim	/^let g:clj_highlight_builtins = 1$/;"	v	language:Vim
+g:cmake_project_bar_width	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^    let g:cmake_project_bar_width = 40$/;"	v	language:Vim
+g:cmake_project_folder_close_symbol	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^    let g:cmake_project_folder_close_symbol = '+'$/;"	v	language:Vim
+g:cmake_project_folder_open_symbol	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^    let g:cmake_project_folder_open_symbol = '-'$/;"	v	language:Vim
+g:cmake_project_show_bar	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^    let g:cmake_project_show_bar = 0 $/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/amy.vim	/^let g:colors_name="amy"$/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/colors/amy.vim	/^let g:colors_name="amy"$/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/colors/vombatidae.vim	/^let g:colors_name="vombatidae"$/;"	v	language:Vim
 g:colors_name	/home/neg/.vim/colors/wterm.vim	/^let g:colors_name="term"$/;"	v	language:Vim
-g:ConqueGdb_Leader	/home/neg/.vim/01-settings.vim	/^let g:ConqueGdb_Leader          = '\\\\'       "<leader>, by default is painful$/;"	v	language:Vim
-g:ctrlp_cmd	/home/neg/.vim/01-settings.vim	/^let g:ctrlp_cmd   = 'CtrlPMRUFiles'$/;"	v	language:Vim
-g:ctrlp_user_command	/home/neg/.vim/01-settings.vim	/^  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'$/;"	v	language:Vim
-g:ctrlp_use_caching	/home/neg/.vim/01-settings.vim	/^  let g:ctrlp_use_caching = 0$/;"	v	language:Vim
-g:delimitMate_balance_matchpairs	/home/neg/.vim/01-settings.vim	/^let g:delimitMate_balance_matchpairs = 1$/;"	v	language:Vim
-g:delimitMate_expand_cr	/home/neg/.vim/01-settings.vim	/^let g:delimitMate_expand_cr    = 0$/;"	v	language:Vim
-g:delimitMate_expand_space	/home/neg/.vim/01-settings.vim	/^let g:delimitMate_expand_space = 1$/;"	v	language:Vim
 g:delimitMate_no_esc_mapping	/home/neg/1st_level/vimrcrc	/^let g:delimitMate_no_esc_mapping = 1$/;"	v	language:Vim
 g:delimitMate_no_esc_mapping	/mnt/home/dev/src/vimmeh/vimrc	/^let g:delimitMate_no_esc_mapping = 1$/;"	v	language:Vim
-g:delimitMate_smart_quotes	/home/neg/.vim/01-settings.vim	/^let g:delimitMate_smart_quotes = 1$/;"	v	language:Vim
-g:easytags_auto_update	/home/neg/.vim/01-settings.vim	/^let g:easytags_auto_update    = 1$/;"	v	language:Vim
-g:easytags_dynamic_files	/home/neg/.vim/01-settings.vim	/^let g:easytags_dynamic_files  = 1$/;"	v	language:Vim
-g:easytags_events	/home/neg/.vim/01-settings.vim	/^let g:easytags_events         = ['BufWritePost']$/;"	v	language:Vim
-g:easytags_python_enabled	/home/neg/.vim/01-settings.vim	/^let g:easytags_python_enabled = 1$/;"	v	language:Vim
-g:easytags_updatetime_min	/home/neg/.vim/01-settings.vim	/^let g:easytags_updatetime_min = 9000$/;"	v	language:Vim
-g:EclimCompletionMethod	/home/neg/.vim/01-settings.vim	/^let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion$/;"	v	language:Vim
-g:eregex_default_enable	/home/neg/.vim/01-settings.vim	/^let g:eregex_default_enable = 0$/;"	v	language:Vim
 g:gitgutter_all_on_focusgained	/home/neg/1st_level/vimrcrc	/^let g:gitgutter_all_on_focusgained = 0$/;"	v	language:Vim
 g:gitgutter_all_on_focusgained	/mnt/home/dev/src/vimmeh/vimrc	/^let g:gitgutter_all_on_focusgained = 0$/;"	v	language:Vim
 g:gitgutter_eager	/home/neg/1st_level/vimrcrc	/^let g:gitgutter_eager = 0$/;"	v	language:Vim
 g:gitgutter_eager	/mnt/home/dev/src/vimmeh/vimrc	/^let g:gitgutter_eager = 0$/;"	v	language:Vim
-g:gitgutter_realtime	/home/neg/.vim/01-settings.vim	/^let g:gitgutter_realtime = 0$/;"	v	language:Vim
-g:Gitv_CommitStep	/home/neg/.vim/01-settings.vim	/^let g:Gitv_CommitStep = 1024$/;"	v	language:Vim
-g:Gitv_DoNotMapCtrlKey	/home/neg/.vim/01-settings.vim	/^let g:Gitv_DoNotMapCtrlKey = 1$/;"	v	language:Vim
-g:Gitv_OpenHorizontal	/home/neg/.vim/01-settings.vim	/^let g:Gitv_OpenHorizontal = 'auto'$/;"	v	language:Vim
-g:Gitv_OpenPreviewOnLaunch	/home/neg/.vim/01-settings.vim	/^let g:Gitv_OpenPreviewOnLaunch = 1$/;"	v	language:Vim
-g:Gitv_WipeAllOnClose	/home/neg/.vim/01-settings.vim	/^let g:Gitv_WipeAllOnClose = 1$/;"	v	language:Vim
-g:gundo_playback_delay	/home/neg/.vim/01-settings.vim	/^let g:gundo_playback_delay = 240$/;"	v	language:Vim
-g:haddock_browser	/home/neg/.vim/01-settings.vim	/^let g:haddock_browser = "dwb"$/;"	v	language:Vim
-g:indentLine_char	/home/neg/.vim/01-settings.vim	/^let g:indentLine_char = '│'$/;"	v	language:Vim
-g:indentLine_faster	/home/neg/.vim/01-settings.vim	/^let g:indentLine_faster = 1$/;"	v	language:Vim
 g:indent_guides_autocmds_enabled	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_autocmds_enabled         = 0$/;"	v	language:Vim
-g:indent_guides_auto_colors	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_auto_colors = 1$/;"	v	language:Vim
 g:indent_guides_auto_colors	/home/neg/.vim/04-autocmds.vim	/^let g:indent_guides_auto_colors = 0$/;"	v	language:Vim
 g:indent_guides_auto_colors	/home/neg/.vim/colors/mirodark.vim	/^let g:indent_guides_auto_colors = 0$/;"	v	language:Vim
-g:indent_guides_color_change_percent	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_color_change_percent  = 7$/;"	v	language:Vim
 g:indent_guides_color_hex_guibg_pattern	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_color_hex_guibg_pattern  = 'guibg=\\zs' . g:indent_guides_color_hex_pattern . '\\ze'$/;"	v	language:Vim
 g:indent_guides_color_hex_pattern	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_color_hex_pattern        = '#[0-9A-Fa-f]\\{6\\}'$/;"	v	language:Vim
 g:indent_guides_color_name_guibg_pattern	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:indent_guides_color_name_guibg_pattern = "guibg='\\\\?\\\\zs[0-9A-Za-z ]\\\\+\\\\ze'\\\\?"$/;"	v	language:Vim
-g:indent_guides_enable_on_vim_startup	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_enable_on_vim_startup = 1$/;"	v	language:Vim
 g:indent_guides_exclude_filetypes	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^  let g:indent_guides_exclude_filetypes = ['help']$/;"	v	language:Vim
-g:indent_guides_guide_size	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_guide_size            = 1$/;"	v	language:Vim
-g:indent_guides_start_level	/home/neg/.vim/01-settings.vim	/^let g:indent_guides_start_level           = 2$/;"	v	language:Vim
-g:is_bash	/home/neg/.vim/01-settings.vim	/^let g:is_bash          = 1$/;"	v	language:Vim
-g:is_posix	/home/neg/.vim/01-settings.vim	/^let g:is_posix        = 1$/;"	v	language:Vim
-g:livepreview_previewer	/home/neg/.vim/01-settings.vim	/^let g:livepreview_previewer = 'zathura'$/;"	v	language:Vim
 g:loaded_indent_guides	/home/neg/.vim/bundle/vim-indent-guides/plugin/indent_guides.vim	/^let g:loaded_indent_guides = 1$/;"	v	language:Vim
 g:loaded_mirodark	/home/neg/.vim/colors/mirodark.vim	/^    let g:loaded_mirodark=1$/;"	v	language:Vim
 g:loaded_mirodark	/home/neg/1st_level/all_colors	/^    let g:loaded_mirodark=1$/;"	v	language:Vim
@@ -841,16 +889,9 @@ g:loaded_operator_highlight	/home/neg/.vim/colors/mirodark.vim	/^  let g:loaded_
 g:loaded_operator_highlight	/home/neg/.vim/colors/mirodark_wim.vim	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
 g:loaded_operator_highlight	/home/neg/.vim/colors/wim.vim	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
 g:loaded_operator_highlight	/home/neg/1st_level/all_colors	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
-g:lt_height	/home/neg/.vim/01-settings.vim	/^let g:lt_height = 10$/;"	v	language:Vim
-g:lt_location_list_toggle_map	/home/neg/.vim/01-settings.vim	/^let g:lt_location_list_toggle_map = '<c-e>i'$/;"	v	language:Vim
 g:lt_location_list_toggle_map	/home/neg/.vim/10-keymaps.vim	/^let g:lt_location_list_toggle_map = '[Quickfix]<Space>'$/;"	v	language:Vim
-g:lt_quickfix_list_toggle_map	/home/neg/.vim/01-settings.vim	/^let g:lt_quickfix_list_toggle_map = '<c-e>u'$/;"	v	language:Vim
 g:lt_quickfix_list_toggle_map	/home/neg/.vim/10-keymaps.vim	/^let g:lt_quickfix_list_toggle_map = '[Quickfix]q'$/;"	v	language:Vim
-g:lua_complete_omni	/home/neg/.vim/01-settings.vim	/^let g:lua_complete_omni = 1$/;"	v	language:Vim
-g:LustyJugglerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let g:LustyJugglerDefaultMappings = 0$/;"	v	language:Vim
-g:mapleader	/home/neg/.vim/01-settings.vim	/^let g:mapleader    = ","$/;"	v	language:Vim
 g:mirodark_enable_higher_contrast_mode	/home/neg/.vim/01-settings.vim	/^    let g:mirodark_enable_higher_contrast_mode=0$/;"	v	language:Vim
-g:mta_use_matchparen_group	/home/neg/.vim/01-settings.vim	/^let g:mta_use_matchparen_group = 0$/;"	v	language:Vim
 g:neobundle#types#git#default_protocol	/home/neg/.vim/vimrc	/^  let g:neobundle#types#git#default_protocol = 'git'$/;"	v	language:Vim
 g:neobundle#types#git#default_protocol	/home/neg/.vim/vimrc	/^  let g:neobundle#types#git#default_protocol = 'https'$/;"	v	language:Vim
 g:neobundle#types#git#default_protocol	/home/neg/.vimrc	/^  let g:neobundle#types#git#default_protocol = 'git'$/;"	v	language:Vim
@@ -865,59 +906,27 @@ g:ophigh_filetypes_to_ignore	/home/neg/.vim/colors/mirodark.vim	/^  let g:ophigh
 g:ophigh_filetypes_to_ignore	/home/neg/.vim/colors/mirodark_wim.vim	/^  let g:ophigh_filetypes_to_ignore = {}$/;"	v	language:Vim
 g:ophigh_filetypes_to_ignore	/home/neg/.vim/colors/wim.vim	/^  let g:ophigh_filetypes_to_ignore = {}$/;"	v	language:Vim
 g:ophigh_filetypes_to_ignore	/home/neg/1st_level/all_colors	/^  let g:ophigh_filetypes_to_ignore = {}$/;"	v	language:Vim
-g:pymode_breakpoint_bind	/home/neg/.vim/01-settings.vim	/^let g:pymode_breakpoint_bind = '<Leader>B'$/;"	v	language:Vim
-g:pymode_lint	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint = 1$/;"	v	language:Vim
-g:pymode_lint_checkers	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']$/;"	v	language:Vim
-g:pymode_lint_ignore	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_ignore = ''$/;"	v	language:Vim
-g:pymode_lint_on_write	/home/neg/.vim/01-settings.vim	/^let g:pymode_lint_on_write = 0$/;"	v	language:Vim
-g:pymode_rope	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope = 1$/;"	v	language:Vim
-g:pymode_rope_complete_on_dot	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope_complete_on_dot = 1$/;"	v	language:Vim
-g:pymode_rope_completion	/home/neg/.vim/01-settings.vim	/^let g:pymode_rope_completion = 0$/;"	v	language:Vim
-g:pymode_virtualenv	/home/neg/.vim/01-settings.vim	/^let g:pymode_virtualenv = 0$/;"	v	language:Vim
-g:rbpt_colorpairs	/home/neg/.vim/01-settings.vim	/^let g:rbpt_colorpairs = [$/;"	v	language:Vim
-g:rbpt_loadcmd_toggle	/home/neg/.vim/01-settings.vim	/^let g:rbpt_loadcmd_toggle = 0$/;"	v	language:Vim
-g:rbpt_max	/home/neg/.vim/01-settings.vim	/^let g:rbpt_max = 16$/;"	v	language:Vim
-g:session_autoload	/home/neg/.vim/01-settings.vim	/^let g:session_autoload = "no"$/;"	v	language:Vim
-g:session_autosave	/home/neg/.vim/01-settings.vim	/^let g:session_autosave = "yes"$/;"	v	language:Vim
 g:signify_sign_overwrite	/home/neg/1st_level/vimrcrc	/^let g:signify_sign_overwrite = 1$/;"	v	language:Vim
 g:signify_sign_overwrite	/mnt/home/dev/src/vimmeh/vimrc	/^let g:signify_sign_overwrite = 1$/;"	v	language:Vim
-g:syntastic_aggregate_errors	/home/neg/.vim/01-settings.vim	/^let g:syntastic_aggregate_errors=1$/;"	v	language:Vim
-g:syntastic_always_populate_loc_list	/home/neg/.vim/01-settings.vim	/^let g:syntastic_always_populate_loc_list = 1$/;"	v	language:Vim
-g:syntastic_always_populate_loc_list	/home/neg/.vim/01-settings.vim	/^let g:syntastic_always_populate_loc_list=1$/;"	v	language:Vim
-g:syntastic_auto_loc_list	/home/neg/.vim/01-settings.vim	/^let g:syntastic_auto_loc_list=2$/;"	v	language:Vim
+g:swap_word_loaded	/home/neg/.vim/11-vimacs.vim	/^let g:swap_word_loaded = 1$/;"	v	language:Vim
 g:syntastic_cpp_checker	/home/neg/1st_level/vimrcrc	/^let g:syntastic_cpp_checker          = "clang"$/;"	v	language:Vim
 g:syntastic_cpp_checker	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_cpp_checker          = "clang"$/;"	v	language:Vim
-g:syntastic_cpp_compiler_options	/home/neg/.vim/01-settings.vim	/^let g:syntastic_cpp_compiler_options = ' -std=c++11'$/;"	v	language:Vim
 g:syntastic_cpp_compiler_options	/home/neg/1st_level/vimrcrc	/^let g:syntastic_cpp_compiler_options = "-std=c++11"$/;"	v	language:Vim
 g:syntastic_cpp_compiler_options	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_cpp_compiler_options = "-std=c++11"$/;"	v	language:Vim
-g:syntastic_c_auto_refresh_includes	/home/neg/.vim/01-settings.vim	/^let g:syntastic_c_auto_refresh_includes = 1$/;"	v	language:Vim
 g:syntastic_c_checker	/home/neg/1st_level/vimrcrc	/^let g:syntastic_c_checker          = "clang"$/;"	v	language:Vim
 g:syntastic_c_checker	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_c_checker          = "clang"$/;"	v	language:Vim
-g:syntastic_c_check_header	/home/neg/.vim/01-settings.vim	/^let g:syntastic_c_check_header = 1$/;"	v	language:Vim
-g:syntastic_c_compiler_options	/home/neg/.vim/01-settings.vim	/^let g:syntastic_c_compiler_options = "-std=gnu11$/;"	v	language:Vim
 g:syntastic_c_compiler_options	/home/neg/1st_level/vimrcrc	/^let g:syntastic_c_compiler_options = "-std=c11"$/;"	v	language:Vim
 g:syntastic_c_compiler_options	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_c_compiler_options = "-std=c11"$/;"	v	language:Vim
-g:syntastic_c_no_include_search	/home/neg/.vim/01-settings.vim	/^let g:syntastic_c_no_include_search = 1$/;"	v	language:Vim
-g:syntastic_enable_signs	/home/neg/.vim/01-settings.vim	/^let g:syntastic_enable_signs=1$/;"	v	language:Vim
 g:syntastic_enable_signs	/home/neg/1st_level/vimrcrc	/^let g:syntastic_enable_signs         = 1$/;"	v	language:Vim
 g:syntastic_enable_signs	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_enable_signs         = 1$/;"	v	language:Vim
-g:syntastic_error_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_error_symbol='✗'$/;"	v	language:Vim
 g:syntastic_error_symbol	/home/neg/1st_level/vimrcrc	/^let g:syntastic_error_symbol         = '!!'$/;"	v	language:Vim
 g:syntastic_error_symbol	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_error_symbol         = '!!'$/;"	v	language:Vim
-g:syntastic_mode_map	/home/neg/.vim/01-settings.vim	/^let g:syntastic_mode_map = { 'mode': 'active',$/;"	v	language:Vim
 g:syntastic_mode_map	/home/neg/1st_level/vimrcrc	/^let g:syntastic_mode_map = { 'mode': 'active',$/;"	v	language:Vim
 g:syntastic_mode_map	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_mode_map = { 'mode': 'active',$/;"	v	language:Vim
-g:syntastic_python_checkers	/home/neg/.vim/01-settings.vim	/^let g:syntastic_python_checkers = ['flake8']$/;"	v	language:Vim
-g:syntastic_python_flake8_args	/home/neg/.vim/01-settings.vim	/^let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'$/;"	v	language:Vim
-g:syntastic_python_pylint_exe	/home/neg/.vim/01-settings.vim	/^let g:syntastic_python_pylint_exe = "pylint2"$/;"	v	language:Vim
-g:syntastic_stl_format	/home/neg/.vim/01-settings.vim	/^let g:syntastic_stl_format = '[=> ln:%F (%t)]'$/;"	v	language:Vim
-g:syntastic_style_error_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_style_error_symbol  = '⚡'$/;"	v	language:Vim
 g:syntastic_style_error_symbol	/home/neg/1st_level/vimrcrc	/^let g:syntastic_style_error_symbol   = '!¡'$/;"	v	language:Vim
 g:syntastic_style_error_symbol	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_style_error_symbol   = '!¡'$/;"	v	language:Vim
-g:syntastic_style_warning_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_style_warning_symbol  = '⚡'$/;"	v	language:Vim
 g:syntastic_style_warning_symbol	/home/neg/1st_level/vimrcrc	/^let g:syntastic_style_warning_symbol = '?¿'$/;"	v	language:Vim
 g:syntastic_style_warning_symbol	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_style_warning_symbol = '?¿'$/;"	v	language:Vim
-g:syntastic_warning_symbol	/home/neg/.vim/01-settings.vim	/^let g:syntastic_warning_symbol='⚠'$/;"	v	language:Vim
 g:syntastic_warning_symbol	/home/neg/1st_level/vimrcrc	/^let g:syntastic_warning_symbol       = '??'$/;"	v	language:Vim
 g:syntastic_warning_symbol	/mnt/home/dev/src/vimmeh/vimrc	/^let g:syntastic_warning_symbol       = '??'$/;"	v	language:Vim
 g:UltiSnipsExpandTrigger	/home/neg/.vim/10-keymaps.vim	/^  let g:UltiSnipsExpandTrigger       = "<m-s>"$/;"	v	language:Vim
@@ -926,48 +935,19 @@ g:UltiSnipsJumpBackwardTrigger	/home/neg/.vim/10-keymaps.vim	/^  let g:UltiSnips
 g:UltiSnipsJumpForwardTrigger	/home/neg/.vim/10-keymaps.vim	/^  let g:UltiSnipsJumpForwardTrigger="<m-s>"$/;"	v	language:Vim
 g:UltiSnipsListSnippets	/home/neg/.vim/10-keymaps.vim	/^  let g:UltiSnipsListSnippets        = "<c-m-s>"$/;"	v	language:Vim
 g:UltiSnipsSnippetsDir	/home/neg/.vim/10-keymaps.vim	/^let g:UltiSnipsSnippetsDir         = $HOME . '.\/vim\/UltiSnips'$/;"	v	language:Vim
-g:unite_source_grep_command	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_command = 'ag'$/;"	v	language:Vim
-g:unite_source_grep_command	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_command = 'pt'$/;"	v	language:Vim
-g:unite_source_grep_default_opts	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_default_opts = '--nogroup --nocolor'$/;"	v	language:Vim
-g:unite_source_grep_default_opts	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_default_opts =$/;"	v	language:Vim
-g:unite_source_grep_recursive_opt	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_recursive_opt = ''$/;"	v	language:Vim
-g:unite_source_grep_recursive_opt	/home/neg/.vim/01-settings.vim	/^  let g:unite_source_grep_recursive_opt = ''$/;"	v	language:Vim
-g:user_zen_leader_key	/home/neg/.vim/01-settings.vim	/^let g:user_zen_leader_key = '<c-b>'$/;"	v	language:Vim
-g:user_zen_settings	/home/neg/.vim/01-settings.vim	/^let g:user_zen_settings = {$/;"	v	language:Vim
-g:utl_cfg_hdl_mt_application_pdf	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'$/;"	v	language:Vim
-g:utl_cfg_hdl_mt_image_gif	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'$/;"	v	language:Vim
-g:utl_cfg_hdl_mt_image_jpeg	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'$/;"	v	language:Vim
-g:utl_cfg_hdl_mt_image_png	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'$/;"	v	language:Vim
-g:utl_cfg_hdl_scm_http_system	/home/neg/.vim/01-settings.vim	/^let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"$/;"	v	language:Vim
-g:vimshell_environment_term	/home/neg/.vim/01-settings.vim	/^let g:vimshell_environment_term       = 'rxvt-256color'$/;"	v	language:Vim
 g:vimshell_environment_term	/home/neg/1st_level/vimrcrc	/^let g:vimshell_environment_term       = 'rxvt-256color'$/;"	v	language:Vim
 g:vimshell_environment_term	/mnt/home/dev/src/vimmeh/vimrc	/^let g:vimshell_environment_term       = 'rxvt-256color'$/;"	v	language:Vim
 g:vimshell_scrollback_limit	/home/neg/1st_level/vimrcrc	/^let g:vimshell_scrollback_limit       = 10240$/;"	v	language:Vim
 g:vimshell_scrollback_limit	/mnt/home/dev/src/vimmeh/vimrc	/^let g:vimshell_scrollback_limit       = 10240$/;"	v	language:Vim
-g:VimuxUseNearestPane	/home/neg/.vim/01-settings.vim	/^let g:VimuxUseNearestPane = 1$/;"	v	language:Vim
 g:vinarise_detect_large_file_size	/home/neg/1st_level/vimrcrc	/^let g:vinarise_detect_large_file_size = -1$/;"	v	language:Vim
 g:vinarise_detect_large_file_size	/mnt/home/dev/src/vimmeh/vimrc	/^let g:vinarise_detect_large_file_size = -1$/;"	v	language:Vim
 g:vinarise_enable_auto_detect	/home/neg/1st_level/vimrcrc	/^let g:vinarise_enable_auto_detect = 1$/;"	v	language:Vim
 g:vinarise_enable_auto_detect	/mnt/home/dev/src/vimmeh/vimrc	/^let g:vinarise_enable_auto_detect = 1$/;"	v	language:Vim
-g:XkbSwitchEnabled	/home/neg/.vim/01-settings.vim	/^let g:XkbSwitchEnabled = 1$/;"	v	language:Vim
-g:XkbSwitchIMappings	/home/neg/.vim/01-settings.vim	/^let g:XkbSwitchIMappings = ['ru']$/;"	v	language:Vim
-g:XkbSwitchLib	/home/neg/.vim/01-settings.vim	/^let g:XkbSwitchLib = '\/usr\/local\/lib\/libxkbswitch.so'$/;"	v	language:Vim
-g:XkbSwitchSkipFt	/home/neg/.vim/01-settings.vim	/^let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]$/;"	v	language:Vim
-g:yankring_history_dir	/home/neg/.vim/01-settings.vim	/^let g:yankring_history_dir = '\/tmp'$/;"	v	language:Vim
-g:yankring_history_file	/home/neg/.vim/01-settings.vim	/^let g:yankring_history_file = 'yankring_hist'$/;"	v	language:Vim
-g:yankring_min_element_length	/home/neg/.vim/01-settings.vim	/^let g:yankring_min_element_length = 2$/;"	v	language:Vim
-g:yankring_window_height	/home/neg/.vim/01-settings.vim	/^let g:yankring_window_height = 14$/;"	v	language:Vim
 g:ycm_autoclose_preview_window_after_insertion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_autoclose_preview_window_after_insertion = 1$/;"	v	language:Vim
-g:ycm_collect_identifiers_from_tags_files	/home/neg/.vim/01-settings.vim	/^let g:ycm_collect_identifiers_from_tags_files = 0$/;"	v	language:Vim
-g:ycm_confirm_extra_conf	/home/neg/.vim/01-settings.vim	/^let g:ycm_confirm_extra_conf           = 0$/;"	v	language:Vim
 g:ycm_extra_conf_vim_data	/home/neg/1st_level/vimrcrc	/^let g:ycm_extra_conf_vim_data       = ['&filetype', 'g:syntastic_c_compiler_options', 'g:syntastic_cpp_compiler_options']$/;"	v	language:Vim
 g:ycm_extra_conf_vim_data	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_extra_conf_vim_data       = ['&filetype', 'g:syntastic_c_compiler_options', 'g:syntastic_cpp_compiler_options']$/;"	v	language:Vim
-g:ycm_filepath_completion_use_working_dir	/home/neg/.vim/01-settings.vim	/^let g:ycm_filepath_completion_use_working_dir = 1$/;"	v	language:Vim
-g:ycm_filetype_blacklist	/home/neg/.vim/01-settings.vim	/^let g:ycm_filetype_blacklist = {$/;"	v	language:Vim
 g:ycm_filetype_blacklist	/home/neg/1st_level/vimrcrc	/^let g:ycm_filetype_blacklist = {$/;"	v	language:Vim
 g:ycm_filetype_blacklist	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_filetype_blacklist = {$/;"	v	language:Vim
-g:ycm_filetype_specific_completion_to_disable	/home/neg/.vim/01-settings.vim	/^let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}$/;"	v	language:Vim
-g:ycm_global_ycm_extra_conf	/home/neg/.vim/01-settings.vim	/^let g:ycm_global_ycm_extra_conf = '~\/.vim\/.ycm_extra_conf.py'$/;"	v	language:Vim
 g:ycm_global_ycm_extra_conf	/home/neg/1st_level/vimrcrc	/^let g:ycm_global_ycm_extra_conf     = $HOME . '\/.vim\/ycm.py'$/;"	v	language:Vim
 g:ycm_global_ycm_extra_conf	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_global_ycm_extra_conf     = $HOME . '\/.vim\/ycm.py'$/;"	v	language:Vim
 g:ycm_key_invoke_completion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_key_invoke_completion = '<A-x>'$/;"	v	language:Vim
@@ -979,17 +959,14 @@ g:ycm_key_list_previous_completion	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_ke
 g:ycm_key_list_select_completion	/home/neg/.vim/10-keymaps.vim	/^let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']$/;"	v	language:Vim
 g:ycm_key_list_select_completion	/home/neg/1st_level/vimrcrc	/^let g:ycm_key_list_select_completion   = ['<Tab>', '<Down>']$/;"	v	language:Vim
 g:ycm_key_list_select_completion	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_key_list_select_completion   = ['<Tab>', '<Down>']$/;"	v	language:Vim
-g:ycm_min_num_identifier_candidate_chars	/home/neg/.vim/01-settings.vim	/^let g:ycm_min_num_identifier_candidate_chars = 4$/;"	v	language:Vim
 g:ycm_min_num_of_chars_for_completion	/home/neg/1st_level/vimrcrc	/^let g:ycm_min_num_of_chars_for_completion = 3$/;"	v	language:Vim
 g:ycm_min_num_of_chars_for_completion	/mnt/home/dev/src/vimmeh/vimrc	/^let g:ycm_min_num_of_chars_for_completion = 3$/;"	v	language:Vim
-g:ycm_seed_identifiers_with_syntax	/home/neg/.vim/01-settings.vim	/^let g:ycm_seed_identifiers_with_syntax = 0$/;"	v	language:Vim
-g:ycm_semantic_triggers	/home/neg/.vim/01-settings.vim	/^let g:ycm_semantic_triggers =  {$/;"	v	language:Vim
-g:ycm_show_diagnostics_ui	/home/neg/.vim/01-settings.vim	/^let g:ycm_show_diagnostics_ui          = 1 $/;"	v	language:Vim
-g:ycm_use_ultisnips_completer	/home/neg/.vim/01-settings.vim	/^let g:ycm_use_ultisnips_completer      = 0$/;"	v	language:Vim
 gA	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> gA :A<CR>$/;"	m	language:Vim
 gauss_coord_down	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^d_vector gauss_coord_down(d_vector x, double eps, double delta, double alpha);$/;"	p	language:C++	file:
+gc	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gc xph$/;"	m	language:Vim
 gc	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  GC             gc;            \/* GC for drawing                           *\/$/;"	m	language:C++	struct:TermWin_t
 Gdiffoff	/home/neg/.vim/10-keymaps.vim	/^    command Gdiffoff diffoff | q | Gedit$/;"	c	language:Vim
+gen_file_tree	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:gen_file_tree(i_directory) abort$/;"	f	language:Vim
 getfd_callback	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef callback<int (int)> getfd_callback;$/;"	t	language:C++
 getfd_hook	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  getfd_callback *getfd_hook;           \/\/ convert remote to local fd, if != 0$/;"	m	language:C++	struct:rxvt_term
 GET_ATTR	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	750;"	d	language:C++
@@ -1012,10 +989,11 @@ get_to_st	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/s
 get_to_st	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  char *get_to_st (unicode_t &ends_how);$/;"	p	language:C++	struct:rxvt_term
 get_window_origin	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void get_window_origin (int &x, int &y);$/;"	p	language:C++	struct:rxvt_term
 GHDashboard	/home/neg/.vim/04-autocmds.vim	/^function! GHDashboard (...)$/;"	f	language:Vim
-gitroot	/home/neg/.vim/01-settings.vim	/^let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\\n\\r]', '', 'g')$/;"	v	language:Vim
+gl	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gl :call <sid>SwapWithPrev('left', 'w')<cr>$/;"	m	language:Vim
 golden_section	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^double golden_section(double a, double b, double eps) {$/;"	f	language:C++
 golden_section	/mnt/home/dev/test.cpp	/^double golden_section(double a, double b, double eps) {$/;"	f	language:C++
 golden_section	/mnt/home/dev/test.cpp	/^double golden_section(double a, double b, double eps);$/;"	p	language:C++	file:
+gr	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gr :call <sid>SwapWithNext('right', 'w')<cr>$/;"	m	language:Vim
 gradient_split	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^d_vector gradient_split(d_vector x, double eps, double delta, double alpha);$/;"	p	language:C++	file:
 gradient_split	/mnt/home/dev/st/po41/optimization/lab2.cpp	/^d_vector gradient_split(d_vector x, double eps, double delta, d_vector alpha) {$/;"	f	language:C++
 grey_color	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:grey_color(n)$/;"	f	language:Vim
@@ -1027,27 +1005,28 @@ grey_level	/home/neg/1st_level/all_colors	/^    fun! s:grey_level(n)$/;"	f	langu
 grey_number	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:grey_number(x)$/;"	f	language:Vim
 grey_number	/home/neg/.vim/colors/vombatidae.vim	/^    fun <SID>grey_number(x)$/;"	f	language:Vim
 grey_number	/home/neg/1st_level/all_colors	/^    fun! s:grey_number(x)$/;"	f	language:Vim
+gs	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gs :call <sid>SwapWithNext('follow', 'k')<cr>$/;"	m	language:Vim
+gS	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gS :call <sid>SwapWithPrev('follow', 'k')<cr>$/;"	m	language:Vim
 GtagsCscope	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^command! -nargs=0 GtagsCscope call s:GtagsCscope()$/;"	c	language:Vim
 GtagsCscope	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^function! s:GtagsCscope()$/;"	f	language:Vim
-GtagsCscope_Absolute_Path	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Absolute_Path   = 1$/;"	v	language:Vim
 GtagsCscope_Absolute_Path	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Absolute_Path = 0$/;"	v	language:Vim
-GtagsCscope_Auto_Load	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Auto_Load       = 0$/;"	v	language:Vim
 GtagsCscope_Auto_Load	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Auto_Load = 0$/;"	v	language:Vim
-GtagsCscope_Auto_Map	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Auto_Map        = 1$/;"	v	language:Vim
 GtagsCscope_Auto_Map	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Auto_Map = 0$/;"	v	language:Vim
 GtagsCscope_GtagsRoot	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^function! s:GtagsCscope_GtagsRoot()$/;"	f	language:Vim
-GtagsCscope_Ignore_Case	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Ignore_Case     = 1$/;"	v	language:Vim
 GtagsCscope_Ignore_Case	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Ignore_Case = 0$/;"	v	language:Vim
-GtagsCscope_Keep_Alive	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Keep_Alive      = 1$/;"	v	language:Vim
 GtagsCscope_Keep_Alive	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Keep_Alive = 0$/;"	v	language:Vim
 GtagsCscope_Quiet	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Quiet = 0$/;"	v	language:Vim
-GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/01-settings.vim	/^    let GtagsCscope_Use_Old_Key_Map = 0$/;"	v	language:Vim
 GtagsCscope_Use_Old_Key_Map	/home/neg/.vim/bundle/gtags-cscope-vim-plugin/plugin/gtags-cscope.vim	/^    let GtagsCscope_Use_Old_Key_Map = 0$/;"	v	language:Vim
+gw	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gw :call <sid>SwapWithNext('follow', 'w')<cr>$/;"	m	language:Vim
+gW	/home/neg/.vim/11-vimacs.vim	/^nnoremap <silent> gW :call <sid>SwapWithPrev('follow', 'w')<cr>$/;"	m	language:Vim
 H	/home/neg/.vim/10-keymaps.vim	/^noremap H ^$/;"	m	language:Vim
 h	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int x, y, w, h; \/\/ overlay dimensions$/;"	m	language:C++	struct:overlay_base
 handler	/home/neg/.notion/app.lua	/^   local function handler(file)$/;"	f	language:Lua
+handle_all	/tmp/malloc2.c	/^static void handle_all(void (*handler)(int signum)) {$/;"	f	language:C	file:
+handle_all	/tmp/malloc2.c	/^static void handle_all(void (*handler)(int signum));$/;"	p	language:C	file:
 HAVE_BG_PIXMAP	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	82;"	d	language:C++
 HAVE_IMG	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	83;"	d	language:C++
+HAVE_SBRK	/tmp/malloc2.c	19;"	d	language:C	file:
 height	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            height;        \/* window height                   [pixels] *\/$/;"	m	language:C++	struct:TermWin_t
 Height2Pixel	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	732;"	d	language:C++
 hex_keyval	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^hex_keyval (XKeyEvent &ev)$/;"	f	language:C++	file:
@@ -1088,6 +1067,7 @@ im_set_preedit_area	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xr
 im_set_size	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void im_set_size (XRectangle &size);$/;"	p	language:C++	struct:rxvt_term
 IM_TILE	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  IM_TILE              = 1 << 4,$/;"	e	language:C++	enum:__anon1
 inbuff	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    char *inbuff;     \/* Input buffer. *\/$/;"	m	language:C	struct:init_state	file:
+IncrKillRing	/home/neg/.vim/11-vimacs.vim	/^function! <SID>IncrKillRing()$/;"	f	language:Vim
 INDENT	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	645;"	d	language:C++	file:
 Indentation	/home/neg/.vim/01-settings.vim	/^command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>$/;"	c	language:Vim
 Indentation	/home/neg/1st_level/vimrcrc	/^command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>$/;"	c	language:Vim
@@ -1188,6 +1168,8 @@ key_press	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/s
 key_press	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void key_press (XKeyEvent &ev);$/;"	p	language:C++	struct:rxvt_term
 key_release	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::key_release (XKeyEvent &ev)$/;"	f	language:C++	class:rxvt_term
 key_release	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void key_release (XKeyEvent &ev);$/;"	p	language:C++	struct:rxvt_term
+KillLine	/home/neg/.vim/11-vimacs.vim	/^function! <SID>KillLine()$/;"	f	language:Vim
+KillWord	/home/neg/.vim/11-vimacs.vim	/^function! <SID>KillWord()$/;"	f	language:Vim
 kw	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^    const char     *kw;		\/* keyword *\/$/;"	m	language:C++	struct:__anon1	file:
 L	/home/neg/.vim/10-keymaps.vim	/^noremap L g_$/;"	m	language:Vim
 l	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^   tlen_t_ l; \/\/ length of each text line$/;"	m	language:C++	struct:line_t
@@ -1230,7 +1212,6 @@ longitude	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    double longitude; \
 longitude	/mnt/home/dev/wrk/emm_sph/emm_sph.c	/^    double longitude;    \/\/ longitude in dec degrees$/;"	m	language:C	struct:point_input	file:
 longitude	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	/^    double longitude;    \/\/ longitude in dec degrees$/;"	m	language:C	struct:point_input	file:
 lowercase	/mnt/home/dev/st/lthw/c/ex29/libex29.c	/^int lowercase(const char *msg, int len) {$/;"	f	language:C
-LustyExplorerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let LustyExplorerDefaultMappings  = 0$/;"	v	language:Vim
 lvl_abv_sea	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    int    lvl_abv_sea;  \/\/ level above sea in meters$/;"	m	language:C	struct:point_input	file:
 m	/mnt/home/dw/main.s	/^m:	.int 0$/;"	l	language:Asm
 MAG_AllocateLegendreFunctionMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_LegendreFunction *MAG_AllocateLegendreFunctionMemory(int NumTerms)$/;"	f	language:C
@@ -1319,11 +1300,10 @@ main	/mnt/home/dev/wrk/emm_sph/emm_sph.c	/^int main() {$/;"	f	language:C
 main	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	/^int main() {$/;"	f	language:C
 main	/mnt/home/dev/wrk/emm_sph/test.c	/^int main() {$/;"	f	language:C
 main	/mnt/home/dw/main.s	/^main:$/;"	l	language:Asm
+main	/tmp/malloc2.c	/^int main(int argc, char **argv) {$/;"	f	language:C
 make_byte	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	2844;"	d	language:C++	file:
 make_current	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void make_current () const \/\/ make this the "currently active" urxvt instance$/;"	f	language:C++	struct:rxvt_term
 man	/mnt/home/dev/src/dotfiles/bashrc	/^man() {$/;"	f	language:Sh
-mapleader	/home/neg/.vim/01-settings.vim	/^let mapleader      = ','$/;"	v	language:Vim
-maplocalleader	/home/neg/.vim/01-settings.vim	/^let maplocalleader = ' '$/;"	v	language:Vim
 mapped	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            mapped;        \/* window state mapped?                     *\/$/;"	m	language:C++	struct:TermWin_t
 map_function_key	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^map_function_key (KeySym keysym)$/;"	f	language:C++	file:
 mark	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  row_col_t         mark;       \/* point of initial click   <= end           *\/$/;"	m	language:C++	struct:selection_t
@@ -1348,6 +1328,7 @@ memcpy	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/
 memset	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	112;"	d	language:C++
 meta_char	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  meta_char;            \/* Alt-key prefix *\/$/;"	m	language:C++	struct:rxvt_term
 MEvent	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  struct mouse_event MEvent;$/;"	m	language:C++	struct:rxvt_term	typeref:struct:rxvt_term::mouse_event
+min	/tmp/malloc2.c	/^static unsigned long min(unsigned long x, unsigned long y) {$/;"	f	language:C	file:
 minalt	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    double minalt;    \/* Min height of model. *\/$/;"	m	language:C	struct:init_state	file:
 minBrightCOLOR	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  minBrightCOLOR,             \/* maxCOLOR + 1 *\/$/;"	e	language:C++	enum:colour_list
 minCOLOR	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  minCOLOR,                   \/* 2 *\/$/;"	e	language:C++	enum:colour_list
@@ -1573,6 +1554,8 @@ parent	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/
 parent_x	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            parent_x, parent_y; \/\/ parent window position relative to root, only updated on demand$/;"	m	language:C++	struct:rxvt_term
 parent_y	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            parent_x, parent_y; \/\/ parent window position relative to root, only updated on demand$/;"	m	language:C++	struct:rxvt_term
 parsed_geometry	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^                  parsed_geometry:1;$/;"	m	language:C++	struct:rxvt_term
+parse_arg	/tmp/malloc2.c	/^static unsigned long parse_arg(char *arg) {$/;"	f	language:C	file:
+parse_arg	/tmp/malloc2.c	/^static unsigned long parse_arg(char *arg);$/;"	p	language:C	file:
 parse_keysym	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int parse_keysym (const char *str, const char *arg);$/;"	p	language:C++	struct:rxvt_term
 parse_keysym	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^rxvt_term::parse_keysym (const char *str, const char *arg)$/;"	f	language:C++	class:rxvt_term
 PART_BEG	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C	/^  PART_BEG = 0,$/;"	e	language:C++	enum:__anon2	file:
@@ -1690,6 +1673,8 @@ process_window_ops	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xre
 process_window_ops	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void process_window_ops (const int *args, unsigned int nargs);$/;"	p	language:C++	struct:rxvt_term
 process_xterm_seq	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::process_xterm_seq (int op, char *str, char resp)$/;"	f	language:C++	class:rxvt_term
 process_xterm_seq	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void process_xterm_seq (int op, char *str, char resp);$/;"	p	language:C++	struct:rxvt_term
+progress	/tmp/malloc2.c	/^static void progress(unsigned long allocated, unsigned long to_allocate) {$/;"	f	language:C	file:
+progress	/tmp/malloc2.c	/^static void progress(unsigned long allocated, unsigned long to_allocate);$/;"	p	language:C	file:
 PROP_MWM_HINTS_ELEMENTS	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	709;"	d	language:C++
 psgrep	/mnt/home/dev/src/dotfiles/bashrc	/^psgrep() {$/;"	f	language:Sh
 pty	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ptytty         *pty;$/;"	m	language:C++	struct:rxvt_term
@@ -1709,6 +1694,10 @@ q:	/home/neg/.vim/10-keymaps.vim	/^nnoremap q: <Nop>$/;"	m	language:Vim
 q?	/home/neg/.vim/10-keymaps.vim	/^nnoremap q? <Nop>$/;"	m	language:Vim
 QA	/home/neg/.vim/10-keymaps.vim	/^        command! -bang QA qa<bang>$/;"	c	language:Vim
 Qa	/home/neg/.vim/10-keymaps.vim	/^        command! -bang Qa qa<bang>$/;"	c	language:Vim
+QueryReplace	/home/neg/.vim/11-vimacs.vim	/^command! QueryReplace :call <SID>QueryReplace()<CR>$/;"	c	language:Vim
+QueryReplace	/home/neg/.vim/11-vimacs.vim	/^function! <SID>QueryReplace()$/;"	f	language:Vim
+QueryReplaceRegexp	/home/neg/.vim/11-vimacs.vim	/^command! QueryReplaceRegexp :call <SID>QueryReplaceRegexp()<CR>$/;"	c	language:Vim
+QueryReplaceRegexp	/home/neg/.vim/11-vimacs.vim	/^function! <SID>QueryReplaceRegexp()$/;"	f	language:Vim
 r	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^   rend_t *r; \/\/ rendition, uses RS_ flags$/;"	m	language:C++	struct:line_t
 RC_COUNT	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C	/^  RC_COUNT$/;"	e	language:C++	enum:__anon2	file:
 RC_COUNT	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/screen.C.orig	/^  RC_COUNT$/;"	e	language:C++	enum:__anon1	file:
@@ -1738,6 +1727,7 @@ research	/mnt/home/dev/st/po41/optimization/lab3.cpp	/^void research(vector < ve
 reserve	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	623;"	d	language:C++
 reserve	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	626;"	d	language:C++
 reset	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void reset () { memset (&mbs, 0, sizeof (mbs)); }$/;"	f	language:C++	struct:mbstate
+ResetKillRing	/home/neg/.vim/11-vimacs.vim	/^function! <SID>ResetKillRing()$/;"	f	language:Vim
 resize_all_windows	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void resize_all_windows (unsigned int newwidth, unsigned int newheight, int ignoreparent);$/;"	p	language:C++	struct:rxvt_term
 RESTORE	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  enum cursor_mode { SAVE, RESTORE };$/;"	e	language:C++	enum:rxvt_term::cursor_mode
 resval_off	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  static const char resval_off [];      \/\/ or off$/;"	m	language:C++	struct:rxvt_term
@@ -1845,6 +1835,7 @@ run	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	/^double run(Point_input pt);$/;"	p
 run	/mnt/home/dev/wrk/emm_sph/emm_sph_file.c	/^double run(Point_input pt){$/;"	f	language:C
 run_child	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int run_child (const char *const *argv);$/;"	p	language:C++	struct:rxvt_term
 run_child	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/init.C	/^rxvt_term::run_child (const char *const *argv)$/;"	f	language:C++	class:rxvt_term
+run_cmake	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^function! s:run_cmake(i_directory) abort$/;"	f	language:Vim
 run_command	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void run_command (const char *const *argv);$/;"	p	language:C++	struct:rxvt_term
 run_command	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/init.C	/^rxvt_term::run_command (const char *const *argv)$/;"	f	language:C++	class:rxvt_term
 RUN_TESTS	/mnt/home/dev/st/lthw/c/ex29/minunit.h	15;"	d	language:C++
@@ -2033,6 +2024,16 @@ s:IA	/home/neg/.vim/bundle/vim-airline/autoload/airline/themes/wim.vim	/^let s:I
 s:IA	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let s:IA = [ '#4e4e4e' , '#080808' , 240 , 234 , '' ]$/;"	v	language:Vim
 s:IA	/home/neg/mirodark_wim.vim	/^let s:IA = [ '#4e4e4e' , '#080808' , 240 , 234 , '' ]$/;"	v	language:Vim
 s:IA	/home/neg/wim.vim	/^let s:IA = [ '' , '' , 240 , 234 , '' ]$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern = {}$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.k = {}$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.k.in = '\\k'$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.k.out = '\\k\\@!'$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.k.prev_end = '\\k\\(\\k\\@!.\\)\\+$'$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.w = {}$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.w.in = '\\w'$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.w.out = '\\W'$/;"	v	language:Vim
+s:k_entity_pattern	/home/neg/.vim/11-vimacs.vim	/^let s:k_entity_pattern.w.prev_end = '\\zs\\w\\W\\+$'$/;"	v	language:Vim
+s:k_version	/home/neg/.vim/11-vimacs.vim	/^let s:k_version = 200$/;"	v	language:Vim
 s:lblk	/home/neg/.vim/colors/mirodark.vim	/^        let s:lblk="#".s:lblk_hex$/;"	v	language:Vim
 s:lblk	/home/neg/.vim/colors/mirodark.vim	/^        let s:lblk=s:rgb(s:lblk_hex)$/;"	v	language:Vim
 s:lblk	/home/neg/.vim/colors/mirodark.vim	/^    let s:lblk="8"$/;"	v	language:Vim
@@ -2264,6 +2265,9 @@ shade	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/r
 Share	/home/neg/.vim/01-settings.vim	/^command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http:\/\/sprunge.us | head -n 1 | tr -d '\\r\\n ' | DISPLAY=:0.0 xclip$/;"	c	language:Vim
 Share	/home/neg/1st_level/vimrcrc	/^command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http:\/\/sprunge.us | head -n 1 | tr -d '\\r\\n ' | DISPLAY=:0.0 xclip$/;"	c	language:Vim
 Share	/mnt/home/dev/src/vimmeh/vimrc	/^command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http:\/\/sprunge.us | head -n 1 | tr -d '\\r\\n ' | DISPLAY=:0.0 xclip$/;"	c	language:Vim
+signal_handler	/tmp/malloc2.c	/^static void signal_handler(int sig) {$/;"	f	language:C	file:
+signal_handler	/tmp/malloc2.c	/^static void signal_handler(int sig);$/;"	p	language:C	file:
+signum	/tmp/malloc2.c	/^static volatile sig_atomic_t signum = 0;$/;"	v	language:C	file:
 slip_wheel_cb	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^rxvt_term::slip_wheel_cb (ev::timer &w, int revents)$/;"	f	language:C++	class:rxvt_term
 slip_wheel_cb	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void slip_wheel_cb (ev::timer &w, int revents); ev::timer slip_wheel_ev;$/;"	p	language:C++	struct:rxvt_term
 slip_wheel_ev	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  void slip_wheel_cb (ev::timer &w, int revents); ev::timer slip_wheel_ev;$/;"	m	language:C++	struct:rxvt_term
@@ -2279,6 +2283,8 @@ SOURCE_UNKNOWN	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	44;"	d	languag
 SO_TARGET	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m	language:Make
 SO_TARGET	/mnt/home/dev/st/lthw/c/ex29/Makefile	/^SO_TARGET=$(patsubst %.a,%.so,$(TARGET))$/;"	m	language:Make
 spot	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  XPoint   spot; \/\/ most recently sent spot position$/;"	m	language:C++	struct:rxvt_term
+StartMarkSel	/home/neg/.vim/11-vimacs.vim	/^function! <SID>StartMarkSel()$/;"	f	language:Vim
+StartVisualMode	/home/neg/.vim/11-vimacs.vim	/^function! <SID>StartVisualMode()$/;"	f	language:Vim
 state	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  unsigned int state;    \/* key or button mask *\/$/;"	m	language:C++	struct:mouse_event
 status	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  CARD32 status;$/;"	m	language:C++	struct:_mwmhints
 STATUS_CONNECTION_FAILED	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/rxvtc.C	38;"	d	language:C++	file:
@@ -2296,6 +2302,11 @@ strlen	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/
 swap	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  screen_t        swap;$/;"	m	language:C++	struct:rxvt_vars
 swap	/mnt/home/dev/st/po41/optimization/lab1.cpp	/^void swap(double x_1, double x_2) {$/;"	f	language:C++
 swap	/mnt/home/dev/test.cpp	/^void swap(double x_1, double x_2) {$/;"	f	language:C++
+SwapVisualWithCut	/home/neg/.vim/11-vimacs.vim	/^function! s:SwapVisualWithCut()$/;"	f	language:Vim
+SwapVisualWithCut2	/home/neg/.vim/11-vimacs.vim	/^function! s:SwapVisualWithCut2()$/;"	f	language:Vim
+SwapVisualWithCut3	/home/neg/.vim/11-vimacs.vim	/^function! s:SwapVisualWithCut3()$/;"	f	language:Vim
+SwapWithNext	/home/neg/.vim/11-vimacs.vim	/^function! s:SwapWithNext(cursor_pos, type)$/;"	f	language:Vim
+SwapWithPrev	/home/neg/.vim/11-vimacs.vim	/^function! s:SwapWithPrev(cursor_pos, type)$/;"	f	language:Vim
 swap_buf	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  line_t         *swap_buf;     \/\/ lines for swap buffer$/;"	m	language:C++	struct:rxvt_vars
 SWCH	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	544;"	d	language:C++	file:
 SWCH	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	68;"	d	language:C++	file:
@@ -2347,7 +2358,6 @@ tint	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rx
 tint_set	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  bool tint_set;$/;"	m	language:C++	struct:image_effects
 tlen_t	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef  int32_t tlen_t;  \/\/ was int16_t, but this results in smaller code and memory use$/;"	t	language:C++
 tlen_t_	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef  int32_t tlen_t_; \/\/ specifically for use in the line_t structure$/;"	t	language:C++
-Tlist_Inc_Winwidth	/home/neg/.vim/01-settings.vim	/^let Tlist_Inc_Winwidth = 0$/;"	v	language:Vim
 toggle_higher_contrast_mode	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
 toggle_higher_contrast_mode	/home/neg/1st_level/all_colors	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
 toggle_scratch_app	/home/neg/.notion/named_scratchpad.lua	/^function toggle_scratch_app(reg, cmdline, class)$/;"	f	language:Lua
@@ -2387,12 +2397,15 @@ URxvt_perl	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/
 URxvt_version	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  URxvt_version          = 702,     \/\/ request version$/;"	e	language:C++	enum:__anon8
 URxvt_view_down	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  URxvt_view_down        = 721,$/;"	e	language:C++	enum:__anon8
 URxvt_view_up	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  URxvt_view_up          = 720,$/;"	e	language:C++	enum:__anon8
+usage	/tmp/malloc2.c	/^static void usage(void) {$/;"	f	language:C	file:
+usage	/tmp/malloc2.c	/^static void usage(void);$/;"	p	language:C	file:
 v	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  vector<compose_char> v;$/;"	m	language:C++	class:rxvt_composite_vec
 VALGRIND	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^       VALGRIND="valgrind --log-file=\/tmp\/valgrind-%p.log" $(MAKE)$/;"	m	language:Make
 valhalla	/mnt/home/dev/src/dotfiles/bashrc	/^valhalla() {$/;"	f	language:Sh
 valid	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^   bool valid ()$/;"	f	language:C++	struct:line_t
 value	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^  unsigned short value;$/;"	m	language:C++	struct:keysym_vocabulary_t	file:
 view_start	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            view_start;    \/* scrollback view starts here              *\/$/;"	m	language:C++	struct:TermWin_t
+vim	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^import vim$/;"	m	language:Vim
 vim	/mnt/home/dev/src/dotfiles/bashrc	/^vim()$/;"	f	language:Sh
 vimrc	/home/neg/.vim/04-autocmds.vim	/^augroup vimrc$/;"	a	language:Vim
 vt	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  Window         vt;            \/* vt100 window                             *\/$/;"	m	language:C++	struct:TermWin_t
@@ -2476,6 +2489,7 @@ x_resource	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/
 x_resource	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/xdefaults.C	/^rxvt_term::x_resource (const char *name)$/;"	f	language:C++	class:rxvt_term
 y	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int x, y, w, h; \/\/ overlay dimensions$/;"	m	language:C++	struct:overlay_base
 y	/mnt/home/dev/test.cpp	/^    double y;$/;"	m	language:C++	struct:Newton_ret	file:
+YankPop	/home/neg/.vim/11-vimacs.vim	/^function! <SID>YankPop()$/;"	f	language:Vim
 year	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    unsigned int year;$/;"	m	language:C	struct:date	file:
 year	/mnt/home/dev/wrk/emm_sph/emm_sph.c	/^    int year;$/;"	m	language:C	struct:date	file:
 yield_cb	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/command.C	/^  void yield_cb (ev::prepare &w, int revents)$/;"	f	language:C++	struct:event_handler
@@ -2554,10 +2568,13 @@ zl	/home/neg/.vim/10-keymaps.vim	/^map zl zL$/;"	m	language:Vim
 [unite]u	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>$/;"	m	language:Vim
 [unite]v	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent>[unite]v :Unite menu:vim -silent -start-insert<CR>$/;"	m	language:Vim
 [unite]y	/home/neg/.vim/10-keymaps.vim	/^nnoremap <silent> [unite]y :Unite register<CR>$/;"	m	language:Vim
+_BSD_SOURCE	/tmp/malloc2.c	23;"	d	language:C	file:
 _minunit_h	/mnt/home/dev/st/lthw/c/ex29/minunit.h	3;"	d	language:C++
 _minunit_h	/mnt/home/dev/st/lthw/c/ex29/tests/minunit.h	3;"	d	language:C++
 _mwmhints	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef struct _mwmhints$/;"	s	language:C++
 _package	/mnt/home/dev/src/core/linux/PKGBUILD	/^_package() {$/;"	f	language:Sh
+_SVID_SOURCE	/tmp/malloc2.c	24;"	d	language:C	file:
+_XOPEN_SOURCE	/tmp/malloc2.c	25;"	d	language:C	file:
 `	/home/neg/.vim/10-keymaps.vim	/^nnoremap ` '$/;"	m	language:Vim
 ~localise_env	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ~localise_env ()$/;"	f	language:C++	struct:localise_env
 ~rxvt_term	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  ~rxvt_term ();$/;"	p	language:C++	struct:rxvt_term

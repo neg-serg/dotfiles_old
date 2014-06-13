@@ -1,4 +1,2 @@
 #!/bin/sh
-urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20' -name 'wim' -e zsh -i -c 'TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM'
-# tmux -t vim set-option status 
-# urxvt -name wim -fn 'xft:PragmataPro for Powerline:pixelsize=20' -e zsh -c 'tmuxinator start vim'
+urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c 'TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM'
