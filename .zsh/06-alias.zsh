@@ -75,8 +75,7 @@ function vg {
 
 function v {
     if [ -z $(pidof vim) ] ; then
-      vim --servername VIM --remote-silent $@
-      sleep .4
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c "TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM\ \-\-remote\-silent\ $@"
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
     else  
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
