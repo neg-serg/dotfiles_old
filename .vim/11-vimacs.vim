@@ -52,35 +52,12 @@ vmap <C-e> <End>
 omap <C-e> <End>
 
 " Heresy/emacs-like stuff
-inoremap <C-_> <C-o>u
+" inoremap <C--> <C-o>u
+inoremap   <C-o>u
 inoremap <silent> <c-a> <esc>I
 imap <C-e> <End>
 vmap <C-e> <End>
 omap <C-e> <End>
-
-" inoremap <M-a> <C-o>(
-" vnoremap <M-a> (
-" onoremap <M-a> (
-"
-" inoremap <M-e> <C-o>)
-" vnoremap <M-e> )
-" onoremap <M-e> )
-"
-" inoremap <M-<> <C-o>1G<C-o>0
-" vnoremap <M-<> 1G0
-" onoremap <M-<> 1G0
-"
-" inoremap <M->> <C-o>G<C-o>$
-" vnoremap <M->> G$
-" onoremap <M->> G$
-
-inoremap <M-Left> <S-Left>
-vnoremap <M-Left> <S-Left>
-onoremap <M-Left> <S-Left>
-
-inoremap <M-Right> <S-Right>
-vnoremap <M-Right> <S-Right>
-onoremap <M-Right> <S-Right>
 "----[ Command-mode ]----
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
@@ -96,26 +73,9 @@ cnoremap <C-y> <C-r><C-o>"
 cnoremap <M-f> <S-Right>
 cnoremap <M-b> <S-Left>
 cnoremap <C-k> <C-f>d$<C-c><End>
-
-" command-T window
-" let g:CommandTCursorLeftMap = ['<Left>', '<C-b>']
-" let g:CommandTCursorRightMap = ['<Right>', '<C-f>']
-" let g:CommandTBackspaceMap = ['<BS>', '<C-h>']
-" let g:CommandTDeleteMap = ['<Del>', '<C-d>']
-
 "--[  Block operations  ]-------------------------------------
 vnoremap <C-w> "1d
-vnoremap <S-Del> "_d
-
 cmap <M-b> <S-Left>
-inoremap <M-a> <C-o>(
-inoremap <M-e> <C-o>)
-
-inoremap <M-m> <C-o>^
-
-inoremap <silent> <M-g> <C-o>:call <SID>GotoLine()<CR>
-vnoremap <silent> <M-g> :<C-u>call <SID>GotoLine()<CR>
-onoremap <silent> <M-g> :call <SID>GotoLine()<CR>
 
 inoremap <silent> <M-k> <C-r>=<SID>KillLine()<CR>
 " Thanks to Benji Fisher for helping me with getting <C-k> to work!
@@ -142,16 +102,6 @@ endfunction
 
 "--------------------------------------------------------------------------------------------------------------
 "--[ Visual stuff ]--------------------------------------------------------------------------------------------
-" Visual mode
-inoremap <silent> <C-Space> <C-r>=<SID>StartVisualMode()<CR>
-
-" Marking blocks
-inoremap <M-Space> <C-o>:call <SID>StartMarkSel()<CR><C-o>viw
-inoremap <M-h> <C-o>:call <SID>StartMarkSel()<CR><C-o>vap
-inoremap <C-<> <C-o>:call <SID>StartMarkSel()<CR><C-o>v1G0o
-inoremap <C->> <C-o>:call <SID>StartMarkSel()<CR><C-o>vG$o
-inoremap <C-x>h <C-o>:call <SID>StartMarkSel()<CR><Esc>1G0vGo
-
 " Pasting
 inoremap <silent> <C-y> <C-o>:call <SID>ResetKillRing()<CR><C-r><C-o>"
 inoremap <M-y> <C-o>:call <SID>YankPop()<CR>
@@ -177,21 +127,6 @@ function! <SID>IncrKillRing()
   endif
 endfunction
 
-function! <SID>StartMarkSel()
-  if &selectmode =~ 'key'
-    set keymodel-=stopsel
-  endif
-endfunction
-
-function! <SID>StartVisualMode()
-  call <SID>StartMarkSel()
-  if col('.') > strlen(getline('.'))
-    " At EOL
-    return "\<Right>\<C-o>v\<Left>"
-  else
-    return "\<C-o>v"
-  endif
-endfunction
 "--------------------------------------------------------------------------------------------------------------
 inoremap <M-5> <C-o>:call <SID>QueryReplace()<CR>
 inoremap <C-M-5> <C-o>:call <SID>QueryReplaceRegexp()<CR>
@@ -274,10 +209,6 @@ nnoremap <silent> gS :call <sid>SwapWithPrev('follow', 'k')<cr>
 " even be separated by punctuation (such as "abc = def").
 " gW will swap with previous word.
 
-" While we're talking swapping, here's a map for swapping characters:
-
-nnoremap <silent> gc xph
-
 " This hint was formed in a collaboration between
 " Chip Campbell - Arun Easi - Benji Fisher
 "
@@ -354,21 +285,6 @@ function! s:SwapVisualWithCut3()
     endif
 endfunction
 
-" ======================================================================
-" LH, 27th Apr 2010
-" Swap functions with no side effect on the search history or on the screen.
-" Moreover, when undone, these version put the cursor back to its first
-" position
-
-" Function: SwapWithNext(cursor_pos)
-" {cursor_pos} values:
-" 'keep' : stays at the same position
-" 'follow' : stays with the current word, at the same relative offset
-" 'right' : put the cursor at the start of the new right word
-" 'left' : put the cursor at the start of the new left word
-" todo: move to an autoplugin
-" todo: support \w or \k ...
-
 let s:k_entity_pattern = {}
 let s:k_entity_pattern.w = {}
 let s:k_entity_pattern.w.in = '\w'
@@ -378,44 +294,6 @@ let s:k_entity_pattern.k = {}
 let s:k_entity_pattern.k.in = '\k'
 let s:k_entity_pattern.k.out = '\k\@!'
 let s:k_entity_pattern.k.prev_end = '\k\(\k\@!.\)\+$'
-
-
-function! s:SwapWithNext(cursor_pos, type)
-    let s = getline('.')
-    let l = line('.')
-    let c = col('.')-1
-    let in = s:k_entity_pattern[a:type].in
-    let out = s:k_entity_pattern[a:type].out
-
-    let crt_word_start = match(s[:c], in.'\+$')
-    let crt_word_end = match(s, in.out, crt_word_start)
-    if crt_word_end == -1
-        throw "No next word to swap the current word with"
-    endif
-    let next_word_start = match(s, in, crt_word_end+1)
-    if next_word_start == -1
-        throw "No next word to swap the current word with"
-    endif
-    let next_word_end = match(s, in.out, next_word_start)
-    let crt_word = s[crt_word_start : crt_word_end]
-    let next_word = s[next_word_start : next_word_end]
-
-    " echo '['.crt_word_start.','.crt_word_end.']='.crt_word
-    " \ .'### ['.next_word_start.','.next_word_end.']='.next_word
-    let s2 = (crt_word_start>0 ? s[:crt_word_start-1] : '')
-    \ . next_word
-    \ . s[crt_word_end+1 : next_word_start-1]
-    \ . crt_word
-    \ . (next_word_end==-1 ? '' : s[next_word_end+1 : -1])
-    " echo s2
-    call setline(l, s2)
-    if a:cursor_pos == 'keep' | let c2 = c+1
-        elseif a:cursor_pos == 'follow' | let c2 = c + strlen(next_word) + (next_word_start-crt_word_end)
-        elseif a:cursor_pos == 'left' | let c2 = crt_word_start+1
-        elseif a:cursor_pos == 'right' | let c2 = strlen(next_word) + next_word_start - crt_word_end + crt_word_start
-    endif
-    call cursor(l,c2)
-endfunction
 
 " Function: SwapWithPrev(cursor_pos)
 " {cursor_pos} values:
@@ -462,4 +340,3 @@ if a:cursor_pos == 'keep' | let c2 = c+1
 endif
 call cursor(l,c2)
 endfunction
-
