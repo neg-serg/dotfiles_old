@@ -282,5 +282,5 @@ au vimrc FileType gitcommit setlocal spell! spelllang=en_us
 autocmd vimrc FileType markdown setlocal spell! spelllang=en_us
 
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  guibg=#101010 ctermbg=236
-autocmd VimEnter,Colorscheme * hi IndentGuidesEven guibg=#141414 ctermbg=237
+autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
+autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240

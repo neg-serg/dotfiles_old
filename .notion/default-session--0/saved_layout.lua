@@ -54,7 +54,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 8388967,
+                                                    ["windowid"] = 8388617,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
@@ -111,14 +111,23 @@ return {
                             ["h"] = 900,
                         },
                         ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "Tiling Frame",
-                                ["managed"] = {
+                            ["tls"] = 878,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "Tiling Frame",
+                                    ["managed"] = {
+                                    },
                                 },
+                                ["type"] = "WSplitRegion",
                             },
-                            ["type"] = "WSplitRegion",
+                            ["dir"] = "vertical",
+                            ["brs"] = 22,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
                         },
                     },
                 },
@@ -284,14 +293,23 @@ return {
                             ["h"] = 900,
                         },
                         ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "WFrame<1>",
-                                ["managed"] = {
+                            ["tls"] = 878,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "WFrame<1>",
+                                    ["managed"] = {
+                                    },
                                 },
+                                ["type"] = "WSplitRegion",
                             },
-                            ["type"] = "WSplitRegion",
+                            ["dir"] = "vertical",
+                            ["brs"] = 22,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
                         },
                     },
                 },

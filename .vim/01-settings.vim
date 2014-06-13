@@ -372,8 +372,6 @@ let g:is_bash          = 1
 
 let g:clj_highlight_builtins = 1
 
-" let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd   = 'CtrlPMRUFiles'
 if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
