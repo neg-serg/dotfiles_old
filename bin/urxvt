@@ -12,7 +12,7 @@ CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-
 #CMD="-tr -name MainTerminal -fn -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r \
 #                            -fb -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r \
 #                            -fi -elite-terminal-bold-r-normal--14-140-72-72-c-80-koi8-r "
-tmuxinator start main
-if [ -z $(pidof tmux) ]; then urxvtc ${CMD} -e tmux ; else urxvtc ${CMD} -e tmux a; fi
+# if [ -z $(pidof tmux) ]; then urxvtc ${CMD} -e tmux ; else urxvtc ${CMD} -e tmux a; fi
 #if [ -z $(pidof tmux) ]; then ${CMD} -e tmux; else ${CMD} -e tmux a; fi
- 
+
+urxvtc ${CMD} -e /home/neg/bin/tmux_start
