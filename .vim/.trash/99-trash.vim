@@ -1,6 +1,7 @@
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+" NeoBundle 'epeli/slimux.git'                  "tmux wrapper with gvim support
 " NeoBundle 'paradigm/TextObjectify'            "Textjob main plugin
 " NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer
 " NeoBundle 'kana/vim-textobj-indent.git'       "Textobj for indented block of lines

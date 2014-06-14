@@ -45,11 +45,8 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
-
-" NeoBundle 'Shougo/context_filetype.vim.git'   "filetype autoset
-" NeoBundle 'justinmk/vim-sneak.git'
-" NeoBundle 'vim-scripts/vim-cmake-project.git'
 NeoBundle 'shaneharper/vim-rtags.git'
+NeoBundle 'idanarye/vim-merginal.git'
 "------------------------------------------------------------------------------------------------------------
 "--[ Sessions ]----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -71,8 +68,9 @@ NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 "--[ tmux ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-tbone.git'               "another tmux wrapper for vim
-NeoBundle 'epeli/slimux.git'                  "tmux wrapper with gvim support
 NeoBundle 'benmills/vimux.git'                "tmux wrapper
+" NeoBundle 'christoomey/vim-tmux-navigator'
+" https://github.com/wellle/tmux-complete.vim.git
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
@@ -117,8 +115,6 @@ NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
-NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :
-            \ { 'commands' : 'Transpose'}}
 NeoBundle 'lord-garbage/tslime.vim.git'       "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on in ruby
 NeoBundle 'matchit.zip'                       "Improves % match for everything

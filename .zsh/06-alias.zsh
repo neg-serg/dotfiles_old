@@ -1,8 +1,10 @@
-# (){
-#     local p=$(cope_path)
-#     for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
-#     alias df="$p/df -h"
-# }
+(){
+    if [ -x `which cope_path` ]; then
+        local p=$(cope_path)
+        for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
+        alias df="$p/df -h"
+    fi
+}
 
 alias '?=bc -l <<<'
 # alias gvim="STTY='intr \^C' gvim" # C-x mapping fucks up gvim
@@ -78,7 +80,7 @@ function v {
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c "TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM\ \-\-remote\-silent\ $@"
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
     else  
-      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
+      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')" &&
       vim --servername VIM --remote-silent $@
     fi
 }
