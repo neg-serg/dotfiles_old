@@ -1,0 +1,6 @@
+#!/bin/bash
+A1=`tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'vim --servername VIM'|awk '{print $1}'`
+A2=`tmux display-message -p '#{pane_index}'`
+if [[ -z $A1 ]]; then echo "TRUE"; elif
+    [[ "$A1" != "$A2" ]]; then echo "TRUE"; else echo "FALSE"; 
+fi
