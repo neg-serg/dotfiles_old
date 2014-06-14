@@ -300,11 +300,6 @@
 :TagbarShowTag	tagbar.txt	/*:TagbarShowTag*
 :TagbarToggle	tagbar.txt	/*:TagbarToggle*
 :TagbarTogglePause	tagbar.txt	/*:TagbarTogglePause*
-:Transpose	transpose.txt	/*:Transpose*
-:TransposeCSV	transpose.txt	/*:TransposeCSV*
-:TransposeInteractive	transpose.txt	/*:TransposeInteractive*
-:TransposeTab	transpose.txt	/*:TransposeTab*
-:TransposeWords	transpose.txt	/*:TransposeWords*
 :UltiSnipsAddFiletypes	UltiSnips.txt	/*:UltiSnipsAddFiletypes*
 :UltiSnipsEdit	UltiSnips.txt	/*:UltiSnipsEdit*
 :Unite	unite.txt	/*:Unite*
@@ -2851,6 +2846,12 @@ math-symbols	latexhelp.txt	/*math-symbols*
 math:	latexhelp.txt	/*math:*
 math;	latexhelp.txt	/*math;*
 matn!	latexhelp.txt	/*matn!*
+merginal	merginal.txt	/*merginal*
+merginal-branch-list	merginal.txt	/*merginal-branch-list*
+merginal-merge-conflicts	merginal.txt	/*merginal-merge-conflicts*
+merginal-requirements	merginal.txt	/*merginal-requirements*
+merginal-usage	merginal.txt	/*merginal-usage*
+merginal.txt	merginal.txt	/*merginal.txt*
 minipage	latexhelp.txt	/*minipage*
 misc-contact	misc.txt	/*misc-contact*
 misc-function-documentation	misc.txt	/*misc-function-documentation*
@@ -3474,9 +3475,6 @@ toolbox-support-tools-api	toolbox.txt	/*toolbox-support-tools-api*
 toolbox-support-tools-common	toolbox.txt	/*toolbox-support-tools-common*
 toolbox.txt	toolbox.txt	/*toolbox.txt*
 toolboxmake.txt	toolboxmake.txt	/*toolboxmake.txt*
-transpose	transpose.txt	/*transpose*
-transpose-tutorial	transpose.txt	/*transpose-tutorial*
-transpose.txt	transpose.txt	/*transpose.txt*
 twocolumn	latexhelp.txt	/*twocolumn*
 twoside	latexhelp.txt	/*twoside*
 unimpaired	unimpaired.txt	/*unimpaired*

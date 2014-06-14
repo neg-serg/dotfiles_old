@@ -10,10 +10,20 @@ endif
 
 " ------[ GUI settings ]-----------------------------------------------------
 if has("gui_running")
-    set gfn=PragmataPro\ for\ Powerline\ 14
-    set guifontwide=PragmataPro\ for\ Powerline\ 14
-    " set gfn=PragmataPro\ for\ Powerline\ 15
-    " set lsp=-1
+
+    if &diff
+        set gfn=PragmataPro\ for\ Powerline\ 10
+        set guifontwide=PragmataPro\ for\ Powerline\ 10
+        " colorscheme hybrid
+        colorscheme jellybeans
+    else
+        set gfn=PragmataPro\ for\ Powerline\ 14
+        set guifontwide=PragmataPro\ for\ Powerline\ 14
+        " set gfn=PragmataPro\ for\ Powerline\ 15
+        " set lsp=-1
+        let g:mirodark_enable_higher_contrast_mode=0
+        colorscheme mirodark
+    endif
     set lsp=1                          " Space between lines
     set go=c                           " For text messages instead of gui
     set background=dark                " Usable for colorschemes
@@ -53,9 +63,6 @@ if has("gui_running")
     endif
     set guitablabel=%-0.12t%M
 
-    let g:mirodark_enable_higher_contrast_mode=0
-    colorscheme mirodark
-
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
@@ -67,7 +74,9 @@ endif
 if !has("gui_running")
     colorscheme wim
     " ENABLE CTRL INTERPRETING FOR VIM
-    " silent !stty -ixon > /dev/null 2>/dev/null
+    silent !stty -ixon > /dev/null 2>/dev/null
+    silent !stty start undef > /dev/null 2>/dev/null
+    silent !stty stop undef > /dev/null 2>/dev/null
     set ttyscroll=256
     set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
@@ -86,13 +95,14 @@ if !has("gui_running")
     "     autocmd VimLeave * silent !echo -ne "\033]112\x7"
     "     " use \003]12;gray\007 for gnome-terminal
     " endif
-    
-    autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-    let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-    let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-    autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+    if exists('$TMUX')
+        autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+        let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
+        let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+        autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
 
-    autocmd VimEnter,VimLeave * silent !tmux set status
+        autocmd VimEnter,VimLeave * silent !tmux set status
+    endif
 endif
 
 if has ('x') && has ('gui') " On Linux use + register for copy-paste

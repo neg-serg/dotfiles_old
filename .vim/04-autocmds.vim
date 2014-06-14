@@ -284,3 +284,9 @@ autocmd vimrc FileType markdown setlocal spell! spelllang=en_us
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
+
+" augroup Tmux
+" 	au!
+" 	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
+" 	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
+" augroup END

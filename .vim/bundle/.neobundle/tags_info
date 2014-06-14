@@ -35,7 +35,6 @@ perl-support.vim
 po.vim--gray
 restart.vim
 rust.vim
-slimux
 splice.vim
 syntastic
 tabular
@@ -81,6 +80,7 @@ vim-lldb
 vim-lua-ftplugin
 vim-markdown
 vim-mathematica
+vim-merginal
 vim-misc
 vim-multiple-cursors
 vim-obsession
@@ -97,7 +97,6 @@ vim-session
 vim-surround
 vim-tbone
 vim-tmux
-vim-transpose
 vim-unimpaired
 vim-unite-history
 vim-unite-svn
