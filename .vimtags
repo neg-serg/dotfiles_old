@@ -66,15 +66,19 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <C-f>	/home/neg/.vim/11-vimacs.vim	/^vmap <C-f> <Right>$/;"	m	language:Vim
 <C-g>	/home/neg/.vim/10-keymaps.vim	/^map <C-g> g<C-g>$/;"	m	language:Vim
 <C-h>	/home/neg/.vim/10-keymaps.vim	/^inoremap <expr><C-h> pumvisible()? "\\<C-y>\\<C-h>" : "\\<C-h>"$/;"	m	language:Vim
+<C-h>	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^  nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>$/;"	m	language:Vim
 <C-h>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-h> :wincmd h<CR>$/;"	m	language:Vim
 <C-h>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-h> :wincmd h<CR>$/;"	m	language:Vim
 <c-j>	/home/neg/.vim/10-keymaps.vim	/^cnoremap <c-j> <down>$/;"	m	language:Vim
+<C-j>	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^  nnoremap <silent> <C-j> :TmuxNavigateDown<cr>$/;"	m	language:Vim
 <C-j>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-j> :wincmd j<CR>$/;"	m	language:Vim
 <C-j>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-j> :wincmd j<CR>$/;"	m	language:Vim
 <c-k>	/home/neg/.vim/10-keymaps.vim	/^cnoremap <c-k> <up>$/;"	m	language:Vim
 <C-k>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-k> <C-f>d$<C-c><End>$/;"	m	language:Vim
+<C-k>	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^  nnoremap <silent> <C-k> :TmuxNavigateUp<cr>$/;"	m	language:Vim
 <C-k>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-k> :wincmd k<CR>$/;"	m	language:Vim
 <C-k>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-k> :wincmd k<CR>$/;"	m	language:Vim
+<C-l>	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^  nnoremap <silent> <C-l> :TmuxNavigateRight<cr>$/;"	m	language:Vim
 <C-l>	/home/neg/1st_level/vimrcrc	/^nnoremap <silent> <C-l> :wincmd l<CR>$/;"	m	language:Vim
 <C-l>	/mnt/home/dev/src/vimmeh/vimrc	/^nnoremap <silent> <C-l> :wincmd l<CR>$/;"	m	language:Vim
 <C-M-5>	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-M-5> <C-o>:call <SID>QueryReplaceRegexp()<CR>$/;"	m	language:Vim
@@ -99,6 +103,7 @@ $q	/home/neg/.vim/10-keymaps.vim	/^cno $q <C-\\>eDeleteTillSlash()<cr>$/;"	m	lan
 <C-x>b	/home/neg/.vim/11-vimacs.vim	/^inoremap <C-x>b <C-o>:Unite -silent buffer<CR>$/;"	m	language:Vim
 <C-y>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-y> <C-r><C-o>"$/;"	m	language:Vim
 <C-y>	/home/neg/.vim/11-vimacs.vim	/^inoremap <silent> <C-y> <C-o>:call <SID>ResetKillRing()<CR><C-r><C-o>"$/;"	m	language:Vim
+<C-\>	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^  nnoremap <silent> <C-\\> :TmuxNavigatePrevious<cr>$/;"	m	language:Vim
 <C-_>	/home/neg/.vim/11-vimacs.vim	/^cnoremap <C-_> <c-f>$/;"	m	language:Vim
 <Enter>	/home/neg/1st_level/vimrcrc	/^vnoremap <silent> <Enter> :EasyAlign<CR>$/;"	m	language:Vim
 <Enter>	/mnt/home/dev/src/vimmeh/vimrc	/^vnoremap <silent> <Enter> :EasyAlign<CR>$/;"	m	language:Vim
@@ -931,6 +936,7 @@ g:loaded_operator_highlight	/home/neg/.vim/colors/mirodark.vim	/^  let g:loaded_
 g:loaded_operator_highlight	/home/neg/.vim/colors/mirodark_wim.vim	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
 g:loaded_operator_highlight	/home/neg/.vim/colors/wim.vim	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
 g:loaded_operator_highlight	/home/neg/1st_level/all_colors	/^  let g:loaded_operator_highlight = 1$/;"	v	language:Vim
+g:loaded_tmux_navigator	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^let g:loaded_tmux_navigator = 1$/;"	v	language:Vim
 g:loaded_transwrd	/mnt/home/dw/transwrd.vim	/^let g:loaded_transwrd = 1$/;"	v	language:Vim
 g:lt_height	/home/neg/.vim/01-settings.vim	/^let g:lt_height = 10$/;"	v	language:Vim
 g:lt_location_list_toggle_map	/home/neg/.vim/01-settings.vim	/^let g:lt_location_list_toggle_map = '<c-e>i'$/;"	v	language:Vim
@@ -1307,6 +1313,7 @@ input_method	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresource
 input_mode	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  INT32  input_mode;$/;"	m	language:C++	struct:_mwmhints
 input_style	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  XIMStyle input_style;$/;"	m	language:C++	struct:rxvt_term
 INSERT	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  INSERT = -1,				\/* don't change these values *\/$/;"	e	language:C++	enum:__anon5
+InTmuxSession	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:InTmuxSession()$/;"	f	language:Vim
 int_bwidth	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            int_bwidth;    \/* internal border width                    *\/$/;"	m	language:C++	struct:TermWin_t
 ioncore_screens_updated	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void ioncore_screens_updated(WRootWin *rw)$/;"	f	language:C
 ioncore_update_net_state	/mnt/home/dev/src/1st_level/notion/ioncore/netwm.c	/^void ioncore_update_net_state(WClientWin *cwin)$/;"	f	language:C
@@ -1397,76 +1404,70 @@ lowercase	/mnt/home/dev/st/lthw/c/ex29/libex29.c	/^int lowercase(const char *msg
 LustyExplorerDefaultMappings	/home/neg/.vim/01-settings.vim	/^let LustyExplorerDefaultMappings  = 0$/;"	v	language:Vim
 lvl_abv_sea	/mnt/home/dev/wrk/emm/emm_sph/emm_sph_file.c	/^    int    lvl_abv_sea;  \/\/ level above sea in meters$/;"	m	language:C	struct:point_input	file:
 m	/mnt/home/dw/main.s	/^m:	.int 0$/;"	l	language:Asm
-MAG_AllocateLegendreFunctionMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_LegendreFunction *MAG_AllocateLegendreFunctionMemory(int NumTerms)$/;"	f	language:C
-MAG_AllocateModelMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_MagneticModel *MAG_AllocateModelMemory(int NumTerms)$/;"	f	language:C
+MAG_AllocateLegendreFunctionMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_LegendreFunction *MAG_AllocateLegendreFunctionMemory(int NumTerms) {$/;"	f	language:C
+MAG_AllocateModelMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_MagneticModel *MAG_AllocateModelMemory(int NumTerms) {$/;"	f	language:C
 MAG_AllocateSphVarMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_SphericalHarmonicVariables* MAG_AllocateSphVarMemory(int nMax) {$/;"	f	language:C
 MAG_AssignHeaderValues	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_AssignHeaderValues(MAGtype_MagneticModel *model, char values[][MAXLINELENGTH]) {$/;"	f	language:C
-MAG_AssignMagneticModelCoeffs	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_AssignMagneticModelCoeffs(MAGtype_MagneticModel *Assignee, MAGtype_MagneticModel *Source, int nMax, int nMaxSecVar)$/;"	f	language:C
-MAG_AssociatedLegendreFunction	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_AssociatedLegendreFunction(MAGtype_CoordSpherical CoordSpherical, int nMax, MAGtype_LegendreFunction *LegendreFunction)$/;"	f	language:C
+MAG_AssignMagneticModelCoeffs	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_AssignMagneticModelCoeffs(MAGtype_MagneticModel *Assignee, MAGtype_MagneticModel *Source, int nMax, int nMaxSecVar) {$/;"	f	language:C
+MAG_AssociatedLegendreFunction	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_AssociatedLegendreFunction(MAGtype_CoordSpherical CoordSpherical, int nMax, MAGtype_LegendreFunction *LegendreFunction) {$/;"	f	language:C
 MAG_BaseErrors	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_BaseErrors(double DeclCoef, double DeclBaseline, double InclOffset, double FOffset, double H, double* DeclErr, double* InclErr, double* FErr) {$/;"	f	language:C
-MAG_CalculateGeoMagneticElements	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateGeoMagneticElements(MAGtype_MagneticResults *MagneticResultsGeo, MAGtype_GeoMagneticElements *GeoMagneticElements)$/;"	f	language:C
+MAG_CalculateGeoMagneticElements	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateGeoMagneticElements(MAGtype_MagneticResults *MagneticResultsGeo, MAGtype_GeoMagneticElements *GeoMagneticElements) {$/;"	f	language:C
 MAG_CalculateGradientElements	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_CalculateGradientElements(MAGtype_MagneticResults GradResults, MAGtype_GeoMagneticElements MagneticElements, MAGtype_GeoMagneticElements *GradElements) {$/;"	f	language:C
-MAG_CalculateGridVariation	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateGridVariation(MAGtype_CoordGeodetic location, MAGtype_GeoMagneticElements *elements)$/;"	f	language:C
-MAG_CalculateSecularVariationElements	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateSecularVariationElements(MAGtype_MagneticResults MagneticVariation, MAGtype_GeoMagneticElements *MagneticElements)$/;"	f	language:C
-MAG_CheckGeographicPole	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CheckGeographicPole(MAGtype_CoordGeodetic *CoordGeodetic)$/;"	f	language:C
-MAG_ComputeSphericalHarmonicVariables	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ComputeSphericalHarmonicVariables(MAGtype_Ellipsoid Ellip, MAGtype_CoordSpherical CoordSpherical, int nMax, MAGtype_SphericalHarmonicVariables *SphVariables)$/;"	f	language:C
-MAG_ConvertGeoidToEllipsoidHeight	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ConvertGeoidToEllipsoidHeight(MAGtype_CoordGeodetic *CoordGeodetic, MAGtype_Geoid *Geoid)$/;"	f	language:C
+MAG_CalculateGridVariation	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateGridVariation(MAGtype_CoordGeodetic location, MAGtype_GeoMagneticElements *elements) {$/;"	f	language:C
+MAG_CalculateSecularVariationElements	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CalculateSecularVariationElements(MAGtype_MagneticResults MagneticVariation, MAGtype_GeoMagneticElements *MagneticElements) {$/;"	f	language:C
+MAG_CheckGeographicPole	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_CheckGeographicPole(MAGtype_CoordGeodetic *CoordGeodetic) {$/;"	f	language:C
+MAG_ComputeSphericalHarmonicVariables	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ComputeSphericalHarmonicVariables(MAGtype_Ellipsoid Ellip, MAGtype_CoordSpherical CoordSpherical, int nMax, MAGtype_SphericalHarmonicVariables *SphVariables) {$/;"	f	language:C
+MAG_ConvertGeoidToEllipsoidHeight	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ConvertGeoidToEllipsoidHeight(MAGtype_CoordGeodetic *CoordGeodetic, MAGtype_Geoid *Geoid) {$/;"	f	language:C
 MAG_CoordGeodeticAssign	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_CoordGeodetic MAG_CoordGeodeticAssign(MAGtype_CoordGeodetic CoordGeodetic) {$/;"	f	language:C
-MAG_DateToYear	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_DateToYear(MAGtype_Date *CalendarDate, char *Error)$/;"	f	language:C
-MAG_DegreeToDMSstring	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_DegreeToDMSstring(double DegreesOfArc, int UnitDepth, char *DMSstring)$/;"	f	language:C
-MAG_DMSstringToDegree	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_DMSstringToDegree(char *DMSstring, double *DegreesOfArc)$/;"	f	language:C
+MAG_DateToYear	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_DateToYear(MAGtype_Date *CalendarDate, char *Error) {$/;"	f	language:C
+MAG_DegreeToDMSstring	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_DegreeToDMSstring(double DegreesOfArc, int UnitDepth, char *DMSstring) {$/;"	f	language:C
+MAG_DMSstringToDegree	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_DMSstringToDegree(char *DMSstring, double *DegreesOfArc) {$/;"	f	language:C
 MAG_Error	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_Error(int control)$/;"	f	language:C
 MAG_ErrorCalc	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_ErrorCalc(MAGtype_GeoMagneticElements B, MAGtype_GeoMagneticElements* Errors) {$/;"	f	language:C
-MAG_FloatSwap	/mnt/home/dev/wrk/emm_sph/sph.c	/^float MAG_FloatSwap(float f)$/;"	f	language:C
-MAG_FreeLegendreMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeLegendreMemory(MAGtype_LegendreFunction *LegendreFunction)$/;"	f	language:C
-MAG_FreeMagneticModelMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeMagneticModelMemory(MAGtype_MagneticModel *MagneticModel)$/;"	f	language:C
-MAG_FreeMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeMemory(MAGtype_MagneticModel *MagneticModel, MAGtype_MagneticModel *TimedMagneticModel, MAGtype_LegendreFunction *LegendreFunction)$/;"	f	language:C
-MAG_FreeSphVarMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeSphVarMemory(MAGtype_SphericalHarmonicVariables *SphVar)$/;"	f	language:C
-MAG_GeodeticToSpherical	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GeodeticToSpherical(MAGtype_Ellipsoid Ellip, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_CoordSpherical *CoordSpherical)$/;"	f	language:C
+MAG_FreeLegendreMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeLegendreMemory(MAGtype_LegendreFunction *LegendreFunction) {$/;"	f	language:C
+MAG_FreeMagneticModelMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeMagneticModelMemory(MAGtype_MagneticModel *MagneticModel) {$/;"	f	language:C
+MAG_FreeMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeMemory(MAGtype_MagneticModel *MagneticModel, MAGtype_MagneticModel *TimedMagneticModel, MAGtype_LegendreFunction *LegendreFunction) {$/;"	f	language:C
+MAG_FreeSphVarMemory	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_FreeSphVarMemory(MAGtype_SphericalHarmonicVariables *SphVar) {$/;"	f	language:C
+MAG_GeodeticToSpherical	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GeodeticToSpherical(MAGtype_Ellipsoid Ellip, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_CoordSpherical *CoordSpherical) {$/;"	f	language:C
 MAG_Geomag	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_Geomag(MAGtype_Ellipsoid Ellip, MAGtype_CoordSpherical CoordSpherical, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_MagneticModel *TimedMagneticModel, MAGtype_GeoMagneticElements *GeoMagneticElements) {$/;"	f	language:C
 MAG_GeomagIntroduction_EMM	/mnt/home/dev/wrk/emm_sph/sph.c	/^char MAG_GeomagIntroduction_EMM(MAGtype_MagneticModel *MagneticModel, char* VersionDate) {$/;"	f	language:C
-MAG_GeomagIntroduction_WMM	/mnt/home/dev/wrk/emm_sph/sph.c	/^char MAG_GeomagIntroduction_WMM(MAGtype_MagneticModel *MagneticModel, char *VersionDate)$/;"	f	language:C
+MAG_GeomagIntroduction_WMM	/mnt/home/dev/wrk/emm_sph/sph.c	/^char MAG_GeomagIntroduction_WMM(MAGtype_MagneticModel *MagneticModel, char *VersionDate) {$/;"	f	language:C
 MAG_GeoMagneticElementsAssign	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_GeoMagneticElements MAG_GeoMagneticElementsAssign(MAGtype_GeoMagneticElements Elements) {$/;"	f	language:C
 MAG_GeoMagneticElementsScale	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_GeoMagneticElements MAG_GeoMagneticElementsScale(MAGtype_GeoMagneticElements Elements, double factor) {$/;"	f	language:C
 MAG_GeoMagneticElementsSubtract	/mnt/home/dev/wrk/emm_sph/sph.c	/^MAGtype_GeoMagneticElements MAG_GeoMagneticElementsSubtract(MAGtype_GeoMagneticElements minuend, MAGtype_GeoMagneticElements subtrahend) {$/;"	f	language:C
 MAG_GetGeoidHeight	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetGeoidHeight(double Latitude, double Longitude, double *DeltaHeight, MAGtype_Geoid *Geoid) {$/;"	f	language:C
-MAG_GetTransverseMercator	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetTransverseMercator(MAGtype_CoordGeodetic CoordGeodetic, MAGtype_UTMParameters *UTMParameters)$/;"	f	language:C
-MAG_GetUserGrid	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetUserGrid(MAGtype_CoordGeodetic *minimum, MAGtype_CoordGeodetic *maximum, double *step_size, double *a_step_size, double *step_time, MAGtype_Date$/;"	f	language:C
-MAG_GetUserInput	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetUserInput(MAGtype_MagneticModel *MagneticModel, MAGtype_Geoid *Geoid, MAGtype_CoordGeodetic *CoordGeodetic, MAGtype_Date *MagneticDate)$/;"	f	language:C
+MAG_GetTransverseMercator	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetTransverseMercator(MAGtype_CoordGeodetic CoordGeodetic, MAGtype_UTMParameters *UTMParameters) {$/;"	f	language:C
 MAG_GetUTMParameters	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_GetUTMParameters(double Latitude,$/;"	f	language:C
 MAG_Gradient	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_Gradient(MAGtype_Ellipsoid Ellip, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_MagneticModel *TimedMagneticModel, MAGtype_Gradient *Gradient) {$/;"	f	language:C
 MAG_GradY	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_GradY(MAGtype_Ellipsoid Ellip, MAGtype_CoordSpherical CoordSpherical, MAGtype_CoordGeodetic CoordGeodetic,$/;"	f	language:C
 MAG_GradYSummation	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_GradYSummation(MAGtype_LegendreFunction *LegendreFunction, MAGtype_MagneticModel *MagneticModel, MAGtype_SphericalHarmonicVariables SphVariables, MAGtype_CoordSpherical CoordSpherical, MAGtype_MagneticResults *GradY) {$/;"	f	language:C
 MAG_Grid	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_Grid(MAGtype_CoordGeodetic minimum, MAGtype_CoordGeodetic maximum, double$/;"	f	language:C
-MAG_InitializeGeoid	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_InitializeGeoid(MAGtype_Geoid *Geoid)$/;"	f	language:C
 MAG_isNaN	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_isNaN(double d) {$/;"	f	language:C
-MAG_PcupHigh	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_PcupHigh(double *Pcup, double *dPcup, double x, int nMax)$/;"	f	language:C
-MAG_PcupLow	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_PcupLow(double *Pcup, double *dPcup, double x, int nMax)$/;"	f	language:C
+MAG_PcupHigh	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_PcupHigh(double *Pcup, double *dPcup, double x, int nMax) {$/;"	f	language:C
+MAG_PcupLow	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_PcupLow(double *Pcup, double *dPcup, double x, int nMax) {$/;"	f	language:C
 MAG_PrintEMMFormat	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_PrintEMMFormat(char *filename, char *filenameSV, MAGtype_MagneticModel *MagneticModel) {$/;"	f	language:C
-MAG_PrintGradient	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_PrintGradient(MAGtype_Gradient Gradient) {$/;"	f	language:C
 Mag_PrintSHDFFormat	/mnt/home/dev/wrk/emm_sph/sph.c	/^void Mag_PrintSHDFFormat(char *filename, MAGtype_MagneticModel *(*MagneticModel)[], int epochs) {$/;"	f	language:C
-MAG_PrintUserData	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_PrintUserData(MAGtype_GeoMagneticElements GeomagElements, MAGtype_CoordGeodetic SpaceInput, MAGtype_Date TimeInput, MAGtype_MagneticModel *MagneticModel, MAGtype_Geoid *Geoid)$/;"	f	language:C
+MAG_PrintUserData	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_PrintUserData(MAGtype_GeoMagneticElements GeomagElements, MAGtype_CoordGeodetic SpaceInput, MAGtype_Date TimeInput, MAGtype_MagneticModel *MagneticModel, MAGtype_Geoid *Geoid) {$/;"	f	language:C
 MAG_PrintWMMFormat	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_PrintWMMFormat(char *filename, MAGtype_MagneticModel *MagneticModel) {$/;"	f	language:C
 MAG_readMagneticModel	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_readMagneticModel(char *filename, MAGtype_MagneticModel * MagneticModel) {$/;"	f	language:C
-MAG_readMagneticModel_Large	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_readMagneticModel_Large(char *filename, char *filenameSV, MAGtype_MagneticModel *MagneticModel)$/;"	f	language:C
-MAG_readMagneticModel_SHDF	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_readMagneticModel_SHDF(char *filename, MAGtype_MagneticModel *(*magneticmodels)[], int array_size)$/;"	f	language:C
+MAG_readMagneticModel_Large	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_readMagneticModel_Large(char *filename, char *filenameSV, MAGtype_MagneticModel *MagneticModel) {$/;"	f	language:C
+MAG_readMagneticModel_SHDF	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_readMagneticModel_SHDF(char *filename, MAGtype_MagneticModel *(*magneticmodels)[], int array_size) {$/;"	f	language:C
 MAG_robustReadMagModels	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_robustReadMagModels(char *filename, MAGtype_MagneticModel *(*magneticmodels)[], int array_size) {$/;"	f	language:C
-MAG_robustReadMagneticModel_Large	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_robustReadMagneticModel_Large(char *filename, char *filenameSV, MAGtype_MagneticModel **MagneticModel, int array_size) {$/;"	f	language:C
-MAG_RotateMagneticVector	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_RotateMagneticVector(MAGtype_CoordSpherical CoordSpherical, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_MagneticResults MagneticResultsSph, MAGtype_MagneticResults *MagneticResultsGeo)$/;"	f	language:C
+MAG_robustReadMagneticModel_Large	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_robustReadMagneticModel_Large(char *filename, char *filenameSV, MAGtype_MagneticModel **MagneticModel) {$/;"	f	language:C
+MAG_RotateMagneticVector	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_RotateMagneticVector(MAGtype_CoordSpherical CoordSpherical, MAGtype_CoordGeodetic CoordGeodetic, MAGtype_MagneticResults MagneticResultsSph, MAGtype_MagneticResults *MagneticResultsGeo) {$/;"	f	language:C
 MAG_SecVarSummation	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_SecVarSummation(MAGtype_LegendreFunction *LegendreFunction, MAGtype_MagneticModel *MagneticModel, MAGtype_SphericalHarmonicVariables SphVariables, MAGtype_CoordSpherical CoordSpherical, MAGtype_MagneticResults *MagneticResults) {$/;"	f	language:C
 MAG_SecVarSummationSpecial	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_SecVarSummationSpecial(MAGtype_MagneticModel *MagneticModel, MAGtype_SphericalHarmonicVariables SphVariables, MAGtype_CoordSpherical CoordSpherical, MAGtype_MagneticResults *MagneticResults) {$/;"	f	language:C
 MAG_SetDefaults	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_SetDefaults(MAGtype_Ellipsoid *Ellip, MAGtype_Geoid *Geoid) {$/;"	f	language:C
 MAG_SphericalToCartesian	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_SphericalToCartesian(MAGtype_CoordSpherical CoordSpherical, double *x, double *y, double *z) {$/;"	f	language:C
 MAG_Summation	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_Summation(MAGtype_LegendreFunction *LegendreFunction, MAGtype_MagneticModel *MagneticModel, MAGtype_SphericalHarmonicVariables SphVariables, MAGtype_CoordSpherical CoordSpherical, MAGtype_MagneticResults *MagneticResults) {$/;"	f	language:C
 MAG_SummationSpecial	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_SummationSpecial(MAGtype_MagneticModel *MagneticModel, MAGtype_SphericalHarmonicVariables SphVariables, MAGtype_CoordSpherical CoordSpherical, MAGtype_MagneticResults *MagneticResults) {$/;"	f	language:C
-MAG_swab_type	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_swab_type() {$/;"	f	language:C
 MAG_TimelyModifyMagneticModel	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_TimelyModifyMagneticModel(MAGtype_Date UserDate, MAGtype_MagneticModel *MagneticModel, MAGtype_MagneticModel *TimedMagneticModel) {$/;"	f	language:C
 MAG_TMfwd4	/mnt/home/dev/wrk/emm_sph/sph.c	/^void MAG_TMfwd4(double Eps, double Epssq, double K0R4, double K0R4oa,$/;"	f	language:C
 MAG_Trim	/mnt/home/dev/wrk/emm_sph/sph.c	/^char *MAG_Trim(char *str) {$/;"	f	language:C
-MAG_ValidateDMSstringlat	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ValidateDMSstringlat(char *input, char *Error)$/;"	f	language:C
-MAG_ValidateDMSstringlong	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ValidateDMSstringlong(char *input, char *Error)$/;"	f	language:C
-MAG_Warnings	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_Warnings(int control, double value, MAGtype_MagneticModel *MagneticModel)$/;"	f	language:C
-MAG_YearToDate	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_YearToDate(MAGtype_Date *CalendarDate)$/;"	f	language:C
+MAG_ValidateDMSstringlat	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ValidateDMSstringlat(char *input, char *Error) {$/;"	f	language:C
+MAG_ValidateDMSstringlong	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_ValidateDMSstringlong(char *input, char *Error) {$/;"	f	language:C
+MAG_Warnings	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_Warnings(int control, double value, MAGtype_MagneticModel *MagneticModel) {$/;"	f	language:C
+MAG_YearToDate	/mnt/home/dev/wrk/emm_sph/sph.c	/^int MAG_YearToDate(MAGtype_Date *CalendarDate) {$/;"	f	language:C
 main	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt-unicode-9.18/src/rxvtc.C	/^main (int argc, const char *const *argv)$/;"	f	language:C++
 main	/mnt/home/dev/st/lthw/c/ex27/never_trust_input.c	/^int main() {$/;"	f	language:C
 main	/mnt/home/dev/st/lthw/c/ex29/ex29.c	/^int main(int argc, char *argv[])$/;"	f	language:C
@@ -2339,6 +2340,7 @@ s:N3	/home/neg/mirodark_wim.vim	/^let s:N3 = [ '#ffffff' , '#080808' , 231  , 23
 s:N3	/home/neg/wim.vim	/^let s:N3 = [ '' , '' , 231  , 234 ]$/;"	v	language:Vim
 s:save_cpo	/home/neg/.vim/bundle/neomru.vim/autoload/neomru.vim	/^let s:save_cpo = &cpo$/;"	v	language:Vim
 s:save_cpo	/mnt/home/dw/transwrd.vim	/^let s:save_cpo = &cpo$/;"	v	language:Vim
+s:tmux_is_last_pane	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^let s:tmux_is_last_pane = 0$/;"	v	language:Vim
 s:V1	/home/neg/.vim/bundle/vim-airline/autoload/airline/themes/mirodark_wim.vim	/^let s:V1 = [ '' , '' , 246 , 125 ]$/;"	v	language:Vim
 s:V1	/home/neg/.vim/bundle/vim-airline/autoload/airline/themes/wim.vim	/^let s:V1 = [ '#ffff9a' , '#680020' , 246 , 125 ]$/;"	v	language:Vim
 s:V1	/home/neg/.vim/colors/mirodark_wim_powerline.vim	/^let s:V1 = [ '#ffff9a' , '#680020' , 246 , 125 ]$/;"	v	language:Vim
@@ -2559,6 +2561,15 @@ tint_set	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/sr
 tlen_t	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef  int32_t tlen_t;  \/\/ was int16_t, but this results in smaller code and memory use$/;"	t	language:C++
 tlen_t_	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^typedef  int32_t tlen_t_; \/\/ specifically for use in the line_t structure$/;"	t	language:C++
 Tlist_Inc_Winwidth	/home/neg/.vim/01-settings.vim	/^let Tlist_Inc_Winwidth = 0$/;"	v	language:Vim
+TmuxAwareNavigate	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:TmuxAwareNavigate(direction)$/;"	f	language:Vim
+TmuxNavigateDown	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxNavigateDown call <SID>TmuxWinCmd('j')$/;"	c	language:Vim
+TmuxNavigateLeft	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxNavigateLeft call <SID>TmuxWinCmd('h')$/;"	c	language:Vim
+TmuxNavigatePrevious	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxNavigatePrevious call <SID>TmuxWinCmd('p')$/;"	c	language:Vim
+TmuxNavigateRight	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxNavigateRight call <SID>TmuxWinCmd('l')$/;"	c	language:Vim
+TmuxNavigateUp	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxNavigateUp call <SID>TmuxWinCmd('k')$/;"	c	language:Vim
+TmuxPaneCurrentCommand	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^command! TmuxPaneCurrentCommand call <SID>TmuxPaneCurrentCommand()$/;"	c	language:Vim
+TmuxPaneCurrentCommand	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:TmuxPaneCurrentCommand()$/;"	f	language:Vim
+TmuxWinCmd	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:TmuxWinCmd(direction)$/;"	f	language:Vim
 tmux_session_name	/tmp/test.vim	/^    let tmux_session_name=system('~\/bin\/scripts\/tmux_session')$/;"	v	language:Vim
 toggle_higher_contrast_mode	/home/neg/.vim/colors/mirodark.vim	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
 toggle_higher_contrast_mode	/home/neg/1st_level/all_colors	/^    fun! s:toggle_higher_contrast_mode()$/;"	f	language:Vim
@@ -2609,6 +2620,7 @@ URxvt_view_up	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresourc
 usage	/mnt/home/1st_level/doc_tmp/rmlint.sh	/^usage()$/;"	f	language:Sh
 usage	/tmp/malloc2.c	/^static void usage(void) {$/;"	f	language:C	file:
 usage	/tmp/malloc2.c	/^static void usage(void);$/;"	p	language:C	file:
+UseTmuxNavigatorMappings	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:UseTmuxNavigatorMappings()$/;"	f	language:Vim
 v	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  vector<compose_char> v;$/;"	m	language:C++	class:rxvt_composite_vec
 VALGRIND	/mnt/home/dev/st/lthw/c/c-skeleton/Makefile	/^       VALGRIND="valgrind --log-file=\/tmp\/valgrind-%p.log" $(MAKE)$/;"	m	language:Make
 valhalla	/mnt/home/dev/src/dotfiles/bashrc	/^valhalla() {$/;"	f	language:Sh
@@ -2617,6 +2629,7 @@ value	/mnt/home/dev/src/1st_level/vim-urxvt-patched/rxvt-unicode-my-918/src/rxvt
 view_start	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  int            view_start;    \/* scrollback view starts here              *\/$/;"	m	language:C++	struct:TermWin_t
 vim	/home/neg/.vim/bundle/vim-cmake-project/plugin/cmake-project.vim	/^import vim$/;"	m	language:Vim
 vim	/mnt/home/dev/src/dotfiles/bashrc	/^vim()$/;"	f	language:Sh
+VimNavigate	/home/neg/.vim/bundle/vim-tmux-navigator/plugin/tmux_navigator.vim	/^function! s:VimNavigate(direction)$/;"	f	language:Vim
 vimrc	/home/neg/.vim/04-autocmds.vim	/^augroup vimrc$/;"	a	language:Vim
 vt	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  Window         vt;            \/* vt100 window                             *\/$/;"	m	language:C++	struct:TermWin_t
 vt_emask	/mnt/home/dev/src/1st_level/rxvt-unicode-multi_display-256xresources/src/rxvt-unicode-9.20/src/rxvt.h	/^  long vt_emask, vt_emask_perl, vt_emask_xim, vt_emask_mouse;$/;"	m	language:C++	struct:rxvt_term

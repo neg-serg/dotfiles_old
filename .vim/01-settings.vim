@@ -73,10 +73,12 @@ endif
 
 if !has("gui_running")
     colorscheme wim
-    " ENABLE CTRL INTERPRETING FOR VIM
+
+    " enable ctrl interpreting for vim
     silent !stty -ixon > /dev/null 2>/dev/null
     silent !stty start undef > /dev/null 2>/dev/null
     silent !stty stop undef > /dev/null 2>/dev/null
+
     set ttyscroll=256
     set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
@@ -101,7 +103,9 @@ if !has("gui_running")
         let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
         autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
 
-        autocmd VimEnter,VimLeave * silent !tmux set status
+        autocmd VimEnter * silent !tmux set status
+        " silent !tmux unbind -n C-M-w
+        " autocmd VimEnter,VimLeave * silent !tmux set status
     endif
 endif
 

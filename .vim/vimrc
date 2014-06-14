@@ -69,7 +69,7 @@ NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 "------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-tbone.git'               "another tmux wrapper for vim
 NeoBundle 'benmills/vimux.git'                "tmux wrapper
-" NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'christoomey/vim-tmux-navigator'    "easy jump between windows
 " https://github.com/wellle/tmux-complete.vim.git
 "------------------------------------------------------------------------------------------------------------
 "--[ haskell ]-----------------------------------------------------------------------------------------------
