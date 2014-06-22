@@ -164,3 +164,41 @@ function! <SID>QueryReplaceRegexp()
   let replacetext_esc = escape(replacetext,'/')
   execute ".,$s/" . searchtext_esc . "/" . replacetext_esc . "/cg"
 endfunction
+
+imap ñ <nop>
+imap ÷ <nop>
+imap ò <nop>
+imap ô <nop>
+imap é <nop>
+imap ï <nop>
+imap ð <nop>
+imap è <nop>
+imap ê <nop>
+imap ã <nop>
+imap ö <nop>
+imap í <nop>
+imap õ <nop>
+imap Ñ <nop>
+imap × <nop>
+imap Å <nop>
+imap Ò <nop>
+imap Ô <nop>
+imap Ù <nop>
+imap É <nop>
+imap Ð <nop>
+imap Á <nop>
+imap Ó <nop>
+imap Ä <nop>
+imap Æ <nop>
+imap Ç <nop>
+imap È <nop>
+imap Ê <nop>
+imap Ç <nop>
+imap Ë <nop>
+imap Ú <nop>
+imap Ø <nop>
+imap Ã <nop>
+imap Ö <nop>
+imap Â <nop>
+imap Î <nop>
+imap Í <nop>

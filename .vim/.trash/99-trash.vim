@@ -1,6 +1,17 @@
+" NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xml','css']}}
+" "highlight for html
+" NeoBundleLazy 'Valloric/MatchTagAlways', {'autoload': {'filetypes': ['html', 'xhttml','xml']}}
+" NeoBundleLazy 'jimenezrick/vimerl', {'autoload': {'filetypes': 'erl'}}
+" NeoBundleLazy 'mattn/emmet-vim', {'autoload':  {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
+" NeoBundleLazy 'hail2u/vim-css3-syntax', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml', 'xls', 'markdown']}}
+" NeoBundleLazy 'skammer/vim-css-color', {'autoload': {'filetypes': ['html', 'xhttml', 'css', 'xml']}}
+" NeoBundleLazy 'matthias-guenther/hammer.vim', {'autoload': \ {'filetypes': ['html', 'xhttml', 'css']}}
+" NeoBundleLazy 'mattn/zencoding-vim', {'autoload': {'filetypes': ['html', 'xhttml','xml']}}
+
 "------------------------------------------------------------------------------------------------------------
 "---------------[  textobj  ]--------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
+" NeoBundle 'tek/vim-maque.git'                 "run commands in tmux
 " NeoBundle 'epeli/slimux.git'                  "tmux wrapper with gvim support
 " NeoBundle 'paradigm/TextObjectify'            "Textjob main plugin
 " NeoBundle 'kana/vim-textobj-entire.git'       "Text objects to select the entire content of a buffer

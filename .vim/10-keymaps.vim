@@ -96,19 +96,7 @@ nnoremap * *N
 vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 nnoremap <C-F8> :nohlsearch<CR>
 
-" Easier to type, and I never use the default behavior.
-noremap H ^
-noremap L g_
-
-" Open a Quickfix window for the last search.
-
 nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-" nmap <silent> <leader>r :LustyBufferExplorer<CR>
-nmap <silent> <leader>g :LustyBufferGrep<CR>
-
-" inoremap <CR> <C-g>u<CR>
-nnoremap ! :%!
-xnoremap ! :!
 
 map Q gq
 
@@ -123,7 +111,7 @@ imap [H g0
 cmap w!! w !sudo tee % >/dev/null
 
 " Indent fun
-"vnoremap > >gv
+vnoremap > >gv
 vnoremap < <gv
 
 map <C-g> g<C-g>
@@ -186,9 +174,9 @@ vnoremap <silent> # :<C-U>
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
 
-map <S-h> gT
-map <S-l> gt
-
+" Easier to type, and I never use the default behavior.
+noremap H ^
+noremap L g_
 "-----------[ YouCompleteMe ]---------------------------------
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
@@ -209,22 +197,18 @@ else
   let g:UltiSnipsListSnippets        = "<c-m-s>"
 endif
 
-" Stupid shift key fixes
-    if has("user_commands")
-        command! -bang -nargs=* -complete=file E e<bang> <args>
-        command! -bang -nargs=* -complete=file W w<bang> <args>
-        command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-        command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-        command! -bang Wa wa<bang>
-        command! -bang WA wa<bang>
-        command! -bang Q q<bang>
-        command! -bang QA qa<bang>
-        command! -bang Qa qa<bang>
-    cmap Tabe tabe
-endif
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+cmap Tabe tabe
 
 nnoremap <leader>r :YRShow<CR>
-
 " this makes Y yank from the cursor to the end of the line, which makes more
 " sense than the default of yanking the whole current line (we can use yy for
 " that)
@@ -242,33 +226,27 @@ vnoremap > >gv
 " http://stackoverflow.com/a/8064607/127816
 vnoremap . :normal .<CR>
 
-" Map <Leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
 " Easier horizontal scrolling
 map zl zL
 map zh zH
 
-" Tabularize {
-    nmap <Leader>a& :Tabularize /&<CR>
-    vmap <Leader>a& :Tabularize /&<CR>
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a: :Tabularize /:<CR>
-    vmap <Leader>a: :Tabularize /:<CR>
-    nmap <Leader>a:: :Tabularize /:\zs<CR>
-    vmap <Leader>a:: :Tabularize /:\zs<CR>
-    nmap <Leader>a, :Tabularize /,<CR>
-    vmap <Leader>a, :Tabularize /,<CR>
-    nmap <Leader>a,, :Tabularize /,\zs<CR>
-    vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-" }
-" TagBar {
-    nnoremap <silent> <leader>tt :TagbarToggle<CR>
-    nnoremap <silent> <leader>T :NERDTreeCWD<CR>
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
+nnoremap <silent> <leader>T :NERDTreeCWD<CR>
 
 nmap <silent> <F11>                       <Plug>FontsizeBegin
 nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
@@ -312,7 +290,6 @@ if !exists(":Gdiffoff")
     command Gdiffoff diffoff | q | Gedit
 endif
 noremap <Leader>dq :Gdiffoff<CR>
-" }}}
 
 nnoremap <silent> <leader>gv :Gitv --all<CR>
 nnoremap <silent> <leader>gV :Gitv! --all<CR>

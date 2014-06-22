@@ -86,7 +86,7 @@ autocmd FileType markdown NeoBundleSource vim-markdown
 autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
-au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType ruby setlocal tabstop=4 softtabstop=4 shiftwidth=4
 
 function! JavaScriptFold()
     setl foldmethod=syntax
@@ -135,7 +135,7 @@ augroup ccfiles
 augroup END
 
 autocmd FileType go                         autocmd BufWritePre <buffer> Fmt
-autocmd FileType haskell                    setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType haskell                    setlocal expandtab shiftwidth=4 softtabstop=4
 autocmd BufNewFile,BufRead *.html.twig      set filetype=html.twig
 augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
@@ -258,9 +258,9 @@ autocmd vimrc FileType snippets set noexpandtab
 
 " The stupid python filetype plugin overrides our settings!
 autocmd vimrc FileType python
-      \ set tabstop=2 |
-      \ set shiftwidth=2 |
-      \ set softtabstop=2 |
+      \ set tabstop=4 |
+      \ set shiftwidth=4 |
+      \ set softtabstop=4 |
       \ setlocal omnifunc=pythoncomplete#Complete |
       \ setlocal foldlevel=1000
 

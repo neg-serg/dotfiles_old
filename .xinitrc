@@ -107,8 +107,7 @@ fc-cache
 
 [ -x /usr/bin/dunst ] && dunst &
 
-urxvtd -q -f -o
-${HOME}/bin/urxvt
+(urxvtd -q -f -o && ${HOME}/bin/urxvt)
 amixer -q set Master 0% mute
 [ -z $(pidof udiskie) ]     && udiskie &
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
