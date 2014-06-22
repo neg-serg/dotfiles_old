@@ -679,6 +679,7 @@ call s:IgnoreFiletypeIfNotSet('tex')
 call s:IgnoreFiletypeIfNotSet('notes')
 call s:IgnoreFiletypeIfNotSet('jinja')
 call s:IgnoreFiletypeIfNotSet('lua')
+call s:IgnoreFiletypeIfNotSet('vidir-ls')
 
 fun! s:HighlightOperators()
   if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )

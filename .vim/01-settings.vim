@@ -24,6 +24,10 @@ if has("gui_running")
         let g:mirodark_enable_higher_contrast_mode=0
         colorscheme mirodark
     endif
+    
+    set timeout  timeoutlen=250
+    set ttimeout ttimeoutlen=40        " Usable for fast keybindings
+
     set lsp=1                          " Space between lines
     set go=c                           " For text messages instead of gui
     set background=dark                " Usable for colorschemes
@@ -69,6 +73,7 @@ if has("gui_running")
     set guicursor+=a:blinkon0          " Disable all blinking:
 
     NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
+    NeoBundle 'tyru/restart.vim.git'              "add restart support
 endif
 
 if !has("gui_running")
@@ -87,25 +92,19 @@ if !has("gui_running")
     syntax sync minlines=256
     set lazyredraw
 
-    " if &term =~ "xterm\\|rxvt"
-    "     " use an orange cursor in insert mode
-    "     let &t_SI = "\<Esc>]12;rgb:32/4c/80\x7"
-    "     " use a red cursor otherwise
-    "     let &t_EI = "\<Esc>]12;rgb:b0/d0/f0\x7"
-    "     silent !echo -ne "\033]12;rgb:b0/d0/f0\x7"
-    "     " reset cursor when vim exits
-    "     autocmd VimLeave * silent !echo -ne "\033]112\x7"
-    "     " use \003]12;gray\007 for gnome-terminal
-    " endif
     if exists('$TMUX')
-        autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-        let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-        autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-
-        autocmd VimEnter * silent !tmux set status
-        " silent !tmux unbind -n C-M-w
-        " autocmd VimEnter,VimLeave * silent !tmux set status
+        let g:not_tmuxed_vim = system("/home/neg/bin/scripts/not_tmuxed_wim")
+        if g:not_tmuxed_vim =~ "FALSE"
+            autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
+            let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            
+            autocmd VimEnter * silent !tmux set status off > /dev/null
+            set timeout  timeoutlen=1000
+            set ttimeout ttimeoutlen=100       " Usable for fast keybindings
+            autocmd VimLeave * silent !tmux set status on > /dev/null
+        endif
     endif
 endif
 
@@ -121,13 +120,13 @@ command! -nargs=1 IndentationLocal silent setlocal ts=<args> shiftwidth=<args>
 
 "----------------------------------------------------------------------------
 set keywordprg=:help
-" let $PATH = $PATH . ':' . expand("~/.cabal/bin")
+let $PATH = $PATH . ':' . expand("~/bin/go/bin")
 
 set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
 set noautochdir                             " Dont't change pwd automaticly
-set showmode                                " show the mode ("-- INSERT --") at the bottom
+set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
@@ -144,9 +143,6 @@ set autoread
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
 
 set termencoding=utf8                       " Set termencoding to utf-8
-set timeout timeoutlen=250
-set ttimeout ttimeoutlen=40                 " Usable for fast keybindings
-
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
 "   last    - same directory as last file browser
@@ -304,7 +300,7 @@ set iminsert=0
 set cmdheight=1
 
 "--[ Ctags ]----------------------
-set tags=./tags;/;~/.vim/tags
+set tags=./tags
 " Make tags placed in .git/tags file available in all levels of a repository
 let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
 if gitroot != ''
@@ -351,7 +347,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "  a        a        a        a          literal 'a'
 set magic
 
-set path=**
+set path=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
 
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
@@ -426,7 +422,7 @@ let g:airline_symbols.linenr   = ''
 let g:airline_mode_map = {
   \ '__' : '-',
   \ 'n'  : 'N',
-  \ 'i'  : 'I',
+  \ 'i'  : 'INSERT',
   \ 'R'  : 'R',
   \ 'c'  : 'C',
   \ 'v'  : 'V',
