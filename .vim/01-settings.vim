@@ -74,6 +74,7 @@ if has("gui_running")
 
     NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git'              "add restart support
+    NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 endif
 
 if !has("gui_running")
@@ -93,8 +94,8 @@ if !has("gui_running")
     set lazyredraw
 
     if exists('$TMUX')
-        let g:not_tmuxed_vim = system("/home/neg/bin/scripts/not_tmuxed_wim")
-        if g:not_tmuxed_vim =~ "FALSE"
+        let s:not_tmuxed_vim = system("/home/neg/bin/scripts/not_tmuxed_wim")
+        if s:not_tmuxed_vim =~ "FALSE"
             autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
             let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
@@ -308,7 +309,11 @@ if gitroot != ''
 endif
 
 if has("cscope")
-    set csprg=/usr/bin/gtags-cscope
+    if executable("gtags")
+        set csprg=/usr/bin/gtags-cscope
+    else
+        set csprg=/usr/bin/cscope
+    endif
     set csto=0
     set cscopetag
     " set cscopequickfix=s-,c-,d-,i-,t-,e-
@@ -319,6 +324,9 @@ if has("cscope")
     let GtagsCscope_Absolute_Path   = 1
     let GtagsCscope_Keep_Alive      = 1
     let GtagsCscope_Auto_Load       = 0
+
+    "Alternative workground to work with cscope
+    NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off

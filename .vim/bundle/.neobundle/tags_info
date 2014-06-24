@@ -1,6 +1,4 @@
 AsyncCommand
-CCTree
-Conque-Shell
 IndentConsistencyCop
 Join
 ListToggle
@@ -22,12 +20,14 @@ github-issues.vim
 gitv
 gotags
 gtags-cscope-vim-plugin
+gtags.vim
 gundo.vim
 hasksyn
 jellybeans.vim
 junkfile.vim
 lusty
 matchit.zip
+multiwindow-source-code-browsing
 neco-ghc
 neobundle.vim
 neomru.vim
@@ -51,7 +51,6 @@ unite-mark
 unite-outline
 unite-quickfix
 unite.vim
-utl.vim
 vim-airline
 vim-buffersaurus
 vim-colors-pencil
@@ -103,4 +102,3 @@ vimshell.vim
 vimux
 vital.vim
 xmledit
-yate
