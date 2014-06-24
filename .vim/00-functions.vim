@@ -71,3 +71,13 @@ function! s:gtags_update()
     call s:system("gtags -i")
 endfunction
 command! GtagsUpdate call s:gtags_update()
+
+" function SetTimeOfDayColors()
+"     " currentHour will be 0, 1, 2, or 3
+"     let g:CurrentHour = (strftime("%H") + 0) / 6
+"     if g:colors_name !~ g:Favcolorschemes[g:CurrentHour]
+"         execute "colorscheme " . g:Favcolorschemes[g:CurrentHour]
+"         echo "execute " "colorscheme " . g:Favcolorschemes[g:CurrentHour]
+"         redraw
+"     endif
+" endfunction

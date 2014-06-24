@@ -299,30 +299,22 @@ nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
 nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
 map <Leader>z :ZoomWinTabToggle<CR>
 
-nmap <F4> :Utl ol<cr>
+" nmap <F4> :Utl ol<cr>
 map <Leader>j :Utl <CR><Bar>:redraw!<CR>
 
 nnoremap <Leader>u :GundoToggle<CR>
 map <Leader>x :call RangerChooser()<CR>
 "----[ Unite ]-----------------------------------------
-" map ff as default f to remap f to e
-nnoremap ff f | nnoremap e ff
-" map f as unite prefix key
-nmap f [unite]
-xmap f [unite]
+nmap e [unite]
+xmap e [unite]
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 " menu prefix key (for all Unite menus) {{{
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
 nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
-nnoremap <silent>[unite]v :Unite menu:vim -silent -start-insert<CR>
-
-nnoremap <silent>[unite]o :Unite -silent -start-insert -winheight=17 -start-insert
 nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
 nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
 nnoremap <silent>[unite]l :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
-nnoremap <silent>[unite]8 :UniteWithCursorWord -silent -no-split -auto-preview
-            \ line<CR>
 nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>
 
 " mapping for Unite functions
@@ -357,9 +349,7 @@ nnoremap <C-e>r :execute 'Unite gtags/ref'<CR>
 nnoremap <C-e>g :execute 'Unite gtags/grep'<CR>
 vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
 "-------[ Quickfix ]------------------------------------------------
-" use Q for q
 nnoremap Q q
-" The prefix key.
 nnoremap [Quickfix] <Nop>
 nmap q [Quickfix]
 nmap [make] :<C-u>make<SPACE>

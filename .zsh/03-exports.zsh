@@ -1,4 +1,4 @@
-
+# export PULSE_LATENCY_MSEC=60
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export LESSCHARSET=UTF-8
