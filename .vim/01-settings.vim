@@ -267,8 +267,8 @@ set formatoptions=tcroqnj
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-"set smartindent         " smart auto indenting
 set autoindent          " on new lines, match indent of previous line
+" set smartindent         " smart auto indenting
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
 set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
