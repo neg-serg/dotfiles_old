@@ -311,31 +311,23 @@ nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
 " menu prefix key (for all Unite menus) {{{
 nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
-nnoremap <silent>[unite]m :Unite -silent -start-insert menu:bookmarks<CR>
 nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
 nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
 nnoremap <silent>[unite]l :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
 nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>
-
 " mapping for Unite functions
 nnoremap <silent> [unite]r :UniteResume<CR>
 nnoremap [unite]R :Unite ref/
-nnoremap <silent> [unite]b :UniteWithBufferDir file file/new<CR>
-nnoremap <silent> <expr> [unite]h ':UniteWithInput -buffer-name=files file file/new -input='. substitute($HOME, '\' ,'/', 'g') .'/<CR>'
 nnoremap <silent> [unite]t :Unite tab<CR>
 nnoremap <silent> [unite]y :Unite register<CR>
-nnoremap <silent> [unite]a :UniteBookmarkAdd<CR>
-nnoremap <silent> [unite]p :Unite bookmark -default-action=cd -no-start-insert<CR>
 nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]j :Unite buffer_tab <CR>
-nnoremap <silent> [unite]* :UniteWithCursorWord line<CR>
 nnoremap <silent> [unite]o :Unite -buffer-name=outline outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
 nnoremap <silent> [unite]b :Unite -silent buffer<CR>
 nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
-" nnoremap <silent><Leader>. :Unite -silent -start-insert file_mru<CR>
 nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-svn ]-----------------------------------------------
 nnoremap <silent> [unite]sd :Unite svn/diff<CR>
@@ -353,7 +345,6 @@ nnoremap Q q
 nnoremap [Quickfix] <Nop>
 nmap q [Quickfix]
 nmap [make] :<C-u>make<SPACE>
-
 nnoremap <silent> [Quickfix]n :<C-u>cnext<CR>
 nnoremap <silent> [Quickfix]p :<C-u>cprevious<CR>
 nnoremap <silent> [Quickfix]r :<C-u>crewind<CR>
@@ -362,11 +353,8 @@ nnoremap <silent> [Quickfix]P :<C-u>clast<CR>
 nnoremap <silent> [Quickfix]fn :<C-u>cnfile<CR>
 nnoremap <silent> [Quickfix]fp :<C-u>cpfile<CR>
 nnoremap <silent> [Quickfix]l :<C-u>clist<CR>
-" nnoremap <silent> [Quickfix]q :<C-u>cc<CR>
 nnoremap <silent> [Quickfix]en :<C-u>cnewer<CR>
 nnoremap <silent> [Quickfix]ep :<C-u>colder<CR>
-nnoremap <silent> [Quickfix]o :<C-u>copen<CR>
-nnoremap <silent> [Quickfix]c :<C-u>cclose<CR>
 nmap [Quickfix]m [make]
 nnoremap [Quickfix]M q:make<Space>
 nnoremap [Quickfix]g q:grep<Space>
