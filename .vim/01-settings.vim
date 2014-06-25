@@ -78,7 +78,12 @@ if has("gui_running")
 endif
 
 if !has("gui_running")
-    colorscheme wim
+    let s:term_name = $TERM
+    if s:term_name == "rxvt-unicode-256color"
+        colorscheme wim
+    else
+        colorscheme jellybeans
+    endif
 
     " enable ctrl interpreting for vim
     silent !stty -ixon > /dev/null 2>/dev/null
@@ -411,13 +416,13 @@ endif
 let g:haddock_browser = "dwb"
 
 "--[ Vim-Airline ]----------------
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1 " Use airline fonts
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#whitespace#checks = []
 
-let g:airline_exclude_preview  = 1
+let g:airline_exclude_preview  = 0
 let g:airline_symbols          = {}
 let g:airline_left_sep         = ' '
 let g:airline_left_alt_sep     = ' '
