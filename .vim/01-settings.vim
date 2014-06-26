@@ -246,26 +246,21 @@ if exists("+undofile")
   set undodir+=~/.vim/undo//
   set undofile
 endif
+
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
-
-" options for formatting text; see :h formatoptions
-set formatoptions=tcroqnj
-
-" set formatoptions+=t    " auto-wrap using textwidth (not comments)
-" set formatoptions+=c    " auto-wrap comments too
-" set formatoptions+=r    " continue the comment header automatically on <CR>
-" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-" set formatoptions+=q    " allow formatting of comments with gq
-" " set formatoptions-=w   " double-carriage-return indicates paragraph
-" " set formatoptions-=a   " don't reformat automatically
-" set formatoptions+=n    " recognize numbered lists when autoindenting
-" set formatoptions+=2    " use second line of paragraph when autoindenting
-" set formatoptions-=v    " don't worry about vi compatiblity
-" set formatoptions-=b    " don't worry about vi compatiblity
-" set formatoptions+=l    " don't break long lines in insert mode
-" set formatoptions+=1    " don't break lines after one-letter words, if possible
+set formatoptions+=t    " auto-wrap using textwidth (not comments)
+set formatoptions+=c    " auto-wrap comments too
+set formatoptions+=r    " continue the comment header automatically on <CR>
+set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+set formatoptions+=q    " allow formatting of comments with gq
+set formatoptions+=n    " recognize numbered lists when autoindenting
+set formatoptions-=2    " don't use second line of paragraph when autoindenting
+set formatoptions-=v    " don't worry about vi compatiblity
+set formatoptions-=b    " don't worry about vi compatiblity
+set formatoptions+=l    " don't break long lines in insert mode
+set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
