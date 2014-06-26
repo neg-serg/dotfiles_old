@@ -44,11 +44,10 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'shaneharper/vim-rtags.git'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'rhysd/conflict-marker.vim'             "jumps over merge conflicts
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git'                         "syntax, indent, and filetype plugin files for git
 if executable("git")
+    NeoBundle 'rhysd/conflict-marker.vim'         "jumps over merge conflicts
     NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
     NeoBundle 'kablamo/vim-git-log.git'           "Git commit browser/log wrapper for vim
     NeoBundle 'gregsexton/gitv'                   "Git viewer
