@@ -1,3 +1,4 @@
+" NeoBundle 'rhysd/clever-f.vim.git'         "you should hate it!
 " NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xml','css']}}
 " "highlight for html
 " NeoBundleLazy 'Valloric/MatchTagAlways', {'autoload': {'filetypes': ['html', 'xhttml','xml']}}
