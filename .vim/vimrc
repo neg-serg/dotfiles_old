@@ -13,10 +13,7 @@ else
 endif
 
 NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
-"------------------------------------------------------------------------------------------------------------
 "--[ Main ]--------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-NeoBundle 'https://bitbucket.org/ns9tks/vim-l9' "Utility library for vim
 NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
 NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
 NeoBundle 'SirVer/ultisnips.git'              "Snippets with ycm compatibility
@@ -47,24 +44,22 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'shaneharper/vim-rtags.git'
-NeoBundle 'idanarye/vim-merginal.git'
-NeoBundle 'tpope/vim-obsession.git'           "Session manager
-"------------------------------------------------------------------------------------------------------------
+" NeoBundle 'tpope/vim-obsession.git'           "Session manager
+" https://github.com/xolox/vim-session.git
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git'                         "syntax, indent, and filetype plugin files for git
 if executable("git")
     NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
-    NeoBundle 'int3/vim-extradite'                "Git commit browser/log wrapper for vim
+    " NeoBundle 'int3/vim-extradite'                "Git commit browser/log wrapper for vim
+    NeoBundle 'kablamo/vim-git-log.git'           "Git commit browser/log wrapper for vim
     NeoBundle 'gregsexton/gitv'                   "Git viewer
     NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
     NeoBundle 'vim-scripts/compview.git'          "interactive search
     NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
+    NeoBundle 'idanarye/vim-merginal.git'         "to handle branches/merge conflicts
     "--[ Be careful with fugitive ]--------------------------------------------------------------------------
     NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 endif
-"------------------------------------------------------------------------------------------------------------
-"--[ Tmux ]--------------------------------------------------------------------------------------------------
 "------------------------------------------------------------------------------------------------------------
 if executable("tmux")
     NeoBundle 'tpope/vim-tbone.git'               "another tmux wrapper for vim
@@ -72,24 +67,18 @@ if executable("tmux")
     NeoBundle 'christoomey/vim-tmux-navigator'    "easy jump between windows
     " https://github.com/wellle/tmux-complete.vim.git
 endif
-"------------------------------------------------------------------------------------------------------------
-"--[ haskell ]-----------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-NeoBundleLazy 'ujihisa/neco-ghc'             "autocomplete for hs using ghc-mod
-    \ {'autoload': {'filetypes': 'hs'}}
+if executable("ghci")
+    NeoBundleLazy 'ujihisa/neco-ghc'         "autocomplete for hs using ghc-mod
+        \ {'autoload': {'filetypes': 'hs'}}
+endif
 NeoBundleLazy 'travitch/hasksyn'             "simple highlight for normal haskell code
     \ {'autoload': {'filetypes': 'hs'}}
-"------------------------------------------------------------------------------------------------------------
-"--[ java/scala ]--------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundleLazy 'derekwyatt/vim-scala'         "different initial scala support for vim
     \ {'autoload': {'filetypes': 'scala'}}
 NeoBundleLazy 'derekwyatt/vim-sbt'           "basic SBT support for vim
     \ {'autoload': {'filetypes': 'scala'}}
 " NeoBundle 'tpope/vim-classpath'            "sets path for jvm
-"------------------------------------------------------------------------------------------------------------
 "--[ misc ]--------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'drmikehenry/vim-fixkey'            "fixes key codes for console Vim
 NeoBundle 'ReekenX/vim-rename2.git'           "rename for files even with spaces in filename
 NeoBundle 'thinca/vim-ref.git'                "integrated reference viewer man/perldoc etc
@@ -101,16 +90,12 @@ NeoBundle 'tpope/vim-surround'                "is all about surroundings: parent
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
 NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
-"------------------------------------------------------------------------------------------------------------
 "--[ colorschemes ]------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
 NeoBundle 'reedes/vim-colors-pencil.git'      "fancy pencil dark and light colorscheme
 NeoBundle 'chriskempson/base16-vim'           "set of good colorschemes
 NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
-"------------------------------------------------------------------------------------------------------------
-"--[ dev ]---------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
+"--[ DEV ]---------------------------------------------------------------------------------------------------
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
 NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
@@ -139,34 +124,35 @@ NeoBundle 'jstemmer/gotags.git'               "tags for go
 if executable("go")
     NeoBundle 'Blackrush/vim-gocode.git'          "omnicomplete for go
 endif
+"---------------[  Tags  ]-----------------------------------------------------------------------------------
+if executable("gtags")
+    " Very good navigation, but no stack
+    NeoBundleLazy 'hewes/unite-gtags.git', {'autoload':{'unite_sources':['gtags', 'gtags/def', 'gtags/context', 'gtags/ref', 'gtags/grep', 'gtags/def' ]}}
+    NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
+    NeoBundle 'yuki777/gtags.vim.git'                      "Gtags v0.64
+    NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git'
+endif
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-" NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
-" NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
 NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
 NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
 NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
-"------------------------------------------------------------------------------------------------------------
+" NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
+" NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 "--[ latex ]-------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
 NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
-"------------------------------------------------------------------------------------------------------------
 "--[ web ]---------------------------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/vim-instant-markdown'     "realtime markdown preview
 NeoBundle 'tpope/vim-markdown'                "markdown helper for vim
 NeoBundle 'Valloric/xmledit'                  "xml editing
-"------------------------------------------------------------------------------------------------------------
 "---------------[  unite  ]----------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundle 'vim-jp/vital.vim.git'              "improve unity perf
 NeoBundle 'Shougo/unite.vim.git'              "Unite for autocomp
 NeoBundle 'Shougo/neomru.vim.git'             "MRU plugin for unite
-"--[ Create temporary file for memo, testing, ... ]----------------
+"--[ Create temporary file for memo, testing, ... ]----------------------------------------------------------
 NeoBundleLazy 'Shougo/junkfile.vim', { 'autoload':{'commands':'JunkfileOpen', 'unite_sources':['junkfile','junkfile/new']}} 
 NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}}
 NeoBundleLazy 'kmnk/vim-unite-svn.git', {'autoload' : { 'unite_sources' : ['svn/status', 'svn/info', 'svn/blame', 'svn/diff'], }}
@@ -175,9 +161,7 @@ NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources' : 'fi
 NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources': ['quickfix', 'location_list']}}
 NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 NeoBundleLazy 'mattn/unite-gist.git' , {'autoload':{'unite_sources':'gist'}}
-"------------------------------------------------------------------------------------------------------------
 "---------------[ other filetypes ]--------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
 NeoBundleLazy 'vimez/vim-tmux', { 'autoload' : { 'filetypes' : 'conf'}} 
 NeoBundleLazy 'joedicastro/vim-pentadactyl', { 'autoload': {'filetypes': ['pentadactyl']}}
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
@@ -188,16 +172,6 @@ NeoBundleLazy 'rsmenon/vim-mathematica.git', {'autoload' : {'filetypes' : ['mm']
 " rust bindings for vim syntax hi
 NeoBundleLazy 'wting/rust.vim', {'autoload' : {'filetypes' : ['rust']}}
 "https://github.com/AndrewRadev/id3.vim.git
-"------------------------------------------------------------------------------------------------------------
-"---------------[  Tags  ]-----------------------------------------------------------------------------------
-"------------------------------------------------------------------------------------------------------------
-if executable("gtags")
-    " Very good navigation, but no stack
-    NeoBundleLazy 'hewes/unite-gtags.git', {'autoload':{'unite_sources':['gtags', 'gtags/def', 'gtags/context', 'gtags/ref', 'gtags/grep', 'gtags/def' ]}}
-    NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
-    NeoBundle 'yuki777/gtags.vim.git'                      "Gtags v0.64
-    NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git'
-endif
 
 NeoBundleCheck
 catch /117/
