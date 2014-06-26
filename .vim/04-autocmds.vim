@@ -7,18 +7,6 @@ augroup vimrc
     autocmd!
 augroup END
 
-  
-augroup cline
-	au!
-	au WinLeave * set nocursorline
-	au WinEnter * set cursorline
-
-	au InsertEnter * set nocursorline
-	au InsertLeave * set cursorline
-
-	au VimEnter * set cursorline
-augroup END
-
 " OmniComplete {
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
@@ -183,24 +171,15 @@ function! StripTrailingWhitespace()
 endfunction
 " }
 
-" Execution permissions by default to shebang (#!) files {{{
-
-" augroup shebang_chmod
-"   autocmd!
-"   autocmd BufNewFile  * let b:brand_new_file = 1
-"   autocmd BufWritePost * unlet! b:brand_new_file
-"   autocmd BufWritePre *
-"         \ if exists('b:brand_new_file') |
-"         \   if getline(1) =~ '^#!' |
-"         \     let b:chmod_post = '+x' |
-"         \   endif |
-"         \ endif
-"   autocmd BufWritePost,FileWritePost *
-"         \ if exists('b:chmod_post') && executable('chmod') |
-"         \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
-"         \   unlet b:chmod_post |
-"         \ endif
-" augroup END
+if executable('chmod')
+    autocmd BufWritePost * call s:add_permission_x()
+    function! s:add_permission_x()
+        let file = expand('%:p')
+        if getline(1) =~# '^#!' && !executable(file)
+            silent! call vimproc#system('chmod a+x ' . shellescape(file))
+        endif
+    endfunction
+endif
 
 " }}}
 function! GHDashboard (...)
@@ -285,8 +264,47 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
 
-" augroup Tmux
-" 	au!
-" 	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
-" 	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
-" augroup END
+augroup Tmux
+	au!
+	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
+	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
+augroup END
+
+function! s:jedi_settings()
+    nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
+    nnoremap <buffer><Leader>jg :<C-u>call jedi#goto_assignments()<CR>
+    nnoremap <buffer><Leader>jd :<C-u>call jedi#goto_definitions()<CR>
+    nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
+    nnoremap <buffer><Leader>ju :<C-u>call jedi#usages()<CR>
+    nnoremap <buffer><Leader>ji :<C-u>Pyimport<Space>
+    setlocal omnifunc=jedi#completions
+    command! -nargs=0 JediRename call jedi#rename()
+endfunction
+autocmd Filetype python call <SID>jedi_settings()
+"------------------------------------------------------------------------------------------------------------------
+
+" " help のマッピング
+" function! s:on_FileType_help_define_mappings()
+"     if &l:readonly
+"         " カーソル下のタグへ飛ぶ
+"         nnoremap <buffer>J <C-]>
+"         " 戻る
+"         nnoremap <buffer>K <C-t>
+"         " リンクしている単語を選択する
+"         nnoremap <buffer><silent><Tab> /\%(\_.\zs<Bar>[^ ]\+<Bar>\ze\_.\<Bar>CTRL-.\<Bar><[^ >]\+>\)<CR>
+"         " そのた
+"         nnoremap <buffer>u <C-u>
+"         nnoremap <buffer>d <C-d>
+"         nnoremap <buffer>q :<C-u>q<CR>
+"         " カーソル下の単語を help で調べる
+"         " AutocmdFT help nnoremap <buffer>K :<C-u>help <C-r><C-w><CR>
+"         " TODO v で選択した範囲を help
+"     endif
+" endfunction
+" AutocmdFT help call s:on_FileType_help_define_mappings()
+" git-rebase
+autocmd Filetype gitrebase nnoremap <buffer><C-p> :<C-u>Pick<CR>
+autocmd Filetype gitrebase nnoremap <buffer><C-s> :<C-u>Squash<CR>
+autocmd Filetype gitrebase nnoremap <buffer><C-e> :<C-u>Edit<CR>
+autocmd Filetype gitrebase nnoremap <buffer><C-r> :<C-u>Reword<CR>
+autocmd Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>

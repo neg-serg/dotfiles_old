@@ -103,11 +103,10 @@ if !has("gui_running")
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
             let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            
-            autocmd VimEnter * silent !tmux set status off > /dev/null
+            autocmd VimEnter * silent !tmux set status off
             set timeout  timeoutlen=1000
             set ttimeout ttimeoutlen=100       " Usable for fast keybindings
-            autocmd VimLeave * silent !tmux set status on > /dev/null
+            autocmd VimLeave * silent !tmux set status on
         endif
     endif
 endif
@@ -292,7 +291,7 @@ set cpoptions=aAceFsBd
 " set foldnestmax=3                   "deepest fold is 3 levels
 " set nofoldenable                    "dont fold by default
 
-set fillchars=vert:│
+" set fillchars=vert:│
 set maxfuncdepth=1000
 set maxmemtot=200000
 
