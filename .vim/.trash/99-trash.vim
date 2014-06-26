@@ -1,3 +1,5 @@
+" NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
+" NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
 " NeoBundle 'rhysd/clever-f.vim.git'         "you should hate it!
 " NeoBundleLazy 'othree/html5.vim', {'autoload': {'filetypes': ['html', 'xml','css']}}
 " "highlight for html

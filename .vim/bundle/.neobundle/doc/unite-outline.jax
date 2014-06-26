@@ -243,8 +243,8 @@ License : MIT license {{{
 		      \ 'id'      : 'Special',
 		      \ 'macro'   : 'Macro',
 		      \ 'method'  : 'Function',
-		      \ 'normal'  : g:unite_abbr_highlight,
-		      \ 'package' : g:unite_abbr_highlight,
+		      \ 'normal'  : 'Normal',
+		      \ 'package' : 'Normal',
 		      \ 'special' : 'Macro',
 		      \ 'type'    : 'Type',
 		      \ 'level_1' : 'Type',
@@ -252,8 +252,8 @@ License : MIT license {{{
 		      \ 'level_3' : 'Identifier',
 		      \ 'level_4' : 'Constant',
 		      \ 'level_5' : 'Special',
-		      \ 'level_6' : g:unite_abbr_highlight,
-		      \ 'parameter_list': g:unite_abbr_highlight,
+		      \ 'level_6' : 'Normal',
+		      \ 'parameter_list': 'Normal',
 		      \ }
 <
 		ハイライトを適用する部分を指定するためのパターンは、個々のファ
@@ -775,8 +775,7 @@ HOOKS ~
 
 		{name} に関連付けられたハイライトグループ名を返します。
 		関連付けがない場合は、引数を順次調べ関連付けを探します。関連付
-		けが最後まで見つからなかった場合は |g:unite_abbr_highlight| の
-		値を返します。
+		けが最後まで見つからなかった場合は "Normal" の値を返します。
 
 		ハイライトグループ名への関連付けについては
 		|g:unite_source_outline_highlight| を参照

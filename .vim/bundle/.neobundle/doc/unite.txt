@@ -292,14 +292,14 @@ More advanced configuration example:
 	if executable('jvgrep')
 	  " For jvgrep.
 	  let g:unite_source_grep_command = 'jvgrep'
-	  let g:unite_source_grep_default_opts = '--exclude ''\.(git|svn|hg|bzr)'''
+	  let g:unite_source_grep_default_opts = '-i --exclude ''\.(git|svn|hg|bzr)'''
 	  let g:unite_source_grep_recursive_opt = '-R'
 	endif
 
 	" For ack.
 	if executable('ack-grep')
 	  " let g:unite_source_grep_command = 'ack-grep'
-	  " let g:unite_source_grep_default_opts = '--no-heading --no-color -k -H'
+	  " let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
 	  " let g:unite_source_grep_recursive_opt = ''
 	endif
 <
@@ -431,7 +431,7 @@ g:unite_data_directory				*g:unite_data_directory*
 
 g:unite_no_default_keymappings		*g:unite_no_default_keymappings*
 		If this variable is 1, unite doesn't set any default key
-		mappings.  Not recomended.  You shouldn't set this to 1 unless
+		mappings.  Not recommended.  You shouldn't set this to 1 unless
 		you have a specific reason.
 
 		This variable doesn't exist unless you define it explicitly.
@@ -516,8 +516,17 @@ g:unite_source_rec_async_command
 >
 		" Using ack-grep as recursive command.
 		let g:unite_source_rec_async_command = 'ack -f --nofilter'
+
+		" Using ag as recursive command.
+		let g:unite_source_rec_async_command =
+                \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+
+		" Using pt as recursive command.
+		let g:unite_source_rec_async_command =
+		\ 'pt --nocolor --nogroup -g .'
 <
-		The default value is "ag" or "find" and the args.
+		The default value is "find" and the args.
+		Because, "find" command is fastest.
 
 					*g:unite_source_file_rec_async_command*
 		Note: This variable is obsolete.
@@ -839,7 +848,7 @@ g:unite_matcher_fuzzy_max_input_length
 DEPRECATED VARIABLES				*unite-deprecated-variables*
 
 g:unite_update_time				*g:unite_update_time*
-		The time interval for updating the canidate list as the filter
+		The time interval for updating the candidate list as the filter
 		text it typed in Msec.
 		If it is 0, this feature is disabled.
 		Note: It is deprecated variable.  Please use
@@ -1488,6 +1497,8 @@ unite#custom#profile({profile-name}, {option-name}, {value})
 		default context.
 		Note: If you want to change default context, you should use
 		"default" profile name.
+		Valid key context is in |unite-options|.  But "-" is
+		substituted to "_", and "-" prefix is removed.
 
 		Example:
 >
@@ -1643,19 +1654,19 @@ unite#undef_filter({name})			*unite#undef_filter()*
 		|unite#define_filter()|.  If such a filter doesn't exist,
 		this function does nothing.
 
-					*unite#filters#matcher_default#use(()*
+					*unite#filters#matcher_default#use()*
 unite#filters#matcher_default#use({matchers})
 		Changes the default match used by
 		|unite-filter-matcher_default| into {matchers}.
 		{matchers} must be specified with a list of matcher names.
 
-					*unite#filters#sorter_default#use(()*
+					*unite#filters#sorter_default#use()*
 unite#filters#sorter_default#use({sorters})
 		Changes the default sorter used by
 		|unite-filter-sorter_default| into {sorters}.
 		{sorters} must be specified with a list of sorter names.
 
-					*unite#filters#converter_default#use(()*
+					*unite#filters#converter_default#use()*
 unite#filters#converter_default#use({converters})
 		Changes the default converter used by
 		|unite-filter-converter_default| into {converters}.
@@ -1731,7 +1742,8 @@ the context dictionary.
 		Specify the prompt direction.  The default value is "below" if
 		|unite-options-direction| contains "below".
 		Note: If it is "below", |unite-options-auto-resize| is used
-		automatically.
+		automatically.  To disable it, you must set "-no-auto-resize"
+		option.
 
 						*unite-options-default-action*
 		-default-action={default-action}
@@ -1872,10 +1884,6 @@ the context dictionary.
 		-short-source-names
 		Use short source names.
 
-					*unite-options-long-source-names*
-		-long-source-names
-		Use long source names.
-
 						*unite-options-multi-line*
 		-multi-line
 		Force use multi line.  If candidate abbr is too long, unite.vim
@@ -2000,7 +2008,7 @@ file_rec/git	Similar to |unite-source-file_rec|, but get files by "git
 
 		Example: >
 	nnoremap <silent> ,ug  :<C-u>Unite
-	\ file_rec/async:--cached:--others:--exclude-standard<CR>
+	\ file_rec/git:--cached:--others:--exclude-standard<CR>
 
 						*unite-source-directory*
 directory	Nominates an input directory as a candidate.
@@ -2156,20 +2164,20 @@ grep		Nominates "grep" command output as candidates.
 	  " Use ag in unite grep source.
 	  let g:unite_source_grep_command = 'ag'
 	  let g:unite_source_grep_default_opts =
-	  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+	  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
 	  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
 	  let g:unite_source_grep_recursive_opt = ''
 	elseif executable('pt')
 	  " Use pt in unite grep source.
 	  " https://github.com/monochromegane/the_platinum_searcher
 	  let g:unite_source_grep_command = 'pt'
-	  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+	  let g:unite_source_grep_default_opts = '-i --nogroup --nocolor'
 	  let g:unite_source_grep_recursive_opt = ''
 	elseif executable('ack-grep')
 	  " Use ack in unite grep source.
 	  let g:unite_source_grep_command = 'ack-grep'
 	  let g:unite_source_grep_default_opts =
-	  \ '--no-heading --no-color -k -H'
+	  \ '-i --no-heading --no-color -k -H'
 	  let g:unite_source_grep_recursive_opt = ''
 	endif
 <
@@ -2836,7 +2844,7 @@ gather_candidates	Function	(Required*)
 			This function is called once when the source in
 			initialized, and again whenever the user invokes
 			|<Plug>(unite_redraw)| to reload the source. If the
-			source is registerd as |unite-source-is_volatile|,
+			source is registered as |unite-source-is_volatile|,
 			gather_candidates() is called on _every_ change of the
 			input string. This function takes {args} and {context} as
 			parameters and returns a {candidate} list. {args} is a
@@ -2862,7 +2870,7 @@ change_candidates	Function	(Optional)
 			change_candidates() generates new candidates
 			based on the changed input string. Unite adds these
 			candidates to the candidates cached from the initial 
-			|unites-source-attribute-gather_candidates|.
+			|unite-source-attribute-gather_candidates|.
 
 			This function takes {args} and {context} parameters
 			and returns a {candidate} list, as described in
@@ -2882,7 +2890,7 @@ async_gather_candidates	Function	(Optional)
 
 					*unite-source-attribute-complete*
 complete		Function	(Optional)
-			This function provides auto-completeion at the command
+			This function provides auto-completion at the command
 			line when the source is invoked via |:Unite| {source}.
 
 			This function takes {args}, {context}, {arglead},
