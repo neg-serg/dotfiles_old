@@ -134,7 +134,7 @@ endif
 
 hi Error                 ctermfg=162 ctermbg=127
 
-hi Pmenu               ctermfg=253 ctermbg=235
+hi Pmenu               ctermfg=253 ctermbg=234
 hi PmenuSel            cterm=reverse ctermfg=244 ctermbg=230
 " hi PmenuSbar             ctermbg=7 guibg=Grey
 " hi PmenuThumb            ctermbg=15 guibg=White
