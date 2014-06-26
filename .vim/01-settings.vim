@@ -10,7 +10,6 @@ endif
 
 " ------[ GUI settings ]-----------------------------------------------------
 if has("gui_running")
-
     if &diff
         set gfn=PragmataPro\ for\ Powerline\ 10
         set guifontwide=PragmataPro\ for\ Powerline\ 10
@@ -78,8 +77,7 @@ if has("gui_running")
 endif
 
 if !has("gui_running")
-    let s:term_name = $TERM
-    if s:term_name == "rxvt-unicode-256color"
+    if &term == "rxvt-unicode-256color"
         colorscheme wim
     else
         colorscheme jellybeans
@@ -417,6 +415,9 @@ let g:haddock_browser = "dwb"
 
 "--[ Vim-Airline ]----------------
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#show_buffers = 0
 let g:airline_powerline_fonts = 1 " Use airline fonts
 let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#branch#enabled = 1
