@@ -1,4 +1,3 @@
-AsyncCommand
 IndentConsistencyCop
 Join
 ListToggle
@@ -12,7 +11,7 @@ auctex.vim
 base16-vim
 bufkill.vim
 clam.vim
-compview
+conflict-marker.vim
 csv.vim
 delimitMate
 eregex.vim
@@ -28,7 +27,6 @@ junkfile.vim
 lusty
 matchit.zip
 multiwindow-source-code-browsing
-neco-ghc
 neobundle.vim
 neomru.vim
 nerdtree
@@ -59,18 +57,17 @@ vim-dispatch
 vim-easy-align
 vim-endwise
 vim-eunuch
-vim-extradite
 vim-fixkey
 vim-fswitch
 vim-fugitive
 vim-git
+vim-git-log
 vim-github-dashboard
 vim-gocode
 vim-golang
 vim-indent-guides
 vim-instant-markdown
 vim-json
-vim-l9
 vim-latex-live-preview
 vim-lldb
 vim-lua-ftplugin
@@ -79,7 +76,6 @@ vim-mathematica
 vim-merginal
 vim-misc
 vim-multiple-cursors
-vim-obsession
 vim-pentadactyl
 vim-projectroot
 vim-python-pep8-indent

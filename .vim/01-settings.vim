@@ -18,7 +18,6 @@ if has("gui_running")
     else
         set gfn=PragmataPro\ for\ Powerline\ 14
         set guifontwide=PragmataPro\ for\ Powerline\ 14
-        " set gfn=PragmataPro\ for\ Powerline\ 15
         " set lsp=-1
         let g:mirodark_enable_higher_contrast_mode=0
         colorscheme mirodark
@@ -44,7 +43,7 @@ if has("gui_running")
     set ttyscroll=40
     set lazyredraw
 
-   "  set selection=exclusive            " exclusive selection is better [?]
+    "set selection=exclusive           " exclusive selection is better [?]
 
     set previewheight=8                " Preview window should be minimal
 
@@ -231,18 +230,13 @@ set eadirection=hor             " ver/hor/both - where does equalalways apply
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
-"" -----------------------------------------------------------------
-"" --[ change undo file location ]----------------------------------
-"" -----------------------------------------------------------------
+"--[ change undo file location ]----------------------------------
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
   " This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
   " :help undo-persistence
   " This is only present in 7.3+
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=./.vim-undo//
+  silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
   set undodir+=~/.vim/undo//
   set undofile
 endif
@@ -479,7 +473,6 @@ let g:ycm_filepath_completion_use_working_dir = 1
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 " let g:ycm_global_ycm_extra_conf = '~/dev/kern/linux/.ycm_extra.conf.py'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-
 let g:ycm_confirm_extra_conf           = 0
 "--[ syntastic enabling ]-----------------
 let g:ycm_show_diagnostics_ui          = 1 

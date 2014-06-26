@@ -114,12 +114,12 @@ if executable("lldb")
     NeoBundle 'gilligan/vim-lldb.git'         "lldb-plugin for vim
 endif
 if executable("mono")
-    NeoBundle 'nosami/Omnisharp.git'              "omnisharp completion
+    NeoBundle 'nosami/Omnisharp.git'          "omnisharp completion
 endif
 NeoBundle 'jnwhiteh/vim-golang.git'           "golang syntax highlight
 NeoBundle 'jstemmer/gotags.git'               "tags for go
 if executable("go")
-    NeoBundle 'Blackrush/vim-gocode.git'          "omnicomplete for go
+    NeoBundle 'Blackrush/vim-gocode.git'      "omnicomplete for go
 endif
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
@@ -133,10 +133,8 @@ endif
 "--[ shell integration ]-------------------------------------------------------------------------------------
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
 NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
-NeoBundle 'pydave/AsyncCommand.git'           "Async exec for grep, shell, make and others
 NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
-" NeoBundle 'vim-scripts/Conque-GDB.git'        "Conque GDB is powerful gdb wrapper for vim
-" NeoBundle 'oplatek/Conque-Shell.git'          "Possibly it's shell for gvim
+" NeoBundle 'pydave/AsyncCommand.git'         "Async exec for grep, shell, make and others
 "--[ latex ]-------------------------------------------------------------------------------------------------
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion

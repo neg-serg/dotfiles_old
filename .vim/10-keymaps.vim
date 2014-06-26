@@ -60,10 +60,6 @@ cnoremap <c-k> <up>
 nmap ;w :w!<cr>
 nmap ;q :q<cr>
 nmap ;d :bd<cr>
-nnoremap ;p :call FancyPaste('"')<CR>
-nnoremap ;P :call FancyPaste('+')<CR>
-
-nnoremap <silent> gA :A<CR>
 
 " like firefox tabs
 nmap <A-w> :bd<cr>
