@@ -111,7 +111,7 @@ augroup ag_xml
 augroup END
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}" 
+autocmd FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" 
 " autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
@@ -264,11 +264,11 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
 
-augroup Tmux
-	au!
-	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
-	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
-augroup END
+" augroup Tmux
+" 	au!
+" 	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
+" 	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
+" augroup END
 
 function! s:jedi_settings()
     nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
@@ -308,3 +308,14 @@ autocmd Filetype gitrebase nnoremap <buffer><C-s> :<C-u>Squash<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-e> :<C-u>Edit<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-r> :<C-u>Reword<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>
+
+let s:default_path = escape(&path, '\ ') " store default value of 'path'
+
+" Always add the current file's directory to the path and tags list if not
+" already there. Add it to the beginning to speed up searches.
+autocmd BufRead *
+      \ let s:tempPath=escape(escape(expand("%:p:h"), ' '), '\ ') |
+      \ exec "set path-=".s:tempPath |
+      \ exec "set path-=".s:default_path |
+      \ exec "set path^=".s:tempPath |
+      \ exec "set path^=".s:default_path
