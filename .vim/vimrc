@@ -18,7 +18,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 NeoBundle 'Valloric/YouCompleteMe'            "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
 NeoBundle 'sjbach/lusty.git'                  "file/buffer explorer
 NeoBundle 'SirVer/ultisnips.git'              "Snippets with ycm compatibility
-NeoBundle 'godlygeek/tabular'                 "tabularize!
 NeoBundle 'junegunn/vim-easy-align'           "easy tabular
 if executable("ack")
 NeoBundle 'mileszs/ack.vim'                   "ack wrapper
@@ -44,7 +43,10 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix'    : 'make -f make_unix.mak',
       \    },
       \ }
+NeoBundle 'junegunn/vim-pseudocl.git'
+NeoBundle 'junegunn/vim-oblique.git'              "improved search with fuzzy-finding
 NeoBundle 'shaneharper/vim-rtags.git'
+NeoBundle 'fweep/vim-zsh-path-completion.git'     "command-line completion like in zsh
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git'                         "syntax, indent, and filetype plugin files for git
 if executable("git")

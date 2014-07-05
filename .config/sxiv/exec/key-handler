@@ -31,7 +31,7 @@ case "$1" in
 "C-g")
     exec gimp "$2" ;;
 "C-d")
-    exec mv "$2" ~/trash/1st-level/pic ;;
+    exec mv "$2" /mnt/home/trash/1st-level/pic ;;
 
 "C-m")
     sxiv_do move "$2" ;;

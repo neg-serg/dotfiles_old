@@ -3,11 +3,12 @@
         local p=$(cope_path)
         for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
         alias df="$p/df -h"
+    else
+        alias df="df -h"
     fi
 }
 
 alias '?=bc -l <<<'
-# alias gvim="STTY='intr \^C' gvim" # C-x mapping fucks up gvim
 alias stderred="LD_PRELOAD=/home/neg/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
 
 NOGLOB_LIST=( fc find ftp history locate rake rsync scp sftp eix mmv wget clive clivescan youtube-dl \
@@ -35,7 +36,13 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-if [[ ! -x "/usr/bin/vendor_perl/ls++" ]]; then alias l="ls -aChkopl --group-directories-first --color=auto"; else alias l="ls++"; fi
+if  [[ -x "${HOME}/bin/lsp" ]]; then
+    alias l="lsp"
+elif [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
+    alias l="ls++"; 
+else 
+    alias l="ls -aChkopl --group-directories-first --color=auto";
+fi
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
 alias lss='ls -sShr'
@@ -73,7 +80,6 @@ function vg {
     vim $@
   fi
 }
-
 
 function v {
     if [ -z $(pidof vim) ] ; then
@@ -183,7 +189,6 @@ alias hi='_v'
 alias wine="LANG=ru_RU.utf-8 wine"
 #-----------[fasd]---------------
 alias a='fasd -a'
-# alias s='fasd -si'
 alias sd='fasd -sid'
 alias sf='fasd -sif'
 alias d='fasd -d'
@@ -205,11 +210,6 @@ alias wd="${HOME}/bin/wd.sh"
 
 # cli pastebin client
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
-
-# copy/paste for linux machines (Mac style)
-alias pbcopy='xclip -selection clipboard'       # copy to clipboard, ctrl+c, ctrl+shift+c
-alias pbpaste='xclip -selection clipboard -o'   # paste from clipboard, ctrl+v, ctrl+shitt+v
-alias pbselect='xclip -selection primary -o'    # paste from highlight, middle click, shift+insert
 
 alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
 

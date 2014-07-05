@@ -35,7 +35,6 @@ po.vim--gray
 rust.vim
 splice.vim
 syntastic
-tabular
 tagbar
 tcomment_vim
 tern_for_vim
@@ -76,8 +75,11 @@ vim-mathematica
 vim-merginal
 vim-misc
 vim-multiple-cursors
+vim-noctu
+vim-oblique
 vim-pentadactyl
 vim-projectroot
+vim-pseudocl
 vim-python-pep8-indent
 vim-ref
 vim-rename2
@@ -93,6 +95,7 @@ vim-unimpaired
 vim-unite-svn
 vim-vinegar
 vim-xkbswitch
+vim-zsh-path-completion
 vimproc
 vimshell.vim
 vimux

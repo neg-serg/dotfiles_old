@@ -2,13 +2,19 @@
 !--*.keysym.C-M-Tab:                  command:\033[?47t
 
 !*.imLocale:                     en_US.utf8
-mutt.colorUL:                   #0172ae
-*shading:                       10
-
+mutt.colorUL:                    #0172ae
+*shading:                        10
 *.saveLines:                     49152
 *.scrollBar:                     false
 *.scrollWithBuffer:              true
 *.scrollTtyKeypress:             true
+
+*.keysym.M-Escape:            perl:keyboard-select:activate
+*.keysym:M-s:                 perl:keyboard-select:search
+*.keysym.M-u:                 perl:url-select:select_next
+*.keysym.M-C-v:               perl:clipboard:paste_escaped
+*.keysym.C-M-Up:              perl:font-size:increase
+*.keysym.C-M-Down:            perl:font-size:decrease
 
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
@@ -26,7 +32,7 @@ MainTerminal.colorUL:                      #86a2be
 
 MainTerminal.font:            -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r 
 
-MainTerminal.keysym.C-1:      perl:url-select:select_next
+MainTerminal.keysym.C-1:           perl:url-select:select_next
 MainTerminal.url-select.launcher:  /usr/bin/firefox -new-tab
 MainTerminal.url-select.underline: true
 MainTerminal.underlineURLs:        true
@@ -49,32 +55,17 @@ MainTerminal.selection-autotransform.1: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg
 MainTerminal.selection-autotransform.2: if(m{^[ab]/}) { s{^[ab]/}{}g; }
 MainTerminal.selection-autotransform.3: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
 
-MainTerminal.keysym.M-slash:       perl:aAtt:complete
-MainTerminal.keysym.M-Escape:      perl:keyboard-select:activate
-MainTerminal.keysym:M-s:           perl:keyboard-select:search
-MainTerminal.keysym.M-C-v:         perl:clipboard:paste_escaped
-MainTerminal.keysym.M-slash:       perl:aAtt:complete
+MainTerminal.keysym.M-slash:  perl:aAtt:complete
+MainTerminal.keysym.M-Escape: perl:keyboard-select:activate
+MainTerminal.keysym:M-s:      perl:keyboard-select:search
+MainTerminal.keysym.M-C-v:    perl:clipboard:paste_escaped
+MainTerminal.keysym.M-slash:  perl:aAtt:complete
+!---------------------------------------------------------------------------
 
-*.keysym.M-Escape:                 perl:keyboard-select:activate
-*.keysym:M-s:                      perl:keyboard-select:search
-*.keysym.M-u:                      perl:url-select:select_next
-*.keysym.M-C-v:                    perl:clipboard:paste_escaped
-*.keysym.C-M-Up:                   perl:font-size:increase
-*.keysym.C-M-Down:                 perl:font-size:decrease
-
-!URxvt.lineSpace: 0
-!URxvt.letterSpace: -1
-!-------------------------
-
-!.color242: #666666
-!*.color31:   #03576C
-
-!*.letterSpace: 0
-
-URxvt.font:                 xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:pixelsize=16
-!URxvt.boldFont:             xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:pixelsize=16
-!URxvt.italicFont:           xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:pixelsize=16
-!URxvt.boldItalicFont:       xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=16,xft:DejaVu Sans Mono:pixelsize=16
+URxvt.font:                 xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
+!URxvt.boldFont:             xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
+!URxvt.italicFont:           xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
+!URxvt.boldItalicFont:       xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
 URxvt.iso14755:             false
 URxvt.mouseWheelScrollPage: true
 URxvt.saveLines:            49152

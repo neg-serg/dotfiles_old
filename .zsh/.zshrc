@@ -12,6 +12,7 @@
 . ~/.zsh/11-open.zsh
 . ~/.zsh/12-completion.zsh
 . ~/.zsh/12-vi_additions.zsh
+. ~/.zsh/12-fzf.zsh
 . ~/.zsh/13-bindkeys.zsh
 . ~/.zsh/14-dirjumps.zsh
 . ~/.zsh/20-rehash-hook.zsh
@@ -19,5 +20,3 @@
 . ~/.zsh/50-title.zsh
 . ~/.zsh/75-urltools.plugun.zsh
 . ~/.zsh/97-lastfm.zsh
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

@@ -10,7 +10,7 @@ ioncore.set{
     ioncore.defshortening("[^:]+: (.*)", "$1$|$1$<..."),
     ioncore.defshortening("(.*)", "$1$|$1$<..."),
     ignore_net_active_window=false,
-    float_placement_padding=0,
+    float_placement_padding=2,
     warp=false,
     kbresize_delay=1000000,
     mousefocus="disabled",
@@ -42,8 +42,8 @@ dopath("dynamic_view")
 dopath("cfg_tiling")
 dopath("dbg")
 dopath("mod_xrandr")
-dopath("mod_notionflux")
 dopath("cfg_xrandr")
+dopath("mod_notionflux")
 dopath("sp_app")
 dopath("vim_bindings")
 dopath("goto-by-tag")

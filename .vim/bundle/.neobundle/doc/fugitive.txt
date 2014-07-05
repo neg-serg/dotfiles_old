@@ -63,12 +63,12 @@ that are part of Git repositories).
                         to commit, |:Gstatus| is called instead.  Unless the
                         arguments given would skip the invocation of an editor
                         (e.g., -m), a split window will be used to obtain a
-                        commit message.  Write and close that window (:wq or
-                        |:Gwrite|) to finish the commit.  Unlike when running
-                        the actual git-commit command, it is possible (but
-                        unadvisable) to muck with the index with commands like
-                        git-add and git-reset while a commit message is
-                        pending.
+                        commit message, or a new tab if -v is given.  Write
+                        and close that window (:wq or |:Gwrite|) to finish the
+                        commit.  Unlike when running the actual git-commit
+                        command, it is possible (but unadvisable) to alter the
+                        index with commands like git-add and git-reset while a
+                        commit message is pending.
 
                                                 *fugitive-:Gmerge*
 :Gmerge [args]          Calls git-merge and loads errors and conflicted files
@@ -80,6 +80,15 @@ that are part of Git repositories).
 
                                                 *fugitive-:Gpull*
 :Gpull [args]           Like |:Gmerge|, but for git-pull.
+
+                                                *fugitive-:Gpush*
+:Gpush [args]           Invoke git-push, load the results into the quickfix
+                        list, and invoke |:cwindow| to reveal any errors.
+                        |:Dispatch| is used if available for asynchronous
+                        invocation.
+
+                                                *fugitive-:Gfetch*
+:Gfetch [args]          Like |:Gpush|, but for git-fetch.
 
                                                 *fugitive-:Ggrep*
 :Ggrep [args]           |:grep| with git-grep as 'grepprg'.

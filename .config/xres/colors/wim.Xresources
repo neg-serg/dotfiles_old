@@ -5,6 +5,8 @@ wim.pointerColorBackground: #586e75
 wim.pointerColorForeground: #93a1a1
 !wim.allow_bold:           false
 wim.intensityStyles:      false
+wim.shading:              5
+wim.letterspace           -1
 !wim.meta8:                true
 
 wim*background:            #000000

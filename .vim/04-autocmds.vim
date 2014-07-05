@@ -5,7 +5,13 @@
 
 augroup vimrc
     autocmd!
-augroup END
+    au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
+    au VimLeave * if exists('g:session') | call Mks(g:session) | endif
+augroup end
+
+fun! Mks(path)
+    exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
+endfun
 
 " OmniComplete {
 if has("autocmd") && exists("+omnifunc")
@@ -14,14 +20,6 @@ if has("autocmd") && exists("+omnifunc")
         \setlocal omnifunc=syntaxcomplete#Complete |
         \endif
 endif
-
-
-" forced powerline/airline redraw
-" " I think there is bug with airline
-" au FocusGained * :redraw!
-
-" autocmd VimEnter * echo "Welcome back Sergey :)"
-" autocmd VimLeave * echo "Cya in Hell."
 
 " Return to last edit position (You want this!) *N*
 autocmd BufReadPost *
@@ -129,10 +127,6 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 
-" hi Search    term=reverse ctermfg=0 ctermbg=11 guifg=#002B36 guibg=#899ca1
-" hi IncSearch term=reverse cterm=reverse gui=reverse guifg=#8008AAD guibg=#002B36
-" hi DiffDelete     xxx term=bold ctermfg=12 ctermbg=6 gui=bold guifg=Blue guibg=DarkCyan
-" hi DiffText       xxx term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red
 " For solarized
 " highlight SpellBad term=underline gui=undercurl guisp=Orange
 
@@ -202,31 +196,6 @@ endfunction
 
 autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard')
 
-" augroup vimrcEx
-"   autocmd!
-"
-"   " For all text files set 'textwidth' to 78 characters.
-"   autocmd FileType text setlocal textwidth=78
-"
-"   " When editing a file, always jump to the last known cursor position.
-"   " Don't do it for commit messages, when the position is invalid, or when
-"   " inside an event handler (happens when dropping a file on gvim).
-"   autocmd BufReadPost *
-"     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-"     \   exe "normal g`\"" |
-"     \ endif
-"
-"   " Set syntax highlighting for specific file types
-"   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-"   autocmd BufRead,BufNewFile *.md set filetype=markdown
-"
-"   " Enable spellchecking for Markdown
-"   autocmd FileType markdown setlocal spell
-"
-"   " Automatically wrap at 80 characters for Markdown
-"   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-" augroup END
-
 " UltiSnips is missing a setf trigger for snippets on BufEnter
 autocmd vimrc BufEnter *.snippets setf snippets
 
@@ -282,26 +251,18 @@ function! s:jedi_settings()
 endfunction
 autocmd Filetype python call <SID>jedi_settings()
 "------------------------------------------------------------------------------------------------------------------
+function! s:on_FileType_help_define_mappings()
+    if &l:readonly
+        nnoremap <buffer>J <C-]>
+        nnoremap <buffer>K <C-t>
+        nnoremap <buffer><silent><Tab> /\%(\_.\zs<Bar>[^ ]\+<Bar>\ze\_.\<Bar>CTRL-.\<Bar><[^ >]\+>\)<CR>
+        nnoremap <buffer>u <C-u>
+        nnoremap <buffer>d <C-d>
+        nnoremap <buffer>q :<C-u>q<CR>
+    endif
+endfunction
+autocmd Filetype help call s:on_FileType_help_define_mappings()
 
-" " help のマッピング
-" function! s:on_FileType_help_define_mappings()
-"     if &l:readonly
-"         " カーソル下のタグへ飛ぶ
-"         nnoremap <buffer>J <C-]>
-"         " 戻る
-"         nnoremap <buffer>K <C-t>
-"         " リンクしている単語を選択する
-"         nnoremap <buffer><silent><Tab> /\%(\_.\zs<Bar>[^ ]\+<Bar>\ze\_.\<Bar>CTRL-.\<Bar><[^ >]\+>\)<CR>
-"         " そのた
-"         nnoremap <buffer>u <C-u>
-"         nnoremap <buffer>d <C-d>
-"         nnoremap <buffer>q :<C-u>q<CR>
-"         " カーソル下の単語を help で調べる
-"         " AutocmdFT help nnoremap <buffer>K :<C-u>help <C-r><C-w><CR>
-"         " TODO v で選択した範囲を help
-"     endif
-" endfunction
-" AutocmdFT help call s:on_FileType_help_define_mappings()
 " git-rebase
 autocmd Filetype gitrebase nnoremap <buffer><C-p> :<C-u>Pick<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-s> :<C-u>Squash<CR>

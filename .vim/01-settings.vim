@@ -92,20 +92,21 @@ if !has("gui_running")
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
+    set showmode                       " show what key had been pressed
     syntax sync minlines=256
-    set lazyredraw
+    set lazyredraw                     " it's doesn't set by default for tmux
 
     if exists('$TMUX')
-        let s:not_tmuxed_vim = system("/home/neg/bin/scripts/not_tmuxed_wim")
+        let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
         if s:not_tmuxed_vim =~ "FALSE"
             autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
             let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             autocmd VimEnter * silent !tmux set status off
             set timeout  timeoutlen=1000
             set ttimeout ttimeoutlen=100       " Usable for fast keybindings
-            autocmd VimLeave * silent !tmux set status on
+            autocmd VimLeave * silent !tmux set status on;
+                \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
         endif
     endif
 endif
@@ -237,24 +238,26 @@ if exists("+undofile")
   " :help undo-persistence
   " This is only present in 7.3+
   silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  set undodir+=~/.vim/undo//
+  set undodir=~/trash/
   set undofile
 endif
+
+set formatoptions=tcroqnj
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
-set formatoptions+=t    " auto-wrap using textwidth (not comments)
-set formatoptions+=c    " auto-wrap comments too
-set formatoptions+=r    " continue the comment header automatically on <CR>
-set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-set formatoptions+=q    " allow formatting of comments with gq
-set formatoptions+=n    " recognize numbered lists when autoindenting
-set formatoptions-=2    " don't use second line of paragraph when autoindenting
-set formatoptions-=v    " don't worry about vi compatiblity
-set formatoptions-=b    " don't worry about vi compatiblity
-set formatoptions+=l    " don't break long lines in insert mode
-set formatoptions+=1    " don't break lines after one-letter words, if possible
+" set formatoptions+=t    " auto-wrap using textwidth (not comments)
+" set formatoptions+=c    " auto-wrap comments too
+" set formatoptions+=r    " continue the comment header automatically on <CR>
+" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+" set formatoptions+=q    " allow formatting of comments with gq
+" set formatoptions+=n    " recognize numbered lists when autoindenting
+" set formatoptions-=2    " don't use second line of paragraph when autoindenting
+" set formatoptions-=v    " don't worry about vi compatiblity
+" set formatoptions-=b    " don't worry about vi compatiblity
+" set formatoptions+=l    " don't break long lines in insert mode
+" set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
@@ -469,11 +472,13 @@ let g:syntastic_c_check_header = 1
 " let g:ycm_extra_conf_globlist = []
 " let g:ycm_extra_conf_globlist = ['~/*','/mnt/home/*']
 " let g:ycm_extra_conf_globlist = ['~/dev/*', '~/kern/*', './']
-let g:ycm_filepath_completion_use_working_dir = 1
 " let g:ycm_global_ycm_extra_conf = './.ycm_extra_conf.py'
 " let g:ycm_global_ycm_extra_conf = '~/dev/kern/linux/.ycm_extra.conf.py'
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_filepath_completion_use_working_dir = 0
 let g:ycm_confirm_extra_conf           = 0
+let g:ycm_cache_omnifunc = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
 "--[ syntastic enabling ]-----------------
 let g:ycm_show_diagnostics_ui          = 1 
 let g:ycm_seed_identifiers_with_syntax = 0
@@ -514,10 +519,10 @@ let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ackprg = 'ag --nogroup --nocolor --column'
 "--[ YankRing ]-------------------
 " this is so that single char deletes don't end up in the yankring
-let g:yankring_min_element_length = 2
-let g:yankring_window_height = 14
 let g:yankring_history_dir = '/tmp'
 let g:yankring_history_file = 'yankring_hist'
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 14
 "--[ Vimux ]----------------------
 let g:VimuxUseNearestPane = 1
 "--[ Utl exec ]-------------------
@@ -612,3 +617,4 @@ let g:CCTreeUsePerl        = 1
 let g:CCTreeUseUTF8Symbols = 1
 "--[ vimshell ]-------------------
 let g:vimshell_environment_term       = 'rxvt-256color'
+let g:zsh_path_completion_suppress_mappings = 1
