@@ -115,15 +115,15 @@ change $CC value.
 
 Windows using MinGW (32bit Vim):
 >
-	$ make -f make_mingw32.mak
+	$ mingw32-make -f make_mingw32.mak
 <
 Windows using MinGW (If you want to use MinGW compiler in Cygwin):
 >
-	$ make -f make_mingw32.mak CC=mingw32-gcc
+	$ mingw32-make -f make_mingw32.mak CC=mingw32-gcc
 <
 Windows using MinGW (64bit Vim):
 >
-	$ make -f make_mingw64.mak
+	$ mingw32-make -f make_mingw64.mak
 <
 Windows using Visual Studio (32bit/64bit Vim):
 >
@@ -156,11 +156,9 @@ http://github.com/Shougo/neobundle.vim
 
 Example for neobundle:
 >
-	let vimproc_updcmd = has('win64') ?
-	      \ 'tools\\update-dll-mingw 64' : 'tools\\update-dll-mingw 32'
-	execute "NeoBundle 'Shougo/vimproc.vim'," . string({
+	NeoBundle 'Shougo/vimproc.vim', {
 	      \ 'build' : {
-	      \     'windows' : vimproc_updcmd,
+	      \     'windows' : 'tools\\update-dll-mingw',
 	      \     'cygwin' : 'make -f make_cygwin.mak',
 	      \     'mac' : 'make -f make_mac.mak',
 	      \     'unix' : 'make -f make_unix.mak',

@@ -62,8 +62,8 @@ omap <C-e> <End>
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 cnoremap <c-b> <left>
-cnoremap <c-d> <del>
-cnoremap <c-f> <right>
+cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 cnoremap <C-_> <c-f>
 cnoremap <c-n> <down>
 cnoremap <c-p> <up>

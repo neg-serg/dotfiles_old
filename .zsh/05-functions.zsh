@@ -105,7 +105,6 @@ check_com() {
     return 1
 }
 
-
 # a generic accept-line wrapper
 
 # This widget can prevent unwanted autocorrections from command-name
@@ -271,8 +270,7 @@ function getlscolors(){
     names[ow]="other writable"
     names[st]="sticky"
     names[ex]="executable"
-    for i in ${(s.:.)LS_COLORS}
-    do
+    for i in ${(s.:.)LS_COLORS}; do
         key=${i%\=*}
         color=${i#*\=}
         name=${names[(e)$key]-$key}
@@ -335,16 +333,13 @@ simple-extract() {
                 print "ERROR: '$ARCHIVE' has unrecognized archive type." >&2; RC=$((RC+1)); continue
                 ;;
         esac
-
         if ! check_com ${DECOMP_CMD[(w)1]}; then
             echo "ERROR: ${DECOMP_CMD[(w)1]} not installed." >&2
             RC=$((RC+2))
             continue
         fi
-
         GZTARGET="${ARCHIVE:t:r}"
         if [[ -f $ARCHIVE ]] ; then
-
             print "Extracting '$ARCHIVE' ..."
             if $USES_STDIN; then
                 if $USES_STDOUT; then
@@ -360,7 +355,6 @@ simple-extract() {
                 fi
             fi
             [[ $? -eq 0 && -n "$DELETE_ORIGINAL" ]] && rm -f "$ARCHIVE"
-
         elif [[ "$ARCHIVE" == (#s)(https|http|ftp)://* ]] ; then
             if check_com curl; then
                 WGET_CMD="curl -L -k -s -o -"
@@ -387,7 +381,6 @@ simple-extract() {
                     ${=DECOMP_CMD} =(${=WGET_CMD} "$ARCHIVE")
                 fi
             fi
-
         else
             print "ERROR: '$ARCHIVE' is neither a valid file nor a supported URI." >&2
             RC=$((RC+8))
@@ -405,14 +398,14 @@ xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=
 xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
 # just type '...' to get '../..'
 rationalise-dot() {
-local MATCH
-if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
-  LBUFFER+=/
-  zle self-insert
-  zle self-insert
-else
-  zle self-insert
-fi
+    local MATCH
+    if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
+        LBUFFER+=/
+        zle self-insert
+        zle self-insert
+    else
+        zle self-insert
+    fi
 }
 zle -N rationalise-dot
 
@@ -498,8 +491,8 @@ function zle-keymap-select {
 
 # 2011-10-19: tmux shortcut for creating/attaching named sessions
 tm() {
-  [[ -z "$1" ]] && { echo "usage: tm <session>" >&2; return 1; }
-  tmux has -t $1 && tmux attach -t $1 || tmux new -s $1
+    [[ -z "$1" ]] && { echo "usage: tm <session>" >&2; return 1; }
+    tmux has -t $1 && tmux attach -t $1 || tmux new -s $1
 }
 
 # 2011-10-19
@@ -513,13 +506,13 @@ function __tmux-sessions() {
 compdef __tmux-sessions tm 
 
 imv() {
-  local src dst
-  for src; do
-    [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
-    dst=$src
-    vared dst
-    [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
-  done
+    local src dst
+    for src; do
+        [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
+        dst=$src
+        vared dst
+        [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
+    done
 }
 
 pstop() {
@@ -527,7 +520,7 @@ pstop() {
     head "${@:--n 20}"
 }
 
-function finfo(){
+function finfo() {
 while [ $# -gt 0 ] ; do
     mime_type=$(file -L -b --mime-type "$1")
     case $mime_type in
@@ -630,22 +623,22 @@ function clip(){
     echo -e "$pass ${txtund}"${filename##*/}"${txtrst} copied to clipboard"
 }
 
-fg-widget() {
-  stty icanon echo -inlcr < /dev/tty
-  stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
-  zle reset-prompt
-  if jobs %- >/dev/null 2>&1; then
-    fg %-
-  else
-    fg
-  fi
+function fg-widget() {
+    stty icanon echo -inlcr < /dev/tty
+    stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
+    zle reset-prompt
+    if jobs %- >/dev/null 2>&1; then
+        fg %-
+    else
+        fg
+    fi
 }
 zle -N fg-widget
 
 
 function expand-or-complete-and-highlight() {
-  zle expand-or-complete
-  _zsh_highlight
+    zle expand-or-complete
+    _zsh_highlight
 }
 
 zle -N expand-or-complete-and-highlight expand-or-complete-and-highlight
@@ -710,7 +703,7 @@ function magnet_to_torrent() {
     echo "d10:magnet-uri${#1}:${1}e" > "$filename.torrent"
 }
 
-colorize_via_pygmentize() {
+function colorize_via_pygmentize() {
     if [ ! -x $(which pygmentize) ]; then
         echo package \'pygmentize\' is not installed!
         exit -1
@@ -788,8 +781,8 @@ function dfu() {
 doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
 discover () {
-        keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
-        locate -ir $keyword
+    keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
+    locate -ir $keyword
 }
 
 sprunge() {
@@ -817,27 +810,26 @@ sprunge() {
 XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
-  if [[ $# -ge 1 ]]; then
+    if [[ $# -ge 1 ]]; then
     case $1 {
-      '-a'|'-all') <${ZDOTDIR:-${HOME}/zsh}/.history | ${PAGER:-less} ;;
-      '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ${ZDOTDIR:-${HOME}/zsh}/.history ;;
-      '-f'|'--find') [[ -n $2 ]] && <${ZDOTDIR:-${HOME}/zsh}/.history|grep -i "${${@:/$1}// /\|}" ;;
+        '-a'|'-all') <${ZDOTDIR:-${HOME}/zsh}/.history | ${PAGER:-less} ;;
+        '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ${ZDOTDIR:-${HOME}/zsh}/.history ;;
+        '-f'|'--find') [[ -n $2 ]] && <${ZDOTDIR:-${HOME}/zsh}/.history|grep -i "${${@:/$1}// /\|}" ;;
     }
-  else
-    print - "options: -e (edit), -f (find), -a (all)"
-  fi
+    else
+        print - "options: -e (edit), -f (find), -a (all)"
+    fi
 }
 
-
 function say() {
-	if [[ "${1}" =~ -[a-z]{2} ]]; then
-		local lang=${1#-};
-		local text="${*#$1}";
-	else 
-		local lang=${LANG%_*};
-		local text="$*";
-	fi;
-	mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ;
+    if [[ "${1}" =~ -[a-z]{2} ]]; then
+        local lang=${1#-};
+        local text="${*#$1}";
+    else 
+        local lang=${LANG%_*};
+        local text="$*";
+    fi;
+    mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ;
 }
 
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }

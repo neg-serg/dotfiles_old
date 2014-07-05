@@ -168,10 +168,6 @@ fi
 chpwd() {
     local -ax my_stack
     my_stack=( ${PWD} ${dirstack} )
-    # if is42 ; then
     builtin print -l ${(u)my_stack} >! ${DIRSTACKFILE}
-    # else
-    #     uprint my_stack >! ${DIRSTACKFILE}
-    # fi
 }
 

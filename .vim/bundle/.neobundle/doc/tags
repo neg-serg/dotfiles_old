@@ -1,9 +1,9 @@
-'NERDChristmasTree'	NERD_tree.txt	/*'NERDChristmasTree'*
 'NERDTreeAutoCenter'	NERD_tree.txt	/*'NERDTreeAutoCenter'*
 'NERDTreeAutoCenterThreshold'	NERD_tree.txt	/*'NERDTreeAutoCenterThreshold'*
 'NERDTreeAutoDeleteBuffer'	NERD_tree.txt	/*'NERDTreeAutoDeleteBuffer'*
 'NERDTreeBookmarksFile'	NERD_tree.txt	/*'NERDTreeBookmarksFile'*
-'NERDTreeCasadeOpenSingleChildDir'	NERD_tree.txt	/*'NERDTreeCasadeOpenSingleChildDir'*
+'NERDTreeBookmarksSort'	NERD_tree.txt	/*'NERDTreeBookmarksSort'*
+'NERDTreeCascadeOpenSingleChildDir'	NERD_tree.txt	/*'NERDTreeCascadeOpenSingleChildDir'*
 'NERDTreeCaseSensitiveSort'	NERD_tree.txt	/*'NERDTreeCaseSensitiveSort'*
 'NERDTreeChDirMode'	NERD_tree.txt	/*'NERDTreeChDirMode'*
 'NERDTreeDirArrows'	NERD_tree.txt	/*'NERDTreeDirArrows'*
@@ -13,6 +13,7 @@
 'NERDTreeMinimalUI'	NERD_tree.txt	/*'NERDTreeMinimalUI'*
 'NERDTreeMouseMode'	NERD_tree.txt	/*'NERDTreeMouseMode'*
 'NERDTreeQuitOnOpen'	NERD_tree.txt	/*'NERDTreeQuitOnOpen'*
+'NERDTreeRespectWildIgnore'	NERD_tree.txt	/*'NERDTreeRespectWildIgnore'*
 'NERDTreeShowBookmarks'	NERD_tree.txt	/*'NERDTreeShowBookmarks'*
 'NERDTreeShowFiles'	NERD_tree.txt	/*'NERDTreeShowFiles'*
 'NERDTreeShowHidden'	NERD_tree.txt	/*'NERDTreeShowHidden'*
@@ -657,7 +658,6 @@ SpliceVCS_hg	splice.txt	/*SpliceVCS_hg*
 Substitute_CSV	ft-csv.txt	/*Substitute_CSV*
 SumCol_CSV	ft-csv.txt	/*SumCol_CSV*
 T:	ack_quick_help.txt	/*T:*
-Tabular.txt	Tabular.txt	/*Tabular.txt*
 TeX-9	tex_nine.txt	/*TeX-9*
 TernDef	tern.txt	/*TernDef*
 TernDefPreview	tern.txt	/*TernDefPreview*
@@ -1299,12 +1299,16 @@ Vital.Web.HTTP.parseHeader()	vital-web-http.txt	/*Vital.Web.HTTP.parseHeader()*
 Vital.Web.HTTP.post()	vital-web-http.txt	/*Vital.Web.HTTP.post()*
 Vital.Web.HTTP.request()	vital-web-http.txt	/*Vital.Web.HTTP.request()*
 Vital.Web.JSON	vital-web-json.txt	/*Vital.Web.JSON*
+Vital.Web.JSON-consts	vital-web-json.txt	/*Vital.Web.JSON-consts*
 Vital.Web.JSON-contents	vital-web-json.txt	/*Vital.Web.JSON-contents*
 Vital.Web.JSON-functions	vital-web-json.txt	/*Vital.Web.JSON-functions*
 Vital.Web.JSON-interface	vital-web-json.txt	/*Vital.Web.JSON-interface*
 Vital.Web.JSON-introduction	vital-web-json.txt	/*Vital.Web.JSON-introduction*
 Vital.Web.JSON.decode()	vital-web-json.txt	/*Vital.Web.JSON.decode()*
 Vital.Web.JSON.encode()	vital-web-json.txt	/*Vital.Web.JSON.encode()*
+Vital.Web.JSON.false	vital-web-json.txt	/*Vital.Web.JSON.false*
+Vital.Web.JSON.null	vital-web-json.txt	/*Vital.Web.JSON.null*
+Vital.Web.JSON.true	vital-web-json.txt	/*Vital.Web.JSON.true*
 Vital.Web.XML	vital-web-xml.txt	/*Vital.Web.XML*
 Vital.Web.XML-contents	vital-web-xml.txt	/*Vital.Web.XML-contents*
 Vital.Web.XML-functions	vital-web-xml.txt	/*Vital.Web.XML-functions*
@@ -1795,6 +1799,7 @@ dispatch-:Copen	dispatch.txt	/*dispatch-:Copen*
 dispatch-:Dispatch	dispatch.txt	/*dispatch-:Dispatch*
 dispatch-:FocusDispatch	dispatch.txt	/*dispatch-:FocusDispatch*
 dispatch-:Make	dispatch.txt	/*dispatch-:Make*
+dispatch-:Spawn	dispatch.txt	/*dispatch-:Spawn*
 dispatch-:Start	dispatch.txt	/*dispatch-:Start*
 dispatch-commands	dispatch.txt	/*dispatch-commands*
 dispatch-strategies	dispatch.txt	/*dispatch-strategies*
@@ -1935,6 +1940,7 @@ fixkey-changelog-0.3.0	fixkey.txt	/*fixkey-changelog-0.3.0*
 fixkey-changelog-0.3.1	fixkey.txt	/*fixkey-changelog-0.3.1*
 fixkey-changelog-0.3.2	fixkey.txt	/*fixkey-changelog-0.3.2*
 fixkey-changelog-0.3.3	fixkey.txt	/*fixkey-changelog-0.3.3*
+fixkey-changelog-0.3.4	fixkey.txt	/*fixkey-changelog-0.3.4*
 fixkey-credits	fixkey.txt	/*fixkey-credits*
 fixkey-installation	fixkey.txt	/*fixkey-installation*
 fixkey-intro	fixkey.txt	/*fixkey-intro*
@@ -2003,6 +2009,7 @@ fugitive-:Gcommit	fugitive.txt	/*fugitive-:Gcommit*
 fugitive-:Gdiff	fugitive.txt	/*fugitive-:Gdiff*
 fugitive-:Ge	fugitive.txt	/*fugitive-:Ge*
 fugitive-:Gedit	fugitive.txt	/*fugitive-:Gedit*
+fugitive-:Gfetch	fugitive.txt	/*fugitive-:Gfetch*
 fugitive-:Ggrep	fugitive.txt	/*fugitive-:Ggrep*
 fugitive-:Git	fugitive.txt	/*fugitive-:Git*
 fugitive-:Git!	fugitive.txt	/*fugitive-:Git!*
@@ -2015,6 +2022,7 @@ fugitive-:Gmove	fugitive.txt	/*fugitive-:Gmove*
 fugitive-:Gpedit	fugitive.txt	/*fugitive-:Gpedit*
 fugitive-:Gpedit!	fugitive.txt	/*fugitive-:Gpedit!*
 fugitive-:Gpull	fugitive.txt	/*fugitive-:Gpull*
+fugitive-:Gpush	fugitive.txt	/*fugitive-:Gpush*
 fugitive-:Gread	fugitive.txt	/*fugitive-:Gread*
 fugitive-:Gread!	fugitive.txt	/*fugitive-:Gread!*
 fugitive-:Gremove	fugitive.txt	/*fugitive-:Gremove*
@@ -2635,6 +2643,7 @@ misc-integration-between-vim-its-environment	misc.txt	/*misc-integration-between
 misc-introduction	misc.txt	/*misc-introduction*
 misc-license	misc.txt	/*misc-license*
 misc-list-handling-functions	misc.txt	/*misc-list-handling-functions*
+misc-manipulation-of-unix-file-permissions	misc.txt	/*misc-manipulation-of-unix-file-permissions*
 misc-operating-system-interfaces	misc.txt	/*misc-operating-system-interfaces*
 misc-pathname-manipulation-functions	misc.txt	/*misc-pathname-manipulation-functions*
 misc-persist-recall-vim-values-from-to-files	misc.txt	/*misc-persist-recall-vim-values-from-to-files*
@@ -3072,13 +3081,7 @@ tab>	latexhelp.txt	/*tab>*
 tab`	latexhelp.txt	/*tab`*
 taba	latexhelp.txt	/*taba*
 tabbing	latexhelp.txt	/*tabbing*
-tabular	Tabular.txt	/*tabular*
 tabular	latexhelp.txt	/*tabular*
-tabular-intro	Tabular.txt	/*tabular-intro*
-tabular-scripting	Tabular.txt	/*tabular-scripting*
-tabular-toc	Tabular.txt	/*tabular-toc*
-tabular-walkthrough	Tabular.txt	/*tabular-walkthrough*
-tabular.vim	Tabular.txt	/*tabular.vim*
 tagbar	tagbar.txt	/*tagbar*
 tagbar-autoopen	tagbar.txt	/*tagbar-autoopen*
 tagbar-commands	tagbar.txt	/*tagbar-commands*
@@ -3891,6 +3894,9 @@ xolox#misc#path#relative()	misc.txt	/*xolox#misc#path#relative()*
 xolox#misc#path#split()	misc.txt	/*xolox#misc#path#split()*
 xolox#misc#path#tempdir()	misc.txt	/*xolox#misc#path#tempdir()*
 xolox#misc#path#which()	misc.txt	/*xolox#misc#path#which()*
+xolox#misc#perm#get()	misc.txt	/*xolox#misc#perm#get()*
+xolox#misc#perm#set()	misc.txt	/*xolox#misc#perm#set()*
+xolox#misc#perm#update()	misc.txt	/*xolox#misc#perm#update()*
 xolox#misc#persist#load()	misc.txt	/*xolox#misc#persist#load()*
 xolox#misc#persist#save()	misc.txt	/*xolox#misc#persist#save()*
 xolox#misc#str#compact()	misc.txt	/*xolox#misc#str#compact()*
