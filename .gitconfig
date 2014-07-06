@@ -1,0 +1,86 @@
+[user]
+	name = Sergey Miroshnichenko
+	email = serg.zorg@gmail.com
+[core]
+  pager = 
+[color]
+  branch     = auto
+  diff       = 1
+  grep       = auto
+  pager      = 0
+  showbranch = auto
+  status     = auto
+  ui = auto
+
+[color "status"]
+  added     = 2 bold
+  branch    = 100
+  changed   = 085 bold
+  header    = 086
+  nobranch  = 197
+  untracked = 240
+
+[color "branch"]
+  current = 172
+  local   = 85 bold
+  remote  = 039
+  plain   = 240 reverse
+
+[color "diff"]
+  old        = 1
+  new        = 23
+  plain      = 7
+  meta       = 85
+  frag       = 67
+  func       = 68
+  commit     = 4
+  whitespace = 59
+
+[man]
+  viewer = man
+[receive]
+  denyCurrentBranch = ignore
+[core]
+  excludesfile = /etc/gitignore
+	editor = gvim -f
+[gui]
+  fontui   = -family MonteCarlo -size -12 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = -family MonteCarlo -size -12 -weight normal -slant roman -underline 0 -overstrike 0
+[alias]
+  last = "!git log -7 HEAD --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[m \\033[32m%s\\033[m  %-.40s \\033[30;1m%s\\033[m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';"
+  co   = checkout
+  ci   = commit
+  st   = status
+  pu   = push
+  pl   = pull
+  undo = checkout --
+  log1 = log --
+  whatthefuckdidido = diff HEAD
+  sum  = git-summary
+  effort  = git-summary
+  styoyo = git-awesome-status
+  l    = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-40s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';}; f"
+  ll   = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-50s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }';}; f"
+  lll  = "!f () { git log --abbrev-commit --date=short --pretty=format:'%h%x00%cd%x00%s%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5 }'; }; f"
+  lg40 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-40s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
+  lg50 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-50s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
+  lg80 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
+	d = difftool
+[github]
+  user  = neg-serg
+[credential]
+	helper = cache --timeout=3600
+[push]
+    default = simple
+[diff]
+#   external = ~/bin/scripts/wimdiff
+	tool = gvimdiff
+[difftool]
+	prompt = false
+#[pager]
+#    diff =
+[merge]
+    tool = splice
+[mergetool "splice"]
+    cmd = "gvimdiff -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
