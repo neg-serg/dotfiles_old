@@ -1,6 +1,46 @@
 set gui=none
 colorscheme vimpwhite
 
+set hintchars=12345
+" C-g as cancel (C-q is stop)
+cmap <C-]> i<Esc>
+imap <C-]> i<Esc>
+noremap <C-]> i<Esc>
+" ignorekeys add -except=:,/,f,F,r,d,<C-[>,<Esc>,h,j,k,l,t,o,d,w,i,u https://vk.com
+
+autocmd PageLoad .* js blurAllInputFields()
+:js << EOF
+function blurAllInputFields()
+{
+    var inputs = window.content.window.document.getElementsByTagName('input');
+    for (index = 0; index < inputs.length; ++index)
+        inputs[index].blur();
+}
+EOF
+
+" Run :vimperatortoggle to enable or disable Vimperator as needed.
+javascript function vimperatortoggle() { if (is_vimperator_active) { liberator.execute(':disable') } else { liberator.execute(':enable') }; }
+command! vimperatortoggle javascript vimperatortoggle()
+ 
+" Run :disable to disable Vimperator and resume normal Firefox behavior.
+javascript function disable() { is_vimperator_active = false; modes.passAllKeys = true; }
+command! disable javascript disable()
+ 
+" Run :enable to enable Vimperator.
+javascript function enable() { is_vimperator_active = true;  }
+command! enable javascript enable()
+:enable
+
+" Show properties of an object within JavaScript.
+javascript <<EOB
+function inspect(what) {
+var nodes = [];
+for (var node in what)
+nodes.push(node);
+liberator.echo(nodes.sort().join(', '));
+}
+EOB
+
 so ~/.pentadactyl/styles.rc
 so ~/.pentadactyl/tomorrownight.rc
 
@@ -221,45 +261,3 @@ map Ь M
 map Б <
 map Ю >
 map . /
-
-"  " Style: Minimalistic Tabs {{{
-"  " -----------------------------------------------------------------------------
-"  style -name minitabs chrome://* <<EOM
-"  #TabsToolbar toolbarbutton {
-"    display: none !important;
-"  }
-"  .tabbrowser-tabs {
-"    background: #282a2e !important;
-"  }
-"  .tabbrowser-tab {
-"    -moz-appearance: none !important;
-"    -moz-border-radius: 0 !important;
-"    background: #282a2e !important;
-"    border: none !important;
-"    color: #707880 !important;
-"    font-family: Terminus !important;
-"    font-size: 9pt !important;
-"    height: 18px !important;
-"    margin: 0 !important;
-"    min-height: 0 !important;
-"    padding: 0 0.5ex !important;
-"  }
-"  .tabbrowser-tab:not([pinned]) {
-"    max-width: 100px !important;
-"    min-width: 100px !important;
-"  }
-"  .tabbrowser-tab:not([fadein]) {
-"    max-width: 1px !important;
-"    min-width: 1px !important;
-"  }
-"  .tabbrowser-tab:hover {
-"    background: #f0c674 !important;
-"    color: #282a2e !important;
-"  }
-"  .tabbrowser-tab[selected] {
-"    background: #282a2e !important;
-"    color: #f0c674 !important;
-"  }
-"  @-moz-document url-prefix(about:blank) {*{background-color:#000000;}}
-"  EOM
-

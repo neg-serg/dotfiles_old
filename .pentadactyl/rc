@@ -10,8 +10,6 @@ javascript dactyl.beep = function() { return false; }
 "Do it fast!
 set timeoutlen=200
 
-set cpt=l
-set autocomplete=".*"
 colorscheme vimpwhite
 
 imap jk <Esc>
@@ -57,7 +55,13 @@ map I_<C-w> I_<C-BS>
 map -builtin B -silent :bmarks<CR>
 nmap -builtin gr gT
 
-map <F4> :set complete=lS<CR>
+"" complete search engine suguest
+" set complete=lS
+" set complete=native:history  // bug with rev-hist
+set cpt=l
+set autocomplete=".*"
+map <F4> :set complete=native:history<CR>
+" map <F4> :set complete=lS<CR>
 map <F5> :set complete=bookmark<CR>
 
 " remap 'o' to 'e'
@@ -156,10 +160,6 @@ map -builtin <leader>b :sidebar Bookmarks<CR>
 
 map C-tab nop
 map <C-tab> <Nop>
-
-"" complete search engine suguest
-set complete=lS
-
 imap -builtin <C-y> <S-Ins>
 tmap -builtin <C-y> i_<S-Ins>
 map -builtin <C-y> <S-Ins>

@@ -175,13 +175,14 @@ defbindings("WMPlex.toplevel", {
     --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
-    kpress("Mod1+space",       "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
+    kpress("Mod1+space",       "nop()"),
     kpress("Mod1+grave",       "mod_query.query_exec(_)"),
     kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
     -- kpress("Mod4+space",       "named_scratchpad(_, 'misc')"),
     -- kpress("Mod1+G",           "mod_query.query_fuzzy_gotoclient(_)"),
     kpress("Mod1+G",           "mod_menu.menu(_, _sub, 'windowlist')"),
     -- kpress("Mod1+G",           "mod_query.query_gotoclient(_)"),
+
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
     -- kpress("Mod4+3",           "named_scratchpad(_, 'ranger')"),
     -- kpress("Mod4+4",           "sp_app(_, 'vmware', vmtable)"),
@@ -516,4 +517,7 @@ defmenu("menuattach", {
 function ncmpcpp(ws)
     ioncore.exec_on(ws, '/home/neg/bin/msc')
     named_scratchpad(ws, 'ncmpcpp')
+end
+
+function nop()
 end

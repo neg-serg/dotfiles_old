@@ -2,9 +2,9 @@
     if [ -x `which cope_path` ]; then
         local p=$(cope_path)
         for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
-        alias df="$p/df -h"
+        alias df="$p/df -hT"
     else
-        alias df="df -h"
+        alias df="df -hT"
     fi
 }
 
