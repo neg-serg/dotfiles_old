@@ -11,6 +11,7 @@ auctex.vim
 base16-vim
 bufkill.vim
 clam.vim
+cmake.vim
 conflict-marker.vim
 csv.vim
 delimitMate
@@ -93,7 +94,6 @@ vim-tmux
 vim-tmux-navigator
 vim-unimpaired
 vim-unite-svn
-vim-vinegar
 vim-xkbswitch
 vim-zsh-path-completion
 vimproc

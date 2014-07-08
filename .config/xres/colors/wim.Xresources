@@ -6,10 +6,11 @@ wim.pointerColorForeground: #93a1a1
 !wim.allow_bold:           false
 wim.intensityStyles:      false
 wim.shading:              5
-wim.letterspace           -1
+!wim.letterspace           -1
 !wim.meta8:                true
 
 wim*background:            #000000
+!wim*background:             #09090d
 wim*foreground:            #666666
 wim*cursorColor:           #b0d0f0
 
@@ -52,6 +53,7 @@ wim.color125:#680020
 wim.color126:#780000
 wim.color127:#5f0000
 wim.color162:#cc6666
+wim.color164:#4F4C75
 wim.color230:#eee8d5
 wim.color231:#fdfdfd
 wim.color232:#262626

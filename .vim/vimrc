@@ -47,6 +47,7 @@ NeoBundle 'junegunn/vim-pseudocl.git'
 NeoBundle 'junegunn/vim-oblique.git'              "improved search with fuzzy-finding
 NeoBundle 'shaneharper/vim-rtags.git'
 NeoBundle 'fweep/vim-zsh-path-completion.git'     "command-line completion like in zsh
+NeoBundle 'jalcine/cmake.vim'
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git'                         "syntax, indent, and filetype plugin files for git
 if executable("git")
@@ -88,7 +89,6 @@ NeoBundle 'vim-scripts/bufkill.vim.git'       "bufkill with BD
 NeoBundle 'lyokha/vim-xkbswitch.git'          "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'tpope/vim-surround'                "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'tpope/vim-repeat'                  " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
-NeoBundle 'tpope/vim-vinegar.git'             "some wrapper to netrw for projects
 NeoBundle 'vim-scripts/YankRing.vim.git'      "multiple pasting
 "--[ colorschemes ]------------------------------------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized'  "fancy solarized colorscheme
