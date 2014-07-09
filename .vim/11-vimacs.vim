@@ -4,19 +4,19 @@ inoremap <silent> <M-d> <C-r>=<SID>KillWord()<CR>
 "--[ Buffers ]-----------------------------------
 inoremap <C-x>b <C-o>:Unite -silent buffer<CR>
 
-" imap <C-b> <Left>
+" inoremap <silent><expr><C-b> pumvisible() ? "\<C-y>\<Left>" : "\<Left>"
 vmap <C-b> <Left>
 omap <C-b> <Left>
 "------
-imap <C-f> <Right>
+inoremap <silent><expr><C-f> pumvisible() ? "\<C-y>\<Right>" : "\<Right>"
 vmap <C-f> <Right>
 omap <C-f> <Right>
 "------
-imap <C-p> <Up>
+inoremap <silent><expr><C-p> pumvisible() ? "\<C-y>\<Up>" : "\<Up>"
 vmap <C-p> <Up>
 omap <C-p> <Up>
 "------
-imap <C-n> <Down>
+inoremap <silent><expr><C-n> pumvisible() ? "\<C-y>\<Down>" : "\<Down>"
 vmap <C-n> <Down>
 omap <C-n> <Down>
 "------
