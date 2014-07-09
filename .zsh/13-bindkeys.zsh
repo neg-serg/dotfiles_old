@@ -91,15 +91,10 @@ fi
 #k# Trigger menu-complete
 bindkey '\ei' menu-complete  # menu completion via esc-i
 
-# press esc-e for editing command line in $EDITOR or $VISUAL
-if zrcautoload edit-command-line && zle -N edit-command-line ; then
-    #k# Edit the current line in \kbd{\$EDITOR}
-    bindkey '\ee' edit-command-line
-fi
-
 #k# jump to after first word (for adding options)
 bindkey '^x1'           jump_after_first_word
-bindkey " "             magic-space # do history expansion on space
+# do history expansion on space
+bindkey " "             magic-space
 bindkey ",."            zleiab
 
 # zle -N backward-kill-default-word _backward_kill_default_word
@@ -112,12 +107,10 @@ bindkey -M emacs "^[|"  vi-goto-column
 bindkey -M emacs "^X^J" vi-join
 bindkey -M emacs "^X^B" vi-match-bracket
 
-
 # accept a completion and try to complete again by using menu
 # completion; very useful with completing directories
 # by using 'undo' one's got a simple file browser
 bindkey -M menuselect '^o' accept-and-infer-next-history
-# fi
 
 bindkey -M menuselect 'h'     vi-backward-char                
 bindkey -M menuselect 'j'     vi-down-line-or-history         
@@ -150,7 +143,6 @@ bindkey "i" fasd-complete      # A-i to do ls++ alias
 bindkey '^X^A' fasd-complete     # C-x C-a to do fasd-complete (files and directories)
 bindkey '^X^F' fasd-complete-f   # C-x C-f to do fasd-complete-f (only files)
 bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directories)
-bindkey '^Xd' fzf_tmux_dir
 
 bindkey '^X^X' copy-to-clipboard
 
