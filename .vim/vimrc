@@ -33,7 +33,6 @@ NeoBundle 'Raimondi/delimitMate.git'          "Add pairs to brackets
 NeoBundle 'scrooloose/syntastic.git'          "syntax checker. Realtime with ycm
 NeoBundle 'bling/vim-airline.git'             "fancy statusline
 NeoBundle 'nathanaelkane/vim-indent-guides'   "indent tabs visually with |-es too slow
-NeoBundle 'xolox/vim-misc'                    "for vim notes
 NeoBundle 'scrooloose/nerdtree.git'           "for cwd
 NeoBundle 'Shougo/vimproc', {
       \ 'build' : {
@@ -44,29 +43,29 @@ NeoBundle 'Shougo/vimproc', {
       \    },
       \ }
 NeoBundle 'junegunn/vim-pseudocl.git'
-NeoBundle 'junegunn/vim-oblique.git'              "improved search with fuzzy-finding
+NeoBundle 'junegunn/vim-oblique.git'          "improved search with fuzzy-finding
 NeoBundle 'shaneharper/vim-rtags.git'
-NeoBundle 'fweep/vim-zsh-path-completion.git'     "command-line completion like in zsh
-NeoBundle 'jalcine/cmake.vim'
+NeoBundle 'fweep/vim-zsh-path-completion.git' "command-line completion like in zsh
+"https://github.com/AndrewRadev/id3.vim.git
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-git'                         "syntax, indent, and filetype plugin files for git
+NeoBundle 'tpope/vim-git'                     "syntax, indent, and filetype plugin files for git
 if executable("git")
-NeoBundle 'rhysd/conflict-marker.vim'             "jumps over merge conflicts
-NeoBundle 'tpope/vim-fugitive.git'                "Git stuff. Needed for powerline etc
-NeoBundle 'kablamo/vim-git-log.git'               "Git commit browser/log wrapper for vim
-NeoBundle 'gregsexton/gitv'                       "Git viewer
-NeoBundle 'junegunn/vim-github-dashboard.git'     "Git dashboard in vim
-NeoBundle 'jaxbot/github-issues.vim.git'          "github issues autocomp
-NeoBundle 'idanarye/vim-merginal.git'             "to handle branches/merge conflicts
+NeoBundle 'rhysd/conflict-marker.vim'         "jumps over merge conflicts
+NeoBundle 'tpope/vim-fugitive.git'            "Git stuff. Needed for powerline etc
+NeoBundle 'kablamo/vim-git-log.git'           "Git commit browser/log wrapper for vim
+NeoBundle 'gregsexton/gitv'                   "Git viewer
+NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
+NeoBundle 'jaxbot/github-issues.vim.git'      "github issues autocomp
+NeoBundle 'idanarye/vim-merginal.git'         "to handle branches/merge conflicts
 "--[ Be careful with fugitive ]------------------------------------------------------------------------------
-NeoBundle 'sjl/splice.vim.git'                    "Merge tool for vim
+NeoBundle 'sjl/splice.vim.git'                "Merge tool for vim
 endif
 "------------------------------------------------------------------------------------------------------------
 if executable("tmux")
-NeoBundle 'tpope/vim-tbone.git'                   "tmux basics
-NeoBundle 'benmills/vimux.git'                    "tmux wrapper
-NeoBundle 'christoomey/vim-tmux-navigator'        "easy jump between windows
-" https://github.com/wellle/tmux-complete.vim.git
+NeoBundle 'tpope/vim-tbone.git'               "tmux basics
+NeoBundle 'benmills/vimux.git'                "tmux wrapper
+NeoBundle 'christoomey/vim-tmux-navigator'    "easy jump between windows
+NeoBundle 'wellle/tmux-complete.vim.git'      "completion from tmux for vim
 endif
 if executable("ghci")
 NeoBundleLazy 'ujihisa/neco-ghc'              "autocomplete for hs using ghc-mod
@@ -97,10 +96,8 @@ NeoBundle 'chriskempson/base16-vim'           "set of good colorschemes
 NeoBundle 'nanotech/jellybeans.vim.git'       "fancy jellybeans colorsheme
 NeoBundle 'noahfrederick/vim-noctu.git'       "colorscheme for 16-color term
 "--[ DEV ]---------------------------------------------------------------------------------------------------
-" NeoBundle 'hari-rangarajan/CCTree'            "call-tree for c
 NeoBundle 'majutsushi/tagbar'                 "tagbar
 NeoBundle 'tomtom/tcomment_vim.git'           "easier comments
-NeoBundle 'terryma/vim-multiple-cursors'      "it's feeric!!111
 NeoBundle 'lord-garbage/tslime.vim.git'       "to work with lisp, clojure, f#
 NeoBundle 'tpope/vim-endwise'                 "to insert endif for if, end for begin and so on in ruby
 NeoBundle 'matchit.zip'                       "Improves % match for everything
@@ -110,10 +107,9 @@ NeoBundle 'Valloric/ListToggle.git'           "toggle quickfix and location list
 NeoBundle 'derekwyatt/vim-fswitch.git'        "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'vim-scripts/perl-support.vim.git'  "perl-support for vim
-NeoBundle 'xolox/vim-lua-ftplugin.git'        "lua support for vim
 NeoBundle 'hynek/vim-python-pep8-indent.git'  "python autoindent pep8 compatible
-NeoBundle 'gilligan/tern_for_vim.git'         "js-omni completion
-NeoBundle 'jeetsukumaran/vim-buffersaurus.git' "search and replace between buffers
+" NeoBundle 'gilligan/tern_for_vim.git'         "js-omni completion
+" NeoBundle 'jeetsukumaran/vim-buffersaurus.git' "search and replace between buffers
 if executable("lldb")
 NeoBundle 'gilligan/vim-lldb.git'             "lldb-plugin for vim
 endif
@@ -138,7 +134,6 @@ endif
 NeoBundle 'sjl/clam.vim.git'                  "Allow run commands in split
 NeoBundle 'Shougo/vimshell.vim.git'           "fast shell implementation
 NeoBundle 'tpope/vim-dispatch.git'            "Should provide async build
-" NeoBundle 'pydave/AsyncCommand.git'         "Async exec for grep, shell, make and others
 "--[ latex ]-------------------------------------------------------------------------------------------------
 NeoBundle 'vim-scripts/auctex.vim.git'        "auctex.vim for the syntax highlighting.
 NeoBundle 'vim-scripts/TeX-9.git'             "tex autocompetion
@@ -170,7 +165,6 @@ NeoBundleLazy 'chrisbra/csv.vim', {'autoload' : {'filetypes' : ['csv']}}
 NeoBundleLazy 'rsmenon/vim-mathematica.git', {'autoload' : {'filetypes' : ['mm']}}
 " rust bindings for vim syntax hi
 NeoBundleLazy 'wting/rust.vim', {'autoload' : {'filetypes' : ['rust']}}
-"https://github.com/AndrewRadev/id3.vim.git
 
 NeoBundleCheck
 catch /117/
