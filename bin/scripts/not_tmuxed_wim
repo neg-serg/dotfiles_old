@@ -1,6 +1,7 @@
 #!/bin/bash
-A1=`tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'vim --servername VIM'|awk '{print $1}'`
-A2=`tmux display-message -p '#{pane_index}'`
-if [[ -z $A1 ]]; then echo "TRUE"; elif
-    [[ "$A1" != "$A2" ]]; then echo "TRUE"; else echo "FALSE"; 
+VIM_THERE=`tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'vim --servername VIM'|awk '{print $1}'`
+CURRENT_PANE_INDEX=`tmux display-message -p '#{pane_index}'`
+XTITLE=`~/bin/xtitle`
+if [[ -z $VIM_THERE ]]; then echo "TRUE"; elif
+    [[ "$VIM_THERE" != "$CURRENT_PANE_INDEX" ]] && [[ "$XTITLE" == "tmux:1 [ vim ]" ]]; then echo "TRUE"; else echo "FALSE"; 
 fi
