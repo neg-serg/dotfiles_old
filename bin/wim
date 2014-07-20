@@ -1,7 +1,6 @@
 #!/bin/sh
-# if [[ `wmctrl -l|awk '{ $1=""; $2=""; $3=""; print $0 }'|grep vim` != "   tmux:1 [ vim ]"  ]] && [[ -z $(pidof vim) ]]; then
-if [[ `~/bin/xtitle` != "tmux:1 [ vim ]"  ]]; then
-    urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c 'tmux new -s vim -n vim vim\ \-\-servername\ VIM'
+if [[ `wmctrl -l|awk '{ $1=""; $2=""; $3=""; print $0 }'|grep vim` != "   tmux:1 [ vim ]"  ]] && [[ -z $(pidof vim) ]]; then
+    urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c 'TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM'
 else
-    urxvt -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c 'tmux attach-session -d -t vim'
+    urxvt -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c 'TMUX= tmux attach-session -d -t vim'
 fi

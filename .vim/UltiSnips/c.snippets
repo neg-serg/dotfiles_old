@@ -45,10 +45,14 @@ return 0;
 }
 endsnippet
 
-snippet for "for loop (for)"
-for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
-${VISUAL}${0}
-}
+# snippet for "for loop (for)"
+# for (${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
+# ${VISUAL}${0}
+# }
+# endsnippet
+
+snippet for "Custom for-loop"
+for (${1}; ${2}; ${3}) ${4}
 endsnippet
 
 snippet fori "for int loop (fori)"
