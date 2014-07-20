@@ -1,245 +1,142 @@
 scriptencoding utf-8
 set shell=/bin/sh
 if has('vim_starting')
-  set nocompatible               " Be iMproved
-  " set runtimepath+=~/.vim/bundle/neobundle.vim/
-  " set runtimepath+=~/.local/fzf
+  set nocompatible  " Be improved
 endif
-
-" try
-" call neobundle#rc(expand('~/.vim/bundle/'))
-" if empty($https_proxy)
-"   let g:neobundle#types#git#default_protocol = 'git'
-" else
-"   let g:neobundle#types#git#default_protocol = 'https'
-" endif
-"
-" NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 
 call plug#begin('~/.vim/plugged')
 "--[ Main ]--------------------------------------------------------------------------------------------------
-"ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
-Plug 'Valloric/YouCompleteMe'
-"file/buffer explorer
-Plug 'sjbach/lusty.git'
-"Snippets with ycm compatibility
-Plug 'SirVer/ultisnips.git'
-"easy tabular
-Plug 'junegunn/vim-easy-align'
+Plug 'Valloric/YouCompleteMe' "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
+Plug 'bbchung/clighter.git' "Highlight by clang-database
+Plug 'sjbach/lusty.git' "file/buffer explorer
+Plug 'SirVer/ultisnips.git' "Snippets with ycm compatibility
+Plug 'junegunn/vim-easy-align' "easy tabular
 if executable("ack")
-"ack wrapper
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim' "ack wrapper
 endif
 if executable("ag")
-"ag (ack replacement) wrapper
-Plug 'rking/ag.vim.git'
+Plug 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-"repeat everything!
-Plug 'tpope/vim-repeat'
-" browse the vim undo tree
-Plug 'sjl/gundo.vim'
-"for SudoWrite, Locate, Find etc
-Plug 'tpope/vim-eunuch.git'
-"Add pairs to brackets
-Plug 'Raimondi/delimitMate.git'
-"syntax checker. Realtime with ycm
-Plug 'scrooloose/syntastic.git'
-"fancy statusline
-Plug 'bling/vim-airline.git'
-"indent tabs visually with |-es too slow
-Plug 'nathanaelkane/vim-indent-guides'
-"for cwd
-Plug 'scrooloose/nerdtree.git'
-Plug 'Shougo/vimproc'
-Plug 'junegunn/vim-pseudocl.git'
-"improved search with fuzzy-finding
-Plug 'junegunn/vim-oblique.git'
-Plug 'shaneharper/vim-rtags.git'
-"command-line completion like in zsh
-Plug 'fweep/vim-zsh-path-completion.git'
-"https://github.com/AndrewRadev/id3.vim.git
+Plug 'tpope/vim-repeat' "repeat everything!
+Plug 'sjl/gundo.vim' " browse the vim undo tree
+Plug 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
+Plug 'Raimondi/delimitMate.git' "Add pairs to brackets
+Plug 'scrooloose/syntastic.git' "syntax checker. Realtime with ycm
+Plug 'bling/vim-airline.git' "fancy statusline
+Plug 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
+Plug 'scrooloose/nerdtree.git' "for cwd
+Plug 'Shougo/vimproc' "vimproc is for faster work of unite
+Plug 'junegunn/vim-pseudocl.git' "colorized cmode
+Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
+Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
+Plug 'fweep/vim-zsh-path-completion.git' "command-line completion like in zsh
+Plug 'AndrewRadev/id3.vim.git' "id3 edit support in vim
 "--[ DCVS ]--------------------------------------------------------------------------------------------------
-"syntax, indent, and filetype plugin files for git
-Plug 'tpope/vim-git'
+Plug 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
-"jumps over merge conflicts
-Plug 'rhysd/conflict-marker.vim'
-"Git stuff. Needed for powerline etc
-Plug 'tpope/vim-fugitive.git'
-"Git commit browser/log wrapper for vim
-Plug 'kablamo/vim-git-log.git'
-"Git viewer
-Plug 'gregsexton/gitv'
-"Git dashboard in vim
-Plug 'junegunn/vim-github-dashboard.git'
-"github issues autocomp
-Plug 'jaxbot/github-issues.vim.git'
-"to handle branches/merge conflicts
-Plug 'idanarye/vim-merginal.git'
+Plug 'rhysd/conflict-marker.vim' "jumps over merge conflicts
+Plug 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
+Plug 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
+Plug 'gregsexton/gitv' "Git viewer
+Plug 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
+Plug 'jaxbot/github-issues.vim.git' "github issues autocomp
+Plug 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
 "--[ Be careful with fugitive ]------------------------------------------------------------------------------
 "Merge tool for vim
 Plug 'sjl/splice.vim.git'
 endif
 "------------------------------------------------------------------------------------------------------------
 if executable("tmux")
-"tmux basics
-Plug 'tpope/vim-tbone.git'
-"tmux wrapper
-Plug 'benmills/vimux.git'
-"easy jump between windows
-Plug 'christoomey/vim-tmux-navigator'
-"completion from tmux for vim
-Plug 'wellle/tmux-complete.vim.git'
+Plug 'tpope/vim-tbone.git' "tmux basics
+Plug 'benmills/vimux.git' "tmux wrapper
+Plug 'christoomey/vim-tmux-navigator' "easy jump between windows
+Plug 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
-if executable("ghci")
-"autocomplete for hs using ghc-mod
-Plug 'ujihisa/neco-ghc'
+if (executable("ghci") && executable("ghcmod"))
+Plug 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
 endif                                        
-"simple highlight for normal haskell code
-Plug 'travitch/hasksyn'
-"different initial scala support for vim
-Plug 'derekwyatt/vim-scala'
-"basic SBT support for vim
-Plug 'derekwyatt/vim-sbt'
+Plug 'travitch/hasksyn' "simple highlight for normal haskell code
+Plug 'derekwyatt/vim-scala' "different initial scala support for vim
+Plug 'derekwyatt/vim-sbt' "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
-"fixes key codes for console Vim
-Plug 'drmikehenry/vim-fixkey'
-"rename for files even with spaces in filename
-Plug 'ReekenX/vim-rename2.git'
-"integrated reference viewer man/perldoc etc
-Plug 'thinca/vim-ref.git'
-"Perl-like extended regex for vim
-Plug 'othree/eregex.vim'
-"Extended and fast Join for vim
-Plug 'chrisbra/Join.git'
-"bufkill with BD
-Plug 'vim-scripts/bufkill.vim.git'
-"Autoswitch on <esc> with libxkb needs xkb-switch-git to run
-Plug 'lyokha/vim-xkbswitch.git'
-"is all about surroundings: parentheses, brackets, quotes, XML tags, and more
-Plug 'tpope/vim-surround'
-" .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
-Plug 'tpope/vim-repeat'
-"multiple pasting
-Plug 'vim-scripts/YankRing.vim.git'
+Plug 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
+Plug 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
+Plug 'thinca/vim-ref.git' "integrated reference viewer man/perldoc etc
+Plug 'othree/eregex.vim' "Perl-like extended regex for vim
+Plug 'chrisbra/Join.git' "Extended and fast Join for vim
+Plug 'vim-scripts/bufkill.vim.git' "bufkill with BD
+Plug 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
+Plug 'tpope/vim-surround' "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
+Plug 'tpope/vim-repeat' " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
+Plug 'vim-scripts/YankRing.vim.git' "multiple pasting
 "--[ colorschemes ]------------------------------------------------------------------------------------------
-"fancy solarized colorscheme
-Plug 'altercation/vim-colors-solarized'
-Plug 'MaxSt/FlatColor'
-"fancy pencil dark and light colorscheme
-Plug 'reedes/vim-colors-pencil.git'
-"set of good colorschemes
-Plug 'chriskempson/base16-vim'
-"fancy jellybeans colorsheme
-Plug 'nanotech/jellybeans.vim.git'
-"colorscheme for 16-color term
-Plug 'noahfrederick/vim-noctu.git'
-"--[ DEV ]---------------------------------------------------------------------------------------------------
-"tagbar
-Plug 'majutsushi/tagbar'
-"easier comments
-Plug 'tomtom/tcomment_vim.git'
-"to work with lisp, clojure, f#
-Plug 'lord-garbage/tslime.vim.git'
-"to insert endif for if, end for begin and so on in ruby
-Plug 'tpope/vim-endwise'
-"Improves % match for everything
-Plug 'matchit.zip'
-"good mappings and toggles
-Plug 'tpope/vim-unimpaired.git'
-"better rooter
-Plug 'dbakker/vim-projectroot'
-"toggle quickfix and location list <leader>l by def
-Plug 'Valloric/ListToggle.git'
-"switching between companion source files (e.g. .h and .cpp)
-Plug 'derekwyatt/vim-fswitch.git'
-"autochecks for indent
-Plug 'vim-scripts/IndentConsistencyCop.git'
-"perl-support for vim
-Plug 'vim-scripts/perl-support.vim.git'
-"python autoindent pep8 compatible
-Plug 'hynek/vim-python-pep8-indent.git'
-" Plug 'gilligan/tern_for_vim.git'"js-omni completion
-" Plug 'jeetsukumaran/vim-buffersaurus.git'"search and replace between buffers
+Plug 'altercation/vim-colors-solarized' "fancy solarized colorscheme
+Plug 'reedes/vim-colors-pencil.git' "fancy pencil dark and light colorscheme
+Plug 'chriskempson/base16-vim' "set of good colorschemes
+Plug 'nanotech/jellybeans.vim.git' "fancy jellybeans colorsheme
+Plug 'noahfrederick/vim-noctu.git' "colorscheme for 16-color term
+"--[ dev ]---------------------------------------------------------------------------------------------------
+Plug 'majutsushi/tagbar' "tagbar
+Plug 'tomtom/tcomment_vim.git' "easier comments
+Plug 'lord-garbage/tslime.vim.git' "to work with lisp, clojure, f#
+Plug 'tpope/vim-endwise' "to insert endif for if, end for begin and so on in ruby
+Plug 'matchit.zip' "Improves % match for everything
+Plug 'tpope/vim-unimpaired.git' "good mappings and toggles
+Plug 'dbakker/vim-projectroot' "better rooter
+Plug 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
+Plug 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g. .h and .cpp)
+Plug 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
+Plug 'vim-scripts/perl-support.vim.git' "perl-support for vim
+Plug 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
+Plug 'gilligan/tern_for_vim.git'"js-omni completion
 if executable("lldb")
-"lldb-plugin for vim
-Plug 'gilligan/vim-lldb.git'
+Plug 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
 if executable("mono")
-"omnisharp completion
-Plug 'nosami/Omnisharp.git'
+Plug 'nosami/Omnisharp.git' "omnisharp completion
 endif
-"golang syntax highlight
-Plug 'jnwhiteh/vim-golang.git'
-"tags for go
-Plug 'jstemmer/gotags.git'
+Plug 'jnwhiteh/vim-golang.git' "golang syntax highlight
+Plug 'jstemmer/gotags.git' "tags for go
 if executable("go")
-    "omnicomplete for go
-    Plug 'Blackrush/vim-gocode.git'
+Plug 'Blackrush/vim-gocode.git' "omnicomplete for go
 endif
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
-" Very good navigation, but no stack
-Plug 'hewes/unite-gtags.git'
-"Works great with vim
-Plug 'tranngocthachs/gtags-cscope-vim-plugin.git'
-"Gtags v0.64
-Plug 'yuki777/gtags.vim.git'
-Plug 'vim-scripts/multiwindow-source-code-browsing.git'
+Plug 'hewes/unite-gtags.git' "Very good navigation, but no stack
+Plug 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
+Plug 'yuki777/gtags.vim.git' "Gtags v0.64
+Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
 endif
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
-"Allow run commands in split
-Plug 'sjl/clam.vim.git'
-"fast shell implementation
-Plug 'Shougo/vimshell.vim.git'
-"Should provide async build
-Plug 'tpope/vim-dispatch.git'
+Plug 'sjl/clam.vim.git' "Allow run commands in split
+Plug 'Shougo/vimshell.vim.git' "fast shell implementation
+Plug 'tpope/vim-dispatch.git' "Should provide async build
 "--[ latex ]-------------------------------------------------------------------------------------------------
-"auctex.vim for the syntax highlighting.
-Plug 'vim-scripts/auctex.vim.git'
-"tex autocompetion
-Plug 'vim-scripts/TeX-9.git'
-"tex live preview
-Plug 'xuhdev/vim-latex-live-preview.git'
+Plug 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
+Plug 'vim-scripts/TeX-9.git' "tex autocompetion
+Plug 'xuhdev/vim-latex-live-preview.git' "tex live preview
 "--[ web ]---------------------------------------------------------------------------------------------------
-"realtime markdown preview
-Plug 'Valloric/vim-instant-markdown'
-"markdown helper for vim
-Plug 'tpope/vim-markdown'
-"xml editing
-Plug 'Valloric/xmledit'
+Plug 'Valloric/vim-instant-markdown' "realtime markdown preview
+Plug 'tpope/vim-markdown' "markdown helper for vim
+Plug 'Valloric/xmledit' "xml editing
 "---------------[  unite  ]----------------------------------------------------------------------------------
-"improve unity perf
-Plug 'vim-jp/vital.vim.git'
-"Unite for autocomp
-Plug 'Shougo/unite.vim.git'
-"MRU plugin for unite
-Plug 'Shougo/neomru.vim.git'
-"--[ Create temporary file for memo, testing, ... ]----------------------------------------------------------
-Plug 'Shougo/junkfile.vim'
-Plug 'Shougo/unite-outline'
-Plug 'kmnk/vim-unite-svn.git'
-Plug 'ujihisa/unite-colorscheme'
-Plug 'osyo-manga/unite-filetype'
-Plug 'osyo-manga/unite-quickfix'
-Plug 'tacroe/unite-mark'
-Plug 'mattn/unite-gist.git'
+Plug 'vim-jp/vital.vim.git' "improve unity perf
+Plug 'Shougo/unite.vim.git' "Unite for autocomp
+Plug 'Shougo/neomru.vim.git' "MRU plugin for unite
+Plug 'Shougo/junkfile.vim' " Create temporary file for memo
+Plug 'Shougo/unite-outline' "fast find func and regions in buf
+Plug 'kmnk/vim-unite-svn.git' "svn wrapper for unite
+Plug 'ujihisa/unite-colorscheme' "select colorscheme with fuzzyfinding
+Plug 'osyo-manga/unite-filetype' "select filetype with fuzzyfinding
+Plug 'osyo-manga/unite-quickfix' "search in quickfix msgs with unite
+Plug 'tacroe/unite-mark' "jump to mark with unite
+Plug 'mattn/unite-gist.git' "gist wrapper for unite
 "---------------[ other filetypes ]--------------------------------------------------------------------------
-Plug 'vimez/vim-tmux'
-Plug 'joedicastro/vim-pentadactyl'
-Plug 'elzr/vim-json'
-Plug 'vim-scripts/po.vim--gray'
-Plug 'chrisbra/csv.vim'
-" Mathematica syntax and omnicomp
-Plug 'rsmenon/vim-mathematica.git'
-" rust bindings for vim syntax hi
-Plug 'wting/rust.vim'
-
-" NeoBundleCheck
-" catch /117/
-"     echo "load NeoBundle failed"
-" endtry
+Plug 'vimez/vim-tmux' "syntax hi for tmux
+Plug 'elzr/vim-json' "syntax hi for json format
+Plug 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
+Plug 'wting/rust.vim' "rust bindings for vim syntax hi
 
 call plug#end()
 
