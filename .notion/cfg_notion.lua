@@ -138,9 +138,12 @@ defwinprop{class = "Gimp",acrobatic = true}
            --min_size = {w=8,h=8},
 --}
 --defwinprop{class="dzen", statusbar="systray"}
-defwinprop{class="stalonetray",target="*dock*"}
 -- defwinprop{class="Avant-window-navigator",target="*dock*"}
 --defwinprop{is_dockapp=true,target="*dock*"}
+defwinprop{class = "stalonetray", instance = "stalonetray", statusbar="systray_stalone"} 
+defwinprop{instance = "stalonetray", statusbar="systray_stalone"} 
+defwinprop{class = "stalonetray", statusbar="systray_stalone"} 
+defwinprop{is_dockapp = true, statusbar="systray_stalone"}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
@@ -165,7 +168,6 @@ defwinprop{class="Vuze", winlist_ignore=true,transient_mode="off",target="torren
 defwinprop{class="Anamnesis", winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
 defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
-
 -------------------------------------------------------------------------------------
 --[  KEY BINDINGS   ]------------------------------
 ---------------------
