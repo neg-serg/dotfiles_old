@@ -66,24 +66,9 @@ alias mpr="~/bin/mpv.rb"
 alias i="ipython"
 alias grep="grep --color=auto"
 
-function vg {
-  if [ ! -z $DISPLAY ]; then
-    if [ -z $(pidof gvim) ] ; then
-      gvim --servername GVIM --remote-silent $@
-      sleep .4
-      notionflux -e "app.byclass('gvim', 'Gvim')" 
-    else  
-      notionflux -e "app.byclass('gvim', 'Gvim')" 
-      gvim --servername GVIM --remote-silent $@
-    fi
-  else 
-    vim $@
-  fi
-}
-
 function v {
-    if [ -z $(pidof vim) ] ; then
-      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c "tmux new -s vim -n vim vim\ \-\-servername\ VIM\ \-\-remote\-silent\ $@"
+    if [[ `lsw|grep VIM` != "VIM" && `tmux ls|awk -F : '{print $1}'` != "vim" ]] ; then
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c "TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM\ \-\-remote\-silent\ $@" &&
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
     else  
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')" &&
