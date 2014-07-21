@@ -76,6 +76,21 @@ function v {
     fi
 }
 
+function vg {
+  if [ ! -z $DISPLAY ]; then
+    if [ -z $(pidof gvim) ] ; then
+      gvim --servername GVIM --remote-silent $@
+      sleep .4
+      notionflux -e "app.byclass('gvim', 'Gvim')" 
+    else  
+      notionflux -e "app.byclass('gvim', 'Gvim')" 
+      gvim --servername GVIM --remote-silent $@
+    fi
+  else 
+    vim $@
+  fi
+}
+
 alias vz="v ~/.zshrc"
 alias vpad="vim +set\ buftype=nofile +startinsert"
 
