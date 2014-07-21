@@ -2,4 +2,5 @@ scriptencoding utf-8
 
 syntax on
 filetype plugin indent on
+source ~/.vim/plugged/neg-colors/colors/miromiro.vim
 source ~/.vim/99-hi-settings.vim
