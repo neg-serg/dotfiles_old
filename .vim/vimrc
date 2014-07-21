@@ -8,6 +8,10 @@ call plug#begin('~/.vim/plugged')
 "--[ Main ]--------------------------------------------------------------------------------------------------
 Plug 'Valloric/YouCompleteMe' "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
 Plug 'neg-serg/vim-colors' "all colors which I want
+Plug 'Shougo/vimproc' "vimproc is for faster work of unite
+Plug 'vim-jp/vital.vim.git' "improve unite perf
+Plug 'Shougo/unite.vim.git' "unite for creating ui
+Plug 'neg-serg/unite-all-in-one.git' "plugins for unite which I use
 Plug 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
 Plug 'bbchung/clighter.git' "Highlight by clang-database
 Plug 'sjbach/lusty.git' "file/buffer explorer
@@ -27,7 +31,6 @@ Plug 'scrooloose/syntastic.git' "syntax checker. Realtime with ycm
 Plug 'bling/vim-airline.git' "fancy statusline
 Plug 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
 Plug 'scrooloose/nerdtree.git' "for cwd
-Plug 'Shougo/vimproc' "vimproc is for faster work of unite
 Plug 'junegunn/vim-pseudocl.git' "colorized cmode
 Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
 Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
@@ -53,6 +56,9 @@ Plug 'benmills/vimux.git' "exec commands in tmux
 Plug 'christoomey/vim-tmux-navigator' "easy jump between windows
 Plug 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
+Plug 'sjl/clam.vim.git' "Allow run commands in split
+Plug 'Shougo/vimshell.vim.git' "fast shell implementation
+Plug 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))
 Plug 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
 endif                                        
@@ -98,17 +104,11 @@ Plug 'Blackrush/vim-gocode.git' "omnicomplete for go
 endif
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
-Plug 'hewes/unite-gtags.git' "Very good navigation, but no stack
 Plug 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 Plug 'yuki777/gtags.vim.git' "Gtags v0.64
 Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
 Plug 'jdevera/vim-opengrok-search.git' " try it for opengrok searching
 endif
-"------------------------------------------------------------------------------------------------------------
-"--[ shell integration ]-------------------------------------------------------------------------------------
-Plug 'sjl/clam.vim.git' "Allow run commands in split
-Plug 'Shougo/vimshell.vim.git' "fast shell implementation
-Plug 'tpope/vim-dispatch.git' "Should provide async build
 "--[ latex ]-------------------------------------------------------------------------------------------------
 Plug 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
 Plug 'vim-scripts/TeX-9.git' "tex autocompetion
@@ -117,18 +117,6 @@ Plug 'xuhdev/vim-latex-live-preview.git' "tex live preview
 Plug 'Valloric/vim-instant-markdown' "realtime markdown preview
 Plug 'tpope/vim-markdown' "markdown helper for vim
 Plug 'Valloric/xmledit' "xml editing
-"---------------[  unite  ]----------------------------------------------------------------------------------
-Plug 'vim-jp/vital.vim.git' "improve unity perf
-Plug 'Shougo/unite.vim.git' "Unite for autocomp
-Plug 'Shougo/neomru.vim.git' "MRU plugin for unite
-Plug 'Shougo/junkfile.vim' " Create temporary file for memo
-Plug 'Shougo/unite-outline' "fast find func and regions in buf
-Plug 'kmnk/vim-unite-svn.git' "svn wrapper for unite
-Plug 'ujihisa/unite-colorscheme' "select colorscheme with fuzzyfinding
-Plug 'osyo-manga/unite-filetype' "select filetype with fuzzyfinding
-Plug 'osyo-manga/unite-quickfix' "search in quickfix msgs with unite
-Plug 'tacroe/unite-mark' "jump to mark with unite
-Plug 'mattn/unite-gist.git' "gist wrapper for unite
 "---------------[ other filetypes ]--------------------------------------------------------------------------
 Plug 'vimez/vim-tmux' "syntax hi for tmux
 Plug 'elzr/vim-json' "syntax hi for json format
