@@ -1,12 +1,14 @@
 scriptencoding utf-8
 set shell=/bin/sh
 if has('vim_starting')
-  set nocompatible  " Be improved
+  set nocompatible  "be improved
 endif
 
 call plug#begin('~/.vim/plugged')
 "--[ Main ]--------------------------------------------------------------------------------------------------
 Plug 'Valloric/YouCompleteMe' "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
+Plug 'neg-serg/vim-colors' "all colors which I want
+Plug 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
 Plug 'bbchung/clighter.git' "Highlight by clang-database
 Plug 'sjbach/lusty.git' "file/buffer explorer
 Plug 'SirVer/ultisnips.git' "Snippets with ycm compatibility
@@ -31,7 +33,7 @@ Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
 Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
 Plug 'fweep/vim-zsh-path-completion.git' "command-line completion like in zsh
 Plug 'AndrewRadev/id3.vim.git' "id3 edit support in vim
-"--[ DCVS ]--------------------------------------------------------------------------------------------------
+"--[ dcvs ]--------------------------------------------------------------------------------------------------
 Plug 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
 Plug 'rhysd/conflict-marker.vim' "jumps over merge conflicts
@@ -41,14 +43,13 @@ Plug 'gregsexton/gitv' "Git viewer
 Plug 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
 Plug 'jaxbot/github-issues.vim.git' "github issues autocomp
 Plug 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
-"--[ Be careful with fugitive ]------------------------------------------------------------------------------
-"Merge tool for vim
-Plug 'sjl/splice.vim.git'
+"--[ be careful with fugitive ]------------------------------------------------------------------------------
+Plug 'sjl/splice.vim.git' "Merge tool for vim
 endif
 "------------------------------------------------------------------------------------------------------------
 if executable("tmux")
 Plug 'tpope/vim-tbone.git' "tmux basics
-Plug 'benmills/vimux.git' "tmux wrapper
+Plug 'benmills/vimux.git' "exec commands in tmux
 Plug 'christoomey/vim-tmux-navigator' "easy jump between windows
 Plug 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
@@ -69,12 +70,6 @@ Plug 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switc
 Plug 'tpope/vim-surround' "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 Plug 'tpope/vim-repeat' " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 Plug 'vim-scripts/YankRing.vim.git' "multiple pasting
-"--[ colorschemes ]------------------------------------------------------------------------------------------
-Plug 'altercation/vim-colors-solarized' "fancy solarized colorscheme
-Plug 'reedes/vim-colors-pencil.git' "fancy pencil dark and light colorscheme
-Plug 'chriskempson/base16-vim' "set of good colorschemes
-Plug 'nanotech/jellybeans.vim.git' "fancy jellybeans colorsheme
-Plug 'noahfrederick/vim-noctu.git' "colorscheme for 16-color term
 "--[ dev ]---------------------------------------------------------------------------------------------------
 Plug 'majutsushi/tagbar' "tagbar
 Plug 'tomtom/tcomment_vim.git' "easier comments
@@ -88,7 +83,8 @@ Plug 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g
 Plug 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 Plug 'vim-scripts/perl-support.vim.git' "perl-support for vim
 Plug 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
-Plug 'gilligan/tern_for_vim.git'"js-omni completion
+Plug 'gilligan/tern_for_vim.git' "js-omni completion
+Plug 'tpope/vim-sleuth.git' "try to add some heuristics to smarttabbing
 if executable("lldb")
 Plug 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
@@ -106,6 +102,7 @@ Plug 'hewes/unite-gtags.git' "Very good navigation, but no stack
 Plug 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 Plug 'yuki777/gtags.vim.git' "Gtags v0.64
 Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
+Plug 'jdevera/vim-opengrok-search.git' " try it for opengrok searching
 endif
 "------------------------------------------------------------------------------------------------------------
 "--[ shell integration ]-------------------------------------------------------------------------------------
@@ -137,7 +134,6 @@ Plug 'vimez/vim-tmux' "syntax hi for tmux
 Plug 'elzr/vim-json' "syntax hi for json format
 Plug 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 Plug 'wting/rust.vim' "rust bindings for vim syntax hi
-
 call plug#end()
 
 syntax on
@@ -148,5 +144,4 @@ source ~/.vim/01-settings.vim
 source ~/.vim/02-unite.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
-source ~/.vim/11-vimacs.vim
 source ~/.vim/21-langmap.vim
