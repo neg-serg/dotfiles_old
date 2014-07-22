@@ -79,7 +79,6 @@ Plug 'vim-scripts/YankRing.vim.git' "multiple pasting
 "--[ dev ]---------------------------------------------------------------------------------------------------
 Plug 'majutsushi/tagbar' "tagbar
 Plug 'tomtom/tcomment_vim.git' "easier comments
-Plug 'lord-garbage/tslime.vim.git' "to work with lisp, clojure, f#
 Plug 'tpope/vim-endwise' "to insert endif for if, end for begin and so on in ruby
 Plug 'matchit.zip' "Improves % match for everything
 Plug 'tpope/vim-unimpaired.git' "good mappings and toggles
@@ -107,8 +106,8 @@ if executable("gtags")
 Plug 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 Plug 'yuki777/gtags.vim.git' "Gtags v0.64
 Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
-Plug 'jdevera/vim-opengrok-search.git' " try it for opengrok searching
 endif
+Plug 'jdevera/vim-opengrok-search.git' " try it for opengrok searching
 "--[ latex ]-------------------------------------------------------------------------------------------------
 Plug 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
 Plug 'vim-scripts/TeX-9.git' "tex autocompetion
