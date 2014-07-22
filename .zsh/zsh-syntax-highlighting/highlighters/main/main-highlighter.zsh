@@ -140,16 +140,15 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[  audio  ]--------------------
 #---------------------------------
-  filetype-flac        'fg=13,1'
-  filetype-mp3         'fg=13'
-  filetype-mp4         'fg=13'
-  filetype-ogv         'fg=13'
-  filetype-cue         'fg=13,1'
-  filetype-ogg         'fg=13'
-  filetype-m3u         'fg=13'
-  filetype-m4a         'fg=13'
-  filetype-wmv         'fg=13'
-
+  filetype-flac        'fg=30,1'
+  filetype-mp3         'fg=30'
+  filetype-mp4         'fg=30'
+  filetype-ogv         'fg=30'
+  filetype-cue         'fg=30,1'
+  filetype-ogg         'fg=30'
+  filetype-m3u         'fg=30'
+  filetype-m4a         'fg=30'
+  filetype-wmv         'fg=30'
 #---------------------------------
 #--[  video  ]--------------------
 #---------------------------------
@@ -163,22 +162,20 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-mpg         'fg=13'
   filetype-vob         'fg=13'
   filetype-webm        'fg=13'
-
 #---------------------------------
 #--[  images  ]-------------------
 #---------------------------------
-  filetype-xpm         'fg=66'
-  filetype-ico         'fg=66'
-  filetype-jpeg        'fg=66'
-  filetype-jpg         'fg=66'
-  filetype-JPG         'fg=66'
-  filetype-bmp         'fg=66'
-  filetype-svg         'fg=66'
-  filetype-eps         'fg=66'
-  filetype-gif         'fg=66'
-  filetype-png         'fg=66'
-  filetype-psf         'fg=64'
-
+  filetype-xpm         'fg=24'
+  filetype-ico         'fg=24'
+  filetype-jpeg        'fg=24'
+  filetype-jpg         'fg=24'
+  filetype-JPG         'fg=24'
+  filetype-bmp         'fg=24'
+  filetype-svg         'fg=24'
+  filetype-eps         'fg=24'
+  filetype-gif         'fg=24'
+  filetype-png         'fg=24'
+  filetype-psf         'fg=25'
 #---------------------------------
 #--[ Docs ]-----------------------
 #---------------------------------
