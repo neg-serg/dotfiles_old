@@ -68,8 +68,8 @@ autocmd FileType ruby          setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell       setlocal omnifunc=necoghc#omnifunc
 " markdown filetype file
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
-autocmd FileType markdown NeoBundleSource vim-markdown
-autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
+" autocmd FileType markdown NeoBundleSource vim-markdown
+" autocmd FileType markdown NeoBundleSource vim-markdown-extra-preview
 
 au BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 au FileType ruby setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -234,9 +234,9 @@ autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
 
 " augroup Tmux
-" 	au!
-" 	autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
-" 	autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
+"   au!
+"   autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
+"   autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
 " augroup END
 
 function! s:jedi_settings()
@@ -269,3 +269,23 @@ autocmd Filetype gitrebase nnoremap <buffer><C-s> :<C-u>Squash<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-e> :<C-u>Edit<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-r> :<C-u>Reword<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>
+
+
+let g:boostmove=0
+set updatetime=50
+au CursorMoved * call BoostMoveON()
+au CursorMovedI * call BoostMoveON()
+au CursorHold * call BoostMoveOFF()
+au CursorHoldI * call BoostMoveOFF()
+function BoostMoveON()
+    if (g:boostmove == 0)
+    let g:boostmove=1
+    setlocal nocursorline
+    endif
+endfunction
+function BoostMoveOFF()
+    if g:boostmove==1
+    let g:boostmove=0
+    setlocal cursorline
+    endif
+endfunction
