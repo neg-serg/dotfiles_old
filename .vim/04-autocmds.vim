@@ -65,6 +65,7 @@ autocmd FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType ruby          setlocal omnifunc=rubycomplete#Complete
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
 autocmd FileType haskell       setlocal omnifunc=necoghc#omnifunc
 " markdown filetype file
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
@@ -233,12 +234,6 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
 
-" augroup Tmux
-"   au!
-"   autocmd VimEnter,BufNewFile,BufReadPost * call system('tmux rename-window "vim - ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1] . '"')
-"   autocmd VimLeave * call system('tmux rename-window ' . split(substitute(getcwd(), $HOME, '~', ''), '/')[-1])
-" augroup END
-
 function! s:jedi_settings()
     nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
     nnoremap <buffer><Leader>jg :<C-u>call jedi#goto_assignments()<CR>
@@ -270,22 +265,13 @@ autocmd Filetype gitrebase nnoremap <buffer><C-e> :<C-u>Edit<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-r> :<C-u>Reword<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>
 
+augroup User chdir
+    au!
+augroup end
 
-let g:boostmove=0
-set updatetime=50
-au CursorMoved * call BoostMoveON()
-au CursorMovedI * call BoostMoveON()
-au CursorHold * call BoostMoveOFF()
-au CursorHoldI * call BoostMoveOFF()
-function BoostMoveON()
-    if (g:boostmove == 0)
-    let g:boostmove=1
-    setlocal nocursorline
-    endif
+command -complete=dir -nargs=1 Cd call ChdirHook(<q-args>)
+function! ChdirHook(dir)
+    exec "chdir " . a:dir
+    do User chdir
 endfunction
-function BoostMoveOFF()
-    if g:boostmove==1
-    let g:boostmove=0
-    setlocal cursorline
-    endif
-endfunction
+

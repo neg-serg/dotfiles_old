@@ -72,67 +72,6 @@ function! s:gtags_update()
 endfunction
 command! GtagsUpdate call s:gtags_update()
 
-" function SetTimeOfDayColors()
-"     " currentHour will be 0, 1, 2, or 3
-"     let g:CurrentHour = (strftime("%H") + 0) / 6
-"     if g:colors_name !~ g:Favcolorschemes[g:CurrentHour]
-"         execute "colorscheme " . g:Favcolorschemes[g:CurrentHour]
-"         echo "execute " "colorscheme " . g:Favcolorschemes[g:CurrentHour]
-"         redraw
-"     endif
-" endfunction
-
-" ファイルを俯瞰する :Overview {{{
-let s:overview_mode = 0
-function! s:overview_toggle()
-    if s:overview_mode
-        let &l:readonly = s:overview_original_readonly
-        execute 'set guifont='.s:overview_guifont_prefix.s:overview_font_size
-        silent! execute 'sign unplace 1 buffer=' . winbufnr(0)
-        sign undefine OverviewSignSymbol
-        highlight clear OverviewSignColor
-        let s:overview_mode = 0
-    else
-        let pos = getpos('.')
-        let [start, last] = [line('w0'), line('w$')]
-        try
-            normal! gg
-            let screen_height = line('w$')
-            if screen_height == line('$')
-                return
-            endif
-            let s:overview_guifont_prefix = escape(substitute(&guifont, '\d\+$', '', ''), ' \')
-            let s:overview_font_size = str2nr(matchstr(&guifont, '\d\+$'))
-            if s:overview_guifont_prefix == '' || s:overview_font_size == 0
-                echoerr 'Error occured'
-                return
-            endif
-            sign define OverviewSignSymbol linehl=OverviewSignColor texthl=OverviewSignColor
-            for l in range(start, last)
-                execute 'sign place 1 line='.l.' name=OverviewSignSymbol buffer='.winbufnr(0)
-            endfor
-            if &bg == "dark"
-                highlight OverviewSignColor ctermfg=white ctermbg=blue guifg=white guibg=RoyalBlue3
-            else
-                highlight OverviewSignColor ctermbg=white ctermfg=blue guibg=grey guifg=RoyalBlue3
-            endif
-            let s:overview_original_readonly = &l:readonly
-            let font_size = s:overview_font_size * screen_height / line('$')
-            let font_size = font_size < 1 ? 1 : font_size
-            echom font_size
-            execute 'set guifont='.s:overview_guifont_prefix.font_size
-            setlocal readonly
-            let s:overview_mode = 1
-        finally
-            call setpos('.', pos)
-        endtry
-    endif
-endfunction
-command! -nargs=0 Overview call <SID>overview_toggle()
-nnoremap <C-w>O :<C-u>Overview<CR>
-" }}}
-"
-" 
 " function! s:open_online_cpp_doc()
 "     let l = getline('.')
 "
@@ -306,3 +245,17 @@ nnoremap <C-w>O :<C-u>Overview<CR>
 "   endtry
 " endfunction
 " command! CSBuild call s:build_cscope_db(<f-args>)
+
+
+" let s:bundle = neobundle#get("vim-indent-guides")
+" function! s:bundle.hooks.on_post_source(bundle)
+"     let g:indent_guides_guide_size = 1
+"     let gâ:indent_guides_auto_colors = 1
+"     if !has('gui_running') && &t_Co >= 256ææ
+"         let g:indent_guides_auto_colors = 0
+"         autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=233
+"         autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
+"     endif
+"     call indent_guides#enable()
+" endfunction
+" unlet s:bundle
