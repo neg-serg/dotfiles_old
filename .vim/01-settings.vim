@@ -1,4 +1,7 @@
-set shell=bash
+set shell=/bin/bash
+if bufname('%') == ''
+  set bufhidden=wipe
+endif
 set t_Co=256                           " I use 256-color terminals
 if v:version >= 704
   " The new Vim regex engine is currently slooooow as hell which makes syntax
@@ -22,9 +25,11 @@ if has("gui_running")
         let g:mirodark_enable_higher_contrast_mode=0
         colorscheme mirodark
     endif
-    
-    set timeout  timeoutlen=250
-    set ttimeout ttimeoutlen=40        " Usable for fast keybindings
+
+    " set timeout  timeoutlen=250
+    " set ttimeout ttimeoutlen=40      " Usable for fast keybindings
+    set timeout ttimeout
+    set timeoutlen=2000 ttimeoutlen=10 " Very fast and also you shouldn't make combination too fast
 
     set lsp=1                          " Space between lines
     set go=c                           " For text messages instead of gui
@@ -33,7 +38,7 @@ if has("gui_running")
     set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
-    "  set mouse=a                     " enable full mouse support
+    "set mouse=a                       " enable full mouse support
     set mouse=                         " enable full mouse support
     set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
@@ -70,9 +75,11 @@ if has("gui_running")
     set guicursor+=n-v-c:blinkon0      " Disable all blinking:
     set guicursor+=a:blinkon0          " Disable all blinking:
 
-    NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
-    NeoBundle 'tyru/restart.vim.git'              "add restart support
-    NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
+    set guioptions=                    " Disable all gui-oriented options in gvim
+
+    Plug 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
+    Plug 'tyru/restart.vim.git'              "add restart support
+    Plug 'vim-scripts/utl.vim.git'           "Open urls in files
 endif
 
 if !has("gui_running")
@@ -92,19 +99,26 @@ if !has("gui_running")
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
-    set showmode                       " show what key had been pressed
+    " set showmode                     " show what key had been pressed
     syntax sync minlines=256
     set lazyredraw                     " it's doesn't set by default for tmux
 
     if exists('$TMUX')
         let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
         if s:not_tmuxed_vim =~ "FALSE"
+            " execute "set <xUp>=\e[1;*A"
+            " execute "set <xDown>=\e[1;*B"
+            " execute "set <xRight>=\e[1;*C"
+            " execute "set <xLeft>=\e[1;*D"
+            set t_ut=
             autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
             let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             autocmd VimEnter * silent !tmux set status off
-            set timeout  timeoutlen=1000
-            set ttimeout ttimeoutlen=100       " Usable for fast keybindings
+            " set timeout  timeoutlen=1000
+            " set ttimeout ttimeoutlen=100       " Usable for fast keybindings
+            set timeout ttimeout
+            set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
             autocmd VimLeave * silent !tmux set status on;
                 \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
         endif
@@ -156,9 +170,9 @@ set browsedir=buffer
 
 " What to do when opening a new buffer. May be empty or may contain
 " comma-separated list of the following words:
-"   useopen   - use existing windows if possible.
-"   usetab    - like useopen but also checks other tabs
-"   split     - split current window before loading a buffer
+" useopen   - use existing windows if possible.
+" usetab    - like useopen but also checks other tabs
+" split     - split current window before loading a buffer
 " 'useopen' may be useful for re-using QuickFix window.
 set switchbuf=useopen,usetab
 
@@ -168,8 +182,7 @@ if has('unnamedplus')
   " clipboard.
   " Note that on X11, there are _two_ system clipboards: the "standard" one, and
   " the selection/mouse-middle-click one. Vim sees the standard one as register
-  " '+' (and this option makes Vim use it by default) and the selection one as
-  " '*'.
+  " '+' (and this option makes Vim use it by default) and the selection one as '*'.
   " See :h 'clipboard' for details.
   set clipboard=unnamedplus,unnamed
 else
@@ -195,10 +208,12 @@ set wildmode=list:longest,full  " Command <Tab> completion, list matches, then l
 set matchtime=2                 " Default time to hi brackets too long for me
 
 " allow backspace and cursor keys to cross line boundaries
-set gdefault            " this makes search/replace global by default
+set gdefault                    " this makes search/replace global by default
+set showcmd                     " Show partial commands in status line and Selected characters/lines in visual mode
 
-" set nowrap                      " Do not wrap lines
+set nowrap                      " Do not wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
@@ -278,10 +293,10 @@ set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 set cpoptions=aAceFsBd
 " ---------------- Folds --------------------------------------
-" set foldmethod=indent               "fold based on indent
-" set foldenable                      "fold by default
-" set foldnestmax=3                   "deepest fold is 3 levels
-" set nofoldenable                    "dont fold by default
+" set foldmethod=indent "fold based on indent
+" set foldenable        "fold by default
+" set foldnestmax=3     "deepest fold is 3 levels
+" set nofoldenable      "dont fold by default
 
 " set fillchars=vert:│
 set maxfuncdepth=1000
@@ -320,7 +335,7 @@ if has("cscope")
     let GtagsCscope_Auto_Load       = 0
 
     "Alternative workground to work with cscope
-    NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
+    Plug 'https://bitbucket.org/madevgeny/yate.git'
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
@@ -484,15 +499,21 @@ let g:ycm_show_diagnostics_ui          = 1
 let g:ycm_seed_identifiers_with_syntax = 0
 let g:ycm_use_ultisnips_completer      = 0
 
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_autoclose_preview_window_after_completion = 0
+" let g:ycm_autoclose_preview_window_after_insertion = 0 
+
 let g:ycm_semantic_triggers =  {
     \   'c' : ['->', '.'],
     \   'objc' : ['->', '.'],
     \   'cpp,objcpp' : ['->', '.', '::'],
     \   'perl' : ['->'],
     \   'php' : ['->', '::'],
-    \   'cs,java,javascript,d,vim,rubyythonerl6,scala,vb,elixir,go' : ['.'],
+    \   'cs,java,javascript,d,vim,python,ruby,perl6,scala,vb,elixir,go' : ['.'],
     \   'lua' : ['.', ':'],
     \   'erlang' : [':'],
+    \   'ocaml' : ['.', '#'],
+    \   'ruby' : ['.', '::'],
     \ }
 
 " let g:ycm_collect_identifiers_from_tags_files = 1
@@ -509,6 +530,7 @@ let g:ycm_filetype_blacklist = {
       \ 'qf'         : 1,
       \ 'vimwiki'    : 1,
       \ 'pandoc'     : 1,
+      \ 'infolog'    : 1,
       \ 'mail'       : 1
       \}
 
@@ -618,3 +640,20 @@ let g:CCTreeUseUTF8Symbols = 1
 "--[ vimshell ]-------------------
 let g:vimshell_environment_term       = 'rxvt-256color'
 let g:zsh_path_completion_suppress_mappings = 1
+
+" Vimux should split horizontally, but only if there isn't already a split
+" and only if there is room to split to the side and have two windows open.
+if (&columns > (&winwidth * 2) + (&winwidth * 0.25))
+  let g:VimuxOrientation = "h"
+else
+  let g:VimuxOrientation = "v"
+endif
+" The percent of the screen the split pane Vimux will spawn should take up.
+let g:VimuxHeight = "25"
+" Vimux should only open a pane when there isn't one already
+let g:VimuxUseNearestPane = 1
+" The keys sent to the runner pane before running a command. By default it sends
+" `q` to make sure the pane is not in scroll-mode and `C-u` to clear the line.
+let g:VimuxResetSequence = 'q C-l C-u'
+
+let g:gasynctags_autostart = 0

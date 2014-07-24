@@ -14,6 +14,7 @@ Plug 'Shougo/unite.vim.git' "unite for creating ui
 Plug 'neg-serg/unite-all-in-one.git' "plugins for unite which I use
 Plug 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
 Plug 'bbchung/clighter.git' "Highlight by clang-database
+Plug 'rhysd/vim-clang-format.git' "format code by clang, better that astyle -A14
 Plug 'sjbach/lusty.git' "file/buffer explorer
 Plug 'SirVer/ultisnips.git' "Snippets with ycm compatibility
 Plug 'junegunn/vim-easy-align' "easy tabular
@@ -34,8 +35,6 @@ Plug 'scrooloose/nerdtree.git' "for cwd
 Plug 'junegunn/vim-pseudocl.git' "colorized cmode
 Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
 Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
-Plug 'fweep/vim-zsh-path-completion.git' "command-line completion like in zsh
-Plug 'AndrewRadev/id3.vim.git' "id3 edit support in vim
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
 Plug 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
@@ -60,11 +59,11 @@ Plug 'sjl/clam.vim.git' "Allow run commands in split
 Plug 'Shougo/vimshell.vim.git' "fast shell implementation
 Plug 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))
-Plug 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
+Plug 'ujihisa/neco-ghc', {'for': 'haskell'} "autocomplete for hs using ghc-mod
 endif                                        
-Plug 'travitch/hasksyn' "simple highlight for normal haskell code
-Plug 'derekwyatt/vim-scala' "different initial scala support for vim
-Plug 'derekwyatt/vim-sbt' "basic SBT support for vim
+Plug 'travitch/hasksyn', {'for': 'haskell'} "simple highlight for normal haskell code
+Plug 'derekwyatt/vim-scala', {'for': 'scala'} "different initial scala support for vim
+Plug 'derekwyatt/vim-sbt', {'for': 'scala'} "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
 Plug 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
 Plug 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
@@ -74,7 +73,6 @@ Plug 'chrisbra/Join.git' "Extended and fast Join for vim
 Plug 'vim-scripts/bufkill.vim.git' "bufkill with BD
 Plug 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 Plug 'tpope/vim-surround' "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
-Plug 'tpope/vim-repeat' " .(dot) for surround.vim speeddating.vim abolish.vim unimpaired.vim commentary.vim
 Plug 'vim-scripts/YankRing.vim.git' "multiple pasting
 "--[ dev ]---------------------------------------------------------------------------------------------------
 Plug 'majutsushi/tagbar' "tagbar
@@ -85,42 +83,41 @@ Plug 'tpope/vim-unimpaired.git' "good mappings and toggles
 Plug 'dbakker/vim-projectroot' "better rooter
 Plug 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
 Plug 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g. .h and .cpp)
-Plug 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
-Plug 'vim-scripts/perl-support.vim.git' "perl-support for vim
-Plug 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
-Plug 'gilligan/tern_for_vim.git' "js-omni completion
+Plug 'vim-scripts/IndentConsistencyCop.git', {'for': 'python'} "autochecks for indent
+Plug 'vim-scripts/perl-support.vim.git', {'for': 'perl'} "perl-support for vim
+Plug 'hynek/vim-python-pep8-indent.git', {'for': 'python'} "python autoindent pep8 compatible
+Plug 'gilligan/tern_for_vim.git', {'for': 'javascript'} "js-omni completion
 Plug 'tpope/vim-sleuth.git' "try to add some heuristics to smarttabbing
 if executable("lldb")
 Plug 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
 if executable("mono")
-Plug 'nosami/Omnisharp.git' "omnisharp completion
+Plug 'nosami/Omnisharp.git', {'for': 'csharp'} "omnisharp completion
 endif
-Plug 'jnwhiteh/vim-golang.git' "golang syntax highlight
-Plug 'jstemmer/gotags.git' "tags for go
+Plug 'jnwhiteh/vim-golang.git', {'for': 'go'} "golang syntax highlight
+Plug 'jstemmer/gotags.git', {'for': 'go'} "tags for go
 if executable("go")
-Plug 'Blackrush/vim-gocode.git' "omnicomplete for go
+Plug 'Blackrush/vim-gocode.git', {'for': 'go'} "omnicomplete for go
 endif
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
-Plug 'tranngocthachs/gtags-cscope-vim-plugin.git' "Works great with vim
 Plug 'yuki777/gtags.vim.git' "Gtags v0.64
 Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
+Plug 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
 endif
-Plug 'jdevera/vim-opengrok-search.git' " try it for opengrok searching
 "--[ latex ]-------------------------------------------------------------------------------------------------
-Plug 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
-Plug 'vim-scripts/TeX-9.git' "tex autocompetion
-Plug 'xuhdev/vim-latex-live-preview.git' "tex live preview
+Plug 'vim-scripts/auctex.vim.git', {'for': 'latex'} "auctex.vim for the syntax highlighting.
+Plug 'vim-scripts/TeX-9.git', {'for': 'latex'} "tex autocompetion
+Plug 'xuhdev/vim-latex-live-preview.git', {'for': 'latex'} "tex live preview
 "--[ web ]---------------------------------------------------------------------------------------------------
-Plug 'Valloric/vim-instant-markdown' "realtime markdown preview
-Plug 'tpope/vim-markdown' "markdown helper for vim
-Plug 'Valloric/xmledit' "xml editing
+" Plug 'Valloric/vim-instant-markdown' "realtime markdown preview
+" Plug 'tpope/vim-markdown' "markdown helper for vim
+" Plug 'Valloric/xmledit' "xml editing
 "---------------[ other filetypes ]--------------------------------------------------------------------------
-Plug 'vimez/vim-tmux' "syntax hi for tmux
-Plug 'elzr/vim-json' "syntax hi for json format
-Plug 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
-Plug 'wting/rust.vim' "rust bindings for vim syntax hi
+Plug 'vimez/vim-tmux', {'for': 'tmux'} "syntax hi for tmux
+Plug 'elzr/vim-json', {'for': 'json'} "syntax hi for json format
+Plug 'rsmenon/vim-mathematica.git', {'for': 'mm'} "Mathematica syntax and omnicomp
+Plug 'wting/rust.vim', {'for': 'rs'} "rust bindings for vim syntax hi
 call plug#end()
 
 syntax on

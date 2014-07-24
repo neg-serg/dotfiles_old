@@ -1,53 +1,71 @@
-"----[ Emacs-like bindings for vim ]----
-"--{ Control }--
-inoremap <silent> <M-d> <C-r>=<SID>KillWord()<CR>
-"--[ Buffers ]-----------------------------------
-inoremap <C-x>b <C-o>:Unite -silent buffer<CR>
+if exists("g:loaded_vim_like_emacs") || v:version < 700 || &cp
+  finish
+endif
+let g:loaded_vim_like_emacs = 1
 
-" inoremap <silent><expr><C-b> pumvisible() ? "\<C-y>\<Left>" : "\<Left>"
+inoremap        <C-A> <C-O>^
+inoremap   <C-X><C-A> <C-A>
+cnoremap        <C-A> <Home>
+cnoremap   <C-X><C-A> <C-A>
+
+inoremap <expr> <C-B> getline('.')=~'^\s*$'&&col('.')>strlen(getline('.'))?"0\<Lt>C-D>\<Lt>Esc>kJs":"\<Lt>Left>"
+cnoremap        <C-B> <Left>
+
+inoremap <expr> <C-D> col('.')>strlen(getline('.'))?"\<Lt>C-D>":"\<Lt>Del>"
+cnoremap <expr> <C-D> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+
+inoremap <expr> <C-E> col('.')>strlen(getline('.'))?"\<Lt>C-E>":"\<Lt>End>"
+
+inoremap <expr> <C-F> col('.')>strlen(getline('.'))?"\<Lt>C-F>":"\<Lt>Right>"
+cnoremap <expr> <C-F> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
+
+if !empty(mapcheck('<C-G>', 'c'))
+  cmap <script> <C-G> <C-C>
+endif
+
+noremap! <expr> <SID>transposition getcmdpos()>strlen(getcmdline())?"\<Left>":getcmdpos()>1?'':"\<Right>"
+noremap! <expr> <SID>transpose "\<BS>\<Right>".matchstr(getcmdline()[0 : getcmdpos()-2], '.$')
+cmap   <script> <C-T> <SID>transposition<SID>transpose
+
+noremap!        <M-b> <S-Left>
+noremap!        <M-d> <C-O>dw
+cnoremap        <M-d> <S-Right><C-W>
+noremap!        <M-f> <S-Right>
+noremap!        <M-n> <Down>
+noremap!        <M-p> <Up>
+
+if !has("gui_running")
+  silent! exe "set <S-Left>=\<Esc>b"
+  silent! exe "set <S-Right>=\<Esc>f"
+  silent! exe "set <F31>=\<Esc>d"
+  silent! exe "set <F32>=\<Esc>n"
+  silent! exe "set <F33>=\<Esc>p"
+  silent! exe "set <F34>=\<Esc>\<C-?>"
+  silent! exe "set <F35>=\<Esc>\<C-H>"
+  map! <F31> <M-d>
+  map! <F32> <M-n>
+  map! <F33> <M-p>
+  map <F31> <M-d>
+  map <F32> <M-n>
+  map <F33> <M-p>
+endif
+
+inoremap <C-x>b <C-o>:Unite -silent buffer<CR>
 vmap <C-b> <Left>
 omap <C-b> <Left>
-"------
-inoremap <silent><expr><C-f> pumvisible() ? "\<C-y>\<Right>" : "\<Right>"
 vmap <C-f> <Right>
-omap <C-f> <Right>
-"------
-inoremap <silent><expr><C-p> pumvisible() ? "\<C-y>\<Up>" : "\<Up>"
 vmap <C-p> <Up>
-omap <C-p> <Up>
-"------
-inoremap <silent><expr><C-n> pumvisible() ? "\<C-y>\<Down>" : "\<Down>"
+cnoremap <c-n> <down>
 vmap <C-n> <Down>
-omap <C-n> <Down>
-"------
-inoremap <C-d> <Del>
 vnoremap <C-d> <Del>
-onoremap <C-d> <Del>
-"------
-inoremap <C-Up> <C-o>{
-vnoremap <C-Up> {
-onoremap <C-Up> {
-"------
-inoremap <C-Down> <C-o>}
-vnoremap <C-Down> }
-onoremap <C-Down> }
-"------------------------
-"--{ Meta }--
 inoremap <M-f> <C-o>e<Right>
 vnoremap <M-f> e<Right>
 onoremap <M-f> e<Right>
-inoremap <M-b> <C-Left>
-vnoremap <M-b> <C-Left>
-onoremap <M-b> <C-Left>
 
-cmap <M-f> <S-Right>
-"imap <C-a> <Home>
 vmap <C-a> <Home>
-imap <C-a> <Home>
 vmap <C-a> <Home>
 omap <C-a> <Home>
 
-imap <C-e> <End>
 vmap <C-e> <End>
 omap <C-e> <End>
 
@@ -55,7 +73,6 @@ omap <C-e> <End>
 " inoremap <C--> <C-o>u
 inoremap   <C-o>u
 inoremap <silent> <c-a> <esc>I
-imap <C-e> <End>
 vmap <C-e> <End>
 omap <C-e> <End>
 "----[ Command-mode ]----
@@ -65,32 +82,19 @@ cnoremap <c-b> <left>
 cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 cnoremap <expr> <C-f> getcmdpos()>strlen(getcmdline())?&cedit:"\<Lt>Right>"
 cnoremap <C-_> <c-f>
-cnoremap <c-n> <down>
 cnoremap <c-p> <up>
 cnoremap <C-*> <c-a>
 cnoremap <M-d> <S-Right><C-w>
 cnoremap <C-y> <C-r><C-o>"
 cnoremap <M-f> <S-Right>
-cnoremap <M-b> <S-Left>
 cnoremap <C-k> <C-f>d$<C-c><End>
 "--[  Block operations  ]-------------------------------------
 vnoremap <C-w> "1d
-cmap <M-b> <S-Left>
-
-inoremap <C-t> <Left><C-o>x<C-o>p
 
 inoremap <silent> <M-k> <C-r>=<SID>KillLine()<CR>
 " Thanks to Benji Fisher for helping me with getting <C-k> to work!
 " inoremap <M-0><C-k> <C-o>d0
 inoremap <M-z> <C-o>dt
-
-function! <SID>KillWord()
-  if col('.') > strlen(getline('.'))
-    return "\<Del>\<C-o>dw"
-  else
-    return "\<C-o>dw"
-  endif
-endfunction
 
 function! <SID>KillLine()
   if col('.') > strlen(getline('.'))

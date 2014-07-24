@@ -9,6 +9,11 @@
 " map <C-e>ri :VimuxInspectRunner<CR>
 " map <C-e>rq :VimuxCloseRunner<CR>
 
+" nnoremap <silent><Down>  <C-w>-
+" nnoremap <silent><Up>    <C-w>+
+" nnoremap <silent><Left>  <C-w><
+" nnoremap <silent><Right> <C-w>>
+
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
@@ -57,9 +62,16 @@ nnoremap <silent> zk O<Esc>j
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
-nmap ;w :w!<cr>
-nmap ;q :q<cr>
-nmap ;d :bd<cr>
+nnoremap ;w :w!<cr>
+nnoremap ;q :q<cr>
+nnoremap ;d :bd<cr>
+nnoremap ;; ;
+map <silent><space><space> :set rnu!<cr>
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
 " like firefox tabs
 nmap <A-w> :bd<cr>
@@ -138,6 +150,7 @@ vnoremap ci[ f[ci[
 " nnoremap <LocalLeader>C :CC<cr>
 
 nmap <F9> :Make<cr>
+nmap MK :Make<cr>
 
 inoremap <S-Ins> <C-r><C-o>*
 
@@ -214,6 +227,7 @@ endfunction
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -423,3 +437,5 @@ nnoremap <space>g g<c-]>
 " NOTE: We're using %S here instead of %s; the capital S version comes from the
 " eregex.vim plugin and uses Perl-style regular expressions.
 vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+
+nmap <silent><space>d  :GasyncTagsEnable<CR>
