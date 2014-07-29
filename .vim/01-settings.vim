@@ -143,6 +143,7 @@ set encoding=utf-8                          " Set default enc to utf-8
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
 set noautochdir                             " Dont't change pwd automaticly
+" set autochdir                             " Change pwd automaticly
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
 
 " Automatically re-read files that have changed as long as there
@@ -211,7 +212,8 @@ set matchtime=2                 " Default time to hi brackets too long for me
 set gdefault                    " this makes search/replace global by default
 set showcmd                     " Show partial commands in status line and Selected characters/lines in visual mode
 
-set nowrap                      " Do not wrap lines
+" set nowrap                    " Do not wrap lines
+set wrap                        " Wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 
@@ -219,7 +221,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
-" set autowrite                   " Automatically write a file when leaving a modified buffer
+" set autowrite                 " Automatically write a file when leaving a modified buffer
 set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')

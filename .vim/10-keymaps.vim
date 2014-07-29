@@ -1,14 +1,3 @@
-"----[ ViMux ]
-" map <C-e>rr :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python2 '.bufname("%"))<CR>
-" map <C-e>r3 :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;python3 '.bufname("%"))<CR>
-" map <C-e>rt :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time python2 '.bufname("%"))<CR>
-" map <C-e>rp :call VimuxRunCommand('clear;cd '.expand("%:p:h") .' ;time pypy '.bufname("%"))<CR>
-" map <C-e>rc :VimuxPromptCommand<CR>
-" map <C-e>rl :VimuxRunLastCommand<CR>
-" map <C-e>rs :VimuxInterruptRunner<CR>
-" map <C-e>ri :VimuxInspectRunner<CR>
-" map <C-e>rq :VimuxCloseRunner<CR>
-
 " nnoremap <silent><Down>  <C-w>-
 " nnoremap <silent><Up>    <C-w>+
 " nnoremap <silent><Left>  <C-w><
@@ -33,6 +22,8 @@ nnoremap <silent> <leader>cd :ProjectRootCD<cr>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
+
+nnoremap <silent><space>w :set wrap!<CR>
 
 " copy or paste from X11 clipboard
 " http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
@@ -74,7 +65,8 @@ noremap <Left> <nop>
 noremap <Right> <nop>
 
 " like firefox tabs
-nmap <A-w> :bd<cr>
+" nmap <A-w> :bd<cr>
+nnoremap <silent> <A-w> :Bclose<CR>
 
 "--[ Experimental indent file ]--------------------
 map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
@@ -439,3 +431,10 @@ nnoremap <space>g g<c-]>
 vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
 
 nmap <silent><space>d  :GasyncTagsEnable<CR>
+
+"----[ ViMux ]
+map <Space>rc :VimuxPromptCommand<CR>
+map <Space>rl :VimuxRunLastCommand<CR>
+map <Space>rs :VimuxInterruptRunner<CR>
+map <Space>ri :VimuxInspectRunner<CR>
+map <Space>rq :VimuxCloseRunner<CR>

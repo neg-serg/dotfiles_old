@@ -832,4 +832,13 @@ function say() {
     mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ;
 }
 
+new-session () {
+    if [[ $# -eq 1 ]]; then
+        TMUX= tmux new-session -d -s $1
+        tmux switch-client -t $1
+    else
+        echo 'Session name required'
+    fi
+}
+
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }

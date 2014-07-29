@@ -1,6 +1,7 @@
+source ~/.vimperator/plugin/libly.js
+autocmd VimperatorEnter .*
 set gui=none
 colorscheme vimpwhite
-
 set hintchars=12345
 " C-g as cancel (C-q is stop)
 cmap <C-]> i<Esc>
@@ -55,7 +56,6 @@ set shellcmdflag='-c'
 "show current link in a command line
 "set showstatuslinks='command'
 
-
 " feedSomeKeys_3.js {{{
 command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' -events=vkeydown,keypress,vkeyup j k
@@ -73,6 +73,7 @@ lazy fmaps -u='trello\.com/b/' -events=vkeydown j k d l e n v w
 
 lazy fmaps -u='reblog\.machine\.mamemomonga\.com/dashboard' j k t l m
 lazy fmaps -u='www\.pixiv\.net/member_illust\.php\?mode=manga' -events=vkeydown j k z 0
+lazy fmaps -u='\.vk\.com' -events=vkeydown,keypress,vkeyup : / f F r d <C-[> <Esc> h j k l t o d w i u
 " }}}
 
 
