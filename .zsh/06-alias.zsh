@@ -68,7 +68,7 @@ alias grep="grep --color=auto"
 
 function v {
     if [[ `lsw|grep VIM` != "VIM" && `tmux ls|awk -F : '{print $1}'` != "vim" ]] ; then
-      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e zsh -i -c "TMUX= tmux new -s vim -n vim vim\ \-\-servername\ VIM\ \-\-remote\-silent\ $@" &&
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e 'tmux -S /home/neg/1st_level/vim.socket new vim --servername VIM --remote-silent $@ && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' &&
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
     else  
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')" &&
