@@ -34,7 +34,7 @@ Plug 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
 Plug 'scrooloose/nerdtree.git' "for cwd
 Plug 'junegunn/vim-pseudocl.git' "colorized cmode
 Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
-Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
+" Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
 Plug 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
@@ -55,7 +55,7 @@ Plug 'benmills/vimux.git' "exec commands in tmux
 Plug 'christoomey/vim-tmux-navigator' "easy jump between windows
 Plug 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
-Plug 'sjl/clam.vim.git' "Allow run commands in split
+" Plug 'sjl/clam.vim.git' "Allow run commands in split
 Plug 'Shougo/vimshell.vim.git' "fast shell implementation
 Plug 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))

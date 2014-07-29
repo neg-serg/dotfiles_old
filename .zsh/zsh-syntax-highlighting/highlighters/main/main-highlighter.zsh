@@ -140,18 +140,18 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[  audio  ]--------------------
 #---------------------------------
-  filetype-flac        'fg=30,1'
-  filetype-mp3         'fg=30'
-  filetype-mp4         'fg=30'
-  filetype-ogv         'fg=30'
-  filetype-cue         'fg=30,1'
-  filetype-ogg         'fg=30'
-  filetype-m3u         'fg=30'
-  filetype-m4a         'fg=30'
-  filetype-wmv         'fg=30'
+  filetype-flac        'fg=108,1'
+  filetype-mp3         'fg=108'
+  filetype-ogv         'fg=108'
+  filetype-cue         'fg=108,1'
+  filetype-ogg         'fg=108'
+  filetype-m3u         'fg=108'
+  filetype-m4a         'fg=108'
+  filetype-wmv         'fg=108'
 #---------------------------------
 #--[  video  ]--------------------
 #---------------------------------
+  filetype-mp4         'fg=13'
   filetype-flv         'fg=13'
   filetype-avi         'fg=13'
   filetype-m4v         'fg=13'

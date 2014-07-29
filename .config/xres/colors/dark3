@@ -1,3 +1,4 @@
+!*background:             #001115
 !*background:             #09090d
 *background:            #000000
 !*foreground:            #747384
@@ -21,3 +22,5 @@
 *color14:#47959E
 *color7:#899CA1
 *color15:#C0C0C0
+
+*color108:#4C407C

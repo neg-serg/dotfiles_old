@@ -1,9 +1,4 @@
 #!/bin/zsh
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --setprovideroutputsource 0x45 0x2b0
-# xrandr --output LVDS1 --on
-# xrandr --auto 
-
 xrandr --dpi 102
 
 export LANG="en_US.UTF-8"
@@ -11,13 +6,7 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 # eval $(keychain --eval --agents ssh ~/.ssh/id_rsa)
 
-# {
-#   while xrandr --auto; do
-#     sleep 5
-#   done
-# } &
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
-# export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Fix X window manager name properties to work around java bugs with
 # non-reparenting window managers.  This is a different solution from
@@ -40,7 +29,6 @@ fi
 
 wmname LG3D
 swarp  1600 900
-# synclient TapButton1=1 HorizTwoFingerScroll=1 VertTwoFingerScroll=1
 synclient PalmDetect=1
 
 # mouse acceleration
@@ -56,12 +44,6 @@ xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
-
-# export GTK_IM_MODULE=fcitx
-# export QT_IM_MODULE=fcitx
-# export XMODIFIERS="@im=fcitx"
-# export GTK_IM_MODULE=xim
-# export QT_IM_MODULE=xim
 
 setxkbmap -option keypad:pointerkeys
 setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
@@ -88,13 +70,13 @@ xset +fp "/usr/share/fonts/local/"
 fc-cache
 
 [ -x /usr/bin/dunst ] && dunst &
-(urxvtd -q -f -o && ${HOME}/bin/urxvt)
+(urxvtd -q -f -o && systemctl --user start tmux_main.service && ${HOME}/bin/urxvt)
 
 amixer -q set Master 0% mute
-[ -z $(pidof udiskie) ]     && udiskie &
+[ -z $(pidof udiskie) ] && udiskie &
 [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
 ~/bin/scripts/email_notifier.py &
-stalonetray -i 16 -bg "#000000" &
+# stalonetray -i 16 -bg "#000000" &
 exec notion

@@ -116,3 +116,7 @@ export GOPATH=${HOME}/bin/go
 # allow to use ,<key> more fast
 export KEYTIMEOUT=5 
 export OSSLIBDIR=/usr/lib/oss
+
+
+export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=true' 
+export JAVA_FONTS=/usr/share/fonts/TTF
