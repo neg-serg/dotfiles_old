@@ -143,6 +143,7 @@ vnoremap ci[ f[ci[
 
 nmap <F9> :Make<cr>
 nmap MK :Make<cr>
+nmap MC :Make clean<cr>
 
 inoremap <S-Ins> <C-r><C-o>*
 
@@ -151,7 +152,10 @@ map <C-c>np :emenu NewProj.<TAB>
 cno $q <C-\>eDeleteTillSlash()<cr>
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
-inoremap jk <ESC>
+"don't go to left char please
+" inoremap <Esc> <Esc>`^`
+" inoremap jk <Esc>`^`
+inoremap jk <Esc>
 
 " Keep search matches in the middle of the window.
 nnoremap * *zzzv

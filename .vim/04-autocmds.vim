@@ -1,7 +1,5 @@
 " We reset the vimrc augroup. Autocommands are added to this group throughout
 " the file
-" Didn't work for a while %(
-" autocmd InsertEnter * :setlocal nohlsearch
 
 augroup vimrc
     autocmd!
@@ -51,10 +49,6 @@ autocmd BufReadPost *
 autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
 autocmd BufReadPost *.doc silent %!antiword "%"
 autocmd BufReadPost *.odt silent %!odt2txt "%"
-"Sourced from vim tip: http://vim.wikia.com/wiki/Keep_folds_closed_while_inserting_text
-" Enable omni completion.
-autocmd FileType c,cc,h,s      imap <C-c>m <Esc>:make!<CR>a | nmap <C-c>m :make!<CR>
-autocmd FileType tex           map  <C-c>m :!pdflatex -shell-escape "%"<CR> | :NoMatchParen | setlocal nocursorline | setlocal updatetime=1
 
 au FileType mail setl spell fo=wantq1 smc=0
 
@@ -96,22 +90,10 @@ augroup filetypedetect
     autocmd BufReadPost,BufNewFile hpedia.hp.com.*            setfiletype Wikipedia
     autocmd BufReadPost,BufNewFile griffis1.net.*             setfiletype Wikipedia
 augroup END
-"=================================== XML ===================================
-function! LoadTypeXML()
-  set shiftwidth=2
-  runtime scripts/closetag.vim
-  inoremap <C-/> <C-R>=GetCloseTag()<CR>
-  syntax cluster xmlRegionHook add=SpellErrors,SpellCorrected
-endfunction
-
-augroup ag_xml
-  autocmd!
-  autocmd FileType html,xml,xslt,htmldjango call LoadTypeXML()
-augroup END
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" 
-" autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
+autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
   au!
