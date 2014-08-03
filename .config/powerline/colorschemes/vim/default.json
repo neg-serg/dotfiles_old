@@ -18,7 +18,7 @@
 		"window_title":             { "fg": "white", "bg": "gray4", "attr": [] },
 		"file_name_no_file":        { "fg": "gray9", "bg": "gray4", "attr": ["bold"] },
 		"file_vcs_status":          { "fg": "brightestred", "bg": "gray4", "attr": [] },
-		"file_vcs_status_M":        { "fg": "brightyellow", "bg": "gray4", "attr": [] },
+		"file_vcs_status_M":        { "fg": "steelblue", "bg": "gray4", "attr": [] },
 		"file_vcs_status_A":        { "fg": "brightgreen", "bg": "gray4", "attr": [] },
 		"line_percent":             { "fg": "gray9", "bg": "gray4", "attr": [] },
 		"line_percent_gradient":    { "fg": "dark_green_gray", "bg": "gray4", "attr": [] },
