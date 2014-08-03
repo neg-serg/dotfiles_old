@@ -77,9 +77,9 @@ if has("gui_running")
 
     set guioptions=                    " Disable all gui-oriented options in gvim
 
-    Plug 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
-    Plug 'tyru/restart.vim.git'              "add restart support
-    Plug 'vim-scripts/utl.vim.git'           "Open urls in files
+    NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
+    NeoBundle 'tyru/restart.vim.git'              "add restart support
+    NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 endif
 
 if !has("gui_running")
@@ -230,9 +230,9 @@ set nomore                      " ----------------------------------------
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
-set expandtab                   " Tabs are spaces, not tabs
 set shiftwidth=4                " spaces for autoindents
 set shiftround                  " makes indenting a multiple of shiftwidth
+set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set smarttab
@@ -337,7 +337,7 @@ if has("cscope")
     let GtagsCscope_Auto_Load       = 0
 
     "Alternative workground to work with cscope
-    Plug 'https://bitbucket.org/madevgeny/yate.git'
+    NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
@@ -422,6 +422,10 @@ endif
 let g:haddock_browser = "dwb"
 
 "--[ Vim-Airline ]----------------
+let g:Powerline_theme='short'
+let g:Powerline_colorscheme='solarized256_dark'
+let g:powerline_config_path='/home/neg/.config/powerline'
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_min_count = 1
