@@ -1,5 +1,12 @@
 {
 	"segment_data": {
+		"mode": {
+			"args": {
+				"override": {
+					"n" : "N"
+				}
+			}
+		},
 		"branch": {
 			"before": " "
 		},
