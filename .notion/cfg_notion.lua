@@ -115,6 +115,7 @@ ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizei
 }
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
+defwinprop{class="com-sun-javaws-Main", instance="sun-awt-X11-XFramePeer", target="topcoder"}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
 defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
@@ -284,6 +285,7 @@ defbindings("WMPlex.toplevel", {
     submap("Mod1+E",{
         kpress("p", "ioncore.exec_on(_, 'pavucontrol')"),
         kpress("r", "mod_query.query_renameframe(_)"),
+        kpress("Shift+t", "ioncore.exec_on(_, '~/bin/scripts/toggle_stalonetray')"),
         kpress("t", "ioncore.exec_on(_, 'urxvt')"),
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
         kpress("m", "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
@@ -296,7 +298,7 @@ defbindings("WMPlex.toplevel", {
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
-        kpress("Shift+k", "ioncore.exec_on(_, 'keynav')"),
+        kpress("Shift+k", "ioncore.exec_on(_, '~/bin/scripts/toggle_keynav')"),
     }),
 ----------------------------[[ TRANPARENCY  ]]---------------------------------
 --  submap("Mod4+J", {
