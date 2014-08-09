@@ -2,126 +2,127 @@ scriptencoding utf-8
 set shell=/bin/sh
 if has('vim_starting')
   set nocompatible  "be improved
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call plug#begin('~/.vim/plugged')
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 "--[ Main ]--------------------------------------------------------------------------------------------------
-Plug 'Valloric/YouCompleteMe' "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
-Plug 'neg-serg/vim-colors' "all colors which I want
-Plug 'Shougo/vimproc' "vimproc is for faster work of unite
-Plug 'vim-jp/vital.vim.git' "improve unite perf
-Plug 'Shougo/unite.vim.git' "unite for creating ui
-Plug 'neg-serg/unite-all-in-one.git' "plugins for unite which I use
-Plug 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
-Plug 'bbchung/clighter.git' "Highlight by clang-database
-Plug 'rhysd/vim-clang-format.git' "format code by clang, better that astyle -A14
-Plug 'sjbach/lusty.git' "file/buffer explorer
-Plug 'SirVer/ultisnips.git' "Snippets with ycm compatibility
-Plug 'junegunn/vim-easy-align' "easy tabular
+NeoBundle 'Valloric/YouCompleteMe' "ycm is awesome completer for c,cpp with clang, c#,jedi-python,etc
+NeoBundle 'neg-serg/vim-colors' "all colors which I want
+NeoBundle 'Shougo/vimproc' "vimproc is for faster work of unite
+NeoBundle 'Shougo/neomru.vim.git' "mru for unite
+NeoBundle 'vim-jp/vital.vim.git' "improve unite perf
+NeoBundle 'Shougo/unite.vim.git' "unite for creating ui
+NeoBundle 'neg-serg/unite-all-in-one.git' "plugins for unite which I use
+NeoBundle 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
+NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better that astyle -A14
+NeoBundle 'sjbach/lusty.git' "file/buffer explorer
+NeoBundle 'SirVer/ultisnips.git' "Snippets with ycm compatibility
+NeoBundle 'junegunn/vim-easy-align' "easy tabular
+NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 if executable("ack")
-Plug 'mileszs/ack.vim' "ack wrapper
+NeoBundle 'mileszs/ack.vim' "ack wrapper
 endif
 if executable("ag")
-Plug 'rking/ag.vim.git' "ag (ack replacement) wrapper
+NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-Plug 'tpope/vim-repeat' "repeat everything!
-Plug 'sjl/gundo.vim' " browse the vim undo tree
-Plug 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
-Plug 'Raimondi/delimitMate.git' "Add pairs to brackets
-Plug 'scrooloose/syntastic.git' "syntax checker. Realtime with ycm
-Plug 'bling/vim-airline.git' "fancy statusline
-Plug 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
-Plug 'scrooloose/nerdtree.git' "for cwd
-Plug 'junegunn/vim-pseudocl.git' "colorized cmode
-Plug 'junegunn/vim-oblique.git' "improved search with fuzzy-finding
-" Plug 'shaneharper/vim-rtags.git' "tiny rtags support for vim
+NeoBundle 'tpope/vim-repeat' "repeat everything!
+NeoBundle 'sjl/gundo.vim' " browse the vim undo tree
+NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
+NeoBundle 'Raimondi/delimitMate.git' "Add pairs to brackets
+NeoBundle 'scrooloose/syntastic.git' "syntax checker. Realtime with ycm
+NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
+NeoBundle 'scrooloose/nerdtree.git' "for cwd
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
-Plug 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
+NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
-Plug 'rhysd/conflict-marker.vim' "jumps over merge conflicts
-Plug 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
-Plug 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
-Plug 'gregsexton/gitv' "Git viewer
-Plug 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
-Plug 'jaxbot/github-issues.vim.git' "github issues autocomp
-Plug 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
+NeoBundle 'rhysd/conflict-marker.vim' "jumps over merge conflicts
+NeoBundle 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
+NeoBundle 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
+NeoBundle 'gregsexton/gitv' "Git viewer
+NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
+NeoBundle 'jaxbot/github-issues.vim.git' "github issues autocomp
+NeoBundle 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
 "--[ be careful with fugitive ]------------------------------------------------------------------------------
-Plug 'sjl/splice.vim.git' "Merge tool for vim
+NeoBundle 'sjl/splice.vim.git' "Merge tool for vim
 endif
 "------------------------------------------------------------------------------------------------------------
 if executable("tmux")
-Plug 'tpope/vim-tbone.git' "tmux basics
-Plug 'benmills/vimux.git' "exec commands in tmux
-Plug 'christoomey/vim-tmux-navigator' "easy jump between windows
-Plug 'wellle/tmux-complete.vim.git' "completion from tmux for vim
+NeoBundle 'tpope/vim-tbone.git' "tmux basics
+NeoBundle 'benmills/vimux.git' "exec commands in tmux
+NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
+NeoBundle 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
-" Plug 'sjl/clam.vim.git' "Allow run commands in split
-Plug 'Shougo/vimshell.vim.git' "fast shell implementation
-Plug 'tpope/vim-dispatch.git' "Should provide async build
+" NeoBundle 'sjl/clam.vim.git' "Allow run commands in split
+NeoBundle 'Shougo/vimshell.vim.git' "fast shell implementation
+NeoBundle 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))
-Plug 'ujihisa/neco-ghc', {'for': 'haskell'} "autocomplete for hs using ghc-mod
+NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
 endif                                        
-Plug 'travitch/hasksyn', {'for': 'haskell'} "simple highlight for normal haskell code
-Plug 'derekwyatt/vim-scala', {'for': 'scala'} "different initial scala support for vim
-Plug 'derekwyatt/vim-sbt', {'for': 'scala'} "basic SBT support for vim
+NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
+NeoBundle 'derekwyatt/vim-scala' "different initial scala support for vim
+NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
-Plug 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
-Plug 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
-Plug 'thinca/vim-ref.git' "integrated reference viewer man/perldoc etc
-Plug 'othree/eregex.vim' "Perl-like extended regex for vim
-Plug 'chrisbra/Join.git' "Extended and fast Join for vim
-Plug 'vim-scripts/bufkill.vim.git' "bufkill with BD
-Plug 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
-Plug 'tpope/vim-surround' "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
-Plug 'vim-scripts/YankRing.vim.git' "multiple pasting
+NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
+NeoBundle 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
+NeoBundle 'thinca/vim-ref.git' "integrated reference viewer man/perldoc etc
+NeoBundle 'othree/eregex.vim' "Perl-like extended regex for vim
+NeoBundle 'chrisbra/Join.git' "Extended and fast Join for vim
+NeoBundle 'vim-scripts/bufkill.vim.git' "bufkill with BD
+NeoBundle 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
+NeoBundle 'tpope/vim-surround' "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
+NeoBundle 'vim-scripts/YankRing.vim.git' "multiple pasting
 "--[ dev ]---------------------------------------------------------------------------------------------------
-Plug 'majutsushi/tagbar' "tagbar
-Plug 'tomtom/tcomment_vim.git' "easier comments
-Plug 'tpope/vim-endwise' "to insert endif for if, end for begin and so on in ruby
-Plug 'matchit.zip' "Improves % match for everything
-Plug 'tpope/vim-unimpaired.git' "good mappings and toggles
-Plug 'dbakker/vim-projectroot' "better rooter
-Plug 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
-Plug 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g. .h and .cpp)
-Plug 'vim-scripts/IndentConsistencyCop.git', {'for': 'python'} "autochecks for indent
-Plug 'vim-scripts/perl-support.vim.git', {'for': 'perl'} "perl-support for vim
-Plug 'hynek/vim-python-pep8-indent.git', {'for': 'python'} "python autoindent pep8 compatible
-Plug 'gilligan/tern_for_vim.git', {'for': 'javascript'} "js-omni completion
-Plug 'tpope/vim-sleuth.git' "try to add some heuristics to smarttabbing
+NeoBundle 'majutsushi/tagbar' "tagbar
+NeoBundle 'tomtom/tcomment_vim.git' "easier comments
+NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on in ruby
+NeoBundle 'matchit.zip' "Improves % match for everything
+NeoBundle 'tpope/vim-unimpaired.git' "good mappings and toggles
+NeoBundle 'dbakker/vim-projectroot' "better rooter
+NeoBundle 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
+NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g. .h and .cpp)
+NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
+NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
+NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
 if executable("lldb")
-Plug 'gilligan/vim-lldb.git' "lldb-plugin for vim
+NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
 if executable("mono")
-Plug 'nosami/Omnisharp.git', {'for': 'csharp'} "omnisharp completion
+NeoBundle 'nosami/Omnisharp.git' "omnisharp completion
 endif
-Plug 'jnwhiteh/vim-golang.git', {'for': 'go'} "golang syntax highlight
-Plug 'jstemmer/gotags.git', {'for': 'go'} "tags for go
+NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
+NeoBundle 'jstemmer/gotags.git' "tags for go
 if executable("go")
-Plug 'Blackrush/vim-gocode.git', {'for': 'go'} "omnicomplete for go
+NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
 endif
+NeoBundle 'wting/rust.vim' "rust bindings for vim syntax hi
+NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
-Plug 'yuki777/gtags.vim.git' "Gtags v0.64
-Plug 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
-Plug 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
+NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
+NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
+NeoBundle 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
-Plug 'vim-scripts/auctex.vim.git', {'for': 'latex'} "auctex.vim for the syntax highlighting.
-Plug 'vim-scripts/TeX-9.git', {'for': 'latex'} "tex autocompetion
-Plug 'xuhdev/vim-latex-live-preview.git', {'for': 'latex'} "tex live preview
+NeoBundle 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
+NeoBundle 'vim-scripts/TeX-9.git' "tex autocompetion
+NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
 "--[ web ]---------------------------------------------------------------------------------------------------
-" Plug 'Valloric/vim-instant-markdown' "realtime markdown preview
-" Plug 'tpope/vim-markdown' "markdown helper for vim
-" Plug 'Valloric/xmledit' "xml editing
+" NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
+" NeoBundle 'tpope/vim-markdown' "markdown helper for vim
+" NeoBundle 'Valloric/xmledit' "xml editing
 "---------------[ other filetypes ]--------------------------------------------------------------------------
-Plug 'vimez/vim-tmux', {'for': 'tmux'} "syntax hi for tmux
-Plug 'elzr/vim-json', {'for': 'json'} "syntax hi for json format
-Plug 'rsmenon/vim-mathematica.git', {'for': 'mm'} "Mathematica syntax and omnicomp
-Plug 'wting/rust.vim', {'for': 'rs'} "rust bindings for vim syntax hi
-call plug#end()
+NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
+NeoBundle 'elzr/vim-json' "syntax hi for json format
+NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
+
+call neobundle#end()
 
 syntax on
 filetype plugin indent on
+
+NeoBundleCheck
 
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
