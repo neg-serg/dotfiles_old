@@ -7,4 +7,4 @@
 
 " use light fonts on dark background
 "set background=dark
-source ~/.vim/plugged/vim-colors/colors/miromiro.vim
+source ~/.vim/bundle/vim-colors/colors/miromiro.vim
