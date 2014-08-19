@@ -179,15 +179,16 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[ Docs ]-----------------------
 #---------------------------------
-  filetype-djvu        'fg=250'
+  filetype-djvu        'fg=247'
   filetype-pdf         'fg=250'
+  filetype-fb2         'fg=246'
   filetype-ps          'fg=250'
   filetype-epub        'fg=250'
   filetype-chm         'fg=250'
   filetype-markdown    'fg=245'
   filetype-mkd         'fg=110'
   filetype-md          'fg=245'
-  filetype-txt         'fg=29'
+  filetype-txt         'fg=60'
   filetype-doc         'fg=29'
   filetype-docx        'fg=29'
   filetype-odt         'fg=29'
@@ -222,7 +223,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-cbr         'fg=140'
   filetype-cbz         'fg=140'
   filetype-cfg         'fg=245'
-  filetype-conf        'fg=245'
+  filetype-conf        'fg=238'
   filetype-csv         'fg=12'
   filetype-dat         'fg=245'
   filetype-db          'fg=60'
@@ -565,6 +566,7 @@ _zsh_highlight_main_highlighter()
         *.pc)          style=$ZSH_HIGHLIGHT_STYLES[filetype-pc];;
         *.ps)          style=$ZSH_HIGHLIGHT_STYLES[filetype-ps];;
         *.pdf)         style=$ZSH_HIGHLIGHT_STYLES[filetype-pdf];;
+        *.fb2)         style=$ZSH_HIGHLIGHT_STYLES[filetype-fb2];;
         *.epub)        style=$ZSH_HIGHLIGHT_STYLES[filetype-epub];;
         *.pfa)         style=$ZSH_HIGHLIGHT_STYLES[filetype-pfa];;
         *.pfb)         style=$ZSH_HIGHLIGHT_STYLES[filetype-pfb];;
