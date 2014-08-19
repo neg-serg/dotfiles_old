@@ -29,7 +29,7 @@
 			},
 			{
 				"name": "visual_range",
-				"exclude_modes": ["nc"],
+				"include_modes": ["v", "V", "^V", "s", "S", "^S"],
 				"priority": 10
 			},
 			{
@@ -46,6 +46,10 @@
 				"name": "readonly_indicator",
 				"draw_soft_divider": false,
 				"after": " "
+			},
+			{
+				"name": "file_scheme",
+				"priority": 20
 			},
 			{
 				"name": "file_directory",
