@@ -23,6 +23,17 @@ nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
 
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
 nnoremap <silent><space>w :set wrap!<CR>
 
 " copy or paste from X11 clipboard
