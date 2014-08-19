@@ -3,7 +3,7 @@
 		"term_truecolor": false,
 		"dividers": {
 			"left": {
-				"hard": "  ",
+				"hard": " ",
 				"soft": " "
 			},
 			"right": {
@@ -14,6 +14,27 @@
 		"spaces": 1
 	},
 	"ext": {
+		"ipython": {
+			"colorscheme": "default",
+			"theme": "in",
+			"local_themes": {
+				"rewrite": "rewrite",
+				"out": "out",
+				"in2": "in2"
+			}
+		},
+		"shell": {
+			"colorscheme": "default",
+			"theme": "default",
+			"local_themes": {
+				"continuation": "continuation",
+				"select": "select"
+			}
+		},
+		"tmux": {
+			"colorscheme": "default",
+			"theme": "default"
+		},
 		"vim": {
 			"colorscheme": "default",
 			"theme": "default",
