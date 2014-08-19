@@ -1,0 +1,40 @@
+#!/bin/bash
+
+source ${HOME}/.config/dmenu/pulse
+
+case $1 in
+    -vol)
+        shift
+        client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | slmenu -p "Clients:" $@)
+        levels="0
+10
+20
+30
+40
+50
+60
+70
+80
+90
+100"
+        volume=$(echo "$levels"|slmenu -p "Volume:" $@)
+        set_vol=$(echo "scale=1; $volume / 100 * 65536" | bc)
+        bla=$(echo $client | awk '{print $1}')
+        blub=$(echo ${set_vol%.*})
+        pacmd set-sink-input-volume $bla $blub
+
+    ;;
+    -sink)
+        shift
+        client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | slmenu -p "Clients:" $@)
+        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | slmenu -p "Sink" $@)
+        pacmd move-sink-input $(echo "$client" | awk '{print $1}') $(echo $sink)
+    ;;
+    -output)
+        shift
+        client=$(pacmd list-source-outputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | slmenu -p "Clients:" $@)
+        sink=$(pacmd list-sources | grep name: | awk 'gsub(">$","")' | cut -c 9- | slmenu -p "Sink" $@)
+        pacmd move-source-output $(echo "$client" | awk '{print $1}') $(echo $sink)
+    ;;
+    *)
+esac
