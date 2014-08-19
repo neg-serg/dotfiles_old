@@ -422,8 +422,6 @@ endif
 let g:haddock_browser = "dwb"
 
 "--[ Vim-Airline ]----------------
-let g:Powerline_theme='short'
-let g:Powerline_colorscheme='solarized256_dark'
 let g:powerline_config_path='/home/neg/.config/powerline'
 
 let g:airline#extensions#tabline#enabled = 1
