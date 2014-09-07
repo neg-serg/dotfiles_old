@@ -1,0 +1,17 @@
+This package uses quilt to manage all modifications. See
+
+  /usr/share/doc/quilt/quilt.pdf.gz
+
+to get more information on how to use it.
+
+To apply and unapply all patches, you can run:
+
+ quilt push -a
+ quilt pop -a
+
+ensuring that you have set QUILT_PATCHES=debian/patches, or alternatively
+
+ debian/rules patch
+ debian/rules unpatch
+
+ -- Julian Gilbey <jdg@debian.org>, Sun,  2 Feb 2014 14:53:29 +0000

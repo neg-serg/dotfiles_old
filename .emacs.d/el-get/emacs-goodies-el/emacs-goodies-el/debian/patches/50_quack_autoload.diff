@@ -1,0 +1,100 @@
+## 50_quack_autoload.diff by Daniel Moerner <dmoerner@gmail.com>
+
+--- a/elisp/emacs-goodies-el/quack.el
++++ b/elisp/emacs-goodies-el/quack.el
+@@ -62,9 +62,10 @@
+ ;; INSTALLATION:
+ ;;
+ ;;     To install, put this file (`quack.el') somewhere in your Emacs load
+-;;     path, and add the following line to your `.emacs' file:
++;;     path, and add the following lines to your `.emacs' file:
+ ;;
+ ;;         (require 'quack)
++;;         (quack-install)
+ ;;
+ ;;     If you don't know what your Emacs load path is, try invoking the command
+ ;;     "C-h v load-path RET" or consulting the Emacs manual.
+@@ -3159,6 +3160,8 @@
+                              ;; Non-Scheme:
+                              ("\\.plt\\'"    . quack-pltfile-mode)))
+ 
++;;;###autoload(add-to-list 'auto-mode-alist '("\\.plt\\'" . quack-pltfile-mode))
++
+ ;; Syntax Table:
+ 
+ (defmacro quack-str-syntax (str)
+@@ -3508,10 +3511,6 @@
+      (add-submenu nil quack-global-menuspec "Help" current-menubar)
+      (set-menubar-dirty-flag))))
+ 
+-;; TODO: We should make sure the user's custom settings have been loaded
+-;; before we do this.
+-(quack-install-global-menu)
+-
+ ;; And die some more!
+ ;;(quack-when-xemacs (add-hook 'after-init-hook 'quack-install-global-menu))
+ 
+@@ -4132,9 +4131,11 @@
+   (quack-when-xemacs
+    (quack-install-global-menu)))
+ 
++;;;###autoload
+ (defun quack-inferior-scheme-mode-hookfunc ()
+   (quack-shared-mode-hookfunc-stuff))
+ 
++;;;###autoload
+ (defun quack-scheme-mode-hookfunc ()
+   (quack-shared-mode-hookfunc-stuff)
+ 
+@@ -4147,9 +4148,6 @@
+   ;;(quack-install-tool-bar)))
+   )
+ 
+-(add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
+-(add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
+-
+ ;; Compilation Mode:
+ 
+ ;; TODO: Add compilation-directory-matcher support for "setup-plt:  in".
+@@ -4215,8 +4213,6 @@
+         (append quack-compilation-error-regexp-alist-additions
+                 quack-saved-compilation-error-regexp-alist)))
+ 
+-(quack-install-compilation-mode-stuff)
+-
+ ;; Interpreter-mode-alist:
+ 
+ (defvar quack-saved-interpreter-mode-alist nil)
+@@ -4256,8 +4252,6 @@
+         (append quack-interpreter-mode-alist-additions
+                 quack-saved-interpreter-mode-alist)))
+ 
+-(quack-install-interpreter-mode-alist)
+-
+ ;; PLT Package Mode:
+ 
+ ;; TODO: Do some simple checking and summarize what directories and files are
+@@ -4285,6 +4279,7 @@
+ 
+ ;; TODO: Make a menu map for pltfile-mode.
+ 
++;;;###autoload
+ (defun quack-pltfile-mode ()
+   (interactive)
+   "Major mode for viewing PLT Scheme `.plt' package files.
+@@ -4812,6 +4807,15 @@
+ 
+ ;; End:
+ 
++;;;###autoload
++(defun quack-install ()
++  "Install quack.el into scheme-mode."
++  (add-hook 'scheme-mode-hook          'quack-scheme-mode-hookfunc)
++  (add-hook 'inferior-scheme-mode-hook 'quack-inferior-scheme-mode-hookfunc)
++  (quack-install-compilation-mode-stuff)
++  (quack-install-interpreter-mode-alist)
++  (quack-install-global-menu))
++
+ (provide 'quack)
+ 
+ ;; quack.el ends here

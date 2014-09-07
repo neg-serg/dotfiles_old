@@ -1,0 +1,22 @@
+--- a/elisp/emacs-goodies-el/egocentric.el
++++ b/elisp/emacs-goodies-el/egocentric.el
+@@ -101,7 +101,8 @@
+ 
+ (defvar egocentric-overlay-list nil
+   "List of overlays used to highlight occurences of your name in `egocentric-mode'.")
+-(make-local-variable 'egocentric-overlay-list)
++(if (fboundp 'make-local-hook)
++    (make-local-variable 'egocentric-overlay-list))
+ 
+ (defvar egocentric-regexp-list nil
+   "Regexp used to check whether a word has to be highlighted.
+@@ -141,7 +142,8 @@
+ (defun egocentric-mode-on ()
+   "Turn Egocentric mode on."
+   (interactive)
+-  (make-local-hook 'post-command-hook)
++  (if (fboundp 'make-local-hook)
++      (make-local-hook 'post-command-hook))
+   (add-hook 'post-command-hook (function egocentric-post-command-hook) t t)
+   (egocentric-update-regexp-list)
+   (egocentric-insinuate egocentric-regexp-list)

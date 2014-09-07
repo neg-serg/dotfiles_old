@@ -1,0 +1,13 @@
+--- a/elisp/emacs-goodies-el/tlc.el
++++ b/elisp/emacs-goodies-el/tlc.el
+@@ -299,8 +299,8 @@
+ 	nil))))
+ 
+ ;;; Add to mode list
+-;;;###autoload(add-to-list 'auto-mode-alist '("\\.tlc\\'" .tlc-mode))
+-(add-to-list 'auto-mode-alist '("\\.tlc\\'" .tlc-mode))
++;;;###autoload(add-to-list 'auto-mode-alist '("\\.tlc\\'" . tlc-mode))
++(add-to-list 'auto-mode-alist '("\\.tlc\\'" . tlc-mode))
+ 
+ (provide 'tlc)
+ 

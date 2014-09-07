@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+include /usr/share/quilt/quilt.make
+
+%:
+	dh $@ --with quilt
+
+override_dh_auto_build:
+	for i in debian/*.emacsen-install.in ; do cat $$i debian/emacsen-install.template > debian/$$(basename $$i .in) ; done
+	for i in debian/*.emacsen-remove.in ; do cat $$i debian/emacsen-remove.template > debian/$$(basename $$i .in) ; done
+	install -d info
+	makeinfo elisp/emacs-goodies-el/emacs-goodies-el.texi
+	makeinfo elisp/debian-el/debian-el.texi
+	makeinfo -o info/ elisp/emacs-goodies-el/maplev.texi
+	dh_auto_build
+
+override_dh_installemacsen:
+	dh_installemacsen -Ndebian-el
+	dh_installemacsen -pdebian-el --priority=51
+
+override_dh_auto_clean:
+	for i in debian/*.emacsen-install.in ; do rm -f debian/$$(basename $$i .in) ; done
+	for i in debian/*.emacsen-remove.in ; do rm -f debian/$$(basename $$i .in) ; done
+	rm -fR info
+	dh_auto_clean

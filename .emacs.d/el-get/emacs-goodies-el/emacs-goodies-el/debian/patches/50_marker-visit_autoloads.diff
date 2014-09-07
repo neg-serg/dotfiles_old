@@ -1,0 +1,28 @@
+## 50_marker-visit_autoloads.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/marker-visit.el	2001-05-22 02:13:48.000000000 -0400
++++ b/elisp/emacs-goodies-el/marker-visit.el	2003-11-16 21:30:42.000000000 -0500
+@@ -87,6 +87,7 @@
+   (message error-message)
+   (beep))
+ 
++;;;###autoload
+ (defun marker-visit-prev ()
+   "From point, visit the nearest mark earlier in the buffer."
+   (interactive)
+@@ -102,6 +103,7 @@
+ 	  (goto-char dest-mark)
+ 	(marker-visit-warn "No previous mark to visit")))))
+ 
++;;;###autoload
+ (defun marker-visit-next ()
+   "From point, visit the nearest mark later in the buffer."
+   (interactive)
+@@ -121,6 +123,7 @@
+ 	  (goto-char dest-mark)
+ 	(marker-visit-warn "No next mark to visit")))))
+ 
++;;;###autoload
+ (defun marker-visit-truncate-mark-ring ()
+   "Truncate the `mark-ring'."
+   (interactive)

@@ -1,0 +1,37 @@
+#! /bin/bash -e
+# /usr/lib/emacsen-common/packages/install/devscripts-el
+
+# Written by Jim Van Zandt <jrv@vanzandt.mv.com>, borrowing heavily
+# from the install scripts for gettext by Santiago Vila
+# <sanvila@ctv.es> and octave by Dirk Eddelbuettel <edd@debian.org>.
+#
+# Patched by Roland Mas <lolando@debian.org> to add support for lists
+# of flavor-dependently included/excluded files
+
+FLAVOR=$1
+STAMPFILE=devscripts.elc
+# We need elserv, flim, apel, etc.  So use full Debian setup of packages
+FLAGS="-q -batch -l path.el -f batch-byte-compile"
+PACKAGE=devscripts-el
+
+# INCLUDED_emacs20=""
+# INCLUDED_emacs21=""
+# INCLUDED_xemacs21=""
+
+# EXCLUDED_emacs20=""
+# EXCLUDED_emacs21=""
+# EXCLUDED_xemacs21=""
+
+# devscripts.el requires apel to be byte-compiled before it can be
+# byte-compiled itself.  This could easily go wrong, as shown in
+# bug#737202; there, emacs23 did the byte compiling of all installed
+# packages when a new version of emacs23 was being configured, but it
+# had not yet byte-compiled apel when it attempted to compile
+# devscripts-el.  So we skip the byte-compilation of devscripts-el if
+# apel has not yet been byte-compiled; this is a workaround for the
+# emacs bug which has been uncovered by this.
+
+if [ ! -e "/usr/share/$FLAVOR/site-lisp/apel/mcharset.elc" ]
+then
+    exit 0
+fi

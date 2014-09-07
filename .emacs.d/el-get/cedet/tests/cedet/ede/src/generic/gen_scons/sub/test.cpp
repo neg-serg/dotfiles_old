@@ -1,0 +1,1 @@
+// Generic SCons test code.

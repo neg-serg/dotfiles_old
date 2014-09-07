@@ -1,0 +1,535 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This collection of files was assembled by Roland Mas <lolando@debian.org>
+ from various messages posted on the gnu.emacs.sources newsgroup, as well as
+ from various collections of Emacs Lisp files found on the web.  Some
+ authors contacted Roland directly, some users sent me the files by email.
+ Most of them are covered by the GNU GPL, but the individual licences can
+ vary.
+
+Files: *
+Copyright: 2000-2003 Roland Mas <lolando@debian.org>,
+ 2005-2014 Peter S Galbraith <psg@debian.org>
+ 2014 Julian Gilbey <jdg@debian.org>
+License: GPL-2+
+Comment:
+ This covers the debian/* files, and various other glue files written
+ specificially for this package.
+
+Files: elisp/emacs-goodies-el/align-string.el
+Copyright: 2001 Markus Bjartveit Krüger <markusk@pvv.org>
+License: GPL-2+
+Comment: http://www.pvv.org/~markusk/align-string.el
+
+Files: elisp/emacs-goodies-el/all.el
+Copyright: 1985, 1986, 1987, 1992, 1994 Free Software Foundation, Inc.,
+ 1994 Per Abrahamsen
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/apache-mode.el
+Copyright: Jonathan Marten <jonathan.marten@uk.sun.com>,
+ Karl Chen <quarl@nospam.quarl.org>
+License: GPL-2+
+Comment: http://www.emacswiki.org/elisp/apache-mode.el
+
+Files: elisp/emacs-goodies-el/ascii.el
+Copyright: 1999, 2000, 2001 Vinicius Jose Latorre
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/auto-fill-inhibit.el
+Copyright: 2001 Michael Weber <michaelw@debian.org>
+License: GPL-2-no-virus
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ version 2 as published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+ .
+ NO-VIRUS CLAUSE:
+ The intent of this license is to protect free redistribution and
+ reuse of the source of the licensed distribution, not to prejudice
+ the authorship rights of programmers of other code to control
+ their original inventions.
+ .
+ No portion of this license is to be interpreted as forbidding the
+ reuse of this code or its constituent parts, algorithms, or
+ inventions in commercial products.
+ .
+ Nor shall such inclusion be construed to require the GPLing or
+ disclosure of any portions of said commercial products other than
+ those falling under the copyright of the licensed distribution.
+
+Files: elisp/emacs-goodies-el/bar-cursor.el
+Copyright: 2001 by Joseph L. Casadonte Jr. <emacs@northbound-train.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/bm.el
+Copyright: 2000-2010 Jo Odland <jo.odland(at)gmail.com>,
+ Portions Copyright 2002 by Ben Key,
+ Updated by Ben Key <bkey1(at)tampabay.rr.com> on 2002-12-05
+ to add support for XEmacs
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/boxquote.el
+Copyright: 1999-2009 by Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/browse-huge-tar.el
+Copyright: Gareth Owen 1999
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/browse-kill-ring.el
+Copyright: 2001 Colin Walters
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/button-lock.el
+Copyright: 2011 D Roland Walker
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/clipper.el
+Copyright: 1997-2000 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author: Kevin A. Burton (burton@openprivacy.org)
+ Maintainer: Kevin A. Burton (burton@openprivacy.org)
+ Location: http://relativity.yi.org
+
+Files: elisp/emacs-goodies-el/coffee.el
+Copyright: 1999, 2003 Eric Marsden <emarsden@mail.dotcom.fr>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/color-theme.el
+Copyright: 1999, 2000  Jonadab the Unsightly One <jonadab@bright.net>,
+ 2000, 2001, 2002, 2003  Alex Schroeder <alex@gnu.org>,
+ 2003, 2004  Xavier Maillard <zedek@gnu-rox.org>
+License: GPL-2+
+Comment:
+ Author: Jonadab the Unsightly One <jonadab@bright.net>
+ Maintainer: Xavier Maillard <zedek@gnu-rox.org>
+ URL: http://www.emacswiki.org/cgi-bin/wiki.pl?ColorTheme
+
+Files: elisp/emacs-goodies-el/color-theme-library.el
+Copyright: 2005, 2006  Xavier Maillard <zedek@gnu.org>,
+ 2005, 2006  Brian Palmer <bpalmer@gmail.com>
+License: GPL-2+
+Comment:
+ Author: Brian Palmer, Xavier Maillard
+ Maintainer: Xavier Maillard <zedek@gnu.org>
+ URL: http://www.emacswiki.org/cgi-bin/wiki.pl?ColorTheme
+
+Files: elisp/emacs-goodies-el/color-theme_selfdefcustom.el
+Copyright: 2005 Peter S Galbraith <psg@debian.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/csv-mode.el
+Copyright: 2003, 2004 Francis J. Wright <F.J.Wright at qmul.ac.uk>
+License: GPL-2+
+Comment:
+ http://centaur.maths.qmul.ac.uk/Emacs/
+
+Files: elisp/emacs-goodies-el/ctypes.el
+Copyright: 1997, 1999 Anders Lindgren <andersl@andersl.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/dedicated.el
+Copyright: 2000 Eric Crampton <eric@atdesk.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/df.el
+Copyright: 1999 by Association April
+License: GPL-2+
+Comment: Author: Benjamin Drieu <bdrieu@april.org>
+
+Files: elisp/emacs-goodies-el/dict.el
+Copyright: 2002 Max Vasin
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/diminish.el
+Copyright: 1998 Free Software Foundation, Inc.
+License: GPL-2+
+Comment: 
+ Author: Will Mengarini <seldon@eskimo.com>
+ URL: <http://www.eskimo.com/~seldon>
+
+Files: elisp/emacs-goodies-el/dir-locals.el
+Copyright: 2005, 2006  Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author: Dave Love <fx@gnu.org>
+ URL: http://www.loveshack.ukfsn.org/emacs
+
+Files: elisp/emacs-goodies-el/edit-env.el
+Copyright: 2001 Benjamin Rutt
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/egocentric.el
+Copyright: 2001 Benjamin Drieu <bdrieu@april.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/eproject.el
+Copyright: 2008, 2009 Jonathan Rockway <jon@jrock.us>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/eproject-extras.el
+Copyright: 2009 Jonathan Rockway <jon@jrock.us>
+License: GPL-3+
+
+Files: elisp/emacs-goodies-el/ff-paths.el
+Copyright: 1994-2001 Peter S. Galbraith <GalbraithP@dfo-mpo.gc.ca>,
+ <psg@debian.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/filladapt.el
+Copyright: 1989, 1995-1998 Kyle E. Jones
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/floatbg.el
+Copyright: 2001 John Paul Wallington <jpw@shootybangbang.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/folding.el
+Copyright: 1994-2004 Jari Aalto, Anders Lindgren, All rights reserved.
+ 1992, 1993 Jamie Lokier, All rights reserved.
+License: GPL-2+
+Comment:
+ http://cvs.sourceforge.net/viewcvs.py/tiny-tools/tiny-tools/lisp/other/
+
+Files: elisp/emacs-goodies-el/framepop.el
+Copyright: 1993, 1995 Free Software Foundation, Inc.
+ 2003 Peter S Galbraith
+License: GPL-2+
+Comment:
+ Author: David Smith <D.M.Smith@lancaster.ac.uk>
+ Maintainer: Peter S Galbraith <psg@debian.org>
+
+Files: elisp/emacs-goodies-el/graphviz-dot-mode.el
+Copyright: 2002 - 2005 Pieter Pareit <pieter.pareit@scarlet.be>
+License: GPL-2+
+Comment:
+ Authors: Pieter Pareit <pieter.pareit@scarlet.be>
+          Rubens Ramos <rubensr AT users.sourceforge.net>
+ Maintainer: Pieter Pareit <pieter.pareit@planetinternet.be>
+
+Files: elisp/emacs-goodies-el/highlight-beyond-fill-column.el
+Copyright: 1985, 1986, 1987, 1992 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author: Sandip Chitale (sandip.chitale@blazesoft.com)
+
+Files: elisp/emacs-goodies-el/highlight-completion.el
+Copyright: 1991-1996 Mark Haiman, Nick Reingold, John Palmieri,
+ 1997-2001 John Palmieri <palmieri@math.washington.edu>
+License: GPL-2+
+Comment:
+ Author: John Palmieri <palmieri@math.washington.edu>
+
+Files: elisp/emacs-goodies-el/highlight-current-line.el
+Copyright: 1997 Christoph Conrad <Christoph.Conrad@post.rwth-aachen.de>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/home-end.el
+Copyright: 1996 Kai Grossjohann and Toby Speight, 2002 Toby Speight
+License: GPL-3
+
+Files: elisp/emacs-goodies-el/htmlize.el
+Copyright: 1997,1998,1999,2000 Hrvoje Niksic <hniksic@xemacs.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/initsplit.el
+Copyright: 2000, 2001 John Wiegley <johnw@gnu.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/joc-toggle-buffer.el
+Copyright: 2001 by Joseph L. Casadonte Jr. <emacs@northbound-train.com>
+License: GPL-2+
+Comment: Renamed from toggle-buffer.el
+
+Files: elisp/emacs-goodies-el/joc-toggle-case.el
+Copyright: 2001 by Joseph L. Casadonte Jr. <emacs@northbound-train.com>
+License: GPL-2+
+Comment: Renamed from toggle-case.el
+
+Files: elisp/emacs-goodies-el/keydef.el
+Copyright: 2001 Michael John Downes <mjd@ams.org>
+License: public-domain
+ This program was placed in the public domain on 2001/01/18 by the
+ Author. The program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Files: elisp/emacs-goodies-el/keywiz.el
+Copyright: 2002 Jesper Harder <harder@ifa.au.dk>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/lcomp.el
+Copyright: 2002 Taiki SUGAWARA <taiki.s@cityfujisawa.ne.jp>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/maplev.*
+Copyright: 2001,2003 Joseph S. Riel <joer@k-online.com>
+License: GPL-2+
+Comment:
+ Authors: Joseph S. Riel <joer@k-online.com>
+          and Roland Winkler <Roland.Winkler@physik.uni-erlangen.de>
+ URL:     https://github.com/JoeRiel/maplev
+
+Files: elisp/emacs-goodies-el/map-lines.el
+Copyright: 2002 Andreas Fuchs <asf@void.at>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/markdown-mode.el
+Copyright: 2007 Jason Blevins <jrblevin@sdf.lonestar.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/marker-visit.el
+Copyright: 2001 Benjamin Rutt
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/matlab.el
+Copyright: 1997-1999 Eric M. Ludlam, 1991-1997 Matthew R. Wette
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/minibuf-electric.el
+Copyright: 1992, 1993, 1994, 1997 Free Software Foundation, Inc.
+ 1995 Tinker Systems.
+ 1995, 1996, 2000 Ben Wing.
+ Modified by Karl Hegbloom for GNU Emacs.
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/minibuffer-complete-cycle.el
+Copyright: 1997,1998,2000,2003 Kevin Rodgers <ihs_4664@yahoo.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/miniedit.el
+Copyright: 2001, 2002 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author(s): Deepak Goel <deego3@gmail.com>,
+            Christoph Conrad <christoph.conrad@gmx.de>
+
+Files: elisp/emacs-goodies-el/mutt-alias.el
+Copyright: 1999,2000 by Dave Pearson <davep@davep.org>
+License: GPL-2
+
+Files: elisp/emacs-goodies-el/muttrc-mode.el
+Copyright: 2000, 2001, 2002 Laurent Pelecq <laurent.pelecq@soleil.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/obfusurl.el
+Copyright: 2001-2008 by Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/pack-windows.el
+Copyright: 2000 Michel Schinz
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/perldoc.el
+Copyright: 2000-2002 Steve Kemp <skx@tardis.ed.ac.uk>,
+ 2003, 2005 Peter S Galbraith <psg@debian.org>,
+ 2008-2009 Ben Voui <intrigeri@boum.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/pod-mode.el
+Copyright: 2003-2005 Steffen Schwigon <schwigon@webit.de>
+License: GPL-2+
+Comment: http://search.cpan.org/~schwigon/pod-mode/
+
+Files: elisp/emacs-goodies-el/pp-c-l.el
+Copyright: 2007-2010, Drew Adams, all rights reserved.
+License: GPL-2+
+Comment: http://www.emacswiki.org/cgi-bin/wiki/pp-c-l.el
+
+Files: elisp/emacs-goodies-el/projects.el
+Copyright: 1998 Naggum Software
+License: GPL-2+
+Comment:
+ Author: Erik Naggum <erik@naggum.no>
+
+Files: elisp/emacs-goodies-el/protbuf.el
+Copyright: 1994, 1999 Noah S. Friedman <friedman@splode.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/protocols.el
+Copyright: 2000-2008 Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/quack.el
+Copyright: 2002-2009 Neil Van Dyke <neil@neilvandyke.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/rfcview.el
+Copyright: 2001-2002 Neil W. Van Dyke <neil@neilvandyke.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/services.el
+Copyright: 2000-2008 Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/session.el
+Copyright: 1996-1999, 2001-2003 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author: Christoph Wedler <wedler@users.sourceforge.net>
+ X-URL: http://emacs-session.sourceforge.net/
+
+Files: elisp/emacs-goodies-el/setnu.el
+Copyright: 1994, 1995, 1997 Kyle E. Jones
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/shell-command.el
+Copyright: 1998-2003 TSUCHIYA Masatoshi <tsuchiya@namazu.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/show-wspace.el
+Copyright: 2000-2007, Drew Adams, all rights reserved.
+License: GPL-2+
+Comment:
+ Author: Peter Steiner <unistein@isbe.ch>, Drew Adams
+ Maintainer: Drew Adams
+
+Files: elisp/emacs-goodies-el/silly-mail.el
+Copyright: 1993, 94, 95, 96, 97, 98, 99, 2000 Noah S. Friedman
+License: GPL-2+
+Comment:
+ Contributors: Noah Friedman, Jamie Zawinski, Jim Blandy,
+               Thomas Bushnell, Roland McGrath,
+               and a cast of dozens.
+ Maintainer: Noah Friedman <friedman@splode.com>
+
+Files: elisp/emacs-goodies-el/slang-mode.el
+Copyright: 1993, 1994, 1995 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Modified By: Joe Robertson <jmrobert@sbcs.com>
+ Modified From: tcl-mode.el
+ Original Author: Gregor Schmid <schmid@fb3-s7.math.tu-berlin.de>
+ http://home.mchsi.com/~jmrobert5/files/slang-mode.el
+
+Files: elisp/emacs-goodies-el/sys-apropos.el
+Copyright: 2002 Henrik Enberg <henrik@enberg.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/tabbar.el
+Copyright: 2003 David Ponce <david@dponce.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/tail.el
+Copyright: 2000 Benjamin Drieu <bdrieu@april.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/tc.el
+Copyright: 1998 Lars R. Clausen <lrclause@cs.uiuc.edu>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/thinks.el
+Copyright: 2000-2008 Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/tlc.el
+Copyright: 1997, 1998 by The MathWorks, Inc.
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/tld.el
+Copyright: 2000-2008 Dave Pearson <davep@davep.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/todoo.el
+Copyright: 1999 Daniel Lundin <daniel@codefactory.se>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/toggle-option.el
+Copyright: 2001 Cyprian Laskowski <swagbelly@yahoo.com>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/twiddle.el
+Copyright: 1997 Noah S. Friedman <friedman@prep.ai.mit.edu>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/under.el
+Copyright: 1998 Benjamin Drieu <bdrieu@april.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/upstart-mode.el
+Copyright: 2010 Stig Sandbeck Mathisen <ssm@debian.org>
+License: GPL-2+
+
+Files: elisp/emacs-goodies-el/xrdb-mode.el
+Copyright: 1998,1999,2000 Free Software Foundation, Inc.
+License: GPL-2+
+Comment:
+ Author: 1994-2002 Barry A. Warsaw
+ Maintainer: barry@python.org
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ version 2 as published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2, or (at
+ your option) any later version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ version 3 as published by the Free Software Foundation.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 3 can be found in the file
+ `/usr/share/common-licenses/GPL-3'.

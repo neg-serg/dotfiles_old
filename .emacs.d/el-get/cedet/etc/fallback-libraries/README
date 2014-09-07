@@ -1,0 +1,9 @@
+This directory contains library files needed for older Emacs version
+to work with current CEDET:
+
+* autoload.el: This is autoload.el taken from Emacs 23.2, needed for
+  Emacs 23.1 to generate proper autoloads for CEDET.
+
+* dominate.el: This has Emacs 24.3's version of
+  `locate-dominating-file' that accepts a function in the NAME
+  parameter, as needed by EDE.
