@@ -44,13 +44,13 @@ function zrcautoload() {
 zle -N zle-keymap-select
 unset MAILCHECK
 # // c-s disabling
-stty eof ''
+# stty eof ''
+stty eof  2> /dev/null
 stty ixany
 stty ixoff -ixon
 
 # stty intr "^C" 2> /dev/null
 # stty erase "^?" 2> /dev/null
-# stty eof "^D" 2> /dev/null
 # stty start "undef" 2> /dev/null
 # stty stop "undef" 2> /dev/null
 # stty susp "^Z" 2> /dev/null
