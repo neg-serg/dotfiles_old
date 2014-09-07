@@ -177,6 +177,7 @@ alias iostat='iostat -mtx'
 alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
 alias yt="youtube-dl -c -t -f best --no-part"
+alias yr="youtube-viewer --video-player=mpv -C"
 
 # generate alias named "$KERNELVERSION-reboot" so you can use boot with kexec:
 if [[ -x /sbin/kexec ]] && [[ -r /proc/cmdline ]] ; then
