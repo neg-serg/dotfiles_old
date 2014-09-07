@@ -6,7 +6,7 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
-vo=vaapi,vdpau,gl,xv
+vo=vdpau,vaapi,gl,xv
 #vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
 #vf=pp=de,hqdn3d
 volstep=1
