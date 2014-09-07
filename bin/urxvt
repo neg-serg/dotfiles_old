@@ -1,10 +1,10 @@
 #!/bin/sh
 CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
                             -fb -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
-                            -fi -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r "
+                            -fi -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 
 MAIN_DETECT=$(tmux list-sessions|grep main|awk -F : '{print $1}')
 if [[ $MAIN_DETECT != "main" ]]; then
     urxvtc ${CMD} -e zsh -i -c "TMUX= tmux new-session -s main && tmux a -t main"
 fi
-urxvtc ${CMD} -e zsh -i -c "TMUX= tmux attach-session -t main"
+urxvtc ${CMD} -e zsh -i -c "TMUX= tmux a -t main"
