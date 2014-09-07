@@ -194,6 +194,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-odt         'fg=29'
   filetype-xls         'fg=29'
   filetype-xlsm        'fg=29'
+  filetype-xlsx        'fg=29'
   filetype-log         'fg=23'
   filetype-tex         'fg=245'
   filetype-textile     'fg=245'
@@ -654,6 +655,7 @@ _zsh_highlight_main_highlighter()
         *.docx)         style=$ZSH_HIGHLIGHT_STYLES[filetype-docx];;
         *.xls)         style=$ZSH_HIGHLIGHT_STYLES[filetype-xls];;
         *.xlsm)         style=$ZSH_HIGHLIGHT_STYLES[filetype-xlsm];;
+        *.xlsx)         style=$ZSH_HIGHLIGHT_STYLES[filetype-xlsm];;
         *.n3)          style=$ZSH_HIGHLIGHT_STYLES[filetype-n3];;
         *.owl)         style=$ZSH_HIGHLIGHT_STYLES[filetype-owl];;
         TODO)          style=$ZSH_HIGHLIGHT_STYLES[filetype-TODO];;
