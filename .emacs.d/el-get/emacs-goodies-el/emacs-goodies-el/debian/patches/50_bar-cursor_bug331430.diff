@@ -1,0 +1,13 @@
+## 50_bar-cursor_bug331430.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/bar-cursor.el
++++ b/elisp/emacs-goodies-el/bar-cursor.el
+@@ -184,7 +184,7 @@
+ if not passed in."
+   (if (and bar-cursor-mode (not overwrite-mode))
+ 	  (bar-cursor-set-cursor-type 'bar frame)
+-	(bar-cursor-set-cursor-type 'block frame)))
++	(bar-cursor-set-cursor-type 'box frame)))
+ 
+ ;;; --------------------------------------------------------------------------
+ (defgroup bar-cursor nil

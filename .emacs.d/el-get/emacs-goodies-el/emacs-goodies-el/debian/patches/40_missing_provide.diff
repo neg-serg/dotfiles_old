@@ -1,0 +1,10 @@
+## 40_missing_provide.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/align-string.el
++++ b/elisp/emacs-goodies-el/align-string.el
+@@ -98,3 +98,5 @@
+ 	  (setq i (1+ i)))))
+     ;; Clear end marker.
+     (set-marker end nil)))
++
++(provide 'align-string)

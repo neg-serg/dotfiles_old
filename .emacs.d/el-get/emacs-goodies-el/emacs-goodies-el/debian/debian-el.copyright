@@ -1,0 +1,66 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment:
+ This collection of files was assembled by Roland Mas <lolando@debian.org>
+ from various messages posted on the gnu.emacs.sources newsgroup, as well as
+ from various collections of Emacs Lisp files found on the web.  Some
+ authors contacted Roland directly, some users sent me the files by email.
+ Most of them are covered by the GNU GPL, but the individual licences can
+ vary.
+
+Files: *
+Copyright: 2000-2003 Roland Mas <lolando@debian.org>,
+ 2005-2014 Peter S Galbraith <psg@debian.org>
+ 2014 Julian Gilbey <jdg@debian.org>
+License: GPL-2+
+Comment:
+ This covers the debian/* files, and various other glue files written
+ specificially for this package.
+
+Files: elisp/debian-el/apt-sources.el
+Copyright: 2001-2002, Dr. Rafael Sepúlveda <drs@gnulinux.org.mx>
+License: GPL-2+
+
+Files: elisp/debian-el/apt-utils.el
+Copyright: 2002, 03 Matthew P. Hodges
+License: GPL-2+
+
+Files: elisp/debian-el/debian-bug.el
+Copyright: 1998, 1999 Free Software Foundation, Inc.,
+ 2001, 2002 Peter S Galbraith <psg@debian.org>
+License: GPL-2+
+Comment:
+ Author (Up to version 1.7):           Francesco Potortì <pot@gnu.org>
+ Maintainer from version 1.8 onwards:  Peter S Galbraith <psg@debian.org>
+
+Files: elisp/debian-el/deb-view.el
+Copyright: Rick Macdonald <rickm@vsl.com>
+License: GPL-2+
+
+Files: elisp/debian-el/gnus-BTS.el
+Copyright: 2001 Andreas Fuchs <asf@acm.org>
+License: GPL-2+
+
+Files: elisp/debian-el/preseed.el
+Copyright: 2004 W. Borgert <debacle@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 2, or (at
+ your option) any later version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.

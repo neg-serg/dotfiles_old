@@ -1,0 +1,81 @@
+--- a/elisp/emacs-goodies-el/diminish.el
++++ b/elisp/emacs-goodies-el/diminish.el
+@@ -8,7 +8,7 @@
+ ;; Version: 0.45, 18 Jun 2003
+ ;; Keywords: extensions, diminish, minor, codeprose
+ 
+-;; This file is part of GNU Emacs.
++;; This file is NOT part of GNU Emacs.
+ 
+ ;; This program is free software; you can redistribute it and/or modify
+ ;; it under the terms of the GNU General Public License as published by
+@@ -123,6 +123,17 @@
+ ;;    files perhaps, and then add an eval-after-load?  Seems like a kludge
+ ;;    because it relies on outside information remaining constant, but it
+ ;;    would help.
++;;
++;; 2011-01-12 Samuel J. J. Bronson <naesten@gmail.com>
++;;
++;;  - Make `diminished-minor-modes' (probably) Just Work.  It should
++;;    no longer be necessary ot do anything special in elisp; instead
++;;    of trying to minimize computation, we simply redo everything
++;;    after any elisp gets loaded.  (If this turns out to be too slow,
++;;    there are some relatively straightforward improvements that
++;;    could be made without having to rely on foreknowledge of what
++;;    gets defined where.  For example, by keeping track of "pending"
++;;    diminished modes and only trying to diminish those.)
+ 
+ ;;; Code:
+ 
+@@ -252,7 +263,7 @@
+   (if (eq mode 'diminished-modes)
+       (let ((diminished-modes diminished-mode-alist))
+         (while diminished-modes
+-          (diminish-undo (caar diminished-modes))
++          (diminish-undo (caar diminished-modes) annotate-flag)
+           (callf cdr diminished-modes)))
+     (let ((minor      (assq mode      minor-mode-alist))
+           (diminished (assq mode diminished-mode-alist)))
+@@ -321,10 +332,28 @@
+ ;; in line with the ducks and geese at the espresso counter, gazing placidly
+ ;; out on the world through loon-red eyes, thinking secret thoughts.
+ 
++;;;###autoload
++(defun diminish-maybe-refresh ()
++  "Should redo `diminish'ing only if something has changed.
++Right now, do it regardless and hope this isn't too slow."
++  (interactive)
++  (diminish-undo 'diminished-modes t)
++  (mapcar #'(lambda (x) (diminish (car x) (cdr x) t))
++	  diminished-minor-modes))
++
++(defun diminish-oneshot-post-command-hook ()
++  (diminish-maybe-refresh)
++  (remove-hook 'post-command-hook 'diminish-oneshot-post-command-hook))
++
++(defun diminish-after-load-hook (file)
++  (add-hook 'post-command-hook 'diminish-oneshot-post-command-hook))
++(add-hook 'after-load-functions 'diminish-after-load-hook)
++
+ (defgroup diminish nil
+   "Diminished modes are minor modes with no modeline display."
+   :group 'convenience)
+ 
++;;;###autoload
+ (defcustom diminished-minor-modes nil
+   "List of minor modes to diminish and their mode line display strings.
+ The display string can be the empty string if you want the name of the mode
+@@ -340,11 +369,9 @@
+ 		:value-type (string :tag "Title"))
+   :options (mapcar 'car minor-mode-alist)
+   :set (lambda (symbol value)
+-         (if (and (boundp 'diminished-minor-modes) diminished-minor-modes)
+-             (mapcar 
+-              (lambda (x) (diminish-undo (car x) t)) diminished-minor-modes))
+          (set-default symbol value)
+-         (mapcar (lambda (x) (diminish (car x) (cdr x) t)) value)))
++	 (diminish-maybe-refresh))
++  :require 'diminish)
+ 
+ (provide 'diminish)
+ 

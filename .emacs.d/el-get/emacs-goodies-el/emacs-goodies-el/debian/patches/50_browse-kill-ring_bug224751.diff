@@ -1,0 +1,16 @@
+## 50_browse-kill-ring_bug224751.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/browse-kill-ring.el	2009-09-03 09:43:06.000000000 -0400
++++ b/elisp/emacs-goodies-el/browse-kill-ring.el	2009-09-03 09:55:51.000000000 -0400
+@@ -591,7 +591,10 @@
+     (unwind-protect
+ 	(progn
+ 	  (setq buffer-read-only nil)
+-	  (let ((target (overlay-get over 'browse-kill-ring-target)))
++	  (let ((target (overlay-get over 'browse-kill-ring-target))
++                ;; See http://bugs.debian.org/224751
++                ;; Emacs 21.1 fails when text was read-only
++                (inhibit-read-only t))
+ 	    (delete-region (overlay-start over)
+ 			   (1+ (overlay-end over)))
+ 	    (setq kill-ring (delete target kill-ring)))

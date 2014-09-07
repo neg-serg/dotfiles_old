@@ -1,0 +1,12 @@
+## 51_session_autoload.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/session.el
++++ b/elisp/emacs-goodies-el/session.el
+@@ -1717,7 +1717,6 @@
+   :require 'session
+   :set 'session-initialize-and-set)
+ 
+-;;;###autoload
+ (defun session-initialize ()
+   "Initialize package session and read previous session file.
+ Setup hooks and load `session-save-file', see variable `session-initialize'.  At

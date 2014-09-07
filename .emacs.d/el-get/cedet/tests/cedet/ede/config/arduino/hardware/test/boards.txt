@@ -1,0 +1,10 @@
+# Testing arduino config for unit tests.
+
+ede_utest.name=Unit Test Fake Board
+ede_utest.upload.protocol=xxx
+ede_utest.upload.speed=57600
+ede_utest.upload.maximum_size=5310
+ede_utest.build.mcu=attiny85
+ede_utest.build.f_cpu=8000000L
+ede_utest.build.core=arduino:arduino
+ede_utest.build.variant=tiny8

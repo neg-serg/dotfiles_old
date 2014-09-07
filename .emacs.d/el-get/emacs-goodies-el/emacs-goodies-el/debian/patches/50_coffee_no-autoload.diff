@@ -1,0 +1,12 @@
+## 50_coffee_no-autoload.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/coffee.el	2004-01-15 16:22:57.000000000 -0500
++++ b/elisp/emacs-goodies-el/coffee.el	2004-01-15 16:25:46.000000000 -0500
+@@ -69,7 +69,6 @@
+     ("Sweetener" . ,coffee-sweetener-types)
+     ("Alcohol"   . ,coffee-alcohol-types)))
+ 
+-;;;###autoload
+ (defun coffee ()
+   "Submit a BREW request to an RFC2324-compliant coffee device"
+   (interactive)

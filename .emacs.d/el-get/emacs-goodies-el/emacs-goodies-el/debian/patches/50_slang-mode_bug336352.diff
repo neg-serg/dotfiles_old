@@ -1,0 +1,13 @@
+## 50_slang-mode_bug336352.diff by Peter S Galbraith <psg@debian.org>
+
+--- a/elisp/emacs-goodies-el/slang-mode.el	2004-08-14 23:36:34.000000000 -0400
++++ b/elisp/emacs-goodies-el/slang-mode.el	2005-10-30 19:53:52.000000000 -0500
+@@ -93,7 +93,7 @@
+   :prefix "slang-"
+   :group 'languages)
+ 
+-(defcustom slang-default-application "c:/bin/slsh.exe"
++(defcustom slang-default-application "/usr/bin/slsh"
+   "Default slang application to run in slang subprocess."
+   :type 'string
+   :group 'slang)
