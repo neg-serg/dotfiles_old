@@ -249,7 +249,7 @@ menubar_visible=1
 free_space=1
 horizontal_split=0
 vertical_equal=1
-left_panel_size=79
+left_panel_size=95
 horizontal_equal=1
 top_panel_size=1
 
@@ -273,6 +273,8 @@ base_color=lightgray,blue:normal=blue,default:selected=white,brightblue:marked=y
 rxvt-unicode-256color=
 
 screen-256color=
+
+linux=
 
 [Panels]
 show_mini_info=true
