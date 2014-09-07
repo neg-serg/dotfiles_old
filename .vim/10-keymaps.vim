@@ -6,6 +6,9 @@ map <Right> <Nop>
 map <Left> <Nop>
 nmap <space> <Nop>
 
+nnoremap <silent> <c-w>t :tabnew<CR>
+nnoremap <silent> <c-w>x :tabclose<CR>
+
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
