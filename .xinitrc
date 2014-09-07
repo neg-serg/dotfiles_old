@@ -1,5 +1,7 @@
 #!/bin/zsh
-xrandr --dpi 102
+# xrandr --dpi 102
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -48,12 +50,22 @@ xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 setxkbmap -option keypad:pointerkeys
 setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
 xhost +localhost
+xhost +local:
 
 xbindkeys
 xset m 1 1
 xset r rate 200 50
+xset -b 
+xset +fp $HOME/.fonts
+xset +fp $HOME/.fonts/monobook-font-0.22/pcf
+xset +fp $HOME/.fonts/elite
+xset +fp "/usr/share/fonts/local/"
+xset fp rehash
 
-hsetroot -fill /mnt/home/pic/wl/wallpaper-2522969.jpg
+hsetroot -fill /mnt/home/pic/wl/wallpaper-1374496.jpg
+# hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
+# hsetroot -fill /mnt/home/pic/wl/763732248.jpg
+# hsetroot -fill /mnt/home/pic/wl/wallpaper-2522969.jpg
 # hsetroot -fill /mnt/home/pic/wl/wallpaper-921953.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
@@ -63,20 +75,14 @@ xmodmap -e "remove Lock = Caps_Lock"
 xmodmap -e "add mod3 = Caps_Lock"
 [ -f ${HOME}/.config/keymaps/.xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/.xmodmaprc
 
-xset +fp $HOME/.fonts
-xset +fp $HOME/.fonts/monobook-font-0.22/pcf
-xset +fp $HOME/.fonts/elite
-xset +fp "/usr/share/fonts/local/"
-fc-cache
-
 [ -x /usr/bin/dunst ] && dunst &
-(urxvtd -q -f -o && systemctl --user start tmux_main.service && ${HOME}/bin/urxvt)
+(urxvtd -q -f -o && ${HOME}/bin/urxvt)
 
 amixer -q set Master 0% mute
-[ -z $(pidof udiskie) ] && udiskie &
-[ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
+[ -z $(pidof udiskie) ] && udiskie -q&
+# [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
+[ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
 ~/bin/scripts/email_notifier.py &
-# stalonetray -i 16 -bg "#000000" &
 exec notion
