@@ -156,7 +156,7 @@ RESET 0 # reset to "normal" color
 .markdown  00;38;5;110
 .mkd       00;38;5;110
 .md        00;38;5;110
-.txt       00;38;5;29
+.txt       00;38;5;60
 .rtf       00;38;5;29
 .doc       00;38;5;29
 .docx      00;38;5;29
@@ -180,9 +180,8 @@ RESET 0 # reset to "normal" color
 .asm           00;36
 .asoundrc      00;36
 .awk           00;36
-.bak           01;31
 .coffee        00;36
-.conf          00;36
+.conf          00;38;5;238
 .cs            00;36
 .css           00;36
 .csv           00;36
@@ -300,7 +299,6 @@ RESET 0 # reset to "normal" color
 .ini             01;38;5;245
 .yml             01;38;5;245
 .cfg             01;38;5;245
-.conf            01;38;5;245
 *TODO            01;38;5;91
 
 # Audio formats (orange)
@@ -375,6 +373,7 @@ RESET 0 # reset to "normal" color
 .c                    38;5;24;1
 .C                    38;5;24;1
 .cp                   38;5;24;1
+.cc                   38;5;24;1
 .cpp                  38;5;24;1
 .cxx                  38;5;24;1
 .c++                  38;5;24;1
