@@ -12,7 +12,6 @@
 . ~/.zsh/11-open.zsh
 . ~/.zsh/12-completion.zsh
 . ~/.zsh/12-vi_additions.zsh
-. ~/.zsh/12-fzf.zsh
 . ~/.zsh/13-bindkeys.zsh
 . ~/.zsh/14-dirjumps.zsh
 . ~/.zsh/20-rehash-hook.zsh
