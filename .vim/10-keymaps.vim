@@ -1,8 +1,3 @@
-" nnoremap <silent><Down>  <C-w>-
-" nnoremap <silent><Up>    <C-w>+
-" nnoremap <silent><Left>  <C-w><
-" nnoremap <silent><Right> <C-w>>
-
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
@@ -40,7 +35,7 @@ nnoremap <silent><space>w :set wrap!<CR>
 " http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
 " requires: xclip
 " usage: visual mode select then hit F6 to copy
-"       hit F7 to paste from GUI to vim without formating issues
+" hit F7 to paste from GUI to vim without formating issues
 vmap <F6> :!xclip -f -sel clip<CR>
 map <F7> mz:-1r !xclip -o -sel clip<CR>`z
 
@@ -78,6 +73,7 @@ noremap <Right> <nop>
 " like firefox tabs
 " nmap <A-w> :bd<cr>
 nnoremap <silent> <A-w> :Bclose<CR>
+nnoremap <silent> <C-x>x :Bclose!<CR>
 
 "--[ Experimental indent file ]--------------------
 map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
