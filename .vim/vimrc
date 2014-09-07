@@ -85,6 +85,7 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
+" NeoBundle 'bbchung/clighter.git' "hi with clang
 if executable("lldb")
 NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
@@ -105,9 +106,9 @@ NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
 NeoBundle 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
-NeoBundle 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
-NeoBundle 'vim-scripts/TeX-9.git' "tex autocompetion
-NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
+" NeoBundle 'vim-scripts/auctex.vim.git' "auctex.vim for the syntax highlighting.
+" NeoBundle 'vim-scripts/TeX-9.git' "tex autocompetion
+" NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
 "--[ web ]---------------------------------------------------------------------------------------------------
 " NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
 " NeoBundle 'tpope/vim-markdown' "markdown helper for vim
