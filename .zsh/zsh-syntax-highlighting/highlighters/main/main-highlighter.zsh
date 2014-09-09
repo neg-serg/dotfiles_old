@@ -329,7 +329,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-typelib     'fg=60'
   filetype-un~         'fg=240'
   filetype-urlview     'fg=85'
-  filetype-vim         'bold'
+  filetype-vim         'fg=53'
   filetype-viminfo     'fg=240,1'
   filetype-wvc         'fg=149'
   filetype-wv          'fg=149'
