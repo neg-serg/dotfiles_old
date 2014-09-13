@@ -1,13 +1,13 @@
 !--[ Dirty hack to between ncurses apps and term ]-----
 !--*.keysym.C-M-Tab:                  command:\033[?47t
 
-!*.imLocale:                     en_US.utf8
-mutt.colorUL:                    #0172ae
-*shading:                        10
-*.saveLines:                     49152
-*.scrollBar:                     false
-*.scrollWithBuffer:              true
-*.scrollTtyKeypress:             true
+!*.imLocale:                  en_US.utf8
+mutt.colorUL:                 #0172ae
+*shading:                     10
+*.saveLines:                  49152
+*.scrollBar:                  false
+*.scrollWithBuffer:           true
+*.scrollTtyKeypress:          true
 
 *.keysym.M-Escape:            perl:keyboard-select:activate
 *.keysym:M-s:                 perl:keyboard-select:search
@@ -15,7 +15,7 @@ mutt.colorUL:                    #0172ae
 *.keysym.M-C-v:               perl:clipboard:paste_escaped
 *.keysym.C-M-Up:              perl:font-size:increase
 *.keysym.C-M-Down:            perl:font-size:decrease
-!*.keysym.Shift-space:         \033[5~]
+!*.keysym.Shift-space:        \033[5~]
 
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
