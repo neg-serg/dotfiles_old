@@ -9,7 +9,7 @@ wim.shading:              5
 !wim.letterspace           -1
 !wim.meta8:                true
 
-wim*background:            #000000
+wim*background:            #020202
 !wim*background:             #09090d
 wim*foreground:            #666666
 wim*cursorColor:           #b0d0f0
