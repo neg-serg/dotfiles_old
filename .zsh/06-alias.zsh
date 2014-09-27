@@ -66,9 +66,18 @@ alias mpr="~/bin/mpv.rb"
 alias i="ipython"
 alias grep="grep --color=auto"
 
+alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
+
+# -- tmux fix ---------------------------------------
+# -- recreate tmux socket if it loss ----------------
+# killall -s SIGUSR1 tmux
+# tmux attach
+# ---------------------------------------------------
+
 function v {
     if [[ `lsw|grep VIM` != "VIM" && `tmux -S ~/1st_level/vim.socket ls|awk -F : '{print $1}'` != "vim" ]] ; then
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e 'tmux -S /home/neg/1st_level/vim.socket new vim --servername VIM --remote-silent $@ && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' &&
+      sleep .4
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
     else  
       notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')" &&
