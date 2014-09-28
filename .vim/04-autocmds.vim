@@ -47,6 +47,8 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 autocmd BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
+
+autocmd BufReadPre  *.doc set ro
 autocmd BufReadPost *.doc silent %!antiword "%"
 autocmd BufReadPost *.odt silent %!odt2txt "%"
 

@@ -225,7 +225,8 @@ set scrolloff=3                 " Minimum lines to keep above and below cursor
 set virtualedit=onemore         " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
-set nomore                      " ----------------------------------------
+set nomore                    " ----------------------------------------
+set more                        " probably it should get out 'Press enter' msg
 " set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set history=1000                " Store a ton of history (default is 20)
