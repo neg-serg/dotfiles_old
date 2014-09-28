@@ -17,7 +17,9 @@ vnoremap <F1> <ESC>
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <leader>cd :ProjectRootCD<cr>
 
-nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <silent> <F2> :set invpaste paste?<CR>
+nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
+nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()
 nnoremap <A-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
 
