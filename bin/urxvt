@@ -5,6 +5,9 @@ CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-
 
 MAIN_DETECT=$(tmux list-sessions|grep main|awk -F : '{print $1}')
 if [[ $MAIN_DETECT != "main" ]]; then
-    urxvtc ${CMD} -e zsh -i -c "TMUX= tmux new-session -s main && tmux a -t main"
+    wid=$(xdotool search --classname MainTerminal)
+    if [ -z "$wid" ]; then
+        urxvtc ${CMD} -e zsh -i -c "TMUX= tmux new-session -s main && tmux a -t main"
+    fi
 fi
 urxvtc ${CMD} -e zsh -i -c "TMUX= tmux a -t main"
