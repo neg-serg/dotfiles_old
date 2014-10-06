@@ -1,4 +1,5 @@
 *.zwc
+bin/lsp
 99-trash*
 MSGOTHIC.TTF
 .fonts/1st-level/ttf-ms-win8.tar.xz
@@ -17,3 +18,15 @@ bin/go/go-mtpfs
 .vim/tmp/*
 .viminfo
 .vim/bundle/*
+1st_level
+dev
+doc
+dw
+games
+music
+pic
+st
+torrent
+vid
+trash
+bin/rtags
