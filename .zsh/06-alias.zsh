@@ -76,11 +76,12 @@ alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
 function v {
     if [[ `lsw|grep VIM` != "VIM" && `tmux -S ~/1st_level/vim.socket ls|awk -F : '{print $1}'` != "vim" ]] ; then
-      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e 'tmux -S /home/neg/1st_level/vim.socket new vim --servername VIM --remote-silent $@ && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' &&
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' &&
       sleep .4
-      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')"
+      vim --servername VIM --remote-silent $@
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
     else  
-      notionflux -e "app.byinstance('~/bin/wim', 'URxvt', 'wim')" &&
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')" &&
       vim --servername VIM --remote-silent $@
     fi
 }
