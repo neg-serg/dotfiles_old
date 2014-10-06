@@ -271,6 +271,7 @@ RESET 0 # reset to "normal" color
 .Xmodmap       00;31
 .Xresources    01;33
 .iso           01;38;5;141
+.img           01;38;5;141
 .ISO           01;38;5;141
 .nrg           01;38;5;141
 .mdf           01;38;5;141

@@ -39,7 +39,7 @@ case ${UID} in
     # PROMPT='%40<..<`/home/neg/.zsh/neg-prompt`'
     # secondary prompt, printed when the shell needs more information to complete a
     # command.
-    PS2="%{$fg[green]%}>%{$fg_bold[green]%}> %{$reset_color%}"
+    PS2="%{$fg[magenta]%}» %{$reset_color%}"
     # selection prompt used within a select loop.
     PS3='?# '
     # the execution trace prompt (setopt xtrace). default: '+%N:%i

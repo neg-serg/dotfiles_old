@@ -85,6 +85,16 @@ function v {
     fi
 }
 
+function remotevim() {
+    urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e ~/bin/tmux_script
+    vim --servername VIM --remote-send "${1}"
+    notionflux -e "app.byinstance('', 'URxvt', 'wim')"
+}
+
+# function v {
+#     urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e tmux -f ~/.tmux_vim.conf -L vim
+# }
+
 function vg {
   if [ ! -z $DISPLAY ]; then
     if [ -z $(pidof gvim) ] ; then

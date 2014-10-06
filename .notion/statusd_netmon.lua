@@ -30,7 +30,7 @@
 
 if not statusd_netmon then
   statusd_netmon = {
-      device = "wlp2s0",
+      device = "enp6s0",
       --device = "wlan0",
     --device = "eth0",
 --    device = "eth1",

@@ -1,7 +1,7 @@
 #!/bin/zsh
 # xrandr --dpi 102
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+# xrandr --setprovideroutputsource modesetting NVIDIA-0
+# xrandr --auto
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -62,7 +62,8 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-hsetroot -fill /mnt/home/pic/wl/wallpaper-1374496.jpg
+hsetroot -fill /home/neg/pic/wl/wallpaper-2518591.jpg
+# hsetroot -fill /mnt/home/pic/wl/wallpaper-1374496.jpg
 # hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
 # hsetroot -fill /mnt/home/pic/wl/763732248.jpg
 # hsetroot -fill /mnt/home/pic/wl/wallpaper-2522969.jpg
@@ -78,7 +79,7 @@ xmodmap -e "add mod3 = Caps_Lock"
 [ -x /usr/bin/dunst ] && dunst &
 (urxvtd -q -f -o && ${HOME}/bin/urxvt)
 
-amixer -q set Master 0% mute
+# amixer -q set Master 0% mute
 [ -z $(pidof udiskie) ] && udiskie -q&
 # [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
 [ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &

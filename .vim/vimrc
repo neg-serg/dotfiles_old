@@ -1,8 +1,11 @@
 scriptencoding utf-8
+set secure
+set exrc
 set shell=/bin/sh
 if has('vim_starting')
   set nocompatible  "be improved
   set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -20,7 +23,6 @@ NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better that astyle
 NeoBundle 'sjbach/lusty.git' "file/buffer explorer
 NeoBundle 'SirVer/ultisnips.git' "Snippets with ycm compatibility
 NeoBundle 'junegunn/vim-easy-align' "easy tabular
-NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim'}
 if executable("ack")
 NeoBundle 'mileszs/ack.vim' "ack wrapper
 endif
@@ -34,6 +36,7 @@ NeoBundle 'Raimondi/delimitMate.git' "Add pairs to brackets
 NeoBundle 'scrooloose/syntastic.git' "syntax checker. Realtime with ycm
 NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
 NeoBundle 'scrooloose/nerdtree.git' "for cwd
+NeoBundle 'xkdcc/Session-Viminfo-Management.git' "session managing
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
@@ -85,6 +88,7 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
+NeoBundle 'calebsmith/vim-lambdify.git' "show lambda as lambda
 " NeoBundle 'bbchung/clighter.git' "hi with clang
 if executable("lldb")
 NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
@@ -110,9 +114,10 @@ endif
 " NeoBundle 'vim-scripts/TeX-9.git' "tex autocompetion
 " NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
 "--[ web ]---------------------------------------------------------------------------------------------------
-" NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
-" NeoBundle 'tpope/vim-markdown' "markdown helper for vim
-" NeoBundle 'Valloric/xmledit' "xml editing
+NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
+NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
+NeoBundle 'tpope/vim-markdown' "markdown helper for vim
+NeoBundle 'Valloric/xmledit' "xml editing
 "---------------[ other filetypes ]--------------------------------------------------------------------------
 NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
 NeoBundle 'elzr/vim-json' "syntax hi for json format

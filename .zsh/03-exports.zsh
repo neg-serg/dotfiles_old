@@ -43,6 +43,16 @@ export SDCV_PAGER=$PAGER
 alias less=$PAGER
 alias zless=$PAGER
 
+if [ -x ~/bin/_v ]; then
+    export NULLCMD=~/bin/_v
+    export READNULLCMD=~/bin/_v
+else 
+    if [ -x =vimpager ]; then
+        export READNULLCMD=vimpager
+    fi
+fi
+
+
 # export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
 # export MAIL=${MAIL:-/home/neg/.local/mail}
 export SHELL='/bin/zsh'

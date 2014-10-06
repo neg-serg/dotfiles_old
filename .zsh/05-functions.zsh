@@ -841,4 +841,9 @@ new-session () {
     fi
 }
 
+
+# slow output
+slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
+# change terminal title
+tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }

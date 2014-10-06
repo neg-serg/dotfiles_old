@@ -1,1 +1,0 @@
-;; Project for detecting lein

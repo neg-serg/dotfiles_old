@@ -133,6 +133,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-part        'fg=240'
 
   filetype-iso         'fg=141'
+  filetype-img         'fg=141'
   filetype-mdf         'fg=141'
   filetype-nrg         'fg=141'
   filetype-cdi         'fg=141'
@@ -508,6 +509,7 @@ _zsh_highlight_main_highlighter()
         *.ini)         style=$ZSH_HIGHLIGHT_STYLES[filetype-ini];;
         *.in)          style=$ZSH_HIGHLIGHT_STYLES[filetype-in];;
         *.iso)         style=$ZSH_HIGHLIGHT_STYLES[filetype-iso];;
+        *.img)         style=$ZSH_HIGHLIGHT_STYLES[filetype-img];;
         *.mdf)         style=$ZSH_HIGHLIGHT_STYLES[filetype-mdf];;
         *.j64)         style=$ZSH_HIGHLIGHT_STYLES[filetype-j64];;
         *.jad)         style=$ZSH_HIGHLIGHT_STYLES[filetype-jad];;
