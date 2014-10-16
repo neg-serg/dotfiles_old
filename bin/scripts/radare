@@ -1,0 +1,5 @@
+#!/bin/zsh
+wid=$(xdotool search --classname radare)
+if [ -z "$wid" ]; then
+    /bin/urxvt -fn xft:terminus -name radare -e bash -c 'tmux -L radare' &
+fi
