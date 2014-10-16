@@ -1,0 +1,5 @@
+#!/bin/zsh
+wid=$(xdotool search --classname console)
+if [ -z "$wid" ]; then
+    /bin/urxvt -fn xft:terminus -name console &
+fi
