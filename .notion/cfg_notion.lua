@@ -36,7 +36,7 @@ dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
-dopath("dynamic_view")
+-- dopath("dynamic_view")
 -- dopath("mod_fuzzy_query")
 dopath("cfg_tiling")
 dopath("dbg")
@@ -158,9 +158,13 @@ defwinprop{class="Conky",winlist_ignore=true,instance="Conky",target="conky",laz
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
+defwinprop{class="Tilda", instance="tilda",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
+defwinprop{class="Guake", instance="guake",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{class="Pavucontrol", instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",lazy_resize=true}
 defwinprop{instance="wicd", winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
 defwinprop{instance="ranger", winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
+defwinprop{instance="console", winlist_ignore=true,transient_mode="off",target="console",lazy_resize=true}
+defwinprop{instance="gdb", winlist_ignore=true,transient_mode="off",target="gdb",lazy_resize=true}
 defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",lazy_resize=true}
 defwinprop{instance="htop", winlist_ignore=true,transient_mode="off",target="top",lazy_resize=true}
 defwinprop{instance="gcolor2", winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
@@ -187,7 +191,6 @@ defbindings("WMPlex.toplevel", {
     -- kpress("Mod1+G",           "mod_query.query_gotoclient(_)"),
 
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
-    -- kpress("Mod4+3",           "named_scratchpad(_, 'ranger')"),
     -- kpress("Mod4+4",           "sp_app(_, 'vmware', vmtable)"),
     -- kpress("Mod4+4",           "sp_app.toggle(_,'urxvt -tr -name testme',{name=\"ranger\",class=\"URxvt\",instance=\"testme\"})"),
 
@@ -200,9 +203,7 @@ defbindings("WMPlex.toplevel", {
 -------------------------------------------------------------------------------------
 --[[ SCRATCHPADS  ]]--------------------------------
 --------------------
-    --kpress("Mod4+F1",      "named_scratchpad(_, 'littleterm')"),
-    --kpress("Mod4+Prior",   "named_scratchpad(_, 'volume')"),
-    kpress("Mod4+d",         "named_scratchpad(_, 'float')"),
+    kpress("Mod4+d",         "console(_)"),
     kpress("Mod4+p",         "named_scratchpad(_, 'float2')"),
     kpress("Mod1+p",         "named_scratchpad(_, 'torrent')"),
     kpress("Mod4+F",         "ncmpcpp(_)"),
@@ -217,7 +218,7 @@ defbindings("WMPlex.toplevel", {
     kpress("XF86AudioPrev",        "ioncore.exec_on(_, 'mpc prev')"),
     kpress("XF86AudioNext",        "ioncore.exec_on(_, 'mpc next')"),
     kpress("XF86AudioPlay",        "ioncore.exec_on(_, 'mpc toggle')"),
-    kpress("XF86AudioStop",      "ioncore.exec_on(_, 'mpc stop')"),
+    kpress("XF86AudioStop",        "ioncore.exec_on(_, 'mpc stop')"),
     kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -5')"),
     kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +5')"),
     kpress("Mod4+Control+T",       "ioncore.exec_on(_, 'dipser -S')"),
@@ -297,7 +298,9 @@ defbindings("WMPlex.toplevel", {
         --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
         --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
-        kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
+        -- kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
+        kpress("Shift+r",         "ranger(_)"),
+        kpress("Shift+g",         "gdb(_)"),
         kpress("Shift+k", "ioncore.exec_on(_, '~/bin/scripts/toggle_keynav')"),
     }),
 })
@@ -614,9 +617,21 @@ sp_app_private.init()
 function ncmpcpp(ws)
     ioncore.exec_on(ws, '~/bin/msc')
     named_scratchpad(ws, 'ncmpcpp')
-    -- tbl = {class="URxvt", instance="mpd-pad2"}
-    -- function sp_app.toggle (reg, cmdline, mtable)
-    -- sp_app.toggle('ncmpcpp','ncmpcpp',tbl)
+end
+
+function console(ws)
+    ioncore.exec_on(ws, '~/bin/scripts/console')
+    named_scratchpad(ws, 'console')
+end
+
+function ranger(ws)
+    ioncore.exec_on(ws, '~/bin/scripts/ranger')
+    named_scratchpad(ws, 'console')
+end
+
+function gdb(ws)
+    ioncore.exec_on(ws, '~/bin/scripts/gdb')
+    named_scratchpad(ws, 'gdb')
 end
 
 

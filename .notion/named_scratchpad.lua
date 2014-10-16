@@ -35,8 +35,8 @@ function named_scratchpad(reg, name, mode)
                                     --pseudomodal=true,
                                    hidden=true,
                                    --layer=2, 
-                                   sizepolicy="full",
-                                   -- sizepolicy="free",
+                                   -- sizepolicy="full",
+                                   sizepolicy="free",
                                    geom=geom_loc,
                                    style="scratchpad",
                                   })
