@@ -36,8 +36,6 @@ dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
--- dopath("dynamic_view")
--- dopath("mod_fuzzy_query")
 dopath("cfg_tiling")
 dopath("dbg")
 dopath("mod_xrandr")
@@ -46,11 +44,7 @@ dopath("mod_notionflux")
 dopath("vim_bindings")
 dopath("goto-by-tag")
 dopath("mod_statusbar")
--- dopath("statusbar_workspace")
--- dopath("mod_dock")
--- dopath("cfg_dock")
 -------------------------------------[[ KLUDGES ]]----------------------------------
---[ Set all windows float ]------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term",lazy_resize=true
@@ -191,8 +185,6 @@ defbindings("WMPlex.toplevel", {
     -- kpress("Mod1+G",           "mod_query.query_gotoclient(_)"),
 
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
-    -- kpress("Mod4+4",           "sp_app(_, 'vmware', vmtable)"),
-    -- kpress("Mod4+4",           "sp_app.toggle(_,'urxvt -tr -name testme',{name=\"ranger\",class=\"URxvt\",instance=\"testme\"})"),
 
     kpress("Mod4+Control+G",   "mod_query.query_workspace(_)"),
     --kpress("Mod1+Control+G", "mod_query.query_gotoclient(_)"),
@@ -295,12 +287,10 @@ defbindings("WMPlex.toplevel", {
         kpress("i", "ioncore.exec_on(_, '~/bin/pls -output')"),
         kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
         kpress("Shift+o", "ioncore.exec_on(_, '~/bin/pls -vol')"),
-        --kpress("t", "ioncore.exec_on(_, '~/bin/chat')"),
-        --kpress("r", "ioncore.exec_on(_, '~/bin/term')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
-        -- kpress("Shift+r", "app.byinstance('~/bin/term/ranger', 'URxvt', 'Ranger')"),
-        kpress("Shift+r",         "ranger(_)"),
-        kpress("Shift+g",         "gdb(_)"),
+        kpress("Shift+r", "ranger(_)"),
+        kpress("Shift+g", "gdb(_)"),
+        kpress("l", "radare2(_)"),
         kpress("Shift+k", "ioncore.exec_on(_, '~/bin/scripts/toggle_keynav')"),
     }),
 })
@@ -326,8 +316,6 @@ defbindings("WMenu", {
 
 })
 defbindings("WScreen", {
-    -- kpress("Mod4+F3",        "_:attach_new({type='WGroupWS'})"),
-    kpress("Mod4+F3",           "_:attach_new({type='WTiling', name='Instant Messaging'}):goto()"),
     submap("Mod1+E", {
             kpress("I", "ioncore.goto_activity()"),
             kpress("T", "ioncore.tagged_clear()"),
@@ -450,30 +438,30 @@ defbindings("WMoveresMode", {
     kpress("AnyModifier+Escape", "WMoveresMode.cancel(_)"),
     kpress("AnyModifier+Return", "WMoveresMode.finish(_)"),
 
-    kpress("Left",               "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("Right",              "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("Up",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("Down",               "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+    kpress("Left",        "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("Right",       "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("Up",          "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("Down",        "WMoveresMode.resize(_, 0, 0, 0, 1)"),
 
-    kpress("h",               "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("l",              "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("k",                 "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("j",               "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+    kpress("h",           "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("l",           "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("k",           "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("j",           "WMoveresMode.resize(_, 0, 0, 0, 1)"),
 
-    kpress("Shift+Left",         "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Shift+Right",        "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Shift+Up",           "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Shift+Down",         "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+    kpress("Shift+Left",  "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Shift+Right", "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Shift+Up",    "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Shift+Down",  "WMoveresMode.resize(_, 0, 0, 0,-1)"),
 
-    kpress("Shift+h",         "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Shift+l",        "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Shift+k",           "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Shift+j",         "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+    kpress("Shift+h",     "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Shift+l",     "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Shift+k",     "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Shift+j",     "WMoveresMode.resize(_, 0, 0, 0,-1)"),
 
-    kpress("Mod1+Left",          "WMoveresMode.move(_,-1, 0)"),
-    kpress("Mod1+Right",         "WMoveresMode.move(_, 1, 0)"),
-    kpress("Mod1+Up",            "WMoveresMode.move(_, 0,-1)"),
-    kpress("Mod1+Down",          "WMoveresMode.move(_, 0, 1)"),
+    kpress("Mod1+Left",   "WMoveresMode.move(_,-1, 0)"),
+    kpress("Mod1+Right",  "WMoveresMode.move(_, 1, 0)"),
+    kpress("Mod1+Up",     "WMoveresMode.move(_, 0,-1)"),
+    kpress("Mod1+Down",   "WMoveresMode.move(_, 0, 1)"),
 })
 --------------------------------------------------------------------------------------------
 ---------------------------  [[ Tiling  ]]  ------------------------------------
@@ -634,6 +622,10 @@ function gdb(ws)
     named_scratchpad(ws, 'gdb')
 end
 
+function radare2(ws)
+    ioncore.exec_on(ws, '~/bin/scripts/radare')
+    named_scratchpad(ws, 'gdb')
+end
 
 function nop()
 end
