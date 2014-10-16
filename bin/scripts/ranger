@@ -1,5 +1,6 @@
 #!/bin/zsh
 wid=$(xdotool search --classname ranger)
 if [ -z "$wid" ]; then
-    /bin/urxvt -name ranger -e ranger &
+    # /bin/urxvt -fn xft:terminus:pixelsize=8 -name ranger -e ranger &
+    /bin/urxvt -fn -misc-ohsnap-bold-r-normal--11-79-100-100-c-60-iso8859-1 -name ranger -e ranger &
 fi
