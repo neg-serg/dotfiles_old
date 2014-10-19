@@ -77,12 +77,10 @@ if has("gui_running")
 
     set guioptions=                    " Disable all gui-oriented options in gvim
 
-    NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
-    NeoBundle 'tyru/restart.vim.git'              "add restart support
-    NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
 endif
 
 if !has("gui_running")
+    set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
     if &term == "rxvt-unicode-256color"
         colorscheme wim
     else
@@ -149,6 +147,8 @@ set noshowmode                              " no show the mode ("-- INSERT --") 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
 set autoread
+
+set formatprg=par                           " use par as formatter
 
 " 'fileencodings' contains a list of possible encodings to try when reading
 " a file.  When 'encoding' is a unicode value (such as utf-8), the

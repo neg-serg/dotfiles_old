@@ -1,6 +1,5 @@
 set showtabline=never
 
-so ~/.pentadactyl/tomorrownight.rc
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 

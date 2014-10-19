@@ -21,4 +21,4 @@ a:visited:hover, a:visited:hover * {
   color: #de935f !important;
 }
 EOM
-styledisable -name=tomorrownight
+"styledisable -name=tomorrownight

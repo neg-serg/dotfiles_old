@@ -329,9 +329,9 @@ nnoremap <silent> [unite]o :Unite -buffer-name=outline outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
-nnoremap <silent> [unite]b :Unite -silent buffer<CR>
+nnoremap <silent> [unite]d :Unite -silent buffer<CR>
 nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
-nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
+nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-svn ]-----------------------------------------------
 nnoremap <silent> [unite]sd :Unite svn/diff<CR>
 nnoremap <silent> [unite]sb :Unite svn/blame<CR>

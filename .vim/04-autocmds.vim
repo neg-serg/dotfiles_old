@@ -259,3 +259,6 @@ function! ChdirHook(dir)
     do User chdir
 endfunction
 
+autocmd FileType slim                                set commentstring=/\ %s
+autocmd FileType xdefaults                           set commentstring=!%s
+autocmd FileType gtkrc,nginx,inittab,tmux,sshdconfig set commentstring=#%s

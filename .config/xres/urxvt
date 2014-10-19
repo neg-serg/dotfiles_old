@@ -16,6 +16,39 @@ mutt.colorUL:                 #0172ae
 *.keysym.C-M-Up:              perl:font-size:increase
 *.keysym.C-M-Down:            perl:font-size:decrease
 !*.keysym.Shift-space:        \033[5~]
+! Control
+*keysym.C-F1:		\033[1;5P
+*keysym.C-F2:		\033[1;5Q
+*keysym.C-F3:		\033[1;5R
+*keysym.C-F4:		\033[1;5S
+*keysym.C-F5:		\033[15;5~
+*keysym.C-F6:		\033[17;5~
+*keysym.C-F7:		\033[18;5~
+*keysym.C-F8:		\033[19;5~
+*keysym.C-F9:		\033[20;5~
+*keysym.C-F10:	\033[21;5~
+*keysym.C-F11:	\033[23;5~
+*keysym.C-F12:	\033[24;5~
+
+! Shift+Control
+*keysym.S-C-F1:		\033[1;6P
+*keysym.S-C-F2:		\033[1;6Q
+*keysym.S-C-F3:		\033[1;6R
+*keysym.S-C-F4:		\033[1;6S
+*keysym.S-C-F5:		\033[15;6~
+*keysym.S-C-F6:		\033[17;6~
+*keysym.S-C-F7:		\033[18;6~
+*keysym.S-C-F8:		\033[19;6~
+*keysym.S-C-F9:		\033[20;6~
+*keysym.S-C-F10:		\033[21;6~
+*keysym.S-C-F11:		\033[23;6~
+*keysym.S-C-F12:		\033[24;6~
+
+spec*font:              xft:Tewi:regular:size=9
+spec*imFont:            xft:Tewi:regular:size=9
+spec*boldFont:          xft:Tewi:regular:size=9
+spec*italicFont:        xft:Tewi:regular:size=9
+spec*boldItalicFont:    xft:Tewi:regular:size=9
 
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false

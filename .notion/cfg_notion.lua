@@ -240,7 +240,6 @@ defbindings("WMPlex.toplevel", {
 --[[  PROGS RUN by APP  ]]-----------------------------
 --------------------------
     kpress("Mod4+1", "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
-    --kpress("Help", "ioncore.exec_on(_, 'urxvt -fn xft:terminus -e ncmpcpp')"),
     --kpress("Mod1+Control+a", "app.byinstance('~/bin/virt.sh', 'VirtualBox')"),
     kpress("Mod1+Control+a", "app.byinstance('', 'Vmware')"),
     --kpress("Mod4+b", "app.byclass('', 'MPlayer')"),
@@ -603,7 +602,7 @@ sp_app_private.init()
 
 
 function ncmpcpp(ws)
-    ioncore.exec_on(ws, '~/bin/msc')
+    ioncore.exec_on(ws, '~/bin/scripts/ncmpcpp')
     named_scratchpad(ws, 'ncmpcpp')
 end
 
@@ -624,7 +623,7 @@ end
 
 function radare2(ws)
     ioncore.exec_on(ws, '~/bin/scripts/radare')
-    named_scratchpad(ws, 'gdb')
+    named_scratchpad(ws, 'radare2')
 end
 
 function nop()

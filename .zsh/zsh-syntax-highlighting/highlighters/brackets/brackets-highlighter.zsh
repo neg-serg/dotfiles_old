@@ -30,7 +30,7 @@
 
 
 # Define default styles.
-: ${ZSH_HIGHLIGHT_STYLES[bracket-error]:=fg=red,bold}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-error]:=fg=grey,bold}
 : ${ZSH_HIGHLIGHT_STYLES[bracket-level-1]:=fg=blue,bold}
 : ${ZSH_HIGHLIGHT_STYLES[bracket-level-2]:=fg=green,bold}
 : ${ZSH_HIGHLIGHT_STYLES[bracket-level-3]:=fg=magenta,bold}
