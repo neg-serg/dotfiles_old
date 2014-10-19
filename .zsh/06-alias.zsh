@@ -62,6 +62,7 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 alias mk="mkdir -p"
 alias mp="mpv"
 alias mpa="mpv -fs -ao null"
+alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont pragmatapro"
 alias mpr="~/bin/mpv.rb" 
 alias i="ipython"
 alias grep="grep --color=auto"
@@ -78,12 +79,12 @@ function v {
     # if [[ `lsw|grep VIM` != "VIM" && `tmux -S ~/1st_level/vim.socket ls|awk -F : '{print $1}'` != "vim" ]] ; then
     wid=$(xdotool search --classname wim)
     if [ -z "$wid" ]; then
-      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' &&
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim'
       sleep .4
       vim --servername VIM --remote-silent $@
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
     else  
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')" &&
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
+      sleep .4
       vim --servername VIM --remote-silent $@
     fi
 }

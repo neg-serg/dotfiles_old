@@ -86,4 +86,9 @@ xmodmap -e "add mod3 = Caps_Lock"
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
 ~/bin/scripts/email_notifier.py &
+
+# export __GL_SYNC_TO_VBLANK=1
+# export __GL_SYNC_DISPLAY_DEVICE=DFP-0
+# export __VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DFP-0
+
 exec notion

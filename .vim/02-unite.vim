@@ -457,6 +457,7 @@ let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_winheight                        = 10
 let g:unite_candidate_icon                   = "▷"
 
+
 if executable('ag')
     let g:unite_source_grep_command               = 'ag'
     let g:unite_source_grep_default_opts          = '--nocolor --nogroup -a -S'

@@ -19,3 +19,4 @@
 . ~/.zsh/50-title.zsh
 . ~/.zsh/75-urltools.plugun.zsh
 . ~/.zsh/97-lastfm.zsh
+. ~/.perl5/etc/bashrc

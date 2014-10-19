@@ -21,7 +21,7 @@
 		"file_vcs_status_M":        { "fg": "steelblue", "bg": "gray4", "attr": [] },
 		"file_vcs_status_A":        { "fg": "brightgreen", "bg": "gray4", "attr": [] },
 		"line_percent":             { "fg": "gray9", "bg": "really_dark1", "attr": [] },
-		"line_percent_gradient":    { "fg": "dark_green_gray", "bg": "really_dark1", "attr": [] },
+		"line_percent_gradient":    { "fg": "dark_gray_blue", "bg": "really_dark1", "attr": [] },
 		"position":                 { "fg": "gray9", "bg": "gray4", "attr": [] },
 		"position_gradient":        { "fg": "green_yellow_red", "bg": "gray4", "attr": [] },
 		"line_current":             { "fg": "gray1", "bg": "really_dark2", "attr": ["bold"] },

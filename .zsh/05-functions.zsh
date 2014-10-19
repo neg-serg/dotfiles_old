@@ -489,12 +489,6 @@ function zle-keymap-select {
     zle reset-prompt
 }
 
-# 2011-10-19: tmux shortcut for creating/attaching named sessions
-tm() {
-    [[ -z "$1" ]] && { echo "usage: tm <session>" >&2; return 1; }
-    tmux has -t $1 && tmux attach -t $1 || tmux new -s $1
-}
-
 # 2011-10-19
 # stolen from completion function _tmux
 function __tmux-sessions() {
@@ -847,3 +841,64 @@ slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}
 # change terminal title
 tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
+
+# quirky tmux function:
+function t {
+  _d="/tmp/user-keep/${USER}/tmux/default"
+  _x="/tmp/user-keep/${USER}/tmux/xorg"
+
+  # usage: tmux [command] [[socket]]
+
+  if [[ -n $1 ]]; then
+    function fn_c { if [[ ${+DISPLAY} -eq 1 ]] { _S=${_x} } else { _S=${_d} } }
+    function fn_x { command tmux -uS ${_S} ${@} }
+    function fn_a {
+      command tmux -S ${_S} list-session | while { read i } {
+        if [[ "${i[-1]}" != ')' ]] { _A=T ; _T=${i/:*} ; break
+        };}
+        if [[ ${+_A} -eq 1 ]] { fn_x attach-session -t ${_T} } else { return 1 }
+        unset _A _T
+      }
+    case $1:l {
+      attach)
+        if [[ -n $2 ]] {
+          case $2:l {
+            xorg) _S=${_x} ;;
+            default) _S=${_d} ;;
+            -f|force) fn_c ; fn_x attach-session ;;
+          }
+          fn_a
+        } else { fn_c ; fn_a }
+      ;;
+      list)
+        if [[ -n $2 ]] {
+          case $2:l {
+            xorg) _S=${_x} ; fn_x list-sessions ;;
+            default) _S=${_d} ; fn_x list-sessions ;;
+          }
+        } else {
+          fn_c ; fn_x list-sessions
+        }
+      ;;
+      *) fn_c ; fn_x ${@} ;;
+    }
+  else
+    case ${+DISPLAY} {
+      0) command tmux -uS ${_d} new-session ;;
+      1) command tmux -uS ${_x} new-session ;;
+    }
+  fi
+}
+
+# un-smart function for viewing/editing history file (still use 'fc/history'):
+function zhist {
+  if [[ $# -ge 1 ]]; then
+    case $1 {
+      '-a'|'-all') <~/.zsh_history | ${PAGER:-less} ;;
+      '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ~/.zsh_history ;;
+      '-f'|'--find') [[ -n $2 ]] && <~/.zsh_history|grep -i "${${@:/$1}// /\|}" ;;
+    }
+  else
+    print - "options: -e (edit), -f (find), -a (all)"
+  fi
+}

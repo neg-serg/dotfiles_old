@@ -38,6 +38,13 @@ export NCURSES_NO_PADDING=1
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/.gem/ruby/2.0.0/bin:$HOME.gem/ruby/2.1.0:$HOME/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/sage:$HOME/bin/rtags/bin:$HOME/bin:${HOME}/bin/go/bin"
 # export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/android-sdk/platform-tools:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/vmware/bin:$HOME/.gem/ruby/2.0.0/bin:$HOME.gem/ruby/2.1.0:$HOME/.cabal/bin:/opt/math/bin:/opt/java6/bin:/opt/intel/pkg_bin:/opt/sage:$HOME/bin/rtags/bin:$HOME/bin"
 
+# PATH="/home/neg/.perl5/bin${PATH+:}${PATH}"; export PATH;
+# PERL5LIB="/home/neg/.perl5/lib/perl5"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/home/neg/.perl5"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/home/neg/.perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/home/neg/.perl5"; export PERL_MM_OPT;
+export PERLBREW_ROOT=/home/neg/.perl5
+
 export PAGER="vimpager"
 export SDCV_PAGER=$PAGER
 alias less=$PAGER
