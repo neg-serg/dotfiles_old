@@ -44,4 +44,22 @@ bind index _        collapse-all
 
 bind compose p postpone-message
 
+# Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+#bind index,pager q  noop
+#bind attach,browser,pager x noop
+
+bind pager R  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+bind index ZZ         exit
+bind attach,browser,pager z exit
+
+
 # vim:ft=muttrc

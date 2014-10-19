@@ -5,7 +5,8 @@ source ~/.mutt/aliases.mutt
 source ~/.mutt/hooks.mutt
 source ~/.mutt/sidebar.mutt
 source ~/.mutt/gmail.mutt
-source ~/.mutt/themes/trans-green
+# source ~/.mutt/themes/trans-green
+source ~/.mutt/themes/milomouse
 source "gpg2 -dq $HOME/.config/.pass |"
 # set alias_file=~/.mutt/aliases.mutt 
 
@@ -79,26 +80,26 @@ set menu_scroll            # scroll in menus
 set tilde                  # show tildes like in vim
 unset markers              # no ugly plus signs
 
-# Pager Key Bindings ---------------------------------
-bind pager k  previous-line
-bind pager j  next-line
-bind pager gg top
-bind pager G  bottom
-
-bind pager R  group-reply
-
-# View attachments properly.
-bind attach <return> view-mailcap
-
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 # Status Bar -----------------------------------------
-set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
-# set status_format="%v  [%f] [%m msgs (%l), %n new, %p unsent, %d deleted]"
-set folder_format="%N %F %2l %-8.8u %-8.8g %8s %d %f"
-# set index_format = "[%Z]  %D  %-20.20F  %s"
-set index_format="%3C %Z %{%b %d} %-20.20L (%?l?%4l&%4c?) %s"
+
+# set status_chars  = " *%A"
+# set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+# # set status_format="%v  [%f] [%m msgs (%l), %n new, %p unsent, %d deleted]"
+# set folder_format="%N %F %2l %-8.8u %-8.8g %8s %d %f"
+# # set index_format = "[%Z]  %D  %-20.20F  %s"
+# set index_format="%3C %Z %{%b %d} %-20.20L (%?l?%4l&%4c?) %s"
+#------- NEW STATUS --------------------------------------------------
+# - appearance / formatting:
+set folder_format = "%3C| %u:%g [%N] %f %*. %t %4s %F"
+set status_format = "───+ %f %m%?n? [+%n]?%?d? [-%d]?%?t? [*%t]? +%?p?───+ %p waiting to send +?─%>─[%P]──"
+set query_format  = "%3c %t %-40.40a %-25.25n  %># %?e?%e?"
+set alias_format  = "%4n %t %-20a %r"
+set date_format   = "%y-%m-%d %I:%M:%S %Z"
+set index_format  = "%3C| %-4c > %-19.19F  %s%*  %?X?[%X]? %Z| %d"
+set quote_regexp  = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set reply_regexp  = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 # set sort=reverse-threads                   # sorting the mails in threads
 # set sort = date
@@ -127,28 +128,11 @@ set smtp_url = "smtp://serg.zorg@smtp.gmail.com:587/"
 set from = "serg.zorg@gmail.com"
 set realname = "Sergey Miroshnichenko"
 
-# --[ For future test ]-------------------------------------------------------
-# # boxes
-# mailboxes +JWR/INBOX +JWR/Archive +JWR/Sent +JWR/Draft +JWR/Trash
-# mailboxes +GMail/INBOX +GMail/Sent Mail +GMail/Drafts +GMail/Trash
-# mailboxes +Miromiro/INBOX Miromiro/Sent +Miromiro/Draft +Miromiro/Trash
-# mailboxes +Fastmail/INBOX +Fastmail/Sent +Fastmail/Drafts +Fastmail/Trash
-# # account specific sources
-# folder-hook JWR/* source ~/.mutt/jwr.muttrc
-# folder-hook GMail/* source ~/.mutt/gmail.muttrc 
-# folder-hook Miromiro/* source ~/.mutt/miromiro.muttrc
-# folder-hook Fastmail/* source ~/.mutt/fastmail.muttrc
-
-# Basic config, you can leave this as is
-# set folder = "imaps://imap.gmail.com:993"
-# set spoolfile = "+INBOX"
 set folder      = /home/neg/.local/mail/gmail
 set spoolfile   = "+INBOX"
 set mbox_type   = "Maildir"
 set postponed   = "+[Gmail].Drafts"
 set mbox        = "+[Gmail].All Mail"
-# set record      = "+[GMail].Sent Mail"
-# unset record
 
 set imap_check_subscribed
 
