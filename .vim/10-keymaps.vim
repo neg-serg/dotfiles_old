@@ -290,27 +290,6 @@ imap <Esc>OF <Plug>delimitMateEnd
 inoremap <expr><BS> pumvisible()? "\<C-y>\<BS>" : "\<BS>"
 inoremap <expr><C-h> pumvisible()? "\<C-y>\<C-h>" : "\<C-h>"
 
-vmap c1 "1yy<ESC>i
-nmap c1 "1yy
-vmap c2 "2yy<ESC>i
-nmap c2 "2yy
-vmap c3 "3yy<ESC>i
-nmap c3 "3yy
-vmap c4 "4yy<ESC>i
-nmap c4 "4yy
-vmap c5 "5yy<ESC>i
-nmap c5 "5yy
-vmap c6 "6yy<ESC>i
-nmap c6 "6yy
-vmap c7 "7yy<ESC>i
-nmap c7 "7yy
-vmap c8 "8yy<ESC>i
-nmap c8 "8yy
-vmap c9 "9yy<ESC>i
-nmap c9 "9yy
-vmap c0 "0yy<ESC>i
-nmap c0 "0yy
-
 nmap J :Join<CR>
 vmap J :Join<CR>
 
