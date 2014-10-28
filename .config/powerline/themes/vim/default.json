@@ -81,12 +81,6 @@
 				"priority": 50
 			},
 			{
-				"exclude_modes": ["nc"],
-				"function": "powerline.segments.vim.plugin.tagbar.current_tag",
-				"draw_soft_divider": false,
-				"priority": 50
-			},
-			{
 				"type": "string",
 				"highlight_group": ["background"],
 				"draw_soft_divider": false,
