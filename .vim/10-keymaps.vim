@@ -78,7 +78,6 @@ noremap <Right> <nop>
 " like firefox tabs
 " nmap <A-w> :bd<cr>
 nnoremap <silent> <A-w> :Bclose<CR>
-nnoremap <silent> <C-x>x :Bclose!<CR>
 
 "--[ Experimental indent file ]--------------------
 map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
@@ -325,11 +324,12 @@ nnoremap <silent> [unite]t :Unite tab<CR>
 nnoremap <silent> [unite]y :Unite register<CR>
 nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]j :Unite buffer_tab <CR>
-nnoremap <silent> [unite]o :Unite -buffer-name=outline outline<CR>
+nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
 nnoremap <silent> [unite]d :Unite -silent buffer<CR>
+nnoremap <silent> <C-x> :Unite -silent buffer<CR>
 nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
 nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-svn ]-----------------------------------------------
@@ -338,10 +338,10 @@ nnoremap <silent> [unite]sb :Unite svn/blame<CR>
 nnoremap <silent> [unite]ss :Unite svn/status<CR>
 nnoremap [unite]s<SPACE> :Unite svn/
 "-------[ Unite-gtags ]---------------------------------------------
-nnoremap <C-e>d :execute 'Unite gtags/def:'.expand('<cword>')<CR>
-nnoremap <C-e>c :execute 'Unite gtags/context'<CR>
-nnoremap <C-e>r :execute 'Unite gtags/ref'<CR>
-nnoremap <C-e>g :execute 'Unite gtags/grep'<CR>
+nnoremap [unite]D :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+nnoremap [unite]C :execute 'Unite gtags/context'<CR>
+nnoremap [unite]R :execute 'Unite gtags/ref'<CR>
+nnoremap [unite]G :execute 'Unite gtags/grep'<CR>
 vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
 "-------[ Quickfix ]------------------------------------------------
 nnoremap Q q

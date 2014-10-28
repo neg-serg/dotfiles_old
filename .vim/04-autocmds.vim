@@ -1,6 +1,8 @@
 " We reset the vimrc augroup. Autocommands are added to this group throughout
 " the file
 
+autocmd FileType unite call s:unite_my_settings()
+
 augroup vimrc
     autocmd!
     au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
