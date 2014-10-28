@@ -243,7 +243,7 @@ nnoremap <silent> [unite]j :Unite buffer_tab <CR>
 nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
-nnoremap <silent> <C-x> :Unite -silent buffer<CR>
+nnoremap <silent> [unite]d :Unite -silent buffer<CR>
 nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
 nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
 "-------[ Unite-gtags ]---------------------------------------------
