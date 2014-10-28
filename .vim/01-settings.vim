@@ -544,12 +544,6 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_min_num_identifier_candidate_chars = 4
 let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
 let g:ackprg = 'ag --nogroup --nocolor --column'
-"--[ YankRing ]-------------------
-" this is so that single char deletes don't end up in the yankring
-let g:yankring_history_dir = '/tmp'
-let g:yankring_history_file = 'yankring_hist'
-let g:yankring_min_element_length = 2
-let g:yankring_window_height = 14
 "--[ Vimux ]----------------------
 let g:VimuxUseNearestPane = 1
 "--[ Utl exec ]-------------------
@@ -590,27 +584,6 @@ let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
 let g:ConqueGdb_Leader          = '\\'       "<leader>, by default is painful
 "--[ Eclim ]----------------------
 let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
-"--[ Rainbow Parentheses ]--------
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
 "--[ DelimitMate ]----------------
 let g:delimitMate_expand_space = 1
 let g:delimitMate_expand_cr    = 0
@@ -662,3 +635,79 @@ let g:VimuxUseNearestPane = 1
 let g:VimuxResetSequence = 'q C-l C-u'
 
 let g:gasynctags_autostart = 0
+
+"--[ YankRing ]-------------------
+" this is so that single char deletes don't end up in the yankring
+let g:yankring_history_dir = '/tmp'
+let g:yankring_history_file = 'yankring_hist'
+let g:yankring_min_element_length = 2
+let g:yankring_window_height = 14
+
+"----------------------[  Unite  ]-------------------------------------
+function! s:unite_my_settings()
+  nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
+  nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
+  nnoremap <silent><buffer> <C-s> :call unite#mappings#do_action('split')<CR>
+  nnoremap <silent><buffer> <C-r> :call unite#mappings#do_action('rec')<CR>
+  nnoremap <silent><buffer> <C-f> :call unite#mappings#do_action('preview')<CR>
+  inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
+  inoremap <silent><buffer> <C-v> <Esc>:call unite#mappings#do_action('vsplit')<CR>
+  inoremap <silent><buffer> <C-s> <Esc>:call unite#mappings#do_action('split')<CR>
+  inoremap <silent><buffer> <C-r> <Esc>:call unite#mappings#do_action('rec')<CR>
+  inoremap <silent><buffer> <C-e> <Esc>:call unite#mappings#do_action('edit')<CR>
+  inoremap <silent><buffer> <C-f> <C-o>:call unite#mappings#do_action('preview')<CR>
+  " I hope to use <C-o> and return to the selected item after action...
+  nmap <silent><buffer> jl <Plug>(unite_exit)
+  imap <silent><buffer> jl <Plug>(unite_exit)
+  imap <silent><buffer> <C-c> <Plug>(unite_exit)
+  imap <silent><buffer> <C-j> <Plug>(unite_exit)
+  imap <silent><buffer> <ESC> <NOP>
+  nmap <silent><buffer> <C-j> <Plug>(unite_all_exit)
+  inoremap <silent><buffer> <SPACE> _
+  inoremap <silent><buffer> _ <SPACE>
+endfunction
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
+            \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
+" call unite#custom#source( 'neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
+call unite#custom#profile('neomru/file', 'filters', 'sorter_ftime')
+
+let g:unite_enable_ignore_case               = 1
+let g:unite_enable_smart_case                = 1
+let g:unite_enable_start_insert              = 1
+let g:unite_enable_split_vertically          = 0
+let g:unite_source_file_mru_limit            = 300
+let g:unite_source_file_mru_time_format      = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_source_mru_update_interval       = 300
+let g:unite_source_file_rec_min_cache_files  = 300
+let g:unite_source_file_rec_max_depth        = 10
+let g:unite_source_history_yank_enable       = 1
+let g:unite_source_bookmark_directory        = $HOME . "/.config/unite/bookmark"
+let g:unite_data_directory                   = $HOME.'/.config/unite'
+let g:junkfile#directory                     = expand($HOME."/.config/unite/junk")
+let g:unite_source_gtags_treelize            = 1
+let g:unite_source_history_yank_enable       = 1
+let g:unite_enable_short_source_mes          = 0
+let g:unite_force_overwrite_statusline       = 0
+let g:unite_prompt                           = '>> '
+let g:unite_marked_icon                      = '✓'
+let g:unite_update_time                      = 200
+let g:unite_split_rule                       = 'botright'
+let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_winheight                        = 10
+let g:unite_candidate_icon                   = "▷"
+
+if executable('ag')
+    let g:unite_source_grep_command               = 'ag'
+    let g:unite_source_grep_default_opts          = '--nocolor --nogroup -a -S'
+    let g:unite_source_grep_recursive_opt         = ''
+    let g:unite_source_grep_search_word_highlight = 1
+elseif executable('ack')
+    let g:unite_source_grep_command               = 'ack'
+    let g:unite_source_grep_default_opts          = '--no-group --no-color'
+    let g:unite_source_grep_recursive_opt         = ''
+    let g:unite_source_grep_search_word_highlight = 1
+endif
