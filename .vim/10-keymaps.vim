@@ -10,9 +10,9 @@ nnoremap <silent> <c-w>t :tabnew<CR>
 nnoremap <silent> <c-w>x :tabclose<CR>
 
 " Get Rid of stupid Goddamned help keys
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+inoremap <F1> <Nop>
+nnoremap <F1> <Nop>
+vnoremap <F1> <Nop>
 
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <leader>cd :ProjectRootCD<cr>
@@ -20,44 +20,22 @@ nnoremap <silent> <leader>cd :ProjectRootCD<cr>
 nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
 nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()
+nmap <F9> :Make<cr>
+nmap MK :Make<cr>
+nmap MC :Make clean<cr>
+
 nnoremap <A-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
 
-" vp doesn't replace paste buffer
-function! RestoreRegister()
-  let @" = s:restore_reg
-  return ''
-endfunction
-function! s:Repl()
-  let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
-endfunction
-vmap <silent> <expr> p <sid>Repl()
-
 nnoremap <silent><space>w :set wrap!<CR>
-
-" copy or paste from X11 clipboard
-" http://vim.wikia.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
-" requires: xclip
-" usage: visual mode select then hit F6 to copy
-" hit F7 to paste from GUI to vim without formating issues
-vmap <F6> :!xclip -f -sel clip<CR>
-map <F7> mz:-1r !xclip -o -sel clip<CR>`z
 
 " Traverse buffers, quickly
 nnoremap <PageUp> :bp<CR>
 nnoremap <PageDown> :bn<CR>
-" nnoremap <Return> <C-]>
 
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
-
-" nnoremap <C-up> <c-w>+
-" nnoremap <C-down> <c-w>-
-" nnoremap <C-left> <c-w><
-" nnoremap <C-right> <c-w>>
-
 " Now we don't have to move our fingers so far when we want to scroll through
 " the command history; also, don't forget the q: command (see :h q: for more
 " info)
@@ -79,24 +57,8 @@ noremap <Right> <nop>
 " nmap <A-w> :bd<cr>
 nnoremap <silent> <A-w> :Bclose<CR>
 
-"--[ Experimental indent file ]--------------------
-map <leader>R mz<bar>:retab!<bar>:normal gg=G<cr>`z
-
-" " Wrapped lines goes down/up to next row, rather than next line in file.
-" noremap j gj
-" noremap k gk
-"
-" " Same for 0, home, end, etc
-" noremap $ g$
-" noremap <End> g<End>
-" noremap 0 g0
-" noremap <Home> g<Home>
-" noremap ^ g^
-
 " Toggles '/' to mean eregex search or normal Vim search
 nnoremap <leader>/ :call eregex#toggle()<CR>
-" " Toggle search highlighting
-" nmap <silent> <leader>/ :set invhlsearch<CR>
 " Toggle hlsearch for current results
 nnoremap <leader><leader> :nohlsearch<CR>
 
@@ -142,30 +104,9 @@ vnoremap ci( f(ci(
 vnoremap ci{ f{ci{
 vnoremap ci[ f[ci[
 
-"nnoremap d= f=d$a=
-"nnoremap d> f>d$a>
-
-" map p [p
-
-" save and build
-" nmap <LocalLeader>wm  :w<cr>:make<cr>
-" Bindings for ctk
-" nnoremap <LocalLeader>C :CC<cr>
-
-nmap <F9> :Make<cr>
-nmap MK :Make<cr>
-nmap MC :Make clean<cr>
-
-inoremap <S-Ins> <C-r><C-o>*
-
-map <C-c>np :emenu NewProj.<TAB>
-
 cno $q <C-\>eDeleteTillSlash()<cr>
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
-"don't go to left char please
-" inoremap <Esc> <Esc>`^`
-" inoremap jk <Esc>`^`
 inoremap jk <Esc>
 
 " Keep search matches in the middle of the window.
@@ -232,9 +173,6 @@ function! YRRunAfterMaps()
     nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
 
-" Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -286,37 +224,15 @@ nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
             \Unite -no-quit quickfix'<CR>
 nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 
-" for the diffmode
-noremap <Leader>du :diffupdate<CR>
-if !exists(":Gdiffoff")
-    command Gdiffoff diffoff | q | Gedit
-endif
-noremap <Leader>dq :Gdiffoff<CR>
-
 nnoremap <silent> <leader>gv :Gitv --all<CR>
 nnoremap <silent> <leader>gV :Gitv! --all<CR>
 vnoremap <silent> <leader>gV :Gitv! --all<CR>
-
-nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
-nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
-map <Leader>z :ZoomWinTabToggle<CR>
-
-" nmap <F4> :Utl ol<cr>
-map <Leader>j :Utl <CR><Bar>:redraw!<CR>
-
 nnoremap <Leader>u :GundoToggle<CR>
-map <Leader>x :call RangerChooser()<CR>
 "----[ Unite ]-----------------------------------------
 nmap e [unite]
 xmap e [unite]
 nnoremap [unite] <Nop>
 xnoremap [unite] <Nop>
-" menu prefix key (for all Unite menus) {{{
-nnoremap <silent>[unite]u :Unite -silent -start-insert -winheight=20 menu<CR>
-nnoremap <silent>[unite]s :Unite -silent -start-insert menu:spelling<CR>
-nnoremap <silent>[unite]e :Unite -silent -start-insert -winheight=20 menu:text <CR>
-nnoremap <silent>[unite]l :Unite -silent -start-insert -winheight=29 -start-insert menu:git<CR>
-nnoremap <silent>[unite]n :Unite -silent -start-insert menu:neobundle<CR>
 " mapping for Unite functions
 nnoremap <silent> [unite]r :UniteResume<CR>
 nnoremap [unite]R :Unite ref/
@@ -326,17 +242,10 @@ nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]j :Unite buffer_tab <CR>
 nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
 nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
-nnoremap [unite]<SPACE> :Unite local<CR>
 nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
-nnoremap <silent> [unite]d :Unite -silent buffer<CR>
 nnoremap <silent> <C-x> :Unite -silent buffer<CR>
 nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
 nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
-"-------[ Unite-svn ]-----------------------------------------------
-nnoremap <silent> [unite]sd :Unite svn/diff<CR>
-nnoremap <silent> [unite]sb :Unite svn/blame<CR>
-nnoremap <silent> [unite]ss :Unite svn/status<CR>
-nnoremap [unite]s<SPACE> :Unite svn/
 "-------[ Unite-gtags ]---------------------------------------------
 nnoremap [unite]D :execute 'Unite gtags/def:'.expand('<cword>')<CR>
 nnoremap [unite]C :execute 'Unite gtags/context'<CR>
@@ -347,7 +256,6 @@ vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
 nnoremap Q q
 nnoremap [Quickfix] <Nop>
 nmap q [Quickfix]
-nmap [make] :<C-u>make<SPACE>
 nnoremap <silent> [Quickfix]n :<C-u>cnext<CR>
 nnoremap <silent> [Quickfix]p :<C-u>cprevious<CR>
 nnoremap <silent> [Quickfix]r :<C-u>crewind<CR>
@@ -358,13 +266,9 @@ nnoremap <silent> [Quickfix]fp :<C-u>cpfile<CR>
 nnoremap <silent> [Quickfix]l :<C-u>clist<CR>
 nnoremap <silent> [Quickfix]en :<C-u>cnewer<CR>
 nnoremap <silent> [Quickfix]ep :<C-u>colder<CR>
-nmap [Quickfix]m [make]
-nnoremap [Quickfix]M q:make<Space>
-nnoremap [Quickfix]g q:grep<Space>
 " Toggle quickfix window.
 let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
 let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
-" nnoremap <silent> [Quickfix]<Space> :<C-u>call <SID>toggle_quickfix_window()<CR>
 " For location list (mnemonic: Quickfix list for the current Window)
 nnoremap <silent> [Quickfix]wn :<C-u>lnext<CR>
 nnoremap <silent> [Quickfix]wp :<C-u>lprevious<CR>
@@ -379,10 +283,6 @@ nnoremap <silent> [Quickfix]wo :<C-u>lopen<CR>
 nnoremap <silent> [Quickfix]wc :<C-u>lclose<CR>
 nnoremap <silent> [Quickfix]wep :<C-u>lolder<CR>
 nnoremap <silent> [Quickfix]wen :<C-u>lnewer<CR>
-nnoremap <silent> [Quickfix]wm :<C-u>lmake<CR>
-nnoremap [Quickfix]wM q:lmake<Space>
-nnoremap [Quickfix]w<Space> q:lmake<Space>
-nnoremap [Quickfix]wg q:lgrep<Space>
 
 imap <Esc>OH <Plug>delimitMateHome
 imap <Esc>OF <Plug>delimitMateEnd
