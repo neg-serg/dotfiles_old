@@ -33,12 +33,11 @@ wmname LG3D
 swarp  1600 900
 synclient PalmDetect=1
 
-# mouse acceleration
-xset m 3/2 6
+# mouse acceleration xset m 3/2 6
+# disable mouse acceleration
+xset 0 0
 # xset dpms 0 0 0
 xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
-
-#exec 3>&2 2>/dev/null
 
 #echo 'keycode 58 = 1' >> /usr/local/share/kbd/caps_to_esc
 #loadkeys -q /usr/local/share/kbd/caps_to_esc
@@ -62,12 +61,7 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-hsetroot -fill /home/neg/pic/wl/wallpaper-2518591.jpg
-# hsetroot -fill /mnt/home/pic/wl/wallpaper-1374496.jpg
-# hsetroot -fill /mnt/home/pic/wl/wallpaper-1767776.jpg
-# hsetroot -fill /mnt/home/pic/wl/763732248.jpg
-# hsetroot -fill /mnt/home/pic/wl/wallpaper-2522969.jpg
-# hsetroot -fill /mnt/home/pic/wl/wallpaper-921953.jpg
+hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
@@ -85,7 +79,8 @@ xmodmap -e "add mod3 = Caps_Lock"
 [ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
-~/bin/scripts/email_notifier.py &
+# ~/bin/scripts/email_notifier.py &
+~/bin/scripts/mail_watch.sh &
 
 # export __GL_SYNC_TO_VBLANK=1
 # export __GL_SYNC_DISPLAY_DEVICE=DFP-0
