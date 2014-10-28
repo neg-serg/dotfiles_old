@@ -147,7 +147,6 @@ NeoBundleCheck
 
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
-source ~/.vim/02-unite.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
 source ~/.vim/21-langmap.vim
