@@ -95,9 +95,6 @@ map <A-3> :tabmove +1<cr>
 map <A-`> :tabmove -1<cr>
 map <C-v> <C-v><C-v>
 map <C-c> <C-v><C-c>
-
-"unmap gf 
-"unmap gh 
 "-------------[ Noscript ]---------------------------
 nmap -builtin <leader>A     :noscript toggleperm<CR>
 nmap -builtin <leader>a     :noscript toggletemp<CR>
@@ -281,7 +278,7 @@ map . /
 set strictfocus='google.com':laissez-faire,*:moderate,'chrome:*':laissez-faire,*:moderate
 
 " And pass through some useful navigation and jump keys in gmail
-set passkeys+=mail\.google\.com:jkv<CR>rau#T/<space><S-space>?,gl,*u,*i,*n,gi,gc,gl
+set passkeys+=mail\.google\.com:jkva#T/<space><S-space>?,gl,*u,*i,*n,gi,gc,gl
 
 silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
 silent qmark b http://clinki.es/
