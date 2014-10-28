@@ -666,6 +666,7 @@ function! s:unite_my_settings()
   inoremap <silent><buffer> <SPACE> _
   inoremap <silent><buffer> _ <SPACE>
 endfunction
+autocmd FileType unite call s:unite_my_settings()
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -711,3 +712,27 @@ elseif executable('ack')
     let g:unite_source_grep_recursive_opt         = ''
     let g:unite_source_grep_search_word_highlight = 1
 endif
+
+let g:rainbow_active = 0 "0 if you want to enable it later via :RainbowToggle
+
+let g:rainbow_conf = {
+        \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \   'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan'],
+        \   'operators': '_,_',
+        \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+        \   'separately': {
+        \       '*': {},
+        \       'lisp': {
+        \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+        \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+        \       },
+        \       'vim': {
+        \           'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
+        \       },
+        \       'tex': {
+        \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+        \       },
+        \       'css': 0,
+        \       'stylus': 0,
+        \   }
+        \}
