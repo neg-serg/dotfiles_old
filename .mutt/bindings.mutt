@@ -3,6 +3,9 @@ macro generic "<esc>2" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
 macro generic "<esc>3" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
 macro generic "<esc>4" ":set sendmail=\"/usr/local/bin/msmtp -a xxx\""
 
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop 
 bind pager <UP> previous-page   # I hate default mutt keybindings
 bind pager <DOWN> next-page     # so I use UP & DOWN to VIEW message,
 bind pager p previous-unread    # NOT to JUMP to next/prev one!
@@ -60,6 +63,4 @@ bind attach <return> view-mailcap
 
 bind index ZZ         exit
 bind attach,browser,pager z exit
-
-
 # vim:ft=muttrc
