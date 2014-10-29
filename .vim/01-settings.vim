@@ -432,8 +432,6 @@ endif
 " " https://github.com/bling/vim-airline.git
 " "--------------------------------------------------------------------------------------------------------------
 if neobundle#tap('vim-airline')
-    let g:powerline_config_path='/home/neg/.config/powerline'
-
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#buffer_min_count = 1
@@ -640,13 +638,6 @@ if neobundle#tap('vim-easytags')
     let g:easytags_auto_update    = 1
 endif
 " "--------------------------------------------------------------------------------------------------------------
-" " plugin - Shougo/vimshell.vim.git
-" " https://github.com/Shougo/vimshell.vim.git
-" "--------------------------------------------------------------------------------------------------------------
-if neobundle#tap('vim-easytags')
-    let g:vimshell_environment_term       = 'rxvt-256color'
-endif
-" "--------------------------------------------------------------------------------------------------------------
 " " plugin - benmills/vimux
 " " https://github.com/benmills/vimux.git
 " "--------------------------------------------------------------------------------------------------------------
@@ -744,10 +735,6 @@ if neobundle#tap('unite.vim')
         let g:unite_source_grep_command               = 'ag'
         let g:unite_source_grep_default_opts =
             \ '--smart-case --line-numbers --nocolor --nogroup'
-        " let g:unite_source_grep_default_opts          = 
-        "         \ '--nocolor --nogroup -a -S'
-        "         \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-        "         \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
         let g:unite_source_grep_recursive_opt         = ''
         let g:unite_source_grep_search_word_highlight = 1
     elseif executable('ack')
@@ -756,6 +743,53 @@ if neobundle#tap('unite.vim')
         let g:unite_source_grep_recursive_opt         = ''
         let g:unite_source_grep_search_word_highlight = 1
     endif
+
+    function! s:vimfiler_toggle()
+        if &filetype == 'vimfiler'
+            execute 'silent! buffer #'
+            if &filetype == 'vimfiler'
+                execute 'enew'
+            endif
+        elseif exists('t:vimfiler_buffer') && bufexists(t:vimfiler_buffer)
+            execute 'buffer ' . t:vimfiler_buffer
+        else
+            execute 'VimFilerCreate'
+            let t:vimfiler_buffer = @%
+        endif
+    endfunction
+    function! s:vimfiler_settings()
+        setlocal nobuflisted
+        setlocal colorcolumn=
+        nmap <buffer> q :call <SID>vimfiler_toggle()<CR>
+        nmap <buffer> <ENTER> o
+        nmap <buffer> <expr> o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+        nmap <buffer> <expr> C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
+        nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
+        nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
+        nmap <buffer> gg <Plug>(vimfiler_cursor_top)
+        nmap <buffer> R <Plug>(vimfiler_redraw_screen)
+        nmap <buffer> <SPACE> <Plug>(vimfiler_toggle_mark_current_line)
+        nmap <buffer> U <Plug>(vimfiler_clear_mark_all_lines)
+        nmap <buffer> cp <Plug>(vimfiler_copy_file)
+        nmap <buffer> mv <Plug>(vimfiler_move_file)
+        nmap <buffer> rm <Plug>(vimfiler_delete_file)
+        nmap <buffer> mk <Plug>(vimfiler_make_directory)
+        nmap <buffer> e <Plug>(vimfiler_new_file)
+        nmap <buffer> u <Plug>(vimfiler_switch_to_parent_directory)
+        nmap <buffer> . <Plug>(vimfiler_toggle_visible_ignore_files)
+        nmap <buffer> I <Plug>(vimfiler_toggle_visible_ignore_files)
+        nmap <buffer> yy <Plug>(vimfiler_yank_full_path)
+        nmap <buffer> cd <Plug>(vimfiler_cd_vim_current_dir)
+        vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
+    endfunction
+    autocmd FileType vimfiler call s:vimfiler_settings()
+    let g:vimfiler_as_default_explorer = 1
+    let g:vimfiler_safe_mode_by_default = 0
+    let g:vimfiler_tree_leaf_icon = ' '
+    let g:vimfiler_tree_opened_icon = '▾'
+    let g:vimfiler_tree_closed_icon = '▸'
+    let g:vimfiler_enable_auto_cd = 1
+    let g:vimfiler_no_default_key_mappings = 1
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - luochen1990/rainbow
