@@ -1,8 +1,5 @@
 " We reset the vimrc augroup. Autocommands are added to this group throughout
 " the file
-
-autocmd FileType unite call s:unite_my_settings()
-
 augroup vimrc
     autocmd!
     au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
@@ -264,3 +261,5 @@ endfunction
 autocmd FileType slim                                set commentstring=/\ %s
 autocmd FileType xdefaults                           set commentstring=!%s
 autocmd FileType gtkrc,nginx,inittab,tmux,sshdconfig set commentstring=#%s
+
+" au FileType c,cpp,objc,objcpp call rainbow#toggle
