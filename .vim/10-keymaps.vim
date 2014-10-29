@@ -1,3 +1,7 @@
+let mapleader      = ','
+let maplocalleader = ' '
+let g:mapleader    = ","
+
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
