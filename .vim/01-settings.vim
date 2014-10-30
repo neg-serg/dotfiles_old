@@ -1,8 +1,4 @@
 set shell=/bin/bash
-if has('nvim')
-    runtime! plugin/python_setup.vim
-endif
-
 if bufname('%') == ''
   set bufhidden=wipe
 endif
@@ -117,8 +113,6 @@ if !has("gui_running")
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
             let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             autocmd VimEnter * silent !tmux set status off
-            " set timeout  timeoutlen=1000
-            " set ttimeout ttimeoutlen=100       " Usable for fast keybindings
             set timeout ttimeout
             set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
             autocmd VimLeave * silent !tmux set status on;
@@ -221,7 +215,7 @@ set wrap                        " Wrap lines
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 
-set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 " Windowing settings set splitright splitbelow
 "set swapsync=""                " don't call fsync() or sync(); let linux handle it
@@ -303,7 +297,7 @@ set maxfuncdepth=1000
 set maxmemtot=200000
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-set nomodeline       " enable modelines
+set nomodeline                        " enable modelines
 set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
 
 set iminsert=0

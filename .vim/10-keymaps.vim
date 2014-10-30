@@ -12,6 +12,7 @@ nmap <space> <Nop>
 
 nnoremap <silent> <c-w>t :tabnew<CR>
 nnoremap <silent> <c-w>x :tabclose<CR>
+nnoremap <silent> <leader>4 :set cursorline!<CR>
 
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <Nop>
