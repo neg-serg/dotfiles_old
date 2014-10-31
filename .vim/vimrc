@@ -7,13 +7,16 @@ if has('vim_starting')
     set nocompatible  "be improved
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+if has('nvim')
+    runtime! plugin/python_setup.vim
+endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
 if neobundle#has_cache()
-   NeoBundleLoadCache
+    NeoBundleLoadCache
 else
     source ~/.vim/00-bundlelist.vim
-   NeoBundleSaveCache
+    NeoBundleSaveCache
 endif
 call neobundle#end()
 syntax on
@@ -23,6 +26,7 @@ NeoBundleCheck
 
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
+source ~/.vim/02-plugins-config.vim
 source ~/.vim/04-autocmds.vim
 source ~/.vim/10-keymaps.vim
 source ~/.vim/21-langmap.vim
