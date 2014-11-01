@@ -54,16 +54,7 @@ if has("gui_running")
     set ballooneval                    " add popups for gui
     set balloondelay=400               " popups delay
 
-    " Paste from PRIMARY and CLIPBOARD
-    inoremap <silent> <M-v> <Esc>"+p`]a
-    inoremap <silent> <S-Insert> <Esc>"*p`]a
-
-    if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
-      let &listchars = "tab:\u21e5\u00b7,trail:\u2423,extends:\u21c9,precedes:\u21c7,nbsp:\u26ad"
-      let &fillchars = "vert:\u259a,fold:\u00b7"
-    else
-      set listchars=tab:>\ ,trail:-,extends:>,precedes:<
-    endif
+    set fillchars=stl:\ ,stlnc:\ ,vert:│
     set guitablabel=%-0.12t%M
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
@@ -92,7 +83,8 @@ if !has("gui_running")
     silent !stty start undef > /dev/null 2>/dev/null
     silent !stty stop undef > /dev/null 2>/dev/null
 
-    set ttyscroll=256
+    " set ttyscroll=256                " try to speedup scrolling
+    set ttyscroll=4                    " try to speedup scrolling
     set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
 
@@ -321,7 +313,7 @@ if has("cscope")
     set csto=0
     set cscopetag
     " set cscopequickfix=s-,c-,d-,i-,t-,e-
-  
+
     let GtagsCscope_Auto_Map        = 1
     let GtagsCscope_Use_Old_Key_Map = 0
     let GtagsCscope_Ignore_Case     = 1

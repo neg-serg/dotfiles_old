@@ -2,6 +2,10 @@ let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
 
+" Paste from PRIMARY and CLIPBOARD
+inoremap <silent> <M-v> <Esc>"+p`]a
+inoremap <silent> <S-Insert> <Esc>"*p`]a
+
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
