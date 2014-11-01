@@ -30,7 +30,7 @@ else
 fi
 
 wmname LG3D
-swarp  1600 900
+swarp  1920 1200
 synclient PalmDetect=1
 
 # mouse acceleration xset m 3/2 6
@@ -61,7 +61,8 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
+hsetroot -fill /home/neg/pic/wl/wallpaper-2923950.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
@@ -79,8 +80,8 @@ xmodmap -e "add mod3 = Caps_Lock"
 [ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 ~/bin/clipd.rb &
-# ~/bin/scripts/email_notifier.py &
-~/bin/scripts/mail_watch.sh &
+~/bin/scripts/email_notifier.py &
+# ~/bin/scripts/mail_watch.sh &
 
 # export __GL_SYNC_TO_VBLANK=1
 # export __GL_SYNC_DISPLAY_DEVICE=DFP-0
