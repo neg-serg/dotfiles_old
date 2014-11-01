@@ -96,10 +96,6 @@ if !has("gui_running")
     if exists('$TMUX')
         let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
         if s:not_tmuxed_vim =~ "FALSE"
-            " execute "set <xUp>=\e[1;*A"
-            " execute "set <xDown>=\e[1;*B"
-            " execute "set <xRight>=\e[1;*C"
-            " execute "set <xLeft>=\e[1;*D"
             set t_ut=
             autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
