@@ -96,9 +96,6 @@ vnoremap . :normal .<CR>
 map zl zL
 map zh zH
 
-nnoremap <silent> <leader>tt :TagbarToggle<CR>
-nnoremap <silent> <leader>T :NERDTreeCWD<CR>
-
 xnoremap <space>c :!octave --silent \| cut -c8-<cr>
 "-------[ Quickfix ]------------------------------------------------
 nnoremap Q q

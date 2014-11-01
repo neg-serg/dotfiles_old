@@ -38,6 +38,7 @@ endif
 if neobundle#tap('indentLine')
     let g:indentLine_char = '│'
     let g:indentLine_faster = 1
+    let g:indentLine_color_term = 238
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - SirVer/ultisnips.git
@@ -208,6 +209,13 @@ if neobundle#tap('YouCompleteMe')
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
     nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - majutsushi/tagbar.git
+" " https://github.com/majutsushi/tagbar.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('tagbar')
+    nnoremap <silent> <leader>tt :TagbarToggle<CR>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - derekwyatt/vim-fswitch.git
