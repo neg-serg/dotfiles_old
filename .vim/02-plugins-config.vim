@@ -10,7 +10,16 @@ let g:eregex_default_enable = 0
 let g:mta_use_matchparen_group = 0
 let g:lua_complete_omni = 1
 let g:gasynctags_autostart = 0
-let g:gundo_playback_delay = 240
+let g:powerline_pycmd="py3"
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - sjl/gundo.vim.git
+" " https://github.com/sjl/gundo.vim.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('gundo.vim')
+    let g:gundo_playback_delay = 240
+
+    nnoremap <Leader>u :GundoToggle<CR>
+endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - nathanaelkane/vim-indent-guides.git
 " " https://github.com/nathanaelkane/vim-indent-guides.git
@@ -29,6 +38,22 @@ endif
 if neobundle#tap('indentLine')
     let g:indentLine_char = '│'
     let g:indentLine_faster = 1
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - SirVer/ultisnips.git
+" " https://github.com/SirVer/ultisnips.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('ultisnips')
+    let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
+    if has("gui_macvim")
+        " Ctrl conflicts with Dvorak-Qwerty Command
+        let g:UltiSnipsExpandTrigger       = "<m-s>"
+    else
+        let g:UltiSnipsExpandTrigger="<m-s>"
+        let g:UltiSnipsJumpForwardTrigger="<m-s>"
+        let g:UltiSnipsJumpBackwardTrigger="<m-f>"
+        let g:UltiSnipsListSnippets        = "<c-m-s>"
+    endif
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - sjbach/lusty.git
@@ -136,6 +161,13 @@ if neobundle#tap('YouCompleteMe')
     let g:ycm_seed_identifiers_with_syntax = 0
     let g:ycm_use_ultisnips_completer      = 0
 
+    let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+    let g:ycm_key_invoke_completion = '<A-x>'
+    " let g:ycm_add_preview_to_completeopt = 0
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
+
     " let g:ycm_add_preview_to_completeopt = 1
     " let g:ycm_autoclose_preview_window_after_completion = 0
     " let g:ycm_autoclose_preview_window_after_insertion = 0 
@@ -173,6 +205,34 @@ if neobundle#tap('YouCompleteMe')
     let g:ycm_min_num_identifier_candidate_chars = 4
     let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
     let g:ycm_goto_buffer_command = 'vertical-split'
+
+    nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
+    nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - derekwyatt/vim-fswitch.git
+" " https://github.com/derekwyatt/vim-fswitch.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('vim-fswitch')
+    " A "companion" file is a .cpp file to an .h file and vice versa
+    " Opens the companion file in the current window
+    nnoremap <Space>sh :FSHere<cr>
+    " Opens the companion file in the window to the left (window needs to exist)
+    " This is actually a duplicate of the :FSLeft command which for some reason
+    " doesn't work.
+    nnoremap <Space>sl :call FSwitch('%', 'wincmd l')<cr>
+    " Same as above, only opens it in window to the right
+    nnoremap <Space>sr :call FSwitch('%', 'wincmd r')<cr>
+    " Creates a new window on the left and opens the companion file in it
+    nnoremap <Space>sv :FSSplitLeft<cr>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - chrisbra/Join.git
+" " https://github.com/chrisbra/Join.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('Join')
+    nmap J :Join<CR>
+    vmap J :Join<CR>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - utl.vim
@@ -211,15 +271,20 @@ if neobundle#tap('gitv')
     let g:Gitv_WipeAllOnClose = 1
     let g:Gitv_DoNotMapCtrlKey = 1
     let g:Gitv_CommitStep = 1024
+
+    nnoremap <silent> <leader>gv :Gitv --all<CR>
+    nnoremap <silent> <leader>gV :Gitv! --all<CR>
+    vnoremap <silent> <leader>gV :Gitv! --all<CR>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - Valloric/ListToggle.git
 " " https://github.com/Valloric/ListToggle.git
 " "--------------------------------------------------------------------------------------------------------------
 if neobundle#tap('ListToggle')
-    let g:lt_location_list_toggle_map = '<c-e>i'
-    let g:lt_quickfix_list_toggle_map = '<c-e>u'
     let g:lt_height = 10
+    
+    let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
+    let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - mattn/zencoding-vim.git
@@ -240,6 +305,9 @@ if neobundle#tap('delimitMate')
     let g:delimitMate_expand_cr    = 0
     let g:delimitMate_smart_quotes = 1
     let g:delimitMate_balance_matchpairs = 1
+
+    imap <Esc>OH <Plug>delimitMateHome
+    imap <Esc>OF <Plug>delimitMateEnd
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - xolox/vim-easytags.git
@@ -272,6 +340,35 @@ if neobundle#tap('vimux')
     " The keys sent to the runner pane before running a command. By default it sends
     " `q` to make sure the pane is not in scroll-mode and `C-u` to clear the line.
     let g:VimuxResetSequence = 'q C-l C-u'
+
+    map <Space>rc :VimuxPromptCommand<CR>
+    map <Space>rl :VimuxRunLastCommand<CR>
+    map <Space>rs :VimuxInterruptRunner<CR>
+    map <Space>ri :VimuxInspectRunner<CR>
+    map <Space>rq :VimuxCloseRunner<CR>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - tpope/vim-fugitive.git
+" " https://github.com/tpope/vim-fugitive.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('vim-fugitive')
+    nnoremap <Leader>gs :Gstatus<CR>
+    nnoremap <Leader>gw :Gwrite<CR>
+    nnoremap <Leader>go :Gread<CR>
+    nnoremap <Leader>gR :Gremove<CR>
+    nnoremap <Leader>gm :Gmove<Space>
+    nnoremap <Leader>gc :Gcommit<CR>
+    nnoremap <Leader>gd :Gdiff<CR>
+    nnoremap <Leader>gb :Gblame<CR>
+    nnoremap <Leader>gB :Gbrowse<CR>
+    nnoremap <Leader>gp :Git! push<CR>
+    nnoremap <Leader>gP :Git! pull<CR>
+    nnoremap <Leader>gi :Git!<Space>
+    nnoremap <Leader>ge :Gedit<CR>
+    nnoremap <Leader>gE :Gedit<Space>
+    nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
+    nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
+    nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - YankRing.vim
@@ -283,6 +380,14 @@ if neobundle#tap('YankRing.vim')
     let g:yankring_history_file = 'yankring_hist'
     let g:yankring_min_element_length = 2
     let g:yankring_window_height = 14
+
+    nnoremap <leader>r :YRShow<CR>
+    " this makes Y yank from the cursor to the end of the line, which makes more
+    " sense than the default of yanking the whole current line (we can use yy for
+    " that)
+    function! YRRunAfterMaps()
+        nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+    endfunction
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - Shougo/unite.vim
@@ -405,6 +510,103 @@ if neobundle#tap('unite.vim')
     let g:vimfiler_tree_closed_icon = '▸'
     let g:vimfiler_enable_auto_cd = 1
     let g:vimfiler_no_default_key_mappings = 1
+
+    nmap e [unite]
+    xmap e [unite]
+    nnoremap [unite] <Nop>
+    xnoremap [unite] <Nop>
+    " mapping for Unite functions
+    nnoremap <silent> [unite]r :UniteResume<CR>
+    nnoremap [unite]R :Unite ref/
+    nnoremap <silent> [unite]t :Unite tab<CR>
+    nnoremap <silent> [unite]y :Unite register<CR>
+    nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
+    nnoremap <silent> [unite]j :Unite buffer_tab <CR>
+    nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
+    nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
+    nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
+    nnoremap <silent> [unite]d :Unite -silent buffer<CR>
+    nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
+    nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
+    nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit
+                \ quickfix"<CR>:redraw!<CR>
+    nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
+                \ quickfix"<CR>:redraw!<CR>
+    nnoremap <Leader>gg :exe 'silent Gvimrcgrep -i '.input("Pattern: ")<Bar>Unite
+                \ quickfix -no-quit<CR>
+    nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
+                \Unite -no-quit quickfix'<CR>
+    nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
+                \Unite -no-quit quickfix'<CR>
+    nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
+    " "--------------------------------------------------------------------------------------------------------
+    " " plugin - hewes/unite-gtags.git
+    " " https://github.com/hewes/unite-gtags.git
+    " "---------------------------------------------------------------------------------------------------------
+    if neobundle#tap('unite-gtags')
+        nnoremap [unite]D :execute 'Unite gtags/def:'.expand('<cword>')<CR>
+        nnoremap [unite]C :execute 'Unite gtags/context'<CR>
+        nnoremap [unite]R :execute 'Unite gtags/ref'<CR>
+        nnoremap [unite]G :execute 'Unite gtags/grep'<CR>
+        vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
+    endif
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - drmikehenry/vim-fontsize.git
+" " https://github.com/drmikehenry/vim-fontsize.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('vim-fontsize')
+    nmap <silent> <F11>                       <Plug>FontsizeBegin
+    nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
+    nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
+    nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - dbakker/vim-projectroot.git
+" " https://github.com/dbakker/vim-projectroot.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('vim-projectroot')
+    nnoremap <silent> <leader>cd :ProjectRootCD<cr>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - bbchung/gasynctags.git
+" " https://github.com/bbchung/gasynctags.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('gasynctags')
+    nmap <silent><space>d  :GasyncTagsEnable<CR>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - sjbach/lusty.git
+" " https://github.com/sjbach/lusty.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('lusty')
+    nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - othree/eregex.vim.git
+" " https://github.com/othree/eregex.vim.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('eregex.vim')
+    " With this map, we can select some text in visual mode and by invoking the map,
+    " have the selection automatically filled in as the search text and the cursor
+    " placed in the position for typing the replacement text. Also, this will ask
+    " for confirmation before it replaces any instance of the search text in the
+    " file.
+    " NOTE: We're using %S here instead of %s; the capital S version comes from the
+    " eregex.vim plugin and uses Perl-style regular expressions.
+    vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+
+    " Toggles '/' to mean eregex search or normal Vim search
+    nnoremap <leader>/ :call eregex#toggle()<CR>
+endif
+" "--------------------------------------------------------------------------------------------------------------
+" " plugin - tpope/vim-dispatch.git
+" " https://github.com/tpope/vim-dispatch.git
+" "--------------------------------------------------------------------------------------------------------------
+if neobundle#tap('vim-dispatch')
+    nmap <F9> :Make<cr>
+    nmap MK :Make<cr>
+    nmap MC :Make clean<cr>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - luochen1990/rainbow
