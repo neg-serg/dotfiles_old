@@ -1,6 +1,7 @@
 NeoBundleFetch 'Shougo/neobundle.vim'
-"--[ Test ]--------------------------------------------------------------------------------------------------
+"--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'szw/vim-ctrlspace.git' "better sessions
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
@@ -134,7 +135,7 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
-NeoBundle 'calebsmith/vim-lambdify.git' "show lambda as lambda
+" NeoBundle 'calebsmith/vim-lambdify.git' "show lambda as lambda
 " NeoBundle 'bbchung/clighter.git' "hi with clang
 if executable("lldb")
     NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
@@ -156,10 +157,6 @@ NeoBundleLazy 'vim-perl/vim-perl', {
 NeoBundleLazy 'mattn/emmet-vim', {
             \ 'filetypes' : [
             \   'html', 'css', 'xml', 'vimwiki', 'markdown']
-            \ }
-NeoBundleLazy 'davidhalter/jedi-vim', {
-            \ 'filetypes' : ['python'],
-            \ 'disabled' : !has('python')
             \ }
 NeoBundleLazy 'farseer90718/vim-regionsyntax', {
             \ 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html']
