@@ -2,10 +2,6 @@ let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
 
-" Paste from PRIMARY and CLIPBOARD
-inoremap <silent> <M-v> <Esc>"+p`]a
-inoremap <silent> <S-Insert> <Esc>"*p`]a
-
 "Annoying %)
 nnoremap q: <Nop>
 nnoremap q/ <Nop>
@@ -13,6 +9,10 @@ nnoremap q? <Nop>
 map <Right> <Nop>
 map <Left> <Nop>
 nmap <space> <Nop>
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
 
 nnoremap <silent> <c-w>t :tabnew<CR>
 nnoremap <silent> <c-w>x :tabclose<CR>
@@ -50,79 +50,71 @@ nnoremap ;d :bd<cr>
 nnoremap ;; ;
 map <silent><space><space> :set rnu!<cr>
 
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-
 " like firefox tabs
 nnoremap <silent> <A-w> :Bclose<CR>
 
 " Toggle hlsearch for current results
 nnoremap <leader><leader> :nohlsearch<CR>
+map Q gq
+
+" Paste from PRIMARY and CLIPBOARD
+" inoremap <silent> <M-v> <Esc>"+p`]a
+" inoremap <silent> <S-Insert> <Esc>"*p`]a
+" " Fix home and end keybindings for screen, particularly on mac
+" " - for some reason this fixes the arrow keys too. huh.
+" map [F $
+" imap [F $
+" map [H g0
+" imap [H g0
+" nmap <silent> <leader>sp  :set syn=perl   <CR> :syntax sync fromstart <CR>
+" nmap <silent> <leader>sv  :set syn=vim    <CR> :syntax sync fromstart <CR>
+" nmap <silent> <leader>sz  :set syn=sh     <CR> :syntax sync fromstart <CR>
+" nmap <silent> <leader>sc  :set syn=config <CR> :syntax sync fromstart <CR>
+" nmap <silent> <leader>sf  :set syn=conf   <CR> :syntax sync fromstart <CR>
+" make those behave like ci' , ci"
+" nnoremap ci( f(ci(
+" nnoremap ci{ f{ci{
+" nnoremap ci[ f[ci[
+" vnoremap ci( f(ci(
+" vnoremap ci{ f{ci{
+" vnoremap ci[ f[ci[
+" Visual shifting (does not exit Visual mode)
+" vnoremap < <gv
+" vnoremap > >gv
+" For when you forget to sudo.. Really Write the file.
+" cmap w!! w !sudo tee % >/dev/null
 "-------------
 "Highlight search
 "--
-nnoremap * *N
-vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
-nnoremap <C-F8> :nohlsearch<CR>
-
-map Q gq
-
-" Fix home and end keybindings for screen, particularly on mac
-" - for some reason this fixes the arrow keys too. huh.
-map [F $
-imap [F $
-map [H g0
-imap [H g0
-
-" For when you forget to sudo.. Really Write the file.
-cmap w!! w !sudo tee % >/dev/null
-
-" Indent fun
-vnoremap > >gv
-vnoremap < <gv
+" nnoremap * *N
+" vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
+" nnoremap <C-F8> :nohlsearch<CR>
+" Keep search matches in the middle of the window.
+" nnoremap * *zzzv
+" nnoremap # #zzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
+" Search for selected text, forwards or backwards.
+" vnoremap <silent> * :<C-U>
+"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+"   \gvy/<C-R><C-R>=substitute(
+"   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+"   \gV:call setreg('"', old_reg, old_regtype)<CR>
+" vnoremap <silent> # :<C-U>
+"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+"   \gvy?<C-R><C-R>=substitute(
+"   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+"   \gV:call setreg('"', old_reg, old_regtype)<CR>
+" "}
+" inoremap <expr><BS> pumvisible()? "\<C-y>\<BS>" : "\<BS>"
+" inoremap <expr><C-h> pumvisible()? "\<C-y>\<C-h>" : "\<C-h>"
 
 map <C-g> g<C-g>
-
-nmap <silent> <leader>sp  :set syn=perl   <CR> :syntax sync fromstart <CR>
-nmap <silent> <leader>sv  :set syn=vim    <CR> :syntax sync fromstart <CR>
-nmap <silent> <leader>sz  :set syn=sh     <CR> :syntax sync fromstart <CR>
-nmap <silent> <leader>sc  :set syn=config <CR> :syntax sync fromstart <CR>
-nmap <silent> <leader>sf  :set syn=conf   <CR> :syntax sync fromstart <CR>
-
-" make those behave like ci' , ci"
-nnoremap ci( f(ci(
-nnoremap ci{ f{ci{
-nnoremap ci[ f[ci[
-
-vnoremap ci( f(ci(
-vnoremap ci{ f{ci{
-vnoremap ci[ f[ci[
 
 cno $q <C-\>eDeleteTillSlash()<cr>
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
 inoremap jk <Esc>
-
-" Keep search matches in the middle of the window.
-nnoremap * *zzzv
-nnoremap # #zzzv
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" Search for selected text, forwards or backwards.
-vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
-"}
 
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
@@ -131,21 +123,7 @@ nnoremap <leader><Tab> :b#<CR>
 noremap H ^
 noremap L g_
 
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
 cmap Tabe tabe
-
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
@@ -187,9 +165,6 @@ nnoremap <silent> [Quickfix]wo :<C-u>lopen<CR>
 nnoremap <silent> [Quickfix]wc :<C-u>lclose<CR>
 nnoremap <silent> [Quickfix]wep :<C-u>lolder<CR>
 nnoremap <silent> [Quickfix]wen :<C-u>lnewer<CR>
-
-inoremap <expr><BS> pumvisible()? "\<C-y>\<BS>" : "\<BS>"
-inoremap <expr><C-h> pumvisible()? "\<C-y>\<C-h>" : "\<C-h>"
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
