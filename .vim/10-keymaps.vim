@@ -13,15 +13,14 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
-
-nnoremap <silent> <c-w>t :tabnew<CR>
-nnoremap <silent> <c-w>x :tabclose<CR>
-nnoremap <silent> <leader>4 :set cursorline!<CR>
-
 " Get Rid of stupid Goddamned help keys
 inoremap <F1> <Nop>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
+
+nnoremap <silent> <c-w>t :tabnew<CR>
+nnoremap <silent> <c-w>x :tabclose<CR>
+nnoremap <silent> <leader>4 :set cursorline!<CR>
 
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
 
@@ -38,16 +37,19 @@ nnoremap <PageDown> :bn<CR>
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
+
 " Now we don't have to move our fingers so far when we want to scroll through
 " the command history; also, don't forget the q: command (see :h q: for more
 " info)
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
+" semicolon magic
 nnoremap ;w :w!<cr>
 nnoremap ;q :q<cr>
 nnoremap ;d :bd<cr>
 nnoremap ;; ;
+
 map <silent><space><space> :set rnu!<cr>
 
 " like firefox tabs
@@ -57,62 +59,25 @@ nnoremap <silent> <A-w> :Bclose<CR>
 nnoremap <leader><leader> :nohlsearch<CR>
 map Q gq
 
-" Paste from PRIMARY and CLIPBOARD
-" inoremap <silent> <M-v> <Esc>"+p`]a
-" inoremap <silent> <S-Insert> <Esc>"*p`]a
-" " Fix home and end keybindings for screen, particularly on mac
-" " - for some reason this fixes the arrow keys too. huh.
-" map [F $
-" imap [F $
-" map [H g0
-" imap [H g0
-" nmap <silent> <leader>sp  :set syn=perl   <CR> :syntax sync fromstart <CR>
-" nmap <silent> <leader>sv  :set syn=vim    <CR> :syntax sync fromstart <CR>
-" nmap <silent> <leader>sz  :set syn=sh     <CR> :syntax sync fromstart <CR>
-" nmap <silent> <leader>sc  :set syn=config <CR> :syntax sync fromstart <CR>
-" nmap <silent> <leader>sf  :set syn=conf   <CR> :syntax sync fromstart <CR>
 " make those behave like ci' , ci"
-" nnoremap ci( f(ci(
-" nnoremap ci{ f{ci{
-" nnoremap ci[ f[ci[
-" vnoremap ci( f(ci(
-" vnoremap ci{ f{ci{
-" vnoremap ci[ f[ci[
+nnoremap ci( f(ci(
+nnoremap ci{ f{ci{
+nnoremap ci[ f[ci[
+vnoremap ci( f(ci(
+vnoremap ci{ f{ci{
+vnoremap ci[ f[ci[
+
 " Visual shifting (does not exit Visual mode)
-" vnoremap < <gv
-" vnoremap > >gv
-" For when you forget to sudo.. Really Write the file.
-" cmap w!! w !sudo tee % >/dev/null
-"-------------
-"Highlight search
-"--
-" nnoremap * *N
-" vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
-" nnoremap <C-F8> :nohlsearch<CR>
+vnoremap < <gv
+vnoremap > >gv
+
 " Keep search matches in the middle of the window.
-" nnoremap * *zzzv
-" nnoremap # #zzzv
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
-" Search for selected text, forwards or backwards.
-" vnoremap <silent> * :<C-U>
-"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-"   \gvy/<C-R><C-R>=substitute(
-"   \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-"   \gV:call setreg('"', old_reg, old_regtype)<CR>
-" vnoremap <silent> # :<C-U>
-"   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-"   \gvy?<C-R><C-R>=substitute(
-"   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-"   \gV:call setreg('"', old_reg, old_regtype)<CR>
-" "}
-" inoremap <expr><BS> pumvisible()? "\<C-y>\<BS>" : "\<BS>"
-" inoremap <expr><C-h> pumvisible()? "\<C-y>\<C-h>" : "\<C-h>"
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 map <C-g> g<C-g>
-
-cno $q <C-\>eDeleteTillSlash()<cr>
-cno $c e <C-\>eCurrentFileDir("e")<cr>
 
 inoremap jk <Esc>
 
@@ -122,8 +87,6 @@ nnoremap <leader><Tab> :b#<CR>
 " Easier to type, and I never use the default behavior.
 noremap H ^
 noremap L g_
-
-cmap Tabe tabe
 
 " Allow using the repeat operator with a visual selection (!)
 " http://stackoverflow.com/a/8064607/127816
