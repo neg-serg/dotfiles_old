@@ -1,0 +1,109 @@
+# set editing-mode vi
+# set keymap vi-insert
+
+# set editing-mode emacs
+# set keymap emacs-meta
+#
+# set bell-style audible
+# set bind-tty-special-chars on
+# set blink-matching-paren on
+# set byte-oriented off
+# set comment-begin #
+# set completion-prefix-display-length 111
+# set completion-query-items 200
+# set convert-meta on
+# set disable-completion off
+# set echo-control-characters on
+# set enable-keypad off
+# set enable-meta-key on
+# set history-preserve-point off
+# set history-size 1000
+# set horizontal-scroll-mode off
+# set input-meta on
+# set mark-directories on
+# set mark-modified-lines off
+# set mark-symlinked-directories on
+# set match-hidden-files off
+# set meta-flag on
+# set output-meta on
+# set page-completions on
+# set prefer-visible-bell on
+# set revert-all-at-newline off
+# set show-all-if-ambiguous on
+# set show-all-if-unmodified on
+# set skip-completed-text on
+# set visible-stats on
+# #set completion-ignore-case on
+# #set print-completions-horizontally on
+# set completion-ignore-case on
+# set completion-prefix-display-length 2
+# set show-all-if-ambiguous on
+# set show-all-if-unmodified on
+# set completion-map-case on
+#
+$if pimpd2
+  "\C-h": "help\n"
+  "\C-l": "loved?\n"
+  "\C-n": "np\n"
+  "\C-o": "stop\n"
+  "\C-k": "stop\n"
+  "\C-y": "copy\n"
+  "\C-ya": "copya\n"
+$endif
+
+$if re.pl
+  "\C-e": "perldoc perlre\n"
+  "\C-g": "perldoc perlguts\n"
+  "\C-p": "perldoc perlipc\n"
+  "\C-o": "perldoc perlop\n"
+  "\C-u": "perldoc perlunicode\n"
+  "\C-v": "perldoc perlvar\n"
+$endif
+
+$if Bash
+  "\C-x0": " &>/dev/null "
+  "\C-x1": " >/dev/null "
+  "\C-x2": " 2>/dev/null "
+  "\C-x3": " 2>&1 "
+$endif
+
+$if mode=vi
+  set keymap vi-command
+  "gg": beginning-of-history
+  "G": end-of-history
+  "j": history-search-forward
+  "k": history-search-backward
+  set keymap vi-insert
+  "kj": vi-movement-mode
+  "\C-w": backward-kill-word
+$endif
+
+set bell-style                 none
+set mark-symlinked-directories on
+set match-hidden-files         off
+set show-all-if-unmodified     on
+set visible-stats              on
+set bind-tty-special-chars     off
+
+"\C-w": backward-kill-word
+"\ew": copy-backward-word
+"\C-p": history-search-backward
+"\C-n": history-search-forward
+"\C-\M-p": dynamic-complete-history
+"\C-x\C-i": menu-complete
+"\C-x\C-o": menu-complete-backward
+"\ea": alias-expand-line
+"\C-x\C-r": re-read-init-file
+"\C-u": kill-whole-line
+"\C-\M-w": unix-word-rubout
+"\C-\M-d": shell-kill-word
+"\C-\M-f": shell-forward-word
+"\C-\M-b": shell-backward-word
+
+"\ei": tab-insert
+"\e,": shell-expand-line
+
+"\e]": character-search
+"\e[": character-search-backward
+
+"\e[3~": delete-char
