@@ -1,0 +1,29 @@
+keycode 222 = XF86PowerOff
+keycode 223 = XF86Sleep
+keycode 236 = XF86Mail
+keycode 229 = XF86Search
+keycode 230 = XF86Favorites
+keycode 178 = XF86WWW
+
+keycode 162 = XF86AudioPlay
+keycode 164 = XF86AudioStop
+keycode 160 = XF86AudioMute
+keycode 124 = XF86AudioPrev
+keycode 125 = XF86AudioNext
+keycode 176 = XF86AudioRaiseVolume
+keycode 174 = XF86AudioLowerVolume
+keycode 172 = XF86AudioPlay
+
+add Mod4 = Super_L
+!clear Mod4
+!add Control = Super_L Super_R
+
+!remove Shift = Shift_L
+!keysym Shift_L = Control_L
+!add Control = Control_L
+!---[ Caps ]--------------------
+clear Lock
+keycode 0x42 = Escape
+!-------------------------------
+!keycode 0x30 = apostrophe
+!keycode 0x22 = slash
