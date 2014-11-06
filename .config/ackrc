@@ -1,0 +1,32 @@
+--cc
+#       #--clojure
+--cpp
+--css
+#       #--elisp
+#       #--go
+--hh
+--html
+--lua
+#       #--mason
+--make
+--perl
+--python
+--ruby
+#       #--scala
+#       #--scheme
+--shell
+#       #--text
+--tex
+--vim
+--xml
+--yaml
+#       #--tcl
+#       --column
+--flush
+--follow
+--heading
+--nobreak
+--smart-case
+--sort-files
+#       --type-set=xresources=.Xresources,.Xcolor
+#       --type-set=stumpwm=.stump,.stumpdump,.dump
