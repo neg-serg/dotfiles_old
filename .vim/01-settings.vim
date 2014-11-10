@@ -7,7 +7,9 @@ if v:version >= 704
   " highlighting slow, which introduces typing latency.
   " Consider removing this in the future when the new regex engine becomes
   " faster.
-  set regexpengine=1
+  " set regexpengine=1
+  " Now I make it autodetect
+  set regexpengine=0
 endif
 
 if has("gui_running")
@@ -40,7 +42,7 @@ if has("gui_running")
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
-    syntax sync minlines=256
+    syntax sync minlines=190
     set ttyscroll=40
     set lazyredraw
 
@@ -90,7 +92,6 @@ if !has("gui_running")
 
     set synmaxcol=256                  " improve hi performance
     " set showmode                     " show what key had been pressed
-    syntax sync minlines=256
     set lazyredraw                     " it's doesn't set by default for tmux
 
     if exists('$TMUX')
@@ -118,6 +119,15 @@ endif
 command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
 command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>
 command! -nargs=1 IndentationLocal silent setlocal ts=<args> shiftwidth=<args>
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
 "----------------------------------------------------------------------------
 set keywordprg=:help
 let $PATH = $PATH . ':' . expand("~/bin/go/bin")
@@ -214,6 +224,7 @@ set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
 " set shortmess+=filmnrxoOtT    " Abbrev. of messages (avoids 'hit enter')
 set more                        " probably it should get out 'Press enter' msg
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+set nofoldenable                " Disable folds as
 set history=1000                " Store a ton of history (default is 20)
 " set spell                     " Spell checking on
 set shiftwidth=4                " spaces for autoindents
