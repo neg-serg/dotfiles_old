@@ -1,0 +1,49 @@
+#!/bin/bash
+# Optimistic lock wrapper | Spencer Tipping
+# Licensed under the terms of the MIT source code license
+# Uses optimistic file-based locking to execute a command, and waits
+# if the lock is already taken.
+#
+# Usage:
+# lock [-o] lock-name command [arguments...]
+if [[ $# == 0 ]]; then
+    echo 'Usage: lock [-o] lock-name command [arguments...]'
+    exit 1
+fi
+locks=~/.locks
+mkdir -p "$locks"
+name="$1"
+shift
+# Optimistic (but unsafe) locking: If a process holds the lock but has no /proc
+# directory, assume it exited abnormally and remove the lock automatically. Not
+# subject to the same race conditions as the original implementation, but not
+# bulletproof either.
+if [[ $name == '-o' ]]; then
+    name="$1"
+    shift
+    if [[ -d "$locks/$name" ]]; then
+        if [[ -d /proc/$(< "$locks/$name/pid") ]]; then
+            echo "process $(< "$locks/$name/pid") appears to still be running; are you sure?"
+            read -p "unlock (y/N) " answer
+            if [[ $answer != 'y' ]]; then
+                echo "not deleting lock $name"
+                exit 0
+            fi
+        fi
+        rm -r "$locks/$name"
+    fi
+fi
+# Repeatedly attempt to take the lock, which in this case means creating
+# a directory.
+previous_pid=
+while ! mkdir "$locks/$name" >& /dev/null; do
+    pid=$(< "$locks/$name/pid")
+    [[ $previous_pid != $pid ]] && echo "waiting for process $pid to release lock $name..."
+    previous_pid=$pid
+    sleep 1
+done
+echo -n $$ > "$locks/$name/pid"
+eval "$@"
+return_code=$?
+rm -f "$locks/$name/pid" && rmdir "$locks/$name"
+exit $return_code
