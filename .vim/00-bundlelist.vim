@@ -1,6 +1,8 @@
 NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'yssl/VIntSearch.git' "fulltext search for vim
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'szw/vim-ctrlspace.git' "better sessions
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
@@ -73,8 +75,9 @@ NeoBundleLazy 'Raimondi/delimitMate', {
 NeoBundleLazy 'scrooloose/syntastic', {
             \ 'insert' : 1
             \ }
-NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
-NeoBundle 'scrooloose/nerdtree.git' "for cwd
+" NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
+NeoBundle 'Yggdroot/indentLine.git' "indent tabs visually with |-es too slow
+" NeoBundle 'scrooloose/nerdtree.git' "for cwd
 NeoBundle 'xkdcc/Session-Viminfo-Management.git' "session managing
 NeoBundle 'tpope/vim-abolish.git' "substitute with steroids
 NeoBundle 'vim-scripts/YankRing.vim.git' "multiple pasting
@@ -98,7 +101,6 @@ if executable("tmux")
     NeoBundle 'tpope/vim-tbone.git' "tmux basics
     NeoBundle 'benmills/vimux.git' "exec commands in tmux
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
-    NeoBundle 'wellle/tmux-complete.vim.git' "completion from tmux for vim
 endif
 NeoBundle 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))
@@ -135,8 +137,6 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
-" NeoBundle 'calebsmith/vim-lambdify.git' "show lambda as lambda
-" NeoBundle 'bbchung/clighter.git' "hi with clang
 if executable("lldb")
     NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
 endif
@@ -174,6 +174,7 @@ if executable("gtags")
     NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
     NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
     NeoBundle 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
+    NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "gtags-cscope navigation
 endif
 if has("cscope")
     "Alternative workground to work with cscope
