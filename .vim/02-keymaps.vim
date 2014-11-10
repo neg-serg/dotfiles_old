@@ -1,3 +1,17 @@
+nnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
+nnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
+vnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
+vnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
+
+function! s:search_forward_p()
+  return exists('v:searchforward') ? v:searchforward : 1
+endfunction
+" " Keep search matches in the middle of the window.
+" nnoremap * *zzzv
+" nnoremap # #zzzv
+" nnoremap n nzzzv
+" nnoremap N Nzzzv
+
 let mapleader      = ','
 let maplocalleader = ' '
 let g:mapleader    = ","
@@ -28,7 +42,7 @@ nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
 
-nnoremap <silent><space>w :set wrap!<CR>
+nnoremap <silent><space>W :set wrap!<CR>
 
 " Traverse buffers, quickly
 nnoremap <PageUp> :bp<CR>
@@ -45,10 +59,8 @@ cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
 " semicolon magic
-nnoremap ;w :w!<cr>
-nnoremap ;q :q<cr>
-nnoremap ;d :bd<cr>
-nnoremap ;; ;
+nnoremap <space>w :w!<cr>
+nnoremap <space>q :q<cr>
 
 map <silent><space><space> :set rnu!<cr>
 
@@ -70,12 +82,6 @@ vnoremap ci[ f[ci[
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
-
-" Keep search matches in the middle of the window.
-nnoremap * *zzzv
-nnoremap # #zzzv
-nnoremap n nzzzv
-nnoremap N Nzzzv
 
 map <C-g> g<C-g>
 
