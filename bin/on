@@ -1,0 +1,8 @@
+#!/bin/bash
+# Takes an SSH hostname as the first argument.
+# Remaining arguments are executed on the remote host.
+hostname=$1
+shift
+dirname=$(ssh $hostname mktemp -d '/tmp/on-XXXX')
+rsync -auz . $hostname:$dirname/
+ssh $hostname "cd $dirname && $@"
