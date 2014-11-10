@@ -153,7 +153,7 @@ endif
 " "--------------------------------------------------------------------------------------------------------------
 if neobundle#tap('YouCompleteMe')
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-    let g:ycm_filepath_completion_use_working_dir = 0
+    let g:ycm_filepath_completion_use_working_dir = 1
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_cache_omnifunc = 1
     " let g:ycm_collect_identifiers_from_tags_files = 1
@@ -208,7 +208,7 @@ if neobundle#tap('YouCompleteMe')
     let g:ycm_goto_buffer_command = 'vertical-split'
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
-    nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()
+    nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()<CR>
 endif
 " "--------------------------------------------------------------------------------------------------------------
 " " plugin - majutsushi/tagbar.git
@@ -443,12 +443,11 @@ if neobundle#tap('unite.vim')
     let g:unite_source_mru_update_interval       = 300
     let g:unite_source_file_rec_min_cache_files  = 300
     let g:unite_source_file_rec_max_depth        = 10
-    let g:unite_source_history_yank_enable       = 1
+    let g:unite_source_history_yank_enable       = 0
     let g:unite_source_bookmark_directory        = $HOME . "/.config/unite/bookmark"
     let g:unite_data_directory                   = $HOME.'/.config/unite'
     let g:junkfile#directory                     = expand($HOME."/.config/unite/junk")
     let g:unite_source_gtags_treelize            = 1
-    let g:unite_source_history_yank_enable       = 1
     let g:unite_enable_short_source_mes          = 0
     let g:unite_force_overwrite_statusline       = 0
     let g:unite_prompt                           = '>> '
@@ -532,7 +531,8 @@ if neobundle#tap('unite.vim')
     nnoremap <silent> [unite]j :Unite buffer_tab <CR>
     nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
     nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
-    nnoremap <expr> [unite]G ':Unite grep:'. expand("%:h") . ':-r'
+    nnoremap <expr> [unite]g ':Unite grep:'. expand("%:h") . ':-r'
+    nnoremap <space>/ :Unite grep:.<cr>
     nnoremap <silent> [unite]d :Unite -silent buffer<CR>
     nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
     nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
@@ -613,7 +613,7 @@ endif
 " "--------------------------------------------------------------------------------------------------------------
 if neobundle#tap('vim-dispatch')
     nmap <F9> :Make<cr>
-    nmap MK :Make<cr>
+    nmap MK :Make 
     nmap MC :Make clean<cr>
 endif
 " "--------------------------------------------------------------------------------------------------------------
