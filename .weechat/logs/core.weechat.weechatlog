@@ -1,0 +1,3 @@
+2014-11-17 21:28:18		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, relay, ruby, script, tcl, trigger, xfer
+2014-11-17 21:28:24	=!=	Error with command "/query" (help on command: /help query)
+2014-11-17 21:28:26		fifo: pipe closed

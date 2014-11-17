@@ -1,0 +1,5 @@
+2014-11-17 21:27:39		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, relay, ruby, script, tcl, trigger, xfer
+2014-11-17 21:27:39	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2014-11-17 21:27:39	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2014-11-17 21:28:00	⚠ 	Error with command "/query" (help on command: /help query)
+2014-11-17 21:28:02		fifo: pipe closed
