@@ -15,18 +15,6 @@ snippet hfun "header func"
 ${1:void} ${3:Func}($4);
 endsnippet
 
-snippet nsp "namespace .. (namespace)" !
-namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
-$0
-}${1/.+/ \/\/ namespace /m}$1
-endsnippet
-
-snippet uns "unnamed namespace" !
-namespace {
-$0
-}  // unnamed namespace
-endsnippet
-
 snippet fori "for int loop (fori)"
 for ( ${4:int} ${2:i} = 0; $2 < ${1:count}; ${3:++$2} ) {
 	${0:/* code */}
@@ -49,11 +37,7 @@ snippet svr "std::vector"
 const std::vector< ${1:std::string} > &$2
 endsnippet
 
-snippet sd "std::"
-std::
-endsnippet
-
-snippet beginend "$1.begin(), $1.end() (beginend)"
+snippet bn "$1.begin(), $1.end() (beginend)"
 ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
 endsnippet
 
@@ -88,10 +72,8 @@ snippet map "std::map (map)"
 std::map<${1:key}, ${2:value}> map$0;
 endsnippet
 
-snippet vector "std::vector (v)"
-std::vector<${1:char}> v$0;
-endsnippet
-
 snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
 endsnippet
+
+# vim:ft=snippets:

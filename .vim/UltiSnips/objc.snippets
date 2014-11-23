@@ -1,9 +1,5 @@
 priority -50
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
-
 snippet imp "#import (imp)" b
 #import "${1:`!p snip.rv = re.sub(r'\..*$', '.h', fn)`}"
 endsnippet
@@ -45,21 +41,18 @@ endsnippet
 snippet forarray "for NSArray loop (forarray)"
 unsigned int	${1:object}Count = [${2:array} count];
 
-for(unsigned int index = 0; index < $1Count; index += 1)
-{
+for(unsigned int index = 0; index < $1Count; index += 1) {
 	${3:id}	$1 = [$2 objectAtIndex:index];
 	$0
 }
 endsnippet
 
 snippet objacc "Object Accessors (objacc)"
-- (${1:id})${2:thing}
-{
+- (${1:id})${2:thing} {
 	return $2;
 }
 
-- (void)set${2/./\u$0/}:($1)aValue
-{
+- (void)set${2/./\u$0/}:($1)aValue {
 	$0${1/( \*)?$/(?1:$1: )/}old${2/./\u$0/} = $2;
 	$2 = [aValue retain];
 	[old${2/./\u$0/} release];
@@ -71,16 +64,14 @@ snippet sel "@selector"
 endsnippet
 
 snippet cdacc "CoreData Accessors Implementation"
-- (${1:id})${2:attribute}
-{
+- (${1:id})${2:attribute} {
 	[self willAccessValueForKey:@"$2"];
 	$1 value = [self primitiveValueForKey:@"$2"];
 	[self didAccessValueForKey:@"$2"];
 	return value;
 }
 
-- (void)set${2/./\u$0/}:($1)aValue
-{
+- (void)set${2/./\u$0/}:($1)aValue {
 	[self willChangeValueForKey:@"$2"];
 	[self setPrimitiveValue:aValue forKey:@"$2"];
 	[self didChangeValueForKey:@"$2"];
@@ -102,8 +93,7 @@ IBOutlet ${1:NSSomeClass} *${2:${1/^[A-Z](?:[A-Z]+|[a-z]+)([A-Z]\w*)/\l$1/}};
 endsnippet
 
 snippet I "Initialize Implementation (I)"
-+ (void)initialize
-{
++ (void)initialize {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 		$0@"value", @"key",
 		nil]];
@@ -115,43 +105,35 @@ bind:@"${1:binding}" toObject:${2:observableController} withKeyPath:@"${3:keyPat
 endsnippet
 
 snippet arracc "LoD array (arracc)"
-- (void)addObjectTo${1:Things}:(${2:id})anObject
-{
+- (void)addObjectTo${1:Things}:(${2:id})anObject {
 	[${3:${1/./\l$0/}} addObject:anObject];
 }
 
-- (void)insertObject:($2)anObject in$1AtIndex:(unsigned int)i
-{
+- (void)insertObject:($2)anObject in$1AtIndex:(unsigned int)i {
 	[$3 insertObject:anObject atIndex:i];
 }
 
-- ($2)objectIn$1AtIndex:(unsigned int)i
-{
+- ($2)objectIn$1AtIndex:(unsigned int)i {
 	return [$3 objectAtIndex:i];
 }
 
-- (unsigned int)indexOfObjectIn$1:($2)anObject
-{
+- (unsigned int)indexOfObjectIn$1:($2)anObject {
 	return [$3 indexOfObject:anObject];
 }
 
-- (void)removeObjectFrom$1AtIndex:(unsigned int)i
-{
+- (void)removeObjectFrom$1AtIndex:(unsigned int)i {
 	[$3 removeObjectAtIndex:i];
 }
 
-- (unsigned int)countOf$1
-{
+- (unsigned int)countOf$1 {
 	return [$3 count];
 }
 
-- (NSArray *${1/./\l$0/}
-{
+- (NSArray *${1/./\l$0/} {
 	return $3;
 }
 
-- (void)set$1:(NSArray *)new$1
-{
+- (void)set$1:(NSArray *)new$1 {
 	[$3 setArray:new$1];
 }
 endsnippet
@@ -185,12 +167,10 @@ endsnippet
 
 snippet alert "NSRunAlertPanel (alert)"
 int choice = NSRunAlertPanel(@"${1:Something important!}", @"${2:Something important just happend, and now I need to ask you, do you want to continue?}", @"${3:Continue}", @"${4:Cancel}", nil);
-if(choice == NSAlertDefaultReturn) // "$3"
-{
+if(choice == NSAlertDefaultReturn) {
 	$0;
 }
-else if(choice == NSAlertAlternateReturn) // "$4"
-{
+else if(choice == NSAlertAlternateReturn) {
 		$0
 }
 endsnippet
@@ -217,8 +197,7 @@ snippet obs "Register for Notification"
 endsnippet
 
 snippet responds "Responds to Selector"
-if ([${1:self} respondsToSelector:@selector(${2:someSelector:})])
-{
+if ([${1:self} respondsToSelector:@selector(${2:someSelector:})]) {
 		[$1 ${3:${2/((:\s*$)|(:\s*))/:<>(?3: )/g}}];
 }
 endsnippet
@@ -248,13 +227,11 @@ snippet acc "Scalar Accessors Interface (acc)"
 endsnippet
 
 snippet stracc "String Accessors (stracc)"
-- (NSString *)${1:thing}
-{
+- (NSString *)${1:thing} {
 	return ${2:$1};
 }
 
-- (void)set${1/.*/\u$0/}:(NSString *)/})${3:a${1/.*/\u$0/}}
-{
+- (void)set${1/.*/\u$0/}:(NSString *)/})${3:a${1/.*/\u$0/}} {
 	$3 = [$3 copy];
 	[$2 release];
 	$2 = $3;

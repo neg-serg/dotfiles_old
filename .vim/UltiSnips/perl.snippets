@@ -1,8 +1,5 @@
 priority -50
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
 snippet ife "Conditional if..else (ife)"
 if ($1) {
 	${2:# body...}
@@ -124,6 +121,13 @@ endsnippet
 
 snippet while "while"
 while ($1) {
+	${2:# body...}
+}
+
+endsnippet
+
+snippet until "until"
+until ($1) {
 	${2:# body...}
 }
 
