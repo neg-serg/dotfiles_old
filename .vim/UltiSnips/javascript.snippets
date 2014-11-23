@@ -1,8 +1,5 @@
 priority -50
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
 snippet get "Get Elements"
 getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')
 endsnippet
@@ -50,6 +47,12 @@ snippet fun "function (fun)"
 function ${1:function_name}(${2:argument}) {
 	${VISUAL}$0
 }
+endsnippet
+
+snippet vf "Function assigned to var"
+${1:var }${2:function_name} = function $2(${3}) {
+	${VISUAL}$0
+};
 endsnippet
 
 snippet iife "Immediately-Invoked Function Expression (iife)"

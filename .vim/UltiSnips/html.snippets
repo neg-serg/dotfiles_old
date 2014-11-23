@@ -1,9 +1,5 @@
 priority -50
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
-
 global !p
 def x(snip):
 	if snip.ft.startswith("x"):
@@ -172,7 +168,13 @@ snip.rv = snip.fn and 'Hallo' or 'Nothin'
 </body>
 endsnippet
 
-snippet div "XHTML <div>" w
+snippet div. "<div> with class" w
+<div`!p snip.rv=' class="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""`>
+	$0
+</div>
+endsnippet
+
+snippet div# "<div> with ID & class" w
 <div`!p snip.rv=' id="' if t[1] else ""`${1:name}`!p snip.rv = '"' if t[1] else ""``!p snip.rv=' class="' if t[2] else ""`${2:name}`!p snip.rv = '"' if t[2] else ""`>
 	$0
 </div>
@@ -251,6 +253,10 @@ endsnippet
 
 snippet td "table cell" w
 <td>$0</td>
+endsnippet
+
+snippet th "table header" w
+<th>$0</th>
 endsnippet
 
 snippet tr "table row" w
