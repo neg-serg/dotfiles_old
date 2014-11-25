@@ -36,12 +36,15 @@ then
 fi
 
 alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-if  [[ -x "${HOME}/bin/lsp" ]]; then
-    alias l="lsp"
-elif [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
-    alias l="ls++"; 
-else 
-    alias l="ls -aChkopl --group-directories-first --color=auto";
+if [[ ! -x "${HOME}/bin/l" ]]; then
+    if  [[ -x "${HOME}/bin/lsp" ]]; then
+        alias l="lsp"
+        if [[ -x "/usr/bin/vendor_perl/ls++" ]]; then 
+            alias l="ls++"; 
+        else 
+            alias l="ls -aChkopl --group-directories-first --color=auto";
+        fi
+    fi
 fi
 alias lad='ls -d .*(/)' 
 alias lsd='ls -d *(/)'
@@ -79,12 +82,16 @@ function v {
     wid=$(xdotool search --classname wim)
     if [ -z "$wid" ]; then
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
-      sleep .4
-      vim --servername VIM --remote-silent $@
-    else  
+      gooo=`readlink -f "$@"`
+      echo vim --servername VIM --remote-silent "$gooo" > /tmp/tmux_run
+      sleep .5s
+      tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
       notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-      sleep .4
-      vim --servername VIM --remote-silent $@
+    else  
+      echo vim --servername VIM --remote-silent "$gooo" > /tmp/tmux_run
+      sleep .5s
+      tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
     fi
 }
 
@@ -193,7 +200,8 @@ alias :q='exit'
 alias iostat='iostat -mtx'
 alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
-alias yt="youtube-dl -c -t -f best --no-part"
+# alias yt="youtube-dl -c -t -f best --no-part"
+alias yt="you-get"
 alias yr="youtube-viewer --video-player=mpv -C"
 
 # generate alias named "$KERNELVERSION-reboot" so you can use boot with kexec:
