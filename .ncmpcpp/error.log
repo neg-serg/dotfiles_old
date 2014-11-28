@@ -2061,3 +2061,5 @@ TagLib: MPEG::Header::parse() -- Invalid sample rate.
 [2014/04/14 02:56:28 PM] Constructed window is bigger than terminal size
 [2014/04/14 02:56:35 PM] Constructed window is bigger than terminal size
 [2014/04/14 02:56:59 PM] Constructed window is bigger than terminal size
+writeCommonTags: couldn't write 'year' tag to 'new/Audio23.wma' as it's not a positive integer
+writeCommonTags: couldn't write 'track' tag to 'new/Audio23.wma' as it's not a positive integer

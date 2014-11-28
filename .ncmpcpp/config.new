@@ -5,14 +5,14 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=txt:
 # ------------------------------------------------------
 
-# ---
-# MPD
-# ---
-mpd_host = "127.0.0.1"
-mpd_port = "6600"
-mpd_music_dir = "/home/ramonoid/Musica/"
-mpd_connection_timeout = "5"
-mpd_crossfade_time = "5"
+
+# mpd_host = "::1"
+mpd_music_dir = "/home/neg/music"
+mpd_crossfade_time = "0"
+# mpd_crossfade_time = "2"
+# message_delay_time = "4"
+seek_time = "4"
+playlist_disable_highlight_delay = "0"
 
 # ----
 # Bars 
@@ -23,7 +23,6 @@ header_visibility = "no"
 # ------
 # Delays  
 # ------
-playlist_disable_highlight_delay = "1"
 message_delay_time = "1"
 
 # ------
@@ -62,8 +61,8 @@ progressbar_look = "(("
 # ----
 playlist_separate_albums = "no"
 cyclic_scrolling = "yes"
-fancy_scrolling = "yes"
-display_screens_numbers_on_start = "no"
+# fancy_scrolling = "yes"
+# display_screens_numbers_on_start = "no"
 regular_expressions = "extended"
 external_editor = "/usr/bin/vim"
 ignore_leading_the = "no"
@@ -72,10 +71,10 @@ clock_display_seconds = "yes"
 display_bitrate = "yes"
 state_line_color = "red"
 state_flags_color = "blue"
-state_window_color ="blue"
+# state_window_color ="blue"
 empty_tag_marker = "<empty>"
 jump_to_now_playing_song_at_start = "yes"
-ask_before_clearing_main_playlist = "no"
+# ask_before_clearing_main_playlist = "no"
 enable_window_title = "yes"
 display_remaining_time = "no"
 display_volume_level = "yes"

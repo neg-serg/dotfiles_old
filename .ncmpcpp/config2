@@ -213,7 +213,7 @@ progressbar_look = "▍  "
 #
 user_interface = "classic" (classic/alternative)
 #
-media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
+# media_library_left_column = "a" (possible values: a,y,g,c,p, legend above)
 #
 #default_find_mode = "wrapped" (wrapped/normal)
 #
@@ -229,7 +229,7 @@ statusbar_visibility = "no"
 #
 #header_text_scrolling = "yes"
 #
-fancy_scrolling = "yes"
+# fancy_scrolling = "yes"
 #
 #cyclic_scrolling = "no"
 #

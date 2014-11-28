@@ -51,5 +51,5 @@ visualizer_color = "cyan"
 song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
 search_engine_display_mode = "columns" (classic/columns)
 follow_now_playing_lyrics = "yes"
-display_screens_numbers_on_start = "no"
+# display_screens_numbers_on_start = "no"
 #  vim: set ts=2 sw=2 tw=0 :
