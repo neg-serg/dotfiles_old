@@ -286,14 +286,14 @@ def_key "p"
 #def_key "ctrl_r"
 #  reverse_playlist
 #
-def_key "F"
-  apply_filter
+# def_key "F"
+#   apply_filter
 
-def_key "ctrl_g"
-  require_runnable "apply_filter"
-  push_character "ctrl_u"
-  push_character "enter"
-  apply_filter
+# def_key "ctrl_g"
+#   require_runnable "apply_filter"
+#   push_character "ctrl_u"
+#   push_character "enter"
+#   apply_filter
 
 #def_key "/"
 #  find
