@@ -1,5 +1,5 @@
 #!/bin/zsh
 wid=$(xdotool search --classname console)
 if [ -z "$wid" ]; then
-    /bin/urxvt -fn -misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1 -name console &
+    /bin/urxvt -fn xft:terminus:pixelsize=12:style:Bold -name console &
 fi
