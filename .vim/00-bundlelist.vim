@@ -1,9 +1,9 @@
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'yssl/VIntSearch.git' "fulltext search for vim
+NeoBundleFetch 'Shougo/neobundle.vim' "vim bundle manager
 "--[ Main ]--------------------------------------------------------------------------------------------------
-NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'Shougo/neocomplete.vim.git'
 NeoBundle 'szw/vim-ctrlspace.git' "better sessions
+NeoBundle 'dyng/ctrlsf.vim.git' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2 
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
@@ -21,6 +21,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/neomru.vim.git' "mru for unite
 NeoBundle 'vim-jp/vital.vim.git' "improve unite perf
 NeoBundle 'Shougo/unite.vim.git' "unite for creating ui
+NeoBundle 'mopp/autodirmake.vim.git' "automake dir which didnt exists
 NeoBundleLazy 'Shougo/vimfiler.vim', {
             \ 'depends' : 'Shougo/unite.vim',
             \ 'commands' : [
@@ -48,7 +49,6 @@ NeoBundleLazy 'Shougo/unite-outline', {
 NeoBundleLazy 'tsukkee/unite-tag', {
             \ 'unite_sources' : 'tag'
             \ }
-" NeoBundle 'neg-serg/unite-all-in-one.git' "plugins for unite which I use
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
 NeoBundle 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
 NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better that astyle -A14
@@ -81,14 +81,15 @@ NeoBundle 'Yggdroot/indentLine.git' "indent tabs visually with |-es too slow
 NeoBundle 'xkdcc/Session-Viminfo-Management.git' "session managing
 NeoBundle 'tpope/vim-abolish.git' "substitute with steroids
 NeoBundle 'vim-scripts/YankRing.vim.git' "multiple pasting
+NeoBundle 'thinca/vim-qfreplace.git' "visual replace for multiple files
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
     NeoBundle 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
     NeoBundle 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
     NeoBundle 'int3/vim-extradite.git' "Git commit/log browser
-    NeoBundleLazy 'gregsexton/gitv', {
-                \ 'commands' : 'Gitv',
+    NeoBundleLazy 'cohama/agit.vim.git', {
+                \ 'commands' : 'Agit',
                 \ 'depends' : ['tpope/vim-fugitive']
                 \ }
     NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
@@ -110,6 +111,8 @@ NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
 NeoBundle 'derekwyatt/vim-scala' "different initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
+NeoBundle 'kana/vim-gf-user.git' "framework open file by context
+NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
 NeoBundle 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
 NeoBundle 'thinca/vim-ref.git' "integrated reference viewer man/perldoc etc
@@ -123,6 +126,8 @@ NeoBundleLazy 'tpope/vim-surround', {
             \ ['n', 'cs', 'ds', 'ys', 'yS'],
             \ ['x', 'S']]
             \ }
+NeoBundle 'yssl/VIntSearch.git' "fulltext search for vim
+NeoBundle 'mattn/vim-rtags.git' "rtags plugin for vim
 "--[ dev ]---------------------------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', {
             \ 'commands' : 'TagbarToggle'
@@ -167,8 +172,8 @@ NeoBundleLazy 'wannesm/wmgraphviz.vim', {
 NeoBundleLazy 'gerw/vim-latex-suite', {
             \ 'filetypes' : 'tex'
             \ }
-" NeoBundle 'vivien/vim-addon-linux-coding-style.git' "linux kernel code style autoformat
-" NeoBundle 'cjxgm/vimlight.git' "hi by clang
+NeoBundle 'osyo-manga/vim-stargate.git' "insert include
+" NeoBundle 'davidhalter/jedi-vim.git' "try to use it to read docs simply
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
 if executable("gtags")
     NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
