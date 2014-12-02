@@ -148,7 +148,7 @@ defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",la
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true,target="rdesktop",lazy_resize=true}
-defwinprop{class="Conky",winlist_ignore=true,instance="Conky",target="conky",lazy_resize=true}
+-- defwinprop{class="Conky",winlist_ignore=true,instance="Conky",target="conky",lazy_resize=true}
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
@@ -273,8 +273,7 @@ defbindings("WMPlex.toplevel", {
     -- kpress("Mod4+F12",       "ioncore.exec_on(_, 'switch-sound-output.sh')"),
     --kpress("Mod4+F6",        "ioncore.exec_on(_, '~/bin/misc/music')"),
     -- Rename frame --
-    -- kpress("Mod4+c",        "ioncore.exec_on(_, 'ruby ~/bin/clipd.rb menu')"),
-    kpress("Mod4+c",        "ioncore.exec_on(_, '~/bin/scripts/xcmenuctrl')"),
+    kpress("Mod4+c",        "ioncore.exec_on(_, 'sh ~/bin/clip')"),
     submap("Mod1+E",{
         kpress("p", "ioncore.exec_on(_, 'pavucontrol')"),
         kpress("r", "mod_query.query_renameframe(_)"),
