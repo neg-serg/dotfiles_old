@@ -93,8 +93,7 @@ augroup filetypedetect
 augroup END
 
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" 
-autocmd FileType cpp let b:delimitMate_matchpairs = "(:),[:],{:}"  | hi Function guifg=#85A2CC
+autocmd FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" | hi Function guifg=#85A2CC | let b:indentLine_enabled = 1
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
   au!
@@ -193,7 +192,7 @@ autocmd vimrc FileType python
       \ set tabstop=4 |
       \ set shiftwidth=4 |
       \ set softtabstop=4 |
-      \ setlocal omnifunc=pythoncomplete#Complete |
+      \ setlocal completeopt-=preview |
       \ setlocal foldlevel=1000
 
 " autocmd FileType gitcommit DiffGitCached | wincmd paugroup mkd
@@ -247,16 +246,6 @@ autocmd Filetype gitrebase nnoremap <buffer><C-s> :<C-u>Squash<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-e> :<C-u>Edit<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-r> :<C-u>Reword<CR>
 autocmd Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>
-
-augroup User chdir
-    au!
-augroup end
-
-command -complete=dir -nargs=1 Cd call ChdirHook(<q-args>)
-function! ChdirHook(dir)
-    exec "chdir " . a:dir
-    do User chdir
-endfunction
 
 autocmd FileType slim                                set commentstring=/\ %s
 autocmd FileType xdefaults                           set commentstring=!%s
