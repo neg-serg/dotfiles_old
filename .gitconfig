@@ -42,7 +42,7 @@
   denyCurrentBranch = ignore
 [core]
   excludesfile = /etc/gitignore
-	editor = gvim -f
+	editor = vim
 [gui]
   fontui   = -family MonteCarlo -size -12 -weight normal -slant roman -underline 0 -overstrike 0
   fontdiff = -family MonteCarlo -size -12 -weight normal -slant roman -underline 0 -overstrike 0
@@ -74,14 +74,11 @@
 [push]
     default = simple
 [diff]
-#   external = ~/bin/scripts/wimdiff
-	tool = gvimdiff
+	tool = vimdiff
 [difftool]
 	prompt = false
-#[pager]
-#    diff =
 [merge]
     tool = splice
 [mergetool "splice"]
-    cmd = "gvimdiff -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    cmd = "vimdiff -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true

@@ -13,6 +13,7 @@ hi CompIcon>img   color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; m
 
 hi CompItem    color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; padding: -8px -8px; max-height: 16px;
 hi CompItem>*  color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; padding: -8px -8px; max-height: 16px;
+" hi CompItem[selected]  color: #001742; font-family: "PragmataPro"; font-size: 12pt; background: #181818; box-shadow: 0px 0px 4px #111;
 hi CompItem[selected]  color: #001742; font-family: "PragmataPro"; font-size: 12pt; background: #181818; box-shadow: 0px 0px 4px #111;
 hi CompMsg  font-style:color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; italic; margin-left: 16px;
 hi CompResult  color: #CCCCCC; width: 500px; max-width: 500px; overflow: hidden; font-family: "PragmataPro" ;font-size: 12pt; !important;
