@@ -3,6 +3,9 @@ set showtabline=never
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 
+map -builtin + <C-+>
+map -builtin - <C-->
+
 " Shut up.
 javascript dactyl.beep = function() { return false; }
 
@@ -10,8 +13,6 @@ javascript dactyl.beep = function() { return false; }
 set timeoutlen=200
 
 colorscheme vimpwhite
-
-imap jk <Esc>
 
 set downloadsort='-time'
 set findcase='smart'
