@@ -107,7 +107,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   filetype-h           'fg=81'
   filetype-hs          'fg=73'
   filetype-jar         'fg=51'
-  filetype-java        'fg=142,1'
+  filetype-java        'fg=23,1'
   filetype-lisp        'fg=73'
   filetype-asm         'fg=240,1'
   filetype-diff        'fg=232,bg=7'
