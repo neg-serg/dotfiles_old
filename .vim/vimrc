@@ -1,6 +1,6 @@
 scriptencoding utf-8
-set secure
 set exrc
+set secure
 set shell=/bin/sh
 if has('vim_starting')
     filetype off
