@@ -24,7 +24,7 @@ notify-always                           yes
 notify-format                           "newsbeuter: %n unread articles within %f unread feeds"
 notify-screen                           yes
 notify-beep                             no
-notify-program                          "~/.config/newsbeuter/notify.py"
+notify-program                          "~/.newsbeuter/notify.py"
 notify-xterm                            no
 
 player                                  mpv
@@ -38,7 +38,7 @@ show-read-articles                      no
 article-sort-order                      "date-asc"
 articlelist-format                      "%4i %f %D %6L  %?T?|%-17T|  &?%t"
 suppress-first-reload                   no
-bookmark-cmd                            "~/.config/newsbeuter/send2ril.py"
+bookmark-cmd                            "~/.newsbeuter/send2ril.py"
 bookmark-interactive                    false
 bookmark-autopilot                      yes
 cache-file                              ""
@@ -47,7 +47,7 @@ cookie-cache                            ""
 datetime-format                         "%d %b"
 delete-read-articles-on-quit            no
 display-article-progress                yes
-error-log                               "~/.config/newsbeuter/error.log"
+error-log                               "~/.newsbeuter/error.log"
 external-url-viewer                     ""
 feedlist-format                         "%4i %n %11u %t"
 feedlist-title-format                   "%N %V - Tus feeds (%u no leidos, %t total)%?T? - etiqueta `%T'&?"
@@ -71,7 +71,7 @@ proxy                                   ""
 proxy-auth                              ""
 proxy-auth-method                       "any"
 proxy-type                              "http"
-save-path                               "~/.config/newsbeuter/saved"
+save-path                               "~/.newsbeuter/saved"
 search-highlight-colors                 "black" "blue" "bold"
 searchresult-title-format               "%N %V - Resultados de busqueda (%u unread, %t total)"
 selectfilter-title-format               "%N %V - Seleccionar filtro"
