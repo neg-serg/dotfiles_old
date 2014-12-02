@@ -135,7 +135,6 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<args>')
 
-
 " function! s:open_online_cpp_doc()
 "     let l = getline('.')
 "
