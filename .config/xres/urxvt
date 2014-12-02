@@ -4,7 +4,7 @@
 !*.imLocale:                  en_US.utf8
 mutt.colorUL:                 #0172ae
 *shading:                     10
-*.saveLines:                  49152
+*.saveLines:                  0
 *.scrollBar:                  false
 *.scrollWithBuffer:           true
 *.scrollTtyKeypress:          true
@@ -102,7 +102,6 @@ URxvt.font:                 xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droi
 !URxvt.boldItalicFont:       xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
 URxvt.iso14755:             false
 URxvt.mouseWheelScrollPage: true
-URxvt.saveLines:            49152
 URxvt.urgentOnBell:         true
 
 term.keysym.C-1: command:\033]710;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007
