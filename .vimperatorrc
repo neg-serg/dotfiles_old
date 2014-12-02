@@ -9,6 +9,9 @@ imap <C-]> i<Esc>
 noremap <C-]> i<Esc>
 " ignorekeys add -except=:,/,f,F,r,d,<C-[>,<Esc>,h,j,k,l,t,o,d,w,i,u https://vk.com
 
+autocmd VimperatorEnter ".*" set status=input,location,bookmark,history,tabcount,gposition,ssl
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+
 autocmd PageLoad .* js blurAllInputFields()
 :js << EOF
 function blurAllInputFields()
@@ -57,7 +60,6 @@ set shellcmdflag='-c'
 "set showstatuslinks='command'
 
 " feedSomeKeys_3.js {{{
-command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
 lazy fmaps -u='mail\.google\.com/mail' -events=vkeydown,keypress,vkeyup j k
 lazy fmaps -u='mail\.google\.com/mail' c n p o u x s r a ? gi gs gt gd ga gc U
 lazy fmaps -u='mail\.google\.com/mail' -p=<Leader> d,# s,! e
