@@ -36,3 +36,7 @@ bin/rtags
 .config/z884238480
 .config/chromium
 .vimv_history
+.vim/.netrwhist
+.ghc/ghci_history
+.config/ranger/bookmarks
+.config/ranger/history
