@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+menu=$(gpaste --oneline | rofi -dmenu -p "[>>]")
+selection=$(echo "$menu" | cut -d ':' -f1)
+gpaste select $selection
