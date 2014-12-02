@@ -60,9 +60,9 @@ cnoremap <c-k> <up>
 
 " semicolon magic
 nnoremap <space>w :w!<cr>
-nnoremap <space>q :q<cr>
+nnoremap q4 :q<cr>
 
-map <silent><space><space> :set rnu!<cr>
+map <silent><space>l :set rnu!<cr>
 
 " like firefox tabs
 nnoremap <silent> <A-w> :Bclose<CR>
