@@ -1,6 +1,6 @@
-" "--------------------------------------------------------------------------------------------------------------
-" " misc plugins settings
-" "--------------------------------------------------------------------------------------------------------------
+" ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+"   misc plugins settings
+" └─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 " https://github.com/airblade/vim-gitgutter/issues/106
 let g:gitgutter_realtime = 0
 let g:ConqueGdb_Leader          = '\\'       "<leader>, by default is painful
@@ -10,20 +10,20 @@ let g:eregex_default_enable = 0
 let g:mta_use_matchparen_group = 0
 let g:lua_complete_omni = 1
 let g:gasynctags_autostart = 0
-let g:powerline_pycmd="py3"
-" "--------------------------------------------------------------------------------------------------------------
+" let g:powerline_pycmd="py3"
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - sjl/gundo.vim.git
 " " https://github.com/sjl/gundo.vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gundo.vim')
     let g:gundo_playback_delay = 240
 
     nnoremap <Leader>u :GundoToggle<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - nathanaelkane/vim-indent-guides.git
 " " https://github.com/nathanaelkane/vim-indent-guides.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-indent-guides')
     let g:indent_guides_auto_colors = 1
     let g:indent_guides_start_level           = 2
@@ -31,19 +31,20 @@ if neobundle#tap('vim-indent-guides')
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_color_change_percent  = 7
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - Yggdroot/indentLine.git
 " " https://github.com/Yggdroot/indentLine.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('indentLine')
+    let g:indentLine_enabled = 0
     let g:indentLine_char = '│'
     let g:indentLine_faster = 1
     let g:indentLine_color_term = 238
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - SirVer/ultisnips.git
 " " https://github.com/SirVer/ultisnips.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('ultisnips')
     let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
     if has("gui_macvim")
@@ -56,28 +57,28 @@ if neobundle#tap('ultisnips')
         let g:UltiSnipsListSnippets        = "<c-m-s>"
     endif
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - sjbach/lusty.git
 " " https://github.com/sjbach/lusty.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('lusty')
     let g:LustyJugglerDefaultMappings = 0
     let LustyExplorerDefaultMappings  = 0
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - lyokha/vim-xkbswitch.git
 " " https://github.com/lyokha/vim-xkbswitch.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-xkbswitch')
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchIMappings = ['ru']
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
     let g:XkbSwitchSkipFt = [ 'nerdtree', 'tex' ]
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - bling/vim-airline.git
 " " https://github.com/bling/vim-airline.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-airline')
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
@@ -112,10 +113,10 @@ if neobundle#tap('vim-airline')
     \ '' : 'S',
     \ }
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - scrooloose/syntastic.git
 " " https://github.com/scrooloose/syntastic.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('syntastic')
     let g:syntastic_error_symbol='✗'
     let g:syntastic_warning_symbol='⚠'
@@ -147,10 +148,10 @@ if neobundle#tap('syntastic')
     let g:syntastic_c_auto_refresh_includes = 1
     let g:syntastic_c_check_header = 1
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - Valloric/YouCompleteMe.git
 " " https://github.com/Valloric/YouCompleteMe.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('YouCompleteMe')
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
     let g:ycm_filepath_completion_use_working_dir = 1
@@ -179,7 +180,7 @@ if neobundle#tap('YouCompleteMe')
         \   'cpp,objcpp' : ['->', '.', '::'],
         \   'perl' : ['->'],
         \   'php' : ['->', '::'],
-        \   'cs,java,javascript,d,vim,python,ruby,perl6,scala,vb,elixir,go' : ['.'],
+        \   'cs,java,javascript,d,vim,ruby,perl6,scala,vb,elixir,go' : ['.'],
         \   'lua' : ['.', ':'],
         \   'erlang' : [':'],
         \   'ocaml' : ['.', '#'],
@@ -201,26 +202,28 @@ if neobundle#tap('YouCompleteMe')
         \ 'vimwiki'    : 1,
         \ 'pandoc'     : 1,
         \ 'infolog'    : 1,
-        \ 'mail'       : 1
+        \ 'mail'       : 1,
+        \ 'python'     : 1
         \}
+
     let g:ycm_min_num_identifier_candidate_chars = 4
-    let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1}
+    let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1, 'python': 1}
     let g:ycm_goto_buffer_command = 'vertical-split'
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
     nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - majutsushi/tagbar.git
 " " https://github.com/majutsushi/tagbar.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('tagbar')
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - derekwyatt/vim-fswitch.git
 " " https://github.com/derekwyatt/vim-fswitch.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-fswitch')
     " A "companion" file is a .cpp file to an .h file and vice versa
     " Opens the companion file in the current window
@@ -234,18 +237,18 @@ if neobundle#tap('vim-fswitch')
     " Creates a new window on the left and opens the companion file in it
     nnoremap <Space>sv :FSSplitLeft<cr>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - chrisbra/Join.git
 " " https://github.com/chrisbra/Join.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('Join')
     nmap J :Join<CR>
     vmap J :Join<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - utl.vim
 " " https://github.com/vim-scripts/utl.vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('utl')
     let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
     let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'
@@ -253,10 +256,10 @@ if neobundle#tap('utl')
     let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'
     let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - klen/python-mode.git
 " " https://github.com/klen/python-mode.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('python-mode')
     nmap <silent><Leader>n :PymodeLint<CR>
     let g:pymode_breakpoint_bind = '<Leader>B'
@@ -269,10 +272,10 @@ if neobundle#tap('python-mode')
     let g:pymode_rope_completion = 0
     let g:pymode_rope_complete_on_dot = 1
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - gregsexton/gitv.git
 " " https://github.com/gregsexton/gitv.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gitv')
     let g:Gitv_OpenHorizontal = 'auto'
     let g:Gitv_OpenPreviewOnLaunch = 1
@@ -284,30 +287,30 @@ if neobundle#tap('gitv')
     nnoremap <silent> <leader>gV :Gitv! --all<CR>
     vnoremap <silent> <leader>gV :Gitv! --all<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - Valloric/ListToggle.git
 " " https://github.com/Valloric/ListToggle.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('ListToggle')
     let g:lt_height = 10
     
     let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
     let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - mattn/zencoding-vim.git
 " " https://github.com/mattn/zencoding-vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('zencoding-vim')
     let g:user_zen_leader_key = '<c-b>'
     let g:user_zen_settings = {
         \  'indentation' : '  '
         \}
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - Raimondi/delimitMate.git
 " " https://github.com/Raimondi/delimitMate.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('delimitMate')
     let g:delimitMate_expand_space = 1
     let g:delimitMate_expand_cr    = 0
@@ -317,10 +320,10 @@ if neobundle#tap('delimitMate')
     imap <Esc>OH <Plug>delimitMateHome
     imap <Esc>OF <Plug>delimitMateEnd
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - xolox/vim-easytags.git
 " " https://github.com/xolox/vim-easytags.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-easytags')
     let g:easytags_updatetime_min = 9000
     let g:easytags_dynamic_files  = 1
@@ -328,10 +331,10 @@ if neobundle#tap('vim-easytags')
     let g:easytags_python_enabled = 1
     let g:easytags_auto_update    = 1
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - benmills/vimux
 " " https://github.com/benmills/vimux.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vimux')
     let g:VimuxUseNearestPane = 1
     " Vimux should split horizontally, but only if there isn't already a split
@@ -355,10 +358,10 @@ if neobundle#tap('vimux')
     map <Space>ri :VimuxInspectRunner<CR>
     map <Space>rq :VimuxCloseRunner<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - tpope/vim-fugitive.git
 " " https://github.com/tpope/vim-fugitive.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-fugitive')
     nnoremap <Leader>gs :Gstatus<CR>
     nnoremap <Leader>gw :Gwrite<CR>
@@ -378,10 +381,10 @@ if neobundle#tap('vim-fugitive')
     nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
     nnoremap <Leader>ggc :silent! Ggrep -i<Space>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - YankRing.vim
 " " https://github.com/vim-scripts/YankRing.vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 " this is so that single char deletes don't end up in the yankring
 if neobundle#tap('YankRing.vim')
     let g:yankring_history_dir = '/tmp'
@@ -397,10 +400,10 @@ if neobundle#tap('YankRing.vim')
         nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
     endfunction
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - Shougo/unite.vim
 " " https://github.com/Shougo/unite.vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('unite.vim')
     function! s:unite_my_settings()
     nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
@@ -547,10 +550,10 @@ if neobundle#tap('unite.vim')
     nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
                 \Unite -no-quit quickfix'<CR>
     nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
-    " "--------------------------------------------------------------------------------------------------------
-    " " plugin - hewes/unite-gtags.git
-    " " https://github.com/hewes/unite-gtags.git
-    " "---------------------------------------------------------------------------------------------------------
+    " "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+    " " plugin - hewes/unite-gtags.git                            
+    " " https://github.com/hewes/unite-gtags.git                  
+    " "└─────────────────────────────────────────────────────────────────────────────────────────────────────────┘
     if neobundle#tap('unite-gtags')
         nnoremap [unite]D :execute 'Unite gtags/def:'.expand('<cword>')<CR>
         nnoremap [unite]C :execute 'Unite gtags/context'<CR>
@@ -559,41 +562,41 @@ if neobundle#tap('unite.vim')
         vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
     endif
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - drmikehenry/vim-fontsize.git
 " " https://github.com/drmikehenry/vim-fontsize.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-fontsize')
     nmap <silent> <F11>                       <Plug>FontsizeBegin
     nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
     nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
     nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - dbakker/vim-projectroot.git
 " " https://github.com/dbakker/vim-projectroot.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-projectroot')
     nnoremap <silent> <leader>cd :ProjectRootCD<cr>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - bbchung/gasynctags.git
 " " https://github.com/bbchung/gasynctags.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gasynctags')
     nmap <silent><space>d  :GasyncTagsEnable<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - sjbach/lusty.git
 " " https://github.com/sjbach/lusty.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('lusty')
     nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - othree/eregex.vim.git
 " " https://github.com/othree/eregex.vim.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('eregex.vim')
     " With this map, we can select some text in visual mode and by invoking the map,
     " have the selection automatically filled in as the search text and the cursor
@@ -607,19 +610,19 @@ if neobundle#tap('eregex.vim')
     " Toggles '/' to mean eregex search or normal Vim search
     nnoremap <leader>/ :call eregex#toggle()<CR>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - tpope/vim-dispatch.git
 " " https://github.com/tpope/vim-dispatch.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-dispatch')
     nmap <F9> :Make<cr>
     nmap MK :Make 
     nmap MC :Make clean<cr>
 endif
-" "--------------------------------------------------------------------------------------------------------------
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - luochen1990/rainbow
 " " https://github.com/luochen1990/rainbow.git
-" "--------------------------------------------------------------------------------------------------------------
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('rainbow')
     let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
     let g:rainbow_conf = {
@@ -643,4 +646,119 @@ if neobundle#tap('rainbow')
         \       'stylus': 0,
         \   }
         \}
+endif
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+" " plugin - davidhalter/jedi-vim.git
+" " https://github.com/davidhalter/jedi-vim.git
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('jedi-vim')
+    let g:jedi#popup_on_dot = 1
+    let g:jedi#popup_select_first = 0
+    let g:jedi#completions_enabled = 1
+endif
+
+if neobundle#tap('lightline.vim')
+    " lightline setting {{{
+    let g:lightline = {
+                \ 'colorscheme': 'wombat',
+                \ 'mode_map': {
+                \ 'n' : 'N',
+                \ 'i' : 'I',
+                \ 'R' : 'R',
+                \ 'v' : 'V',
+                \ 'V' : 'V-L',
+                \ 'c' : 'COMMAND',
+                \ "\<C-v>": 'V-B',
+                \ 's' : 'SELECT',
+                \ 'S' : 'S-L',
+                \ "\<C-s>": 'S-B',
+                \ '?': ' '
+                \ },
+                \ 'active': {
+                \ 'left': [
+                \ [ 'mode', 'paste' ],
+                \ [ 'filename','fugitive','anzu'],
+                \ ],
+                \ 'right': [
+                \ [ 'lineinfo', 'syntastic' ],
+                \ [ 'percent' ],
+                \ [ 'filetype'],
+                \ ]
+                \ },
+                \ 'component_function': {
+                \ 'modified': 'MyModified',
+                \ 'readonly': 'MyReadonly',
+                \ 'fugitive': 'MyFugitive',
+                \ 'filename': 'MyFilename',
+                \ 'fileformat': 'MyFileformat',
+                \ 'filetype': 'MyFiletype',
+                \ 'fileencoding': 'MyFileencoding',
+                \ 'mode': 'MyMode',
+                \ 'syntastic': 'SyntasticStatuslineFlag',
+                \ 'anzu': 'anzu#search_status',
+                \ }
+                \ }
+    "}}}
+    function! neobundle#tapped.hooks.on_source(bundle) "{{{
+        let g:unite_force_overwrite_statusline=0
+        let g:vimfiler_force_overwrite_statusline=0
+        let g:vimshell_force_overwrite_statusline=0
+    endfunction "}}}
+    function! MyModified() "{{{
+        return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction "}}}
+    function! MyReadonly() "{{{
+        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    endfunction "}}}
+    function! MyFilename() "{{{
+        return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+                    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                    \ &ft == 'unite' ? unite#get_status_string() :
+                    \ &ft == 'vimshell' ? vimshell#get_status_string() :
+                    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                    \ ('' != MyModified() ? ' ' . MyModified() : '')
+    endfunction "}}}
+    function! MyFugitive() "{{{
+        try
+            if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                return fugitive#head()
+            endif
+        catch
+        endtry
+        return ''
+    endfunction "}}}
+    function! MyFileformat() "{{{
+        return winwidth('.') > 70 ? &fileformat : ''
+    endfunction "}}}
+    function! MyFiletype() "{{{
+        return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    endfunction "}}}
+    function! MyFileencoding() "{{{
+        return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    endfunction "}}}
+    function! MyMode() "{{{
+        return winwidth('.') > 60 ? lightline#mode() : ''
+    endfunction "}}}
+    call neobundle#untap()
+endif
+
+if neobundle#tap('vital.vim') 
+    function! neobundle#tapped.hooks.on_source(bundle)
+        let g:V = vital#of('vital')
+        let g:S = g:V.import("Web.HTTP")
+        let g:L = g:V.import("Data.List")
+
+        function! DecodeURI(uri)
+            return g:S.decodeURI(a:uri)
+        endfunction
+
+        function! EncodeURI(uri)
+            return g:S.encodeURI(a:uri)
+        endfunction
+
+        command -nargs=1 DecodeURI echo DecodeURI(<args>)
+        command -nargs=1 EncodeURI echo EncodeURI(<args>)
+
+    endfunction
+
 endif
