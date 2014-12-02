@@ -158,3 +158,43 @@ bindkey '^H' backward-delete-char
 # http://zshwiki.org./home/zle/bindkeys#why_isn_t_control-r_working_anymore
 bindkey -M viins '^s' history-incremental-search-backward
 bindkey -M vicmd '^s' history-incremental-search-backward
+
+# Another Esc key.
+bindkey -M viins '\C-@' vi-cmd-mode
+bindkey -M vicmd '\C-@' vi-cmd-mode
+
+# to delete characters beyond the starting point of the current insertion.
+bindkey -M viins '\C-h' backward-delete-char
+bindkey -M viins '\C-w' backward-kill-word
+bindkey -M viins '\C-u' backward-kill-line
+
+# undo/redo more than once.
+bindkey -M vicmd 'u' undo
+bindkey -M vicmd '\C-r' redo
+
+# history
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M vicmd '?' history-incremental-search-forward
+bindkey -M vicmd '^[k' history-beginning-search-backward
+bindkey -M vicmd '^[j' history-beginning-search-forward
+bindkey -M vicmd 'gg' beginning-of-history
+
+# modification
+bindkey -M vicmd 'gu' down-case-word
+bindkey -M vicmd 'gU' up-case-word
+bindkey -M vicmd 'g~' vi-oper-swap-case
+
+# Misc.  #{{{2
+
+bindkey -M vicmd '\C-t' transpose-chars
+bindkey -M viins '\C-t' transpose-chars
+bindkey -M vicmd '^[t' transpose-words
+bindkey -M viins '^[t' transpose-words
+
+# Disable - the default binding _history-complete-older is very annoying
+# whenever I begin to search with the same key sequence.
+bindkey -M viins -r '^[/'
+
+# Experimental: Alternate keys to the original bindings.
+bindkey -M viins '^[,' _history-complete-newer
+bindkey -M viins '^[.' _history-complete-older
