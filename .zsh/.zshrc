@@ -1,22 +1,23 @@
-. ~/.zsh/01-init.zsh
-. ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. ~/.zsh/03-exports.zsh
-. ~/.zsh/04-oldprompt.zsh
-. ~/.zsh/04-zleiab.zsh
-. ~/.zsh/05-functions.zsh
-. ~/.zsh/06-alias.zsh
-. ~/.zsh/07-misc.zsh
-. ~/.zsh/09-cb.zsh
-. ~/.zsh/10-hashes.zsh
-. ~/.zsh/10-jump.zsh
-. ~/.zsh/11-open.zsh
-. ~/.zsh/12-completion.zsh
-. ~/.zsh/12-vi_additions.zsh
-. ~/.zsh/13-bindkeys.zsh
-. ~/.zsh/14-dirjumps.zsh
-. ~/.zsh/20-rehash-hook.zsh
-. ~/.zsh/40-gpg-agent.zsh
-. ~/.zsh/50-title.zsh
-. ~/.zsh/75-urltools.plugun.zsh
-. ~/.zsh/97-lastfm.zsh
-. ~/.perl5/etc/bashrc
+[[ -e ~/.zsh/01-init.zsh ]] && . ~/.zsh/01-init.zsh
+[[ -e ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -e ~/.zsh/03-exports.zsh ]] && . ~/.zsh/03-exports.zsh
+[[ -e ~/.zsh/04-oldprompt.zsh ]] && . ~/.zsh/04-oldprompt.zsh
+[[ -e ~/.zsh/04-zleiab.zsh ]] && . ~/.zsh/04-zleiab.zsh
+[[ -e ~/.zsh/05-functions.zsh ]] && . ~/.zsh/05-functions.zsh
+[[ -e ~/.zsh/06-alias.zsh ]] && . ~/.zsh/06-alias.zsh
+[[ -e ~/.zsh/07-misc.zsh ]] && . ~/.zsh/07-misc.zsh
+[[ -e ~/.zsh/09-cb.zsh ]] && . ~/.zsh/09-cb.zsh
+[[ -e ~/.zsh/10-hashes.zsh ]] && . ~/.zsh/10-hashes.zsh
+[[ -e ~/.zsh/10-jump.zsh ]] && . ~/.zsh/10-jump.zsh
+[[ -e ~/.zsh/11-open.zsh ]] && . ~/.zsh/11-open.zsh
+[[ -e ~/.zsh/12-completion.zsh ]] && . ~/.zsh/12-completion.zsh
+[[ -e ~/.zsh/12-vi_additions.zsh ]] && . ~/.zsh/12-vi_additions.zsh
+[[ -e ~/.zsh/13-bindkeys.zsh ]] && . ~/.zsh/13-bindkeys.zsh
+[[ -e ~/.zsh/14-dirjumps.zsh ]] && . ~/.zsh/14-dirjumps.zsh
+[[ -e ~/.zsh/20-rehash-hook.zsh ]] && . ~/.zsh/20-rehash-hook.zsh
+[[ -e ~/.zsh/40-gpg-agent.zsh ]] && . ~/.zsh/40-gpg-agent.zsh
+[[ -e ~/.zsh/50-title.zsh ]] && . ~/.zsh/50-title.zsh
+[[ -e ~/.zsh/60-functional.zsh ]] && . ~/.zsh/60-functional.zsh
+[[ -e ~/.zsh/75-urltools.plugun.zsh ]] && . ~/.zsh/75-urltools.plugun.zsh
+[[ -e ~/.zsh/97-lastfm.zsh ]] && . ~/.zsh/97-lastfm.zsh
+[[ -e ~/.perl5/etc/bashrc ]] && . ~/.perl5/etc/bashrc
