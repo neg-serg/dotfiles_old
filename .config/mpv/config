@@ -10,4 +10,7 @@ geometry=50%:50%
 #vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
 #vf=pp=de,hqdn3d
 
+vo=vdpau
+vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+
 hwdec=auto
