@@ -902,3 +902,8 @@ function zhist {
     print - "options: -e (edit), -f (find), -a (all)"
   fi
 }
+
+
+function capture() {
+   ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv $@
+}
