@@ -116,6 +116,11 @@ elseif has ('gui')          " On mac and Windows, use * register for copy-paste
     set clipboard=unnamed
 endif
 
+" convert "\\" to "/" on win32 like environment
+if exists('+shellslash')
+    set shellslash
+endif
+
 command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
 command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>
 command! -nargs=1 IndentationLocal silent setlocal ts=<args> shiftwidth=<args>
@@ -296,7 +301,8 @@ set maxfuncdepth=1000
 set maxmemtot=200000
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-set nomodeline                        " enable modelines
+" set nomodeline                        " enable modelines
+set modeline                        " enable modelines
 set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
 
 set iminsert=0                        " write latin1 characters first
@@ -371,3 +377,27 @@ let g:is_bash          = 1
 
 let g:session_autoload = "no"
 let g:session_autosave = "yes"
+
+command! -bar -bang -nargs=+ SplitNicely
+            \ call s:cmd_split_nicely(<q-args>, <bang>0)
+function! s:cmd_split_nicely(q_args, bang)
+    let winnum = winnr('$')
+    let vertical = 0
+    let save_winwidth = winwidth(0)
+    let save_winheight = winheight(0)
+    execute 'belowright' (vertical ? 'vertical' : '') a:q_args
+    if winnr('$') is winnum
+        " if no new window is opened
+        return
+    endif
+    " Adjust split window.
+    if a:bang
+        if !&l:winfixwidth
+            execute save_winwidth / 3 'wincmd |'
+        endif
+        if !&l:winfixheight
+            execute save_winheight / 2 'wincmd _'
+        endif
+        setlocal winfixwidth winfixheight
+    endif
+endfunction
