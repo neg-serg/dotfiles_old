@@ -67,24 +67,30 @@ hsetroot -fill /home/neg/pic/wl/wallpaper-2923950.jpg
 syndaemon -t -k -i 2 -d
 
 [ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
-xmodmap -e "remove Lock = Caps_Lock"
-xmodmap -e "add mod3 = Caps_Lock"
+# xmodmap -e "clear      lock "
+# xmodmap -e "clear   control"
+# xmodmap -e "clear      mod1"
+# xmodmap -e "clear      mod2"
+# xmodmap -e "clear      mod3"
+# xmodmap -e "clear      mod4"
+# xmodmap -e "clear      mod5"
+# xmodmap -e "keycode      37 = Hyper_L"
+# xmodmap -e "keycode      66 = Control_L"
+# xmodmap -e "add     control = Control_L Control_R"
+# xmodmap -e "add        mod1 = Alt_L Alt_R Meta_L"
+# xmodmap -e "add        mod2 = Num_Lock"
+# xmodmap -e "add        mod3 = Hyper_L"
+# xmodmap -e "add        mod4 = Super_L Super_R"
+# xmodmap -e "add        mod5 = Mode_switch ISO_Level3_Shift"
 [ -f ${HOME}/.config/keymaps/.xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/.xmodmaprc
 
 [ -x /usr/bin/dunst ] && dunst &
 (urxvtd -q -f -o && ${HOME}/bin/urxvt)
 
-# amixer -q set Master 0% mute
 [ -z $(pidof udiskie) ] && udiskie -q&
 # [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
-[ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
+# [ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
-~/bin/clipd.rb &
+gpaste daemon
 ~/bin/scripts/email_notifier.py &
-# ~/bin/scripts/mail_watch.sh &
-
-# export __GL_SYNC_TO_VBLANK=1
-# export __GL_SYNC_DISPLAY_DEVICE=DFP-0
-# export __VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DFP-0
-
 exec notion
