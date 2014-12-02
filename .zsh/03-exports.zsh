@@ -4,7 +4,7 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export LESSCHARSET=UTF-8
 
 export PYTHONIOENCODING='utf-8'
-export GREP_COLORS='ms=1;35:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
+export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
 export EDITOR="vim"
 export VISUAL="gvim -f --remote-silent"
