@@ -68,7 +68,7 @@ stty ixoff -ixon
 # stty line 6 2> /dev/null
 # stty speed 4000000 &> /dev/null
 
-[[ -f ~/.dircolors ]] && eval $(dircolors ~/.dircolors)
+[[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
 
 # No core dumps for now
 ulimit -c 0
