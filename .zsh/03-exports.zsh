@@ -50,15 +50,14 @@ export SDCV_PAGER=$PAGER
 alias less=$PAGER
 alias zless=$PAGER
 
-if [ -x ~/bin/_v ]; then
-    export NULLCMD=~/bin/_v
-    export READNULLCMD=~/bin/_v
-else 
-    if [ -x =vimpager ]; then
-        export READNULLCMD=vimpager
-    fi
-fi
-
+# if [ -x ~/bin/_v ]; then
+#     export NULLCMD=~/bin/_v
+#     export READNULLCMD=~/bin/_v
+# else 
+#     if [ -x =vimpager ]; then
+#         export READNULLCMD=vimpager
+#     fi
+# fi
 
 # export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
 # export MAIL=${MAIL:-/home/neg/.local/mail}
@@ -134,6 +133,5 @@ export GOPATH=${HOME}/bin/go
 export KEYTIMEOUT=5 
 export OSSLIBDIR=/usr/lib/oss
 
-
-export _JAVA_OPTIONS='-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dawt.useSystemAAFontSettings=true' 
 export JAVA_FONTS=/usr/share/fonts/TTF
+export _JAVA_AWT_WM_NONREPARENTING=1
