@@ -22,7 +22,7 @@ uncolor index "~T"
 uncolor index "~D"
 
 # and recolor them appropriately
-  color index      black         default "~P"
+  color index      default         default "~P"
   color index      green         default "~C @.com"
   color index      brightblue    default "~N ~u"  # new ML mail
   color index      blue          default "~N !~u" # new non-ML mail
@@ -39,7 +39,7 @@ uncolor index "~D"
 
 # message bodies
   color attachment brightblack   default
-  color search     black         magenta
+  color search     default         magenta
   color signature  brightblack   default
   color tilde      blue          default
 
