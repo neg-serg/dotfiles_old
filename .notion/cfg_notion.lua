@@ -110,6 +110,8 @@ ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizei
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 defwinprop{class="com-sun-javaws-Main", instance="sun-awt-X11-XFramePeer", target="topcoder"}
+defwinprop{class="jetbrains-idea", instance="*", target="jetbrains", floating=true}
+defwinprop{class="*", instance="sun-awt-X11-XFramePeer", floating=true}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
 defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
@@ -165,6 +167,7 @@ defwinprop{instance="gcolor2", winlist_ignore=true,transient_mode="off",lazy_res
 defwinprop{instance="gpick", winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
 defwinprop{class="Vuze", winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true}
 defwinprop{class="Anamnesis", winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
+defwinprop{class="Nicotine", instance="nicotine", transient_mode="off", target="nicotine"}
 defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
 -------------------------------------------------------------------------------------
@@ -197,7 +200,7 @@ defbindings("WMPlex.toplevel", {
 --------------------
     kpress("Mod4+d",         "console(_)"),
     kpress("Mod4+p",         "named_scratchpad(_, 'float2')"),
-    kpress("Mod1+p",         "named_scratchpad(_, 'torrent')"),
+    kpress("Mod4+n",         "named_scratchpad(_, 'nicotine')"),
     kpress("Mod4+F",         "ncmpcpp(_)"),
     
     kpress("Mod4+E",         "named_scratchpad(_, 'im')"),
