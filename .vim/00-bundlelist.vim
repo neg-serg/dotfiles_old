@@ -1,4 +1,5 @@
 NeoBundleFetch 'Shougo/neobundle.vim' "vim bundle manager
+NeoBundle 'matze/vim-move' "try to move the lines of code
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'Shougo/neocomplete.vim.git'
@@ -8,6 +9,7 @@ NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
 NeoBundle 'neg-serg/vim-colors' "all colors which I want
+NeoBundle 'zaiste/Atom.git' "atom colorscheme
 NeoBundle 'luochen1990/rainbow.git' "improved rainbow-parentesis
 NeoBundle 'Shougo/vimproc' "vimproc is for faster work of unite
 NeoBundle 'Shougo/vimproc.vim', {
@@ -48,6 +50,12 @@ NeoBundleLazy 'Shougo/unite-outline', {
             \ }
 NeoBundleLazy 'tsukkee/unite-tag', {
             \ 'unite_sources' : 'tag'
+            \ }
+NeoBundleLazy 'farseer90718/unite-workflow', {
+            \ 'depends' : [
+            \   'mattn/webapi-vim',
+            \   'mattn/gist-vim',
+            \   'jaxbot/github-issues.vim']
             \ }
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
 NeoBundle 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
@@ -169,12 +177,19 @@ NeoBundleLazy 'farseer90718/vim-regionsyntax', {
 NeoBundleLazy 'wannesm/wmgraphviz.vim', {
             \ 'filetypes' : 'dot'
             \ }
-NeoBundleLazy 'gerw/vim-latex-suite', {
-            \ 'filetypes' : 'tex'
-            \ }
 NeoBundle 'osyo-manga/vim-stargate.git' "insert include
-" NeoBundle 'davidhalter/jedi-vim.git' "try to use it to read docs simply
+NeoBundle 'sbl/scvim.git' " vim plugin for supercollider
+NeoBundle 'yuratomo/java-api-complete' "Completers for java
+NeoBundle 'yuratomo/java-api-javax'
+NeoBundle 'yuratomo/java-api-org'
+NeoBundle 'yuratomo/java-api-sun'
+NeoBundle 'yuratomo/java-api-servlet2.3'
+NeoBundle 'yuratomo/java-api-android'
+NeoBundle 'yuratomo/java-api-junit'
+NeoBundle 'myhere/vim-nodejs-complete' "Completion for nodejs
+NeoBundle 'davidhalter/jedi-vim.git' "try to use it to read docs simply
 "---------------[  Tags  ]-----------------------------------------------------------------------------------
+NeoBundle 'szw/vim-tags' " autogen ctags
 if executable("gtags")
     NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
     NeoBundle 'vim-scripts/multiwindow-source-code-browsing.git' "gtag multiwindow
@@ -190,18 +205,23 @@ endif
 " NeoBundle 'vim-scripts/TeX-9.git' "tex autocompetion
 " NeoBundle 'xuhdev/vim-latex-live-preview.git' "tex live preview
 " NeoBundle 'WolfgangMehner/vim-plugins.git'
+" NeoBundleLazy 'gerw/vim-latex-suite', {
+"             \ 'filetypes' : 'tex'
+"             \ }
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
 "--[ web ]---------------------------------------------------------------------------------------------------
 NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
 NeoBundle 'tpope/vim-markdown' "markdown helper for vim
 NeoBundle 'Valloric/xmledit' "xml editing
+NeoBundle 'dsawardekar/wordpress.vim' "wordpress bindings for viwordpress bindings for vim
 "---------------[ other filetypes ]--------------------------------------------------------------------------
 NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
 NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 if has("gui_running")
-    NeoBundle 'drmikehenry/vim-fontsize.git'      "set fontsize on the fly
-    NeoBundle 'tyru/restart.vim.git'              "add restart support
-    NeoBundle 'vim-scripts/utl.vim.git'           "Open urls in files
-    NeoBundle 'bling/vim-airline.git'             "statusline for gvim only
+    NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
+    NeoBundle 'tyru/restart.vim.git' "add restart support
+    NeoBundle 'vim-scripts/utl.vim.git' "Open urls in files
+    NeoBundle 'bling/vim-airline.git' "statusline for gvim only
 endif
