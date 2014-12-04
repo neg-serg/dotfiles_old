@@ -17,4 +17,4 @@ rofi.fixed-num-lines: false
 rofi.hmode: false
 rofi.ssh-set-title: true
 rofi.disable-history: false
-rofi.levenshtein-sort: true 
+!rofi.levenshtein-sort: true 
