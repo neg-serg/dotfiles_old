@@ -215,7 +215,7 @@ fi
 alias qe='cd *(/om[1])'
 alias hi='_v'
 
-alias wine="LANG=ru_RU.utf-8 wine"
+alias wine="LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
 #-----------[fasd]---------------
 alias a='fasd -a'
 alias sd='fasd -sid'
