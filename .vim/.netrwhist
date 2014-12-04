@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/neg/1st_level/weechat2'
-let g:netrw_dirhist_2='/tmp/vim-config'
-let g:netrw_dirhist_3='/home/neg/dev/wrk/intf_ipv6'
-let g:netrw_dirhist_4='/home/neg/dev/wrk/intf_ipv6/bld/x86'
-let g:netrw_dirhist_5='/home/neg'
-let g:netrw_dirhist_6='/home/neg/dw'
-let g:netrw_dirhist_7='/home/neg/1st_level'
-let g:netrw_dirhist_8='/home/neg/dw'
-let g:netrw_dirhist_9='/home/neg/1st_level'
+let g:netrw_dirhist_cnt =0
