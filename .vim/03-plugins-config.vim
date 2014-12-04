@@ -161,7 +161,7 @@ if neobundle#tap('YouCompleteMe')
     "--[ syntastic enabling ]-----------------
     let g:ycm_show_diagnostics_ui          = 1 
     let g:ycm_seed_identifiers_with_syntax = 0
-    let g:ycm_use_ultisnips_completer      = 0
+    let g:ycm_use_ultisnips_completer      = 1
 
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
@@ -762,3 +762,25 @@ if neobundle#tap('vital.vim')
     endfunction
 
 endif
+
+" "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+" " plugin - farseer90718/unite-workflow
+" " https://github.com/farseer90718/unite-workflow.git
+" "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+let g:unite#workflow#reddit#front = 'http://www.reddit.com/.json?feed=foo&user=bar'
+call unite#custom#profile(
+            \ 'source/github/search, source/github/event, '.
+            \ 'source/github/feed, source/gist/search, '.
+            \ 'source/gist/user, source/v2ex, '.
+            \ 'source/reddit, source/wikipedia',
+            \ 'context', {
+            \   'keep_focus' : 1,
+            \   'no_quit' : 1
+            \ })
+call unite#custom#profile(
+            \ 'source/youdao, source/toilet',
+            \ 'context', {
+            \   'max_multi_lines' : 20,
+            \   'winheight' : 20
+            \ })
+nnoremap <leader>t  :Unite youdao:<C-R><C-W><CR>
