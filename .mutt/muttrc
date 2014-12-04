@@ -129,8 +129,9 @@ hdr_order Date From To Cc
 alternative_order text/plain text/html *
 auto_view text/html
 
-# goobook integration
-set query_command = "goobook query '%s'"
+set query_command= "abook --mutt-query '%s'"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor <Tab> complete-query
 
 # Gmail-style keyboard shortcuts
 macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"

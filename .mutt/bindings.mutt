@@ -11,7 +11,8 @@ bind pager <DOWN> next-page     # so I use UP & DOWN to VIEW message,
 bind pager p previous-unread    # NOT to JUMP to next/prev one!
 bind pager n next-unread        # It's better to use p & p for this
 bind pager ,p print-message     # Print message when viewing it
-macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+# macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+macro index,pager A "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>abook --add-email-quiet<return><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>" "add the sender address to abook"
 macro pager   W        "|urlview\n"
 macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
 macro pager   G       "!getmail\r"  # call getmail from anythere inside mutt
