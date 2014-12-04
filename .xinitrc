@@ -15,21 +15,22 @@ export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 # the wmname utility provided by suckless, as it is NetWM compatible,
 # while wmname sets the value of _NET_SUPPORTING_WM_CHECK to root win.
 
-IRONIC_WM_NAME="LG3D"
-NET_WIN=$(xprop -root _NET_SUPPORTING_WM_CHECK | awk -F "# " '{print $2}')
-
-if [[ "$NET_WIN" == 0x* ]]; then
-    # xprop cannot reliably set UTF8_STRING, so we replace as string.
-    # fortunately, jdk is OK with this, but wm-spec says use UTF8_STRING.
-    xprop -id "$NET_WIN" -remove _NET_WM_NAME
-    xprop -id "$NET_WIN" -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
-else
-    # even if we're not net compatible, do java workaround
-    xprop -root -remove _NET_WM_NAME
-    xprop -root -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
-fi
-
-wmname LG3D
+# IRONIC_WM_NAME="LG3D"
+# NET_WIN=$(xprop -root _NET_SUPPORTING_WM_CHECK | awk -F "# " '{print $2}')
+#
+# if [[ "$NET_WIN" == 0x* ]]; then
+#     # xprop cannot reliably set UTF8_STRING, so we replace as string.
+#     # fortunately, jdk is OK with this, but wm-spec says use UTF8_STRING.
+#     xprop -id "$NET_WIN" -remove _NET_WM_NAME
+#     xprop -id "$NET_WIN" -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
+# else
+#     # even if we're not net compatible, do java workaround
+#     xprop -root -remove _NET_WM_NAME
+#     xprop -root -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
+# fi
+#
+# wmname LG3D
+wmname Sawfish
 swarp  1920 1200
 synclient PalmDetect=1
 
@@ -62,7 +63,8 @@ xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
 # hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
-hsetroot -fill /home/neg/pic/wl/wallpaper-2923950.jpg
+# hsetroot -fill /home/neg/pic/wl/wallpaper-2923950.jpg
+hsetroot -fill /home/neg/pic/wl/546077.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
