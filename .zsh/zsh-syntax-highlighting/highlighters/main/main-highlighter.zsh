@@ -167,14 +167,15 @@ ZSH_HIGHLIGHT_STYLES+=(
 #--[  images  ]-------------------
 #---------------------------------
   filetype-xpm         'fg=24'
-  filetype-ico         'fg=24'
+  filetype-ico         'fg=25'
   filetype-jpeg        'fg=24'
   filetype-jpg         'fg=24'
   filetype-JPG         'fg=24'
   filetype-bmp         'fg=24'
-  filetype-svg         'fg=24'
+  filetype-svg         'fg=25'
+  filetype-svgz        'fg=25'
   filetype-eps         'fg=24'
-  filetype-gif         'fg=24'
+  filetype-gif         'fg=25'
   filetype-png         'fg=24'
   filetype-psf         'fg=25'
 #---------------------------------
@@ -615,6 +616,7 @@ _zsh_highlight_main_highlighter()
         *.sty)         style=$ZSH_HIGHLIGHT_STYLES[filetype-sty];;
         *.sug)         style=$ZSH_HIGHLIGHT_STYLES[filetype-sug];;
         *.svg)         style=$ZSH_HIGHLIGHT_STYLES[filetype-svg];;
+        *.svgz)         style=$ZSH_HIGHLIGHT_STYLES[filetype-svgz];;
         *.swo)         style=$ZSH_HIGHLIGHT_STYLES[filetype-swo];;
         *.swp)         style=$ZSH_HIGHLIGHT_STYLES[filetype-swp];;
         *.tar.lrz)      style=$ZSH_HIGHLIGHT_STYLES[filetype-tar.lrz];;
