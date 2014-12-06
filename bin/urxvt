@@ -8,7 +8,8 @@ if [[ $MAIN_DETECT != "main" ]]; then
     wid=$(xdotool search --classname MainTerminal)
     if [ -z "$wid" ]; then
         urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=19" \
-            -e zsh -i -c "tmux new-session -s main && tmux a -t main"
+            -fb "xft:PragmataPro for Powerline:size=19" \
+            -fi "xft:PragmataPro for Powerline:size=19"  -e zsh -i -c "tmux new-session -s main && tmux a -t main"
         # urxvtc ${CMD} -e zsh -i -c "TMUX= tmux new-session -s main && tmux a -t main"
     fi
 fi
