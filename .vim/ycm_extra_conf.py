@@ -136,6 +136,8 @@ flags = [
 '/usr/include/c++/4.8.2',
 '-isystem',
 '/usr/include/c++/4.9.0',
+'-isystem',
+'/usr/include/c++/4.9.2',
 '-Wundef',
 '-Wstrict-prototypes',
 '-Wno-trigraphs',
