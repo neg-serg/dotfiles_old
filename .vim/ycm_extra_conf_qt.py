@@ -44,6 +44,8 @@ flags = [
 '/usr/include/c++/4.9.0',
 '-isystem',
 '/usr/include/c++/4.9.1/',
+'-isystem',
+'/usr/include/c++/4.9.2/',
 '-Wundef',
 '-Wstrict-prototypes',
 '-Wno-trigraphs',
@@ -78,6 +80,7 @@ flags = [
 '-I', '/usr/include/qt/QtWidgets',
 '-I', '/usr/include/qt/QtXml',
 '-I', '/usr/include/qt/QtXmlPatterns',
+'-I', '/usr/include/boost/spirit'
 
 
 '-I', '.',
