@@ -584,7 +584,7 @@ endif
 " " https://github.com/bbchung/gasynctags.git
 " "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gasynctags')
-    nmap <silent><space>d  :GasyncTagsEnable<CR>
+    nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
 endif
 " "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - sjbach/lusty.git
