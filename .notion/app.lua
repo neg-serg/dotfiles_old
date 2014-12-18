@@ -67,30 +67,6 @@ function app.byinstance(prog, class, instance, where)
    end
 end
 
-function app.emacs_eval(expr)
-   local emacswin = app.match_class("Emacs")[1]
-   if emacswin then
-      ioncore.exec("gnuclient -batch -eval '"..expr.."'")
-      ioncore.defer(function () emacswin:goto_focus() end)
-   else
-      ioncore.exec("emacs -eval '"..expr.."'")
-   end
-end
-
-function app.query_editfile(mplex, dir) 
-   local function handler(file)
-      app.emacs_eval("(find-file \""..file.."\")")
-   end
-
-   mod_query.do_query(mplex,
-        'Edit file:',
-        dir or mod_query.get_initdir(),
-        handler,
-        mod_query.file_completor)
-end
-
-moveapp={}
-
 function moveapp.byclass(ws, class)
    local win = app.match_class(class)[1]
    if win then
