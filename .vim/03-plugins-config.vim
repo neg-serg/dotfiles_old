@@ -51,8 +51,8 @@ if neobundle#tap('ultisnips')
         " Ctrl conflicts with Dvorak-Qwerty Command
         let g:UltiSnipsExpandTrigger       = "<m-s>"
     else
-        let g:UltiSnipsExpandTrigger="<m-s>"
-        let g:UltiSnipsJumpForwardTrigger="<m-s>"
+        let g:UltiSnipsExpandTrigger="jl"
+        let g:UltiSnipsJumpForwardTrigger="jl"
         let g:UltiSnipsJumpBackwardTrigger="<m-f>"
         let g:UltiSnipsListSnippets        = "<c-m-s>"
     endif
@@ -578,6 +578,7 @@ endif
 " "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-projectroot')
     nnoremap <silent> <leader>cd :ProjectRootCD<cr>
+    nnoremap <silent> cd :ProjectRootCD<cr>
 endif
 " "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 " " plugin - bbchung/gasynctags.git
@@ -655,6 +656,7 @@ if neobundle#tap('jedi-vim')
     let g:jedi#popup_on_dot = 1
     let g:jedi#popup_select_first = 0
     let g:jedi#completions_enabled = 1
+    let g:jedi#usages_command = "<leader>z"
 endif
 
 if neobundle#tap('lightline.vim')
