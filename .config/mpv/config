@@ -14,6 +14,8 @@ vo=vaapi
 vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 
 hwdec=auto
+# I am dont like gui
+no-osc
 
 osd-font="PragmataPro for Powerline"
 osd-font-size=19
@@ -28,4 +30,3 @@ ytdl
 
 cursor-autohide=always
 really-quiet
-term-osd-bar
