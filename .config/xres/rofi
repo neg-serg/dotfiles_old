@@ -5,9 +5,9 @@ rofi.columns: 1
 rofi.font: Pragmata Pro for Powerline 14
 rofi.fg: #666666
 rofi.bg: #000000
-rofi.hlfg: #111111
-rofi.hlbg: #666666
-rofi.bc: #003356
+rofi.hlfg: #aaaaaa
+rofi.hlbg: #194558
+rofi.bc: #202020
 rofi.bw: 1
 rofi.loc: 1
 rofi.padding: 1
