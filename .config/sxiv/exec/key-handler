@@ -11,47 +11,137 @@
 # where C/M/S indicate Ctrl/Meta(Alt)/Shift modifier states and KEY is the X
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
-case "$1" in
-"C-e")
-	urxvt -bg "#444" -fg "#eee" -sl 0 -title "$2" -e sh -c "exiv2 pr -q -pa '$2' | less" & ;;
-"C-g")
-	gimp "$2" & ;;
-"C-comma")
-	exec jpegtran -rotate 270 -copy all -outfile "$2" "$2" ;;
-"C-period")
-	exec jpegtran -rotate  90 -copy all -outfile "$2" "$2" ;;
-"C-slash")
-	exec jpegtran -rotate 180 -copy all -outfile "$2" "$2" ;;
-"C-less")
-	exec mogrify -rotate -90 "$2" ;;
-"C-greater")
-	exec mogrify -rotate +90 "$2" ;;
-"C-question")
-	exec mogrify -rotate 180 "$2" ;;
-"C-g")
-    exec gimp "$2" ;;
-"C-d")
-    exec mv "$2" /home/neg/trash/1st-level/pic ;;
 
-"C-m")
-    sxiv_do move "$2" ;;
-"C-c")
-    sxiv_do copy "$2" ;;
-"C-r")
-    sxiv_do rename "$2" ;;
-"S-c")
-    sxiv_do comment "$2" ;;
-"C-semicolon")
-    sxiv_do repeat "$2" ;;
+readonly KEY="$1";
+readonly TAGFILE="$HOME/.config/sxiv/tags"
+readonly TMPFILE="/tmp/sxiv.$$"
+readonly TMPFILE2="/tmp/sxiv2.$$"
+readonly TMPFILE_HSETROOT="/tmp/sxiv_hset.$$"
+readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -columns "1" -font "Pragmata Pro for Powerline 17" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 1 -padding 2 -width 1920'
+Z_DATA_FILE="$XDG_DATA_HOME/sxiv_do.data"
+LAST_ACTION="$XDG_DATA_HOME/sxiv_do.last"
 
-"c")
-    exec /home/neg/bin/scripts/copy_args "$2" ;;
-"slash")
-    exec browse_parent "$2" ;;
-"C-1")
-    exec hsetroot -full $2 ;;
-"C-2")
-    exec hsetroot -fill $2 ;;
-"C-3")
-    exec hsetroot -center $2 ;;
+rotate() {
+	degree="$1"
+	while read file; do
+		case "$(file -b -i "$file")" in
+		image/jpeg*) jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
+		*)           mogrify  -rotate "$degree" "$file" ;;
+		esac
+	done
+}
+
+tag_add() {
+	>>"$TAGFILE"
+	tags=$(dmenu <"$TAGFILE" | tr '\n' ',')
+	[ -z "$tags" ] && return
+	iptckwed -i -a "$tags"
+	echo -n "$tags" | tr ',' '\n' | sort - "$TAGFILE" | uniq >"$TAGFILE.new"
+	mv -f "$TAGFILE"{.new,}
+}
+
+tag_del() {
+	cat >"$TMPFILE"
+	tags=$(iptckwed -iql <"$TMPFILE" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
+	[ -z "$tags" ] && return
+	iptckwed -i -r "$tags" <"$TMPFILE"
+	rm -f "$TMPFILE"
+}
+
+
+
+rename() {
+	cat >"$TMPFILE"
+    dest=$(printf "%s" "$(basename "$fp")" | eval $(echo $rofi_cmd -p '"[rem] >> "'))
+    if [ -n "$dest" ] ; then
+        fp=$(cat < "$TMPFILE")
+        $cmd "$fp" "$(dirname "$fp")/$dest"
+    fi
+}
+
+copy() {
+	cat >"$TMPFILE"
+    if [ -z "$dest" ] ; then
+        dest=$(Z -i "$Z_DATA_FILE" | sed 's:^'$HOME':~:' |eval $(echo $rofi_cmd -p '"[cp] >> "')| sed 's:^~:'$HOME':')
+    fi
+    [ -z "$dest" ] && exit 0
+    if [ -d "$dest" ] ; then
+        cat <"$TMPFILE"|xargs -n1 cp -t $dest
+        Z -i "$Z_DATA_FILE" -a "$dest"
+        printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
+    else
+        Z -i "$Z_DATA_FILE" -d "$dest"
+    fi
+}
+
+
+move() {
+	cat >"$TMPFILE"
+    if [ -z "$dest" ] ; then
+        dest=$(Z -i "$Z_DATA_FILE" | sed 's:^'$HOME':~:' |eval $(echo $rofi_cmd -p '"[mv] >> "')| sed 's:^~:'$HOME':')
+    fi
+    [ -z "$dest" ] && exit 0
+    if [ -d "$dest" ] ; then
+        cat <"$TMPFILE"|xargs -n1 mv -t $dest
+        Z -i "$Z_DATA_FILE" -a "$dest"
+        printf "%s\n" "move "$dest"" > "$LAST_ACTION"
+    else
+        Z -i "$Z_DATA_FILE" -d "$dest"
+    fi
+}
+
+delete() {
+	cat >"$TMPFILE"
+    dest="/home/neg/trash/1st-level/pic"
+    [ -z "$dest" ] && exit 0
+    if [ -d "$dest" ] ; then
+        cat <"$TMPFILE"|xargs -n1 mv -t $dest
+        printf "%s\n" "move "$dest"" > "$LAST_ACTION"
+    fi
+}
+
+repeat() {
+    cat >"$TMPFILE"
+    action=($(cat "$LAST_ACTION"))
+    dest=${action[1]}
+    if [ -d "$dest" ] ; then
+        fp=$(cat < "$TMPFILE")
+        if [[ ${action[0]} == "copy" ]]; then
+            cp "$fp" "$dest"
+            Z -i "$Z_DATA_FILE" -a "$dest"
+            printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
+        fi
+        if [[ ${action[0]} == "move" ]]; then
+            mv "$fp" "$dest"
+            Z -i "$Z_DATA_FILE" -a "$dest"
+            printf "%s\n" "move "$dest"" > "$LAST_ACTION"
+        fi
+    fi
+}
+
+copy_name() {
+    cat >"$TMPFILE2"
+    fp=$(cat < "$TMPFILE2")
+    echo $fp|xsel -bi
+    notify-send "$fp"
+    rm -f $TMPFILE2
+}
+
+case "$KEY" in
+    "C-g") tr '\n' '\0' | xargs -0 gimp & ;;
+    "C-comma")  rotate 270 ;;
+    "C-period") rotate  90 ;;
+    "C-slash")  rotate 180 ;;
+    "C-less") rotate -90 ;;
+    "C-d") delete ;;
+    "C-v") move ;;
+    "C-c") copy ;;
+    "C-r") rename ;;
+    "r")   repeat ;;
+    "c") copy_name ;;
+    "C-1") xargs -n1 hsetroot -full ;;
+    "C-2") xargs -n1 hsetroot -fill ;;
+    "C-3") xargs -n1 hsetroot -center ;;
+    "C-t") tag_add ;;
+    "M-T") tag_del ;;
 esac
