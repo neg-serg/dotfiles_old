@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg6407"
+   version="1.1"
+   inkscape:version="0.91pre2 r"
+   sodipodi:docname="text-x-c++hdr.svg">
+  <defs
+     id="defs6409">
+    <linearGradient
+       id="linearGradient1054">
+      <stop
+         style="stop-color:#257e48;stop-opacity:1"
+         offset="0"
+         id="stop1056" />
+      <stop
+         style="stop-color:#82be46;stop-opacity:1"
+         offset="1"
+         id="stop1058" />
+    </linearGradient>
+    <style
+       type="text/css"
+       id="style874"><![CDATA[
+    .fil0 {fill:#1F1A17}
+   ]]></style>
+    <style
+       type="text/css"
+       id="style1115"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1246"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1115-1"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1246-4"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1115-2"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1246-7"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1115-0"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1246-8"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style874-7"
+       type="text/css"><![CDATA[
+    .fil0 {fill:#1F1A17}
+   ]]></style>
+    <style
+       type="text/css"
+       id="style874-2"><![CDATA[
+    .fil0 {fill:#1F1A17}
+   ]]></style>
+    <style
+       type="text/css"
+       id="style1115-4"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1246-9"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1115-1-1"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1246-4-6"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1115-2-5"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       type="text/css"
+       id="style1246-7-4"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1115-0-6"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style1246-8-0"
+       type="text/css"><![CDATA[ .fil0 {fill:#1F1A17} ]]></style>
+    <style
+       id="style874-7-8"
+       type="text/css"><![CDATA[
+    .fil0 {fill:#1F1A17}
+   ]]></style>
+    <linearGradient
+       gradientTransform="translate(661.71429,-353.14288)"
+       gradientUnits="userSpaceOnUse"
+       y2="1007.4111"
+       x2="25.388002"
+       y1="1049.5046"
+       x1="25.388002"
+       id="linearGradient7270"
+       xlink:href="#linearGradient1054"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient943">
+      <stop
+         id="stop945"
+         offset="0"
+         style="stop-color:#308cd5;stop-opacity:1" />
+      <stop
+         id="stop947"
+         offset="1"
+         style="stop-color:#99d1da;stop-opacity:0.99950981" />
+    </linearGradient>
+    <style
+       type="text/css"
+       id="style874-5">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1115-3"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-1"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-1-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-4-69"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-2-19"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-7-30"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-0-0"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-8-82"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-7-9"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style874-2-5">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1115-4-8"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-9-2"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-1-1-8"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-4-6-3"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-2-5-7"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-7-4-0"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-0-6-7"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-8-0-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-7-8-78"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient943-6"
+       id="linearGradient7270-5"
+       x1="25.388002"
+       y1="1049.5046"
+       x2="25.388002"
+       y2="1007.4111"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(661.71429,-353.14288)" />
+    <style
+       type="text/css"
+       id="style874-7-2">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-8"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-8"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-3"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-0"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-7"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-0"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-8"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-75"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style874-7-1">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-1"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-3"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-44"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-8"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-66"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-58"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-94"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-9"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-29"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <linearGradient
+       id="linearGradient943-6">
+      <stop
+         id="stop945-8"
+         offset="0"
+         style="stop-color:#0eb4d7;stop-opacity:1" />
+      <stop
+         id="stop947-5"
+         offset="1"
+         style="stop-color:#00dcfe;stop-opacity:1" />
+    </linearGradient>
+    <style
+       type="text/css"
+       id="style874-7-2-3">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-8-8"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-8-6"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-3-4"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-0-4"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-7-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-5-1"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-0-1"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-8-7"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-75-7"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style874-7-20">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-2"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-2"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-80"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-70"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-17"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-41"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-5"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-6"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       id="style874-7-8-7"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       id="style1246-8-0-9"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-0-6-5"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-7-4-7"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-2-5-9"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-4-6-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-1-1-9"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-9-0"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-4-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style874-2-0">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       id="style874-7-0"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       id="style1246-8-7"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-0-61"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-7-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-2-1"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-4-5"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-1-0"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-08"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-20"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style874-3">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style874-7-2-0">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-8-1"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-8-4"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-3-9"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-0-7"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-7-4"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-5-3"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-0-7"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-8-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-75-2"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style874-7-07">
+    .fil0 {fill:#1F1A17}
+   </style>
+    <style
+       type="text/css"
+       id="style1246-8-9"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-0-5"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-7-1"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-2-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1246-4-706"> .fil0 {fill:#1F1A17} </style>
+    <style
+       type="text/css"
+       id="style1115-1-4"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1246-6"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style1115-26"
+       type="text/css"> .fil0 {fill:#1F1A17} </style>
+    <style
+       id="style874-0"
+       type="text/css">
+    .fil0 {fill:#1F1A17}
+   </style>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="17.839188"
+     inkscape:cy="23.07926"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="672"
+     inkscape:window-x="-4"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4474" />
+    <sodipodi:guide
+       position="11.000004,37.000021"
+       orientation="26,0"
+       id="guide4478" />
+    <sodipodi:guide
+       position="11.000004,11.000021"
+       orientation="0,26"
+       id="guide4480" />
+    <sodipodi:guide
+       position="37.000004,11.000021"
+       orientation="-26,0"
+       id="guide4482" />
+    <sodipodi:guide
+       position="37.000004,37.000021"
+       orientation="0,-26"
+       id="guide4484" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata6412">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-661.71429,-651.21932)">
+    <g
+       id="layer1-2"
+       inkscape:label="Capa 1">
+      <g
+         inkscape:label="Capa 1"
+         id="layer1-46">
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.01960784;stroke:none"
+           d="m 669.79241,653.02012 c -3.47838,0 -6.27734,2.7989 -6.27734,6.2773 l 0,31.8438 c 0,3.4784 2.79896,6.2773 6.27734,6.2773 l 31.84375,0 c 3.47839,0 6.27735,-2.799 6.27735,-6.2773 l 0,-28.9219 -1.19922,0.01 0,-0.01 1.19922,0 -9.19922,-9.1992 -28.92188,0 z"
+           id="rect5263-9" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.03921569;stroke:none"
+           d="m 670.00726,653.31892 c -3.43138,0 -6.19336,2.764 -6.19336,6.1953 l 0,31.4121 c 0,3.4314 2.76198,6.1934 6.19336,6.1934 l 31.41406,0 c 3.43138,0 6.19336,-2.762 6.19336,-6.1934 l 0,-28.707 -0.90039,0.01 0,-0.01 0.90039,0 -8.90039,-8.9004 -28.70703,0 z"
+           id="rect5261-1" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.07843137;stroke:none"
+           d="m 670.22406,653.61972 c -3.38437,0 -6.10938,2.725 -6.10938,6.1094 l 0,30.9824 c 0,3.3844 2.72501,6.1074 6.10938,6.1074 l 30.98046,0 c 3.38437,0 6.10938,-2.723 6.10938,-6.1074 l 0,-28.4922 -0.59961,0.01 0,-0.01 0.59961,0 -8.59961,-8.5996 -28.49023,0 z"
+           id="rect5259-9" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.15686275;stroke:none"
+           d="m 670.4389,653.91852 c -3.33737,0 -6.02539,2.688 -6.02539,6.0254 l 0,30.5508 c 0,3.3374 2.68802,6.0254 6.02539,6.0254 l 30.55078,0 c 3.33737,0 6.02539,-2.688 6.02539,-6.0254 l 0,-28.2754 -0.30078,0.01 0,-0.01 0.30078,0 -8.30078,-8.3008 -28.27539,0 z"
+           id="rect5257-6" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:url(#linearGradient7270);fill-opacity:1.0;stroke:none"
+           d="m 670.65374,654.21932 c -3.29036,0 -5.93945,2.6491 -5.93945,5.9394 l 0,30.1212 c 0,3.2903 2.64909,5.9394 5.93945,5.9394 l 30.1211,0 c 3.29036,0 5.93945,-2.6491 5.93945,-5.9394 l 0,-28.0606 -8,0 0,-7.9023 0,-0.084 0,-0.014 -28.06055,0 z"
+           id="rect5237-8" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.11764706;stroke:none"
+           d="m 664.71429,687.78192 0,2.5 c 0,3.2904 2.64714,5.9375 5.9375,5.9375 l 30.125,0 c 3.29036,0 5.9375,-2.6471 5.9375,-5.9375 l 0,-2.5 c 0,3.2904 -2.64714,5.9375 -5.9375,5.9375 l -30.125,0 c -3.29036,0 -5.9375,-2.6471 -5.9375,-5.9375 z"
+           id="rect5265-3" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#000000;fill-opacity:0.09803922;stroke:none"
+           d="m 664.71429,689.78192 0,0.5 c 0,3.2904 2.64714,5.9375 5.9375,5.9375 l 30.125,0 c 3.29036,0 5.9375,-2.6471 5.9375,-5.9375 l 0,-0.5 c 0,3.2904 -2.64714,5.9375 -5.9375,5.9375 l -30.125,0 c -3.29036,0 -5.9375,-2.6471 -5.9375,-5.9375 z"
+           id="path5252-7" />
+        <path
+           style="opacity:0.74599998;fill:#fcfdfe;fill-opacity:1;stroke:none"
+           d="m 706.71429,662.21932 -8,-8 0,8 z"
+           id="rect4179"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cccc" />
+        <g
+           transform="translate(122.81147,41.626498)"
+           id="text6661-6"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Decker;-inkscape-font-specification:Decker" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path906-8"
+           d=""
+           style="font-size:7.5px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Impact;-inkscape-font-specification:Impact Bold" />
+        <g
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Decker;-inkscape-font-specification:Decker"
+           id="text6661-7"
+           transform="translate(72.07143,45.24996)" />
+        <path
+           style="fill:#000000"
+           d=""
+           id="path906-9"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <g
+       style="font-style:normal;font-variant:normal;font-weight:900;font-stretch:expanded;font-size:40px;line-height:125%;font-family:Helvetica87-CondensedHeavy;-inkscape-font-specification:'Helvetica87-CondensedHeavy Heavy Expanded';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:0.49803922;stroke:none"
+       id="text1030"
+       transform="matrix(0.91036415,0,0,0.91036415,62.051499,60.523849)">
+      <path
+         d="m 682.18959,689.49933 6.48,0 0,-14.16 q 0,-1.52 0.64,-2.28 0.68,-0.8 1.68,-0.8 1.88,0 1.88,2.48 l 0,14.76 6.48,0 0,-16.2 q 0,-3.08 -1.44,-4.52 -1.4,-1.48 -4.2,-1.48 -1.72,0 -2.96,0.68 -1.24,0.68 -2,2.24 l -0.08,0 0,-9.28 -6.48,0 0,28.56 z"
+         id="path837"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff;fill-opacity:0.49803922" />
+    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path906-94-78"
+       d=""
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Impact;-inkscape-font-specification:'Impact Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:#000000"
+       d=""
+       id="path906-9-2"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path906-94"
+       d=""
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:Impact;-inkscape-font-specification:'Impact Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none" />
+    <path
+       style="fill:#000000"
+       d=""
+       id="path906-9-0"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:0.49803922;stroke:none;stroke-opacity:0"
+       id="rect4361"
+       width="4.9999957"
+       height="6.4721065"
+       x="672.71429"
+       y="681.74719" />
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#ffffff;fill-opacity:0.49803922;stroke:none;stroke-opacity:0"
+       d="m 674.71429,662.21932 0,2 -2,0 0,2 2,0 0,2 2,0 0,-2 2,0 0,-2 -2,0 0,-2 -2,0 z"
+       id="rect4365" />
+  </g>
+</svg>

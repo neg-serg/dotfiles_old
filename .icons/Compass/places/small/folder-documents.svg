@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg1239"
+   version="1.1"
+   inkscape:version="0.48+devel r12820"
+   sodipodi:docname="folder-documents.svg">
+  <defs
+     id="defs1241" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.180846"
+     inkscape:cx="29.445696"
+     inkscape:cy="13.271108"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="673"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata1244">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-644.57142,-419.79076)">
+    <g
+       transform="translate(572.74846,418.35818)"
+       id="layer2"
+       inkscape:label="Capa 2" />
+    <g
+       transform="translate(551.96208,383.80498)"
+       id="layer2-6"
+       inkscape:label="Capa 2" />
+    <g
+       transform="translate(562.12631,385.23759)"
+       id="layer2-8"
+       inkscape:label="Capa 2" />
+    <g
+       id="g4209"
+       transform="matrix(1.9999978,0,0,1.9999978,623.09714,-1616.3759)">
+      <rect
+         y="1022.5845"
+         x="15.237164"
+         height="15.000015"
+         width="15"
+         id="rect3270"
+         style="fill:none;stroke:none" />
+      <path
+         id="rect3278"
+         d="m 16.237157,1022.5845 0,15 13,0 0,-7.5 -2,0 0,5.5 -9,0 0,-11 4.5,0 0,-2 -6.5,0 z"
+         style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         inkscape:connector-curvature="0" />
+      <rect
+         transform="scale(1,-1)"
+         y="-1028.0845"
+         x="24.737164"
+         height="5.4999843"
+         width="4.5"
+         id="rect3320"
+         style="fill:#4d4d4d;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+    </g>
+  </g>
+</svg>
