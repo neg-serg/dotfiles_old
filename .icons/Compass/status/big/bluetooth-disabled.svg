@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48+devel r12923"
+   sodipodi:docname="bluetooth-disabled.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.9682853"
+     inkscape:cx="18.162449"
+     inkscape:cy="39.874175"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="669"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3850" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1004.3622)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path2311-1"
+       d="m 22.465797,1013.3622 0,11.9576 -6.755971,-5.0552 -1.877658,1.8711 8.014475,6.2265 -7.690537,6.1565 2.025261,2.0698 6.28443,-5.0858 0,11.8595 11.702035,-8.7316 -7.754919,-6.1692 7.507249,-6.0844 z m 3.100236,5.818 3.927182,3.2956 -3.927182,2.9729 z m -1.94e-4,12.4205 4.051151,2.9308 -4.053659,2.649 c 0,-2.0088 0.0025,-3.6101 0.0025,-5.5798 z"
+       style="fill:#4d4d4d;fill-opacity:0.49803922;fill-rule:evenodd;stroke:none;display:inline"
+       sodipodi:nodetypes="ccccccccccccccccccccc" />
+  </g>
+</svg>

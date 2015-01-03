@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48+devel r12877"
+   sodipodi:docname="drive-harddisk-system.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="13.783512"
+     inkscape:cy="41.259401"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="673"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     borderlayer="true"
+     inkscape:showpageshadow="false">
+    <sodipodi:guide
+       position="9,39"
+       orientation="30,0"
+       id="guide4269" />
+    <sodipodi:guide
+       position="9,9"
+       orientation="0,30"
+       id="guide4271" />
+    <sodipodi:guide
+       position="39,9"
+       orientation="-30,0"
+       id="guide4273" />
+    <sodipodi:guide
+       position="39,39"
+       orientation="0,-30"
+       id="guide4275" />
+    <sodipodi:guide
+       position="9,39"
+       orientation="0,0"
+       id="guide4277" />
+    <sodipodi:guide
+       position="13,35"
+       orientation="0,22"
+       id="guide4302" />
+    <sodipodi:guide
+       position="35,35"
+       orientation="22,0"
+       id="guide4304" />
+    <sodipodi:guide
+       position="35,13"
+       orientation="0,-22"
+       id="guide4306" />
+    <sodipodi:guide
+       position="13,13"
+       orientation="-22,0"
+       id="guide4308" />
+    <sodipodi:guide
+       position="13,35"
+       orientation="0,0"
+       id="guide4310" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1004.3622)">
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:none;fill-opacity:0.61904764;stroke:none"
+       d="m 13,1017.3622 22,0 0,22 -22,0 0,-22 z"
+       id="path4279" />
+    <path
+       style="fill:#e74c3c;fill-opacity:1;stroke:none"
+       d="M 9 9 L 9 39 L 39 39 L 39 9 L 9 9 z M 13 13 L 35 13 L 35 35 L 13 35 L 13 13 z "
+       transform="translate(0,1004.3622)"
+       id="rect4178" />
+    <rect
+       style="fill:none;fill-opacity:0.80952382;stroke:none"
+       id="rect4202"
+       width="4"
+       height="4"
+       x="22"
+       y="1039.3622"
+       ry="2" />
+    <path
+       style="fill:#e74c3c;fill-opacity:1;stroke:none"
+       d="M 24 14.5 C 18.737 14.5 14.5 18.737 14.5 24 C 14.5 25.904685 15.059917 27.670565 16.017578 29.154297 L 19.75 25.421875 C 19.600336 24.97261 19.5 24.500824 19.5 24 C 19.5 21.507 21.507 19.5 24 19.5 C 26.493 19.5 28.5 21.507 28.5 24 C 28.5 26.493 26.493 28.5 24 28.5 C 23.499176 28.5 23.02739 28.399664 22.578125 28.25 L 18.847656 31.980469 C 20.331138 32.937647 22.095837 33.5 24 33.5 C 29.263 33.5 33.5 29.263 33.5 24 C 33.5 18.737 29.263 14.5 24 14.5 z "
+       transform="translate(0,1004.3622)"
+       id="rect4231" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4314"
+       d="m 13,1028.3622 11,0 0,11 -11,0 0,-11 z"
+       style="fill:none;fill-opacity:0.61904764;stroke:none" />
+  </g>
+</svg>
