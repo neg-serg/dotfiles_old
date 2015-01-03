@@ -1,0 +1,48 @@
+UnityPanelWidget,
+.unity-panel {
+
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (rgba(255,255,255,0.95)),
+									 color-stop(0.02, rgba(255,255,255,0.70)),
+									 color-stop(0.96, rgba(255,255,255,0.40)),
+                                     to (rgba(45,45,45,0.65)));
+
+	/* background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (rgba(255,255,255,0.85)),                                     
+                                     to (rgba(255,255,255,0.40))); */
+    border-width: 0px;
+
+}
+
+.unity-panel.menubar,
+.unity-panel .menubar {
+    color: #000000;
+	text-shadow: none;
+}
+
+.unity-panel.menuitem,
+.unity-panel .menuitem {
+    border-width: 1px 1px 0px 1px;
+
+    /* icon-shadow: 0 1 shade (@bg_color, 1.06); */
+}
+
+/*
+.unity-panel.menubar.menuitem:hover,
+.unity-panel.menubar .menuitem *:hover {
+    background-image: -gtk-gradient (linear, left top, left bottom,
+                                     from (shade (@bg_color, 1.4)),
+                                     to (shade (@bg_color, 1.02)));
+
+    color: @fg_color;
+
+    -unico-border-gradient: -gtk-gradient (linear, left top, left bottom,
+                                           from (shade (@bg_color, 0.88)),
+                                           to (shade (@bg_color, 0.9)));
+
+    -unico-inner-stroke-gradient: -gtk-gradient (linear, left top, left bottom,
+                                                 from (shade (@bg_color, 1.7)),
+                                                 to (shade (@bg_color, 1.02)));
+}
+*/
+

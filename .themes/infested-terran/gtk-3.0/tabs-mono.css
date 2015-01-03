@@ -1,0 +1,113 @@
+/*****************
+ * Notebooks and *
+ * tabs          *
+ *****************/
+.notebook {
+    padding: 0px;
+
+    border-color: @notebook_border;
+    border-style: solid;
+	border-radius: 4px;
+    border-width: 1px;
+
+    background-color: shade(@theme_bg_color, 0.97);
+    -unico-border-gradient: -gtk-gradient (linear,
+                                             left top, left bottom,
+                                             from (shade(@notebook_border, 1.00)),
+                                             to (shade(@notebook_border, 1.30)));
+
+    background-image: -gtk-gradient (linear,
+                                     left top, left bottom,
+                                     from (shade(@theme_bg_color, 0.86)),
+                                     color-stop (0.015, shade(@theme_bg_color, 0.97)),
+                                     to (shade(@theme_bg_color, 0.97)));
+
+    -unico-focus-border-color: alpha (@theme_selected_bg_color, 0.0);
+    -unico-focus-border-radius: 3;
+    -unico-focus-fill-color: alpha (@theme_selected_bg_color, 0.0);
+    -unico-focus-outer-stroke-color: @transparent;
+
+    -GtkNotebook-tab-overlap: 5;
+    -GtkNotebook-tab-curvature: 6;
+}
+
+.notebook GtkDrawingArea {
+	/* ubuntu 12 */
+	background-color: shade (@theme_bg_color, 0.97);
+}
+
+.notebook tab {
+    padding: 2px 6px 2px;
+	border-radius: 0px;
+
+    -unico-border-gradient: -gtk-gradient (linear,
+                                             left top, left bottom,
+                                             from (shade(@notebook_border, 1.10)),
+                                             to (shade(@notebook_border, 1.00)));
+
+	-unico-inner-stroke-width: 1px 1px 0px 1px;
+	-unico-inner-stroke-gradient: none;
+	-unico-inner-stroke-color: @transparent;
+
+	background-image: -gtk-gradient (linear,
+                                     left top, left bottom,
+                                     from (shade(@button_base, 1.06)),
+									 color-stop (0.25, shade(@button_base, 1.04)),
+                                     color-stop (0.50, shade(@button_base, 0.90)),
+                                     color-stop (0.50, shade(@button_base, 0.85)),
+                                     to (shade(@button_base, 0.75))); 
+}
+
+.notebook tab:first-child {
+    border-radius: 4px 0px 0px 0px;
+}
+
+
+.notebook tab:last-child {
+    border-radius: 0px 4px 0px 0px;
+}
+
+.notebook tab:only-child {
+    border-radius: 0px 0px 0px 0px;
+}
+
+.notebook tab:active {
+	-unico-border-gradient: -gtk-gradient (linear,
+                                             left top, left bottom,
+                                             from (shade(@notebook_border, 0.68)),
+                                             to (shade(@notebook_border, 0.80)));
+
+    background-image: -gtk-gradient (linear,
+                                     left top, left bottom,
+                                     from             (shade(@theme_bg_color, 0.47)),
+									 color-stop (0.11, shade(@theme_bg_color, 0.57)),
+									 color-stop (0.97, shade(@theme_bg_color, 0.72)),
+									 color-stop (0.97, shade(@notebook_border, 0.75)),
+                                     to               (shade(@notebook_border, 0.75)));
+
+	-unico-inner-stroke-width: 0px 2px 0px 2px;
+    -unico-inner-stroke-gradient: -gtk-gradient (linear,
+                    				left top, right top,
+                    				from (alpha (#000, 0.09)),
+									color-stop (0.03, alpha(#000, 0.00)),
+									color-stop (0.97, alpha(#000, 0.00)),
+                    				to (alpha (#000, 0.09)));
+}
+
+.notebook tab:active,
+.notebook tab *:active,
+.notebook tab GtkLabel:active {
+	color: @selected_text_color;
+	text-shadow: 1 1 alpha(#000, 0.30);
+}
+
+.notebook tab,
+.notebook tab GtkLabel {
+	color: shade(@theme_fg_color, 1.00); 
+	text-shadow: 0 1 alpha(#000, 0.22);
+}
+
+.notebook .button:active,
+.notebook .button:active:hover {
+	
+}
