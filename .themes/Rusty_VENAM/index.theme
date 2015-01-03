@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Dust
+Comment=Ubuntu Dust theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Dust
+MetacityTheme=Dust
+IconTheme=Humanity-Dark
+CursorTheme=DMZ-White
+ButtonLayout=maximize,minimize,close:
