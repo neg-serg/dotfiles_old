@@ -11,8 +11,12 @@
 alias '?=bc -l <<<'
 alias stderred="LD_PRELOAD=/home/neg/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
 
-NOGLOB_LIST=( fc find ftp history locate rake rsync scp sftp eix mmv wget clive clivescan youtube-dl \
-    translate links links2 xlinks2 lynx)
+NOGLOB_LIST=( \
+    fc find ftp sftp lftp history locate rake rsync scp \
+    eix mmv wget clive clivescan youtube-dl \
+    translate links links2 xlinks2 lynx \
+    you-get bower
+)
 for i in ${NOGLOB_LIST[@]}; alias ${i}="noglob ${i}";
 
 alias "zmv=noglob zmv -v"
@@ -83,14 +87,14 @@ function v {
     if [ -z "$wid" ]; then
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
       notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-      file_name=\"`readlink -f "$@"`\"
+      file_name=\'`readlink -f "$@"`\'
       echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
       sleep .8s
       tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
       filename=
     else  
       notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-      file_name=\"`readlink -f "$@"`\"
+      file_name=\'`readlink -f "$@"`\'
       echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
       sleep .5s
       tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
