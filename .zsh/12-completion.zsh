@@ -92,6 +92,10 @@ mycompletion() {
     # make them a little less short, after all (mostly adds -l option to the whatis calll)
     zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*; _call_whatis -l -s 6 -r .\* 2>/dev/null'
     zstyle :complete-recent-args use-histbang yes
+    # taskwarrior
+    zstyle ':completion:*:*:task:*' verbose yes
+    zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
+    zstyle ':completion:*:*:task:*' group-name ''
     #-------new ----------------------
     # command completion: highlight matching part of command, and 
     zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;248'\'' )'
