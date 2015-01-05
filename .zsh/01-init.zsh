@@ -34,13 +34,6 @@ function zrcautoload() {
     return 0
 }
 
-# DIRSTACKSIZE=8
-# 
-# # Restore directory stack
-# source ~/.dirstack
-#
-# ----------------------------------------------------------------- new
-
 zle -N zle-keymap-select
 unset MAILCHECK
 # // c-s disabling
