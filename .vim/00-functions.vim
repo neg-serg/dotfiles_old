@@ -135,6 +135,17 @@ function! s:Bclose(bang, buffer)
 endfunction
 command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>', '<args>')
 
+
+function! RedirToClipboardFunction(cmd, ...)
+    let cmd = a:cmd . " " . join(a:000, " ")
+    redir @*>
+    exe cmd
+    redir END
+endfunction
+
+command! -complete=command -nargs=+ RedirToClipboard
+    \ silent! call RedirToClipbaordFunction(<f -args>)
+
 " function! s:open_online_cpp_doc()
 "     let l = getline('.')
 "
