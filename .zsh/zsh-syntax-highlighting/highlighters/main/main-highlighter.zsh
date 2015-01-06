@@ -77,7 +77,9 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[  scripts  ]------------------
 #---------------------------------
-  
+  filetype-service      'fg=81'
+  filetype-service-link 'fg=45'
+ 
   filetype-perl        'fg=214'
   filetype-sh          'fg=103'
   filetype-bash        'fg=103'
@@ -430,6 +432,8 @@ _zsh_highlight_main_highlighter()
     else
       case $arg in
         *.pl)          style=$ZSH_HIGHLIGHT_STYLES[filetype-perl];;
+        *.service)     style=$ZSH_HIGHLIGHT_STYLES[filetype-service];;
+        *@.service)    style=$ZSH_HIGHLIGHT_STYLES[filetype-service-link];;
         *.bash)        style=$ZSH_HIGHLIGHT_STYLES[filetype-bash];;
         *.sh)          style=$ZSH_HIGHLIGHT_STYLES[filetype-sh];;
         *.1p)          style=$ZSH_HIGHLIGHT_STYLES[filetype-1p];;
