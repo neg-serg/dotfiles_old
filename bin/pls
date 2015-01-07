@@ -1,20 +1,36 @@
 #!/bin/bash
-
 source ${HOME}/.config/dmenu/pulse
+# source $HOME/.config/dmenurc
+backend="rofi"
 
-function dmenu_t () {
-    if [ "$dmenu_trans" == "1" ]; then
-        dmenu -o 0.9 -l 20 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
-    else
-        dmenu -l 20 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
-    fi
-}
+if [[ "$backend" == "rofi" ]]
+    then
+        function dmenu_t () {
+        rofi -font "$font" -fg "$nf" -bg "$nb" -hlfg "$sf" -hlbg "$sb" -o 90 -bc "$bc" -dmenu
+        }
+
+elif [[ "$backend" == "dmenu" ]]
+    then
+        if [[ "$dmenu_trans" == "1" ]]
+            then
+            function dmenu_t () {
+            dmenu -l 15 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb" -o 90
+            }
+        else
+            function dmenu_t () {
+            dmenu -l 15 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
+            }
+        fi
+fi
+
+
+client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients: " $@)
+
 
 
 case $1 in
     -vol)
         shift
-        client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients:" $@)
         levels="0
 10
 20
@@ -26,26 +42,16 @@ case $1 in
 80
 90
 100"
-        volume=$(echo "$levels"|dmenu_t -p "Volume:" $@)
+        volume=$(echo "$levels" | dmenu_t -p "Volume: " $@)
         set_vol=$(echo "scale=1; $volume / 100 * 65536" | bc)
-        bla=$(echo $client | awk '{print $1}')
-        blub=$(echo ${set_vol%.*})
-        pacmd set-sink-input-volume $bla $blub
+        pacmd set-sink-input-volume "$( echo "$client" | awk '{print $1}' 2>/dev/null )" "${set_vol%.*}"
 
     ;;
     -sink)
         shift
-        source ${HOME}/.config/dmenu/pulse
-        client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients:" $@)
-        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink" $@)
+        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink: " $@)
         pacmd move-sink-input $(echo "$client" | awk '{print $1}') $(echo $sink)
-    ;;
-    -output)
-        shift
-        source ${HOME}/.config/dmenu/pulse
-        client=$(pacmd list-source-outputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients:" $@)
-        sink=$(pacmd list-sources | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink" $@)
-        pacmd move-source-output $(echo "$client" | awk '{print $1}') $(echo $sink)
     ;;
     *)
 esac
+                
