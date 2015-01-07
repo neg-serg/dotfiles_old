@@ -10,5 +10,5 @@ for f in "$@"; do
     genre="$(metaflac --show-tag=genre "$f" | sed 's/[^=]*=//')"
     tracknumber="$(metaflac --show-tag=tracknumber "$f" | sed 's/[^=]*=//')"
 
-    flac --decode --stdout "$f" | lame --preset extreme --add-id3v2 --tt "$title" --ta "$artist" --tl "$album" --ty "$year" --tn "$tracknumber" --tg "$genre" - "${f%.flac}.mp3"
+    flac --decode --stdout "$f" | lame -b 320 --add-id3v2 --tt "$title" --ta "$artist" --tl "$album" --ty "$year" --tn "$tracknumber" --tg "$genre" - "${f%.flac}.mp3"
 done
