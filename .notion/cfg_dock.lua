@@ -11,9 +11,9 @@ mod_dock.create{
     -- Corner or side of the screen to place the dock on.
     -- For embedded dock the valid values are: tl|tr|bl|br
     -- For floating dock the following are also valid: tc|bc|ml|mc|mr
-    -- pos="bc",
+    pos="br",
     -- Growth direction: left|right|up|down
-    grow="right",
+    grow="left",
     -- Whether new dockapps should be added automatically to this dock
     is_auto=true,
     -- Show floating dock initially?
