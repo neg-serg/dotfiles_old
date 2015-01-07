@@ -7,14 +7,12 @@ MAIN_DETECT=$(tmux list-sessions|grep main|awk -F : '{print $1}')
 if [[ $MAIN_DETECT != "main" ]]; then
     wid=$(xdotool search --classname MainTerminal)
     if [ -z "$wid" ]; then
-        urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=19" \
-            -fb "xft:PragmataPro for Powerline:size=19" \
-            -fi "xft:PragmataPro for Powerline:size=19"  -e zsh -i -c "tmux new-session -s main && tmux a -t main"
-        # urxvtc ${CMD} -e zsh -i -c "TMUX= tmux new-session -s main && tmux a -t main"
+        urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
+            -fb "xft:PragmataPro for Powerline:size=17" \
+            -fi "xft:PragmataPro for Powerline:size=17"  -e zsh -i -c "tmux new-session -s main && tmux a -t main"
     fi
 fi
-urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=19" \
-                              -fb "xft:PragmataPro for Powerline:size=19" \
-                              -fi "xft:PragmataPro for Powerline:size=19" \
+urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
+                              -fb "xft:PragmataPro for Powerline:size=17" \
+                              -fi "xft:PragmataPro for Powerline:size=17" \
                               -e zsh -i -c "tmux a -t main"
-# urxvtc ${CMD} -e zsh -i -c "TMUX= tmux a -t main"
