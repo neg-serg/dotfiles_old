@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Example for $XDG_CONFIG_HOME/sxiv/exec/key-handler
 # Called by sxiv(1) whenever an unbound key combo is used,
@@ -66,7 +66,9 @@ copy() {
     fi
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
-        cat <"$TMPFILE"|xargs -n1 cp -t $dest
+        while read line; do
+            eval $(echo cp `echo \"${line}\"` $dest)
+        done < $TMPFILE
         Z -i "$Z_DATA_FILE" -a "$dest"
         printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
     else
@@ -82,7 +84,9 @@ move() {
     fi
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
-        cat <"$TMPFILE"|xargs -n1 mv -t $dest
+        while read line; do
+            eval $(echo mv `echo \"${line}\"` $dest)
+        done < $TMPFILE
         Z -i "$Z_DATA_FILE" -a "$dest"
         printf "%s\n" "move "$dest"" > "$LAST_ACTION"
     else
@@ -92,15 +96,17 @@ move() {
 
 delete() {
 	cat >"$TMPFILE"
-    dest="/home/neg/trash/1st-level/pic"
+    dest="${HOME}/trash/1st-level/pic"
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
-        cat <"$TMPFILE"|xargs -n1 mv -t $dest
+        while read line; do
+            eval $(echo mv `echo \"${line}\"` $dest)
+        done < $TMPFILE
         printf "%s\n" "move "$dest"" > "$LAST_ACTION"
     fi
 }
 
-repeat() {
+rep() {
     cat >"$TMPFILE"
     action=($(cat "$LAST_ACTION"))
     dest=${action[1]}
@@ -122,7 +128,7 @@ repeat() {
 copy_name() {
     cat >"$TMPFILE2"
     fp=$(cat < "$TMPFILE2")
-    echo $fp|xsel -bi
+    echo $fp|tr -d ' '|xsel -bi
     notify-send "$fp"
     rm -f $TMPFILE2
 }
@@ -137,7 +143,7 @@ case "$KEY" in
     "C-v") move ;;
     "C-c") copy ;;
     "C-r") rename ;;
-    "r")   repeat ;;
+    "r")   rep ;;
     "c") copy_name ;;
     "C-1") xargs -n1 hsetroot -full ;;
     "C-2") xargs -n1 hsetroot -fill ;;
