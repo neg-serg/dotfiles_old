@@ -37,7 +37,6 @@ defbindings("WEdln", {
     kpress("Control+Down", "WEdln.history_next(_, true)"),
     --Paste from the clipboard
     mclick("Button2", "WEdln.paste(_)"),
---  submap("Control+K", {
     kpress("Mod1+C", "WEdln.paste(_)"),
     --Set mark/begin selection
     kpress("Mod1+B", "WEdln.set_mark(_)"),
@@ -49,7 +48,6 @@ defbindings("WEdln", {
     kpress("Mod1+G", "WEdln.clear_mark(_)"),
     --Transpose words
     kpress("Mod1+T", "WEdln.transpose_words(_)"),
---  }),
     --Try to complete the entered text or cycle through completions
     kpress("Tab", "WEdln.complete(_, 'next', 'normal')"), 
     kpress("Shift+Tab", "WEdln.complete(_, 'prev', 'normal')"),
@@ -72,8 +70,6 @@ defbindings("WInput", {
     --Scroll the message or completions up/down
     kpress("Control+U", "WInput.scrollup(_)"),
     kpress("Control+V", "WInput.scrolldown(_)"),
-    --kpress("Page_Up", "WInput.scrollup(_)"),
-    --kpress("Page_Down", "WInput.scrolldown(_)"),
 })
 
 mod_query.set{autoshowcompl=true,autoshowcompl_delay=10,caseicompl=true,substrcompl=true,}
