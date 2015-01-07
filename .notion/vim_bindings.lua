@@ -16,16 +16,20 @@
 --  Not all unused symbols are silenced in normal mode
 --      (so don't type them)
 --  Use Shift+Insert to paste from other apps, p to paste yanked text.
---
+
 vim={clip="",old="",oldpoint=0}
 function vim.normal_mode()
+    inputstyle("normal")
     defbindings("WEdln", {
-    kpress("a", "{WEdln.forward(_), vim.insert_mode(), vim.savehist(_)}"),
-    kpress("Shift+a", "{WEdln.eol(_), vim.insert_mode(), vim.savehist(_)}"),
+    kpress("a", "{WEdln.forward(_), vim.insert_mode(), " ..
+    "vim.savehist(_)}"),
+    kpress("Shift+a", "{WEdln.eol(_), vim.insert_mode(), " ..
+    "vim.savehist(_)}"),
     kpress("b", "vim.multiply(WEdln.bskip_word, _)"),
     kpress("Shift+b", "vim.multiply(WEdln.bskip_word, _)"),
     submap("c", {
         kpress("b", "vim.yank(_, 'b', true, true)"),
+        kpress("e", "vim.yank(_, 'e', true, true)"), 
         kpress("c", "vim.yank(_, 'd', true, true)"),
         kpress("h", "vim.yank(_, 'h', true, true)"),
         kpress("l", "vim.yank(_, 'l', true, true)"),
@@ -38,6 +42,7 @@ function vim.normal_mode()
     submap("d", {
         kpress("b", "vim.yank(_, 'b', true)"),
         kpress("d", "vim.yank(_, 'd', true)"),
+        kpress("e", "vim.yank(_, 'e', true)"),
         kpress("h", "vim.yank(_, 'h', true)"),
         kpress("l", "vim.yank(_, 'l', true)"),
         kpress("w", "vim.yank(_, 'w', true)"),
@@ -46,8 +51,10 @@ function vim.normal_mode()
         kpress("Shift+4", "vim.yank(_, 'D', true)"),
     }),
     kpress("Shift+d", "vim.yank(_, 'D', true)"),
-    kpress("e", "{_:forward(), vim.multiply(WEdln.skip_word,_), _:back()}"),
-    kpress("Shift+e", "{_:forward(), vim.multiply(WEdln.skip_word,_), _:back()}"),
+    kpress("e", "{_:forward(), " ..
+    "vim.multiply(WEdln.skip_word,_), _:back()}"),
+    kpress("Shift+e", "{_:forward(), " ..
+    "vim.multiply(WEdln.skip_word,_), _:back()}"),
     kpress("f", "vim.cleardigit()"),
     kpress("g", "vim.cleardigit()"),
     kpress("h", "vim.multiply(WEdln.back,_)"),
@@ -113,6 +120,7 @@ function vim.normal_mode()
 end
 
 function vim.insert_mode()
+    inputstyle("insert")
     -- for _,edln in pairs(ioncore.region_list("WEdln")) do
     -- edln:clear_mark()
     -- end
@@ -157,7 +165,8 @@ function vim.insert_mode()
 end
 
 defbindings("WInput", {
-    kpress("Control+C", "{vim.cleardigit(), WInput.cancel(_)}"),
+    kpress("Control+C", "{vim.cleardigit(), WInput.cancel(_)}, " ..
+    "vim.insert_mode()"),                                              
     kpress("Control+F", "WInput.scrollup(_)"),
     kpress("Control+B", "WInput.scrolldown(_)"),
     kpress("Page_Up", "WInput.scrollup(_)"),
@@ -189,6 +198,8 @@ function vim.yank(edln, how, kill, insert)
         edln:eol()
         elseif how=="h" then
         edln:back()
+        elseif how=="e" then
+        edln:kill_word()
         elseif how=="l" then
         edln:forward()
         elseif how=="w" then
