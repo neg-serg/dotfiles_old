@@ -28,7 +28,6 @@ de.defstyle("*", {
 })
 
 de.defstyle("frame", {
-    --based_on = "*",
     shadow_colour = "#000000",
     border_sides=tnl,
     highlight_colour = "#000000",
@@ -66,6 +65,7 @@ de.defstyle("frame", {
         --border_style="inlaid",
         transparent_background = true,
     }),
+    gr.refresh()    
 })
 
 
@@ -95,12 +95,9 @@ de.defstyle("tab", {
     border_style = "inlaid",
     border_sides = tb,
     de.substyle("active-selected", {
-    --transparent_background = false,
         padding_colour = "#000000",
         shadow_colour = "#287373",
         highlight_colour = "#287373",
-      --shadow_colour = "#53A6A6",
-      --highlight_colour = "#53A6A6",
         background_colour = "#000000",
         foreground_colour = "#AAAAAA",
     }),
@@ -155,7 +152,6 @@ de.defstyle("tab-menuentry-big", {
 })
 
 de.defstyle("input", {
-    --based_on = "*",
     padding_colour = "#000000",
     shadow_colour = "#3579a8",
     highlight_colour = "#3579a8",
@@ -165,20 +161,61 @@ de.defstyle("input", {
     highlight_pixels = 1,
     shadow_pixels = 1,
     spacing = 0,
-    --transparent_background = false,
     font = FONT,
     border_style = "inlaid",
     de.substyle("*-cursor", {
         background_colour = "#5E468C",
         foreground_colour = "#000000",
-        --transparent_background = false,
     }),
     de.substyle("*-selection", {
         background_colour = "#999999",
         foreground_colour = "#000000",
-        --transparent_background = true,
     }),
 })
+
+
+-- Defines style for input queries. In will be "blue" for queries in insert
+-- mode and "green" for queries in normal (command) mode.
+--
+-- mode parameter is string: "insert" or "normal"
+function inputstyle(mode)
+	local t = {
+		based_on = "*",
+		shadow_colour = "", -- To be defined below
+		highlight_colour = "", -- To be defined below
+		background_colour = "", -- To be defined below
+        foreground_colour = "#899CA1",
+        padding_pixels = 1,
+        highlight_pixels = 1,
+        shadow_pixels = 1,
+        border_style = "elevated",
+        de.substyle("*-cursor", {
+            background_colour = "#5E468C",
+            foreground_colour = "#000000",
+        }),
+        de.substyle("*-selection", {
+            background_colour = "#999999",
+            foreground_colour = "#000000",
+        }),
+		font = FONT,
+	}
+	
+	if mode == "insert" then
+		-- Blue
+		t.shadow_colour = "#3579a8"
+		t.highlight_colour = "#3579a8"
+		t.background_colour = "#000000"
+	else
+		-- Green
+		t.shadow_colour = "#313131"
+		t.highlight_colour = "#313131"
+		t.background_colour = "#000000"
+	end
+
+	de.defstyle("input", t);
+	gr.refresh()
+end
+
 
 de.defstyle("stdisp", {
   based_on = "*",
@@ -186,20 +223,12 @@ de.defstyle("stdisp", {
   padding_colour = "#000000",
   shadow_colour = "#3579a8",
   highlight_colour = "#3579a8",
-  --shadow_colour = "#1f3b4f",
-  --highlight_colour = "#1f3b4f",
-  --235B82
-  --shadow_colour = "#235B82",
-  --highlight_colour = "#235B82",
-  --transparent_background = true,
   background_colour = "#000000",
   foreground_colour = "#AAAAAA",
   padding_pixels    = 2,
   highlight_pixels  = 1,
   shadow_pixels     = 1,
   spacing           = 0,
-  --border_sides    = lr,
-  --border_style    = "inlaid",
 
   de.substyle("green",     { foreground_colour = "#00ff00", }),
   de.substyle("blue",      { foreground_colour = "#0000ff", }),
