@@ -1,1 +1,1 @@
-/home/neg/dev/hack
+/mnt/home/hack
