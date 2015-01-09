@@ -47,45 +47,45 @@ ZSH_HIGHLIGHT_STYLES+=(
   ftype-awk         'fg=148,1'
   ftype-sed         'fg=130,bold'
 
-  ftype-py          'fg=30'
+  ftype-py          'fg=030'
   ftype-rb          'fg=192'
-  ftype-lua         'fg=23'
-  ftype-tcl         'fg=64,bold'
+  ftype-lua         'fg=023'
+  ftype-tcl         'fg=064,bold'
 #---------------------------------
 #--[  system  ]-------------------
 #---------------------------------
-  ftype-service      'fg=81'
-  ftype-service-link 'fg=45'
-  ftype-socket      'fg=75'
-  ftype-device      'fg=24'
-  ftype-mount       'fg=115'
-  ftype-automount   'fg=114'
-  ftype-target      'fg=73'
-  ftype-timer       'fg=111'
-  ftype-snapshot    'fg=139'
-  ftype-pacnew      'fg=33'
+  ftype-service      'fg=081'
+  ftype-service-link 'fg=045'
+  ftype-socket       'fg=075'
+  ftype-device       'fg=024'
+  ftype-mount        'fg=115'
+  ftype-automount    'fg=114'
+  ftype-target       'fg=073'
+  ftype-timer        'fg=111'
+  ftype-snapshot     'fg=139'
+  ftype-pacnew       'fg=033'
 #---------------------------------
 #--[  development  ]--------------
 #---------------------------------
-  fclass-c          'fg=24'
-  fclass-header     'fg=29'
-  fclass-lib        'fg=22'
-  fclass-asm        'fg=12,1'
-  fclass-fortran    'fg=29'
-  fclass-java       'fg=23,1'
-  ftype-cs          'fg=74,1'
-  ftype-go          'fg=36,1'
-  ftype-hs          'fg=73'
-  ftype-jad         'fg=50'
-  ftype-lisp        'fg=73'
+  fclass-c          'fg=024'
+  fclass-header     'fg=029'
+  fclass-lib        'fg=022'
+  fclass-asm        'fg=012,1'
+  fclass-fortran    'fg=029'
+  fclass-java       'fg=023,1'
+  ftype-cs          'fg=074,1'
+  ftype-go          'fg=036,1'
+  ftype-hs          'fg=073'
+  ftype-jad         'fg=050'
+  ftype-lisp        'fg=073'
   ftype-diff        'fg=232,bg=7'
   ftype-patch       'fg=232,bold,bg=7'
-  ftype-qt          'fg=13'
-  ftype-ts          'fg=39'
+  ftype-qt          'fg=013'
+  ftype-ts          'fg=039'
 #---------------------------------
 #--[  archives  ]-----------------
 #---------------------------------
-  fclass-archive    'fg=61'
+  fclass-archive    'fg=061'
   fclass-image      'fg=141'
   fclass-rom        'fg=141'
 #---------------------------------
@@ -93,35 +93,35 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
   fclass-lossymusic 'fg=108'
   fclass-lossless   'fg=108,1'
-  fclass-musicinfo  'fg=36'
+  fclass-musicinfo  'fg=036'
 #---------------------------------
 #--[  video  ]--------------------
 #---------------------------------
-  fclass-video       'fg=13'
+  fclass-video       'fg=013'
 #---------------------------------
 #--[  images  ]-------------------
 #---------------------------------
-  fclass-raster     'fg=24'
-  fclass-hiraster   'fg=25'
-  fclass-vector     'fg=25'
+  fclass-raster     'fg=024'
+  fclass-hiraster   'fg=025'
+  fclass-vector     'fg=025'
 #---------------------------------
 #--[ Docs ]-----------------------
 #---------------------------------
   fclass-reading    'fg=250'
-  fclass-word       'fg=30'
-  fclass-openoffice 'fg=29'
-  fclass-excel      'fg=14'
-  fclass-text       'fg=60'
+  fclass-word       'fg=030'
+  fclass-openoffice 'fg=029'
+  fclass-excel      'fg=014'
+  fclass-text       'fg=060'
   fclass-markdown   'fg=110'
-  ftype-sty         'fg=58'
+  ftype-sty         'fg=058'
   fclass-trash      'fg=238'
   ftype-djvu        'fg=247'
   ftype-fb2         'fg=246'
-  ftype-log         'fg=23'
+  ftype-log         'fg=023'
   ftype-am          'fg=242'
-  ftype-csv         'fg=12'
+  ftype-csv         'fg=012'
   ftype-enc         'fg=192,3'
-  ftype-git         'fg=15'
+  ftype-git         'fg=015'
   ftype-gitignore   'fg=240'
 #---------------------------------
 #--[ Info ]-----------------------
@@ -132,38 +132,38 @@ ZSH_HIGHLIGHT_STYLES+=(
 #---------------------------------
 #--[  Web  ]----------------------
 #---------------------------------
-  fclass-webdoc     'fg=23'
-  fclass-js         'fg=68'
-  fclass-db         'fg=60'
-  ftype-php         'fg=89'
-  ftype-css         'fg=31'
+  fclass-webdoc     'fg=023'
+  fclass-js         'fg=068'
+  fclass-db         'fg=060'
+  ftype-php         'fg=089'
+  ftype-css         'fg=031'
   ftype-in          'fg=242'
   ftype-m4          'fg=196,3'
-  ftype-out         'fg=46,1'
+  ftype-out         'fg=046,1'
   ftype-properties  'fg=197,1'
   ftype-sample      'fg=130,bold'
   ftype-sav         'fg=220'
   ftype-sfv         'fg=197'
-  ftype-sid         'fg=69,1'
+  ftype-sid         'fg=069,1'
   ftype-signature   'fg=206'
   ftype-srt         'fg=116'
-  ftype-t           'fg=28;1'
+  ftype-t           'fg=028;1'
   ftype-theme       'fg=109'
   ftype-torrent     'fg=245'
-  ftype-typelib     'fg=60'
+  ftype-typelib     'fg=060'
   ftype-ttl         'fg=245'
 #---------------------------------
 #--[ etc ]------------------------
 #---------------------------------
-  ftype-urlview     'fg=85'
-  ftype-vim         'fg=53'
+  ftype-urlview     'fg=085'
+  ftype-vim         'fg=053'
 #---------------------------------
 #--[ fonts ]----------------------
 #---------------------------------
-  fclass-font       'fg=65'
+  fclass-font       'fg=065'
 #--[ tmpdump  ]-------------------
-fclass-tcpdump      'fg=29'
-ftype-TODO          'fg=91'
+fclass-tcpdump      'fg=029'
+ftype-TODO          'fg=091'
 )
 # Whether the highlighter should be called or not.
 _zsh_highlight_main_highlighter_predicate()
