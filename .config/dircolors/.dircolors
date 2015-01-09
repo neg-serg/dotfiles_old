@@ -169,11 +169,6 @@ RESET 0 # reset to "normal" color
 .odp          38;5;29
 .odb          38;5;29
 .db           38;5;60
-.tex       00;38;5;245
-.textile   00;38;5;245
-.owl       00;38;5;245
-.n3        00;38;5;245
-.rc        00;38;5;245
 
 # all of the rest
 .asm           00;36
@@ -277,29 +272,32 @@ RESET 0 # reset to "normal" color
 .mdf           01;38;5;141
 
 # Files of special interest (base1 + bold)
-.tex             01;38;5;245
-.rdf             01;38;5;245
-.owl             01;38;5;245
-.n3              01;38;5;245
-.ttl             01;38;5;245
-.nt              01;38;5;245
-.torrent         01;38;5;245
-.jidgo           01;38;5;245
-.xml             01;38;5;245
-*build.xml       01;38;5;245
-*rc              01;38;5;245
-*1               01;38;5;245
-.nfo             01;38;5;245
-*README          01;38;5;245
-*README.txt      01;38;5;245
-*readme.txt      01;38;5;245
-*Makefile        01;38;5;245
-*Rakefile        01;38;5;245
-.md              01;38;5;245
-*README.markdown 01;38;5;245
-.ini             01;38;5;245
-.yml             01;38;5;245
-.cfg             01;38;5;245
+.tex             00;38;5;60
+.textile         00;38;5;60
+.rdf             00;38;5;60
+.owl             00;38;5;60
+.n3              00;38;5;60
+.rc              00;38;5;60
+.ttl             00;38;5;60
+.nt              00;38;5;60
+.torrent         00;38;5;60
+.jidgo           00;38;5;60
+.xml             00;38;5;60
+*build.xml       00;38;5;60
+*rc              00;38;5;60
+*1               00;38;5;60
+.nfo             00;38;5;60
+*README          00;38;5;60
+*README.txt      00;38;5;60
+*readme.txt      00;38;5;60
+*Makefile        00;38;5;60
+*Rakefile        00;38;5;60
+.md              00;38;5;60
+*README.markdown 00;38;5;60
+.ini             00;38;5;60
+.yml             00;38;5;60
+.cfg             00;38;5;60
+.aux             00;38;5;239
 *TODO            01;38;5;91
 
 # Audio formats (orange)
