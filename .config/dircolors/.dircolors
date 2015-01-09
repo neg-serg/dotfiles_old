@@ -287,18 +287,17 @@ RESET 0 # reset to "normal" color
 *rc              00;38;5;60
 *1               00;38;5;60
 .nfo             00;38;5;60
-*README          00;38;5;60
-*README.txt      00;38;5;60
 *readme.txt      00;38;5;60
 *Makefile        00;38;5;60
 *Rakefile        00;38;5;60
-.md              00;38;5;60
-*README.markdown 00;38;5;60
-.ini             00;38;5;60
 .yml             00;38;5;60
 .cfg             00;38;5;60
 .aux             00;38;5;239
 *TODO            01;38;5;91
+
+*README.markdown 01;38;5;245
+*README          01;38;5;245
+*README.txt      01;38;5;245
 
 # Audio formats (orange)
 .aac    00;38;5;108
