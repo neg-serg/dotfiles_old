@@ -7,8 +7,6 @@
 # : ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
 # : ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=none}
 # : ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
-# : ${ZSH_HIGHLIGHT_STYLES[path_prefix]:=underline}
-# : ${ZSH_HIGHLIGHT_STYLES[path_approx]:=fg=yellow,underline}
 # : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
 # : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
 
@@ -31,13 +29,17 @@ ZSH_HIGHLIGHT_STYLES+=(
   dollar-double-quoted-argument  'fg=004,bold'
   back-double-quoted-argument    'fg=024,bold'
   assign                         'fg=240,bold'
+
+  # path_prefix                    'underline'
+  # path_approx                    'fg=yellow,underline'
 #---------------------------------
 #--[  scripts  ]------------------
 #---------------------------------
-  fclass-perl       'fg=67'
-  ftype-t           'fg=38'
-  ftype-pm          'fg=38,1'
-  ftype-pod         'fg=23'
+  fclass-bin        'fg=111'
+  fclass-perl       'fg=067'
+  ftype-t           'fg=038'
+  ftype-pm          'fg=038,1'
+  ftype-pod         'fg=023'
 
   fclass-sh         'fg=103'
   fclass-zshcompile 'fg=240'
@@ -59,7 +61,6 @@ ZSH_HIGHLIGHT_STYLES+=(
   ftype-mount       'fg=115'
   ftype-automount   'fg=114'
   ftype-target      'fg=73'
-  ftype-path        'fg=116'
   ftype-timer       'fg=111'
   ftype-snapshot    'fg=139'
   ftype-pacnew      'fg=33'
@@ -71,10 +72,10 @@ ZSH_HIGHLIGHT_STYLES+=(
   fclass-lib        'fg=22'
   fclass-asm        'fg=12,1'
   fclass-fortran    'fg=29'
+  fclass-java       'fg=23,1'
   ftype-cs          'fg=74,1'
   ftype-go          'fg=36,1'
   ftype-hs          'fg=73'
-  ftype-java        'fg=23,1'
   ftype-jad         'fg=50'
   ftype-lisp        'fg=73'
   ftype-diff        'fg=232,bg=7'
@@ -239,7 +240,7 @@ _zsh_highlight_main_highlighter()
                           new_expression=true
                         elif _zsh_highlight_main_highlighter_check_path; then
                           style=$ZSH_HIGHLIGHT_STYLES[path]
-                        elif [[ $arg[0,1] = $histchars[0,1] ]]; then
+                        elif [[ $arg[0,1] == $histchars[0,1] || $arg[0,1] == $histchars[2,2] ]]; then
                           style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
                         else
                           style=$ZSH_HIGHLIGHT_STYLES[unknown-token]
@@ -262,7 +263,7 @@ _zsh_highlight_main_highlighter()
         *.(js|jsm|jsm|jsp)) style=$ZSH_HIGHLIGHT_STYLES[fclass-js];;
         *.(c|cc|cpp|cxx|coffee|tcc)) style=$ZSH_HIGHLIGHT_STYLES[fclass-c];;
         *.cs)          style=$ZSH_HIGHLIGHT_STYLES[ftype-cs];;
-        *.java)        style=$ZSH_HIGHLIGHT_STYLES[ftype-java];;
+        *.(java|jnlp)) style=$ZSH_HIGHLIGHT_STYLES[fclass-java];;
         *.jad)         style=$ZSH_HIGHLIGHT_STYLES[ftype-jad];;
         *.qt)          style=$ZSH_HIGHLIGHT_STYLES[ftype-qt];;
         *.ts)          style=$ZSH_HIGHLIGHT_STYLES[ftype-ts];;
@@ -292,7 +293,7 @@ _zsh_highlight_main_highlighter()
         *.pm)          style=$ZSH_HIGHLIGHT_STYLES[ftype-pm];;
         *.pod)         style=$ZSH_HIGHLIGHT_STYLES[ftype-pod];;
         *.t)           style=$ZSH_HIGHLIGHT_STYLES[ftype-t];;
-        *.(bat|BAT)) style=$ZSH_HIGHLIGHT_STYLES[fclass-winsh];;
+        *.(bat|BAT|cmd)) style=$ZSH_HIGHLIGHT_STYLES[fclass-winsh];;
         *.(conf|part|aux|bbl|blg|bak|dump|swp|swap|tmp|temp|incomplete|pyc|class|cache|old|un~)) style=$ZSH_HIGHLIGHT_STYLES[fclass-trash];;
         *.(sql|db|odb|sqlite)) style=$ZSH_HIGHLIGHT_STYLES[fclass-db];;
         *.(a|so|dll|ru)) style=$ZSH_HIGHLIGHT_STYLES[fclass-lib];;
@@ -306,7 +307,6 @@ _zsh_highlight_main_highlighter()
         *.mount)       style=$ZSH_HIGHLIGHT_STYLES[ftype-mount];;
         *.automount)   style=$ZSH_HIGHLIGHT_STYLES[ftype-automount];;
         *.target)      style=$ZSH_HIGHLIGHT_STYLES[ftype-target];;
-        *.path)        style=$ZSH_HIGHLIGHT_STYLES[ftype-path];;
         *.timer)       style=$ZSH_HIGHLIGHT_STYLES[ftype-timer];;
         *.snapshot)    style=$ZSH_HIGHLIGHT_STYLES[ftype-snapshot];;
         *@.service)    style=$ZSH_HIGHLIGHT_STYLES[ftype-service-link];;
