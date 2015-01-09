@@ -176,7 +176,6 @@ RESET 0 # reset to "normal" color
 .rc        00;38;5;245
 
 # all of the rest
-.PL            00;36
 .asm           00;36
 .asoundrc      00;36
 .awk           00;36
@@ -234,10 +233,11 @@ RESET 0 # reset to "normal" color
 .pfa           00;31
 .php           00;31
 .pid           00;31
-.pl            00;31
+.pl            01;38;5;67
+.PL            00;36
 .pm            00;31
-.pod           00;31
-.py            00;31
+.pod           01;38;5;23
+.py            01;38;5;30
 .rc            00;31
 .rb            00;31
 .ru            00;31
@@ -321,6 +321,7 @@ RESET 0 # reset to "normal" color
 .xspf   00;38;5;108
 # Video formats (as audio + bold)
 .mov    01;38;5;13
+.MOV    01;38;5;13
 .mpg    01;38;5;13
 .mpeg   01;38;5;13
 .m2v    01;38;5;13
@@ -354,6 +355,7 @@ RESET 0 # reset to "normal" color
 .ogx 01;38;5;13
 .srt 01;38;5;116
 .ttf 01;38;5;65
+.otf 01;38;5;65
 .pcf 01;38;5;65
 .bdf 01;38;5;65
 
