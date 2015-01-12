@@ -3,27 +3,26 @@ _marker = "^fg(#ff0000)"
 _markerend = "^fg()"
 all_marker = " - "
 ws_template = nil
+ws_curr = nil
+kbd_template = nil
 sys_template = nil
 vol_template = nil
 date = nil
 
 local function dzen_update()
     local template = ""
-    if ws_template then
-            template = template..ws_template
+    if date then
+        template = template.."^pa(4;)^bg(#000000)^ba()[ "..date.." ]^ba()^bg()"
+    end
+    if ws_curr then
+            template = template.."[ "..ws_curr.. " ]"
+    end
+    if kbd_template then
+            template = template.."[ "..kbd_template .. " ]"
     end
     if vol_template then
         template = template.."^pa(732;)^bg(#000000)^ba(16, _RIGHT)"..vol_template.."^bg()^ba()"
     end
-    -- if sys_template then
-    --     template = template.."^pa(868;)^i(/home/bva/.notion/icons/battery_full_outline.xbm)".."^pa(884;)^bg(#000000)^ba(80, _RIGHT)"..sys_template.."^ba()^bg()"
-    -- end
-    if date then
-        template = template.."^pa(964;)^bg(#000000)^ba(216, _RIGHT)"..date.."^ba()^bg()"
-    end
-
---    print(template)
---    io.flush()
     dzen_pipe:write(template..'\n')
 end
 
@@ -39,9 +38,60 @@ local function dzen_input()
             io.flush()
         reg = dzen_input:lookup_region()
         if reg ~=nil then
-            reg:goto()
+            reg:goto_focus()
         end
     end
+end
+
+local function update_frame()
+    local fr
+    ioncore.defer( function() 
+	local cur=ioncore.current()
+	if obj_is(cur, "WClientWin") and
+	  obj_is(cur:parent(), "WMPlex") then
+	    cur=cur:parent()
+	end
+	fr=cur:name()
+    end)
+end
+
+local function ws_current(t)
+    local scr=ioncore.find_screen_id(0)
+    local curws = scr:mx_current()
+    local wstype, c
+    local pager=""
+    local name_pager=""
+    local name_pager_plus=""
+    local curindex = scr:get_index(curws)+1
+    n = scr:mx_count(1)
+    for i=1,n do
+        tmpws=scr:mx_nth(i-1)
+        wstype=obj_typename(tmpws)
+	if wstype=="WIonWS" then
+	    c="i"
+	elseif wstype=="WFloatWS" then
+	    c="f"
+	elseif wstype=="WPaneWS" then
+	    c="p"
+	elseif wstype=="WGroupWS" then
+	    c="g"
+	else
+	    c="c"
+	end
+	if i==curindex then
+            name_pager=name_pager..tmpws:name()
+	    pager=pager..c
+	end
+    end
+
+    local fr,cur
+
+    -- Older versions without an ioncore.current() should
+    -- skip update_frame.
+    update_frame()
+
+    ws_curr = name_pager
+    dzen_update()
 end
 
 local function prepare_ws_template(t)
@@ -143,13 +193,14 @@ local function setup_hooks()
         hook:add(prepare_ws_template)
     end
     ioncore.get_hook("region_notify_hook"):add(prepare_query)
+    ioncore.get_hook("region_notify_hook"):add(ws_current)
 end
 
 -- Init
 setup_hooks()
 
 local function date_update()
-    date = os.date("%A, %d %b %H:%M")
+    date = os.date("%H:%M")
     dzen_update()
     date_timer:set((60-os.date("%S"))*1000, date_update)
 end
@@ -196,33 +247,25 @@ local function vol_update()
         template = template..capval.."^ca()^ca()^ca()"
     end
 
---    f = io.popen("echo "..masterval.." | gdbar -h 4 -w 50 -min 0 -max 74 -nonl", "r")
---    bar = f:read("*l")
---    f:close()
---    f = io.popen("echo "..pcmval.." | gdbar -h 4 -w 50 -min 0 -max 255 -nonl", "r")
---    bar = "^p(-20;+5)"..f:read("*l")
---    f:close()
---    template = template..bar
-
---    print(masterval)
---    io.flush()
     vol_template = template
     dzen_update()
     vol_timer:set(1000, vol_update)
 end
 
-local function system_update()
-    -- brp = io.open("/sys/devices/platform/smapi/BAT0/remaining_percent", "r"):read()
-    -- brt = io.open("/sys/devices/platform/smapi/BAT0/remaining_running_time", "r"):read()
-    -- if (brt == "not_discharging") then
-    --         brt = io.open("/sys/devices/platform/smapi/BAT0/remaining_charging_time", "r"):read()
-    --         if (brt == "not_charging") then
-    --             brt = 0
-    --         end
-    -- end
-    -- sys_template = brp.."%["..((brt-brt%60)/60)..":"..(brt%60).."]"
+
+local function kbd_update()
+    local klay
+    local f = nil
+    local template = ""
+
+    f = io.popen("/home/neg/bin/mon/klay2", "r")
+    klay = f:read("*l")
+    f:close()
+    template = template..klay
+
+    kbd_template = template
     dzen_update()
-    sys_timer:set(60*1000, system_update)
+    kbd_timer:set(200, kbd_update)
 end
 
 date_timer = ioncore.create_timer()
@@ -231,5 +274,5 @@ vol_timer = ioncore.create_timer()
 vol_timer:set(1000, vol_update)
 sys_timer = ioncore.create_timer()
 sys_timer:set(1000, system_update)
---dzen_input_timer = ioncore.create_timer()
---dzen_input_timer:set(100, dzen_input)
+kbd_timer = ioncore.create_timer()
+kbd_timer:set(200, kbd_update)
