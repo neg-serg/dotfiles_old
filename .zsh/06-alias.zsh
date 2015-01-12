@@ -249,3 +249,5 @@ alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
 alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'
+
+alias cal='~/bin/scripts/dzen-cal||cal'
