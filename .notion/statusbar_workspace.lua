@@ -89,8 +89,8 @@ local function update_workspace()
         file:write(tmpws:name())
         file:close()
 	else
-            name_pager_plus=name_pager_plus.." "..(i)..":"..tmpws:name()
-            name_pager=name_pager.." "..tmpws:name()
+        name_pager_plus=name_pager_plus.." "..(i)..":"..tmpws:name()
+        name_pager=name_pager.." "..tmpws:name()
 	    pager=pager.." "..(i)..c.." "
 	end
   --if i==9 then
