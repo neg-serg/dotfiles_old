@@ -9,20 +9,45 @@ sys_template = nil
 vol_template = nil
 date = nil
 
+netmon_avgin = nil
+netmon_avgout = nil
+netmon_template = nil
+
+netmon_kbsin = nil
+netmon_kbsout = nil
+
+netmon = nil
+
+settings = {
+      device = "enp6s0",
+      show_avg = 0,       -- show average stat?
+      avg_sec = 60,       -- default, shows average of 1 minute
+      show_count = 0,     -- show tcp connection count?
+      interval = 1*1000,  -- update every second
+}
+
+local function wrp(tmplte)
+    return "^fg(#287373)[^fg(#cccccc) " .. tmplte .. " ^fg(#287373)]^fg(#cccccc)"
+end
+
+
 local function dzen_update()
     local template = ""
     if date then
-        template = template.."^pa(4;)^bg(#000000)^ba()[ "..date.." ]^ba()^bg()"
+        template = template.."^pa(2;)^bg(#000000)^ba()"..wrp(date).."^ba()^bg()"
     end
     if ws_curr then
-            template = template.."[ "..ws_curr.. " ]"
+            template = template..wrp(ws_curr)
     end
     if kbd_template then
-            template = template.."[ "..kbd_template .. " ]"
+            template = template..wrp(kbd_template)
     end
-    if vol_template then
-        template = template.."^pa(732;)^bg(#000000)^ba(16, _RIGHT)"..vol_template.."^bg()^ba()"
+    if netmon then 
+        template = template..wrp("net: " .. netmon)
     end
+    -- if vol_template then
+    --     template = template.."^pa(732;)^bg(#000000)^ba(16, _RIGHT)"..vol_template.."^bg()^ba()"
+    -- end
     dzen_pipe:write(template..'\n')
 end
 
@@ -276,3 +301,176 @@ sys_timer = ioncore.create_timer()
 sys_timer:set(1000, system_update)
 kbd_timer = ioncore.create_timer()
 kbd_timer:set(200, kbd_update)
+
+local positions = {}    -- positions where the entries will be
+local last = {}         -- the last readings
+local history_in = {}   -- history to calculate the average
+local history_out = {}
+local total_in, total_out = 0, 0
+local counter = 0       --
+
+--
+-- tokenize the string
+--
+local function tokenize(str)
+    local ret = {}
+    local i = 0
+    local k = nil
+
+    for k in string.gfind(str, '(%w+)') do
+        ret[i] = k
+        i = i + 1
+    end
+    return ret
+end
+
+--
+-- calculate the average
+--
+local function calc_avg(lin, lout)
+    if counter == settings.avg_sec then
+        counter = 0
+    end
+
+    total_in = total_in - history_in[counter] + lin
+    history_in[counter] = lin
+
+    total_out = total_out - history_out[counter] + lout
+    history_out[counter] = lout
+
+    counter = counter + 1
+
+    return total_in/settings.avg_sec, total_out/settings.avg_sec
+end
+
+--
+-- parse the information
+--
+local function parse_netmon_info()
+    local s
+    local lin, lout
+
+    for s in io.lines('/proc/net/dev') do
+        local f = string.find(s, settings.device)
+        if f then
+            local t = tokenize(s)
+            return t[positions[0]], t[positions[1]]
+    end
+    end
+    return nil, nil
+end
+
+--
+-- update the netmon monitor
+--
+local function update_netmon_info()
+    local s
+    local lin, lout
+
+    local function fmt(num)
+    return(string.format("%.1fK", num))
+    end
+
+    lin, lout = parse_netmon_info()
+    if not lin or not lout then
+        return
+    end
+
+    last[0], lin = lin, lin - last[0]
+    last[1], lout = lout, lout - last[1]
+
+    local kbsin = lin/1024
+    local kbsout = lout/1024
+
+    local output = string.format("%.1fK/%.1fK", kbsin, kbsout)
+
+    if settings.show_avg == 1 then
+    local avgin, avgout = calc_avg(lin/1024, lout/1024)
+        output = output .. string.format(" (%.1fK/%.1fK)", avgin, avgout)
+
+    netmon_avgin = fmt(avgin)
+    netmon_avgout = fmt(avgout)
+    dzen_update()
+    end
+
+    netmon_kbsin = fmt(kbsin)
+    netmon_kbsout  = fmt(kbsout)
+    netmon = output
+    dzen_update()
+
+    net_timer:set(settings.interval, update_netmon_info)
+end
+
+--
+-- is everything ok to begin with?
+--
+local function sanity_check()
+    local f = io.open('/proc/net/dev', 'r')
+    local e
+
+    if not f then
+        return false
+    end
+
+    local s = f:read('*line')
+    s = f:read('*line')         -- the second line, which should give
+                                -- us the positions of the info we seek
+
+    local t = tokenize(s)
+    local n = table.getn(t)
+    local i = 0
+
+    for i = 0,n do
+        if t[i] == "bytes" then
+            positions[0] = i
+            break
+        end
+    end
+
+    i = positions[0] + 1
+
+    for i=i,n do
+        if t[i] == "bytes" then
+            positions[1] = i
+            break
+        end
+    end
+
+    if not positions[0] or not positions[1] then
+        return false
+    end
+
+    s = f:read('*a')        -- read the whole file
+    if not string.find(s, settings.device) then
+        return false        -- the device does not exist
+    end
+    
+    return true
+end
+
+--
+-- start the timer
+-- 
+local function init_netmon_monitor()
+    if sanity_check() then
+        net_timer = ioncore.create_timer()
+        net_timer:set(settings.interval, update_netmon_info)
+        last[0], last[1] = parse_netmon_info()
+        
+        if settings.show_avg == 1 then
+            for i=0,settings.avg_sec-1 do
+                history_in[i], history_out[i] = 0, 0
+            end
+        end
+        
+        netmon_template = "xxxxxxxxxxxxxxxxxxxxxxx"
+        update_netmon_info()
+        dzen_update()
+    else
+        netmon  = "oops"
+        netmon_hint = "critical"
+        dzen_update()
+    end
+end
+
+init_netmon_monitor()
