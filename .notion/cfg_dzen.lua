@@ -17,12 +17,9 @@ netmon_template = nil
 
 netmon_kbsin = nil
 netmon_kbsout = nil
-
 netmon = nil
 
-dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 22 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
 mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 22 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
-dzen_pipe:setvbuf("line")
 mpd_pipe:setvbuf("line")
 
 settings = {
@@ -230,20 +227,11 @@ end
 local function setup_hooks()
     local hook
     hook = ioncore.get_hook("screen_managed_changed_hook")
-    hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
     if hook then
         hook:add(prepare_ws_template)
     end
-    local hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
-    if hook_deinit then
-        hook_deinit:add(dzen_delete)
-    end
     ioncore.get_hook("region_notify_hook"):add(prepare_query)
     ioncore.get_hook("region_notify_hook"):add(ws_current)
-end
-
-function dzen_delete()
-    os.execute("pkill dzen2")
 end
 
 -- Init
@@ -644,5 +632,5 @@ end
 
 -- Init
 mpd_timer = ioncore.create_timer()
-net_timer:set(mpd_defaults.interval, update_mpd)
+-- mpd_timer:set(mpd_defaults.interval, update_mpd)
 update_mpd()
