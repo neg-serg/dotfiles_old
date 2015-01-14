@@ -50,18 +50,6 @@ function named_scratchpad(reg, name, mode)
     return named_sp
 end
 
---[[
-function toggle_scratch_app(reg, cmdline, class)
-    if reg:current():name() == class then
-        named_scratchpad(reg, class)
-    else
-        named_scratchpad(reg, class, "set")
-        app.byclass(cmdline, class)
-        ioncore.lookup_region(class, "WFrame"):rqorder("front")
-    end
-end
---]]
-
 function named_sp_raiseorhide(reg, name)
     dbg.echo(reg:current():name())
     if reg:current():name() == name then
