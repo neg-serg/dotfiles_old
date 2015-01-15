@@ -19,7 +19,9 @@ netmon_kbsin = nil
 netmon_kbsout = nil
 netmon = nil
 
-mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 22 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
+-- mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=14' ", "w")
+-- mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'UbuntuMono:style=bold:size=12' ", "w")
+mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
 mpd_pipe:setvbuf("line")
 
 settings = {
@@ -242,54 +244,6 @@ local function date_update()
     dzen_update()
     date_timer:set((60-os.date("%S"))*1000, date_update)
 end
-
-local function vol_update()
-    local ci = "amixer -c0 sset PCM 1dB+ > /dev/null"
-    local cd = "amixer -c0 sset PCM 1dB- > /dev/null"
-    local masterval, pcmval, capval = nil, nil, nil
-    local f = nil
-    local bar = ""
-    local template = ""
-
-    f = io.popen("amixer -c0 get Master", "r")
-    masterval, masterstate = f:read("*a"):match("Mono\: Playback %d+ %[(%d+.)%] %[.+%] %[(%w+)%]")
-    f:close()
-    f = io.popen("amixer -c0 get PCM", "r")
-    pcmval = f:read("*a"):match("Front Left\: Playback %d+ .(%d+.)")
-    f:close()
-    f = io.popen("amixer -c0 get 'Internal Mic'", "r")
-    capval, capstate = f:read("*a"):match("Front Left\: Capture %d+ %[(%d+.)%] %[.+%] %[(%w+)%]")
-    f:close()
-
-    if masterstate == "off" then
-        template = template.."^fg(#ff0000)"
-        template = template.."^i(/home/bva/.notion/icons/vol-7.xbm)"
-        template = template.."^fg()"
-        template = template..masterval
-    else
-        template = template.."^i(/home/bva/.notion/icons/vol-7.xbm)"
-        template = template..masterval
-    end
-    template = "^ca(1, amixer -q -c0 set Master toggle)^ca(4, amixer -q -c0 sset Master 1dB+)^ca(5, amixer -q -c0 sset Master 1dB-)"..template.."^ca()^ca()^ca()"
-
-    template = template.."^ca(4, amixer -q -c0 sset PCM 1dB+)^ca(5, amixer -q -c0 sset PCM 1dB-)"..pcmval.."^ca()^ca()"
-
-    if capstate == "off" then
-        template = template.."^ca(1, amixer -q -c0 set 'Internal Mic' toggle)^ca(4, amixer -q -c0 sset 'Internal Mic' 1dB+)^ca(5, amixer -q -c0 sset 'Internal Mic' 1dB-)"
-        template = template.."^fg(#ff0000)"
-        template = template.."^i(/home/bva/.notion/icons/microphone.xbm)"
-        template = template.."^fg()"
-        template = template..capval.."^ca()^ca()^ca()"
-    else
-        template = template.."^ca(1, amixer -q -c0 set 'Internal Mic' toggle)^ca(4, amixer -q -c0 sset 'Internal Mic' 1dB+)^ca(5, amixer -q -c0 sset 'Internal Mic' 1dB-)^i(/home/bva/.notion/icons/microphone.xbm)"
-        template = template..capval.."^ca()^ca()^ca()"
-    end
-
-    vol_template = template
-    dzen_update()
-    vol_timer:set(1000, vol_update)
-end
-
 
 local function kbd_update()
     local klay
