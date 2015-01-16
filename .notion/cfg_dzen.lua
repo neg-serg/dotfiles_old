@@ -135,9 +135,6 @@ end
 local function setup_hooks()
     local hook
     hook = ioncore.get_hook("screen_managed_changed_hook")
-    if hook then
-        hook:add(prepare_ws_template)
-    end
     ioncore.get_hook("region_notify_hook"):add(ws_current)
 end
 
