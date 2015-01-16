@@ -8,7 +8,6 @@ kbd_template = nil
 sys_template = nil
 vol_template = nil
 date = nil
-mpd_song = nil
 mpd_status = nil
 
 netmon_avgin = nil
@@ -19,8 +18,6 @@ netmon_kbsin = nil
 netmon_kbsout = nil
 netmon = nil
 
--- mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=14' ", "w")
--- mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'UbuntuMono:style=bold:size=12' ", "w")
 mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
 mpd_pipe:setvbuf("line")
 
@@ -258,22 +255,6 @@ local function kbd_update()
     kbd_template = template
     dzen_update()
     kbd_timer:set(200, kbd_update)
-end
-
-
-local function mpd_update()
-    local mpd
-    local f = nil
-    local template = ""
-
-    f = io.popen("/home/neg/bin/mon/crntsng.sh", "r")
-    current_song = f:read("*l")
-    f:close()
-    template = template..current_song
-
-    mpd_song = template
-    mpd_dzen_update()
-    mpd_timer:set(1000, mpd_update)
 end
 
 date_timer = ioncore.create_timer()
