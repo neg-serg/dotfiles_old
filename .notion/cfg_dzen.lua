@@ -132,104 +132,12 @@ local function ws_current(t)
     dzen_update()
 end
 
-local function prepare_ws_template(t)
-    local reg, activity_reg = t["reg"], {}
-
-    if not obj_is(reg, "WScreen") then
-        return
-    end
-
-    local ws_names_all, wsname_pre, wsname_post = nil, "", ""
-
-    local function find_all_activity(reg)
-        local act_is_set, reg2 = "", nil
-        reg2 = ioncore.find_manager(reg, "WGroupWS")
-        if (obj_is(reg2, "WGroupWS"))
-            then
-                activity_reg[reg2:name()] = true
-            end
-        return true
-    end
-    ioncore.activity_i(find_all_activity)
-
-    local function inform(screen)
-        if screen:mx_count() == 0 then
-            return
-        end
-
-        local ws_names, before, id = nil, true, screen:id()
-
-        local function compose_ws_names(ws)
-            local marker, markerend, current = "", "", false
-            local wsn = ws:name() or "?"
-
-            if ws == screen:mx_current() then
-                marker = _marker
-                markerend = _markerend
-                before = false
-                current = true
-            else
-                marker = "^ca(1, echo "..wsn..")"
-                markerend = "^ca()"
-                if (activity_reg[wsn]) then
-                    marker = "^fg(#00ff00)"..marker
-                    markerend = markerend.."^fg()"
-                end
-            end
-
-            if not ws_names then
-                ws_names = marker..wsn..markerend
-            else
-                ws_names = ws_names.." "..marker..wsn..markerend
-            end
-
-            if before and not current then
-                if wsname_pre == "" then
-                    wsname_pre = wsn
-                else
-                    wsname_pre = wsname_pre.." "..wsn
-                end
-            elseif not current then
-                if wsname_post == "" then
-                    wsname_post = wsn
-                else
-                    wsname_post = wsname_post.." "..wsn
-                end
-            end
-
-            return true
-        end
-
-        screen:mx_i(compose_ws_names)
-
-        if not ws_names_all then
-            ws_names_all = ws_names
-        else
-            ws_names_all = ws_names_all..all_marker..ws_names
-        end
-    end
-
-    ioncore.region_i(inform, "WScreen")
-
-    ws_template = ws_names_all
-    dzen_update()
-end
-
-local function prepare_query(reg, activity)
-    local t = {}
-    if (activity == "activity") then
-        t.reg = reg:screen_of()
-        prepare_ws_template(t)
-    end
-end
-
 local function setup_hooks()
     local hook
     hook = ioncore.get_hook("screen_managed_changed_hook")
     if hook then
         hook:add(prepare_ws_template)
     end
-    ioncore.get_hook("region_notify_hook"):add(prepare_query)
     ioncore.get_hook("region_notify_hook"):add(ws_current)
 end
 
