@@ -41,3 +41,7 @@ bin/rtags
 .config/ranger/history
 .ghc/ghci_history
 .config/easytag
+.newsbeuter/cache.db
+.vimperator/info/default/history-command
+.vimperator/info/default/history-search
+.ghc/ghci_history
