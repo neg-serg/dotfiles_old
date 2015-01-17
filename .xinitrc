@@ -1,7 +1,5 @@
 #!/bin/zsh
-# xrandr --dpi 102
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
+/usr/bin/start-pulseaudio-x11
 
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
@@ -10,26 +8,6 @@ export LC_CTYPE="en_US.UTF-8"
 
 export my_elite_28='-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r'
 
-# Fix X window manager name properties to work around java bugs with
-# non-reparenting window managers.  This is a different solution from
-# the wmname utility provided by suckless, as it is NetWM compatible,
-# while wmname sets the value of _NET_SUPPORTING_WM_CHECK to root win.
-
-# IRONIC_WM_NAME="LG3D"
-# NET_WIN=$(xprop -root _NET_SUPPORTING_WM_CHECK | awk -F "# " '{print $2}')
-#
-# if [[ "$NET_WIN" == 0x* ]]; then
-#     # xprop cannot reliably set UTF8_STRING, so we replace as string.
-#     # fortunately, jdk is OK with this, but wm-spec says use UTF8_STRING.
-#     xprop -id "$NET_WIN" -remove _NET_WM_NAME
-#     xprop -id "$NET_WIN" -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
-# else
-#     # even if we're not net compatible, do java workaround
-#     xprop -root -remove _NET_WM_NAME
-#     xprop -root -f _NET_WM_NAME 8s -set _NET_WM_NAME "$IRONIC_WM_NAME"
-# fi
-#
-# wmname LG3D
 wmname Sawfish
 swarp  1920 1200
 synclient PalmDetect=1
@@ -39,10 +17,6 @@ synclient PalmDetect=1
 xset 0 0
 # xset dpms 0 0 0
 xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
-
-#echo 'keycode 58 = 1' >> /usr/local/share/kbd/caps_to_esc
-#loadkeys -q /usr/local/share/kbd/caps_to_esc
-# export GPG_AGENT_INFO
 
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
@@ -62,28 +36,11 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-# hsetroot -fill /home/neg/pic/wl/wallpaper-1767776.jpg
-# hsetroot -fill /home/neg/pic/wl/wallpaper-2923950.jpg
 hsetroot -fill /home/neg/pic/wl/546077.jpg
 # disable trackpad while typing
 syndaemon -t -k -i 2 -d
 
 [ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
-# xmodmap -e "clear      lock "
-# xmodmap -e "clear   control"
-# xmodmap -e "clear      mod1"
-# xmodmap -e "clear      mod2"
-# xmodmap -e "clear      mod3"
-# xmodmap -e "clear      mod4"
-# xmodmap -e "clear      mod5"
-# xmodmap -e "keycode      37 = Hyper_L"
-# xmodmap -e "keycode      66 = Control_L"
-# xmodmap -e "add     control = Control_L Control_R"
-# xmodmap -e "add        mod1 = Alt_L Alt_R Meta_L"
-# xmodmap -e "add        mod2 = Num_Lock"
-# xmodmap -e "add        mod3 = Hyper_L"
-# xmodmap -e "add        mod4 = Super_L Super_R"
-# xmodmap -e "add        mod5 = Mode_switch ISO_Level3_Shift"
 [ -f ${HOME}/.config/keymaps/.xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/.xmodmaprc
 
 [ -x /usr/bin/dunst ] && dunst &
