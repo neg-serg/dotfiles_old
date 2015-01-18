@@ -8,9 +8,6 @@ Last Updated: 2007-01-23
 Copyright (c) Etan Reisner 2007
 --]]
 
--- Usage: This will create a scratchpad named example_sp
---          kpress(MOD4.."space", "named_scratchpad(_, 'example_sp')")
-
 function named_scratchpad(reg, name, mode)
     local named_sp
     local default_w, default_h = 640, 480
