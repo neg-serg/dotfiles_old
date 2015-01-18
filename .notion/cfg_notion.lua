@@ -11,7 +11,6 @@ local hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
 if hook_deinit then
     hook_deinit:add(dzen_delete)
 end
--- dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 22 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
 dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
 dzen_pipe:setvbuf("line")
 --------------------------------[[ IONCORE ]]---------------------------------------
@@ -38,7 +37,6 @@ ioncore.set{
 	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
-
 dopath("cfg_layouts.lua")
 dopath("app")
 dopath("mod_sp")
@@ -63,6 +61,10 @@ dopath("screenshot")
 dopath("lua_repl")
 dopath("mod_dock")
 dopath("cfg_dzen")
+function start_mpdstat()
+   ioncore.exec('lua ~/.notion/mpd_dzen.lua')
+end
+start_mpdstat()
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
@@ -212,8 +214,6 @@ ioncore.get_hook('clientwin_do_manage_alt'):add(
     function(cwin, table)
     ioncore.write_savefile("windowinfos", cwin:get_ident())
 end)
-
--- dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -tw 0 -x 0 -ta l -w 1910 -p -fn '-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1' ", "w")
 -------------------------------------------------------------------------------------
 --[  KEY BINDINGS   ]------------------------------
 ---------------------
