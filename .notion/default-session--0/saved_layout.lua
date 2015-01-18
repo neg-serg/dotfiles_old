@@ -5,270 +5,6 @@ return {
         ["name"] = "WScreen",
         ["managed"] = {
             [1] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "web",
-                ["initial_outputs"] = {
-                    [1] = "LVDS-1-0",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["tls"] = 1177,
-                            ["tl"] = {
-                                ["regparams"] = {
-                                    ["mode"] = 2,
-                                    ["type"] = "WFrame",
-                                    ["name"] = "Tiling Frame<1>",
-                                    ["managed"] = {
-                                    },
-                                },
-                                ["type"] = "WSplitRegion",
-                            },
-                            ["dir"] = "vertical",
-                            ["brs"] = 23,
-                            ["br"] = {
-                                ["type"] = "WSplitST",
-                            },
-                            ["type"] = "WSplitSplit",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [2] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "media",
-                ["initial_outputs"] = {
-                    [1] = "LVDS-1-0",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling<2>",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "Notion WFrame<1>",
-                                ["managed"] = {
-                                },
-                            },
-                            ["type"] = "WSplitRegion",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [3] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "dev",
-                ["initial_outputs"] = {
-                    [1] = "LVDS-1-0",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling<3>",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["tls"] = 1177,
-                            ["tl"] = {
-                                ["regparams"] = {
-                                    ["mode"] = 2,
-                                    ["type"] = "WFrame",
-                                    ["name"] = "Tiling Frame<2>",
-                                    ["managed"] = {
-                                    },
-                                },
-                                ["type"] = "WSplitRegion",
-                            },
-                            ["dir"] = "vertical",
-                            ["brs"] = 23,
-                            ["br"] = {
-                                ["type"] = "WSplitST",
-                            },
-                            ["type"] = "WSplitSplit",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [4] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "doc",
-                ["initial_outputs"] = {
-                    [1] = "LVDS-1-0",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling<4>",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "Tiling Frame<3>",
-                                ["managed"] = {
-                                },
-                            },
-                            ["type"] = "WSplitRegion",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [5] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "vm",
-                ["initial_outputs"] = {
-                    [1] = "LVDS-1-0",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling<5>",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "WFrame<1>",
-                                ["managed"] = {
-                                },
-                            },
-                            ["type"] = "WSplitRegion",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [6] = {
-                ["hidden"] = true,
-                ["type"] = "WGroupWS",
-                ["name"] = "topcoder",
-                ["initial_outputs"] = {
-                    [1] = "LVDS1",
-                },
-                ["geom"] = {
-                    ["y"] = 0,
-                    ["x"] = 0,
-                    ["w"] = 1920,
-                    ["h"] = 1200,
-                },
-                ["sizepolicy"] = "full",
-                ["managed"] = {
-                    [1] = {
-                        ["type"] = "WTiling",
-                        ["name"] = "WTiling<7>",
-                        ["bottom"] = true,
-                        ["level"] = 0,
-                        ["sizepolicy"] = "full",
-                        ["geom"] = {
-                            ["y"] = 0,
-                            ["x"] = 0,
-                            ["w"] = 1920,
-                            ["h"] = 1200,
-                        },
-                        ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "WFrame<3>",
-                                ["managed"] = {
-                                },
-                            },
-                            ["type"] = "WSplitRegion",
-                        },
-                    },
-                },
-                ["level"] = 0,
-            },
-            [7] = {
                 ["geom"] = {
                     ["y"] = 0,
                     ["x"] = 0,
@@ -296,21 +32,21 @@ return {
                             ["h"] = 1200,
                         },
                         ["split_tree"] = {
-                            ["tls"] = 1177,
+                            ["tls"] = 1175,
                             ["tl"] = {
                                 ["regparams"] = {
                                     ["mode"] = 2,
                                     ["type"] = "WFrame",
-                                    ["name"] = "WFrame<2>",
+                                    ["name"] = "Tiling Frame",
                                     ["managed"] = {
                                         [1] = {
                                             ["type"] = "WGroupCW",
-                                            ["name"] = "WGroupCW<2>",
+                                            ["name"] = "WGroupCW",
                                             ["geom"] = {
                                                 ["y"] = 1,
                                                 ["x"] = 1,
                                                 ["w"] = 1918,
-                                                ["h"] = 1175,
+                                                ["h"] = 1173,
                                             },
                                             ["switchto"] = true,
                                             ["sizepolicy"] = "full",
@@ -318,14 +54,14 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 4194313,
+                                                    ["windowid"] = 10485769,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
                                                         ["y"] = 0,
                                                         ["x"] = 0,
                                                         ["w"] = 1918,
-                                                        ["h"] = 1175,
+                                                        ["h"] = 1173,
                                                     },
                                                     ["level"] = 1,
                                                 },
@@ -337,7 +73,7 @@ return {
                                 ["type"] = "WSplitRegion",
                             },
                             ["dir"] = "vertical",
-                            ["brs"] = 23,
+                            ["brs"] = 25,
                             ["br"] = {
                                 ["type"] = "WSplitST",
                             },
@@ -347,7 +83,7 @@ return {
                 },
                 ["level"] = 0,
             },
-            [8] = {
+            [2] = {
                 ["hidden"] = true,
                 ["type"] = "WGroupWS",
                 ["name"] = "jetbrains",
@@ -365,7 +101,107 @@ return {
                 },
                 ["level"] = 0,
             },
-            [9] = {
+            [3] = {
+                ["hidden"] = true,
+                ["type"] = "WGroupWS",
+                ["name"] = "dev",
+                ["initial_outputs"] = {
+                    [1] = "DVI-I-1",
+                },
+                ["geom"] = {
+                    ["y"] = 0,
+                    ["x"] = 0,
+                    ["w"] = 1920,
+                    ["h"] = 1200,
+                },
+                ["sizepolicy"] = "full",
+                ["managed"] = {
+                    [1] = {
+                        ["type"] = "WTiling",
+                        ["name"] = "WTiling",
+                        ["bottom"] = true,
+                        ["level"] = 0,
+                        ["sizepolicy"] = "full",
+                        ["geom"] = {
+                            ["y"] = 0,
+                            ["x"] = 0,
+                            ["w"] = 1920,
+                            ["h"] = 1200,
+                        },
+                        ["split_tree"] = {
+                            ["tls"] = 1175,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "WFrame<1>",
+                                    ["managed"] = {
+                                    },
+                                },
+                                ["type"] = "WSplitRegion",
+                            },
+                            ["dir"] = "vertical",
+                            ["brs"] = 25,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
+                        },
+                    },
+                },
+                ["level"] = 0,
+            },
+            [4] = {
+                ["hidden"] = true,
+                ["type"] = "WGroupWS",
+                ["name"] = "web",
+                ["initial_outputs"] = {
+                    [1] = "DVI-I-1",
+                },
+                ["geom"] = {
+                    ["y"] = 0,
+                    ["x"] = 0,
+                    ["w"] = 1920,
+                    ["h"] = 1200,
+                },
+                ["sizepolicy"] = "full",
+                ["managed"] = {
+                    [1] = {
+                        ["type"] = "WTiling",
+                        ["name"] = "WTiling<2>",
+                        ["bottom"] = true,
+                        ["level"] = 0,
+                        ["sizepolicy"] = "full",
+                        ["geom"] = {
+                            ["y"] = 0,
+                            ["x"] = 0,
+                            ["w"] = 1920,
+                            ["h"] = 1200,
+                        },
+                        ["split_tree"] = {
+                            ["tls"] = 1175,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "WFrame<2>",
+                                    ["managed"] = {
+                                    },
+                                },
+                                ["type"] = "WSplitRegion",
+                            },
+                            ["dir"] = "vertical",
+                            ["brs"] = 25,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
+                        },
+                    },
+                },
+                ["level"] = 0,
+            },
+            [5] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -382,10 +218,39 @@ return {
                 },
                 ["level"] = 1,
             },
-            [10] = {
+            [6] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
+                    [1] = {
+                        ["type"] = "WGroupCW",
+                        ["name"] = "WGroupCW<1>",
+                        ["geom"] = {
+                            ["y"] = 1,
+                            ["x"] = 1,
+                            ["w"] = 1129,
+                            ["h"] = 524,
+                        },
+                        ["switchto"] = true,
+                        ["sizepolicy"] = "full",
+                        ["managed"] = {
+                            [1] = {
+                                ["type"] = "WClientWin",
+                                ["bottom"] = true,
+                                ["windowid"] = 31457289,
+                                ["checkcode"] = 2,
+                                ["sizepolicy"] = "full",
+                                ["geom"] = {
+                                    ["y"] = 0,
+                                    ["x"] = 0,
+                                    ["w"] = 1129,
+                                    ["h"] = 524,
+                                },
+                                ["level"] = 1,
+                            },
+                        },
+                        ["level"] = 0,
+                    },
                 },
                 ["unnumbered"] = true,
                 ["name"] = "ncmpcpp",
@@ -399,7 +264,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [11] = {
+            [7] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -416,7 +281,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [12] = {
+            [8] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -433,7 +298,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [13] = {
+            [9] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -450,7 +315,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [14] = {
+            [10] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -467,7 +332,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [15] = {
+            [11] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -484,7 +349,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [16] = {
+            [12] = {
                 ["type"] = "WGroupWS",
                 ["sizepolicy"] = "full",
                 ["managed"] = {
@@ -519,7 +384,7 @@ return {
                 },
                 ["hidden"] = true,
             },
-            [17] = {
+            [13] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -536,7 +401,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [18] = {
+            [14] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -553,7 +418,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [19] = {
+            [15] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
@@ -570,7 +435,7 @@ return {
                 },
                 ["level"] = 1,
             },
-            [20] = {
+            [16] = {
                 ["type"] = "WFrame",
                 ["sizepolicy"] = "free",
                 ["managed"] = {
