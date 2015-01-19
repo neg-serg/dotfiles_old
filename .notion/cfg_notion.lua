@@ -1,9 +1,9 @@
  --_:attach_new({type="WFloatWS", layer=2}):goto()
 --------------------------------[[ CONSTS ]]----------------------------------------
 META="Mod1+"
-
 function dzen_delete()
     os.execute("pkill dzen2")
+    os.execute("pkill -f \'lua /home/neg/.notion/mpd_dzen.lua\'")
 end
 
 hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
@@ -37,34 +37,34 @@ ioncore.set{
 	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
+dopath("mod_query")
+dopath("mod_menu")
+dopath("mod_tiling")
+dopath("cfg_tiling")
 dopath("cfg_layouts.lua")
 dopath("app")
 dopath("mod_sp")
 dopath("named_scratchpad")
-dopath("mod_query")
-dopath("mod_menu")
-dopath("mod_tiling")
 dopath("min_tabs")
 dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
-dopath("cfg_tiling")
 dopath("dbg")
 dopath("mod_xrandr")
 dopath("cfg_xrandr")
 dopath("mod_notionflux")
 dopath("vim_bindings")
 dopath("goto-by-tag")
-dopath("nest_ws")
 dopath("screenshot")
 dopath("lua_repl")
 dopath("mod_dock")
 dopath("cfg_dzen")
 function start_mpdstat()
-   ioncore.exec('lua ~/.notion/mpd_dzen.lua')
+    ioncore.exec('lua ~/.notion/mpd_dzen.lua')
 end
 start_mpdstat()
+dopath("nest_ws")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
