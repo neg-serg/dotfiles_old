@@ -34,18 +34,6 @@ local function dzen_input()
     end
 end
 
-local function update_frame()
-    local fr
-    ioncore.defer( function() 
-	local cur=ioncore.current()
-	if obj_is(cur, "WClientWin") and
-	  obj_is(cur:parent(), "WMPlex") then
-	    cur=cur:parent()
-	end
-	fr=cur:name()
-    end)
-end
-
 local function ws_current(t)
     local scr=ioncore.find_screen_id(0)
     local curws = scr:mx_current()
@@ -58,28 +46,12 @@ local function ws_current(t)
     for i=1,n do
         tmpws=scr:mx_nth(i-1)
         wstype=obj_typename(tmpws)
-	if wstype=="WIonWS" then
-	    c="i"
-	elseif wstype=="WFloatWS" then
-	    c="f"
-	elseif wstype=="WPaneWS" then
-	    c="p"
-	elseif wstype=="WGroupWS" then
-	    c="g"
-	else
-	    c="c"
-	end
 	if i==curindex then
-            name_pager=name_pager..tmpws:name()
-	    pager=pager..c
+        name_pager=name_pager..tmpws:name()
 	end
     end
 
     local fr,cur
-
-    -- Older versions without an ioncore.current() should
-    -- skip update_frame.
-    update_frame()
 
     ws_curr = name_pager
     dzen_update()
