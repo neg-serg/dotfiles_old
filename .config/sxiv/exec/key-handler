@@ -66,6 +66,7 @@ rename() {
         fp=$(cat < "$TMPFILE")
         $cmd "$fp" "$(dirname "$fp")/$dest"
     fi
+	rm -f "$TMPFILE"
 }
 
 copy() {
@@ -84,6 +85,7 @@ copy() {
     else
         Z -i "$Z_DATA_FILE" -d "$dest"
     fi
+	rm -f "$TMPFILE"
 }
 
 
@@ -103,6 +105,7 @@ move() {
     else
         Z -i "$Z_DATA_FILE" -d "$dest"
     fi
+	rm -f "$TMPFILE"
 }
 
 delete() {
@@ -116,6 +119,7 @@ delete() {
         done < $TMPFILE
         printf "%s\n" "move "$dest"" > "$LAST_ACTION"
     fi
+	rm -f "$TMPFILE"
 }
 
 rep() {
@@ -136,6 +140,7 @@ rep() {
             eval $(echo $cmd `echo \"${file_name}\"` $dest)
         done < $TMPFILE
     fi
+	rm -f "$TMPFILE"
 }
 
 copy_name() {
