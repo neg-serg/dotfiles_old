@@ -11,6 +11,15 @@
 # where C/M/S indicate Ctrl/Meta(Alt)/Shift modifier states and KEY is the X
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
+function resolve_file {
+  if [ -f "$1" ]; then
+    echo $(readlink -f "$1")
+  elif [[ "${1#/}" == "$1" ]]; then
+    echo "$(pwd)/$1"
+  else
+    echo $1
+  fi
+}
 
 readonly KEY="$1";
 readonly TAGFILE="$HOME/.config/sxiv/tags"
@@ -67,7 +76,8 @@ copy() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
         while read line; do
-            eval $(echo cp `echo \"${line}\"` $dest)
+            file_name="`resolve_file $line`"
+            eval $(echo cp `echo \"${file_name}\"` $dest)
         done < $TMPFILE
         Z -i "$Z_DATA_FILE" -a "$dest"
         printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
@@ -85,7 +95,8 @@ move() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
         while read line; do
-            eval $(echo mv `echo \"${line}\"` $dest)
+            file_name="`resolve_file $line`"
+            eval $(echo mv `echo \"${file_name}\"` $dest)
         done < $TMPFILE
         Z -i "$Z_DATA_FILE" -a "$dest"
         printf "%s\n" "move "$dest"" > "$LAST_ACTION"
@@ -100,7 +111,8 @@ delete() {
     [ -z "$dest" ] && exit 0
     if [ -d "$dest" ] ; then
         while read line; do
-            eval $(echo mv `echo \"${line}\"` $dest)
+            file_name="`resolve_file $line`"
+            eval $(echo mv `echo \"${file_name}\"` $dest)
         done < $TMPFILE
         printf "%s\n" "move "$dest"" > "$LAST_ACTION"
     fi
@@ -108,27 +120,28 @@ delete() {
 
 rep() {
     cat >"$TMPFILE"
-    action=($(cat "$LAST_ACTION"))
-    dest=${action[1]}
+    file=($(cat "$LAST_ACTION"))
+    action=${file[1]}
+    dest=${file[2]}
     if [ -d "$dest" ] ; then
-        fp=$(cat < "$TMPFILE")
-        if [[ ${action[0]} == "copy" ]]; then
-            cp "$fp" "$dest"
-            Z -i "$Z_DATA_FILE" -a "$dest"
-            printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
-        fi
-        if [[ ${action[0]} == "move" ]]; then
-            mv "$fp" "$dest"
-            Z -i "$Z_DATA_FILE" -a "$dest"
-            printf "%s\n" "move "$dest"" > "$LAST_ACTION"
-        fi
+        while read line; do
+            file_name="`resolve_file $line`"
+            echo $file_name
+            if [[ ${action} == "move" ]]; then
+                cmd="mv"
+            fi
+            if [[ ${action} == "copy" ]]; then
+                cmd="cp"
+            fi
+            eval $(echo $cmd `echo \"${file_name}\"` $dest)
+        done < $TMPFILE
     fi
 }
 
 copy_name() {
     cat >"$TMPFILE2"
     fp=$(cat < "$TMPFILE2")
-    echo $fp|tr -d ' '|xsel -bi
+    echo $(resolve_file $fp)|xsel -bi
     notify-send "$fp"
     rm -f $TMPFILE2
 }
