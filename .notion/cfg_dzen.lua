@@ -17,23 +17,6 @@ settings = {
       interval = 1*1000,  -- update every second
 }
 
-local function dzen_input()
-    local dzen_input, reg = nil, nil
-
-    f = io.open(dzen_output, "r")
-    dzen_input = f:read("*l")
-    f:close()
-
-    if dzen_input ~= nil then
-            print("AAAA "..dzen_input.."\n")
-            io.flush()
-        reg = dzen_input:lookup_region()
-        if reg ~=nil then
-            reg:goto_focus()
-        end
-    end
-end
-
 local function ws_current(t)
     local scr=ioncore.find_screen_id(0)
     local curws = scr:mx_current()
