@@ -89,7 +89,6 @@ MainTerminal.selection-autotransform.1: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg
 MainTerminal.selection-autotransform.2: if(m{^[ab]/}) { s{^[ab]/}{}g; }
 MainTerminal.selection-autotransform.3: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
 
-MainTerminal.keysym.M-slash:  perl:aAtt:complete
 MainTerminal.keysym.M-Escape: perl:keyboard-select:activate
 MainTerminal.keysym:M-s:      perl:keyboard-select:search
 MainTerminal.keysym.M-C-v:    perl:clipboard:paste_escaped
