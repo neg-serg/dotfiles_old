@@ -6,6 +6,7 @@ if has('vim_starting')
     filetype off
     set nocompatible  "be improved
     set runtimepath+=~/.vim/bundle/neobundle.vim/
+	set runtimepath+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
 endif
 if has('nvim')
         let &rtp = expand('~/.vim/') . ','
