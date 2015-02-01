@@ -39,20 +39,23 @@ export NCURSES_NO_PADDING=1
 export BIN_HOME=${HOME}/bin
 
 path_dirs=(
-	${BIN_HOME}
     /usr/bin
+    /usr/sbin
+    /usr/lib64/notion/bin
     /usr/local/sbin
     /usr/local/bin
+	/usr/local/bin
+	/bin
+	/sbin
+	/opt/bin
     /opt/android-sdk/platform-tools
+	/usr/bin/site_perl
+	/usr/bin/vendor_perl
+	/usr/bin/core_perl
     ${BIN_HOME}/tools
 	${XDG_DATA_HOME}/node/bin
 	${HOME}/.rvm/bin
-	/usr/bin/site_perl:
-	/usr/bin/vendor_perl
-	/usr/bin/core_perl
-	/usr/local/bin
-	/usr/bin
-	/bin
+	${BIN_HOME}
 	${BIN_HOME}/go/bin
 )
 
