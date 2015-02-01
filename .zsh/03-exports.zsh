@@ -68,17 +68,6 @@ export SDCV_PAGER=$PAGER
 alias less=$PAGER
 alias zless=$PAGER
 
-# if [ -x ~/bin/_v ]; then
-#     export NULLCMD=~/bin/_v
-#     export READNULLCMD=~/bin/_v
-# else 
-#     if [ -x =vimpager ]; then
-#         export READNULLCMD=vimpager
-#     fi
-# fi
-
-# export MAIL="/home/neg/.local/mail/gmail/[Gmail].All Mail"
-# export MAIL=${MAIL:-/home/neg/.local/mail}
 export SHELL='/bin/zsh'
 export X_OSD_COLOR='#00ffff'
 # support colors in less
@@ -102,11 +91,9 @@ export ACK_COLOR_LINENO="bold green"
 export LS_COLORS GREP_COLORS
 
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
-# export WORDCHARS="${WORDCHARS:s#/#}"
 
 fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
-#export EXT_LLVM_DIR=/home/neg/build/git/extempore/llvm-3.0/Build
 ZSHDIR=$HOME/.zsh
 
 # history
@@ -115,7 +102,6 @@ HISTSIZE=50000
 SAVEHIST=100000 # useful for setopt append_history
 
 # dirstack handling
-
 DIRSTACKSIZE=${DIRSTACKSIZE:-20}
 DIRSTACKFILE=${DIRSTACKFILE:-${HOME}/.zsh/99-zdirs}
 
