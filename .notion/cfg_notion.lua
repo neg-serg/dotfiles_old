@@ -3,6 +3,7 @@
 META="Mod1+"
 function dzen_delete()
     os.execute("pkill dzen2")
+    os.execute("pkill rofi")
     os.execute("pkill -f \'lua /home/neg/.notion/mpd_dzen.lua\'")
 end
 
@@ -35,6 +36,7 @@ ioncore.set{
     autosave_layout=false,
     autoraise=true,
 	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
+	framed_transients=true,
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
 dopath("mod_query")
@@ -63,8 +65,14 @@ dopath("cfg_dzen")
 function start_mpdstat()
     ioncore.exec('lua ~/.notion/mpd_dzen.lua')
 end
+function start_rofi()
+    ioncore.exec('rofi -key mod1-g -location 7')
+    ioncore.exec('rofi -rkey mod1-grave -location 7')
+end
 start_mpdstat()
-dopath("nest_ws")
+start_rofi()
+-- dopath("nest_ws")
+dopath("rofi_goto")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
@@ -116,7 +124,6 @@ defwinprop{class="MPlayer",  jumpto=true, transient_mode="off", target="media"}
 defwinprop{class="mplayer2", jumpto=true, transient_mode="off", target="media"}
 defwinprop{class="mpv",      jumpto=true, transient_mode="off", target="media"}
 defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
---defwinprop{class="Sxiv",    instance="sxiv", jumpto="off", transient_mode="off", target="media",lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,userpos=true,
 -- ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
@@ -149,17 +156,10 @@ defwinprop{class = "Gimp",acrobatic = true}
 -- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",target="g-win",float=true}
 -- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-new",transient_mode="off",target="g-win",float=true}
 -- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",target="g-win",float=true}
---
+
 -- defwinprop{class="Gimp",instance="gimp",role="gimp-toolbox",transient_mode="on",target="g-right-b",acrobatic = true}
 -- defwinprop{class="Gimp",instance="gimp",role="gimp-*tool",transient_mode="on",target="g-right-b",acrobatic = true}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
---defwinprop{is_dockapp = true,statusbar = "systray",
-           --max_size = {w=8,h=8},
-           --min_size = {w=8,h=8},
---}
---defwinprop{class="dzen", statusbar="systray"}
--- defwinprop{class="Avant-window-navigator",target="*dock*"}
---defwinprop{is_dockapp=true,target="*dock*"}
 defwinprop{class = "stalonetray", instance = "stalonetray", statusbar="systray_stalone"} 
 defwinprop{instance = "stalonetray", statusbar="systray_stalone"} 
 defwinprop{class = "stalonetray", statusbar="systray_stalone"} 
@@ -217,20 +217,15 @@ end)
 -------------------------------------------------------------------------------------
 --[  KEY BINDINGS   ]------------------------------
 ---------------------
--- local vmtable={class="vmware",instance="Vmware"}
-
 defbindings("WMPlex.toplevel", {
     --kpress("Shift_R",        "mod_sp.set_shown(ioncore.lookup_region(_:name(),'WFrame'),'unset' )"),
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
     kpress("Mod1+space",       "nop()"),
-    kpress("Mod1+grave",       "mod_query.query_exec(_)"),
+    -- kpress("Mod1+grave",       "mod_query.query_exec(_)"),
     kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
-    kpress("Mod1+G",           "mod_menu.menu(_, _sub, 'windowlist')"),
     kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
-
     kpress("Mod4+F2", "repl(_)"),
-
     kpress("Mod4+Control+G",   "mod_query.query_workspace(_)"),
 
     kpress("Mod4+M",           "mod_query.query_menu(_, _sub, 'ctxmenu', 'Context menu:')"),
@@ -302,8 +297,8 @@ defbindings("WMPlex.toplevel", {
 --[[  MISC  ]]---------------------------------------
 --------------
     kpress("Mod4+Control+Q", "WRegion.rqclose_propagate(_, _sub)"),
-    kpress("Mod4+F4",        "ioncore.exec_on(_, 'eject')"),
     kpress("Mod4+U",         "ioncore.exec_on(_, 'udiskie-umount -a')"),
+    kpress("Mod4+Shift+U",   "ioncore.exec_on(_, 'eject')"),
     kpress("Mod4+Shift+F",   "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
     -- Rename frame --
     kpress("Mod4+c",        "ioncore.exec_on(_, 'sh ~/bin/clip')"),
@@ -350,10 +345,6 @@ defbindings("WScreen", {
             }),
 
     --kpress("Mod4+u","attach_new({type="WTiling", name="Instant Messaging"}):goto()"),
-    submap(META.."E", {
-        kpress("I", "ioncore.goto_activity()"),
-        kpress("T", "ioncore.tagged_clear()"),
-    }),
     kpress("Mod4+Shift+1", "ioncore.goto_nth_screen(0)"),
     kpress("Mod4+Shift+2", "ioncore.goto_nth_screen(1)"),
     kpress("Mod4+Shift+comma", "ioncore.goto_prev_screen()"),
@@ -373,7 +364,7 @@ defbindings("WScreen", {
     }),
     kpress("F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     kpress("Mod4+grave", "ioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
-    kpress("Mod1+grave", "mod_query.query_exec(_)"),
+    -- kpress("Mod1+grave", "mod_query.query_exec(_)"),
     ---------------------------------------------------------
     kpress("Mod4+H", "_chld:focus_direction('left')", "_chld:non-nil"),
     kpress("Mod4+J", "_chld:focus_direction('down')", "_chld:non-nil"),
@@ -416,7 +407,8 @@ defbindings("WFrame", {
 
 -- Frames for transient windows ignore this bindmap
 defbindings("WFrame.toplevel", {
-    kpress("Mod4+A", "mod_query.query_attachclient(_)"),
+    -- kpress("Mod4+A", "mod_query.query_attachclient(_)"),
+    kpress("Mod4+A", "rofi_attach_win(_)"),
     kpress("Mod4+backslash", "WFrame.switch_next(_)"),
     kpress("Mod1+A", "ioncore.tagged_attach(_)"),
     submap("Mod1+E", {
