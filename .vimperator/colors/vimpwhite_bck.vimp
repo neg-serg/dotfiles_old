@@ -1,7 +1,7 @@
 hi Bell                color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt; border: none; background-color: black;
 hi Boolean             color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt; color: #001742;
-hi CmdLine             color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt; background: black; color: #CCCCCC; transition: all 0.25s;
 hi CmdLine>*           color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt;
+hi CmdLine             color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt; background: black; color: #CCCCCC; transition: all 0.25s;
 hi CmdOutput           color: #CCCCCC; font-family: "PragmataPro";font-size: 12pt; black-space: pre;
 hi CompDesc            color: #CCCCCC; width: 500px; max-width: 5000px; font-family: "PragmataPro";font-size: 12pt;  color: #666;
 hi CompGroup:not(:firstcolor: #CCCCCC; -of-type)    margin-top: 1eex; ; font-family: "PragmataPro";
@@ -11,32 +11,28 @@ hi CompItem>*          color: #CCCCCC; font-family: "PragmataPro"; font-size: 12
 hi CompItem[selected]  color: #001742; font-family: "PragmataPro"; font-size: 12pt; background: #0B3A91; box-shadow: 0px 0px 1px #CC0;
 hi CompMsg  font-style:color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; italic; margin-left: 16px;
 hi CompResult          color: #CCCCCC; width: 500px; max-width: 500px; overflow: hidden; font-family: "PragmataPro" ;font-size: 12pt; !important;
-hi CompTitle           color: #CCCCCC; -moz-appearance: statusbar; font-family: "PragmataPro";font-size: 12pt; font-weight: bold; text-indent: 5px; height: 20px;
 hi CompTitle>*         color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; color: #333; border-top: 1px solid gray; border-bottom: 1px solid #BBB; padding: 1px 0.5ex; text-shadow: 1px 1px 0px #E0E0E0; border-bottom-color: #8C8C8C;
+hi CompTitle           color: #CCCCCC; -moz-appearance: statusbar; font-family: "PragmataPro";font-size: 12pt; font-weight: bold; text-indent: 5px; height: 20px;
 hi ContentSeparator    color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; border-top: 1px dotted #ccc;
-
 hi Disabled            font-family: "PragmataPro";font-size: 12pt; color: #001742;
 hi Enabled             font-family: "PragmataPro";font-size: 12pt; color: #1C793D;
 hi ErrorMsg            font-family: "PragmataPro";font-size: 12pt; color: #001742; background: black; font-weight: bold;
 hi Filter              font-family: "PragmataPro";font-size: 12pt; border-radius: 2px; background: #0B3A91; border: 1px #094200; border: none; color: white;
 hi FrameIndicator      font-family: "PragmataPro"; color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt; background-color: #001742; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
 hi Function            color: #CCCCCC; font-family: "PragmataPro"; font-size: 12pt;
-
-" hi Hint::after         content: attr(number);  font-family: "PragmataPro";
+hi Hint[active]        background: black; background: #000000; border-radius: 4px; font-family: "PragmataPro"; font-size: 10pt;color:#89CDD2; font-weight: bold;
 hi HintActive          background-color: #001742; color: white;
+" hi Hint::after         content: attr(number);  font-family: "PragmataPro";
 " hi Hint                background-color: #001742; border-radius: 2px; font-family: "PragmataPro"; color:#477275; font-weight: bold;
 hi Hint                background-color: #001742; border-radius: 4px; font-family: "PragmataPro"; font-size: 10pt;color:#89CDD2; font-weight: bold;
-hi Hint[active]        background: black; background: #000000; border-radius: 4px; font-family: "PragmataPro"; font-size: 10pt;color:#89CDD2; font-weight: bold;
-hi HintImage           opacity: .5;  font-family: "PragmataPro"; font-size: 12pt;
 hi HintElem            background-color: #CCCCCC !important; color: black !important; border-radius: 2px; 
-
+hi HintImage           opacity: .5;  font-family: "PragmataPro"; font-size: 12pt;
 hi Indicator           color: #557C90; font-family: "PragmataPro"; font-size: 12pt;
 hi InfoMsg             color: magenta; background: black;  font-family: "PragmataPro"; font-size: 12pt;
 hi Key                 color: #CCCCCC; font-weight: bold;  font-family: "PragmataPro"; font-size: 12pt;
 hi Keyword             color: #001742;  font-family: "PragmataPro"; font-size: 12pt;
 hi LineNr              color: orange; background: black;  font-family: "PragmataPro"; font-size: 12pt;
 hi Message             color: #CCCCCC; black-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;  font-family: "PragmataPro"; font-size: 12pt;
-" hi ModeMsg             color: #CCCCCC; background: white; border-radius: 1px; padding: 0px 5px;  font-family: "PragmataPro"; font-size: 12pt;
 hi ModeMsg             background-color: #CCCCCC !important; color: black !important; border-radius: 1px; padding: 0px 5px; font-family: "PragmataPro"; font-size: 12pt; font-weight: bold;
 hi MoreMsg             color: #CCCCCC; color: #1C793D; background: black;  font-family: "PragmataPro"; font-size: 12pt;
 hi NonText             color: #CCCCCC; color: #2774FB; min-height: 16px; padding-left: 2px;  font-family: "PragmataPro"; font-size: 12pt;
@@ -57,4 +53,3 @@ hi Title               color: magenta; background: black; font-weight: bold; fon
 hi URL                 color: #CCCCCC; text-decoration: none; color: #1C793D; font-family: "PragmataPro"; font-size: 12pt;
 hi URL:hover           color: #CCCCCC; text-decoration: underline; cursor: pointer; font-family: "PragmataPro"; font-size: 12pt;
 hi WarningMsg          color: #001742; background: black; font-family: "PragmataPro"; font-size: 12pt;
-
