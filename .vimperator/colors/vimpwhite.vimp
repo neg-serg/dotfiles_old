@@ -165,6 +165,14 @@ hi ErrorMsg <<EOM
     font-weight: bold;
 EOM
 
+hi WarningMsg <<EOM
+    font-family: "PragmataPro";
+    font-size: 12pt;
+    color: #008888;
+    background: black;
+    font-weight: bold;
+EOM
+
 hi Filter <<EOM
     font-family: "PragmataPro";
     font-size: 12pt;
