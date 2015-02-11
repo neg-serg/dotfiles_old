@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# ref: w3mimgdisplay.c
+
+function clear_image {
+  echo -ne "
+6;0;0;${1:-10000};${2:-10000}
+3;" | /usr/lib/w3m/w3mimgdisplay
+}
+
+function draw_image {
+  echo -ne "
+2;
+3;
+0;1;0;0;0;0;0;0;0;0;$1
+4;
+3;
+5;$1" | /usr/lib/w3m/w3mimgdisplay
+}
+
+function on_init {
+  stty -echo
+  echo -ne "\e7\e[?1047h\e[2J\e[H\e[?25l"
+}
+
+function on_exit {
+  echo -ne "\e[?1047l\e8\e[?25h"
+  [ -n "$TMUX" ] && tmux display-message 'wi finished'
+}
+
+function set_title {
+  echo -ne "\e]2;$1\a"
+}
+
+function is_image_file {
+  [[ "$1" =~ \.(jpg|jpeg|gif|png)$ ]]
+}
+
+function append_file {
+  is_image_file "$1" && files=("${files[@]}" "$1")
+}
+
+[ "$#" = 0 ] && exec "$0" *.*
+[ "$#" = 1 -a -d "$1" ] && exec "$0" "$1"/*.*
+
+trap on_exit EXIT
+
+declare -a files
+
+for fn in "$@"
+do
+  append_file "$fn"
+done
+
+if [ -p /dev/fd/0 ]
+then
+  while read fn
+  do
+    append_file "$fn"
+  done
+
+  exec 0<&1
+fi
+
+pos=0
+len="${#files[@]}"
+
+on_init
+sleep 0.1
+
+while true
+do
+  fn="${files[$pos]}"
+
+  set_title "$(( pos + 1 )) / $len - $(basename "$fn") - $(dirname "$fn")"
+  draw_image "$fn" > /dev/null
+
+  # if [[ $(draw_image "$fn") =~ (([0-9]+) ([0-9]+)) ]]
+  # then
+  #   read it
+  #   clear_image "${BASH_REMATCH[2]}" "${BASH_REMATCH[3]}"
+  # fi
+
+  read -n1 input
+  case "$input" in
+    q | "\e")
+      clear_image
+      exit
+      ;;
+    k)
+      pos=$(( pos - 1 ))
+      ;;
+    j | ' ' | *)
+      pos=$(( pos + 1 ))
+  esac
+
+  clear_image 10000 10000
+
+  [[ $pos -ge $len ]] && pos=0
+  [[ $pos -lt 0 ]] && pos=$(( len - 1 ))
+done
