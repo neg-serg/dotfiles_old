@@ -63,5 +63,5 @@ fi
 (
 echo "$CAL"
 echo "^ca(1, $0 $PREV $Y_PREV)<<Prev^ca()  ^ca(1, $0 $NEXT $Y_NEXT)Next>>^ca()"
-sleep 3s
+sleep 7s
 ) > "$PIPE"

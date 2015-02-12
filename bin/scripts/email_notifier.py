@@ -16,7 +16,7 @@ fd.close()
 pynotify.init('email_notifier.py')
 
 # Handling a new mail
-icon = pixbuf_new_from_file(expanduser("~/.icons/mail-unread.png"))
+# icon = pixbuf_new_from_file(expanduser("~/.icons/mail-unread.png"))
 dec_header = lambda h : ' '.join(unicode(s, e if bool(e) else 'ascii') for s, e in decode_header(h))
 def newfile(event):
     fd = open(event.pathname, 'r')
@@ -26,7 +26,7 @@ def newfile(event):
     n = pynotify.Notification("New mail in "+'/'.join(event.path.split('/')[-3:-1]),
                               From+ "\n"+ Subject)
     fd.close()
-    n.set_icon_from_pixbuf(icon)
+    # n.set_icon_from_pixbuf(icon)
     n.set_timeout(12000)
     n.show()
 
