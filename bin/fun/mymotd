@@ -1,0 +1,8 @@
+#!/bin/bash
+echo ""
+echo "Welcome to ${HOSTNAME}, ${PAM_USER}"
+echo "Kernel:     $(uname -r)"
+echo "Uptime:     $(uptime -p)"
+echo "Iptables:   $(systemctl is-active iptables)"
+echo "Disk Use:   $(df --output=pcent / | sed 1d)"
+awk '/upgraded/ {line=$0;} END { $0=line; gsub(/[\[\]]/,"",$0); printf "\033[1;31mLast Upgraded:\033[0m %s %s",$1,$2; exit;}' /var/log/pacman.log 
