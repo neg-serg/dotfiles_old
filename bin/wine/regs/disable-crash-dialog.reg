@@ -1,0 +1,2 @@
+[HKEY_CURRENT_USER\Software\Wine\WineDbg]
+"ShowCrashDialog"="dword:00000000"
