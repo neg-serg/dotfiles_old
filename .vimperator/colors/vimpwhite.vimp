@@ -1,15 +1,3 @@
-" hi Hint <<EOM
-"   font-family      : monospace;
-"   font-size        : 15px;
-"   font-weight      : normal;
-"   color            : lightyellow;
-"   background-color : black;
-"   border-color     : ButtonShadow;
-"   border-width     : 0px;
-"   border-style     : solid;
-"   padding          : 0px 5px 0px 5px;
-" EOM
-
 hi Bell <<EOM
     color: #CCCCCC;
     font-family: "PragmataPro";
@@ -224,9 +212,9 @@ hi HintElem <<EOM
 EOM
 
 hi HintImage <<EOM
-    opacity: .5;
     font-family: "PragmataPro";
     font-size: 12pt;
+    opacity: .8;
 EOM
 
 hi Indicator <<EOM
@@ -436,3 +424,12 @@ EOM
 
 "ime-controller
 "style -name commandline-ime chrome://* #liberator-commandline-command input { ime-mode: inactive; }
+
+" hi -append Normal  background: rgba(0,0,0,.90);
+" hi -append ModeMsg background: rgba(0,0,0,.90);
+
+" style -name parsonas chrome://* <<EOM
+"     #main-window { background-repeat: repeat-y !important;}
+"     #browser-bottombox { background-image: none !important; }
+"     #liberator-multiline-output, #liberator-completions { background: transparent !important; }
+" EOM
