@@ -1,42 +1,24 @@
-chpwd() {
+function chpwd() {
     [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
 }
 
-magic-abbrev-expand() {
+function magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
     LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
     zle self-insert
 }
 
-no-magic-abbrev-expand() {
-  LBUFFER+=' '
-}
-# A script to make using 256 colors in zsh less painful.
-# Copied from http://github.com/sykora/etc/blob/master/zsh/functions/spectrum/
-
-typeset -Ag FX FG BG
-
-FX=(
-    reset     "%{[00m%}"
-    bold      "%{[01m%}" no-bold      "%{[22m%}"
-    italic    "%{[03m%}" no-italic    "%{[23m%}"
-    underline "%{[04m%}" no-underline "%{[24m%}"
-    blink     "%{[05m%}" no-blink     "%{[25m%}"
-    reverse   "%{[07m%}" no-reverse   "%{[27m%}"
-)
-
-for color in {000..255}; do
-    FG[$color]="%{[38;5;${color}m%}"
-    BG[$color]="%{[48;5;${color}m%}"
-done
-
-# Show all 256 colors with color number
-function spectrum_ls() {
-  for code in {000..255}; print -P -- "$code: %F{$code}Test%f"
+function F() {
+    sack__vim_shortcut=$(sed -n "$1p" < /home/neg/.sack_shortcuts)
+    vim +$sack__vim_shortcut
 }
 
-zc(){
+function no-magic-abbrev-expand() {
+    LBUFFER+=' '
+}
+
+function zc(){
   local cache="$ZSH/cache"
   autoload -U compinit zrecompile
   compinit -d "$cache/zcomp-$HOST"
@@ -49,7 +31,7 @@ zc(){
   source ~/.zshrc
 }
 
-isutfenv() {
+function isutfenv() {
     case "$LANG $CHARSET $LANGUAGE" in
         *utf*) return 0 ;;
         *UTF*) return 0 ;;
@@ -78,7 +60,7 @@ zrcautoload is-at-least || is-at-least() { return 1 }
 # Usage: check_com [-c|-g] word
 #   -c  only checks for external commands
 #   -g  does the usual tests and also checks for global aliases
-check_com() {
+function check_com() {
     emulate -L zsh
     local -i comonly gatoo
 
@@ -262,33 +244,6 @@ zle -N accept-line
 zle -N Accept-Line
 zle -N Accept-Line-HandleContext
 
-function getlscolors(){
-    typeset -A names
-    names[no]="global default"
-    names[fi]="normal file"
-    names[di]="directory"
-    names[ln]="symbolic link"
-    names[pi]="named pipe"
-    names[so]="socket"
-    names[do]="door"
-    names[bd]="block device"
-    names[cd]="character device"
-    names[or]="orphan symlink"
-    names[mi]="missing file"
-    names[su]="set uid"
-    names[sg]="set gid"
-    names[tw]="sticky other writable"
-    names[ow]="other writable"
-    names[st]="sticky"
-    names[ex]="executable"
-    for i in ${(s.:.)LS_COLORS}; do
-        key=${i%\=*}
-        color=${i#*\=}
-        name=${names[(e)$key]-$key}
-        printf '\e[%sm%s\e[m\n' $color $name
-    done
-}
-
 function ESC_print () { info_print $'\ek' $'\e\\' "$@"  }
 function set_title () { info_print  $'\e]0;' $'\a' "$@" }
 function info_print () {
@@ -301,7 +256,7 @@ function info_print () {
     printf '%s' "${esc_end}"
 }
 
-pk () {
+function pk () {
     if [ $1 ] ; then
         case $1 in
             tbz)    tar cjvf $2.tar.bz2 $2                ;;
@@ -319,7 +274,7 @@ pk () {
 }
 
 
-simple-extract() {
+function simple-extract() {
     emulate -L zsh
     setopt extended_glob noclobber
     local DELETE_ORIGINAL DECOMP_CMD USES_STDIN USES_STDOUT GZTARGET WGET_CMD
@@ -405,10 +360,10 @@ function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd`;  }
 zle -N up-one-dir
 zle -N back-one-dir
 
-xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
-xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
+function xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
+function xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
 # just type '...' to get '../..'
-rationalise-dot() {
+function rationalise-dot() {
     local MATCH
     if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
         LBUFFER+=/
@@ -421,16 +376,16 @@ rationalise-dot() {
 zle -N rationalise-dot
 
 #f1# Reload an autoloadable function
-freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
+function freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
 compdef _functions freload
 
 # zsh profiling
-profile() { ZSH_PROFILE_RC=1 $SHELL "$@" }
+function profile() { ZSH_PROFILE_RC=1 $SHELL "$@" }
 #f1# Edit an alias via zle
-edalias() { [[ -z "$1" ]] && { echo "Usage: edalias <alias_to_edit>" ; return 1 } || vared aliases'[$1]' ; }
+function edalias() { [[ -z "$1" ]] && { echo "Usage: edalias <alias_to_edit>" ; return 1 } || vared aliases'[$1]' ; }
 compdef _aliases edalias
 #f1# Edit a function via zle
-edfunc() { [[ -z "$1" ]] && { echo "Usage: edfunc <function_to_edit>" ; return 1 } || zed -f "$1" ; }
+function edfunc() { [[ -z "$1" ]] && { echo "Usage: edfunc <function_to_edit>" ; return 1 } || zed -f "$1" ; }
 compdef _functions edfunc
 
 ### jump behind the first word on the cmdline.
@@ -448,7 +403,7 @@ function jump_after_first_word() {
 zle -N jump_after_first_word
 
 # grep for running process, like: 'any vime
-any() {
+function any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
     if [[ -z "$1" ]] ; then
@@ -460,7 +415,7 @@ any() {
 }
 
 #f5# Create directory under cursor or the selected area
-inplaceMkDirs() {
+function inplaceMkDirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
     # To select an area press ctrl-@ or ctrl-space and use the cursor.
     # Use case: you type "mv abc ~/testa/testb/testc/" and remember that the
@@ -510,7 +465,7 @@ function __tmux-sessions() {
 }
 compdef __tmux-sessions tm 
 
-imv() {
+function imv() {
     local src dst
     for src; do
         [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
@@ -520,7 +475,7 @@ imv() {
     done
 }
 
-pstop() {
+function pstop() {
     ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
     head "${@:--n 20}"
 }
@@ -586,7 +541,7 @@ function myip(){
     fi
 }
 
-function clip(){
+function eat(){
     # cp2clip - copy to the clipboard the contents of a file
 
     # Program name from it's filename
@@ -658,7 +613,7 @@ function rand() { REPLY=$RANDOM; (( REPLY > 16383 )) }
 
 fasd_cache="$HOME/bin/.fasd-init-cache"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-fasd --init auto >| "$fasd_cache"
+    fasd --init auto >| "$fasd_cache"
 fi
 source "$fasd_cache"
 unset fasd_cache
@@ -693,8 +648,8 @@ function accept-line-rdate() {
 };
 zle -N accept-line-rdate
 
-ff() {
-    find ./ -iname "$@*" |& ls_color 
+function ff() {
+    find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d
 }
 
 function magnet_to_torrent() {
@@ -708,7 +663,7 @@ function magnet_to_torrent() {
     echo "d10:magnet-uri${#1}:${1}e" > "$filename.torrent"
 }
 
-function colorize_via_pygmentize() {
+function hi2() {
     if [ ! -x $(which pygmentize) ]; then
         echo package \'pygmentize\' is not installed!
         exit -1
@@ -762,19 +717,6 @@ function cpf {
   fi
 }
 
-# function to quickly view StarDict word definitions:
-function sd {
-  case $1 in
-    '-ru') sdcv --utf8-output -u "dictd_www.freedict.de_eng-rus" ${@:/$1} 2>/dev/null ;;
-    '-re') sdcv --utf8-output -u "Full Russian-English" ${@:/$1} 2>/dev/null ;;
-    '-er') sdcv --utf8-output -u "Full English-Russian" ${@:/$1} 2>/dev/null ;;
-    '-t') sdcv --utf8-output -u "English Thesaurus" ${@:/$1} 2>/dev/null ;;
-    '-w') sdcv --utf8-output -u "WordNet" -u "English Thesaurus" ${@:/$1} 2>/dev/null ;;
-    '-a') sdcv --utf8-output ${@:/$1} 2>/dev/null ;;
-    *) sdcv --utf8-output -u "WordNet" ${@} 2>/dev/null ;;
-  esac
-}
-
 # un-smart function for viewing sectioned partitions:
 function dfu() {
   local FSTYPES
@@ -783,14 +725,14 @@ function dfu() {
   df -hTP $(for f in $FSTYPES; { print - " -x $f" })
 }
 
-doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
+function doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
-discover () {
+function discover () {
     keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
     locate -ir $keyword
 }
 
-sprunge() {
+function sprunge() {
     if [ -t 0 ]; then
       echo Running interactively, checking for arguments... >&2
       if [ "$*" ]; then
@@ -812,7 +754,7 @@ sprunge() {
     fi
 }
 
-XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
+function XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
     if [[ $# -ge 1 ]]; then
@@ -837,7 +779,7 @@ function say() {
     mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ;
 }
 
-new-session () {
+function new-session () {
     if [[ $# -eq 1 ]]; then
         TMUX= tmux new-session -d -s $1
         tmux switch-client -t $1
@@ -848,9 +790,9 @@ new-session () {
 
 
 # slow output
-slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
+function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
 # change terminal title
-tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
+function tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
 
 # quirky tmux function:
@@ -913,7 +855,6 @@ function zhist {
     print - "options: -e (edit), -f (find), -a (all)"
   fi
 }
-
 
 function capture() {
    ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv $@
