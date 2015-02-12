@@ -1,0 +1,154 @@
+"" J/K move left/right
+map  J h
+map  K l
+"" U list closed tabs
+map  U :undo<Space>
+
+map <C-tab> <Nop>
+nmap <C-n> <Nop>
+
+imap  <C-y> <S-Ins>
+map  <C-y> <S-Ins>
+cmap  <C-y> <S-Ins>
+vmap  <C-y> <S-Ins>
+map s :sidebar<SPACE>
+map S :sbcl<CR>
+map  w b
+map $ <End>
+
+" C-g as cancel (C-q is stop)
+cmap <C-]> i<Esc>
+imap <C-]> i<Esc>
+noremap <C-]> i<Esc>
+noremap <Esc> i<Esc>
+
+map J h
+map K l
+
+" hints-for-embedded.js
+let g:hints_for_embedded_mode = "e"
+
+" walk-input
+let g:walk_input_map_forward = '<C-,>'
+let g:walk_input_map_backward = '<C-.> <C-S-,>'
+
+nmap ,, :noh<CR>
+nmap ,b :sidebar Bookmarks<CR>
+imap <C-y> <S-Ins>
+cmap <C-y> <S-Ins>
+vmap <C-y> <S-Ins>
+
+map <C-g> <Esc>
+
+map <C-n> <Down>
+map <C-p> <Up>
+map <C-b> <Left>
+map <C-f> <Right>
+
+map I_<C-w> I_<C-BS>
+ 
+map  B -silent :bmarks<CR>
+map  gr gT
+
+map <F4> :set complete=lS<CR>
+map <F5> :set complete=bookmark<CR>
+
+imap <c-a> <home>
+cmap <c-a> <home>
+imap <a-f> <C-Right>
+cmap <a-f> <C-Right>
+imap <a-b> <C-Left>
+cmap <a-b> <C-Left>
+imap <c-e> <end>
+cmap <c-e> <end>
+imap <a-d> <C-S-Right><Del>
+cmap <a-d> <C-S-Right><Del>
+imap <A-и> <C-Left>
+imap <A-а> <C-Right>
+imap <A-в> <C-S-Right><Del>
+cmap <A-и> <C-Left>
+cmap <A-а> <C-Right>
+cmap <A-в> <C-S-Right><Del>
+
+" nmap  ,A     :noscript toggleperm<CR>
+" nmap  ,a     :noscript toggletemp<CR>
+
+map gr gT
+map пк gT
+map пе gt
+
+map S :sbcl<CR>
+map I_<C-w> I_<C-BS>
+map <A-q> gT
+map <A-й> gT
+map <A-w> gt
+map <A-ц> gt
+
+" Russian language keyboard mappings (UTF-8)
+map ё `
+map й q
+map ц w
+map у e
+map к r
+map е t
+map н y
+map г u
+map ш i
+map щ o
+map з p
+map х [
+map ъ ]
+map ф a
+map ы s
+map в d
+map а f
+map п g
+map р h
+map о j
+map л k
+map д l
+map ж ;
+map э '
+map я z
+map ч x
+map с c
+map м v
+map и b
+map т n
+map ь m
+map б ,
+map ю .
+map Ё ~
+map Й Q
+map Ц W
+map У E
+map К R
+map Е T
+map Н Y
+map Г U
+map Ш I
+map Щ O
+map З P
+map Х {
+map Ъ }
+map Ф A
+map Ы S
+map В D
+map А F
+map П G
+map Р H
+map О J
+map Л K
+map Д L
+map Ж :
+map Э "
+map Я Z
+map Ч X
+map С C
+map М V
+map И B
+map Т N
+map Ь M
+map Б <
+map Ю >
+map . /
