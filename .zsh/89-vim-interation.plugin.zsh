@@ -1,4 +1,4 @@
-function resolveFile {
+function resolve_file {
   if [ -f "$1" ]; then
     echo $(readlink -f "$1")
   elif [[ "${1#/}" == "$1" ]]; then
@@ -55,6 +55,40 @@ EOH
     postCallVim
   fi
 }
+
+function v {
+    wid=$(xdotool search --classname wim)
+    if [ -z "$wid" ]; then
+      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
+      # file_name=\'`readlink -f "$@"`\'
+      # echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
+      sleep .8s
+      for i in $@; echo $i >> /tmp/file
+      while read line; do
+          file_name="$(resolve_file $line)"
+          eval $(echo tmux -S ~/1st_level/vim.socket run \"$(echo vim --servername VIM --remote-silent \"${file_name}\")\")
+      done < /tmp/file
+      # tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
+      rm /tmp/file
+      filename=
+    else  
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
+      # file_name=\'`readlink -f "$@"`\'
+      # echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
+      sleep .5s
+      for i in $@; echo $i >> /tmp/file
+      while read line; do
+          file_name="$(resolve_file $line)"
+          eval $(echo tmux -S ~/1st_level/vim.socket run \"$(echo vim --servername VIM --remote-silent \"${file_name}\")\")
+      done < /tmp/file
+      # tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
+      filename=
+      rm /tmp/file
+    fi
+}
+
+
 
 # alias vi=callvim
 # alias vvsp="callvim -b':vsp'"
