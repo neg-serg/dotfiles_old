@@ -62,17 +62,8 @@ dopath("screenshot")
 dopath("lua_repl")
 dopath("mod_dock")
 dopath("cfg_dzen")
-function start_mpdstat()
-    ioncore.exec('lua ~/.notion/mpd_dzen.lua')
-end
-function start_rofi()
-    ioncore.exec('rofi -key mod1-g -location 7')
-    ioncore.exec('rofi -rkey mod1-grave -location 7')
-end
-start_mpdstat()
-start_rofi()
--- dopath("nest_ws")
 dopath("rofi_goto")
+dopath("cfg_autostart")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
@@ -142,7 +133,6 @@ defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 defwinprop{class="com-sun-javaws-Main", instance="sun-awt-X11-XFramePeer", target="topcoder"}
 defwinprop{class="jetbrains-idea", instance="*", target="jetbrains", floating=true,transient_mode = "current"}
 defwinprop{class = "jetbrains-android-studio", instance = "sun-awt-X11-XWindowPeer", transient_mode = "current", }
-defwinprop{class="*", instance="sun-awt-X11-XFramePeer", floating=true}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
 defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
@@ -401,7 +391,7 @@ defbindings("WFrame", {
     mdrag("Button1@border", "WFrame.p_resize(_)"),   mdrag(META.."Button3", "WFrame.p_resize(_)"),
     mdrag("Mod1+Button1", "WFrame.p_move(_)"),
     mdrag("Button1@tab", "WFrame.p_tabdrag(_)"),     mdrag("Button2@tab", "WFrame.p_tabdrag(_)"),
-    kpress("Mod1+L", "WRegion.rqorder(_, 'back')" ),
+    -- kpress("Mod1+L", "WRegion.rqorder(_, 'back')" ),
     kpress("Mod1+U", "WRegion.rqorder(_, 'front')" ),
 })
 
@@ -423,7 +413,7 @@ defbindings("WFrame.floating", {
     mpress("Button1@border", "WRegion.rqorder(_, 'front')"),
     mclick("Mod1+Button1", "WRegion.rqorder(_, 'front')"),
     mclick("Mod1+Button3", "WRegion.rqorder(_, 'back')"),
-    kpress("Mod1+L", "WRegion.rqorder(_, 'back')" ),
+    -- kpress("Mod1+L", "WRegion.rqorder(_, 'back')" ),
     kpress("Mod1+U", "WRegion.rqorder(_, 'front')" ),
     mdrag("Button1@tab", "WFrame.p_move(_)"),
     ---------------------------------------------------------
