@@ -1,4 +1,0 @@
-[HKEY_CURRENT_USER\Software\Wine\X11 Driver]
-"UseXRandR"="N"
-"UseXVidMode"="N"
-"FakeDispResolution"="1680x1050;1024x768;800x600;640x480"
