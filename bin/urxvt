@@ -11,8 +11,9 @@ if [[ $MAIN_DETECT != "main" ]]; then
             -fb "xft:PragmataPro for Powerline:size=17" \
             -fi "xft:PragmataPro for Powerline:size=17"  -e zsh -i -c "tmux new-session -s main && tmux a -t main"
     fi
+else
+    urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
+        -fb "xft:PragmataPro for Powerline:size=17" \
+        -fi "xft:PragmataPro for Powerline:size=17" \
+        -e zsh -i -c "tmux a -t main"
 fi
-urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
-                              -fb "xft:PragmataPro for Powerline:size=17" \
-                              -fi "xft:PragmataPro for Powerline:size=17" \
-                              -e zsh -i -c "tmux a -t main"
