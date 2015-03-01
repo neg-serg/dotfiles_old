@@ -1,6 +1,5 @@
 #!/bin/bash
 source ${HOME}/.config/dmenu/pulse
-# source $HOME/.config/dmenurc
 backend="rofi"
 
 if [[ "$backend" == "rofi" ]]

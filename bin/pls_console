@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ${HOME}/.config/dmenu/pulse
-
 case $1 in
     -vol)
         shift
