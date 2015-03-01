@@ -1,2 +1,2 @@
 # !~/bin/zsh
-Z_DATA_FILE=$XDG_DATA_HOME/sxiv_do.data find ~/pic/ -print -maxdepth 3 -type d -exec Z -a {} \;
+Z_DATA_FILE=$XDG_DATA_HOME/sxiv_do.data find ~/pic/ -maxdepth 3 -type d -exec Z -a {} \;
