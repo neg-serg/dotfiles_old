@@ -82,46 +82,6 @@ alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 # tmux attach
 # ---------------------------------------------------
 
-function v {
-    wid=$(xdotool search --classname wim)
-    if [ -z "$wid" ]; then
-      urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-      file_name=\'`readlink -f "$@"`\'
-      echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
-      sleep .8s
-      tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
-      filename=
-    else  
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-      file_name=\'`readlink -f "$@"`\'
-      echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
-      sleep .5s
-      tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
-      filename=
-    fi
-}
-
-function remotevim() {
-    vim --servername VIM --remote-send "${1}"
-    notionflux -e "app.byinstance('', 'URxvt', 'wim')"
-}
-
-function vg {
-  if [ ! -z $DISPLAY ]; then
-    if [ -z $(pidof gvim) ] ; then
-      gvim --servername GVIM --remote-silent $@
-      sleep .4
-      notionflux -e "app.byclass('gvim', 'Gvim')" 
-    else  
-      notionflux -e "app.byclass('gvim', 'Gvim')" 
-      gvim --servername GVIM --remote-silent $@
-    fi
-  else 
-    vim $@
-  fi
-}
-
 alias vz="v ~/.zshrc"
 alias vpad="vim +set\ buftype=nofile +startinsert"
 
@@ -251,3 +211,28 @@ alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Cres
 alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'
 
 alias cal='~/bin/scripts/dzen-cal||cal'
+
+function resolve_file {
+  if [ -f "$1" ]; then
+    echo $(readlink -f "$1")
+  elif [[ "${1#/}" == "$1" ]]; then
+    echo "$(pwd)/$1"
+  else
+    echo $1
+  fi
+}
+
+function ta {
+    tmp_list=/tmp/torr_list
+      sleep .2s
+      for i in $@; echo $i >> $tmp_list
+      while read line; do
+          file_name="$(resolve_file $line)"
+          base_name="$(basename $file_name)"
+          \mv $file_name ~/torrent/$base_name && \
+          transmission-remote-cli ~/torrent/$base_name > /dev/null &&
+          echo "[>>] { $base_name added }"
+      done < $tmp_list
+      rm $tmp_list
+      file_name=
+}
