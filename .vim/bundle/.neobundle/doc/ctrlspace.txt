@@ -1,4 +1,4 @@
-*ctrlspace.txt*                 For Vim version 7.3+      Last change: 2014-12-20
+*ctrlspace.txt*                 For Vim version 7.3+      Last change: 2015-03-01
 *ctrlspace*
 
 
@@ -6,7 +6,7 @@
 
 
 
-                               Vim-CtrlSpace 4.2.10~
+                               Vim-CtrlSpace 4.2.14~
 
                             Vim Workspace Controller
 
@@ -15,7 +15,7 @@
 
 
 
-Copyright (c) 2013-2014 Szymon Wrozynski and Contributors
+Copyright (c) 2013-2015 Szymon Wrozynski and Contributors
 
 ==============================================================================
 
@@ -397,16 +397,16 @@ important symbolic information:
 | `⌗`       | `#`     | All         | Vim-CtrlSpace symbol    |
 | `?`       | `?`     | All         | Help Mode indicator     |
 | `›_‹`     | `[_]`   | All         | Search Mode indicator   |
-| `⊙`       | `TAB`   | Buffer      | Single Mode indicator   |
+| `∙`       | `TAB`   | Buffer      | Single Mode indicator   |
 | `★`       | `VIS`   | Buffer      | Visible Mode indicator  |
-| `∷`       | `ALL`   | Buffer      | All Mode indicator      |
+| `፨`       | `ALL`   | Buffer      | All Mode indicator      |
 | `⊚`       | `FILE`  | File        | File List indicator     |
 | `⁺²`      | `+2`    | Buffer/File | Next Tab Mode indicator |
 | `⌕`       | `*`     | Buffer      | Zoom Mode indicator     |
 | `○●○`     | `-+-`   | Tab         | Tab List indicator      |
-| `⋮` `→` `∙`   | `LOAD`  | Workspace   | Workspace Load Mode     |
-| `∙` `→` `⋮`   | `SAVE`  | Workspace   | Workspace Save Mode     |
-| `♡`       | `BM`    | Bookmark    | Bookmark List indicator |
+| `|∷|`     | `|::|`  | Workspace   | Workspace Load Mode     |
+| `[∷]`     | `[::]`  | Workspace   | Workspace Save Mode     |
+| `♥`       | `BM`    | Bookmark    | Bookmark List indicator |
 
 Items listed in the plugin window can have additional indicators (following the
 item text):
@@ -456,7 +456,7 @@ buffers from the current tab or all available buffers.
 
 | Unicode | ASCII |
 | ------- | ----- |
-| `⊙`       | `TAB`   |
+| `∙`       | `TAB`   |
 
 The first mode of Buffer List is the Single one. In that mode, the plugin
 shows you only buffers related to the current tab (list). Here's the full
@@ -491,11 +491,13 @@ listing of all available keys:
 
 3.1.1.3 Searching~
 
-| Key       | Action                                              |
-| --------- | --------------------------------------------------- |
-| `/`         | Enter the Search Mode                               |
-| `Ctrl` `+` `p`  | Bring back the previous searched text               |
-| `Ctrl` `+` `n`  | Bring the next searched text                        |
+| Key       | Action                                                |
+| --------- | ----------------------------------------------------- |
+| `/`         | Enter the Search Mode                                 |
+| `\`         | Cyclic search through parent directories              |
+| `|`         | Cyclic search through parent directories in File Mode |
+| `Ctrl` `+` `p`  | Bring back the previous searched text                 |
+| `Ctrl` `+` `n`  | Bring the next searched text                          |
 
 
 3.1.1.4 Tabs Operations~
@@ -615,7 +617,7 @@ useful if you want e.g. to jump between windows in the current tab with `Tab` or
 
 | Unicode | ASCII |
 | ------- | ----- |
-| `∷`       | `ALL`   |
+| `፨`       | `ALL`   |
 
 This mode is almost identical to the Single Mode, except it shows you all
 available buffers (from all tabs and unrelated ones too). Some of keys
@@ -723,6 +725,8 @@ list with the `r` key.
 | Key      | Action                                              |
 | -------- | --------------------------------------------------- |
 | `/`        | Enter the Search Mode                               |
+| `\`        | Cyclic search through parent directories            |
+| `|`        | The same as `\`                                       |
 | `O`        | Enter the Search Mode                               |
 | `Ctrl` `+` `p` | Bring back the previous searched text               |
 | `Ctrl` `+` `n` | Bring the next searched text                        |
@@ -881,8 +885,8 @@ entirely (via Vim's `showtabline` option) and stick to the Tab List only.
 
 | Unicode | ASCII | Mode      |
 | ------- | ----- | --------- |
-| `⋮` `→` `∙`   | `LOAD`  | Load Mode |
-| `∙` `→` `⋮`   | `SAVE`  | Save mode |
+| `|∷|`     | `|::|`  | Load Mode |
+| `[∷]`     | `[::]`  | Save mode |
 
 The plugin allows you to save and load so called "workspaces". A workspace is
 a set of opened windows, tabs, their names, and buffers. In fact, the word
@@ -989,6 +993,10 @@ startup and save it active workspace on Vim exit. See
 
 3.5 Bookmark List                                      *ctrlspace-bookmark-list*
 
+| Unicode | ASCII |
+| ------- | ----- |
+| `♥`       | `BM`    |
+
 Bookmarks can be treated as a Project list populated with your favorite
 projects. With bookmarks you can easily jump between different directory
 locations in Vim. The plugin will follow those jumps with its all settings.
@@ -1046,6 +1054,7 @@ fact, jumping with Bookmark List is just a shortcut for the `:cd` command.
 | `A`   | Add a new bookmark for the current directory        |
 | `d`   | Delete selected bookmark                            |
 | `=`   | Change selected bookmark name                       |
+| `e`   | Edit selected bookmark directory                    |
 
 
 3.5.5 Searching~
@@ -1348,17 +1357,17 @@ Default value: >
   if g:ctrlspace_unicode_font
     let g:ctrlspace_symbols = {
           \ "cs":      "⌗",
-          \ "tab":     "⊙",
-          \ "all":     "∷",
+          \ "tab":     "∙",
+          \ "all":     "፨",
           \ "file":    "⊚",
           \ "tabs":    "○",
           \ "c_tab":   "●",
-          \ "load":    "⋮ → ∙",
-          \ "save":    "∙ → ⋮",
+          \ "load":    "|∷|",
+          \ "save":    "[∷]",
           \ "zoom":    "⌕",
           \ "s_left":  "›",
           \ "s_right": "‹",
-          \ "bm":      "♡",
+          \ "bm":      "♥",
           \ "help":    "?",
           \ "iv":      "☆",
           \ "ia":      "★",
@@ -1373,8 +1382,8 @@ Default value: >
           \ "file":    "FILE",
           \ "tabs":    "-",
           \ "c_tab":   "+",
-          \ "load":    "LOAD",
-          \ "save":    "SAVE",
+          \ "load":    "|::|",
+          \ "save":    "[::]",
           \ "zoom":    "*",
           \ "s_left":  "[",
           \ "s_right": "]",
@@ -1486,9 +1495,10 @@ helpful.
 6.1 Commands                                                *ctrlspace-commands*
 
 At the moment Vim-CtrlSpace provides you 8 commands: |:CtrlSpace|,
-|:CtrlSpaceGoNext|, |:CtrlSpaceGoPrevious|, |:CtrlSpaceTabLabel|,
+|:CtrlSpaceGoDown|, |:CtrlSpaceGoUp|, |:CtrlSpaceTabLabel|,
 |:CtrlSpaceClearTabLabel|, |:CtrlSpaceSaveWorkspace|, |:CtrlSpaceLoadWorkspace|,
-|:CtrlSpaceNewWorkspace|.
+|:CtrlSpaceNewWorkspace|, |:CtrlSpaceAddProjectRoot|,
+|:CtrlSpaceRemoveProjectRoot|.
 
 
 6.1.1 *:CtrlSpace* `[keys]`
@@ -1498,13 +1508,13 @@ sophisticated plugin integration. You can pass keys that will be "pressed" in th
 plugin window.
 
 
-6.1.2 *:CtrlSpaceGoNext*
+6.1.2 *:CtrlSpaceGoDown*
 
 Opens the next buffer from the current Single Mode buffer list (without opening
 the plugin window).
 
 
-6.1.3 *:CtrlSpaceGoPrevious*
+6.1.3 *:CtrlSpaceGoUp*
 
 Opens the previous buffer from the current Single Mode buffer list (without opening
 the plugin window).
@@ -1542,6 +1552,20 @@ tab and one buffer, as in a fresh Vim instance. This is useful if you want to
 start creating a workspace from the very beginning.
 
 
+6.1.9 *:CtrlSpaceAddProjectRoot* [directory]
+
+Add a passed directory as a permanent project root. It's useful when e.g.
+project root markers are missing or available on a too higher level of
+a hierarchy. If no directory has been passed the current working one is taken
+instead.
+
+
+6.1.10 *:CtrlSpaceRemoveProjectRoot* [directory]
+
+Removes a passed directory from permanent project root collection. If no
+directory has been passed the current working one is taken instead.
+
+
 6.2 Functions                                              *ctrlspace-functions*
 
 Vim-CtrlSpace provides you a couple of functions defined in the common
@@ -1549,42 +1573,48 @@ Vim-CtrlSpace provides you a couple of functions defined in the common
 tabline integration, or just for more advanced interactions with other plugins.
 
 
-6.2.1 *ctrlspace#bufferlist* `(tabnr)`
+6.2.1 *ctrlspace#buffers* `(tabnr)`
 
 Returns a dictionary of buffer number and name pairs for given tab. This is the
 content of the internal buffer list belonging to the specified tab.
 
 
-6.2.2 *ctrlspace#statusline_mode_segment* `(...)`
+6.2.2 *ctrlspace#bufferlist* `(tabnr)`
+
+Returns a list of buffers available in the given tab. The list is sorted in the
+same order like in the CtrlSpace window.
+
+
+6.2.3 *ctrlspace#statusline_mode_segment* `(...)`
 
 Returns the info about the mode of the plugin. It can take an optional
 separator. It can be useful for a custom status line integration (e.g. in
 plugins like LightLine (https://github.com/itchyny/lightline.vim))
 
 
-6.2.3 *ctrlspace#statusline_tab_segment* `(...)`
+6.2.4 *ctrlspace#statusline_tab_segment* `(...)`
 
 Returns the info about the current tab (tab number, label, etc.). It is useful
 if you don't use the custom tabline string (or perhaps you have set
 |showtabline| to `0` (see |showtabline| for more info)).
 
 
-6.2.4 *ctrlspace#statusline* `()`
+6.2.5 *ctrlspace#statusline* `()`
 
 Provides the custom statusline string.
 
 
-6.2.5 *ctrlspace#tabline* `()`
+6.2.6 *ctrlspace#tabline* `()`
 
 Provides the custom tabline string.
 
 
-6.2.6 *ctrlspace#guitablabel* `()`
+6.2.7 *ctrlspace#guitablabel* `()`
 
 Provides the custom label for GVim's tabs.
 
 
-6.2.7 *ctrlspace#tab_buffers_number* `(tabnr)`
+6.2.8 *ctrlspace#tab_buffers_number* `(tabnr)`
 
 Returns formatted number of buffers belonging to given tab. Formats the output
 as small Unicode characters (upper indexes) or regular ASCII number characters
@@ -1592,18 +1622,18 @@ as small Unicode characters (upper indexes) or regular ASCII number characters
 you provide your custom tabline function implementation.
 
 
-6.2.8 *ctrlspace#tab_title* `(tabnr,` `bufnr,` `bufname)`
+6.2.9 *ctrlspace#tab_title* `(tabnr,` `bufnr,` `bufname)`
 
 A helper function returning a consistent title for given tab. If the tab does
 not have a custom title, then the title based on passed buffer number
 and buffer name is returned instead.
 
 
-6.2.9 *ctrlspace#tab_modified* `(tabnr)`
+6.2.10 *ctrlspace#tab_modified* `(tabnr)`
 
 Returns `1` if given tab contains a modified buffer, `0` otherwise.
 
-6.2.10 *ctrlspace#bufnr* `()`
+6.2.11 *ctrlspace#bufnr* `()`
 
 Returns the current plugin buffer number if the plugin is visible or
 `-1` otherwise.
@@ -1611,7 +1641,7 @@ Returns the current plugin buffer number if the plugin is visible or
 ------------------------------------------------------------------------------
 7. Authors and License                          *ctrlspace-authors-and-license*
 
-Copyright &copy; 2013-2014 Szymon Wrozynski and
+Copyright &copy; 2013-2015 Szymon Wrozynski and
 Contributors (https://github.com/szw/vim-ctrlspace/commits/master). Licensed
 under MIT
 License (https://github.com/szw/vim-ctrlspace/blob/master/plugin/ctrlspace.vim#L5-L26)
