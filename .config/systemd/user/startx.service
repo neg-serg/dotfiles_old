@@ -1,0 +1,10 @@
+[Unit]
+Description='startx'
+After=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/startx
+
+[Install]
+WantedBy=getty@tty1.service
