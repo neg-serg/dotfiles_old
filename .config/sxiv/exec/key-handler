@@ -26,7 +26,7 @@ readonly TAGFILE="$HOME/.config/sxiv/tags"
 readonly TMPFILE="/tmp/sxiv.$$"
 readonly TMPFILE2="/tmp/sxiv2.$$"
 readonly TMPFILE_HSETROOT="/tmp/sxiv_hset.$$"
-readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -columns "1" -font "Pragmata Pro for Powerline 17" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 1 -padding 2 -width 1920'
+readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -columns "1" -font "Pragmata Pro for Powerline 17" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 2 -padding 2 -width 1850'
 Z_DATA_FILE="$XDG_DATA_HOME/sxiv_do.data"
 LAST_ACTION="$XDG_DATA_HOME/sxiv_do.last"
 
@@ -163,9 +163,10 @@ case "$KEY" in
     "C-r") rename ;;
     "r")   rep ;;
     "c") copy_name ;;
-    "C-1") xargs -n1 hsetroot -full ;;
-    "C-2") xargs -n1 hsetroot -fill ;;
-    "C-3") xargs -n1 hsetroot -center ;;
+    "C-1") xargs -n1 hsetroot -center ;;
+    "C-2") xargs -n1 hsetroot -tile ;;
+    "C-3") xargs -n1 hsetroot -full ;;
+    "C-4") xargs -n1 hsetroot -fill ;;
     "C-t") tag_add ;;
     "M-T") tag_del ;;
 esac
