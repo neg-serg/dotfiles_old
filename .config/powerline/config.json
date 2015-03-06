@@ -13,20 +13,20 @@
 			}
 		},
 		"shell": {
-			"colorscheme": "default",
-			"theme": "default",
+			"colorscheme": "neg",
+			"theme": "neg",
 			"local_themes": {
 				"continuation": "continuation",
 				"select": "select"
 			}
 		},
 		"tmux": {
-			"colorscheme": "default",
-			"theme": "default"
+			"colorscheme": "neg",
+			"theme": "neg"
 		},
 		"vim": {
-			"colorscheme": "default",
-			"theme": "default",
+			"colorscheme": "neg",
+			"theme": "neg",
 			"local_themes": {
 				"__tabline__": "tabline",
 
