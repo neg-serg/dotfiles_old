@@ -2,14 +2,14 @@
 " │ misc plugins settings                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:gitgutter_realtime = 0             " github.com/airblade/vim-gitgutter/issues/106
-let g:ConqueGdb_Leader          = '\\'   "<leader>, by default is painful
-let g:EclimCompletionMethod     = 'omnifunc' "To provide ycm autocompletion
+let g:EclimCompletionMethod = 'omnifunc' "To provide ycm autocompletion
 let g:livepreview_previewer = 'zathura'
 let g:eregex_default_enable = 0
 let g:mta_use_matchparen_group = 0
 let g:lua_complete_omni = 1
 let g:gasynctags_autostart = 0
-" let g:powerline_pycmd="py3"
+let g:racer_cmd = "/usr/bin/racer"
+let $RUST_SRC_PATH="/home/neg/dev/src/rust/src"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
@@ -63,6 +63,7 @@ endif
 if neobundle#tap('lusty')
     let g:LustyJugglerDefaultMappings = 0
     let LustyExplorerDefaultMappings  = 0
+    nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lyokha/vim-xkbswitch.git                                                 │
@@ -583,13 +584,6 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gasynctags')
     nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - sjbach/lusty.git                                                         │
-" │ https://github.com/sjbach/lusty.git                                               │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('lusty')
-    nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - othree/eregex.vim.git                                                    │
