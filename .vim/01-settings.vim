@@ -12,6 +12,30 @@ if v:version >= 704
   set regexpengine=0
 endif
 
+set conceallevel=2 concealcursor=iv
+
+" Options initiating with ?m?
+" [global] |'magic'| Set 'magic' patterns ;)
+" Examples:
+"  \v       \m       \M       \V         matches ~
+"  $        $        $        \$         matches end-of-line
+"  .        .        \.       \.         matches any character
+"  *        *        \*       \*         any number of the previous atom
+"  ()       \(\)     \(\)     \(\)       grouping into an atom
+"  |        \|       \|       \|         separating alternatives
+"  \a       \a       \a       \a         alphabetic character
+"  \\       \\       \\       \\         literal backslash
+"  \.       \.       .        .          literal dot
+"  \{       {        {        {          literal '{'
+"  a        a        a        a          literal 'a'
+set magic
+
+set path+=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
+set path+=./include,../include,/opt/cuda/include
+execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
+execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
+
+
 if has("gui_running")
     if &diff
         set gfn=PragmataPro\ for\ Powerline\ 10
@@ -36,7 +60,6 @@ if has("gui_running")
     set colorcolumn=0                  " Color eol limiter off
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
-    "set mouse=a                       " enable full mouse support
     set mouse=                         " enable full mouse support
     set ttymouse=urxvt                 " more accurate mouse tracking
     set ttyfast                        " more redrawing characters sent to terminal
@@ -94,6 +117,11 @@ if !has("gui_running")
     " set showmode                     " show what key had been pressed
     set lazyredraw                     " it's doesn't set by default for tmux
 
+    if &term =~ "xterm"
+      let &t_SI = "\<Esc>]12;lightgreen\x7"
+      let &t_EI = "\<Esc>]12;white\x7"
+    endif
+
     if exists('$TMUX')
         let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
         if s:not_tmuxed_vim =~ "FALSE"
@@ -110,20 +138,12 @@ if !has("gui_running")
     endif
 endif
 
-if has ('x') && has ('gui') " On Linux use + register for copy-paste
-    set clipboard=unnamedplus
-elseif has ('gui')          " On mac and Windows, use * register for copy-paste
-    set clipboard=unnamed
-endif
-
 " convert "\\" to "/" on win32 like environment
 if exists('+shellslash')
     set shellslash
 endif
 
 command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
-command! -nargs=1 Indentation silent set ts=<args> shiftwidth=<args>
-command! -nargs=1 IndentationLocal silent setlocal ts=<args> shiftwidth=<args>
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
 command! -bang -nargs=* -complete=file Wq wq<bang> <args>
@@ -186,13 +206,18 @@ if has('unnamedplus')
   " the selection/mouse-middle-click one. Vim sees the standard one as register
   " '+' (and this option makes Vim use it by default) and the selection one as '*'.
   " See :h 'clipboard' for details.
-  set clipboard=unnamedplus,unnamed
+  if has ('x') && has ('gui') " On Linux use + register for copy-paste
+      set clipboard=unnamedplus
+  elseif has ('gui')          " On mac and Windows, use * register for copy-paste
+      set clipboard=unnamed
+  endif
+  " set clipboard=unnamedplus,unnamed
+  set clipboard=unnamed
 else
   " Vim now also uses the selection system clipboard for default yank/paste.
   set clipboard+=unnamed
 endif
 
-" set completeopt=menu
 set completeopt=menu,menuone,longest
 "probably it will increase lusty+gundo speed
 set backspace=indent,eol,start  " Backspace for dummies
@@ -221,10 +246,7 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 
 set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-" Windowing settings set splitright splitbelow
-"set swapsync=""                " don't call fsync() or sync(); let linux handle it
-" set autowrite                 " Automatically write a file when leaving a modified buffer
-set virtualedit=onemore         " Allow for cursor beyond last character
+set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
 " set shortmess+=filmnrxoOtT    " Abbrev. of messages (avoids 'hit enter')
@@ -310,7 +332,6 @@ set iminsert=0                        " write latin1 characters first
 set imsearch=0                        " search with latin1 characters first
 set cmdheight=1                       " standard cmdline height
 
-"--[ Ctags ]----------------------
 set tags=./tags
 " Make tags placed in .git/tags file available in all levels of a repository
 let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
@@ -349,27 +370,6 @@ set pumheight=10
 
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-" Options initiating with ?m?
-" [global] |'magic'| Set 'magic' patterns ;)
-" Examples:
-"  \v       \m       \M       \V         matches ~
-"  $        $        $        \$         matches end-of-line
-"  .        .        \.       \.         matches any character
-"  *        *        \*       \*         any number of the previous atom
-"  ()       \(\)     \(\)     \(\)       grouping into an atom
-"  |        \|       \|       \|         separating alternatives
-"  \a       \a       \a       \a         alphabetic character
-"  \\       \\       \\       \\         literal backslash
-"  \.       \.       .        .          literal dot
-"  \{       {        {        {          literal '{'
-"  a        a        a        a          literal 'a'
-set magic
-
-set path+=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
-set path+=./include,../include,/opt/cuda/include
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
-
 " this makes sure that shell scripts are highlighted
 " as bash scripts and not sh scripts
 let g:is_posix        = 1
@@ -378,27 +378,3 @@ let g:is_bash          = 1
 
 let g:session_autoload = "no"
 let g:session_autosave = "yes"
-
-command! -bar -bang -nargs=+ SplitNicely
-            \ call s:cmd_split_nicely(<q-args>, <bang>0)
-function! s:cmd_split_nicely(q_args, bang)
-    let winnum = winnr('$')
-    let vertical = 0
-    let save_winwidth = winwidth(0)
-    let save_winheight = winheight(0)
-    execute 'belowright' (vertical ? 'vertical' : '') a:q_args
-    if winnr('$') is winnum
-        " if no new window is opened
-        return
-    endif
-    " Adjust split window.
-    if a:bang
-        if !&l:winfixwidth
-            execute save_winwidth / 3 'wincmd |'
-        endif
-        if !&l:winfixheight
-            execute save_winheight / 2 'wincmd _'
-        endif
-        setlocal winfixwidth winfixheight
-    endif
-endfunction
