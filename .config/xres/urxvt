@@ -50,11 +50,14 @@ spec*boldFont:          xft:Tewi:regular:size=9
 spec*italicFont:        xft:Tewi:regular:size=9
 spec*boldItalicFont:    xft:Tewi:regular:size=9
 
+MainTerminal.internalBorder: 10
+
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
 MainTerminal.scrollTtyOutput:   false
 MainTerminal.termName:          screen-256color
-MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
+!MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
+MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size,-option-popup,-selection-popup,-searchable-scrollback
 MainTerminal.colorUL:                      #86a2be
 
 !-----------------[ Test new features ]-------------------------------------------------------
@@ -71,7 +74,8 @@ MainTerminal.url-select.launcher:  /usr/bin/firefox -new-tab
 MainTerminal.url-select.underline: true
 MainTerminal.underlineURLs:        true
 
-*.perl-ext-common:      keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
+!*.perl-ext-common:      keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
+*.perl-ext-common:      keyboard-select,url-select,clipboard,font-size,-option-popup,-selection-popup,-searchable-scrollback
 *.keysym.C-1:           perl:url-select:select_next
 *.url-select.launcher:  /usr/bin/firefox -new-tab
 *.url-select.underline: true
