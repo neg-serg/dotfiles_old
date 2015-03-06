@@ -1,5 +1,37 @@
 nnoremap Y y$
 
+onoremap aa  a>
+xnoremap aa  a>
+onoremap ia  i>
+xnoremap ia  i>
+
+" [rectangle]
+onoremap ar  a]
+xnoremap ar  a]
+onoremap ir  i]
+xnoremap ir  i]
+
+" 'quote'
+onoremap aq  a'
+xnoremap aq  a'
+onoremap iq  i'
+xnoremap iq  i'
+
+" "double quote"
+onoremap ad  a"
+xnoremap ad  a"
+onoremap id  i"
+xnoremap id  i"
+
+" Substitute.
+xnoremap s :s//g<Left><Left>
+
+" Indent paste.
+nnoremap <silent> ep o<Esc>pm``[=`]``^
+xnoremap <silent> ep o<Esc>pm``[=`]``^
+nnoremap <silent> eP O<Esc>Pm``[=`]``^
+xnoremap <silent> eP O<Esc>Pm``[=`]``^
+
 nnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
 nnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
 vnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
@@ -39,6 +71,7 @@ nnoremap <silent> <c-w>x :tabclose<CR>
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
+nnoremap <silent> <space>e  :<C-u>JunkFile<CR>
 
 nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <A-z> :set invpaste paste?<CR>
