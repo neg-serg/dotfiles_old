@@ -32,5 +32,5 @@ function dynamic_view.move_clients (from_frame, to_frame)
 end
 
 defbindings("WTiling", {
-   kpress(META.."Control+t", "dynamic_view.toggle(_, 'term',  'below')"),
+   kpress("Mod4+i", "dynamic_view.toggle(_, 'term',  'left')"),
 })
