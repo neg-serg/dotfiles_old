@@ -260,11 +260,13 @@ to use alt-key mappings.
 ==============================================================================
 8. Changelog                                            *VIntSearch-changelog*
 
-1.0.0                       2014/11/02
-    - first version
-1.0.1                       2015/01/26
-    - Change repository directory finding behavior.
+1.1.1                       2015/02/12
+    - Fix the infinite loop bug when there is no vcs directory
 1.1.0                       2015/01/31
     - Add DefaultQuickFixEnter behavior - doesn't need external plugins like QFEnter any more
     - New file pattern options to specify input source files for both ctags and grep commands
     - Exception handling: Catch E553 error of VScnext & VScprev  
+1.0.1                       2015/01/26
+    - Change repository directory finding behavior.
+1.0.0                       2014/11/02
+    - first version

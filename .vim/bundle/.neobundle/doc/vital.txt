@@ -145,6 +145,7 @@ LINKS					*Vital-links*
   |vital-data-dict.txt|		  dictionary utilities library
   |vital-data-lazylist.txt|	  lazy list including file io
   |vital-data-list.txt|		  list utilities library
+  |vital-data-optional.txt|	  optional value library
   |vital-data-ordered_set.txt|	  ordered collection library
   |vital-data-string.txt|	  string utilities library
   |vital-data-tree.txt|		  tree utilities library
@@ -178,6 +179,7 @@ LINKS					*Vital-links*
   |vital-vim-compat.txt|	  Vim compatibility wrapper functions
   |vital-vim-message.txt|	  Vim message functions
   |vital-vim-search.txt|	  Vim's [I like function
+  |vital-vim-script_local.txt|	  Get script-local things
   |vital-web-html.txt|		  HTML parser written in pure Vim script
   |vital-web-http.txt|		  simple HTTP client library
   |vital-web-json.txt|		  JSON parser written in pure Vim script
