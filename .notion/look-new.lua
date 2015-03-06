@@ -1,5 +1,3 @@
--- FONT="-hell-monobook-medium-r-normal--28-280-72-72-m-140-iso10646-1"
--- FONT_STATUS="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
 FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
 
@@ -19,11 +17,7 @@ de.defstyle("*", {
     shadow_pixels = 0,
     text_align = "center",
     transparent_background = false,
-    --transparent_background = true,
-    --de.substyle("important", { foreground_colour = "#ffff00", }),
-    --de.substyle("critical", { foreground_colour = "#ff0000", }),
-    --de.substyle("gray", { foreground_colour = "#505050", }),
-    --de.substyle("red", { foreground_colour = "#ff0000", 
+    -- transparent_background = true,
 })
 
 de.defstyle("frame", {
@@ -37,6 +31,7 @@ de.defstyle("frame", {
     highlight_pixels = 1,
     shadow_pixels = 1,
     border_style="elevated",
+    -- transparent_background = false,
     transparent_background = true,
     de.substyle("*-*-active-scratchpad", {
         shadow_colour = "#287373",
@@ -49,7 +44,8 @@ de.defstyle("frame", {
         highlight_pixels = 2,
         shadow_pixels = 2,
         spacing = 3,
-        transparent_background = false,
+        -- transparent_background = false,
+        transparent_background = true,
     }),
     de.substyle("active", {
         shadow_colour = "#222222",
@@ -62,6 +58,7 @@ de.defstyle("frame", {
         highlight_pixels = 0,
         shadow_pixels = 0,
         --border_style="inlaid",
+        -- transparent_background = false,
         transparent_background = true,
     }),
     gr.refresh()    
@@ -75,7 +72,13 @@ de.defstyle("frame-ionframe",{
     spacing = 0,
 })
 
-de.defstyle("frame-floatframe", {based_on = "frame",border_style = "ridge"})
+de.defstyle("frame-floatframe", {
+    based_on = "frame",
+    border_style = "ridge",
+    floatframe_tab_min_w = 10000,
+    floatframe_bar_max_w_q = 1,
+})
+
 
 de.defstyle("tab", {
     font = FONT,
@@ -175,7 +178,6 @@ de.defstyle("input", {
 
 -- Defines style for input queries. In will be "blue" for queries in insert
 -- mode and "green" for queries in normal (command) mode.
---
 -- mode parameter is string: "insert" or "normal"
 function inputstyle(mode)
 	local t = {
@@ -205,7 +207,7 @@ function inputstyle(mode)
 		t.highlight_colour = "#3579a8"
 		t.background_colour = "#000000"
 	else
-		-- Green
+		-- Grey
 		t.shadow_colour = "#313131"
 		t.highlight_colour = "#313131"
 		t.background_colour = "#000000"
@@ -228,15 +230,5 @@ de.defstyle("stdisp", {
   highlight_pixels  = 1,
   shadow_pixels     = 1,
   spacing           = 0,
-
-  de.substyle("green",     { foreground_colour = "#00ff00", }),
-  de.substyle("blue",      { foreground_colour = "#0000ff", }),
-  de.substyle("cyan",      { foreground_colour = "#00ffff", }),
-  de.substyle("magenta",   { foreground_colour = "#ff00ff", }),
-  de.substyle("yellow",    { foreground_colour = "#ffff00", }),
-  de.substyle("important", { foreground_colour = "orange", }),
-  de.substyle("red",       { foreground_colour = "#ff0000", }),
-  de.substyle("critical",  { foreground_colour = "red", }),
-  de.substyle("gray",      { foreground_colour = "#505050", }),
 })
 gr.refresh()
