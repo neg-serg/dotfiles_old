@@ -2,6 +2,8 @@ NeoBundleFetch 'Shougo/neobundle.vim' "vim bundle manager
 NeoBundle 'matze/vim-move' "try to move the lines of code
 NeoBundle 'miyakogi/sidepanel.vim.git' "multiple sidebars in one
 NeoBundle 'airblade/vim-gitgutter.git' "experimental shows what differ
+NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
+NeoBundle 'junegunn/fzf' "use fzf plug for vim
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'Shougo/neocomplete.vim.git' "completion-engine alternative to ycm
@@ -94,14 +96,10 @@ NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 if executable("git")
     NeoBundle 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
     NeoBundle 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
-    NeoBundle 'int3/vim-extradite.git' "Git commit/log browser
-    NeoBundleLazy 'cohama/agit.vim.git', {
-                \ 'commands' : 'Agit',
-                \ 'depends' : ['tpope/vim-fugitive']
-                \ }
     NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
     NeoBundle 'jaxbot/github-issues.vim.git' "github issues autocomp
     NeoBundle 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
+    NeoBundle 'cohama/agit.vim.git' "git commit browser
     NeoBundle 'vim-scripts/DirDiff.vim.git' "diff directories easyer with vim
 endif
 "------------------------------------------------------------------------------------------------------------
@@ -149,9 +147,6 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'gilligan/tern_for_vim.git' "js-omni completion
-if executable("lldb")
-    NeoBundle 'gilligan/vim-lldb.git' "lldb-plugin for vim
-endif
 if executable("mono")
     NeoBundle 'nosami/Omnisharp.git' "omnisharp completion
 endif
@@ -188,8 +183,6 @@ NeoBundle 'yuratomo/java-api-android'
 NeoBundle 'yuratomo/java-api-junit'
 NeoBundle 'myhere/vim-nodejs-complete' "Completion for nodejs
 NeoBundle 'janko-m/vim-test.git' "easy testing with vim
-NeoBundle 'rargo/vim-tab.git' "vim current directory per tab
-NeoBundle 'pelodelfuego/vim-swoop.git' "swoop for vim like helm-swoop
 ""---------------[  Tags  ]-----------------------------------------------------------------------------------
 NeoBundle 'szw/vim-tags' " autogen ctags
 if executable("gtags")
@@ -203,8 +196,7 @@ if has("cscope")
     NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
-" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
-" NeoBundle 'gerw/vim-latex-suite.git' "latex-suite with additions
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
 "--[ web ]---------------------------------------------------------------------------------------------------
 NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
