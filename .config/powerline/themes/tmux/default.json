@@ -1,16 +1,21 @@
 {
+	"dividers": {
+		"left": {
+            "hard": " ",
+            "soft": " "
+		},
+		"right": {
+            "hard": " ",
+            "soft": " "
+		}
+	},
 	"segments": {
+        "left": [
+        ],
 		"right": [
-			{
-				"function": "powerline.segments.common.sys.uptime",
-				"priority": 50
-			},
 			{
 				"function": "powerline.segments.common.sys.system_load",
 				"priority": 50
-			},
-			{
-				"function": "powerline.segments.common.time.date"
 			},
 			{
 				"function": "powerline.segments.common.time.date",
@@ -19,9 +24,6 @@
 					"format": "%H:%M",
 					"istime": true
 				}
-			},
-			{
-				"function": "powerline.segments.common.net.hostname"
 			}
 		]
 	}
