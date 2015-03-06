@@ -1,9 +1,14 @@
-function wrp(tmplte)
-    return "^fg(#287373)[^fg(#cccccc) " .. tmplte .. " ^fg(#287373)]^fg(#cccccc)"
-end
-
-function wrp2(tmplte)
-    return "^fg(#287373)[^fg(#cccccc)" .. tmplte .. "^fg(#287373)]^fg(#cccccc)"
+function wrp(tmplte, left_side, right_side)
+    local bracket_color = "#287373"
+    local fg_color      = "#cccccc"
+    local left_side     = left_side or "[ "
+    local right_side    = right_side or " ]"
+    local function setcol(color)
+        return "^fg(".. color .. ")"
+    end
+    return setcol(bracket_color) .. left_side ..
+           setcol(fg_color) .. tmplte .. setcol(bracket_color) 
+           .. right_side .. setcol(fg_color)
 end
 
 function dzen_update()
@@ -21,12 +26,4 @@ function dzen_update()
         template = template..wrp("net: " .. netmon)
     end
     dzen_pipe:write(template..'\n')
-end
-
-function mpd_dzen_update()
-    local template = ""
-    if mpd_status then
-        template = template..mpd_status
-    end
-    mpd_pipe:write(template..'\n')
 end

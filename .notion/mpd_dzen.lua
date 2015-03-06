@@ -2,13 +2,7 @@
 require('math')
 require("os")
 
-function wrp(tmplte)
-    return "^fg(#287373)[^fg(#cccccc) " .. tmplte .. " ^fg(#287373)]^fg(#cccccc)"
-end
-
-function wrp2(tmplte)
-    return "^fg(#287373)[^fg(#cccccc)" .. tmplte .. "^fg(#287373)]^fg(#cccccc)"
-end
+dofile("/home/neg/.notion/dzen_helpers.lua")
 
 function mpd_dzen_update()
     local template = ""
@@ -29,7 +23,7 @@ local mpd_defaults={
     port=6600,
     -- mpd password (if any)
     password=nil,
-    template = wrp2(">>")..wrp("%artist - %title %pos/%len")
+    template = wrp(">>", "[","]") .. wrp("%artist - %title %pos/%len")
 }
 -- bugs/requests/comments: delirium@hackish.org
 -- requires that netcat is available in the path
@@ -149,13 +143,9 @@ co=coroutine.create(timer)
     local socket=require('socket')
     coroutine.resume(co) -- timer starts here!
     while coroutine.status(co)~="dead" do
-        print(coroutine.resume(co))
-        -- coroutine.resume(co)
-        -- update unless there's an error that's not yet twice in a row, to allow
-        -- for transient errors due to load spikes
+        coroutine.resume(co)
         local mpd_st = get_mpd_status()
         mpd_status = mpd_st
-        print(mpd_st)
         mpd_dzen_update()
         socket.sleep(0.5)
 end
