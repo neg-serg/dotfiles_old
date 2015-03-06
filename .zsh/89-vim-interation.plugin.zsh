@@ -58,46 +58,38 @@ EOH
 
 function v {
     wid=$(xdotool search --classname wim)
+    tmp_list=/tmp/vim_list
     if [ -z "$wid" ]; then
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
       notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
-      # file_name=\'`readlink -f "$@"`\'
-      # echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
       sleep .8s
-      for i in $@; echo $i >> /tmp/file
+      for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          eval $(echo tmux -S ~/1st_level/vim.socket run \"$(echo vim --servername VIM --remote-silent \"${file_name}\")\")
-      done < /tmp/file
-      # tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
-      rm /tmp/file
-      filename=
+          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \"${file_name}\")\"")
+      done < $tmp_list
+      rm $tmp_list
+      file_name=
     else  
       notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
-      # file_name=\'`readlink -f "$@"`\'
-      # echo vim --servername VIM --remote-silent "$file_name" > /tmp/tmux_run
       sleep .5s
-      for i in $@; echo $i >> /tmp/file
+      for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          eval $(echo tmux -S ~/1st_level/vim.socket run \"$(echo vim --servername VIM --remote-silent \"${file_name}\")\")
-      done < /tmp/file
-      # tmux -S ~/1st_level/vim.socket run "`cat /tmp/tmux_run`"
-      filename=
-      rm /tmp/file
+          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \"${file_name}\")\"")
+      done < $tmp_list
+      file_name=
+      rm $tmp_list
     fi
 }
 
-
-
-# alias vi=callvim
-# alias vvsp="callvim -b':vsp'"
-# alias vhsp="callvim -b':sp'"
-# alias vk="callvim -b':wincmd k'"
-# alias vj="callvim -b':wincmd j'"
-# alias vl="callvim -b':wincmd l'"
-# alias vh="callvim -b':wincmd h'"
-# alias vK="callvim -b':sp<cr>:wincmd k'"
-# alias vJ="callvim -b':sp<cr>:wincmd j'"
-# alias vH="callvim -b':vsp<cr>:wincmd h'"
-# alias vL="callvim -b':vsp<cr>:wincmd l'"
+# { callvim -b':vsp' }
+# { callvim -b':sp' }
+# { callvim -b':wincmd k' }
+# { callvim -b':wincmd j' }
+# { callvim -b':wincmd l' }
+# { callvim -b':wincmd h' }
+# { callvim -b':sp<cr>:wincmd k' }
+# { callvim -b':sp<cr>:wincmd j' }
+# { callvim -b':vsp<cr>:wincmd h' }
+# { callvim -b':vsp<cr>:wincmd l' }
