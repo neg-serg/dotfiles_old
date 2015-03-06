@@ -1,0 +1,61 @@
+*qfreplace.txt*	Perform the replacement in quickfix.
+
+Version: 0.5
+Author : thinca <thinca+vim@gmail.com>
+License: zlib License
+
+==============================================================================
+INTRODUCTION					*qfreplace-introduction*
+
+*qfreplace* is a Vim plugin to perform the replacement in |quickfix|.
+For example, you can perform the replacement to results of |:grep|.
+
+==============================================================================
+USAGE						*qfreplace-usage*
+
+Execute the |:Qfreplace| command to open a buffer that for replacing the
+contents of |quickfix|.  A text of quickfix is inserted in the buffer by a
+line unit.  You can edit it freely.  Finally it is applied to a file when you
+save it.
+
+==============================================================================
+COMMANDS					*qfreplace-command*
+
+:Qfreplace [cmd]				*:Qfreplace*
+			Open the replacement buffer.  The filetype of this
+			buffer is set as "qfreplace".  Specify the command to
+			open the buffer in [cmd]. If omitted, use |:split|.
+
+==============================================================================
+CHANGELOG					*qfreplace-changelog*
+
+0.5	2014-06-08
+	- |:Qfreplace| is available in global.
+	- Ignore invalid lines in quickfix.
+	- Ignore \r at tail in quickfix.
+	- Improve performance.
+
+0.4	2014-02-03
+	- Fix: The check of change was wrong.
+	- Change: Change the license.
+
+0.3	2009-02-27
+	- Change: Add an argument to open the replacement buffer to
+	  |:Qfreplace|.
+	- Change: Remove the g:qfreplace_open_cmd option.
+
+0.2	2009-02-26
+	- Add: Set filetype "qfreplace" in replacement buffer.
+	- Improve: Strengthens a change check.
+	  - Do nothing at the line where an original text was changed.
+	  - Do not update if not changed.
+	- Change: Change the interface to command.
+	- Change: Use ! mark when writing.
+	- Fix: A timing of :update was wrong.
+
+0.1	2008-11-06
+	- Initial version.
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

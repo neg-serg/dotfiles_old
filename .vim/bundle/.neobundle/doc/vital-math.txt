@@ -1,0 +1,88 @@
+*vital-math.txt*	Mathematical functions
+
+Maintainer: ujihisa <ujihisa at gmail com>
+
+==============================================================================
+CONTENTS					*Vital.Math-contents*
+
+INTRODUCTION			|Vital.Math-introduction|
+INTERFACE			|Vital.Math-interface|
+  FUNCTIONS			  |Vital.Math-functions|
+
+
+
+==============================================================================
+INTRODUCTION					*Vital.Math-introduction*
+
+*Vital.Math* provides some bitwise operators.
+If vim provides builtin functions, uses these directly.
+
+
+
+==============================================================================
+INTERFACE					*Vital.Math-interface*
+
+------------------------------------------------------------------------------
+FUNCTIONS					*Vital.Math-functions*
+
+fib({number})				*Vital.Math.fib()*
+	{number}th fib, begins with 0, 1.
+>
+	fib(0) == 0
+	fib(1) == 1
+	fib(10) == 55
+	fib(48) == 512559680
+	fib(49) == -811192543
+<
+	Note that Vim cannot handle big numbers. This is not
+	|Vital.Math.fib()|'s issue but Vim's limitation.
+
+modulo({m}, {n})			*Vital.Math.modulo()*
+	Return modulo.  This behaves like Scheme's one.
+>
+	modulo(10, 3) == 1
+	modulo(-10, 3) == 2
+	modulo(10, -3) == -2
+	modulo(-10, -3) == -1
+<
+
+lcm({values})				*Vital.Math.lcm()*
+	Return least common multiple number of elements in {values}.
+	If at least one of {values} is 0, lcm returns 0.
+>
+	lcm([2, 3]) == 6
+	lcm([2, -3]) == 6
+	lcm([7, 2, 3, 2]) == 42
+	lcm([0]) == 0
+	lcm([2, 3, 0]) == 0
+<
+
+gcd({values})				*Vital.Math.gcd()*
+	Return greatest common divisor of elements in {values}.
+
+	If all elements of {values} are 0, gcd returns 0.
+	If at least one of {values} is not 0, gcd returns greatest common
+	divisor of non zero elements.
+>
+	gcd([2, 3]) == 1
+	gcd([20, -30]) == 10
+	gcd([5, 20, 30]) == 5
+	gcd([0]) == 0
+	gcd([4, 0, 6]) == 2
+	gcd([0, 0, 0]) == 0
+<
+
+sum({values})				*Vital.Math.sum()*
+	Return all sum of elements in {values}.
+
+	If {values} included not a number elements, throw an exception.
+        If {values} is empty list, returns 0.
+>
+	sum([1, 2, 3, 4, 5]) == 15
+	sum([1, 2, 3.2, 4, 5.3]) == 15.5
+	sum([1, 2, '3', 4, 5])  " throw exception
+        sum([]) == 0
+<
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

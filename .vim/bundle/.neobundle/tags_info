@@ -1,6 +1,7 @@
 DirDiff.vim
 IndentConsistencyCop
 Join
+LaTeX-Box
 ListToggle
 NrrwRgn
 Omnisharp
@@ -17,6 +18,7 @@ ctrlsf.vim
 delimitMate
 emmet-vim
 eregex.vim
+fzf
 gasynctags
 gf-user-vimfn
 gist-vim
@@ -26,6 +28,7 @@ gtags-cscope-vim-plugin
 gtags.vim
 gundo.vim
 hasksyn
+ifdef-highlighting
 indentLine
 java-api-android
 java-api-complete
@@ -63,7 +66,6 @@ vim-ctrlspace
 vim-dispatch
 vim-endwise
 vim-eunuch
-vim-extradite
 vim-fixkey
 vim-fswitch
 vim-fugitive
@@ -77,7 +79,6 @@ vim-golang
 vim-instant-markdown
 vim-json
 vim-like-emacs
-vim-lldb
 vim-markdown
 vim-mathematica
 vim-merginal
@@ -97,8 +98,6 @@ vim-sbt
 vim-scala
 vim-stargate
 vim-surround
-vim-swoop
-vim-tab
 vim-tags
 vim-tbone
 vim-test
