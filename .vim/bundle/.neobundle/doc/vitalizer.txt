@@ -1,0 +1,88 @@
+*vitalizer.txt*	vital.vim for you.
+
+==============================================================================
+CONTENTS					*vitalizer-contents*
+
+INTRODUCTION			|vitalizer-introduction|
+INTERFACE			|vitalizer-interface|
+  COMMANDS			  |vitalizer-commands|
+  FUNCTIONS			  |vitalizer-functions|
+CUSTOMIZING			|vitalizer-customizing|
+
+
+
+==============================================================================
+INTRODUCTION					*vitalizer-introduction*
+
+*Vitalizer* is a Vim plugin to vitalize the |Vital| to your plugin.
+
+
+						*vitalizer-synopsis*
+>
+	:cd /path/to/my-plugin
+
+	" First, install the Vital to your plugin with some modules.
+	:Vitalize --name=my_plugin . Data.List DateTime
+
+	" You can update the Vital by omitting modules the 2nd time and
+	" afterwards.
+	:Vitalize .
+
+	" If you specify a module list, all modules are replaced.
+	:Vitalize . Data.Dict
+	" => Data.List and DateTime will be removed!
+
+	" Specifies a module with '+' prefix to add a module.
+	:Vitalize . +Data.List +DateTime
+
+
+
+==============================================================================
+INTERFACE					*vitalizer-interface*
+
+------------------------------------------------------------------------------
+COMMANDS					*vitalizer-commands*
+
+:Vitalize [options] {target-dir} [{module} ...]	*:Vitalize*
+	{target-dir} is root directory of your plugin.  It must be like a
+	one of 'runtimepath'.
+	List of {module} is module names you want.  It is necessary to
+	specify one or more.
+	{name}(see below) and list of {module} is recorded to your Vital.
+	This is used after next time if they are omitted.
+	You can use +/- prefix to {module}.  This adds or removes the
+	specified module.
+>
+	:Vitalize path/to/plugin +Web.HTTP -DateTime
+<
+	options ~
+	--name={name}
+		Specifies a name of your Vital.  If omitted, name of
+		{target-dir} is used.
+	--hash={hash}
+		Specifies a hash of git.
+	--help
+		Shows a simple help text.
+
+
+------------------------------------------------------------------------------
+FUNCTIONS					*vitalizer-functions*
+
+						*vitalizer#vitalize()*
+vitalizer#vitalize({name}, {target-dir}, {modules}, {hash})
+	Function version of |:Vitalize|.
+
+
+
+==============================================================================
+CUSTOMIZING					*vitalizer-customizing*
+
+g:vitalizer#vital_dir				*g:vitalizer#vital_dir*
+	Base directory of Vital.  This is usually set automatically.
+	When you are using the Vital by Git submodule and symbolic link on MS
+	Windows, it may be necessary to set this.
+
+
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

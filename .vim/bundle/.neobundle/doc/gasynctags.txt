@@ -1,0 +1,111 @@
+*gasynctags.txt*	Plugin to automatically setup Gnu Global for Vim
+*gasynctags*
+
+Author: bbchung (afafaf4@gmail.com)
+For Vim version 7.x or above
+
+==============================================================================
+CONTENTS                                                  *gasynctags-contents*
+1. Intro 			|gasynctags-intro|
+2. gasynctags on the internet	|gasynctags-internet|
+3. Requirements			|gasynctags-requirements|
+4. Options 			|gasynctags-options|
+5. Commands 			|gasynctags-commands|
+
+==============================================================================
+						*gasynctags-intro*
+1. Intro~
+gasynctags is a vim plugin that can generate the tag(by Gnu Global) for vim
+automatically and add the generated tag to vim cscope database. Because
+generating the tag for a big project will take very long time, gasynctags
+calls gtags in background to eliminate performance down of vim.
+
+gasynctags provides the following features:
+
+    * Automatically generates tag asynchronously.
+    * Setup convenient key maps and wrapper function to call cscope functions
+     of vim 
+
+==============================================================================
+						*gasynctags-internet*
+2. gasynctags on the internet~
+
+The Github repository is at:
+>
+	https://github.com/bbchung/gasynctags
+<
+==============================================================================
+						*gasynctags-requirements*
+3. Requirements~
+
+The gasynctags plugin requires the following:
+
+    * Vim version 7.x(or above) with python2 enabled
+    * GNU GLOBAL
+
+gasynctags currently works only at linux platform, others have not been tested.
+
+==============================================================================
+						*gasynctags-options*
+4. Options~
+
+|'g:gasynctags_autostart'|		Enable the gasynctags when vim start
+|'g:gasynctags_gtags_exe'|		Path of Gnu gtags
+|'g:gasynctags_global_exe'|		Path of Gnu global
+|'g:gasynctags_gtags_cscope_exe'|	Path of Gnu gtags-cscope
+
+						*'gasynctags_autostart'*
+g:gasynctags_autostart~
+gasynctags will automatically start with Vim if set g:gasynctags_autostart to 1,
+otherwise, you have to manually start gasynctags by GasynctagsEnable command.
+
+Default: 1
+>
+	let g:gasynctags_autostart = 0
+<
+						*'gasynctags_gtags_exe'*
+g:gasynctags_gtags_exe~
+gasynctags use $PATH/gtags as the executable file of gnu gtags if
+gasynctags_gtags_exe is ''
+
+Default: ''
+>
+	let g:gasynctags_gtags_exe = '/opt/gtags'
+<
+						*'gasynctags_global_exe'*
+g:gasynctags_global_exe~
+gasynctags use $PATH/global as the executable file of gnu global if
+gasynctags_global_exe is ''
+
+Default: ''
+>
+	let g:gasynctags_global_exe = '/opt/global'
+<
+						*'gasynctags_gtags_cscope_exe'*
+g:gasynctags_gtags_cscope_exe~
+gasynctags use $PATH/gtags-cscope as the executable file of gnu gtags-global
+if gasynctags_gtags_cscope_exe is ''
+
+Default: 1
+>
+	let g:gasynctags_gtags_cscope_ex_exe/opt/gtags-cscope'
+<
+
+
+==============================================================================
+						*gasynctags-commands*
+5. Commands~
+gasynctags provides command to control it
+
+Enable gasynctags~
+>
+	GasynctagsEnable
+<
+
+Disable gasynctags~
+>
+	GasynctagsDisable
+<
+==============================================================================
+
+vim:tw=78:ts=8:noet:ft=help:

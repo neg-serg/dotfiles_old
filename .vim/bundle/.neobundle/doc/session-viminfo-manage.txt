@@ -1,0 +1,386 @@
+*workspace.txt*            Plugin to quickly save your vim session and viminfo   
+
+            WORKPACE PLUGIN MANUAL~
+
+
+==============================================================================
+CONTENTS                                                  *workspace-contents*
+
+    1. Introduction............................|workspaceIntro|
+    2. Functionality...........................|workspaceFunctionality|
+      2.1 Save Workspace(vim session and viminfo)........|workspaceSaveWorkspace|
+      2.2 Read Workspace(vim session and viminfo)........|workspaceReadWorkspace|
+    3. Automation..............................|workspaceAutomation|
+    4. Commands................................|workspaceCommands|
+    5. Options.................................|workspaceOptions|
+      5.1 Options summary......................|workspaceOptionsSummary|
+      5.2 Options details......................|workspaceOptionsDetails|
+    6. Limitation and Known Issues.............|workspaceLimitation|
+    7. TODO list...............................|workspaceTodo|
+    8. Maintainer..............................|workspaceMaintainer|
+    9. Credits.................................|workspaceCredits|
+    10. License.................................|workspaceLicense|
+    11. History................................|workspaceHistory|
+
+==============================================================================
+ 1. INTRODUCTION                                              *workspaceIntro*
+
+I did search job on vim.org, there are good plugins for vim session management.
+But seems no one try to manage vim session and viminfo files both.
+So I made it by myself.
+
+This plug-in provides commands to save/load vim session and viminfo files both!
+Even better, it can automatically load/save vim session and viminfo files 
+when entering vim and leaving vim environment.
+
+That are very useful if you want Vim to quickly swith between different 
+projects, automatically loading the files you were last working on in that 
+project, and enable you to continue where you left off. 
+
+Terminology:
+"Workspace files":
+I will shortly call vim session and viminfo files as "Workspace files" in 
+this manual.
+
+==============================================================================
+ 2. FUNCTIONALITY                                     *workspaceFunctionality*
+
+------------------------------------------------------------------------------
+ 2.1 SAVE WORKSPACE                               *workspaceSaveWorkspaceCore*
+
+------------------------------------------------------------------------------
+ 2.2 LOAD WORKSPACE                               *workspaceLoadWorkspaceCore*
+
+==============================================================================
+ 3. AUTOMATION                                            *workspaceAutomation*
+
+------------------------------------------------------------------------------
+LAUNCHING VIM~ 
+* When launching Vim, this plugin will detect current path and load default 
+  workspace files(workspace.session and workspace.viminfo) if exist. 
+* If no default workspace files found, it will check whether there are
+  files having suffix ".session" and ".viminfo" in pair. 
+  If yes, it will prompt a list for user selection if there are more than one 
+  pair.
+
+Example 1:
+If you're at /home/test, there are: >
+  workspace.session
+  workspace.viminfo
+  test.session
+  test.viminfo
+<
+When you launch vim, it will load workspace.session and workspace.viminfo with 
+prompt message by default.
+
+Example 2:
+If you're at /home/test, there are: >
+  test01.session
+  test01.viminfo
+  test02.session
+  test02.viminfo
+<
+When you launch vim, it will list all workspace files for your choice.
+As following: >
+  workspace: Please input the expected workspace index you want to load:
+    [0] /home/test/test01
+    [1] /home/test/test02
+  Your input(q to exit this function of workspace plugin):
+<
+Then you type a legal number in range(0,1), it will load the specific
+workspace files.
+Also you can type 'Q' or 'q' to do nothing with workspace files.
+If you give an exception, you will be required to input again. 
+
+There is a little compatible problem in some tty console.
+In some tty console, if you input something with a <CR>, it will echo all
+message one time. Anyway, the function still works.   
+
+LEAVING VIM~
+Example 1: >
+  : Savews my.ws       
+  : Loadws wow.ws
+  : Savews new.ws
+  : qa
+<
+Result: This plugin will automatically save session and viminfo files to last 
+        workspace files: 
+          new.session
+          new.viminfo
+        
+==============================================================================
+ 4. COMMANDS                                               *workspaceCommands*
+
+------------------------------------------------------------------------------
+:Savews                                                              *:Savews*
+
+Save vim session and viminfo files when you type Ex command "Savews" with proper 
+arguments.
+Particularly, if option wsOverwrite is 1(This is default value), when you
+exit from Vim, this plugin will save session and viminfo files to your last 
+saved/loaded workspace files automatically.
+
+Default Values:
+  * Default name for workspace files is: 
+      workspace.session 
+      workspace.viminfo
+  * Default saving path: 
+      vim current path (Type Vim Ex command getcwd() to get it)
+
+Example 1: >
+  :Savews    
+<
+Result: Will create workspace.session and workspace.viminfo in current folder 
+        if not existed. 
+        Please see |'wsOverwrite'| for more details about overwrite behavior.
+
+Example 2: >
+  :Savews /home/myproject 
+<
+Result: Will create:
+          /home/myproject/workspace.session
+          /home/myproject/workspace.viminfo
+        Please make sure folder /home/myproject existed beforehand.
+        Please see |'wsOverwrite'| for more details about overwrite behavior.
+
+Example 3: >
+  :Savews my.ws
+<
+Result: Save to my.session and my.viminfo in current folder.
+        Please see |'wsOverwrite'| for more details about overwrite behavior.
+
+Example 4: >
+  :Savews /home/myproject/my.ws
+<
+Result: You will get my.session and my.viminfo in /home/myproject folder 
+        if /home/myproject existed.
+        Please see |'wsOverwrite'| for more details about overwrite behavior.
+
+Two point please keep in mind when using Savews:
+* You must have suffix ".ws", if you want to specify name for session and  
+  viminfo files, like example 3 and example 4. 
+  Otherwise, they will have default name, workspace.session and 
+  workspace.viminfo.
+* Please remember to use :qwa to quit Vim if you want to reopen all windows/tabs
+  you're editing.
+  The reason is that Savews command will save workspace files automatically when
+  you exit Vim.
+  So if you have opened many windows/tabs, but closed them one by one, there 
+  would be only one window is openning just before you exit Vim, workspace 
+  plugin will only can remember the last window and just reopen it for you when 
+  you enter Vim next time by loading your workspace files.
+
+Other examples (I ignored :Savews in following Ex commands):
+(Also below examples are my test cases)
+/             # Would create /workspace.session, /workspace.viminfo
+/.ws          # Failed: no name for .ws 
+\             # Failed: please remove \ from your path 
+\.ws          # Failed: please remove \ from your path 
+.             # Should create ./workspace.session, ./workspace.viminfo
+..            # Should create ../workspace.session, ../workspace.viminfo
+/.            # Should create /workspace.session, /workspace.viminfo
+/..           # Should create /workspace.session, /workspace.viminfo
+./            # Should create ./workspace.session, ./workspace.viminfo
+../           # Should create ../workspace.session, ../workspace.viminfo
+./.           # Should create ./workspace.session, ./workspace.viminfo
+./..          # Should create ../workspace.session, ../workspace.viminfo
+../.          # Should create ../workspace.session, ../workspace.viminfo
+../..         # Should create ../../workspace.session, ../../workspace.viminfo
+
+/home/not_exist_folder/foo  # Failed: folder not exist.
+/not_exist_folder/          # Failed: not have .ws as suffix 
+/tmp/.wsxsdf                # Failed: not have .ws as suffix
+/tmp/.ws                    # Failed: no name for .ws
+/tmp/my.ws                  # Would create /tmp/my.session, /tmp/my.viminfo
+
+------------------------------------------------------------------------------
+:Loadws                                                              *:Loadws*
+
+Load vim session and viminfo files.
+
+Example 1: >
+  :Lavews    
+<
+Result: Will load workspace.session and workspace.viminfo in current folder 
+        if existed. 
+
+Example 2: >
+  :Lavews /home/myproject 
+<
+Result: Will load:
+          /home/myproject/workspace.session
+          /home/myproject/workspace.viminfo
+        Please make sure workspace files existed beforehand.
+
+Example 3: >
+  :Lavews my.ws
+<
+Result: Load my.session and my.viminfo in current folder.
+
+Example 4: >
+  :Lavews /home/myproject/my.ws
+<
+Result: Will load my.session and my.viminfo from /home/myproject folder 
+        if workspace files existed.
+
+Just one situation I want to mention here:
+If you once run Loadws to load your workspace files, then you run Loadws to 
+reload then again, it will not close all openning windows and tabs. 
+In other words, you may see double windows have been opened for the same file.
+
+==============================================================================
+ 5. OPTIONS                                                 *workspaceOptions*
+
+------------------------------------------------------------------------------
+ 5.1 Options summary                                 *workspaceOptionsSummary*
+
+|'wsOverwrite'|                  Overwrite existed vim session and viminfo 
+
+------------------------------------------------------------------------------
+ 5.2 Options details                                 *workspaceOptionsDetails*
+
+To enable any of the below options you should put the given line in your
+~/.vimrc
+
+------------------------------------------------------------------------------
+                                                               *'wsOverwrite'*
+Value: 0 or 1.
+Default: 1.
+
+If there are vim session and viminfo files with same name, you can overwrite 
+it by setting this option to 1: >
+  let g:wsOverwrite=1
+<
+So, if g:wsOverwrite is 0, and there are workspace.session and 
+workspace.viminfo, when you type: >
+  :Savews
+<
+It will said "Workspace files existed, and wsOverwrite is 0, will not 
+overwrite existed files."
+If g:wsOverwrite is 1, it will overwrite them.
+
+IT RECOMMENDED STRONGLY YOU KEEP IT DEFAULT AS 1.~
+BECAUSE IF IT'S 0, WHEN YOU EXIT VIM, IT WON'T SAVE YOUR WORKSPACE FILES~
+AUTOMATICALLY.~
+
+==============================================================================
+ 6. LIMITATION AND KNOWN ISSUES                          *workspaceLimitation*
+ 
+* Windows is not a target of this plugin.
+  I think you would experience some problmes if you want to use this plugin on 
+  Windows Vim.
+* There is compatible problem when work with autochdir option. Recommend to 
+  remove autochdir option from your ~/.vimrc.
+  For my experiences, if enable autochdir option in Vim, users will mess up 
+  themselves when trying to provide relative pathes of Vim session and viminfo 
+  files. It seems it can't have impact if you provide absolute path for Vim 
+  session and viminfo files.
+* There is a little compatible problem in some tty console.
+  In some tty console, when launching Vim and this plugin prompt a workspace 
+  list for your choice, after you input your choice, it will echo all message 
+  one time. Anyway, the function still works.
+* You'd better not to run :Loadws in same Vim twice.
+  If you once run Loadws to load your workspace files, then run Loadws to reload
+  them again in the same Vim, it will not close all openning windows and tabs. 
+  In other words, you may see double windows have been opened for the same file.
+
+==============================================================================
+ 7. CHANGE LOG AND TODO LIST                                   *workspaceTodo*
+
+Below are my change logs with development troubleshooting trace and TODO list.
+
+- [Fixed]When editing files with path, only create session and viminfo files 
+  under sub folder.
+  For example, you're in /root, editing /root/test/1.txt, then it only create 
+  session and viminfo files under /root/test, if you just run Savews.
+  
+  Root cause:
+  Because have "set autochdir" in ~/.vimrc.
+
+  Resolution:
+  After reading articles, autochdir would cause some errors for a few plugins.
+  So it's better to disable autochdir, instead of it, use a map to do changing
+  working directory. 
+  And need give warning for users if they have autochdir in ~/.vimrc.
+  To check whether use have autochdir, instead of read vimrc, you can get 
+  output of 'set autochdir?'. But it's a little difficult to get output 
+  of 'set autochdir?', I tried exe and read, only find redir to register can
+  work.
+  redir @s
+  set autochdir?
+  redir END
+  echo @s
+
+  OK, find a better way:
+  you can use &setting to access the value of a vim setting.
+  See :help expr-option.
+  More detais: I found this way from stackoverflow.com, use vim settings as 
+  variables / How to check if specific guioption is set or not.
+
+
+- [Fixed] I found, once execute Loadws, it will change current directory.
+  So I have to save current directory before execute Loadws, then recovery it 
+  after execute Loadws. 
+
+- [Fixed] If use source in vimscript, it will remove last echo function, 
+  and print a non-sense message.
+  For example, if I have a echo "test" before execute "source " . a:sf, I 
+  will can't see test been printed to stdout. 
+  What's boring is that it still print non-sense message to stdout.
+
+  Tried million ways to redir the non-sense message to other place, faield.
+  Finally find!!!! You can use silent before execute!!!!!
+
+- [Done][IMPROVEMENT] Need add autocmd to save session and viminfo files when 
+  exitvim otherwise it will not save it.
+
+- [Done][IMPROVEMENT] Need add check to init() to load default workspace files 
+  if existed and prompt cur dir's existed session and viminfo files when 
+  start vim. 
+  There is a little different behavior between real console and tty. When in 
+  putty tty, it will echo what you've input. But can't reproduced in real 
+  console.
+
+- [No need][IMPROVEMENT] Add map for quick Savews Workspace.session and 
+  workspace.viminfo.
+  No need for this point. Because we have added support to save session and 
+  viminfo files when VimLeave.
+
+==============================================================================
+ 8. MAINTAINER                                           *workspaceMaintainer*
+
+Hi there! My name is Brant Chen. and I can be reached at:
+    mailto:brantchen2008@gmail.com
+You can access the source code from my github portal:
+    http://github.com/xkdcc
+My personal blog: 
+    http://www.brantchen.com
+
+Feel free to send me any suggestions and/or comments about this plugin, I'll
+be very pleased to read them.
+
+==============================================================================
+ 9. CREDITS                                                 *workspaceCredits*
+
+==============================================================================
+ 10. LICENSE                                                *workspaceLicense*
+
+This software is licensed under the MIT License:
+http://en.wikipedia.org/wiki/MIT_License.
+Copyright 2014 Brant Chen (brantchen2008@gmail.com and xkdcc@163.com).
+
+==============================================================================
+ 11. HISTORY                                                *workspaceHistory*
+
+  Version      Date      Release notes                                       ~
+|---------|------------|-----------------------------------------------------|
+    1.0     2014-08-17 * First stable release.
+
+  `\|||/´         MMM           \|/            www            __^__          ~
+   (o o)         (o o)          @ @           (O-O)          /(o o)\\        ~
+ooO_(_)_Ooo__ ooO_(_)_Ooo___oOO_(_)_OOo___oOO__(_)__OOo___oOO__(_)__OOo_____ ~
+_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
+__|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_ ~
+_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|____ ~
+
+vim:tw=78:et:ts=8:sw=2:ft=help:norl:formatoptions+=tcroqn:autoindent:

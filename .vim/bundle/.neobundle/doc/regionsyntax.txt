@@ -1,0 +1,71 @@
+*regionsyntax.txt*   Plugin that dynamically highlighting code blocks
+
+==============================================================================
+INTRODUCTION                                                    *regionsyntax*
+
+When editing files with certain code blocks,it's nice to get them highlighted
+properly.
+
+:[range]RegionSyntax 'filetype'                                *:RegionSyntax*
+
+Highlight the selected content with the given 'filetype' syntax.
+
+                                                         *:RegionsyntaxToggle*
+
+Enable/Disable it.
+
+==============================================================================
+CUSTOMIZATION                                              *regionsyntax-rule*
+
+It's really easy to customize your personal rules.Actually, you only need to
+change the following 2 global variables
+
+The map dict                                              *g:regionsyntax_map*
+
+This one is a |Dictionary| where the key is the local 'filetype' and the value
+is a list of rules for that 'filetype'.
+
+Here is a simple example.Say you would like to highlight this:
+
+$$
+...
+$$
+
+in html as tex,you could use the following config.
+
+let g:regionsyntax_map = {
+            \ 'html':
+            \ [{
+            \   'start' : '\m^[ \t]*\$\$[ \t]*$',
+            \   'ft' : 'tex',
+            \   'end' : '^[ \t]*\$\$[ \t]*$'
+            \ }]}
+
+Or you can highlight the github flavored codeblock:
+
+```syntax
+```
+
+in markdown files by simply adding:
+
+let g:regionsyntax_map["mkd"] = [{
+            \ 'start' : '\m^[ \t]*```[ \t]*<syntax>[ \t]*$',
+            \ 'end' : '^[ \t]*```[ \t]*$'
+            \ }]
+
+If no 'ft' key specified,it will use the '<syntax>' part in 'start' pattern
+to match the new 'ft'.So make sure that there is a 'ft' key or a 'start' with
+the '<syntax>' pattern in each of your rules.
+
+'syntax' transform dictionary                        *g:regionsyntax_ft_trans*
+
+This variable is particularly helpful in the situation that the text
+representing the new 'syntax' appearing which may be recognized by other
+programs(such as pygmentize) need to be different with the actual 'syntax'
+to be recognized by vim.
+
+For example,
+
+let g:regionsyntax_ft_trans = {'ini' : 'dosini'}
+
+will let ini codeblocks highlighted properly.

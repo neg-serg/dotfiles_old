@@ -1,0 +1,187 @@
+*vital-data-string.txt*		string utilities library.
+
+Maintainer: ujihisa <ujihisa at gmail com>
+
+==============================================================================
+CONTENTS				*Vital.Data.String-contents*
+
+INTRODUCTION			|Vital.Data.String-introduction|
+INTERFACE			|Vital.Data.String-interface|
+  Functions			  |Vital.Data.String-functions|
+
+==============================================================================
+INTRODUCTION				*Vital.Data.String-introduction*
+
+*Vital.Data.String* is String Utilities Library.
+It provides some functions to manipulate |String|.
+>
+	let s:V = vital#of("vital")
+	let s:S = s:V.import("Data.String")
+<
+
+==============================================================================
+INTERFACE				*Vital.Data.String-interface*
+------------------------------------------------------------------------------
+FUNCTIONS				*Vital.Data.String-functions*
+
+replace({str}, {from}, {to})		*Vital.Data.String.replace()*
+	Returns string replaced {from} to {to} from {str}.
+>
+	echo s:S.replace("fooba.bazbar", "ba.", "zzz")
+	" foozzzbazbar
+<
+replace_first({str}, {from}, {to})	*Vital.Data.String.replace_first()*
+	Returns string replaced {from} to {to} from {str} only about the
+	first-match.
+>
+	echo s:S.replace("foobarbazbar", "bar", "zzz")
+	" foozzzbazzzz
+	echo s:S.replace_first("foobarbazbar", "bar", "zzz")
+	" foozzzbazbar
+<
+scan({str}, {pattern})			*Vital.Data.String.scan()*
+	Returns |List| which matched {pattern} in {str}.
+
+reverse({str})				*Vital.Data.String.reverse()*
+	Returns a reversed string.  This works on character base.
+>
+	echo s:S.reverse("string")
+	" gnirts
+<
+common_head({strs})			*Vital.Data.String.common_head()*
+	Returns a common part of head of strings.
+>
+	echo s:S.common_head(['neocomplcache', 'neosnippet', 'neobundle'])
+	" 'neo'
+<
+split_leftright({expr}, {pattern})	*Vital.Data.String.split_leftright()*
+	Returns |List| that contains two |String| split by {pattern}.
+>
+	echo s:S.split_leftright('neocomplcache', 'neo\zs.....')
+	" ['neo', 'cache']
+<
+split3({expr}, {pattern})		*Vital.Data.String.split3()*
+	Like |Vital.Data.String.split_leftright()|, but this function returns
+	[left, middle, right] not only [left, right].
+>
+	echo s:S.split3('neocomplcache', 'neo\zs.....')
+	" ['neo', 'compl', 'cache']
+<
+					*Vital.Data.String.nsplit()*
+nsplit({expr}, {n} [, {pattern} [, {keepempty}]])
+	Behaves like |split()|.  Returns a list which is limited as {n}'th
+	elements.
+
+chop({str}) 				*Vital.Data.String.chop()*
+	Removes last character from {str}.
+
+chomp({str}) 				*Vital.Data.String.chomp()*
+	Removes last \r,\n,\r\n from {str}.
+
+trim({str})	                	*Vital.Data.String.trim()*
+	Returns |String| removed spaces from the beginning and end of a {str}.
+
+wrap({str} [, {columns}])		*Vital.Data.String.wrap()*
+	Returns |String| wrapped to fit to |columns| width.
+        Default: {columns} = &columns
+
+nr2byte({nr})				*Vital.Data.String.nr2byte()*
+	Returns utf-8 bytes which has the number value {nr}.
+
+nr2enc_char({charcode})			*Vital.Data.String.nr2enc_char()*
+	Returns a string which has the number value {nr}.  This function
+	depends on |encoding| option.
+
+nr2hex({nr})				*Vital.Data.String.nr2hex()*
+	Returns a hex string which has the number value {nr}.
+
+diffidx({str1}, {str2})			*Vital.Data.String.diffidx()*
+	Returns first index of different character if two strings are not
+	equal, otherwise returns number -1 if the strings are equal.
+
+substitute_last({expr}, {pat}, {sub})	*Vital.Data.String.substitute_last()*
+	Behaves like |substitute()|, but it only replaces the last matched
+	string.
+
+dstring({expr})				*Vital.Data.String.dstring()*
+	Behaves like |string()|, but this wraps the result string not with
+	single-quotes but with double-quotes.
+>
+	echo s:S.dstring(123)
+	" 123
+	echo s:S.dstring('abc')
+	" '"abc"'
+	echo s:S.dstring("abc")
+	" '"abc"'
+<
+lines({str})				*Vital.Data.String.lines()*
+	Splits into list of strings of each lines of {str}.
+
+contains_multibyte({str})	*Vital.Data.String.contains_multibyte()*
+	Return Number 1 if String {str} contains a multi-byte character,
+	otherwise zero.
+
+pad_left({str}, {width} [, {char}])	*Vital.Data.String.pad_left()*
+	It returns a string padded {str}'s left side until given
+	{width} with the given half-width {char} or white-space,
+	considering non-half-width characters.
+	Default: {char} = ' '
+>
+	echo s:S.pad_left('test', 11)
+	" '       test'
+<
+
+pad_right({str}, {width} [, {char}])	*Vital.Data.String.pad_right()*
+	It returns a string padded {str}'s right side until given
+	{width} with the given half-width {char} or white-space,
+	considering non-half-width characters.
+	Default: {char} = ' '
+>
+	echo s:S.pad_right('test', 11)
+	" 'test       '
+<
+
+					*Vital.Data.String.pad_both_sides()*
+pad_both_sides({str}, {width} [, {char}])
+	It returns a string padded {str}'s left and right side until given
+	{width} with the given half-width {char} or white-space,
+	considering non-half-width characters.
+	Default: {char} = ' '
+>
+	echo s:S.pad_both_sides('test', 11)
+	" '   test    '
+<
+
+				*Vital.Data.String.pad_between_letters()*
+pad_between_letters({str}, {width} [, {char}])
+	It returns a string padded between {str}'s letters until given
+	{width} with the given half-width {char} or white-space,
+	considering non-half-width characters.
+	Default: {char} = ' '
+>
+	echo s:S.pad_between_letters('test', 11)
+	" '  t e s t  '
+<
+
+				*Vital.Data.String.justify_equal_spacing()*
+justify_equal_spacing({str}, {width} [, {char}])
+	It returns a string justified equal spacing until given
+	{width} with the given half-width {char} or white-space,
+	considering non-half-width characters.
+	Default: {char} = ' '
+>
+	echo s:S.justify_equal_spacing('test', 11)
+	" 't   e  s  t'
+<
+
+				*Vital.Data.String.levenshtein_distance()*
+levenshtein_distance({str1}, {str2})
+        It returns a minimum edit distance of two given strings {str1} and
+        {str2}.
+>
+	echo s:S.levenshtein_distance('kitten', 'sitting')
+	" 3
+<
+
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

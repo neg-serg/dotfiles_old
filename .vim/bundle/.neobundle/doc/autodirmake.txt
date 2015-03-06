@@ -1,0 +1,49 @@
+*autodirmake.txt*
+
+Author:  Mopp
+License: NYSL
+Version: 0.2
+
+
+==============================================================================
+CONTENTS                                    *autodirmake-contents*
+    Introduction                            |autodirmake-introduction|
+        Install                             |autodirmake-install|
+    Options                                 |autodirmake-options|
+    Changelog                               |autodirmake-changelog|
+
+
+==============================================================================
+INTRODUCTION                                *autodirmake-introduction*
+    When you write file, If its path includes not exists directory, this
+    plugin will make automatically directory.
+    This is developed in Github(https://github.com/mopp/autodirmake.git).
+
+------------------------------------------------------------------------------
+INSTALL                                     *autodirmake-install*
+    Install the distributed files into your Vim script directory which is
+    usually $HOME/.vim. you can use Neobundle below >
+        NeoBundle 'mopp/autodirmake.git'
+<
+
+==============================================================================
+OPTIONS                                     *autodirmake-options*
+    These oprions changes Plugin behavior.
+    If you would like to change behavior, You add or change value in your
+    vimrc.
+
+g:autodirmake#is_confirm                    *g:autodirmake#is_confirm*
+        If this is 1, this plugin confirms you
+        When this plugin create directory.
+
+        Default Value is 1.
+
+g:autodirmake#msg_highlight                 *g:autodirmake#msg_highlight*
+        This shows prompt string colors.
+        If you set any highlight name, it is applied.
+
+        Default Value is 'NONE'.
+
+==============================================================================
+
+vim:ts=4:ft=help:norl:
