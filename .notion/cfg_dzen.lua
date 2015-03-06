@@ -1,13 +1,12 @@
 dopath("dzen_helpers")
--- dopath("cfg_dzen_mpd")
 
 ws_curr = nil
 kbd_template = nil
 sys_template = nil
 date = nil
 mpd_status = nil
-
 netmon = nil
+xkb_layout = nil
 
 settings = {
       device = "enp6s0",
@@ -55,7 +54,7 @@ local function date_update()
     date_timer:set((60-os.date("%S"))*1000, date_update)
 end
 
-local function kbd_update()
+function kbd_update()
     local klay
     local f = nil
     local template = ""
@@ -67,7 +66,6 @@ local function kbd_update()
 
     kbd_template = template
     dzen_update()
-    kbd_timer:set(200, kbd_update)
 end
 
 date_timer = ioncore.create_timer()
