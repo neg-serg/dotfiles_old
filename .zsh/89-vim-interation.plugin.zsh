@@ -61,7 +61,7 @@ function v {
     tmp_list=/tmp/vim_list
     if [ -z "$wid" ]; then
       urxvtc -fn 'xft:PragmataPro for Powerline:pixelsize=20,xft:dejavu sans mono:size=16:antialias=true' -name 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' && \
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
       sleep .8s
       for i in $@; echo $i >> $tmp_list
       while read line; do
@@ -71,7 +71,7 @@ function v {
       rm $tmp_list
       file_name=
     else  
-      notionflux -e "app.byinstance('', 'URxvt', 'wim')" > /dev/null
+      notionflux -e "app.byinstance('', 'URxvt', 'wim')"
       sleep .5s
       for i in $@; echo $i >> $tmp_list
       while read line; do
