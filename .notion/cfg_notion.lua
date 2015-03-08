@@ -58,13 +58,11 @@ dopath("cfg_xrandr")
 dopath("mod_notionflux")
 dopath("vim_bindings")
 dopath("screenshot")
-dopath("lua_repl")
 dopath("mod_dock")
 dopath("cfg_dzen")
 dopath("rofi_goto")
 dopath("cfg_autostart")
 dopath("mod_xkbevents")
--- dopath("dynamic_view")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
