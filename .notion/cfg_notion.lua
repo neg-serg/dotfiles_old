@@ -139,6 +139,7 @@ defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mo
 defwinprop{class="VirtualBox", jumpto=true,target="vm",transient_mode="off",lazy_resize=true, tag="virt"}
 defwinprop{class="Vmware", jumpto=true,target="vm",transient_mode="on",lazy_resize=true, tag="virt"}
 defwinprop{class="QEMU", jumpto=true,target="vm",transient_mode="on",lazy_resize=true, tag="virt"}
+defwinprop{class="spicec",instance="spicec", jumpto=true,target="vm",transient_mode="on",lazy_resize=true, tag="virt"}
 -------------------------------------[[   GIMP  ]]-----------------------------
 defwinprop{class = "Gimp",acrobatic = true, tag="graphic"}
 defwinprop{class="Gimp",jumpto=true,role="gimp-file-open",transient_mode="off",float=true}
@@ -261,7 +262,7 @@ defbindings("WMPlex.toplevel", {
 --------------------------
     kpress("Mod4+1", "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
     kpress("Mod4+x", "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
-    kpress("Mod4+b", "app.byclass_withtag('', 'Vmware','', 'virt')"),
+    kpress("Mod4+Control+a", "app.byclass_withtag('', 'Vmware','', 'virt')"),
     kpress("Mod4+b", "app.byclass_withtag('', 'mpv','', 'video')"),
     kpress("Mod4+w", "app.byinstance_withtag('firefox', 'Firefox','Navigator','www')"),
     kpress("Mod4+o", "app.byclass_withtag('zathura','Zathura','pdf')"),
