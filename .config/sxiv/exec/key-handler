@@ -164,9 +164,9 @@ case "$KEY" in
     "r")   rep ;;
     "c") copy_name ;;
     "C-1") xargs -n1 hsetroot -center ;;
-    "C-2") xargs -n1 hsetroot -tile ;;
+    "C-2") xargs -n1 hsetroot -fill ;;
     "C-3") xargs -n1 hsetroot -full ;;
-    "C-4") xargs -n1 hsetroot -fill ;;
+    "C-4") xargs -n1 hsetroot -tile ;;
     "C-t") tag_add ;;
     "M-T") tag_del ;;
 esac
