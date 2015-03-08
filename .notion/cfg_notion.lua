@@ -57,7 +57,6 @@ dopath("mod_xrandr")
 dopath("cfg_xrandr")
 dopath("mod_notionflux")
 dopath("vim_bindings")
-dopath("goto-by-tag")
 dopath("screenshot")
 dopath("lua_repl")
 dopath("mod_dock")
@@ -65,7 +64,7 @@ dopath("cfg_dzen")
 dopath("rofi_goto")
 dopath("cfg_autostart")
 dopath("mod_xkbevents")
-dopath("dynamic_view")
+-- dopath("dynamic_view")
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{lazy_resize=true}
 -------------------------------------[[ TERM ]]-------------------------------------
@@ -76,59 +75,59 @@ defwinprop{class="URxvt",instance="mutt",transient_mode="off",target="float2",la
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true, target="notes",lazy_resize=true}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true, lazy_resize=true, float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
-defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",lazy_resize=true}
-defwinprop{class="Chromium-browser",transient_mode="off",transient_mode="off",target="web",lazy_resize=true}
+defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",lazy_resize=true, tag="www"}
+defwinprop{class="Chromium-www",transient_mode="off",transient_mode="off",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
-defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true}
-defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true}
-defwinprop{class="Firefox",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
-defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true,tag="browser"}
-defwinprop{class="Firefox",instance="Dialog",float=true,tag="browser"}
-defwinprop{class="Firefox",role="Organizer",target="float2",tag="browser"}
+defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true, tag="www"}
+defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true, tag="www"}
+defwinprop{class="Firefox",role="www",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true,tag="www"}
+defwinprop{class="Firefox",instance="Dialog",float=true,tag="www"}
+defwinprop{class="Firefox",role="Organizer",target="float2",tag="www"}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
     max_size = {w=1024,h=768},
     min_size = {w=800,h=600},
     float=true,
-    tag="browser"
+    tag="www"
 }
-defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true,tag="browser"}
-defwinprop{class="Iceweasel",role="browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
-defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="browser"}
+defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Iceweasel",role="www",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
 -------------------------------------[[ IM ]]---------------------------------------
 defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
-defwinprop{instance="weechat-curses",jumpto=false,winlist_ignore=true,transient_mode="off",target="weechat",lazy_resize=true}
+defwinprop{instance="weechat-curses",jumpto=false,winlist_ignore=true,transient_mode="off",target="chat",lazy_resize=true}
 -------------------------------------[[ DOC ]]---------------------------------------
-defwinprop{class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc",lazy_resize=true}
+defwinprop{class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc",lazy_resize=true, tag="pdf"}
 defwinprop{name="Open Document*",class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc",float=true,lazy_resize=true}
-defwinprop{class="Apvlv",instance="apvlv",transient_mode="off",jumpto=true,target="doc",lazy_resize=true}
-defwinprop{class="Zathura",instance="zathura",transient_mode="off",jumpto=true,target="doc",lazy_resize=true}
-defwinprop{ class = "Xpdf", instance = "openDialog_popup", ignore_cfgrq = true}
-defwinprop{class="Evince",instance="evince",transient_mode="off",jumpto=true,target="doc",lazy_resize=true}
-defwinprop{class="XDvi", target="doc",lazy_resize=true}
-defwinprop{class="libreoffice*", instance="*", target="doc",lazy_resize=true}
-defwinprop{class="Cr3", instance="cr3",target="doc",lazy_resize=true}
+defwinprop{class="Apvlv",instance="apvlv",transient_mode="off",jumpto=true,target="doc",lazy_resize=true, tag="pdf"}
+defwinprop{class="Zathura",instance="zathura",transient_mode="off",jumpto=true,target="doc",lazy_resize=true, tag="pdf"}
+defwinprop{class="Xpdf", instance = "openDialog_popup", ignore_cfgrq = true, tag="pdf"}
+defwinprop{class="Evince",instance="evince",transient_mode="off",jumpto=true,target="doc",lazy_resize=true, tag="pdf"}
+defwinprop{class="XDvi", target="doc",lazy_resize=true, tag="pdf"}
+defwinprop{class="libreoffice*", instance="*", target="doc",lazy_resize=true, tag="writer"}
+defwinprop{class="Cr3", instance="cr3",target="doc",lazy_resize=true, tag="reader"}
 -------------------------------------[[ MEDIA ]]---------------------------------------
 defwinprop{class="gmpc",    target="media",  lazy_resize=true}
-defwinprop{class="MPlayer",  jumpto=true, transient_mode="off", target="media"}
-defwinprop{class="mplayer2", jumpto=true, transient_mode="off", target="media"}
-defwinprop{class="mpv",      jumpto=true, transient_mode="off", target="media"}
-defwinprop{class="feh",     instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
+defwinprop{class="MPlayer",  jumpto=true, transient_mode="off", target="media", tag="video"}
+defwinprop{class="mplayer2", jumpto=true, transient_mode="off", target="media", tag="video"}
+defwinprop{class="mpv",  jumpto=true, transient_mode="off", target="media", tag="video"}
+defwinprop{class="feh", instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
+defwinprop{class="qiv", instance="qiv",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,userpos=true,
+tag="editor"
 -- ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
 }
 defwinprop{class="URxvt",instance="wim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
--- ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
+tag="editor"
 }
 defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",
-    -- max_size = {w=1584,h=864},
-    -- min_size = {w=1584,h=864},
-    -- float=true
-ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true
+ignore_max_size=false, ignore_min_size=false, ignore_aspect=false,ignore_resizeinc=true,
+tag="editor"
 }
 defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
@@ -136,55 +135,51 @@ defwinprop{class="com-sun-javaws-Main", instance="sun-awt-X11-XFramePeer", targe
 defwinprop{class="jetbrains-idea", instance="*", target="jetbrains", floating=true,transient_mode = "current"}
 defwinprop{class = "jetbrains-android-studio", instance = "sun-awt-X11-XWindowPeer", transient_mode = "current", }
 -------------------------------------[[ VM ]]--------------------------------------
-defwinprop{class="vmware",instance="Vmware" ,jumpto=true,transient_mode="off", float=true,target="vm"}
-defwinprop{class="VirtualBox", jumpto=false,target="vm",transient_mode="off",lazy_resize=true}
-defwinprop{class="Vmware", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
-defwinprop{class="QEMU", jumpto=false,target="vm",transient_mode="on",lazy_resize=true}
+defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mode="off", float=true, tag="virt"}
+defwinprop{class="VirtualBox", jumpto=true,target="vm",transient_mode="off",lazy_resize=true, tag="virt"}
+defwinprop{class="Vmware", jumpto=true,target="vm",transient_mode="on",lazy_resize=true, tag="virt"}
+defwinprop{class="QEMU", jumpto=true,target="vm",transient_mode="on",lazy_resize=true, tag="virt"}
 -------------------------------------[[   GIMP  ]]-----------------------------
-defwinprop{class = "Gimp",acrobatic = true}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-window",transient_mode="off",target="g-win"}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",target="g-win",float=true}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",target="g-win",float=true}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",target="g-win",float=true}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-image-new",transient_mode="off",target="g-win",float=true}
--- defwinprop{class="Gimp",instance="gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",target="g-win",float=true}
-
--- defwinprop{class="Gimp",instance="gimp",role="gimp-toolbox",transient_mode="on",target="g-right-b",acrobatic = true}
--- defwinprop{class="Gimp",instance="gimp",role="gimp-*tool",transient_mode="on",target="g-right-b",acrobatic = true}
+defwinprop{class = "Gimp",acrobatic = true, tag="graphic"}
+defwinprop{class="Gimp",jumpto=true,role="gimp-file-open",transient_mode="off",float=true}
+defwinprop{class="Gimp",jumpto=true,role="gimp-file-save",transient_mode="off",float=true}
+defwinprop{class="Gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true}
+defwinprop{class="Gimp",jumpto=true,role="gimp-image-new",transient_mode="off",float=true}
+defwinprop{class="Gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
-defwinprop{class = "stalonetray", instance = "stalonetray", statusbar="systray_stalone"} 
-defwinprop{instance = "stalonetray", statusbar="systray_stalone"} 
-defwinprop{class = "stalonetray", statusbar="systray_stalone"} 
-defwinprop{is_dockapp = true, statusbar="systray_stalone"}
+defwinprop{class = "stalonetray", instance = "stalonetray", statusbar="*"} 
+defwinprop{instance = "stalonetray", statusbar="*"} 
+defwinprop{class = "stalonetray", statusbar="*"} 
+defwinprop{is_dockapp = true, statusbar="*"}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
---defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
+defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true,target="rdesktop",lazy_resize=true}
--- defwinprop{class="Conky",winlist_ignore=true,instance="Conky",target="conky",lazy_resize=true}
-defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true}
+defwinprop{class="Conky",winlist_ignore=true,lazy_resize=true,float=true}
 defwinprop{class="URxvt", instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{class="URxvt", instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
-defwinprop { role = "mpd", target = "ncmpcpp" }
-defwinprop{class="Tilda", instance="tilda",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
-defwinprop{class="Guake", instance="guake",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
+defwinprop{role="mpd",target="ncmpcpp"}
+defwinprop{class="Tilda",instance="tilda",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
+defwinprop{class="Guake",instance="guake",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{class="Pavucontrol", instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",lazy_resize=true}
-defwinprop{instance="wicd", winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
-defwinprop{instance="ranger", winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
-defwinprop{instance="console", winlist_ignore=true,transient_mode="off",target="console",lazy_resize=true}
-defwinprop{instance="gdb", winlist_ignore=true,transient_mode="off",target="gdb",lazy_resize=true}
+defwinprop{instance="wicd",winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
+defwinprop{instance="ranger",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
+defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="console",lazy_resize=true}
+defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb",lazy_resize=true}
 defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",lazy_resize=true}
-defwinprop{instance="htop", winlist_ignore=true,transient_mode="off",target="top",lazy_resize=true}
-defwinprop{instance="gcolor2", winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
-defwinprop{instance="gpick", winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
-defwinprop{class="Vuze", winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true}
+defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top",lazy_resize=true}
+defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
+defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
+defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true, tag="torrent"}
+defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true, tag="torrent"}
 defwinprop{class="Anamnesis", winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
-defwinprop{class="Nicotine", instance="nicotine", transient_mode="off", target="float2"}
-defwinprop{class="Nicotine.py", instance="nicotine.py", transient_mode="off", target="float2"}
+defwinprop{class="Nicotine", instance="nicotine", transient_mode="off", target="float2", tag="soulseek"}
+defwinprop{class="Nicotine.py", instance="nicotine.py", transient_mode="off", target="float2", tag="soulseek"}
 defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
 defwinprop { class = "Operapluginwrapper-ia32-linux", instance = "operapluginwrapper-ia32-linux",
@@ -244,8 +239,8 @@ defbindings("WMPlex.toplevel", {
     kpress("XF86AudioLowerVolume", "ioncore.exec_on(_, 'mpc volume -1')"),
     kpress("XF86AudioRaiseVolume", "ioncore.exec_on(_, 'mpc volume +1')"),
     kpress("Mod4+Control+T",       "ioncore.exec_on(_, 'dipser -S')"),
-    kpress("Mod4+8",               "ioncore.exec_on(_, 'amixer -q set Master 0% mute')"),
-    kpress("Mod4+8+Shift",         "ioncore.exec_on(_, 'amixer -q set Master 100% unmute ')"),
+    kpress("Mod4+8",               "ioncore.exec_on(_, 'mpc volume 0 || amixer -q set Master 0% mute')"),
+    kpress("Mod4+8+Shift",         "ioncore.exec_on(_, 'mpc volume 100 || amixer -q set Master 100% unmute ')"),
     submap("Mod4+Control+R", {
         kpress("t", "ioncore.exec_on(_, 'xcalib -c')"),
         kpress("i", "ioncore.exec_on(_, 'xcalib -alter -invert')"),
@@ -265,26 +260,12 @@ defbindings("WMPlex.toplevel", {
 --[[  PROGS RUN by APP  ]]-----------------------------
 --------------------------
     kpress("Mod4+1", "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
-    --kpress("Mod1+Control+a", "app.byinstance('~/bin/virt.sh', 'VirtualBox')"),
-    kpress("Mod1+Control+a", "app.byinstance('', 'Vmware')"),
-    -- kpress("Mod4+b", "app.byclass('', '.*(mpv|MPlayer|mplayer2).*')"),
-    kpress("Mod4+b", "app.byclass('', 'mpv')"),
     kpress("Mod4+x", "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
-    kpress("Mod4+w", "app.byinstance('firefox', 'Firefox','Navigator')"),
-    --kpress("Mod4+w", "app.byinstance('dwb', 'Dwb','dwb')"),
-    --kpress("Mod4+w", "app.byinstance('icecat', 'Firefox','Navigator')"),
-    --kpress("Mod4+w", "app.byclass('firefox', 'Iceweasel')"),
-    --kpress("Mod4+w", "app.byclass('chromium', 'Chromium')"),
-    --kpress("Mod4+w", "app.byclass('chromium-browser', 'Chromium-browser')"),
-    --kpress("Mod4+w", "app.byclass('conkeror','Conkeror')"),
-    --kpress("Mod4+o", "app.byinstance('evince', 'Evince','evince')"),
-    --kpress("Mod4+o", "app.byclass('okular', 'Okular')"),
-    kpress("Mod4+o", "app.byclass('zathura','Zathura')"),
-    -- kpress("Mod4+1", "app.byclass('gvim', 'Gvim')"),
+    kpress("Mod4+b", "app.byclass_withtag('', 'Vmware','', 'virt')"),
+    kpress("Mod4+b", "app.byclass_withtag('', 'mpv','', 'video')"),
+    kpress("Mod4+w", "app.byinstance_withtag('firefox', 'Firefox','Navigator','www')"),
+    kpress("Mod4+o", "app.byclass_withtag('zathura','Zathura','pdf')"),
     kpress("Mod4+Control+C", "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
-    --kpress("Mod4+e", "app.byclass('kopete', 'Kopete')"),
-    --kpress("Mod4+Control+R", "app.byclass('skype', 'Skype')"),
-    --kpress("Mod4+f", "app.byinstance('mpd-pad')"),
 -------------------------------------------------------------------------------------
 --[[  MISC  ]]---------------------------------------
 --------------
@@ -341,20 +322,14 @@ defbindings("WScreen", {
     kpress("Mod4+Shift+2", "ioncore.goto_nth_screen(1)"),
     kpress("Mod4+Shift+comma", "ioncore.goto_prev_screen()"),
     kpress("Mod4+Shift+period", "ioncore.goto_next_screen()"),
-    --Display the main menu.
-    --kpress("F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     mpress("Button3", "mod_menu.pmenu(_, _sub, 'mainmenu')"),
     --Display the window list menu
     mpress("Button2", "mod_menu.pmenu(_, _sub, 'windowlist')"),
     submap("Mod1+E", {
-        --Backward-circulate focus
-        --kpress("AnyModifier+Tab", "ioncore.goto_next(_chld, 'left')", "_chld:non-nil"),
-        --Raise focused object, if possible
-        -- kpress("AnyModifier+E", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("AnyModifier+L", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("AnyModifier+Shift+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
-    kpress("F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
+    kpress("F11", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     kpress("Mod4+grave", "ioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
     -- kpress("Mod1+grave", "mod_query.query_exec(_)"),
     ---------------------------------------------------------
@@ -399,7 +374,6 @@ defbindings("WFrame", {
 
 -- Frames for transient windows ignore this bindmap
 defbindings("WFrame.toplevel", {
-    -- kpress("Mod4+A", "mod_query.query_attachclient(_)"),
     kpress("Mod4+A", "rofi_attach_win(_)"),
     kpress("Mod4+backslash", "WFrame.switch_next(_)"),
     kpress("Mod1+A", "ioncore.tagged_attach(_)"),

@@ -69,6 +69,60 @@ function app.byinstance(prog, class, instance, where)
     end
 end
 
+function app.match_class_withtag(class, instance, tag)
+    local result = {}
+    local offset = 0
+    local currwin = ioncore.current()
+    ioncore.clientwin_i(function (win)
+        local winprop = ioncore.getwinprop(win)
+        if winprop and winprop.tag and winprop.tag == tag then
+            table.insert(result, #(result)-offset+1, win)
+        end
+        if class == win:get_ident().class then
+            if instance then
+                if instance == win:get_ident().instance then
+                    table.insert(result, #(result)-offset+1, win)
+                end
+            else
+                table.insert(result, #(result)-offset+1, win)
+            end
+        end
+        if win == currwin then
+            -- Current client window found, continue filling the table from
+            -- the beginning.
+            offset = #(result)
+        end
+        return true
+    end)
+    return result
+end
+
+function app.byclass_withtag(prog, class, where, tag)
+    local win = app.match_class_withtag(class,nil,tag)[1]
+    if win then
+        ioncore.defer(function () win:goto_focus() end)
+    else
+        if where then
+            ioncore.exec_on(where, prog)
+        else
+            ioncore.exec(prog)
+        end
+    end
+end
+
+function app.byinstance_withtag(prog, class, instance, where, tag)
+    local win = app.match_class_withtag(class, instance, tag)[1]
+    if win then
+        ioncore.defer(function () win:goto_focus() end)
+    else
+        if where then
+            ioncore.exec_on(where, prog)
+        else
+            ioncore.exec(prog)
+        end
+    end
+end
+
 function moveapp.byclass(ws, class)
     local win = app.match_class(class)[1]
     if win then
