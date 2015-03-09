@@ -80,14 +80,13 @@ defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="w
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Firefox",role="www",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
-defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true,tag="www"}
-defwinprop{class="Firefox",instance="Dialog",float=true,tag="www"}
-defwinprop{class="Firefox",role="Organizer",target="float2",tag="www"}
+defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
+defwinprop{class="Firefox",instance="Dialog",float=true}
+defwinprop{class="Firefox",role="Organizer",target="float2"}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
     max_size = {w=1024,h=768},
     min_size = {w=800,h=600},
     float=true,
-    tag="www"
 }
 defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Iceweasel",role="www",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
