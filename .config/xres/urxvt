@@ -1,7 +1,13 @@
-!--[ Dirty hack to between ncurses apps and term ]-----
-!--*.keysym.C-M-Tab:                  command:\033[?47t
+URxvt.font:                   xft:Pragmata Pro for Powerline,xft:Droid Sans Mono,xft:DejaVu Sans Mono
+URxvt.boldFont:               xft:Pragmata Pro for Powerline:style=bold
+URxvt.italicFont:             xft:Pragmata Pro for Powerline:style=italic
+URxvt.iso14755:               true
+URxvt.mouseWheelScrollPage:   true
+URxvt.urgentOnBell:           true
 
-!*.imLocale:                  en_US.utf8
+*.highlightColor:             #111111
+*.highlightTextColor:         #195D7E
+
 mutt.colorUL:                 #0172ae
 *shading:                     10
 *.saveLines:                  0
@@ -15,79 +21,61 @@ mutt.colorUL:                 #0172ae
 *.keysym.M-C-v:               perl:clipboard:paste_escaped
 *.keysym.C-M-Up:              perl:font-size:increase
 *.keysym.C-M-Down:            perl:font-size:decrease
-!*.keysym.Shift-space:        \033[5~]
-! Control
-*keysym.C-F1:		\033[1;5P
-*keysym.C-F2:		\033[1;5Q
-*keysym.C-F3:		\033[1;5R
-*keysym.C-F4:		\033[1;5S
-*keysym.C-F5:		\033[15;5~
-*keysym.C-F6:		\033[17;5~
-*keysym.C-F7:		\033[18;5~
-*keysym.C-F8:		\033[19;5~
-*keysym.C-F9:		\033[20;5~
-*keysym.C-F10:	\033[21;5~
-*keysym.C-F11:	\033[23;5~
-*keysym.C-F12:	\033[24;5~
+*.keysym.C-F1:                \033[1;5P
+*.keysym.C-F2:                \033[1;5Q
+*.keysym.C-F3:                \033[1;5R
+*.keysym.C-F4:                \033[1;5S
+*.keysym.C-F5:                \033[15;5~
+*.keysym.C-F6:                \033[17;5~
+*.keysym.C-F7:                \033[18;5~
+*.keysym.C-F8:                \033[19;5~
+*.keysym.C-F9:                \033[20;5~
+*.keysym.C-F10:               \033[21;5~
+*.keysym.C-F11:               \033[23;5~
+*.keysym.C-F12:               \033[24;5~
+*.keysym.S-C-F1:              \033[1;6P
+*.keysym.S-C-F2:              \033[1;6Q
+*.keysym.S-C-F3:              \033[1;6R
+*.keysym.S-C-F4:              \033[1;6S
+*.keysym.S-C-F5:              \033[15;6~
+*.keysym.S-C-F6:              \033[17;6~
+*.keysym.S-C-F7:              \033[18;6~
+*.keysym.S-C-F8:              \033[19;6~
+*.keysym.S-C-F9:              \033[20;6~
+*.keysym.S-C-F10:             \033[21;6~
+*.keysym.S-C-F11:             \033[23;6~
+*.keysym.S-C-F12:             \033[24;6~
 
-! Shift+Control
-*keysym.S-C-F1:		\033[1;6P
-*keysym.S-C-F2:		\033[1;6Q
-*keysym.S-C-F3:		\033[1;6R
-*keysym.S-C-F4:		\033[1;6S
-*keysym.S-C-F5:		\033[15;6~
-*keysym.S-C-F6:		\033[17;6~
-*keysym.S-C-F7:		\033[18;6~
-*keysym.S-C-F8:		\033[19;6~
-*keysym.S-C-F9:		\033[20;6~
-*keysym.S-C-F10:		\033[21;6~
-*keysym.S-C-F11:		\033[23;6~
-*keysym.S-C-F12:		\033[24;6~
+spec*font:                    xft:Tewi:regular:size=9
+spec*imFont:                  xft:Tewi:regular:size=9
+spec*boldFont:                xft:Tewi:regular:size=9
+spec*italicFont:              xft:Tewi:regular:size=9
+spec*boldItalicFont:          xft:Tewi:regular:size=9
 
-spec*font:              xft:Tewi:regular:size=9
-spec*imFont:            xft:Tewi:regular:size=9
-spec*boldFont:          xft:Tewi:regular:size=9
-spec*italicFont:        xft:Tewi:regular:size=9
-spec*boldItalicFont:    xft:Tewi:regular:size=9
-
-MainTerminal.internalBorder: 10
-
+MainTerminal.internalBorder:    10
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
 MainTerminal.scrollTtyOutput:   false
 MainTerminal.termName:          screen-256color
-!MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
 MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size,-option-popup,-selection-popup,-searchable-scrollback
-MainTerminal.colorUL:                      #86a2be
+MainTerminal.perl-ext:          searchable-scrollback<C-S-plus>,remote-clipboard,selection-autotransform
+MainTerminal.colorUL:           #86a2be
 
-!-----------------[ Test new features ]-------------------------------------------------------
-!--- test C-1 del from matcher(use urlselect instead)
-!MainTerminal.perl-ext:    default,searchable-scrollback<C-S-plus>,matcher<C-1>,selection-pastebin,remote-clipboard,selection-autotransform
 !MainTerminal.letterSpace:  -1
-!MainTerminal.perl-ext:    default,searchable-scrollback<C-S-plus>,selection-pastebin,remote-clipboard,selection-autotransform
-!MainTerminal.perl-ext-common: default,url-select
 
-MainTerminal.font:            -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r 
+!MainTerminal.font:                -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r 
+!MainTerminal.font:                 xft:PragmataPro for Powerline:size=17
 
 MainTerminal.keysym.C-1:           perl:url-select:select_next
+*.keysym.C-1:                      perl:url-select:select_next
 MainTerminal.url-select.launcher:  /usr/bin/firefox -new-tab
+*.url-select.launcher:             /usr/bin/firefox -new-tab
 MainTerminal.url-select.underline: true
+*.url-select.underline:            true
 MainTerminal.underlineURLs:        true
-
-!*.perl-ext-common:      keyboard-select,url-select,clipboard,autocomplete-ALL-the-things,font-size,-option-popup,-selection-popup,-searchable-scrollback
-*.perl-ext-common:      keyboard-select,url-select,clipboard,font-size,-option-popup,-selection-popup,-searchable-scrollback
-*.keysym.C-1:           perl:url-select:select_next
-*.url-select.launcher:  /usr/bin/firefox -new-tab
-*.url-select.underline: true
-*.underlineURLs:        true
-
+*.underlineURLs:                   true
 MainTerminal.selection.pattern-0: ( at .*? line \\d+[,.])
-!MainTerminal.selection-autotransform.0: s/^ at (.*?) line (\\d+)[,.]$/:e \\Q$1\E\\x0d:$2\\x0d/
 
-MainTerminal.perl-eval:   push @{ $urxvt::TERM->{selection_popup_hook} }, \n\
-   sub { /\\n/ ? ("join lines with spaces" => sub {  s{^\\s+}{}mg; s/ \*\\n/ /g; s{ $}{}; }) : () }, \n\
-   sub { /./ ? ("string quote" => sub {  s([\\\\\\042$@]|#[{])(\\\\$&)g; s{\\n}{\\\\n}g; s{\\t}{\\\\t}g; s{\\r}{\\\\r}g; s{[\\000-\\037]}{sprintf("%03o",ord($&))}eg; $_ = qq("$_"); }) : () }, \n\
-   sub { /\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/ ? ("quote for irc" => sub { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; }) : () };
 MainTerminal.selection-autotransform.0: if(/\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/) { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; };
 MainTerminal.selection-autotransform.1: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg; s/\\n=>/ #=>/mg; s{\\n$}{};}
 MainTerminal.selection-autotransform.2: if(m{^[ab]/}) { s{^[ab]/}{}g; }
@@ -96,21 +84,11 @@ MainTerminal.selection-autotransform.3: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
 MainTerminal.keysym.M-Escape: perl:keyboard-select:activate
 MainTerminal.keysym:M-s:      perl:keyboard-select:search
 MainTerminal.keysym.M-C-v:    perl:clipboard:paste_escaped
-MainTerminal.keysym.M-slash:  perl:aAtt:complete
-!---------------------------------------------------------------------------
 
-URxvt.font:                 xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
-!URxvt.boldFont:             xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
-!URxvt.italicFont:           xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
-!URxvt.boldItalicFont:       xft:Pragmata Pro for Powerline:pixelsize=20,xft:Droid Sans Mono:pixelsize=20,xft:DejaVu Sans Mono:pixelsize=20
-URxvt.iso14755:             false
-URxvt.mouseWheelScrollPage: true
-URxvt.urgentOnBell:         true
-
-term.keysym.C-1: command:\033]710;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007
-term.keysym.C-2: command:\033]710;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007
-term.keysym.C-3: command:\033]710;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007
-term.keysym.C-6: command:\033]710;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]711;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]712;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]713;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007
-term.keysym.C-7: command:\033]710;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]711;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]712;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]713;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007
-term.keysym.C-8: command:\033]710;xft:DejaVu Sans Mono:pixelsize=13\007\033]711;xft:DejaVu Sans Mono:pixelsize=13\007\033]712;xft:DejaVu Sans Mono:pixelsize=13\007\033]713;xft:DejaVu Sans Mono:pixelsize=13\007
-term.keysym.C-9: command:\033]710;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]711;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]712;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]713;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007
+!MainTerminal.keysym.M-C-1: command:\033]710;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-6-*-*-*-*-*-*-*\007
+!MainTerminal.keysym.M-C-2: command:\033]710;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-8-*-*-*-*-*-*-*\007
+!MainTerminal.keysym.M-C-3: command:\033]710;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]711;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]712;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007\033]713;-*-fixed-*-*-*-*-9-*-*-*-*-*-*-*\007
+!MainTerminal.keysym.M-C-6: command:\033]710;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]711;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]712;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007\033]713;-*-terminus-medium-*-*-*-12-*-*-*-*-*-iso10646-*\007
+!MainTerminal.keysym.M-C-7: command:\033]710;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]711;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]712;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007\033]713;xft:Envy Code R:pixelsize=12,xft:Droid Sans Mono:pixelsize=12,xft:DejaVu Sans Mono:pixelsize=12\007
+!MainTerminal.keysym.M-C-8: command:\033]710;xft:DejaVu Sans Mono:pixelsize=13\007\033]711;xft:DejaVu Sans Mono:pixelsize=13\007\033]712;xft:DejaVu Sans Mono:pixelsize=13\007\033]713;xft:DejaVu Sans Mono:pixelsize=13\007
+!MainTerminal.keysym.M-C-9: command:\033]710;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]711;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]712;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007\033]713;xft:Pragmata Pro for Powerline:pixelsize=16,xft:Droid Sans Mono:pixelsize=13,xft:DejaVu Sans Mono:pixelsize=13\007
