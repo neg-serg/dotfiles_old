@@ -155,7 +155,7 @@ defwinprop{is_dockapp = true, statusbar="*"}
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
-defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
+-- defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
@@ -261,9 +261,9 @@ defbindings("WMPlex.toplevel", {
 --------------------------
     kpress("Mod4+1", "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
     kpress("Mod4+x", "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
-    kpress("Mod4+Control+a", "app.byclass_withtag('', 'Vmware','', 'virt')"),
-    kpress("Mod4+b", "app.byclass_withtag('', 'mpv','', 'video')"),
-    kpress("Mod4+w", "app.byinstance_withtag('firefox', 'Firefox','Navigator','www')"),
+    kpress("Mod4+Control+a", "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
+    kpress("Mod4+b", "app.byclass_withtag(nil, 'mpv',nil, 'video')"),
+    kpress("Mod4+w", "app.byinstance_withtag('/usr/lib/firefox/firefox', 'Firefox','Navigator',nil,'www')"),
     kpress("Mod4+o", "app.byclass_withtag('zathura','Zathura','pdf')"),
     kpress("Mod4+Control+C", "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
 -------------------------------------------------------------------------------------
