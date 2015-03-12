@@ -154,7 +154,7 @@ defwinprop{is_dockapp = true, statusbar="*"}
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
--- defwinprop{class="Wine",float=true,lazy_resize=true,target="wine"}
+defwinprop{class="Wine",lazy_resize=true,target="wine", tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
