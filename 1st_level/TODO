@@ -1,8 +1,14 @@
--- play with lfs
--- try to implement colorcoke in bash or something like this
 -- work with lxc
--- test volodya work
 -- improve vim rtags support
 -- gdb book 149 and so on
 -- return to 199
--- Party monster
+-- echo -ne "\ePtmux;\e\e]4;23;rgb:44/ff/55\a\e\\"
+-- port colorcoke
+-- rework byobu(maybe)
+-- symlink package style [ Stow Graft Depot  ]
+-- Pianoteq
+-- Omnisphere
+-- Nexus synth
+-- Vanguard
+-- pianobooster
+-- solfege
