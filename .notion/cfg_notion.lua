@@ -1,4 +1,3 @@
- --_:attach_new({type="WFloatWS", layer=2}):goto()
 --------------------------------[[ CONSTS ]]----------------------------------------
 META="Mod1+"
 function dzen_delete()
@@ -79,7 +78,7 @@ defwinprop{class="Chromium-www",transient_mode="off",transient_mode="off",target
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true, tag="www"}
-defwinprop{class="Firefox",role="www",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Firefox",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
 defwinprop{class="Firefox",role="Organizer",target="float2"}
@@ -117,8 +116,8 @@ defwinprop{class="feh", instance="feh",  jumpto="on", transient_mode="off", floa
 defwinprop{class="qiv", instance="qiv",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,userpos=true,
-tag="editor"
--- ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
+tag="editor",
+ignore_max_size=false, ignore_min_size=false, ignore_aspect=true,ignore_resizeinc=true
 }
 defwinprop{class="URxvt",instance="wim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
 tag="editor"
@@ -154,7 +153,7 @@ defwinprop{is_dockapp = true, statusbar="*"}
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
-defwinprop{class="Wine",lazy_resize=true,target="wine", tag="virt"}
+defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
@@ -182,9 +181,6 @@ defwinprop{class="Nicotine.py", instance="nicotine.py", transient_mode="off", ta
 defwinprop{class="*",instance="*", transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
 defwinprop { class = "Operapluginwrapper-ia32-linux", instance = "operapluginwrapper-ia32-linux",
-    match = function(prop, cwin, id) return is_fullscreen(cwin); end,
-    switchto = false, flash_fullscreen = true, }
-defwinprop { class = "Firefox", instance = "firefox", name = "Firefox",
     match = function(prop, cwin, id) return is_fullscreen(cwin); end,
     switchto = false, flash_fullscreen = true, }
 defwinprop { class = "Prism", instance = "prism",
