@@ -1,9 +1,0 @@
-#!/usr/bin/env zsh
-
-# this is a default for vim users, you can replace this file with your own file
-# list
-if [[ -f ~/.viminfo ]]; then
-    echo "Reading from .viminfo" 1>&2
-    # some files have spaces so columns 2 and beyond are required
-    grep '^>' ~/.viminfo | cut -d ' ' -f 2- | sed "s#~#$HOME#g"
-fi
