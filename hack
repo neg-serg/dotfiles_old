@@ -1,1 +1,1 @@
-/mnt/home/hack
+/one/dev/hack

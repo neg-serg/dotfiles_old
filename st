@@ -1,1 +1,1 @@
-/mnt/home/st
+/one/dev/st
