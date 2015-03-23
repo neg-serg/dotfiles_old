@@ -1,0 +1,22 @@
+#!/bin/bash
+#Speicherort
+dir=/home/$USER
+flash=$(lsof -n | grep Flash | awk '{print "/proc/" $2 "/fd/" $4}' | sed 's/.$//' | head -n1)
+if [ "$flash" = "" ] then
+echo "[ Error ] Kein Flash gefunden"
+exit
+fi
+while true;do
+now=$(date +"%H-%M-%S")
+var1=$(md5sum $flash | awk '{print $1}')
+sleep 2s
+var2=$(md5sum $flash | awk '{print $1}')
+if [ $var1 = $var2 ]; then
+echo "[ $now ][$var1] done, move file to $dir/$var1.flv"
+cp $flash $dir/$var1.flv
+break
+else
+echo "[ $now ][$var1] buffering.."
+fi
+done
+

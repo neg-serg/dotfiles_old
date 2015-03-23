@@ -1,0 +1,20 @@
+#!/bin/bash
+# Simple autosort for downloads
+mkdir -p ~/dw/{images,patches,tor,android,java,iso,swf,archive,text,pages,fonts,vid,sound,win,gif}
+find ~/dw/ -regextype posix-egrep -regex ".*\.(jpg|png|jpeg|svg|tga|psd|jpe|bmp)$" -exec mv -n -t ~/dw/images {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(gif)$" -exec mv -n -t ~/dw/gif {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(diff|patch)$" -exec mv -n -t ~/dw/patches {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(exe|msi)$" -exec mv -n -t ~/dw/win {} +
+find ~/dw/ -name "*.torrent" -exec mv -n -t ~/dw/tor {} +
+find ~/dw/ -name "*.apk" -exec mv -n -t ~/dw/run/android {} +
+find ~/dw/ -name "*.jar" -exec mv -n -t ~/dw/run/java {} +
+find ~/dw/ -name "*.iso" -exec mv -n -t ~/dw/iso {} +
+find ~/dw/ -name "*.swf" -exec mv -n -t ~/dw/swf {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(tar|zip|7z|rar|gz|xz|bz2|tgz)$" -exec mv -n -t ~/dw/archive {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(pdf|djvu|txt|doc|docx|fb2|epub|rtf)$" -exec mv -n -t ~/dw/text {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(html|htm|mht|mhtml|chm|maff)$" -exec mv -n -t ~/dw/pages {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(ttf|otf|woff)$" -exec mv -n -t ~/dw/rare/fonts {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(flv|mp4|avi|mkv|mov|webm|wmv)$" -exec mv -n -t ~/dw/vid {} +
+find ~/dw/ -regextype posix-egrep -regex ".*\.(mp3|ogg|flac|sid|xm)$" -exec mv -n -t ~/dw/sound {} +
+rmdir ~/dw/{images,patches,tor,android,java,iso,swf,archive,text,pages,fonts,vid,sound,win,gif} 2> /dev/null
+exit 0
