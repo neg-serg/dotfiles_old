@@ -149,7 +149,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   ftype-srt         'fg=116'
   ftype-t           'fg=028;1'
   ftype-theme       'fg=109'
-  ftype-torrent     'fg=245'
+  ftype-torrent     'fg=60'
   ftype-typelib     'fg=060'
   ftype-ttl         'fg=245'
 #---------------------------------
