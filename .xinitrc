@@ -18,11 +18,13 @@ xset 0 0
 # xset dpms 0 0 0
 xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 
+setxkbmap -option keypad:pointerkeys
+setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
+setxkbmap -layout 'us,ru' -variant altgr-intl -option ctrl:nocaps 
+
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
 
-setxkbmap -option keypad:pointerkeys
-setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
 xhost +localhost
 xhost +local:
 
@@ -36,8 +38,7 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-hsetroot -fill /home/neg/pic/wl/546077.jpg
-# disable trackpad while typing
+hsetroot -fill /home/neg/pic/wl/wallpaper-2585952.jpg
 syndaemon -t -k -i 2 -d
 
 [ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
@@ -47,9 +48,8 @@ syndaemon -t -k -i 2 -d
 (urxvtd -q -f -o && ${HOME}/bin/urxvt)
 
 [ -z $(pidof udiskie) ] && udiskie -q&
-# [ ! -x "`which parcellite 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite parcellite &
-# [ ! -x "`which clipit 2>/dev/null`" ] ||  GTK2_RC_FILES=/home/neg/.config/gtk-2.0/gtkrc_parcellite clipit &
 [ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
 gpaste daemon
+~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
 exec notion
