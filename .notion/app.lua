@@ -69,6 +69,8 @@ function app.byinstance(prog, class, instance, where)
     end
 end
 
+-------------------------------------------------------------------------------------------------
+
 function app.match_class_withtag(class, instance, tag)
     local result = {}
     local offset = 0
