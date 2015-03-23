@@ -1,6 +1,4 @@
-" undo limit
 set! browser.sessionstore.max_tabs_undo=100
-
 set! extensions.checkCompatibility.4.0=false
 set! extensions.checkCompatibility.4.0b=false
 set! extensions.checkCompatibility.4.1b=false
@@ -16,6 +14,4 @@ set! extensions.checkCompatibility.8.0=false
 set! extensions.checkCompatibility.8.1=false
 set! extensions.checkCompatibility.9.0a=false
 set! extensions.checkCompatibility.9.1=false
-
-
 set! browser.tabs.closeWindowWithLastTab=false
