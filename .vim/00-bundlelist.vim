@@ -4,6 +4,7 @@ NeoBundle 'miyakogi/sidepanel.vim.git' "multiple sidebars in one
 NeoBundle 'airblade/vim-gitgutter.git' "experimental shows what differ
 NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
 NeoBundle 'junegunn/fzf' "use fzf plug for vim
+NeoBundle 'chrisbra/vim-diff-enhanced.git' " Patience diff
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'Shougo/neocomplete.vim.git' "completion-engine alternative to ycm
