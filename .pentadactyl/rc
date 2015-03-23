@@ -3,8 +3,8 @@ set showtabline=never
 map -builtin <Leader>T :styletoggle<Space>-name<Space>tomorrownight<CR>
 map -builtin <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 
-map -builtin + <C-+>
-map -builtin - <C-->
+map -builtin \+ <C-+>
+map -builtin \- <C-->
 
 " Shut up.
 javascript dactyl.beep = function() { return false; }
@@ -50,14 +50,9 @@ nmap -builtin <Leader>, :noh<CR>
 
 map I_<C-w> I_<C-BS>
  
-" map -builtin <C-a> -silent :sidebar Scrapbook<CR>
-" map -builtin <C-d> -silent :sidebar Downloads<CR>
 map -builtin B -silent :bmarks<CR>
 nmap -builtin gr gT
 
-"" complete search engine suguest
-" set complete=lS
-" set complete=native:history  // bug with rev-hist
 set cpt=l
 set autocomplete=".*"
 map <F4> :set complete=native:history<CR>
@@ -118,8 +113,6 @@ set history=100
 set loadplugins='\.(css|js|penta)$'
 
 "--[ Hints ]-------------------------------------------------------------------------
-"set hintkeys=qwerasdf
-"set hintkeys="fdsahjkl;'"
 set hintkeys=12345
 "" jumping at hint mode, seee http://code.google.com/p/dactyl/issues/detail?id=158
 map -modes hints <C-f> -ex normal! <C-f>
@@ -180,7 +173,6 @@ set editor='/usr/bin/gvim -f +<line> <file>'
 js editor.defaultRegister="+"
 
 " toggle styles """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 map -b -m base,caret,normal,visual <C-g> <Esc>
 
 map -b -m base,normal,caret,insert,visual <C-n> <Down>
@@ -281,22 +273,22 @@ set strictfocus='google.com':laissez-faire,*:moderate,'chrome:*':laissez-faire,*
 " And pass through some useful navigation and jump keys in gmail
 set passkeys+=mail\.google\.com:jkva#T/<space><S-space>?,gl,*u,*i,*n,gi,gc,gl
 
-silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
-silent qmark b http://clinki.es/
-silent qmark d https://www.diigo.com/user/chrisl
-silent qmark c http://cpb.passiontask.com/
-silent qmark C http://cpb.passiontask.com/wp-admin/
-silent qmark f http://facebook.com/
-silent qmark F http://chrislott.org/fever/
-silent qmark g http://geek.chrislott.org/
-silent qmark G http://geek.chrislott.org/wp-admin/
-silent qmark h https://hootsuite.com/dashboard
-silent qmark k http://katannuta.passiontask.com/
-silent qmark K http://www.tumblr.com/blog/katannuta/new/text
-silent qmark m http://mail.chrislott.org/
-silent qmark p http://blog.passiontask.com/
-silent qmark P http://blog.passiontask.com/wp-admin/
-silent qmark r http://chrislott.org/
-silent qmark R http://chrislott.org/wp-admin/
-silent qmark s http://www.scoop.it/u/chris-lott
-silent qmark t http://toodledo.com/
+" silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
+" silent qmark b http://clinki.es/
+" silent qmark d https://www.diigo.com/user/chrisl
+" silent qmark c http://cpb.passiontask.com/
+" silent qmark C http://cpb.passiontask.com/wp-admin/
+" silent qmark f http://facebook.com/
+" silent qmark F http://chrislott.org/fever/
+" silent qmark g http://geek.chrislott.org/
+" silent qmark G http://geek.chrislott.org/wp-admin/
+" silent qmark h https://hootsuite.com/dashboard
+" silent qmark k http://katannuta.passiontask.com/
+" silent qmark K http://www.tumblr.com/blog/katannuta/new/text
+" silent qmark m http://mail.chrislott.org/
+" silent qmark p http://blog.passiontask.com/
+" silent qmark P http://blog.passiontask.com/wp-admin/
+" silent qmark r http://chrislott.org/
+" silent qmark R http://chrislott.org/wp-admin/
+" silent qmark s http://www.scoop.it/u/chris-lott
+" silent qmark t http://toodledo.com/
