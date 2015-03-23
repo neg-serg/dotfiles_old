@@ -15,4 +15,3 @@ xdvi*editor: gvim --servername VIM --remote
 xdvi*expertMode: 0
 xdvi*mouseMode: 1
 xdvi*noInitFile: true
-
