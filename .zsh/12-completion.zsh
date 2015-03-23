@@ -86,6 +86,8 @@ mycompletion() {
     ### colorize processlist for 'kill'
     zstyle ':completion:*:*:kill:*:processes' \
         list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
+    zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+    zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
     zstyle ':completion:*:*:perl:*'        file-patterns '*'
     zstyle ':completion:*:*:zathura:*'     tag-order files
     zstyle ':completion:*:*:zathura:*'     file-patterns '*(/)|*.{pdf,djvu}'
