@@ -1,4 +1,5 @@
-mpd_host = "::1"
+mpd_host = "192.168.1.35"
+mpd_port = 6600
 mpd_music_dir = "/home/neg/music"
 message_delay_time = "1"
 mpd_crossfade_time = "0"
