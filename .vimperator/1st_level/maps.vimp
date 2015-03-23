@@ -1,11 +1,16 @@
+map <c-q> <nop>
 "" J/K move left/right
 map  J h
 map  K l
+noremap j 3j
+noremap k 3k
 "" U list closed tabs
 map  U :undo<Space>
 
 map <C-tab> <Nop>
 nmap <C-n> <Nop>
+imap <C-n> <Down>
+imap <C-p> <Up>
 
 imap  <C-y> <S-Ins>
 map  <C-y> <S-Ins>
@@ -22,8 +27,10 @@ imap <C-]> i<Esc>
 noremap <C-]> i<Esc>
 noremap <Esc> i<Esc>
 
-map J h
-map K l
+cmap <C-ъ> i<Esc>
+imap <C-ъ> i<Esc>
+noremap <C-ъ> i<Esc>
+noremap <Esc> i<Esc>
 
 " hints-for-embedded.js
 let g:hints_for_embedded_mode = "e"
