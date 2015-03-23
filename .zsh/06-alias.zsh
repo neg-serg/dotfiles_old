@@ -188,7 +188,6 @@ alias d='fasd -d'
 alias f='fasd -f'
 
 alias ym='~/bin/scripts/yandex.mount > /dev/null'
-alias ftpfs='curlftpfs -o codepage=cp1251 ftp://192.168.1.1 /media/ftp'
 alias td='[ -z $(pidof transmission-daemon) ] && transmission-daemon'
 
 alias sdmesg='while true; do sudo dmesg -c; sleep 1; done'
@@ -231,7 +230,7 @@ function ta {
           base_name="$(basename $file_name)"
           \mv $file_name ~/torrent/$base_name && \
           transmission-remote-cli ~/torrent/$base_name > /dev/null &&
-          echo "[>>] { $base_name added }"
+          echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
       done < $tmp_list
       rm $tmp_list
       file_name=
