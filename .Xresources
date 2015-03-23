@@ -17,6 +17,3 @@
 #include </home/neg/.config/xres/colors/wim.Xresources>
 #include </home/neg/.config/xres/colors/solarized>
 #include </home/neg/.config/xres/rofi>
-!#include </home/neg/.config/xres/xterm_fix>
-!#include </home/neg/.config/xres/bashpad>
-!#include </home/neg/.config/xres/xresources_trash>
