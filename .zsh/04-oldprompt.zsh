@@ -1,9 +1,3 @@
-# Set prompt
-# PROMPT='%{$(pwd|grep --color=always /)%${#PWD}G%} %(!.%F{red}.%F{cyan})%n%f@%F{yellow}%m%f%(!.%F{red}.)%#%f '
-# PROMPT='%{$(pwd|([[ $EUID == 0 ]] && GREP_COLORS="mt=01;36" grep --color=always /|| GREP_COLORS="mt=01;36" grep --color=always /))%${#PWD}G%} >> '
-# PROMPT='[%{$(pwd|grep --color=always /)%${#PWD}G%}] >> '
-# export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}» $NO_COLOUR"
-
 case ${UID} in
 0)
     PROMPT="%{$fg[red]%}<%T>%{$fg[red]%}[root@%m] %(!.#.$) %{${reset_color}%}%{${fg[red]}%}[%~]%{${reset_color}%} "
@@ -12,25 +6,6 @@ case ${UID} in
     RPROMPT="%{${fg[cyan]}%}[%~]%{${reset_color}%} "
     ;;
 *)
-    # autoload -Uz vcs_info
-    # zstyle ':vcs_info:*' formats '(%s:%b)'
-    # zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-    # precmd () {
-    #   psvar=()
-    #   LANG=en_US.UTF-8 vcs_info
-    #   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-    # }
-    # TIME_FORMAT="%{${fg[yellow]}%}<%T>"
-    # USER_AND_HOST="%{$fg[white]%}[%n@%m]"
-    # CURRENT_DIR="%{${fg[yellow]}%}[%~]"
-    # RESET_COLOR="%{${reset_color}%}"
-    #   PROMPT="${TIME_FORMAT}${USER_AND_HOST}${RESET_COLOR}%% "
-    #   PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
-    #   SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
-    #   RPROMPT="%1(v|%F{green}%1v%f|)${CURRENT_DIR}$RESET_COLOR"
-    # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}>> $NO_COLOUR"
-    # export PS1="%{${fg[green]}%}[%40<..<%~$NO_COLOUR%{${fg[green]}%}] %{${fg_bold[green]}%}❯ $NO_COLOUR"
-    # . ~/.zsh/fizsh-prompt
     DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
     _fizsh_user_pretoken="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){
