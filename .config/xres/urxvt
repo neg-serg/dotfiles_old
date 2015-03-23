@@ -58,12 +58,12 @@ MainTerminal.scrollWithBuffer:  false
 MainTerminal.scrollTtyOutput:   false
 MainTerminal.termName:          screen-256color
 MainTerminal.perl-ext:          default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
+MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size
 MainTerminal.selection-autotransform.0: s/^([^:[:space:]]+(\\d+):?$/:e \\Q$1\\E\\x0d:$2\\x0d/
 MainTerminal.selection-autotransform.1: if(/\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/) { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; };
 MainTerminal.selection-autotransform.2: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg; s/\\n=>/ #=>/mg; s{\\n$}{};}
 MainTerminal.selection-autotransform.3: if(m{^[ab]/}) { s{^[ab]/}{}g; }
 MainTerminal.selection-autotransform.4: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
-MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size
 MainTerminal.colorUL:           #86a2be
 
 !MainTerminal.letterSpace:  -1
