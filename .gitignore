@@ -53,3 +53,11 @@ bin/go/go-mtpfs
 .vim/bundle/.neobundle/*
 .ghc/ghci_history
 .vim/.netrwhist
+.newsbeuter/cache.db
+.newsbeuter/history.cmdline
+./.config/easytag/browser_path.history
+./.config/easytag/easytagrc
+./.config/gtk-2.0/gtkfilechooser.ini
+.config/ranger/bookmarks
+.config/ranger/history
+.vimv_history
