@@ -13,3 +13,9 @@ lazy fmaps -u='trello\.com/b/' -events=vkeydown j k d l e n v w
 
 lazy fmaps -u='reblog\.machine\.mamemomonga\.com/dashboard' j k t l m
 lazy fmaps -u='www\.pixiv\.net/member_illust\.php\?mode=manga' -events=vkeydown j k z 0
+
+fmaps -urls='^https?://twitter\.com/' j k ?
+fmaps -urls='^https?://twitter\.com/' -events=vkeydown m r gh gr gp gf gm
+fmaps -urls='^https?://twitter\.com/' -events=keydown c,<Esc>
+
+fmaps -modes=i -events=keypress,keydown <C-p>,<Up> <C-n>,<Down>
