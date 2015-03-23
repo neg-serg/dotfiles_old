@@ -52,3 +52,4 @@ bin/go/go-mtpfs
 .vim/bundle/NeoBundle.lock
 .vim/bundle/.neobundle/*
 .ghc/ghci_history
+.vim/.netrwhist
