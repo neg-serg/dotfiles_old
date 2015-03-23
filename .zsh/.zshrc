@@ -2,6 +2,7 @@
 . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ~/.zsh/03-exports.zsh
 . ~/.zsh/04-oldprompt.zsh
+. ~/.zsh/04-powerline_prompt.zsh
 . ~/.zsh/04-zleiab.zsh
 . ~/.zsh/05-functions.zsh
 . ~/.zsh/06-alias.zsh
@@ -21,3 +22,4 @@
 . ~/.zsh/75-urltools.plugun.zsh
 . ~/.zsh/89-vim-interation.plugin.zsh
 . ~/.zsh/97-lastfm.zsh
+. ~/.zsh/98-fzf.zsh
