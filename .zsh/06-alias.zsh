@@ -222,16 +222,20 @@ function resolve_file {
 }
 
 function ta {
-    tmp_list=/tmp/torr_list
-      sleep .2s
-      for i in $@; echo $i >> $tmp_list
-      while read line; do
-          file_name="$(resolve_file $line)"
-          base_name="$(basename $file_name)"
-          \mv $file_name ~/torrent/$base_name && \
-          transmission-remote-cli ~/torrent/$base_name > /dev/null &&
-          echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
-      done < $tmp_list
-      rm $tmp_list
-      file_name=
+    if [ -z $(pidof transmission-daemon)  ]; then
+        tmp_list=/tmp/torr_list
+        sleep .2s
+        for i in $@; echo $i >> $tmp_list
+        while read line; do
+            file_name="$(resolve_file $line)"
+            base_name="$(basename $file_name)"
+            \mv $file_name ~/torrent/$base_name && \
+            transmission-remote-cli ~/torrent/$base_name > /dev/null &&
+            echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
+        done < $tmp_list
+        rm $tmp_list
+        file_name=
+    else
+        transmission-daemon
+    fi
 }
