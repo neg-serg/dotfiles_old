@@ -67,7 +67,7 @@ function rofi_attach_win(frame, str)
     
     local cwin=ioncore.lookup_clientwin(str)
     if not cwin then
-        mod_query.warn(frame, TR("Could not find client window %s.", str))
+        -- mod_query.warn(frame, TR("Could not find client window %s.", str))
         return
     end
     local reg=cwin:groupleader_of()
@@ -76,10 +76,10 @@ function rofi_attach_win(frame, str)
         frame:attach(reg, { switchto = true })
     end
     if frame:rootwin_of()~=reg:rootwin_of() then
-        mod_query.warn(frame, TR("Cannot attach: different root windows."))
+        -- mod_query.warn(frame, TR("Cannot attach: different root windows."))
     elseif reg:manager()==frame then
         reg:goto_focus()
     else
-        mod_query.call_warn(frame, attach)
+        -- mod_query.call_warn(frame, attach)
     end
 end

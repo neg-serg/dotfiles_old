@@ -38,7 +38,6 @@ ioncore.set{
 	framed_transients=true,
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
-dopath("mod_query")
 dopath("mod_tiling")
 dopath("cfg_tiling")
 dopath("cfg_layouts.lua")
@@ -50,11 +49,9 @@ dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
-dopath("dbg")
 dopath("mod_xrandr")
 dopath("cfg_xrandr")
 dopath("mod_notionflux")
-dopath("vim_bindings")
 dopath("screenshot")
 dopath("mod_dock")
 dopath("cfg_dzen")
@@ -205,9 +202,7 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
     kpress("Mod1+space",       "nop()"),
-    kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
     kpress("Mod4+F2", "repl(_)"),
-    kpress("Mod4+Control+G",   "mod_query.query_workspace(_)"),
 
     kpress("Mod4+Shift+D", "ioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
 
@@ -271,7 +266,6 @@ defbindings("WMPlex.toplevel", {
     submap("Mod1+E",{
         kpress("p", "ioncore.exec_on(_, 'pavucontrol')"),
         kpress("d", "ioncore.exec_on(_, 'stardict')"),
-        kpress("r", "mod_query.query_renameframe(_)"),
         kpress("Shift+t", "ioncore.exec_on(_, '~/bin/scripts/toggle_stalonetray')"),
         kpress("t", "ioncore.exec_on(_, 'urxvt')"),
         kpress("v", "ioncore.exec_on(_, 'vmware')"),
