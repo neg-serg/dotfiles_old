@@ -24,7 +24,7 @@ function rofi_goto_win()
     local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
     local rofi_width = 1850
     local goto_win_file = "/tmp/goto_win"
-    local rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
+    local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
     '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi_width
     local rofi_prefix = ' -p "[go] >> "'
@@ -49,7 +49,7 @@ function rofi_attach_win(frame, str)
     tbl = {}
     local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
     local rofi_width = 1850
-    rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
+    rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
     '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi_width
     prefix = ' -p "[attach] >> "'
