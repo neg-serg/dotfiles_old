@@ -66,7 +66,7 @@ function v {
       for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \"${file_name}\")\"")
+          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \'${file_name}\')\"")
       done < $tmp_list
       rm $tmp_list
       file_name=
@@ -76,7 +76,7 @@ function v {
       for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \"${file_name}\")\"")
+          eval $(echo tmux -S ~/1st_level/vim.socket run \""$(echo vim --servername VIM --remote-silent \'${file_name}\')\"")
       done < $tmp_list
       file_name=
       rm $tmp_list
