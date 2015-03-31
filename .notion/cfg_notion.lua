@@ -39,7 +39,6 @@ ioncore.set{
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
 dopath("mod_query")
-dopath("mod_menu")
 dopath("mod_tiling")
 dopath("cfg_tiling")
 dopath("cfg_layouts.lua")
@@ -79,12 +78,13 @@ defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="w
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true, tag="www"}
 defwinprop{class="Firefox",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Tor-Browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
 defwinprop{class="Firefox",role="Organizer",target="float2"}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
-    max_size = {w=1024,h=768},
-    min_size = {w=800,h=600},
+    -- max_size = {w=1024,h=768},
+    -- min_size = {w=800,h=600},
     float=true,
 }
 defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",lazy_resize=true,tag="www"}
@@ -112,6 +112,7 @@ defwinprop{class="gmpc",    target="media",  lazy_resize=true}
 defwinprop{class="MPlayer",  jumpto=true, transient_mode="off", target="media", tag="video"}
 defwinprop{class="mplayer2", jumpto=true, transient_mode="off", target="media", tag="video"}
 defwinprop{class="mpv",  jumpto=true, transient_mode="off", target="media", tag="video"}
+defwinprop{class="mpv",  instance="webcam_mpv", jumpto=true, transient_mode="off", float=true}
 defwinprop{class="feh", instance="feh",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
 defwinprop{class="qiv", instance="qiv",  jumpto="on", transient_mode="off", float=true,lazy_resize=true}
 -------------------------------------[[ DEV ]]--------------------------------------
@@ -204,13 +205,10 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+slash",       "ioncore.goto_previous()"),
     kpress("Mod1+Tab",         "ioncore.goto_previous()"),
     kpress("Mod1+space",       "nop()"),
-    -- kpress("Mod1+grave",       "mod_query.query_exec(_)"),
     kpress("Mod4+Shift+grave", "mod_query.query_lua(_)"),
-    kpress("Mod4+G",           "mod_menu.menu(_, _sub, 'workspacelist')"),
     kpress("Mod4+F2", "repl(_)"),
     kpress("Mod4+Control+G",   "mod_query.query_workspace(_)"),
 
-    kpress("Mod4+M",           "mod_query.query_menu(_, _sub, 'ctxmenu', 'Context menu:')"),
     kpress("Mod4+Shift+D", "ioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
 
 -------------------------------------------------------------------------------------
@@ -272,6 +270,7 @@ defbindings("WMPlex.toplevel", {
     kpress("Mod4+c",        "ioncore.exec_on(_, 'sh ~/bin/clip')"),
     submap("Mod1+E",{
         kpress("p", "ioncore.exec_on(_, 'pavucontrol')"),
+        kpress("d", "ioncore.exec_on(_, 'stardict')"),
         kpress("r", "mod_query.query_renameframe(_)"),
         kpress("Shift+t", "ioncore.exec_on(_, '~/bin/scripts/toggle_stalonetray')"),
         kpress("t", "ioncore.exec_on(_, 'urxvt')"),
@@ -290,43 +289,20 @@ defbindings("WMPlex.toplevel", {
         kpress("Shift+k", "ioncore.exec_on(_, '~/bin/scripts/toggle_keynav')"),
     }),
 })
--------------------------------------------------------------------------------------
---[[  MENU  ]]---------------------------------------
---------------
-defbindings("WMenu", {
-    kpress("Escape",    "WMenu.cancel(_)"), kpress("Control+G", "WMenu.cancel(_)"),
-    kpress("Return",    "WMenu.finish(_)"), kpress("Control+M", "WMenu.finish(_)"),
-    kpress("Control+N", "WMenu.select_next(_)"),
-    kpress("Control+P", "WMenu.select_prev(_)"),
-    kpress("Down",      "WMenu.select_next(_)"),
-    kpress("Up",        "WMenu.select_prev(_)"),
-    --Clear the menu's typeahead find buffer
-    kpress("BackSpace", "WMenu.typeahead_clear(_)"),
-    kpress("Control+H", "WMenu.typeahead_clear(_)"),
-
-})
 defbindings("WScreen", {
     submap("Mod1+E", {
             kpress("I", "ioncore.goto_activity()"),
             kpress("T", "ioncore.tagged_clear()"),
-            kpress("K", "mod_menu.grabmenu(_, _sub, 'focuslist')"),
             }),
-
-    --kpress("Mod4+u","attach_new({type="WTiling", name="Instant Messaging"}):goto()"),
     kpress("Mod4+Shift+1", "ioncore.goto_nth_screen(0)"),
     kpress("Mod4+Shift+2", "ioncore.goto_nth_screen(1)"),
     kpress("Mod4+Shift+comma", "ioncore.goto_prev_screen()"),
     kpress("Mod4+Shift+period", "ioncore.goto_next_screen()"),
-    mpress("Button3", "mod_menu.pmenu(_, _sub, 'mainmenu')"),
-    --Display the window list menu
-    mpress("Button2", "mod_menu.pmenu(_, _sub, 'windowlist')"),
     submap("Mod1+E", {
         kpress("AnyModifier+L", "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("AnyModifier+Shift+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
-    kpress("F11", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     kpress("Mod4+grave", "ioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
-    -- kpress("Mod1+grave", "mod_query.query_exec(_)"),
     ---------------------------------------------------------
     kpress("Mod4+H", "_chld:focus_direction('left')", "_chld:non-nil"),
     kpress("Mod4+J", "_chld:focus_direction('down')", "_chld:non-nil"),
@@ -454,16 +430,4 @@ defbindings("WTiling", {
 -- Frame bindings
 defbindings("WFrame.floating", {
     submap("Mod1+E", { kpress("B", "mod_tiling.mkbottom(_)"), }),
-})
-
-
-defctxmenu("WFrame.floating", "Floating frame", {
-    append=true,
-    menuentry("New tiling", "mod_tiling.mkbottom(_)"),
-})
-
-defmenu("menuattach", {
-    -- _:attach_new(ioncore.getlayout("default")) -- works
-    menuentry("Float WS", "_:attach_new({type=\"WGroupWS\", switchto=true})"),
-    menuentry("Tiling WS", "_:attach_new({type=\"WGroupWS\", switchto=true}):attach_new({type=\"WTiling\", sizepolicy=\"full\", bottom=true})"),
 })
