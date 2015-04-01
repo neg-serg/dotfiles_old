@@ -35,7 +35,6 @@ bin/go/go-mtpfs
 .config/z151832623
 .config/z884238480
 .config/chromium
-.vimv_history
 .vim/.netrwhist
 .config/ranger/bookmarks
 .config/ranger/history
@@ -60,4 +59,11 @@ bin/go/go-mtpfs
 ./.config/gtk-2.0/gtkfilechooser.ini
 .config/ranger/bookmarks
 .config/ranger/history
+.weechat/weechat.log
+.weechat/logs/core.weechat.weechatlog
 .vimv_history
+.ghc/ghci_history
+.newsbeuter/cache.db
+.newsbeuter/history.cmdline
+.config/ranger/bookmarks
+.config/ranger/history
