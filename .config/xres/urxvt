@@ -16,7 +16,6 @@ mutt.colorUL:                 #0172ae
 *.scrollTtyKeypress:          true
 
 *.keysym.M-Escape:            perl:keyboard-select:activate
-*.keysym:M-s:                 perl:keyboard-select:search
 *.keysym.M-u:                 perl:url-select:select_next
 *.keysym.M-C-v:               perl:clipboard:paste_escaped
 *.keysym.C-M-Up:              perl:font-size:increase
