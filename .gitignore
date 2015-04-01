@@ -69,3 +69,5 @@ bin/go/go-mtpfs
 .config/ranger/history
 .notion/default-session--0/windowinfos.lua
 .vim/bundle/*
+.vimperator/info/default/history-command
+.vimperator/info/default/history-search
