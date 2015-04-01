@@ -38,7 +38,7 @@ xset +fp $HOME/.fonts/elite
 xset +fp "/usr/share/fonts/local/"
 xset fp rehash
 
-hsetroot -fill /home/neg/pic/wl/wallpaper-2585952.jpg
+hsetroot -fill /home/neg/pic/wl/atlantis_nebula__2_by_starkiteckt-d831nlo.jpg
 syndaemon -t -k -i 2 -d
 
 [ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
