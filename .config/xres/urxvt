@@ -5,8 +5,8 @@ URxvt.iso14755:               false
 URxvt.mouseWheelScrollPage:   false
 URxvt.urgentOnBell:           true
 
-*.highlightColor:             #111111
-*.highlightTextColor:         #195D7E
+*.highlightColor:             #040404
+*.highlightTextColor:         #5DA8C7
 
 mutt.colorUL:                 #0172ae
 *shading:                     10
