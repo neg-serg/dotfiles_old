@@ -1,4 +1,9 @@
 :q
+q
+main --help
+main
+Main
+:q
 :q
 main
 main
@@ -93,8 +98,3 @@ let repl :: Char -> Char -> String -> String
 repl :: Char -> Char -> String -> String
 let repl :: Char -> Char -> String -> String
 let getPositive = filter (\h -> h /= p 0)
-getPositive [1,2,-3,-4,5,-5]
-getPositive [1,2,3,4,5,-5]
-let getPositive = filter (\x -> x > 0)
-:q
-/tmp
