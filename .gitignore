@@ -67,3 +67,5 @@ bin/go/go-mtpfs
 .newsbeuter/history.cmdline
 .config/ranger/bookmarks
 .config/ranger/history
+.notion/default-session--0/windowinfos.lua
+.vim/bundle/*
