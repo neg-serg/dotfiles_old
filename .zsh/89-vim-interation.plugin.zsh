@@ -66,19 +66,23 @@ function v {
       for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          file_name=$(printf "%q" $file_name)
+          file_name=$(bash -c "printf %q '$file_name'")
+          echo file_name == $file_name
           eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
+          sleep .1s
       done < $tmp_list
-      rm $tmp_list
       file_name=
+      rm $tmp_list
     else  
       notionflux -e "app.byinstance('', 'URxvt', 'wim')"
       sleep .5s
       for i in $@; echo $i >> $tmp_list
       while read line; do
           file_name="$(resolve_file $line)"
-          file_name=$(printf "%q" $file_name)
+          file_name=$(bash -c "printf %q '$file_name'")
+          echo file_name == $file_name
           eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
+          sleep .1s
       done < $tmp_list
       file_name=
       rm $tmp_list
