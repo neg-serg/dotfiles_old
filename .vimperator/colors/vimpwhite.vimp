@@ -331,10 +331,10 @@ hi Preview <<EOM
 EOM
 
 hi PromptText <<EOM
-    background-color: #CCCCCC !important;
-    color: black !important;
+    background-color: black !important;
+    color: #cccccc !important;
     border-radius: 1px;
-    padding: 0px 5px;
+    padding: 4px 4px;
     font-family: "PragmataPro";
     font-size: 12pt;
     font-weight: bold;
