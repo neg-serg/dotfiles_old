@@ -31,7 +31,7 @@ ioncore.set{
     opaque_resize=true,
     switchto=true,
     unsqueeze=true,
-    screen_notify=false,
+    screen_notify=true,
     autosave_layout=false,
     autoraise=true,
 	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
