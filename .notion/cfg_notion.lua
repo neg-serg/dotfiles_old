@@ -259,6 +259,7 @@ defbindings("WMPlex.toplevel", {
 --------------
     kpress("Mod4+Control+Q", "WRegion.rqclose_propagate(_, _sub)"),
     kpress("Mod4+U",         "ioncore.exec_on(_, 'udiskie-umount -a')"),
+    kpress("Mod3+M",         "ioncore.exec_on(_, '~/bin/scripts/rofi_xprop')"),
     kpress("Mod4+Shift+U",   "ioncore.exec_on(_, 'eject')"),
     kpress("Mod4+Shift+F",   "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
     -- Rename frame --
@@ -274,8 +275,10 @@ defbindings("WMPlex.toplevel", {
         kpress("q", "ioncore.exec_on(_, '~/bin/mpd_sel.sh')"),
         kpress("i", "ioncore.exec_on(_, '~/bin/pls -output')"),
         kpress("o", "ioncore.exec_on(_, '~/bin/pls -sink')"),
+        kpress("w", "ioncore.exec_on(_, '~/bin/webcam')"),
         kpress("n", "app.byinstance('nicotine.py || nicotine', 'Nicotine.py', 'nicotine.py')"),
         kpress("Shift+o", "ioncore.exec_on(_, '~/bin/pls -vol')"),
+        kpress("Shift+d", "ioncore.exec_on(_, '~/bin/scripts/exec_demo.sh')"),
         kpress("Control+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Shift+r", "ranger(_)"),
         kpress("Shift+g", "gdb(_)"),
