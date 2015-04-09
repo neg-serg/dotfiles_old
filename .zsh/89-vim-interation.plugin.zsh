@@ -56,6 +56,13 @@ EOH
   fi
 }
 
+function vim_file_open() {
+    file_name="$(resolve_file $line)"
+    file_name=$(bash -c "printf %q '$file_name'")
+    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name"
+    eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
+}
+
 function v {
     wid=$(xdotool search --classname wim)
     tmp_list=/tmp/vim_list
@@ -65,11 +72,8 @@ function v {
       sleep .8s
       for i in $@; echo $i >> $tmp_list
       while read line; do
-          file_name="$(resolve_file $line)"
-          file_name=$(bash -c "printf %q '$file_name'")
-          echo file_name == $file_name
-          eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
-          sleep .1s
+          vim_file_open
+          sleep .6s
       done < $tmp_list
       file_name=
       rm $tmp_list
@@ -78,16 +82,14 @@ function v {
       sleep .5s
       for i in $@; echo $i >> $tmp_list
       while read line; do
-          file_name="$(resolve_file $line)"
-          file_name=$(bash -c "printf %q '$file_name'")
-          echo file_name == $file_name
-          eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
+          vim_file_open
           sleep .1s
       done < $tmp_list
       file_name=
       rm $tmp_list
     fi
 }
+
 
 # { callvim -b':vsp' }
 # { callvim -b':sp' }
