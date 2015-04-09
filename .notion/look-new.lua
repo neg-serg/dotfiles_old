@@ -1,5 +1,5 @@
-FONT_STATUS="-hell-monobook-bold-r-normal--16-160-72-72-m-80-iso10646-1"
-FONT="-elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
+FONT="xft:PragmataPro for Powerline-12:bold"
+FONT_STATUS="xft:PragmataPro for Powerline-12:bold"
 
 if not gr.select_engine("de") then return end
 de.reset()
