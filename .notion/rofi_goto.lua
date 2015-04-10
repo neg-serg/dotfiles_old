@@ -34,7 +34,7 @@ function rofi_goto_win()
     function print_to_rofi(i)
         rofi_pipe:write(tbl[i].name,'\n')
     end
-    table.foreachi( tbl, print_to_rofi  )
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i].name,'\n') end
     rofi_pipe:close() 
     fp = io.open(goto_win_file)
     x = fp:read("*l")
@@ -59,7 +59,7 @@ function rofi_attach_win(frame, str)
     function print_to_rofi(i)
         rofi_pipe:write(tbl[i].name,'\n')
     end
-    table.foreachi( tbl, print_to_rofi  )
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i].name,'\n') end
     rofi_pipe:close() 
     fp = io.open("/tmp/attach_win")
     str = fp:read("*l")
