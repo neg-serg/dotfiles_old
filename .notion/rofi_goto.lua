@@ -1,22 +1,29 @@
-local function addto(list)
-    return function(tgt, attr)
-        local e=menuentry(tgt:name(), function() tgt:goto_focus() end)
-        e.attr=attr;
-        print(e.attr)
-        table.insert(list, e)
-        return true
-    end
-end
-    
-local function sort(entries)
-    table.sort(entries, function(a, b) return a.name < b.name end)
-    return entries
+function complete_clientwin()
+    return complete_name(ioncore.clientwin_i)
 end
 
-function windowlist_for_rofi()
+local function mk_completion_add(entries)
+    return function(s) 
+               if s then
+                   table.insert(entries, s)
+               end
+           end
+end
+
+function complete_name(iter)
+    local sub_ok_first=true
+    local casei_ok=true
     local entries={}
-    ioncore.clientwin_i(addto(entries))
-    return sort(entries)
+    local tst_add=mk_completion_add(entries)
+    
+    iter(function(reg)
+             if not string.match(reg:name(), "dzen.*title") then
+                tst_add(reg:name())
+             end
+             return true
+         end)
+    
+    return entries
 end
 
 function rofi_goto_win()
@@ -30,11 +37,8 @@ function rofi_goto_win()
     local rofi_prefix = ' -p "[go] >> "'
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. goto_win_file, "w")
     rofi_pipe:setvbuf("line")
-    tbl = windowlist_for_rofi()
-    function print_to_rofi(i)
-        rofi_pipe:write(tbl[i].name,'\n')
-    end
-    for i in pairs(tbl) do rofi_pipe:write(tbl[i].name,'\n') end
+    tbl = complete_clientwin()
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
     fp = io.open(goto_win_file)
     x = fp:read("*l")
@@ -55,11 +59,8 @@ function rofi_attach_win(frame, str)
     prefix = ' -p "[attach] >> "'
     rofi_pipe = io.popen(rofi_cmd .. prefix .. "> /tmp/attach_win", "w")
     rofi_pipe:setvbuf("line")
-    tbl = windowlist_for_rofi()
-    function print_to_rofi(i)
-        rofi_pipe:write(tbl[i].name,'\n')
-    end
-    for i in pairs(tbl) do rofi_pipe:write(tbl[i].name,'\n') end
+    tbl = complete_clientwin()
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
     fp = io.open("/tmp/attach_win")
     str = fp:read("*l")
