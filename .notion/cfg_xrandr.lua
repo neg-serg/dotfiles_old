@@ -39,13 +39,17 @@ function mod_xrandr.workspace_added(ws)
 end
 
 function for_all_workspaces_do(fn)
+    local workspaces={}
     notioncore.region_i(function(scr)
         scr:managed_i(function(ws)
-            fn(ws)
+            table.insert(workspaces, ws)
             return true 
         end)
         return true
     end, "WScreen")
+    for _,ws in ipairs(workspaces) do
+        fn(ws)
+    end
 end
 
 function mod_xrandr.workspaces_added()
@@ -76,12 +80,12 @@ end
 
 -- parameter: list of output names
 -- returns: map from screen name to screen
-function candidate_screens_for_output(all_outputs, outputname)
+function candidate_screens_for_output(max_screen_id, all_outputs, outputname)
     local retval = {}
 
     function addIfContainsOutput(screen)
         local outputs_within_screen = mod_xrandr.get_outputs_within(all_outputs, screen)
-        if outputs_within_screen[outputname] ~= nil then
+        if screen:id() <= max_screen_id and outputs_within_screen[outputname] ~= nil then
             retval[screen:name()] = screen
         end
         return true
@@ -91,15 +95,15 @@ function candidate_screens_for_output(all_outputs, outputname)
     return retval
 end
 
--- parameter: list of output names
+-- parameter: maximum screen id, list of all output names, list of output names for which we want the screens
 -- returns: map from screen name to screen
-function candidate_screens_for_outputs(all_outputs, outputnames)
+function candidate_screens_for_outputs(max_screen_id, all_outputs, outputnames)
     local result = {}
 
     if outputnames == nil then return result end
 
     for i,outputname in pairs(outputnames) do
-        local screens = candidate_screens_for_output(all_outputs, outputname)
+        local screens = candidate_screens_for_output(max_screen_id, all_outputs, outputname)
         for k,screen in pairs(screens) do
              result[k] = screen;
         end
@@ -166,7 +170,8 @@ function move_if_needed(workspace, screen_id)
     end
 end
 
-function mod_xrandr.rearrangeworkspaces()
+-- Arrange the workspaces over the first number_of_screens screens
+function mod_xrandr.rearrangeworkspaces(max_screen_id)
     -- for each screen id, which workspaces should be on that screen
     new_mapping = {}
     -- workspaces that want to be on an output that's currently not on any screen
@@ -193,8 +198,8 @@ function mod_xrandr.rearrangeworkspaces()
     -- round one: divide workspaces in directly assignable,
     -- orphans and wanderers
     function roundone(workspace)
-        local screens = candidate_screens_for_outputs(all_outputs, getInitialOutputs(workspace))
-        if not screens or empty(screens) then
+        local screens = candidate_screens_for_outputs(max_screen_id, all_outputs, getInitialOutputs(workspace))
+        if nilOrEmpty(screens) then
             table.insert(orphans, workspace)
         elseif singleton(screens) then
             add_safe(new_mapping, firstValue(screens):id(), workspace)
@@ -225,14 +230,13 @@ function mod_xrandr.rearrangeworkspaces()
             move_if_needed(workspace, screen_id)
         end
     end
-    -- mod_xinerama.populate_empty_screens()
 end
 
 -- refresh xinerama and rearrange workspaces on screen layout updates
 function mod_xrandr.screenlayoutupdated()
     notioncore.profiling_start('notion_xrandrrefresh.prof')
-    -- mod_xinerama.refresh()
-    mod_xrandr.rearrangeworkspaces()
+    mod_xrandr.rearrangeworkspaces(max_screen_id)
+    notioncore.screens_updated(notioncore.rootwin())
     notioncore.profiling_stop()
 end
 
