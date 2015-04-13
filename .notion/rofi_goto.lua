@@ -1,3 +1,18 @@
+function rofi_template(rofi_prefix,ipc_file)
+    local font_name = "Pragmata Pro for Powerline"
+    local font_size =  12
+    local font_style = "bold"
+    local rofi_font = '-font "' .. font_name .. ' '.. font_style ..' ' .. font_size .. '"'
+    local rofi_width = 1850
+    local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
+    '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
+    ' -padding 2 -width ' .. rofi_width
+    rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
+    rofi_pipe:setvbuf("line")
+end
+
+dopath("rofi_handlers")
+
 function complete_clientwin()
     return complete_name(ioncore.clientwin_i)
 end
@@ -33,28 +48,13 @@ function workspacelist(iter)
     return entries
 end
 
-
-function workspace_handler(reg,name)
-    local ws=ioncore.lookup_region(name, "WGroupWS")
-    if ws then
-        ws:goto_focus()
-    else
-        local tmpl={
-            name=(name~="" and name),
-            switchto=true
-        } 
-        layout = "full"
-        ioncore.create_ws(reg:screen_of(),tmpl,layout)
-    end
-end
-
 function complete_name(iter)
     local entries={}
-    local tst_add=mk_completion_add(entries)
+    local list_add=mk_completion_add(entries)
     
     iter(function(reg)
              if not string.match(reg:name(), "dzen.*title") then
-                tst_add(reg:name())
+                list_add(reg:name())
              end
              return true
          end)
@@ -75,10 +75,8 @@ end
 --                     function(frame, str) frame:set_name(str) end,
 --                     nil, "framename")
 -- end
---
---
 
-function query_renameworkspace(mplex, ws)
+function rofi_renameworkspace(mplex,ws)
     if not mplex then
         assert(ws)
         mplex=ioncore.find_manager(ws, "WMPlex")
@@ -86,59 +84,24 @@ function query_renameworkspace(mplex, ws)
         assert(mplex)
         ws=ioncore.find_manager(mplex, "WGroupWS")
     end
-
+    
     assert(mplex and ws)
-end
 
-function rename_workspace_handler(ws, str)
-    ws:set_name(str)
+    local tbl = {}
+    local ws_file = "/tmp/rename_ws"
+    local rofi_prefix = ' -p "[workspace_name] >> "'
+    rofi_template(rofi_prefix,ws_file)
+    rofi_pipe:close() 
+    fp = io.open(ws_file)
+    wsname = fp:read("*l")
+    ws:set_name(wsname)
+    fp:close()
 end
 
 function complete_mainmenu(entries)
     table.insert(entries, "save")  --  ioncore.snapshot()
     table.insert(entries, "restart") --  ioncore.restart()
-    table.insert(entries, "restart twm") -- ioncore.restart_other('twm')
-end
-
-function rofi_template(rofi_prefix,ipc_file)
-    local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
-    local rofi_width = 1850
-    local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
-    '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. rofi_width
-    rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
-    rofi_pipe:setvbuf("line")
-end
-
-local function mainmenu_handler(x)
-    if x == "save" then
-        ioncore.snapshot()
-    end
-    if x == "restart" then
-        ioncore.restart()
-    end
-    if x == "restart twm" then
-        ioncore.restart_other('twm')
-    end
-end
-
-local function attach_win_handler()
-    local cwin=ioncore.lookup_clientwin(str)
-    if not cwin then
-        return
-    end
-    local reg=cwin:groupleader_of()
-    
-    local function attach()
-        frame:attach(reg, { switchto = true })
-    end
-    if frame:rootwin_of()~=reg:rootwin_of() then
-        
-    elseif reg:manager()==frame then
-        reg:goto_focus()
-    else
-        ioncore.defer(function () attach() end)
-    end
+    table.insert(entries, "restart ratpoison") -- ioncore.restart_other('ratpoison')
 end
 
 function rofi_mainmenu()
@@ -182,7 +145,9 @@ function rofi_goto_or_create_ws(reg)
     rofi_pipe:close() 
     fp = io.open(ws_file)
     name = fp:read("*l")
-    workspace_handler(reg,name)
+    if not (name == nil or name == '') then
+        workspace_handler(reg,name)
+    end
     fp:close()
 end
 
