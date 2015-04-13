@@ -62,23 +62,110 @@ function complete_name(iter)
     return entries
 end
 
-function rofi_goto_win()
-    local tbl = {}
+-- menuentry("Rename",         "mod_query.query_renameworkspace(nil, _)"),
+-- menuentry("Attach tagged", "ioncore.tagged_attach(_)", { priority = 0 }),
+-- menuentry("Clear tags",    "ioncore.tagged_clear()", { priority = 0 }),
+-- menuentry("Window info",   "mod_query.show_tree(_, _sub)", { priority = 0 }),
+-- 
+-- --DOC
+-- -- This function asks for a name new for the frame where the query
+-- -- was created.
+-- function mod_query.query_renameframe(frame)
+--     mod_query.query(frame, TR("Frame name:"), frame:name(),
+--                     function(frame, str) frame:set_name(str) end,
+--                     nil, "framename")
+-- end
+--
+--
+
+function query_renameworkspace(mplex, ws)
+    if not mplex then
+        assert(ws)
+        mplex=ioncore.find_manager(ws, "WMPlex")
+    elseif not ws then
+        assert(mplex)
+        ws=ioncore.find_manager(mplex, "WGroupWS")
+    end
+
+    assert(mplex and ws)
+end
+
+function rename_workspace_handler(ws, str)
+    ws:set_name(str)
+end
+
+function complete_mainmenu(entries)
+    table.insert(entries, "save")  --  ioncore.snapshot()
+    table.insert(entries, "restart") --  ioncore.restart()
+    table.insert(entries, "restart twm") -- ioncore.restart_other('twm')
+end
+
+function rofi_template(rofi_prefix,ipc_file)
     local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
     local rofi_width = 1850
-    local goto_win_file = "/tmp/goto_win"
     local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
     '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi_width
-    local rofi_prefix = ' -p "[go] >> "'
-    rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. goto_win_file, "w")
+    rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
+end
+
+local function mainmenu_handler(x)
+    if x == "save" then
+        ioncore.snapshot()
+    end
+    if x == "restart" then
+        ioncore.restart()
+    end
+    if x == "restart twm" then
+        ioncore.restart_other('twm')
+    end
+end
+
+local function attach_win_handler()
+    local cwin=ioncore.lookup_clientwin(str)
+    if not cwin then
+        return
+    end
+    local reg=cwin:groupleader_of()
+    
+    local function attach()
+        frame:attach(reg, { switchto = true })
+    end
+    if frame:rootwin_of()~=reg:rootwin_of() then
+        
+    elseif reg:manager()==frame then
+        reg:goto_focus()
+    else
+        ioncore.defer(function () attach() end)
+    end
+end
+
+function rofi_mainmenu()
+    local tbl = {}
+    local rofi_prefix = ' -p "[mainmenu] >> "'
+    local mainmenu_file = "/tmp/mainmenu"
+    rofi_template(rofi_prefix,mainmenu_file)
+    complete_mainmenu(tbl)
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
+    rofi_pipe:close() 
+    fp = io.open(goto_win_file)
+    x = fp:read("*l")
+    mainmenu_handler(x)
+    fp:close()
+end
+
+function rofi_goto_win()
+    local tbl = {}
+    local goto_win_file = "/tmp/goto_win"
+    local rofi_prefix = ' -p "[go] >> "'
+    rofi_template(rofi_prefix,goto_win_file)
     tbl = complete_clientwin()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
     fp = io.open(goto_win_file)
     x = fp:read("*l")
-    fp:close()
+    fp:close(rofi_prefix, goto_win_file)
     local win = ioncore.lookup_clientwin(x)
     if win then
         ioncore.defer(function () win:goto_focus() end)
@@ -87,19 +174,13 @@ end
 
 function rofi_goto_or_create_ws(reg)
     local tbl = {}
-    local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
-    local rofi_width = 1850
-    local goto_win_file = "/tmp/goto_ws"
-    local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
-    '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. rofi_width
+    local ws_file = "/tmp/goto_ws"
     local rofi_prefix = ' -p "[ws] >> "'
-    rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. goto_win_file, "w")
-    rofi_pipe:setvbuf("line")
+    rofi_template(rofi_prefix,ws_file)
     tbl = complete_ws()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
-    fp = io.open(goto_win_file)
+    fp = io.open(ws_file)
     name = fp:read("*l")
     workspace_handler(reg,name)
     fp:close()
@@ -107,21 +188,16 @@ end
 
 function rofi_attach_win(frame, str)
     tbl = {}
-    local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
-    local rofi_width = 1850
-    rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
-    '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. rofi_width
+    attach_win_file = "/tmp/attach_win"
     prefix = ' -p "[attach] >> "'
-    rofi_pipe = io.popen(rofi_cmd .. prefix .. "> /tmp/attach_win", "w")
-    rofi_pipe:setvbuf("line")
+    rofi_template(prefix,attach_win_file)
     tbl = complete_clientwin()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
-    fp = io.open("/tmp/attach_win")
+    fp = io.open(attach_win_file)
     str = fp:read("*l")
     fp:close()
-    
+
     local cwin=ioncore.lookup_clientwin(str)
     if not cwin then
         return
