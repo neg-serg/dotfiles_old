@@ -4,14 +4,30 @@ function rofi_template(rofi_prefix,ipc_file)
     local font_style = "bold"
     local rofi_font = '-font "' .. font_name .. ' '.. font_style ..' ' .. font_size .. '"'
     local rofi_width = 1850
-    local rofi_cmd='rofi -auto-select -dmenu -opacity "90" -lines "10" -yoffset -22 '.. rofi_font .. ' -fg' ..
-    '"#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
+    local rofi_cmd='rofi -auto-select -dmenu -opacity 95 -lines 10 -yoffset -22 '.. rofi_font .. ' -fg' ..
+    '"#ffffff" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi_width
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
 end
 
 dopath("rofi_handlers")
+
+local function new_ipc_file(file_name)
+    shm_dir = "/tmp"
+    return shm_dir .. "/" .. file_name
+end
+
+local function new_rofi_prefix(prefix)
+    local function quote(str)
+        return '"' .. str:gsub('\\', '\\\\'):gsub('"', '\\"') .. '"'
+    end
+    local lb = '['
+    local rb = ']'
+    local prompt = ' >> '
+    str = lb .. prefix .. rb .. prompt
+    return " -p " .. quote(str)
+end
 
 function complete_clientwin()
     return complete_name(ioncore.clientwin_i)
@@ -62,20 +78,6 @@ function complete_name(iter)
     return entries
 end
 
--- menuentry("Rename",         "mod_query.query_renameworkspace(nil, _)"),
--- menuentry("Attach tagged", "ioncore.tagged_attach(_)", { priority = 0 }),
--- menuentry("Clear tags",    "ioncore.tagged_clear()", { priority = 0 }),
--- menuentry("Window info",   "mod_query.show_tree(_, _sub)", { priority = 0 }),
--- 
--- --DOC
--- -- This function asks for a name new for the frame where the query
--- -- was created.
--- function mod_query.query_renameframe(frame)
---     mod_query.query(frame, TR("Frame name:"), frame:name(),
---                     function(frame, str) frame:set_name(str) end,
---                     nil, "framename")
--- end
-
 function rofi_renameworkspace(mplex,ws)
     if not mplex then
         assert(ws)
@@ -88,13 +90,16 @@ function rofi_renameworkspace(mplex,ws)
     assert(mplex and ws)
 
     local tbl = {}
-    local ws_file = "/tmp/rename_ws"
-    local rofi_prefix = ' -p "[workspace_name] >> "'
+    local ws_file = new_ipc_file("rename_ws")
+    local rofi_prefix = new_rofi_prefix("main_menu")
     rofi_template(rofi_prefix,ws_file)
+    rofi_pipe:write(ws:name(),'\n')
     rofi_pipe:close() 
     fp = io.open(ws_file)
     wsname = fp:read("*l")
-    ws:set_name(wsname)
+    if not (wsname == nil or wsname == '') then
+        ws:set_name(wsname)
+    end
     fp:close()
 end
 
@@ -104,15 +109,29 @@ function complete_mainmenu(entries)
     table.insert(entries, "restart ratpoison") -- ioncore.restart_other('ratpoison')
 end
 
+function rofi_renameframe(frame)
+    local file_name = new_ipc_file("rename_frame")
+    local prefix =  new_rofi_prefix("frame_name")
+    rofi_template(prefix,file_name)
+    rofi_pipe:write(frame:name(),'\n')
+    rofi_pipe:close() 
+    local fp = io.open(file_name)
+    frame_name = fp:read("*l")
+    if not (frame_name == nil or frame_name == '') then
+        frame:set_name(frame_name)
+    end
+    fp:close()
+end
+
 function rofi_mainmenu()
     local tbl = {}
-    local rofi_prefix = ' -p "[mainmenu] >> "'
-    local mainmenu_file = "/tmp/mainmenu"
+    local mainmenu_file = new_ipc_file("mainmenu")
+    local rofi_prefix = new_rofi_prefix("mainmenu")
     rofi_template(rofi_prefix,mainmenu_file)
     complete_mainmenu(tbl)
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
-    fp = io.open(goto_win_file)
+    fp = io.open(mainmenu_file)
     x = fp:read("*l")
     mainmenu_handler(x)
     fp:close()
@@ -120,8 +139,8 @@ end
 
 function rofi_goto_win()
     local tbl = {}
-    local goto_win_file = "/tmp/goto_win"
-    local rofi_prefix = ' -p "[go] >> "'
+    local goto_win_file = new_ipc_file("goto_win")
+    local rofi_prefix = new_rofi_prefix("go")
     rofi_template(rofi_prefix,goto_win_file)
     tbl = complete_clientwin()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
@@ -137,8 +156,8 @@ end
 
 function rofi_goto_or_create_ws(reg)
     local tbl = {}
-    local ws_file = "/tmp/goto_ws"
-    local rofi_prefix = ' -p "[ws] >> "'
+    local ws_file = new_ipc_file("goto_ws")
+    local rofi_prefix = new_rofi_prefix("ws")
     rofi_template(rofi_prefix,ws_file)
     tbl = complete_ws()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
@@ -153,8 +172,8 @@ end
 
 function rofi_attach_win(frame, str)
     tbl = {}
-    attach_win_file = "/tmp/attach_win"
-    prefix = ' -p "[attach] >> "'
+    attach_win_file = new_ipc_file("attach_win")
+    prefix = new_rofi_prefix("attach")
     rofi_template(prefix,attach_win_file)
     tbl = complete_clientwin()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
@@ -173,7 +192,6 @@ function rofi_attach_win(frame, str)
         frame:attach(reg, { switchto = true })
     end
     if frame:rootwin_of()~=reg:rootwin_of() then
-        
     elseif reg:manager()==frame then
         reg:goto_focus()
     else
