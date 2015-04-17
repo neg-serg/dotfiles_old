@@ -24,7 +24,7 @@ function collapse.collapse(ws)
         function (region)
             return collapse.take_frame_to_here(region, current)
         end)
-   current:goto()
+   current:goto_focus()
 end
 
 function multiple_split(ws, frame)
@@ -48,7 +48,7 @@ function multiple_split(ws, frame)
     
     ioncore.defer(
         function()
-            active_cwin:parent():goto()
+            active_cwin:parent():goto_focus()
         end)
     return true
 end
