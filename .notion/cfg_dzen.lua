@@ -90,7 +90,7 @@ local function tokenize(str)
     local i = 0
     local k = nil
 
-    for k in string.gfind(str, '(%w+)') do
+    for k in string.gmatch(str, '(%w+)') do
         ret[i] = k
         i = i + 1
     end
@@ -113,7 +113,7 @@ local function sanity_check()
                                 -- us the positions of the info we seek
 
     local t = tokenize(s)
-    local n = table.getn(t)
+    local n = #t
     local i = 0
 
     for i = 0,n do
@@ -235,8 +235,6 @@ local function init_netmon_monitor()
                 history_in[i], history_out[i] = 0, 0
             end
         end
-
-        netmon_template = "xxxxxxxxxxxxxxxxxxxxxxx"
         update_netmon_info()
         dzen_update()
     else
