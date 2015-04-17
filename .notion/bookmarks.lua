@@ -12,9 +12,9 @@ function bookmarks.set(bm, frame)
     bms[bm]=frame
 end
 
-function bookmarks.goto(bm)
+function bookmarks.goto_focus(bm)
     if bms[bm] then
-        bms[bm]:goto()
+        bms[bm]:goto_focus()
     end
 end
 
@@ -23,7 +23,7 @@ for k=0, 9 do
     local bm=tostring(k)
     defbindings("WScreen", {
         submap("Mod4+4", {
-            kpress(bm, function() bookmarks.goto(bm) end),
+            kpress(bm, function() bookmarks.goto_focus(bm) end),
         })
     })
     defbindings("WFrame", {
