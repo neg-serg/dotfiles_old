@@ -137,7 +137,7 @@ function WRegion.focus_direction(reg, dir)
     end)
 
     if nr then
-        nr:goto()
+        nr:goto_focus()
     end
 end
 
@@ -205,7 +205,7 @@ function WRegion.push_direction(reg, dir)
     end
 
     reg:rqgeom(ng)
-    reg:goto()  -- XXX sometimes we lose focus...?
+    reg:goto_focus()  -- XXX sometimes we lose focus...?
 end
 
 local XA_INTEGER = 19
@@ -287,7 +287,7 @@ function WRegion.maximize_fill(reg, dir)
 
         reg:rqgeom(ng)
     end
-    reg:goto()  -- XXX sometimes we lose focus...?
+    reg:goto_focus()  -- XXX sometimes we lose focus...?
 end
 
 function WRegion.maximize_fill_toggle(reg, dir)
