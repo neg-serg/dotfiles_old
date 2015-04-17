@@ -1,1 +1,0 @@
-mpv --x11-name=webcam_mpv -vo x11 tv:// -tv device=/dev/video0
