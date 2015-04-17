@@ -1,15 +1,15 @@
-FONT="xft:PragmataPro for Powerline-12:bold"
-FONT_STATUS="xft:PragmataPro for Powerline-12:bold"
+local basefont = "xft:PragmataPro for Powerline-12:bold"
+local statusfont = "xft:PragmataPro for Powerline-12:bold"
 
 if not gr.select_engine("de") then return end
 de.reset()
 
 de.defstyle("*", {
-    font = FONT,
+    font = basefont,
     padding_colour = "#000000",
     shadow_colour = "#000000",
     highlight_colour = "#000000",
-    --background_colour = "#000000",
+    background_colour = "#000000",
     foreground_colour = "#666666",
     padding_pixels = 0,
     spacing = 0,
@@ -17,7 +17,6 @@ de.defstyle("*", {
     shadow_pixels = 0,
     text_align = "center",
     transparent_background = false,
-    -- transparent_background = true,
 })
 
 de.defstyle("frame", {
@@ -30,13 +29,12 @@ de.defstyle("frame", {
     padding_pixels = 0,
     highlight_pixels = 1,
     shadow_pixels = 1,
-    border_style="elevated",
-    -- transparent_background = false,
-    transparent_background = true,
+    border_style="groove",
+    transparent_background = false,
     de.substyle("*-*-active-scratchpad", {
-        shadow_colour = "#287373",
+        shadow_colour = "#1F3B4F",
         border_sides=tnl,
-        highlight_colour = "#287373",
+        highlight_colour = "#1F3B4F",
         padding_colour = "#000000",
         background_colour = "#000000",
         foreground_colour = "#ffffff",
@@ -44,8 +42,7 @@ de.defstyle("frame", {
         highlight_pixels = 2,
         shadow_pixels = 2,
         spacing = 3,
-        -- transparent_background = false,
-        transparent_background = true,
+        transparent_background = false,
     }),
     de.substyle("active", {
         shadow_colour = "#222222",
@@ -57,13 +54,10 @@ de.defstyle("frame", {
         padding_pixels = 0,
         highlight_pixels = 0,
         shadow_pixels = 0,
-        --border_style="inlaid",
-        -- transparent_background = false,
-        transparent_background = true,
+        transparent_background = false,
     }),
     gr.refresh()    
 })
-
 
 de.defstyle("frame-ionframe",{
     based_on = "frame",
@@ -81,7 +75,7 @@ de.defstyle("frame-floatframe", {
 
 
 de.defstyle("tab", {
-    font = FONT,
+    font = basefont,
     padding_colour = "#000000",
     shadow_colour = "#53A6A6",
     highlight_colour = "#53A6A6",
@@ -150,7 +144,7 @@ de.defstyle("tab-menuentry", {
 de.defstyle("tab-menuentry-big", {
     based_on = "tab-menuentry",
     padding_pixels = 0,
-    font = FONT,
+    font = basefont,
 })
 
 de.defstyle("input", {
@@ -163,7 +157,7 @@ de.defstyle("input", {
     highlight_pixels = 1,
     shadow_pixels = 1,
     spacing = 0,
-    font = FONT,
+    font = basefont,
     border_style = "inlaid",
     de.substyle("*-cursor", {
         background_colour = "#5E468C",
@@ -198,7 +192,7 @@ function inputstyle(mode)
             background_colour = "#999999",
             foreground_colour = "#000000",
         }),
-		font = FONT,
+		font = basefont,
 	}
 	
 	if mode == "insert" then
@@ -220,7 +214,7 @@ end
 
 de.defstyle("stdisp", {
   based_on = "*",
-  font=FONT_STATUS,
+  font=statusfont,
   padding_colour = "#000000",
   shadow_colour = "#3579a8",
   highlight_colour = "#3579a8",
