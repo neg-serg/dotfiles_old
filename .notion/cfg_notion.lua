@@ -11,7 +11,7 @@ local hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
 if hook_deinit then
     hook_deinit:add(dzen_delete)
 end
-dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
+dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
 dzen_pipe:setvbuf("line")
 --------------------------------[[ IONCORE ]]---------------------------------------
 ioncore.set{
@@ -38,14 +38,13 @@ ioncore.set{
 	framed_transients=true,
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
+dopath("cfg_rules")
 dopath("mod_tiling")
-dopath("cfg_tiling")
 dopath("cfg_layouts.lua")
 dopath("app")
 dopath("mod_sp")
 dopath("named_scratchpad")
 dopath("min_tabs")
-dopath("bookmarks")
 dopath("net_client_list")
 dopath("move_current")
 dopath("direction2")
@@ -60,7 +59,6 @@ dopath("cfg_autostart")
 dopath("mod_xkbevents")
 dopath("helpers")
 dopath("cfg_kb")
-dopath("cfg_rules")
 
 ioncore.get_hook('clientwin_do_manage_alt'):add(
     function(cwin, table)
