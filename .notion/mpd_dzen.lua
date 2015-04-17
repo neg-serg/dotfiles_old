@@ -12,7 +12,7 @@ function mpd_dzen_update()
     mpd_pipe:write(template..'\n')
 end
 
-mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro:style=bold:size=12' ", "w")
+mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
 mpd_pipe:setvbuf("line")
 
 local mpd_defaults={
