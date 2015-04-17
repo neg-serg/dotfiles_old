@@ -1,3 +1,8 @@
+local function regmax(win)
+  WFrame.maximize_horiz(win)
+  WFrame.maximize_vert(win)
+  WRegion.rqorder(win, 'front')
+end
 ---------------------------------[[ LAYOUTS ]]-------------------------------------
 local a_frame={
     type="WSplitRegion",
@@ -7,14 +12,17 @@ local a_frame={
         -- sizepolicy="full",
     }
 }
+
 local function mksplit(dir, tl, br, float)
 return {
     type = (float and "WSplitFloat" or "WSplitSplit"),
     dir = dir,tls = 1,brs = 1,tl = tl,br = br,}
 end
+
 local function mktiling(split_tree)
-return {managed={{type = "WTiling",bottom = true,split_tree = split_tree,}}}
+    return {managed={{type = "WTiling",bottom = true,split_tree = split_tree,}}}
 end
+
 -- Tiling with single 1:1 horizontal split
 local tmp=mktiling(mksplit("horizontal", a_frame, a_frame))
 ioncore.deflayout("hsplit", tmp)
