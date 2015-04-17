@@ -58,8 +58,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+x",     "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
     kpress("M4+Ct+a",  "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
     kpress("M4+b",     "app.byclass_withtag(nil, 'mpv',nil, 'video')"),
-    -- kpress("M4+w",  "app.byinstance_withtag('/usr/lib/firefox/firefox', 'Firefox','Navigator',nil,'www')"),
-    kpress("M4+w",     "app.byinstance_withtag('/usr/lib/icecat/icecat', 'Icecat','Navigator',nil,'www')"),
+    kpress("M4+w",     "app.byinstance_withtag('/usr/bin/firefox', 'Firefox','Navigator',nil,'www')"),
     kpress("M4+o",     "app.byclass_withtag('zathura','Zathura','pdf')"),
     kpress("M4+Ct+C",  "app.byclass('~/bin/sx /home/neg/dw/', 'Sxiv')"),
     -------------------------------------------------------------------------------------
@@ -128,6 +127,7 @@ Neg_kb.WClientWin = {
 Neg_kb.WGroupCW = {
     kpress_wait("M4+Q", "WGroup.set_fullscreen(_, 'toggle')"),
     kpress("M4+0",      "rofi_renameworkspace(_)"),
+    kpress("M4+9",      "comp_man_please()"),
 }
 
 Neg_kb.WMPlex = {
@@ -136,10 +136,10 @@ Neg_kb.WMPlex = {
 
 Neg_kb.WFrame = {
     kpress("M4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ),
+    kpress("M4+6","rofi_renameframe(_)"),
     submap("M1+E", {
       kpress("H", "WFrame.maximize_horiz(_)"),
       kpress("V", "WFrame.maximize_vert(_)"),
-      -- kpress("x", "rofi_renameframe(_sub)"),
     }),
     kpress("M4+R",          "WFrame.begin_kbresize(_)"),
     mclick("Button1@tab",   "WFrame.p_switch_tab(_)"), mclick("Button2@tab", "WFrame.p_switch_tab(_)"),
@@ -205,14 +205,13 @@ Neg_kb.WMoveresMode = {
 }
 
 Neg_kb.Tiling = {
-    --Split current frame vertically
-    kpress("M4+Down", "ioncore.goto_next(_sub, 'down',  {no_ascend=_})"),
     kpress("M4+Up",   "ioncore.goto_next(_sub, 'up',    {no_ascend=_})"),
-    kpress("M4+Left", "ioncore.goto_next(_sub, 'left',  {no_ascend=_})"),
-    kpress("M4+Right","ioncore.goto_next(_sub, 'right', {no_ascend=_})"),
-    kpress("M4+j",    "ioncore.goto_next(_sub, 'down',  {no_ascend=_})"),
     kpress("M4+k",    "ioncore.goto_next(_sub, 'up',    {no_ascend=_})"),
+    kpress("M4+Down", "ioncore.goto_next(_sub, 'down',  {no_ascend=_})"),
+    kpress("M4+j",    "ioncore.goto_next(_sub, 'down',  {no_ascend=_})"),
+    kpress("M4+Left", "ioncore.goto_next(_sub, 'left',  {no_ascend=_})"),
     kpress("M4+h",    "ioncore.goto_next(_sub, 'left',  {no_ascend=_})"),
+    kpress("M4+Right","ioncore.goto_next(_sub, 'right', {no_ascend=_})"),
     kpress("M4+l",    "ioncore.goto_next(_sub, 'right', {no_ascend=_})"),
     kpress("M4+Ct+H", "WTiling.split_at(_, _sub, 'right', true)"),
     kpress("M4+Ct+L", "WTiling.split_at(_, _sub, 'left', true)"),
@@ -220,7 +219,6 @@ Neg_kb.Tiling = {
     kpress("M4+Ct+J", "WTiling.split_at(_, _sub, 'top', true)"),
     kpress("M4+2",    "WTiling.transpose_at(_, _sub)"),
     kpress("M4+3",    "WTiling.flip_at(_, _sub)"),
-    --Destroy current frame
     kpress("M4+Ct+X", "WTiling.unsplit_at(_, _sub)"),
     kpress("M4+Ct+W", function(ws) move_current.move(ws, "up") end),
     kpress("M4+Ct+S", function(ws) move_current.move(ws, "down") end),
