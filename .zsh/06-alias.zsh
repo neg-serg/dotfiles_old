@@ -209,7 +209,7 @@ alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'
 
-alias cal='~/bin/scripts/dzen-cal||cal'
+alias cal='~/bin/scripts/dzen-cal||cal -3'
 
 function resolve_file {
   if [ -f "$1" ]; then
@@ -222,20 +222,31 @@ function resolve_file {
 }
 
 function ta {
-    if [ -z $(pidof transmission-daemon)  ]; then
-        tmp_list=/tmp/torr_list
-        sleep .2s
-        for i in $@; echo $i >> $tmp_list
+    # if [[ -e $(pidof transmission-daemon)  ]]; then
+    tmp_list=/tmp/torr_list
+    sleep .2s
+    for i in $@; echo $i >> $tmp_list
         while read line; do
             file_name="$(resolve_file $line)"
             base_name="$(basename $file_name)"
             \mv $file_name ~/torrent/$base_name && \
-            transmission-remote-cli ~/torrent/$base_name > /dev/null &&
-            echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
+                transmission-remote-cli ~/torrent/$base_name > /dev/null &&
+                # echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
+                echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] $base_name $fg[blue]added $fg[green]"
         done < $tmp_list
         rm $tmp_list
         file_name=
-    else
-        transmission-daemon
-    fi
+    # else
+    #     transmission-daemon
+    # fi
+}
+
+function w7run {
+    qemu-system-x86_64 \
+    -m 4096 \
+    -enable-kvm \
+    -net nic -net user,smb=/mnt/qemu \
+    -drive file=~/1st_level/vm/w7.qcow2 \
+    -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
+    -boot d
 }
