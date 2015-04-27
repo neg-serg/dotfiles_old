@@ -5,11 +5,7 @@ require("os")
 dofile("/home/neg/.notion/dzen_helpers.lua")
 
 function mpd_dzen_update()
-    local template = ""
-    if mpd_status then
-        template = template..mpd_status
-    end
-    mpd_pipe:write(template..'\n')
+    mpd_pipe:write(mpd_status..'\n')
 end
 
 mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
@@ -23,7 +19,6 @@ local mpd_defaults={
     port=6600,
     -- mpd password (if any)
     password=nil,
-    template = wrp(">>", "[","]") .. wrp("%artist - %title %pos/%len")
 }
 -- bugs/requests/comments: delirium@hackish.org
 -- requires that netcat is available in the path
@@ -56,7 +51,7 @@ local function get_mpd_status()
     local data = saferead(mpd)
     if data == nil or string.sub(data,1,6) ~= "OK MPD" then
     mpd:close()
-        return "mpd not running"
+        return "[ no mpd ]"
     end
 
     -- 'password' response (if necessary)
@@ -117,10 +112,13 @@ local function get_mpd_status()
 
     -- done querying; now build the string
     if info.state == "play" then
-        local mpd_st = mpd_defaults.template
-        -- fill in %values
-        mpd_st = string.gsub(mpd_st, "%%([%w%_]+)", function (x) return(info[x]  or "") end)
-        mpd_st = string.gsub(mpd_st, "%%%%", "%%")
+        mpd_st = (info["artist"] or "") .." - ".. (info["title"] or "")
+        if mpd_st:len() > 80 then
+            mpd_st = string.sub(mpd_st,1,76)
+            mpd_st = mpd_st .. "..."
+        end
+        mpd_position = (info["pos"] or "") .."/".. (info["len"] or "")
+        mpd_st = wrp(">>", "[","]") .. wrp(mpd_st.." "..mpd_position)
         mpd_st = mpd_st .. wrp("Vol: " .. info.volume.."%")
         return mpd_st
     elseif info.state == "pause" then
