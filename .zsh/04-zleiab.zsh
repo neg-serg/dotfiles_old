@@ -1,22 +1,12 @@
 declare -A abk
 abk=(
-   #key    # value                  (#d additional doc string)
-    'BG'   '& exit'
-    'C'    '| wc -l'
-    'G'    '|& ack -i '
+    'A'    '|& ack -i '
+    'G'    '|& grep -i '
     'H'    '| head'
-    'Hl'   ' --help |& ${PAGER} -r'    #d (Display help in pager)
-    'LL'   '|& ${PAGER} -r'
-    'N'    '&>/dev/null'           #d (No Output)
-    'R'    '| tr A-z N-za-m'       #d (ROT13)
+    'N'    '&>/dev/null'
     'S'    '| sort -h '
     'T'    '| tail'
     'W'    '|& ls_color'
-    'V'    '|& v -'
-    'co'   './configure && make'
-    "findf" 'find . -maxdepth 1 -type f -printf "%P\n" | \
-        perl -e "@_=<>; print sort grep {! /^[.]/ } @_; print sort grep { /^[.]/ } @_" | \
-        ls_color'
     "jj"   "!$"
     "jk"   "!-2$"
     "jjk"  "!-3$"
