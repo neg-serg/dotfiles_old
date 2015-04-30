@@ -6,10 +6,7 @@
 . ~/.zsh/04-zleiab.zsh
 . ~/.zsh/05-functions.zsh
 . ~/.zsh/06-alias.zsh
-. ~/.zsh/07-misc.zsh
 . ~/.zsh/09-cb.zsh
-. ~/.zsh/10-hashes.zsh
-. ~/.zsh/10-jump.zsh
 . ~/.zsh/11-open.zsh
 . ~/.zsh/12-completion.zsh
 . ~/.zsh/12-vi_additions.zsh
