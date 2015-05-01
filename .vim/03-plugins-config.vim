@@ -6,10 +6,9 @@ let g:EclimCompletionMethod = 'omnifunc' "To provide ycm autocompletion
 let g:livepreview_previewer = 'zathura'
 let g:eregex_default_enable = 0
 let g:mta_use_matchparen_group = 0
-let g:lua_complete_omni = 1
 let g:gasynctags_autostart = 0
 let g:racer_cmd = "/usr/bin/racer"
-let $RUST_SRC_PATH="/home/neg/dev/src/rust/src"
+let $RUST_SRC_PATH="/home/neg/dev/rust/src"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
@@ -217,6 +216,32 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('tagbar')
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
+	let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+            \ 'h:Heading_L1',
+            \ 'i:Heading_L2',
+            \ 'k:Heading_L3'
+        \ ]
+	\ }
+	let g:tagbar_type_css = {
+        \ 'ctagstype' : 'Css',
+        \ 'kinds' : [
+            \ 'c:classes',
+            \ 's:selectors',
+            \ 'i:identities'
+        \ ]
+	\ }
+	let g:tagbar_type_ruby = {
+        \ 'kinds' : [
+            \ 'm:modules',
+            \ 'c:classes',
+            \ 'd:describes',
+            \ 'C:contexts',
+            \ 'f:methods',
+            \ 'F:singleton methods'
+        \ ]
+	\ }
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
@@ -775,3 +800,24 @@ call unite#custom#profile(
             \   'winheight' : 20
             \ })
 nnoremap <leader>t  :Unite youdao:<C-R><C-W><CR>
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - xolox/vim-lua-ftplugin.git                                               │ 
+" │ git@github.com:xolox/vim-lua-ftplugin.git                                         │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-lua-ftplugin') 
+    let g:lua_complete_omni = 1
+    " This sets the default value for all buffers.
+    let g:lua_compiler_name = '/usr/bin/luac'
+    " This is how you change the value for one buffer.
+    let b:lua_compiler_name = '/usr/bin/lualint'
+    let g:lua_check_globals = 1
+    let g:lua_check_syntax = 0  " done via syntastic
+    let g:lua_complete_keywords = 0 " interferes with YouCompleteMe
+    let g:lua_complete_globals = 0  " interferes with YouCompleteMe?
+    let g:lua_complete_library = 0  " interferes with YouCompleteMe
+    let g:lua_complete_dynamic = 0  " interferes with YouCompleteMe
+    let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
+    let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
+    let g:lua_define_completion_mappings = 0
+    let g:lua_internal = 0
+endif
