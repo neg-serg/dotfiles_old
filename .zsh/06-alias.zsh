@@ -20,7 +20,6 @@ NOGLOB_LIST=( \
 for i in ${NOGLOB_LIST[@]}; alias ${i}="noglob ${i}";
 
 alias "zmv=noglob zmv -v"
-
 alias fevil='find . -regextype posix-extended -regex'
 
 alias sp='du -shc ./* | sort -h'
@@ -50,15 +49,8 @@ if [[ ! -x "${HOME}/bin/l" ]]; then
         fi
     fi
 fi
-alias lad='ls -d .*(/)' 
-alias lsd='ls -d *(/)'
-alias lss='ls -sShr'
-alias la="l -a"
-
 alias primusrun="vblank_mode=0 primusrun"
-
 alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
-
 # see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term for details
 alias term2iso="echo 'Setting terminal to iso mode' ; print -n '\e%@'"
 alias term2utf="echo 'Setting terminal to utf-8 mode'; print -n '\e%G'"
@@ -96,11 +88,6 @@ alias rd="rmdir"
 
 alias j='jobs -l'
 
-# some useful aliases
-#a2# Remove current empty directory. Execute \kbd{cd ..; rmdir $OLDCWD}
-alias rmcdir='cd ..; rmdir $OLDPWD || cd $OLDPWD'
-
-#a2# ssh with StrictHostKeyChecking=no \\&\quad and UserKnownHostsFile unset
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 
@@ -113,10 +100,10 @@ alias "now=date +'[%H:%M] %A %e %B %G'"
 alias "mv=mv -vi"
 alias "mvv=\mv"
 
-alias "mount=sudo mount"
-alias "umount=sudo umount"
-alias "chmod=sudo chmod"
-alias "chown=sudo chown"
+sudo_list=( \
+    mount umount chmod chown
+)
+for i in ${sudo_list[@]}; alias ${i}="sudo ${i}";
 
 if [[ -x /usr/bin/systemctl ]]; then
     alias reboot="sudo systemctl reboot"
@@ -128,28 +115,11 @@ else
     alias "poweroff=sudo poweroff"
 fi
 
-alias "lsm=cat /proc/mounts"
-
-alias "ifconfig=sudo ifconfig"
-alias "ip=sudo ip"
-alias "ifup=sudo ifup"
-alias "ifdown=sudo ifdown"
-
-alias "apt-get=sudo apt-get"
-alias "pacman=sudo pacman"
-alias "dpkg=sudo dpkg"
-
-alias "smbclient=sudo smbclient"
-
 alias "tree=tree --dirsfirst -C"
-
 alias "acpi=acpi -V"
 alias "youtube-dl=tsocks youtube-dl"
-alias "vncviewer=vncviewer -passwd ~/.vnc/passwd"
 alias se=simple-extract
-
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
-alias mgcc='gcc -ansi -pedantic -Wextra -Wempty-body -Wfloat-equal -Wignored-qualifiers -Wmissing-declarations -Wmissing-parameter-type -Wmissing-prototypes -Wold-style-declaration -Woverride-init -Wsign-compare -Wstrict-prototypes -Wtype-limits -Wuninitialized -fstack-protector-all -D_FORTIFY_SOURCE=2'
 
 alias gs='git status --short -b'
 alias gt='git tag|sort --reverse'
@@ -160,7 +130,6 @@ alias glp='gl -p'
 alias gcu='git commit -m "updates"'
 
 alias R='rehash'
-#alias gd='PAGER="" git diff $ | skate --language diff -'A
 
 alias :q='exit'
 
@@ -171,11 +140,6 @@ alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS'
 alias yt="you-get"
 alias yr="youtube-viewer --video-player=mpv -C"
 
-# generate alias named "$KERNELVERSION-reboot" so you can use boot with kexec:
-if [[ -x /sbin/kexec ]] && [[ -r /proc/cmdline ]] ; then
-    alias "$(uname -r)-reboot"="kexec -l --initrd=/boot/initrd.img-"$(uname -r)" --command-line=\"$(cat /proc/cmdline)\" /boot/vmlinuz-"$(uname -r)""
-fi
-# alias asdf='setxkbmap -keycodes xfree86+mikachu+labtec -compat complete+mikachu -symbols se_dvorak -types complete+mikachu'
 alias qe='cd *(/om[1])'
 alias hi='_v'
 
@@ -190,26 +154,21 @@ alias f='fasd -f'
 alias ym='~/bin/scripts/yandex.mount > /dev/null'
 alias td='[ -z $(pidof transmission-daemon) ] && transmission-daemon'
 
-alias sdmesg='while true; do sudo dmesg -c; sleep 1; done'
-
-alias -- -='cd -'
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
 alias l.='ls -d .*'
-alias sniff='sudo ngrep -d "en0" -t "^(GET|POST) " "tcp and port 80"'
+alias sniff='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
 alias wd="${HOME}/bin/wd.sh"
 
-# cli pastebin client
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
-
-alias pbdump='pbpaste | pastebinit | pbcopy'    # dump text to pastebin server
 
 alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'
 
 alias cal='~/bin/scripts/dzen-cal||cal -3'
+alias lk="[[ -x `which glances`  ]] && glances"
 
 function resolve_file {
   if [ -f "$1" ]; then
@@ -222,7 +181,6 @@ function resolve_file {
 }
 
 function ta {
-    # if [[ -e $(pidof transmission-daemon)  ]]; then
     tmp_list=/tmp/torr_list
     sleep .2s
     for i in $@; echo $i >> $tmp_list
@@ -230,23 +188,39 @@ function ta {
             file_name="$(resolve_file $line)"
             base_name="$(basename $file_name)"
             \mv $file_name ~/torrent/$base_name && \
-                transmission-remote-cli ~/torrent/$base_name > /dev/null &&
+            transmission-remote-cli ~/torrent/$base_name > /dev/null &&
                 # echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
                 echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] $base_name $fg[blue]added $fg[green]"
         done < $tmp_list
-        rm $tmp_list
-        file_name=
-    # else
-    #     transmission-daemon
-    # fi
+    rm $tmp_list
+    file_name=
 }
 
 function w7run {
     qemu-system-x86_64 \
     -m 4096 \
     -enable-kvm \
+    -cpu host \
+    -machine type=pc,accel=kvm \
     -net nic -net user,smb=/mnt/qemu \
     -drive file=~/1st_level/vm/w7.qcow2 \
     -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
+    -device virtio-serial-pci \
+    -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
+    -chardev spicevmc,id=spicechannel0,name=vdagent \
+    -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
     -boot d
 }
+
+function pl(){
+    if [[ -e "$@" ]]; then
+        find_result="`find "$@"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
+        mpv "${find_result}"
+    else
+        find_result="`find "${HOME}/vid/"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
+        mpv "${find_result}"
+    fi
+}
+
