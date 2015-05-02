@@ -1,3 +1,5 @@
+nnoremap qe :FZF --color=16<CR>
+
 nnoremap Y y$
 
 onoremap aa  a>

@@ -208,7 +208,7 @@ if neobundle#tap('YouCompleteMe')
     let g:ycm_goto_buffer_command = 'vertical-split'
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
-    nnoremap <silent> <F4> call youcompleteme#EnableCursorMovedAutocommands()<CR>
+    nnoremap <silent> <F4> :call youcompleteme#EnableCursorMovedAutocommands()<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - majutsushi/tagbar.git                                                    │

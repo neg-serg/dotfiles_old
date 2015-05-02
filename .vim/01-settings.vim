@@ -12,7 +12,7 @@ if v:version >= 704
   set regexpengine=0
 endif
 
-set conceallevel=2 concealcursor=iv
+set conceallevel=2 concealcursor=incv
 
 " Options initiating with ?m?
 " [global] |'magic'| Set 'magic' patterns ;)
@@ -30,11 +30,10 @@ set conceallevel=2 concealcursor=iv
 "  a        a        a        a          literal 'a'
 set magic
 
-set path+=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
-set path+=./include,../include,/opt/cuda/include
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
-execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
-
+" set path+=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
+" set path+=./include,../include,/opt/cuda/include
+" execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
+" execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
 
 if has("gui_running")
     if &diff
