@@ -189,7 +189,6 @@ function ta {
             base_name="$(basename $file_name)"
             \mv $file_name ~/torrent/$base_name && \
             transmission-remote-cli ~/torrent/$base_name > /dev/null &&
-                # echo "$fg[magenta][$fg[blue]-->>$fg[magenta]] $fg[blue]$reset_color $fg[green]{$fg[purple]$base_name $fg[blue]added $fg[green]}"
                 echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] $base_name $fg[blue]added $fg[green]"
         done < $tmp_list
     rm $tmp_list
@@ -215,12 +214,11 @@ function w7run {
 function pl(){
     if [[ -e "$@" ]]; then
         find_result="`find "$@"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
-        mpv "${find_result}"
     else
         find_result="`find "${HOME}/vid/"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
-        mpv "${find_result}"
     fi
+    echo ${find_result}|xsel
+    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
+    mpv "${find_result}"
 }
 
