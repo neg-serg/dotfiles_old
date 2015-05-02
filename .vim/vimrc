@@ -1,5 +1,5 @@
 scriptencoding utf-8
-set exrc
+set noexrc
 set secure
 set shell=/bin/sh
 
