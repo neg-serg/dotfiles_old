@@ -13,7 +13,7 @@ ACT='onstart=uncollapse;button1=exit;button3=exit'
 
 # Colors
 FG="#a0a0a0"
-BG="#202020"
+BG="#020202"
 highlight="#ffffff"
 highlight2="#3f3f3f"
 
@@ -31,19 +31,6 @@ YEAR=$(date +'%Y')
 
 MM=${1:-"$MONTH"}
 YY=${2:-"$YEAR"}
-NEXT=$((MM+1))
-PREV=$((MM-1))
-let Y_NEXT=Y_PREV=YY
-
-if [[ $NEXT -eq 13 ]]; then
-    NEXT=1
-    Y_NEXT=$((YY+1))
-fi
-
-if [[ $PREV -eq 0 ]]; then
-    PREV=12
-    Y_PREV=$((YY-1))
-fi
 
 # generate calender
 if [[ "$MM" -eq "$MONTH" ]] && [[ "$YY" -eq "$YEAR" ]]; then  # current month, highlight header and date
@@ -62,6 +49,5 @@ fi
 # feed the pipe
 (
 echo "$CAL"
-echo "^ca(1, $0 $PREV $Y_PREV)<<Prev^ca()  ^ca(1, $0 $NEXT $Y_NEXT)Next>>^ca()"
 sleep 7s
 ) > "$PIPE"
