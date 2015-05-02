@@ -2,14 +2,14 @@ NeoBundleFetch 'Shougo/neobundle.vim' "vim bundle manager
 NeoBundle 'airblade/vim-gitgutter.git' "experimental shows what differ
 NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
 NeoBundle 'junegunn/fzf' "use fzf plug for vim
-NeoBundle 'chrisbra/vim-diff-enhanced.git' " Patience diff
+NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
 NeoBundle 'jalcine/cmake.vim.git' "potential better cmake working
-NeoBundle 'kana/vim-smartword.git' "smart word navigation
-NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
+NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'szw/vim-ctrlspace.git' "better sessions
 NeoBundle 'dyng/ctrlsf.vim.git' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2 
+NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
@@ -193,8 +193,8 @@ NeoBundleLazy 'mattn/emmet-vim', {
 NeoBundleLazy 'marijnh/tern_for_vim', {
     \ 'autoload': { 'filetypes': ['javascript'] }
 \ }
-"---------------[ other filetypes ]--------------------------------------------------------------------------
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
+"---------------[ other filetypes ]--------------------------------------------------------------------------
 NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
 NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
