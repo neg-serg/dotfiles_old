@@ -10,25 +10,25 @@ OPTIONS -F -b -T 0
 # EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
 EIGHTBIT 1
  
-# NORMAL         00         # global default, although everything should be something.
-FILE           00         # normal file
-DIR            00;34      # directory
+# NORMAL       00           # global default, although everything should be something.
+FILE           00           # normal file
+DIR            00;34        # directory
 # numerical value, the color is as for the file pointed to.)
 MULTIHARDLINK 00 # regular file with more than one link
-# FIFO           40;33      # pipe
+# FIFO         40;33        # pipe
 SOCK           01;38;5;075  # socket
-BLK            38;5;24   # block device driver
-CHR            38;5;24   # character device driver
+BLK            38;5;24      # block device driver
+CHR            38;5;24      # character device driver
 # This is for files with execute permission:
-EXEC      04;32  # socket
-NORMAL 00;38;5;244 # no color code at all
-FIFO                  38;5;126
-LINK                  38;5;05 
+EXEC           04;32        # socket
+NORMAL         00;38;5;244  # no color code at all
+FIFO           38;5;126
+LINK           38;5;05 
 # ORPHAN
-MULTIHARDLINK        48;5;233;38;5;7;1;3;4;7
-OTHER_WRITABLE       48;5;233;38;5;7;1;3;4;7
-SETUID               38;5;137
-STICKY               38;5;86;48;5;234
+MULTIHARDLINK  48;5;233;38;5;7;1;3;4;7
+OTHER_WRITABLE 48;5;233;38;5;7;1;3;4;7
+SETUID         38;5;137
+STICKY         38;5;86;48;5;234
 RESET 0 # reset to "normal" color
 
 .exe           00;38;5;111
@@ -203,7 +203,7 @@ RESET 0 # reset to "normal" color
 .pacnew        01;31
 
 .patch         48;5;232;38;5;7;1;3;4;7
-.diff          01;33 
+.diff          48;5;232;38;5;7;1;3;4;7
 
 .pc            00;31
 .pfa           00;31
@@ -280,7 +280,6 @@ RESET 0 # reset to "normal" color
 *README          01;38;5;245
 *README.txt      01;38;5;245
 
-#lib
 so               01;38;5;22
 dll              01;38;5;22
 a                01;38;5;22
