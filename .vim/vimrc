@@ -26,9 +26,7 @@ if has('nvim')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-if neobundle#has_cache()
-    NeoBundleLoadCache
-else
+if neobundle#load_cache()
     source ~/.vim/00-bundlelist.vim
     NeoBundleSaveCache
 endif
