@@ -780,27 +780,6 @@ if neobundle#tap('vital.vim')
 endif
 
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - farseer90718/unite-workflow                                              │
-" │ https://github.com/farseer90718/unite-workflow.git                                │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-let g:unite#workflow#reddit#front = 'http://www.reddit.com/.json?feed=foo&user=bar'
-call unite#custom#profile(
-            \ 'source/github/search, source/github/event, '.
-            \ 'source/github/feed, source/gist/search, '.
-            \ 'source/gist/user, source/v2ex, '.
-            \ 'source/reddit, source/wikipedia',
-            \ 'context', {
-            \   'keep_focus' : 1,
-            \   'no_quit' : 1
-            \ })
-call unite#custom#profile(
-            \ 'source/youdao, source/toilet',
-            \ 'context', {
-            \   'max_multi_lines' : 20,
-            \   'winheight' : 20
-            \ })
-nnoremap <leader>t  :Unite youdao:<C-R><C-W><CR>
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - xolox/vim-lua-ftplugin.git                                               │ 
 " │ git@github.com:xolox/vim-lua-ftplugin.git                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
