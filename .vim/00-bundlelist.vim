@@ -55,12 +55,6 @@ NeoBundleLazy 'Shougo/unite-outline', {
 NeoBundleLazy 'tsukkee/unite-tag', {
             \ 'unite_sources' : 'tag'
             \ }
-NeoBundleLazy 'farseer90718/unite-workflow', {
-            \ 'depends' : [
-            \   'mattn/webapi-vim',
-            \   'mattn/gist-vim',
-            \   'jaxbot/github-issues.vim']
-            \ }
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
 NeoBundle 'neg-serg/vim-like-emacs' "add some bindings from readline and emacs for nice vim editing
 NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better that astyle -A14
@@ -132,7 +126,7 @@ NeoBundleLazy 'tpope/vim-surround', {
             \ ['n', 'cs', 'ds', 'ys', 'yS'],
             \ ['x', 'S']]
             \ }
-NeoBundle 'mattn/vim-rtags.git' "rtags plugin for vim
+NeoBundle 'lyuts/vim-rtags.git' "rtags plugin for vim
 "--[ dev ]---------------------------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', {
             \ 'commands' : 'TagbarToggle'
