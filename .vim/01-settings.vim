@@ -30,6 +30,7 @@ set conceallevel=2 concealcursor=incv
 "  a        a        a        a          literal 'a'
 set magic
 
+set path+=.,./include,../include,/usr/include
 " set path+=/usr/include,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.0/include,**
 " set path+=./include,../include,/opt/cuda/include
 " execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
@@ -93,7 +94,7 @@ endif
 if !has("gui_running")
     set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
     set t_Co=256 " I use 256-color terminals
-    if &term == "rxvt-unicode-256color" || &term  == "screen-256color"
+    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color"
         colorscheme wim
     elseif &term =~ 'linux'
         colorscheme darkblue
@@ -121,18 +122,31 @@ if !has("gui_running")
       let &t_EI = "\<Esc>]12;white\x7"
     endif
 
+    if &term =~ "st-256color"
+      let &t_SI = "\e\e]4;258;rgb:32/4c/80\a\e\\"
+      let &t_EI = "\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+    endif
+
     if exists('$TMUX')
         let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
         if s:not_tmuxed_vim =~ "FALSE"
             set t_ut=
-            autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-            let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            if !exists('$ST_TERM')
+                autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+                let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
+                let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+                autocmd VimLeave * silent !tmux set status on;
+                    \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            else
+                autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+                let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
+                let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
+                autocmd VimLeave * silent !tmux set status on;
+                    \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+            endif
             autocmd VimEnter * silent !tmux set status off
             set timeout ttimeout
             set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
-            autocmd VimLeave * silent !tmux set status on;
-                \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
         endif
     endif
 endif
@@ -356,7 +370,6 @@ if has("cscope")
     let GtagsCscope_Auto_Load       = 0
 
     "Alternative workground to work with cscope
-    NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 
 set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
