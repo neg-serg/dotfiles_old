@@ -23,6 +23,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+2",    "named_scratchpad(_, 'alsa')"),
     kpress("M4+Ct+4",    "named_scratchpad(_, 'etc')"),
     kpress("M4+Ct+G",    "rofi_goto_or_create_ws(_)"),
+    kpress("M1+G",       "rofi_goto_win(_)"),
     kpress("M4+F9",      "ioncore.create_ws(_)"),
     -------------------------------------------------------------------------------------
     --[[  PLAYER CONTROL ]]---------------------------------
@@ -54,7 +55,7 @@ Neg_kb.WMPlex_toplevel = {
     -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
     --------------------------
-    kpress("M4+1",     "app.byinstance('~/bin/wim', 'URxvt', 'wim')"),
+    kpress("M4+1",     "app.byclass('~/bin/wim', 'wim')"),
     kpress("M4+x",     "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
     kpress("M4+Ct+a",  "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
     kpress("M4+b",     "app.byclass_withtag(nil, 'mpv',nil, 'video')"),
@@ -137,6 +138,7 @@ Neg_kb.WMPlex = {
 Neg_kb.WFrame = {
     kpress("M4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ),
     kpress("M4+6","rofi_renameframe(_)"),
+    kpress("M4+backslash", "WFrame.switch_next(_)"),
     submap("M1+E", {
       kpress("H", "WFrame.maximize_horiz(_)"),
       kpress("V", "WFrame.maximize_vert(_)"),
@@ -151,7 +153,6 @@ Neg_kb.WFrame = {
 
 Neg_kb.WFrame_toplevel = {
     kpress("M4+A",         "rofi_attach_win(_)"),
-    kpress("M4+backslash", "WFrame.switch_next(_)"),
     kpress("M1+A",         "ioncore.tagged_attach(_)"),
     submap("M1+E", {
         kpress("H", "WFrame.maximize_horiz(_)"),
