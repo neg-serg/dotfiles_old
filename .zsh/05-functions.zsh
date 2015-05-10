@@ -2,16 +2,45 @@ function chpwd() {
     [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
 }
 
+# A shortcut function that simplifies usage of xclip.
+# - Accepts input from either stdin (pipe), or params.
+# ------------------------------------------------
+function cb() {
+  local _scs_col="\e[0;32m"; local _wrn_col='\e[1;31m'; local _trn_col='\e[0;33m'
+  # Check that xclip is installed.
+  if ! type xclip > /dev/null 2>&1; then
+    echo -e "$_wrn_col""You must have the 'xclip' program installed.\e[0m"
+  # Check user is not root (root doesn't have access to user xorg server)
+  elif [[ "$USER" == "root" ]]; then
+    echo -e "$_wrn_col""Must be regular user (not root) to copy a file to the clipboard.\e[0m"
+  else
+    # If no tty, data should be available on stdin
+    if ! [[ "$( tty )" == /dev/* ]]; then
+      input="$(< /dev/stdin)"
+    # Else, fetch input from params
+    else
+      input="$*"
+    fi
+    if [ -z "$input" ]; then  # If no input, print usage message.
+      echo "Copies a string to the clipboard."
+      echo "Usage: cb <string>"
+      echo "       echo <string> | cb"
+    else
+      # Copy input to clipboard
+      echo -n "$input" | xclip -selection c
+      # Truncate text for status
+      if [ ${#input} -gt 80 ]; then input="$(echo $input | cut -c1-80)$_trn_col...\e[0m"; fi
+      # Print status.
+      echo -e "$_scs_col""Copied to clipboard:\e[0m $input"
+    fi
+  fi
+}
+
 function magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
     LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
     zle self-insert
-}
-
-function F() {
-    sack__vim_shortcut=$(sed -n "$1p" < /home/neg/.sack_shortcuts)
-    vim +$sack__vim_shortcut
 }
 
 function no-magic-abbrev-expand() {
@@ -29,14 +58,6 @@ function zc(){
   done
 
   source ~/.zshrc
-}
-
-function isutfenv() {
-    case "$LANG $CHARSET $LANGUAGE" in
-        *utf*) return 0 ;;
-        *UTF*) return 0 ;;
-        *)     return 1 ;;
-    esac
 }
 
 # completion system
@@ -375,19 +396,6 @@ function rationalise-dot() {
 }
 zle -N rationalise-dot
 
-#f1# Reload an autoloadable function
-function freload() { while (( $# )); do; unfunction $1; autoload -U $1; shift; done }
-compdef _functions freload
-
-# zsh profiling
-function profile() { ZSH_PROFILE_RC=1 $SHELL "$@" }
-#f1# Edit an alias via zle
-function edalias() { [[ -z "$1" ]] && { echo "Usage: edalias <alias_to_edit>" ; return 1 } || vared aliases'[$1]' ; }
-compdef _aliases edalias
-#f1# Edit a function via zle
-function edfunc() { [[ -z "$1" ]] && { echo "Usage: edfunc <function_to_edit>" ; return 1 } || zed -f "$1" ; }
-compdef _functions edfunc
-
 ### jump behind the first word on the cmdline.
 ### useful to add options.
 function jump_after_first_word() {
@@ -542,7 +550,7 @@ function myip(){
 }
 
 function eat(){
-    # cp2clip - copy to the clipboard the contents of a file
+    # eat - copy to the clipboard the contents of a file
 
     # Program name from it's filename
     prog=${0##*/}
@@ -685,38 +693,6 @@ function hi2() {
     done
 }
 
-# jump to previous directory by integer or reg-exp, also list dirs,
-# else jump to last visited directory if no argument supplied:
-# NOTE: try to remember to use ZSH directory stack instead... ( cd [-|+]^Tab )
-function back {
-  if [[ $# == 1 ]]; then
-    case $1 {
-      <->)  pushd -q +$1 >& - ;;
-      --)   dirs -lpv|sed '2s|$| \[last\]|' ;;
-      *)    [[ -n $(dirs -lpv|grep -i $1|grep -v ${PWD}) ]] && \
-              pushd -q +${$(dirs -lpv|grep -i $1|grep -v ${PWD})[1]}
-    }
-  else pushd -q - >& - ; fi
-}
-
-# go up Nth amount of directories:
-function up {
-  local arg=${1:-1};
-  while [ ${arg} -gt 0 ]; do
-    cd .. >& -;
-    arg=$((${arg} - 1));
-  done
-}
-
-# copy and follow file(s) to new dir:
-function cpf {
-  if [[ -d $*[-1] ]]; then
-    cp $* && cd $*[-1]
-  elif [[ -d ${*[-1]%/*} ]]; then
-    cp $* && cd ${*[-1]%/*}
-  fi
-}
-
 # un-smart function for viewing sectioned partitions:
 function dfu() {
   local FSTYPES
@@ -768,80 +744,11 @@ function zhist {
     fi
 }
 
-function say() {
-    if [[ "${1}" =~ -[a-z]{2} ]]; then
-        local lang=${1#-};
-        local text="${*#$1}";
-    else 
-        local lang=${LANG%_*};
-        local text="$*";
-    fi;
-    mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ;
-}
-
-function new-session () {
-    if [[ $# -eq 1 ]]; then
-        TMUX= tmux new-session -d -s $1
-        tmux switch-client -t $1
-    else
-        echo 'Session name required'
-    fi
-}
-
-
 # slow output
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
 # change terminal title
 function tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
 # function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
-
-# quirky tmux function:
-function t {
-  _d="/tmp/user-keep/${USER}/tmux/default"
-  _x="/tmp/user-keep/${USER}/tmux/xorg"
-
-  # usage: tmux [command] [[socket]]
-
-  if [[ -n $1 ]]; then
-    function fn_c { if [[ ${+DISPLAY} -eq 1 ]] { _S=${_x} } else { _S=${_d} } }
-    function fn_x { command tmux -uS ${_S} ${@} }
-    function fn_a {
-      command tmux -S ${_S} list-session | while { read i } {
-        if [[ "${i[-1]}" != ')' ]] { _A=T ; _T=${i/:*} ; break
-        };}
-        if [[ ${+_A} -eq 1 ]] { fn_x attach-session -t ${_T} } else { return 1 }
-        unset _A _T
-      }
-    case $1:l {
-      attach)
-        if [[ -n $2 ]] {
-          case $2:l {
-            xorg) _S=${_x} ;;
-            default) _S=${_d} ;;
-            -f|force) fn_c ; fn_x attach-session ;;
-          }
-          fn_a
-        } else { fn_c ; fn_a }
-      ;;
-      list)
-        if [[ -n $2 ]] {
-          case $2:l {
-            xorg) _S=${_x} ; fn_x list-sessions ;;
-            default) _S=${_d} ; fn_x list-sessions ;;
-          }
-        } else {
-          fn_c ; fn_x list-sessions
-        }
-      ;;
-      *) fn_c ; fn_x ${@} ;;
-    }
-  else
-    case ${+DISPLAY} {
-      0) command tmux -uS ${_d} new-session ;;
-      1) command tmux -uS ${_x} new-session ;;
-    }
-  fi
-}
 
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
