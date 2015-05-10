@@ -11,8 +11,3 @@ for index in $(seq 1 $((${#jump_dirs[@]} )))
 do
     bindkey -s "${index}" "cd ${jump_dirs[$index]}"
 done
-  
-# function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd` }
-# function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd` }
-# zle -N up-one-dir
-# zle -N back-one-dir
