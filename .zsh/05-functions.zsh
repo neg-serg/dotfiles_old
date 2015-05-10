@@ -36,6 +36,26 @@ function cb() {
   fi
 }
 
+# Rename pictures based on information found in exif headers
+function jpegrename(){
+    if [[ $# -lt 1 ]] ; then
+        echo 'Usage: jpgrename $FILES' >& 2
+        return 1
+    else
+        echo -n 'Checking for jhead with version newer than 1.9: '
+        jhead_version=`jhead -h | \
+                    grep 'used by most Digital Cameras.  v.*' | \
+                    awk '{print $6}' | tr -d v`
+        if [[ $jhead_version > '1.9' ]]; then
+            echo 'success - now running jhead.'
+            jhead -n%Y-%m-%d_%Hh%M_%f $*
+        else
+            echo 'failed - exiting.'
+        fi
+    fi
+}
+
+
 function magic-abbrev-expand() {
     local MATCH
     LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
