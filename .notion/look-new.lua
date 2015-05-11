@@ -30,7 +30,6 @@ de.defstyle("frame", {
     highlight_pixels = 1,
     shadow_pixels = 1,
     border_style="groove",
-    transparent_background = false,
     de.substyle("*-*-active-scratchpad", {
         shadow_colour = "#1F3B4F",
         border_sides=tnl,
@@ -42,7 +41,6 @@ de.defstyle("frame", {
         highlight_pixels = 2,
         shadow_pixels = 2,
         spacing = 3,
-        transparent_background = false,
     }),
     de.substyle("active", {
         shadow_colour = "#222222",
@@ -54,7 +52,6 @@ de.defstyle("frame", {
         padding_pixels = 0,
         highlight_pixels = 0,
         shadow_pixels = 0,
-        transparent_background = false,
     }),
     gr.refresh()    
 })
@@ -66,7 +63,20 @@ de.defstyle("frame-ionframe",{
     spacing = 0,
 })
 
-de.defstyle("frame-floatframe", {
+de.defstyle("frame-transient", {
+    shadow_colour = "#1F3B4F",
+    border_sides=tnl,
+    highlight_colour = "#1F3B4F",
+    padding_colour = "#000000",
+    background_colour = "#000000",
+    foreground_colour = "#ffffff",
+    padding_pixels = 2,
+    highlight_pixels = 2,
+    shadow_pixels = 2,
+    spacing = 3,
+})
+
+de.defstyle("frame-floating", {
     based_on = "frame",
     border_style = "ridge",
     floatframe_tab_min_w = 10000,
