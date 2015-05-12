@@ -9,6 +9,7 @@ function mpd_dzen_update()
 end
 
 mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
+
 mpd_pipe:setvbuf("line")
 
 local mpd_defaults={
@@ -112,8 +113,43 @@ local function get_mpd_status()
 
     -- done querying; now build the string
     if info.state == "play" then
-        mpd_st = (info["artist"] or "") .." - ".. (info["title"] or "")
-        if mpd_st:len() > 80 then
+        words_artist = {}
+        words_title = {}
+        for w in string.gmatch(info["artist"] or "", "%S+") do
+            table.insert(words_artist, w)
+        end
+
+        for w in string.gmatch(info["title"] or "", "%S+") do
+            table.insert(words_title, w)
+        end
+
+        info_artist = ""
+        for n, w in ipairs(words_artist) do
+            if string.match(words_artist[n], '[абвгдеёжзийклмнопрстуфхцчшщъьыэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЫЭЮЯ]') then
+                words_artist[n] = "^fn(Ubuntu Mono:style=Bold:size=12)" .. words_artist[n]  .. "^fn()"
+            else
+                words_artist[n] = words_artist[n] .. "^fn()"
+            end
+            info_artist = info_artist .. words_artist[n] .. " "
+        end
+
+        info_title = ""
+        for n, w in ipairs(words_title) do
+            if string.match(words_title[n], '[абвгдеёжзийклмнопрстуфхцчшщъьыэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЫЭЮЯ]') then
+                words_title[n] = "^fn(Ubuntu Mono:style=Bold:size=12)" .. words_title[n] .. "^fn()"
+            else
+                words_title[n] = words_title[n] .. "^fn()"
+            end
+            info_title = info_title .. words_title[n] .. " "
+        end
+        info_artist = string.gsub(info_artist, " $", "")
+        info_title = string.gsub(info_title, " $", "")
+
+        mpd_st = info_artist .. " - " .. info_title
+    
+        mpd_st_for_compare = string.gsub(mpd_st, "^fn(Ubuntu Mono:style=Bold:size=12)", "")
+        mpd_st_for_compare = string.gsub(mpd_st_for_compare, "^fn()", "")
+        if mpd_st_for_compare:len() > 80 then
             mpd_st = string.sub(mpd_st,1,76)
             mpd_st = mpd_st .. "..."
         end
