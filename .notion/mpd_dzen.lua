@@ -124,21 +124,31 @@ local function get_mpd_status()
         end
 
         info_artist = ""
+        info_artist_dirty = false
         for n, w in ipairs(words_artist) do
             if string.match(words_artist[n], '[абвгдеёжзийклмнопрстуфхцчшщъьыэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЫЭЮЯ]') then
                 words_artist[n] = "^fn(Ubuntu Mono:style=Bold:size=12)" .. words_artist[n]  .. "^fn()"
+                info_artist_dirty = true
             else
-                words_artist[n] = words_artist[n] .. "^fn()"
+                if info_artist_dirty then
+                    words_title[n] = words_title[n] .. "^fn()"
+                    info_artist_dirty = false
+                end
             end
             info_artist = info_artist .. words_artist[n] .. " "
         end
 
         info_title = ""
+        info_title_dirty = false
         for n, w in ipairs(words_title) do
             if string.match(words_title[n], '[абвгдеёжзийклмнопрстуфхцчшщъьыэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЫЭЮЯ]') then
                 words_title[n] = "^fn(Ubuntu Mono:style=Bold:size=12)" .. words_title[n] .. "^fn()"
-            else
-                words_title[n] = words_title[n] .. "^fn()"
+                info_title_dirty = true
+            else 
+                if info_title_dirty then
+                    words_title[n] = words_title[n] .. "^fn()"
+                    info_title_dirty = false
+                end
             end
             info_title = info_title .. words_title[n] .. " "
         end
