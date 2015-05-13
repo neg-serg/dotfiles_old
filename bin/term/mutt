@@ -1,3 +1,0 @@
-#!/bin/zsh
-# /bin/urxvt -fn xft:Pragmata\ Pro\ for\ Powerline:pixelsize=18,xft:Droid\ Sans\ Mono:pixelsize=18,xft:DejaVu\ Sans\ Mono:pixelsize=18 -name mutt -e mutt &
-/bin/urxvtc -fn xft:Terminus:pixelsize=14 -name mutt -e mutt &

@@ -77,7 +77,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Sh+t", "ioncore.exec_on(_, '~/bin/scripts/toggle_stalonetray')"),
         kpress("t",    "ioncore.exec_on(_, 'urxvt')"),
         kpress("v",    "ioncore.exec_on(_, 'vmware')"),
-        kpress("m",    "app.byinstance('~/bin/term/mutt', 'URxvt', 'mutt')"),
+        kpress("m",    "app.byinstance('/bin/urxvtc -name mutt -e mutt', 'URxvt', 'mutt')"),
         kpress("s",    "ioncore.exec_on(_, 'skype')"),
         kpress("q",    "ioncore.exec_on(_, '~/bin/mpd_sel.sh')"),
         kpress("i",    "ioncore.exec_on(_, '~/bin/pls -output')"),
