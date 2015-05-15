@@ -26,7 +26,7 @@ readonly TAGFILE="$HOME/.config/sxiv/tags"
 readonly TMPFILE="/tmp/sxiv.$$"
 readonly TMPFILE2="/tmp/sxiv2.$$"
 readonly TMPFILE_HSETROOT="/tmp/sxiv_hset.$$"
-readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -columns "1" -font "Pragmata Pro for Powerline 17" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 2 -padding 2 -width 1850'
+readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -font "Pragmata Pro for Powerline 20" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 2 -padding 2 -width 1850'
 Z_DATA_FILE="$XDG_DATA_HOME/sxiv_do.data"
 LAST_ACTION="$XDG_DATA_HOME/sxiv_do.last"
 
@@ -147,7 +147,7 @@ copy_name() {
     cat >"$TMPFILE2"
     fp=$(cat < "$TMPFILE2")
     echo $(resolve_file $fp)|xsel -bi
-    notify-send "$fp"
+    notify-send "[>>] [ $(resolve_file $fp) ]"
     rm -f $TMPFILE2
 }
 
