@@ -1,3 +1,5 @@
+*.skipBuiltinGlyphs:          true
+*.lineSpace:                  0
 URxvt.font:                   xft:Pragmata Pro for Powerline
 URxvt.boldFont:               xft:Pragmata Pro for Powerline:style=bold
 URxvt.italicFont:             xft:Pragmata Pro for Powerline:style=italic
@@ -9,7 +11,7 @@ URxvt.urgentOnBell:           true
 *.highlightTextColor:         #5DA8C7
 
 mutt.colorUL:                 #0172ae
-*shading:                     10
+*shading:                     15
 *.saveLines:                  0
 *.scrollBar:                  false
 *.scrollWithBuffer:           true
@@ -56,6 +58,7 @@ MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
 MainTerminal.scrollTtyOutput:   false
 MainTerminal.termName:          screen-256color
+*.perl-ext:                     default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
 MainTerminal.perl-ext:          default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
 MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size
 MainTerminal.selection-autotransform.0: s/^([^:[:space:]]+(\\d+):?$/:e \\Q$1\\E\\x0d:$2\\x0d/
@@ -81,5 +84,5 @@ MainTerminal.underlineURLs:        true
 MainTerminal.selection.pattern-0: ( at .*? line \\d+[,.])
 
 MainTerminal.keysym.M-Escape: perl:keyboard-select:activate
-MainTerminal.keysym:M-s:      perl:keyboard-select:search
+!MainTerminal.keysym:M-s:      perl:keyboard-select:search
 MainTerminal.keysym.M-C-v:    perl:clipboard:paste_escaped
