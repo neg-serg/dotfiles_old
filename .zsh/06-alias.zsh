@@ -32,7 +32,6 @@ then
             alias $host="ssh $host '$@'";
     fi
 
-    alias cclive='cclive --config-file $XDG_CONFIG_HOME/ccliverc -f best'
     alias bigloo='rlwrap bigloo'
     alias clisp= 'rlwrap clisp'
     alias irb=   'rlwrap irb-1.8'
@@ -57,7 +56,6 @@ alias term2utf="echo 'Setting terminal to utf-8 mode'; print -n '\e%G'"
 
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
-# my new aliases
 alias mk="mkdir -p"
 alias mp="mpv"
 alias mpa="mpv -fs -ao null"
@@ -67,12 +65,6 @@ alias i="ipython"
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
-
-# -- tmux fix ---------------------------------------
-# -- recreate tmux socket if it loss ----------------
-# killall -s SIGUSR1 tmux
-# tmux attach
-# ---------------------------------------------------
 
 alias vz="v ~/.zshrc"
 alias vpad="vim +set\ buftype=nofile +startinsert"
@@ -91,8 +83,6 @@ alias j='jobs -l'
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 
-# simple webserver
-check_com -c python && alias http="python -m SimpleHTTPServer"
 alias ple='perl -wlne'
 
 alias "ftp=lftp"
@@ -136,7 +126,8 @@ alias :q='exit'
 alias iostat='iostat -mtx'
 alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
-# alias yt="youtube-dl -c -t -f best --no-part"
+alias yt="youtube-dl -c -t -f best --no-part"
+# alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
 alias yt="you-get"
 alias yr="youtube-viewer --video-player=mpv -C"
 
@@ -209,6 +200,7 @@ function w7run {
     -chardev spicevmc,id=spicechannel0,name=vdagent \
     -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
     -boot d
+    # ${HOME}/bin/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
 }
 
 function pl(){
