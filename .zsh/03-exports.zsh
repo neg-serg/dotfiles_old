@@ -133,9 +133,12 @@ HELP_ZLE_CACHE_FILE=${HOME}/.cache/zsh_help_zle_lines.zsh
 export MPV_HOME="${HOME}/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=${HOME}/bin/go
+export GOMAXPROCS=4
 # allow to use ,<key> more fast
 export KEYTIMEOUT=5 
 export OSSLIBDIR=/usr/lib/oss
 
 export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+export FZF_DEFAULT_COMMAND='find'
