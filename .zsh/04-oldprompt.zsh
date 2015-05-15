@@ -11,9 +11,6 @@ case ${UID} in
     function precmd(){
         export PS1="$_fizsh_user_pretoken%40<..<`~/.zsh/modules/syntax/fizsh-prompt.zsh`"
     }
-    # PROMPT='%40<..<`/home/neg/.zsh/neg-prompt`'
-    # secondary prompt, printed when the shell needs more information to complete a
-    # command.
     PS2="%{$fg[magenta]%}» %{$reset_color%}"
     # selection prompt used within a select loop.
     PS3='?# '
