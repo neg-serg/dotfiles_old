@@ -1,0 +1,8 @@
+#!/bin/zsh
+FILE=/tmp/xprop_pipe
+
+# generate calender
+XPROP=$(xprop)
+
+echo "${XPROP}" > "${FILE}" 
+cat "${FILE}"|rofi -dmenu -location 6|xsel
