@@ -1,5 +1,5 @@
 #!/bin/zsh
 wid=$(xdotool search --classname mpd-pad2)
 if [ -z "$wid" ]; then
-    /bin/urxvt -fn "xft:Pragmata Pro for Powerline:pixelsize=18" -name mpd-pad2 -e ncmpcpp &
+    /usr/local/bin/st-bright -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp &
 fi
