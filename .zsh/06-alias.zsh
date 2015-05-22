@@ -108,7 +108,7 @@ fi
 alias "tree=tree --dirsfirst -C"
 alias "acpi=acpi -V"
 alias "youtube-dl=tsocks youtube-dl"
-alias se=simple-extract
+alias se=extract
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
 alias gs='git status --short -b'
@@ -214,3 +214,35 @@ function pl(){
     mpv "${find_result}"
 }
 
+user_commands=(
+  list-units is-active status show help list-unit-files
+  is-enabled list-jobs show-environment)
+
+sudo_commands=(
+  start stop reload restart try-restart isolate kill
+  reset-failed enable disable reenable preset mask unmask
+  link load cancel set-environment unset-environment)
+
+for c in $user_commands; do; alias sc-$c="systemctl $c"; done
+for c in $sudo_commands; do; alias sc-$c="sudo systemctl $c"; done
+
+if [ -z "\${which tree}" ]; then
+  tree () {
+      find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+  }
+fi
+
+# Delete 0 byte file
+d0() {
+    find "$(retval $1)" -type f -size 0 -exec rm -rf {} \;
+}
+
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+
+alias google='web_search google'
+# alias wiki='web_search duckduckgo \!w'
+# alias news='web_search duckduckgo \!n'
+# alias youtube='web_search duckduckgo \!yt'
+# alias map='web_search duckduckgo \!m'
+# alias image='web_search duckduckgo \!i'
+# alias ducky='web_search duckduckgo \!'
