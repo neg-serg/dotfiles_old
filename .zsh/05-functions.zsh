@@ -315,85 +315,74 @@ function pk () {
 }
 
 
-function simple-extract() {
-    emulate -L zsh
-    setopt extended_glob noclobber
-    local DELETE_ORIGINAL DECOMP_CMD USES_STDIN USES_STDOUT GZTARGET WGET_CMD
-    local RC=0
-    zparseopts -D -E "d=DELETE_ORIGINAL"
-    for ARCHIVE in "${@}"; do
-        case $ARCHIVE in
-            *.(tar.bz2|tbz2|tbz))    DECOMP_CMD="tar -xvjf -" USES_STDIN=true USES_STDOUT=false ;;
-            *.(tar.gz|tgz))          DECOMP_CMD="tar -xvzf -" USES_STDIN=true USES_STDOUT=false ;;
-            *.(tar.xz|txz|tar.lzma)) DECOMP_CMD="tar -xvJf -" USES_STDIN=true USES_STDOUT=false ;;
-            *.tar)                   DECOMP_CMD="tar -xvf -" USES_STDIN=true USES_STDOUT=false ;;
-            *.rar)                   DECOMP_CMD="unrar x" USES_STDIN=false USES_STDOUT=false ;;
-            *.lzh)                   DECOMP_CMD="lha x" USES_STDIN=false USES_STDOUT=false ;;
-            *.7z)                    DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
-            *.wim)                   DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
-            *.(zip|jar))             DECOMP_CMD="7z x" USES_STDIN=false USES_STDOUT=false ;;
-            *.deb)                   DECOMP_CMD="ar -x" USES_STDIN=false USES_STDOUT=false ;;
-            *.bz2)                   DECOMP_CMD="bzip2 -d -c -" USES_STDIN=true USES_STDOUT=true ;;
-            *.(gz|Z))                DECOMP_CMD="gzip -d -c -" USES_STDIN=true USES_STDOUT=true ;;
-            *.(xz|lzma))             DECOMP_CMD="xz -d -c -" USES_STDIN=true USES_STDOUT=true ;;
-            *)
-                print "ERROR: '$ARCHIVE' has unrecognized archive type." >&2; RC=$((RC+1)); continue
-                ;;
-        esac
-        if ! check_com ${DECOMP_CMD[(w)1]}; then
-            echo "ERROR: ${DECOMP_CMD[(w)1]} not installed." >&2
-            RC=$((RC+2))
-            continue
-        fi
-        GZTARGET="${ARCHIVE:t:r}"
-        if [[ -f $ARCHIVE ]] ; then
-            print "Extracting '$ARCHIVE' ..."
-            if $USES_STDIN; then
-                if $USES_STDOUT; then
-                    ${=DECOMP_CMD} < "$ARCHIVE" > $GZTARGET
-                else
-                    ${=DECOMP_CMD} < "$ARCHIVE"
-                fi
-            else
-                if $USES_STDOUT; then
-                    ${=DECOMP_CMD} "$ARCHIVE" > $GZTARGET
-                else
-                    ${=DECOMP_CMD} "$ARCHIVE"
-                fi
-            fi
-            [[ $? -eq 0 && -n "$DELETE_ORIGINAL" ]] && rm -f "$ARCHIVE"
-        elif [[ "$ARCHIVE" == (#s)(https|http|ftp)://* ]] ; then
-            if check_com curl; then
-                WGET_CMD="curl -L -k -s -o -"
-            elif check_com wget; then
-                WGET_CMD="wget -q -O - --no-check-certificate"
-            else
-                print "ERROR: neither wget nor curl is installed" >&2
-                RC=$((RC+4))
-                continue
-            fi
-            print "Downloading and Extracting '$ARCHIVE' ..."
-            if $USES_STDIN; then
-                if $USES_STDOUT; then
-                    ${=WGET_CMD} "$ARCHIVE" | ${=DECOMP_CMD} > $GZTARGET
-                    RC=$((RC+$?))
-                else
-                    ${=WGET_CMD} "$ARCHIVE" | ${=DECOMP_CMD}
-                    RC=$((RC+$?))
-                fi
-            else
-                if $USES_STDOUT; then
-                    ${=DECOMP_CMD} =(${=WGET_CMD} "$ARCHIVE") > $GZTARGET
-                else
-                    ${=DECOMP_CMD} =(${=WGET_CMD} "$ARCHIVE")
-                fi
-            fi
-        else
-            print "ERROR: '$ARCHIVE' is neither a valid file nor a supported URI." >&2
-            RC=$((RC+8))
-        fi
-    done
-    return $RC
+function extract() {
+  local remove_archive
+  local success
+  local file_name
+  local extract_dir
+
+  if (( $# == 0 )); then
+    echo "Usage: extract [-option] [file ...]"
+    echo
+    echo Options:
+    echo "    -r, --remove    Remove archive."
+    echo
+    echo "Report bugs to <sorin.ionescu@gmail.com>."
+  fi
+
+  remove_archive=1
+  if [[ "$1" == "-r" ]] || [[ "$1" == "--remove" ]]; then
+    remove_archive=0 
+    shift
+  fi
+
+  while (( $# > 0 )); do
+    if [[ ! -f "$1" ]]; then
+      echo "extract: '$1' is not a valid file" 1>&2
+      shift
+      continue
+    fi
+
+    success=0
+    file_name="$( basename "$1" )"
+    extract_dir="$( echo "$file_name" | sed "s/\.${1##*.}//g" )"
+    case "$1" in
+      (*.tar.gz|*.tgz) [ -z $commands[pigz] ] && tar zxvf "$1" || pigz -dc "$1" | tar xv ;;
+      (*.tar.bz2|*.tbz|*.tbz2) tar xvjf "$1" ;;
+      (*.tar.xz|*.txz) tar --xz --help &> /dev/null \
+        && tar --xz -xvf "$1" \
+        || xzcat "$1" | tar xvf - ;;
+      (*.tar.zma|*.tlz) tar --lzma --help &> /dev/null \
+        && tar --lzma -xvf "$1" \
+        || lzcat "$1" | tar xvf - ;;
+      (*.tar) tar xvf "$1" ;;
+      (*.gz) [ -z $commands[pigz] ] && gunzip "$1" || pigz -d "$1" ;;
+      (*.bz2) bunzip2 "$1" ;;
+      (*.xz) unxz "$1" ;;
+      (*.lzma) unlzma "$1" ;;
+      (*.Z) uncompress "$1" ;;
+      (*.zip|*.war|*.jar|*.sublime-package) unzip "$1" -d $extract_dir ;;
+      (*.rar) unrar x -ad "$1" ;;
+      (*.7z) 7za x "$1" ;;
+      (*.deb)
+        mkdir -p "$extract_dir/control"
+        mkdir -p "$extract_dir/data"
+        cd "$extract_dir"; ar vx "../${1}" > /dev/null
+        cd control; tar xzvf ../control.tar.gz
+        cd ../data; tar xzvf ../data.tar.gz
+        cd ..; rm *.tar.gz debian-binary
+        cd ..
+      ;;
+      (*) 
+        echo "extract: '$1' cannot be extracted" 1>&2
+        success=1 
+      ;; 
+    esac
+
+    (( success = $success > 0 ? $success : $? ))
+    (( $success == 0 )) && (( $remove_archive == 0 )) && rm "$1"
+    shift
+  done
 }
 
 function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd`;  }
@@ -785,4 +774,47 @@ function zhist {
 
 function capture() {
    ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv $@
+}
+
+function web_search() {
+  emulate -L zsh
+
+  # define search engine URLS
+  typeset -A urls
+  urls=(
+    google      "https://www.google.com/search?q="
+    bing        "https://www.bing.com/search?q="
+    yahoo       "https://search.yahoo.com/search?p="
+    duckduckgo  "https://www.duckduckgo.com/?q="
+    yandex      "https://yandex.ru/yandsearch?text="
+  )
+
+  # define the open command
+  case "$OSTYPE" in
+    darwin*)  open_cmd="open" ;;
+    cygwin*)  open_cmd="cygstart" ;;
+    linux*)   open_cmd="xdg-open" ;;
+    *)        echo "Platform $OSTYPE not supported"
+              return 1
+              ;;
+  esac
+
+  # check whether the search engine is supported
+  if [[ -z "$urls[$1]" ]]; then
+    echo "Search engine $1 not supported."
+    return 1
+  fi
+
+  # search or go to main page depending on number of arguments passed
+  if [[ $# -gt 1 ]]; then
+    # build search url:
+    # join arguments passed with '+', then append to search engine URL
+    url="${urls[$1]}${(j:+:)@[2,-1]}"
+  else
+    # build main page url:
+    # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
+    url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
+  fi
+
+  nohup $open_cmd "$url" &>/dev/null
 }
