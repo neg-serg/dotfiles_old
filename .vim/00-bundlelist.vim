@@ -157,13 +157,6 @@ NeoBundleLazy 'wannesm/wmgraphviz.vim', {
 NeoBundle 'sbl/scvim.git' " vim plugin for supercollider
 NeoBundle 'janko-m/vim-test.git' "easy testing with vim
 NeoBundle 'xolox/vim-lua-ftplugin.git' "test lua bindings
-" NeoBundleLazy 'jeaye/color_coded', {
-"       \ 'build': {
-"       \   'unix': 'cmake . -DCUSTOM_CLANG=1 -DLLVM_ROOT_PATH=/usr && make && make install',
-"       \ },
-"       \ 'autoload' : { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
-"       \ 'build_commands' : ['cmake', 'make']
-"   \}
 NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
 ""---------------[  Tags  ]-----------------------------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
@@ -179,8 +172,6 @@ if has("cscope")
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
-" LaTeX-Suite: vimscript#475
-" AutomaticTexPlugin: vimscript#2945
 "--[ web ]---------------------------------------------------------------------------------------------------
 NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
