@@ -147,6 +147,8 @@ RESET 0 # reset to "normal" color
 .xls       00;38;5;14
 .xlsx      00;38;5;14
 .xlsm      00;38;5;14
+.ppt       00;38;5;222
+.pptx      00;38;5;222
 .ods          38;5;29
 .odp          38;5;29
 .odb          38;5;29
@@ -215,7 +217,7 @@ RESET 0 # reset to "normal" color
 .pod           01;38;5;23
 .py            01;38;5;30
 .rc            00;31
-.rb            00;31
+.rb            01;38;5;32
 .ru            00;31
 .sed           00;31
 .signature     00;31
