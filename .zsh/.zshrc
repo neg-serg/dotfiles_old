@@ -1,3 +1,15 @@
+#--------------------------------
+#                   ██          -
+#                  ░██          -
+#    ██████  ██████░██          -
+#   ░░░░██  ██░░░░ ░██████      -
+#      ██  ░░█████ ░██░░░██     -
+#     ██    ░░░░░██░██  ░██     -
+#    ██████ ██████ ░██  ░██     -
+#   ░░░░░░ ░░░░░░  ░░   ░░      -
+#                               -
+#--------------------------------
+
 . ~/.zsh/01-init.zsh
 . ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ~/.zsh/03-exports.zsh
@@ -5,7 +17,6 @@
 . ~/.zsh/04-zleiab.zsh
 . ~/.zsh/05-functions.zsh
 . ~/.zsh/06-alias.zsh
-. ~/.zsh/09-cb.zsh
 . ~/.zsh/11-open.zsh
 . ~/.zsh/12-completion.zsh
 . ~/.zsh/12-vi_additions.zsh
