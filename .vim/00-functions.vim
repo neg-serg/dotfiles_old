@@ -146,6 +146,33 @@ endfunction
 command! -complete=command -nargs=+ RedirToClipboard
     \ silent! call RedirToClipbaordFunction(<f -args>)
 
+function! RotateColorscheme()
+  let l:schemes = ["wim"]
+  let l:i = (index(l:schemes, g:colors_name) + 1) % len(l:schemes)
+  execute "colorscheme " . l:schemes[l:i]
+  redraw | echo l:schemes[l:i]
+endfunction
+
+function! DeleteTillSlash()
+    let g:cmd = getcmdline()
+
+    if has("win16") || has("win32")
+        let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
+    else
+        let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
+    endif
+
+    if g:cmd == g:cmd_edited
+        if has("win16") || has("win32")
+            let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
+        else
+            let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
+        endif
+    endif   
+
+    return g:cmd_edited
+endfunc
+
 " function! s:open_online_cpp_doc()
 "     let l = getline('.')
 "
