@@ -25,9 +25,6 @@ xnoremap ad  a"
 onoremap id  i"
 xnoremap id  i"
 
-" Substitute.
-xnoremap s :s//g<Left><Left>
-
 " Indent paste.
 nnoremap <silent> ep o<Esc>pm``[=`]``^
 xnoremap <silent> ep o<Esc>pm``[=`]``^
@@ -94,6 +91,8 @@ nnoremap <silent> zk O<Esc>j
 " info)
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
+
+cnoremap $q <C-\>eDeleteTillSlash()<cr>
 
 " semicolon magic
 nnoremap <space>w :w!<cr>
