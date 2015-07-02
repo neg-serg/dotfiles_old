@@ -128,6 +128,8 @@ if neobundle#tap('syntastic')
 
     let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
+    let g:syntastic_tex_checkers = ['lacheck']
+
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_python_checkers = ['flake8']
     let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
@@ -641,7 +643,8 @@ endif
 " │ https://github.com/luochen1990/rainbow.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('rainbow')
-    let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+    "0 if you want to enable it later via :RainbowToggle
+    let g:rainbow_active = 0 
     let g:rainbow_conf = {
         \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
         \   'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan'],
