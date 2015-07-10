@@ -11,6 +11,10 @@
 alias '?=bc -l <<<'
 alias stderred="LD_PRELOAD=/home/neg/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
 
+# If noglob (for zsh) is not available, just make it a noop
+if ! type noglob >/dev/null 2>&1; then
+    alias noglob=''
+fi
 NOGLOB_LIST=( \
     fc find ftp sftp lftp history locate rake rsync scp \
     eix mmv wget clive clivescan youtube-dl \
@@ -238,6 +242,14 @@ d0() {
 }
 
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+
+g() {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
 
 alias google='web_search google'
 # alias wiki='web_search duckduckgo \!w'
