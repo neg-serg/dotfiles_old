@@ -823,3 +823,12 @@ function hugepage_disable(){
     echo 'echo "madvise" >> /sys/kernel/mm/transparent_hugepage/defrag' | sudo -s
     cat /sys/kernel/mm/transparent_hugepage/defrag
 }
+
+# Tmux create session
+function create_session(){
+    if [ "$1" ]; then
+        tmux new-session -A -s "$@"
+    else
+        tmux ls
+    fi
+}
