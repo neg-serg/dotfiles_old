@@ -1,12 +1,5 @@
---[[
-Author: Etan Reisner
-Email: deryni@gmail.com
-Summary: Toggle (and create) scratchpads by name.
-Version: 0.2
-Last Updated: 2007-01-23
-
-Copyright (c) Etan Reisner 2007
---]]
+function named_scratchpad_exec_with_class(reg, name, exec, clname)
+end
 
 function named_scratchpad(reg, name, mode)
     local named_sp
@@ -29,10 +22,7 @@ function named_scratchpad(reg, name, mode)
                                    name=name,
                                    unnumbered=true,
                                    modal=false,
-                                    --pseudomodal=true,
                                    hidden=true,
-                                   --layer=2, 
-                                   -- sizepolicy="full",
                                    sizepolicy="free",
                                    geom=geom_loc,
                                    style="scratchpad",
@@ -48,7 +38,6 @@ function named_scratchpad(reg, name, mode)
 end
 
 function named_sp_raiseorhide(reg, name)
-    dbg.echo(reg:current():name())
     if reg:current():name() == name then
         named_scratchpad(reg, name, "unset")
     else

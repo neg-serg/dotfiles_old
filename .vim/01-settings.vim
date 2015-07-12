@@ -107,10 +107,12 @@ if !has("gui_running")
     silent !stty -ixon > /dev/null 2>/dev/null
     silent !stty start undef > /dev/null 2>/dev/null
     silent !stty stop undef > /dev/null 2>/dev/null
-
-    " set ttyscroll=256                " try to speedup scrolling
-    set ttyscroll=4                    " try to speedup scrolling
-    set ttymouse=urxvt                 " more accurate mouse tracking
+    
+    if !has("nvim")
+        " set ttyscroll=256                " try to speedup scrolling
+        set ttyscroll=4                    " try to speedup scrolling
+        set ttymouse=urxvt                 " more accurate mouse tracking
+    endif
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance

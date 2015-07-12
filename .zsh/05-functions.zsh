@@ -818,3 +818,8 @@ function web_search() {
 
   nohup $open_cmd "$url" &>/dev/null
 }
+
+function hugepage_disable(){
+    echo 'echo "madvise" >> /sys/kernel/mm/transparent_hugepage/defrag' | sudo -s
+    cat /sys/kernel/mm/transparent_hugepage/defrag
+}

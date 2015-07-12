@@ -8,7 +8,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M1+Tab",     "ioncore.goto_previous()"),
     kpress("M1+space",   "nop()"),
     kpress("M4+F2",      "repl(_)"),
-    kpress("F11",        "rofi_mainmenu()"),
+    kpress("M4+F11",     "rofi_mainmenu()"),
     kpress("M4+Sh+L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
     kpress("M4+Sh+D", "ioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     -------------------------------------------------------------------------------------

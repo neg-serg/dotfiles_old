@@ -53,14 +53,12 @@ end
 function workspacelist(iter)
     local entries={}
     local ws_add=mk_completion_add(entries)
-    
     iter(function(obj)
              if obj_is(obj, "WGroupWS") then
                 ws_add(obj:name())
              end
              return true
          end)
-    
     return entries
 end
 

@@ -1,2 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/one/dev/src/oh-my-zsh/plugins/z'
+let g:netrw_dirhist_2='/one/dev/src/oh-my-zsh/plugins/zeus'
+let g:netrw_dirhist_3='/one/dev/src/oh-my-zsh/plugins/zsh_reload'
+let g:netrw_dirhist_4='/one/dev/src/VCTGI'

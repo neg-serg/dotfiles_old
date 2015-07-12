@@ -30,3 +30,4 @@ source ~/.zsh/75-urltools.plugun.zsh
 source ~/.zsh/89-vim-interation.plugin.zsh
 source ~/.zsh/90-systemadmin.zsh
 source ~/.zsh/98-fzf.zsh
+source ~/.zsh/dynamic-colors.zsh

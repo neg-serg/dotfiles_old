@@ -63,6 +63,9 @@ if neobundle#tap('lusty')
     let g:LustyJugglerDefaultMappings = 0
     let LustyExplorerDefaultMappings  = 0
     nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
+    if has('nvim')
+        let g:LustyJugglerSuppressRubyWarning = 1
+    endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lyokha/vim-xkbswitch.git                                                 │

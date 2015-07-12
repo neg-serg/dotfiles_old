@@ -10,8 +10,14 @@ source ~/.mutt/gmail.mutt
 source ~/.mutt/themes/milomouse
 
 source ~/.mutt/mailboxes
-mailboxes "~/.local/mail/gmail/INBOX" "~/.local/mail/gmail/[Gmail].All Mail" "~/.local/mail/gmail/archive"
-mailboxes "~/.local/mail/gmail/[Gmail].Sent" "~/.local/mail/gmail/[Gmail].Mail" "~/.local/mail/gmail/[Gmail].Drafts" "~/.local/mail/gmail/[Gmail].Trash"
+
+set nm_default_uri = "notmuch:///home/neg/.local/mail/gmail"
+virtual-mailboxes "My INBOX" "notmuch://?query=tag:inbox"
+# Header caching is a fine addition to any mutt.
+set header_cache=~/.mutt/hcache/
+# But body caching doesn't make so much sense with local mail.
+# The X-Label header changing dynamically also messes with this, so disable it.
+unset message_cachedir
 
 set query_command = "abook --mutt-query '%s'"
 set shell="/bin/zsh"
@@ -92,7 +98,7 @@ set sort = 'reverse-threads'
 set sort_aux = 'last-date-received'
 # thread based on regex
 set sort_re
-set uncollapse_jump                        # don't collapse on an unread message
+set uncollapse_jump # don't collapse on an unread message
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 unlists *
@@ -133,7 +139,6 @@ set query_command= "abook --mutt-query '%s'"
 macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 bind editor <Tab> complete-query
 
-# Gmail-style keyboard shortcuts
 macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
 macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"

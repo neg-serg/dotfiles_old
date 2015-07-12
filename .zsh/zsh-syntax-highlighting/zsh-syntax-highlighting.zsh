@@ -224,6 +224,6 @@ add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
 ZSH_HIGHLIGHT_PATTERNS+=("[&;]"                 "fg=blue")
 ZSH_HIGHLIGHT_PATTERNS+=("[<>]([<>]|)([|!]|)"   "fg=blue")
 ZSH_HIGHLIGHT_PATTERNS+=("&[|!]"                "fg=blue")
-ZSH_HIGHLIGHT_PATTERNS+=('\|'                    fg=blue)
+ZSH_HIGHLIGHT_PATTERNS+=('\|'                   "fg=blue")
 ZSH_HIGHLIGHT_MAXLENGTH=350
 # ZSH_HIGHLIGHT_PATTERNS+=('/'                     fg=239)

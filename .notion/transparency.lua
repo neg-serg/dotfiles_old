@@ -61,4 +61,3 @@ end
 ioncore.get_hook("clientwin_mapped_hook"):add(hookhandler)
 ioncore.get_hook("clientwin_unmapped_hook"):add(hookhandler)
 ioncore.get_hook("region_notify_hook"):add(hookhandler)
-
