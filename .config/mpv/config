@@ -6,17 +6,16 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
+vo=vdpau,vaapi
+#vo=opengl-hq
+#vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 #vo=vdpau,vaapi,opengl,xv
 #vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
 #vf=pp=de,hqdn3d
 
-#vo=vdpau,vaapi
-vo=opengl-hq
-vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
-
 hwdec=auto
-# I am dont like gui
-no-osc
+# # I am dont like gui
+# no-osc
 
 osd-font="PragmataPro for Powerline"
 osd-font-size=19

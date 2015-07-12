@@ -1,4 +1,5 @@
 NeoBundle 'tomtom/tinykeymap_vim.git' "test it for a new keymaps
+NeoBundle 'amix/open_file_under_cursor.vim.git' "open file under cursor with gf
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
 NeoBundle 'junegunn/fzf' "use fzf plug for vim
@@ -171,7 +172,7 @@ if has("cscope")
     NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
+" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
 "--[ web ]---------------------------------------------------------------------------------------------------
 NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview

@@ -48,7 +48,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   ftype-sed         'fg=130,bold'
 
   ftype-py          'fg=030'
-  ftype-rb          'fg=192'
+  ftype-rb          'fg=31'
   ftype-lua         'fg=023'
   ftype-tcl         'fg=064,bold'
 #---------------------------------

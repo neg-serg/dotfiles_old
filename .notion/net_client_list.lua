@@ -29,10 +29,8 @@ local function add_client(cwin)
   end)
   list.n = nil
 
-  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window,
-  32, "replace", list)
-  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking,
-  atom_window, 32, "replace", list)
+  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
+  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
 end
 
 local function remove_client(xid)
@@ -46,10 +44,8 @@ local function remove_client(xid)
   end)
   list.n = nil
 
-  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window,
-  32, "replace", list)
-  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking,
-  atom_window, 32, "replace", list)
+  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
+  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
 end
 
 local function net_mark_supported(atom)
@@ -57,8 +53,7 @@ local function net_mark_supported(atom)
     local rootwin = ioncore.rootwin()
     local atom_atom = ioncore.x_intern_atom("ATOM", false)
     local atom_net_supported = ioncore.x_intern_atom("_NET_SUPPORTED", false)
-    ioncore.x_change_property(rootwin:xid(), atom_net_supported, atom_atom,
-    32, "append", {atom})
+    ioncore.x_change_property(rootwin:xid(), atom_net_supported, atom_atom, 32, "append", {atom})
   end
 end
 

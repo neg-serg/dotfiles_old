@@ -58,6 +58,7 @@ path_dirs=(
 	${HOME}/.rvm/bin
 	${BIN_HOME}
 	${BIN_HOME}/go/bin
+	${HOME}/.gem/ruby/2.2.0/bin
 )
 
 export PATH=${(j_:_)path_dirs}

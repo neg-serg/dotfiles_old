@@ -13,7 +13,7 @@ defwinprop{class="Chromium-www",transient_mode="off",transient_mode="off",target
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
-defwinprop{class="Tor-Browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
+defwinprop{class="Tor Browser",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Firefox",transient_mode="off",jumpto="on",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2",lazy_resize=true}
 defwinprop{class="Firefox",instance="Dialog",float=true}
@@ -62,6 +62,12 @@ defwinprop{class="URxvt",instance="wim",target="dev",lazy_resize=true,jumpto=tru
 tag="editor",transparent=false
 -- ignore_max_size=true, ignore_min_size=true,ignore_resizeinc=true,
 }
+defwinprop{class="wim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
+tag="editor",transparent=false
+}
+defwinprop{class="nwim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
+tag="editor",transparent=false
+}
 defwinprop{class="Qvim",instance="qvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",
 ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true,
 tag="editor"
@@ -70,6 +76,14 @@ defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=tr
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
 defwinprop{class="com-sun-javaws-Main",instance="sun-awt-X11-XFramePeer",target="topcoder"}
 defwinprop{class="jetbrains-idea",instance="*",target="jetbrains",floating=true,transient_mode="current"}
+defwinprop{class="jetbrains-idea-ce",instance="sun-awt-X11-XDialogPeer",transient_mode="current",}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XWindowPeer",transient_mode="current",}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XDialogPeer",transient_mode="current",}
+defwinprop{class="jetbrains-clion",floating=true,instance="*",target="jetbrains",transient_mode="current"}
+defwinprop{class="jetbrains-clion",floating=true,instance="sun-awt-X11-XWindowPeer",transient_mode="current",target="jetbrains"}
+defwinprop{class="jetbrains-clion",floating=true,instance="sun-awt-X11-XDialogPeer",transient_mode="current",target="jetbrains"}
+defwinprop{class="jetbrains-clion",floating=true,instance="sun-awt-X11-XFramePeer",transient_mode="off",target="jetbrains"}
+defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal"}
 defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",transient_mode="current"}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mode="off",float=true,tag="virt"}
@@ -94,6 +108,7 @@ defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
 defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
@@ -101,6 +116,8 @@ defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true
 defwinprop{class="Conky",winlist_ignore=true,lazy_resize=true,float=true}
 defwinprop{class="URxvt",instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{class="URxvt",instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
+defwinprop{class="mpd-pad2",instance="*",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
+defwinprop{instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",lazy_resize=true}
 defwinprop{role="mpd",target="ncmpcpp"}
 defwinprop{class="Tilda",instance="tilda",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{class="Guake",instance="guake",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
@@ -114,7 +131,7 @@ defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top"
 defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true,tag="torrent"}
-defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true,tag="torrent"}
+defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true,tag="torrent",float=true}
 defwinprop{class="Anamnesis",winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="float2",tag="soulseek"}

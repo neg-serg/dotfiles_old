@@ -196,7 +196,6 @@ function do_handle_lua(mplex, env, code)
 
     local f, err=loadstring(code)
     if not f then
-        mod_query.warn(mplex, err)
         return
     end
 
@@ -207,7 +206,7 @@ function do_handle_lua(mplex, env, code)
     err=collect_errors(function () result = f() end)
 
     if err then
-        mod_query.warn(mplex, err)
+
     elseif print_res then
        mod_query.message(mplex, print_res .. "\nResult: "..tostring(result))
     end

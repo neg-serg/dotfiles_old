@@ -12,3 +12,116 @@
 2015-04-01 00:57:25	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
 2015-04-01 00:57:29	⚠ 	Error with command "/query" (help on command: /help query)
 2015-04-01 00:57:32		fifo: pipe closed
+2015-04-09 12:30:34		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, relay, script, tcl, trigger, xfer
+2015-04-09 12:30:34	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:30:34	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:32:06		Option changed: weechat.bar.status.hidden = off
+2015-04-09 12:32:46	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:32:46	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:32:46	⚠ 	irc: unable to create temporary server "6667" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:32:46	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:12	⚠ 	irc: unable to create temporary server "6667" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:12	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:46	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:46	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:46	⚠ 	irc: unable to create temporary server "6667" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:46	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:49		fifo: pipe closed
+2015-04-09 12:58:51		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, relay, script, tcl, trigger, xfer
+2015-04-09 12:58:51	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:51	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:57	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:57	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:58:57	⚠ 	irc: unable to create temporary server "6667" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 12:58:57	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 12:59:13		fifo: pipe closed
+2015-04-09 13:00:41		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, relay, script, tcl, trigger, xfer
+2015-04-09 13:00:41	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 13:00:41	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 13:00:47		fifo: pipe closed
+2015-04-09 13:01:43		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-09 13:01:43	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 13:01:43	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 13:01:58	⚠ 	irc: unable to create temporary server "localhost" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 13:01:58	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 13:01:58	⚠ 	irc: unable to create temporary server "6667" because the creation of temporary servers with command /connect is currently disabled
+2015-04-09 13:01:58	⚠ 	irc: if you want to create a standard server, use the command "/server add" (see /help server); if you really want to create a temporary server (NOT SAVED), turn on the option irc.look.temporary_servers
+2015-04-09 13:02:35		Option changed: irc.look.temporary_servers = on  (default: off)
+2015-04-09 13:02:38		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-09 13:02:38		irc: server 6667 created (temporary server, NOT SAVED!)
+2015-04-09 13:11:33		fifo: pipe closed
+2015-04-09 13:11:34		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-09 13:11:34		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-09 13:14:22		fifo: pipe closed
+2015-04-11 17:43:37		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:43:37		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:43:41		fifo: pipe closed
+2015-04-11 17:43:46		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:43:46		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:43:50		fifo: pipe closed
+2015-04-11 17:46:56		fifo: removing old fifo pipe "/home/neg/.weechat/weechat_fifo_19377"
+2015-04-11 17:46:56		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:46:56		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:49:03		fifo: pipe closed
+2015-04-11 17:49:13		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:49:13		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:49:15		fifo: pipe closed
+2015-04-11 17:49:20		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:49:20		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:53:19		[core]
+2015-04-11 17:53:19		  away     color    debug    help     key      mute     proxy    repeat   set      uptime   window 
+2015-04-11 17:53:19		  bar      command  eval     history  layout   plugin   quit     save     unset    version
+2015-04-11 17:53:19		  buffer   cursor   filter   input    mouse    print    reload   secure   upgrade  wait   
+2015-04-11 17:53:19		[ruby]
+2015-04-11 17:53:19		  ruby
+2015-04-11 17:53:19		[tcl]
+2015-04-11 17:53:19		  tcl
+2015-04-11 17:53:19		[python]
+2015-04-11 17:53:19		  python
+2015-04-11 17:53:19		[logger]
+2015-04-11 17:53:19		  logger
+2015-04-11 17:53:19		[aspell]
+2015-04-11 17:53:19		  aspell
+2015-04-11 17:53:19		[exec]
+2015-04-11 17:53:19		  exec
+2015-04-11 17:53:19		[irc]
+2015-04-11 17:53:19		  admin       dcc         info        list        nick        query       samode      squit       userhost    whowas    
+2015-04-11 17:53:19		  allchan     dehalfop    invite      lusers      notice      quiet       sanick      stats       users     
+2015-04-11 17:53:19		  allpv       deop        ison        map         notify      quote       sapart      summon      version   
+2015-04-11 17:53:19		  allserv     devoice     join        me          op          reconnect   saquit      time        voice     
+2015-04-11 17:53:19		  ban         die         kick        mode        oper        rehash      server      topic       wallchops 
+2015-04-11 17:53:19		  connect     disconnect  kickban     motd        part        remove      service     trace       wallops   
+2015-04-11 17:53:19		  ctcp        halfop      kill        msg         ping        restart     servlist    unban       who       
+2015-04-11 17:53:19		  cycle       ignore      links       names       pong        sajoin      squery      unquiet     whois     
+2015-04-11 17:53:19		[script]
+2015-04-11 17:53:19		  script
+2015-04-11 17:53:19		[trigger]
+2015-04-11 17:53:19		  trigger
+2015-04-11 17:53:19		[alias]
+2015-04-11 17:53:19		  AAWAY    AMSG     C        CLOSE    ID       J        LEAVE    MUB      REDRAW   T        unalias  WC       WW     
+2015-04-11 17:53:19		  alias    ANICK    CHAT     EXIT     IG       K        LOC      N        SAY      UB       V        WI     
+2015-04-11 17:53:19		  AME      BYE      CL       FIL      IMAGE    KB       M        Q        SIGNOFF  UMODE    W        WII    
+2015-04-11 17:53:19		[xfer]
+2015-04-11 17:53:19		  me  xfer
+2015-04-11 17:53:19		[relay]
+2015-04-11 17:53:19		  relay
+2015-04-11 17:53:19		[perl]
+2015-04-11 17:53:19		  perl
+2015-04-11 17:53:19		[guile]
+2015-04-11 17:53:19		  guile
+2015-04-11 17:53:19		[lua]
+2015-04-11 17:53:19		  lua
+2015-04-11 17:53:19		[charset]
+2015-04-11 17:53:19		  charset
+2015-04-11 17:54:17		fifo: pipe closed
+2015-04-11 17:54:19		Plugins loaded: alias, aspell, charset, exec, fifo, guile, irc, logger, lua, perl, python, relay, ruby, script, tcl, trigger, xfer
+2015-04-11 17:54:19		irc: server localhost created (temporary server, NOT SAVED!)
+2015-04-11 17:55:18		Buffers list:
+2015-04-11 17:55:18		  [1] core.weechat (notify: all)
+2015-04-11 17:55:18		  [1] irc.server.localhost (notify: all)
+2015-04-11 17:55:18		  [2] irc.localhost.&bitlbee (notify: all)
+2015-04-11 18:12:10	⚠ 	Too few arguments for command "/OPER" (help on command: /help OPER)
+2015-04-11 18:12:33	⚠ 	Error: unknown command "/buffe" (type /help for help)
+2015-04-11 18:13:28	⚠ 	Too few arguments for command "/OPER" (help on command: /help OPER)
+2015-04-11 18:15:28	⚠ 	Error with command "/buffer neg" (help on command: /help buffer)
+2015-04-11 23:07:28		fifo: pipe closed

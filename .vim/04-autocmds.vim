@@ -240,3 +240,15 @@ autocmd vimrc Filetype gitrebase nnoremap <buffer><C-f> :<C-u>Fixup<CR>
 autocmd vimrc FileType slim                                set commentstring=/\ %s
 autocmd vimrc FileType xdefaults                           set commentstring=!%s
 autocmd vimrc FileType gtkrc,nginx,inittab,tmux,sshdconfig set commentstring=#%s
+
+augroup modechange_settings
+  autocmd!
+
+  " Clear search context when entering insert mode, which implicitly stops the
+  " highlighting of whatever was searched for with hlsearch on. It should also
+  " not be persisted between sessions.
+  autocmd InsertEnter * let @/ = ''
+  autocmd BufReadPre,FileReadPre * let @/ = ''
+
+  autocmd InsertLeave * setlocal nopaste
+augroup END

@@ -1,26 +1,28 @@
-function ncmpcpp(ws)
-    ioncore.exec_on(ws, '~/bin/scripts/ncmpcpp')
-    named_scratchpad(ws, 'ncmpcpp')
+function ncmpcpp(reg)
+    local exec_str = '/bin/urxvt -fn "xft:Pragmata Pro for Powerline:pixelsize=18" -name mpd-pad2 -e ncmpcpp'
+    ioncore.exec_on(reg, '~/bin/scripts/ncmpcpp')
+    named_scratchpad(reg, 'ncmpcpp')
+    -- named_scratchpad_exec_with_class(reg, 'ncmpcpp', exec_str, 'mpd-pad2')
 end
 
-function console(ws)
-    ioncore.exec_on(ws, '~/bin/scripts/console')
-    named_scratchpad(ws, 'console')
+function console(reg)
+    ioncore.exec_on(reg, '~/bin/scripts/console')
+    named_scratchpad(reg, 'console')
 end
 
-function ranger(ws)
-    ioncore.exec_on(ws, '~/bin/scripts/ranger')
-    named_scratchpad(ws, 'console')
+function ranger(reg)
+    ioncore.exec_on(reg, '~/bin/scripts/ranger')
+    named_scratchpad(reg, 'ranger')
 end
 
-function gdb(ws)
-    ioncore.exec_on(ws, '~/bin/scripts/gdb')
-    named_scratchpad(ws, 'gdb')
+function gdb(reg)
+    ioncore.exec_on(reg, '~/bin/scripts/gdb')
+    named_scratchpad(reg, 'gdb')
 end
 
-function radare2(ws)
-    ioncore.exec_on(ws, '~/bin/scripts/radare')
-    named_scratchpad(ws, 'radare2')
+function radare2(reg)
+    ioncore.exec_on(reg, '~/bin/scripts/radare')
+    named_scratchpad(reg, 'radare2')
 end
 
 function nop()

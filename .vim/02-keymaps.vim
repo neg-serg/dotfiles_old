@@ -177,3 +177,10 @@ nnoremap ` '
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <space>g g<c-]>
+
+" " Do not copy to default register on delete/change
+" for key in ['d', 'D', 'c', 'C']
+"     for keymode in ['n', 'v']
+"         exe keymode . 'noremap ' . key . ' "_' . key
+"     endfor
+" endfor

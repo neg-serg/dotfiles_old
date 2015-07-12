@@ -11,7 +11,7 @@ xkb_layout = nil
 settings = {
       device = "enp6s0",
       show_avg = 0,       -- show average stat?
-      avg_sec = 60,       -- default, shows average of 1 minute
+      avg_sec = 3,       -- default, shows average of 1 minute
       show_count = 0,     -- show tcp connection count?
       interval = 1*1000,  -- update every second
 }
@@ -72,8 +72,7 @@ date_timer = ioncore.create_timer()
 date_timer:set(1000, date_update)
 mpd_timer = ioncore.create_timer()
 mpd_timer:set(1000, mpd_update)
-kbd_timer = ioncore.create_timer()
-kbd_timer:set(200, kbd_update)
+kbd_update()
 
 local positions = {}    -- positions where the entries will be
 local last = {}         -- the last readings
@@ -239,7 +238,6 @@ local function init_netmon_monitor()
         dzen_update()
     else
         netmon  = "oops"
-        netmon_hint = "critical"
         dzen_update()
     end
 end

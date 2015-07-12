@@ -1,27 +1,30 @@
-[2015-04-01 00:57:25] WeeChat 1.1-dev (git: v1.0-241-gdebfb57) (compiled on Nov 16 2014 21:30:22)
-[2015-04-01 00:57:25] Reading configuration file sec.conf
-[2015-04-01 00:57:25] Reading configuration file weechat.conf
-[2015-04-01 00:57:25] Reading configuration file plugins.conf
-[2015-04-01 00:57:25] Reading configuration file logger.conf
-[2015-04-01 00:57:25] Reading configuration file aspell.conf
-[2015-04-01 00:57:25] Reading configuration file exec.conf
-[2015-04-01 00:57:25] Reading configuration file irc.conf
-[2015-04-01 00:57:25] Reading configuration file script.conf
-[2015-04-01 00:57:25] Reading configuration file trigger.conf
-[2015-04-01 00:57:25] Reading configuration file alias.conf
-[2015-04-01 00:57:25] Reading configuration file xfer.conf
-[2015-04-01 00:57:25] Reading configuration file relay.conf
-[2015-04-01 00:57:25] Reading configuration file charset.conf
-[2015-04-01 00:57:32] Writing configuration file plugins.conf
-[2015-04-01 00:57:32] Writing configuration file charset.conf
-[2015-04-01 00:57:32] Writing configuration file relay.conf
-[2015-04-01 00:57:32] Writing configuration file xfer.conf
-[2015-04-01 00:57:32] Writing configuration file alias.conf
-[2015-04-01 00:57:32] Writing configuration file trigger.conf
-[2015-04-01 00:57:32] Writing configuration file script.conf
-[2015-04-01 00:57:32] Writing configuration file irc.conf
-[2015-04-01 00:57:32] Writing configuration file exec.conf
-[2015-04-01 00:57:32] Writing configuration file aspell.conf
-[2015-04-01 00:57:32] Writing configuration file logger.conf
-[2015-04-01 00:57:32] Writing configuration file weechat.conf
-[2015-04-01 00:57:32] Writing configuration file sec.conf
+[2015-04-11 17:54:19] WeeChat 1.2-dev (git: v1.1-185-gc899254) (compiled on Apr  9 2015 13:01:35)
+[2015-04-11 17:54:19] Reading configuration file sec.conf
+[2015-04-11 17:54:19] Reading configuration file weechat.conf
+[2015-04-11 17:54:19] Reading configuration file plugins.conf
+[2015-04-11 17:54:19] Reading configuration file charset.conf
+[2015-04-11 17:54:19] Reading configuration file logger.conf
+[2015-04-11 17:54:19] Reading configuration file exec.conf
+[2015-04-11 17:54:19] Reading configuration file trigger.conf
+[2015-04-11 17:54:19] Reading configuration file aspell.conf
+[2015-04-11 17:54:19] Reading configuration file alias.conf
+[2015-04-11 17:54:19] Reading configuration file xfer.conf
+[2015-04-11 17:54:19] Reading configuration file irc.conf
+[2015-04-11 17:54:19] Reading configuration file relay.conf
+[2015-04-11 17:54:19] Reading configuration file script.conf
+[2015-04-11 17:54:19] irc: connecting to server localhost/6667...
+[2015-04-11 23:07:28] Terminal lost, exiting WeeChat...
+[2015-04-11 23:07:28] Writing configuration file plugins.conf
+[2015-04-11 23:07:28] Writing configuration file charset.conf
+[2015-04-11 23:07:28] Signal SIGHUP received, exiting WeeChat...
+[2015-04-11 23:07:28] Writing configuration file relay.conf
+[2015-04-11 23:07:28] Writing configuration file xfer.conf
+[2015-04-11 23:07:28] Writing configuration file alias.conf
+[2015-04-11 23:07:28] Writing configuration file trigger.conf
+[2015-04-11 23:07:28] Writing configuration file script.conf
+[2015-04-11 23:07:28] Writing configuration file irc.conf
+[2015-04-11 23:07:28] Writing configuration file exec.conf
+[2015-04-11 23:07:28] Writing configuration file aspell.conf
+[2015-04-11 23:07:28] Writing configuration file logger.conf
+[2015-04-11 23:07:28] Writing configuration file weechat.conf
+[2015-04-11 23:07:28] Writing configuration file sec.conf
