@@ -1,0 +1,192 @@
+#workspacestodockContainerWrapper {
+}
+
+#workspacestodockContainer {
+}
+
+/*.right .workspace-thumbnails,
+.left .workspace-thumbnails {
+    border-image: none;
+}*/
+
+.right .workspace-thumbnails-fullheight {
+    border-image: url("../../panel-assets/panel-right.svg") 7;
+}
+
+.left .workspace-thumbnails-fullheight {
+    border-image: url("../../panel-assets/panel-left.svg") 7;
+}
+
+.workspacestodock-shortcuts-panel {
+    padding: 2px;
+    spacing: 0px;
+}
+
+.workspacestodock-shortcuts-panel-popupmenu {
+    padding: 2px;
+    spacing: 0px;
+}
+
+.workspacestodock-shortcuts-panel-favorites {
+}
+
+.workspacestodock-shortcuts-panel-running {
+}
+
+/* shortcuts panel buttons */
+#workspacestodockContainer .app-well-app {
+}
+.workspacestodock-shortcut-button {
+}
+.workspacestodock-shortcut-button-symbolic {
+}
+
+/* shortcuts panel button icons */
+#workspacestodockContainer .app-well-app > .overview-icon {
+}
+.workspacestodock-shortcut-button-icon {
+    padding: 6px;
+}
+.workspacestodock-shortcut-button-symbolic-icon {
+    padding: 8px;
+}
+
+#workspacestodockContainer .popup-separator-menu-item {
+    margin: 2px;
+}
+.workspacestodock-shortcut-panel-separator {
+    -margin-horizontal: 2px;
+}
+
+.workspacestodock-shortcut-panel-filler {
+    -gradient-height: 1px;
+    -gradient-start: rgba(255,255,255,0.0);
+    -gradient-end: rgba(255,255,255,0.0);
+    -margin-horizontal: 2px;
+    height: 1px;
+    padding: 0px;
+}
+
+.workspacestodock-workspace-caption-container {
+    border: 1px rgba(0, 0, 0, .85);
+}
+
+.workspacestodock-workspace-caption-background {
+    background-color: rgba(10, 10 , 10, .4);
+    border: 1px transparent;
+    border-top-color: rgba(0, 0, 0, .85);
+}
+
+.workspacestodock-workspace-caption {
+}
+
+/* caption window apps (taskbar) */
+.workspacestodock-caption-windowapps {
+    padding: 0;
+}
+
+.workspacestodock-caption-windowapps-menu {
+    -boxpointer-gap: 12px;
+}
+
+.workspacestodock-caption-windowapps-menu-icon {
+}
+
+.workspacestodock-caption-windowapps-menu-label {
+    padding: 0px 10px 0px 10px;
+}
+
+.workspacestodock-caption-windowapps-menu-item:active .window-close {
+    background-image: url("../../widget-assets/close-simple-active.svg");
+}
+
+.workspacestodock-caption-windowapps-menu-item .window-close {
+    background-image: url("../../widget-assets/close-simple.svg");
+    background-size: 24px;
+    height: 24px;
+    width: 24px;
+}
+
+.workspacestodock-caption-windowapps-button {
+    margin: 1px;
+}
+
+.workspacestodock-caption-windowapps-button-icon {
+    padding: 1px;
+    background-color: rgba(30, 30, 30, .65);
+    border: 1px rgba(0, 0, 0, .55);
+}
+
+.workspacestodock-caption-windowapps-button-active > .workspacestodock-caption-windowapps-button-icon {
+    background-color: rgba(141, 174, 203, .8);
+    border: 1px rgba(0, 19, 34, .85);
+}
+
+/* caption workspace number */
+.workspacestodock-caption-number {
+    color: rgba(255, 255, 255, .3);
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+}
+
+/* caption workspace name */
+.workspacestodock-caption-name {
+    color: rgba(255, 255, 255, .7);
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 4px;
+}
+
+/* caption workspace windowcount */
+.workspacestodock-caption-windowcount {
+    min-width: 7px;
+    color: rgba(255, 255, 255, .7);
+    background-color: rgba(255, 255, 255, .2);
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+/* caption workspace windowcount image*/
+.workspacestodock-caption-windowcount-image {
+    width: 20px;
+    height: 16px;
+}
+
+/* The classes below are used in conjunction with the above workspacestodock-caption-windowcount-image
+ * They provide background images that corespond with the window count */
+.workspacestodock-caption-windowcount-image-1 {
+}
+.workspacestodock-caption-windowcount-image-2 {
+}
+.workspacestodock-caption-windowcount-image-3 {
+}
+.workspacestodock-caption-windowcount-image-4 {
+}
+
+/* caption spacer-filler */
+.workspacestodock-caption-spacer {
+    border: 1px solid rgba(0, 0, 0, 0);
+    width: 1px;
+}
+
+/* The classes below are used in conjuction with the above classes
+ * They provide additional theming for the current workspace caption */
+.workspacestodock-workspace-caption-background-current {
+}
+
+.workspacestodock-caption-number-current {
+}
+
+.workspacestodock-caption-name-current {
+}
+
+.workspacestodock-caption-windowcount-current {
+}
+
+.workspacestodock-caption-windowcount-image-current {
+}

@@ -1,0 +1,94 @@
+/* ===================================================================
+   ! End Session dialog
+   ===================================================================*/
+
+.end-session-dialog {
+    spacing: 0 !important;
+    border: 0 rgba(0, 0, 0, 0) !important;
+
+
+    &-layout {
+        padding-left: 1em;
+
+        &:rtl { padding-right: 1em; }
+    }
+
+    &-description {
+        width: 28em;
+        margin: .4em 0;
+
+        &:rtl { text-align: right; }
+    }
+
+    .check-box {
+        margin-top: .4em;
+        margin-bottom: .4em;
+
+        StLabel {
+            font-weight: bold;
+        }
+    }
+
+    &-warning {
+        width: 28em;
+        color: $warning-text;
+        padding-top: 0;
+
+        &:rtl { text-align: right; }
+    }
+
+    &-logout-icon {
+        border-radius: 0;
+        @include size(32px);
+        background-size: contain;
+    }
+
+    &-shutdown-icon {
+        color: $text-primary;
+        @include size(32px);
+    }
+
+    &-list {
+        border-image: url("background-assets/light-bg.svg") 6;
+        max-height: 230px;
+        padding: 0;
+        margin-top: .4em;
+    }
+
+    &-inhibitor-layout {
+        padding: 16px;
+        spacing: 0;
+        max-height: 200px;
+    }
+
+    &-list-header {
+        font-weight: bold;
+        padding-bottom: 16px;
+
+        &:rtl { text-align: right; }
+    }
+
+    &-session-list,
+    &-app-list {
+        spacing: 0;
+    }
+
+    &-app-list-item,
+    &-session-list-item {
+        spacing: 1em;
+        padding-top: 16px;
+
+        &:first-child {
+            border: 0 rgba(0, 0, 0, .05);
+            border-top-width: 1px;
+        }
+
+        &-name { font-weight: bold; }
+
+        &-description {
+            margin-top: .4em;
+            color: $text-secondary;
+            font-size: 9pt;
+        }
+    }
+}

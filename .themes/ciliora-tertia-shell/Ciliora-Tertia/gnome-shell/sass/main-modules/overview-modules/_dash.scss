@@ -1,0 +1,127 @@
+/* ===================================================================
+   ! Dash
+   ===================================================================*/
+
+#dash {
+    border-image: url("overview-assets/overview-dark-bg-left.svg") 7;
+    font-size: 9pt;
+    padding: 4px 0;
+    background-color: transparent !important;
+    border: 0 transparent !important;
+    border-radius: 0 !important;
+
+    &:rtl {
+        border-image: url("overview-assets/overview-dark-bg-right.svg") 7;
+        border-radius: 0;
+    }
+
+    & .placeholder {
+        background-image: none;
+        @include size(16px);
+    }
+
+    & .empty-dash-drop-target {
+        @include size(24px);
+    }
+}
+
+.dash-label {
+    border-image: url("overview-assets/overview-dark-bg.svg") 7;
+    padding: 4px 12px;
+    -x-offset: 8px;
+    color: $text-primary-invert;
+    font-weight: bold;
+    text-align: center;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+/* ===================================================================
+   ! Dash Icons
+   ===================================================================*/
+
+.show-apps-icon { color: $text-primary-invert; }
+
+.overview-icon {
+
+    .show-apps &,
+    .dash-item-container .app-well-app & {
+        background-color: transparent !important;
+        box-shadow: 0 0 transparent !important;
+        border: 0 transparent !important;
+        border-radius: 0 !important;
+        transition-duration: 0ms !important;
+        padding: 6px !important;
+    }
+
+    .show-apps:hover &,
+    .show-apps:focus &,
+    .show-apps:selected &,
+    .show-apps:active &,
+    .show-apps:checked &,
+    .dash-item-container .app-well-app:hover &,
+    .dash-item-container .app-well-app:focus &,
+    .dash-item-container .app-well-app:selected &,
+    .dash-item-container .app-well-app:active &,
+    .dash-item-container .app-well-app:checked & {
+        border-image: url("overview-assets/overview-light-bg.svg") 7;
+    }
+}
+
+.dash-item-container > StWidget {
+    padding: 2px 6px;
+}
+/* ===================================================================
+   ! Dash-to-Dock
+   ===================================================================*/
+
+#dashtodockContainer {
+
+    &.left #dash {
+        border-image: url("overview-assets/overview-dark-bg-left.svg") 7;
+    }
+
+    &.right #dash {
+        border-image: url("overview-assets/overview-dark-bg-right.svg") 7;
+    }
+
+    &.top #dash {
+        border-image: url("overview-assets/overview-dark-bg-top.svg") 7;
+    }
+
+    &.bottom #dash {
+        border-image: url("overview-assets/overview-dark-bg-bottom.svg") 7;
+    }
+
+
+
+    &.left.extended #dash {
+        border-image: url("panel-assets/panel-left.svg") 7;
+    }
+
+    &.right.extended #dash {
+        border-image: url("panel-assets/panel-right.svg") 7;
+    }
+
+    &.top.extended #dash {
+        border-image: url("panel-assets/panel-top.svg") 7;
+    }
+
+    &.bottom.extended #dash {
+        border-image: url("panel-assets/panel-bottom.svg") 7;
+    }
+
+
+
+    .app-well-app-running-dot {
+        background-image: none;
+        @include size(28px, 4px);
+    }
+
+    @each $var in 1, 2, 3, 4 {
+        .running#{$var} .app-well-app-running-dot {
+            background-image: url("overview-assets/running#{$var}.svg");
+        }
+    }
+}
+
+

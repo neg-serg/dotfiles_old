@@ -1,0 +1,26 @@
+.extension-dialog {
+    .headline {
+        font-size: 10pt;
+    }
+
+    StIcon {
+        icon-size: 32px;
+        @include size(32px);
+    }
+
+    .modal-dialog-button:focus {
+        border-image: url("button-assets/button-green.svg") 10;
+        color: $text-primary-invert;
+    }
+
+    .modal-dialog-button:focus:hover {
+        border-image: url("button-assets/button-green-hover.svg") 10;
+        color: $text-primary-invert;
+    }
+
+    .modal-dialog-button:focus:active,
+    .modal-dialog-button:focus:pressed {
+        border-image: url("button-assets/button-green-pressed.svg") 10;
+        color: $text-primary-invert;
+    }
+}

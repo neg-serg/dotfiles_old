@@ -1,0 +1,38 @@
+/* ===================================================================
+   ! Modal dialogs
+   ===================================================================*/
+
+/* Dialog Subject Text Style */
+.show-processes-dialog-subject,
+.mount-question-dialog-subject,
+.end-session-dialog-subject {
+    font-size: 12pt;
+    font-weight: bold;
+    color: $text-primary;
+}
+
+.headline {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.modal-dialog {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: 0 transparent !important;
+    border-radius: 0;
+    color: $text-primary;
+    padding: 0;
+    border-image: url("background-assets/popup.svg") 9;
+
+    > * {
+        padding: 24px;
+        border-radius: 0;
+    }
+
+    > .modal-dialog-button-box {
+        spacing: 0;
+        margin: 0;
+        padding: 6px 16px 10px 16px;
+        border-image: url("background-assets/modal-button-box.svg") 8;
+    }
+}

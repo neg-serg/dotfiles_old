@@ -1,0 +1,37 @@
+/* ===================================================================
+   ! Workspace Switcher
+   ===================================================================*/
+
+.workspace-switcher {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    spacing: 0 !important;
+
+    &-group  {
+        padding: 12px;
+    }
+
+    &-container {
+        border-image: url("background-assets/popup-outside.svg") 7;
+        padding: 3px !important;
+        border: 0;
+    }
+}
+
+.ws-switcher-active-up, .ws-switcher-active-down {
+    border-image: url("background-assets/hover-workspace-switcher.svg") 7;
+    height: 30px;
+    background-image: none !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+
+.ws-switcher-box {
+    border-image: url("background-assets/popup-inside.svg") 7;
+    height: 30px;
+    border: 0 solid rgba(0, 0, 0, 0) !important;
+    background: transparent;
+    border-radius: 0 !important;
+}

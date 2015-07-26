@@ -1,0 +1,129 @@
+/* ===================================================================
+   ! Notifications
+   ===================================================================*/
+
+.url-highlighter {
+    link-color: $accent-text;
+}
+
+.notification-banner {
+    border-image: url("background-assets/popup-outside.svg") 7;
+    color: $text-primary;
+    font-size: 9pt;
+    padding: 3px;
+    margin: 2px;
+    width: 34em;
+    border-radius: 0 !important;
+    background-color: transparent !important;
+    border: 0 solid transparent !important;
+
+    > StBoxLayout {
+        border-image: url("background-assets/popup-inside.svg") 7;
+        padding: 0px;
+    }
+
+    &:hover, &:focus {
+        border-image: url("background-assets/popup-outside.svg") 7;
+        color: $text-primary;
+        background-color: transparent !important;
+
+        .url-highlighter { link-color: $text-secondary-invert; }
+
+        .message-content StIcon { color: $warning; }
+    }
+
+    StEntry {
+        margin: 0 10px 10px 10px;
+    }
+
+    .message-icon-bin {
+        padding: 12px;
+    }
+
+    .message-content {
+        padding: 12px 12px 12px 0;
+    }
+
+    .notification-actions {
+        border-image: url("background-assets/notification-button-box.svg") 8;
+        background-color: transparent;
+        padding: 6px 6px;
+        spacing: 1px;
+    }
+
+    .notification-button {
+        padding: 10px;
+        background-color: transparent !important;
+    }
+}
+
+.hotplug-notification-item {
+    color: $text-secondary;
+    font-size: 9pt;
+    text-shadow: none !important;
+    padding: 10px;
+
+    &:focus {
+        padding: 1px 71px 1px 11px;
+    }
+
+    &-icon {
+        icon-size: 16px;
+        padding: 2px 5px;
+    }
+}
+
+.secondary-icon {
+    icon-size: 16px;
+}
+
+/*--- Chat Bubble ---*/
+
+.chat-body {
+    spacing: 5px;
+    padding: 4px 6px;
+}
+
+.chat-response {
+    margin: 5px;
+}
+
+.chat-log-message {
+    color: $text-secondary;
+}
+
+.chat-new-group {
+    padding-top: 1em;
+}
+
+.chat-received {
+    border-image: url("background-assets/light-bg.svg") 7;
+    padding: 1em;
+    margin-left: 2em;
+    color: $text-primary;
+    font-weight: normal;
+
+    &:rtl { padding: 1em; }
+}
+
+.chat-sent {
+    border-image: url("background-assets/light-bg-marked-blue.svg") 7;
+    padding: 1em 1em 1em 1.4em;
+    margin-left: 0;
+    color: $text-primary;
+    font-weight: bold;
+
+    &:rtl { padding: 1em 1em 1em 1.4em; }
+}
+
+.chat-meta-message {
+    padding-left: 4px;
+    font-size: 9pt;
+    font-weight: bold;
+    color: $text-secondary;
+
+    &:rtl {
+        padding-left: 0;
+        padding-right: 4px;
+    }
+}

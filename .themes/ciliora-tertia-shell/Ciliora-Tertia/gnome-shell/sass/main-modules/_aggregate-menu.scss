@@ -1,0 +1,32 @@
+/* ===================================================================
+   ! Aggregate Menu
+   ===================================================================*/
+
+.system-switch-user-submenu-icon {
+    icon-size: 16px;
+    color: $text-primary;
+    border: 0 solid transparent !important;
+}
+
+.aggregate-menu {
+    width: 360px;
+
+    .popup-menu-icon { padding: 0; }
+}
+
+.system-menu-action {
+    color: $text-primary;
+    border-radius: 0;
+    padding: 10px;
+    border: 0 solid transparent !important;
+
+    &:hover, &:focus, &:active {
+        color: $text-primary-invert;
+        border-radius: 0;
+        padding: 10px;
+        border: 0 solid transparent !important;
+        border-image: url("background-assets/hover.svg") 6;
+    }
+
+    > StIcon { icon-size: 16px; }
+}

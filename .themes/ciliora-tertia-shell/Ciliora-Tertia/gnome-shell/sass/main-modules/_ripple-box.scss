@@ -1,0 +1,12 @@
+/* ===================================================================
+   ! Ripple Box
+   ===================================================================*/
+
+.ripple-box {
+    @include size(12px);
+    background-image: url("misc-assets/corner-ripple-ltr.svg");
+
+    &:rtl {
+        background-image: url("misc-assets/corner-ripple-rtla.svg");
+    }
+}

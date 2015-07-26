@@ -1,0 +1,140 @@
+/* ===================================================================
+ * ! Search Results
+ * ===================================================================*/
+
+#searchResults {
+    padding: 20px 10px 0px 10px;
+    spacing: 18px;
+}
+
+#searchResultsBin {
+    max-width: 1000px;
+}
+
+#searchResultsContent {
+    padding-left: 20px;
+    padding-right: 20px;
+    spacing: 16px;
+}
+
+.search-statustext {
+    color: $text-secondary-invert;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+/* This should be equal to '#searchResultsContent' spacing */
+.search-section {
+    spacing: 16px;
+}
+
+.search-section-separator {
+    height: 4px;
+    -margin-horizontal: 1.5em;
+    -gradient-height: 0;
+}
+
+/* Space between the provider icon and the results container */
+.search-section-content {
+    spacing: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    color: $text-primary-invert;
+    border-image: url("overview-assets/overview-light-bg.svg") 6;
+}
+/* ===================================================================
+ * ! List Search Results
+ * ===================================================================*/
+
+.list-search-results {
+    spacing: 0;
+    padding: 0;
+    border-image: url("overview-assets/search-list-border-left.svg") 6;
+}
+
+.list-search-result {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0 solid transparent;
+    border-radius: 0;
+    padding: 0;
+    spacing: 0;
+    transition-duration: 0ms !important;
+    text-align: center;
+    border-image: url("overview-assets/search-list-border-bottom.svg") 6;
+
+    &:hover, &:focus, &:active {
+        border-image: url("overview-assets/search-list-hover.svg") 6;
+    }
+
+    &:last-child {
+        border-image: none;
+
+        &:hover, &:focus, &:selected, &:active {
+            border-image: url("overview-assets/search-list-hover-last-child.svg") 6;
+        }
+    }
+
+    &:first-child {
+        &:hover, &:focus, &:selected, &:active {
+            border-image: url("overview-assets/search-list-hover-first-child.svg") 6;
+        }
+    }
+}
+
+.list-search-result-content {
+    spacing: 12px;
+    padding: 14px;
+    min-height: 64px;
+}
+
+.list-search-result-title {
+    text-shadow: 0 0 rgba(0, 0, 0, 0);
+    font-weight: bold;
+    font-size: 12pt;
+    color: $text-primary-invert;
+    padding-bottom: 5px;
+
+    .list-search-result:hover &,
+    .list-search-result:focus &,
+    .list-search-result:selected &,
+    .list-search-result:pressed &,
+    .list-search-result:active & {
+        color: $text-primary-invert;
+    }
+}
+
+.list-search-result-description {
+    text-shadow: 0 0 rgba(0, 0, 0, 0);
+    font-weight: normal;
+    font-size: 9pt;
+    color: $text-primary-invert;
+
+    .list-search-result:hover &,
+    .list-search-result:focus &,
+    .list-search-result:selected &,
+    .list-search-result:pressed &,
+    .list-search-result:active & {
+        color: $text-primary-invert;
+    }
+}
+/* ===================================================================
+ * ! Search Provider Icon
+ * ===================================================================*/
+
+.search-provider-icon-more {
+    @include size(48px);
+    background-image: url("overview-assets/search-provider-overlay.svg");
+}
+
+.search-provider-icon {
+    border: 0 transparent;
+    border-radius: 0;
+    transition-duration: 0ms !important;
+    @include size(64px);
+    padding: 14px;
+
+    &:hover, &:focus, &:selected, &:active {
+        border-image: url("overview-assets/search-provider-hover.svg") 6;
+    }
+}

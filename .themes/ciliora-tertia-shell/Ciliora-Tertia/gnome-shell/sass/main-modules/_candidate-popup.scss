@@ -1,0 +1,107 @@
+/* ===================================================================
+   ! Candidate Popup
+   ===================================================================*/
+
+.candidate-popup-content {
+    border-image: url("background-assets/popup.svg") 7;
+    padding: .3em;
+    spacing: .5em;
+    color: $text-primary;
+}
+
+.candidate-index {
+    color: $text-secondary;
+    font-weight: normal;
+    font-size: 10pt;
+}
+
+.candidate-label {
+    color: $text-primary;
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+.candidate-popup-text {
+    color: $text-primary;
+    font-weight: bold;
+    font-size: 10pt;
+    padding: .7em;
+    border-image: url("background-assets/sub-2.svg") 7;
+}
+
+.candidate-box {
+    font-size: 10pt;
+    border-radius: 0 !important;
+
+    &:selected, &:hover {
+        border-image: url("background-assets/hover.svg") 7;
+        color: $text-primary-invert;
+
+        .candidate-label { color: $text-primary-invert; }
+        .candidate-index { color: $text-primary-invert; }
+    }
+
+    .vertical & { padding: .4em .7em; margin: .2em 0;}
+    .horizontal & { padding: 0 1em; margin: 0 0 .7em .7em; }
+}
+
+.candidate-page-button {
+    padding: 0;
+
+    &-box {
+        padding: .6em;
+        min-height: 32px;
+
+        .vertical & { padding-top: 0; }
+        .horizontal & { padding: 0; margin: 0 .7em .7em .7em; }
+    }
+
+    &-previous {
+        border-radius: 0;
+        border: 0 transparent !important;
+        padding: 4px 10px;
+        -st-natural-width: 0;
+        border-image: url("button-assets/linked-button-left.svg") 7;
+
+        &:hover {
+            border-image: url("button-assets/linked-button-left-hover.svg") 7;
+        }
+
+        &:active {
+            border-image: url("button-assets/linked-button-left-pressed.svg") 7;
+        }
+
+        &:insensitive {
+            border-image: url("button-assets/linked-button-left.svg") 7;
+
+            StIcon { color: $text-disabled; }
+        }
+    }
+
+    &-next {
+        border-radius: 0;
+        border: 0 transparent !important;
+        padding: 4px 10px;
+        -st-natural-width: 0;
+        border-image: url("button-assets/linked-button-right.svg") 7;
+
+        &:hover {
+            border-image: url("button-assets/linked-button-right-hover.svg") 7;
+        }
+
+        &:active {
+            border-image: url("button-assets/linked-button-right-pressed.svg") 7;
+        }
+
+        &:insensitive {
+            border-image: url("button-assets/linked-button-right.svg") 7;
+
+            StIcon { color: $text-disabled; }
+        }
+    }
+
+    &-icon {
+        icon-size: 16px;
+        color: $text-primary;
+    }
+}
