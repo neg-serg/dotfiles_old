@@ -1,37 +1,12 @@
-macro generic "<esc>1" ":set sendmail=\"/usr/local/bin/msmtp -a toxalan\""
-macro generic "<esc>2" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
-macro generic "<esc>3" ":set sendmail=\"/usr/local/bin/msmtp -a xxxxx\""
-macro generic "<esc>4" ":set sendmail=\"/usr/local/bin/msmtp -a xxx\""
-
 bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop 
-bind pager <UP> previous-page   # I hate default mutt keybindings
-bind pager <DOWN> next-page     # so I use UP & DOWN to VIEW message,
 bind pager p previous-unread    # NOT to JUMP to next/prev one!
 bind pager n next-unread        # It's better to use p & p for this
 bind pager ,p print-message     # Print message when viewing it
-# macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
-macro index,pager A "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>abook --add-email-quiet<return><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>" "add the sender address to abook"
-macro pager   W        "|urlview\n"
-macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
-macro pager   G       "!getmail\r"  # call getmail from anythere inside mutt
-macro browser G       "!getmail\r"
-macro index   G       "!getmail\r"
-macro pager,browser,index   E       "!getmail -r ~/.getmail/getmailrc2\r"
-macro index   z       "|sa-learn --no-sync --spam\n"
-macro pager   z       "|sa-learn --no-sync --spam\n"
-macro index   Z       "|sa-learn --no-sync --ham\n"
-macro pager   Z       "|sa-learn --no-sync --ham\n"
-macro index   ",d"     "c=default" 
-macro index   ",y"     "c=yesodweb"
-macro index   ",r"     "c=ruby-talk"
-macro index   ",p"     "c=postponed"
-macro index   ",j"     "c=junk" 
-macro index   ",v"     "c=vfolder" 
 
-bind editor <Tab> complete-query
-bind editor ^T complete
+macro pager   W       "|urlview\n"
+macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
 
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 
@@ -54,35 +29,33 @@ bind pager j  next-line
 bind pager gg top
 bind pager G  bottom
 
-#bind index,pager q  noop
-#bind attach,browser,pager x noop
-
 bind pager R  group-reply
 
-# View attachments properly.
 bind attach <return> view-mailcap
 
-bind index ZZ         exit
-bind attach,browser,pager z exit
+bind index ZZ                exit
+bind attach,browser,pager ZZ exit
 
-macro index <F8> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<shell-escape>notmuch-mutt -r --prompt search<enter>\
-<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-      "notmuch: search mail"
+macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+macro index,pager  d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
 
-macro index <F9> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<pipe-message>notmuch-mutt -r thread<enter>\
-<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-      "notmuch: reconstruct thread"
+macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
+macro index,pager,attach gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"
+macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
+macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
+macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
+macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
 
-macro index <F6> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<pipe-message>notmuch-mutt tag -- -inbox<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-      "notmuch: remove message from inbox"
+# 'A' shows all messages again (supersedes default <alias> binding)
+macro index A "<limit>all\n" "show all messages (undo limit)"
+macro index,pager,attach,compose go "\
+<enter-command> set my_pipe_decode=~4~pipe_decode pipe_decode<Enter>\
+<pipe-message> urlview<Enter>\
+<enter-command> set pipe_decode=~4~my_pipe_decode; unset my_pipe_decode<Enter>" \
+"call urlview to extract URLs out of a message"
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+macro index X "|/home/neg/.mutt/mimedump"
+macro pager X "|/home/neg/.mutt/mimedump"
 
 # vim:ft=muttrc
