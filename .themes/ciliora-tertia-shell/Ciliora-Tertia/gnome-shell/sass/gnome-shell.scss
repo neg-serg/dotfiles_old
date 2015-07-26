@@ -1,0 +1,24 @@
+// Base
+@import "base/functions";
+@import "base/colors";
+@import "base/font";
+
+// Main modules
+@import "main-modules/widget-modules/1-widgets-INDEX";
+@import "main-modules/overview-modules/1-overview-INDEX";
+@import "main-modules/dialog-modules/1-dialogs-INDEX";
+@import "main-modules/popup-menus";
+@import "main-modules/OSD";
+@import "main-modules/alt-tab";
+@import "main-modules/workspace-switcher";
+@import "main-modules/tiled-window-preview";
+@import "main-modules/panel";
+@import "main-modules/calendar-popup";
+@import "main-modules/aggregate-menu";
+@import "main-modules/ripple-box";
+@import "main-modules/notifications";
+@import "main-modules/legacy-tray";
+@import "main-modules/magnifier";
+@import "main-modules/on-screen-keyboard";
+@import "main-modules/candidate-popup";
+@import "main-modules/looking-glass";

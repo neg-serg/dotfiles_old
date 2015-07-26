@@ -1,0 +1,33 @@
+/* ===================================================================
+   ! Checkboxes
+   ===================================================================*/
+
+.check-box {
+    StBoxLayout {
+        spacing: .4em;
+        min-height: 17px;
+        padding-bottom: 2px;
+    }
+
+    StLabel {
+        padding-top: .1em;
+    }
+
+    StBin {
+        width: 17px;
+        height: 17px;
+        background-image: url("widget-assets/check-box.svg");
+    }
+
+    &:focus StBin {
+        background-image: url("widget-assets/check-box-focused.svg");
+    }
+
+    &:checked StBin {
+        background-image: url("widget-assets/check-box-checked.svg");
+    }
+
+    &:focus:checked StBin {
+        background-image: url("widget-assets/check-box-focused-checked.svg");
+    }
+}

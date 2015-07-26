@@ -1,0 +1,37 @@
+/* ===================================================================
+ * ! Popup Folder & Icons
+ * ===================================================================*/
+
+.app-folder-popup {
+    -arrow-border-radius: 0;
+    -arrow-background-color: rgba(0,0,0,0);
+    -arrow-base: 0;
+    -arrow-rise: 0;
+}
+
+.app-folder-popup-bin {
+    border-image: url("background-assets/popup.svg") 8;
+    padding: 11px 11px 0 11px;
+
+    .overview-icon { color: $text-primary; }
+
+    .app-well-app:hover .overview-icon,
+    .app-well-app:focus .overview-icon,
+    .app-well-app:selected .overview-icon,
+    .app-well-app:active .overview-icon,
+    .app-well-app:checked .overview-icon {
+        border-image: url("background-assets/hover.svg") 7;
+        color: $text-primary-invert;
+    }
+}
+
+.app-folder-icon {
+    padding: 5px;
+    spacing-rows: 10px;
+    spacing-columns: 10px;
+}
+
+.app-folder .overview-icon {
+    border-image: url("overview-assets/overview-dark-bg.svg") 7;
+    text-align: center;
+}

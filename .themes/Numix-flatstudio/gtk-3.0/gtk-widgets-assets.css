@@ -1,0 +1,567 @@
+/*******************
+ * check and radio *
+ *******************/
+.check {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked.png"), url("assets/checkbox-unchecked@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check.button.flat, .header-bar .check.titlebutton.button,
+  .titlebar .check.titlebutton.button,
+  GtkCalendar.header .check.titlebutton.button {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:selected,
+.list-row:selected .check {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked.png"), url("assets/selected-checkbox-unchecked@2.png")); }
+
+.check:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-hover.png"), url("assets/checkbox-unchecked-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:hover.button.flat, .header-bar .check.titlebutton.button:hover,
+  .titlebar .check.titlebutton.button:hover,
+  GtkCalendar.header .check.titlebutton.button:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:hover:selected,
+.list-row:selected .check:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked-hover.png"), url("assets/selected-checkbox-unchecked-hover@2.png")); }
+
+.check:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-active.png"), url("assets/checkbox-unchecked-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:active.button.flat, .header-bar .check.titlebutton.button:active,
+  .titlebar .check.titlebutton.button:active,
+  GtkCalendar.header .check.titlebutton.button:active {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:active:selected,
+.list-row:selected .check:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked-active.png"), url("assets/selected-checkbox-unchecked-active@2.png")); }
+
+.check:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-insensitive.png"), url("assets/checkbox-unchecked-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:insensitive.button.flat, .header-bar .check.titlebutton.button:insensitive,
+  .titlebar .check.titlebutton.button:insensitive,
+  GtkCalendar.header .check.titlebutton.button:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:insensitive:selected,
+.list-row:selected .check:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked-insensitive.png"), url("assets/selected-checkbox-unchecked-insensitive@2.png")); }
+
+.check:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-backdrop.png"), url("assets/checkbox-unchecked-backdrop@2.png"));
+  icon-shadow: none; }
+  .check:backdrop.button.flat, .header-bar .check.titlebutton.button:backdrop,
+  .titlebar .check.titlebutton.button:backdrop,
+  GtkCalendar.header .check.titlebutton.button:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:backdrop:selected,
+.list-row:selected .check:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked-backdrop.png"), url("assets/selected-checkbox-unchecked-backdrop@2.png")); }
+
+.check:backdrop:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-unchecked-backdrop-insensitive.png"), url("assets/checkbox-unchecked-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .check:backdrop:insensitive.button.flat, .header-bar .check.titlebutton.button:backdrop:insensitive,
+  .titlebar .check.titlebutton.button:backdrop:insensitive,
+  GtkCalendar.header .check.titlebutton.button:backdrop:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:backdrop:insensitive:selected,
+.list-row:selected .check:backdrop:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-unchecked-backdrop-insensitive.png"), url("assets/selected-checkbox-unchecked-backdrop-insensitive@2.png")); }
+
+.check:inconsistent {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed.png"), url("assets/checkbox-mixed@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:inconsistent.button.flat, .header-bar .check.titlebutton.button:inconsistent,
+  .titlebar .check.titlebutton.button:inconsistent,
+  GtkCalendar.header .check.titlebutton.button:inconsistent {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:selected,
+.list-row:selected .check:inconsistent {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed.png"), url("assets/selected-checkbox-mixed@2.png")); }
+
+.check:inconsistent:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-hover.png"), url("assets/checkbox-mixed-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:inconsistent:hover.button.flat, .header-bar .check.titlebutton.button:inconsistent:hover,
+  .titlebar .check.titlebutton.button:inconsistent:hover,
+  GtkCalendar.header .check.titlebutton.button:inconsistent:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:hover:selected,
+.list-row:selected .check:inconsistent:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed-hover.png"), url("assets/selected-checkbox-mixed-hover@2.png")); }
+
+.check:inconsistent:selected {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-active.png"), url("assets/checkbox-mixed-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:inconsistent:selected.button.flat, .header-bar .check.titlebutton.button:inconsistent:selected,
+  .titlebar .check.titlebutton.button:inconsistent:selected,
+  GtkCalendar.header .check.titlebutton.button:inconsistent:selected {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:selected:selected,
+.list-row:selected .check:inconsistent:selected {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed-active.png"), url("assets/selected-checkbox-mixed-active@2.png")); }
+
+.check:inconsistent:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-backdrop.png"), url("assets/checkbox-mixed-backdrop@2.png"));
+  icon-shadow: none; }
+  .check:inconsistent:backdrop.button.flat, .header-bar .check.titlebutton.button:inconsistent:backdrop,
+  .titlebar .check.titlebutton.button:inconsistent:backdrop,
+  GtkCalendar.header .check.titlebutton.button:inconsistent:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:backdrop:selected,
+.list-row:selected .check:inconsistent:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed-backdrop.png"), url("assets/selected-checkbox-mixed-backdrop@2.png")); }
+
+.check:inconsistent:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-insensitive.png"), url("assets/checkbox-mixed-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:inconsistent:insensitive.button.flat, .header-bar .check.titlebutton.button:inconsistent:insensitive,
+  .titlebar .check.titlebutton.button:inconsistent:insensitive,
+  GtkCalendar.header .check.titlebutton.button:inconsistent:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:insensitive:selected,
+.list-row:selected .check:inconsistent:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed-insensitive.png"), url("assets/selected-checkbox-mixed-insensitive@2.png")); }
+
+.check:inconsistent:insensitive:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-mixed-backdrop-insensitive.png"), url("assets/checkbox-mixed-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .check:inconsistent:insensitive:backdrop.button.flat, .header-bar .check.titlebutton.button:inconsistent:insensitive:backdrop,
+  .titlebar .check.titlebutton.button:inconsistent:insensitive:backdrop,
+  GtkCalendar.header .check.titlebutton.button:inconsistent:insensitive:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:inconsistent:insensitive:backdrop:selected,
+.list-row:selected .check:inconsistent:insensitive:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-mixed-backdrop-insensitive.png"), url("assets/selected-checkbox-mixed-backdrop-insensitive@2.png")); }
+
+.check:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked.png"), url("assets/checkbox-checked@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:checked.button.flat, .header-bar .check.titlebutton.button:checked,
+  .titlebar .check.titlebutton.button:checked,
+  GtkCalendar.header .check.titlebutton.button:checked {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:checked:selected,
+.list-row:selected .check:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked.png"), url("assets/selected-checkbox-checked@2.png")); }
+
+.check:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-insensitive.png"), url("assets/checkbox-checked-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:checked:insensitive.button.flat, .header-bar .check.titlebutton.button:checked:insensitive,
+  .titlebar .check.titlebutton.button:checked:insensitive,
+  GtkCalendar.header .check.titlebutton.button:checked:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:checked:insensitive:selected,
+.list-row:selected .check:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked-insensitive.png"), url("assets/selected-checkbox-checked-insensitive@2.png")); }
+
+.check:checked:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-hover.png"), url("assets/checkbox-checked-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:checked:hover.button.flat, .header-bar .check.titlebutton.button:checked:hover,
+  .titlebar .check.titlebutton.button:checked:hover,
+  GtkCalendar.header .check.titlebutton.button:checked:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:checked:hover:selected,
+.list-row:selected .check:checked:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked-hover.png"), url("assets/selected-checkbox-checked-hover@2.png")); }
+
+.check:checked:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-active.png"), url("assets/checkbox-checked-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .check:checked:active.button.flat, .header-bar .check.titlebutton.button:checked:active,
+  .titlebar .check.titlebutton.button:checked:active,
+  GtkCalendar.header .check.titlebutton.button:checked:active {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:checked:active:selected,
+.list-row:selected .check:checked:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked-active.png"), url("assets/selected-checkbox-checked-active@2.png")); }
+
+.check:backdrop:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-backdrop.png"), url("assets/checkbox-checked-backdrop@2.png"));
+  icon-shadow: none; }
+  .check:backdrop:checked.button.flat, .header-bar .check.titlebutton.button:backdrop:checked,
+  .titlebar .check.titlebutton.button:backdrop:checked,
+  GtkCalendar.header .check.titlebutton.button:backdrop:checked {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:backdrop:checked:selected,
+.list-row:selected .check:backdrop:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked-backdrop.png"), url("assets/selected-checkbox-checked-backdrop@2.png")); }
+
+.check:backdrop:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-backdrop-insensitive.png"), url("assets/checkbox-checked-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .check:backdrop:checked:insensitive.button.flat, .header-bar .check.titlebutton.button:backdrop:checked:insensitive,
+  .titlebar .check.titlebutton.button:backdrop:checked:insensitive,
+  GtkCalendar.header .check.titlebutton.button:backdrop:checked:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.check:backdrop:checked:insensitive:selected,
+.list-row:selected .check:backdrop:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-checkbox-checked-backdrop-insensitive.png"), url("assets/selected-checkbox-checked-backdrop-insensitive@2.png")); }
+
+.menu .menuitem.check {
+  -gtk-icon-source: -gtk-icontheme("checkbox-symbolic");
+  color: #7a7e7f;
+  icon-shadow: none; }
+  .menu .menuitem.check:active, .menu .menuitem.check:checked {
+    -gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic"); }
+  .menu .menuitem.check:inconsistent {
+    -gtk-icon-source: -gtk-icontheme("checkbox-mixed-symbolic"); }
+  .menu .menuitem.check:hover {
+    color: #ffffff; }
+  .menu .menuitem.check:insensitive {
+    color: #bdbebf; }
+
+.radio {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked.png"), url("assets/radio-unchecked@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio.button.flat, .header-bar .radio.titlebutton.button,
+  .titlebar .radio.titlebutton.button,
+  GtkCalendar.header .radio.titlebutton.button {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:selected,
+.list-row:selected .radio {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked.png"), url("assets/selected-radio-unchecked@2.png")); }
+
+.radio:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-hover.png"), url("assets/radio-unchecked-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:hover.button.flat, .header-bar .radio.titlebutton.button:hover,
+  .titlebar .radio.titlebutton.button:hover,
+  GtkCalendar.header .radio.titlebutton.button:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:hover:selected,
+.list-row:selected .radio:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked-hover.png"), url("assets/selected-radio-unchecked-hover@2.png")); }
+
+.radio:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-active.png"), url("assets/radio-unchecked-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:active.button.flat, .header-bar .radio.titlebutton.button:active,
+  .titlebar .radio.titlebutton.button:active,
+  GtkCalendar.header .radio.titlebutton.button:active {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:active:selected,
+.list-row:selected .radio:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked-active.png"), url("assets/selected-radio-unchecked-active@2.png")); }
+
+.radio:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-insensitive.png"), url("assets/radio-unchecked-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:insensitive.button.flat, .header-bar .radio.titlebutton.button:insensitive,
+  .titlebar .radio.titlebutton.button:insensitive,
+  GtkCalendar.header .radio.titlebutton.button:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:insensitive:selected,
+.list-row:selected .radio:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked-insensitive.png"), url("assets/selected-radio-unchecked-insensitive@2.png")); }
+
+.radio:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-backdrop.png"), url("assets/radio-unchecked-backdrop@2.png"));
+  icon-shadow: none; }
+  .radio:backdrop.button.flat, .header-bar .radio.titlebutton.button:backdrop,
+  .titlebar .radio.titlebutton.button:backdrop,
+  GtkCalendar.header .radio.titlebutton.button:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:backdrop:selected,
+.list-row:selected .radio:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked-backdrop.png"), url("assets/selected-radio-unchecked-backdrop@2.png")); }
+
+.radio:backdrop:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-unchecked-backdrop-insensitive.png"), url("assets/radio-unchecked-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .radio:backdrop:insensitive.button.flat, .header-bar .radio.titlebutton.button:backdrop:insensitive,
+  .titlebar .radio.titlebutton.button:backdrop:insensitive,
+  GtkCalendar.header .radio.titlebutton.button:backdrop:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:backdrop:insensitive:selected,
+.list-row:selected .radio:backdrop:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-unchecked-backdrop-insensitive.png"), url("assets/selected-radio-unchecked-backdrop-insensitive@2.png")); }
+
+.radio:inconsistent {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed.png"), url("assets/radio-mixed@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:inconsistent.button.flat, .header-bar .radio.titlebutton.button:inconsistent,
+  .titlebar .radio.titlebutton.button:inconsistent,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:selected,
+.list-row:selected .radio:inconsistent {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed.png"), url("assets/selected-radio-mixed@2.png")); }
+
+.radio:inconsistent:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-hover.png"), url("assets/radio-mixed-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:inconsistent:hover.button.flat, .header-bar .radio.titlebutton.button:inconsistent:hover,
+  .titlebar .radio.titlebutton.button:inconsistent:hover,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:hover:selected,
+.list-row:selected .radio:inconsistent:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed-hover.png"), url("assets/selected-radio-mixed-hover@2.png")); }
+
+.radio:inconsistent:selected {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-active.png"), url("assets/radio-mixed-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:inconsistent:selected.button.flat, .header-bar .radio.titlebutton.button:inconsistent:selected,
+  .titlebar .radio.titlebutton.button:inconsistent:selected,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent:selected {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:selected:selected,
+.list-row:selected .radio:inconsistent:selected {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed-active.png"), url("assets/selected-radio-mixed-active@2.png")); }
+
+.radio:inconsistent:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-backdrop.png"), url("assets/radio-mixed-backdrop@2.png"));
+  icon-shadow: none; }
+  .radio:inconsistent:backdrop.button.flat, .header-bar .radio.titlebutton.button:inconsistent:backdrop,
+  .titlebar .radio.titlebutton.button:inconsistent:backdrop,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:backdrop:selected,
+.list-row:selected .radio:inconsistent:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed-backdrop.png"), url("assets/selected-radio-mixed-backdrop@2.png")); }
+
+.radio:inconsistent:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-insensitive.png"), url("assets/radio-mixed-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:inconsistent:insensitive.button.flat, .header-bar .radio.titlebutton.button:inconsistent:insensitive,
+  .titlebar .radio.titlebutton.button:inconsistent:insensitive,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:insensitive:selected,
+.list-row:selected .radio:inconsistent:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed-insensitive.png"), url("assets/selected-radio-mixed-insensitive@2.png")); }
+
+.radio:inconsistent:insensitive:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-mixed-backdrop-insensitive.png"), url("assets/radio-mixed-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .radio:inconsistent:insensitive:backdrop.button.flat, .header-bar .radio.titlebutton.button:inconsistent:insensitive:backdrop,
+  .titlebar .radio.titlebutton.button:inconsistent:insensitive:backdrop,
+  GtkCalendar.header .radio.titlebutton.button:inconsistent:insensitive:backdrop {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:inconsistent:insensitive:backdrop:selected,
+.list-row:selected .radio:inconsistent:insensitive:backdrop {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-mixed-backdrop-insensitive.png"), url("assets/selected-radio-mixed-backdrop-insensitive@2.png")); }
+
+.radio:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked.png"), url("assets/radio-checked@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:checked.button.flat, .header-bar .radio.titlebutton.button:checked,
+  .titlebar .radio.titlebutton.button:checked,
+  GtkCalendar.header .radio.titlebutton.button:checked {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:checked:selected,
+.list-row:selected .radio:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked.png"), url("assets/selected-radio-checked@2.png")); }
+
+.radio:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked-insensitive.png"), url("assets/radio-checked-insensitive@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:checked:insensitive.button.flat, .header-bar .radio.titlebutton.button:checked:insensitive,
+  .titlebar .radio.titlebutton.button:checked:insensitive,
+  GtkCalendar.header .radio.titlebutton.button:checked:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:checked:insensitive:selected,
+.list-row:selected .radio:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked-insensitive.png"), url("assets/selected-radio-checked-insensitive@2.png")); }
+
+.radio:checked:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked-hover.png"), url("assets/radio-checked-hover@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:checked:hover.button.flat, .header-bar .radio.titlebutton.button:checked:hover,
+  .titlebar .radio.titlebutton.button:checked:hover,
+  GtkCalendar.header .radio.titlebutton.button:checked:hover {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:checked:hover:selected,
+.list-row:selected .radio:checked:hover {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked-hover.png"), url("assets/selected-radio-checked-hover@2.png")); }
+
+.radio:checked:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked-active.png"), url("assets/radio-checked-active@2.png"));
+  icon-shadow: 0 1px 0 white; }
+  .radio:checked:active.button.flat, .header-bar .radio.titlebutton.button:checked:active,
+  .titlebar .radio.titlebutton.button:checked:active,
+  GtkCalendar.header .radio.titlebutton.button:checked:active {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:checked:active:selected,
+.list-row:selected .radio:checked:active {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked-active.png"), url("assets/selected-radio-checked-active@2.png")); }
+
+.radio:backdrop:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked-backdrop.png"), url("assets/radio-checked-backdrop@2.png"));
+  icon-shadow: none; }
+  .radio:backdrop:checked.button.flat, .header-bar .radio.titlebutton.button:backdrop:checked,
+  .titlebar .radio.titlebutton.button:backdrop:checked,
+  GtkCalendar.header .radio.titlebutton.button:backdrop:checked {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:backdrop:checked:selected,
+.list-row:selected .radio:backdrop:checked {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked-backdrop.png"), url("assets/selected-radio-checked-backdrop@2.png")); }
+
+.radio:backdrop:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/radio-checked-backdrop-insensitive.png"), url("assets/radio-checked-backdrop-insensitive@2.png"));
+  icon-shadow: none; }
+  .radio:backdrop:checked:insensitive.button.flat, .header-bar .radio.titlebutton.button:backdrop:checked:insensitive,
+  .titlebar .radio.titlebutton.button:backdrop:checked:insensitive,
+  GtkCalendar.header .radio.titlebutton.button:backdrop:checked:insensitive {
+    icon-shadow: none; }
+
+GtkTreeView.view.radio:backdrop:checked:insensitive:selected,
+.list-row:selected .radio:backdrop:checked:insensitive {
+  -gtk-icon-source: -gtk-scaled(url("assets/selected-radio-checked-backdrop-insensitive.png"), url("assets/selected-radio-checked-backdrop-insensitive@2.png")); }
+
+.menu .menuitem.radio {
+  -gtk-icon-source: -gtk-icontheme("radio-symbolic");
+  color: #7a7e7f;
+  icon-shadow: none; }
+  .menu .menuitem.radio:active, .menu .menuitem.radio:checked {
+    -gtk-icon-source: -gtk-icontheme("radio-checked-symbolic"); }
+  .menu .menuitem.radio:inconsistent {
+    -gtk-icon-source: -gtk-icontheme("radio-mixed-symbolic"); }
+  .menu .menuitem.radio:hover {
+    color: #ffffff; }
+  .menu .menuitem.radio:insensitive {
+    color: #bdbebf; }
+
+GtkTreeView.view.check, GtkTreeView.view.radio,
+.list-row .check, list-row .radio {
+  icon-shadow: none; }
+  GtkTreeView.view.check:selected, GtkTreeView.view.check:hover, GtkTreeView.view.radio:selected, GtkTreeView.view.radio:hover,
+  .list-row .check:selected,
+  .list-row .check:hover, list-row .radio:selected, list-row .radio:hover {
+    icon-shadow: none; }
+
+GtkIconView.view.check,
+GtkFlowBox.view.check {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-selectionmode.png"), url("assets/checkbox-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:hover,
+GtkFlowBox.view.check:hover {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-hover-selectionmode.png"), url("assets/checkbox-hover-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:active,
+GtkFlowBox.view.check:active {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-active-selectionmode.png"), url("assets/checkbox-active-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:backdrop,
+GtkFlowBox.view.check:backdrop {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-backdrop-selectionmode.png"), url("assets/checkbox-backdrop-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:checked,
+GtkFlowBox.view.check:checked {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-selectionmode.png"), url("assets/checkbox-checked-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:checked:hover,
+GtkFlowBox.view.check:checked:hover {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-hover-selectionmode.png"), url("assets/checkbox-checked-hover-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:checked:active,
+GtkFlowBox.view.check:checked:active {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-active-selectionmode.png"), url("assets/checkbox-checked-active-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkIconView.view.check:backdrop:checked,
+GtkFlowBox.view.check:backdrop:checked {
+  icon-shadow: none;
+  -gtk-icon-source: -gtk-scaled(url("assets/checkbox-checked-backdrop-selectionmode.png"), url("assets/checkbox-checked-backdrop-selectionmode@2.png"));
+  background-color: transparent; }
+
+GtkCheckButton.text-button, GtkRadioButton.text-button {
+  padding: 1px 2px 4px;
+  outline-offset: 0; }
+  GtkCheckButton.text-button:insensitive, GtkCheckButton.text-button:insensitive:active, GtkCheckButton.text-button:insensitive:inconsistent, GtkRadioButton.text-button:insensitive, GtkRadioButton.text-button:insensitive:active, GtkRadioButton.text-button:insensitive:inconsistent {
+    color: #8d9091; }
+    GtkCheckButton.text-button:insensitive:backdrop, GtkCheckButton.text-button:insensitive:active:backdrop, GtkCheckButton.text-button:insensitive:inconsistent:backdrop, GtkRadioButton.text-button:insensitive:backdrop, GtkRadioButton.text-button:insensitive:active:backdrop, GtkRadioButton.text-button:insensitive:inconsistent:backdrop {
+      color: #c7c7c7; }
+
+
+/******************
+ * pane separator *
+ ******************/
+.pane-separator,
+.pane-separator.horizontal {
+    background-image: linear-gradient(to bottom,
+                                      shade(@theme_bg_color, 1.0) 0%,
+                                      shade(@theme_bg_color, 1.0) 20%,
+                                      transparent 20%,
+                                      transparent 45%,
+                                      shade(@theme_bg_color, 1.0) 45%,
+                                      shade(@theme_bg_color, 1.0) 55%,
+                                      transparent 55%,
+                                      transparent 80%,
+                                      shade(@theme_bg_color, 1.0) 80%,
+                                      shade(@theme_bg_color, 1.0)
+                                      );
+
+    background-size: 4px 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.pane-separator.vertical {
+    background-image: linear-gradient(to right,
+                                      shade(@theme_bg_color, 1.0) 0%,
+                                      shade(@theme_bg_color, 1.0) 20%,
+                                      transparent 20%,
+                                      transparent 45%,
+                                      shade(@theme_bg_color, 1.0) 45%,
+                                      shade(@theme_bg_color, 1.0) 55%,
+                                      transparent 55%,
+                                      transparent 80%,
+                                      shade(@theme_bg_color, 1.0) 80%,
+                                      shade(@theme_bg_color, 1.0)
+                                      );
+
+    background-size: 10px 4px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

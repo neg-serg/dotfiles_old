@@ -1,0 +1,397 @@
+/* ===================================================================
+   ! Calendar
+   ===================================================================*/
+
+#calendarArea { padding: 0;  max-height: 700px;}
+
+.calendar { margin: 0 1.5em .3em 1.5em; }
+
+.datemenu-calendar-column { spacing: 0; }
+
+
+/*--- ! Day & Date ---*/
+
+.datemenu-today-button {
+    margin: 0 .7em .3em .7em;
+    padding: .7em 1em;
+
+    &:hover, &:focus, &:active {
+        background-color: transparent;
+
+        .day-label, .date-label {
+            color: $accent-text;
+            text-decoration: underline;
+        }
+    }
+
+    .day-label {
+        padding-bottom: .2em;
+        font-size: 9pt;
+        color: $text-secondary;
+    }
+
+    .date-label {
+        text-align: center !important;
+        font-size: 14pt;
+        color: $text-primary;
+    }
+}
+
+
+/*--- ! World Clocks ---*/
+
+.datemenu-displays-box { margin: 0 .7em; }
+
+.world-clocks-header {
+    color: $text-secondary;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+.world-clocks-grid {
+    spacing-rows: .6em;
+    padding: .4em .7em;
+    font-size: 9pt;
+}
+
+.world-clocks-button {
+    color: $text-primary;
+
+    &:hover, &:focus, &:active {
+        background-color: transparent !important;
+
+        .world-clocks-header {
+            color: $accent-text;
+            text-decoration: underline;
+        }
+    }
+}
+
+.world-clocks-city {
+    font-size: 9pt;
+}
+
+.world-clocks-time {
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.datemenu-displays-section {
+    padding-bottom: 0;
+
+    StScrollBar { padding: 0 8px 0 0; }
+}
+
+
+/*--- ! Change Month ---*/
+
+.pager-button {
+    color: $text-primary;
+    background-color: transparent;
+    width: 32px;
+    border-radius: 0 !important;
+
+    &:hover, &:focus, &:active {
+        background-color: transparent !important;
+    }
+
+    &.calendar-change-month {
+        &-back, &-forward:rtl {
+            background-image: url("widget-assets/calendar-arrow-left.svg");
+        }
+
+        &-forward, &-back:rtl {
+            background-image: url("widget-assets/calendar-arrow-right.svg");
+        }
+
+        &-back:hover, &-back:focus,
+        &-forward:hover:rtl, &-forward:focus:rtl {
+            background-image: url("widget-assets/calendar-arrow-left-hover.svg");
+        }
+
+        &-forward:hover, &-forward:focus,
+        &-back:focus:rtl, &-back:hover:rtl {
+            background-image: url("widget-assets/calendar-arrow-right-hover.svg");
+        }
+    }
+}
+
+.calendar-month-label {
+    color: $text-secondary;
+    font-weight: bold;
+    padding: .6em .8em;
+
+    &:focus  {
+        color: $accent-text;
+    }
+}
+
+
+/*--- ! Calendar Days ---*/
+
+.calendar-day {
+}
+
+.calendar-day-base {
+    font-size: 8pt;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.1em;
+    margin: 2px;
+    @include size(2.2em, 2.5em);
+}
+
+.calendar-day-heading {
+    font-size: 9pt;
+    color: $text-primary;
+    margin-top: 1em;
+    height: 2em;
+
+    &:focus {
+        background-color: transparent;
+        color: $accent-text;
+    }
+}
+
+.calendar-day-top {
+}
+
+.calendar-day-left {
+}
+
+/*---  ! Work Day ---*/
+
+.calendar-work-day {
+    border-image: url("misc-assets/calendar-work-day.svg") 7;
+    border: none;
+    color: $text-primary;
+
+    &:hover, &:focus {
+        border-image: url("misc-assets/calendar-work-day-hover.svg") 7;
+    }
+
+    &:active {
+        border-image: url("misc-assets/calendar-day-active.svg") 7;
+        color: $text-primary-invert;
+    }
+
+    &.calendar-day-with-events {
+        border-image: url("misc-assets/calendar-work-day-events.svg") 7;
+
+        &:hover, &:focus, &:active {
+            border-image: url("misc-assets/calendar-day-active-events.svg") 7;
+            color: $text-primary-invert;
+        }
+    }
+
+    &.calendar-today {
+        border-image: url("misc-assets/calendar-work-day-today.svg") 7;
+
+        &:hover, &:focus, &:active {
+            border-image: url("misc-assets/calendar-day-active.svg") 7;
+            color: $text-primary-invert;
+        }
+    }
+}
+
+/*---  ! Non-work Day ---*/
+
+.calendar-nonwork-day {
+    border-image: url("misc-assets/calendar-nonwork-day.svg") 7;
+    border: none;
+    color: $text-secondary;
+
+    &:hover, &:focus {
+        border-image: url("misc-assets/calendar-nonwork-day-hover.svg") 7;
+        color: $text-primary;
+    }
+
+    &:active {
+        border-image: url("misc-assets/calendar-day-active.svg") 7;
+        color: $text-primary-invert;
+    }
+
+    &.calendar-day-with-events {
+        border-image: url("misc-assets/calendar-nonwork-day-events.svg") 7;
+
+        &:hover, &:focus, &:active {
+            border-image: url("misc-assets/calendar-day-active-events.svg") 7;
+            color: $text-primary-invert;
+        }
+    }
+
+    &.calendar-today {
+        border-image: url("misc-assets/calendar-nonwork-day-today.svg") 7;
+
+        &:hover, &:focus, &:active {
+            border-image: url("misc-assets/calendar-day-active.svg") 7;
+            color: $text-primary-invert;
+        }
+    }
+}
+
+/*---  ! Other Month Day ---*/
+
+.calendar-other-month-day {
+    border-image: url("misc-assets/calendar-other-month-day.svg") 7;
+    color: $text-disabled;
+    font-weight: normal;
+
+    &:hover, &:focus {
+        font-weight: bold;
+        color: $text-primary;
+    }
+
+    &:active {
+        border-image: url("misc-assets/calendar-day-active.svg") 7;
+        color: $text-primary-invert;
+    }
+}
+
+/*---  ! Events Day ---*/
+
+.calendar-day-with-events {
+    &:hover, &:focus {
+        border-image: url("misc-assets/calendar-day-with-events-hover.svg") 7;
+        color: $text-primary-invert;
+    }
+}
+
+/*---  ! Today ---*/
+
+.calendar-today {
+    &:hover, &:focus {
+        border-image: url("misc-assets/calendar-hover.svg") 7;
+        color: $text-primary-invert;
+    }
+}
+
+/*---  ! Week Number ---*/
+
+.calendar-week-number {
+    color: $text-secondary;
+    font-size: 8pt;
+    font-weight: normal;
+    @include size(2.4em, 1.6em);
+    padding-top: .8em;
+    padding-right: .6em;
+}
+/* ===================================================================
+   ! Message List
+   ===================================================================*/
+
+.message-list {
+    width: 420px;
+
+    &-placeholder {
+        StIcon { @include size(0); }
+
+        StLabel {
+            color: $text-disabled;
+            font-size: 9pt;
+            font-weight: bold;
+        }
+    }
+
+    &-sections {
+        spacing: 1.5em;
+        margin: .6em 1.3em 1em 1.3em;
+    }
+
+    &-section,
+    &-section-list {
+        spacing: 0.7em;
+    }
+
+    &-section-list:ltr, &-section-list:rtl  {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    &-section-title-box {
+        spacing: 4em;
+    }
+
+    &-section-title {
+        padding: .1em 0 0 .2em;
+        font-weight: bold;
+        color: $text-secondary;
+
+        &:hover, &:focus, &:active {
+            background-color: transparent !important;
+            color: $accent-text;
+            text-decoration: underline;
+
+        }
+    }
+
+    &-section-close {
+        margin: 0;
+        padding: 0;
+
+        > StIcon {
+            color: $text-secondary;
+            icon-size: 16px;
+            background-color: transparent !important;
+            border-radius: 0 !important;
+        }
+
+        &:hover > StIcon,
+        &:focus > StIcon {
+            background-color: transparent;
+            color: $warning;
+        }
+    }
+
+    StScrollBar { padding: 8px 0 10px 0; }
+}
+
+.message {
+    border-image: url("background-assets/light-bg.svg") 7;
+    background-color: transparent !important;
+    border-radius: 0;
+    padding: 3px;
+    margin: 0;
+
+    &:hover {
+        background-color: transparent !important;
+    }
+
+    &:focus {
+        border-image: url("background-assets/hover.svg") 7;
+        background-color: transparent !important;
+        color: $text-primary-invert;
+
+        .message-content StIcon { color: $text-primary-invert; }
+        .message-secondary-bin  { color: $text-primary-invert; }
+    }
+
+    &-icon-bin {
+        padding: 8px 0 8px 8px;
+
+        &:rtl { padding: 8px 8px 8px 0; }
+
+        > StIcon { @include size(48px); }
+    }
+
+    &-secondary-bin {
+        color: $text-secondary;
+        font-size: 9pt;
+    }
+
+    &-title {
+        font-weight: bold;
+        font-size: 10pt;
+        height: 1.2em;
+    }
+
+    &-content {
+        spacing: .4em;
+        padding: 10px;
+
+        StIcon {
+            color: $warning;
+            margin-bottom: 0;
+        }
+    }
+}

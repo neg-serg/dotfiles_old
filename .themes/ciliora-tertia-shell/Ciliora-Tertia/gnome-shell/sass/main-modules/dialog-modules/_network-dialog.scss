@@ -1,0 +1,95 @@
+/* ===================================================================
+   ! Network Agent dialog
+   ===================================================================*/
+
+.network-dialog-secret-table {
+    spacing-rows: 15px;
+    spacing-columns: 1em;
+}
+
+/* ===================================================================
+   ! Network dialog
+   ===================================================================*/
+
+.nm-dialog {
+    min-height: 350px;
+    max-height: 500px;
+    min-width: 350px;
+    max-width: 500px;
+
+    &-content {
+        spacing: 20px;
+    }
+
+    &-header-hbox {
+        spacing: 10px;
+    }
+
+    &-airplane-box {
+        spacing: 12px;
+        padding: 14px;
+    }
+
+    &-airplane-headline {
+        font-weight: bold;
+        font-size: 12pt;
+        text-align: center;
+    }
+
+    &-airplane-text {
+        color: $text-primary;
+        padding-bottom: 20px;
+    }
+
+    &-header-icon {
+        icon-size: 32px;
+        color: $text-primary;
+    }
+
+    &-scroll-view {
+        border: 0 transparent !important;
+        border-image: url("background-assets/light-bg.svg") 6;
+        padding: 8px;
+        padding-right: 0;
+
+        StScrollBar { padding: 0 8px; }
+    }
+
+    &-header {
+        font-weight: bold;
+        font-size: 12pt;
+        color: $text-primary;
+    }
+
+    &-item {
+        font-size: 10pt;
+        font-weight: bold;
+        padding: 14px;
+        spacing: 20px;
+    }
+
+    &-item:selected {
+        background-color: transparent !important;
+        color: $text-primary-invert;
+        border-image: url("background-assets/hover.svg") 6;
+
+        .nm-dialog-icon { color: $text-secondary-invert; }
+    }
+
+    &-icons {
+        spacing: .5em;
+    }
+
+    &-icon {
+        icon-size: 16px;
+        color: $text-secondary;
+    }
+}
+
+.no-networks-label {
+    color: $text-primary;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.no-networks-box { spacing: 12px; }

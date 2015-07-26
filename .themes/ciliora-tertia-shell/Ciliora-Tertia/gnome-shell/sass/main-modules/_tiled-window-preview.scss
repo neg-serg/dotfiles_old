@@ -1,0 +1,22 @@
+/* ===================================================================
+   ! Tiled Window Preview
+   ===================================================================*/
+
+.tile-preview {
+    background-color: transparent !important;
+    border: 0 transparent !important;
+}
+
+.tile-preview-left.on-primary {
+    border-image: url("background-assets/tile-left.svg") 4;
+    border-radius: 0 !important;
+}
+
+.tile-preview-right.on-primary {
+    border-image: url("background-assets/tile-right.svg") 4;
+    border-radius: 0 !important;
+}
+
+.tile-preview-left.tile-preview-right.on-primary {
+    border-radius: 0 !important;
+}

@@ -1,0 +1,20 @@
+/* ===================================================================
+ * ! Paginator
+ * ===================================================================*/
+.page-indicator {
+    padding: 10px 17px;
+
+    .page-indicator-icon {
+        @include size(12px);
+        background-image: url(overview-assets/paginator.svg);
+    }
+
+    &:hover .page-indicator-icon,
+    &:active .page-indicator-icon {
+        background-image: url(overview-assets/paginator-hover.svg);
+    }
+
+    &:checked .page-indicator-icon {
+        background-image: url(overview-assets/paginator-checked.svg);
+    }
+}

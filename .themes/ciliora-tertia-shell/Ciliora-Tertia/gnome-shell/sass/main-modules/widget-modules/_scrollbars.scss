@@ -1,0 +1,56 @@
+/* ===================================================================
+   ! Scrollbars
+   ===================================================================*/
+
+StScrollView {
+    &.vfade { -st-vfade-offset: 0; }
+    &.hfade { -st-hfade-offset: 0; }
+}
+
+StScrollBar {
+    padding: 6px;
+
+    StScrollView & {
+        min-width: 12px;
+        min-height: 12px;
+    }
+
+    StBin#trough {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    StButton#vhandle,
+    StButton#hhandle {
+        border-image: url("widget-assets/scroll-handle.svg") 4;
+        border: 0 solid !important;
+        margin: 0 !important;
+
+        &:hover, &:focus, &:active {
+            border-image: url("widget-assets/scroll-handle-hover.svg") 4;
+        }
+    }
+}
+
+/*--- Search Results Scrollbar ---*/
+
+.search-display {
+    StScrollBar {
+
+        StButton#vhandle,
+        StButton#hhandle {
+            border-image: url("widget-assets/overview-scroll-handle.svg") 5;
+
+            &:hover, &:focus, &:active {
+                border-image: url("widget-assets/overview-scroll-handle-hover.svg") 5;
+            }
+        }
+    }
+}
+
+/*--- App Folder Scrollbar ---*/
+
+.app-folder-popup-bin {
+    StScrollBar {
+        padding-bottom: 17px;
+    }
+}

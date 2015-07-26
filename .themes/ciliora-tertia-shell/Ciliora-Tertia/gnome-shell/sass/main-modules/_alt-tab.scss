@@ -1,0 +1,66 @@
+/* ===================================================================
+   ! Alt Tab
+   ===================================================================*/
+
+.switcher-popup {
+    padding: 0;
+    spacing: 0;
+}
+
+.switcher-list {
+    border-image: url("background-assets/popup.svg") 7;
+    color: $text-primary;
+    padding: 11px;
+    font-size: 12px;
+    font-weight: bold;
+
+    &-item-container {
+        spacing: 5px;
+    }
+
+    .item-box {
+        border-radius: 0 !important;
+        border-image: url("background-assets/light-bg.svg") 7;
+        padding: 10px;
+
+        StLabel { padding-top: 6px; }
+    }
+
+    .item-box:outlined {
+        border: 0 transparent !important;
+    }
+
+    .item-box:selected {
+        border-image: url("background-assets/hover.svg") 7;
+        color: $text-primary-invert;
+    }
+
+    .thumbnail-box {
+        padding: 2px;
+        spacing: 4px;
+    }
+
+    .thumbnail {
+        width: 256px;
+    }
+
+    .separator {
+        width: 1px;
+        background: rgba(0, 0, 0, .1);
+    }
+
+    .switcher-arrow {
+        color: transparent !important;
+        height: 16px;
+        background-image: url("misc-assets/calendar-today.svg");
+        background-size: contain;
+
+        &:highlighted { color: transparent !important; }
+    }
+}
+
+.input-source-switcher-symbol {
+    font-size: 34pt;
+    width: 96px;
+    height: 96px;
+}

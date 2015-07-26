@@ -1,0 +1,56 @@
+/* ===================================================================
+ * ! Overview Windows
+ * ===================================================================*/
+.window-picker {
+    -horizontal-spacing: 33px;
+    -vertical-spacing: 33px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 48px;
+
+    &.external-monitor {
+        padding: 32px;
+    }
+}
+
+.window-clone-border {
+    border: 0;
+    box-shadow: 0 0 transparent;
+}
+
+.window-caption {
+    border-image: url("overview-assets/overview-light-bg.svg") 7;
+    spacing: 0;
+    padding: 6px 10px;
+    -shell-caption-spacing: 10px;
+    background-color: transparent;
+    border-radius: 0;
+    color: fade-out($text-primary-invert, .15);
+    font-weight: bold;
+    font-size: 9pt;
+
+    &:hover {
+        border-image: url("overview-assets/overview-highlight-bg.svg") 7;
+        color: $text-primary-invert;
+    }
+}
+
+.window-close {
+    background-image: url("widget-assets/close.svg");
+    background-size: 41px;
+    @include size(41px);
+    -shell-close-overlap: 24px;
+    -st-background-image-shadow: 0 0 rgba(0, 0, 0, 0) !important;
+
+    &:hover {
+        background-image: url("widget-assets/close-hover.svg");
+    }
+
+    &:active {
+        background-image: url("widget-assets/close-pressed.svg");
+    }
+
+    &:rtl {
+       -st-background-image-shadow: 0 0 rgba(0, 0, 0, 0) !important;
+    }
+}

@@ -1,0 +1,17 @@
+/* ===================================================================
+   ! Switchers
+   ===================================================================*/
+
+.toggle-switch {
+    width: 34px;
+    height: 20px;
+    background-size: contain;
+
+    &-us, &-intl {
+        background-image: url("widget-assets/off.svg");
+    }
+
+    &-us:checked, &-intl:checked {
+        background-image: url("widget-assets/on.svg");
+    }
+}

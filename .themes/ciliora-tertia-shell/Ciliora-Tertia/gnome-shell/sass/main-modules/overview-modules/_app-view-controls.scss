@@ -1,0 +1,25 @@
+/* ===================================================================
+ * ! App View Controls
+ * ===================================================================*/
+
+.app-view-controls {
+    padding-bottom: 17px;
+    spacing: 2px;
+}
+
+.app-view-control {
+    box-shadow: 0 0 transparent;
+    border-image: url("overview-assets/overview-light-bg.svg") 7;
+    padding: 6px 12px;
+    color: $text-secondary-invert;
+
+    &:hover {
+        border-image: url("overview-assets/overview-light-bg-hover.svg") 7;
+        color: $text-primary-invert;
+    }
+
+    &:checked {
+        border-image: url("overview-assets/overview-highlight-bg.svg") 7;
+        color: $text-primary-invert;
+    }
+}

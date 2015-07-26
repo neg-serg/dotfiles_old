@@ -1,0 +1,74 @@
+/* ===================================================================
+ * ! App View
+ * ===================================================================*/
+
+.icon-grid {
+    spacing: 30px;
+    -shell-grid-horizontal-item-size: 136px;
+    -shell-grid-vertical-item-size: 136px;
+
+    .overview-icon { icon-size: 96px; }
+}
+
+.app-display {
+    spacing: 20px;
+}
+
+/* Prevent scrollbars or dash from overlaping content */
+.search-display > StBoxLayout,
+.frequent-apps > StBoxLayout,
+.all-apps {
+    padding: 0 88px 10px 88px;
+}
+
+.no-frequent-applications-label {
+    color: $text-secondary-invert;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.app-well-menu {
+    margin: 6px 4px;
+}
+
+.app-well-app-running-dot {
+    background-image: url("overview-assets/running1.svg");
+    @include size(28px, 4px);
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+.overview-icon-with-label {
+    .app-well-app &,
+    .grid-search-result & {
+        padding: 10px 8px 5px 8px;
+        spacing: 4px;
+    }
+}
+
+.overview-icon {
+    .app-well-app &,
+    .grid-search-result & {
+        background-color: transparent;
+        box-shadow: 0 0 transparent;
+        border: 0 transparent;
+        border-radius: 0;
+        transition-duration: 0ms;
+        padding: 6px;
+        color: $text-primary-invert;
+        text-align: center;
+    }
+
+    .app-well-app:hover &,
+    .app-well-app:focus &,
+    .app-well-app:selected &,
+    .app-well-app:active &,
+    .app-well-app:checked &,
+    .grid-search-result:hover &,
+    .grid-search-result:focus &,
+    .grid-search-result:selected &,
+    .grid-search-result:active &,
+    .grid-search-result:checked & {
+        border-image: url("overview-assets/overview-light-bg.svg") 7;
+    }
+}
