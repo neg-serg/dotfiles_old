@@ -8,7 +8,6 @@ source ~/.mutt/sidebar.mutt
 source ~/.mutt/gmail.mutt
 # source ~/.mutt/themes/trans-green
 source ~/.mutt/themes/milomouse
-
 source ~/.mutt/mailboxes
 
 set nm_default_uri = "notmuch:///home/neg/.local/mail/gmail"
@@ -19,7 +18,6 @@ set header_cache=~/.mutt/hcache/
 # The X-Label header changing dynamically also messes with this, so disable it.
 unset message_cachedir
 
-set query_command = "abook --mutt-query '%s'"
 set shell="/bin/zsh"
 set realname="Sergey Miroshnichenko" 
 set charset=utf-8      # Local charset
@@ -135,28 +133,7 @@ hdr_order Date From To Cc
 alternative_order text/plain text/html *
 auto_view text/html
 
-set query_command= "abook --mutt-query '%s'"
-macro index,pager  a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
-bind editor <Tab> complete-query
+set query_command="goobook query '%s'"
+# set query_command= "abook --mutt-query '%s'"
 
-macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
-macro index,pager,attach gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index,pager,attach ga "<change-folder>=[Gmail].All Mail<enter>" "Go to all mail"
-macro index,pager,attach gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent mail"
-macro index,pager,attach gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts"
-macro index,pager,attach g* "<change-folder>=[Gmail].Starred<enter>" "Go to starred"
-macro index,pager,attach gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash"
-macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook reload<enter>" "add address to Google contacts"
-# performs a notmuch query, showing only the results
-macro index Z "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
-# 'A' shows all messages again (supersedes default <alias> binding)
-macro index A "<limit>all\n" "show all messages (undo limit)"
-macro index,pager,attach,compose go "\
-<enter-command> set my_pipe_decode=~4~pipe_decode pipe_decode<Enter>\
-<pipe-message> urlview<Enter>\
-<enter-command> set pipe_decode=~4~my_pipe_decode; unset my_pipe_decode<Enter>" \
-"call urlview to extract URLs out of a message"
-macro pager \Cu "|urlview<enter>" "call urlview to open links"
-macro index X "|/home/neg/.mutt/mimedump"
-macro pager X "|/home/neg/.mutt/mimedump"
 account-hook $folder "set imap_user=serg.zorg@gmail.com imap_pass=$my_pw_personal
