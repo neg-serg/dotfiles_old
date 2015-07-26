@@ -16,8 +16,8 @@ xset 0 0
 xset dpms $DPMS_STANDBY $DPMS_SUSPEND $DPMS_OFF
 
 setxkbmap -option keypad:pointerkeys
-setxkbmap -layout 'us,ru' -variant -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
-setxkbmap -layout 'us,ru' -variant -option ctrl:nocaps 
+setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
+setxkbmap -layout 'us,ru' -variant altgr-intl -option ctrl:nocaps 
 
 (( ${QT_XFT} ))      || export QT_XFT=1
 (( ${GDK_USE_XFT} )) || export GDK_USE_XFT=1
@@ -39,13 +39,13 @@ zsh ~/.local/wallpaper.sh &
 syndaemon -t -k -i 2 -d
 
 [ -f ${HOME}/.Xresources ] && xrdb   -merge ${HOME}/.Xresources
-[ -f ${HOME}/.config/keymaps/.xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/.xmodmaprc
+[ -f ${HOME}/.config/keymaps/xmodmaprc ] && xmodmap ${HOME}/.config/keymaps/xmodmaprc
 
 [ -x /usr/bin/dunst ] && dunst &
 (urxvtd -q -f -o && ${HOME}/bin/urxvt)
 
 [ -z $(pidof udiskie) ] && udiskie -q&
-[ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter -idle 1 -reset -noevents &
+[ ! -x "`which unclutter 2>/dev/null`"  ] ||  unclutter --fork --timeout 1 &
 gpaste daemon
 ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
