@@ -1,20 +1,14 @@
 function screenshot_filename(postfix)
-   local prefix = "screenshot"
-   local datetime = os.date("%Y_%m_%d-%H_%M")
-   local home_path = os.getenv("HOME")
-   local screenshot_path = home_path .. "/pic/shots"
-   local extension = ".png"
-   local filename = screenshot_path .. '/' .. prefix .. '-' .. datetime .. postfix .. extension
-   return filename
-end
-
-
-function screenshot_filename(postfix)
-   local prefix = "screenshot"
-   local datetime = os.date("%Y_%m_%d-%H_%M")
+   local prefix = "scr_"
+   local datetime = os.date("%Y_%m_%d-%H_%M_%S")
+   -- local home_path = os.getenv("HOME")
+   -- local screenshot_path = home_path .. "/pic/shots"
    local screenshot_path = "/tmp"
    local extension = ".png"
-   local filename = screenshot_path .. '/' .. prefix .. '-' .. datetime .. postfix .. extension
+   local filename = screenshot_path .. '/' .. prefix .. datetime .. postfix .. extension
+   local echo_str = '[ Scr :: {' ..  prefix .. datetime .. postfix .. extension ..'} ]'
+   local fd = io.popen("notify-send '".. echo_str .."'")
+   fd:close()
    return filename
 end
 
