@@ -1,4 +1,5 @@
 source /home/neg/.gdb/gdb-stl-views.gdb
+source /home/neg/.gdb/dbinit_stl_views-1.03.txt
 python
 import sys
 sys.path.insert(0, '/home/neg/.gdb/boost_pretty_printer')
