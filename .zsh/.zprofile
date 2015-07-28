@@ -18,4 +18,14 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFc0c0c0" #white
 fi
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && exec startx
+if [[ -o LOGIN  ]]; then
+    (( $#commands[tmux]  )) && tmux list-sessions 2>/dev/null
+fi
+
+if [[ -z "$DISPLAY"  ]] && [[ $(tty) = /dev/tty1  ]] && [[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && [ -z `pgrep xinit`  ]; then
+    exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
+elif [[ $(tty) = /dev/tty4  ]]; then
+    tmux -f $HOME/.tmux.conf new -S ~/1st_level/main.socket
+fi
+
+# [[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && exec startx -- -keeptty -nolisten tcp > ~/.xorg.log 2>&1
