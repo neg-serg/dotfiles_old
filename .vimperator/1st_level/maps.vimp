@@ -24,13 +24,8 @@ map $ <End>
 " C-g as cancel (C-q is stop)
 cmap <C-]> i<Esc>
 imap <C-]> i<Esc>
-noremap <C-]> i<Esc>
-noremap <Esc> i<Esc>
-
 cmap <C-ъ> i<Esc>
 imap <C-ъ> i<Esc>
-noremap <C-ъ> i<Esc>
-noremap <Esc> i<Esc>
 
 " hints-for-embedded.js
 let g:hints_for_embedded_mode = "e"
