@@ -94,63 +94,6 @@ fi
 # autoloading.
 zrcautoload is-at-least || is-at-least() { return 1 }
 
-# utility functions
-# this function checks if a command exists and returns either true
-# or false. This avoids using 'which' and 'whence', which will
-# avoid problems with aliases for which on certain weird systems. :-)
-# Usage: check_com [-c|-g] word
-#   -c  only checks for external commands
-#   -g  does the usual tests and also checks for global aliases
-function check_com() {
-    emulate -L zsh
-    local -i comonly gatoo
-
-    if [[ $1 == '-c' ]] ; then
-        (( comonly = 1 ))
-        shift
-    elif [[ $1 == '-g' ]] ; then
-        (( gatoo = 1 ))
-    else
-        (( comonly = 0 ))
-        (( gatoo = 0 ))
-    fi
-
-    if (( ${#argv} != 1 )) ; then
-        return 1
-    fi
-
-    if (( comonly > 0 )) ; then
-        [[ -n ${commands[$1]}  ]] && return 0
-        return 1
-    fi
-
-    if   [[ -n ${commands[$1]}    ]] \
-      || [[ -n ${functions[$1]}   ]] \
-      || [[ -n ${aliases[$1]}     ]] \
-      || [[ -n ${reswords[(r)$1]} ]] ; then
-
-        return 0
-    fi
-
-    if (( gatoo > 0 )) && [[ -n ${galiases[$1]} ]] ; then
-        return 0
-    fi
-
-    return 1
-}
-
-function ESC_print () { info_print $'\ek' $'\e\\' "$@"  }
-function set_title () { info_print  $'\e]0;' $'\a' "$@" }
-function info_print () {
-    local esc_begin esc_end
-    esc_begin="$1"
-    esc_end="$2"
-    shift 2
-    printf '%s' ${esc_begin}
-    printf '%s' "$*"
-    printf '%s' "${esc_end}"
-}
-
 function pk () {
     if [ $1 ] ; then
         case $1 in
