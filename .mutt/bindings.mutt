@@ -5,7 +5,7 @@ bind pager p previous-unread    # NOT to JUMP to next/prev one!
 bind pager n next-unread        # It's better to use p & p for this
 bind pager ,p print-message     # Print message when viewing it
 
-macro pager   W       "|urlview\n"
+macro pager   W       "|urlscan\n"
 macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
 
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
@@ -54,7 +54,6 @@ macro index,pager,attach,compose go "\
 <pipe-message> urlview<Enter>\
 <enter-command> set pipe_decode=~4~my_pipe_decode; unset my_pipe_decode<Enter>" \
 "call urlview to extract URLs out of a message"
-macro pager \Cu "|urlview<enter>" "call urlview to open links"
 macro index X "|/home/neg/.mutt/mimedump"
 macro pager X "|/home/neg/.mutt/mimedump"
 
