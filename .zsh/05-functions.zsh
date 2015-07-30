@@ -1,10 +1,11 @@
 function chpwd() {
-    [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
+    if [ -x ~/bin/Z ]; then
+        [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
+    fi
 }
 
 # A shortcut function that simplifies usage of xclip.
 # - Accepts input from either stdin (pipe), or params.
-# ------------------------------------------------
 function cb() {
   local _scs_col="\e[0;32m"; local _wrn_col='\e[1;31m'; local _trn_col='\e[0;33m'
   # Check that xclip is installed.
@@ -221,14 +222,17 @@ function any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
     if [[ -z "$1" ]] ; then
-        echo "any - grep for process(es) by keyword" >&2
-        echo "Usage: any <keyword>" >&2 ; return 1
+        if [ ! -x `which peco` ]; then
+            echo "any - grep for process(es) by keyword" >&2
+            echo "Usage: any <keyword>" >&2 ; return 1
+        else
+            ps xauwww | peco --layout=bottom-up
+        fi
     else
         ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
     fi
 }
 
-#f5# Create directory under cursor or the selected area
 function inplaceMkDirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
     # To select an area press ctrl-@ or ctrl-space and use the cursor.
@@ -268,16 +272,6 @@ function zle-keymap-select {
     VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
     zle reset-prompt
 }
-
-# 2011-10-19
-# stolen from completion function _tmux
-function __tmux-sessions() {
-    local expl
-    local -a sessions
-    sessions=( ${${(f)"$(command tmux list-sessions)"}/:[ $'\t']##/:} )
-    _describe -t sessions 'sessions' sessions "$@"
-}
-compdef __tmux-sessions tm 
 
 function imv() {
     local src dst
@@ -541,11 +535,8 @@ function zhist {
     fi
 }
 
-# slow output
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
-# change terminal title
-function tname() { printf "%b" "\e]0;${1:-$TERM}\a"; }
-# function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
+function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
 
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
@@ -631,3 +622,28 @@ function bookmarks_export(){
     where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1
     and length(moz_bookmarks.title) > 0 order by moz_bookmarks.dateAdded"
 }
+
+function cache_list(){
+    dirlist=(
+        ~/.w3m/*
+        ~/.local/share/recently-used.xbel
+        ~/.cache/mc/*
+        ~/.local/share/mc/history
+        ~/.viminfo
+        ~/.adobe/
+        ~/.macromedia/
+        ~/.cache/mozilla/
+        ~/.thumbnails/
+    )
+
+    du -shc $dirlist
+}
+
+function switch_mpdscribble(){
+    if [[ "`systemctl --user status mpdscribble.service|grep -o 'active (running)'`" == "active (running)" ]]; then
+        systemctl --user stop mpdscribble
+        mpdscribble --conf /home/neg/.config/mpdscribble/hextrick.conf --no-daemon &
+    else
+        pkill mpdscribble
+        systemctl --user start mpdscribble
+    fi
