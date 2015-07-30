@@ -647,3 +647,4 @@ function switch_mpdscribble(){
         pkill mpdscribble
         systemctl --user start mpdscribble
     fi
+}
