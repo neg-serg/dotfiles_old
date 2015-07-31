@@ -214,7 +214,12 @@ function pl(){
         find_result="`find "${HOME}/vid/"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
     fi
     echo ${find_result}|xsel
-    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
+    local vid_comment="$(exiftool -t -S -Comment ${find_result})"
+    if [[ vid_comment != "" ]]; then
+        echo -e "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}\n[Comment :: $vid_comment ]"
+    else
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${find_result}"
+    fi
     mpv "${find_result}"
 }
 
