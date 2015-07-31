@@ -57,26 +57,28 @@ EOH
 }
 
 function vim_file_open() {
-    file_name="$(resolve_file $line)"
+    local file_name="$(resolve_file $line)"
     file_name=$(bash -c "printf %q '$file_name'")
-    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name"
+    local file_size=$(stat -c%s "$file_name"| numfmt --to=iec-i --suffix=B)
+    local file_length="`wc -l $file_name|grep -oE '[0-9].* '`"
+    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [sz = $file_size] :: [len = $file_length]"
     eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
+    file_name=
 }
 
 function v {
     wid=$(xdotool search --classname wim)
-    wim_font="PragmataPro for Powerline"
+    local wim_font="PragmataPro for Powerline"
+    # wim_font_s="Mensch:size=14"
     tmp_list=/tmp/vim_list
     if [ -z "$wid" ]; then
-       st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c 'tmux -S /home/neg/1st_level/vim.socket new "vim --servername VIM" && tmux -S /home/neg/1st_level/vim.socket switch-client -t vim' & 
+       st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c 'tmux -S ${HOME}/1st_level/vim.socket new "vim --servername VIM" && tmux -S ${HOME}/1st_level/vim.socket switch-client -t vim' & 
       notionflux -e "app.byclass('', 'wim')" > /dev/null
       sleep .8s
       for i in $@; echo $i >> $tmp_list
       while read line; do
-          vim_file_open
-          sleep .6s
+          vim_file_open && sleep .17s
       done < $tmp_list
-      file_name=
       rm $tmp_list
     else  
       notionflux -e "app.byinstance('', 'wim')" > /dev/null
@@ -84,9 +86,8 @@ function v {
       for i in $@; echo $i >> $tmp_list
       while read line; do
           vim_file_open
-          sleep .1s
+          sleep .17s
       done < $tmp_list
-      file_name=
       rm $tmp_list
     fi
 }
