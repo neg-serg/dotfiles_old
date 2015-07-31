@@ -5,7 +5,7 @@ bind pager p previous-unread    # NOT to JUMP to next/prev one!
 bind pager n next-unread        # It's better to use p & p for this
 bind pager ,p print-message     # Print message when viewing it
 
-macro pager   W       "|urlscan\n"
+macro pager   W       "|urlscan 2> /dev/null\n"
 macro index   S       "!~/.mutt/scripts/msgnum.sh\r"
 
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
@@ -49,11 +49,6 @@ macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook relo
 
 # 'A' shows all messages again (supersedes default <alias> binding)
 macro index A "<limit>all\n" "show all messages (undo limit)"
-macro index,pager,attach,compose go "\
-<enter-command> set my_pipe_decode=~4~pipe_decode pipe_decode<Enter>\
-<pipe-message> urlview<Enter>\
-<enter-command> set pipe_decode=~4~my_pipe_decode; unset my_pipe_decode<Enter>" \
-"call urlview to extract URLs out of a message"
 macro index X "|/home/neg/.mutt/mimedump"
 macro pager X "|/home/neg/.mutt/mimedump"
 
