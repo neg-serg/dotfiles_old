@@ -83,25 +83,19 @@ function vim_file_open() {
 function process_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
     sleep "$1"; shift
-    for i in $@; echo $i >> $tmp_list
-    while read line; do
-        vim_file_open
-    done < $tmp_list
-    rm -f $tmp_list
+    for line; do vim_file_open; done
 }
 
 function v {
     wid=$(xdotool search --classname wim)
     local wim_font="PragmataPro for Powerline"
     # wim_font_s="Mensch:size=14"
-    tmp_list=/tmp/vim_list
     if [ -z "$wid" ]; then
        st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c 'tmux -S ${HOME}/1st_level/vim.socket new "vim --servername VIM" && tmux -S ${HOME}/1st_level/vim.socket switch-client -t vim' & 
       process_list ".8s" "$@"
     else  
       process_list ".5s" "$@"
     fi
-    rm -f $tmp_list
 }
 
 # { callvim -b':vsp' }
