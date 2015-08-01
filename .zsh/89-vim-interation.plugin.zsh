@@ -58,13 +58,20 @@ EOH
 
 function vim_file_open() {
     local file_name="$(resolve_file $line)"
-    local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B)
+    local FG24="[38;5;24m"
+    local FG29="[38;5;29m"
+    local FG237="[38;5;237m"
+    local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/${FG29}&/")
     local file_length="`wc -l $file_name 2>/dev/null|grep -owE '[0-9]* '|tr -d ' '`"
+    local sz_msg="$fg[blue][$fg[white]sz ${FG237}~$fg[white] $file_size$fg[blue]]"
+    local len_msg="$fg[blue][$fg[white]len ${FG237}=$fg[white] $file_length$fg[blue]]"
+    local new_file_msg="$fg[blue][$fg[white] new_file $fg[blue]]"
+    local msg_delim="${FG24}::"
     file_name=$(bash -c "printf %q '$file_name'")
     if [ -f "$file_name" ]; then
-        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [sz = $file_size] :: [len = $file_length]"
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name $msg_delim $sz_msg $msg_delim $len_msg"
     else
-        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [ new_file ]"
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name $msg_delim $new_file_msg"
     fi
     eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
     file_name=
