@@ -58,12 +58,27 @@ EOH
 
 function vim_file_open() {
     local file_name="$(resolve_file $line)"
+    local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B)
+    local file_length="`wc -l $file_name 2>/dev/null|grep -owE '[0-9]* '|tr -d ' '`"
     file_name=$(bash -c "printf %q '$file_name'")
-    local file_size=$(stat -c%s "$file_name"| numfmt --to=iec-i --suffix=B)
-    local file_length="`wc -l $file_name|grep -oE '[0-9].* '`"
-    echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [sz = $file_size] :: [len = $file_length]"
+    if [ -f "$file_name" ]; then
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [sz = $file_size] :: [len = $file_length]"
+    else
+        echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white]$file_name :: [ new_file ]"
+    fi
     eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
     file_name=
+    sleep .17s
+}
+
+function process_list() {
+    notionflux -e "app.byclass('', 'wim')" > /dev/null
+    sleep "$1"; shift
+    for i in $@; echo $i >> $tmp_list
+    while read line; do
+        vim_file_open
+    done < $tmp_list
+    rm $tmp_list
 }
 
 function v {
@@ -73,22 +88,9 @@ function v {
     tmp_list=/tmp/vim_list
     if [ -z "$wid" ]; then
        st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c 'tmux -S ${HOME}/1st_level/vim.socket new "vim --servername VIM" && tmux -S ${HOME}/1st_level/vim.socket switch-client -t vim' & 
-      notionflux -e "app.byclass('', 'wim')" > /dev/null
-      sleep .8s
-      for i in $@; echo $i >> $tmp_list
-      while read line; do
-          vim_file_open && sleep .17s
-      done < $tmp_list
-      rm $tmp_list
+      process_list ".8s" "$@"
     else  
-      notionflux -e "app.byinstance('', 'wim')" > /dev/null
-      sleep .5s
-      for i in $@; echo $i >> $tmp_list
-      while read line; do
-          vim_file_open
-          sleep .17s
-      done < $tmp_list
-      rm $tmp_list
+      process_list ".5s" "$@"
     fi
 }
 
