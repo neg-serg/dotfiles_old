@@ -1,19 +1,19 @@
-#!/bin/sh
-# CMD="-tr -name MainTerminal -fn -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
-#                             -fb -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r \
-#                             -fi -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r"
+#!/bin/zsh
 
-MAIN_DETECT=$(tmux list-sessions|grep main|awk -F : '{print $1}')
-if [[ $MAIN_DETECT != "main" ]]; then
-    wid=$(xdotool search --classname MainTerminal)
+local fn_size="17"
+local fn_name="PragmataPro for Powerline"
+local main_term_fn="xft:${fn_name}:size=${fn_size}"
+local main_detect=$(tmux list-sessions|grep main|awk -F : '{print $1}')
+local term_name="MainTerminal"
+local session_name="main"
+
+if [[ ${main_detect} != "main" ]]; then
+    wid=$(xdotool search --classname ${term_name})
     if [ -z "$wid" ]; then
-        urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
-            -fb "xft:PragmataPro for Powerline:size=17" \
-            -fi "xft:PragmataPro for Powerline:size=17"  -e zsh -i -c "tmux new-session -s main && tmux a -t main"
+        urxvtc -tr -name ${term_name} -fn "${main_term_fn}" -fb "{$main_term_fn}" -fi "{$main_term_fn}" \
+            -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
     fi
 else
-    urxvtc -tr -name MainTerminal -fn "xft:PragmataPro for Powerline:size=17" \
-        -fb "xft:PragmataPro for Powerline:size=17" \
-        -fi "xft:PragmataPro for Powerline:size=17" \
-        -e zsh -i -c "tmux a -t main"
+    urxvtc -tr -name ${term_name} -fn "${main_term_fn}" -fb "${main_term_fn}" -fi "${main_term_fn}" \
+        -e zsh -i -c "tmux a -t ${session_name}"
 fi
