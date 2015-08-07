@@ -472,8 +472,7 @@ function hi2() {
         pygmentize -g $@
     fi
 
-    for FNAME in $@
-    do
+    for FNAME in $@; do
         filename=$(basename "$FNAME")
         lexer=`pygmentize -N \"$filename\"`
         if [ "Z$lexer" != "Ztext" ]; then
@@ -647,4 +646,13 @@ function switch_mpdscribble(){
         pkill mpdscribble
         systemctl --user start mpdscribble
     fi
+}
+
+function clock(){
+    while sleep 1; do 
+        tput sc
+        tput cup 0 $(($(tput cols)-29))
+        date
+        tput rc
+    done &
 }
