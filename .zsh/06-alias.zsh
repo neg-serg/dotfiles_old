@@ -222,3 +222,13 @@ g() {
 }
 
 alias google='web_search google'
+
+function sls(){
+    steamcmd '+apps_installed +quit' |\
+        awk '/AppID/ {
+                id = $2;
+                name = substr($0, index($0, " : ") + 3);
+                sub(" : .*", "", name);
+                print id ": " name;
+            }'
+}
