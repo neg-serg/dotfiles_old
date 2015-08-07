@@ -111,7 +111,6 @@ fi
 
 alias "tree=tree --dirsfirst -C"
 alias "acpi=acpi -V"
-alias "youtube-dl=tsocks youtube-dl"
 alias se=extract
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
@@ -130,7 +129,8 @@ alias :q='exit'
 alias iostat='iostat -mtx'
 alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
-alias yt="youtube-dl -c -t -f best --no-part"
+alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
+
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
 alias yt="you-get"
 alias yr="youtube-viewer --video-player=mpv -C"
@@ -205,47 +205,6 @@ function w7run {
     -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
     -boot d
     # ${HOME}/bin/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
-}
-
-function pl(){
-    if [[ -e "$@" ]]; then
-        find_result="`find "$@"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-    else
-        find_result="`find "${HOME}/vid/"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-    fi
-    echo ${find_result}|xsel
-    local prefix="$fg[blue][$fg[white]>>$fg[blue]]"
-    local msg_delim="[38;5;24m::${fg[white]}"
-
-    local vid_comment="$(exiftool -t -S -Comment ${find_result})"
-    local file_size="$(exiftool -t -S -FileSize ${find_result})"
-    local mime_type="$(exiftool -t -S -MIMEType ${find_result})"
-    local doc_type="$(exiftool -t -S -DocType ${find_result})"
-    local muxing_app="$(exiftool -t -S -MuxingApp ${find_result})"
-    local wrighting_app="$(exiftool -t -S -WrightingApp ${find_result})"
-    local duration="$(exiftool -t -S -Duration ${find_result})"
-    local date_time="$(exiftool -t -S -DateTimeOriginal ${find_result})"
-    local img_width="$(exiftool -t -S -ImageWidth ${find_result})"
-    local img_height="$(exiftool -t -S -ImageHeight ${find_result})"
-
-    local tmp_name="$(echo ${find_result}|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
-    local decoration="$fg[green]‒$fg[white]"
-    local fancy_name="${decoration} ${tmp_name} ${decoration}"
-
-    if [[ ! $(echo ${vid_comment}|tr -d '[:blank:]') == "" ]]; then
-        local comment_str="${fg[blue]}[${fg[white]} Comment ${msg_delim} $vid_comment ${fg[blue]}]${fg[white]}"
-    else
-        local comment_str=""
-    fi
-    local img_size_str="${fg[blue]}[${fg[white]} Size ${msg_delim} ${img_width} x ${img_height} ${fg[blue]}]"
-    local duration_str="${fg[blue]}[${fg[white]} Duration ${msg_delim} ${duration} ${fg[blue]}]"
-    if [[ ! $(echo ${created_str}|tr -d '[:blank:]') == "" ]]; then
-        local created_str="${fg[blue]}[${fg[white]} Created ${msg_delim} ${date_time} ${fg[blue]}]"
-    else
-        local created_str=""
-    fi
-    echo -e "${prefix} ${fancy_name}\n${img_size_str}\n${duration_str}\n${created_str}\n${comment_str}"
-    mpv "${find_result}"
 }
 
 user_commands=(
