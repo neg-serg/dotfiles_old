@@ -67,7 +67,7 @@ if has("gui_running")
     set mouse=                         " enable full mouse support
     if !has('nvim')
         set ttymouse=urxvt                 " more accurate mouse tracking
-    fi
+    endif
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
