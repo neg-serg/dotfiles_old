@@ -9,7 +9,7 @@
 }
 
 alias '?=bc -l <<<'
-alias stderred="LD_PRELOAD=/home/neg/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
+alias stderred="LD_PRELOAD=${HOME}/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
 
 # If noglob (for zsh) is not available, just make it a noop
 if ! type noglob >/dev/null 2>&1; then
@@ -29,13 +29,11 @@ alias fevil='find . -regextype posix-extended -regex'
 alias sp='du -shc ./* | sort -h'
 alias cdu=cdu -idh
 
-if [[ $UID != 0 ]]
-then
+if [[ $UID != 0 ]]; then
     if [ -f "$HOME/.ssh/config" ]; then
         for host in $( perl -ne 'print "$1\n" if /\A[Hh]ost\s+(.+)$/' ${HOME}/.ssh/config);
             alias $host="ssh $host '$@'";
     fi
-
     alias bigloo='rlwrap bigloo'
     alias clisp= 'rlwrap clisp'
     alias irb=   'rlwrap irb-1.8'
@@ -52,6 +50,8 @@ if [[ ! -x "${HOME}/bin/l" ]]; then
         fi
     fi
 fi
+alias l.='ls -d .*'
+
 alias primusrun="vblank_mode=0 primusrun"
 alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 # see http://www.cl.cam.ac.uk/~mgk25/unicode.html#term for details
@@ -64,25 +64,14 @@ alias mk="mkdir -p"
 alias mp="mpv"
 alias mpa="mpv -fs -ao null"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont pragmatapro"
-alias mpr="~/bin/mpv.rb" 
-alias i="ipython"
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
-alias vz="v ~/.zshrc"
-alias vpad="vim +set\ buftype=nofile +startinsert"
-
-alias D0='DISPLAY=":0"'
-alias D1='DISPLAY=":1"'
-
-alias m="sudo mount"
 alias u="sudo umount"
 alias s="sudo"
 alias e="zathura"
 alias rd="rmdir"
-
-alias j='jobs -l'
 
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
@@ -122,36 +111,26 @@ alias gc='git commit'
 alias glp='gl -p'
 alias gcu='git commit -m "updates"'
 
-alias R='rehash'
-
 alias :q='exit'
 
 alias iostat='iostat -mtx'
 alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
-alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
-
+# alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
-alias yt="you-get"
-alias yr="youtube-viewer --video-player=mpv -C"
+alias yt="tsocks you-get"
+alias yr="tsocks youtube-viewer --video-player=mpv -C"
 
 alias qe='cd *(/om[1])'
 alias hi='_v'
 
 alias wine="LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
-#-----------[fasd]---------------
-alias a='fasd -a'
-alias sd='fasd -sid'
-alias sf='fasd -sif'
-alias d='fasd -d'
-alias f='fasd -f'
 
-alias ym='~/bin/scripts/yandex.mount > /dev/null'
+alias ym="${HOME}/bin/scripts/yandex.mount > /dev/null"
 alias td='[ -z $(pidof transmission-daemon) ] && transmission-daemon'
 
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
-alias l.='ls -d .*'
 alias sniff='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
 alias wd="${HOME}/bin/wd.sh"
@@ -160,7 +139,7 @@ alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
 
 alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
-alias memgrind='valgrind --tool=memcheck $@ --leak-check=full'
+alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal='~/bin/scripts/dzen-time-date'
 alias lk="[[ -x `which glances`  ]] && glances"
@@ -226,9 +205,7 @@ if [ -z "\${which tree}" ]; then
 fi
 
 # Delete 0 byte file
-d0() {
-    find "$(retval $1)" -type f -size 0 -exec rm -rf {} \;
-}
+d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
 
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
@@ -241,9 +218,3 @@ g() {
 }
 
 alias google='web_search google'
-# alias wiki='web_search duckduckgo \!w'
-# alias news='web_search duckduckgo \!n'
-# alias youtube='web_search duckduckgo \!yt'
-# alias map='web_search duckduckgo \!m'
-# alias image='web_search duckduckgo \!i'
-# alias ducky='web_search duckduckgo \!'
