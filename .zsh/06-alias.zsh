@@ -7,6 +7,10 @@
         alias df="df -hT"
     fi
 }
+alias pstree="pstree -U "$@" | sed '
+	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
+	s/[{}]/\x1B[31m&\x1B[0m/g
+	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
 
 alias '?=bc -l <<<'
 alias stderred="LD_PRELOAD=${HOME}/bin/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
