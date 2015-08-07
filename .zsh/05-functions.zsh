@@ -656,3 +656,7 @@ function clock(){
         tput rc
     done &
 }
+
+function soneeded() {
+   readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}'
+}
