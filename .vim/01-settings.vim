@@ -12,7 +12,11 @@ if v:version >= 704
   set regexpengine=0
 endif
 
-set conceallevel=2 concealcursor=incv
+set conceallevel=2 concealcursor=i
+
+if (has('win16') || has('win32') || has('win64'))
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
 
 " Options initiating with ?m?
 " [global] |'magic'| Set 'magic' patterns ;)
@@ -61,7 +65,9 @@ if has("gui_running")
     set mousehide                      " hide the mouse pointer while typing
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
     set mouse=                         " enable full mouse support
-    set ttymouse=urxvt                 " more accurate mouse tracking
+    if !has('nvim')
+        set ttymouse=urxvt                 " more accurate mouse tracking
+    fi
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
@@ -176,6 +182,7 @@ set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
+set autoread                                " Auto reload
 set noautochdir                             " Dont't change pwd automaticly
 " set autochdir                             " Change pwd automaticly
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
@@ -226,11 +233,17 @@ if has('unnamedplus')
   elseif has ('gui')          " On mac and Windows, use * register for copy-paste
       set clipboard=unnamed
   endif
-  " set clipboard=unnamedplus,unnamed
   set clipboard=unnamed
 else
   " Vim now also uses the selection system clipboard for default yank/paste.
   set clipboard+=unnamed
+endif
+
+" Protect home directory
+if !empty($SUDO_USER) && $USER !=# $SUDO_USER                                                                                                           
+  set viminfo=                                                                                                                                          
+  set directory-=~/trash                                                                                                                                  
+  set backupdir-=~/trash                                                                                                                                  
 endif
 
 set completeopt=menu,menuone,longest
@@ -249,6 +262,8 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
+" set listchars=tab:▸…,eol:¬,trail:•
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
@@ -269,7 +284,7 @@ set more                        " probably it should get out 'Press enter' msg
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set nofoldenable                " Disable folds as
 set history=1000                " Store a ton of history (default is 20)
-" set spell                     " Spell checking on
+set nospell                     " Spell checking off
 set shiftwidth=4                " spaces for autoindents
 set shiftround                  " makes indenting a multiple of shiftwidth
 set expandtab                   " Tabs are spaces, not tabs
