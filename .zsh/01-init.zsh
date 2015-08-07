@@ -34,6 +34,8 @@ function zrcautoload() {
     return 0
 }
 
+zrcautoload colors && colors
+
 zle -N zle-keymap-select
 unset MAILCHECK
 # // c-s disabling
