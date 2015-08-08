@@ -148,21 +148,3 @@ limit -s
 # Keeps track of the last used working directory and automatically jumps
 # into it for new shells.
 export ZSH=~/.zsh
-
-# dirstack handling
-
-DIRSTACKSIZE=${DIRSTACKSIZE:-20}
-DIRSTACKFILE=${DIRSTACKFILE:-${ZDOTDIR:-${HOME}}/.zdirs}
-
-if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
-    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-    # "cd -" won't work after login by just setting $OLDPWD, so
-    [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
-fi
-
-chpwd() {
-    local -ax my_stack
-    my_stack=( ${PWD} ${dirstack} )
-    builtin print -l ${(u)my_stack} >! ${DIRSTACKFILE}
-}
-
