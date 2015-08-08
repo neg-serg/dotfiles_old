@@ -22,114 +22,99 @@ function resolve_file {
 }
 
 readonly KEY="$1";
-readonly TAGFILE="$HOME/.config/sxiv/tags"
-readonly TMPFILE="/tmp/sxiv.$$"
-readonly TMPFILE2="/tmp/sxiv2.$$"
-readonly TMPFILE_HSETROOT="/tmp/sxiv_hset.$$"
+readonly TAGFILE="${HOME}/.config/sxiv/tags"
+readonly tmp_file="/tmp/sxiv.$$"
+readonly tmp_file2="/tmp/sxiv2.$$"
 readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -font "Pragmata Pro for Powerline 20" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 2 -padding 2 -width 1850'
-Z_DATA_FILE="$XDG_DATA_HOME/sxiv_do.data"
-LAST_ACTION="$XDG_DATA_HOME/sxiv_do.last"
+readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
+readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
 
 rotate() {
 	degree="$1"
 	while read file; do
-		case "$(file -b -i "$file")" in
-		image/jpeg*) jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
-		*)           mogrify  -rotate "$degree" "$file" ;;
+		case "$(file -b -i "${file}")" in
+		image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
+		*)           mogrify  -rotate "${degree}" "${file}" ;;
 		esac
 	done
 }
 
 tag_add() {
-	>>"$TAGFILE"
-	tags=$(dmenu <"$TAGFILE" | tr '\n' ',')
-	[ -z "$tags" ] && return
-	iptckwed -i -a "$tags"
-	echo -n "$tags" | tr ',' '\n' | sort - "$TAGFILE" | uniq >"$TAGFILE.new"
-	mv -f "$TAGFILE"{.new,}
+	>>"${TAGFILE}"
+	tags=$(dmenu <"${TAGFILE}" | tr '\n' ',')
+	[[ -z "${tags}" ]] && return
+	iptckwed -i -a "${tags}"
+	echo -n "${tags}" | tr ',' '\n' | sort - "${TAGFILE}" | uniq >"${TAGFILE.new}"
+	mv -f "${TAGFILE}"{.new,}
 }
 
 tag_del() {
-	cat >"$TMPFILE"
-	tags=$(iptckwed -iql <"$TMPFILE" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
-	[ -z "$tags" ] && return
-	iptckwed -i -r "$tags" <"$TMPFILE"
-	rm -f "$TMPFILE"
+	cat >"${tmp_file}"
+	tags=$(iptckwed -iql <"${tmp_file}" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
+	[[ -z "${tags}" ]] && return
+	iptckwed -i -r "${tags}" <"${tmp_file}"
+	rm -f "${tmp_file}"
 }
-
-
 
 rename() {
-	cat >"$TMPFILE"
-    dest=$(printf "%s" "$(basename "$fp")" | eval $(echo $rofi_cmd -p '"[rem] >> "'))
-    if [ -n "$dest" ] ; then
-        fp=$(cat < "$TMPFILE")
-        $cmd "$fp" "$(dirname "$fp")/$dest"
+	cat >"${tmp_file}"
+    dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
+    if [[ -n "${dest}" ]] ; then
+        fp=$(cat < "${tmp_file}")
+        mv "${fp}" "$(dirname "$fp")/$dest"
     fi
-	rm -f "$TMPFILE"
+	rm -f "${tmp_file}"
 }
 
-copy() {
-	cat >"$TMPFILE"
-    if [ -z "$dest" ] ; then
-        dest=$(Z -i "$Z_DATA_FILE" | sed 's:^'$HOME':~:' |eval $(echo $rofi_cmd -p '"[cp] >> "')| sed 's:^~:'$HOME':')
+cpmv() {
+    if [[ $1 == "copy" ]]; then
+        cmd="cp"
+        cmd_w="copy"
     fi
-    [ -z "$dest" ] && exit 0
-    if [ -d "$dest" ] ; then
+    if [[ $1 == "move" ]]; then
+        cmd="mv"
+        cmd_w="move"
+    fi
+	cat >"${tmp_file}"
+    if [[ -z "${dest}" ]] ; then
+        dest=$(${HOME}/bin/Z -i "${z_data_file}" | sed 's:^'${HOME}':~:' |eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"")| sed 's:^~:'${HOME}':')
+    fi
+    [[ -z "${dest}" ]] && exit 0
+    if [[ -d "${dest}" ]] ; then
         while read line; do
-            file_name="`resolve_file $line`"
-            eval $(echo cp `echo \"${file_name}\"` $dest)
-        done < $TMPFILE
-        Z -i "$Z_DATA_FILE" -a "$dest"
-        printf "%s\n" "copy "$dest"" > "$LAST_ACTION"
+            file_name="$(resolve_file ${line})"
+            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+        done < ${tmp_file}
+        ${HOME}/bin/Z -i "${z_data_file}" -a "${dest}"
+        printf "%s\n" "${cmd_w} "${dest}"" > "${last_action}"
     else
-        Z -i "$Z_DATA_FILE" -d "$dest"
+        ${HOME}/bin/Z -i "${z_data_file}" -d "${dest}"
     fi
-	rm -f "$TMPFILE"
-}
-
-
-move() {
-	cat >"$TMPFILE"
-    if [ -z "$dest" ] ; then
-        dest=$(Z -i "$Z_DATA_FILE" | sed 's:^'$HOME':~:' |eval $(echo $rofi_cmd -p '"[mv] >> "')| sed 's:^~:'$HOME':')
-    fi
-    [ -z "$dest" ] && exit 0
-    if [ -d "$dest" ] ; then
-        while read line; do
-            file_name="`resolve_file $line`"
-            eval $(echo mv `echo \"${file_name}\"` $dest)
-        done < $TMPFILE
-        Z -i "$Z_DATA_FILE" -a "$dest"
-        printf "%s\n" "move "$dest"" > "$LAST_ACTION"
-    else
-        Z -i "$Z_DATA_FILE" -d "$dest"
-    fi
-	rm -f "$TMPFILE"
+	rm -f "${tmp_file}"
 }
 
 delete() {
-	cat >"$TMPFILE"
+	cat >"${tmp_file}"
     dest="${HOME}/trash/1st-level/pic"
-    [ -z "$dest" ] && exit 0
-    if [ -d "$dest" ] ; then
+    [[ -z "$dest" ]] && exit 0
+    if [[ -d "$dest" ]] ; then
         while read line; do
-            file_name="`resolve_file $line`"
-            eval $(echo mv `echo \"${file_name}\"` $dest)
-        done < $TMPFILE
-        printf "%s\n" "move "$dest"" > "$LAST_ACTION"
+            file_name="$(resolve_file ${line})"
+            eval $(echo mv `echo \"${file_name}\"` ${dest})
+        done < ${tmp_file}
+        printf "%s\n" "move "${dest}"" > "${last_action}"
     fi
-	rm -f "$TMPFILE"
+	rm -f "${tmp_file}"
 }
 
 rep() {
-    cat >"$TMPFILE"
-    file=($(cat "$LAST_ACTION"))
+    cat >"${tmp_file}"
+    file=($(cat "${last_action}"))
     action=${file[1]}
     dest=${file[2]}
-    if [ -d "$dest" ] ; then
+    if [ -d "${dest}" ] ; then
         while read line; do
-            file_name="`resolve_file $line`"
+            file_name="`resolve_file ${line}`"
             echo $file_name
             if [[ ${action} == "move" ]]; then
                 cmd="mv"
@@ -137,18 +122,18 @@ rep() {
             if [[ ${action} == "copy" ]]; then
                 cmd="cp"
             fi
-            eval $(echo $cmd `echo \"${file_name}\"` $dest)
-        done < $TMPFILE
+            eval $(echo $cmd `echo \"${file_name}\"` ${dest})
+        done < ${tmp_file}
     fi
-	rm -f "$TMPFILE"
+	rm -f "${tmp_file}"
 }
 
 copy_name() {
-    cat >"$TMPFILE2"
-    fp=$(cat < "$TMPFILE2")
-    echo $(resolve_file $fp)|xsel -bi
-    notify-send "[>>] [ $(resolve_file $fp) ]"
-    rm -f $TMPFILE2
+    cat >"${tmp_file2}"
+    fp=$(cat < "${tmp_file2}")
+    echo $(resolve_file ${fp})|xsel -bi
+    notify-send "[>>] [ $(resolve_file ${fp}) ]"
+    rm -f ${tmp_file2}
 }
 
 case "$KEY" in
@@ -158,8 +143,8 @@ case "$KEY" in
     "C-slash")  rotate 180 ;;
     "C-less") rotate -90 ;;
     "C-d") delete ;;
-    "C-v") move ;;
-    "C-c") copy ;;
+    "C-v") cpmv move ;;
+    "C-c") cpmv copy ;;
     "C-r") rename ;;
     "r")   rep ;;
     "c") copy_name ;;
