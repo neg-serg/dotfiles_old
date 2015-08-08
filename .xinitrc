@@ -13,7 +13,7 @@ nexec() { [[ -z $(pidof "$1") ]]; }
 synclient PalmDetect=1
 syndaemon -t -k -i 2 -d
 
-xset 0 0 # disable mouse acceleration
+xset m 0 0 # disable mouse acceleration
 xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 
 setxkbmap -option keypad:pointerkeys -layout 'us,ru' \
