@@ -16,11 +16,10 @@ syndaemon -t -k -i 2 -d
 xset 0 0 # disable mouse acceleration
 xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 
-setxkbmap -option keypad:pointerkeys
-setxkbmap -layout 'us,ru' -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
+setxkbmap -option keypad:pointerkeys -layout 'us,ru' \
+    -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
 
-xhost +localhost
-xhost +local:
+xhost +localhost +local:
 
 xbindkeys -n &
 xset -b r rate 200 50 m 1 1
@@ -40,4 +39,4 @@ nexec klay_watch && ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
 compton --config ~/.config/compton/compton.conf &
 systemctl --user import-environment DISPLAY
-exec notion 2>> /tmp/notionerr
+exec notion 2>> /tmp/notionerr 2>&1
