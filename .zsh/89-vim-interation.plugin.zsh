@@ -8,58 +8,10 @@ function resolve_file {
   fi
 }
 
-function callvim {
-  if [[ $# == 0 ]]; then
-    cat <<EOH
-usage: callvim [-b cmd] [-a cmd] [file ... fileN]
-
-  -b cmd     Run this command in GVIM before editing the first file
-  -a cmd     Run this command in GVIM after editing the first file
-  file       The file to edit
-  ... fileN  The other files to add to the argslist
-EOH
-    return 0
-  fi
-
-  local cmd=""
-  local toNormal="<c-\\><c-n>"
-  local before=""
-  local after=""
-  while getopts ":b:a:" option
-  do
-    case $option in
-      a) after="$OPTARG"
-         ;;
-      b) before="$before$OPTARG"
-         ;;
-    esac
-  done
-  shift $((OPTIND-1))
-  if [[ ${after#:} != $after && ${after%<cr>} == $after ]]; then
-    after="$after<cr>"
-  fi
-  if [[ ${before#:} != $before && ${before%<cr>} == $before ]]; then
-    before="$before<cr>"
-  fi
-  local files=""
-  for f in $@
-  do
-    files="$files $(resolveFile $f)"
-  done
-  if [[ -n $files ]]; then
-    files=':args! '"$files<cr>"
-  fi
-  cmd="$toNormal$before$files$after"
-  vim --servername VIM --remote-send "$cmd"
-  if typeset -f postCallVim > /dev/null; then
-    postCallVim
-  fi
-}
-
-function vim_file_open() {
+function vim_file_open() (
     local file_name="$(resolve_file $line)"
     file_name=$(bash -c "printf %q '$file_name'")
-
+    
     eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername VIM --remote-silent "${file_name}")"\')
     
     local FG237="[38;5;237m"
@@ -74,7 +26,7 @@ function vim_file_open() {
     local decoration="$fg[green]‒$fg[white]"
     local tmp_name="$(echo ${file_name}|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
     local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
-    if [ -f "${file_name}" ] && [ ! -d "${file_name}" ]; then
+    if [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
         local current_syntax=$(vim --servername "VIM" --remote-expr "b:current_syntax" 2>/dev/null)
         if [[ ! $(echo ${current_syntax}|tr -d '[:blank:]') == "" ]]; then
             local syn_msg=" ${msg_delim} $fg[blue][$fg[white] ft ${FG237}=$fg[white] ${current_syntax} $fg[blue]]$fg[white]"
@@ -83,7 +35,7 @@ function vim_file_open() {
         fi
         echo "${prefix} ${fancy_name} ${msg_delim} ${sz_msg} ${msg_delim} ${len_msg}${syn_msg}"
     else
-        if [ ! -d "${file_name}"  ]; then
+        if [[ ! -d "${file_name}"  ]]; then
             echo "${prefix} ${fancy_name} ${msg_delim} ${new_file_msg}"
         else
             echo "${prefix} ${fancy_name} ${msg_delim} ${dir_msg}"
@@ -91,7 +43,7 @@ function vim_file_open() {
     fi
 
     file_name=
-}
+)
 
 function process_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
@@ -102,22 +54,45 @@ function process_list() {
 function v {
     wid=$(xdotool search --classname wim)
     local wim_font="PragmataPro for Powerline"
-    # wim_font_s="Mensch:size=14"
-    if [ -z "$wid" ]; then
-       st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c 'tmux -S ${HOME}/1st_level/vim.socket new "vim --servername VIM" && tmux -S ${HOME}/1st_level/vim.socket switch-client -t vim' & 
-      process_list ".8s" "$@"
+#   local wim_font_s="Mensch:size=14"
+    local sock_path="${HOME}/1st_level/vim.socket"
+    local srv_name="VIM"
+    #----------------------------------------------------------------
+    # Examples :
+    #----------------------------------------------------------------
+    #  -b':vsp' -b':sp'
+    #  -b':wincmd k' -b':wincmd j'
+    #  -b':wincmd l' -b':wincmd h'
+    #  -b':sp<cr>:wincmd k'
+    #  -b':sp<cr>:wincmd j'
+    #  -b':vsp<cr>:wincmd h'
+    #  -b':vsp<cr>:wincmd l'
+    local cmd=""
+    # local to_normal="<c-\\><c-n>"
+    local to_normal=""
+    local before=""
+    local after=""
+    while getopts ":b:a:" option; do
+        case $option in
+            a) after="$OPTARG" ;;
+            b) before="$before$OPTARG" ;;
+        esac
+    done
+    shift $((OPTIND-1))
+    [[ ${after#:} != $after && ${after%<cr>} == $after ]] && after="$after<cr>"
+    [[ ${before#:} != $before && ${before%<cr>} == $before ]] && before="$before<cr>"
+    local files=""
+    for f in "$@"; do files="$files $(resolve_file $f)"; done
+    [[ -n $files ]] && files=':args! '"$files<cr>"
+    cmd="${to_normal}${before}${files}${after}"
+    # vim --servername ${srv_name} --remote-send "$cmd"
+    # echo cmd="${to_normal}${before}${files}${after}"
+    #----------------------------------------------------------------
+    if [[ -z "$wid" ]]; then
+        st -f "${wim_font}:pixelsize=20" -c 'wim' -e bash -c "tmux -S ${sock_path} new \"vim --servername ${srv_name}\" && \
+                tmux -S ${sock_path} switch-client -t vim" &
+        process_list ".6s" "$@"
     else  
-      process_list ".5s" "$@"
+        process_list ".2s" "$@"
     fi
 }
-
-# { callvim -b':vsp' }
-# { callvim -b':sp' }
-# { callvim -b':wincmd k' }
-# { callvim -b':wincmd j' }
-# { callvim -b':wincmd l' }
-# { callvim -b':wincmd h' }
-# { callvim -b':sp<cr>:wincmd k' }
-# { callvim -b':sp<cr>:wincmd j' }
-# { callvim -b':vsp<cr>:wincmd h' }
-# { callvim -b':vsp<cr>:wincmd l' }
