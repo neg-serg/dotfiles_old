@@ -7,8 +7,8 @@ function screenshot_filename(postfix)
    local extension = ".png"
    local filename = screenshot_path .. '/' .. prefix .. datetime .. postfix .. extension
    local echo_str = '[ Scr :: {' ..  prefix .. datetime .. postfix .. extension ..'} ]'
-   local fd = io.popen("notify-send '".. echo_str .."'")
-   fd:close()
+   local fd = io.popen("zsh -c \"echo '".. filename .."'|xsel -i\"") fd:close()
+   local fd = io.popen("notify-send '".. echo_str .."'") fd:close()
    return filename
 end
 
