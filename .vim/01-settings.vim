@@ -182,7 +182,7 @@ set encoding=utf-8                          " Set default enc to utf-8
 scriptencoding utf-8                        " Encoding used in the script
 " set autowrite                             " Autowrite by default
 set noautowrite                             " Don't autowrite by default
-set autoread                                " Auto reload
+" set autoread                              " Auto reload
 set noautochdir                             " Dont't change pwd automaticly
 " set autochdir                             " Change pwd automaticly
 set noshowmode                              " no show the mode ("-- INSERT --") at the bottom
