@@ -26,8 +26,6 @@ source ~/.zsh/20-rehash-hook.zsh
 source ~/.zsh/40-gpg-agent.zsh
 source ~/.zsh/50-title.zsh
 source ~/.zsh/60-functional.zsh
-source ~/.zsh/75-urltools.plugun.zsh
 source ~/.zsh/89-vim-interation.plugin.zsh
 source ~/.zsh/90-systemadmin.zsh
 source ~/.zsh/98-fzf.zsh
-source ~/.zsh/92-dynamic-colors.zsh
