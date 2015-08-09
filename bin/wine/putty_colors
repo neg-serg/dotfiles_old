@@ -1,0 +1,151 @@
+#!/bin/bash
+
+#  Here is a basic script I wrote in just a few minutes to take a xresources colorscheme and print out a reg file to import in windows
+#  for use with putty/kitty. By default, it sets the registry path for use with Kitty, but I put another line in there that can be
+#  un-commented to use with putty. Could be improved, but I thought I'd share so others can make it better!
+#  
+#  Usage: Pass a .Xdefaults file or file containing colors Example:
+#  
+#  > xcolorstoreg.sh .Xdefaults
+#  Windows Registry Editor Version 5.00
+#  
+#  [HKEY_CURRENT_USER\Software\9bis.com\KiTTY\Sessions\Default%20Settings]
+#  "Colour0"="220,220,204"
+#  "Colour1"="220,220,204"
+#  "Colour2"="58,58,58"
+#  "Colour3"="58,58,58"
+#  "Colour4"="220,220,204"
+#  "Colour5"="220,220,204"
+#  "Colour6"="30,35,32"
+#  "Colour7"="112,144,128"
+#  "Colour8"="112,80,80"
+#  "Colour9"="220,163,163"
+#  "Colour10"="96,180,138"
+#  "Colour11"="195,191,159"
+#  "Colour12"="223,175,143"
+#  "Colour13"="240,223,175"
+#  "Colour14"="80,96,112"
+#  "Colour15"="148,191,243"
+#  "Colour16"="220,140,195"
+#  "Colour17"="236,147,211"
+#  "Colour18"="140,208,211"
+#  "Colour19"="147,224,227"
+#  "Colour20"="220,220,204"
+#  "Colour21"="255,255,255"
+
+xfile=$1
+fallbackbg="0,0,0"
+fallbackfg="170,170,170"
+
+function hex2rgb () {
+        hexinput=$1
+        a=`echo $hexinput | cut -c-2`
+        b=`echo $hexinput | cut -c3-4`
+        c=`echo $hexinput | cut -c5-6`
+        r=`echo "ibase=16; $a" | bc`
+        g=`echo "ibase=16; $b" | bc`
+        b=`echo "ibase=16; $c" | bc`
+        echo "$r,$g,$b"
+}
+
+while read line
+do
+        colorname=$(echo $line | tr [:lower:] [:upper:] | sed 's/:.*//g' | sed 's/.*\*//g')
+        hexcolor=$(echo $line | tr [:lower:] [:upper:] | sed 's/.*#//g')
+        case "$colorname" in
+                FOREGROUND)
+                        foreground=$(hex2rgb $hexcolor)
+                        ;;
+                BACKGROUND)
+                        background=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR0)
+                        black0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR8)
+                        black1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR1)
+                        red0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR9)
+                        red1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR2)
+                        green0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR10)
+                        green1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR3)
+                        yellow0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR11)
+                        yellow1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR4)
+                        blue0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR12)
+                        blue1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR5)
+                        magenta0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR13)
+                        magenta1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR6)
+                        cyan0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR14)
+                        cyan1=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR7)
+                        white0=$(hex2rgb $hexcolor)
+                        ;;
+                COLOR15)
+                        white1=$(hex2rgb $hexcolor)
+                        ;;
+                *)
+                        echo "WTF!" > /dev/null
+                        ;;
+        esac
+done < $xfile
+
+if [ -z "$foreground" ]; then
+        foreground=$fallbackfg
+fi
+
+if [ -z "$background" ]; then
+        background=$fallbackbg
+fi
+
+echo "Windows Registry Editor Version 5.00"
+echo ""
+# FOR USE WITH PUTTY
+#echo "[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Default%20Settings]"
+# FOR USE WITH KITTY
+echo "[HKEY_CURRENT_USER\Software\9bis.com\KiTTY\Sessions\Default%20Settings]"
+echo -e "\"Colour0\"=\"$foreground\""
+echo -e "\"Colour1\"=\"$foreground\""
+echo -e "\"Colour2\"=\"$background\""
+echo -e "\"Colour3\"=\"$background\""
+echo -e "\"Colour4\"=\"$foreground\""
+echo -e "\"Colour5\"=\"$foreground\""
+echo -e "\"Colour6\"=\"$black0\""
+echo -e "\"Colour7\"=\"$black1\""
+echo -e "\"Colour8\"=\"$red0\""
+echo -e "\"Colour9\"=\"$red1\""
+echo -e "\"Colour10\"=\"$green0\""
+echo -e "\"Colour11\"=\"$green1\""
+echo -e "\"Colour12\"=\"$yellow0\""
+echo -e "\"Colour13\"=\"$yellow1\""
+echo -e "\"Colour14\"=\"$blue0\""
+echo -e "\"Colour15\"=\"$blue1\""
+echo -e "\"Colour16\"=\"$magenta0\""
+echo -e "\"Colour17\"=\"$magenta1\""
+echo -e "\"Colour18\"=\"$cyan0\""
+echo -e "\"Colour19\"=\"$cyan1\""
+echo -e "\"Colour20\"=\"$white0\""
+echo -e "\"Colour21\"=\"$white1\""
