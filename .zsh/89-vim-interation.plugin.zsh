@@ -13,8 +13,7 @@ function vim_file_open() (
     local srv_name="VIM"
     file_name=$(bash -c "printf %q '$file_name'")
     
-    eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername ${srv_name} --remote-silent "${file_name}")"\')
-    
+    vim --servername ${srv_name} --remote-silent "${file_name}"
     local FG237="[38;5;237m"
     local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
     local file_length="`wc -l $file_name 2>/dev/null|grep -owE '[0-9]* '|tr -d ' '`"
@@ -42,8 +41,7 @@ function vim_file_open() (
             echo "${pref} ${fancy_name} ${msg_delim} ${dir_msg}"
         fi
     fi
-
-    file_name=
+    unset file_name
 )
 
 function process_list() {
