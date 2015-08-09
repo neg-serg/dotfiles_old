@@ -71,3 +71,6 @@ bin/go/go-mtpfs
 .vim/bundle/*
 .vimperator/info/default/history-command
 .vimperator/info/default/history-search
+.newsbeuter/cache.db
+.vimv_history
+bin/go
