@@ -51,7 +51,6 @@ open(){
     else
     case "$1" in
                 *://*) ${web_browser} "$1" ;;
-                *:*) handle_uri "$1" ;;
                 *@*.*) mutt "$1" ;;
                 *) echo "file not found: '$1'" >&2 ;;
             esac
