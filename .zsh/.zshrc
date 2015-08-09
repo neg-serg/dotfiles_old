@@ -11,10 +11,9 @@
 #--------------------------------
 
 source ~/.zsh/01-init.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/02-syntax.zsh
 source ~/.zsh/03-exports.zsh
 source ~/.zsh/04-oldprompt.zsh
-source ~/.zsh/04-zleiab.zsh
 source ~/.zsh/05-functions.zsh
 source ~/.zsh/06-alias.zsh
 source ~/.zsh/11-open.zsh
