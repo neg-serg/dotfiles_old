@@ -102,8 +102,8 @@ else
     alias "poweroff=sudo poweroff"
 fi
 
-alias "tree=tree --dirsfirst -C"
-alias "acpi=acpi -V"
+alias tree="tree --dirsfirst -C"
+alias acpi="acpi -V"
 alias se=extract
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
