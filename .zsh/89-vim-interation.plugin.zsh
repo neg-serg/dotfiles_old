@@ -50,6 +50,8 @@ function process_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
     sleep "$1"; shift
     for line; do vim_file_open; done
+    local cmd="${to_normal}${before}${after}"
+    vim --servername ${srv_name} --remote-send "${cmd}"
 }
 
 function v {
@@ -83,8 +85,6 @@ function v {
         mfiles="${mfiles} $(bash -c "printf %q '${f}'")"
     done
     [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
-    local cmd="${to_normal}${before}${after}"
-    vim --servername ${srv_name} --remote-send "${cmd}"
     #----------------------------------------------------------------
     if [[ -z "${wid}" ]]; then
         st -f "${wim_font}:pixelsize=${font_size}" -c 'wim' -e bash -c "tmux -S ${sock_path} new \"vim --servername ${srv_name}\" && \
