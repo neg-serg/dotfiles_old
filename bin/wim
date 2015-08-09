@@ -1,7 +1,4 @@
-#!/bin/sh
-wim_font="PragmataPro for Powerline"
-if [[ `wmctrl -l|awk '{ $1=""; $2=""; $3=""; print $0 }'|grep vim` != "   tmux:1 [ vim ]"  ]] && [[ -z $(pidof vim) ]]; then
-    st -f "${wim_font}:pixelsize=20" -c 'wim' -e zsh -i -c 'tmux -S ~/1st_level/vim.socket new -s vim -n vim vim\ \-\-servername\ VIM'
-else
-    st -f "${wim_font}:pixelsize=20" -c 'wim' -e zsh -i -c 'tmux -S ~/1st_level/vim.socket attach-session -d -t vim'
-fi
+#!/bin/zsh
+source ${HOME}/.zsh/03-exports.zsh
+source ${HOME}/.zsh/89-vim-interation.plugin.zsh
+v ${HOME}
