@@ -34,7 +34,6 @@ open(){
                          *.pcf|*.bdf|*.pfb) ${editor} "$1"                                       ;;
                          *.svg) display "$1"                                                     ;;
                          *.pps|*.PPS|*.ppt|*.PPT) ${web_browser} "$1"                            ;;
-                         *.abw) ppsei "$1"                                                       ;;
                          *.rtf|*.doc)  libreoffice "$1" 2>/dev/null                              ;;
                          *.xls) catdoc -w -s cp1251 "$1"                                         ;;
                          *.xpm) xls2csv -s cp1251 "$1"                                           ;;
@@ -51,7 +50,6 @@ open(){
     else
     case "$1" in
                 *://*) ${web_browser} "$1" ;;
-                *@*.*) mutt "$1" ;;
                 *) echo "file not found: '$1'" >&2 ;;
             esac
     fi

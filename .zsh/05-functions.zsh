@@ -661,3 +661,29 @@ function clock(){
 function soneeded() {
    readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}'
 }
+
+declare -A abk
+abk=(
+    'A'    '|& ack -i '
+    'G'    '|& grep -i '
+    'N'    '&>/dev/null'
+    'S'    '| sort -h '
+    'W'    '|& wc -l'
+    "jj"   "!-2$"
+    "jk"   "!-3$"
+    "kk"   "!-4$"
+    'H'    '| head'
+    'T'    '| tail'
+)
+
+zleiab() {
+    emulate -L zsh
+    setopt extendedglob
+    local match
+
+    matched_chars='[.-|_a-zA-Z0-9]#'
+    LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
+    LBUFFER+=${abk[$match]:-$match}
+}
+
+zle -N zleiab 
