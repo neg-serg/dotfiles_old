@@ -25,6 +25,8 @@ notify-format                           "newsbeuter: %n unread articles within %
 notify-screen                           yes
 notify-beep                             no
 notify-program                          "~/.newsbeuter/notify.py"
+# notify-format "%d %n %f"
+# notify-program "~/.newsbeuter/newsbeuter-notify"
 notify-xterm                            no
 
 player                                  mpv
