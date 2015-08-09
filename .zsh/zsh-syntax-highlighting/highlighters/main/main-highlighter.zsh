@@ -29,9 +29,6 @@ ZSH_HIGHLIGHT_STYLES+=(
   dollar-double-quoted-argument  'fg=004,bold'
   back-double-quoted-argument    'fg=024,bold'
   assign                         'fg=240,bold'
-
-  # path_prefix                    'underline'
-  # path_approx                    'fg=yellow,underline'
 #---------------------------------
 #--[  scripts  ]------------------
 #---------------------------------
