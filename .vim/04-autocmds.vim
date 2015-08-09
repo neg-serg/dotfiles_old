@@ -10,7 +10,6 @@ fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
 endfun
 
-" OmniComplete {
 if has("autocmd") && exists("+omnifunc")
     autocmd Filetype *
         \if &omnifunc == "" |
@@ -24,21 +23,19 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 
-"--------------------------------------------------------------------------------------------
 " --- [ Autocmds ] --------------------------------------------------------------------------
-"--------------------------------------------------------------------------------------------
-autocmd vimrc BufNewFile,BufRead  *             if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
-autocmd vimrc BufRead,BufNewFile  *.viki        setlocal ft=viki
-autocmd vimrc BufNewFile,BufRead  *.t2t         setlocal ft=txt2tags
-autocmd vimrc Filetype            txt2tags      source   $HOME/.vim/syntax/txt2tags.vim
-autocmd vimrc FileType            make          setlocal noexpandtab
-autocmd vimrc FileType            javascript    setlocal noautoindent nosmartindent
-autocmd vimrc FileType            tex           setlocal conceallevel=0
-autocmd vimrc FileType            latex         setlocal conceallevel=0
-autocmd vimrc BufNewFile,BufRead  *.t2t         setlocal wrap
-autocmd vimrc BufNewFile,BufRead  *.t2t         setlocal lbr
-autocmd vimrc BufRead,BufNewFile *.json         setlocal filetype=json foldmethod=syntax
-autocmd vimrc BufNewFile,BufRead .pentadactylrc setlocal filetype=pentadactyl
+autocmd vimrc BufNewFile,BufRead  *.sh           if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
+autocmd vimrc BufRead,BufNewFile  *.viki         setlocal ft=viki
+autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal ft=txt2tags
+autocmd vimrc Filetype            txt2tags       source   $HOME/.vim/syntax/txt2tags.vim
+autocmd vimrc FileType            make           setlocal noexpandtab
+autocmd vimrc FileType            javascript     setlocal noautoindent nosmartindent
+autocmd vimrc FileType            tex            setlocal conceallevel=0
+autocmd vimrc FileType            latex          setlocal conceallevel=0
+autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal wrap
+autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal lbr
+autocmd vimrc BufRead,BufNewFile  *.json         setlocal filetype=json foldmethod=syntax
+autocmd vimrc BufNewFile,BufRead  .pentadactylrc setlocal filetype=pentadactyl
 
 autocmd vimrc FileType git set nofoldenable
 
@@ -63,22 +60,13 @@ autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
 autocmd vimrc FileType ruby          setlocal omnifunc=rubycomplete#Complete
 autocmd vimrc BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
 autocmd vimrc FileType haskell       setlocal omnifunc=necoghc#omnifunc
-" markdown filetype file
-autocmd vimrc BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+" " markdown filetype file
+" autocmd vimrc BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
 autocmd vimrc BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 autocmd vimrc FileType ruby setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd vimrc FileType ruby setlocal re=1 nornu
 
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
 autocmd vimrc FileType javascript setl fen
 autocmd vimrc BufRead,BufNewFile *.textile setf textile
 
@@ -94,6 +82,7 @@ augroup END
 
 autocmd vimrc FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd vimrc FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" | hi Function guifg=#85A2CC | let b:indentLine_enabled = 1
+
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
   autocmd!
@@ -127,11 +116,6 @@ augroup resCur
 augroup END
 
 
-" if !executable("ghcmod")
-"     autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-" endif
-
-" Strip whitespace {
 function! StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -143,19 +127,7 @@ function! StripTrailingWhitespace()
     let @/=_s
     call cursor(l, c)
 endfunction
-" }
 
-if executable('chmod')
-    autocmd BufWritePost * call s:add_permission_x()
-    function! s:add_permission_x()
-        let file = expand('%:p')
-        if getline(1) =~# '^#!' && !executable(file)
-            silent! call vimproc#system('chmod a+x ' . shellescape(file))
-        endif
-    endfunction
-endif
-
-" }}}
 function! GHDashboard (...)
   if &filetype == 'github-dashboard'
     " first variable is the statusline builder
