@@ -74,7 +74,7 @@ alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
 alias u="sudo umount"
 alias s="sudo"
-alias e="zathura"
+alias e="open"
 alias rd="rmdir"
 
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
