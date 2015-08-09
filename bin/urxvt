@@ -3,7 +3,7 @@
 local fn_size="17"
 local fn_name="PragmataPro for Powerline"
 local main_term_fn="xft:${fn_name}:size=${fn_size}"
-local main_detect=$(tmux list-sessions|grep main|awk -F : '{print $1}')
+local main_detect=$(tmux list-sessions|awk -F ':' '/main/ {print $1}')
 local term_name="MainTerminal"
 local session_name="main"
 
