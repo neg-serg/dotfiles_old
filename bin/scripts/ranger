@@ -1,5 +1,5 @@
 #!/bin/zsh
 wid=$(xdotool search --classname ranger)
 if [ -z "$wid" ]; then
-    /bin/urxvt -name ranger -e ranger &
+    st -c ranger -e ranger &
 fi
