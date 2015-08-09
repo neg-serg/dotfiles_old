@@ -67,7 +67,7 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 alias mk="mkdir -p"
 alias mp="mpv"
 alias mpa="mpv -fs -ao null"
-alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont pragmatapro"
+alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
