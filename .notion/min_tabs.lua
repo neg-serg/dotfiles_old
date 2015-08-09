@@ -49,8 +49,11 @@ function show_only_necessary_tabs_in_frame(fp)
     local show_bar = true
   -- if WMPlex.mx_count(fp) != 1 then
     local rg = fp:mx_nth(0)
-    if not rg:is_tagged() then
-        show_bar = false
+    if rg == nil then show_bar = false
+    else
+        if not rg:is_tagged() then
+            show_bar = false
+        end
     end
   -- end
 
