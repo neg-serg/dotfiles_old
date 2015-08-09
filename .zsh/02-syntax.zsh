@@ -175,13 +175,12 @@ _zsh_highlight_load_highlighters()
 
   # Load highlighters from highlighters directory and check they define required functions.
   local highlighter highlighter_dir
-  for highlighter_dir ($1/*/); do
-    highlighter="${highlighter_dir:t}"
-    [[ -f "$highlighter_dir/${highlighter}-highlighter.zsh" ]] && {
-      . "$highlighter_dir/${highlighter}-highlighter.zsh"
-      type "_zsh_highlight_${highlighter}_highlighter" &> /dev/null &&
-      type "_zsh_highlight_${highlighter}_highlighter_predicate" &> /dev/null || {
-        echo "zsh-syntax-highlighting: '${highlighter}' highlighter should define both required functions '_zsh_highlight_${highlighter}_highlighter' and '_zsh_highlight_${highlighter}_highlighter_predicate' in '${highlighter_dir}/${highlighter}-highlighter.zsh'." >&2
+  for highlighter ($1/{main,brackets,pattern}*); do
+    [[ -f "${highlighter}" ]] && {
+    source "${highlighter}"
+      type "_zsh_highlight_${highlighter:s;-highlighter.zsh;;:t}_highlighter" &> /dev/null &&
+      type "_zsh_highlight_${highlighter:s;-highlighter.zsh;;:t}_highlighter_predicate" &> /dev/null || {
+        echo "zsh-syntax-highlighting: '${highlighter}' highlighter should define both required functions '_zsh_highlight_${highlighter}_highlighter' and '_zsh_highlight_${highlighter}_highlighter_predicate' in '${highlighter}-highlighter.zsh'." >&2
       }
     }
   done
@@ -216,8 +215,6 @@ add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
   }
 
 # Initialize the array of active highlighters if needed.
-# [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main) || true
-# [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets) || true
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern) || true
 
 # ZSH_HIGHLIGHT_PATTERNS+=("[0-9]#[<>]&[-!|0-9]#" "fg=blue")
