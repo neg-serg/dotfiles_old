@@ -2,6 +2,7 @@ function chpwd() {
     if [ -x ~/bin/Z ]; then
         [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
     fi
+    export PS1="$_fizsh_user_pretoken%40<..<`~/.zsh/modules/syntax/fizsh-prompt.zsh`"
 }
 
 # A shortcut function that simplifies usage of xclip.
