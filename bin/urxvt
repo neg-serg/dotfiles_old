@@ -10,7 +10,7 @@ local session_name="main"
 if [[ ${main_detect} != "main" ]]; then
     wid=$(xdotool search --classname ${term_name})
     if [ -z "$wid" ]; then
-        urxvtc -tr -name ${term_name} -fn "${main_term_fn}" -fb "{$main_term_fn}" -fi "{$main_term_fn}" \
+        urxvtc -tr -name ${term_name} -fn "${main_term_fn}" -fb "${main_term_fn}" -fi "${main_term_fn}" \
             -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
     fi
 else
