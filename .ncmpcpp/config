@@ -1,80 +1,95 @@
+#--[ mpd ]---------------
 mpd_host = "192.168.1.35"
 mpd_port = 6600
 mpd_music_dir = "/home/neg/music"
-message_delay_time = "1"
 mpd_crossfade_time = "0"
-seek_time = "4"
+
+user_interface = "classic"
+
+#--[ Visualizer ]---------------
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "1"
+visualizer_type = "spectrum" (spectrum/wave)
+
+#--[ Playlist ]---------------
 playlist_disable_highlight_delay = "0"
-#--[ Colors ]---------------
+playlist_show_remaining_time = "yes"
+song_columns_list_format = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
+now_playing_prefix = "$b"
+#now_playing_subfix = "/$b"
+playlist_display_mode = "classic" (classic/columns)
+autocenter_mode = "no"
+centered_cursor = "no"
+cyclic_scrolling = "no"
+lines_scrolled = "2"
+mouse_list_scroll_whole_page = "no"
+song_list_format = " $0$8$8%15l$0$8 $(236)|$7 $7%22a$7 $R $(236)|$7 $6%44t$(244) $R $(244)%28b$(244)"
 
-colors_enabled = "yes"
-header_window_color = "cyan"
-volume_color = "cyan"
-state_line_color = "cyan"
-state_flags_color = "yellow"
-color1 = "blue"
-color2 = "blue"
-main_window_color = "default"
-main_window_highlight_color = "cyan"
-active_column_color = "111"
-visualizer_color = "cyan"
-alternative_ui_separator_color = "white"
-empty_tag_color = "white"
-
-progressbar_color = "235"
-progressbar_elapsed_color = "cyan"
-progressbar_look = "▉▉▉"
-progressbar_boldness = "no"
-now_playing_prefix = "$b$1"
-now_playing_suffix = "$/b"
-
-song_list_format = "{$1 %n │ $5%a$1 │ $8%t $7(%l)$1 }$R{$6%b $7(%y)$1 $9}"
-song_columns_list_format = " (5)[235]{n} (6)[magenta]{lr} (35)[blue]{t} (30)[cyan]{a} (20)[white]{bEr} (4)[white]{yE}"
-song_library_format = "{%n - }{%t}|{%f}"
-song_window_title_format = "ncmpcpp - {%a - %t [%l]}"
-browser_playlist_prefix = "$2playlist$9» "
-
-song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
-titles_visibility = "no"
-display_bitrate = "yes"
+song_library_format = "{%n > }{%t}|{%f}"
 
 use_console_editor = "yes"
 external_editor = "/usr/bin/vim"
+
+jump_to_now_playing_song_at_start = "yes"
+
+#--[ Bars ]---------------
+# song_status_format = "{%a - }{%t - }{%b}"
+song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
+#progressbar_look = "|> "
+progressbar_look = "─╼ "
+titles_visibility = "no"
+header_visibility = "no"
+statusbar_visibility = "yes" 
+display_bitrate = "yes"
+display_remaining_time = "no"
+clock_display_seconds = "yes"
+
+#--[ Browser ]---------------
+browser_playlist_prefix = "$2plist »$9 "
+browser_display_mode = "classic" (classic/columns)
+incremental_seeking = "yes"
+seek_time = "4"
+message_delay_time = "1"
+
+#--[ Colors ]---------------
+colors_enabled = "yes"
+discard_colors_if_item_is_selected = "yes"
+header_window_color = "black"
+volume_color = "cyan"
+state_line_color = "black"
+state_flags_color = "green"
+main_window_color = "default"
+color1 = "cyan"
+color2 = "black"
+main_window_highlight_color = "blue"
+
+progressbar_color = "white"
+progressbar_elapsed_color = "cyan"
+progressbar_boldness = "no"
+
+statusbar_color = "white"
+active_column_color = "cyan"
+visualizer_color = "cyan"
+# alternative_ui_separator_color = "white"
+# empty_tag_color = "white"
+
+# Others
+# song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
+song_window_title_format = "ncmpcpp - {%a - %t [%l]}"
+search_engine_display_mode = "columns" (classic/columns)
+follow_now_playing_lyrics = "yes"
+# ignore_leading_the = "no"
+# display_screens_numbers_on_start = "no"
+# block_search_constraints_change_if_items_found = "no"
 default_tag_editor_pattern = "%n - %t"
 default_find_mode = "wrapped"
 default_space_mode = "add"
 default_place_to_search_in = "database"
 show_hidden_files_in_local_browser = "no"
 
-header_text_scrolling = "yes"
-cyclic_scrolling = "no"
-lines_scrolled = "2"
-
-user_interface = "classic"
-browser_display_mode = "columns"
-search_engine_display_mode = "columns"
-playlist_display_mode = "columns"
-playlist_show_remaining_time = "yes"
-
-statusbar_visibility = "yes"
-header_visibility = "no"
-enable_window_title = "yes"
-autocenter_mode = "yes"
-incremental_seeking = "yes"
-jump_to_now_playing_song_at_start = "yes"
-
-clock_display_seconds = "yes"
-display_remaining_time = "no"
-
-follow_now_playing_lyrics = "no"
-ignore_leading_the = "no"
-block_search_constraints_change_if_items_found = "no"
-regular_expressions = "extended"
-
-active_window_border = "white"
+# active_window_border = "black"
 empty_tag_marker = "[...]"
 
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "1"
-visualizer_type = "spectrum" 
+regular_expressions = "extended"
+#  vim: set ts=2 sw=2 tw=0 :
