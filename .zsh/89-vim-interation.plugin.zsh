@@ -13,7 +13,7 @@ function vim_file_open() (
     local srv_name="VIM"
     file_name=$(bash -c "printf %q '$file_name'")
     
-    tmux -S ~/1st_level/vim.socket run "$(echo vim --servername ${srv_name} --remote-silent "${file_name}")"
+    eval $(echo tmux -S ~/1st_level/vim.socket run \'"$(echo vim --servername ${srv_name} --remote-silent "${file_name}")"\')
     
     local FG237="[38;5;237m"
     local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
