@@ -1,3 +1,0 @@
-#!/bin/zsh
-[[ -z $(pgrep mpd) ]] && mpd && mpdscribble --conf /home/neg/.config/mpdscribble/neg.conf
-[[ "$(wmctrl -l|awk '{print $4}'|grep ncmpcpp)" != 'ncmpcpp' ]] && /bin/urxvt -fn xft:Pragmata\ Pro\ for\ Powerline:pixelsize=18 -name mpd-pad2 -e ncmpcpp 
