@@ -5,7 +5,7 @@ open(){
     local video_player="mpv"
     local audio_player="mpv"
     local document_reader="zathura"
-    local image_viewer="~/bin/sx"
+    local image_viewer="~/bin/scripts/sxiv_browser.sh"
     if [[ -d $1 ]]; then
         urxvt --chdir "$1"
     elif [[ -e $1 ]]; then
