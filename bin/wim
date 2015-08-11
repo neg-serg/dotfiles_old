@@ -4,8 +4,9 @@ source ${HOME}/.zsh/89-vim-interation.plugin.zsh
 
 readonly wim_font="PragmataPro for Powerline"
 readonly font_size=20
-readonly sock_path=~/1st_level/vim.socket
-if [[ $(tmux -S ${sock_path} ls 2>/dev/null) != "" ]]; then
+readonly sock_path="${HOME}/1st_level/vim.socket"
+
+if [[ $(lsof "${sock_path}"|grep -o "${sock_path} type=STREAM") == "${sock_path} type=STREAM" ]]; then
     st -f "${wim_font}:pixelsize=20" -c 'wim' -e zsh -i -c "tmux -S ${sock_path} attach-session -d -t vim"
 else
     v ${HOME}
