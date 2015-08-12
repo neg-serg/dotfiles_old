@@ -1,63 +1,53 @@
-# completion system
-#===============================================================================================================================
-# note: use 'zstyle' for getting current settings
-#         press ^xh (control-x h) for getting tags in context; ^x? (control-x ?) to run complete_debug with trace output
 mycompletion() {
     # allow one error for every three characters typed in approximate completer
-    zstyle ':completion:*:approximate:'    max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
+    zstyle ':completion:*:approximate:' \
+                                                max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
     # don't complete backup files as executables
-    zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(aptitude-*|*\~)'
+    zstyle ':completion:*:complete:-command-::commands' \
+                                                ignored-patterns '(aptitude-*|*\~)'
     # start menu completion only if it could find no unambiguous initial string
-    zstyle ':completion:*:correct:*'       insert-unambiguous true
-    zstyle ':completion:*:corrections'     format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
-    zstyle ':completion:*:correct:*'       original true
-    zstyle ':completion:*:-tilde-:*'       group-order 'named-directories'
+    zstyle ':completion:*:correct:*'            insert-unambiguous true
+    zstyle ':completion:*:corrections'          format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%} - (%{${fg[cyan]}%}errors %e%{${reset_color}%})"
+    zstyle ':completion:*:descriptions'         format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%}%{${reset_color}%}"
+    zstyle ':completion:*:correct:*'            original true
+    zstyle ':completion:*:-tilde-:*'            group-order 'named-directories'
     # insert all expansions for expand completer
-    zstyle ':completion:*:expand:*'        tag-order all-expansions
-    zstyle ':completion:*:history-words'   list false
-    # activate menu
-    zstyle ':completion:*:history-words'   menu yes
-    # ignore duplicate entries
-    zstyle ':completion:*:history-words'   remove-all-dups yes
-    zstyle ':completion:*:history-words'   stop yes
-    # match uppercase from lowercase
-    zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-    # separate matches into groups
-    zstyle ':completion:*:matches'         group 'yes'
-    zstyle ':completion:*'                 group-name ''
-    zstyle ':completion:*'                 menu select=5
-    zstyle ':completion:*:messages'        format '%d'
-    zstyle ':completion:*:options'         auto-description '%d'
-    zstyle ':completion:*:options'         description 'yes'
-
-    zstyle ':completion:*:*:-subscript-:*'  tag-order indexes parameters
-    zstyle ':completion:*'                  verbose true
-    zstyle ':completion:*:-command-:*:'     verbose false
-    zstyle ':completion:*:warnings'         format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
-    zstyle ':completion:*:*:zcompile:*'     ignored-patterns '(*~|*.zwc)'
-    zstyle ':completion:correct:'           prompt 'correct to: %e'
-    zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
-    zstyle ':completion:*:manuals'          separate-sections true
-    zstyle ':completion:*:manuals.*'        insert-sections   true
-    zstyle ':completion:*:man:*'            menu yes select
-    zstyle ':completion:*'                  special-dirs ..
-    zstyle ':completion:*'                  use-perl 'yes'
-    # mplayer                                                                    {{{
-    zstyle ':completion:*:(mv|cp|file|m|mplayer|mp|mpv):*'  ignored-patterns '(#i)*.(url|mht)'
-    zstyle ':completion:*:*:mplayer:*'      tag-order files
-    zstyle ':completion:*:*:mplayer:*'      file-sort name
-    zstyle ':completion:*:*:mplayer:*'      menu select auto
-
-    zstyle ':completion:*:*:mpv:*'          tag-order files
-    zstyle ':completion:*:*:mpv:*'          file-sort name
-    zstyle ':completion:*:*:mpv:*'          menu select auto
-    
-    zstyle ':completion:*:*:(*mplayer*|*mpv*):*' file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
-    zstyle ':completion:*:default' list-colors ${${(s.:.)LS_COLORS}%ec=*}
-    #----------------CLEAR OLD STUFF!!!!!!1
-    zstyle ':completion:*:descriptions' format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%}%{${reset_color}%}"
-    zstyle ':completion:*:messages'     format "- %{${fg[cyan]}%}%d%{${reset_color}%} -"
-    zstyle ':completion:*:corrections'  format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%} - (%{${fg[cyan]}%}errors %e%{${reset_color}%})"
+    zstyle ':completion:*:expand:*'             tag-order all-expansions
+    zstyle ':completion:*:history-words'        list false
+    # activate menu                            
+    zstyle ':completion:*:history-words'        menu yes
+    # ignore duplicate entries                 
+    zstyle ':completion:*:history-words'        remove-all-dups yes
+    zstyle ':completion:*:history-words'        stop yes
+    # match uppercase from lowercase           
+    zstyle ':completion:*'                      matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+    # separate matches into groups          
+    zstyle ':completion:*:matches'              group 'yes'
+    zstyle ':completion:*'                      group-name ''
+    zstyle ':completion:*'                      menu select=5
+    zstyle ':completion:*:messages'             format "- %{${fg[cyan]}%}%d%{${reset_color}%} -"
+    zstyle ':completion:*:options'              auto-description '%d'
+    zstyle ':completion:*:options'              description 'yes'
+                                               
+    zstyle ':completion:*:*:-subscript-:*'      tag-order indexes parameters
+    zstyle ':completion:*'                      verbose true
+    zstyle ':completion:*:-command-:*:'         verbose false
+    zstyle ':completion:*:warnings'             format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
+    zstyle ':completion:*:*:zcompile:*'         ignored-patterns '(*~|*.zwc)'
+    zstyle ':completion:correct:'               prompt 'correct to: %e'
+    zstyle ':completion::(^approximate*):*:functions' \
+                                                ignored-patterns '_*'
+    zstyle ':completion:*:manuals'              separate-sections true
+    zstyle ':completion:*:manuals.*'            insert-sections   true
+    zstyle ':completion:*:man:*'                menu yes select
+    zstyle ':completion:*'                      special-dirs ..
+    zstyle ':completion:*'                      use-perl true
+    zstyle ':completion:*:(mv|cp|file|m|mplayer|mp|mpv):*' \
+                                                ignored-patterns '(#i)*.(url|mht)'
+    zstyle ':completion:*:*:(mplayer|mp|mpv):*' tag-order files
+    zstyle ':completion:*:*:(mplayer|mp|mpv):*' file-sort name
+    zstyle ':completion:*:*:(mplayer|mp|mpv):*' menu select auto
+    zstyle ':completion:*:*:(mplayer*|mp):*'    file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
     zstyle ':completion:*:default'      \
         select-prompt \
         "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
@@ -67,36 +57,48 @@ mycompletion() {
         zstyle ':completion:*:warnings'     \
         format        \
         "- %{${fg_no_bold[blue]}%}no match%{${reset_color}%} - %{${fg_no_bold[cyan]}%}%d%{${reset_color}%}"
-    zstyle ':completion:*' group-name ''
-    ### manual pages are sorted into sections
-    zstyle ':completion:*:manuals'        separate-sections true
-    zstyle ':completion:*:manuals.(^1*)'  insert-sections   true
-    zstyle ':completion:*:wine:*'         file-patterns '*.(exe|EXE):exe'
-    ### highlight parameters with uncommon names
-        zstyle ':completion:*:parameters' list-colors "=[^a-zA-Z]*=$color[blue]"
-    ### highlight aliases
-        zstyle ':completion:*:aliases'    list-colors "=*=$color[green]"
-    ## show that _* functions are not for normal use
-    ## (not needed, since I don't complete _* functions at all)
-    zstyle ':completion:*:functions'      list-colors "=_*=$color[blue]"
+    zstyle ':completion:*:default'  list-colors ${${(s.:.)LS_COLORS}%ec=*}
+    zstyle ':completion:*' squeeze-slashes true # e.g. ls foo//bar -> ls foo/bar
+    
+    [[ -r ~/.ssh/known_hosts ]] && _ssh_hosts=(${${${${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[\|]*}%%\ *}%%,*}%%:*}#\[}%\]}) ||
+    _ssh_hosts=()
+    [[ -r ~/.ssh/config ]] && _ssh_config_hosts=($(sed -rn 's/host\s+(.+)/\1/ip' "$HOME/.ssh/config" | grep -v "\*" )) ||
+    _ssh_config_hosts=()
+    hosts=($HOST "$_ssh_hosts[@]" $_ssh_config_hosts[@] localhost)
+    zstyle ':completion:*:hosts' hosts ${hosts}
+        # highlight the original input.
+        zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
+        # colorize username completion
+        zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
+    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
+    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
+    # display the (interactive) menu on first execution of the hotkey
+    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' menu yes select interactive
+    zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
+    zstyle ':completion:*:wine:*'             file-patterns '*.(exe|EXE):exe'
+    # highlight parameters with uncommon names
+    zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
+    # highlight aliases                      
+    zstyle ':completion:*:aliases'            list-colors "=*=$color[green]"
+    # show that _* functions are not for normal use
+    # (not needed, since I don't complete _* functions at all)
+    zstyle ':completion:*:functions'          list-colors "=_*=$color[magenta]"
     ### highlight the original input.
-    zstyle ':completion:*:original'       list-colors "=*=$color[blue];$color[bold]"
+    zstyle ':completion:*:original'           list-colors "=*=$color[blue];$color[bold]"
     ### highlight words like 'esac' or 'end'
-    zstyle ':completion:*:reserved-words' list-colors "=*=$color[blue]"
+    zstyle ':completion:*:reserved-words'     list-colors "=*=$color[blue]"
     ### colorize processlist for 'kill'
     zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
     zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-    zstyle ':completion:*:*:perl:*'        file-patterns '*'
-    zstyle ':completion:*:*:zathura:*'     tag-order files
-    zstyle ':completion:*:*:zathura:*'     file-patterns '*(/)|*.{pdf,djvu}'
+    zstyle ':completion:*:*:perl:*'           file-patterns '*'
+    zstyle ':completion:*:*:zathura:*'        tag-order files
+    zstyle ':completion:*:*:zathura:*'        file-patterns '*(/)|*.{pdf,djvu}'
     # make them a little less short, after all (mostly adds -l option to the whatis calll)
     zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*; _call_whatis -l -s 6 -r .\* 2>/dev/null'
     zstyle :complete-recent-args use-histbang yes
-    # taskwarrior
-    zstyle ':completion:*:*:task:*' verbose yes
-    zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
-    zstyle ':completion:*:*:task:*' group-name ''
-    #-------new ----------------------
+    zstyle ':completion:*:*:task:*'                verbose yes         # taskwarrior
+    zstyle ':completion:*:*:task:*:descriptions'   format '%U%B%d%b%u' # taskwarrior
+    zstyle ':completion:*:*:task:*'                group-name ''       # taskwarrior
     # command completion: highlight matching part of command, and 
     zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;248'\'' )'
 
@@ -196,3 +198,18 @@ expand-or-complete-with-dots() {
 }
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
+
+# Load completion from bash, which isn't available in zsh yet.
+bash_completions=()
+if [ -n "$commands[vzctl]" ] ; then
+  bash_completions+=(/etc/bash_completion.d/vzctl.sh)
+fi
+if (( $#bash_completions )); then
+  if ! which complete &>/dev/null; then
+    autoload -Uz bashcompinit
+    if which bashcompinit &>/dev/null; then
+      bashcompinit
+    fi
+  fi
+  bash_source /etc/bash_completion.d/vzctl.sh
+fi
