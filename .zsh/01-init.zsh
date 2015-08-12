@@ -1,3 +1,11 @@
+TRAPUSR1() { rehash }; # rehash on SIGUSR1
+TRAPINT() { print -nP %F{blue}%B\^C%f%b; return 1 }
+
+autoload -U add-zsh-hook
+# anything newly intalled from last command?
+precmd_install() { [[ $history[$[ HISTCMD -1 ]] == *(apt-get|aptitude|pip|pacman|yaourt)* ]] && killall -u $USER -USR1 zsh }
+add-zsh-hook precmd precmd_install # do this on precmd
+
 # Execute code that does not affect the current session in the background.
 {
   # Compile the completion dump to increase startup speed.
@@ -42,7 +50,7 @@ unset MAILCHECK
 # stty eof ''
 stty eof  2> /dev/null
 stty ixany
-stty ixoff -ixon
+stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
 
 # stty intr "^C" 2> /dev/null
 # stty erase "^?" 2> /dev/null
