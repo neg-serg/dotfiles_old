@@ -30,7 +30,11 @@ for i in ${NOGLOB_LIST[@]}; alias ${i}="noglob ${i}";
 alias "zmv=noglob zmv -v"
 alias fevil='find . -regextype posix-extended -regex'
 
-alias sp='du -shc ./* | sort -h'
+function sp() {
+  setopt extendedglob bareglobqual
+  du -sch -- ${~^@:-"*"}(D) | sort -h
+}
+alias sp='noglob sp'
 alias cdu=cdu -idh
 
 if [[ $UID != 0 ]]; then
@@ -272,3 +276,36 @@ elif [[ $(whence perl) != "" && ( "x$URLTOOLS_METHOD" = "x" || "x$URLTOOLS_METHO
 fi
 
 unset URLTOOLS_METHOD
+
+setopt extendedglob
+setopt interactivecomments
+declare -A abk
+abk=(
+    'A'    '|& ack -i '
+    'G'    '|& grep -i '
+    'C'    '| wc -l'
+    'H'    '| head'
+    'T'    '| tail'
+    'N'    '&>/dev/null'
+    'S'    '| sort -h '
+    'W'    '|& ls_color'
+    'V'    '|& vim -'
+    "jj"   "!$"
+    "jk"   "!-2$"
+    "jjk"  "!-3$"
+    "jkk"  "!-4$"
+    "kk"   "!-5$"
+    "kj"   "!-6$"
+)
+
+zleiab() {
+    emulate -L zsh
+    setopt extendedglob
+    local MATCH
+
+    matched_chars='[.-|_a-zA-Z0-9]#'
+    LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
+    LBUFFER+=${abk[$MATCH]:-$MATCH}
+}
+
+zle -N zleiab
