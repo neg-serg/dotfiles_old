@@ -1,3 +1,5 @@
+# Dir reload
+.() { [ $# = 0 ] && cd . || builtin . "$@"; }
 function chpwd() {
     if [ -x ~/bin/Z ]; then
         [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
@@ -70,13 +72,13 @@ function no-magic-abbrev-expand() {
 }
 
 function zc(){
-  local cache="$ZSH/cache"
+  local cache="${ZSH}/cache"
   autoload -U compinit zrecompile
-  compinit -d "$cache/zcomp-$HOST"
+  compinit -d "${cache}/zcomp-${HOST}"
 
-  for z in $HOME/.zsh/**/**.zsh $HOME/.zshrc; do zcompile $z; echo "Compiled $z"; done
-  for f in ~/.zshrc "$cache/zcomp-$HOST"; do
-    zrecompile -p $f && command rm -f $f.zwc.old
+  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do zcompile $z; echo "Compiled ${z}"; done
+  for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
+    zrecompile -p ${f} && command rm -f ${f}.zwc.old
   done
 
   source ~/.zshrc
@@ -662,28 +664,41 @@ function soneeded() {
    readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}'
 }
 
-declare -A abk
-abk=(
-    'A'    '|& ack -i '
-    'G'    '|& grep -i '
-    'N'    '&>/dev/null'
-    'S'    '| sort -h '
-    'W'    '|& wc -l'
-    "jj"   "!-2$"
-    "jk"   "!-3$"
-    "kk"   "!-4$"
-    'H'    '| head'
-    'T'    '| tail'
-)
-
-zleiab() {
-    emulate -L zsh
-    setopt extendedglob
-    local match
-
-    matched_chars='[.-|_a-zA-Z0-9]#'
-    LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
-    LBUFFER+=${abk[$match]:-$match}
+function mdel(){
+    pattern="$1"
+    mpc --format "%position% %artist% %album% %title%" playlist \
+    | grep -iP $pattern \
+    | awk '{print $1}'  \
+    | mpc del
 }
 
-zle -N zleiab 
+function mkeep(){
+    pattern="$1"
+    mpc --format "%position% %artist% %album% %title%" playlist \
+    | ${HOME}/bin/scripts/negrep ${pattern} \
+    | awk '{print $1}'  \
+    | mpc del
+}
+
+function pid2xid(){
+    wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}"
+}
+
+# Change to repository root (starting in parent directory), using the first
+# entry of a recursive globbing.
+RR() {
+  setopt localoptions extendedglob
+  local a
+  # note: removed extraneous / ?!
+  a=( (../)#.(git|hg|svn|bzr)(:h) )
+  if (( $#a )); then
+    cd $a[1]
+  fi
+}
+
+adbpush() {
+  for i; do
+    echo "[>>] -> Pushing ${i} to /sdcard/${i:t}"
+    adb push ${i} /sdcard/${i:t}
+  done
+}
