@@ -23,7 +23,7 @@ NOGLOB_LIST=( \
     fc find ftp sftp lftp history locate rake rsync scp \
     eix mmv wget clive clivescan youtube-dl \
     translate links links2 xlinks2 lynx \
-    you-get bower
+    you-get bower pip
 )
 for i in ${NOGLOB_LIST[@]}; alias ${i}="noglob ${i}";
 
@@ -77,7 +77,20 @@ alias grep="grep --color=auto"
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
 alias u="sudo umount"
-alias s="sudo"
+function do_sudo() { 
+    integer glob=1
+    while (($#)); do
+        case $1 in
+            command|exec|-) shift; break;;
+            nocorrect) shift; continue;;
+            noglob) glob=0; shift; continue;;
+            *) break;;
+        esac
+    done
+    (($# == 0)) && 1=zsh
+    if ((glob)); then command sudo $~==*; else command sudo $==*; fi
+}
+alias s="noglob do_sudo "
 alias e="open"
 alias rd="rmdir"
 
