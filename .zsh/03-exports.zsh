@@ -1,4 +1,5 @@
-export SHELL='/bin/zsh'
+0=zsh
+SHELL=$(which zsh)
 export ZSHDIR=${HOME}/.zsh
 
 unset SSH_ASKPASS
@@ -8,8 +9,9 @@ export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
-export EDITOR="vim"
-export VISUAL="gvim -f --remote-silent"
+for cmd in vim nvim vi; { [[ -n $commands[(I)$cmd] ]] \
+    && export EDITOR=$cmd; break}
+export VISUAL="atom"
 
 export INPUTRC=${HOME}/.config/inputrc
 
@@ -45,7 +47,7 @@ path_dirs=(
 	/usr/bin/{site,vendor,core}_perl
 	${HOME}/.rvm/bin
 	${BIN_HOME}/{,go/bin}
-	${HOME}/.gem/ruby/2.2.0/bin
+    $(ruby -e 'puts Gem.user_dir')
 )
 
 export PATH=${(j_:_)path_dirs}
