@@ -11,9 +11,11 @@ function resolve_file {
 function vim_file_open() (
     local file_name="$(resolve_file $line)"
     local srv_name="VIM"
+    local sock_path="${HOME}/1st_level/vim.socket"
     file_name=$(bash -c "printf %q '$file_name'")
-    
-    vim --servername ${srv_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" && {
+
+    { vim --servername ${srv_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
+     || { sleep "1.4s" && vim --servername ${srv_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
         local FG237="[38;5;237m"
         local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
         local file_length="`wc -l $file_name 2>/dev/null|grep -owE '[0-9]* '|tr -d ' '`"
@@ -54,7 +56,7 @@ function process_list() {
 }
 
 function v {
-    wid=$(xdotool search --classname wim)
+    local wid=$(xdotool search --classname wim)
     local wim_font="PragmataPro for Powerline"
     local font_size=20
     local wim_font_s="Mensch:size=14"
@@ -87,8 +89,8 @@ function v {
     [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
     #----------------------------------------------------------------
     if [[ -z "${wid}" ]]; then
-        st -f "${wim_font}:pixelsize=${font_size}" -c 'wim' -e bash -c "tmux -S ${sock_path} new \"vim --servername ${srv_name}\" && \
-                tmux -S ${sock_path} switch-client -t vim" &
+        st -f "${wim_font}:pixelsize=${font_size}" -c 'wim' -e bash -c "tmux -S ${sock_path} new -s vim -n vim \"vim --servername ${srv_name}\" && \
+            tmux -S ${sock_path} switch-client -t vim" &
         process_list ".6s" "$@"
     else  
         process_list ".2s" "$@"
