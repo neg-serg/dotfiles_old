@@ -1,6 +1,5 @@
 #!/usr/bin/zsh
 
-# keybindings
 if [[ "$TERM" != emacs ]] ; then
     [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
     [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
@@ -44,7 +43,7 @@ zle -N slash-backward-kill-word
 # Use Ctrl-x,Ctrl-l to get the output of the last command
 zmodload -i zsh/parameter
 insert-last-command-output() {
-LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+    LBUFFER+="$(eval $history[$((HISTCMD-1))])"
 }
 zle -N insert-last-command-output
 bindkey "^X^L" insert-last-command-output
@@ -62,7 +61,6 @@ bindkey '^s' history-incremental-pattern-search-forward
 zstyle ':acceptline:*' rehash true
 
 if zrcautoload insert-files && zle -N insert-files ; then
-    #k# Insert files and test globbing
     bindkey "^xf" insert-files # C-x-f
 fi
 
@@ -92,7 +90,6 @@ if zrcautoload insert-files && zle -N insert-files ; then
 fi
 
 #bindkey ' '   magic-space    # also do history expansion on space
-#k# Trigger menu-complete
 bindkey '\ei' menu-complete  # menu completion via esc-i
 
 #k# jump to after first word (for adding options)
@@ -150,84 +147,7 @@ bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directori
 
 bindkey '^X^X' copy-to-clipboard
 
-# add missing vim hotkeys
-# fixes backspace deletion issues
-# http://zshwiki.org/home/zle/vi-mode
-bindkey -a u undo
-bindkey -a '^R' redo
-bindkey '^?' backward-delete-char
-bindkey '^H' backward-delete-char
-
-# history search in vim mode
-# http://zshwiki.org./home/zle/bindkeys#why_isn_t_control-r_working_anymore
-bindkey -M viins '^s' history-incremental-search-backward
-bindkey -M vicmd '^s' history-incremental-search-backward
-
-# Another Esc key.
-bindkey -M viins '\C-@' vi-cmd-mode
-bindkey -M vicmd '\C-@' vi-cmd-mode
-
-# to delete characters beyond the starting point of the current insertion.
-bindkey -M viins '\C-h' backward-delete-char
-bindkey -M viins '\C-w' backward-kill-word
-bindkey -M viins '\C-u' backward-kill-line
-
-# undo/redo more than once.
-bindkey -M vicmd 'u' undo
-bindkey -M vicmd '\C-r' redo
-
-# history
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd '?' history-incremental-search-forward
-bindkey -M vicmd '^[k' history-beginning-search-backward
-bindkey -M vicmd '^[j' history-beginning-search-forward
-bindkey -M vicmd 'gg' beginning-of-history
-
-# modification
-bindkey -M vicmd 'gu' down-case-word
-bindkey -M vicmd 'gU' up-case-word
-bindkey -M vicmd 'g~' vi-oper-swap-case
-
-# Misc.  #{{{2
-
-bindkey -M vicmd '\C-t' transpose-chars
-bindkey -M viins '\C-t' transpose-chars
-bindkey -M vicmd '^[t' transpose-words
-bindkey -M viins '^[t' transpose-words
-
-bindkey -M viins "k" up-line-or-history
-bindkey -M viins "j" down-line-or-history
-
-# Disable - the default binding _history-complete-older is very annoying
-# whenever I begin to search with the same key sequence.
-bindkey -M viins -r '^[/'
-
-# Experimental: Alternate keys to the original bindings.
-bindkey -M viins '^[,' _history-complete-newer
-bindkey -M viins '^[.' _history-complete-older
-
-declare -A abk
-abk=(
-    'A'    '|& ack -i '
-    'G'    '|& grep -i '
-    'N'    '&>/dev/null'
-    'S'    '| sort -h '
-    'W'    '|& wc -l'
-    "jj"   "!-2$"
-    "jk"   "!-3$"
-    "kk"   "!-4$"
-    'H'    '| head'
-    'T'    '| tail'
-)
-
-zleiab() {
-    emulate -L zsh
-    setopt extendedglob
-    local match
-
-    matched_chars='[.-|_a-zA-Z0-9]#'
-    LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
-    LBUFFER+=${abk[$match]:-$match}
-}
-
-zle -N zleiab 
+jump_dirs=(~/1st_level ~/dw ~/dev ~/pic ~/vid ~/trash)
+for index in $(seq 1 $((${#jump_dirs[@]} ))); do
+    bindkey -s "${index}" "cd ${jump_dirs[$index]}"
+done
