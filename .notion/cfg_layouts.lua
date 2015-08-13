@@ -1,7 +1,7 @@
 local function regmax(win)
-  WFrame.maximize_horiz(win)
-  WFrame.maximize_vert(win)
-  WRegion.rqorder(win, 'front')
+    WFrame.maximize_horiz(win)
+    WFrame.maximize_vert(win)
+    WRegion.rqorder(win, 'front')
 end
 ---------------------------------[[ LAYOUTS ]]-------------------------------------
 local a_frame={
@@ -9,7 +9,6 @@ local a_frame={
     regparams={
         type="WFrame",
         frame_style="frame-tiled",
-        -- sizepolicy="full",
     }
 }
 
