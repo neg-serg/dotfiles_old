@@ -9,8 +9,22 @@ function mainmenu_handler(x)
     if x == "restart" then
         ioncore.restart()
     end
-    if x == "restart ratpoison" then
-        ioncore.restart_other('ratpoison')
+    if x == "resolution-set" then
+        ioncore.exec('~/bin/scripts/rofi-randr')
+    end
+    for i in {"ratpoison","cwm","twm","dwm"} do
+        if x == i .. '-restart' then
+            ioncore.restart_other(i)
+        end
+    end
+end
+
+function mpdmenu_handler(x)
+    if x == "title_copy" then
+        ioncore.exec('mpc current | xsel -bi')
+    end
+    if x == "mpd_show" then
+        ioncore.exec('~/bin/mpd/mpd_dzen_info')
     end
 end
 

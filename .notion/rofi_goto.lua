@@ -1,12 +1,21 @@
-function rofi_template(rofi_prefix,ipc_file)
-    local font_name = "Pragmata Pro for Powerline"
-    local font_size =  12
-    local font_style = "bold"
-    local rofi_font = '-font "' .. font_name .. ' '.. font_style ..' ' .. font_size .. '"'
-    local rofi_width = 1850
-    local rofi_cmd='rofi -auto-select -dmenu -opacity 95 -lines 10 -yoffset -22 '.. rofi_font .. ' -fg' ..
-    '"#ffffff" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. rofi_width
+rf={
+    font = '-font "' .. 'Pragmata Pro for Powerline' .. ' '.. 'bold' ..' ' .. 12 .. '"',
+    common = ' -auto-select -dmenu -opacity 95 -yoffset -22 ',
+    colors = ' -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020"',
+    width = 1850,
+}
+
+function rofi_template(rofi_prefix,ipc_file,lines)
+    local columns = 0
+    local columns_str = ""
+    if lines == nil then
+        lines = 10
+    else
+        columns = 10
+        columns_str = ' -columns ' .. columns
+    end
+    local rofi_cmd='rofi '.. rf.font .. rf.common .. ' -lines ' .. lines .. columns_str .. rf.colors .. ' -bw 2 -location 6' ..
+    ' -padding 2 -width ' .. rf.width
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
 end
@@ -104,7 +113,19 @@ end
 function complete_mainmenu(entries)
     table.insert(entries, "save")  --  ioncore.snapshot()
     table.insert(entries, "restart") --  ioncore.restart()
-    table.insert(entries, "restart ratpoison") -- ioncore.restart_other('ratpoison')
+    table.insert(entries, "ratpoison-restart") -- ioncore.restart_other('ratpoison')
+    local str='ctd'
+    for i = 1, #str do
+        local c = str:sub(i,i)
+        table.insert(entries, c .. "wm-restart")
+    end
+end
+
+function complete_mpd_menu(entries)
+    table.insert(entries, "title_copy")
+    table.insert(entries, "artist_copy")
+    table.insert(entries, "mpd_show")
+    table.insert(entries, "resolution-set")
 end
 
 function rofi_renameframe(frame)
@@ -135,6 +156,20 @@ function rofi_mainmenu()
     fp:close()
 end
 
+function rofi_mpdmenu()
+    local tbl = {}
+    local mpdmenu_file = new_ipc_file("mpdmenu")
+    local rofi_prefix = new_rofi_prefix("mpd")
+    rofi_template(rofi_prefix,mpdmenu_file)
+    complete_mpd_menu(tbl)
+    for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
+    rofi_pipe:close() 
+    fp = io.open(mpdmenu_file)
+    x = fp:read("*l")
+    mpdmenu_handler(x)
+    fp:close()
+end
+
 function rofi_goto_win()
     local tbl = {}
     local goto_win_file = new_ipc_file("goto_win")
@@ -156,7 +191,7 @@ function rofi_goto_or_create_ws(reg)
     local tbl = {}
     local ws_file = new_ipc_file("goto_ws")
     local rofi_prefix = new_rofi_prefix("ws")
-    rofi_template(rofi_prefix,ws_file)
+    rofi_template(rofi_prefix,ws_file,1)
     tbl = complete_ws()
     for i in pairs(tbl) do rofi_pipe:write(tbl[i],'\n') end
     rofi_pipe:close() 
