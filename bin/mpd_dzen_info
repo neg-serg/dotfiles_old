@@ -1,0 +1,30 @@
+#/bin/zsh
+
+FG='#dcdcdc'
+BG='#000000'
+
+font1="PragmataPro:size=10"
+
+(
+artist="$@"
+[[ -z ${artist} ]] && artist=$(mpc --format '%artist%' | head -1) # && \
+echo "---------------------------------------------------"
+
+mpc search artist "${artist}" \
+  | perl -pe 's{(.+)/.+$}{$1}' \
+  | sort -u \
+  | perl -pe 's{^}{[ }' \
+  | perl -pe 's{$}{ ]}' \
+#  &&
+echo "---------------------------------------------------"
+
+album="$@"
+[[ -z ${album} ]] && album=$(mpc --format '%album%' | head -1)
+mpc search album "${album}" \
+  | perl -pe 's{(.+)/.+$}{$1}' \
+  | sort -u \
+  | perl -pe 's{^}{[>>] $ENV{HOME}/music/}'
+
+mpc|head -2
+
+) | dzen2 -p -x 1260 -y 865 -w 640 -bg $BG -fg $FG -l 10 -sa l -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
