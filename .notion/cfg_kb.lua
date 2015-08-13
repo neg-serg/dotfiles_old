@@ -8,7 +8,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M1+Tab",     "ioncore.goto_previous()"),
     kpress("M1+space",   "nop()"),
     kpress("M4+F2",      "repl(_)"),
-    kpress("M4+F11",     "rofi_mainmenu()"),
+    kpress("M4+F11",     "rofi.mainmenu()"),
     kpress("M4+Sh+L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
     kpress("M4+Sh+D", "ioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     -------------------------------------------------------------------------------------
@@ -22,8 +22,8 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+9",    "named_scratchpad(_, 'wicd')"),
     kpress("M4+Ct+2",    "named_scratchpad(_, 'alsa')"),
     kpress("M4+Ct+4",    "named_scratchpad(_, 'etc')"),
-    kpress("M4+Ct+G",    "rofi_goto_or_create_ws(_)"),
-    kpress("M1+G",       "rofi_goto_win(_)"),
+    kpress("M4+Ct+G",    "rofi.goto_or_create_ws(_)"),
+    kpress("M1+G",       "rofi.goto_win(_)"),
     kpress("M4+F9",      "ioncore.create_ws(_)"),
     -------------------------------------------------------------------------------------
     --[[  PLAYER CONTROL ]]---------------------------------
@@ -71,7 +71,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Sh+U",  "ioncore.exec_on(_, 'eject')"),
     kpress("M4+Sh+F",  "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
     kpress("M4+c",     "ioncore.exec_on(_, 'sh ~/bin/clip')"),
-    kpress("M4+Sh+m",   "rofi_mpdmenu()"),
+    kpress("M4+Sh+m",   "rofi.mpdmenu()"),
     submap("M1+E",{
         kpress("Ct+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("d",    "ioncore.exec_on(_, 'stardict')"),
@@ -128,7 +128,7 @@ Neg_kb.WClientWin = {
 
 Neg_kb.WGroupCW = {
     kpress_wait("M4+Q", "WGroup.set_fullscreen(_, 'toggle')"),
-    kpress("M4+0",      "rofi_renameworkspace(_)"),
+    kpress("M4+0",      "rofi.renameworkspace(_)"),
     kpress("M4+9",      "comp_man_please()"),
 }
 
@@ -138,7 +138,7 @@ Neg_kb.WMPlex = {
 
 Neg_kb.WFrame = {
     kpress("M4+S","mod_sp.set_shown(ioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ),
-    kpress("M4+6","rofi_renameframe(_)"),
+    kpress("M4+6","rofi.renameframe(_)"),
     kpress("M4+backslash", "WFrame.switch_next(_)"),
     kpress("M4+3", "WFrame.switch_next(_)"),
     submap("M1+E", {
@@ -154,7 +154,7 @@ Neg_kb.WFrame = {
 }
 
 Neg_kb.WFrame_toplevel = {
-    kpress("M4+A",         "rofi_attach_win(_)"),
+    kpress("M4+A",         "rofi.attach_win(_)"),
     kpress("M1+A",         "ioncore.tagged_attach(_)"),
     submap("M1+E", {
         kpress("H", "WFrame.maximize_horiz(_)"),
