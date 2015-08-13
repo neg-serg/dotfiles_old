@@ -1,25 +1,12 @@
 local transparent_table = {}
 local nontransparent_table = {}
 
-
-local function mk_completion_add(entries)
-    return function(s) 
-               if s then
-                   table.insert(entries, s)
-               end
-           end
-end
-
-function complete_frame()
-    return framelist(ioncore.region_i)
-end
-
 function framelist(iter)
     transparent_table = {}
     nontransparent_table = {}
 
     local entries={}
-    local ws_add=mk_completion_add(entries)
+    local ws_add=function(s) if s then table.insert(entries, s) end end
 
     local name=""
 
@@ -43,9 +30,7 @@ function maketransparent(reg)
 
     local atom_client_opacity = ioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
     local cur=ioncore.find_manager(ioncore.current(), "WFrame")
-
-    complete_frame()
-
+    framelist(ioncore.region_i)
     for _,reg in ipairs(transparent_table) do
         notioncore.x_change_property(reg:xid(), atom_client_opacity, 6, 32, "replace", {opacity_level})
     end
