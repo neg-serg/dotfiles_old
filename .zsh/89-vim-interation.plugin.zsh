@@ -37,9 +37,9 @@ function vim_file_open() (
             fi
             echo "${pref} ${fancy_name} ${msg_delim} ${sz_msg} ${msg_delim} ${len_msg}${syn_msg}"
         else
-            if [[ ! -d "${file_name}"  ]]; then
+            if [[ -z "${file_name}"  ]]; then
                 echo "${pref} ${fancy_name} ${msg_delim} ${new_file_msg}"
-            else
+            elif [[ -d "${file_name}"  ]]; then
                 echo "${pref} ${fancy_name} ${msg_delim} ${dir_msg}"
             fi
         fi
@@ -91,8 +91,8 @@ function v {
     if [[ -z "${wid}" ]]; then
         st -f "${wim_font}:pixelsize=${font_size}" -c 'wim' -e bash -c "tmux -S ${sock_path} new -s vim -n vim \"vim --servername ${srv_name}\" && \
             tmux -S ${sock_path} switch-client -t vim" &
-        process_list ".6s" "$@"
+        process_list ".1s" "$@"
     else  
-        process_list ".2s" "$@"
+        process_list ".1s" "$@"
     fi
 }
