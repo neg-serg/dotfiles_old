@@ -11,32 +11,42 @@ xkb_layout = nil
 settings = {
       device = "enp6s0",
       show_avg = 0,       -- show average stat?
-      avg_sec = 3,       -- default, shows average of 1 minute
+      avg_sec = 3,        -- default, shows average of 1 minute
       show_count = 0,     -- show tcp connection count?
       interval = 1*1000,  -- update every second
 }
 
 local function ws_current(t)
     local scr=ioncore.find_screen_id(0)
-    local curws = scr:mx_current()
-    local wstype, c
-    local pager=""
-    local name_pager=""
-    local name_pager_plus=""
-    local curindex = scr:get_index(curws)+1
-    n = scr:mx_count(1)
-    for i=1,n do
-        tmpws=scr:mx_nth(i-1)
-        wstype=obj_typename(tmpws)
-	if i==curindex then
-        name_pager=name_pager..tmpws:name()
-	end
+    local curws
+    if scr ~= nil then
+        curws = scr:mx_current()
+        local wstype, c
+        local pager=""
+        local name_pager=""
+        local name_pager_plus=""
+        if curindex == nil then curindex = 0 
+        end
+        local curindex = 0
+        if scr == nil then
+            curindex = 0     
+        else
+            curindex = scr:get_index(curws)+1
+        end
+        n = scr:mx_count(1)
+        for i=1,n do
+            tmpws=scr:mx_nth(i-1)
+            wstype=obj_typename(tmpws)
+        if i==curindex then
+            name_pager=name_pager..tmpws:name()
+        end
+        end
+
+        local fr,cur
+
+        ws_curr = name_pager
+        dzen_update()
     end
-
-    local fr,cur
-
-    ws_curr = name_pager
-    dzen_update()
 end
 
 local function setup_hooks()
@@ -81,9 +91,6 @@ local history_out = {}
 local total_in, total_out = 0, 0
 local counter = 0       --
 
---
--- tokenize the string
---
 local function tokenize(str)
     local ret = {}
     local i = 0
@@ -96,9 +103,6 @@ local function tokenize(str)
     return ret
 end
 
---
--- is everything ok to begin with?
---
 local function sanity_check()
     local f = io.open('/proc/net/dev', 'r')
     local e
@@ -143,9 +147,6 @@ local function sanity_check()
     return true
 end
 
---
--- calculate the average
---
 local function calc_avg(lin, lout)
     if counter == settings.avg_sec then
         counter = 0
@@ -162,9 +163,6 @@ local function calc_avg(lin, lout)
     return total_in/settings.avg_sec, total_out/settings.avg_sec
 end
 
---
--- parse the information
---
 local function parse_netmon_info()
     local s
     local lin, lout
@@ -179,9 +177,6 @@ local function parse_netmon_info()
     return nil, nil
 end
 
---
--- update the netmon monitor
---
 local function update_netmon_info()
     local s
     local lin, lout
@@ -220,9 +215,6 @@ local function update_netmon_info()
     net_timer:set(settings.interval, update_netmon_info)
 end
 
---
--- start the timer
--- 
 local function init_netmon_monitor()
     if sanity_check() then
         net_timer = ioncore.create_timer()
