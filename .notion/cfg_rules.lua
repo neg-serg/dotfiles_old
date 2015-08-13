@@ -31,6 +31,7 @@ defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto=
 -------------------------------------[[ IM ]]---------------------------------------
 defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
+defwinprop{class="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",lazy_resize=true}
@@ -108,6 +109,7 @@ defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
 defwinprop{class="com-sun-javaws-Main",float=true,lazy_resize=true}
 defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="*exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search",lazy_resize=true}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",lazy_resize=true}
@@ -124,6 +126,7 @@ defwinprop{class="Guake",instance="guake",winlist_ignore=true,transient_mode="of
 defwinprop{class="Pavucontrol",instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",lazy_resize=true}
 defwinprop{instance="wicd",winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
 defwinprop{instance="ranger",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
+defwinprop{class="ranger",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
 defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="console",lazy_resize=true}
 defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb",lazy_resize=true}
 defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",lazy_resize=true}
