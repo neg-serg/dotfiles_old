@@ -1,27 +1,14 @@
 #!/bin/bash
-source ${HOME}/.config/dmenu/pulse
-backend="rofi"
 
-if [[ "$backend" == "rofi" ]]
-    then
-        function dmenu_t () {
-        rofi -font "$font" -fg "$nf" -bg "$nb" -hlfg "$sf" -hlbg "$sb" -o 90 -bc "$bc" -dmenu
-        }
+font="PragmataPro-17"  # Font that is used for dmenu
+nf='#CCCCCC'           # Foreground color for dmenu/dzen2
+nb='#000000'           # background color for dmenu/dzen2
+sf='#000000'           # foreground active color for dmenu/dzen2
+sb='#CCCCCC'           # background active color for dmenu/dzen2
 
-elif [[ "$backend" == "dmenu" ]]
-    then
-        if [[ "$dmenu_trans" == "1" ]]
-            then
-            function dmenu_t () {
-            dmenu -l 15 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb" -o 90
-            }
-        else
-            function dmenu_t () {
-            dmenu -l 15 -fn "$font" -nf "$nf" -nb "$nb" -sf "$sf" -sb "$sb"
-            }
-        fi
-fi
-
+function dmenu_t () {
+    rofi -location 6 -font "$font" -fg "$nf" -bg "$nb" -hlfg "$sf" -hlbg "$sb" -o 90 -bc "$bc" -dmenu
+}
 
 client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients: " $@)
 
