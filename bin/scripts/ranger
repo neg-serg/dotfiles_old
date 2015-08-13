@@ -1,5 +1,3 @@
 #!/bin/zsh
-wid=$(xdotool search --classname ranger)
-if [ -z "$wid" ]; then
-    st -c ranger -e ranger &
-fi
+wid=$(xdotool search --class ranger)
+[[ -z "$wid" ]] && xterm -class ranger -fa PragmataPro:size=16 -e tmux new ranger
