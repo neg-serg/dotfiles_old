@@ -1,50 +1,55 @@
-function rename_workspace_handler(ws, str)
-    ws:set_name(str)
-end
-
-function mainmenu_handler(x)
-    if x == "save" then
-        ioncore.snapshot()
-    end
-    if x == "restart" then
-        ioncore.restart()
-    end
-    if x == "resolution-set" then
-        ioncore.exec('~/bin/scripts/rofi-randr')
-    end
-    for i in {"ratpoison","cwm","twm","dwm"} do
-        if x == i .. '-restart' then
-            ioncore.restart_other(i)
-        end
+function rename_frame_handler(frame_name,frame)
+    if not (frame_name == nil or frame_name == '') then
+        frame:set_name(frame_name)
     end
 end
 
-function mpdmenu_handler(x)
-    if x == "title_copy" then
-        ioncore.exec('mpc current | xsel -bi')
-    end
-    if x == "mpd_show" then
-        ioncore.exec('~/bin/mpd/mpd_dzen_info')
+function rename_workspace_handler(wsname,ws)
+    if not (wsname == nil or wsname == '') then
+        ws:set_name(wsname)
     end
 end
 
-function attach_win_handler()
+function attach_win_handler(str,frame)
     local cwin=ioncore.lookup_clientwin(str)
-    if not cwin then
-        return
-    end
+    if not cwin then return end
     local reg=cwin:groupleader_of()
-    
     local function attach()
-        frame:attach(reg, { switchto = true })
+        frame:attach(reg, {switchto=true})
     end
     if frame:rootwin_of()~=reg:rootwin_of() then
-        
     elseif reg:manager()==frame then
         reg:goto_focus()
     else
         ioncore.defer(function () attach() end)
     end
+end
+
+function goto_or_create_ws_handler(name,reg)
+    if not (name == nil or name == '') then
+        workspace_handler(reg,name)
+    end
+end
+
+function mainmenu_handler(x)
+    action = {
+        ["save"]=function() ioncore.snapshot() end,
+        ["restart"]=function() ioncore.restart() end,
+        ["xrandr-set"]=function() ioncore.exec('~/bin/scripts/rofi-randr') end,
+        ["ratpoison-restart"]=function() ioncore.restart_other("ratpoison") end,
+        ["cwm-restart"]=function() ioncore.restart_other("cwm") end,
+        ["twm-restart"]=function() ioncore.restart_other("twm") end,
+        ["dwm-restart"]=function() ioncore.restart_other("dwm") end,
+    }
+    action[x]()
+end
+
+function mpdmenu_handler(x)
+    local action = {
+        ["title_copy"]=function() ioncore.exec('mpc current | xsel -bi') end,
+        ["mpd_show"]=function() ioncore.exec('~/bin/mpd_dzen_info') end,
+    }
+    action[x]()
 end
 
 function workspace_handler(reg,name)
@@ -59,8 +64,4 @@ function workspace_handler(reg,name)
         layout = "full"
         ioncore.create_ws(reg:screen_of(),tmpl,layout)
     end
-end
-
-function rename_workspace_handler(ws, str)
-    ws:set_name(str)
 end
