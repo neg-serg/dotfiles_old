@@ -70,11 +70,6 @@ mycompletion() {
         zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
         # colorize username completion
         zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
-    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' completer _tmux_pane_words
-    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' ignore-line current
-    # display the (interactive) menu on first execution of the hotkey
-    zstyle ':completion:tmux-pane-words-(prefix|anywhere):*' menu yes select interactive
-    zstyle ':completion:tmux-pane-words-anywhere:*' matcher-list 'b:=* m:{A-Za-z}={a-zA-Z}'
     zstyle ':completion:*:wine:*'             file-patterns '*.(exe|EXE):exe'
     # highlight parameters with uncommon names
     zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
