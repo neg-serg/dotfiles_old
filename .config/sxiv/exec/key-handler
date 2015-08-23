@@ -1,18 +1,7 @@
 #!/bin/zsh
 
-# Example for $XDG_CONFIG_HOME/sxiv/exec/key-handler
-# Called by sxiv(1) whenever an unbound key combo is used,
-# with the key combo as its first argument and the path of the current image
-# as its second argument.
-# sxiv(1) blocks until this script terminates. It then checks if the image
-# has been modified and reloads it.
-
-# The key combo argument has the following form: "[C-][M-][S-]KEY",
-# where C/M/S indicate Ctrl/Meta(Alt)/Shift modifier states and KEY is the X
-# keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
-
 function resolve_file {
-  if [ -f "$1" ]; then
+  if [[ -f "$1" ]]; then
     echo $(readlink -f "$1")
   elif [[ "${1#/}" == "$1" ]]; then
     echo "$(pwd)/$1"
@@ -21,7 +10,7 @@ function resolve_file {
   fi
 }
 
-readonly KEY="$1";
+opt="$1";
 readonly TAGFILE="${HOME}/.config/sxiv/tags"
 readonly tmp_file="/tmp/sxiv.$$"
 readonly tmp_file2="/tmp/sxiv2.$$"
@@ -29,8 +18,8 @@ readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -font "Pragmata Pro for
 readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
 readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
 
-rotate() {
-	degree="$1"
+function rotate() {
+	local degree="$1"
 	while read file; do
 		case "$(file -b -i "${file}")" in
 		image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
@@ -39,7 +28,7 @@ rotate() {
 	done
 }
 
-tag_add() {
+function tag_add() {
 	>>"${TAGFILE}"
 	tags=$(dmenu <"${TAGFILE}" | tr '\n' ',')
 	[[ -z "${tags}" ]] && return
@@ -48,34 +37,25 @@ tag_add() {
 	mv -f "${TAGFILE}"{.new,}
 }
 
-tag_del() {
-	cat >"${tmp_file}"
+function tag_del() {
+	>>"${tmp_file}"
 	tags=$(iptckwed -iql <"${tmp_file}" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
 	[[ -z "${tags}" ]] && return
 	iptckwed -i -r "${tags}" <"${tmp_file}"
 	rm -f "${tmp_file}"
 }
 
-rename() {
-	cat >"${tmp_file}"
+function rename() {
+	>>"${tmp_file}"
     dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
-    if [[ -n "${dest}" ]] ; then
-        fp=$(cat < "${tmp_file}")
-        mv "${fp}" "$(dirname "$fp")/$dest"
-    fi
+    [[ -n "${dest}" ]] && fp=$(cat < "${tmp_file}") && mv "${fp}" "$(dirname "$fp")/$dest"
 	rm -f "${tmp_file}"
 }
 
-cpmv() {
-    if [[ $1 == "copy" ]]; then
-        cmd="cp"
-        cmd_w="copy"
-    fi
-    if [[ $1 == "move" ]]; then
-        cmd="mv"
-        cmd_w="move"
-    fi
-	cat >"${tmp_file}"
+function proc() {
+    [[ $1 == "copy" ]] && cmd="cp" && cmd_w="copy"
+    [[ $1 == "move" ]] && cmd="mv" && cmd_w="move"
+	>>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
         dest=$(${HOME}/bin/Z -i "${z_data_file}" | sed 's:^'${HOME}':~:' |eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"")| sed 's:^~:'${HOME}':')
     fi
@@ -93,11 +73,11 @@ cpmv() {
 	rm -f "${tmp_file}"
 }
 
-delete() {
-	cat >"${tmp_file}"
-    dest="${HOME}/trash/1st-level/pic"
-    [[ -z "$dest" ]] && exit 0
-    if [[ -d "$dest" ]] ; then
+function delete() {
+	>>"${tmp_file}"
+    local dest="${HOME}/trash/1st-level/pic"
+    [[ -z "${dest}" ]] && exit 0
+    if [[ -d "${dest}" ]] ; then
         while read line; do
             file_name="$(resolve_file ${line})"
             eval $(echo mv `echo \"${file_name}\"` ${dest})
@@ -107,51 +87,58 @@ delete() {
 	rm -f "${tmp_file}"
 }
 
-rep() {
-    cat >"${tmp_file}"
-    file=($(cat "${last_action}"))
-    action=${file[1]}
-    dest=${file[2]}
-    if [ -d "${dest}" ] ; then
+function rep() {
+    >>"${tmp_file}"
+    local file=($(cat "${last_action}"))
+    local action=${file[1]}
+    local dest=${file[2]}
+    if [[ -d "${dest}" ]] ; then
         while read line; do
-            file_name="`resolve_file ${line}`"
-            echo $file_name
-            if [[ ${action} == "move" ]]; then
-                cmd="mv"
-            fi
-            if [[ ${action} == "copy" ]]; then
-                cmd="cp"
-            fi
-            eval $(echo $cmd `echo \"${file_name}\"` ${dest})
+            file_name="$(resolve_file ${line})"
+            echo ${file_name}
+            [[ ${action} == "move" ]] && cmd="mv"
+            [[ ${action} == "copy" ]] && cmd="cp"
+            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
         done < ${tmp_file}
     fi
 	rm -f "${tmp_file}"
 }
 
-copy_name() {
-    cat >"${tmp_file2}"
-    fp=$(cat < "${tmp_file2}")
-    echo $(resolve_file ${fp})|xsel -bi
-    notify-send "[>>] [ $(resolve_file ${fp}) ]"
+function copy_name() {
+    >>"${tmp_file2}"
+    local fp=$(cat < "${tmp_file2}")
+    local file_name="$(resolve_file ${fp})"
+    echo ${file_name}|xsel -bi
+    notify-send "[>>] [ ${file_name} ]"
     rm -f ${tmp_file2}
 }
 
-case "$KEY" in
-    "C-g") tr '\n' '\0' | xargs -0 gimp & ;;
+function imgur_it() {
+    >>"/tmp/lol"    
+    local fp=$(cat < "/tmp/lol")
+    local file_name="$(resolve_file ${fp})"
+    echo ${file_name}|xsel -bi
+    imgur ${file_name}  2>&1 > /tmp/lol
+    # tr '\n' '\0' | xargs -0 imgur|xsel
+}
+
+case "$opt" in
+    "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
     "C-comma")  rotate 270 ;;
     "C-period") rotate  90 ;;
     "C-slash")  rotate 180 ;;
-    "C-less") rotate -90 ;;
-    "C-d") delete ;;
-    "C-v") cpmv move ;;
-    "C-c") cpmv copy ;;
-    "C-r") rename ;;
-    "r")   rep ;;
-    "c") copy_name ;;
-    "C-1") xargs -n1 hsetroot -center ;;
-    "C-2") xargs -n1 hsetroot -fill ;;
-    "C-3") xargs -n1 hsetroot -full ;;
-    "C-4") xargs -n1 hsetroot -tile ;;
-    "C-t") tag_add ;;
-    "M-T") tag_del ;;
+    "C-less")   rotate -90 ;;
+    "C-d")      delete ;;
+    "C-v")      proc move ;;
+    "C-c")      proc copy ;;
+    "C-r")      rename ;;
+    "r")        rep ;;
+    "c")        copy_name ;;
+    "C-1")      xargs -n1 hsetroot -center ;;
+    "C-2")      xargs -n1 hsetroot -fill ;;
+    "C-3")      xargs -n1 hsetroot -full ;;
+    "C-4")      xargs -n1 hsetroot -tile ;;
+    "C-t")      tag_add ;;
+    "C-i")      imgur_it ;;
+    "M-T")      tag_del ;;
 esac
