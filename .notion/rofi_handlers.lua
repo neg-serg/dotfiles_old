@@ -47,6 +47,7 @@ end
 function mpdmenu_handler(x)
     local action = {
         ["title_copy"]=function() ioncore.exec('mpc current | xsel -bi') end,
+        ["artist_copy"]=function() ioncore.exec('mpc current -f \'[%artist%]\'|xsel -bi') end,
         ["mpd_show"]=function() ioncore.exec('~/bin/mpd_dzen_info') end,
     }
     action[x]()
