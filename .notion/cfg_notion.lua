@@ -1,18 +1,4 @@
---------------------------------[[ CONSTS ]]----------------------------------------
 META="Mod1+"
-function dzen_delete()
-    os.execute("pkill dzen2")
-    os.execute("pkill rofi")
-    os.execute("pkill -f \'lua /home/neg/.notion/mpd_dzen.lua\'")
-end
-
-hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
-local hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
-if hook_deinit then
-    hook_deinit:add(dzen_delete)
-end
-dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
-dzen_pipe:setvbuf("line")
 --------------------------------[[ IONCORE ]]---------------------------------------
 ioncore.set{
     dblclick_delay=250,
@@ -52,7 +38,7 @@ dopath("mod_notionflux")
 dopath("screenshot")
 dopath("mod_dock")
 dopath("cfg_dzen")
-dopath("rofi_goto")
+dopath("rofi")
 dopath("cfg_autostart")
 dopath("mod_xkbevents")
 dopath("helpers")
