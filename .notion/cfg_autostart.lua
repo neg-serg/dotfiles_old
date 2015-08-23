@@ -1,5 +1,10 @@
 function start_mpdstat()
-    ioncore.exec('lua ~/.notion/mpd_dzen.lua')
+    local fd = io.popen("pgrep -f 'dzen2 -dock -bg #000000 -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn PragmataPro for Powerline:style=bold:size=12'","r")
+    local exists = fd:read("*l")
+    fd:close()
+    if exists ~= nil then
+        ioncore.exec('lua ~/.notion/mpd_dzen.lua')
+    end
 end
 function start_rofi()
     local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
