@@ -2,7 +2,7 @@
 FILE=/tmp/xprop_pipe
 
 # generate calender
-XPROP=$(xprop)
+XPROP=$(xprop WM_CLASS WM_NAME WM_WINDOW_ROLE WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE _NET_WM_PID)
 
 echo "${XPROP}" > "${FILE}" 
 cat "${FILE}"|rofi -dmenu -location 6|xsel
