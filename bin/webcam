@@ -1,14 +1,32 @@
 #!/bin/zsh
-mpv --x11-name=webcam_mpv -vo x11 tv:// -tv device=/dev/video{0,1}
-# ffmpeg -f video4linux2 -i /dev/video0 -f image2 snapshot.png 2>/dev/null
-#
-# f_rec(){
-#         mencoder tv:// -tv driver=v4l2:width=640:height=480:device=/dev/video0:alsa:forceaudio:amode=0:adevice=hw.0,0    -ovc lavc -lavcopts vcodec=mpeg4 -oac mp3lame -lameopts vbr=3:br=32:mode=3 -af volnorm -o ~/rec-$(date +%y%m%d_%H%M).avi &>/dev/null&
-#       echo $! >> /tmp/f_rec.pid
-# }
-# 
-# if [ -f /tmp/f_rec.pid  ]; then
-#     kill $(cat /tmp/f_rec.pid) && rm /tmp/f_rec.pid
-# else
-#     f_rec
-# fi
+local shapshot_name="/tmp/snapshot_$$.png"
+local rec_name="/tmp/rec-$(date +%y%m%d_%H%M)_$$.avi"
+local adev="hw.0,0"
+local frec_pid="/tmp/f_rec$$.pid"
+
+if [[ $1 == "" ]]; then
+    for i in /dev/v4l/by-id/*; do
+        mpv --x11-name=webcam_mpv tv:// -tv device=${i}
+    done
+elif [[ $1 =~ s* ]]; then
+    for i in /dev/v4l/by-id/*; do
+        ffmpeg -f video4linux2 -i ${i} -f image2 ${snapshot_name} 2>/dev/null
+    done
+elif [[ $1 =~ r* ]]; then
+    for i in /dev/v4l/by-id/*; do
+        frec
+    done
+fi
+
+local function frec(){
+    ffmpeg -f video4linux2 -i ${i} -f image2 ${snapshot_name} 2>/dev/null
+    mencoder tv:// -tv driver=v4l2:width=1280:height=720:device=${i}:alsa:forceaudio:amode=0:adevice=${adev} \
+        -ovc lavc -lavcopts vcodec=mpeg4 -oac mp3lame -lameopts vbr=3:br=32:mode=3 -af volnorm \
+        -o ${rec_name} &>/dev/null&
+    echo $! >> ${frec_pid}
+    if [ -f ${frec_pid}  ]; then
+        kill $(cat ${frec_pid}) && rm ${frec_pid}
+    else
+        f_rec
+    fi
+}
