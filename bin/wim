@@ -9,5 +9,5 @@ readonly sock_path="${HOME}/1st_level/vim.socket"
 if [[ $(lsof "${sock_path}"|grep -o "${sock_path} type=STREAM") == "${sock_path} type=STREAM" ]]; then
     st -f "${wim_font}:pixelsize=20" -c 'wim' -e zsh -i -c "tmux -S ${sock_path} attach-session -d -t vim"
 else
-    v ${HOME}
+    v
 fi
