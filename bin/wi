@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# ref: w3mimgdisplay.c
-
 function clear_image {
   echo -ne "
 6;0;0;${1:-10000};${2:-10000}
@@ -47,18 +45,14 @@ trap on_exit EXIT
 
 declare -a files
 
-for fn in "$@"
-do
+for fn in "$@"; do
   append_file "$fn"
 done
 
-if [ -p /dev/fd/0 ]
-then
-  while read fn
-  do
+if [ -p /dev/fd/0 ]; then
+  while read fn; do
     append_file "$fn"
   done
-
   exec 0<&1
 fi
 
@@ -72,14 +66,7 @@ while true
 do
   fn="${files[$pos]}"
 
-  set_title "$(( pos + 1 )) / $len - $(basename "$fn") - $(dirname "$fn")"
   draw_image "$fn" > /dev/null
-
-  # if [[ $(draw_image "$fn") =~ (([0-9]+) ([0-9]+)) ]]
-  # then
-  #   read it
-  #   clear_image "${BASH_REMATCH[2]}" "${BASH_REMATCH[3]}"
-  # fi
 
   read -n1 input
   case "$input" in
