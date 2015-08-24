@@ -88,17 +88,17 @@ function delete() {
 }
 
 function rep() {
-    >>"${tmp_file}"
-    local file=($(cat "${last_action}"))
-    local action=${file[1]}
-    local dest=${file[2]}
+    cat >"${tmp_file}"
+    file=($(cat "${last_action}"))
+    action=${file[1]}
+    dest=${file[2]}
     if [[ -d "${dest}" ]] ; then
         while read line; do
-            file_name="$(resolve_file ${line})"
-            echo ${file_name}
+            file_name="`resolve_file ${line}`"
+            echo $file_name
             [[ ${action} == "move" ]] && cmd="mv"
             [[ ${action} == "copy" ]] && cmd="cp"
-            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
+            eval $(echo $cmd `echo \"${file_name}\"` ${dest})
         done < ${tmp_file}
     fi
 	rm -f "${tmp_file}"
