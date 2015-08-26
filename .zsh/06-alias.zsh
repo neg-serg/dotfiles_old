@@ -1,7 +1,7 @@
 (){
     if [[ -x `which cope_path 2> /dev/null` ]]; then
         local p=$(cope_path)
-        for i in `\ls $p -1|sed 's/*$//'`; alias $i=\"$p/$i\"
+        for i in $p/*; alias $i=\"$i\"
         alias df="$p/df -hT"
     else
         alias df="df -hT"
@@ -99,14 +99,12 @@ alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/nu
 
 alias ple='perl -wlne'
 
-alias "ftp=lftp"
-alias "now=date +'[%H:%M] %A %e %B %G'"
-alias "mv=mv -vi"
-alias "mvv=\mv"
+alias ftp="lftp"
+alias now="date +'[%H:%M] %A %e %B %G'"
+alias mv="mv -vi"
+alias mvv="\mv"
 
-sudo_list=( \
-    mount umount chmod chown
-)
+sudo_list=(mount umount chmod chown) 
 for i in ${sudo_list[@]}; alias ${i}="sudo ${i}";
 
 if [[ -x /usr/bin/systemctl ]]; then
@@ -114,9 +112,9 @@ if [[ -x /usr/bin/systemctl ]]; then
     alias poweroff="sudo systemctl poweroff"
     alias halt="sudo systemctl halt"
 else
-    alias "reboot=sudo reboot"
-    alias "halt=sudo halt"
-    alias "poweroff=sudo poweroff"
+    alias reboot="sudo reboot"
+    alias halt="sudo halt"
+    alias poweroff="sudo poweroff"
 fi
 
 alias tree="tree --dirsfirst -C"
@@ -301,7 +299,7 @@ abk=(
     'T'    '| tail'
     'N'    '&>/dev/null'
     'S'    '| sort -h '
-    'W'    '|& ls_color'
+    'W'    '|& wc -l'
     'V'    '|& vim -'
     "jj"   "!$"
     "jk"   "!-2$"
@@ -320,5 +318,7 @@ zleiab() {
     LBUFFER=${LBUFFER%%(#m)[.-|_a-zA-Z0-9]#}
     LBUFFER+=${abk[$MATCH]:-$MATCH}
 }
+
+alias vmpd='command cava -i fifo -p /tmp/mpd.fifo -b 20'
 
 zle -N zleiab
