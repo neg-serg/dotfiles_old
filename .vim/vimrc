@@ -52,13 +52,30 @@ if has('nvim')
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+let s:bundle_dir = expand('$HOME/.vim/bundle')
+let s:neobundle_dir = s:bundle_dir . '/neobundle.vim'
+let s:neobundle_repo = 'https://github.com/Shougo/neobundle.vim'
+let g:neobundle#cache_file = expand('$HOME/.vim/neobundlecache')
+let &runtimepath.=','.s:neobundle_dir
+try
+	call neobundle#begin(s:bundle_dir)
+catch /E117/ " neobundle not installed
+	execute "!mkdir -p " .  s:neobundle_dir
+	execute "!" . "git clone " s:neobundle_repo . " " . s:neobundle_dir
+	call neobundle#begin(s:bundle_dir)
+	NeoBundleInstall
+	call neobundle#end()
+	quit
+endtry
+
 if neobundle#load_cache()
     source ~/.vim/00-bundlelist.vim
     NeoBundleSaveCache
 endif
 call neobundle#end()
-syntax on
+if (&t_Co > 2 || has("gui_running"))
+    syntax on
+endif
 filetype plugin indent on
 
 NeoBundleCheck
