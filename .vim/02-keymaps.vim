@@ -1,29 +1,21 @@
 nnoremap qe :FZF --color=16<CR>
 
+" Some helpers to edit mode
+" http://vimcasts.org/e/14
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+
+" inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+" inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+nnoremap <Leader>sb :call ToggleBg()<cr>
+
+" paste from clipboard
+map <space>pp :set paste<CR>o<esc> "*]p:set nopaste<cr> 
+
 nnoremap Y y$
-
-onoremap aa  a>
-xnoremap aa  a>
-onoremap ia  i>
-xnoremap ia  i>
-
-" [rectangle]
-onoremap ar  a]
-xnoremap ar  a]
-onoremap ir  i]
-xnoremap ir  i]
-
-" 'quote'
-onoremap aq  a'
-xnoremap aq  a'
-onoremap iq  i'
-xnoremap iq  i'
-
-" "double quote"
-onoremap ad  a"
-xnoremap ad  a"
-onoremap id  i"
-xnoremap id  i"
 
 " Indent paste.
 nnoremap <silent> ep o<Esc>pm``[=`]``^
@@ -107,14 +99,6 @@ nnoremap <silent> <A-w> :Bclose<CR>
 nnoremap <leader><leader> :nohlsearch<CR>
 map Q gq
 
-" make those behave like ci' , ci"
-nnoremap ci( f(ci(
-nnoremap ci{ f{ci{
-nnoremap ci[ f[ci[
-vnoremap ci( f(ci(
-vnoremap ci{ f{ci{
-vnoremap ci[ f[ci[
-
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
@@ -148,25 +132,7 @@ nnoremap <silent> [Quickfix]p :<C-u>cprevious<CR>
 nnoremap <silent> [Quickfix]r :<C-u>crewind<CR>
 nnoremap <silent> [Quickfix]N :<C-u>cfirst<CR>
 nnoremap <silent> [Quickfix]P :<C-u>clast<CR>
-nnoremap <silent> [Quickfix]fn :<C-u>cnfile<CR>
-nnoremap <silent> [Quickfix]fp :<C-u>cpfile<CR>
 nnoremap <silent> [Quickfix]l :<C-u>clist<CR>
-nnoremap <silent> [Quickfix]en :<C-u>cnewer<CR>
-nnoremap <silent> [Quickfix]ep :<C-u>colder<CR>
-" For location list (mnemonic: Quickfix list for the current Window)
-nnoremap <silent> [Quickfix]wn :<C-u>lnext<CR>
-nnoremap <silent> [Quickfix]wp :<C-u>lprevious<CR>
-nnoremap <silent> [Quickfix]wr :<C-u>lrewind<CR>
-nnoremap <silent> [Quickfix]wP :<C-u>lfirst<CR>
-nnoremap <silent> [Quickfix]wN :<C-u>llast<CR>
-nnoremap <silent> [Quickfix]wfn :<C-u>lnfile<CR>
-nnoremap <silent> [Quickfix]wfp :<C-u>lpfile<CR>
-nnoremap <silent> [Quickfix]wl :<C-u>llist<CR>
-nnoremap <silent> [Quickfix]wq :<C-u>ll<CR>
-nnoremap <silent> [Quickfix]wo :<C-u>lopen<CR>
-nnoremap <silent> [Quickfix]wc :<C-u>lclose<CR>
-nnoremap <silent> [Quickfix]wep :<C-u>lolder<CR>
-nnoremap <silent> [Quickfix]wen :<C-u>lnewer<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
