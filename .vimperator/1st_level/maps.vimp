@@ -1,13 +1,10 @@
 map <c-q> <nop>
-"" J/K move left/right
-map  J h
-map  K l
+map <c-o> <nop>
 noremap j 3j
 noremap k 3k
-"" U list closed tabs
 map  U :undo<Space>
 
-map <C-tab> <Nop>
+map  <C-tab> <Nop>
 nmap <C-n> <Nop>
 imap <C-n> <Down>
 imap <C-p> <Up>
@@ -16,12 +13,9 @@ imap  <C-y> <S-Ins>
 map  <C-y> <S-Ins>
 cmap  <C-y> <S-Ins>
 vmap  <C-y> <S-Ins>
-map s :sidebar<SPACE>
-map S :sbcl<CR>
-map  w b
+nnoremap  w b
 map $ <End>
 
-" C-g as cancel (C-q is stop)
 cmap <C-]> i<Esc>
 imap <C-]> i<Esc>
 cmap <C-ъ> i<Esc>
@@ -34,26 +28,22 @@ let g:hints_for_embedded_mode = "e"
 let g:walk_input_map_forward = '<C-,>'
 let g:walk_input_map_backward = '<C-.> <C-S-,>'
 
-nmap ,, :noh<CR>
-nmap ,b :sidebar Bookmarks<CR>
+nmap <silent> ,, :noh<CR>
+nmap <silent> ,b :sidebar Bookmarks<CR>
 imap <C-y> <S-Ins>
 cmap <C-y> <S-Ins>
 vmap <C-y> <S-Ins>
-
-map <C-g> <Esc>
 
 map <C-n> <Down>
 map <C-p> <Up>
 map <C-b> <Left>
 map <C-f> <Right>
 
-map I_<C-w> I_<C-BS>
- 
-map  B -silent :bmarks<CR>
+map <silent> B :bmarks<CR>
 map  gr gT
 
-map <F4> :set complete=lS<CR>
-map <F5> :set complete=bookmark<CR>
+map <silent> <F4> :set complete=lS<CR>
+map <silent> <F5> :set complete=bookmark<CR>
 
 imap <c-a> <home>
 cmap <c-a> <home>
@@ -72,19 +62,18 @@ cmap <A-и> <C-Left>
 cmap <A-а> <C-Right>
 cmap <A-в> <C-S-Right><Del>
 
-" nmap  ,A     :noscript toggleperm<CR>
-" nmap  ,a     :noscript toggletemp<CR>
+map I_<C-w> I_<C-BS>
 
 map gr gT
 map пк gT
 map пе gt
 
-map S :sbcl<CR>
-map I_<C-w> I_<C-BS>
-map <A-q> gT
-map <A-й> gT
-map <A-w> gt
-map <A-ц> gt
+map <silent> s :sidebar<Space>
+map <silent> S :sbclose<CR>
+
+map <silent> щ :!xkb-switch -s us&<CR>:open<Space>
+map <silent> е :!xkb-switch -s us&<CR>:tabopen<Space>
+map <silent> пш :!xkb-switch -s us&<CR>:normal gi<CR>
 
 " Russian language keyboard mappings (UTF-8)
 map ё `
@@ -92,11 +81,9 @@ map й q
 map ц w
 map у e
 map к r
-map е t
 map н y
 map г u
 map ш i
-map щ o
 map з p
 map х [
 map ъ ]
