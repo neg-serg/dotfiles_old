@@ -35,4 +35,4 @@ echo "^fn(PragmataPro:size=10)Current day of the year: $day_year"
 echo "^fn(PragmataPro:size=10)Current week of the year: $week_year"
 echo ""
 
-) | dzen2 -p -x 1650 -y 365 -w 235 -bg $BG -fg $FG -l 30 -sa c -ta c -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
+) | dzen2 -p 3 -x 1650 -y 365 -w 235 -bg $BG -fg $FG -l 30 -sa c -ta c -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
