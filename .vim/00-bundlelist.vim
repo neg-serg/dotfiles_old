@@ -1,7 +1,21 @@
 NeoBundle 'tomtom/tinykeymap_vim.git' "test it for a new keymaps
 NeoBundle 'amix/open_file_under_cursor.vim.git' "open file under cursor with gf
+NeoBundle 'chrisbra/colorizer'
+    \, { 'autoload': { 'commands': ['ColorToggle'] } }
+NeoBundle 'kurkale6ka/vim-swap.git' "steal swap from here
+NeoBundle 'jamessan/vim-gnupg.git' "Transparent work with gpg-encrypted files
+NeoBundle 'Shougo/vimshell.vim' "shell inside a vim
+NeoBundle 'fatih/vim-go.git' "golang support
+NeoBundle 'oscarh/vimerl' "vim erlang support
+NeoBundle 'vim-ruby/vim-ruby' "ruby support for vim
+NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 "--[ Main ]--------------------------------------------------------------------------------------------------
-NeoBundle 'Valloric/YouCompleteMe' "ultimate completion engine for c/cpp and python etc
+NeoBundle 'Valloric/YouCompleteMe' , {
+        \ 'build': {
+        \   'unix': './install.sh --clang-completer --system-libclang'
+        \           .' || ./install.sh --clang-completer',
+        \ },
+        \ }
 NeoBundle 'junegunn/fzf' "use fzf plug for vim
 NeoBundle 'szw/vim-ctrlspace.git' "better sessions
 NeoBundle 'dyng/ctrlsf.vim.git' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2 
@@ -9,10 +23,8 @@ NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
-NeoBundle 'neg-serg/vim-colors' "all colors which I want
-NeoBundle 'NLKNguyen/papercolor-theme' "new light colorscheme
 NeoBundle 'luochen1990/rainbow.git' "improved rainbow-parentesis
-NeoBundle 'Shougo/vimproc' "vimproc is for faster work of unite
+"vimproc is for faster work of unite
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build' : {
             \ 'windows' : 'make -f make_mingw32.mak',
@@ -64,9 +76,9 @@ endif
 if executable("ag")
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-NeoBundleLazy 'tpope/vim-repeat', {
-            \ 'mappings' : '.'
-            \ }
+"dot for everything
+NeoBundleLazy 'tpope/vim-repeat', { 'mappings' : '.' }
+
 NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
 NeoBundleLazy 'sjl/gundo.vim', {
             \ 'commands' : 'GundoToggle'
@@ -77,10 +89,10 @@ NeoBundleLazy 'Raimondi/delimitMate', {
 NeoBundleLazy 'scrooloose/syntastic', {
             \ 'insert' : 1
             \ }
-" NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
+"NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
+"NeoBundle 'xkdcc/Session-Viminfo-Management.git' "session managing
+"NeoBundle 'tpope/vim-abolish.git' "substitute with steroids
 NeoBundle 'Yggdroot/indentLine.git' "indent tabs visually with |-es too slow
-NeoBundle 'xkdcc/Session-Viminfo-Management.git' "session managing
-NeoBundle 'tpope/vim-abolish.git' "substitute with steroids
 NeoBundle 'thinca/vim-qfreplace.git' "visual replace for multiple files
 "--[ dcvs ]--------------------------------------------------------------------------------------------------
 if executable("git")
@@ -101,13 +113,16 @@ if executable("tmux")
 endif
 NeoBundle 'tpope/vim-dispatch.git' "Should provide async build
 if (executable("ghci") && executable("ghcmod"))
-    NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
+"   NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
+NeoBundle 'eagletmt/ghcmod-vim.git'
 endif                                        
 NeoBundle 'derekwyatt/vim-scala' "different initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 "--[ misc ]--------------------------------------------------------------------------------------------------
+NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
+NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
 NeoBundle 'manicmaniac/betterga.git' "better ga
-NeoBundle 'reedes/vim-pencil' "autowrap lines
+"NeoBundle 'reedes/vim-pencil' "autowrap lines
 NeoBundle 'vim-scripts/ViewOutput.git' "VO commandline output
 NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
@@ -132,7 +147,8 @@ NeoBundleLazy 'majutsushi/tagbar', {
             \ }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
 NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
-NeoBundle 'tomtom/tcomment_vim.git' "easier comments
+"NeoBundle 'tomtom/tcomment_vim.git' "easier comments
+NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
 NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-unimpaired.git' "good mappings and toggles
 NeoBundle 'dbakker/vim-projectroot' "better rooter
@@ -141,13 +157,21 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 if executable("mono")
-    NeoBundle 'nosami/Omnisharp.git' "omnisharp completion
+    "omnisharp completion
+    NeoBundleLazy 'nosami/Omnisharp.git', {
+                \ 'filetypes' : 'cs'
+                \ }
 endif
 NeoBundle 'jstemmer/gotags.git' "tags for go
-if executable("go")
-    NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
-endif
-NeoBundle 'ebfe/vim-racer.git' "autocomp rust with racer
+" if executable("go")
+"     NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
+" endif
+NeoBundle 'phildawes/racer', {
+    \   'build' : {
+    \     'mac': 'cargo build --release',
+    \     'unix': 'cargo build --release',
+    \   }
+\ }
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', {
             \ 'filetypes' : 'perl'
@@ -155,7 +179,7 @@ NeoBundleLazy 'vim-perl/vim-perl', {
 NeoBundleLazy 'wannesm/wmgraphviz.vim', {
             \ 'filetypes' : 'dot'
             \ }
-NeoBundle 'sbl/scvim.git' " vim plugin for supercollider
+NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
 NeoBundle 'janko-m/vim-test.git' "easy testing with vim
 NeoBundle 'xolox/vim-lua-ftplugin.git' "test lua bindings
 NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
@@ -172,14 +196,14 @@ if has("cscope")
     NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 "--[ latex ]-------------------------------------------------------------------------------------------------
-" NeoBundle 'LaTeX-Box-Team/LaTeX-Box.git' "maybe latex-box is better than others
+NeoBundle 'lervag/vimtex' "LaTeX-Box replacement
 "--[ web ]---------------------------------------------------------------------------------------------------
-NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
+"NeoBundle 'jaxbot/browserlink.vim.git' "live edit for html/js/css
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
-NeoBundleLazy 'mattn/emmet-vim', {
-            \ 'filetypes' : [
-            \   'html', 'css', 'xml', 'vimwiki', 'markdown']
-            \ }
+"NeoBundleLazy 'mattn/emmet-vim', {
+"            \ 'filetypes' : [
+"            \   'html', 'css', 'xml', 'vimwiki', 'markdown']
+"            \ }
 NeoBundleLazy 'marijnh/tern_for_vim', {
     \ 'autoload': { 'filetypes': ['javascript'] }
 \ }
@@ -191,11 +215,12 @@ NeoBundle 'wting/rust.vim' "rust bindings for vim syntax hi
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
 NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
-NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
+" NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'farseer90718/vim-regionsyntax', {
             \ 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html']
             \ }
-" NeoBundle 'bbchung/clighter.git'
+NeoBundle 'cespare/vim-toml'
+"NeoBundle 'bbchung/clighter.git'
 if has("gui_running")
     NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git' "add restart support
