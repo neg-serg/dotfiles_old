@@ -1,14 +1,14 @@
 nnoremap qe :FZF --color=16<CR>
 
+noremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
-
-" inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-" inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
 nnoremap <Leader>sb :call ToggleBg()<cr>
 
@@ -65,7 +65,7 @@ nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <space>e  :<C-u>JunkFile<CR>
 
 nnoremap <silent> <F2> :set invpaste paste?<CR>
-nnoremap <A-z> :set invpaste paste?<CR>
+nnoremap <M-z> :set invpaste paste?<CR>
 set pastetoggle=<A-z>
 
 nnoremap <silent><space>W :set wrap!<CR>
@@ -81,13 +81,13 @@ nnoremap <silent> zk O<Esc>j
 " Now we don't have to move our fingers so far when we want to scroll through
 " the command history; also, don't forget the q: command (see :h q: for more
 " info)
-cnoremap <c-j> <down>
-cnoremap <c-k> <up>
+cnoremap <C-j> <down>
+cnoremap <C-k> <up>
 
 cnoremap $q <C-\>eDeleteTillSlash()<cr>
 
 " semicolon magic
-nnoremap <space>w :w!<cr>
+nnoremap <Space>w :w!<cr>
 nnoremap q4 :q<cr>
 
 map <silent><space>l :set rnu!<cr>
@@ -143,10 +143,3 @@ nnoremap ` '
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <space>g g<c-]>
-
-" " Do not copy to default register on delete/change
-" for key in ['d', 'D', 'c', 'C']
-"     for keymode in ['n', 'v']
-"         exe keymode . 'noremap ' . key . ' "_' . key
-"     endfor
-" endfor
