@@ -12,7 +12,8 @@ if v:version >= 704
   set regexpengine=0
 endif
 
-set conceallevel=2 concealcursor=i
+set conceallevel=2 
+set concealcursor=i
 
 if (has('win16') || has('win32') || has('win64'))
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -71,9 +72,9 @@ if has("gui_running")
     set ttyfast                        " more redrawing characters sent to terminal
 
     set synmaxcol=256                  " improve hi performance
-    syntax sync minlines=190
-    set ttyscroll=40
-    set lazyredraw
+    syntax sync minlines=200
+    set ttyscroll=0                    " turnoff scrolling
+    set lazyredraw                     " no redraw in macros
 
     "set selection=exclusive           " exclusive selection is better [?]
 
@@ -115,15 +116,14 @@ if !has("gui_running")
     silent !stty stop undef > /dev/null 2>/dev/null
     
     if !has("nvim")
-        " set ttyscroll=256                " try to speedup scrolling
-        set ttyscroll=4                    " try to speedup scrolling
         set ttymouse=urxvt                 " more accurate mouse tracking
     endif
     set ttyfast                        " more redrawing characters sent to terminal
 
-    set synmaxcol=256                  " improve hi performance
-    " set showmode                     " show what key had been pressed
-    set lazyredraw                     " it's doesn't set by default for tmux
+    " set synmaxcol=256                  " improve hi performance
+    set showmode                       " show what key had been pressed
+    syntax sync minlines=256
+    set lazyredraw                     " no redraw in macros : it's doesn't set by default for tmux
 
     if &term =~ "xterm"
       let &t_SI = "\<Esc>]12;lightgreen\x7"
@@ -153,6 +153,7 @@ if !has("gui_running")
                     \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
             endif
             autocmd VimEnter * silent !tmux set status off
+            autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             set timeout ttimeout
             set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
         endif
@@ -276,6 +277,9 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 
 set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
+set sidescroll=1                " The minimal number of columns to scroll horizontally. 
+set sidescrolloff=10            " min num of scr columns to keep to the left and to the 
+                                " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
 set shortmess=a                 " Abbrev. of messages (avoids 'hit enter')
@@ -294,7 +298,6 @@ set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
 "set matchpairs+==:;            " Match, to be used with %
-"set matchpairs+=<:>            " Match, to be used with %
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 set equalalways                 " keep windows equal when splitting (default)
@@ -314,27 +317,25 @@ if exists("+undofile")
   set undofile
 endif
 
-set formatoptions=tcroqnj
-
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
 " http://items.sjbach.com/319/configuring-vim-right
-" set formatoptions+=t    " auto-wrap using textwidth (not comments)
-" set formatoptions+=c    " auto-wrap comments too
-" set formatoptions+=r    " continue the comment header automatically on <CR>
-" set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
-" set formatoptions+=q    " allow formatting of comments with gq
-" set formatoptions+=n    " recognize numbered lists when autoindenting
-" set formatoptions-=2    " don't use second line of paragraph when autoindenting
-" set formatoptions-=v    " don't worry about vi compatiblity
-" set formatoptions-=b    " don't worry about vi compatiblity
-" set formatoptions+=l    " don't break long lines in insert mode
-" set formatoptions+=1    " don't break lines after one-letter words, if possible
+set formatoptions+=t    " auto-wrap using textwidth (not comments)
+set formatoptions+=c    " auto-wrap comments too
+set formatoptions+=r    " continue the comment header automatically on <CR>
+set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
+set formatoptions+=q    " allow formatting of comments with gq
+set formatoptions+=n    " recognize numbered lists when autoindenting
+set formatoptions-=2    " don't use second line of paragraph when autoindenting
+set formatoptions-=v    " don't worry about vi compatiblity
+set formatoptions-=b    " don't worry about vi compatiblity
+set formatoptions+=l    " don't break long lines in insert mode
+set formatoptions+=1    " don't break lines after one-letter words, if possible
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
 set autoindent          " on new lines, match indent of previous line
-" set smartindent         " smart auto indenting
+" set smartindent       " smart auto indenting
 set copyindent          " copy the previous indentation on autoindenting
 set cindent             " smart indenting for c-like code
 set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
@@ -349,14 +350,17 @@ set undofile            " So is persistent undo ...
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
 set cpoptions=aAceFsBd
-" ---------------- Folds --------------------------------------
-set maxfuncdepth=1000
-set maxmemtot=200000
+
+set maxfuncdepth=100    " Maximum depth of function calls for user functions
+set maxmemtot=2000000   " Maximum amount of memory in Kbyte to use for all buffers together.
+set maxmapdepth=1000    " Maximum number of times a mapping is done 
+                        " without resulting in a character to be used.
+set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
+set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
 set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
-" set nomodeline                        " enable modelines
-set modeline                        " enable modelines
-set grepprg=ag\ --nogroup\ --nocolor  "use ag over grep
+set nomodeline                        " disable modelines
+set grepprg=ag\ --nogroup\ --nocolor  " use ag over grep
 
 set iminsert=0                        " write latin1 characters first
 set imsearch=0                        " search with latin1 characters first
@@ -388,14 +392,6 @@ if has("cscope")
 
     "Alternative workground to work with cscope
 endif
-
-set printoptions=paper:A4,syntax:n,wrap:y,header:0,number:n,duplex:off
-set printoptions+=left:2,right:2,top:2,bottom:2
-set printfont=-windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
-set printmbfont=r:-windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
-set printmbfont+=b:-windows-montecarlo-bold-r-normal--11-110-72-72-c-60-microsoft-cp1252
-set printmbfont+=i:-windows-montecarlo-medium-r-normal--11-110-72-72-c-60-microsoft-cp1252
-set pumheight=10
 
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
