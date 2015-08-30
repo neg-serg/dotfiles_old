@@ -7,25 +7,6 @@ function! GetVisualSelection()
     return join(s:lines, ' ')
 endfunction
 
-function! s:SetCompleteFunc()
-    if !g:neocomplete#force_overwrite_completefunc
-        let &completefunc = 'youcompleteme#Complete'
-        let &l:completefunc = 'youcompleteme#Complete'
-    endif
-
-    if pyeval( 'ycm_state.NativeFiletypeCompletionUsable()' )
-        let &omnifunc = 'youcompleteme#OmniComplete'
-        let &l:omnifunc = 'youcompleteme#OmniComplete'
-
-  " If we don't have native filetype support but the omnifunc is set to YCM's
-  " omnifunc because the previous file the user was editing DID have native
-  " support, we remove our omnifunc.
-    elseif &omnifunc == 'youcompleteme#OmniComplete'
-        let &omnifunc = ''
-        let &l:omnifunc = ''
-    endif
-endfunction
-
 function! s:mkdir(file, ...)
     let f = a:0 ? fnamemodify(a:file, a:1) : a:file
     if !isdirectory(f)
@@ -173,190 +154,40 @@ function! DeleteTillSlash()
     return g:cmd_edited
 endfunc
 
-" function! s:open_online_cpp_doc()
-"     let l = getline('.')
-"
-"     if l =~# '^\s*#\s*include\s\+<.\+>'
-"         let header = matchstr(l, '^\s*#\s*include\s\+<\zs.\+\ze>')
-"         if header =~# '^boost'
-"             execute 'OpenBrowser' 'http://www.google.com/cse?cx=011577717147771266991:jigzgqluebe&q='.matchstr(header, 'boost/\zs[^/>]\+\ze')
-"         else
-"             execute 'OpenBrowser' 'http://en.cppreference.com/mwiki/index.php?title=Special:Search&search='.matchstr(header, '\zs[^/>]\+\ze')
-"         endif
-"     else
-"         let cword = expand('<cword>')
-"         if cword ==# ''
-"             return
-"         endif
-"         let line_head = getline('.')[:col('.')-1]
-"         if line_head =~# 'boost::[[:alnum:]:]*$'
-"             execute 'OpenBrowser' 'http://www.google.com/cse?cx=011577717147771266991:jigzgqluebe&q='.cword
-"         elseif line_head =~# 'std::[[:alnum:]:]*$'
-"             execute 'OpenBrowser' 'http://en.cppreference.com/mwiki/index.php?title=Special:Search&search='.cword
-"         else
-"             normal! K
-"         endif
-"     endif
-" endfunction
-"
-" 
-" " ----------------------------------------------------------------------------
-" " <Leader>? | Google it
-" " ----------------------------------------------------------------------------
-" function! s:goog(q)
-"   let url = 'https://www.google.co.kr/search?q='
-"   " Excerpt from vim-unimpared
-"   let q = substitute(
-"         \ '"'.a:q.'"',
-"         \ '[^A-Za-z0-9_.~-]',
-"         \ '\="%".printf("%02X", char2nr(submatch(0)))',
-"         \ 'g')
-"   call system('open ' . url . q)
-" endfunction
-"
-" vnoremap <leader>? "gy:call <SID>goog(@g)<cr>
-"
-" " ----------------------------------------------------------------------------
-" " Syntax highlighting in code snippets                                    ----
-" " ----------------------------------------------------------------------------
-" function! s:syntax_include(lang, b, e, inclusive)
-"   let syns = split(globpath(&rtp, "syntax/".a:lang.".vim"), "\n")
-"   if empty(syns)
-"     return
-"   endif
-"
-"   if exists('b:current_syntax')
-"     let csyn = b:current_syntax
-"     unlet b:current_syntax
-"   endif
-"
-"   let z = "'" " Default
-"   for nr in range(char2nr('a'), char2nr('z'))
-"     let char = nr2char(nr)
-"     if a:b !~ char && a:e !~ char
-"       let z = char
-"       break
-"     endif
-"   endfor
-"
-"   silent! exec printf("syntax include @%s %s", a:lang, syns[0])
-"   if a:inclusive
-"     exec printf('syntax region %sSnip start=%s\(\)\(%s\)\@=%s ' .
-"                 \ 'end=%s\(%s\)\@<=\(\)%s contains=@%s containedin=ALL',
-"                 \ a:lang, z, a:b, z, z, a:e, z, a:lang)
-"   else
-"     exec printf('syntax region %sSnip matchgroup=Snip start=%s%s%s ' .
-"                 \ 'end=%s%s%s contains=@%s containedin=ALL',
-"                 \ a:lang, z, a:b, z, z, a:e, z, a:lang)
-"   endif
-"
-"   if exists('csyn')
-"     let b:current_syntax = csyn
-"   endif
-" endfunction
-"
+function! s:RunShellCommand(cmdline)
+    botright new
 
-" function! GoyoBefore()
-"   if has('gui_running')
-"     set fullscreen
-"     set background=light
-"     set linespace=7
-"   elseif exists('$TMUX')
-"     silent !tmux set status off
-"   endif
-" endfunction
-"
-" function! GoyoAfter()
-"   if has('gui_running')
-"     set nofullscreen
-"     set background=dark
-"     set linespace=0
-"   elseif exists('$TMUX')
-"     silent !tmux set status on
-"   endif
-" endfunction
-"
-" let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
-"
-" nnoremap <Leader>G :Goyo<CR>
-"
-" function! s:tmux_words(query)
-"   let g:_tmux_q = a:query
-"   let matches = fzf#run({
-"   \ 'source':      'tmuxwords.rb --all-but-current --scroll 500 --min 5',
-"   \ 'sink':        function('Tmux_feedkeys'),
-"   \ 'options':     '--no-multi --query='.a:query,
-"   \ 'tmux_height': '40%'
-"   \ })
-" endfunction
-"
-" function! Tmux_feedkeys(data)
-"   echom empty(g:_tmux_q)
-"   execute "normal! ".(empty(g:_tmux_q) ? 'a' : 'ciW')."\<C-R>=a:data\<CR>"
-"   startinsert!
-" endfunction
-"
-" inoremap <silent> <C-X><C-T> <C-o>:call <SID>tmux_words(expand('<cWORD>'))<CR>
-"
-" 
-" " ----------------------------------------------------------------------------
-" " Cscope mappings
-" " ----------------------------------------------------------------------------
-" function! s:add_cscope_db()
-"   " add any database in current directory
-"   let db = findfile('cscope.out', '.;')
-"   if !empty(db)
-"     silent cs reset
-"     silent! execute "cs add ".db
-"   " else add database pointed to by environment
-"   elseif !empty($CSCOPE_DB)
-"     silent cs reset
-"     silent! execute "cs add ".$CSCOPE_DB
-"   endif
-" endfunction
-"
-" " ----------------------------------------------------------------------------
-" " :CSBuild
-" " ----------------------------------------------------------------------------
-" function! s:build_cscope_db(...)
-"   let git_dir = system('git rev-parse --git-dir')
-"   let chdired = 0
-"   if !v:shell_error
-"     let chdired = 1
-"     execute 'cd '. substitute(fnamemodify(git_dir, ':p:h'), ' ', '\\ ', 'g')
-"   endif
-"
-"   let exts = empty(a:000) ?
-"     \ ['java', 'c', 'h', 'cc', 'hh', 'cpp', 'hpp'] : a:000
-"
-"   let cmd = "find . " . join(map(exts, "\"-name '*.\" . v:val . \"'\""), ' -o ')
-"   let tmp = tempname()
-"   try
-"     echon 'Building cscope.files'
-"     call system(cmd.' > '.tmp)
-"     echon ' - cscoped db'
-"     call system('cscope -b -q -i'.tmp)
-"     echon ' - complete!'
-"     call s:add_cscope_db()
-"   finally
-"     silent! call delete(tmp)
-"     if chdired
-"       cd -
-"     endif
-"   endtry
-" endfunction
-" command! CSBuild call s:build_cscope_db(<f-args>)
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    setlocal noswapfile
+    setlocal nowrap
+    setlocal filetype=shell
+    setlocal syntax=shell
 
+    call setline(1, a:cmdline)
+    call setline(2, substitute(a:cmdline, '.', '=', 'g'))
+    execute 'silent $read !' . escape(a:cmdline, '%#')
+    setlocal nomodifiable
+    1
+endfunction
 
-" let s:bundle = neobundle#get("vim-indent-guides")
-" function! s:bundle.hooks.on_post_source(bundle)
-"     let g:indent_guides_guide_size = 1
-"     let gâ:indent_guides_auto_colors = 1
-"     if !has('gui_running') && &t_Co >= 256ææ
-"         let g:indent_guides_auto_colors = 0
-"         autocmd VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=233
-"         autocmd VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
-"     endif
-"     call indent_guides#enable()
-" endfunction
-" unlet s:bundle
+command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+
+fun! ToggleBg()
+  if &bg == 'dark'
+    set bg=light
+  else
+    set bg=dark
+  endif
+  let &bg = &bg == 'dark' ? 'light' : 'dark'
+endfun
+
+function! DelDel()
+" Do not copy to default register on delete/change
+for key in ['d', 'D', 'c', 'C']
+    for keymode in ['n', 'v']
+        exe keymode . 'noremap ' . key . ' "_' . key
+    endfor
+endfor
+endfunction
