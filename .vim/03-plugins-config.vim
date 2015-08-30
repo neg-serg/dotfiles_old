@@ -1,21 +1,21 @@
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ misc plugins settings                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:gitgutter_realtime = 0             " github.com/airblade/vim-gitgutter/issues/106
-let g:EclimCompletionMethod = 'omnifunc' "To provide ycm autocompletion
-let g:livepreview_previewer = 'zathura'
-let g:eregex_default_enable = 0
+let g:gitgutter_realtime       = 0          " github.com/airblade/vim-gitgutter/issues/106
+let g:EclimCompletionMethod    = 'omnifunc' "To provide ycm autocompletion
+let g:livepreview_previewer    = 'zathura'
+let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
-let g:gasynctags_autostart = 0
-let g:racer_cmd = "/usr/bin/racer"
-let $RUST_SRC_PATH="/home/neg/dev/rust/src"
+let g:gasynctags_autostart     = 0
+let g:racer_cmd                = "/usr/bin/racer"
+let $RUST_SRC_PATH             = $HOME . "/dev/rust/src"
+let g:colorizer_startup        = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gundo.vim')
     let g:gundo_playback_delay = 240
-
     nnoremap <Leader>u :GundoToggle<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -49,9 +49,9 @@ if neobundle#tap('ultisnips')
         " Ctrl conflicts with Dvorak-Qwerty Command
         let g:UltiSnipsExpandTrigger       = "<m-s>"
     else
-        let g:UltiSnipsExpandTrigger="<m-s>"
-        let g:UltiSnipsJumpForwardTrigger="<m-s>"
-        let g:UltiSnipsJumpBackwardTrigger="<m-f>"
+        let g:UltiSnipsExpandTrigger       = "<m-s>"
+        let g:UltiSnipsJumpForwardTrigger  = "<m-s>"
+        let g:UltiSnipsJumpBackwardTrigger = "<m-f>"
         let g:UltiSnipsListSnippets        = "<c-m-s>"
     endif
 endif
@@ -82,14 +82,14 @@ endif
 " │ https://github.com/bling/vim-airline.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-airline')
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1
+    let g:airline#extensions#tabline#enabled          = 1
+    let g:airline#extensions#tabline#tab_nr_type      = 1
     let g:airline#extensions#tabline#buffer_min_count = 1
-    let g:airline#extensions#tabline#show_buffers = 0
-    let g:airline_powerline_fonts = 1 " Use airline fonts
-    let g:airline#extensions#hunks#enabled = 1
-    let g:airline#extensions#branch#enabled = 1
-    let g:airline#extensions#whitespace#checks = []
+    let g:airline#extensions#tabline#show_buffers     = 0
+    let g:airline_powerline_fonts                     = 1 " Use airline fonts
+    let g:airline#extensions#hunks#enabled            = 1
+    let g:airline#extensions#branch#enabled           = 1
+    let g:airline#extensions#whitespace#checks        = []
 
     let g:airline_exclude_preview  = 0
     let g:airline_symbols          = {}
@@ -130,9 +130,7 @@ if neobundle#tap('syntastic')
         \ 'passive_filetypes': ['python'] }
 
     let g:syntastic_cpp_compiler_options = ' -std=c++11'
-
     let g:syntastic_tex_checkers = ['lacheck']
-
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_python_checkers = ['flake8']
     let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
@@ -161,7 +159,7 @@ if neobundle#tap('YouCompleteMe')
     let g:ycm_filepath_completion_use_working_dir = 1
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_cache_omnifunc = 1
-    " let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_collect_identifiers_from_tags_files = 1
     "--[ syntastic enabling ]-----------------
     let g:ycm_show_diagnostics_ui          = 1 
     let g:ycm_seed_identifiers_with_syntax = 0
@@ -169,7 +167,7 @@ if neobundle#tap('YouCompleteMe')
 
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
-    let g:ycm_key_invoke_completion = '<A-x>'
+    let g:ycm_key_invoke_completion = '<M-x>'
     let g:ycm_autoclose_preview_window_after_insertion = 1
     nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 
@@ -214,6 +212,25 @@ if neobundle#tap('YouCompleteMe')
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
     nnoremap <silent> <F4> :call youcompleteme#EnableCursorMovedAutocommands()<CR>
+
+    function! s:SetCompleteFunc()
+    if !g:neocomplete#force_overwrite_completefunc
+        let &completefunc = 'youcompleteme#Complete'
+        let &l:completefunc = 'youcompleteme#Complete'
+    endif
+
+    if pyeval( 'ycm_state.NativeFiletypeCompletionUsable()' )
+        let &omnifunc = 'youcompleteme#OmniComplete'
+        let &l:omnifunc = 'youcompleteme#OmniComplete'
+
+  " If we don't have native filetype support but the omnifunc is set to YCM's
+  " omnifunc because the previous file the user was editing DID have native
+  " support, we remove our omnifunc.
+    elseif &omnifunc == 'youcompleteme#OmniComplete'
+        let &omnifunc = ''
+        let &l:omnifunc = ''
+    endif
+endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - majutsushi/tagbar.git                                                    │
@@ -255,7 +272,7 @@ endif
 if neobundle#tap('vim-fswitch')
     " A "companion" file is a .cpp file to an .h file and vice versa
     " Opens the companion file in the current window
-    nnoremap <Space>sh :FSHere<cr>
+    nnoremap <Space>fs :FSHere<cr>
     " Opens the companion file in the window to the left (window needs to exist)
     " This is actually a duplicate of the :FSLeft command which for some reason
     " doesn't work.
@@ -310,7 +327,6 @@ if neobundle#tap('gitv')
     let g:Gitv_WipeAllOnClose = 1
     let g:Gitv_DoNotMapCtrlKey = 1
     let g:Gitv_CommitStep = 1024
-
     nnoremap <silent> <leader>gv :Gitv --all<CR>
     nnoremap <silent> <leader>gV :Gitv! --all<CR>
     vnoremap <silent> <leader>gV :Gitv! --all<CR>
@@ -321,7 +337,6 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('ListToggle')
     let g:lt_height = 10
-    
     let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
     let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
 endif
@@ -368,9 +383,9 @@ if neobundle#tap('vimux')
     " Vimux should split horizontally, but only if there isn't already a split
     " and only if there is room to split to the side and have two windows open.
     if (&columns > (&winwidth * 2) + (&winwidth * 0.25))
-    let g:VimuxOrientation = "h"
+        let g:VimuxOrientation = "h"
     else
-    let g:VimuxOrientation = "v"
+        let g:VimuxOrientation = "v"
     endif
     " The percent of the screen the split pane Vimux will spawn should take up.
     let g:VimuxHeight = "25"
@@ -391,23 +406,23 @@ endif
 " │ https://github.com/tpope/vim-fugitive.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-fugitive')
-    nnoremap <Leader>gs :Gstatus<CR>
-    nnoremap <Leader>gw :Gwrite<CR>
-    nnoremap <Leader>go :Gread<CR>
-    nnoremap <Leader>gR :Gremove<CR>
-    nnoremap <Leader>gm :Gmove<Space>
-    nnoremap <Leader>gc :Gcommit<CR>
-    nnoremap <Leader>gd :Gdiff<CR>
-    nnoremap <Leader>gb :Gblame<CR>
-    nnoremap <Leader>gB :Gbrowse<CR>
-    nnoremap <Leader>gp :Git! push<CR>
-    nnoremap <Leader>gP :Git! pull<CR>
-    nnoremap <Leader>gi :Git!<Space>
-    nnoremap <Leader>ge :Gedit<CR>
-    nnoremap <Leader>gE :Gedit<Space>
-    nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
-    nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
-    nnoremap <Leader>ggc :silent! Ggrep -i<Space>
+    nnoremap <Space>gs :Gstatus<CR>
+    nnoremap <Space>gw :Gwrite<CR>
+    nnoremap <Space>go :Gread<CR>
+    nnoremap <Space>gR :Gremove<CR>
+    nnoremap <Space>gm :Gmove<Space>
+    nnoremap <Space>gc :Gcommit<CR>
+    nnoremap <Space>gd :Gdiff<CR>
+    nnoremap <Space>gb :Gblame<CR>
+    nnoremap <Space>gB :Gbrowse<CR>
+    nnoremap <Space>gp :Git! push<CR>
+    nnoremap <Space>gP :Git! pull<CR>
+    nnoremap <Space>gi :Git!<Space>
+    nnoremap <Space>ge :Gedit<CR>
+    nnoremap <Space>gE :Gedit<Space>
+    nnoremap <Space>gt :!tig<CR>:redraw!<CR>
+    nnoremap <Space>gS :exe "silent !shipit"<CR>:redraw!<CR>
+    nnoremap <Space>ggc :silent! Ggrep -i<Space>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - YankRing.vim                                                             │
@@ -520,24 +535,24 @@ if neobundle#tap('unite.vim')
         setlocal colorcolumn=
         nmap <buffer> q :call <SID>vimfiler_toggle()<CR>
         nmap <buffer> <ENTER> o
-        nmap <buffer> <expr> o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-        nmap <buffer> <expr> C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
-        nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
-        nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
-        nmap <buffer> gg <Plug>(vimfiler_cursor_top)
-        nmap <buffer> R <Plug>(vimfiler_redraw_screen)
+        nmap <buffer> <expr>  o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+        nmap <buffer> <expr>  C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
+        nmap <buffer> j       <Plug>(vimfiler_loop_cursor_down)
+        nmap <buffer> k       <Plug>(vimfiler_loop_cursor_up)
+        nmap <buffer> gg      <Plug>(vimfiler_cursor_top)
+        nmap <buffer> R       <Plug>(vimfiler_redraw_screen)
         nmap <buffer> <SPACE> <Plug>(vimfiler_toggle_mark_current_line)
-        nmap <buffer> U <Plug>(vimfiler_clear_mark_all_lines)
-        nmap <buffer> cp <Plug>(vimfiler_copy_file)
-        nmap <buffer> mv <Plug>(vimfiler_move_file)
-        nmap <buffer> rm <Plug>(vimfiler_delete_file)
-        nmap <buffer> mk <Plug>(vimfiler_make_directory)
-        nmap <buffer> e <Plug>(vimfiler_new_file)
-        nmap <buffer> u <Plug>(vimfiler_switch_to_parent_directory)
-        nmap <buffer> . <Plug>(vimfiler_toggle_visible_ignore_files)
-        nmap <buffer> I <Plug>(vimfiler_toggle_visible_ignore_files)
-        nmap <buffer> yy <Plug>(vimfiler_yank_full_path)
-        nmap <buffer> cd <Plug>(vimfiler_cd_vim_current_dir)
+        nmap <buffer> U       <Plug>(vimfiler_clear_mark_all_lines)
+        nmap <buffer> cp      <Plug>(vimfiler_copy_file)
+        nmap <buffer> mv      <Plug>(vimfiler_move_file)
+        nmap <buffer> rm      <Plug>(vimfiler_delete_file)
+        nmap <buffer> mk      <Plug>(vimfiler_make_directory)
+        nmap <buffer> e       <Plug>(vimfiler_new_file)
+        nmap <buffer> u       <Plug>(vimfiler_switch_to_parent_directory)
+        nmap <buffer> .       <Plug>(vimfiler_toggle_visible_ignore_files)
+        nmap <buffer> I       <Plug>(vimfiler_toggle_visible_ignore_files)
+        nmap <buffer> yy      <Plug>(vimfiler_yank_full_path)
+        nmap <buffer> cd      <Plug>(vimfiler_cd_vim_current_dir)
         vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
     endfunction
     autocmd FileType vimfiler call s:vimfiler_settings()
@@ -553,7 +568,6 @@ if neobundle#tap('unite.vim')
     xmap e [unite]
     nnoremap [unite] <Nop>
     xnoremap [unite] <Nop>
-    " mapping for Unite functions
     nnoremap <silent> [unite]r :UniteResume<CR>
     nnoremap [unite]R :Unite ref/
     nnoremap <silent> [unite]t :Unite tab<CR>
@@ -605,7 +619,6 @@ endif
 " │ https://github.com/dbakker/vim-projectroot.git                                    │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-projectroot')
-    nnoremap <silent> <leader>cd :ProjectRootCD<cr>
     nnoremap <silent> cd :ProjectRootCD<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -628,7 +641,6 @@ if neobundle#tap('eregex.vim')
     " NOTE: We're using %S here instead of %s; the capital S version comes from the
     " eregex.vim plugin and uses Perl-style regular expressions.
     vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
-
     " Toggles '/' to mean eregex search or normal Vim search
     nnoremap <leader>/ :call eregex#toggle()<CR>
 endif
@@ -637,7 +649,6 @@ endif
 " │ https://github.com/tpope/vim-dispatch.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-dispatch')
-    nmap <F9> :Make<cr>
     nmap MK :Make 
     nmap MC :Make clean<cr>
 endif
