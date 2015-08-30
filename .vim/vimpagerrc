@@ -9,4 +9,4 @@
 "set background=dark
 "let g:powerline_pycmd="py3"
 let $RUST_SRC_PATH="/home/neg/dev/rust/src"
-source ~/.vim/bundle/vim-colors/colors/miromiro.vim
+source ~/.vim/colors/miromiro.vim
