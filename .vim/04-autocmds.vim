@@ -10,21 +10,20 @@ fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
 endfun
 
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-        \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
-        \endif
-endif
+" if has("autocmd") && exists("+omnifunc")
+"     autocmd Filetype *
+"         \if &omnifunc == "" |
+"         \setlocal omnifunc=syntaxcomplete#Complete |
+"         \endif
+" endif
 
-" Return to last edit position (You want this!) *N*
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
+" " Return to last edit position (You want this!) *N*
+" autocmd BufReadPost *
+"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"      \   exe "normal! g`\"" |
+"      \ endif
 " --- [ Autocmds ] --------------------------------------------------------------------------
-autocmd vimrc BufNewFile,BufRead  *.sh           if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
+" autocmd vimrc BufNewFile,BufRead  *.sh           if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
 autocmd vimrc BufRead,BufNewFile  *.viki         setlocal ft=viki
 autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal ft=txt2tags
 autocmd vimrc Filetype            txt2tags       source   $HOME/.vim/syntax/txt2tags.vim
@@ -32,8 +31,7 @@ autocmd vimrc FileType            make           setlocal noexpandtab
 autocmd vimrc FileType            javascript     setlocal noautoindent nosmartindent
 autocmd vimrc FileType            tex            setlocal conceallevel=0
 autocmd vimrc FileType            latex          setlocal conceallevel=0
-autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal wrap
-autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal lbr
+autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal wrap lbr
 autocmd vimrc BufRead,BufNewFile  *.json         setlocal filetype=json foldmethod=syntax
 autocmd vimrc BufNewFile,BufRead  .pentadactylrc setlocal filetype=pentadactyl
 
@@ -45,8 +43,7 @@ autocmd vimrc BufReadPost *
      \ endif
 autocmd vimrc BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
 
-autocmd vimrc BufReadPre  *.doc set ro
-autocmd vimrc BufReadPost *.doc silent %!antiword "%"
+autocmd vimrc BufReadPre  *.doc set ro | silent %!antiword "%"
 autocmd vimrc BufReadPost *.odt silent %!odt2txt "%"
 
 au FileType mail setl spell fo=wantq1 smc=0
@@ -99,21 +96,21 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 
-" http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-" Restore cursor to file position in previous editing session
-" To disable this, add the following to your .vimrc.before.local file:
-"   let g:spf13_no_restore_cursor = 1
-function! ResCur()
-    if line("'\"") <= line("$")
-        normal! g`"
-        return 1
-    endif
-endfunction
-
-augroup resCur
-    autocmd!
-    autocmd BufWinEnter * call ResCur()
-augroup END
+" " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+" " Restore cursor to file position in previous editing session
+" " To disable this, add the following to your .vimrc.before.local file:
+" "   let g:spf13_no_restore_cursor = 1
+" function! ResCur()
+"     if line("'\"") <= line("$")
+"         normal! g`"
+"         return 1
+"     endif
+" endfunction
+"
+" augroup resCur
+"     autocmd!
+"     autocmd BufWinEnter * call ResCur()
+" augroup END
 
 
 function! StripTrailingWhitespace()
@@ -162,7 +159,7 @@ autocmd vimrc FileType python
       \ set shiftwidth=4 |
       \ set softtabstop=4 |
       \ setlocal completeopt-=preview |
-      \ setlocal foldlevel=1000
+      \ setlocal foldlevel=1000 |
       \ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " cindent is a bit too smart for its own good and triggers in text files when
@@ -224,3 +221,31 @@ augroup modechange_settings
 
   autocmd InsertLeave * setlocal nopaste
 augroup END
+
+if has('autocmd')
+  fun! MyAutoScrollOff()
+    if exists('g:no_auto_scrolloff')
+      return
+    endif
+    if &ft == 'help'
+      let scrolloff = 999
+    elseif &buftype != ""
+      " Especially with quickfix (mouse jumping, more narrow).
+      let scrolloff = 0
+    elseif &diff
+      let scrolloff = 10
+    else
+      let scrolloff = 3
+    endif
+    if &scrolloff != scrolloff
+      let &scrolloff = scrolloff
+    endif
+  endfun
+  augroup set_scrolloff
+    au!
+    au BufEnter,WinEnter * call MyAutoScrollOff()
+    if exists('#TermOpen')  " neovim
+      au TermOpen * set sidescrolloff=0 scrolloff=0
+    endif
+  augroup END
+endif
