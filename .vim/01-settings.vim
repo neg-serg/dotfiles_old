@@ -341,7 +341,8 @@ set cindent             " smart indenting for c-like code
 set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
 set laststatus=2        " requied by PowerLine/Airline
 
-set nocursorline        " highlight current line is too slow
+" set nocursorline      " highlight current line is too slow
+set cursorline          " highlight current line is too slow
 set backup              " backuping is good
 
 set backupdir=~/trash
