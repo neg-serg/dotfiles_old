@@ -1,14 +1,12 @@
-META="Mod1+"
---------------------------------[[ IONCORE ]]---------------------------------------
-ioncore.set{
+notioncore.set{
     dblclick_delay=250,
-    ioncore.defshortening("(.*)(<[0-9]+>)", "$1$2$|$1$<...$2"),
-    ioncore.defshortening("[^:]+: (.*)(<[0-9]+>)", "$1$2$|$1$<...$2"),
-    ioncore.defshortening("[^:]+: (.*)", "$1$|$1$<..."),
-    ioncore.defshortening("(.*)", "$1$|$1$<..."),
-    ioncore.defshortening("(.*) - Mozilla(<[0-9]+>)", "$1$2$|$1$<...$2"),
-    ioncore.defshortening("(.*) - Mozilla", "$1$|$1$<..."),
-    ioncore.defshortening("XMMS - (.*)", "$1$|...$>$1"),
+    notioncore.defshortening("(.*)(<[0-9]+>)", "$1$2$|$1$<...$2"),
+    notioncore.defshortening("[^:]+: (.*)(<[0-9]+>)", "$1$2$|$1$<...$2"),
+    notioncore.defshortening("[^:]+: (.*)", "$1$|$1$<..."),
+    notioncore.defshortening("(.*)", "$1$|$1$<..."),
+    notioncore.defshortening("(.*) - Mozilla(<[0-9]+>)", "$1$2$|$1$<...$2"),
+    notioncore.defshortening("(.*) - Mozilla", "$1$|$1$<..."),
+    notioncore.defshortening("XMMS - (.*)", "$1$|...$>$1"),
     ignore_net_active_window=false,
     float_placement_padding=2,
     warp=false,
@@ -47,7 +45,7 @@ dopath("mod_xrandr")
 dopath("cfg_xrandr")
 dopath("transparency")
 
-ioncore.get_hook('clientwin_do_manage_alt'):add(
+notioncore.get_hook('clientwin_do_manage_alt'):add(
     function(cwin, table)
-    ioncore.write_savefile("windowinfos", cwin:get_ident())
+    notioncore.write_savefile("windowinfos", cwin:get_ident())
 end)
