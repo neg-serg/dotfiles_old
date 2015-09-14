@@ -31,11 +31,6 @@ vnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
 function! s:search_forward_p()
   return exists('v:searchforward') ? v:searchforward : 1
 endfunction
-" " Keep search matches in the middle of the window.
-" nnoremap * *zzzv
-" nnoremap # #zzzv
-" nnoremap n nzzzv
-" nnoremap N Nzzzv
 
 let mapleader      = ','
 let maplocalleader = ' '
@@ -57,8 +52,6 @@ inoremap <F1> <Nop>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
 
-nnoremap <silent> <c-w>t :tabnew<CR>
-nnoremap <silent> <c-w>x :tabclose<CR>
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
@@ -66,13 +59,10 @@ nnoremap <silent> <space>e  :<C-u>JunkFile<CR>
 
 nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <M-z> :set invpaste paste?<CR>
+
 set pastetoggle=<A-z>
 
 nnoremap <silent><space>W :set wrap!<CR>
-
-" Traverse buffers, quickly
-nnoremap <PageUp> :bp<CR>
-nnoremap <PageDown> :bn<CR>
 
 " These create newlines like o and O but stay in normal mode
 nnoremap <silent> zj o<Esc>k
@@ -127,12 +117,12 @@ xnoremap <space>c :!octave --silent \| cut -c8-<cr>
 nnoremap Q q
 nnoremap [Quickfix] <Nop>
 nmap q [Quickfix]
-nnoremap <silent> [Quickfix]n :<C-u>cnext<CR>
-nnoremap <silent> [Quickfix]p :<C-u>cprevious<CR>
-nnoremap <silent> [Quickfix]r :<C-u>crewind<CR>
-nnoremap <silent> [Quickfix]N :<C-u>cfirst<CR>
-nnoremap <silent> [Quickfix]P :<C-u>clast<CR>
-nnoremap <silent> [Quickfix]l :<C-u>clist<CR>
+nnoremap <silent> [Quickfix]n :normal :<C-u>cnext<CR>
+nnoremap <silent> [Quickfix]p :normal :<C-u>cprevious<CR>
+nnoremap <silent> [Quickfix]r :normal :<C-u>crewind<CR>
+nnoremap <silent> [Quickfix]N :normal :<C-u>cfirst<CR>
+nnoremap <silent> [Quickfix]P :normal :<C-u>clast<CR>
+nnoremap <silent> [Quickfix]l :normal :<C-u>clist<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
