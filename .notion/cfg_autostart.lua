@@ -3,12 +3,12 @@ function start_mpdstat()
     local exists = fd:read("*l")
     fd:close()
     if exists ~= nil then
-        ioncore.exec('lua ~/.notion/mpd_dzen.lua')
+        notioncore.exec('lua ~/.notion/mpd_dzen.lua')
     end
 end
-function start_rofi()
-    local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
-    ioncore.exec('/usr/bin/rofi ' .. rofi_font ..  ' -b -disable-history -lines 10 -width 1850 -yoffset -22 -key-run mod1-grave -location 6')
-end
+-- function start_rofi()
+--     local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
+--     notioncore.exec('/usr/bin/rofi ' .. rofi_font ..  ' -b -disable-history -lines 10 -width 1850 -yoffset -22 -key-run mod1-grave -location 6')
+-- end
 start_mpdstat()
-start_rofi()
+-- start_rofi()
