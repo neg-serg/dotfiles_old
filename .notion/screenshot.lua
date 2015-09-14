@@ -13,7 +13,7 @@ function screenshot_filename(postfix)
 end
 
 function make_screenshot(windowname, filename)
-   ioncore.exec('/usr/bin/import -window "' .. windowname .. '"' ..
+   notioncore.exec('/usr/bin/import -window "' .. windowname .. '"' ..
                    ' \'' .. filename .. '\'')
 end
 
@@ -23,12 +23,12 @@ end
 
 -- TODO: add non-acsii window name support
 function make_current_window_screenshot()
-   local windowname = WRegion.name(ioncore.current())
+   local windowname = WRegion.name(notioncore.current())
    make_screenshot(windowname, screenshot_filename(''))
 end
 
 function make_current_window_screenshot_with_windowname()
-   local windowname = WRegion.name(ioncore.current())
+   local windowname = WRegion.name(notioncore.current())
    local safe_winname = string.gsub(windowname, "(/)", "|")
    local scrshot_name_with_winname = screenshot_filename('[ ' .. safe_winname .. ' ]')
    make_screenshot(windowname, scrshot_name_with_winname)

@@ -4,13 +4,13 @@ function collapse.take_frame_to_here(region, current)
     if region ~= current then
         region:managed_i(
             function (cwin)
-                ioncore.defer(
+                notioncore.defer(
                     function ()
                         current:attach(cwin)
                     end)
                 return true
             end)
-        ioncore.defer(
+        notioncore.defer(
             function ()
                 region:rqclose()
             end)
@@ -38,7 +38,7 @@ function multiple_split(ws, frame)
             i = i + 1
             if i == count then return false end
             if cwin ~= active_cwin then
-                ioncore.defer(
+                notioncore.defer(
                     function()
                         ws:split_at(frame, 'top', true)
                     end)
@@ -46,7 +46,7 @@ function multiple_split(ws, frame)
             return true
         end)
     
-    ioncore.defer(
+    notioncore.defer(
         function()
             active_cwin:parent():goto_focus()
         end)

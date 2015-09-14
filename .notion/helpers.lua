@@ -1,27 +1,27 @@
 function ncmpcpp(reg)
     local exec_str = '/bin/urxvt -fn "xft:Pragmata Pro for Powerline:pixelsize=18" -name mpd-pad2 -e ncmpcpp'
-    ioncore.exec_on(reg, '~/bin/scripts/ncmpcpp')
+    notioncore.exec_on(reg, '~/bin/scripts/ncmpcpp')
     named_scratchpad(reg, 'ncmpcpp')
     -- named_scratchpad_exec_with_class(reg, 'ncmpcpp', exec_str, 'mpd-pad2')
 end
 
 function console(reg)
-    ioncore.exec_on(reg, '~/bin/scripts/console')
+    notioncore.exec_on(reg, '~/bin/scripts/console')
     named_scratchpad(reg, 'console')
 end
 
 function ranger(reg)
-    ioncore.exec_on(reg, '~/bin/scripts/ranger')
+    notioncore.exec_on(reg, '~/bin/scripts/ranger')
     named_scratchpad(reg, 'ranger')
 end
 
 function gdb(reg)
-    ioncore.exec_on(reg, '~/bin/scripts/gdb')
+    notioncore.exec_on(reg, '~/bin/scripts/gdb')
     named_scratchpad(reg, 'gdb')
 end
 
 function radare2(reg)
-    ioncore.exec_on(reg, '~/bin/scripts/radare')
+    notioncore.exec_on(reg, '~/bin/scripts/radare')
     named_scratchpad(reg, 'radare2')
 end
 
@@ -29,7 +29,7 @@ function nop()
 end
 
 function move_scratch(x, y, w, h)
-   ioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
+   notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
 
 -- ......................................................................................
@@ -39,7 +39,7 @@ function get_hostname()
 end
 
 function move_scratch(x, y, w, h)
-   ioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
+   notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
 
 function get_display()
@@ -65,4 +65,4 @@ function resize_scratch()
    end
 end
 
-ioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)
+notioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)

@@ -121,7 +121,7 @@ end
 
 function vim.insert_mode()
     inputstyle("insert")
-    -- for _,edln in pairs(ioncore.region_list("WEdln")) do
+    -- for _,edln in pairs(notioncore.region_list("WEdln")) do
     -- edln:clear_mark()
     -- end
     defbindings("WEdln", {

@@ -131,5 +131,5 @@ local function update_mpd()
 end
 
 -- Init
-mpd_timer = ioncore.create_timer()
+mpd_timer = notioncore.create_timer()
 update_mpd()

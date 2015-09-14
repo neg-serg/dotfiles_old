@@ -11,7 +11,7 @@ function rename_workspace_handler(wsname,ws)
 end
 
 function attach_win_handler(str,frame)
-    local cwin=ioncore.lookup_clientwin(str)
+    local cwin=notioncore.lookup_clientwin(str)
     if not cwin then return end
     local reg=cwin:groupleader_of()
     local function attach()
@@ -21,7 +21,7 @@ function attach_win_handler(str,frame)
     elseif reg:manager()==frame then
         reg:goto_focus()
     else
-        ioncore.defer(function () attach() end)
+        notioncore.defer(function () attach() end)
     end
 end
 
@@ -33,28 +33,28 @@ end
 
 function mainmenu_handler(x)
     action = {
-        ["save"]=function() ioncore.snapshot() end,
-        ["restart"]=function() ioncore.restart() end,
-        ["xrandr-set"]=function() ioncore.exec('~/bin/scripts/rofi-randr') end,
-        ["ratpoison-restart"]=function() ioncore.restart_other("ratpoison") end,
-        ["cwm-restart"]=function() ioncore.restart_other("cwm") end,
-        ["twm-restart"]=function() ioncore.restart_other("twm") end,
-        ["dwm-restart"]=function() ioncore.restart_other("dwm") end,
+        ["save"]=function() notioncore.snapshot() end,
+        ["restart"]=function() notioncore.restart() end,
+        ["xrandr-set"]=function() notioncore.exec('~/bin/scripts/rofi-randr') end,
+        ["ratpoison-restart"]=function() notioncore.restart_other("ratpoison") end,
+        ["cwm-restart"]=function() notioncore.restart_other("cwm") end,
+        ["twm-restart"]=function() notioncore.restart_other("twm") end,
+        ["dwm-restart"]=function() notioncore.restart_other("dwm") end,
     }
     action[x]()
 end
 
 function mpdmenu_handler(x)
     local action = {
-        ["title_copy"]=function() ioncore.exec('mpc current | xsel -bi') end,
-        ["artist_copy"]=function() ioncore.exec('mpc current -f \'[%artist%]\'|xsel -bi') end,
-        ["mpd_show"]=function() ioncore.exec('~/bin/mpd_dzen_info') end,
+        ["title_copy"]=function() notioncore.exec('mpc current | xsel -bi') end,
+        ["artist_copy"]=function() notioncore.exec('mpc current -f \'[%artist%]\'|xsel -bi') end,
+        ["mpd_show"]=function() notioncore.exec('~/bin/mpd_dzen_info') end,
     }
     action[x]()
 end
 
 function workspace_handler(reg,name)
-    local ws=ioncore.lookup_region(name, "WGroupWS")
+    local ws=notioncore.lookup_region(name, "WGroupWS")
     if ws then
         ws:goto_focus()
     else 
@@ -63,6 +63,6 @@ function workspace_handler(reg,name)
             switchto=true
         } 
         layout = "full"
-        ioncore.create_ws(reg:screen_of(),tmpl,layout)
+        notioncore.create_ws(reg:screen_of(),tmpl,layout)
     end
 end
