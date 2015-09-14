@@ -5,7 +5,7 @@ function dzen_delete()
     os.execute("pkill rofi")
     os.execute("pkill -f \'lua /home/neg/.notion/mpd_dzen.lua\'")
 end
-local hook_deinit = ioncore.get_hook("ioncore_deinit_hook")
+local hook_deinit = notioncore.get_hook("ioncore_deinit_hook")
 if hook_deinit then
     hook_deinit:add(dzen_delete)
 end
@@ -29,7 +29,7 @@ settings = {
 }
 
 local function ws_current(t)
-    local scr=ioncore.find_screen_id(0)
+    local scr=notioncore.find_screen_id(0)
     local curws
     if scr ~= nil then
         curws = scr:mx_current()
@@ -63,8 +63,8 @@ end
 
 local function setup_hooks()
     local hook
-    hook = ioncore.get_hook("screen_managed_changed_hook")
-    ioncore.get_hook("region_notify_hook"):add(ws_current)
+    hook = notioncore.get_hook("screen_managed_changed_hook")
+    notioncore.get_hook("region_notify_hook"):add(ws_current)
 end
 
 -- Init
@@ -90,9 +90,9 @@ function kbd_update()
     dzen_update()
 end
 
-date_timer = ioncore.create_timer()
+date_timer = notioncore.create_timer()
 date_timer:set(1000, date_update)
-mpd_timer = ioncore.create_timer()
+mpd_timer = notioncore.create_timer()
 mpd_timer:set(1000, mpd_update)
 kbd_update()
 
@@ -229,7 +229,7 @@ end
 
 local function init_netmon_monitor()
     if sanity_check() then
-        net_timer = ioncore.create_timer()
+        net_timer = notioncore.create_timer()
         net_timer:set(settings.interval, update_netmon_info)
         last[0], last[1] = parse_netmon_info()
 

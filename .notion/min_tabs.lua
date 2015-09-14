@@ -58,7 +58,7 @@ function show_only_necessary_tabs_in_frame(fp)
   -- end
 
     -- Propagate choice
-    ioncore.defer(function()
+    notioncore.defer(function()
         -- don't touch transient frames
         if fp:mode() ~= "transient" then
 	    if show_bar then
@@ -79,7 +79,7 @@ end
 
 
 function min_tabs_setup_hook()
-    local hk=ioncore.get_hook("frame_managed_changed_hook")
+    local hk=notioncore.get_hook("frame_managed_changed_hook")
     hk:add(show_only_necessary_tabs_in_frame_wrapper)
 end
 

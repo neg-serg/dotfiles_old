@@ -55,7 +55,7 @@ end
 local function complete_ws()
     local t={}
     local ws_add=(function(s) if s then table.insert(t, s) end end)
-    ioncore.region_i(function(obj)
+    notioncore.region_i(function(obj)
              if obj_is(obj, "WGroupWS") then
                 ws_add(obj:name())
              end
@@ -67,7 +67,7 @@ end
 local function complete_name()
     local t={}
     local list_add=(function(s) if s then table.insert(t, s) end end)
-    ioncore.clientwin_i(function(reg)
+    notioncore.clientwin_i(function(reg)
              if not string.match(reg:name(), "dzen.*title") then
                 list_add(reg:name())
              end
@@ -94,9 +94,9 @@ end
 
 function rofi.renameworkspace(mplex,ws)
     if not mplex then
-        assert(ws) mplex=ioncore.find_manager(ws, "WMPlex")
+        assert(ws) mplex=notioncore.find_manager(ws, "WMPlex")
     elseif not ws then
-        assert(mplex) ws=ioncore.find_manager(mplex, "WGroupWS")
+        assert(mplex) ws=notioncore.find_manager(mplex, "WGroupWS")
     end
     assert(mplex and ws)
     local wsname = rofi_template("new_ws_name :: "..ws:name(),"rename_ws",_,_)
@@ -120,9 +120,9 @@ end
 
 function rofi.goto_win()
     local x = rofi_template("goto_win","go",_,complete_name)
-    local win = ioncore.lookup_clientwin(x)
+    local win = notioncore.lookup_clientwin(x)
     if win then
-        ioncore.defer(function () win:goto_focus() end)
+        notioncore.defer(function () win:goto_focus() end)
     end
 end
 

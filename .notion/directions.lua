@@ -64,7 +64,7 @@ function WRegion.overlap_score(reg1, reg2, dir)
         return (upper - lower) / avg
     end
 
-    ioncore.warn_traced("WRegion.overlap_score called with dir = "..dir)
+    notioncore.warn_traced("WRegion.overlap_score called with dir = "..dir)
 end
 
 function WRegion.overlaps(reg1, reg2, dir)
@@ -148,7 +148,7 @@ local function collide(reg, dir, pad)
     local rg = reg:geom()
     local cr, cg
     if not pad then
-        pad = ioncore.get().float_placement_padding or 1 -- old hardcoded value
+        pad = notioncore.get().float_placement_padding or 1 -- old hardcoded value
     end
 
     mgr:managed_i(function(tr)
@@ -187,7 +187,7 @@ end
 -- push_direction: Move a floating window right/left/down/up until it bumps
 -- into another floating window or a dock.
 function WRegion.push_direction(reg, dir)
-    local pad = ioncore.get().float_placement_padding or 1 -- old hardcoded value
+    local pad = notioncore.get().float_placement_padding or 1 -- old hardcoded value
     local mgr = reg:manager()
     local mg = mgr:geom()
     local rg = reg:geom()
@@ -213,7 +213,7 @@ local XA_INTEGER = 19
 -- set_geom_prop: Store old/new geometry of the window into its X properties
 -- ox, oy, ow, oh, nx, ny, nw, nh
 local function set_geom_prop(reg, sg)
-    local atom = ioncore.x_intern_atom("_ION_SAVED_GEOM", false)
+    local atom = notioncore.x_intern_atom("_ION_SAVED_GEOM", false)
     local g = {
         sg.ox or -1,
         sg.oy or -1,
@@ -224,14 +224,14 @@ local function set_geom_prop(reg, sg)
         sg.nw or -1,
         sg.nh or -1,
     }
-    return ioncore.x_change_property(reg:xid(), atom, XA_INTEGER, 32, "replace", g)
+    return notioncore.x_change_property(reg:xid(), atom, XA_INTEGER, 32, "replace", g)
 end
 
 -- get_geom_prop: Restore the geometry of the window from X properties
 local function get_geom_prop(reg)
-    local atom = ioncore.x_intern_atom("_ION_SAVED_GEOM", true)
+    local atom = notioncore.x_intern_atom("_ION_SAVED_GEOM", true)
     if atom then
-        local g = ioncore.x_get_window_property(reg:xid(), atom, XA_INTEGER, 0, true)
+        local g = notioncore.x_get_window_property(reg:xid(), atom, XA_INTEGER, 0, true)
         if g then
             local sg = {
                 ox = g[1] ~= -1 and g[1] or nil,
@@ -243,7 +243,7 @@ local function get_geom_prop(reg)
                 nw = g[7] ~= -1 and g[7] or nil,
                 nh = g[8] ~= -1 and g[8] or nil,
             }
-            ioncore.x_delete_property(reg:xid(), atom)
+            notioncore.x_delete_property(reg:xid(), atom)
             return sg
         end
     end
@@ -266,7 +266,7 @@ function WRegion.maximize_fill(reg, dir)
         reg:maximize_fill('vert')
         reg:maximize_fill('horiz')
     else
-        local pad = ioncore.get().float_placement_padding or 1 -- hardcoded val
+        local pad = notioncore.get().float_placement_padding or 1 -- hardcoded val
         local mgr = reg:manager()
         local mg = mgr:geom()
         local rg = reg:geom()

@@ -10,9 +10,9 @@ This software is released under the terms of the MIT license. For more
 information, see http://opensource.org/licenses/mit-license.php .
 --]]
 
-local atom_window = ioncore.x_intern_atom("WINDOW", false)
-local atom_client_list = ioncore.x_intern_atom("_NET_CLIENT_LIST", false)
-local atom_client_list_stacking = ioncore.x_intern_atom("_NET_CLIENT_LIST_STACKING", false)
+local atom_window = notioncore.x_intern_atom("WINDOW", false)
+local atom_client_list = notioncore.x_intern_atom("_NET_CLIENT_LIST", false)
+local atom_client_list_stacking = notioncore.x_intern_atom("_NET_CLIENT_LIST_STACKING", false)
 
 local function add_client(cwin)
   if not cwin then
@@ -22,52 +22,52 @@ local function add_client(cwin)
   local rootwin = cwin:rootwin_of()
   local list = {n=0}
 
-  ioncore.clientwin_i(function (cwin)
+  notioncore.clientwin_i(function (cwin)
     list.n = list.n + 1
     list[list.n] = cwin:xid()
     return true
   end)
   list.n = nil
 
-  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
-  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
+  notioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
+  notioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
 end
 
 local function remove_client(xid)
-  local rootwin = ioncore.current():rootwin_of()
+  local rootwin = notioncore.current():rootwin_of()
   local list = {n=0}
 
-  ioncore.clientwin_i(function (cwin)
+  notioncore.clientwin_i(function (cwin)
     list.n = list.n + 1
     list[list.n] = cwin:xid()
     return true
   end)
   list.n = nil
 
-  ioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
-  ioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
+  notioncore.x_change_property(rootwin:xid(), atom_client_list, atom_window, 32, "replace", list)
+  notioncore.x_change_property(rootwin:xid(), atom_client_list_stacking, atom_window, 32, "replace", list)
 end
 
 local function net_mark_supported(atom)
-  if (ioncore.rootwin) then
-    local rootwin = ioncore.rootwin()
-    local atom_atom = ioncore.x_intern_atom("ATOM", false)
-    local atom_net_supported = ioncore.x_intern_atom("_NET_SUPPORTED", false)
-    ioncore.x_change_property(rootwin:xid(), atom_net_supported, atom_atom, 32, "append", {atom})
+  if (notioncore.rootwin) then
+    local rootwin = notioncore.rootwin()
+    local atom_atom = notioncore.x_intern_atom("ATOM", false)
+    local atom_net_supported = notioncore.x_intern_atom("_NET_SUPPORTED", false)
+    notioncore.x_change_property(rootwin:xid(), atom_net_supported, atom_atom, 32, "append", {atom})
   end
 end
 
-add_client(ioncore.current())
+add_client(notioncore.current())
 
 do
   local hook
 
-  hook = ioncore.get_hook("clientwin_mapped_hook")
+  hook = notioncore.get_hook("clientwin_mapped_hook")
   if hook then
     hook:add(add_client)
   end
   hook = nil
-  hook = ioncore.get_hook("clientwin_unmapped_hook")
+  hook = notioncore.get_hook("clientwin_unmapped_hook")
   if hook then
     hook:add(remove_client)
   end

@@ -14,7 +14,7 @@ function named_scratchpad(reg, name, mode)
     geom_loc.x = (geom_scr.w - geom_loc.w) / 2
     geom_loc.y = (geom_scr.h - geom_loc.h) / 2
 
-    named_sp = ioncore.lookup_region(name, "WFrame")
+    named_sp = notioncore.lookup_region(name, "WFrame")
 
     if not named_sp then
         named_sp = scr:attach_new({

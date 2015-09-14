@@ -23,7 +23,7 @@ kpress(META.."F8", "toggle_bindings()"),
 }
 
 function toggle_bindings()
-local save = table.copy(ioncore.getbindings(), true)
+local save = table.copy(notioncore.getbindings(), true)
 local kcb_area
 
 -- First empty all the bindings
@@ -36,31 +36,31 @@ kcb_area = bind.kcb
 end
 -- This can most definitely be improved
 if bind.action == "kpress" then
-ioncore.defbindings(name, {kpress(bind.kcb, nil)})
+notioncore.defbindings(name, {kpress(bind.kcb, nil)})
 -- "kpress_wairel" appearing as bind.action
 elseif string.find(bind.action, "kpress_wai") then
-ioncore.defbindings(name, {kpress_wait(bind.kcb, nil)})
+notioncore.defbindings(name, {kpress_wait(bind.kcb, nil)})
 elseif bind.action == "mpress" then
-ioncore.defbindings(name, {mpress(kcb_area, nil)})
+notioncore.defbindings(name, {mpress(kcb_area, nil)})
 elseif bind.action == "mdrag" then
-ioncore.defbindings(name, {mdrag(kcb_area, nil)})
+notioncore.defbindings(name, {mdrag(kcb_area, nil)})
 elseif bind.action == "mclick" then
-ioncore.defbindings(name, {mclick(kcb_area, nil)})
+notioncore.defbindings(name, {mclick(kcb_area, nil)})
 elseif bind.action == "mdblclick" then
-ioncore.defbindings(name, {mdblclick(kcb_area, nil)})
+notioncore.defbindings(name, {mdblclick(kcb_area, nil)})
 end
 end
 end
 
 -- Store the last saved on
 for a, b in pairs(alternate) do
-ioncore.defbindings(a, b)
+notioncore.defbindings(a, b)
 end
 
 alternate = save
 end
 
-ioncore.defbindings("WScreen", {
+notioncore.defbindings("WScreen", {
 kpress(META.."F8", "toggle_bindings()"),
 })
 

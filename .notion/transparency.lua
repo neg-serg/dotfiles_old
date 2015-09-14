@@ -21,13 +21,13 @@ local function framelist(iter)
 end
 
 local function maketransparent(reg)
-    local atom_client_opacity = ioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
-    local atom_client_opacity = ioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
+    local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
+    local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
 
     local opacity_level = 3435973836
-    local cur=ioncore.find_manager(ioncore.current(), "WFrame")
+    local cur=notioncore.find_manager(notioncore.current(), "WFrame")
 
-    framelist(ioncore.region_i)
+    framelist(notioncore.region_i)
     for _,reg in ipairs(transparent_table) do
         notioncore.x_change_property(reg:xid(), atom_client_opacity, 6, 32, "replace", {opacity_level})
     end
@@ -38,8 +38,8 @@ local function maketransparent(reg)
 end
 
 local function hookhandler(reg, how)
-    ioncore.defer(function() maketransparent() end)
+    notioncore.defer(function() maketransparent() end)
 end
-ioncore.get_hook("clientwin_mapped_hook"):add(hookhandler)
-ioncore.get_hook("clientwin_unmapped_hook"):add(hookhandler)
-ioncore.get_hook("region_notify_hook"):add(hookhandler)
+notioncore.get_hook("clientwin_mapped_hook"):add(hookhandler)
+notioncore.get_hook("clientwin_unmapped_hook"):add(hookhandler)
+notioncore.get_hook("region_notify_hook"):add(hookhandler)

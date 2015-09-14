@@ -2,7 +2,7 @@ dynamic_view = {}
 dynamic_view.cache = {}
 
 function dynamic_view.toggle (active_ws, target_ws_name, direction)
-    local target_ws = ioncore.lookup_region(target_ws_name, 'WGroupWS')
+    local target_ws = notioncore.lookup_region(target_ws_name, 'WGroupWS')
     if not target_ws then return end
     local target_frame = target_ws:current():current()
     local key = active_ws:name()
@@ -24,7 +24,7 @@ end
 
 function dynamic_view.move_clients (from_frame, to_frame)
     from_frame:mx_i(function (cwin)
-        ioncore.defer(function ()
+        notioncore.defer(function ()
             to_frame:attach(cwin)
         end)
         return true
