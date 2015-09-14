@@ -30,12 +30,15 @@
 
 
 # Define default styles.
-: ${ZSH_HIGHLIGHT_STYLES[bracket-error]:=fg=grey,bold}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-1]:=fg=blue,bold}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-2]:=fg=green,bold}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-3]:=fg=magenta,bold}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-4]:=fg=yellow,bold}
-: ${ZSH_HIGHLIGHT_STYLES[bracket-level-5]:=fg=cyan,bold}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-error]:=fg=grey}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-1]:=fg=24}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-2]:=fg=23}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-3]:=fg=25}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-4]:=fg=26}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-5]:=fg=30}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-6]:=fg=31}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-7]:=fg=32}
+: ${ZSH_HIGHLIGHT_STYLES[bracket-level-8]:=fg=33}
 : ${ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]:=standout}
 
 # Whether the brackets highlighter should be called or not.
