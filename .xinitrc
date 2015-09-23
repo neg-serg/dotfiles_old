@@ -1,13 +1,15 @@
 #!/bin/zsh
 unset TMUX
 
+systemctl --user import-environment DISPLAY
+pulseaudio --start &
 wmname Sawfish
 
 local width_x11=`xrandr -q | grep Screen | awk '{ print $8 }'`
 local height_x11=`xrandr -q | grep Screen | awk '{ print $10 }' | awk -F"," '{ print $1 }'`
 swarp ${width_x11} ${height_x11}
 
-inpath() { [[ -x "`which "$1" 2>/dev/null`" ]]; }
+inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
 synclient PalmDetect=1
@@ -24,7 +26,8 @@ xhost +localhost +local:
 xbindkeys -n &
 xset -b r rate 200 50 m 1 1
 
-zsh ~/.local/wallpaper.sh &
+# zsh ~/.local/wallpaper.sh &
+hsetroot -fill ${HOME}/pic/wl/blame-green-1920x1080.png
 
 [[ -f ${HOME}/.Xresources ]] && xrdb -merge ${HOME}/.Xresources
 [[ -f ${HOME}/.config/keymaps/xmodmaprc ]] && xmodmap ${HOME}/.config/keymaps/xmodmaprc
@@ -37,6 +40,5 @@ inpath unclutter && unclutter --fork --timeout 1 &
 gpaste daemon
 nexec klay_watch && ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
-compton --config ~/.config/compton/compton.conf &
-systemctl --user import-environment DISPLAY
-exec notion 2>> /tmp/notionerr 2>&1
+compton -b --config ~/.config/compton/compton.conf
+exec notion 2>> /tmp/notionerr$$ 2>&1
