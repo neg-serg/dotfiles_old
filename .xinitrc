@@ -12,8 +12,15 @@ swarp ${width_x11} ${height_x11}
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-synclient PalmDetect=1
-syndaemon -t -k -i 2 -d
+# configure touchpad
+if egrep -iq 'touchpad' /proc/bus/input/devices; then
+    synclient PalmDetect=1
+	synclient VertEdgeScroll=0 &
+	synclient TapButton1=1 &
+	synclient HorizTwoFingerScroll=1 &
+    syndaemon -t -k -i 2 -d
+    syndaemon -i 0.8 -d &
+fi
 
 xset m 0 0 # disable mouse acceleration
 xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
@@ -21,10 +28,11 @@ xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 setxkbmap -option keypad:pointerkeys -layout 'us,ru' \
     -variant altgr-intl -option 'grp:alt_shift_toggle' -option ctrl:nocaps 
 
-xhost +localhost +local:
+xhost +localhost +local: > /dev/null 2>&1
+xhost +si:localuser:$(id -un) > /dev/null 2>&1
 
 xbindkeys -n &
-xset -b r rate 200 50 m 1 1
+xset -b r rate 250 50 m 1 1 b off
 
 # zsh ~/.local/wallpaper.sh &
 hsetroot -fill ${HOME}/pic/wl/blame-green-1920x1080.png
