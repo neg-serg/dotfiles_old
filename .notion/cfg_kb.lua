@@ -66,7 +66,6 @@ Neg_kb.WMPlex_toplevel = {
     --[[  MISC  ]]---------------------------------------
     --------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
-    kpress("M1+grave", "notioncore.exec_on(_, '~/bin/dmenu_run2')"),
     kpress("M4+U",     "notioncore.exec_on(_, 'udiskie-umount -a')"),
     kpress("M4+M",     "notioncore.exec_on(_, '~/bin/scripts/rofi_xprop')"),
     kpress("M4+Sh+U",  "notioncore.exec_on(_, 'eject -T')"),
@@ -88,7 +87,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Sh+k", "notioncore.exec_on(_, '~/bin/scripts/toggle_keynav')"),
         kpress("Sh+o", "notioncore.exec_on(_, '~/bin/pls -vol')"),
         kpress("Sh+r", "ranger(_)"),
-        kpress("Sh+t", "notioncore.exec_on(_, '~/bin/scripts/toggle_stalonetray')"),
+        kpress("Sh+t", "named_scratchpad(_, 'stalonetray')"),
         kpress("s",    "notioncore.exec_on(_, 'skype')"),
         kpress("t",    "notioncore.exec_on(_, 'urxvt')"),
         kpress("v",    "notioncore.exec_on(_, 'vmware')"),

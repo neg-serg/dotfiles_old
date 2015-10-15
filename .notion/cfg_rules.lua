@@ -100,10 +100,8 @@ defwinprop{class="Gimp",jumpto=true,role="gimp-message-dialog",transient_mode="o
 defwinprop{class="Gimp",jumpto=true,role="gimp-image-new",transient_mode="off",float=true}
 defwinprop{class="Gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
-defwinprop{class="stalonetray",instance="stalonetray",statusbar="*"}
-defwinprop{instance="stalonetray",statusbar="*"}
-defwinprop{class="stalonetray",statusbar="*"}
-defwinprop{is_dockapp=true,statusbar="*"}
+defwinprop{class="stalonetray",instance="stalonetray",statusbar="*",float=true,target="stalonetray"}
+defwinprop{is_dockapp=true,statusbar="*",float=true}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
