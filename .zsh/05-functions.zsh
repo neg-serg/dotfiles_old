@@ -1,43 +1,10 @@
 # Dir reload
 .() { [ $# = 0 ] && cd . || builtin . "$@"; }
 function chpwd() {
-    if [ -x ~/bin/Z ]; then
-        [ "$PWD" -ef "$HOME" ] || Z -a "$PWD"
+    if [ -x ${BIN_HOME}/Z ]; then
+        [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
     fi
-    export PS1="$_fizsh_user_pretoken%40<..<`~/.zsh/modules/syntax/fizsh-prompt.zsh`"
-}
-
-# A shortcut function that simplifies usage of xclip.
-# - Accepts input from either stdin (pipe), or params.
-function cb() {
-  local _scs_col="\e[0;32m"; local _wrn_col='\e[1;31m'; local _trn_col='\e[0;33m'
-  # Check that xclip is installed.
-  if ! type xclip > /dev/null 2>&1; then
-    echo -e "$_wrn_col""You must have the 'xclip' program installed.\e[0m"
-  # Check user is not root (root doesn't have access to user xorg server)
-  elif [[ "$USER" == "root" ]]; then
-    echo -e "$_wrn_col""Must be regular user (not root) to copy a file to the clipboard.\e[0m"
-  else
-    # If no tty, data should be available on stdin
-    if ! [[ "$( tty )" == /dev/* ]]; then
-      input="$(< /dev/stdin)"
-    # Else, fetch input from params
-    else
-      input="$*"
-    fi
-    if [ -z "$input" ]; then  # If no input, print usage message.
-      echo "Copies a string to the clipboard."
-      echo "Usage: cb <string>"
-      echo "       echo <string> | cb"
-    else
-      # Copy input to clipboard
-      echo -n "$input" | xclip -selection c
-      # Truncate text for status
-      if [ ${#input} -gt 80 ]; then input="$(echo $input | cut -c1-80)$_trn_col...\e[0m"; fi
-      # Print status.
-      echo -e "$_scs_col""Copied to clipboard:\e[0m $input"
-    fi
-  fi
+    export PS1="${_fizsh_user_pretoken}%40<..<$(${ZSH}/modules/syntax/fizsh-prompt.zsh)"
 }
 
 # Rename pictures based on information found in exif headers
@@ -76,12 +43,12 @@ function zc(){
   autoload -U compinit zrecompile
   compinit -d "${cache}/zcomp-${HOST}"
 
-  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do zcompile $z; echo "Compiled ${z}"; done
+  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do zcompile ${z}; echo "Compiled ${z}"; done
   for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
-    zrecompile -p ${f} && command rm -f ${f}.zwc.old
+      zrecompile -p ${f} && command rm -f ${f}.zwc.old
   done
 
-  source ~/.zshrc
+  source ${HOME}/.zshrc
 }
 
 # completion system
@@ -279,10 +246,10 @@ function zle-keymap-select {
 function imv() {
     local src dst
     for src; do
-        [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
-        dst=$src
+        [[ -e ${src} ]] || { print -u2 "${src} does not exist"; continue }
+        dst=${src}
         vared dst
-        [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
+        [[ ${src} != ${dst} ]] && mkdir -p ${dst:h} && mv -n ${src} ${dst}
     done
 }
 
@@ -318,27 +285,24 @@ done
 }
 
 function rfc(){
-    [ "$PAGER" ] || PAGER=less
     uri_tmpl='http://www.rfc-editor.org/rfc/rfc%d.txt';
     rfcn=$( printf $1 | sed 's/[^0-9]//g' );
-    if [ -z "$rfcn" ]; then
-    echo  "Usage: rfc <RFC>";
-    exit;
+    if [[ -z "${rfcn}" ]]; then
+        echo  "Usage: rfc <RFC>";
+        exit;
     fi
-    uri=$( printf $uri_tmpl $rfcn );
-    curl --silent $uri | $PAGER;
+    uri=$( printf ${uri_tmpl} ${rfcn} )
+    curl --silent ${uri} | ${PAGER}
 }
 
 function myip(){
-    if [ -n "$1" ]; then
-    sleep $1;
-    fi
+    [[ -n "$1" ]] && sleep $1;
 
-    if [ -x /usr/bin/dig ]; then
+    if [[ -x $(which dig) ]]; then
         DNSQUERY=`dig +short myip.opendns.com @resolver1.opendns.com`
     fi
 
-    if [ -n "$DNSQUERY" ]; then
+    if [[ -n "$DNSQUERY" ]]; then
         echo "$DNSQUERY"
     else
         ( wget -O- -T2 -q http://noone.org/cgi-bin/whatsmyip.cgi || \
@@ -378,15 +342,15 @@ function eat(){
     fi
 
     # Check that file exists
-    if [[ ! -f $filename ]]; then
-    echo -e "$warn File ${txtund}$filename${txtrst} doesn't exist"
-    exit
+    if [[ ! -f ${filename} ]]; then
+        echo -e "${warn} File ${txtund}$filename${txtrst} doesn't exist"
+        exit
     fi
 
     # Check user is not root (root doesn't have access to user xorg server)
     if [[ $(whoami) == root ]]; then
-    echo -e "$warn Must be regular user to copy a file to the clipboard"
-    exit
+        echo -e "$warn Must be regular user to copy a file to the clipboard"
+        exit
     fi
 
     # Copy file to clipboard, give feedback
@@ -460,9 +424,9 @@ function magnet_to_torrent() {
     if [[ "$1" =~ dn=([^\&/]+) ]];then
       filename=${match[1]}
     else
-      filename=$hashh
+      filename=${hashh}
     fi
-    echo "d10:magnet-uri${#1}:${1}e" > "$filename.torrent"
+    echo "d10:magnet-uri${#1}:${1}e" > "${filename}.torrent"
 }
 
 function hi2() {
@@ -475,38 +439,30 @@ function hi2() {
         pygmentize -g $@
     fi
 
-    for FNAME in $@; do
-        filename=$(basename "$FNAME")
-        lexer=`pygmentize -N \"$filename\"`
+    for file_name in "$@"; do
+        filename=$(basename "${file_name}")
+        lexer=$(pygmentize -N \"$filename\")
         if [ "Z$lexer" != "Ztext" ]; then
-            pygmentize -l $lexer "$FNAME"
+            pygmentize -l $lexer "${file_name}"
         else
-            pygmentize -g "$FNAME"
+            pygmentize -g "${file_name}"
         fi
     done
-}
-
-# un-smart function for viewing sectioned partitions:
-function dfu() {
-  local FSTYPES
-  FSTYPES=(nilfs2 btrfs ext2 ext3 ext4 jfs xfs zfs reiserfs reiser4 minix ntfs ntfs-3g fat vfat fuse)
-  df -hTP -x rootfs -x devtmpfs -x tmpfs -x none ; print
-  df -hTP $(for f in $FSTYPES; { print - " -x $f" })
 }
 
 function doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
 function discover () {
     keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
-    locate -ir $keyword
+    locate -ir ${keyword}
 }
 
 function sprunge() {
-    if [ -t 0 ]; then
+    if [[ -t 0 ]]; then
       echo Running interactively, checking for arguments... >&2
-      if [ "$*" ]; then
+      if [[ "$*" ]]; then
         echo Arguments present... >&2
-        if [ -f "$*" ]; then
+        if [[ -f "$*" ]]; then
           echo Uploading the contents of "$*"... >&2
           cat "$*"
         else
@@ -553,11 +509,9 @@ function zhist {
   fi
 }
 
-function capture() {
-   ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv $@
-}
+function capture() { ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv "$@" }
 
-function web_search() {
+function search() {
   emulate -L zsh
 
   # define search engine URLS
@@ -571,7 +525,7 @@ function web_search() {
   )
 
   # define the open command
-  case "$OSTYPE" in
+  case "${OSTYPf}E" in
     darwin*)  open_cmd="open" ;;
     cygwin*)  open_cmd="cygstart" ;;
     linux*)   open_cmd="xdg-open" ;;
@@ -581,7 +535,7 @@ function web_search() {
   esac
 
   # check whether the search engine is supported
-  if [[ -z "$urls[$1]" ]]; then
+  if [[ -z "${urls}[$1]" ]]; then
     echo "Search engine $1 not supported."
     return 1
   fi
@@ -597,7 +551,7 @@ function web_search() {
     url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
   fi
 
-  nohup $open_cmd "$url" &>/dev/null
+  nohup ${open_cmd} "${url}" &>/dev/null
 }
 
 function hugepage_disable(){
@@ -607,7 +561,7 @@ function hugepage_disable(){
 
 # Tmux create session
 function create_session(){
-    if [ "$1" ]; then
+    if [[ "$1" ]]; then
         tmux new-session -A -s "$@"
     else
         tmux ls
@@ -627,28 +581,31 @@ function bookmarks_export(){
 
 function cache_list(){
     dirlist=(
-        ~/.w3m/*
-        ~/.local/share/recently-used.xbel
-        ~/.cache/mc/*
-        ~/.local/share/mc/history
-        ~/.viminfo
-        ~/.adobe/
-        ~/.macromedia/
-        ~/.cache/mozilla/
+        ${HOME}/.w3m/*
+        ${XDG_DATA_HOME}/recently-used.xbel
+        ${XDG_CACHE_HOME}/mc/*
+        ${XDG_DATA_HOME}/mc/history
+        ${HOME}/.viminfo
+        ${HOME}/.adobe/
+        ${HOME}/.macromedia/
+        ${XDG_CACHE_HOME}/mozilla/
         ~/.thumbnails/
     )
 
-    du -shc $dirlist
+    du -shc ${dirlist}
 }
 
-function switch_mpdscribble(){
-    if [[ "`systemctl --user status mpdscribble.service|grep -o 'active (running)'`" == "active (running)" ]]; then
+function toggle_mpdsc(){
+    local is_run="active (running)"
+    if [[ "$(systemctl --user status mpdscribble.service|grep -o "${is_run}")" == "${is_run}" ]]; then
         systemctl --user stop mpdscribble
-        mpdscribble --conf /home/neg/.config/mpdscribble/hextrick.conf --no-daemon &
+        =mpdscribble --conf ${XDG_CONFIG_HOME}/mpdscribble/hextrick.conf --no-daemon &!
     else
         pkill mpdscribble
         systemctl --user start mpdscribble
     fi
+    any mpdscribble | awk  '{print substr($0, index($0,$11))}'
+    unset is_run
 }
 
 function clock(){
@@ -675,7 +632,7 @@ function mdel(){
 function mkeep(){
     pattern="$1"
     mpc --format "%position% %artist% %album% %title%" playlist \
-    | ${HOME}/bin/scripts/negrep ${pattern} \
+    | ${BIN_HOME}/scripts/negrep ${pattern} \
     | awk '{print $1}'  \
     | mpc del
 }
@@ -686,7 +643,7 @@ function pid2xid(){
 
 # Change to repository root (starting in parent directory), using the first
 # entry of a recursive globbing.
-RR() {
+function RR() {
   setopt localoptions extendedglob
   local a
   # note: removed extraneous / ?!
@@ -696,9 +653,17 @@ RR() {
   fi
 }
 
-adbpush() {
+function adbpush() {
   for i; do
     echo "[>>] -> Pushing ${i} to /sdcard/${i:t}"
     adb push ${i} /sdcard/${i:t}
   done
+}
+
+function toxrdb(){
+    local cpt=0
+    while read hexcode; do
+        printf '*color%d: %s\n' "$cpt" "$hexcode"
+        cpt=$(expr $CPT + 1)
+    done | column -t
 }
