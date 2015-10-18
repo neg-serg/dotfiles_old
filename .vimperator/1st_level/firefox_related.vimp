@@ -9,4 +9,4 @@ set! browser.cache.memory.capacity=-1
 
 set! extensions.sessionmanager.startup=2
 set! extensions.sessionmanager.resume_session="backup.session"
-
+set! xpinstall.signatures.required=false
