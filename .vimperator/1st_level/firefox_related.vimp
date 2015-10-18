@@ -1,0 +1,12 @@
+set! ui.key.generalAccessKey=0
+set! ui.caretWidth=1
+set! ui.caretBlinkTime=1000
+set! browser.tabs.closeWindowWithLastTab=false
+
+set! browser.cache.disk.enable=false
+set! browser.cache.memory.enable=true
+set! browser.cache.memory.capacity=-1
+
+set! extensions.sessionmanager.startup=2
+set! extensions.sessionmanager.resume_session="backup.session"
+
