@@ -6,7 +6,7 @@ set hintmatching=fuzzy
 set status=location,bookmark,input,history,tabcount,position,ssl
 set complete=hS
 set defsearch=searx
-set focuscontent=true
+set focuscontent=false
 
 set maxitems=9
 set shell='/bin/zsh'
