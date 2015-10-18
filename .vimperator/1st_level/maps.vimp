@@ -1,5 +1,32 @@
-map <c-q> <nop>
-map <c-o> <nop>
+" extented back
+javascript <<EOM
+let back   = mappings.getDefault(modes.NORMAL, 'H').action;
+let remove = mappings.getDefault(modes.NORMAL, 'd').action;
+mappings.addUserMap([modes.NORMAL], ['H'], 'exteded back',
+    function(){
+        (gBrowser.sessionHistory.index > 0 ? back : remove)(-1)
+    }
+);
+EOM
+
+" Add Mapping `C-c' copy or stop loading
+javascript <<EOF
+mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
+  function(){
+    var sel = window.content.window.getSelection().toString();
+    if (sel){
+      copyToClipboard(sel,true);
+    } else {
+      BrowserStop();
+    }
+  }
+);
+EOF
+
+map <C-Q> <NOP>
+map <C-O> <NOP>
+map <C-\> <NOP>
+
 noremap j 3j
 noremap k 3k
 map  U :undo<Space>
@@ -16,10 +43,15 @@ vmap  <C-y> <S-Ins>
 nnoremap  w b
 map $ <End>
 
-cmap <C-]> i<Esc>
-imap <C-]> i<Esc>
-cmap <C-ъ> i<Esc>
-imap <C-ъ> i<Esc>
+cnoremap <C-[> <Esc>
+inoremap <C-[> <Esc>
+cnoremap <C-ъ> <Esc>
+inoremap <C-ъ> <Esc>
+
+cnoremap <Esc> <C-[>
+inoremap <Esc> <C-[>
+cnoremap <Esc> <C-[>
+inoremap <Esc> <C-[>
 
 " hints-for-embedded.js
 let g:hints_for_embedded_mode = "e"
@@ -63,81 +95,47 @@ cmap <A-а> <C-Right>
 cmap <A-в> <C-S-Right><Del>
 
 map I_<C-w> I_<C-BS>
-
-map gr gT
-map пк gT
-map пе gt
-
 map <silent> s :sidebar<Space>
 map <silent> S :sbclose<CR>
 
-map <silent> щ :!xkb-switch -s us&<CR>:open<Space>
-map <silent> е :!xkb-switch -s us&<CR>:tabopen<Space>
-map <silent> пш :!xkb-switch -s us&<CR>:normal gi<CR>
-
 " Russian language keyboard mappings (UTF-8)
+nmap <silent> щ  :!xkb-switch -s us&<CR>:open<Space>
+nmap <silent> е  :!xkb-switch -s us&<CR>:tabopen<Space>
+nmap <silent> пш :!xkb-switch -s us&<CR>gi
+nmap <silent> а  :!xkb-switch -s us&<CR>f
+nmap <silent> А  :!xkb-switch -s us&<CR>F
+nmap <silent> ж  :!xkb-switch -s us&<CR>;
+nmap <silent> Ж  :!xkb-switch -s us&<CR>:
+nmap хх [[
+nmap ъъ ]]
+nmap <silent> . :!xkb-switch -s us&<CR>/
+
 map ё `
+map э '
 map й q
 map ц w
-map у e
 map к r
 map н y
 map г u
 map ш i
 map з p
-map х [
-map ъ ]
 map ф a
 map ы s
 map в d
-map а f
 map п g
+map П G
 map р h
 map о j
 map л k
 map д l
-map ж ;
-map э '
 map я z
-map ч x
 map с c
-map м v
-map и b
-map т n
 map ь m
 map б ,
 map ю .
 map Ё ~
-map Й Q
-map Ц W
-map У E
-map К R
-map Е T
-map Н Y
-map Г U
-map Ш I
-map Щ O
-map З P
-map Х {
-map Ъ }
-map Ф A
-map Ы S
-map В D
-map А F
-map П G
-map Р H
-map О J
-map Л K
-map Д L
-map Ж :
-map Э "
-map Я Z
-map Ч X
-map С C
-map М V
-map И B
-map Т N
-map Ь M
-map Б <
-map Ю >
-map . /
+
+map gr gT
+map пк gT
+map пе gt
+
