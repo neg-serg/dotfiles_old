@@ -1,19 +1,24 @@
+colorscheme vimpwhite
 source ~/.vimperator/plugin/libly.js
 set gui=none
-colorscheme vimpwhite
 set hintchars=12345
+set hintmatching=fuzzy
 set status=location,bookmark,input,history,tabcount,position,ssl
-
-"" complete search engine suguest
-set complete=lS
+set complete=hS
+set defsearch=searx
+set focuscontent=true
 
 set maxitems=9
 set shell='/bin/zsh'
 set shellcmdflag='-c'
 
-set titlestring=firefox
+set titlestring=vimperator
 set history=900
 
+au LocationChange www.xda-developers.com setlocal previouspattern='^newer entries$' nextpattern='^older entries$'
+map <Leader>n :noscript popup<cr>
+
+source ~/.vimperator/1st_level/firefox_related.vimp
 source ~/.vimperator/1st_level/maps.vimp
 source ~/.vimperator/1st_level/copy_paste.vimp
 source ~/.vimperator/1st_level/qmarks.vimp
