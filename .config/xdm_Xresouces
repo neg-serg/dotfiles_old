@@ -1,4 +1,4 @@
-!Xcursor.theme: whiteglass
+#Xcursor.theme: whiteglass
 xlogin*login.translations: #override \
 	Ctrl<Key>R: abort-display()\n\
 	<Key>F1: set-session-argument(failsafe) finish-field()\n\
@@ -12,37 +12,31 @@ xlogin*login.translations: #override \
 	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
 	<Key>Return: set-session-argument() finish-field()
 xlogin*greeting: Welcome to CLIENTHOST
-xlogin*namePrompt: \040\040\040\040\040\040\040Login:
-xlogin*fail: Login incorrect or forbidden by policy
+xlogin*namePrompt: Login:\040
+xlogin*passwdPrompt: Password:\040
+xlogin*fail:             -- Permission Denied --
 
 xlogin*greetFont:   PragmataPro for Powerline-11:bold
 xlogin*font:        PragmataPro for Powerline-11:bold
 xlogin*promptFont:  PragmataPro for Powerline-11:bold
 xlogin*failFont:    PragmataPro for Powerline-11:bold
-xlogin*greetFace:	PragmataPro for Powerline-11:bold
-xlogin*face: 		PragmataPro for Powerline-11:bold
-xlogin*promptFace: 	PragmataPro for Powerline-11:bold
-xlogin*failFace: 	PragmataPro for Powerline-11:bold
+xlogin*greetFace:   PragmataPro for Powerline-11:bold
+xlogin*face:        PragmataPro for Powerline-11:bold
+xlogin*promptFace:  PragmataPro for Powerline-11:bold
+xlogin*failFace:    PragmataPro for Powerline-11:bold
 
-xlogin*borderWidth: 1
-xlogin*frameWidth: 1
-xlogin*innerFramesWidth: 1
 xlogin*shdColor: #287373
 xlogin*hiColor: #287373
 xlogin*background: black
-!xlogin*foreground: darkgreen
+xlogin*foreground: white
 xlogin*greetColor: #cccccc
 xlogin*failColor: red
 *Foreground: white
 *Background: black
-! #if PLANES >= 8
-! xlogin*logoFileName: /usr/share/xdm/pixmaps/xorg.xpm
-! #else
-! xlogin*logoFileName: /usr/share/xdm/pixmaps/xorg-bw.xpm
-! #endif
 xlogin*useShape:            true
-xlogin*logoPadding:         10
-xlogin*frameWidth:          1
-xlogin*innerFramesWidth:    1
 xlogin*logoPadding:         0
-xlogin*geometry:            300x175-4-4
+xlogin*geometry:            300x175-10-10
+
+xlogin*borderWidth:      1
+xlogin*frameWidth:       1
+xlogin*innerFramesWidth: 1
