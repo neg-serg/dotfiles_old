@@ -667,3 +667,8 @@ function toxrdb(){
         cpt=$(expr $CPT + 1)
     done | column -t
 }
+
+function count_music_trash(){
+find ~/music/ -regextype posix-egrep \
+    -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} +
+}
