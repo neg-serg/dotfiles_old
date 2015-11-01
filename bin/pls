@@ -1,41 +1,28 @@
-#!/bin/bash
+#!/bin/zsh
 
-font="PragmataPro-17"  # Font that is used for dmenu
-nf='#CCCCCC'           # Foreground color for dmenu/dzen2
-nb='#000000'           # background color for dmenu/dzen2
-sf='#000000'           # foreground active color for dmenu/dzen2
-sb='#CCCCCC'           # background active color for dmenu/dzen2
+local font='PragmataPro 17'
 
-function dmenu_t () {
-    rofi -location 6 -font "$font" -fg "$nf" -bg "$nb" -hlfg "$sf" -hlbg "$sb" -o 90 -bc "$bc" -dmenu
-}
+_v=(-lines 1 -columns 11 -location 6 -font "$font" -o 90 -bc "$bc" -dmenu)
+_s=(-location 6 -font "$font" -o 90 -bc "$bc" -dmenu)
 
-client=$(pacmd list-sink-inputs | grep -E 'client:|index:' | awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| awk '{print $2" "substr($0, index($0,$5))}' | dmenu_t -p "Clients: " $@)
-
-
+client=$(pacmd list-sink-inputs | \
+         grep -E 'client:|index:' | \
+         awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| \
+         awk '{print $2" "substr($0, index($0,$5))}' | \
+         rofi $_s -p "Clients: " $@)
 
 case $1 in
     -vol)
         shift
-        levels="0
-10
-20
-30
-40
-50
-60
-70
-80
-90
-100"
-        volume=$(echo "$levels" | dmenu_t -p "Volume: " $@)
+        levels="0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n100"
+        volume=$(echo "$levels" | rofi $_v -p "Volume: " $@)
         set_vol=$(echo "scale=1; $volume / 100 * 65536" | bc)
         pacmd set-sink-input-volume "$( echo "$client" | awk '{print $1}' 2>/dev/null )" "${set_vol%.*}"
 
     ;;
     -sink)
         shift
-        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | dmenu_t -p "Sink: " $@)
+        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- | rofi $_s -p "Sink: " "$@")
         pacmd move-sink-input $(echo "$client" | awk '{print $1}') $(echo $sink)
     ;;
     *)
