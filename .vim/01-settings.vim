@@ -164,17 +164,18 @@ endif
 if exists('+shellslash')
     set shellslash
 endif
-
-command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
+if has('user_commands')
+    command! -range=% Share silent <line1>,<line2>write !curl -s -F "sprunge=<-" http://sprunge.us | head -n 1 | tr -d '\r\n ' | DISPLAY=:0.0 xclip
+    command! -bang -nargs=* -complete=file E e<bang> <args>
+    command! -bang -nargs=* -complete=file W w<bang> <args>
+    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
 let $PATH = $PATH . ':' . expand("~/bin/go/bin")
@@ -297,7 +298,15 @@ set softtabstop=4               " Let backspace delete indent
 set smarttab
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set matchpairs+=<:>             " Match, to be used with %
-"set matchpairs+==:;            " Match, to be used with %
+try
+  set matchpairs+=《:》,〈:〉,［:］,（:）,「:」,『:』,‘:’,“:”
+catch /^Vim\%((\a\+)\)\=:E474
+endtry
+set wildignore+=*.o,*.so,*.obj,.git,.svn
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.mp3
+set wildignore+=*.sw?
+set wildignore+=*.pyc
+set wildignore+=__pycache__
 set splitright                  " Puts new vsplit windows to the right of the current
 set splitbelow                  " Puts new split windows to the bottom of the current
 set equalalways                 " keep windows equal when splitting (default)
@@ -306,6 +315,11 @@ set eadirection=hor             " ver/hor/both - where does equalalways apply
 set pastetoggle=<F2>            " Pastetoggle (sane indentation on pastes)
 set nopaste                     " Disable paste by default
 set hidden                      " It hides buffers instead of closing them
+" Avoid command-line redraw on every entered character by turning off Arabic
+" shaping (which is implemented poorly).
+if has('arabic')
+  set noarabicshape
+endif
 "--[ change undo file location ]----------------------------------
 if exists("+undofile")
   " undofile - This allows you to use undos after exiting and restarting
@@ -331,6 +345,13 @@ set formatoptions-=v    " don't worry about vi compatiblity
 set formatoptions-=b    " don't worry about vi compatiblity
 set formatoptions+=l    " don't break long lines in insert mode
 set formatoptions+=1    " don't break lines after one-letter words, if possible
+" Where it makes sense, remove a comment leader when joining lines.  For
+" example, joining:
+try
+  " Vim 7.4
+  set formatoptions+=j
+catch /.*/
+endtry
 
 " this can cause problems with other filetypes
 " see comment on this SO question http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
@@ -341,8 +362,7 @@ set cindent             " smart indenting for c-like code
 set cino=b1,g0,N-s,t0,(0,W4  " see :h cinoptions-values
 set laststatus=2        " requied by PowerLine/Airline
 
-" set nocursorline      " highlight current line is too slow
-set cursorline          " highlight current line is too slow
+set nocursorline        " highlight current line is too slow
 set backup              " backuping is good
 
 set backupdir=~/trash
