@@ -137,7 +137,7 @@ function map {
 # 15
 # -- but also
 # $ fold bar 0 $( seq 1 100 )
-function fold {
+function foldr {
     if (($#<2)) {
             print -- "ERROR fold use at least 2 arguments" >&2
             return 1
