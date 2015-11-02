@@ -23,6 +23,7 @@ open(){
                 image/*)                              ${image_viewer} "$1"    ;;
                 epplication/postscript)               [[ $# -le 9 ]] && ${doc_reader} "$@" >/dev/null 2>/dev/null &! ;;
                 application/pdf)                      [[ $# -le 9 ]] && ${doc_reader} "$@" >/dev/null 2>/dev/null &! ;;
+                application/epub)                     [[ $# -le 9 ]] && ${doc_reader} "$@" >/dev/null 2>/dev/null &! ;;
                 application/x-bittorrent)             ta "$1"                 ;;
                 application/vnd.ms-opentype\
                     |application/x-font-ttf\
