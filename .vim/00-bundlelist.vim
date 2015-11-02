@@ -1,7 +1,5 @@
 NeoBundle 'tomtom/tinykeymap_vim.git' "test it for a new keymaps
 NeoBundle 'amix/open_file_under_cursor.vim.git' "open file under cursor with gf
-NeoBundle 'chrisbra/colorizer'
-    \, { 'autoload': { 'commands': ['ColorToggle'] } }
 NeoBundle 'kurkale6ka/vim-swap.git' "steal swap from here
 NeoBundle 'jamessan/vim-gnupg.git' "Transparent work with gpg-encrypted files
 NeoBundle 'Shougo/vimshell.vim' "shell inside a vim
@@ -9,6 +7,30 @@ NeoBundle 'fatih/vim-go.git' "golang support
 NeoBundle 'oscarh/vimerl' "vim erlang support
 NeoBundle 'vim-ruby/vim-ruby' "ruby support for vim
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
+NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
+NeoBundle 'asciimoo/vim-minimap.git' "sublime-like minimap for vim
+NeoBundle 'tpope/vim-rake.git' "experimental ruby support
+NeoBundle 'tpope/vim-rbenv.git' "experimental ruby support
+NeoBundle 'osyo-manga/vim-monster.git' "experimental ruby support
+NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
+NeoBundle 'shawncplus/phpcomplete.vim.git' "php completion
+NeoBundle 'ryanoasis/vim-webdevicons'
+NeoBundleLazy 'othree/html5.vim'
+    \ , {'autoload': {'filetypes': ['html', 'htmldjango']} }
+NeoBundleLazy 'lambdalisue/vim-pyenv'
+    \ , {'depends': ['blueyed/YouCompleteMe']
+    \ ,  'autoload': {'filetypes': ['python', 'python3', 'htmldjango']} }
+NeoBundle 'idanarye/vim-merginal' "yet another git/fugitive wrapper
+" NeoBundle 'itchyny/lightline.vim.git'
+NeoBundle 'fs111/pydoc.vim'
+    \ , {'autoload': {'filetypes': ['python']} }
+NeoBundle 'c9s/vimomni.vim'
+
+" Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
+NeoBundleLazy 'joonty/vdebug', {
+    \ 'autoload': { 'commands': 'VdebugStart' }}
+NeoBundle 'JulesWang/css.vim'
+NeoBundle 'rstacruz/sparkup.git'
 "--[ Main ]--------------------------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' , {
         \ 'build': {
@@ -20,6 +42,8 @@ NeoBundle 'junegunn/fzf' "use fzf plug for vim
 NeoBundle 'szw/vim-ctrlspace.git' "better sessions
 NeoBundle 'dyng/ctrlsf.vim.git' " An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2 
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
+NeoBundle 'chrisbra/colorizer'
+    \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
 NeoBundleLazy 'chrisbra/NrrwRgn', {
             \ 'commands' : ['NR', 'NRP']
             \ }
@@ -111,7 +135,7 @@ if executable("tmux")
     NeoBundle 'benmills/vimux.git' "exec commands in tmux
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
 endif
-NeoBundle 'tpope/vim-dispatch.git' "Should provide async build
+NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
 if (executable("ghci") && executable("ghcmod"))
 "   NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
 NeoBundle 'eagletmt/ghcmod-vim.git'
