@@ -95,7 +95,9 @@ vnoremap > >gv
 
 map <C-g> g<C-g>
 
-inoremap jk <Esc>
+call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
+nnoremap <leader>D "_d
+xnoremap <leader>D "_d
 
 " Toggle last active buffer
 nnoremap <leader><Tab> :b#<CR>
