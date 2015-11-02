@@ -1,5 +1,4 @@
 colorscheme vimpwhite
-source ~/.vimperator/plugin/libly.js
 set gui=none
 set hintchars=12345
 set hintmatching=fuzzy
