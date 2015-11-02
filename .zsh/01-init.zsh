@@ -1,5 +1,8 @@
 TRAPUSR1() { rehash }; # rehash on SIGUSR1
-TRAPINT() { print -nP %F{blue}%B\^C%f%b; return 1 }
+[[ -o interactive ]] && TRAPINT() { 
+    zle && print -nP %F{blue}%B\^C%s%b
+    return $(( 128 + $1 )) 
+}
 
 autoload -U add-zsh-hook
 # anything newly intalled from last command?
@@ -72,45 +75,47 @@ stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s w
 # stty speed 4000000 &> /dev/null
 
 [[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
+# fi=00:di=00;34:mh=00:so=01;38;5;075:bd=38;5;24:cd=38;5;24:ex=04;32:no=00;38;5;244:pi=38;5;126:ln=38;5;05:mh=48;5;233;38;5;7;1;3:ow=48;5;233;38;5;7;1;3:su=38;5;137:st=38;5;86;48;5;234:rs=0:';
 
 # No core dumps for now
 ulimit -c 0
 
-setopt append_history \
-       share_history \
-       extended_history \
-       histignorealldups 
+setopt append_history
+setopt share_history
+setopt extended_history
+setopt histignorealldups 
 
 setopt hist_expire_dups_first
 setopt hist_ignore_dups # ignore duplication command history list
 setopt hist_verify
+setopt hist_ignore_space # reduce whitespace in history
 setopt inc_append_history
 
 # remove command lines from the history list when the first character on the
 # line is a space
-setopt histignorespace \
-       auto_cd \
-       extended_glob \
-       longlistjobs \
-       nonomatch \
-       notify \
-       hash_list_all \
-       completeinword \
-       nohup \
-       auto_pushd \
-       pushdminus \
-       pushdsilent \
-       pushdtohome \
-       pushd_ignore_dups \
-       nobeep \
-       noglobdots \
-       noshwordsplit 
+setopt histignorespace 
+setopt auto_cd 
+setopt extended_glob 
+setopt longlistjobs 
+setopt nonomatch 
+setopt notify 
+setopt hash_list_all 
+setopt completeinword 
+setopt nohup 
+setopt auto_pushd 
+setopt pushdminus 
+setopt pushdsilent 
+setopt pushdtohome 
+setopt pushd_ignore_dups 
+setopt nobeep # Get rid of beeps
+setopt noglobdots 
+setopt noshwordsplit 
 
 setopt C_BASES  # print $(( [#16] 0xff ))
-setopt prompt_subst
+setopt prompt_subst # Set the prompt
 # make sure to use right prompt only when not running a command
 setopt transient_rprompt
-setopt interactivecomments
+setopt interactivecomments # Allow interactive comments
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
