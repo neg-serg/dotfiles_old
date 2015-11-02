@@ -98,7 +98,7 @@ fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
 # dirstack handling
 DIRSTACKSIZE=${DIRSTACKSIZE:-20}
-DIRSTACKFILE=${HOME}/.zsh/99-zdirs
+DIRSTACKFILE=${HOME}/.zsh/.99-zdirs
 
 if [[ -f ${DIRSTACKFILE} ]] && [[ ${#dirstack[*]} -eq 0 ]] ; then
     dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
