@@ -109,7 +109,7 @@ fi
 export MPV_HOME="${HOME}/.config/mpv"
 export MANWIDTH=${MANWIDTH:-80}
 export GOPATH=${HOME}/bin/go
-export GOMAXPROCS=4
+export GOMAXPROCS=8
 export KEYTIMEOUT=5 # allow to use ,<key> more fast
 export ESCDELAY=1
 
