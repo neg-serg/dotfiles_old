@@ -120,6 +120,8 @@ endif
 " │ https://github.com/scrooloose/syntastic.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('syntastic')
+    " '⚡' '😱' '✗' '➽'
+    " ⚑ ⚐ ♒ ⛢ ❕ ❗
     let g:syntastic_error_symbol='✗'
     let g:syntastic_warning_symbol='⚠'
     let g:syntastic_style_error_symbol  = '⚡'
@@ -155,6 +157,15 @@ endif
 " │ https://github.com/Valloric/YouCompleteMe.git                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('YouCompleteMe')
+    " Do not display "Pattern not found" messages during YouCompleteMe completion.
+    " Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
+    if 1 && exists(':try')
+        try
+            set shortmess+=c
+            " Catch "Illegal character" (and its translations).
+        catch /E539: /
+        endtry
+    endif
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
     let g:ycm_filepath_completion_use_working_dir = 1
     let g:ycm_confirm_extra_conf = 0
@@ -808,10 +819,10 @@ if neobundle#tap('vim-lua-ftplugin')
     let b:lua_compiler_name = '/usr/bin/lualint'
     let g:lua_check_globals = 1
     let g:lua_check_syntax = 0  " done via syntastic
-    let g:lua_complete_keywords = 0 " interferes with YouCompleteMe
-    let g:lua_complete_globals = 0  " interferes with YouCompleteMe?
-    let g:lua_complete_library = 0  " interferes with YouCompleteMe
-    let g:lua_complete_dynamic = 0  " interferes with YouCompleteMe
+    let g:lua_complete_keywords = 1 " interferes with YouCompleteMe
+    let g:lua_complete_globals = 1  " interferes with YouCompleteMe?
+    let g:lua_complete_library = 1  " interferes with YouCompleteMe
+    let g:lua_complete_dynamic = 1  " interferes with YouCompleteMe
     let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
     let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
     let g:lua_define_completion_mappings = 0
