@@ -90,7 +90,7 @@ function v {
     #----------------------------------------------------------------
     if [[ -z "${wid}" ]]; then
         st -f "${wim_font}:pixelsize=${font_size}" -c 'wim' -e bash -c "tmux -S ${sock_path} new -s vim -n vim \"vim --servername ${srv_name}\" && \
-            tmux -S ${sock_path} switch-client -t vim" &
+            tmux -S ${sock_path} switch-client -t vim" &!
         process_list ".1s" "$@"
     else  
         process_list ".1s" "$@"
