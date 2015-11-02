@@ -39,6 +39,23 @@ sudo_list=({u,}mount ch{mod,own})
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
 
+user_commands=(
+  list-units is-active status show help list-unit-files
+  is-enabled list-jobs show-environment cat)
+
+sudo_commands=(
+  start stop reload restart try-restart isolate kill
+  reset-failed enable disable reenable preset mask unmask
+  link load cancel set-environment unset-environment
+  edit)
+
+for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
+for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
+
+alias sc-enable-now="sc-enable --now"
+alias sc-disable-now="sc-disable --now"
+alias sc-mask-now="sc-mask --now"
+
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
 for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
@@ -49,7 +66,7 @@ alias fevil='find . -regextype posix-extended -regex'
 
 function sp() {
   setopt extendedglob bareglobqual
-  du -sch -- ${~^@:-"*"}(D) | sort -h| distribution --size=small
+  du -sch -- ${~^@:-"*"}(D) | sort -h
 }
 alias cdu='cdu -idh'
 
@@ -88,13 +105,18 @@ alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
 alias u="umount"
 alias s="sudo"
+alias f='grep -Rli'
+alias x='xargs'
 alias e="open"
 alias rd="rmdir"
 
 alias insecssh='ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 alias insecscp='scp -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null"'
 
-alias ple='perl -wlne'
+alias ple='perl -wlne' # use perl like awk/sed
+# Perl grep, because 'grep -P' is terrible. Lets you work with pipes or files.
+# [pattern] [filename unless STDOUT]
+prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
 alias ftp="lftp"
 alias now="date +'[%H:%M] %A %e %B %G'"
@@ -120,8 +142,10 @@ alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
 alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
 # alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
-alias yt="tsocks you-get"
-alias yr="tsocks youtube-viewer --video-player=mpv -C"
+_zsh_proxy=""
+alias yt="${_zsh_proxy} you-get"
+alias yr="${_zsh_proxy} youtube-viewer --video-player=mpv -C"
+unset _zsh_proxy
 
 alias qe='cd *(/om[1])'
 alias hi='_v'
@@ -195,7 +219,8 @@ user_commands=(
 sudo_commands=(
   start stop reload restart try-restart isolate kill
   reset-failed enable disable reenable preset mask unmask
-  link load cancel set-environment unset-environment)
+  link load cancel set-environment unset-environment
+  node npm)
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
@@ -306,3 +331,35 @@ zleiab() {
 alias vmpd='command cava -i fifo -p /tmp/mpd.fifo -b 20'
 
 zle -N zleiab
+
+# -- [ nmap ] ---------------------------------------------------
+#  -sS - TCP SYN scan
+#  -v - verbose
+#  -T1 - timing of scan. Options are paranoid (0), sneaky (1), polite (2), normal (3), aggressive (4), and insane (5)
+#  -sF - FIN scan (can sneak through non-stateful firewalls)
+#  -PE - ICMP echo discovery probe
+#  -PP - timestamp discovery probe
+#  -PY - SCTP init ping
+#  -g - use given number as source port
+#  -A - enable OS detection, version detection, script scanning, and traceroute (aggressive)
+#  -O - enable OS detection
+#  -sA - TCP ACK scan
+#  -F - fast scan
+#  --script=vulscan - also access vulnerabilities in target
+
+alias nmap_open_ports="nmap --open"
+alias nmap_list_interfaces="nmap --iflist"
+alias nmap_slow="nmap -sS -v -T1"
+alias nmap_fin="nmap -sF -v"
+alias nmap_full="nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -v"
+alias nmap_check_for_firewall="nmap -sA -p1-65535 -v -T4"
+alias nmap_ping_through_firewall="nmap -PS -PA"
+alias nmap_fast="nmap -F -T5 --version-light --top-ports 300"
+alias nmap_detect_versions="nmap -sV -p1-65535 -O --osscan-guess -T4 -Pn"
+alias nmap_check_for_vulns="nmap --script=vulscan"
+alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
+alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
+alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
+alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
+
+alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
