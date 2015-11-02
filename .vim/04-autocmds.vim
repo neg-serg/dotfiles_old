@@ -4,6 +4,7 @@ augroup vimrc
     autocmd!
     au BufRead *.session let g:session = expand('%:p:h') | so % | bd #
     au VimLeave * if exists('g:session') | call Mks(g:session) | endif
+    au BufEnter * call MySetupTitleString()
 augroup end
 
 fun! Mks(path)
