@@ -4,11 +4,6 @@
 # vim: ft=zsh sw=2 ts=2 et
 # -------------------------------------------------------------------------------------------------
 
-# : ${ZSH_HIGHLIGHT_STYLES[precommand]:=fg=green,underline}
-# : ${ZSH_HIGHLIGHT_STYLES[commandseparator]:=none}
-# : ${ZSH_HIGHLIGHT_STYLES[path]:=underline}
-# : ${ZSH_HIGHLIGHT_STYLES[globbing]:=fg=blue}
-# : ${ZSH_HIGHLIGHT_STYLES[history-expansion]:=fg=blue}
 
 ZSH_HIGHLIGHT_STYLES+=(
   default                        'none'
@@ -18,6 +13,12 @@ ZSH_HIGHLIGHT_STYLES+=(
   builtin                        'fg=green'
   function                       'fg=green,underline'
   command                        'fg=green'
+
+  #precommand                    'fg=green,underline'
+  #path                          'fg=underline'
+  #path_prefix                   'fg=underline'
+  #path_approx                   'fg=yellow,underline'
+
   hashed-command                 'fg=green'
   globbing                       'fg=110'
   history-expansion              'fg=blue'
