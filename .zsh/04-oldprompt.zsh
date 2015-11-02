@@ -9,7 +9,7 @@ case ${UID} in
     DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
     _fizsh_user_pretoken="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){
-        export PS1="$_fizsh_user_pretoken%40<..<`~/.zsh/modules/syntax/fizsh-prompt.zsh`"
+    export PS1="$_fizsh_user_pretoken%40<..<$(${ZSH}/neg-prompt)"
     }
     PS2="%{$fg[magenta]%}» %{$reset_color%}"
     # selection prompt used within a select loop.

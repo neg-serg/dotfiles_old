@@ -4,7 +4,7 @@ function chpwd() {
     if [ -x ${BIN_HOME}/Z ]; then
         [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
     fi
-    export PS1="${_fizsh_user_pretoken}%40<..<$(${ZSH}/modules/syntax/fizsh-prompt.zsh)"
+    export PS1="${_fizsh_user_pretoken}%40<..<$(${ZSH}/neg-prompt)"
 }
 
 # Rename pictures based on information found in exif headers
