@@ -141,12 +141,16 @@ if !has("gui_running")
             set t_ut=
             if !exists('$ST_TERM')
                 autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+                autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
+                autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
                 let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
                 let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
                 autocmd VimLeave * silent !tmux set status on;
                     \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
             else
                 autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+                autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
+                autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
                 let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
                 let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
                 autocmd VimLeave * silent !tmux set status on;
