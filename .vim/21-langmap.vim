@@ -19,7 +19,7 @@ function MyKeyMapHighlight()
 endfunction
 call MyKeyMapHighlight()
 au WinEnter * :call MyKeyMapHighlight()
-cmap <silent> <C-S-L> <C-^>
-imap <silent> <C-S-L> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
-nmap <silent> <C-S-L> a<C-^><Esc>:call MyKeyMapHighlight()<CR>
-vmap <silent> <C-S-L> <Esc>a<C-^><Esc>:call MyKeyMapHighlight()<CR>gv
+cmap <silent> <C-s> <C-^>
+imap <silent> <C-s> <C-^>X<Esc>:call MyKeyMapHighlight()<CR>a<C-H>
+nmap <silent> <C-s> a<C-^><Esc>:call MyKeyMapHighlight()<CR>
+vmap <silent> <C-s> <Esc>a<C-^><Esc>:call MyKeyMapHighlight()<CR>gv
