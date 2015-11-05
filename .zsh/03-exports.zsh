@@ -117,8 +117,11 @@ export OSSLIBDIR=/usr/lib/oss
 
 export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 export FZF_DEFAULT_COMMAND='find'
 
 export PULSE_LATENCY_MSEC=60
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+export STEAM_RUNTIME=1
