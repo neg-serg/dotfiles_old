@@ -1,0 +1,2 @@
+#!/bin/zsh
+BROWSER=firefox /bin/urxvtc -fn 'xft:Pragmata Pro for Powerline:size=17' -name mutt -e mutt
