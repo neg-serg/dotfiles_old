@@ -45,20 +45,25 @@ defwinprop{class="Xpdf",instance="openDialog_popup",ignore_cfgrq=true,tag="pdf"}
 defwinprop{class="Evince",instance="evince",transient_mode="off",jumpto=true,target="doc",lazy_resize=true,tag="pdf"}
 defwinprop{class="XDvi",target="doc",lazy_resize=true,tag="pdf"}
 defwinprop{class="libreoffice*",instance="*",target="doc",lazy_resize=true,tag="writer"}
+defwinprop{class="abiword",instance="*",target="doc",lazy_resize=true,tag="writer"}
+defwinprop{class="atril",instance="*",target="doc",lazy_resize=true,tag="writer"}
+defwinprop{class="guncharmap",instance="*",target="doc",lazy_resize=true,tag="writer"}
 defwinprop{class="Cr3",instance="cr3",target="doc",lazy_resize=true,tag="reader"}
 -------------------------------------[[ MEDIA ]]---------------------------------------
 defwinprop{class="gmpc",target="media",lazy_resize=true}
 defwinprop{class="MPlayer",jumpto=true,transient_mode="off",target="media",tag="video"}
 defwinprop{class="mplayer2",jumpto=true,transient_mode="off",target="media",tag="video"}
 defwinprop{class="mpv",jumpto=true,transient_mode="off", target="media",tag="video"}
-defwinprop{class="mpv",instance="webcam_mpv",jumpto=true, transient_mode="off",float=true}
-defwinprop{class="feh",instance="feh",jumpto="on",transient_mode="off",float=true,lazy_resize=true}
-defwinprop{class="qiv",instance="qiv",jumpto="on",transient_mode="off",float=true,lazy_resize=true}
+defwinprop{class="mpv",instance="webcam_mpv",jumpto=true, transient_mode="current",float=true}
+defwinprop{class="feh",float=true,ignore_cfgrq=true,transient_mode="current"}
+defwinprop{class="qiv",jumpto="on",transient_mode="on",float=true,lazy_resize=true}
+defwinprop{class="cheese",target="media",jumpto=true,transient_mode="off",float=false}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,userpos=true,
 tag="editor",
 ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true
 }
+defwinprop{instance="subl3|sublime_text",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,userpos=true, tag="editor" }
 defwinprop{class="URxvt",instance="wim",target="dev",lazy_resize=true,jumpto=true,transient_mode="off",transparent=false,
 tag="editor",transparent=false
 -- ignore_max_size=true, ignore_min_size=true,ignore_resizeinc=true,
@@ -92,16 +97,26 @@ defwinprop{class="VirtualBox",jumpto=true,target="vm",transient_mode="off",lazy_
 defwinprop{class="Vmware",jumpto=true,target="vm",transient_mode="on",lazy_resize=true,tag="virt"}
 defwinprop{class="QEMU",jumpto=true,target="vm",transient_mode="on",lazy_resize=true,tag="virt"}
 defwinprop{class="spicec",instance="spicec",jumpto=true,target="vm",transient_mode="on",lazy_resize=true,tag="virt"}
--------------------------------------[[   GIMP  ]]-----------------------------
-defwinprop{class="Gimp",acrobatic=true,tag="graphic"}
-defwinprop{class="Gimp",jumpto=true,role="gimp-file-open",transient_mode="off",float=true}
-defwinprop{class="Gimp",jumpto=true,role="gimp-file-save",transient_mode="off",float=true}
-defwinprop{class="Gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true}
-defwinprop{class="Gimp",jumpto=true,role="gimp-image-new",transient_mode="off",float=true}
-defwinprop{class="Gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true}
+-------------------------------------[[   GRARPHIC  ]]-----------------------------
+defwinprop{class="Gimp",target="graphic",acrobatic=true,tag="graphic"}
+defwinprop{class="inkscape",target="graphic",tag="graphic"}
+defwinprop{class="simple-scan",target="graphic"}
+defwinprop{class="gthumb",target="graphic"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-open",transient_mode="off",float=true}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-save",transient_mode="off",float=true}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-image-new",transient_mode="off",float=true}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
 defwinprop{class="stalonetray",instance="stalonetray",statusbar="*",float=true,target="stalonetray"}
 defwinprop{is_dockapp=true,statusbar="*",float=true}
+-------------------------------------[[   ADMIN  ]]---------------------------------
+defwinprop{instance="remmina",target="admin",jumpto=true}
+defwinprop{instance="htop_term",target="admin",jumpto=true}
+defwinprop{instance="glances_term",target="admin",jumpto=true}
+defwinprop{instance="gparted",target="admin",jumpto=true}
+defwinprop{instance="gnome-disks",target="admin",jumpto=true}
+defwinprop{instance="seahorse",target="admin",jumpto=true}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true,lazy_resize=true}
 defwinprop{class="Xmessage",float=true,lazy_resize=true}
@@ -125,6 +140,7 @@ defwinprop{class="Pavucontrol",instance="pavucontrol",winlist_ignore=true,transi
 defwinprop{instance="wicd",winlist_ignore=true,transient_mode="off",target="wicd",lazy_resize=true}
 defwinprop{instance="ranger",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
 defwinprop{class="ranger",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
+defwinprop{class="caja",winlist_ignore=true,transient_mode="off",target="ranger",lazy_resize=true}
 defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="console",lazy_resize=true}
 defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb",lazy_resize=true}
 defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",lazy_resize=true}
@@ -132,20 +148,10 @@ defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top"
 defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",lazy_resize=true,float=true}
 defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",lazy_resize=true,target=float}
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",lazy_resize=true,tag="torrent"}
-defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true,tag="torrent",float=true}
+defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true,tag="torrent",float=false}
+defwinprop{class="Vuze",is_transient=true,winlist_ignore=true,transient_mode="off",target="torrent",lazy_resize=true,tag="torrent",float=true}
 defwinprop{class="Anamnesis",winlist_ignore=true,transient_mode="off",target="float2",lazy_resize=true,jumpto=true}
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="*",instance="*",transparent=false,lazy_resize=true}
 -- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true,lazy_resize=true}
-defwinprop { class = "Operapluginwrapper-ia32-linux", instance = "operapluginwrapper-ia32-linux",
-    match = function(prop, cwin, id) return is_fullscreen(cwin); end,
-    switchto = false, flash_fullscreen = true, }
-defwinprop { class = "Prism", instance = "prism",
-    match = function(prop, cwin, id) return is_fullscreen(cwin); end,
-    switchto = false,
-    flash_fullscreen = true, }
-defwinprop { class = "Exe", instance = "exe", name = "exe",
-    match = function(prop, cwin, id) return is_fullscreen(cwin); end,
-    switchto = false, flash_fullscreen = true, }
-defwinprop{class="uim-toolbar-qt4", statusbar="uim"}
