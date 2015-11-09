@@ -10,18 +10,12 @@
     unset _cope_path
 }
 
-# # un-smart function for viewing sectioned partitions:
-# function dfu() {
-#   local fs_types
-#   fs_types=(nilfs2 btrfs ext2 ext3 ext4 jfs xfs zfs reiserfs reiser4 minix ntfs ntfs-3g fat vfat fuse)
-#   df -hTP -x rootfs -x devtmpfs -x tmpfs -x none ; print
-#   df -hTP $(for f in $FSTYPES; { print - " -x $f" })
-# }
-
 alias pstree="pstree -U "$@" | sed '
 	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
 	s/[{}]/\x1B[31m&\x1B[0m/g
 	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
+alias pscpu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
+alias psmem='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
 
 alias '?=bc -l <<<'
 alias stderred="LD_PRELOAD=${BIN_HOME}/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRELOAD}"
@@ -135,11 +129,11 @@ alias gc='git commit'
 alias glp='gl -p'
 alias gcu='git commit -m "updates"'
 
-alias :q='exit'
+alias :x=' exit'
+alias :q=' exit'
+alias :Q=' exit'
 
 alias iostat='iostat -mtx'
-alias cpuu='ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10'
-alias memusage='ps -e -orss=,args= | sort -b -k1,1n|pr -TW$COLUMNS' 
 # alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
 _zsh_proxy=""
@@ -157,6 +151,8 @@ alias td="[ -z $(pidof transmission-daemon) ] && transmission-daemon"
 
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
+alias hist10='print -l ${(o)history%%*} | uniq -c | sort -nr | head -n 10' # top10 of the history
+alias hist='history'
 alias sniff='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
 alias wd="${BIN_HOME}/wd.sh"
@@ -363,3 +359,9 @@ alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25
 alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
 
 alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
+
+alias log='journalctl -f | ccze -A' #follow log
+alias log0='journalctl -b -0 | ccze -A' #current log 
+alias log1='journalctl -b -1 | ccze -A' #previous log
+alias iotop='sudo iotop -oPa'
+alias diskact="sudo iotop -Po"
