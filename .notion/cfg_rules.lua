@@ -9,6 +9,7 @@ defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,lazy_resize=true,float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
 defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",lazy_resize=true,tag="www"}
+defwinprop{class="chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Chromium-www",transient_mode="off",transient_mode="off",target="web",lazy_resize=true,tag="www"}
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web",lazy_resize=true}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",lazy_resize=true,tag="www"}
