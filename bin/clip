@@ -1,5 +1,5 @@
-#!/bin/zsh
-
-menu=$(gpaste --oneline | rofi -font 'Pragmata Pro for Powerline bold 12' -yoffset -22 -location 6 -width 1850 -lines 10 -dmenu -p "[>>]")
+#!/bin/sh
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+menu=$(gpaste-client --oneline | rofi -font 'Pragmata Pro for Powerline bold 12' -yoffset -22 -location 6 -width 1850 -lines 10 -dmenu -p "[>>]")
 selection=$(echo "$menu" | cut -d ':' -f1)
-gpaste select $selection
+gpaste-client select $selection
