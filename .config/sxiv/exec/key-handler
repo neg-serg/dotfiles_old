@@ -129,7 +129,7 @@ case "$opt" in
     "C-slash")  rotate 180 ;;
     "C-less")   rotate -90 ;;
     "C-d")      delete ;;
-    "C-v")      proc move ;;
+    "v")        proc move ;;
     "C-c")      proc copy ;;
     "C-r")      rename ;;
     "r")        rep ;;
