@@ -1,30 +1,32 @@
 #--[ mpd ]---------------
-mpd_host = "192.168.1.35"
+#mpd_host = "192.168.1.35"
 mpd_port = 6600
-mpd_music_dir = "/home/neg/music"
+mpd_music_dir = "~/music"
 mpd_crossfade_time = "0"
-
 user_interface = "classic"
-
 #--[ Visualizer ]---------------
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "1"
-visualizer_type = "spectrum" (spectrum/wave)
+# visualizer_sync_interval = "1"
+# visualizer_type = "spectrum" (spectrum/wave)
 
 #--[ Playlist ]---------------
-playlist_disable_highlight_delay = "0"
+playlist_disable_highlight_delay = "1"
 playlist_show_remaining_time = "yes"
 song_columns_list_format = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
 now_playing_prefix = "$b"
 #now_playing_subfix = "/$b"
 playlist_display_mode = "classic" (classic/columns)
-autocenter_mode = "no"
-centered_cursor = "no"
+centered_cursor = "yes"
 cyclic_scrolling = "no"
 lines_scrolled = "2"
 mouse_list_scroll_whole_page = "no"
-song_list_format = " $0$8$8%15l$0$8 $(236)|$7 $7%22a$7 $R $(236)|$7 $6%44t$(244) $R $(244)%28b$(244)"
+song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)~>$7 $6%44t$(244) $R $(236)< $8%5l $(236)| $(244)%28b$(244)  "
+
+#--[ Try ]---------------
+# song_status_format = " $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
+# now_playing_prefix = "$b$8»$2»$4»$3» "
+# now_playing_prefix = "$b$2⟩$3⟩ "
 
 song_library_format = "{%n > }{%t}|{%f}"
 
@@ -84,7 +86,7 @@ follow_now_playing_lyrics = "yes"
 # block_search_constraints_change_if_items_found = "no"
 default_tag_editor_pattern = "%n - %t"
 default_find_mode = "wrapped"
-default_space_mode = "add"
+# default_space_mode = "add"
 default_place_to_search_in = "database"
 show_hidden_files_in_local_browser = "no"
 
