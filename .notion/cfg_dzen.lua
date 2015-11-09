@@ -9,9 +9,9 @@ local hook_deinit = notioncore.get_hook("ioncore_deinit_hook")
 if hook_deinit then
     hook_deinit:add(dzen_delete)
 end
-dzen_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
-dzen_pipe:setvbuf("line")
 
+dzen_pipe = io.popen("dzen2 -dock -bg ".. dzen_bg_ .." -h ".. dzen_h_ .." -tw 0 -x 0 -ta l -w 1000 -p -fn ".. dzen_panel_font_ .. " ", "w")
+dzen_pipe:setvbuf("line")
 ws_curr = nil
 kbd_template = nil
 sys_template = nil
