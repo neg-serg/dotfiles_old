@@ -672,3 +672,14 @@ function count_music_trash(){
 find ~/music/ -regextype posix-egrep \
     -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} +
 }
+
+function consn() { 
+    echo :: consnumber :: 
+    netstat -nat |awk '{print $6}'|sort|uniq -c|sort -rn
+    echo :: consip ::
+    netstat -ntu | tail -n +3 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n 
+}
+# gather external ip address
+function geteip() { curl http://ifconfig.me }
+# Clear zombie processes
+function clrz() { ps -eal | awk '{ if ($2 == "Z") {print $4}}' | kill -9 }
