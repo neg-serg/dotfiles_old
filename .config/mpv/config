@@ -18,13 +18,14 @@ hwdec=auto
 # no-osc
 
 osd-font="PragmataPro for Powerline"
-osd-font-size=19
+osd-font-size=14
 # make the OSD progress bar be big and centered like in mplayer and mplayer2
 osd-bar-align-y=0
 osd-bar-h=2
 osd-border-size=1
 osd-color='#CCE6EEFA'
 osd-border-color='#99000000'
+#osd-margin-y=600
 
 ytdl
 
