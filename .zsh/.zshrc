@@ -22,6 +22,5 @@ source ~/.zsh/12-vi_additions.zsh
 source ~/.zsh/13-bindkeys.zsh
 source ~/.zsh/60-functional.zsh
 source ~/.zsh/89-vim-interation.plugin.zsh
-source ~/.zsh/90-systemadmin.zsh
 source ~/.zsh/92-history-substring-search.zsh
 source ~/.zsh/98-fzf.zsh
