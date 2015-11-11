@@ -43,6 +43,10 @@ sudo_commands=(
   link load cancel set-environment unset-environment
   edit)
 
+nocorrect_commands=(
+    ebuild gist heroku hpodder man mkdir mv mysql sudo
+)
+
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
 
@@ -53,6 +57,7 @@ alias sc-mask-now="sc-mask --now"
 for i in ${sudo_list[@]}; alias "${i}=sudo ${i}";
 for i in ${noglob_list[@]}; alias "${i}=noglob ${i}";
 for i in ${rlwrap_list[@]}; alias "${i}=rlwrap ${i}";
+for i in ${nocorrect_list[@]}; alias "${i}=nocorrect ${i}";
 for i in ${sys_sudo_list[@]}; alias "${i}=sudo ${sysctl_pref} ${i}"
 unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
@@ -162,7 +167,7 @@ alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
-alias cal="${BIN_HOME}/scripts/dzen-time-date"
+alias cal="${BIN_HOME}/scripts/dzen/time-date"
 alias lk="{[[ -x $(which glances)  ]] && glances} || htop || top"
 
 function resolve_file {
