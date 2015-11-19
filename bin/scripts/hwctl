@@ -1,0 +1,282 @@
+#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*-
+#
+# Copyright (c) 2012-2015 Sung Pae <self@sungpae.com>
+# Distributed under the MIT license.
+# http://www.opensource.org/licenses/mit-license.php
+
+require 'optparse'
+require 'ostruct'
+require 'fileutils'
+
+class Hwctl
+  SYSTEM = {
+    'macbook' => {
+      :backlight        => '/sys/class/backlight/intel_backlight/brightness',
+      :backlight_max    => '/sys/class/backlight/intel_backlight/max_brightness',
+      :backlight_actual => '/sys/class/backlight/intel_backlight/actual_brightness',
+      :fnmode           => '/sys/module/hid_apple/parameters/fnmode',
+      :fan_manual       => '/sys/devices/platform/applesmc.768/fan1_manual',
+      :fan_speed        => '/sys/devices/platform/applesmc.768/fan1_output',
+      :temps            => Dir["/sys/devices/platform/coretemp.0/temp*_input"]
+    },
+    'imac' => {
+      :backlight        => '/sys/class/backlight/apple_backlight/brightness',
+      :backlight_max    => '/sys/class/backlight/apple_backlight/max_brightness',
+      :backlight_actual => '/sys/class/backlight/apple_backlight/actual_brightness',
+      :fnmode           => nil,
+      :fan_manual       => '/sys/devices/platform/applesmc.768/fan1_manual',
+      :fan_speed        => '/sys/devices/platform/applesmc.768/fan1_output',
+      :temps            => nil
+    },
+    'it8728' => {
+      :backlight        => nil,
+      :backlight_max    => nil,
+      :backlight_actual => nil,
+      :fnmode           => nil,
+      :fan_manual       => '/sys/devices/platform/it87.2608/pwm2_enable',
+      :fan_speed        => '/sys/devices/platform/it87.2608/pwm2',
+      :temps            => ['/sys/devices/platform/it87.2608/temp1_input']
+    },
+  }
+
+  attr_reader :options
+
+  def initialize opts = {}
+    @options = OpenStruct.new opts
+  end
+
+  def parser
+    @parser ||= OptionParser.new nil, 28 do |opt|
+      opt.banner = <<-BANNER.gsub /^ {8}/, ''
+        Linux hardware control wrapper.
+
+        Usage: #{File.basename __FILE__} [options] command [args]
+
+          Commands:
+            b[acklight] [pct]
+              Query or set backlight as a percentage. Argument can be signed
+              for relative adjustment.
+
+            backlight-permissions mode user group
+              Set backlight control file permissions.
+
+            fan base-speed [temp:speed …]
+              Manually set fan speeds (in RPM) at given temps (in Celsius).
+              Polls every 10 seconds and speeds are not ramped. Fan control is
+              handed back to the kernel on exit.
+
+            fnmode [fn|media]
+              Set laptop function key mode.
+
+            toggle-alsa-card [index]
+              Switch between available sound cards, or specified card index
+
+            toggle-pulseaudio-sink [index]
+            toggle-pulseaudio-source [index]
+              Toggle between available Pulseaudio input sinks and output sources
+
+          Options:
+      BANNER
+
+      opt.on '-s', '--system KEY', 'KEY=%s' % SYSTEM.keys.join('|') do |arg|
+        options.system = SYSTEM[arg]
+      end
+    end
+  end
+
+  def sys
+    raise 'System specific path required, but no --system specified' unless options.system
+    options.system
+  end
+
+  def brightness cur, max
+    '%d %.2f%%' % [cur, cur.to_f/max * 100]
+  end
+
+  def set_brightness value, max
+    v = value
+    v = max if value > max
+    v = 0 if value < 0
+
+    File.open sys[:backlight], 'w' do |f|
+      f.puts v
+    end
+
+    v
+  end
+
+  def pulseaudio_list type
+    raise ArgumentError unless ["sink", "source"].include? type
+
+    list = %x(pacmd list-#{type}s).scan(/(\*?) index: (\d+).*?device\.description = "(.*?)"/m).map do |star, idx, desc|
+      [star.length > 0, idx, desc]
+    end
+
+    until list[0][0]
+      list.rotate!
+    end
+
+    list.map { |a| a.drop 1 }
+  end
+
+  def pulseaudio_move type, index
+    type = { "sink" => "sink-input", "source" => "source-output" }[type]
+
+    raise ArgumentError if type.nil?
+
+    %x(pacmd list-#{type}s).lines.grep(/index: (\d+)/) { $1 }.each do |s|
+      system 'pacmd', "move-#{type}", s.to_s, index.to_s, :out => '/dev/null'
+    end
+  end
+
+  def get_temps
+    sys[:temps].map { |f| File.read(f).to_i }
+  end
+
+  def backlight setting = nil
+    max = File.read(sys[:backlight_max]).to_i
+    cur = File.read(sys[:backlight_actual]).to_i
+
+    case setting
+    when nil           then brightness cur, max
+    when /\A[+-]\d+\z/ then brightness set_brightness((cur + (max * (setting.to_f / 100))).round, max), max
+    when /\A\d+\z/     then brightness set_brightness((max * (setting.to_f / 100)).round, max), max
+    else raise ArgumentError
+    end
+  end
+
+  def backlight_permissions mode, user, group
+    f = sys[:backlight]
+    FileUtils.chmod (mode.kind_of?(Fixnum) ? mode : mode.to_i(8)), f
+    FileUtils.chown user, group, f
+    s = File.stat f
+    '%o %s %s %s' % [s.mode, s.uid, s.gid, f]
+  end
+
+  def fan base_speed, *temps_speeds
+    table = [[-1000, base_speed.to_i]] + temps_speeds.map { |s|
+      raise 'Fan speed arguments must be in form of °C:RPM' unless s =~ /\A\d+:\d+\z/
+      temp, speed = s.split ':'
+      [temp.to_i, speed.to_i]
+    }
+    last_index = table.size - 1
+
+    original_fan_manual = File.read sys[:fan_manual]
+    if original_fan_manual != '1'
+      puts 'Assuming manual control of fan via: ' + sys[:fan_manual]
+      File.open(sys[:fan_manual], 'w') { |f| f.puts '1' }
+    end
+
+    current_index = nil
+
+    if last_index.zero?
+      puts 'Setting constant fan speed %s' % base_speed
+      File.open(sys[:fan_speed], 'w') { |f| f.puts base_speed }
+      sleep
+    else
+      loop do
+        # Take two samples, since the values tend to jump around
+        temp = get_temps.max
+        sleep 1
+        temp += get_temps.max
+        temp /= 2000
+
+        i = table.find_index { |t, sp| temp < t }
+
+        index = case i
+        when 0 then raise 'Erroneous temperature reading: %d' % temp
+        when nil then last_index
+        else i - 1
+        end
+
+        if current_index != index
+          speed = table[index][1]
+          puts "Temp: %d, Speed: %d" % [temp, speed]
+          File.open(sys[:fan_speed], 'w') { |f| f.puts speed }
+          current_index = index
+        end
+
+        sleep 9
+      end
+    end
+  ensure
+    if original_fan_manual != '1'
+      File.open(sys[:fan_manual], 'w') { |f| f.puts original_fan_manual || '0' }
+      puts 'Released manual fan control!'
+    end
+  end
+
+  def fnmode type = nil
+    case type
+    when 2, 'fn'    then File.open(sys[:fnmode], 'w') { |f| f.puts '2' }
+    when 1, 'media' then File.open(sys[:fnmode], 'w') { |f| f.puts '1' }
+    when nil        then nil
+    else raise ArgumentError
+    end
+    File.read sys[:fnmode]
+  end
+
+  def toggle_alsa_card index = nil
+    asoundrc = File.expand_path '~/.asoundrc'
+    settings = %w[defaults.pcm.card defaults.ctl.card]
+    cards = Hash[File.readlines('/proc/asound/cards').grep(/\A\s*(\d+)\s*(\[.*)/) { |m|
+      [$1.to_i, $2]
+    }]
+    indices = cards.keys
+
+    FileUtils.touch asoundrc
+    buf = File.read asoundrc
+
+    next_index = index || begin
+      cur = buf[/^#{settings.first}\s+(\d+)/, 1]
+      if cur
+        i = indices.index cur.to_i
+        indices[i ? (i + 1) % indices.size : 0]
+      else
+        indices.first
+      end
+    end
+
+    lines = buf.lines.reject { |l| settings.include? l[/\A\S+/] }
+    lines += settings.map { |k| "#{k} #{next_index}\n" }
+    File.open(asoundrc, 'w') { |f| f.puts lines.join }
+    cards[next_index]
+  end
+
+  def toggle_pulseaudio type, index = nil
+    list = pulseaudio_list type
+
+    if index
+      i, desc = list.find { |(i, n)| i == index }
+      raise "No #{type} at index #{index}" if i.nil?
+    else
+      i, desc = list.rotate.first
+    end
+
+    system 'pacmd', "set-default-#{type}", i, :out => '/dev/null'
+
+    pulseaudio_move type, i
+    desc
+  end
+
+  def run arguments = []
+    args = parser.order arguments
+    rest = args.drop 1
+
+    out = case args.first
+    when 'b', 'backlight' then backlight *rest
+    when 'backlight-permissions' then backlight_permissions *rest
+    when 'fan' then fan *rest
+    when 'fnmode' then fnmode *rest
+    when 'toggle-alsa-card' then toggle_alsa_card *rest
+    when 'toggle-pulseaudio-sink' then toggle_pulseaudio "sink", *rest
+    when 'toggle-pulseaudio-source' then toggle_pulseaudio "source", *rest
+    else abort parser.help
+    end
+
+    puts out if out
+  end
+end
+
+$0 = File.basename(__FILE__) and Hwctl.new.run ARGV if $0 == __FILE__
