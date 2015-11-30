@@ -370,3 +370,5 @@ alias log0='journalctl -b -0 | ccze -A' #current log
 alias log1='journalctl -b -1 | ccze -A' #previous log
 alias iotop='sudo iotop -oPa'
 alias diskact="sudo iotop -Po"
+
+[[ -x $(which nc) ]] && alias nyan='nc -v nyancat.dakko.us 23'
