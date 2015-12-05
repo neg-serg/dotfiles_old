@@ -8,6 +8,6 @@ My personal dotfiles
 
 On this screenshot you can see:
 
-* notion wm (modified) + dzen2
+* notion wm (modified to support X11 compositing with compton) + dzen2
 * mpd + ncmpcpp
 * urxvt terminal with tmux
