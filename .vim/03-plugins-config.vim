@@ -213,8 +213,7 @@ if neobundle#tap('YouCompleteMe')
         \ 'vimwiki'    : 1,
         \ 'pandoc'     : 1,
         \ 'infolog'    : 1,
-        \ 'mail'       : 1,
-        \ 'python'     : 1
+        \ 'mail'       : 1
         \}
 
     let g:ycm_min_num_identifier_candidate_chars = 4
@@ -701,6 +700,17 @@ if neobundle#tap('jedi-vim')
     let g:jedi#popup_select_first = 0
     let g:jedi#completions_enabled = 1
     let g:jedi#usages_command = "<leader>z"
+    function! s:jedi_settings()
+        nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
+        nnoremap <buffer><Leader>jg :<C-u>call jedi#goto_assignments()<CR>
+        nnoremap <buffer><Leader>jd :<C-u>call jedi#goto_definitions()<CR>
+        nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
+        nnoremap <buffer><Leader>ju :<C-u>call jedi#usages()<CR>
+        nnoremap <buffer><Leader>ji :<C-u>Pyimport<Space>
+        setlocal omnifunc=jedi#completions
+        command! -nargs=0 JediRename call jedi#rename()
+    endfunction
+    autocmd vimrc Filetype python call <SID>jedi_settings()
 endif
 
 if neobundle#tap('lightline.vim')
