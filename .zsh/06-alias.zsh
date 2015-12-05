@@ -29,7 +29,7 @@ noglob_list=( \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
     translate links{,2} lynx you-get bower pip sp)
 rlwrap_list=( bigloo clisp irb )
-sudo_list=({u,}mount ch{mod,own}) 
+sudo_list=({u,}mount ch{mod,own} modprobe) 
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
 
@@ -119,7 +119,7 @@ prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
 alias ftp="lftp"
 alias now="date +'[%H:%M] %A %e %B %G'"
-alias mv="mv -vi"
+alias mv="mv -i"
 
 alias tree="tree --dirsfirst -C"
 alias acpi="acpi -V"
