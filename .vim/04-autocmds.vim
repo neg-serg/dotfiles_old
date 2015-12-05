@@ -176,17 +176,6 @@ let g:indent_guides_auto_colors = 0
 autocmd vimrc VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
 autocmd vimrc VimEnter,Colorscheme * hi IndentGuidesEven ctermbg=240
 
-function! s:jedi_settings()
-    nnoremap <buffer><Leader>jr :<C-u>call jedi#rename()<CR>
-    nnoremap <buffer><Leader>jg :<C-u>call jedi#goto_assignments()<CR>
-    nnoremap <buffer><Leader>jd :<C-u>call jedi#goto_definitions()<CR>
-    nnoremap <buffer>K :<C-u>call jedi#show_documentation()<CR>
-    nnoremap <buffer><Leader>ju :<C-u>call jedi#usages()<CR>
-    nnoremap <buffer><Leader>ji :<C-u>Pyimport<Space>
-    setlocal omnifunc=jedi#completions
-    command! -nargs=0 JediRename call jedi#rename()
-endfunction
-autocmd vimrc Filetype python call <SID>jedi_settings()
 "------------------------------------------------------------------------------------------------------------------
 function! s:on_FileType_help_define_mappings()
     if &l:readonly
