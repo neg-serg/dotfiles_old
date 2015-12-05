@@ -402,7 +402,7 @@ fun! ShortenPath(path, ...)
   let base = a:0 ? a:1 : ""
   let cache_key = base . ":" . a:path
   if ! exists('s:_cache_shorten_path[cache_key]')
-    let s:_cache_shorten_path[cache_key] = system('shorten_path '.shellescape(a:path).' '.shellescape(base))
+    let s:_cache_shorten_path[cache_key] = system('~/bin/scripts/shorten_path '.shellescape(a:path).' '.shellescape(base))
   endif
   return s:_cache_shorten_path[cache_key]
 endfun
