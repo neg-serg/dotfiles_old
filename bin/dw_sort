@@ -1,41 +1,44 @@
 #!/bin/zsh
-local _dw_dir=${HOME}/dw/
 
-mkdir -p ~/dw/{pic,patches,torrent,android,java,img,swf,tar,txt,pages,fonts,vid,aud,win,gif,linux,src}
+
+local _dw_dir=${HOME}/dw/
+local _torrent_dir=${HOME}/torrent/
+local _doc_dir=${HOME}/doc/new/
+local _vid_dir=${HOME}/vid/new
+
+mkdir -p ${_dw_dir}/{pic,patches,torrent,jar,img,swf,tar,html,fonts,aud,win,gif,nix,src}
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(jpg|png|jpeg|svg|tga|psd|jpe|bmp)$" -exec mv -n -t ${_dw_dir}/pic {} + 2>/dev/null&
+    ".*\.(gif)$" -exec mv -nt ${_dw_dir}/gif {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(gif)$" -exec mv -n -t ${_dw_dir}/gif {} + 2>/dev/null&
+    ".*\.(diff|patch)$" -exec mv -nt ${_dw_dir}/patches {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(diff|patch)$" -exec mv -n -t ${_dw_dir}/patches {} + 2>/dev/null&
-find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(exe|msi)$" -exec mv -n -t ${_dw_dir}/win {} + 2>/dev/null&
+    ".*\.(exe|msi)$" -exec mv -nt ${_dw_dir}/win {} + 2>/dev/null&
 find ${_dw_dir}/ -name "*.torrent" \
-    -exec mv -n -t ${_dw_dir}/torrent {} + 2>/dev/null&
-find ${_dw_dir}/ -name "*.apk" \
-    -exec mv -n -t ${_dw_dir}/android {} + 2>/dev/null&
-find ${_dw_dir}/ -name "*.jar" \
-    -exec mv -n -t ${_dw_dir}/java {} + 2>/dev/null&
+    -exec mv -n -t ${_torrent_dir} {} + 2>/dev/null&
+find ${_dw_dir}/ -regextype posix-egrep -regex \
+    ".*\.(apk|jar)$" -exec mv -nt ${_dw_dir}/jar {} + 2>/dev/null&
 find ${_dw_dir}/ -name "*.iso" \
     -exec mv -n -t ${_dw_dir}/img {} + 2>/dev/null&
 find ${_dw_dir}/ -name "*.swf" \
     -exec mv -n -t ${_dw_dir}/swf {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(tar|zip|7z|rar|gz|xz|bz2|tgz)$" -exec mv -n -t ${_dw_dir}/tar {} + 2>/dev/null&
+    ".*\.(tar|zip|7z|rar|gz|xz|bz2|tgz)$" -exec mv -nt ${_dw_dir}/tar {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(pdf|djvu|txt|doc|docx|fb2|epub|rtf)$" -exec mv -n -t ${_dw_dir}/txt {} + 2>/dev/null&
+    ".*\.(pdf|ps|djvu|txt|doc|docx|fb2|epub|rtf)$" -exec mv -nt ${_doc_dir}/ {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(html|htm|mht|mhtml|chm|maff)$" -exec mv -n -t ${_dw_dir}/pages {} + 2>/dev/null&
+    ".*\.(html|htm|mht|mhtml|chm|maff)$" -exec mv -nt ${_dw_dir}/html {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(ttf|otf|woff|pcf|bdf)$" -exec mv -n -t ${_dw_dir}/fonts {} + 2>/dev/null&
+    ".*\.(ttf|otf|woff|pcf|bdf)$" -exec mv -nt ${_dw_dir}/fonts {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(flv|mp4|avi|mkv|mov|webm|wmv)$" -exec mv -n -t ${_dw_dir}/vid {} + 2>/dev/null&
+    ".*\.(flv|mp4|avi|mkv|mov|webm|wmv)$" -exec mv -nt ${_vid_dir}/ {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(mp3|ogg|flac|sid|xm|wma|flac|alac)$" -exec mv -n -t ${_dw_dir}/aud {} + 2>/dev/null&
+    ".*\.(mp3|ogg|flac|sid|xm|wma|flac|alac)$" -exec mv -nt ${_dw_dir}/aud {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(deb|run|bin|rpm|sh|py)$" -exec mv -n -t ${_dw_dir}/linux {} + 2>/dev/null&
+    ".*\.(deb|run|bin|rpm|sh|py)$" -exec mv -nt ${_dw_dir}/nix {} + 2>/dev/null&
 find ${_dw_dir}/ -regextype posix-egrep -regex \
-    ".*\.(c|cpp|ebuild|js)$" -exec mv -n -t ${_dw_dir}/src {} +
-rmdir ${_dw_dir}/{pic,patches,torrent,android,java,img,swf,tar,txt,pages,fonts,vid,aud,win,gif,linux,src} 2> /dev/null&
+    ".*\.(c|cpp|ebuild|js)$" -exec mv -nt ${_dw_dir}/src {} +
+
+rmdir ${_dw_dir}/{pic,patches,jar,img,swf,tar,html,fonts,aud,win,gif,nix,src} 2> /dev/null&
+rmdir ${_torrent_dir}
 
 exit 0
