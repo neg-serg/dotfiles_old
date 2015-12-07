@@ -1,13 +1,12 @@
-" extented back
-javascript <<EOM
-let back   = mappings.getDefault(modes.NORMAL, 'H').action;
-let remove = mappings.getDefault(modes.NORMAL, 'd').action;
-mappings.addUserMap([modes.NORMAL], ['H'], 'exteded back',
-    function(){
-        (gBrowser.sessionHistory.index > 0 ? back : remove)(-1)
-    }
-);
-EOM
+" javascript <<EOM " extented back
+" let back   = mappings.getDefault(modes.NORMAL, 'H').action;
+" let remove = mappings.getDefault(modes.NORMAL, 'd').action;
+" mappings.addUserMap([modes.NORMAL], ['H'], 'exteded back',
+"     function(){
+"         (gBrowser.sessionHistory.index > 0 ? back : remove)(-1)
+"     }
+" );
+" EOM
 
 " Add Mapping `C-c' copy or stop loading
 javascript <<EOF
@@ -23,9 +22,19 @@ mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text o
 );
 EOF
 
-map <C-Q> <NOP>
 map <C-O> <NOP>
 map <C-\> <NOP>
+
+map <C-S-w> <Nop>
+nmap <C-S-w> <Nop>
+vmap <C-S-w> <Nop>
+imap <C-S-w> <Nop>
+cmap <C-S-w> <Nop>
+map <C-q> <Nop>
+nmap <C-q> <Nop>
+vmap <C-q> <Nop>
+imap <C-q> <Nop>
+cmap <C-q> <Nop>
 
 noremap j 3j
 noremap k 3k
@@ -97,6 +106,7 @@ cmap <A-в> <C-S-Right><Del>
 map I_<C-w> I_<C-BS>
 map <silent> s :sidebar<Space>
 map <silent> S :sbclose<CR>
+map gn :noscript popup<cr>
 
 " Russian language keyboard mappings (UTF-8)
 nmap <silent> щ  :!xkb-switch -s us&<CR>:open<Space>
@@ -138,4 +148,3 @@ map Ё ~
 map gr gT
 map пк gT
 map пе gt
-
