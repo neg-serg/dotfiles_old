@@ -20,5 +20,3 @@ clear Lock
 remove Lock = 66
 keycode 66 = Control_L
 add Control = Control_L
-
-keycode 58 Shift_L Control_L = m M Return
