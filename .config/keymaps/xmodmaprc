@@ -15,19 +15,10 @@ keycode 174 = XF86AudioLowerVolume
 keycode 172 = XF86AudioPlay
 
 add Mod4 = Super_L
-!clear Mod4
-!add Control = Super_L Super_R
-
-!remove Shift = Shift_L
-!keysym Shift_L = Control_L
-!add Control = Control_L
-!---[ Caps ]--------------------
 clear Lock
-keycode 0x42 = Escape
-!-------------------------------
-!keycode 0x30 = apostrophe
-!keycode 0x22 = slash
 
 remove Lock = 66
 keycode 66 = Control_L
 add Control = Control_L
+
+keycode 58 Shift_L Control_L = m M Return
