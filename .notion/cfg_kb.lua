@@ -78,7 +78,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("d",    "notioncore.exec_on(_, 'stardict')"),
         kpress("i",    "notioncore.exec_on(_, '~/bin/pls -output')"),
         kpress("l",    "radare2(_)"),
-        kpress("m",    "app.byinstance('~/bin/scripts/run_mutt', 'URxvt', 'mutt')"),
+        kpress("m",    "app.byclass('~/bin/scripts/run_mutt', 'mutt')"),
         kpress("n",    "app.byinstance('nicotine.py || nicotine', 'Nicotine.py', 'nicotine.py')"),
         kpress("o",    "notioncore.exec_on(_, '~/bin/pls -sink')"),
         kpress("p",    "notioncore.exec_on(_, 'pavucontrol')"),
