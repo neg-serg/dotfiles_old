@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+size=${1:-1000}
+pref="dir"
+filecount=$(find . ! -name . -prune -print | grep -c /)
+
+for i in {1..$(( (filecount / size) + 1))}; do
+    if $(ls -1|head -n ${size}|awk 1 ORS=' '>/dev/null); then
+        mkdir "./${pref}${i}"
+        for j in $(find -maxdepth 1 -type f|head -n ${size}|awk 1 ORS=' '); do
+            mv $j "./${pref}${i}"
+        done
+    fi
+done
