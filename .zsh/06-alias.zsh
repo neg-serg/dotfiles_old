@@ -63,10 +63,6 @@ unset noglob_list rlwrap_list sudo_list sys_sudo_list
 
 alias fevil='find . -regextype posix-extended -regex'
 
-function sp() {
-  setopt extendedglob bareglobqual
-  du -sch -- ${~^@:-"*"}(D) | sort -h
-}
 alias cdu='cdu -idh'
 
 if [[ $UID != 0 ]]; then
@@ -126,13 +122,15 @@ alias acpi="acpi -V"
 alias se=extract
 alias url-quote='autoload -U url-quote-magic ; zle -N self-insert url-quote-magic'
 
-alias gs='git status --short -b'
-alias gt='git tag|sort --reverse'
-alias gp='git push'
-alias gdd='git diff'
-alias gc='git commit'
-alias glp='gl -p'
-alias gcu='git commit -m "updates"'
+if inpath git; then
+    alias gs='git status --short -b'
+    alias gt='git tag|sort --reverse'
+    alias gp='git push'
+    alias gdd='git diff'
+    alias gc='git commit'
+    alias glp='gl -p'
+    alias gcu='git commit -m "updates"'
+fi
 
 alias :x=' exit'
 alias :q=' exit'
@@ -170,49 +168,6 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias cal="${BIN_HOME}/scripts/dzen/time-date"
 alias lk="{[[ -x $(which glances)  ]] && glances} || htop || top"
 
-function resolve_file {
-  if [[ -f "$1" ]]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
-}
-
-function ta {
-    local tmp_list=/tmp/torr_list_$$
-    local torrent_dir=${HOME}/torrent
-    local torrent_handler=transmission-remote-cli
-    for i in $@; echo $i >> ${tmp_list}
-        while read line; do
-            local file_name="$(resolve_file ${line})"
-            local base_name="$(basename ${file_name})"
-            command mv ${file_name} ${torrent_dir}/${base_name} && \
-            ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
-            echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
-        done < ${tmp_list}
-    rm ${tmp_list}
-    unset file_name tmp_list
-}
-
-function w7run {
-    qemu-system-x86_64 \
-    -m 4096 \
-    -enable-kvm \
-    -cpu host \
-    -machine type=pc,accel=kvm \
-    -net nic -net user,smb=/mnt/qemu \
-    -drive file=~/1st_level/vm/w7.qcow2 \
-    -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
-    -device virtio-serial-pci \
-    -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
-    -chardev spicevmc,id=spicechannel0,name=vdagent \
-    -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
-    -boot d
-    ${BIN_HOME}/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
-}
-
 user_commands=(
   list-units is-active status show help list-unit-files
   is-enabled list-jobs show-environment)
@@ -225,38 +180,6 @@ sudo_commands=(
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
-
-if [ -z "\${which tree}" ]; then
-  tree () {
-      find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-  }
-fi
-
-# Delete 0 byte file
-d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
-
-alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias unison="unison -log=false -auto -ui=text -times"
-
-function g() {
-  if [[ $# > 0 ]]; then
-    git $@
-  else
-    git status
-  fi
-}
-
-alias google='web_search google'
-
-function sls(){
-    steamcmd '+apps_installed +quit' |\
-        awk '/AppID/ {
-                id = $2;
-                name = substr($0, index($0, " : ") + 3);
-                sub(" : .*", "", name);
-                print id ": " name;
-            }'
-}
 
 # URL Tools
 # Adds handy command line aliases useful for dealing with URLs
@@ -348,27 +271,30 @@ zle -N zleiab
 #  -F - fast scan
 #  --script=vulscan - also access vulnerabilities in target
 
-alias nmap_open_ports="nmap --open"
-alias nmap_list_interfaces="nmap --iflist"
-alias nmap_slow="nmap -sS -v -T1"
-alias nmap_fin="nmap -sF -v"
-alias nmap_full="nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -v"
-alias nmap_check_for_firewall="nmap -sA -p1-65535 -v -T4"
-alias nmap_ping_through_firewall="nmap -PS -PA"
-alias nmap_fast="nmap -F -T5 --version-light --top-ports 300"
-alias nmap_detect_versions="nmap -sV -p1-65535 -O --osscan-guess -T4 -Pn"
-alias nmap_check_for_vulns="nmap --script=vulscan"
-alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
-alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
-alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
-alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
+inpath nmap && alias nmap_open_ports="nmap --open"
+inpath nmap && alias nmap_list_interfaces="nmap --iflist"
+inpath nmap && alias nmap_slow="nmap -sS -v -T1"
+inpath nmap && alias nmap_fin="nmap -sF -v"
+inpath nmap && alias nmap_full="nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -v"
+inpath nmap && alias nmap_check_for_firewall="nmap -sA -p1-65535 -v -T4"
+inpath nmap && alias nmap_ping_through_firewall="nmap -PS -PA"
+inpath nmap && alias nmap_fast="nmap -F -T5 --version-light --top-ports 300"
+inpath nmap && alias nmap_detect_versions="nmap -sV -p1-65535 -O --osscan-guess -T4 -Pn"
+inpath nmap && alias nmap_check_for_vulns="nmap --script=vulscan"
+inpath nmap && alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
+inpath nmap && alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
+inpath nmap && alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
+inpath nmap && alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
 
 alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
 
-alias log='journalctl -f | ccze -A' #follow log
-alias log0='journalctl -b -0 | ccze -A' #current log 
-alias log1='journalctl -b -1 | ccze -A' #previous log
-alias iotop='sudo iotop -oPa'
-alias diskact="sudo iotop -Po"
+inpath journalctl && alias log='journalctl -f | ccze -A' #follow log
+inpath journalctl && alias log0='journalctl -b -0 | ccze -A' #current log 
+inpath journalctl && alias log1='journalctl -b -1 | ccze -A' #previous log
+inpath iotop && alias iotop='sudo iotop -oPa'
+inpath iotop && alias diskact="sudo iotop -Po"
 
-[[ -x $(which nc) ]] && alias nyan='nc -v nyancat.dakko.us 23'
+inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
+
+alias vuze="vuze &>/dev/null&"
+# alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css vuze &>/dev/null&"
