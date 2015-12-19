@@ -1,7 +1,7 @@
 TRAPUSR1() { rehash }; # rehash on SIGUSR1
 [[ -o interactive ]] && TRAPINT() { 
     zle && print -nP %F{blue}%B\^C%s%b
-    return $(( 128 + $1 )) 
+    return $1
 }
 
 autoload -U add-zsh-hook
