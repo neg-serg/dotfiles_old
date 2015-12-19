@@ -125,3 +125,7 @@ export PULSE_LATENCY_MSEC=60
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 export STEAM_RUNTIME=1
+
+export QEMU_AUDIO_DRV=pa
+export QEMU_PA_SOURCE=input
+export QEMU_PA_SINK=alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo
