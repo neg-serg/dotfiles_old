@@ -27,7 +27,7 @@ fi
 noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
-    translate links{,2} lynx you-get bower pip sp)
+    translate links{,2} lynx you-get bower pip sp task)
 rlwrap_list=( bigloo clisp irb )
 sudo_list=({u,}mount ch{mod,own} modprobe) 
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
@@ -165,7 +165,8 @@ alias objdump='objdump -M intel -d'
 alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
-alias cal="${BIN_HOME}/scripts/dzen/time-date"
+alias cal="task calendar"
+alias Cal="${BIN_HOME}/scripts/dzen/time-date"
 alias lk="{[[ -x $(which glances)  ]] && glances} || htop || top"
 
 user_commands=(
@@ -297,4 +298,15 @@ inpath iotop && alias diskact="sudo iotop -Po"
 inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
 
 alias vuze="vuze &>/dev/null&"
-# alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css vuze &>/dev/null&"
+# alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css"
+
+(){
+    local dist_dir="/one/dist"
+    local jetbrain_products=(idea pycharm rubymine webstorm clion)
+    for i in ${jetbrain_products[@]}; do
+        jetbrains_path="${dist_dir}/${i}/bin/${i}.sh"
+        if readlink -fq ${jetbrains_path}>/dev/null; then
+            alias "$i=${jetbrains_path} > /dev/shm/${i}$$ &" 
+        fi
+    done
+}
