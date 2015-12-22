@@ -46,9 +46,9 @@ end
 
 function mpdmenu_handler(x)
     local action = {
-        ["title_copy"]=function() notioncore.exec('mpc current | xsel -bi') end,
-        ["artist_copy"]=function() notioncore.exec('mpc current -f \'[%artist%]\'|xsel -bi') end,
-        ["mpd_show"]=function() notioncore.exec('~/bin/mpd_dzen_info') end,
+        ["1 - [ title_copy ]"]=function() notioncore.exec('mpc current | xsel -bi') end,
+        ["2 - [ artist_copy ]"]=function() notioncore.exec('mpc current -f \'[%artist%]\'|xsel -bi') end,
+        ["3 - [ mpd_show ]"]=function() notioncore.exec('~/bin/mpd_dzen_info') end,
     }
     action[x]()
 end
