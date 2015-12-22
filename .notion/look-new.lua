@@ -1,16 +1,24 @@
-local basefont = "xft:PragmataPro for Powerline-12:bold"
-local statusfont = "xft:PragmataPro for Powerline-12:bold"
+neg = {}
+
+neg.basefont = "xft:PragmataPro for Powerline-12:bold"
+neg.statusfont = "xft:PragmataPro for Powerline-12:bold"
+
+neg.padding_color="#000000"
+neg.def_bg="#000000"
+neg.def_fg="#666666"
+neg.scratchpad_border="#1F3B4F"
+neg.frame_def_border="#000000"
 
 if not gr.select_engine("de") then return end
 de.reset()
 
 de.defstyle("*", {
-    font = basefont,
-    padding_colour = "#000000",
-    shadow_colour = "#000000",
-    highlight_colour = "#000000",
-    background_colour = "#000000",
-    foreground_colour = "#666666",
+    font = neg.basefont,
+    padding_colour = neg.padding_color,
+    shadow_colour = neg.frame_def_border,
+    highlight_colour = neg.frame_def_border,
+    background_colour = neg.def_bg,
+    foreground_colour = neg.def_fg,
     padding_pixels = 0,
     spacing = 0,
     highlight_pixels = 0,
@@ -20,22 +28,22 @@ de.defstyle("*", {
 })
 
 de.defstyle("frame", {
-    shadow_colour = "#000000",
+    shadow_colour = neg.frame_def_border,
+    highlight_colour = neg.frame_def_border,
     border_sides=tnl,
-    highlight_colour = "#000000",
-    padding_colour = "#000000",
-    background_colour = "#000000",
+    padding_colour = neg.padding_color,
+    background_colour = neg.def_bg,
     foreground_colour = "#ffffff",
     padding_pixels = 0,
     highlight_pixels = 1,
     shadow_pixels = 1,
     border_style="groove",
     de.substyle("*-*-active-scratchpad", {
-        shadow_colour = "#1F3B4F",
+        shadow_colour = neg.scratchpad_border,
+        highlight_colour = neg.scratchpad_border,
         border_sides=tnl,
-        highlight_colour = "#1F3B4F",
-        padding_colour = "#000000",
-        background_colour = "#000000",
+        padding_colour = neg.padding_color,
+        background_colour = neg.def_bg,
         foreground_colour = "#ffffff",
         padding_pixels = 2,
         highlight_pixels = 2,
@@ -44,9 +52,9 @@ de.defstyle("frame", {
     }),
     de.substyle("active", {
         shadow_colour = "#222222",
-        border_sides=tnl,
         highlight_colour = "#222222",
-        padding_colour = "#000000",
+        border_sides=tnl,
+        padding_colour = neg.padding_color,
         background_colour = "#000000",
         foreground_colour = "#ffffff",
         padding_pixels = 0,
@@ -65,10 +73,10 @@ de.defstyle("frame-ionframe",{
 
 de.defstyle("frame-transient", {
     shadow_colour = "#1F3B4F",
-    border_sides=tnl,
     highlight_colour = "#1F3B4F",
-    padding_colour = "#000000",
-    background_colour = "#000000",
+    border_sides=tnl,
+    padding_colour = neg.padding_color,
+    background_colour = neg.def_bg,
     foreground_colour = "#ffffff",
     padding_pixels = 2,
     highlight_pixels = 2,
@@ -85,46 +93,44 @@ de.defstyle("frame-floating", {
 
 
 de.defstyle("tab", {
-    font = basefont,
-    padding_colour = "#000000",
+    font = neg.basefont,
+    padding_colour = neg.padding_color,
     shadow_colour = "#53A6A6",
     highlight_colour = "#53A6A6",
-    background_colour = "#000000",
+    background_colour = neg.def_bg,
     foreground_colour = "#899CA1",
     foreground_colour = "#899CA1",
     padding_pixels = 3,
     highlight_pixels = 1,
     shadow_pixels = 1,
     spacing = 0,
-    --border_sides=tnl,
-    --border_sides = lr,
     border_style = "inlaid",
     border_sides = tb,
     de.substyle("active-selected", {
-        padding_colour = "#000000",
+        padding_colour = neg.padding_color,
         shadow_colour = "#287373",
         highlight_colour = "#287373",
-        background_colour = "#000000",
+        background_colour = neg.def_bg,
         foreground_colour = "#AAAAAA",
     }),
     de.substyle("active-unselected", {
         shadow_colour = "#222222",
         highlight_colour = "#222222",
-        background_colour = "#000000",
+        background_colour = neg.def_bg,
         foreground_colour = "#898989",
     }),
     de.substyle("inactive-selected", {
-        padding_colour = "#000000",
         shadow_colour = "#535353",
         highlight_colour = "#535353",
-        background_colour = "#000000",
-        foreground_colour = "#666666",
+        padding_colour = neg.padding_color,
+        background_colour = neg.def_bg,
+        foreground_colour = neg.def_fg,
     }),
     de.substyle("inactive-unselected", {
         shadow_colour = "#222222",
         highlight_colour = "#222222",
-        background_colour = "#000000",
-        foreground_colour = "#666666",
+        background_colour = neg.def_bg,
+        foreground_colour = neg.def_fg,
     }),
     text_align = "center",
 })
@@ -134,8 +140,8 @@ de.defstyle("tab-frame", {
     de.substyle("*-*-*-*-activity", {
         shadow_colour = "#666666",
         highlight_colour = "#000000",
-        background_colour = "#000000",
-        foreground_colour = "#666666",
+        background_colour = neg.def_bg,
+        foreground_colour = neg.def_fg,
     }),
 })
 
@@ -154,20 +160,20 @@ de.defstyle("tab-menuentry", {
 de.defstyle("tab-menuentry-big", {
     based_on = "tab-menuentry",
     padding_pixels = 0,
-    font = basefont,
+    font = neg.basefont,
 })
 
 de.defstyle("input", {
-    padding_colour = "#000000",
+    padding_colour = neg.padding_color,
     shadow_colour = "#3579a8",
     highlight_colour = "#3579a8",
-    background_colour = "#000000",
+    background_colour = neg.def_bg,
     foreground_colour = "#899CA1",
     padding_pixels = 2,
     highlight_pixels = 1,
     shadow_pixels = 1,
     spacing = 0,
-    font = basefont,
+    font = neg.basefont,
     border_style = "inlaid",
     de.substyle("*-cursor", {
         background_colour = "#5E468C",
@@ -202,19 +208,19 @@ function inputstyle(mode)
             background_colour = "#999999",
             foreground_colour = "#000000",
         }),
-		font = basefont,
+		font = neg.basefont,
 	}
 	
 	if mode == "insert" then
 		-- Blue
 		t.shadow_colour = "#3579a8"
 		t.highlight_colour = "#3579a8"
-		t.background_colour = "#000000"
+		t.background_colour = neg.def_bg
 	else
 		-- Grey
 		t.shadow_colour = "#313131"
 		t.highlight_colour = "#313131"
-		t.background_colour = "#000000"
+		t.background_colour = neg.def_bg
 	end
 
 	de.defstyle("input", t);
@@ -223,16 +229,16 @@ end
 
 
 de.defstyle("stdisp", {
-  based_on = "*",
-  font=statusfont,
-  padding_colour = "#000000",
-  shadow_colour = "#3579a8",
-  highlight_colour = "#3579a8",
-  background_colour = "#000000",
-  foreground_colour = "#AAAAAA",
-  padding_pixels    = 2,
-  highlight_pixels  = 1,
-  shadow_pixels     = 1,
-  spacing           = 0,
+    based_on = "*",
+    font=neg.statusfont,
+    padding_colour = neg.padding_color,
+    shadow_colour = "#3579a8",
+    highlight_colour = "#3579a8",
+    background_colour = neg.def_bg,
+    foreground_colour = "#AAAAAA",
+    padding_pixels    = 2,
+    highlight_pixels  = 1,
+    shadow_pixels     = 1,
+    spacing           = 0,
 })
 gr.refresh()
