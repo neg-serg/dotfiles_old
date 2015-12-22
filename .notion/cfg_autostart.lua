@@ -6,9 +6,10 @@ function start_mpdstat()
         notioncore.exec('lua ~/.notion/mpd_dzen.lua')
     end
 end
+
 function start_rofi()
-    local rofi_font = '-font "Pragmata Pro for Powerline bold 12 "'
-    notioncore.exec('/usr/bin/rofi ' .. rofi_font ..  ' -b -disable-history -columns 10 -lines 1 -width 1850 -yoffset -22 -key-run mod1-grave -location 6')
+    notioncore.exec('/usr/bin/rofi ' .. rofi.font ..  ' -b -disable-history -columns 10 -lines 1 -width '..rofi.width..' -yoffset -22 -key-run mod1-grave -location 6')
 end
+
 start_mpdstat()
 start_rofi()

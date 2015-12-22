@@ -1,7 +1,3 @@
-dzen_panel_font_= "'PragmataPro for Powerline:style=bold:size=12'"
-dzen_bg_='"#000000"'
-dzen_h_="19"
-
 --       @www  data  gtd  gtd  code  text  play  pics  game  adm  news            
 --= { "", "", "", "", "", "", "", "", "", ""}
 --⮁ M ⮁

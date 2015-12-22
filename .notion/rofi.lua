@@ -1,8 +1,19 @@
 dopath("rofi_handlers")
 
-rofi = {}
+local width = nil
 
-local function rofi_template(pref,file_name,lines,fn)
+rofi = {}
+rofi.fontsz = 17
+rofi.font = '-font "' .. 'Pragmata Pro for Powerline' .. ' '.. 'bold' ..' ' .. rofi.fontsz .. '"'
+rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 
+if width == nil then -- rofi.width = 1850
+    local screen_width_fd = io.popen("xrandr -q |awk '/Screen/{print $8}'","r")
+    width = screen_width_fd:read("*l") - 70
+    rofi.width = width
+    screen_width_fd:close()
+end
+
+local function rofi_template(pref,file_name,lines,fn,flags)
     ------------------------------------------
     local function new_ipc_file(file_name)
         local shm_dir = "/tmp"
@@ -32,17 +43,17 @@ local function rofi_template(pref,file_name,lines,fn)
     local columns_str = ""
     local ipc_file = new_ipc_file(file_name)
     ------------------------------------------
-    local font   = '-font "' .. 'Pragmata Pro for Powerline' .. ' '.. 'bold' ..' ' .. 12 .. '"'
-    local common = ' -auto-select -dmenu -opacity 95 -yoffset -22 '
-    local colors = ' -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020"'
-    local width  = 1850
-
+    local common = ' -auto-select -dmenu -opacity 95 ' .. rofi.yoff .. ' '
+    local colors = ' -fg '..neg.rofi.fg..' -bg '..neg.rofi.bg..' -hlfg '..neg.rofi.hlfg..' -hlbg '..neg.rofi.hlbg..' -bc '..neg.rofi.bc
     if lines == nil then lines = 10 else
         columns = 10
         columns_str = ' -columns ' .. columns
     end
-    local rofi_cmd='rofi '.. font .. common .. ' -lines ' .. lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. width
+
+    if flags == nil then flags = "" end
+
+    local rofi_cmd='rofi '.. rofi.font .. common .. ' -lines ' .. lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
+    ' -padding 2 -width ' .. rofi.width .. flags
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
     handle_input(fn)
@@ -68,7 +79,7 @@ local function complete_name()
     local t={}
     local list_add=(function(s) if s then table.insert(t, s) end end)
     notioncore.clientwin_i(function(reg)
-             if not string.match(reg:name(), "dzen.*title") then
+             if not (string.match(reg:name(), "dzen.*title") or string.match(reg:name(), "stalonetray"))  then
                 list_add(reg:name())
              end
              return true
@@ -87,10 +98,13 @@ local function complete_mainmenu()
 end
 
 local function complete_mpd_menu()
-    local t = { "title_copy", "artist_copy", "mpd_show" }
-    return t
+    local t = { "title_copy", "artist_copy", "mpd_show"  }
+    local tt = {}
+    for i,v in ipairs(t) do
+        table.insert(tt, i .. " - [ " .. v .. " ]")
+    end
+    return tt
 end
-
 
 function rofi.renameworkspace(mplex,ws)
     if not mplex then
@@ -114,7 +128,7 @@ function rofi.mainmenu()
 end
 
 function rofi.mpdmenu()
-    local x = rofi_template("mpdmenu","mpd",_,complete_mpd_menu)
+    local x = rofi_template("mpdmenu","mpd",_,complete_mpd_menu," -auto-select ")
     mpdmenu_handler(x)
 end
 

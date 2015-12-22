@@ -10,7 +10,7 @@ if hook_deinit then
     hook_deinit:add(dzen_delete)
 end
 
-dzen_pipe = io.popen("dzen2 -dock -bg ".. dzen_bg_ .." -h ".. dzen_h_ .." -tw 0 -x 0 -ta l -w 1000 -p -fn ".. dzen_panel_font_ .. " ", "w")
+dzen_pipe = io.popen("dzen2 -dock -bg ".. neg.dzen.bg_ .." -h ".. neg.dzen.h_ .." -tw 0 -x 0 -ta l -w ".. neg.dzen.main_w_ .. " -p -fn ".. neg.dzen.panel_font_ .. " ", "w")
 dzen_pipe:setvbuf("line")
 ws_curr = nil
 kbd_template = nil
