@@ -133,10 +133,21 @@ function rofi.mpdmenu()
 end
 
 function rofi.goto_win()
-    local x = rofi_template("goto_win","go",_,complete_name)
-    local win = notioncore.lookup_clientwin(x)
-    if win then
-        notioncore.defer(function () win:goto_focus() end)
+    local t = {}
+    t = complete_name()
+    if #t > 1 then
+        local x = rofi_template("goto_win","go",_,complete_name)
+        local win = notioncore.lookup_clientwin(x)
+        if win then
+            notioncore.defer(function () win:goto_focus() end)
+        end
+    else
+        local x = t[1]
+        local win = notioncore.lookup_clientwin(x)
+        if win then
+            notioncore.defer(function () win:goto_focus() end)
+        end
+
     end
 end
 
