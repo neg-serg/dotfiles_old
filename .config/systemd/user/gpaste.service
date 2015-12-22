@@ -1,0 +1,8 @@
+[Unit]
+Description=Gpaste
+
+[Service]
+ExecStart=/usr/bin/gpaste-client daemon
+
+[Install]
+WantedBy=default.target
