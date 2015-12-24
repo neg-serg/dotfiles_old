@@ -308,3 +308,5 @@ alias vuze="vuze &>/dev/null&"
         fi
     done
 }
+
+alias java='java "$_SILENT_JAVA_OPTIONS"'
