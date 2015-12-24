@@ -4,13 +4,13 @@ Neg_kb.WMPlex_toplevel = {
     ---------------------
     -- WMPlex toplevel --
     ---------------------
-    kpress("M4+slash",   "notioncore.goto_previous()"),
-    kpress("M1+Tab",     "notioncore.goto_previous()"),
-    kpress("M1+space",   "nop()"),
-    kpress("M4+F2",      "repl(_)"),
-    kpress("M4+F11",     "rofi.mainmenu()"),
-    kpress("M4+Sh+L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
-    kpress("M4+Sh+D", "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
+    kpress("M4+slash", "notioncore.goto_previous()"),
+    kpress("M1+Tab",   "notioncore.goto_previous()"),
+    kpress("M1+space", "nop()"),
+    kpress("M4+F2",    "repl(_)"),
+    kpress("M4+F11",   "rofi.mainmenu()"),
+    kpress("M4+Sh+L",  "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
+    kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     -------------------------------------------------------------------------------------
     --[[ SCRATCHPADS  ]]--------------------------------
     --------------------
@@ -25,18 +25,6 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+G",    "rofi.goto_or_create_ws(_)"),
     kpress("M1+G",       "rofi.goto_win(_)"),
     kpress("M4+F9",      "notioncore.create_ws(_)"),
-    -------------------------------------------------------------------------------------
-    --[[  PLAYER CONTROL ]]---------------------------------
-    -----------------------
-    kpress("XF86AudioPrev",        "notioncore.exec_on(_, 'mpc prev')"),
-    kpress("XF86AudioNext",        "notioncore.exec_on(_, 'mpc next')"),
-    kpress("XF86AudioPlay",        "notioncore.exec_on(_, 'mpc toggle')"),
-    kpress("XF86AudioStop",        "notioncore.exec_on(_, 'mpc stop')"),
-    kpress("XF86AudioLowerVolume", "notioncore.exec_on(_, 'mpc volume -1')"),
-    kpress("XF86AudioRaiseVolume", "notioncore.exec_on(_, 'mpc volume +1')"),
-    kpress("M4+Ct+T",              "notioncore.exec_on(_, 'dipser -S')"),
-    kpress("M4+8",                 "notioncore.exec_on(_, 'mpc volume 0 || amixer -q set Master 0% mute')"),
-    kpress("M4+8+Sh",              "notioncore.exec_on(_, 'mpc volume 100 || amixer -q set Master 100% unmute ')"),
     submap("M4+Ct+R", {
         kpress("t", "notioncore.exec_on(_, 'xcalib -c')"),
         kpress("i", "notioncore.exec_on(_, 'xcalib -alter -invert')"),
@@ -44,13 +32,9 @@ Neg_kb.WMPlex_toplevel = {
     }),
 
     -------------------------------------------------------------------------------------
-    --[[ RESTART ]]----------------------------------------
-    ---------------
-    kpress("M4+apostrophe", "notioncore.restart()"),
-    -------------------------------------------------------------------------------------
     --[[ SLEEP ]]-----------------------------------------
     -------------
-    kpress("XF86Sleep", "notioncore.exec_on(_, 'sudo pm-suspend')"),
+    kpress("XF86Sleep", "notioncore.exec_on(_, 'sudo systemctl suspend')"),
     kpress("M4+Ct+Sh+u", "notioncore.exec_on(_, 'sudo systemctl suspend')"),
     -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
@@ -154,8 +138,8 @@ Neg_kb.WFrame = {
 }
 
 Neg_kb.WFrame_toplevel = {
-    kpress("M4+A",         "rofi.attach_win(_)"),
-    kpress("M1+A",         "notioncore.tagged_attach(_)"),
+    kpress("M4+A", "rofi.attach_win(_)"),
+    kpress("M1+A", "notioncore.tagged_attach(_)"),
     submap("M1+E", {
         kpress("H", "WFrame.maximize_horiz(_)"),
         kpress("V", "WFrame.maximize_vert(_)"),
