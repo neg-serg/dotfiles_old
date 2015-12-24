@@ -127,7 +127,7 @@ if (executable("ghci") && executable("ghcmod"))
     NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
     NeoBundle 'eagletmt/ghcmod-vim.git'
 endif                                        
-NeoBundle 'derekwyatt/vim-scala' "different initial scala support for vim
+NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
 NeoBundle 'tpope/vim-rake.git' "ruby rake support
