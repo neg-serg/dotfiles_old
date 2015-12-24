@@ -8,7 +8,7 @@ function start_mpdstat()
 end
 
 function start_rofi()
-    notioncore.exec('/usr/bin/rofi ' .. rofi.font ..  ' -b -disable-history -columns 10 -lines 1 -width '..rofi.width..' -yoffset -22 -key-run mod1-grave -location 6')
+    notioncore.exec('/usr/bin/rofi ' .. rofi.font ..  ' -b -disable-history -columns 10 -lines 1 -width '..rofi.width..' -yoffset -22 -key-run Alt-grave -location 6')
 end
 
 start_mpdstat()
