@@ -1,5 +1,5 @@
 -------------------------------------[[ KLUDGES ]]----------------------------------
-defwinprop{lazy_resize=true}
+defwinprop{lazy_resize=true,new_group=true}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true}
