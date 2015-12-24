@@ -119,6 +119,7 @@ setopt interactivecomments # Allow interactive comments
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
+setopt glob_star_short # */** -> **
 
 # watch for everyone but me and root
 watch=(notme root)
