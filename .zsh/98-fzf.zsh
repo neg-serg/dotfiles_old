@@ -115,6 +115,19 @@ function pl(){
     fi
 }
 
+fmpc() {
+  local song_position
+  song_position=$(mpc -f "%position%) %artist% - %title%" playlist | \
+    fzf-tmux --query="$1" --reverse --select-1 --exit-0 | \
+    sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
+  [ -n "$song_position" ] && mpc -q play $song_position
+}
+
+fq() {
+  local file=$(find ${1:-.} -maxdepth 1 -type f -print 2> /dev/null | fzf +m)
+  echo ${file}
+}
+
 
 zle -N fe 
 bindkey "^Xe" fe
