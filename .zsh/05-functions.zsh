@@ -828,3 +828,90 @@ EOF
 
   spark ${@:-`cat`}
 fi
+
+
+inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
+nexec() { [[ -z $(pidof "$1") ]]; }
+
+
+function sp() {
+  setopt extendedglob bareglobqual
+  du -sch -- ${~^@:-"*"}(D) | sort -h
+}
+
+function resolve_file {
+  if [[ -f "$1" ]]; then
+    echo $(readlink -f "$1")
+  elif [[ "${1#/}" == "$1" ]]; then
+    echo "$(pwd)/$1"
+  else
+    echo $1
+  fi
+}
+
+function ta {
+    local tmp_list=/tmp/torr_list_$$
+    local torrent_dir=${HOME}/torrent
+    local torrent_handler=transmission-remote-cli
+    for i in $@; echo $i >> ${tmp_list}
+        while read line; do
+            local file_name="$(resolve_file ${line})"
+            local base_name="$(basename ${file_name})"
+            command mv ${file_name} ${torrent_dir}/${base_name} && \
+            ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
+            echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
+        done < ${tmp_list}
+    rm ${tmp_list}
+    unset file_name tmp_list
+}
+
+function w7run {
+    qemu-system-x86_64 \
+    -m 4096 \
+    -enable-kvm \
+    -cpu host \
+    -machine type=pc,accel=kvm \
+    -net nic -net user,smb=/mnt/qemu \
+    -drive file=~/1st_level/vm/w7.qcow2 \
+    -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
+    -device virtio-serial-pci \
+    -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
+    -chardev spicevmc,id=spicechannel0,name=vdagent \
+    -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
+    -boot d
+    ${BIN_HOME}/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
+}
+
+
+if [ -z "\${which tree}" ]; then
+  tree () {
+      find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+  }
+fi
+
+# Delete 0 byte file
+d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
+
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+alias unison="unison -log=false -auto -ui=text -times"
+
+function g() {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
+
+alias google='web_search google'
+
+function sls(){
+    steamcmd '+apps_installed +quit' |\
+        awk '/AppID/ {
+                id = $2;
+                name = substr($0, index($0, " : ") + 3);
+                sub(" : .*", "", name);
+                print id ": " name;
+            }'
+}
+
