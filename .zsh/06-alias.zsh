@@ -233,14 +233,11 @@ abk=(
     'T'    '| tail'
     'N'    '&>/dev/null'
     'S'    '| sort -h '
-    'W'    '|& wc -l'
     'V'    '|& vim -'
-    "jj"   "!$"
+    'W'    '|& v -'
     "jk"   "!-2$"
-    "jjk"  "!-3$"
-    "jkk"  "!-4$"
-    "kk"   "!-5$"
-    "kj"   "!-6$"
+    "jj"   "!-3$"
+    "kk"   "!-4$"
 )
 
 zleiab() {
@@ -292,6 +289,7 @@ alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
 inpath journalctl && alias log='journalctl -f | ccze -A' #follow log
 inpath journalctl && alias log0='journalctl -b -0 | ccze -A' #current log 
 inpath journalctl && alias log1='journalctl -b -1 | ccze -A' #previous log
+alias log4="< /tmp/notionerr$(pidof notion)"
 inpath iotop && alias iotop='sudo iotop -oPa'
 inpath iotop && alias diskact="sudo iotop -Po"
 
