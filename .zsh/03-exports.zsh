@@ -48,6 +48,7 @@ path_dirs=(
 	${HOME}/.rvm/bin
 	${BIN_HOME}/{,go/bin}
     $(ruby -e 'puts Gem.user_dir')/bin
+    /opt/android-sdk/platform-tools
 )
 
 export PATH=${(j_:_)path_dirs}
