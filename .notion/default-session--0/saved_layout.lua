@@ -41,7 +41,7 @@ return {
                                     ["managed"] = {
                                         [1] = {
                                             ["type"] = "WGroupCW",
-                                            ["name"] = "WGroupCW<1>",
+                                            ["name"] = "WGroupCW",
                                             ["geom"] = {
                                                 ["y"] = 2,
                                                 ["x"] = 2,
@@ -54,7 +54,7 @@ return {
                                                 [1] = {
                                                     ["type"] = "WClientWin",
                                                     ["bottom"] = true,
-                                                    ["windowid"] = 12582921,
+                                                    ["windowid"] = 16777225,
                                                     ["checkcode"] = 1,
                                                     ["sizepolicy"] = "full",
                                                     ["geom"] = {
@@ -152,14 +152,23 @@ return {
                             ["h"] = 1200,
                         },
                         ["split_tree"] = {
-                            ["regparams"] = {
-                                ["mode"] = 2,
-                                ["type"] = "WFrame",
-                                ["name"] = "WFrame<2>",
-                                ["managed"] = {
+                            ["tls"] = 1176,
+                            ["tl"] = {
+                                ["regparams"] = {
+                                    ["mode"] = 2,
+                                    ["type"] = "WFrame",
+                                    ["name"] = "WFrame<2>",
+                                    ["managed"] = {
+                                    },
                                 },
+                                ["type"] = "WSplitRegion",
                             },
-                            ["type"] = "WSplitRegion",
+                            ["dir"] = "vertical",
+                            ["brs"] = 24,
+                            ["br"] = {
+                                ["type"] = "WSplitST",
+                            },
+                            ["type"] = "WSplitSplit",
                         },
                     },
                 },
@@ -687,7 +696,7 @@ return {
                 ["managed"] = {
                     [1] = {
                         ["type"] = "WGroupCW",
-                        ["name"] = "WGroupCW",
+                        ["name"] = "WGroupCW<3>",
                         ["geom"] = {
                             ["y"] = 2,
                             ["x"] = 2,
@@ -700,7 +709,7 @@ return {
                             [1] = {
                                 ["type"] = "WClientWin",
                                 ["bottom"] = true,
-                                ["windowid"] = 16777217,
+                                ["windowid"] = 20971521,
                                 ["checkcode"] = 2,
                                 ["sizepolicy"] = "full",
                                 ["geom"] = {
