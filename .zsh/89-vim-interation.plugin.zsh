@@ -57,11 +57,11 @@ function process_list() {
 
 function v {
     local wid=$(xdotool search --classname wim)
-    local wim_font="PragmataPro for Powerline"
-    local font_size=20
-    local wim_font_s="Mensch:size=14"
-    local sock_path="${HOME}/1st_level/vim.socket"
-    local srv_name="VIM"
+    readonly local wim_font="PragmataPro for Powerline"
+    readonly local wim_font_s="Mensch:size=14"
+    readonly local font_size=20
+    readonly local sock_path="${HOME}/1st_level/vim.socket"
+    readonly local srv_name="VIM"
     
     # readonly to_normal="--remote-send <C-\><C-N>:call<SPACE>foreground()<CR>"
     readonly to_normal="<C-\><C-N>:call<SPACE>foreground()<CR>"
