@@ -10,10 +10,6 @@ super + 8
     mpc volume 0 || amixer -q set Master 0% mute
 super + shift + 8
     mpc volume 100 || amixer -q set Master 100% unmute 
-{alt + Tab, super + slash}
-    /usr/bin/notionflux -e 'notioncore.goto_previous()'
-super + F11
-    /usr/bin/notionflux -e 'rofi.mainmenu()'
 {super + control + shift + u,XF86Sleep}
     sudo systemctl suspend
 super + U
@@ -22,6 +18,7 @@ super + c
     /home/neg/bin/clip >/dev/null&
 super + u
     udiskie-umount -a
+
 # alt + e ; {d, o, i, q, O, K, s, t, v, w, l, m, n, G, R, a, control + t} ;
 #     { stardict || goldendict, \
 #       /home/neg/bin/pls -sink, \

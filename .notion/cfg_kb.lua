@@ -4,20 +4,20 @@ Neg_kb.WMPlex_toplevel = {
     ---------------------
     -- WMPlex toplevel --
     ---------------------
-    kpress("M4+slash", "notioncore.goto_previous()"),
-    kpress("M1+Tab",   "notioncore.goto_previous()"),
-    kpress("M1+space", "nop()"),
+    kpress("M1+space", nil),
     kpress("M4+F2",    "repl(_)"),
-    kpress("M4+F11",   "rofi.mainmenu()"),
+    kpress("M4+M",     "notioncore.exec_on(ioncore.current(), '~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid())"),
     kpress("M4+Sh+L",  "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
     kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
+    kpress("M4+F11",   "rofi.mainmenu()"),
+    kpress("M4+slash", "notioncore.goto_previous()"),
+    kpress("M1+Tab",   "notioncore.goto_previous()"),
     -------------------------------------------------------------------------------------
     --[[ SCRATCHPADS  ]]--------------------------------
     --------------------
     kpress("M4+d",       "console(_)"),
     kpress("M4+p",       "named_scratchpad(_, 'float2')"),
     kpress("M4+F",       "ncmpcpp(_)"),
-    
     kpress("M4+E",       "named_scratchpad(_, 'im')"),
     kpress("M4+Ct+9",    "named_scratchpad(_, 'wicd')"),
     kpress("M4+Ct+2",    "named_scratchpad(_, 'alsa')"),
@@ -32,11 +32,6 @@ Neg_kb.WMPlex_toplevel = {
     }),
 
     -------------------------------------------------------------------------------------
-    --[[ SLEEP ]]-----------------------------------------
-    -------------
-    kpress("XF86Sleep", "notioncore.exec_on(_, 'sudo systemctl suspend')"),
-    kpress("M4+Ct+Sh+u", "notioncore.exec_on(_, 'sudo systemctl suspend')"),
-    -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
     --------------------------
     kpress("M4+1",     "app.byclass('~/bin/wim', 'wim')"),
@@ -50,11 +45,7 @@ Neg_kb.WMPlex_toplevel = {
     --[[  MISC  ]]---------------------------------------
     --------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
-    kpress("M4+U",     "notioncore.exec_on(_, 'udiskie-umount -a')"),
-    kpress("M4+M",     "notioncore.exec_on(_, '~/bin/scripts/rofi_xprop')"),
-    kpress("M4+Sh+U",  "notioncore.exec_on(_, 'eject -T')"),
     kpress("M4+Sh+F",  "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
-    kpress("M4+c",     "notioncore.exec_on(_, '~/bin/clip')"),
     kpress("M4+Sh+m",  "rofi.mpdmenu()"),
     kpress("M4+Sh+t",  "named_scratchpad(_, 'stalonetray')"),
     submap("M1+E",{
