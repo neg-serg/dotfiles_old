@@ -18,6 +18,8 @@ super + c
     /home/neg/bin/clip >/dev/null&
 super + u
     udiskie-umount -a
+super + M
+    /home/neg/bin/scripts/rofi_mpd
 
 # alt + e ; {d, o, i, q, O, K, s, t, v, w, l, m, n, G, R, a, control + t} ;
 #     { stardict || goldendict, \
