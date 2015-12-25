@@ -39,8 +39,13 @@ function vim_file_open() (
         else
             if [[ -z "${file_name}"  ]]; then
                 echo "${pref} ${fancy_name} ${msg_delim} ${new_file_msg}"
-            elif [[ -d "${file_name}"  ]]; then
-                echo "${pref} ${fancy_name} ${msg_delim} ${dir_msg}"
+            elif [[ -d "${file_name}" ]]; then
+                if [[ $(readlink -f ${file_name}) == $(pwd) ]]; then
+                    local spec_fancy_name="${decoration} $fg[white]current dir ${decoration}"
+                    echo "${pref} ${spec_fancy_name} ${msg_delim} ${dir_msg}"
+                else
+                    echo "${pref} ${fancy_name} ${msg_delim} ${dir_msg}"
+                fi
             fi
         fi
     }
