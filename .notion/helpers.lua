@@ -25,9 +25,6 @@ function radare2(reg)
     named_scratchpad(reg, 'radare2')
 end
 
-function nop()
-end
-
 function move_scratch(x, y, w, h)
    notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
