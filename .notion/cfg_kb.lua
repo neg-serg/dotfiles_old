@@ -30,7 +30,6 @@ Neg_kb.WMPlex_toplevel = {
         kpress("i", "notioncore.exec_on(_, 'xcalib -alter -invert')"),
         kpress("r", "notioncore.exec_on(_, 'xcalib -red 0.1 0.0 1 -a')"),
     }),
-
     -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
     --------------------------
@@ -46,7 +45,6 @@ Neg_kb.WMPlex_toplevel = {
     --------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
     kpress("M4+Sh+F",  "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
-    kpress("M4+Sh+m",  "rofi.mpdmenu()"),
     kpress("M4+Sh+t",  "named_scratchpad(_, 'stalonetray')"),
     submap("M1+E",{
         kpress("Ct+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
