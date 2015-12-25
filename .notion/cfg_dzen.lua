@@ -16,7 +16,6 @@ ws_curr = nil
 kbd_template = nil
 sys_template = nil
 date = nil
-mpd_status = nil
 netmon = nil
 xkb_layout = nil
 
@@ -92,8 +91,6 @@ end
 
 date_timer = notioncore.create_timer()
 date_timer:set(1000, date_update)
-mpd_timer = notioncore.create_timer()
-mpd_timer:set(1000, mpd_update)
 kbd_update()
 
 local positions = {}    -- positions where the entries will be
