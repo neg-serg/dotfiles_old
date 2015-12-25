@@ -97,15 +97,6 @@ local function complete_mainmenu()
     return t
 end
 
-local function complete_mpd_menu()
-    local t = { "title_copy", "artist_copy", "mpd_show"  }
-    local tt = {}
-    for i,v in ipairs(t) do
-        table.insert(tt, i .. " - [ " .. v .. " ]")
-    end
-    return tt
-end
-
 function rofi.renameworkspace(mplex,ws)
     if not mplex then
         assert(ws) mplex=notioncore.find_manager(ws, "WMPlex")
@@ -125,11 +116,6 @@ end
 function rofi.mainmenu()
     local x = rofi_template("mainmenu","mainmenu",_,complete_mainmenu)
     mainmenu_handler(x)
-end
-
-function rofi.mpdmenu()
-    local x = rofi_template("mpdmenu","mpd",_,complete_mpd_menu," -auto-select ")
-    mpdmenu_handler(x)
 end
 
 function rofi.goto_win()

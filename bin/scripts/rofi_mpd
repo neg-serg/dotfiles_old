@@ -1,0 +1,33 @@
+#!/bin/zsh
+
+rofi_options=" -dmenu -auto-select -font 'Pragmata Pro for Powerline bold 17' -b -disable-history -columns 10 -lines 1 -width 1850 -yoffset -22 -location 6"
+
+mpd_menu=(
+    "title_copy" 
+    "artist_copy" 
+    "mpd_show"
+)
+
+function generate(){
+    local j=0
+    for i in ${mpd_menu[@]}; do
+        (( j++ ))
+        echo "$j - [ $i ]"
+    done
+}
+
+function handler(){
+    while IFS= read -r arg; do 
+        if [[ ${arg} =~ ".*title_copy.*" ]]; then
+            mpc current | xsel -bi
+        fi
+        if [[ ${arg} =~ ".*artist_copy.*" ]]; then
+            mpc current -f \'[%artist%]\'|xsel -bi
+        fi
+        if [[ ${arg} =~ ".*mpd_show.*" ]]; then
+            ~/bin/mpd_dzen_info
+        fi
+    done
+}
+
+generate | eval "rofi ${rofi_options}" | handler 
