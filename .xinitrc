@@ -1,6 +1,5 @@
 #!/bin/zsh
 unset TMUX
-
 systemctl --user import-environment DISPLAY
 pulseaudio --start &
 wmname Sawfish
@@ -28,14 +27,15 @@ xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 setxkbmap -option keypad:pointerkeys -layout 'us,ru' -variant altgr-intl \
     -option 'grp:alt_shift_toggle' -option ctrl:nocaps \
     -option 'terminate:ctrl_alt_bksp'
+#   -option 'compose:lctrl-altgr'
 
-xhost +localhost +local: > /dev/null 2>&1
-xhost +si:localuser:$(id -un) > /dev/null 2>&1
-xhost +si:localuser:xdm > /dev/null 2>1&
+xhost +localhost +local:
+xhost +si:localuser:$(id -un)
+xhost +si:localuser:xdm
 
 for WID in $(xwininfo -root -tree | \
     sed '/"plasma-desktop": ("Plasma" "Plasma")/!d; s/^  *\([^ ]*\) .*/\1/g'); do
-   xprop -id $WID -remove _KDE_NET_WM_SHADOW
+   xprop -id ${WID} -remove _KDE_NET_WM_SHADOW
 done
 
 xbindkeys -n &
@@ -47,7 +47,7 @@ hsetroot -fill ${HOME}/pic/wl/64738416.jpg
 [[ -f ${HOME}/.Xresources ]] && xrdb -merge ${HOME}/.Xresources
 [[ -f ${XDG_CONFIG_HOME}/keymaps/xmodmaprc ]] && xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
 
-nexec && dunst &
+nexec dunst && dunst &
 (urxvtd -q -f -o && ${HOME}/bin/urxvt) &
 
 nexec udiskie && udiskie -q &
@@ -55,13 +55,15 @@ inpath unclutter && unclutter --fork --timeout 1 &
 compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf
 nexec klay_watch && ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
-nexec udiskie && stalonetray &
+nexec stalonetray && stalonetray &
 
-sudo ip link set up dev eno1
-sudo ip addr add 192.168.123.100/24 dev eno1
-sudo iptables -t nat -A POSTROUTING -o enp6s0 -j MASQUERADE
-sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-sudo iptables -A FORWARD -i eno1 -o enp6s0 -j ACCEPT
+systemctl --user import-environment DISPLAY XAUTHORITY
+if which dbus-update-activation-environment >/dev/null 2>&1; then
+        dbus-update-activation-environment DISPLAY XAUTHORITY
+fi
 
-sh /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+export SXHKD_FIFO=/tmp/sxhkd_fifo
+rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
+    nexec sxhkd && sxhkd -t 10 -s "${SXHKD_FIFO}" &
+
 exec notion 2>> /tmp/notionerr$$ 2>&1
