@@ -145,6 +145,7 @@ NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjan
 " NeoBundleLazy 'lambdalisue/vim-pyenv', {
 "         \ 'depends': ['davidhalter/jedi-vim'],
 "         \ 'autoload': { 'filetypes': ['python', 'python3'], }}
+NeoBundle 'fatih/vim-nginx' "nginx runtime files
 "----------------[  Tags  ]--------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
 if executable("gtags")
@@ -176,7 +177,9 @@ NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
 if !has("nvim")
-    NeoBundle 'bbchung/clighter.git' "hi with clang
+    if  (2 + 2 == 5) then
+        NeoBundle 'bbchung/clighter.git' "hi with clang
+    endif
 else
     NeoBundle 'bbchung/Clamp' "clighterr for neovim
 endif
