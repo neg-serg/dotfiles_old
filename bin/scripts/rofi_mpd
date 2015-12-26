@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-rofi_options=" -dmenu -auto-select -font 'Pragmata Pro for Powerline bold 17' -b -disable-history -columns 10 -lines 1 -width 1850 -yoffset -22 -location 6"
+rofi_options=" -dmenu -auto-select -font 'Pragmata Pro for Powerline bold 17' -b -disable-history -columns 3 -lines 1 -width 1850 -yoffset -22 -location 6 -p \[mpd\]\ \>\>"
 
 mpd_menu=(
     "title_copy" 
