@@ -29,12 +29,6 @@ function vim_file_open() (
         local tmp_name="$(echo ${file_name}|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
         local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
         if [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
-            local ft_syntax=$(vim --servername "${srv_name}" --remote-expr "b:ft_syntax" 2>/dev/null)
-            if [[ ! $(echo ${ft_syntax}|tr -d '[:blank:]') == "" ]]; then
-                local syn_msg=" ${msg_delim} $fg[blue][$fg[white] ft ${FG237}=$fg[white] ${ft_syntax} $fg[blue]]$fg[white]"
-            else
-                syn_msg=""
-            fi
             echo "${pref} ${fancy_name} ${msg_delim} ${sz_msg} ${msg_delim} ${len_msg}${syn_msg}"
         else
             if [[ -z "${file_name}"  ]]; then
