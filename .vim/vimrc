@@ -12,6 +12,9 @@ set noexrc
 set secure
 set shell=/bin/sh
 
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
 if 1
     fun! ProfileStart()
         let profile_file = '/tmp/vim.'.getpid().'.profile.txt'
@@ -31,6 +34,7 @@ if has('vim_starting') && has('reltime')
         autocmd! VimEnter * let g:startuptime = reltime(g:startuptime)
                     \ | redraw
                     \ | echomsg 'startuptime: ' . reltimestr(g:startuptime)
+                    \ | let g:vim_is_started="on"
     augroup END
 endif
 
