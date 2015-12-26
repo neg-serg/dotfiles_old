@@ -414,8 +414,6 @@ if has("cscope")
     let GtagsCscope_Absolute_Path   = 1
     let GtagsCscope_Keep_Alive      = 1
     let GtagsCscope_Auto_Load       = 0
-
-    "Alternative workground to work with cscope
 endif
 
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
