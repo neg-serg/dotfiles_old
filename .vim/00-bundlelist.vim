@@ -176,13 +176,11 @@ NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
-if !has("nvim")
-    if  (2 + 2 == 5) then
-        NeoBundle 'bbchung/clighter.git' "hi with clang
-    endif
-else
-    NeoBundle 'bbchung/Clamp' "clighterr for neovim
-endif
+" if (false && !has("nvim"))
+"     NeoBundle 'bbchung/clighter.git' "hi with clang
+" else
+"     NeoBundle 'bbchung/Clamp' "clighterr for neovim
+" endif
 if has("gui_running")
     NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git' "add restart support
