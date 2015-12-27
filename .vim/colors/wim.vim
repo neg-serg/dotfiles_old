@@ -114,7 +114,7 @@ call s:HI("perlVarPlain2","",s:lylw,"")
 
 call s:HI("rubySharpBang","",s:lgrn,"standout")
 
-hi DiffAdd    term=reverse ctermfg=15 DarkGreen
+hi DiffAdd    term=reverse ctermfg=15 ctermbg=227
 hi DiffChange term=reverse ctermfg=15 ctermbg=228
 hi DiffText   term=reverse ctermfg=7 ctermbg=None
 hi! link diffRemoved Constant
