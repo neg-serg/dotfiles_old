@@ -1,5 +1,6 @@
 #!/bin/zsh
 unset TMUX
+. ~/.zsh/03-exports.zsh
 systemctl --user import-environment DISPLAY
 pulseaudio --start &
 wmname Sawfish
@@ -62,8 +63,7 @@ if which dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
 
-export SXHKD_FIFO=/tmp/sxhkd_fifo
 rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
-    nexec sxhkd && sxhkd -t 10 -s "${SXHKD_FIFO}" &
+    nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 exec notion 2>> /tmp/notionerr$$ 2>&1
