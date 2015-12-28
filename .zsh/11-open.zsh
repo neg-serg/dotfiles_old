@@ -36,7 +36,7 @@ open(){
                          *.pcf|*.bdf|*.pfb) ${editor} "$1" ;;
                          *.svg) display "$1" ;;
                          *.pps|*.PPS|*.ppt|*.PPT) ${web_browser} "$1" ;;
-                         *.rtf|*.doc)  libreoffice "$1" 2>/dev/null ;;
+                         *.rtf|*.doc|*.docx)  libreoffice "$1" 2>/dev/null ;;
                          *.epub) [[ $# -le 9 ]] && ${doc_reader} "$@" >/dev/null 2>/dev/null &! ;;
                          *.xls) catdoc -w -s cp1251 "$1" ;;
                          *.xpm) xls2csv -s cp1251 "$1" ;;
