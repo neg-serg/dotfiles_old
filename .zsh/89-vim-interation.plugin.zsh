@@ -1,11 +1,35 @@
 readonly to_normal="<C-\><C-N>:call<SPACE>foreground()<CR>"
 
+function wim_run(){
+    local proc="process_list"
+    if [[ $1 == "__wim_cmd" ]]; then
+        proc="vprocess_list"; shift
+    fi
+    local wid=$(xdotool search --classname wim)
+    if [[ -z "${wid}" ]]; then
+        st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
+            tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
+        eval ${proc} ".1s" "$@"
+    else  
+        eval ${proc} ".1s" "$@"
+    fi
+}
+
+function handle_files() {
+    local mfiles=""
+    for f; do
+        f="$(resolve_file ${f})"
+        mfiles="${mfiles} $(bash -c "printf %q '${f}'")"
+    done
+    [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
+}
+
 function vim_file_open() (
     local file_name="$(resolve_file ${line})"
     file_name=$(bash -c "printf %q '${file_name}'")
     { vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
         || { while [[ $(vim --servername VIM --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
-            sleep "0.1s"
+            sleep ".1s"
         done \
         && vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
         local FG237="[38;5;237m"
@@ -44,33 +68,9 @@ function process_list() {
     for line; do vim_file_open; done
 }
 
-function v {
-    local wid=$(xdotool search --classname wim)
-    local mfiles=""
-    for f; do
-        f="$(resolve_file ${f})"
-        mfiles="${mfiles} $(bash -c "printf %q '${f}'")"
-    done
-    [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
-    if [[ -z "${wid}" ]]; then
-        st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
-            tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
-        process_list ".1s" "$@"
-    else  
-        process_list ".1s" "$@"
-    fi
-}
-
-
 function vprocess_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
-    local cmd="${to_normal}${before}${after}"
-    vim --servername ${vim_server_name} --remote-send "${cmd}"
-}
-
-
-function vv {
-    local wid=$(xdotool search --classname wim)
+    sleep "$1"; shift
     while getopts ":b:a:" opt; do
         case ${opt} in
             a) after="${OPTARG}" ;;
@@ -80,17 +80,27 @@ function vv {
     shift $((OPTIND-1))
     [[ ${after#:} != $after && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
     [[ ${before#:} != $before && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
-    local mfiles=""
-    for f; do
-        f="$(resolve_file ${f})"
-        mfiles="${mfiles} $(bash -c "printf %q '${f}'")"
-    done
-    [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
-    if [[ -z "${wid}" ]]; then
-        st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
-            tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
-        vprocess_list ".1s" "$@"
-    else  
-        vprocess_list ".1s" "$@"
-    fi
+    local cmd="${to_normal}${before}${after}"
+    vim --servername ${vim_server_name} --remote-send "${cmd}"
+    unset before; unset after
 }
+
+function wim_cmd {
+    handle_files "$@"
+    wim_run "__wim_cmd" "$@"
+}
+
+function wdiff {
+    {wim_run $1; shift} && \
+    wim_cmd -b":diffthis" && \
+    wim_cmd -b":vs" && \
+    {wim_run $1; shift} && \
+    wim_cmd -b":diffthis"
+}
+
+
+function v {
+    handle_files "$@"
+    wim_run "$@"
+}
+
