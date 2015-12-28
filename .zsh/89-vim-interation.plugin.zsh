@@ -35,8 +35,8 @@ function vim_file_open() (
         local FG237="[38;5;237m"
         local file_size=$(stat -c%s "$file_name" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
         local file_length="$(wc -l $file_name 2>/dev/null|grep -owE '[0-9]* '|tr -d ' ')"
-        local sz_msg=$(_zsh_wrap "sz ${FG237}~$fg[white] $file_size")
-        local len_msg=$(_zsh_wrap "len ${FG237}=$fg[white] $file_length")
+        local sz_msg=$(_zsh_wrap "sz${FG237}~$fg[white]$file_size")
+        local len_msg=$(_zsh_wrap "len${FG237}=$fg[white]$file_length")
         local new_file_msg=$(_zsh_wrap new_file)
         local dir_msg=$(_zsh_wrap directory)
         local msg_delim="[38;5;24m::"
