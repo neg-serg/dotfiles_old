@@ -1,4 +1,16 @@
-TRAPUSR1() { rehash }; # rehash on SIGUSR1
+if [[ $1 == eval ]]; then
+    shift
+    ICMD="$@"
+    set --
+    zle-line-init() {
+        BUFFER="$ICMD"
+        zle accept-line
+        zle -D zle-line-init
+    }
+    zle -N zle-line-init
+fi
+
+fiTRAPUSR1() { rehash }; # rehash on SIGUSR1
 [[ -o interactive ]] && TRAPINT() { 
     zle && print -nP %F{blue}%B\^C%s%b
     return $1
