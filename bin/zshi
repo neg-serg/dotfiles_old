@@ -1,0 +1,4 @@
+#!/bin/sh
+# zshi - interactive zsh, but automatically execute given command
+# (needs support from .zshrc)
+exec zsh -is eval "$@"
