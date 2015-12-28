@@ -29,7 +29,7 @@ noglob_list=( \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
     translate links{,2} lynx you-get bower pip sp task)
 rlwrap_list=( bigloo clisp irb )
-sudo_list=({u,}mount ch{mod,own} modprobe) 
+sudo_list=({u,}mount ch{mod,own} modprobe i7z) 
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
 
@@ -254,44 +254,49 @@ alias vmpd='command cava -i fifo -p /tmp/mpd.fifo -b 20'
 
 zle -N zleiab
 
-# -- [ nmap ] ---------------------------------------------------
-#  -sS - TCP SYN scan
-#  -v - verbose
-#  -T1 - timing of scan. Options are paranoid (0), sneaky (1), polite (2), normal (3), aggressive (4), and insane (5)
-#  -sF - FIN scan (can sneak through non-stateful firewalls)
-#  -PE - ICMP echo discovery probe
-#  -PP - timestamp discovery probe
-#  -PY - SCTP init ping
-#  -g - use given number as source port
-#  -A - enable OS detection, version detection, script scanning, and traceroute (aggressive)
-#  -O - enable OS detection
-#  -sA - TCP ACK scan
-#  -F - fast scan
-#  --script=vulscan - also access vulnerabilities in target
-
-inpath nmap && alias nmap_open_ports="nmap --open"
-inpath nmap && alias nmap_list_interfaces="nmap --iflist"
-inpath nmap && alias nmap_slow="nmap -sS -v -T1"
-inpath nmap && alias nmap_fin="nmap -sF -v"
-inpath nmap && alias nmap_full="nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -v"
-inpath nmap && alias nmap_check_for_firewall="nmap -sA -p1-65535 -v -T4"
-inpath nmap && alias nmap_ping_through_firewall="nmap -PS -PA"
-inpath nmap && alias nmap_fast="nmap -F -T5 --version-light --top-ports 300"
-inpath nmap && alias nmap_detect_versions="nmap -sV -p1-65535 -O --osscan-guess -T4 -Pn"
-inpath nmap && alias nmap_check_for_vulns="nmap --script=vulscan"
-inpath nmap && alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
-inpath nmap && alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
-inpath nmap && alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
-inpath nmap && alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
+inpath nmap && {
+    # -- [ nmap ] ---------------------------------------------------
+    #  -sS - TCP SYN scan
+    #  -v - verbose
+    #  -T1 - timing of scan. Options are paranoid (0), sneaky (1), polite (2), normal (3), aggressive (4), and insane (5)
+    #  -sF - FIN scan (can sneak through non-stateful firewalls)
+    #  -PE - ICMP echo discovery probe
+    #  -PP - timestamp discovery probe
+    #  -PY - SCTP init ping
+    #  -g - use given number as source port
+    #  -A - enable OS detection, version detection, script scanning, and traceroute (aggressive)
+    #  -O - enable OS detection
+    #  -sA - TCP ACK scan
+    #  -F - fast scan
+    #  --script=vulscan - also access vulnerabilities in target
+    alias nmap_open_ports="nmap --open"
+    alias nmap_list_interfaces="nmap --iflist"
+    alias nmap_slow="nmap -sS -v -T1"
+    alias nmap_fin="nmap -sF -v"
+    alias nmap_full="nmap -sS -T4 -PE -PP -PS80,443 -PY -g 53 -A -p1-65535 -v"
+    alias nmap_check_for_firewall="nmap -sA -p1-65535 -v -T4"
+    alias nmap_ping_through_firewall="nmap -PS -PA"
+    alias nmap_fast="nmap -F -T5 --version-light --top-ports 300"
+    alias nmap_detect_versions="nmap -sV -p1-65535 -O --osscan-guess -T4 -Pn"
+    alias nmap_check_for_vulns="nmap --script=vulscan"
+    alias nmap_full_udp="nmap -sS -sU -T4 -A -v -PE -PS22,25,80 -PA21,23,80,443,3389 "
+    alias nmap_traceroute="nmap -sP -PE -PS22,25,80 -PA21,23,80,3389 -PU -PO --traceroute "
+    alias nmap_full_with_scripts="sudo nmap -sS -sU -T4 -A -v -PE -PP -PS21,22,23,25,80,113,31339 -PA80,113,443,10042 -PO --script all " 
+    alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
+}
 
 alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
 
-inpath journalctl && alias log='journalctl -f | ccze -A' #follow log
-inpath journalctl && alias log0='journalctl -b -0 | ccze -A' #current log 
-inpath journalctl && alias log1='journalctl -b -1 | ccze -A' #previous log
+inpath journalctl && {
+    alias log='journalctl -f | ccze -A' #follow log
+    alias log0='journalctl -b -0 | ccze -A' #current log 
+    alias log1='journalctl -b -1 | ccze -A' #previous log
+} 
 alias log4="< /tmp/notionerr$(pidof notion)"
-inpath iotop && alias iotop='sudo iotop -oPa'
-inpath iotop && alias diskact="sudo iotop -Po"
+inpath iotop && {
+    alias iotop='sudo iotop -oPa'
+    alias diskact="sudo iotop -Po"
+}
 
 inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
 
