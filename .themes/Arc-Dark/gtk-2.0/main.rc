@@ -27,7 +27,7 @@ style "default" {
 
   GtkScrollbar::trough-border = 0
   GtkRange::trough-border = 0
-  GtkRange::slider-width = 11
+  GtkRange::slider-width = 13
   GtkRange::stepper-size = 0
 
   GtkScrollbar::activate-slider = 1
@@ -37,10 +37,12 @@ style "default" {
   GtkScrolledWindow::scrollbar-spacing = 0
   GtkScrolledWindow::scrollbars-within-bevel = 1
 
-  GtkVScale::slider_length = 15
-  GtkVScale::slider_width = 15
-  GtkHScale::slider_length = 15
-  GtkHScale::slider_width = 15
+  GtkScale::slider_length = 15
+  GtkScale::slider_width = 15
+  GtkScale::trough-side-details = 1
+
+  GtkProgressBar::min-horizontal-bar-height = 8
+  GtkProgressBar::min-vertical-bar-width = 8
 
   GtkStatusbar::shadow_type = GTK_SHADOW_NONE
   GtkSpinButton::shadow_type = GTK_SHADOW_NONE
@@ -551,7 +553,7 @@ style "scrollbar" {
     image {
       function = BOX
       detail = "trough"
-      file = "assets/trough-scrollbar.png"
+      file = "assets/trough-scrollbar-horiz.png"
       border = { 2, 2, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
@@ -560,7 +562,7 @@ style "scrollbar" {
     image {
       function = BOX
       detail = "trough"
-      file = "assets/trough-scrollbar.png"
+      file = "assets/trough-scrollbar-vert.png"
       border = { 3, 3, 2, 2 }
       stretch = TRUE
       orientation = VERTICAL
@@ -683,9 +685,9 @@ style "menu" {
 
   GtkMenuItem::arrow-scaling = 0.4
 
-  bg[NORMAL] = @base_color
-  bg[INSENSITIVE] = @base_color
-  bg[PRELIGHT] = @base_color
+  bg[NORMAL] = @menu_bg
+  bg[INSENSITIVE] = @menu_bg
+  bg[PRELIGHT] = @menu_bg
 
   engine "pixmap" { # For menus that use horizontal lines rather than gtkseparator
 
@@ -718,6 +720,9 @@ style "menu_item"
   # but at least it's readable.
   # See https://bugs.freedesktop.org/show_bug.cgi?id=38038
   bg[SELECTED] = @selected_fg_color
+
+	fg[NORMAL] = @fg_color
+	fg[SELECTED] = @fg_color
 
   text[PRELIGHT] = @fg_color
 
@@ -1868,18 +1873,36 @@ style "range" {
 
     image {
       function = BOX
-      detail = "trough"
+      detail = "trough-upper"
       file = "assets/trough-horizontal.png"
-      border = { 4, 4, 0, 0 }
+      border = { 8, 8, 0, 0 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
 
     image {
       function = BOX
-      detail = "trough"
+      detail = "trough-lower"
+      file = "assets/trough-horizontal-active.png"
+      border = { 8, 8, 0, 0 }
+      stretch = TRUE
+      orientation = HORIZONTAL
+    }
+
+    image {
+      function = BOX
+      detail = "trough-upper"
       file = "assets/trough-vertical.png"
-      border = { 0, 0, 4, 4 }
+      border = { 0, 0, 8, 8 }
+      stretch = TRUE
+      orientation = VERTICAL
+    }
+
+    image {
+      function = BOX
+      detail = "trough-lower"
+      file = "assets/trough-vertical-active.png"
+      border = { 0, 0, 8, 8 }
       stretch = TRUE
       orientation = VERTICAL
     }
