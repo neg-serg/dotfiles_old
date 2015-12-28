@@ -1,8 +1,6 @@
 function ncmpcpp(reg)
-    local exec_str = '/bin/urxvt -fn "xft:Pragmata Pro for Powerline:pixelsize=18" -name mpd-pad2 -e ncmpcpp'
     notioncore.exec_on(reg, '~/bin/scripts/ncmpcpp')
     named_scratchpad(reg, 'ncmpcpp')
-    -- named_scratchpad_exec_with_class(reg, 'ncmpcpp', exec_str, 'mpd-pad2')
 end
 
 function console(reg)
