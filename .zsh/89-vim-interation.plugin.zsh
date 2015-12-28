@@ -91,11 +91,15 @@ function wim_cmd {
 }
 
 function wdiff {
-    {wim_run $1; shift} && \
-    wim_cmd -b":diffthis" && \
-    wim_cmd -b":vs" && \
-    {wim_run $1; shift} && \
-    wim_cmd -b":diffthis"
+    # or it's maybe better to use :windo diffthis
+    if [[ $# == 2 ]]; then
+        wim_run "" && wim_cmd -b":tabnew" && \
+        {wim_run $1; shift} && \
+        wim_cmd -b":diffthis" && \
+        wim_cmd -b":vs" && \
+        {wim_run $1; shift} && \
+        wim_cmd -b":diffthis"
+    fi
 }
 
 
