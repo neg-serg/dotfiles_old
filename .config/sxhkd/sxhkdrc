@@ -1,5 +1,7 @@
+source ~/.zshrc
+
 super + apostrophe
-    {pkill -USR1 -x sxhkd && /usr/bin/notionflux -e 'notioncore.restart()'} &
+    {pkill -USR1 -x sxhkd && notionflux -e 'notioncore.restart()'} &
 XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
@@ -15,36 +17,36 @@ super + shift + 8
 super + U
     eject -T
 super + c
-    /home/neg/bin/clip >/dev/null&
+    ~/bin/clip >/dev/null&
 super + u
     udiskie-umount -a
 super + M
-    /home/neg/bin/scripts/rofi_mpd
+    ~/bin/scripts/rofi_mpd
+super + control + r ; { d, i, r }
+    { \
+        xcalib -c, \
+        xcalib -alter -invert, \
+        xcalib -red 0.1 0.0 1 -a \
+    }
 
 # alt + e ; {d, o, i, q, O, K, s, t, v, w, l, m, n, G, R, a, control + t} ;
 #     { stardict || goldendict, \
-#       /home/neg/bin/pls -sink, \
-#       /home/neg/bin/pls -output, \
-#       /home/neg/bin/mpd_sel.sh, \
-#       /home/neg/bin/pls -vol, \
-#       /home/neg/bin/scripts/toggle_keynav, \
+#       ~/bin/pls -sink, \
+#       ~/bin/pls -output, \
+#       ~/bin/mpd_sel.sh, \
+#       ~/bin/pls -vol, \
+#       ~/bin/scripts/toggle_keynav, \
 #       skype, \
 #       urxvt, \
 #       vmware, \
-#       /home/neg/bin/webcam, \
-#       /home/neg/bin/scripts/notionflux_handler.sh radare2, \
-#       /home/neg/bin/scripts/notionflux_handler.sh run_mutt, \
-#       /home/neg/bin/scripts/notionflux_handler.sh nicotine, \
-#       /home/neg/bin/scripts/notionflux_handler.sh gdb, \
-#       /home/neg/bin/scripts/notionflux_handler.sh ranger, \
-#       /usr/bin/notionflux -e 'notioncore.goto\_activity()', \
-#       /usr/bin/notionflux -e 'notioncore.tagged\_clear()', \
+#       ~/bin/webcam, \
+#       ~/bin/scripts/notionflux_handler.sh radare2, \
+#       ~/bin/scripts/notionflux_handler.sh run_mutt, \
+#       ~/bin/scripts/notionflux_handler.sh nicotine, \
+#       ~/bin/scripts/notionflux_handler.sh gdb, \
+#       ~/bin/scripts/notionflux_handler.sh ranger, \
+#       notionflux -e 'notioncore.goto\_activity()', \
+#       notionflux -e 'notioncore.tagged\_clear()', \
 #     }
-# super + control + r ; { d, i, r }
-#     { \
-#         xcalib -c, \
-#         xcalib -alter -invert, \
-#         xcalib -red 0.1 0.0 1 -a \
-#     }
-# 
+
 # vim: set ft=sxhkdrc:
