@@ -50,7 +50,7 @@ function vim_file_open() (
             echo "${pref} ${fancy_name} ${msg_delim} ${sz_msg} ${msg_delim} ${len_msg}${syn_msg}"
         else
             if [[ -d "${file_name}" ]]; then
-                if [[ $(readlink -f ${file_name}) == $(pwd) ]]; then
+                if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
                     local spec_fancy_name="${decoration} $fg[white]current dir ${decoration}"
                     echo "${pref} ${spec_fancy_name} ${msg_delim} ${dir_msg}"
                 else
