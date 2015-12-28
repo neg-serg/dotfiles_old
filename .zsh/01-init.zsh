@@ -10,7 +10,7 @@ if [[ $1 == eval ]]; then
     zle -N zle-line-init
 fi
 
-fiTRAPUSR1() { rehash }; # rehash on SIGUSR1
+TRAPUSR1() { rehash }; # rehash on SIGUSR1
 [[ -o interactive ]] && TRAPINT() { 
     zle && print -nP %F{blue}%B\^C%s%b
     return $1
