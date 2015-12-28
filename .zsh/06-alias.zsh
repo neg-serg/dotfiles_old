@@ -310,3 +310,10 @@ alias vuze="vuze &>/dev/null&"
 }
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
+alias v.="v ."
+alias ya="yaourt -S --noconfirm"
+# alias vv='f -e vim'
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+alias unison="unison -log=false -auto -ui=text -times"
+alias google='web_search google'
+alias starwars='telnet towel.blinkenlights.nl'
