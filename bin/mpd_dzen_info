@@ -20,4 +20,4 @@ mpc search album "${album}" \
   | perl -pe 's{(.+)/.+$}{$1}' \
   | sort -u \
   | perl -pe 's{^}{[>>] $ENV{HOME}/music/}'
-)| dzen2 -p 1 -x 1260 -y 865 -w 640 -bg $BG -fg $FG -l 10 -sa l -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
+)| dzen2 -p "4.5s" -x 1260 -y 865 -w 640 -bg $BG -fg $FG -l 10 -sa l -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
