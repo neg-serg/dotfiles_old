@@ -25,11 +25,6 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+G",    "rofi.goto_or_create_ws(_)"),
     kpress("M1+G",       "rofi.goto_win(_)"),
     kpress("M4+F9",      "notioncore.create_ws(_)"),
-    submap("M4+Ct+R", {
-        kpress("t", "notioncore.exec_on(_, 'xcalib -c')"),
-        kpress("i", "notioncore.exec_on(_, 'xcalib -alter -invert')"),
-        kpress("r", "notioncore.exec_on(_, 'xcalib -red 0.1 0.0 1 -a')"),
-    }),
     -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
     --------------------------
