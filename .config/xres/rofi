@@ -1,19 +1,119 @@
-rofi.opacity: 90
-rofi.width: 50
-rofi.lines: 30
-rofi.columns: 1
-rofi.font: Pragmata Pro for Powerline 14
-rofi.fg: #666666
-rofi.bg: #000000
-rofi.hlfg: #aaaaaa
-rofi.hlbg: #194558
-rofi.bc: #202020
-rofi.bw: 1
-rofi.loc: 1
-rofi.padding: 1
-rofi.yoffset: -1
-rofi.xoffset: 0
-rofi.fixed-num-lines: false
-rofi.hmode: false
-rofi.ssh-set-title: true
-rofi.disable-history: false
+rofi.font:                          Pragmata Pro 15
+rofi.location:                      6
+rofi.yoffset:                       22
+rofi.terminal:                      st
+rofi.run-command:                   {cmd}
+rofi.run-shell-command:             st -e {cmd}
+rofi.levenshtein-sort:              false
+rofi.case-sensitive:                false
+rofi.hide-scrollbar:                false
+rofi.parse-hosts:                   false
+
+rofi.bg   : #000000
+rofi.fg   : #666666
+rofi.hlfg : #aaaaaa
+rofi.hlbg : #194558
+rofi.bc   : #202020
+
+!rofi.fuzzy:                         true
+!rofi.glob:                          true
+!rofi.tokenize:                      true
+
+!rofi.auto-select:                   true
+!rofi.eh:                           1
+! rofi.m:                           -1
+! rofi.line-margin:                 2
+rofi.separator-style:               dash
+! ! Show markup
+! rofi.markup-rows:                 false
+! ! Fullscreen
+! rofi.fullscreen:                  false
+! ! Fake transparency
+! rofi.fake-transparency:           false
+!rofi.color-enabled:                false
+!rofi.color-normal:                 #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
+!rofi.color-urgent:                 #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
+!rofi.color-active:                 #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
+!rofi.color-window:                 #fdf6e3,#002b36
+!rofi.bw:                           1
+!rofi.padding:                      5
+!rofi.xoffset:                      0
+!rofi.fixed-num-lines:              false
+!rofi.disable-history:              true
+!rofi.sidebar-mode:                 false
+!rofi.lazy-filter-limit:            5000
+
+!rofi.pid:                           /run/user/1000/rofi.pid
+
+rofi.kb-primary-paste:              Control+Shift+v,Shift+Insert
+rofi.kb-secondary-paste:            Control+v,Insert
+rofi.kb-clear-line:                 Control+u
+rofi.kb-move-front:                 Control+a
+rofi.kb-move-end:                   Control+e
+rofi.kb-move-word-back:             Alt+b
+rofi.kb-move-word-forward:          Alt+f
+rofi.kb-move-char-back:             Left,Control+b
+rofi.kb-move-char-forward:          Right,Control+f
+rofi.kb-remove-word-back:           Control+Alt+h
+rofi.kb-remove-word-forward:        Control+Alt+d
+rofi.kb-remove-char-forward:        Control+d
+rofi.kb-remove-char-back:           Control+h,BackSpace
+rofi.kb-accept-entry:               Control+j,Control+m,Return,KP_Enter
+rofi.kb-accept-custom:              Control+Return
+rofi.kb-accept-entry-continue:      Shift+Return
+rofi.kb-mode-next:                  Shift+Right,Control+Tab
+rofi.kb-mode-previous:              Shift+Left,Control+Shift+Tab
+rofi.kb-toggle-case-sensitivity:    grave,dead_grave
+rofi.kb-delete-entry:               Control+w
+rofi.kb-row-left:                   Control+Page_Up
+rofi.kb-row-right:                  Control+Page_Down
+rofi.kb-row-up:                     Up,Control+p,Shift+Tab
+rofi.kb-row-down:                   Down,Control+n
+rofi.kb-row-tab:                    Tab
+rofi.kb-page-prev:                  Page_Up
+rofi.kb-page-next:                  Page_Down
+rofi.kb-row-first:                  Home,KP_Home
+rofi.kb-row-last:                   End,KP_End
+rofi.kb-row-select:                 Control+space
+rofi.kb-cancel:                     Control-c,Escape
+rofi.kb-custom-1:                   Alt+1
+rofi.kb-custom-2:                   Alt+2
+rofi.kb-custom-3:                   Alt+3
+rofi.kb-custom-4:                   Alt+4
+rofi.kb-custom-5:                   Alt+5
+rofi.kb-custom-6:                   Alt+6
+rofi.kb-custom-7:                   Alt+7
+rofi.kb-custom-8:                   Alt+8
+rofi.kb-custom-9:                   Alt+9
+rofi.kb-custom-10:                  Alt+0
+rofi.kb-custom-11:                  Alt+Shift+1
+rofi.kb-custom-12:                  Alt+Shift+2
+rofi.kb-custom-13:                  Alt+Shift+3
+rofi.kb-custom-14:                  Alt+Shift+4
+rofi.kb-custom-15:                  Alt+Shift+5
+rofi.kb-custom-16:                  Alt+Shift+6
+rofi.kb-custom-18:                  Alt+Shift+8
+rofi.kb-custom-17:                  Alt+Shift+7
+rofi.kb-custom-19:                  Alt+Shift+9
+rofi.key-window:                    SuperL+Tab
+rofi.key-run:                       SuperL+a
+! !------------------------------------------------
+! rofi.opacity         :90
+! rofi.width           :50
+! rofi.lines           :30
+! rofi.columns         :1
+! rofi.font            :Pragmata Pro for Powerline 14
+! rofi.fg              :#666666
+! rofi.bg              :#000000
+! rofi.hlfg            :#aaaaaa
+! rofi.hlbg            :#194558
+! rofi.bc              :#202020
+! rofi.bw              :1
+! rofi.loc             :1
+! rofi.padding         :1
+! rofi.yoffset         :-1
+! rofi.xoffset         :0
+! rofi.fixed-num-lines :false
+! rofi.hmode           :false
+! rofi.ssh-set-title   :true
+! rofi.disable-history :false
