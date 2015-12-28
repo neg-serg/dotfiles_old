@@ -1,8 +1,6 @@
 #!/bin/zsh
-FILE=/tmp/xprop_pipe
+file=/tmp/xprop_pipe
+xprop=$(xprop WM_CLASS WM_NAME WM_WINDOW_ROLE WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE _NET_WM_PID -id $1)
 
-# generate calender
-XPROP=$(xprop WM_CLASS WM_NAME WM_WINDOW_ROLE WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE _NET_WM_PID -id $1)
-
-echo "${XPROP}" > "${FILE}" 
-cat "${FILE}"|rofi -dmenu -location 6|xsel
+echo "${xprop}" > "${file}" 
+< "${file}" rofi -dmenu -location 6 -yoffset -24|xsel
