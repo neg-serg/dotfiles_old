@@ -6,6 +6,8 @@ rofi = {}
 rofi.fontsz = 17
 rofi.font = '-font "' .. 'Pragmata Pro for Powerline' .. ' '.. 'bold' ..' ' .. rofi.fontsz .. '"'
 rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 
+rofi.pid = ' -pid /run/user/1000/rofi_notion.pid'
+
 if width == nil then -- rofi.width = 1850
     local screen_width_fd = io.popen("xrandr -q |awk '/Screen/{print $8}'","r")
     width = screen_width_fd:read("*l") - 70
@@ -43,7 +45,7 @@ local function rofi_template(pref,file_name,lines,fn,flags)
     local columns_str = ""
     local ipc_file = new_ipc_file(file_name)
     ------------------------------------------
-    local common = ' -auto-select -dmenu -opacity 95 ' .. rofi.yoff .. ' '
+    local common = ' -auto-select -dmenu -opacity 95 ' .. rofi.yoff .. rofi.pid .. ' ' 
     local colors = ' -fg '..neg.rofi.fg..' -bg '..neg.rofi.bg..' -hlfg '..neg.rofi.hlfg..' -hlbg '..neg.rofi.hlbg..' -bc '..neg.rofi.bc
     if lines == nil then lines = 10 else
         columns = 10
