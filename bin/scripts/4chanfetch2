@@ -1,0 +1,588 @@
+#!/bin/bash
+#
+# Author:       Twily             2015
+# Description:  4chan image downloader
+# Requires:     imagemagick, ffmpeg, wget, sed, perl
+# Optional:     libnotify, thunar, sxiv
+# Usage:        $ sh ./4cdl <url-to-thread>
+#               (URL Format: http(s)://../thread/<id>/<subject>)
+#
+# Features:   * Image download w/ Auto-update until 404
+#             * Stores the thread alongside; archiving
+#             * Generates thumbnails locally
+#             * Creates a catalog file for each of the boards
+#             * Creates an index homepage file; hosting
+#
+# Optional rename tool for reuploading images to 4can: http://pastebin.com/bLqHyBPg
+#
+
+P=/home/guest/4cdl-images               # Download Path
+PW=5532                                 # Index access code
+
+C=true                                  # Clear output
+L=true                                  # Loop until 404
+E=true                                  # Exit on finish
+
+V=18                                    # Threads per page in catalog
+
+W=(10 15 20 30 60 90 120 180 240 300)   # Update Timer
+
+# function prepare          Prepare directories, files and variables
+# function thread           Archives the thread as an html page
+# function download         Downloads all images from the thread
+# function progress         Progressbar for image downloads
+# function thumbnail        Generates thumbnails for images
+# function clean            Print links and cleanup files
+# function cleanse          Cleanse the url from bad characters
+# function catalog          Generates a catalog for the current board
+# function index            Generates an index file for board listing
+# function loop             Loops the downloader until thread 404
+# function input            Choose action to do once download has completed
+# function main             Script begin
+# (See bottom for manual catalog/index rebuilding)
+
+#
+# Color Scheme
+#
+#   17181A - Background     8C88FC - Link Normal                 A2E059 - Quote
+#   27282B - Content BG     EA75BC - Link Active                 D54A56 - Trip
+#   CECFD1 - Foreground     606163 - Link Dead, Active Border    F4AA5C - Subject
+#   
+
+
+function prepare {
+    # Generate folder name from url
+    S=${H%/*}        && T=${S##*/}      # T = Thread ID
+
+    F=${H##*/};
+    if [ "$T" = "thread" ]; then T=$F && F="thread"; fi
+
+    S=${H%%/thread*} && B=${S##*/}      # B = Board Tag
+    N=$B"/"$T"-"$F
+
+    # Temporary files
+    F1="4c.index.$T.tmp"
+    F2="4c.list.$T.tmp"
+    F3="4c.name.$T.tmp"
+
+    # Thread html files
+    F4=$T"-"$F".html"
+    F5=$B"-catalog.html"
+    F6="index.html"
+
+    # Make directory
+    d=false
+    if [ ! -d "$P/$N" ]; then mkdir -p $P/$N && d=true; fi
+
+    # Download page/thread
+    wget "$H" -O $P/$F1
+    if [[ "$?" -ne "0" ]]; then
+        X=true;
+        if $d; then rm -rf $P/$N; fi
+    fi
+
+    # Add lines to index file
+    sed -i 's/></>\n</g' $P/$F1
+    sed -i 's/> </>\n</g' $P/$F1
+
+    # Extract links and names to list
+    grep "fileThumb" < $P/$F1 > $P/$F2
+    grep "fileText" < $P/$F1 > $P/$F3
+
+    # Remove all html code from the links/names
+    sed -i 's/<a .*href="\/\///g' $P/$F2
+    sed -i 's/" .*//g' $P/$F2
+    sed -i 's/.*<span class="fileThumb">.*/DELETED/g' $P/$F2
+
+    sed -i 's/<div.*title="//g' $P/$F3
+    sed -i 's/" href=".*//g' $P/$F3
+    
+    sed -i 's/<div.*_blank">//g' $P/$F3
+    sed -i 's/<\/a>.*//g' $P/$F3
+    sed -i 's/">.*//g' $P/$F3
+
+    if ! $X; then thread; fi
+}
+
+function thread {
+    # Create thread html page
+    echo -ne "\033[1;33mBuilding thread...."
+    cp $P/$F1 $P/$N/$F4
+
+    a=0 && b=0 && e=0
+    c=true && d=true
+
+    # Find lines to remove
+    while read p; do
+        if $c; then
+            let a=$a+1
+            case "$p" in *form\ name=\"delform\"*) c=false ;;
+            esac
+        fi
+        if $d; then
+            let b=$b+1
+            case "$p" in *navLinks\ navLinksBot*)  d=false && let b=$b-1 ;;
+            esac
+        fi
+
+        let e=$e+1
+    done < $P/$N/$F4
+
+    # Trim html code
+    sed -i $b','$e'd' $P/$N/$F4
+    sed -i '3,'$a'd' $P/$N/$F4
+
+    sed -i '/<input type="checkbox"/d' $P/$N/$F4
+    sed -i '/<div class="sideArrows"/d' $P/$N/$F4
+
+    perl -0777 -i -pe 's/<div class="postInfoM.*?<\/div>//smg' $P/$N/$F4
+
+    sed -i '/class="mFileInfo mobile"/d' $P/$N/$F4
+
+    sed -i "s/javascript:quote('/#p/g" $P/$N/$F4
+    sed -i "s/');\" title=\"Reply/\" title=\"Link/g" $P/$N/$F4
+    sed -i 's/href="#p/href="#pc/g' $P/$N/$F4
+    sed -i 's/<!DOCTYPE html>//' $P/$N/$F4
+    sed -i 's/<html>//' $P/$N/$F4
+
+    # Apply CSS style to html file
+    echo -e "<!DOCTYPE html>\n<html>\n" \
+            "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n" \
+            "<title>$F4</title>\n" \
+            "<style type=\"text/css\">\n" \
+            "html,body                  { background: #17181A; color: #CECFD1; font-size: 10pt; }\n" \
+            "a:link, a:visited          { color: #8C86FC; text-decoration: none; }\n" \
+            "a:hover, a:active          { color: #EA75BC; text-decoration: underline; }\n" \
+            "pre                        { background: #111113; padding: 4px; font-size: 10pt; }\n" \
+            "img                        { width: auto; height: auto; max-width: 125px; max-height: 125px; }\n" \
+            ".op img                    { max-width: 250px; max-height: 250px; }\n" \
+            ".replyContainer            { display: table; background: #27282B; border: 2px solid #27282B; padding: 12px; margin: 4px; }\n" \
+            ".opContainer               { display: block; padding: 12px; }\n" \
+            ":target:not(.opContainer)  { border: 2px solid #606163; }\n" \
+            ".postMessage, .file        { display: block; }\n" \
+            ".fileThumb                 { float: left; margin: 3px 20px; 5px; }\n" \
+            ".postNum                   { margin-right: 4px; }\n" \
+            ".quote                     { color: #A2E059; }\n" \
+            ".deadlink                  { color: #606163; text-decoration: line-through; }\n" \
+            ".postertrip                { color: #D54A56; }\n" \
+            ".subject                   { color: #F4AA5C; font-weight: bold; }\n" \
+            ".name                      { font-weight: bold; }\n" \
+            "</style>" | cat - $P/$N/$F4 > $P/$N/$F4"_tmp" && mv $P/$N/$F4"_tmp" $P/$N/$F4
+
+    sed -i "s/class=\"quotelink\">&gt;&gt;$T<\/a>/class=\"quotelink\">\&gt;\&gt;$T (OP)<\/a>/g" $P/$N/$F4
+
+    # Find post IDs and quotelinks
+    e=1 && t=false
+    declare -A arr
+
+    while read p; do
+        if $t; then
+            o=$(echo $p | sed -e 's/.*<a href="#pc\(.*\)" title=".*/\1/');
+            arr[$o]="$(( $e + 2 )) "
+
+            t=false
+        fi
+
+        case "$p" in
+            \<span\ class=\"postNum\ desktop\"\>)
+                t=true
+                ;;
+            *\"\ class=\"quotelink\"\>*)
+                q=$(echo $p | sed -e 's/.*<a href="#pc\(.*\)" class=".*/\1/')
+                [[ "${arr[$q]}" =~ "$o" ]] || arr[$q]+="$o "
+                ;;
+        esac
+
+        let e=$e+1
+    done < $P/$N/$F4
+
+    # Add replylinks (from quotelinks)
+    for i in "${!arr[@]}"; do
+        #echo "$i < ${arr[$i]}"          # print array (optional)
+
+        IFS=' ' read -a arr2 <<< "${arr[$i]}"
+
+        for (( j=${#arr2[@]}-1; j>=1; j-- )); do
+            perl -i -ne 'print; print " <a href=\"#pc'${arr2[$j]}'\">&gt;&gt;'${arr2[$j]}'</a>" if $. == '${arr2[0]} $P/$N/$F4
+        done
+    done
+
+    echo -e "[\033[1;37mDONE\033[1;33m]\033[0m"
+}
+
+I=0 && M=0
+function download {
+    # Loop trough list and download all images
+    i=1 && op=true
+    t=$(wc -l < $P/$F2)
+
+    if $C; then echo -en "\ec"; fi
+    while read p <&3; do
+        a=${p##*/}
+        a=${a%%.*}
+        b=$(sed -n $i"p" $P/$F3)
+        b=${b//&#039;/}
+        b=${b//\'/}
+
+        progress $t
+
+        if [[ ! -f $P/$N/"$a-$b" ]]; then
+            # Image Download
+            if [[ "$p" != "DELETED" ]]; then
+                wget $p -O $P/$N/"$a-$b"
+
+                if $op; then    thumbnail "$P/$N" "$a-$b" 250x250 \#17181A
+                else            thumbnail "$P/$N" "$a-$b" 125x125 \#27282B
+                fi
+            else
+                let i=$i-1
+                let t=$t-1
+            fi
+        else
+            # Skip if image exists
+            echo -e "\033[0;37m'$P/$N/$a-$b'\033[0m\n\033[1;37m...\033[1;33m[\033[1;37mSKIPPED\033[1;33m]\033[0m"
+
+            tA="${b%.*}"     # filename
+            if [[ ! -f $P/$N/"thumbs/$a-$tA"_s.jpg ]]; then
+                if $op; then    thumbnail "$P/$N" "$a-$b" 250x250 \#17181A
+                else            thumbnail "$P/$N" "$a-$b" 125x125 \#27282B
+                fi
+            fi
+        fi
+        op=false
+        cleanse $b && b=$s
+
+        tE="${b##*.}"    # extention
+        tA="${b%.*}"     # filename
+
+        # Update images in html file
+        sed -i "s/href=\".*"$a".*\"/href=\"\.\/$a-$b\"/g" $P/$N/$F4
+        sed -i "s/src=\".*"$a"s.*\"/src=\"\.\/thumbs\/$a-$tA\_s.jpg\" width=\"125px\" height=\"125px\"/g" $P/$N/$F4
+
+        let i=$i+1
+        if $C; then echo -en "\ec"; fi
+    done 3< $P/$F2
+
+    if [ "$I" -lt "$i" ]; then let I=$i-1; fi
+
+    if [ "$(md5sum $P/$N/$F4)" != "$M" ]; then R=0; fi
+    M=$(md5sum $P/$N/$F4)
+
+    # Remove failed images to attempt redownload next time
+    find $P/$N -size 0 -exec rm -f {} +
+}
+
+function progress {
+    # Progressbar ($1 = max value)
+    echo -ne "\033[1;30mProgress: \033[1;33m[$i / $t]"
+    pC=$(( $(tput cols) - 30 ))
+    pL=$(( $i * $pC / $1 ))
+    pP=$(( $i * 100 / $1 ))
+    printf ' %.0s' $(seq 1 $(( 4 - ${#pP} )) )
+    echo -ne "$pP%["
+    for j in $(seq 1 $pL); do echo -n "="; done
+    echo -n ">"
+    for k in $(seq $pL $(( $pC - 1 )) ); do echo -n " "; done
+    echo -e "]\033[0m\n"
+}
+
+function thumbnail {
+    # Make thumbnail for image downloaded
+    tD="$1"
+    tF="$2"
+    if [ ! -d "$tD/thumbs/" ]; then mkdir -p "$tD/thumbs/"; fi
+
+    tE="${tF##*.}"    # extention
+    tA="${tF%.*}"     # filename
+
+    if [ ! -f "$tD/thumbs/$tA"_s.jpg ]; then
+        echo -e "$tD/$tF >> $tD/thumbs/$tA"_s.jpg
+
+        case "$tE" in
+             "gif") convert "$tD/$tF[0]" -trim +repage -resize $3\> -gravity center -background $4 -extent $3 "$tD/thumbs/$tA"_s.jpg
+                    ;;
+            "webm") ffmpeg -i "$tD/$tF" -f image2 -vframes 1 -s $3 "$tD/thumbs/$tA"_s.jpg
+                    ;;
+                 *) convert "$tD/$tF" -trim +repage -resize $3\> -gravity center -background $4 -extent $3 "$tD/thumbs/$tA"_s.jpg
+                    ;;
+        esac
+    fi
+}
+
+function clean {
+    # Notification
+    #notify-send "4cdl: All ("$I") images have finished downloading.\nDirectory: \"$P/$N/\""
+    echo -e "\033[1;32mAll ("$I") images have finished downloading.\033[0m"
+    echo -e "\033[1;30mThread: \033[0m"$H
+    echo -e "\033[1;30mDirectory: \033[0m"$P/$N/
+    echo -e "\033[1;30mLocal: \033[0mfile://"$P/$N/$F4
+    echo -e "\033[1;30mCatalog: \033[0mfile://"$P/$F5
+    echo -e "\033[1;30mIndex: \033[0mfile://"$P/$F6" \033[1;30m(Code: "$PW")\n"
+
+    #catalog
+    #index
+
+    # Remove temporary files
+    rm -f $P/$F1
+    rm -f $P/$F2
+    rm -f $P/$F3
+}
+
+function cleanse {
+    # Clean urls/paths
+    s="$@"
+
+    s=${s//%/%25}
+    s=${s//#/%23}
+    s=${s//&/%26}
+    s=${s//\?/%3F}
+}
+
+function catalog {
+    # Create catalog of all downloaded threads from current board
+    echo -ne "\033[1;33mBuilding catalog..."
+    d=($P/$B/*)
+    rm -f $P/$F5
+
+    # Apply header content
+    echo -e "<!DOCTYPE html>\n<html>\n" \
+            "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n" \
+            "<title>/"$B"/ - Catalog</title>\n" \
+            "<center><h2 id=\"title\">/"$B"/ - Catalog</h2><input type=\"text\" id=\"q\" value=\"\" placeholder=\"Search...\" /></center>\n" \
+            "<style type=\"text/css\">\n" \
+            "html,body                  { background: #17181A; color: #CECFD1; font-size: 10pt; }\n" \
+            "a:link, a:visited          { color: #8C86FC; text-decoration: none; }\n" \
+            "a:hover, a:active          { color: #EA75BC; text-decoration: underline; }\n" \
+            "img                        { width: auto; height: auto; max-width: 150px; max-height: 150px; }\n" \
+            "input,h2                   { margin: 24px 12px; display: inline-block;  }\n" \
+            "input                      { position: relative; top: -2px; background: #27282B; color: #CECFD1; border: 0; padding: 4px; border-radius: 1px; }\n" \
+            ".thread                    { width: 150px; height: auto; padding: 8px; display: inline-block; text-align: center; vertical-align: top; }\n" \
+            ".btn                       { padding: 4px 8px; margin: 1px; cursor: pointer; }\n" \
+            "</style>\n" \
+            "<script type=\"text/javascript\" language=\"javascript\">\n" \
+            "var threads=[" >> $P/$F5
+    
+    i=${#d[@]}
+    a=0 && b=1
+    while [ "$i" -gt "0" ]; do
+        let i=$i-1
+        df=(${d[$i]}/*)
+        df=$(sed -r 's/"/\\"/g' <<< $df);
+
+        # link/path
+        df1=${df[$(( ${#df[@]} - 2 ))]#$P}
+        cleanse $df1 && df1=$s
+
+        # op image
+        df2=${df[0]#$P}
+        cleanse $df2 && df2=$s
+        tD="${df2%/*}/"
+        tF="${df2##*/}"
+        tA="${tF%.*}"_s.jpg
+
+        # thread name
+        df3=${df1##*/}
+        df3=${df3#*[0-9][\-]}
+        df3=${df3%%.html*}
+        df3=$(sed -r 's/-/ /g' <<< $df3)
+
+        # Add thread to catalog (latest will appear first)
+        echo -e "    [\""$df1"\",\""$tD"thumbs/"$tA"\",\""$df3"\"]," >> $P/$F5
+
+        let a=$a+1
+    done
+
+    # Apply JS, CSS and HTML to file
+    echo -e "];\n</script>\n\n" \
+            "<center>\n" \
+            "<div id=\"navT\"></div>\n" \
+            "<br />\n" \
+            "<div id=\"threads\"></div>\n" \
+            "<br />\n" \
+            "<div id=\"navB\"></div>\n" \
+            "</center>\n" \
+            "\n<script type=\"text/javascript\" languge=\"javascript\">\n" \
+            "var $=function(id) { return document.getElementById(id); }\n" \
+            "var perpage="$V";\n" \
+            "var selected=1;\n" \
+            "var i,qA=[];\n\n" \
+            "function view(x) {\n" \
+            "    selected=x-1;\n" \
+            "    var pages=Math.ceil(qA.length/perpage);\n" \
+            "    var begin=selected*perpage;\n" \
+            "    \$('navT').innerHTML=\"\";\n" \
+            "    \$('navB').innerHTML=\"\";\n" \
+            "    \$('threads').innerHTML=\"\";\n" \
+            "    \$('title').innerHTML=\"/"$B"/ - Catalog(\"+x+\")\";\n" \
+            "    for(i=1;i<=pages;i++) {\n" \
+            "        \$('navT').innerHTML+=\"<input type='button' class='btn' id='btn_\"+i+\"T' value='\"+i+\"' onclick='view(\"+i+\");' />\";\n" \
+            "        \$('navB').innerHTML+=\"<input type='button' class='btn' id='btn_\"+i+\"B' value='\"+i+\"' onclick='view(\"+i+\");' />\";\n" \
+            "        \$('btn_'+i+'T').style.background=\"\#27282B\";\n" \
+            "        \$('btn_'+i+'B').style.background=\"\#27282B\";\n" \
+            "    }\n" \
+            "    \$('btn_'+x+'T').style.backgroundColor=\"\#111113\";\n" \
+            "    \$('btn_'+x+'B').style.backgroundColor=\"\#111113\";\n" \
+            "    for(var i=begin;i<(begin+perpage);i++) {\n" \
+            "        \$('threads').innerHTML+=\"<div class='thread'><a href='.\"+qA[i][0]+\"' target='_self'><img width='150px' height='150px' src='.\"+qA[i][1]+\"' /><br />\"+qA[i][2]+\"</a></div>\";\n" \
+            "    }\n" \
+            "}\n\n" \
+            "function find(q,x) {\n" \
+            "    qA=[];\n" \
+            "    var c=0;\n" \
+            "    for(i=0;i<threads.length;i++) {\n" \
+            "        if(threads[i][0].indexOf(q)>-1 || threads[i][1].indexOf(q)>-1 || threads[i][2].indexOf(q)>-1) {\n" \
+            "            qA[c]=threads[i].slice();\n" \
+            "            c++;\n" \
+            "        }\n" \
+            "    }\n\n" \
+            "    view(x);\n" \
+            "}\n\n" \
+            "document.body.onload=function()              { find(\$('q').value,selected); };\n" \
+            "\$('q').addEventListener('change',function() { find(\$('q').value,1); });\n" \
+            "\$('q').addEventListener('keyup',function()  { find(\$('q').value,1); });\n" \
+            "</script>\n</html>\n" >> $P/$F5
+
+    echo -e "[\033[1;37mDONE\033[1;33m]\033[0m"
+}
+
+function index {
+    # index html page
+    if $X; then
+        rm -f $P/$F1
+        F1="4c.index.tmp"
+        wget "https://boards.4chan.org/g/" -O $P/$F1
+
+        # Add lines to index file
+        sed -i 's/></>\n</g' $P/$F1
+        sed -i 's/> </>\n</g' $P/$F1
+    fi
+    rm -f $P/$F6
+
+    echo -ne "\033[1;33mBuilding index....."
+
+    echo -e "<!DOCTYPE html>\n<html>\n" \
+            "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n" \
+            "<title>4cdl</title>\n\n" \
+            "<style type=\"text/css\">\n" \
+            "html,body {\n" \
+            "    margin: 20px; padding: 0;\n" \
+            "    background: #17181A; color: #CECFD1;\n}\n\n" \
+            "form { display: inline-block; margin: 6px 4px; }\n" \
+            ".input {\n" \
+            "     padding: 4px 8px; border: 0;\n" \
+            "     background: #27282B; color: #CECFD1;\n}\n" \
+            "    .btn { border-radius: 1px; cursor: pointer; }\n" \
+            "    .txt { width: 50px; padding: 5px 8px; }\n\n" \
+            "#boards { display: none; }\n" \
+            "</style>\n" \
+            "<script type=\"text/javascript\">\n" \
+            "var \$=function(id) { return document.getElementById(id); };\n" \
+            "window.onload=function() { \$('code').focus(); }\n\n" \
+            "function validate() {\n" \
+            "    if(\$('code').value=='"$PW"') { // 18+\n" \
+            "        \$('input').style.display='none';\n" \
+            "        \$('boards').style.display='block';\n" \
+            "        return false;\n    }\n}\n" \
+            "</script>\n\n" \
+            "<div id='boards'>\n    Select Board:\n    <br /><br />\n" >> $P/$F6
+
+    # get directories
+    array=($P*/*/)
+    for dir in "${array[@]}"; do
+        aD1=${dir#$P}
+        aD1=$(echo "$aD1" | sed -e 's/\//\\\//g')
+        aD2=$(grep "$aD1" < $P/$F1)
+        aD3=${aD1//\\}
+        aD3=${aD3//\/}
+        aD2=$(echo "$aD2" | grep -Po '^.*?\K(?<='$aD1'" title=").*?(?=">'$aD3'</a>)')
+
+        echo -e "    <form action='./"$aD3"-catalog.html'><input type='submit' class='input btn' value='/"$aD3"/ - "$aD2"' /></form>" >> $P/$F6
+    done
+    echo -e "</div>\n\n" \
+            "<div id='input'>\n    Enter Code:\n    <br /><br />\n\n" \
+            "    <form onsubmit='return validate();'>\n" \
+            "        <input type='text' class='input txt' placeholder='XXXX' id='code' autocomplete='off' />\n" \
+            "        <input type='submit' class='input btn' value='Submit' />\n" \
+            "    </form>\n</div>\n</html>\n" >> $P/$F6
+
+    echo -e "[\033[1;37mDONE\033[1;33m]\033[0m"
+    rm -f $P/$F1
+}
+
+function loop {
+    if ! $X; then
+        echo -ne "\n\033[1;33mUpdating in "
+
+        # Wait timer
+        i=${W[$R]}
+        while [ "$i" -gt "0" ]; do
+            echo -ne $i".."
+            sleep 1
+            let i=$i-1
+        done
+        echo -e "\033[0m"
+
+        if [ "$R" -lt "$(( ${#W[@]} - 1 ))" ]; then let R=$R+1; fi
+        main
+    else
+        echo -e "\n\033[1;31mThread no longer exist [404].\033[0m\n"
+        input
+    fi
+}
+
+function input {
+    if $E; then exit 0; fi
+    R=0
+
+    echo -e "\nOptions: "
+    echo -e "   1. Continue Download"
+    echo -e "   2. Open Directory"
+    echo -e "   3. View Pictures"
+    echo -e "   4. Quit\n"
+
+    read -p "Enter: " -n 1 -r
+    echo -e "\n"
+    case "$REPLY" in
+        1)  main ;;
+        2)  thunar $P/$N; input ;;
+        3)  sxiv $P/$N/*; input ;;
+        4)  exit 0 ;;
+        *)  echo "Invalid input..."; input ;;
+    esac
+}
+
+function main {
+    prepare
+    download
+    clean
+
+    if $L; then loop; else input; fi
+}
+
+H="$1"
+X=false
+R=0
+
+if [ "$H" == "catalog" ]; then
+    # Rebuild catalog w/ $ sh ./4cdl catalog mlp
+    B="$2"
+    F5=$B"-catalog.html"
+    catalog
+    
+    echo -e "\033[1;30mCatalog: \033[0mfile://"$P/$F5"\n"
+    exit 0
+fi
+
+if [ "$H" == "index" ]; then
+    # Rebuild index w/ $ sh ./4cdl index
+    X=true
+    F1="4c.index.tmp"
+    F6="index.html"
+    index
+
+    echo -e "\033[1;30mIndex: \033[0mfile://"$P/$F6" \033[1;30m(Code: "$PW")\n"
+    exit 0
+fi
+main
+
+exit 0
