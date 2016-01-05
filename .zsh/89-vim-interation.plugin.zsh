@@ -34,22 +34,21 @@ function vim_file_open() (
         && vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
         local file_size=$(stat -c%s "${file_name}" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
         local file_length="$(wc -l ${file_name} 2>/dev/null|grep -owE '[0-9]* '|tr -d ' ')"
-        local sz_msg=$(_zsh_wrap "sz$(_zfg 237)~$fg[white]${file_size}")
-        local len_msg=$(_zsh_wrap "len$(_zfg 237)=$fg[white]${file_length}")
-        local new_file_msg=$(_zsh_wrap new_file)
-        local dir_msg=$(_zsh_wrap directory)
-        local pref=$(_zsh_wrap ">>")
+        local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
+        local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
+        local new_file_msg=$(_zwrap new_file)
+        local dir_msg=$(_zwrap directory)
+        local pref=$(_zwrap ">>")
         if [[ ! -e "${file_name}" ]]; then
-            <<< "${pref} $(_zsh_filename_wrap ${file_name}) $(_zdelim) ${new_file_msg}"
+            <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${new_file_msg}"
         elif [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
-            <<< "${pref} $(_zsh_filename_wrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
+            <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
         else
             if [[ -d "${file_name}" ]]; then
                 if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
-                    local spec_fancy_name="${decoration} $fg[white]current dir ${decoration}"
-                    <<< "${pref} ${spec_fancy_name} ${msg_delim} ${dir_msg}"
+                    <<< "${pref} $(_zfwrap "current dir") $(_zdelim) ${dir_msg}"
                 else
-                    <<< "${pref} ${fancy_name} ${msg_delim} ${dir_msg}"
+                    <<< "${pref} ${fancy_name} $(_zdelim) ${dir_msg}"
                 fi
             fi
         fi

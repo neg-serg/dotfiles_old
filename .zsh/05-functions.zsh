@@ -44,7 +44,7 @@ function zc(){
   compinit -d "${cache}/zcomp-${HOST}"
   for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
       zcompile ${z}; 
-      echo $(_zsh_prefix) $(_zsh_filename_wrap "${z}"); 
+      echo $(_zpref) $(_zfwrap "${z}"); 
   done
   for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
       zrecompile -p ${f} && command rm -f ${f}.zwc.old
@@ -858,7 +858,7 @@ function ta {
             local base_name="$(basename ${file_name})"
             command mv ${file_name} ${torrent_dir}/${base_name} && \
             ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
-            echo "$(_zsh_prefix) -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
+            echo "$(_zpref) -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
         done < ${tmp_list}
     rm ${tmp_list}
     unset file_name tmp_list
@@ -920,19 +920,33 @@ function resolve_file {
   fi
 }
 
-function _zsh_wrap() {
+function _zwrap() {
     echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]"
 }
 
-function _zsh_filename_wrap() {
+function _zfwrap(){
+    apply=$1;
+    body=$2;
+    shift
+    echo $(apply) ${body} $(apply)
+}
+
+function _zgwrap(){
+    side=$1;
+    body=$2;
+    shift
+    echo ${side} ${body} ${side}
+}
+
+function _zfwrap() {
     local tmp_name="$(echo $1|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
     local decoration="$fg[green]‒$fg[white]"
     local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
     echo ${fancy_name}
 }
 
-function _zsh_prefix() {
-    echo $(_zsh_wrap ">>")
+function _zpref() {
+    echo $(_zwrap ">>")
 }
 
 function _zfg(){
