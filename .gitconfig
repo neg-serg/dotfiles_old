@@ -15,26 +15,25 @@
 [color "status"]
   added     = 2 bold
   branch    = 100
-  changed   = 085 bold
-  header    = 086
+  changed   = 4 bold
+  header    = 23
   nobranch  = 197
   untracked = 240
 
 [color "branch"]
-  current = 172
-  local   = 85 bold
-  remote  = 039
-  plain   = 240 reverse
+  current = 23
+  local   = 18 bold
+  remote  = 17
 
 [color "diff"]
   old        = 1
   new        = 23
   plain      = 7
-  meta       = 85
+  meta       = 18
   frag       = 67
   func       = 68
   commit     = 4
-  whitespace = 59
+  whitespace = 54
 
 [man]
   viewer = man
@@ -66,6 +65,7 @@
     lg50 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-50s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
     lg80 = "!f () { git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' $@ | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }'; }; f"
     lo  = log --graph --pretty=format:'%C(Yellow)%h %C(Cyan)%ad %C(White)%s%C(Green)%d %C(Red)[%an]' --date=short
+    graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
     d = difftool
 [github]
   user  = neg-serg
