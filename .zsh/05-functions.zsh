@@ -42,12 +42,13 @@ function zc(){
   local cache="${ZSH}/cache"
   autoload -U compinit zrecompile
   compinit -d "${cache}/zcomp-${HOST}"
-
-  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do zcompile ${z}; echo "Compiled ${z}"; done
+  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
+      zcompile ${z}; 
+      echo $(_zsh_prefix) $(_zsh_filename_wrap "${z}"); 
+  done
   for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
       zrecompile -p ${f} && command rm -f ${f}.zwc.old
   done
-
   source ${HOME}/.zshrc
 }
 
@@ -392,7 +393,6 @@ if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 fi
 source "$fasd_cache"
 unset fasd_cache
-alias vv='f -e vim'
 
 function copy-to-clipboard() {
     (( $+commands[xclip] )) || return
@@ -820,8 +820,7 @@ EOF
   }
 
   # show help for no arguments if stdin is a terminal
-  if { [ -z "$1" ] && [ -t 0 ] ; } || [ "$1" == '-h' ] || [ "$1" == '--help' ]
-  then
+  if { [ -z "$1" ] && [ -t 0 ] ; } || [ "$1" == '-h' ] || [ "$1" == '--help' ]; then
     help
     exit 0
   fi
@@ -859,7 +858,7 @@ function ta {
             local base_name="$(basename ${file_name})"
             command mv ${file_name} ${torrent_dir}/${base_name} && \
             ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
-            echo "$fg[blue][$fg[white]>>$fg[blue]] -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
+            echo "$(_zsh_prefix) -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
         done < ${tmp_list}
     rm ${tmp_list}
     unset file_name tmp_list
@@ -892,8 +891,6 @@ fi
 # Delete 0 byte file
 d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
 
-alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias unison="unison -log=false -auto -ui=text -times"
 
 function g() {
   if [[ $# > 0 ]]; then
@@ -902,8 +899,6 @@ function g() {
     git status
   fi
 }
-
-alias google='web_search google'
 
 function sls(){
     steamcmd '+apps_installed +quit' |\
@@ -915,3 +910,65 @@ function sls(){
             }'
 }
 
+function resolve_file {
+  if [[ -f "$1" ]]; then
+    echo $(readlink -f "$1")
+  elif [[ "${1#/}" == "$1" ]]; then
+    echo "$(pwd)/$1"
+  else
+    echo $1
+  fi
+}
+
+function _zsh_wrap() {
+    echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]"
+}
+
+function _zsh_filename_wrap() {
+    local tmp_name="$(echo $1|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
+    local decoration="$fg[green]‒$fg[white]"
+    local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
+    echo ${fancy_name}
+}
+
+function _zsh_prefix() {
+    echo $(_zsh_wrap ">>")
+}
+
+function _zfg(){
+    echo -ne "[38;5;$1m"
+}
+
+function _zdelim(){
+    echo -ne "$(_zfg 24)::"
+}
+
+function record(){
+    local rpath
+    test -n "$2" && rpath=$2 || rpath=$1
+
+    PIDNAME=recorder
+    FRAMERATE=25
+    RESOLUTION=$(wattr wh $(lsw -r) | tr \  x)
+    AREA=":0.0"
+
+    case $1 in
+        f) FRAMERATE=50; shift 1 ;;
+        k) kill $(pidof -s $PIDNAME); exit 0 ;;
+        s) 
+            eval $(slop -t 2 -b $BW '215,215,215,0.9')
+            RESOLUTION=$(echo $W x $H | sed 's# ##g')
+            AREA=$(echo "$AREA+$X,$Y")
+            ;;
+        p|pfw) 
+            W=$(wattr w $(pfw))
+            H=$(wattr h $(pfw))
+            X=$(wattr x $(pfw))
+            Y=$(wattr y $(pfw))
+            RESOLUTION=$(echo $W x $H | sed 's# ##g')
+            AREA=$(echo "$AREA+$X,$Y")
+    esac
+
+    ffmpeg -f x11grab -s ${RESOLUTION} -an -r ${FRAMERATE} -i ${AREA} -c:v libvpx \
+    -b:v 10M -crf 10 -quality realtime -y -loglevel quiet ${rpath}.webm
+}
