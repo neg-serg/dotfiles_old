@@ -17,19 +17,19 @@ neg.rofi.hlfg = "\"#aaaaaa\""
 neg.rofi.hlbg = "\"#194558\""
 neg.rofi.bc   = "\"#202020\""
 
-neg.dzen.panel_font_ = "'PragmataPro for Powerline:style = bold:size = 12'"
+neg.dzen.panel_font_ = "'PragmataPro for Powerline:style=bold:size=12'"
 neg.dzen.bg_         = '"#000000"'
 neg.dzen.h_          = 19
 neg.dzen.main_w_     = "1000"
 
 neg.dzen.fancy_table1 = {
-    "",  "",
-    "",  "",
-    " data", " gtd",
-    " gtd", " code",
-    " text", " play",
-    " pics", " game",
-    " adm", " news",
+    ""      , ""      ,
+    ""      , ""      ,
+    " data" , " gtd"  ,
+    " gtd"  , " code" ,
+    " text" , " play" ,
+    " pics" , " game" ,
+    " adm"  , " news" ,
     "         "
 
 }
