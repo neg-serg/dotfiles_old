@@ -1,4 +1,4 @@
-fe() {
+function fe() {
   local out file key
   out=$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)
   key=$(head -1 <<< "$out")
@@ -9,20 +9,20 @@ fe() {
 }
 
 # fh - repeat history
-fh() {
+function fh() {
   zle -I;
   echo $(([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s | sed 's/ *[0-9]* *//')
 }
 
 # fkill - kill process
-fkill() {
+function fkill() {
   zle -I
   ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
 }
 
 
 # fco - checkout git commit
-fco() {
+function fco() {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
@@ -30,7 +30,7 @@ fco() {
 }
 
 # fshow - git commit browser (enter for show, ctrl-d for diff, backtick ` toggles sort)
-fshow() {
+function fshow() {
   local out shas sha q k
   while out=$(
       git log --graph --color=always \
@@ -53,8 +53,7 @@ fshow() {
   done
 }
 
-# ftpane - switch pane
-ftpane () {
+function ftpane () {
   local panes current_window target target_window target_pane
   panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
   current_window=$(tmux display-message  -p '#I')
@@ -73,49 +72,49 @@ ftpane () {
 }
 
 function pl(){
-    if [[ -e "$@" ]]; then
-        find_result="`find "$@"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-    else
-        find_result="`find "${HOME}/vid/"|~/.zsh/fzf-tmux -d 30% -- --color=16`"
-    fi
-    echo ${find_result}|xsel
-    if [ ! -z ${find_result} ]; then
-        local prefix="$fg[blue][$fg[white]>>$fg[blue]]"
-        local msg_delim="[38;5;24m::${fg[white]}"
+    local args
+    [[ -e "$@" ]] && args="$@"
+    [[ -z "${args}" ]] && args="${HOME}/vid/"
+    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16)"
+    xsel <<< ${find_result}
+    if [[ ! -z ${find_result} ]]; then
+        exifdata=$(exiftool ${find_result})
 
-        local vid_comment="$(exiftool -t -S -Comment ${find_result})"
-        local file_size="$(exiftool -t -S -FileSize ${find_result})"
-        local mime_type="$(exiftool -t -S -MIMEType ${find_result})"
-        local doc_type="$(exiftool -t -S -DocType ${find_result})"
-        local muxing_app="$(exiftool -t -S -MuxingApp ${find_result})"
+        local vid_comment="$(awk -F: '/^Comment/{print $2}'<<< ${exifdata})"
+        local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata})"
+        local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata})"
+        local doc_type="$(awk -F: '/^Doc Type/{print $2}'<<< ${exifdata})"
+        local muxing_app="$(awk -F: '/^Muxing App/{print $2}'<<< ${exifdata})"
+        local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-)"
+        local date_time="$(awk -F: '/^Date Time Original/{print $2}'<<< ${exifdata})"
+        local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata})"
+        local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata})"
+
         local wrighting_app="$(exiftool -t -S -WrightingApp ${find_result})"
-        local duration="$(exiftool -t -S -Duration ${find_result})"
-        local date_time="$(exiftool -t -S -DateTimeOriginal ${find_result})"
-        local img_width="$(exiftool -t -S -ImageWidth ${find_result})"
-        local img_height="$(exiftool -t -S -ImageHeight ${find_result})"
-
-        local tmp_name="$(echo ${find_result}|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
-        local decoration="$fg[green]‒$fg[white]"
-        local fancy_name="${decoration} ${tmp_name} ${decoration}"
-
-        if [[ ! $(echo ${vid_comment}|tr -d '[:blank:]') == "" ]]; then
-            local comment_str="${fg[blue]}[${fg[white]} Comment ${msg_delim} $vid_comment ${fg[blue]}]${fg[white]}"
+        local fancy_name=$(_zfwrap ${find_result})
+        if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
+            local comment_str="$(zwrap "Comment $(_zdelim) ${vid_comment}")"
         else
             local comment_str=""
         fi
-        local img_size_str="${fg[blue]}[${fg[white]} Size ${msg_delim} ${img_width} x ${img_height} ${fg[blue]}]"
-        local duration_str="${fg[blue]}[${fg[white]} Duration ${msg_delim} ${duration} ${fg[blue]}]"
-        if [[ ! $(echo ${created_str}|tr -d '[:blank:]') == "" ]]; then
-            local created_str="${fg[blue]}[${fg[white]} Created ${msg_delim} ${date_time} ${fg[blue]}]"
+        local img_size_str="$(_zwrap "Size $(_zdelim) ${img_width} x ${img_height}")"
+        local duration_str="$(_zwrap "Duration $(_zdelim) ${duration}")"
+        if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
+            local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
         else
             local created_str=""
         fi
-        echo -e "${prefix} ${fancy_name}\n${img_size_str}\n${duration_str}\n${created_str}\n${comment_str}"
+        echo -e "$(_zpref)"
+        for i in ${fancy_name} ${img_size_str} ${duration_str} ${created_str} ${comment_str}; do
+            if [[ $i != "" ]]; then
+                echo -ne "$i\n"
+            fi
+        done
         mpv "${find_result}"
     fi
 }
 
-fmpc() {
+function fmpc() {
   local song_position
   song_position=$(mpc -f "%position%) %artist% - %title%" playlist | \
     fzf-tmux --query="$1" --reverse --select-1 --exit-0 | \
@@ -123,11 +122,10 @@ fmpc() {
   [ -n "$song_position" ] && mpc -q play $song_position
 }
 
-fq() {
+function fq() {
   local file=$(find ${1:-.} -maxdepth 1 -type f -print 2> /dev/null | fzf +m)
   echo ${file}
 }
-
 
 zle -N fe 
 bindkey "^Xe" fe
