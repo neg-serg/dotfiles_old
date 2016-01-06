@@ -8,12 +8,6 @@ function fe() {
     fi
 }
 
-# fh - repeat history
-function fh() {
-    zle -I;
-    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s | sed 's/ *[0-9]* *//')
-}
-
 # fkill - kill process
 function fkill() {
     zle -I
@@ -130,3 +124,10 @@ function fq() {
 zle -N fe ; bindkey "^Xe" fe
 zle -N fh ; bindkey "^Xh" fh
 zle -N fkill ; bindkey "^Xq" fkill
+
+
+# fh - repeat history
+function fh() {
+    zle -I;
+    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s | sed 's/ *[0-9]* *//')
+}
