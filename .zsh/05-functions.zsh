@@ -614,7 +614,8 @@ function toggle_mpdsc(){
         pkill mpdscribble
         systemctl --user start mpdscribble
     fi
-    any mpdscribble | awk  '{print substr($0, index($0,$11))}'
+    echo $(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
+                                sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")
     unset is_run
 }
 
@@ -985,4 +986,14 @@ function record(){
 
     ffmpeg -f x11grab -s ${RESOLUTION} -an -r ${FRAMERATE} -i ${AREA} -c:v libvpx \
     -b:v 10M -crf 10 -quality realtime -y -loglevel quiet ${rpath}.webm
+}
+
+# shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
+# MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
+function zurl() {
+  [[ -z ${1} ]] && print "please give an url to shrink." && return 1
+    local url=${1}
+    local tiny="http://tinyurl.com/create.php?url="
+    # print "${tiny}${url}" ; return
+    wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
