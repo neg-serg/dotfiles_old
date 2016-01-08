@@ -6,6 +6,7 @@ augroup vimrc
     au VimLeave * if exists('g:session') | call Mks(g:session) | endif
     au BufEnter * call MySetupTitleString()
 augroup end
+au StdinReadPost * set buftype=nofile
 
 fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
@@ -79,7 +80,7 @@ augroup filetypedetect
 augroup END
 
 autocmd vimrc FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-autocmd vimrc FileType c,cpp let b:delimitMate_matchpairs = "(:),[:],{:}" | hi Function guifg=#85A2CC | let b:indentLine_enabled = 1
+autocmd vimrc FileType c,cpp,bash,zsh,sh let b:delimitMate_matchpairs = "(:),[:],{:}" | hi Function guifg=#85A2CC | let b:indentLine_enabled = 1
 
 " This handles c++ files with the ".cc" extension.
 augroup ccfiles
