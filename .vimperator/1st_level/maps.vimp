@@ -35,6 +35,8 @@ nmap <C-q> <Nop>
 vmap <C-q> <Nop>
 imap <C-q> <Nop>
 cmap <C-q> <Nop>
+map <f1> <Nop>
+map q <Nop>
 
 noremap j 3j
 noremap k 3k
@@ -106,7 +108,7 @@ cmap <A-в> <C-S-Right><Del>
 map I_<C-w> I_<C-BS>
 map <silent> s :sidebar<Space>
 map <silent> S :sbclose<CR>
-map gn :noscript popup<cr>
+map gq :noscript popup<cr>
 
 " Russian language keyboard mappings (UTF-8)
 nmap <silent> щ  :!xkb-switch -s us&<CR>:open<Space>
