@@ -1,5 +1,5 @@
 # Dir reload
-.() { [ $# = 0 ] && cd . || builtin . "$@"; }
+.() { [[ $# = 0 ]] && cd . || builtin . "$@"; }
 function chpwd() {
     if [ -x ${BIN_HOME}/Z ]; then
         [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
@@ -204,7 +204,7 @@ function any() {
     fi
 }
 
-function inplaceMkDirs() {
+function inplace_mk_dirs() {
     # Press ctrl-xM to create the directory under the cursor or the selected area.
     # To select an area press ctrl-@ or ctrl-space and use the cursor.
     # Use case: you type "mv abc ~/testa/testb/testc/" and remember that the
@@ -337,26 +337,26 @@ function eat(){
     filename=$@
 
     # Display usage if full argument isn't given
-    if [[ -z $filename ]]; then
-        echo " $prog <filename> - copy a file to the clipboard"
+    if [[ -z ${filename} ]]; then
+        echo " ${prog} <filename> - copy a file to the clipboard"
         exit
     fi
 
     # Check that file exists
     if [[ ! -f ${filename} ]]; then
-        echo -e "${warn} File ${txtund}$filename${txtrst} doesn't exist"
+        echo -e "${warn} File ${txtund}${filename}${txtrst} doesn't exist"
         exit
     fi
 
     # Check user is not root (root doesn't have access to user xorg server)
     if [[ $(whoami) == root ]]; then
-        echo -e "$warn Must be regular user to copy a file to the clipboard"
+        echo -e "${warn} Must be regular user to copy a file to the clipboard"
         exit
     fi
 
     # Copy file to clipboard, give feedback
     xclip -in -selection c < "$filename"
-    echo -e "$pass ${txtund}"${filename##*/}"${txtrst} copied to clipboard"
+    echo -e "${pass} ${txtund}"${filename##*/}"${txtrst} copied to clipboard"
 }
 
 function fg-widget() {
@@ -955,7 +955,7 @@ function _zfg(){
 }
 
 function _zdelim(){
-    echo -ne "$(_zfg 24)::"
+    echo -ne "$(_zfg 24)::"$(_zfg 8)
 }
 
 function record(){
