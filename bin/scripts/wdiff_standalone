@@ -1,0 +1,3 @@
+#!/bin/zsh
+source ~/.zshrc
+wdiff $1 $2
