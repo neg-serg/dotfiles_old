@@ -322,3 +322,4 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias unison="unison -log=false -auto -ui=text -times"
 alias google='web_search google'
 alias starwars='telnet towel.blinkenlights.nl'
+alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
