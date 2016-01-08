@@ -6,9 +6,6 @@ let g:EclimCompletionMethod    = 'omnifunc' "To provide ycm autocompletion
 let g:livepreview_previewer    = 'zathura'
 let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
-let g:gasynctags_autostart     = 0
-let g:racer_cmd                = "/usr/bin/racer"
-let $RUST_SRC_PATH             = $HOME . "/dev/rust/src"
 let g:colorizer_startup        = 0
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
@@ -636,6 +633,7 @@ endif
 " │ https://github.com/bbchung/gasynctags.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('gasynctags')
+    let g:gasynctags_autostart = 0
     nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -837,4 +835,14 @@ if neobundle#tap('vim-lua-ftplugin')
     let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
     let g:lua_define_completion_mappings = 0
     let g:lua_internal = 0
+endif
+
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - phildawes/racer.git                                                      │ 
+" │ git@github.com:phildawes/racer                                                    │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-racer') 
+    let g:racer_cmd     = "/usr/sbin/racer"
+    "let $RUST_SRC_PATH = $HOME . "/dev/rust/src"
+    let $RUST_SRC_PATH  = "/usr/src/rust/src"
 endif
