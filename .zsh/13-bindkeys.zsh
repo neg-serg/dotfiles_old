@@ -131,7 +131,7 @@ bindkey "^I" expand-or-complete-and-highlight
 
 # load the lookup subsystem if it's available on the system
 zrcautoload lookupinit && lookupinit
-zle -N inplaceMkDirs && bindkey '^xM' inplaceMkDirs
+zle -N inplace_mk_dirs && bindkey '^xM' inplace_mk_dirs
 
 bindkey -M emacs "^XD" describe-key-briefly
 bindkey -M emacs "^Z" fg-widget
