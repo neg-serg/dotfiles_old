@@ -1,6 +1,19 @@
 #!/bin/zsh
-file=/tmp/xprop_pipe
-xprop=$(xprop WM_CLASS WM_NAME WM_WINDOW_ROLE WM_TRANSIENT_FOR _NET_WM_WINDOW_TYPE _NET_WM_STATE _NET_WM_PID -id $1)
+function main(){
+    local readonly xprop_pipe=/tmp/xprop_pipe$$
+    local xprops=(
+        WM_CLASS 
+        WM_NAME 
+        WM_WINDOW_ROLE 
+        WM_TRANSIENT_FOR 
+        _NET_WM_WINDOW_TYPE 
+        _NET_WM_STATE 
+        _NET_WM_PID
+    )
+    local xprop=$(xprop ${xprops} -id $1)
+    echo "${xprop}" > "${xprop_pipe}" 
+    < "${xprop_pipe}" rofi -dmenu -location 6 -yoffset -24|xsel -i
+    rm ${xprop_pipe}
+}
 
-echo "${xprop}" > "${file}" 
-< "${file}" rofi -dmenu -location 6 -yoffset -24|xsel
+main $1
