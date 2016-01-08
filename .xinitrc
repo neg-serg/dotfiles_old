@@ -1,6 +1,8 @@
 #!/bin/zsh
 unset TMUX
+
 . ~/.zsh/03-exports.zsh
+
 systemctl --user import-environment DISPLAY
 pulseaudio --start &
 wmname Sawfish
@@ -28,22 +30,20 @@ xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 setxkbmap -option keypad:pointerkeys -layout 'us,ru' -variant altgr-intl \
     -option 'grp:alt_shift_toggle' -option ctrl:nocaps \
     -option 'terminate:ctrl_alt_bksp'
-#   -option 'compose:lctrl-altgr'
 
 xhost +localhost +local:
 xhost +si:localuser:$(id -un)
 xhost +si:localuser:xdm
 
-for WID in $(xwininfo -root -tree | \
+for wid in $(xwininfo -root -tree | \
     sed '/"plasma-desktop": ("Plasma" "Plasma")/!d; s/^  *\([^ ]*\) .*/\1/g'); do
-   xprop -id ${WID} -remove _KDE_NET_WM_SHADOW
+    xprop -id ${wid} -remove _KDE_NET_WM_SHADOW
 done
 
 xbindkeys -n &
 xset -b r rate 250 50 m 1 1 b off
 
-# zsh ~/.local/wallpaper.sh &
-hsetroot -fill ${HOME}/pic/wl/64738416.jpg
+hsetroot -fill ${HOME}/pic/wl/LB6CQw9.jpg
 
 [[ -f ${HOME}/.Xresources ]] && xrdb -merge ${HOME}/.Xresources
 [[ -f ${XDG_CONFIG_HOME}/keymaps/xmodmaprc ]] && xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
@@ -53,7 +53,8 @@ nexec dunst && dunst &
 
 nexec udiskie && udiskie -q &
 inpath unclutter && unclutter --fork --timeout 1 &
-compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf
+sudo pkill compton && \
+    compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
 nexec klay_watch && ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
 nexec stalonetray && stalonetray &
@@ -66,4 +67,5 @@ fi
 rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
+systemctl --user restart gpaste
 exec notion 2>> /tmp/notionerr$$ 2>&1
