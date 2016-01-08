@@ -132,3 +132,13 @@ export STEAM_RUNTIME=1
 export QEMU_AUDIO_DRV=pa
 export QEMU_PA_SOURCE=input
 export QEMU_PA_SINK=alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo
+
+export SXHKD_FIFO="/tmp/sxhkd_fifo"
+export SXHKD_SHELL="zsh"
+
+export vim_server_name="VIM"
+export wim_font="PragmataPro for Powerline"
+export wim_font_s="Mensch:size=14"
+export wim_font_size=20
+export wim_sock_path="${HOME}/1st_level/vim.socket"
+export wim_timer=".1s"
