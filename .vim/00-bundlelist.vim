@@ -112,7 +112,7 @@ if executable("go")
     NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
     NeoBundle 'fatih/vim-go.git' "golang support
 endif
-NeoBundle 'phildawes/vim-racer' "rust autocomplete
+NeoBundle 'racer-rust/vim-racer.git' "rust autocomplete
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
