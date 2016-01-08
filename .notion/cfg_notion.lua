@@ -19,13 +19,14 @@ notioncore.set{
     unsqueeze=true,
     screen_notify=true,
     autosave_layout=false,
-    autoraise=true,         -- Autoraise regions in groups on goto.
-	edge_resistance=200,	-- The default is so unrestrictive that I wasn't even aware of it!
-	framed_transients=true, -- Put transients in nested frames
+    autoraise=true,          -- Autoraise regions in groups on goto.
+	edge_resistance=200,     -- The default is so unrestrictive that I wasn't even aware of it!
+	framed_transients=false, -- Put transients in nested frames
 	window_stacking_request="activate",
 }
 --------------------------------[[ DOPATH ]]-----------------------------------------
 dopath("cfg_rules")
+dopath("autoprop")
 dopath("mod_tiling")
 dopath("cfg_layouts.lua")
 dopath("app")
