@@ -1,42 +1,28 @@
-" silent qmark a http://a.hatena.ne.jp/anekosp/
-" silent qmark B http://bit.ly/
-" silent qmark b https://mail.google.com/mail/?shva=1#buzz
-" silent qmark c https://catch.com/m/
-" silent qmark d http://d.hatena.ne.jp/nokturnalmortum/
-" " silent qmark f http://fastladder.com/reader/
-" silent qmark f http://reader.livedoor.com/reader/
-" silent qmark g https://mail.google.com/mail/#mbox
-" silent qmark h http://www.google.co.jp/ig
-" silent qmark l http://reader.livedoor.com/reader/
-" silent qmark m http://mixi.jp/home.pl
-" silent qmark o https://www.ohloh.net/accounts/anekos
-" silent qmark r http://www.rememberthemilk.com/
-" silent qmark R http://www.rememberthemilk.com/home/anekosp/#section.tasks
-" silent qmark s http://stackoverflow.com/users/904450/anekos
-" silent qmark T http://anekos.tumblr.com/
-" silent qmark t http://www.tumblr.com/dashboard
-" silent qmark w http://twitter.com/home
-" silent qmark x http://xmonad.org/xmonad-docs/
-" silent qmark X http://dir.gmane.org/gmane.comp.lang.haskell.xmonad
-
-" " silent qmark 1 file:///Users/chris/Dropbox/manuals-guides-refs/pentadactyl-help/index.html
-" " silent qmark b http://clinki.es/
-" " silent qmark d https://www.diigo.com/user/chrisl
-" " silent qmark c http://cpb.passiontask.com/
-" " silent qmark C http://cpb.passiontask.com/wp-admin/
-" " silent qmark f http://facebook.com/
-" " silent qmark F http://chrislott.org/fever/
-" " silent qmark g http://geek.chrislott.org/
-" " silent qmark G http://geek.chrislott.org/wp-admin/
-" " silent qmark h https://hootsuite.com/dashboard
-" " silent qmark k http://katannuta.passiontask.com/
-" " silent qmark K http://www.tumblr.com/blog/katannuta/new/text
-" " silent qmark m http://mail.chrislott.org/
-" " silent qmark p http://blog.passiontask.com/
-" " silent qmark P http://blog.passiontask.com/wp-admin/
-" " silent qmark r http://chrislott.org/
-" " silent qmark R http://chrislott.org/wp-admin/
-" " silent qmark s http://www.scoop.it/u/chris-lott
-" " silent qmark t http://toodledo.com/
-
-
+silent qmark B http://bit.ly/
+silent qmark c https://catch.com/m/
+silent qmark f http://reader.livedoor.com/reader/
+silent qmark g https://mail.google.com/mail/#mbox
+silent qmark h http://www.google.co.jp/ig
+silent qmark l http://reader.livedoor.com/reader/
+silent qmark m http://mixi.jp/home.pl
+silent qmark o https://www.ohloh.net/accounts/anekos
+silent qmark r http://www.rememberthemilk.com/
+silent qmark R http://www.rememberthemilk.com/home/anekosp/#section.tasks
+silent qmark s http://stackoverflow.com/users/904450/anekos
+silent qmark T http://anekos.tumblr.com/
+silent qmark t http://www.tumblr.com/dashboard
+silent qmark w http://twitter.com/home
+silent qmark x http://xmonad.org/xmonad-docs/
+silent qmark X http://dir.gmane.org/gmane.comp.lang.haskell.xmonad
+silent qmark f http://facebook.com/
+silent qmark F http://chrislott.org/fever/
+silent qmark g http://geek.chrislott.org/
+silent qmark h https://hootsuite.com/dashboard
+silent qmark k http://katannuta.passiontask.com/
+silent qmark K http://www.tumblr.com/blog/katannuta
+silent qmark m http://mail.chrislott.org/
+silent qmark p http://blog.passiontask.com/
+silent qmark r http://chrislott.org/
+silent qmark R http://chrislott.org/wp-admin/
+silent qmark s http://www.scoop.it/u/chris-lott
+silent qmark t http://toodledo.com/
