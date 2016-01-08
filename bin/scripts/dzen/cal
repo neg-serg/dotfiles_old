@@ -1,53 +1,37 @@
 #!/bin/zsh
-#pop-up calendar for dzen
-#
-# based on (c) 2007, by Robert Manea
-# http://dzen.geekmode.org/dwiki/doku.php?id=dzen:calendar
-# modified by easysid 
-# Use fifo pipe to change month
 
-FONT="Pragmata Pro for Powerline"
-FONTSIZE="17"
-PAD='  '
-ACT='onstart=uncollapse;button1=exit;button3=exit'
+font="Pragmata Pro for Powerline"
+fontsize="17"
+act='onstart=uncollapse;button1=exit;button3=exit'
 
-# Colors
-FG="#a0a0a0"
-BG="#020202"
-highlight="#ffffff"
-highlight2="#3f3f3f"
+fg="#a0a0a0" bg="#020202" hi="#ffffff" hi2="#3f3f3f"
+width=200 lines=8 xpos=1700 ypos=940
 
-WIDTH=200
-LINES=8
-XPOS=1700
-YPOS=940
+pipe=/tmp/calendar_pipe
 
-# define pipe
-PIPE=/tmp/calendar_pipe
+today=$[$(date +'%d') + 0]
+month=$(date +'%m')
+year=$(date +'%Y')
 
-TODAY=$(expr `date +'%d'` + 0)
-MONTH=$(date +'%m')
-YEAR=$(date +'%Y')
-
-MM=${1:-"$MONTH"}
-YY=${2:-"$YEAR"}
+mm=${1:-"$month"}
+yy=${2:-"$year"}
 
 # generate calender
-if [[ "$MM" -eq "$MONTH" ]] && [[ "$YY" -eq "$YEAR" ]]; then  # current month, highlight header and date
-    CAL=$(cal | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg($highlight)\1^fg()/;s/(^|[ ])($TODAY)($|[ ])/\1^bg($highlight2)^fg($highlight)\2^fg()^bg()\3/")
+if [[ "${mm}" == "${month}" && "${yy}" == "${year}" ]]; then  # current month, highlight header and date
+    cal=$(cal | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg(${hi})\1^fg()/;s/(^|[ ])(${today})($|[ ])/\1^bg(${hi2})^fg(${hi})\2^fg()^bg()\3/")
 else  # another month, just highlight header
-    CAL=$(cal "$MM" "$YY" | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg($highlight)\1^fg()/")
+    cal=$(cal "${mm}" "${yy}" | sed -re "s/^(.*[A-Za-z][A-Za-z]*.*)$/^fg(${hi})\1^fg()/")
 fi
 
 # read from pipe
-if [ ! -e "$PIPE" ]; then
-  mkfifo "$PIPE"
-  ( dzen2 -u -bg $BG -fg $FG -fn "${FONT}:pixelsize=${FONTSIZE}" -x $XPOS -y $YPOS -w $WIDTH -l $LINES -sa 'c' -e "$ACT" -title-name 'popup_calendar' < "$PIPE"
-   rm -f "$PIPE") &
+if [[ ! -e "${pipe}" ]]; then
+  mkfifo "${pipe}"
+  ( dzen2 -u -bg $bg -fg $fg -fn "${font}:pixelsize=${fontsize}" -x ${xpos} -y ${ypos} -w ${width} -l ${lines} -sa 'c' -e "$act" -title-name 'popup_calendar' < "$pipe"
+   rm -f "${pipe}") &
 fi
 
 # feed the pipe
 (
-echo "$CAL"
-sleep 7s
-) > "$PIPE"
+    echo "${cal}"
+    sleep 7s
+) > "${pipe}"
