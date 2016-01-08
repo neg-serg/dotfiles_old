@@ -14,7 +14,7 @@ set complete=hS
 set focuscontent=false
 
 set maxitems=9
-set shell='/bin/zsh'
+set shell='/bin/dash'
 set shellcmdflag='-c'
 
 set titlestring=vimperator
