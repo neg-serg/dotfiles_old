@@ -4,6 +4,7 @@ map  <Leader>t :styletoggle<Space>-name<Space>minitabs<CR>
 " so ~/.pentadactyl/tomorrownight.rc
 
 style -name tab chrome://* <<EOM
+#liberator-status > spacer { max-width: 0px; } 
 #liberator-statusline {
     font-family: Consolas, Osaka, monospace !important;
     font-weight: normal !important;
