@@ -1,4 +1,3 @@
-" Command                                                                     {{{
 command! backgroundimage :js let (doc = content.document) let (m = doc.defaultView.getComputedStyle(doc.body, '').backgroundImage.match(/url\s*\(\s*['"](.+)['"]\s*\)/)) m ? liberator.open(m[1], liberator.NEW_TAB) : liberator.echoerr('background image not found')
 command! cal :js liberator.echo(<datepicker type="grid" xmlns={XUL}/>)
 command! calcpluginauthor echo let c={}; $('//tr/td[3]').evaluate().map($f.textContent()).forEach(function(n){ c[n] ? c[n]+=1 : c[n] = 1 }); c
@@ -7,15 +6,10 @@ command! evernote js evernote_doAction( document.popupNode, 'CLIP_ACTION_SELECTI
 command! execlip js util.readFromClipboard().split(/\n/).filter(function(v) v.trim().length).forEach(liberator.execute)
 command! -nargs=+ sitesearch :exe ":tabopen <args> site:" + content.document.domain
 command! -nargs=1 feed subscrldr -rate=<args>
-command! ramen -nargs=1 delay -interval=<args>m namakubi できたぞ、くえよ、しぬぞ
-" 選択範囲内のリンクを開く
 command! sopen js [liberator.open(a.href, liberator.NEW_BACKGROUND_TAB) for (a in util.evaluateXPath("//a")) if (content.window.getSelection().containsNode(a, true))]
 command! sum echo let (sum=0) (util.readFromClipboard().match(/\d+/g).map(function(s) parseInt(s)).forEach(function(v) sum+=v),sum)
 " command! googlesidewiki js document.getElementById('gtbSidewiki').click()
 command! webcon :emenu Tools.Web Console
-" Fox To Phone
-command! pushandroid js sendtophone.onToolbarButtonCommand()
-command! gpum statusbarpanel gpum-statusbar-panel
 
 " Run :vimperatortoggle to enable or disable Vimperator as needed.
 javascript function vimperatortoggle() { if (is_vimperator_active) { liberator.execute(':disable') } else { liberator.execute(':enable') }; }
