@@ -62,11 +62,11 @@ zrcautoload colors && colors
 zle -N zle-keymap-select
 unset MAILCHECK
 
+stty eof  2> /dev/null  # stty eof ''
+stty ixany
+stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
+
 function stty_setup(){
-    # // c-s disabling
-    stty eof  2> /dev/null  # stty eof ''
-    stty ixany
-    stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
     #stty intr "^C" 2> /dev/null
     #stty erase "^?" 2> /dev/null
     #stty start "undef" 2> /dev/null
@@ -87,7 +87,7 @@ function stty_setup(){
     stty speed 4000000 &> /dev/null
 }
 
-stty_setup
+[[ $- =~ i ]] && stty_setup
 
 [[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
 # fi=00:di=00;34:mh=00:so=01;38;5;075:bd=38;5;24:cd=38;5;24:ex=04;32:no=00;38;5;244:pi=38;5;126:ln=38;5;05:mh=48;5;233;38;5;7;1;3:ow=48;5;233;38;5;7;1;3:su=38;5;137:st=38;5;86;48;5;234:rs=0:';
