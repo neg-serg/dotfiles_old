@@ -5,6 +5,9 @@ function wim_run(){
     if [[ $1 == "__wim_cmd" ]]; then
         proc="vprocess_list"; shift
     fi
+    if [[ $1 == "__wim_embed" ]]; then
+        proc="eprocess_list"; shift
+    fi
     local wid=$(xdotool search --classname wim)
     if [[ -z "${wid}" ]]; then
         st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
@@ -62,6 +65,13 @@ function process_list() {
     for line; do vim_file_open; done
 }
 
+function eprocess_list() {
+    notionflux -e "app.byclass('', 'wim')" > /dev/null
+    sleep "$1"; shift   
+    for line; do vim --servername ${vim_server_name} --remote-wait "$@"; done
+}
+
+
 function vprocess_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
     sleep "$1"; shift
@@ -79,9 +89,19 @@ function vprocess_list() {
     unset before; unset after
 }
 
+function v {
+    handle_files "$@"
+    wim_run "$@"
+}
+
 function wim_cmd {
     handle_files "$@"
     wim_run "__wim_cmd" "$@"
+}
+
+function wim_embed {
+    handle_files "$@"
+    wim_run "__wim_embed" "$@"
 }
 
 function wdiff {
@@ -95,10 +115,3 @@ function wdiff {
         wim_cmd -b":diffthis"
     fi
 }
-
-
-function v {
-    handle_files "$@"
-    wim_run "$@"
-}
-
