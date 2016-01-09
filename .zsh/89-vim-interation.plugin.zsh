@@ -62,7 +62,24 @@ function vim_file_open() (
 function process_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
     sleep "$1"; shift
-    for line; do vim_file_open; done
+    while getopts ":b:a:" opt; do
+        case ${opt} in
+            a) after="${OPTARG}" ;;
+            b) before="${before}${OPTARG}" ;;
+            --) shift ; break ;;
+        esac
+    done
+    shift $((OPTIND-1))
+    [[ ${after#:} != ${after} && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
+    [[ ${before#:} != ${before} && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
+    local cmd="${to_normal}${before}${after}"
+    if [[ ${cmd} == ${to_normal} ]]; then
+        for line; do vim_file_open; done
+    else
+        vim --servername ${vim_server_name} --remote-send "${cmd}"
+        for line; do vim_file_open; done
+    fi
+    unset before; unset after
 }
 
 function eprocess_list() {
@@ -79,11 +96,12 @@ function vprocess_list() {
         case ${opt} in
             a) after="${OPTARG}" ;;
             b) before="${before}${OPTARG}" ;;
+            --) shift ; break ;;
         esac
     done
     shift $((OPTIND-1))
-    [[ ${after#:} != $after && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
-    [[ ${before#:} != $before && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
+    [[ ${after#:} != ${after} && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
+    [[ ${before#:} != ${before} && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
     local cmd="${to_normal}${before}${after}"
     vim --servername ${vim_server_name} --remote-send "${cmd}"
     unset before; unset after
