@@ -24,7 +24,8 @@ set send_charset="utf-8"
 # set sendmail="/usr/bin/sendmail"
 set use_from=no         # I want to generate "From:" using my_hdr
 set attribution="On %d, %n wrote:" # Quoting subject
-set editor="vim +':set textwidth=70' %s"
+# set editor="vim +':set textwidth=70' %s"
+set editor="~/bin/scripts/v_standalone %s"
 unset markers
 set delete=yes          # purge deleted messages without asking
 set copy=ask-no         # ask to save a copy of outgoing message?
