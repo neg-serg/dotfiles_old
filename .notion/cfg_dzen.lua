@@ -62,6 +62,7 @@ local function ws_current(t)
             if name_pager == ws_map[i] then
                 ws_curr = i .. ": " .. ws_map[i]
                 ws_numbered = true
+                break
             end
         end
         if not ws_numbered then
