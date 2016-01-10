@@ -11,7 +11,7 @@ export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
 for cmd in vim nvim vi; { [[ -n $commands[(I)$cmd] ]] \
     && export EDITOR=$cmd; break}
-export VISUAL="atom"
+export VISUAL="/home/neg/bin/scripts/v_standalone"
 
 export INPUTRC=${HOME}/.config/inputrc
 
@@ -23,10 +23,11 @@ export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DOWNLOAD_DIR="${HOME}/dw"
 export XDG_MUSIC_DIR="${HOME}/music"
 export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
-export XDG_TEMPLATES_DIR=${XDG_DESKTOP_DIR}
+export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
 export XDG_DOCUMENTS_DIR="${HOME}/doc/"
 export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
+export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
 
 export ACKRC="${XDG_CONFIG_HOME}/ackrc"
 export GIMP2_DIRECTORY=${XDG_CONFIG_HOME}/gimp-2.8
