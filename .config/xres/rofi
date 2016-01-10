@@ -24,11 +24,6 @@ rofi.separator-style:               dash
 rofi.markup-rows:                   true
 rofi.fullscreen:                    false
 rofi.fake-transparency:             false
-rofi.color-enabled:                 true
-rofi.color-normal:                  #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
-rofi.color-urgent:                  #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
-rofi.color-active:                  #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
-rofi.color-window:                  #fdf6e3,#002b36
 rofi.lazy-filter-limit:             5000
 
 rofi.kb-primary-paste:              Control+Shift+v,Shift+Insert
@@ -82,3 +77,54 @@ rofi.kb-custom-17:                  Alt+Shift+7
 rofi.kb-custom-19:                  Alt+Shift+9
 rofi.key-window:                    SuperL+Tab
 rofi.key-run:                       SuperL+a
+
+! ! -- [solarized light theme] --
+! rofi.color-enabled:                true
+! rofi.color-normal:                 #fdf6e3,#002b36,#eee8d5,#586e75,#eee8d5
+! rofi.color-urgent:                 #fdf6e3,#dc322f,#eee8d5,#dc322f,#fdf6e3
+! rofi.color-active:                 #fdf6e3,#268bd2,#eee8d5,#268bd2,#fdf6e3
+! rofi.color-window:                 #fdf6e3,#002b36
+
+! ! -- [android notification theme] --
+! rofi.color-enabled: true
+! rofi.color-window: #273238, #273238, #1e2529
+! rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
+! rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
+! rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
+
+! ! -- [c64 theme] --
+! rofi.color-enabled: true
+! rofi.color-window: #0039ff, #0039ff, #4F80FF
+! rofi.color-normal: #0039ff, #4f80ff, #0039ff, #4f80ff, #ffffff
+! rofi.color-active: #0039ff, #68ba50, #0039ff, #4f80ff, #68ba50
+! rofi.color-urgent: #0039ff, #ff7047, #0039ff, #4f80ff, #ff7047
+
+! ! -- [lb theme] --
+! rofi.color-enabled:   true
+! rofi.color-normal:    argb:00000000, #1aa, argb:11FFFFFF, #1aa,#333
+! rofi.color-urgent:    argb:00000000, #f99, argb:11FFFFFF, #f99,#333
+! rofi.color-active:    argb:00000000, #aa1, argb:11FFFFFF, #aa1,#333
+! rofi.color-window:    argb:ee333333, #1aa,#1aa
+! rofi.separator-style: dash
+
+! ! -- [purple theme] --
+! rofi.color-enabled:   true
+! rofi.color-normal:    argb:a02f1e2e, #b4b4b4, argb:a02f1e2e, argb:54815ba4, #ffffff
+! rofi.color-urgent:    argb:272f1e2e, #ef6155, argb:2f2f1e2e, argb:54815ba4, #ef6155
+! rofi.color-active:    argb:272f1e2e, #815ba4, argb:2f2f1e2e, argb:54815ba4, #815ba4
+! rofi.color-window:    #2f1e2e, argb:36ef6155, argb:2fef6155
+! rofi.separator-style: dash
+
+! ! -- [solarized alternate] --
+! rofi.color-enabled: true
+! rofi.color-window: #002b37, #002b37, #003642
+! rofi.color-normal: #002b37, #819396, #003643, #008ed4, #ffffff
+! rofi.color-active: #002b37, #008ed4, #003643, #008ed4, #66c6ff
+! rofi.color-urgent: #002b37, #da4281, #003643, #008ed4, #890661
+
+! ! -- [solarized dark] --
+! rofi.color-enabled: true
+! rofi.color-window: #002b37, #002b37, #003642
+! rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+! rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+! rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
