@@ -62,9 +62,9 @@ function vim_file_open() (
 function process_list() {
     notionflux -e "app.byclass('', 'wim')" > /dev/null
     sleep "$1"; shift
-    while getopts ":b:a:" opt; do
+    while getopts ":b:a:c:" opt; do
         case ${opt} in
-            a) after="${OPTARG}" ;;
+            a|c) after="${OPTARG}" ;;
             b) before="${before}${OPTARG}" ;;
             --) shift ; break ;;
         esac
