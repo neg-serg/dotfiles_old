@@ -6,8 +6,9 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
-vo=vdpau,vaapi
-#vo=opengl-hq
+sub-scale=0.7
+
+vo=vdpau,vaapi,opengl-hq
 #vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 #vo=vdpau,vaapi,opengl,xv
 #vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
@@ -29,5 +30,5 @@ osd-border-color='#99000000'
 
 ytdl
 
-cursor-autohide=always
+cursor-autohide=1000
 really-quiet
