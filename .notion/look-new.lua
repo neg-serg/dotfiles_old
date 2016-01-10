@@ -234,10 +234,10 @@ de.defstyle("frame-transient", {
     border_sides      = tnl,
     padding_colour    = neg.padding_color,
     background_colour = neg.def_bg,
-    padding_pixels    = 2,
-    highlight_pixels  = 2,
-    shadow_pixels     = 2,
-    spacing           = 3,
+    padding_pixels    = 0,
+    highlight_pixels  = 0,
+    shadow_pixels     = 0,
+    spacing           = 0,
 })
 
 de.defstyle("frame-floating", {
