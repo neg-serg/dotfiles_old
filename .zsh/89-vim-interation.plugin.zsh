@@ -2,12 +2,7 @@ readonly to_normal="<C-\><C-N>:call<SPACE>foreground()<CR>"
 
 function wim_run(){
     local proc="process_list"
-    if [[ $1 == "__wim_cmd" ]]; then
-        proc="vprocess_list"; shift
-    fi
-    if [[ $1 == "__wim_embed" ]]; then
-        proc="eprocess_list"; shift
-    fi
+    [[ $1 == "__wim_embed" ]] && {proc="eprocess_list"; shift}
     local wid=$(xdotool search --classname wim)
     if [[ -z "${wid}" ]]; then
         st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
@@ -88,33 +83,9 @@ function eprocess_list() {
     for line; do vim --servername ${vim_server_name} --remote-wait "$@"; done
 }
 
-
-function vprocess_list() {
-    notionflux -e "app.byclass('', 'wim')" > /dev/null
-    sleep "$1"; shift
-    while getopts ":b:a:" opt; do
-        case ${opt} in
-            a) after="${OPTARG}" ;;
-            b) before="${before}${OPTARG}" ;;
-            --) shift ; break ;;
-        esac
-    done
-    shift $((OPTIND-1))
-    [[ ${after#:} != ${after} && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
-    [[ ${before#:} != ${before} && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
-    local cmd="${to_normal}${before}${after}"
-    vim --servername ${vim_server_name} --remote-send "${cmd}"
-    unset before; unset after
-}
-
 function v {
     handle_files "$@"
     wim_run "$@"
-}
-
-function wim_cmd {
-    handle_files "$@"
-    wim_run "__wim_cmd" "$@"
 }
 
 function wim_embed {
@@ -125,11 +96,11 @@ function wim_embed {
 function wdiff {
     # or it's maybe better to use :windo diffthis
     if [[ $# == 2 ]]; then
-        wim_run "" && wim_cmd -b":tabnew" && \
+        wim_run "" && v -b":tabnew" && \
         {wim_run $1; shift} && \
-        wim_cmd -b":diffthis" && \
-        wim_cmd -b":vs" && \
+        v -b":diffthis" && \
+        v -b":vs" && \
         {wim_run $1; shift} && \
-        wim_cmd -b":diffthis"
+        v -b":diffthis"
     fi
 }
