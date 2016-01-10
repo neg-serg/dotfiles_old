@@ -25,6 +25,7 @@
 
     # Show how many messages are currently hidden (because of geometry)
     indicate_hidden = yes
+    show_indicators = yes
 
     # alignment of message text.
     # Possible values are "left", "center" and "right"
@@ -34,14 +35,14 @@
     # window allows bounces back and forth.
     # This option conflicts with 'word_wrap'.
     # Set to 0 to disable
-    bounce_freq = 0
+    bounce_freq = 4
 
     # show age of message if message is older than show_age_threshold seconds.
     # set to -1 to disable
     show_age_threshold = 60
 
     # split notifications into multiple lines if they don't fit into geometry
-    word_wrap = yes
+    # word_wrap = yes
 
     # ignore newlines '\n' in notifications
     ignore_newline = no
