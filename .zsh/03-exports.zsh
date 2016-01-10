@@ -1,45 +1,8 @@
 0=zsh
 SHELL=$(which zsh)
 export ZSHDIR=${HOME}/.zsh
-
-unset SSH_ASKPASS
-export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
-
-export PYTHONIOENCODING='utf-8'
-export GREP_COLOR='37;45'
-export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
-
-for cmd in vim nvim vi; { [[ -n $commands[(I)$cmd] ]] \
-    && export EDITOR=$cmd; break}
-export VISUAL="/home/neg/bin/scripts/v_standalone"
-
-export INPUTRC=${HOME}/.config/inputrc
-
-export BROWSER="firefox"
-
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DOWNLOAD_DIR="${HOME}/dw"
-export XDG_MUSIC_DIR="${HOME}/music"
-export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
-export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
-export XDG_DOCUMENTS_DIR="${HOME}/doc/"
-export XDG_PICTURES_DIR="${HOME}/pic"
-export XDG_VIDEOS_DIR="${HOME}/vid"
-export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
-
-export ACKRC="${XDG_CONFIG_HOME}/ackrc"
-export GIMP2_DIRECTORY=${XDG_CONFIG_HOME}/gimp-2.8
-export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
-
-export VAGRANT_HOME="/mnt/home/vagrant"
-
-export NCURSES_ASSUMED_COLORS=3,0
-export NCURSES_NO_MAGIC_COOKIES=1
-export NCURSES_NO_PADDING=1
-
 export BIN_HOME=${HOME}/bin
+export SCRIPT_HOME=${SCRIPT_HOME}/scripts
 
 path_dirs=(
     /usr/{s,}bin
@@ -54,9 +17,47 @@ path_dirs=(
 
 export PATH=${(j_:_)path_dirs}
 
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DOWNLOAD_DIR="${HOME}/dw"
+export XDG_MUSIC_DIR="${HOME}/music"
+export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
+export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
+export XDG_DOCUMENTS_DIR="${HOME}/doc/"
+export XDG_PICTURES_DIR="${HOME}/pic"
+export XDG_VIDEOS_DIR="${HOME}/vid"
+export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
+
+unset SSH_ASKPASS
+export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
+
+export PYTHONIOENCODING='utf-8'
+export GREP_COLOR='37;45'
+export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
+
+for q in vim nvim vi; 
+    { [[ -n ${commands}[(I)${q}] ]] \
+    && export EDITOR=${q}; break }
+export VISUAL="${SCRIPT_HOME}/v_standalone"
+
+export INPUTRC=${HOME}/.config/inputrc
+
+export BROWSER="firefox"
+
+export ACKRC="${XDG_CONFIG_HOME}/ackrc"
+export GIMP2_DIRECTORY=${XDG_CONFIG_HOME}/gimp-2.8
+export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
+
+export VAGRANT_HOME="/mnt/home/vagrant"
+
+export NCURSES_ASSUMED_COLORS=3,0
+export NCURSES_NO_MAGIC_COOKIES=1
+export NCURSES_NO_PADDING=1
+
 export PERLBREW_ROOT=${HOME}/.perl5
 
-if [ -x "`which "vimpager" 2>/dev/null`" ]; then
+if [[ -x "$(which "vimpager" 2>/dev/null)" ]]; then
     export PAGER="vimpager" SDCV_PAGER=${PAGER}
     alias less=${PAGER}
     alias zless=${PAGER}
@@ -65,7 +66,6 @@ else
 fi
 
 export X_OSD_COLOR='#00ffff'
-
 
 export LESSCHARSET=UTF-8
 # support colors in less
@@ -120,7 +120,7 @@ export OSSLIBDIR=/usr/lib/oss
 export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
-_SILENT_JAVA_OPTIONS="$_JAVA_OPTIONS"
+_SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 unset _JAVA_OPTIONS
 
 export FZF_DEFAULT_COMMAND='find'
