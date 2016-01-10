@@ -1,46 +1,47 @@
 [user]
-	name = Sergey Miroshnichenko
-	email = serg.zorg@gmail.com
+    name = Sergey Miroshnichenko
+    email = serg.zorg@gmail.com
 [core]
-  pager = 
+    #pager = vimpager
+    pager =
 [color]
-  branch     = auto
-  diff       = 1
-  grep       = auto
-  pager      = 0
-  showbranch = auto
-  status     = auto
-  ui = auto
+    branch     = auto
+    diff       = 1
+    grep       = auto
+    pager      = 0
+    showbranch = auto
+    status     = auto
+    ui = auto
 
 [color "status"]
-  added     = 2 bold
-  branch    = 100
-  changed   = 4 bold
-  header    = 23
-  nobranch  = 197
-  untracked = 240
+    added     = 2 bold
+    branch    = 100
+    changed   = 4 bold
+    header    = 23
+    nobranch  = 197
+    untracked = 240
 
 [color "branch"]
-  current = 23
-  local   = 18 bold
-  remote  = 17
+    current = 23
+    local   = 18 bold
+    remote  = 17
 
 [color "diff"]
-  old        = 1
-  new        = 23
-  plain      = 7
-  meta       = 18
-  frag       = 67
-  func       = 68
-  commit     = 4
-  whitespace = 54
+    old        = 1
+    new        = 23
+    plain      = 7
+    meta       = 18
+    frag       = 67
+    func       = 68
+    commit     = 4
+    whitespace = 54
 
 [man]
-  viewer = man
+    viewer = man
 [receive]
-  denyCurrentBranch = ignore
+    denyCurrentBranch = ignore
 [core]
-  excludesfile = /etc/gitignore
+    excludesfile = /etc/gitignore
 	editor = vim
 [gui]
   fontui   = -family MonteCarlo -size -12 -weight normal -slant roman -underline 0 -overstrike 0
@@ -68,16 +69,16 @@
     graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
     d = difftool
 [github]
-  user  = neg-serg
+    user  = neg-serg
 [credential]
 	helper = cache --timeout=3600
 [push]
     default = simple
 [diff]
-	tool = vimdiff
+	tool = ~neg/bin/scripts/wdiff_standalone
 [difftool]
 	prompt = false
 [merge]
-	tool = vimdiff
+	tool = ~neg/bin/scripts/wdiff_standalone
 [mergetool]
 	prompt = false
