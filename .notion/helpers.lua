@@ -65,6 +65,19 @@ function tiling_split(dir)
                      true)
 end
 
+
+function tiling_root_split(dir)
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    if dir == nil or dir == "" then
+        dir = 'left'
+    end
+    WTiling.split_at(cur_tile, 
+                     dir, 
+                     true)
+end
+
 function goto_dir(dir)
     local scr = ioncore.find_screen_id(0)
     local cur = scr:mx_current()
@@ -80,20 +93,33 @@ function goto_dir(dir)
     )
 end
 
-function tiling_transpose()
+function tiling_transpose(root)
     local scr = ioncore.find_screen_id(0)
     local cur = scr:mx_current()
     local cur_tile = cur:current()
     local cur_frame = cur_tile:current()
-    WTiling.transpose_at(cur_tile, cur_frame)
+    if root ~= nil then
+        if root == 1 then
+            WTiling.transpose_at(cur_tile)
+        end
+    else
+        WTiling.transpose_at(cur_tile, cur_frame)
+    end
+    
 end
 
-function tiling_flip()
+function tiling_flip(root)
     local scr = ioncore.find_screen_id(0)
     local cur = scr:mx_current()
     local cur_tile = cur:current()
     local cur_frame = cur_tile:current()
-    WTiling.flip_at(cur_tile, cur_frame)
+    if root ~= nil then
+        if root == 1 then
+            WTiling.flip_at(cur_tile)
+        end
+    else
+        WTiling.flip_at(cur_tile, cur_frame)
+    end
 end
 
 function tiling_unsplit()
@@ -117,6 +143,17 @@ function new_tiling()
     local cur = scr:mx_current()
     local cur_tile = cur:current()
     mod_tiling.mkbottom(cur_tile)
+end
+
+function set_floating(dir)
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    if dir == nil or dir == "" then
+        dir = 'left'
+    end
+    WTiling.set_floating_at(cur_tile, cur_frame, 'toggle', dir)
 end
 
 move_current={}
