@@ -101,14 +101,38 @@ local function complete_mainmenu()
         local c = str:sub(i,i)
         table.insert(t, c .. "wm-restart")
     end
+    table.insert(t,"rename_ws")
+    table.insert(t,"new_tiling")
+    table.insert(t,"detach") -- menuentry("De/reattach","notioncore.detach(_, 'toggle')"),})
     return t
 end
 
-function rofi.renameworkspace(mplex,ws)
+local function complete_tilingmenu()
+    local t = { "transpose",
+                "untile",
+                "destroy_frame",
+                "split",
+                "vsplit",
+                "flip",
+                "float/at_left",
+                "float/at_right",
+                "float/above",
+                "float/below",
+                "root/vsplit",
+                "root/split",
+                "root/flip",
+                "root/transpose"
+              }
+    return t
+end
+
+function rofi.renameworkspace()
+    local scr = ioncore.find_screen_id(0)
+    local ws = scr:mx_current()
+    local mplex=notioncore.find_manager(ws, "WMPlex")
     if not mplex then
-        assert(ws) mplex=notioncore.find_manager(ws, "WMPlex")
-    elseif not ws then
-        assert(mplex) ws=notioncore.find_manager(mplex, "WGroupWS")
+        mplex = ws:current()
+        ws=notioncore.find_manager(mplex, "WGroupWS")
     end
     assert(mplex and ws)
     local wsname = rofi_template("new_ws_name :: "..ws:name(),"rename_ws",_,_)
@@ -121,8 +145,13 @@ function rofi.renameframe(frame)
 end
 
 function rofi.mainmenu()
-    local x = rofi_template("mainmenu","mainmenu",_,complete_mainmenu)
+    local x = rofi_template("mainmenu","mainmenu",2,complete_mainmenu)
     mainmenu_handler(x)
+end
+
+function rofi.tilingmenu()
+    local x = rofi_template("tiling_menu","tiling_menu",2,complete_tilingmenu)
+    tilingmenu_handler(x)
 end
 
 function rofi.goto_win()
