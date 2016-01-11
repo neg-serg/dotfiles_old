@@ -27,6 +27,65 @@ function move_scratch(x, y, w, h)
    notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
 
+function tiling_split(dir)
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    WTiling.split_at(cur_tile, 
+                     cur_frame, 
+                     dir, 
+                     true)
+end
+
+function goto_dir(dir)
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    notioncore.goto_next(
+        cur_frame,
+        dir,
+        {no_ascend=cur_tile}
+    )
+end
+
+function tiling_transpose()
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    WTiling.transpose_at(cur_tile, cur_frame)
+end
+
+function tiling_flip()
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    WTiling.flip_at(cur_tile, cur_frame)
+end
+
+function tiling_unsplit()
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    local cur_frame = cur_tile:current()
+    WTiling.unsplit_at(cur_tile, cur_frame)
+end
+
+move_current={}
+function move_current.move(ws, dir)
+    local frame=ws:current()
+    local cwin=frame:current()
+    local frame2=notioncore.navi_next(frame,dir)
+    
+    if frame2 then
+        frame2:attach(cwin, { switchto=true })
+    end
+    cwin:goto_focus()
+end
+
 -- ......................................................................................
 function get_hostname()
    local out = io.popen("hostname")
