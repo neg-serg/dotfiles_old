@@ -89,6 +89,30 @@ function tilingmenu_handler(x)
         ["split"]=function() tiling_split('left') end,
         ["vsplit"]=function() tiling_split('top') end,
         ["flip"]=function() tiling_flip() end,
+        ["float/at_left"]=function() 
+            set_floating('left')
+        end,
+        ["float/at_right"]=function() 
+            set_floating('right')
+        end,
+        ["float/above"]=function() 
+            set_floating('up')
+        end, 
+        ["float/below"]=function() 
+            set_floating('down')
+        end,
+        ["root/vsplit"]=function() 
+            tiling_root_split('bottom')        
+        end,
+        ["root/split"]=function() 
+            tiling_root_split('right')        
+        end,
+        ["root/flip"]=function() 
+            tiling_flip(1)
+        end,
+        ["root/transpose"]=function() 
+            tiling_transpose(1)
+        end, 
         [""]=nil,
     }
     tiling_action[x]()
