@@ -22,7 +22,7 @@ hi Type ctermbg=none ctermfg=6 cterm=bold
 hi String ctermbg=none ctermfg=2 cterm=none 
 hi Constant ctermbg=none ctermfg=13 cterm=none 
 hi Special ctermbg=none ctermfg=10 cterm=none 
-hi SpecialChar ctermbg=none ctermfg=9 cterm=none 
+hi SpecialChar ctermbg=17 ctermfg=30 cterm=none 
 hi Number ctermbg=none ctermfg=14 cterm=none 
 hi Identifier ctermbg=none ctermfg=13 cterm=none 
 hi Conditional ctermbg=none ctermfg=14 cterm=none 
