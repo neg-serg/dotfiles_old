@@ -1,26 +1,50 @@
-function ncmpcpp(reg)
-    notioncore.exec_on(reg, '~/bin/scripts/ncmpcpp')
-    named_scratchpad(reg, 'ncmpcpp')
+function ns_exec(class, prog, ns)
+    reg = notioncore.current()
+    local win = app.match_class(class)[1]
+    if not win then
+        notioncore.exec_on(reg, prog)
+    end
+    named_scratchpad(reg, ns)
 end
 
-function console(reg)
-    notioncore.exec_on(reg, '~/bin/scripts/console')
-    named_scratchpad(reg, 'console')
+function ncmpcpp()
+    ns_exec(
+        'mpd-pad2',
+        '/usr/local/bin/st-bright -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp',
+        'ncmpcpp'
+    )
 end
 
-function ranger(reg)
-    notioncore.exec_on(reg, '~/bin/scripts/ranger')
-    named_scratchpad(reg, 'ranger')
+function console()
+    ns_exec(
+        'console',
+        'st -c console',
+        'console'
+    )
 end
 
-function gdb(reg)
-    notioncore.exec_on(reg, '~/bin/scripts/gdb')
-    named_scratchpad(reg, 'gdb')
+function ranger()
+    ns_exec(
+        'ranger',
+        'xterm -class ranger -fa PragmataPro:size=16 -e tmux new ranger',
+        'ranger'
+    )
 end
 
-function radare2(reg)
-    notioncore.exec_on(reg, '~/bin/scripts/radare')
-    named_scratchpad(reg, 'radare2')
+function gdb()
+    ns_exec(
+        'gdb',
+        'st -c gdb -e bash -c "tmux -L gdb new gdb"',
+        'gdb'
+    )
+end
+
+function radare2()
+    ns_exec(
+        'radare',
+        "st -c radare -e bash -c 'tmux -L radare'",
+        'radare2'
+    )
 end
 
 function move_scratch(x, y, w, h)
