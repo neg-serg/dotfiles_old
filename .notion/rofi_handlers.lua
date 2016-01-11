@@ -33,13 +33,43 @@ end
 
 function mainmenu_handler(x)
     action = {
-        ["save"]=function() notioncore.snapshot() end,
-        ["restart"]=function() notioncore.restart() end,
-        ["xrandr-set"]=function() notioncore.exec('~/bin/scripts/rofi-randr') end,
-        ["ratpoison-restart"]=function() notioncore.restart_other("ratpoison") end,
-        ["cwm-restart"]=function() notioncore.restart_other("cwm") end,
-        ["twm-restart"]=function() notioncore.restart_other("twm") end,
-        ["dwm-restart"]=function() notioncore.restart_other("dwm") end,
+        ["save"]=function() 
+            notioncore.snapshot() 
+        end,
+        ["restart"]=function() 
+            notioncore.restart() 
+        end,
+        ["xrandr-set"]=function() 
+            notioncore.exec('~/bin/scripts/rofi-randr')
+        end,
+        ["ratpoison-restart"]=function() 
+            notioncore.restart_other("ratpoison")
+        end,
+        ["cwm-restart"]=function() 
+            notioncore.restart_other("cwm")
+        end,
+        ["twm-restart"]=function() 
+            notioncore.restart_other("twm")
+        end,
+        ["dwm-restart"]=function() 
+            notioncore.restart_other("dwm")
+        end,
+        ["lock_screen"]=function() 
+            notioncore.exec('/usr/share/notion/notion-lock')
+        end,
+        ["window_info"]=function() 
+            notioncore.exec_on(ioncore.current(), 
+            '~/bin/scripts/rofi_xprop' .. ' ' ..  ioncore.current():xid()) 
+        end,
+        ["close"]=function() 
+            WRegion.rqclose_propagate(ioncore.current(), ioncore.current():current())
+        end,
+        ["attach_tagged"]=function() 
+            notioncore.tagged_attach(ioncore.current())
+        end,
+        ["clear_tags"]=function() 
+            notioncore.tagged_clear()
+        end,
     }
     action[x]()
 end
