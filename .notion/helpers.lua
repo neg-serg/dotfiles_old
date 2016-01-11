@@ -57,7 +57,7 @@ function tiling_split(dir)
     local cur_tile = cur:current()
     local cur_frame = cur_tile:current()
     if dir == nil or dir == "" then
-        dir = 'right'
+        dir = 'left'
     end
     WTiling.split_at(cur_tile, 
                      cur_frame, 
@@ -70,6 +70,9 @@ function goto_dir(dir)
     local cur = scr:mx_current()
     local cur_tile = cur:current()
     local cur_frame = cur_tile:current()
+    if dir == nil or dir == "" then
+        dir = 'top'
+    end
     notioncore.goto_next(
         cur_frame,
         dir,
@@ -107,6 +110,13 @@ function tiling_untile()
     local cur_tile = cur:current()
     local cur_frame = cur_tile:current()
     mod_tiling.untile(cur_tile)
+end
+
+function new_tiling()
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:mx_current()
+    local cur_tile = cur:current()
+    mod_tiling.mkbottom(cur_tile)
 end
 
 move_current={}
