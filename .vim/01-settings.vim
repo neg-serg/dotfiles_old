@@ -101,7 +101,7 @@ endif
 if !has("gui_running")
     set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
     set t_Co=256 " I use 256-color terminals
-    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color"
+    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
         colorscheme wim
     elseif &term =~ 'linux'
         colorscheme darkblue
