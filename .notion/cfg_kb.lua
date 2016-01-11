@@ -206,6 +206,7 @@ Neg_kb.Tiling = {
     kpress("M4+Ct+S", function(ws) move_current.move(ws, "down") end),
     kpress("M4+Ct+A", function(ws) move_current.move(ws, "left") end),
     kpress("M4+Ct+D", function(ws) move_current.move(ws, "right") end),
+    kpress("M4+Ct+m", "rofi.tilingmenu()"),
     -- kpress("M4+i", "dynamic_view.toggle(_, 'term',  'left')"),
     -- kpress("M4+Ct+D", "collapse.collapse(_)"),
     -- vertical layout
