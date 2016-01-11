@@ -45,7 +45,7 @@ local function rofi_template(pref,file_name,lines,fn,flags)
     local columns_str = ""
     local ipc_file = new_ipc_file(file_name)
     ------------------------------------------
-    local common = ' -auto-select -dmenu -opacity 95 ' .. rofi.yoff .. rofi.pid .. ' ' 
+    local common = ' -dmenu -opacity 90 ' .. rofi.yoff .. rofi.pid .. ' ' 
     local colors = ' -fg '..neg.rofi.fg..' -bg '..neg.rofi.bg..' -hlfg '..neg.rofi.hlfg..' -hlbg '..neg.rofi.hlbg..' -bc '..neg.rofi.bc
     if lines == nil then lines = 10 else
         columns = 10
@@ -92,6 +92,11 @@ end
 local function complete_mainmenu()
     local t = {"save", "restart", "ratpoison-restart", "xrandr-set" }
     local str='ctd'
+    table.insert(t,"lock_screen")
+    table.insert(t,"close")
+    table.insert(t,"attach_tagged")
+    table.insert(t,"clear_tags")
+    table.insert(t,"window_info")
     for i = 1, #str do
         local c = str:sub(i,i)
         table.insert(t, c .. "wm-restart")
