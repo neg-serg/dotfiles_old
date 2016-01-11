@@ -76,6 +76,9 @@ function mainmenu_handler(x)
         ["new_tiling"]=function() 
             new_tiling()
         end,
+        ["detach"]=function()
+            dereattach()
+        end,
         [""]=nil,
     }
     action[x]()

@@ -156,6 +156,10 @@ function set_floating(dir)
     WTiling.set_floating_at(cur_tile, cur_frame, 'toggle', dir)
 end
 
+function dereattach()
+    notioncore.detach(notioncore.current(), 'toggle')
+end
+
 move_current={}
 function move_current.move(ws, dir)
     local frame=ws:current()

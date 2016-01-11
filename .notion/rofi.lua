@@ -103,7 +103,7 @@ local function complete_mainmenu()
     end
     table.insert(t,"rename_ws")
     table.insert(t,"new_tiling")
-    table.insert(t,"detach") -- menuentry("De/reattach","notioncore.detach(_, 'toggle')"),})
+    table.insert(t,"detach")
     return t
 end
 
