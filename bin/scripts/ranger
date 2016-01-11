@@ -1,3 +1,0 @@
-#!/bin/zsh
-wid=$(xdotool search --class ranger)
-[[ -z "$wid" ]] && xterm -class ranger -fa PragmataPro:size=16 -e tmux new ranger

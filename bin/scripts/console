@@ -1,5 +1,0 @@
-#!/bin/zsh
-wid=$(xdotool search --classname console)
-if [ -z "$wid" ]; then
-    /bin/urxvt -name console &
-fi

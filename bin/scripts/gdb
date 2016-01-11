@@ -1,5 +1,0 @@
-#!/bin/zsh
-wid=$(xdotool search --classname gdb)
-if [ -z "$wid" ]; then
-    /bin/urxvt -fn xft:terminus -name gdb -e bash -c 'tmux -L gdb new gdb' &
-fi
