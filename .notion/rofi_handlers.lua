@@ -32,7 +32,7 @@ function goto_or_create_ws_handler(name,reg)
 end
 
 function mainmenu_handler(x)
-    action = {
+    local action = {
         ["save"]=function() 
             notioncore.snapshot() 
         end,
@@ -70,8 +70,22 @@ function mainmenu_handler(x)
         ["clear_tags"]=function() 
             notioncore.tagged_clear()
         end,
+        [""]=nil,
     }
     action[x]()
+end
+
+function tilingmenu_handler(x)
+    local tiling_action = {
+        ["transpose"]=function() tiling_transpose() end,
+        ["untile"]=function() tiling_untile() end,
+        ["destroy_frame"]=function() tiling_unsplit() end,
+        ["split"]=function() tiling_split('right') end,
+        ["vsplit"]=function() tiling_split('bottom') end,
+        ["flip"]=function() tiling_flip() end,
+        [""]=nil,
+    }
+    tiling_action[x]()
 end
 
 function workspace_handler(reg,name)
