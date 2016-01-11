@@ -52,14 +52,3 @@ function multiple_split(ws, frame)
         end)
     return true
 end
-
-
-defbindings("WTiling", {
-    kpress("Mod4+Control+D", "collapse.collapse(_)"),
-})
-defbindings("WTiling", {
-    -- vertical layout
---  kpress("Mod4+Control+i" , "multiple_split(_, _sub, 'top')"),
-    -- horizontal layout
-    kpress("Mod4+Control+o" , "multiple_split(_, _sub, 'left')"),
-})
