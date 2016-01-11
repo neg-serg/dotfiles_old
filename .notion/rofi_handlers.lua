@@ -70,6 +70,12 @@ function mainmenu_handler(x)
         ["clear_tags"]=function() 
             notioncore.tagged_clear()
         end,
+        ["rename_ws"]=function() 
+            rofi.renameworkspace()
+        end,
+        ["new_tiling"]=function() 
+            new_tiling()
+        end,
         [""]=nil,
     }
     action[x]()
@@ -80,8 +86,8 @@ function tilingmenu_handler(x)
         ["transpose"]=function() tiling_transpose() end,
         ["untile"]=function() tiling_untile() end,
         ["destroy_frame"]=function() tiling_unsplit() end,
-        ["split"]=function() tiling_split('right') end,
-        ["vsplit"]=function() tiling_split('bottom') end,
+        ["split"]=function() tiling_split('left') end,
+        ["vsplit"]=function() tiling_split('top') end,
         ["flip"]=function() tiling_flip() end,
         [""]=nil,
     }
