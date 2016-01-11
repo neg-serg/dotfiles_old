@@ -3,7 +3,7 @@ end
 
 function named_scratchpad(reg, name, mode)
     local named_sp
-    local default_w, default_h = 640, 480
+    local default_w, default_h = 720, 480
     local scr = reg:screen_of()
     local geom_scr = scr:geom()
 
