@@ -1,26 +1,7 @@
-if [[ $1 == eval ]]; then
-    shift
-    ICMD="$@"
-    set --
-    zle-line-init() {
-        BUFFER="$ICMD"
-        zle accept-line
-        zle -D zle-line-init
-    }
-    zle -N zle-line-init
-fi
+inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
+nexec() { [[ -z $(pidof "$1") ]]; }
 
-TRAPUSR1() { rehash }; # rehash on SIGUSR1
-[[ -o interactive ]] && TRAPINT() { 
-    zle && print -nP %F{blue}%B\^C%s%b
-    return $1
-}
-
-autoload -U add-zsh-hook
-# anything newly intalled from last command?
-precmd_install() { [[ $history[$[ HISTCMD -1 ]] == *(apt-get|aptitude|pip|pacman|yaourt)* ]] && killall -u $USER -USR1 zsh }
-add-zsh-hook precmd precmd_install # do this on precmd
-
+nexec ssh-agent && eval "$(ssh-agent -s)"
 # Execute code that does not affect the current session in the background.
 {
   # Compile the completion dump to increase startup speed.
@@ -134,7 +115,7 @@ setopt interactivecomments # Allow interactive comments
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
-setopt glob_star_short # */** -> **
+# setopt glob_star_short # */** -> **
 
 # watch for everyone but me and root
 watch=(notme root)
