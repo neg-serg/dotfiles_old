@@ -5,97 +5,110 @@ if exists("syntax on")
 endif
 let colors_name="wim"
 
-hi Normal ctermbg=none ctermfg=15 cterm=none
-hi Ignore ctermbg=none ctermfg=8 cterm=none
-hi Comment ctermbg=none ctermfg=7 cterm=none
-hi LineNr  ctermbg=233 ctermfg=8 cterm=none
-hi Float ctermbg=none ctermfg=3 cterm=none 
-hi Include ctermbg=none ctermfg=5 cterm=none 
-hi Define ctermbg=none ctermfg=2 cterm=none 
-hi Macro ctermbg=none ctermfg=13 cterm=none 
-hi PreProc ctermbg=none ctermfg=10 cterm=none 
-hi PreCondit ctermbg=none ctermfg=13 cterm=none 
-hi NonText ctermbg=none ctermfg=6 cterm=none 
-hi Directory ctermbg=none ctermfg=6 cterm=none 
-hi SpecialKey ctermbg=none ctermfg=11 cterm=none 
-hi Type ctermbg=none ctermfg=6 cterm=bold
-hi String ctermbg=none ctermfg=2 cterm=none 
-hi Constant ctermbg=none ctermfg=13 cterm=none 
-hi Special ctermbg=none ctermfg=10 cterm=none 
-hi SpecialChar ctermbg=17 ctermfg=30 cterm=none 
-hi Number ctermbg=none ctermfg=14 cterm=none 
-hi Identifier ctermbg=none ctermfg=13 cterm=none 
-hi Conditional ctermbg=none ctermfg=14 cterm=none 
-hi Repeat ctermbg=none ctermfg=14 cterm=none 
-hi Statement ctermbg=none ctermfg=4 cterm=bold
-hi StatusLine ctermbg=none ctermfg=4 cterm=bold
-hi Label ctermbg=none ctermfg=13 cterm=none 
-hi Operator ctermbg=none ctermfg=3 cterm=bold 
-hi Keyword ctermbg=none ctermfg=6 cterm=none 
-hi StorageClass ctermbg=none ctermfg=11 cterm=none 
-hi Structure ctermbg=none ctermfg=5 cterm=none 
-hi Typedef ctermbg=none ctermfg=6 cterm=none 
-hi Function ctermbg=none ctermfg=11 cterm=none 
-hi Exception ctermbg=none ctermfg=1 cterm=none 
-hi Underlined ctermbg=none ctermfg=4 cterm=none 
-hi Title ctermbg=none ctermfg=3 cterm=none 
-hi Tag ctermbg=none ctermfg=11 cterm=none 
-hi Delimiter ctermbg=none ctermfg=12 cterm=none 
-hi SpecialComment ctermbg=none ctermfg=9 cterm=none 
-hi Boolean ctermbg=none ctermfg=3 cterm=none 
-hi Todo ctermbg=none ctermfg=9 cterm=none  
-hi MoreMsg ctermbg=none ctermfg=13 cterm=none 
-hi ModeMsg ctermbg=none ctermfg=13 cterm=none 
-hi Debug ctermbg=none ctermfg=1 cterm=none 
-hi MatchParen ctermbg=7 ctermfg=0 cterm=none 
-hi ErrorMsg ctermbg=none ctermfg=250 cterm=none 
-hi WildMenu ctermbg=15 ctermfg=5 cterm=none 
-hi Folded ctermbg=32 ctermfg=7 cterm=none 
-hi Search ctermbg=89 ctermfg=251 cterm=bold,underline
-hi IncSearch ctermbg=62 ctermfg=7 cterm=none 
-hi WarningMsg ctermbg=none ctermfg=250 cterm=none 
-hi Question ctermbg=none ctermfg=10 cterm=none 
-hi Visual ctermbg=62 ctermfg=7 cterm=none 
-hi VertSplit ctermbg=8 ctermfg=0 cterm=none 
-hi TabLine ctermbg=0 ctermfg=7 cterm=none 
-hi TabLineFill ctermbg=none ctermfg=0 cterm=none 
-hi TabLineSel ctermbg=0 ctermfg=7 cterm=none 
-hi CursorLine ctermbg=234 ctermfg=none cterm=none
-hi CursorColumn ctermbg=0 ctermfg=none cterm=none 
-hi ColorColumn ctermbg=8 ctermfg=none cterm=none 
-hi FoldColumn ctermbg=none ctermfg=8 cterm=none 
-hi SignColumn ctermbg=none ctermfg=none cterm=none 
-hi CursorLineNr ctermbg=0 ctermfg=11 cterm=none 
-hi vimCommentTitle ctermbg=none ctermfg=10 cterm=none 
-hi vimFold ctermbg=15 ctermfg=0 cterm=none 
-hi helpHyperTextJump ctermbg=none ctermfg=11 cterm=none 
-hi javaScriptNumber ctermbg=none ctermfg=11 cterm=none 
-hi htmlTag ctermbg=none ctermfg=6 cterm=none 
-hi htmlEndTag ctermbg=none ctermfg=6 cterm=none 
-hi htmlTagName ctermbg=none ctermfg=11 cterm=none 
-hi perlSharpBang ctermbg=none ctermfg=10 cterm=standout
-hi perlStatement ctermbg=none ctermfg=13 cterm=none 
-hi perlStatementStorage ctermbg=none ctermfg=1 cterm=none 
-hi perlVarPlain ctermbg=none ctermfg=3 cterm=none 
-hi perlVarPlain2 ctermbg=none ctermfg=11 cterm=none 
-hi rubySharpBang ctermbg=none ctermfg=10 cterm=standout
-hi DiffAdd cterm=reverse ctermfg=15 ctermbg=227
-hi DiffChange cterm=reverse ctermfg=15 ctermbg=228
-hi DiffText cterm=reverse ctermfg=7 ctermbg=None
-hi! link diffRemoved Constant
-hi! link diffAdded String
-hi DiffDelete cterm=reverse ctermfg=162 ctermbg=127
-hi Error ctermfg=162 ctermbg=127
-hi Pmenu ctermfg=253 ctermbg=234
-hi PmenuSel ctermfg=255 ctermbg=200
-hi PmenuSbar ctermbg=black guibg=black
-hi PmenuThumb ctermbg=darkgreen guibg=darkgreen
+hi! Normal ctermbg=NONE ctermfg=15 cterm=NONE
+hi! Ignore ctermbg=NONE ctermfg=8 cterm=NONE
+hi! Comment ctermbg=NONE ctermfg=7 cterm=NONE
+hi! LineNr  ctermbg=233 ctermfg=8 cterm=NONE
+hi! Float ctermbg=NONE ctermfg=3 cterm=NONE 
+hi! Include ctermbg=NONE ctermfg=5 cterm=NONE 
+hi! Define ctermbg=NONE ctermfg=2 cterm=NONE 
+hi! Macro ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! PreProc ctermbg=NONE ctermfg=10 cterm=NONE 
+hi! PreCondit ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! NonText ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! Directory ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! SpecialKey ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! Type ctermbg=NONE ctermfg=6 cterm=bold
+hi! String ctermbg=NONE ctermfg=2 cterm=NONE 
+hi! Constant ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! Special ctermbg=NONE ctermfg=10 cterm=NONE 
+hi! SpecialChar ctermbg=NONE ctermfg=30 cterm=NONE 
+" hi SpecialChar ctermbg=17 ctermfg=30 cterm=NONE 
+hi! Number ctermbg=NONE ctermfg=14 cterm=NONE 
+hi! Identifier ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! Conditional ctermbg=NONE ctermfg=14 cterm=NONE 
+hi! Repeat ctermbg=NONE ctermfg=14 cterm=NONE 
+hi! Statement ctermbg=NONE ctermfg=4 cterm=bold
+hi! StatusLine ctermbg=NONE ctermfg=4 cterm=bold
+hi! Label ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! Operator ctermbg=NONE ctermfg=6 cterm=bold
+"hi! Operator ctermbg=NONE ctermfg=3 cterm=bold 
+hi! Keyword ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! StorageClass ctermbg=NONE ctermfg=31 cterm=NONE 
+hi! Structure ctermbg=NONE ctermfg=5 cterm=NONE 
+hi! Typedef ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! Function ctermbg=NONE ctermfg=6 cterm=bold
+hi! Exception ctermbg=NONE ctermfg=1 cterm=NONE 
+hi! Underlined ctermbg=NONE ctermfg=4 cterm=NONE 
+hi! Title ctermbg=NONE ctermfg=3 cterm=NONE 
+hi! Tag ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! Delimiter ctermbg=NONE ctermfg=12 cterm=NONE 
+hi! SpecialComment ctermbg=NONE ctermfg=9 cterm=NONE 
+hi! Boolean ctermbg=NONE ctermfg=3 cterm=NONE 
+hi! Todo ctermbg=NONE ctermfg=9 cterm=NONE  
+hi! MoreMsg ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! ModeMsg ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! Debug ctermbg=NONE ctermfg=1 cterm=NONE 
+hi! MatchParen ctermbg=7 ctermfg=0 cterm=NONE 
+hi! ErrorMsg ctermbg=NONE ctermfg=250 cterm=NONE 
+hi! WildMenu ctermbg=15 ctermfg=5 cterm=NONE 
+hi! Folded ctermbg=32 ctermfg=7 cterm=NONE 
+hi! Search ctermbg=89 ctermfg=251 cterm=bold,underline
+hi! IncSearch ctermbg=62 ctermfg=7 cterm=NONE 
+hi! WarningMsg ctermbg=NONE ctermfg=250 cterm=NONE 
+hi! Question ctermbg=NONE ctermfg=10 cterm=NONE 
+hi! Visual ctermbg=62 ctermfg=7 cterm=NONE 
+hi! VertSplit ctermbg=8 ctermfg=0 cterm=NONE 
+hi! TabLine ctermbg=0 ctermfg=7 cterm=NONE 
+hi! TabLineFill ctermbg=NONE ctermfg=0 cterm=NONE 
+hi! TabLineSel ctermbg=0 ctermfg=7 cterm=NONE 
+hi! CursorLine ctermbg=234 ctermfg=NONE cterm=NONE
+hi! CursorColumn ctermbg=0 ctermfg=NONE cterm=NONE 
+hi! ColorColumn ctermbg=8 ctermfg=NONE cterm=NONE 
+hi! FoldColumn ctermbg=NONE ctermfg=8 cterm=NONE 
+hi! SignColumn ctermbg=NONE ctermfg=NONE cterm=NONE 
+hi! CursorLineNr ctermbg=0 ctermfg=11 cterm=NONE 
+hi! vimCommentTitle ctermbg=NONE ctermfg=10 cterm=NONE 
+hi! vimFold ctermbg=15 ctermfg=0 cterm=NONE 
+hi! helpHyperTextJump ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! javaScriptNumber ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! htmlTag ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! htmlEndTag ctermbg=NONE ctermfg=6 cterm=NONE 
+hi! htmlTagName ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! perlSharpBang ctermbg=NONE ctermfg=10 cterm=standout
+hi! perlStatement ctermbg=NONE ctermfg=13 cterm=NONE 
+hi! perlStatementStorage ctermbg=NONE ctermfg=1 cterm=NONE 
+hi! perlVarPlain ctermbg=NONE ctermfg=3 cterm=NONE 
+hi! perlVarPlain2 ctermbg=NONE ctermfg=11 cterm=NONE 
+hi! rubySharpBang ctermbg=NONE ctermfg=10 cterm=standout
+
+hi! clear DiffAdd
+hi! clear DiffAdded
+hi! clear DiffRemoved
+hi! clear DiffChange
+hi! clear DiffDelete
+hi! clear DiffText
+
+hi! DiffAdd ctermfg=15 ctermbg=225 cterm=NONE 
+hi! DiffChange cterm=NONE ctermfg=15 ctermbg=228  
+hi! DiffText cterm=NONE ctermbg=NONE ctermfg=7 
+hi! DiffDelete ctermfg=162 ctermbg=127 cterm=NONE 
+
+hi! link DiffRemoved Constant
+hi! link DiffAdded String
+
+hi! Error ctermfg=162 ctermbg=127
+
+hi! Pmenu ctermfg=253 ctermbg=234
+hi! PmenuSel ctermfg=255 ctermbg=200
+hi! PmenuSbar ctermbg=black guibg=black
+hi! PmenuThumb ctermbg=darkgreen guibg=darkgreen
 
 if has("spell")
-    hi clear SpellBad
-    hi clear SpellCap
-    hi clear SpellRare
-    hi clear SpellLocal
+    hi! clear SpellBad
+    hi! clear SpellCap
+    hi! clear SpellRare
+    hi! clear SpellLocal
 endif
 
 
@@ -150,6 +163,6 @@ endfunction
 
 au Syntax * call s:HighlightOperators()
 
-hi Function     ctermfg=none ctermbg=none
-hi cFunctionTag ctermfg=none ctermbg=none
+hi! Function ctermbg=none ctermfg=30 cterm=none 
+hi! cFunctionTag ctermbg=none ctermfg=30 cterm=none 
 hi link DeclRefExpr Normal
