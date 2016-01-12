@@ -1,3 +1,5 @@
+local posix = require "posix"
+
 local prefix = "scr_"
 local extension = ".png"
 local screenshot_path = "/tmp"
