@@ -260,7 +260,7 @@ _zsh_highlight_main_highlighter()
         *.(jpg|jpeg|JPG|bmp|png|xpm|xbm|pbm|pgm|ppm|tga|tif|tiff|mng|pcx|dl|xcf|xwd|yuv|cgm|emf|CR2)) style=$ZSH_HIGHLIGHT_STYLES[fclass-raster];;
         *.(js|jsm|jsm|jsp)) style=$ZSH_HIGHLIGHT_STYLES[fclass-js];;
         *.(c|cc|cpp|cxx|coffee|tcc)) style=$ZSH_HIGHLIGHT_STYLES[fclass-c];;
-        *.cs)          style=$ZSH_HIGHLIGHT_STYLES[ftype-cs];;
+        *.(cs|rs))     style=$ZSH_HIGHLIGHT_STYLES[ftype-cs];;
         *.(java|jnlp)) style=$ZSH_HIGHLIGHT_STYLES[fclass-java];;
         *.jad)         style=$ZSH_HIGHLIGHT_STYLES[ftype-jad];;
         *.qt)          style=$ZSH_HIGHLIGHT_STYLES[ftype-qt];;
