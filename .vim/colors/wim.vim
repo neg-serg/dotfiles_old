@@ -30,6 +30,8 @@ hi! Conditional ctermbg=NONE ctermfg=14 cterm=NONE
 hi! Repeat ctermbg=NONE ctermfg=14 cterm=NONE 
 hi! Statement ctermbg=NONE ctermfg=4 cterm=bold
 hi! StatusLine ctermbg=NONE ctermfg=4 cterm=bold
+hi! StatusLineNC cterm=NONE ctermfg=NONE ctermbg=NONE
+hi! VertSplit cterm=NONE ctermfg=NONE ctermbg=NONE
 hi! Label ctermbg=NONE ctermfg=13 cterm=NONE 
 hi! Operator ctermbg=NONE ctermfg=6 cterm=bold
 "hi! Operator ctermbg=NONE ctermfg=3 cterm=bold 
