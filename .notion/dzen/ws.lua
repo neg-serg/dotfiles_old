@@ -33,13 +33,13 @@ local function ws_current(t)
         local ws_numbered = false
         for i, v in ipairs(ws_map) do
             if name_pager == ws_map[i] then
-                ws_curr = i .. ": " .. ws_map[i]
+                dmain.ws = i .. ": " .. ws_map[i]
                 ws_numbered = true
                 break
             end
         end
         if not ws_numbered then
-            ws_curr = name_pager
+            dmain.ws = name_pager
         end
         dzen_update()
     end

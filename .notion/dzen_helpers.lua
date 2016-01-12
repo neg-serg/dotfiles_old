@@ -1,3 +1,10 @@
+dmain = {
+    ws   = nil,
+    kbd  = nil,
+    date = nil,
+    net  = nil
+}
+
 function wrp(tmplte, left_side, right_side)
     local bracket_color = "#287373"
     local fg_color      = "#cccccc"
@@ -13,17 +20,17 @@ end
 
 function dzen_update()
     local template = ""
-    if date then
-        template = template.."^pa(2;)^bg(#000000)^ba()"..wrp(date).."^ba()^bg()"
+    if dmain.date then
+        template = template.."^pa(2;)^bg(#000000)^ba()"..wrp(dmain.date).."^ba()^bg()"
     end
-    if ws_curr then
-        template = template..wrp(ws_curr)
+    if dmain.ws then
+        template = template..wrp(dmain.ws)
     end
-    if kbd_template then
-        template = template..wrp(kbd_template)
+    if dmain.kbd then
+        template = template..wrp(dmain.kbd)
     end
-    if netmon then 
-        template = template..wrp("net: " .. netmon)
+    if dmain.net then 
+        template = template..wrp("net: " .. dmain.net)
     end
     dzen_pipe:write(template..'\n')
 end
