@@ -829,11 +829,6 @@ EOF
   spark ${@:-`cat`}
 fi
 
-
-inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
-nexec() { [[ -z $(pidof "$1") ]]; }
-
-
 function sp() {
   setopt extendedglob bareglobqual
   du -sch -- ${~^@:-"*"}(D) | sort -h
