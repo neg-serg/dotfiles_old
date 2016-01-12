@@ -90,6 +90,10 @@ NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
 NeoBundle 'scrooloose/nerdtree' "classic NERDTree plugin
 NeoBundle 'Xuyuanp/nerdtree-git-plugin' "NERDTree with git support
 NeoBundle 'jamessan/vim-gnupg.git' "Transparent work with gpg-encrypted files
+NeoBundle 'Shougo/echodoc.vim' "prints doc in echo area
+NeoBundle 'blindFS/vim-taskwarrior' "add taskwarrior vim plug wrapper
+NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
+NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 "--[ dev ]-------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
@@ -112,6 +116,8 @@ if executable("go")
     NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
     NeoBundle 'fatih/vim-go.git' "golang support
 endif
+NeoBundle 'rust-lang/rust.vim' "detection of rust files
+NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
 NeoBundle 'racer-rust/vim-racer.git' "rust autocomplete
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
@@ -168,7 +174,6 @@ NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
 NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
-NeoBundle 'wting/rust.vim' "rust bindings for vim syntax hi
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
 NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
