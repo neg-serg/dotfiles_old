@@ -23,17 +23,17 @@ case ${UID} in
     }
 
     # if mode indicator wasn't setup by theme, define default
-    if [[ "$MODE_INDICATOR" == "" ]]; then
-      MODE_INDICATOR="%{$fg[green]%}<%{$fg_bold[green]%}<%{$reset_color%}"
+    if [[ "${mode_indicator}" == "" ]]; then
+        mode_indicator="%{$fg[blue]%}[%{$fg[white]%}<<%{$fg[blue]%}]%{$reset_color%}"
     fi
 
     function vi_mode_prompt_info() {
-      echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+        echo "${${KEYMAP/vicmd/${mode_indicator}}/(main|viins)/}"
     }
 
     # define right prompt, if it wasn't defined by a theme
     if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-      RPS1='$(vi_mode_prompt_info)'
+        RPS1='$(vi_mode_prompt_info)'
     fi
     ;;
 esac
