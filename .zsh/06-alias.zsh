@@ -292,7 +292,7 @@ inpath journalctl && {
     alias log0='journalctl -b -0 | ccze -A' #current log 
     alias log1='journalctl -b -1 | ccze -A' #previous log
 } 
-alias log4="< /tmp/notionerr$(pidof notion)"
+alias log4="v /tmp/notionerr$(pidof notion)"
 inpath iotop && {
     alias iotop='sudo iotop -oPa'
     alias diskact="sudo iotop -Po"
@@ -323,3 +323,4 @@ alias unison="unison -log=false -auto -ui=text -times"
 alias google='web_search google'
 alias starwars='telnet towel.blinkenlights.nl'
 alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
+alias recordmydesktop="recordmydesktop --no-frame"
