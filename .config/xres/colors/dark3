@@ -42,3 +42,46 @@
 *.color218:#00ED85
 !Diff-Light-Blue
 *.color219:#008BED
+
+!*.color220: #0f141a
+!*.color222: #5c9caa
+!*.color222: #5c9caa
+!*.color221: #265360
+!*.color223: #091f2c
+!*.color224: #10151b
+!*.color225: #25535f
+
+*.color17: #002b36
+*.color18: #073642
+*.color22: #2b768d
+*.color32: #002b36
+*.color62: #002B36
+*.color64: #003623
+*.color77: #2e8b57
+*.color89: #232030
+*.color124: #920000
+*.color125: #680020
+*.color126: #780000
+*.color127: #5f0000
+*.color162: #cc6666
+*.color164: #4F4C75
+*.color200: #315C70
+*.color215: #184454
+*.color220: #0f141a
+*.color221: #265360
+*.color222: #5c9caa
+*.color223: #091f2c
+*.color224: #10151b
+*.color225: #25533f
+*.color230: #eee8d5
+*.color231: #fdfdfd
+*.color232: #262626
+*.color233: #040404
+*.color234: #080808
+*.color235: #373b41
+*.color239: #121212
+*.color240: #151515
+*.color244: #586e75
+*.color250: #666666
+*.color251: #afa0f0
+*.color253: #c5c8c6
