@@ -7,6 +7,7 @@ augroup vimrc
     au BufEnter * call MySetupTitleString()
 augroup end
 au StdinReadPost * set buftype=nofile
+au BufReadCmd file:///* exe "bd!|edit ".substitute(expand("<afile>"),"file:/*","","")
 
 fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
