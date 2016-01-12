@@ -29,7 +29,7 @@ if width == nil then -- rofi.width = 1850
     screen_width_fd:close()
 end
 
-local function rofi_template(pref,file_name,lines,fn,flags,t_font)
+local function rofi_template(_t,flags,t_font)
     ------------------------------------------
     local function new_ipc_file(file_name)
         local shm_dir = "/tmp"
@@ -54,14 +54,19 @@ local function rofi_template(pref,file_name,lines,fn,flags,t_font)
         return " -p " .. quote(str)
     end
     ------------------------------------------
-    local rofi_prefix = new_rofi_prefix(pref)
+    local rofi_prefix
+    if _t.pref ~= nil then 
+        rofi_prefix = new_rofi_prefix(_t.pref)
+    else
+        rofi_prefix = new_rofi_prefix("")
+    end
     local columns = 0
     local columns_str = ""
-    local ipc_file = new_ipc_file(file_name)
+    local ipc_file = new_ipc_file(_t.file_name)
     ------------------------------------------
     local common = ' -dmenu -opacity 90 ' .. rofi.yoff .. rofi.pid .. ' ' 
     local colors = ' -fg '..neg.rofi.fg..' -bg '..neg.rofi.bg..' -hlfg '..neg.rofi.hlfg..' -hlbg '..neg.rofi.hlbg..' -bc '..neg.rofi.bc
-    if lines == nil then lines = 10 else
+    if _t.lines == nil then _t.lines = 10 else
         columns = 10
         columns_str = ' -columns ' .. columns
     end
@@ -76,11 +81,11 @@ local function rofi_template(pref,file_name,lines,fn,flags,t_font)
         rfont = rofi.font()
     end
 
-    local rofi_cmd='rofi '.. rfont .. common .. ' -lines ' .. lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
+    local rofi_cmd='rofi '.. rfont .. common .. ' -lines ' .. _t.lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi.width .. flags
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
-    handle_input(fn)
+    if _t.fn ~= nil then handle_input(_t.fn) end
     local fp = io.open(ipc_file)
     answer = fp:read("*l")
     fp:close()
@@ -157,22 +162,42 @@ function rofi.renameworkspace()
         ws=notioncore.find_manager(mplex, "WGroupWS")
     end
     assert(mplex and ws)
-    local wsname = rofi_template("new_ws_name :: "..ws:name(),"rename_ws",_,_)
+    local opt = {
+        pref = "new_ws_name :: "..ws:name(),
+        file_name = "rename_ws"
+    }
+    local wsname = rofi_template(opt)
     rename_workspace_handler(wsname,ws)
 end
 
 function rofi.renameframe(frame)
-    local frame_name = rofi_template("frame_name :: "..frame:name(),"rename_frame",_,_)
+    local opt = {
+        pref = "frame_name :: "..frame:name(),
+        file_name = "rename_frame",
+    }
+    local frame_name = rofi_template(opt)
     rename_frame_handler(frame_name,frame)
 end
 
 function rofi.mainmenu()
-    local x = rofi_template("mainmenu","mainmenu",2,complete_mainmenu,nil,{font=nil,sz=12})
+    local opt = {
+        pref = "main_menu",
+        file_name = "main_menu",
+        lines = 2,
+        fn = complete_mainmenu,
+    }
+    local x = rofi_template(opt,nil,{sz=12})
     mainmenu_handler(x)
 end
 
 function rofi.tilingmenu()
-    local x = rofi_template("tiling_menu","tiling_menu",2,complete_tilingmenu)
+    local opt = {
+        pref = "tiling_menu",
+        file_name = "tiling_menu",
+        lines = 2,
+        fn = complete_tilingmenu,
+    }
+    local x = rofi_template(opt,nil,{sz=12})
     tilingmenu_handler(x)
 end
 
@@ -180,7 +205,12 @@ function rofi.goto_win()
     local t = {}
     t = complete_name()
     if #t > 1 then
-        local x = rofi_template("goto_win","go",_,complete_name)
+        local opt = {
+            pref = "goto_win",
+            file_name = "go",
+            fn = complete_name,
+        }
+        local x = rofi_template(opt)
         local win = notioncore.lookup_clientwin(x)
         if win then
             notioncore.defer(function () win:goto_focus() end)
@@ -196,11 +226,22 @@ function rofi.goto_win()
 end
 
 function rofi.goto_or_create_ws(reg)
-    local name = rofi_template("goto_ws","ws",1,complete_ws)
+    local opt = {
+        pref = "goto_ws",
+        file_name = "ws",
+        lines = 1,
+        fn = complete_ws,
+    }
+    local name = rofi_template(opt)
     goto_or_create_ws_handler(name,reg)
 end
 
 function rofi.attach_win(frame,str)
-    local str = rofi_template("attach","attach_win",_,complete_name)
+    local opt = {
+        pref = "attach",
+        file_name = "attach_win",
+        fn = complete_name,
+    }
+    local str = rofi_template(opt)
     attach_win_handler(str,frame)
 end
