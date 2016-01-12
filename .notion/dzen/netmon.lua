@@ -131,7 +131,7 @@ local function update_netmon_info()
 
     netmon_kbsin = fmt(kbsin)
     netmon_kbsout  = fmt(kbsout)
-    netmon = output
+    dmain.net = output
     dzen_update()
 
     net_timer:set(net_conf.interval, update_netmon_info)
@@ -151,7 +151,7 @@ local function init_netmon_monitor()
         update_netmon_info()
         dzen_update()
     else
-        netmon  = "oops"
+        dmain.net  = "oops"
         dzen_update()
     end
 end

@@ -1,6 +1,6 @@
 function kbd_update()
     local klay
-    local f = nil
+    local f        = nil
     local template = ""
 
     f = io.popen("/home/neg/bin/mon/klay2", "r")
@@ -8,7 +8,7 @@ function kbd_update()
     f:close()
     template = template..klay
 
-    kbd_template = template
+    dmain.kbd = template
     dzen_update()
 end
 
