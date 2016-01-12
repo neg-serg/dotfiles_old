@@ -2,8 +2,9 @@ neg      = {}
 neg.dzen = {}
 neg.rofi = {}
 
-neg.basefont   = "xft:PragmataPro for Powerline-12:bold"
-neg.statusfont = "xft:PragmataPro for Powerline-12:bold"
+neg.font       = "PragmataPro for Powerline"
+neg.basefont   = "xft:".. neg.font .."-12:bold"
+neg.statusfont = "xft:".. neg.font .."-12:bold"
 
 neg.padding_color     = "#000000"
 neg.def_bg            = "#000000"
