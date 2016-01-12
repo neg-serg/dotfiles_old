@@ -61,7 +61,15 @@ function start_execute(key)
             -- mod_statusbar.inform(t_key .. "_template", string.rep( ' ', t_length))
 
             if mpd_pipe == nil then
-                mpd_pipe = io.popen("dzen2 -dock -bg '#000000' -h 19 -tw 0  -x 0 -ta r -w 910 -p -fn 'PragmataPro for Powerline:style=bold:size=12' ", "w")
+                mpd_pipe = io.popen("dzen2 -dock -bg ".. 
+                                    neg.dzen.bg_ ..
+                                    " -h ".. neg.dzen.h_ ..
+                                    " -tw 0 -x 0 -ta r -w ".. 
+                                    neg.dzen.mpd_w_ .. 
+                                    " -p -fn ".. 
+                                    neg.dzen.panel_font_ .. 
+                                    " ", "w"
+                                    )
                 mpd_pipe:setvbuf("line")
             end
             mpc = data

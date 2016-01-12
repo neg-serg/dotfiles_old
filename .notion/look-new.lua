@@ -21,6 +21,7 @@ neg.dzen.panel_font_ = "'PragmataPro for Powerline:style=bold:size=12'"
 neg.dzen.bg_         = '"#000000"'
 neg.dzen.h_          = 19
 neg.dzen.main_w_     = "1000"
+neg.dzen.mpd_w_      = "910"
 
 neg.dzen.fancy_table1 = {
     ""      , ""      ,
