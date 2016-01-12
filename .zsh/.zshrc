@@ -11,7 +11,6 @@
 #--------------------------------
 
 source ~/.zsh/01-init.zsh
-source ~/.zsh/02-syntax.zsh
 source ~/.zsh/03-exports.zsh
 source ~/.zsh/04-oldprompt.zsh
 source ~/.zsh/05-functions.zsh
@@ -24,3 +23,4 @@ source ~/.zsh/60-functional.zsh
 source ~/.zsh/89-vim-interation.plugin.zsh
 source ~/.zsh/92-history-substring-search.zsh
 source ~/.zsh/98-fzf.zsh
+source ~/.zsh/99-syntax.zsh
