@@ -69,7 +69,7 @@ if executable("tmux")
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
 endif
 "--[ misc ]------------------------------------------------------------------------------
-NeoBundle 'amix/open_file_under_cursor.vim.git' "better gf
+" NeoBundle 'amix/open_file_under_cursor.vim.git' "better gf
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
 NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
 NeoBundle 'manicmaniac/betterga.git' "better ga
@@ -118,7 +118,7 @@ if executable("go")
 endif
 NeoBundle 'rust-lang/rust.vim' "detection of rust files
 NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
-NeoBundle 'racer-rust/vim-racer.git' "rust autocomplete
+" NeoBundle 'racer-rust/vim-racer.git' "rust autocomplete
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }

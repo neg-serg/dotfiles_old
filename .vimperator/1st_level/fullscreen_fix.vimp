@@ -1,6 +1,5 @@
 "Hide status bar when fullscreen mode is detected
 autocmd Fullscreen .* js updateBottomBar()
-
 " Re-enable bottom bar during certain commands.
 noremap : :js updateBottomBar(false)<CR>:
 noremap o :js updateBottomBar(false)<CR>o
