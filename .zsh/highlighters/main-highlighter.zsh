@@ -16,7 +16,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   command                        'fg=green'
 
   #precommand                    'fg=green,underline'
-  #path                          'fg=underline'
+  path                           'underline'
   #path_prefix                   'fg=underline'
   #path_approx                   'fg=yellow,underline'
 
@@ -28,6 +28,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   # comment                      'fg=222'
   # redirection                  'none'
   # commandseparator             'none'
+  
   back-quoted-argument           'fg=024,bold'
   single-quoted-argument         'fg=024'
   double-quoted-argument         'fg=024'
