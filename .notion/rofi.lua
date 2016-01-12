@@ -4,7 +4,21 @@ local width = nil
 
 rofi = {}
 rofi.fontsz = 17
-rofi.font = '-font "' .. 'Pragmata Pro for Powerline' .. ' '.. 'bold' ..' ' .. rofi.fontsz .. '"'
+
+function rofi.font(t)
+    local font_size = rofi.fontsz
+    local font_name = neg.font
+    if t ~= nil then
+        if t.sz ~= nil and t.sz > 4 then
+            font_size = t.sz
+        end
+        if t.font ~= nil and t.font ~= "" then
+            font_name = font
+        end
+    end
+    return '-font "' .. font_name .. ' '.. 'bold' ..' ' .. font_size .. '"'
+end
+
 rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 
 rofi.pid = ' -pid /run/user/1000/rofi_notion.pid'
 
@@ -15,7 +29,7 @@ if width == nil then -- rofi.width = 1850
     screen_width_fd:close()
 end
 
-local function rofi_template(pref,file_name,lines,fn,flags)
+local function rofi_template(pref,file_name,lines,fn,flags,t_font)
     ------------------------------------------
     local function new_ipc_file(file_name)
         local shm_dir = "/tmp"
@@ -54,7 +68,15 @@ local function rofi_template(pref,file_name,lines,fn,flags)
 
     if flags == nil then flags = "" end
 
-    local rofi_cmd='rofi '.. rofi.font .. common .. ' -lines ' .. lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
+    local rfont
+
+    if t_font then
+        rfont = rofi.font(t_font)
+    else
+        rfont = rofi.font()
+    end
+
+    local rofi_cmd='rofi '.. rfont .. common .. ' -lines ' .. lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
     ' -padding 2 -width ' .. rofi.width .. flags
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
@@ -145,7 +167,7 @@ function rofi.renameframe(frame)
 end
 
 function rofi.mainmenu()
-    local x = rofi_template("mainmenu","mainmenu",2,complete_mainmenu)
+    local x = rofi_template("mainmenu","mainmenu",2,complete_mainmenu,nil,{font=nil,sz=12})
     mainmenu_handler(x)
 end
 
