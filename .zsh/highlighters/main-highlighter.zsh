@@ -16,7 +16,7 @@ ZSH_HIGHLIGHT_STYLES+=(
   command                        'fg=green'
 
   #precommand                    'fg=green,underline'
-  path                           'underline'
+  #path                          'underline'
   #path_prefix                   'fg=underline'
   #path_approx                   'fg=yellow,underline'
 

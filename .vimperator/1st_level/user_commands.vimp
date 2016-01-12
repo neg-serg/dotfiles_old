@@ -10,6 +10,7 @@ command! sopen js [liberator.open(a.href, liberator.NEW_BACKGROUND_TAB) for (a i
 command! sum echo let (sum=0) (util.readFromClipboard().match(/\d+/g).map(function(s) parseInt(s)).forEach(function(v) sum+=v),sum)
 " command! googlesidewiki js document.getElementById('gtbSidewiki').click()
 command! webcon :emenu Tools.Web Console
+command! -nargs=* gg open google <args>
 
 " Run :vimperatortoggle to enable or disable Vimperator as needed.
 javascript function vimperatortoggle() { if (is_vimperator_active) { liberator.execute(':disable') } else { liberator.execute(':enable') }; }

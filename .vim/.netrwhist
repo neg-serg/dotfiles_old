@@ -1,6 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/one/dev/src/oh-my-zsh/plugins/z'
-let g:netrw_dirhist_2='/one/dev/src/oh-my-zsh/plugins/zeus'
-let g:netrw_dirhist_3='/one/dev/src/oh-my-zsh/plugins/zsh_reload'
-let g:netrw_dirhist_4='/one/dev/src/VCTGI'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/neg/.config/dircolors'
+let g:netrw_dirhist_2='/home/neg/.config/colorschemes'
+let g:netrw_dirhist_3='/home/neg/.mplayer'
+let g:netrw_dirhist_4='/home/neg/.config/bspwm'
+let g:netrw_dirhist_5='/one/dev/src/dotfiles/bin/scripts/dmenu'
+let g:netrw_dirhist_6='/one/dev/src/dotfiles/bin/scripts/fun'
+let g:netrw_dirhist_7='/one/dev/src/dotfiles/bin/scripts/homepage.py'
