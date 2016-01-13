@@ -12,22 +12,15 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+slash", "notioncore.goto_previous()"),
     kpress("M1+Tab",   "notioncore.goto_previous()"),
     kpress("M4+T",     "min_tabs_tag_wrapper(_,_sub)", "_sub:non-nil"),
-    -------------------------------------------------------------------------------------
     --[[ SCRATCHPADS  ]]--------------------------------
-    --------------------
     kpress("M4+d",       "console()"),
     kpress("M4+F",       "ncmpcpp()"),
-    kpress("M4+p",       "named_scratchpad(ioncore.current(), 'float2')"),
-    kpress("M4+E",       "named_scratchpad(ioncore.current(), 'im')"),
-    kpress("M4+Ct+9",    "named_scratchpad(ioncore.current(), 'wicd')"),
-    kpress("M4+Ct+2",    "named_scratchpad(ioncore.current(), 'alsa')"),
-    kpress("M4+Ct+4",    "named_scratchpad(ioncore.current(), 'etc')"),
+    kpress("M4+p",       "namsc('float2')"),
+    kpress("M4+E",       "namsc('im')"),
     kpress("M4+Ct+G",    "rofi.goto_or_create_ws(ioncore.current())"),
     kpress("M1+G",       "rofi.goto_win(ioncore.current())"),
     kpress("M4+F9",      "notioncore.create_ws(ioncore.current())"),
-    -------------------------------------------------------------------------------------
     --[[  PROGS RUN by APP  ]]-----------------------------
-    --------------------------
     kpress("M4+1",     "app.byclass('~/bin/wim', 'wim')"),
     kpress("M4+x",     "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
     kpress("M4+Ct+a",  "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
@@ -35,12 +28,10 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+w",     "app.byinstance_withtag('/usr/bin/firefox-beta||/usr/bin/firefox-nigtly||firefox', 'Firefox','Navigator',nil,'www')"),
     kpress("M4+o",     "app.byclass_withtag('zathura','Zathura','pdf')"),
     kpress("M4+Ct+C",  "app.byclass('~/bin/sx ~/dw/*', 'Sxiv')"),
-    -------------------------------------------------------------------------------------
     --[[  MISC  ]]---------------------------------------
-    --------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
     kpress("M4+Sh+F",  "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
-    kpress("M4+Sh+t",  "named_scratchpad(ioncore.current(), 'stalonetray')"),
+    kpress("M4+Sh+t",  "namsc('stalonetray')"),
     submap("M1+E",{
         kpress("Ct+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Ct+w", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
@@ -159,42 +150,32 @@ Neg_kb.floating = {
 }
 
 Neg_kb.WMoveresMode = {
-    kpress("AnyModifier+Escape", "WMoveresMode.cancel(_)"),
-    kpress("AnyModifier+Return", "WMoveresMode.finish(_)"),
-    kpress("Ct+C", "WMoveresMode.finish(_)"),
+    kpress("Escape", "WMoveresMode.cancel(_)"),
+    kpress("Return", "WMoveresMode.finish(_)"),
+    kpress("Ct+C",   "WMoveresMode.finish(_)"),
 
-    kpress("Left",     "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("h",        "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("Right",    "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("l",        "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("Up",       "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("k",        "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("Down",     "WMoveresMode.resize(_, 0, 0, 0, 1)"),
-    kpress("j",        "WMoveresMode.resize(_, 0, 0, 0, 1)"),
-
-    kpress("Sh+Left",  "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Sh+h",     "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Sh+Right", "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Sh+l",     "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Sh+Up",    "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Sh+k",     "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Sh+Down",  "WMoveresMode.resize(_, 0, 0, 0,-1)"),
-    kpress("Sh+j",     "WMoveresMode.resize(_, 0, 0, 0,-1)"),
-
-    kpress("M1+Left",  "WMoveresMode.move(_,-1, 0)"),
-    kpress("M1+Right", "WMoveresMode.move(_, 1, 0)"),
-    kpress("M1+Up",    "WMoveresMode.move(_, 0,-1)"),
-    kpress("M1+Down",  "WMoveresMode.move(_, 0, 1)"),
+    kpress("h",      "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("l",      "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("Up",     "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("k",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("j",      "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+                    
+    kpress("Sh+h",   "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Sh+l",   "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Sh+Up",  "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Sh+k",   "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Sh+j",   "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+                    
+    kpress("M1+h",   "WMoveresMode.move(_,-1, 0)"),
+    kpress("M1+l",   "WMoveresMode.move(_, 1, 0)"),
+    kpress("M1+k",   "WMoveresMode.move(_, 0,-1)"),
+    kpress("M1+j",   "WMoveresMode.move(_, 0, 1)"),
 }
 
 Neg_kb.Tiling = {
-    kpress("M4+Up",   "goto_dir('up')"),
     kpress("M4+k",    "goto_dir('up')"),
-    kpress("M4+Down", "goto_dir('down')"),
     kpress("M4+j",    "goto_dir('down')"),
-    kpress("M4+Left", "goto_dir('left')"),
     kpress("M4+h",    "goto_dir('left')"),
-    kpress("M4+Right","goto_dir('right')"),
     kpress("M4+l",    "goto_dir('right')"),
     kpress("M4+Ct+H", "tiling_split('right')"),
     kpress("M4+Ct+L", "tiling_split('left')"),
@@ -208,12 +189,10 @@ Neg_kb.Tiling = {
     kpress("M4+Ct+A", function(ws) move_current.move(ws, "left") end),
     kpress("M4+Ct+D", function(ws) move_current.move(ws, "right") end),
     kpress("M4+Ct+m", "rofi.tilingmenu()"),
-    -- kpress("M4+i", "dynamic_view.toggle(_, 'term',  'left')"),
-    -- kpress("M4+Ct+D", "collapse.collapse(_)"),
-    -- vertical layout
-    --  kpress("Mod4+Control+i" , "multiple_split(_, _sub, 'top')"),
-    -- horizontal layout
-    -- kpress("M4+Ct+o" , "multiple_split(_, _sub, 'left')"),
+    kpress("M4+i",    "dynamic_view.toggle(_, 'term',  'left')"),
+    kpress("M4+Ct+d", "collapse.collapse(_)"),
+    kpress("M4+Ct+i", "multiple_split(_, _sub, 'top')"), -- vertical layout
+    kpress("M4+Ct+o", "multiple_split(_, _sub, 'left')"), -- horizontal layout
 }
 
 defbindings("WMPlex.toplevel", Neg_kb.WMPlex_toplevel)
