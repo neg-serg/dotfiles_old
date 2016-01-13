@@ -23,7 +23,7 @@
 		"line_percent":             { "fg": "gray9", "bg": "really_dark1", "attrs": [] },
 		"line_percent_gradient":    { "fg": "dark_gray_blue", "bg": "really_dark1", "attrs": [] },
 		"position":                 { "fg": "gray9", "bg": "gray4", "attrs": [] },
-		"position_gradient":        { "fg": "green_yellow_red", "bg": "gray4", "attrs": [] },
+		"position_gradient":        { "fg": "dark_gray_blue", "bg": "gray4", "attrs": [] },
 		"line_current":             { "fg": "gray1", "bg": "really_dark2", "attrs": ["bold"] },
 		"line_current_symbol":      { "fg": "gray1", "bg": "really_dark2", "attrs": [] },
 		"virtcol_current_gradient": { "fg": "dark_GREEN_Orange_red", "bg": "really_dark2", "attrs": [] },
