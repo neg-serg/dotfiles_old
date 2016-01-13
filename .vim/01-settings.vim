@@ -372,7 +372,15 @@ set directory=~/trash
 set undofile            " So is persistent undo ...
 set undolevels=1000     " Maximum number of changes that can be undone
 set undoreload=10000    " Maximum number lines to save for undo on a buffer reload
-set cpoptions=aAceFsBd
+set cpoptions=a         " :read with a filename set the alternate filename for window
+set cpoptions+=A        " -- : write --
+set cpoptions+=c        " search -> end of any match at the cursor pos but not start of the next line
+set cpoptions+=e        " :@r adds CR and nonlinewise
+set cpoptions+=F        " :write set name for current buffer if no
+set cpoptions+=s        " set buf opts before it created
+set cpoptions+=B        " a backslash has no special meaning in mappings
+set cpoptions+=d        " make ./ in tags relative to tags file in current dir
+set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 set maxfuncdepth=100    " Maximum depth of function calls for user functions
 set maxmemtot=2000000   " Maximum amount of memory in Kbyte to use for all buffers together.
