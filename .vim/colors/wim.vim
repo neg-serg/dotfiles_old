@@ -8,6 +8,7 @@ let colors_name="wim"
 hi! Normal ctermbg=NONE ctermfg=15 cterm=NONE
 hi! Ignore ctermbg=NONE ctermfg=8 cterm=NONE
 hi! Comment ctermbg=NONE ctermfg=7 cterm=NONE
+hi! SpecialComment ctermbg=NONE ctermfg=7 cterm=underline
 hi! LineNr  ctermbg=233 ctermfg=8 cterm=NONE
 hi! Float ctermbg=NONE ctermfg=3 cterm=NONE 
 hi! Include ctermbg=NONE ctermfg=5 cterm=NONE 
@@ -23,7 +24,6 @@ hi! String ctermbg=NONE ctermfg=2 cterm=NONE
 hi! Constant ctermbg=NONE ctermfg=13 cterm=NONE 
 hi! Special ctermbg=NONE ctermfg=10 cterm=NONE 
 hi! SpecialChar ctermbg=NONE ctermfg=30 cterm=NONE 
-" hi SpecialChar ctermbg=17 ctermfg=30 cterm=NONE 
 hi! Number ctermbg=NONE ctermfg=14 cterm=NONE 
 hi! Identifier ctermbg=NONE ctermfg=13 cterm=NONE 
 hi! Conditional ctermbg=NONE ctermfg=14 cterm=NONE 
@@ -34,7 +34,6 @@ hi! StatusLineNC cterm=NONE ctermfg=NONE ctermbg=NONE
 hi! VertSplit cterm=NONE ctermfg=NONE ctermbg=NONE
 hi! Label ctermbg=NONE ctermfg=13 cterm=NONE 
 hi! Operator ctermbg=NONE ctermfg=6 cterm=bold
-"hi! Operator ctermbg=NONE ctermfg=3 cterm=bold 
 hi! Keyword ctermbg=NONE ctermfg=6 cterm=NONE 
 hi! StorageClass ctermbg=NONE ctermfg=31 cterm=NONE 
 hi! Structure ctermbg=NONE ctermfg=5 cterm=NONE 
@@ -45,7 +44,6 @@ hi! Underlined ctermbg=NONE ctermfg=4 cterm=NONE
 hi! Title ctermbg=NONE ctermfg=3 cterm=NONE 
 hi! Tag ctermbg=NONE ctermfg=11 cterm=NONE 
 hi! Delimiter ctermbg=NONE ctermfg=12 cterm=NONE 
-hi! SpecialComment ctermbg=NONE ctermfg=9 cterm=NONE 
 hi! Boolean ctermbg=NONE ctermfg=3 cterm=NONE 
 hi! Todo ctermbg=NONE ctermfg=9 cterm=NONE  
 hi! MoreMsg ctermbg=NONE ctermfg=13 cterm=NONE 
