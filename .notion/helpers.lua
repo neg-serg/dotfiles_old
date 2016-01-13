@@ -47,6 +47,14 @@ function radare2()
     )
 end
 
+function weechat()
+    ns_exec(
+        '_weechat_',
+        'st -c _weechat_ -f \'Pragmata Pro for Powerline:12\' zsh -c \'tmux new weechat\'',
+        'weechat'
+    )
+end
+
 function move_scratch(x, y, w, h)
    notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
