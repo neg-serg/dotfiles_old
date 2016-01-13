@@ -2,7 +2,7 @@
 SHELL=$(which zsh)
 export ZSHDIR=${HOME}/.zsh
 export BIN_HOME=${HOME}/bin
-export SCRIPT_HOME=${SCRIPT_HOME}/scripts
+export SCRIPT_HOME=${BIN_HOME}/scripts
 
 path_dirs=(
     /usr/{s,}bin
