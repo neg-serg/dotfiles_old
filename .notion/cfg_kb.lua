@@ -57,6 +57,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Sh+r", "ranger()"),
         kpress("l",    "radare2()"),
         kpress("Sh+g", "gdb()"),
+        kpress("Ct+w", "weechat()"),
         kpress("s",    "notioncore.exec_on(notioncore.current(), 'skype')"),
         kpress("t",    "notioncore.exec_on(notioncore.current(), 'urxvt')"),
         kpress("v",    "notioncore.exec_on(notioncore.current(), 'vmware')"),
