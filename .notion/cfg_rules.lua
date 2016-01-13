@@ -38,6 +38,7 @@ defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{instance="weechat-curses",jumpto=false,winlist_ignore=true,transient_mode="off",target="chat"}
+defwinprop{instance="_weechat_",jumpto=false,winlist_ignore=true,transient_mode="off",target="weechat"}
 -------------------------------------[[ DOC ]]---------------------------------------
 defwinprop{class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc", tag="pdf"}
 defwinprop{name="Open Document*",class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc",float=true}

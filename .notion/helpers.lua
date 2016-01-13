@@ -7,6 +7,10 @@ function ns_exec(class, prog, ns)
     named_scratchpad(reg, ns)
 end
 
+function namsc(class)
+    named_scratchpad(notioncore.current(), class)
+end
+
 function ncmpcpp()
     ns_exec(
         'mpd-pad2',
@@ -50,7 +54,7 @@ end
 function weechat()
     ns_exec(
         '_weechat_',
-        'st -c _weechat_ -f \'Pragmata Pro for Powerline:12\' zsh -c \'tmux new weechat\'',
+        'pidof weechat || st -c _weechat_ -f \'Terminus Re33:size=14:style=Bold\' zsh -c \'tmux -S ~/1st_level/weechat.socket new weechat\'',
         'weechat'
     )
 end
