@@ -31,7 +31,8 @@ Neg_kb.WMPlex_toplevel = {
     --[[  MISC  ]]---------------------------------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
     kpress("M4+Sh+F",  "app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer')"),
-    kpress("M4+Sh+t",  "namsc('stalonetray')"),
+    kpress("M4+Sh+T",  "namsc('stalonetray')"),
+    kpress("M4+Sh+W",  "weechat()"),
     submap("M1+E",{
         kpress("Ct+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Ct+w", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
@@ -48,7 +49,6 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Sh+r", "ranger()"),
         kpress("l",    "radare2()"),
         kpress("Sh+g", "gdb()"),
-        kpress("Ct+w", "weechat()"),
         kpress("s",    "notioncore.exec_on(notioncore.current(), 'skype')"),
         kpress("t",    "notioncore.exec_on(notioncore.current(), 'urxvt')"),
         kpress("v",    "notioncore.exec_on(notioncore.current(), 'vmware')"),
