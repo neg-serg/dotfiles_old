@@ -7,6 +7,7 @@ let g:livepreview_previewer    = 'zathura'
 let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
+let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
@@ -847,4 +848,27 @@ if neobundle#tap('vim-racer')
     let g:racer_cmd = "/usr/sbin/racer"
     let g:echodoc_enable_at_startup = 1
     let g:racer_experimental_completer = 1
+endif
+
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - godlygeek/tabular                                                        │ 
+" │ git@github.com:godlygeek/tabular                                                  │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('tabular') 
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 endif
