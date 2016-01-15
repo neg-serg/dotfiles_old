@@ -52,6 +52,9 @@ if neobundle#tap('ultisnips')
         let g:UltiSnipsJumpBackwardTrigger = "<m-f>"
         let g:UltiSnipsListSnippets        = "<c-m-s>"
     endif
+    if has('conceal')
+        set conceallevel=2 concealcursor=i
+    endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjbach/lusty.git                                                         │
