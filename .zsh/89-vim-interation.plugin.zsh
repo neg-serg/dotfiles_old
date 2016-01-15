@@ -13,15 +13,6 @@ function wim_run(){
     fi
 }
 
-function handle_files() {
-    local mfiles=""
-    for f; do
-        f="$(resolve_file ${f})"
-        mfiles="${mfiles} $(bash -c "printf %q '${f}'")"
-    done
-    [[ -n ${mfiles} ]] && mfiles=':args! '"${mfiles}<CR>"
-}
-
 function vim_file_open() (
     local file_name="$(resolve_file ${line})"
     file_name=$(bash -c "printf %q '${file_name}'")
@@ -83,15 +74,15 @@ function eprocess_list() {
     for line; do vim --servername ${vim_server_name} --remote-wait "$@"; done
 }
 
-function v {
-    handle_files "$@"
-    wim_run "$@"
+function v { 
+    while IFS='\n' read -r arg; do
+        for i in "${arg[@]}"; do
+            wim_run $i
+        done
+    done <<< "$(printf '%q\n' "$@")"
 }
 
-function wim_embed {
-    handle_files "$@"
-    wim_run "__wim_embed" "$@"
-}
+function wim_embed { wim_run "__wim_embed" "$@" }
 
 function wdiff {
     # or it's maybe better to use :windo diffthis
