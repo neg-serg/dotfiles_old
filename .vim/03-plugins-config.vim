@@ -17,7 +17,8 @@ if neobundle#tap('fzf.vim')
     if ! neobundle#tap('lusty')
         nnoremap <leader>l :Files %:p:h<CR>
     endif
-    nnoremap qE :Files %:p:h<CR>
+    nnoremap qe :Files %:p:h<CR>
+    nnoremap qE :Files<CR>
     " This is the default extra key bindings
     let g:fzf_action = {
     \ 'ctrl-t': 'tab split',
