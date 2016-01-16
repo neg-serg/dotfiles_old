@@ -9,6 +9,38 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - junegunn/fzf.vim                                                         │ 
+" │ https://github.com/junegunn/fzf.vim                                               │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('fzf.vim')
+    let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
+    if ! neobundle#tap('lusty')
+        nnoremap <leader>l :Files %:p:h<CR>
+    endif
+    nnoremap qE :Files %:p:h<CR>
+    " This is the default extra key bindings
+    let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
+
+    " Default fzf layout
+    " - down / up / left / right
+    " - window (nvim only)
+    let g:fzf_layout = { 'down': '~20%' }
+
+    " For Commits and BCommits to customize the options used by 'git log':
+    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+    " Advanced customization using autoload functions
+    autocmd VimEnter * command! Colors
+    \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+
+    " Insert mode completion
+    imap <c-x><c-f> <plug>(fzf-complete-path)
+    imap <c-x><c-l> <plug>(fzf-complete-line)
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -169,7 +201,7 @@ if neobundle#tap('YouCompleteMe')
     endif
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
     let g:ycm_rust_src_path = '/home/neg/src/1st_level/rust_src17/rustc-nightly/src'
-    let g:ycm_filepath_completion_use_working_dir = 1
+    let g:ycm_filepath_completion_use_working_dir = 0
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_cache_omnifunc = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
@@ -461,26 +493,26 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('unite.vim')
     function! s:unite_my_settings()
-    nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
-    nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
-    nnoremap <silent><buffer> <C-s> :call unite#mappings#do_action('split')<CR>
-    nnoremap <silent><buffer> <C-r> :call unite#mappings#do_action('rec')<CR>
-    nnoremap <silent><buffer> <C-f> :call unite#mappings#do_action('preview')<CR>
-    inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
-    inoremap <silent><buffer> <C-v> <Esc>:call unite#mappings#do_action('vsplit')<CR>
-    inoremap <silent><buffer> <C-s> <Esc>:call unite#mappings#do_action('split')<CR>
-    inoremap <silent><buffer> <C-r> <Esc>:call unite#mappings#do_action('rec')<CR>
-    inoremap <silent><buffer> <C-e> <Esc>:call unite#mappings#do_action('edit')<CR>
-    inoremap <silent><buffer> <C-f> <C-o>:call unite#mappings#do_action('preview')<CR>
-    " I hope to use <C-o> and return to the selected item after action...
-    nmap <silent><buffer> jl <Plug>(unite_exit)
-    imap <silent><buffer> jl <Plug>(unite_exit)
-    imap <silent><buffer> <C-c> <Plug>(unite_exit)
-    imap <silent><buffer> <C-j> <Plug>(unite_exit)
-    imap <silent><buffer> <ESC> <NOP>
-    nmap <silent><buffer> <C-j> <Plug>(unite_all_exit)
-    inoremap <silent><buffer> <SPACE> _
-    inoremap <silent><buffer> _ <SPACE>
+        nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
+        nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
+        nnoremap <silent><buffer> <C-s> :call unite#mappings#do_action('split')<CR>
+        nnoremap <silent><buffer> <C-r> :call unite#mappings#do_action('rec')<CR>
+        nnoremap <silent><buffer> <C-f> :call unite#mappings#do_action('preview')<CR>
+        inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
+        inoremap <silent><buffer> <C-v> <Esc>:call unite#mappings#do_action('vsplit')<CR>
+        inoremap <silent><buffer> <C-s> <Esc>:call unite#mappings#do_action('split')<CR>
+        inoremap <silent><buffer> <C-r> <Esc>:call unite#mappings#do_action('rec')<CR>
+        inoremap <silent><buffer> <C-e> <Esc>:call unite#mappings#do_action('edit')<CR>
+        inoremap <silent><buffer> <C-f> <C-o>:call unite#mappings#do_action('preview')<CR>
+        " I hope to use <C-o> and return to the selected item after action...
+        nmap <silent><buffer> jl <Plug>(unite_exit)
+        imap <silent><buffer> jl <Plug>(unite_exit)
+        imap <silent><buffer> <C-c> <Plug>(unite_exit)
+        imap <silent><buffer> <C-j> <Plug>(unite_exit)
+        imap <silent><buffer> <ESC> <NOP>
+        nmap <silent><buffer> <C-j> <Plug>(unite_all_exit)
+        inoremap <silent><buffer> <SPACE> _
+        inoremap <silent><buffer> _ <SPACE>
     endfunction
     autocmd FileType unite call s:unite_my_settings()
 
