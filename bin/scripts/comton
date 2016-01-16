@@ -1,3 +1,0 @@
-#!/bin/bash
-killall compton
-compton --backend glx --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible -cGz -r3 -l-5 -t-5 --blur-background-frame --blur-background-fixed -e.25 -o1 --blur-kern '5,5,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,' -b
