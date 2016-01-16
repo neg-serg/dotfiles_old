@@ -43,7 +43,7 @@ done
 xbindkeys -n &
 xset -b r rate 250 50 m 1 1 b off
 
-hsetroot -fill ${HOME}/pic/wl/LB6CQw9.jpg
+hsetroot -fill ${HOME}/pic/wl/Monody.jpg
 
 [[ -f ${HOME}/.Xresources ]] && xrdb -merge ${HOME}/.Xresources
 [[ -f ${XDG_CONFIG_HOME}/keymaps/xmodmaprc ]] && xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
