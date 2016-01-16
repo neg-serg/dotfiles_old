@@ -22,6 +22,9 @@ bin/trash
 ./dw
 .fonts/1st-level/ttf-ms-win8.tar.xz
 .fonts/MSGOTHIC.TTF
+.fonts/*
+.fonts
+.config/fonts/*
 ./games
 .ghc/ghci_history
 .icons/LibreOffice Pack Icons-0.3.6
@@ -60,4 +63,5 @@ MSGOTHIC.TTF
 .weechat/weechat.log
 .zsh/cache
 *.zwc
+*.tmp
 README.md
