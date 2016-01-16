@@ -16,10 +16,10 @@ function jpegrename(){
         return 1
     else
         echo -n 'Checking for jhead with version newer than 1.9: '
-        jhead_version=`jhead -h | \
+        jhead_version=$(jhead -h | \
                     grep 'used by most Digital Cameras.  v.*' | \
-                    awk '{print $6}' | tr -d v`
-        if [[ $jhead_version > '1.9' ]]; then
+                    awk '{print $6}' | tr -d v)
+        if [[ ${jhead_version} -gt '1.9' ]]; then
             echo 'success - now running jhead.'
             jhead -n%Y-%m-%d_%Hh%M_%f $*
         else
@@ -36,9 +36,7 @@ function magic-abbrev-expand() {
     zle self-insert
 }
 
-function no-magic-abbrev-expand() {
-    LBUFFER+=' '
-}
+function no-magic-abbrev-expand() { LBUFFER+=' ' }
 
 function zc(){
   local cache="${ZSH}/cache"
@@ -84,7 +82,6 @@ function pk () {
         echo "'$1' is not a valid file"
     fi
 }
-
 
 function extract() {
   local remove_archive
@@ -156,8 +153,8 @@ function extract() {
   done
 }
 
-function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M `pwd`;  }
-function back-one-dir { popd     > /dev/null; zle redisplay; zle -M `pwd`;  }
+function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M $(pwd);  }
+function back-one-dir { popd     > /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
 zle -N back-one-dir
 
@@ -176,8 +173,8 @@ function rationalise-dot() {
 }
 zle -N rationalise-dot
 
-### jump behind the first word on the cmdline.
-### useful to add options.
+# jump behind the first word on the cmdline.
+# useful to add options.
 function jump_after_first_word() {
     local words
     words=(${(z)BUFFER})
@@ -290,20 +287,14 @@ done
 function rfc(){
     uri_tmpl='http://www.rfc-editor.org/rfc/rfc%d.txt';
     rfcn=$( printf $1 | sed 's/[^0-9]//g' );
-    if [[ -z "${rfcn}" ]]; then
-        echo  "Usage: rfc <RFC>";
-        exit;
-    fi
+    [[ -z "${rfcn}" ]] && echo  "Usage: rfc <RFC>"; exit;
     uri=$( printf ${uri_tmpl} ${rfcn} )
     curl --silent ${uri} | ${PAGER}
 }
 
 function myip(){
     [[ -n "$1" ]] && sleep $1;
-
-    if [[ -x $(which dig) ]]; then
-        DNSQUERY=`dig +short myip.opendns.com @resolver1.opendns.com`
-    fi
+    [[ -x $(which dig) ]] && DNSQUERY=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
     if [[ -n "$DNSQUERY" ]]; then
         echo "$DNSQUERY"
@@ -317,48 +308,6 @@ function myip(){
         echo N/A ) | \
         sed -e 's:^$:N/A:'
     fi
-}
-
-function eat(){
-    # eat - copy to the clipboard the contents of a file
-
-    # Program name from it's filename
-    prog=${0##*/}
-
-    # Text color variables
-    bldblu='\e[1;34m'         # blue
-    bldred='\e[1;31m'         # red
-    bldwht='\e[1;37m'         # white
-    txtbld=$(tput bold)       # bold
-    txtund=$(tput sgr 0 1)    # underline
-    txtrst='\e[0m'            # text reset
-    info=${bldwht}*${txtrst}
-    pass=${bldblu}*${txtrst}
-    warn=${bldred}!${txtrst}
-
-    filename=$@
-
-    # Display usage if full argument isn't given
-    if [[ -z ${filename} ]]; then
-        echo " ${prog} <filename> - copy a file to the clipboard"
-        exit
-    fi
-
-    # Check that file exists
-    if [[ ! -f ${filename} ]]; then
-        echo -e "${warn} File ${txtund}${filename}${txtrst} doesn't exist"
-        exit
-    fi
-
-    # Check user is not root (root doesn't have access to user xorg server)
-    if [[ $(whoami) == root ]]; then
-        echo -e "${warn} Must be regular user to copy a file to the clipboard"
-        exit
-    fi
-
-    # Copy file to clipboard, give feedback
-    xclip -in -selection c < "$filename"
-    echo -e "${pass} ${txtund}"${filename##*/}"${txtrst} copied to clipboard"
 }
 
 function fg-widget() {
@@ -381,13 +330,8 @@ function expand-or-complete-and-highlight() {
 
 zle -N expand-or-complete-and-highlight expand-or-complete-and-highlight
 
-function pcp(){
-    #pcp - copy files matching pattern $1 to $2
-    find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2"
-}
-
-# usage: *(o+rand) or *(+rand)
-function rand() { REPLY=$RANDOM; (( REPLY > 16383 )) }
+#pcp - copy files matching pattern $1 to $2
+function pcp(){ find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2" }
 
 fasd_cache="$HOME/bin/.fasd-init-cache"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
@@ -416,9 +360,7 @@ function expand-or-complete-or-cd() {
 }
 zle -N expand-or-complete-or-cd
 
-function ff() {
-    find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d
-}
+function ff() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
 
 function magnet_to_torrent() {
     [[ "$1" =~ xt=urn:btih:([^\&/]+) ]] || return 1
@@ -452,7 +394,7 @@ function hi2() {
     done
 }
 
-function doc2pdf () { curl -# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
+function doc2pdf () { curl -\# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
 function discover () {
     keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
@@ -500,60 +442,58 @@ function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/dr
 
 # un-smart function for viewing/editing history file (still use 'fc/history'):
 function zhist {
-  if [[ $# -ge 1 ]]; then
+    if [[ $# -ge 1 ]]; then
     case $1 {
-      '-a'|'-all') <~/.zsh_history | ${PAGER:-less} ;;
-      '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ~/.zsh_history ;;
-      '-f'|'--find') [[ -n $2 ]] && <~/.zsh_history|grep -i "${${@:/$1}// /\|}" ;;
+        '-a'|'-all') <~/.zsh_history | ${PAGER:-less} ;;
+        '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ~/.zsh_history ;;
+        '-f'|'--find') [[ -n $2 ]] && <~/.zsh_history|grep -i "${${@:/$1}// /\|}" ;;
     }
-  else
-    print - "options: -e (edit), -f (find), -a (all)"
-  fi
+    else
+        print - "options: -e (edit), -f (find), -a (all)"
+    fi
 }
 
-function capture() { ffcast -w ffmpeg -f alsa -ac 2 -i hw:0,2 -f x11grab -s %s -i %D+%c -acodec pcm_s16le -vcodec huffyuv "$@" }
-
 function search() {
-  emulate -L zsh
+    emulate -L zsh
 
-  # define search engine URLS
-  typeset -A urls
-  urls=(
-    google      "https://www.google.com/search?q="
-    bing        "https://www.bing.com/search?q="
-    yahoo       "https://search.yahoo.com/search?p="
-    duckduckgo  "https://www.duckduckgo.com/?q="
-    yandex      "https://yandex.ru/yandsearch?text="
-  )
+    # define search engine URLS
+    typeset -A urls
+    urls=(
+        google      "https://www.google.com/search?q="
+        bing        "https://www.bing.com/search?q="
+        yahoo       "https://search.yahoo.com/search?p="
+        duckduckgo  "https://www.duckduckgo.com/?q="
+        yandex      "https://yandex.ru/yandsearch?text="
+    )
 
-  # define the open command
-  case "${OSTYPf}E" in
-    darwin*)  open_cmd="open" ;;
-    cygwin*)  open_cmd="cygstart" ;;
-    linux*)   open_cmd="xdg-open" ;;
-    *)        echo "Platform $OSTYPE not supported"
-              return 1
-              ;;
-  esac
+    # define the open command
+    case "${OSTYPf}E" in
+        darwin*)  open_cmd="open" ;;
+        cygwin*)  open_cmd="cygstart" ;;
+        linux*)   open_cmd="xdg-open" ;;
+        *)        echo "Platform $OSTYPE not supported"
+                return 1
+                ;;
+    esac
 
-  # check whether the search engine is supported
-  if [[ -z "${urls}[$1]" ]]; then
-    echo "Search engine $1 not supported."
-    return 1
-  fi
+    # check whether the search engine is supported
+    if [[ -z "${urls}[$1]" ]]; then
+        echo "Search engine $1 not supported."
+        return 1
+    fi
 
-  # search or go to main page depending on number of arguments passed
-  if [[ $# -gt 1 ]]; then
-    # build search url:
-    # join arguments passed with '+', then append to search engine URL
-    url="${urls[$1]}${(j:+:)@[2,-1]}"
-  else
-    # build main page url:
-    # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
-    url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
-  fi
+    # search or go to main page depending on number of arguments passed
+    if [[ $# -gt 1 ]]; then
+        # build search url:
+        # join arguments passed with '+', then append to search engine URL
+        url="${urls[$1]}${(j:+:)@[2,-1]}"
+    else
+        # build main page url:
+        # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
+        url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
+    fi
 
-  nohup ${open_cmd} "${url}" &>/dev/null
+    nohup ${open_cmd} "${url}" &>/dev/null
 }
 
 function hugepage_disable(){
@@ -561,18 +501,7 @@ function hugepage_disable(){
     cat /sys/kernel/mm/transparent_hugepage/defrag
 }
 
-# Tmux create session
-function create_session(){
-    if [[ "$1" ]]; then
-        tmux new-session -A -s "$@"
-    else
-        tmux ls
-    fi
-}
-
-function teapot_xterm(){
-    curl http://www.dim13.org/tek/teapot.tek
-}
+function teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
 
 function bookmarks_export(){
     printf "----[ 10 days history ]----\n"
@@ -603,7 +532,6 @@ function cache_list(){
         ${XDG_CACHE_HOME}/mozilla/
         ~/.thumbnails/
     )
-
     du -shc ${dirlist}
 }
 
@@ -630,29 +558,25 @@ function clock(){
     done &
 }
 
-function soneeded() {
-   readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}'
-}
+function soneeded() { readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}' }
 
 function mdel(){
     pattern="$1"
     mpc --format "%position% %artist% %album% %title%" playlist \
-    | grep -iP $pattern \
-    | awk '{print $1}'  \
-    | mpc del
+        | grep -iP $pattern \
+        | awk '{print $1}'  \
+        | mpc del
 }
 
 function mkeep(){
     pattern="$1"
     mpc --format "%position% %artist% %album% %title%" playlist \
-    | ${BIN_HOME}/scripts/negrep ${pattern} \
-    | awk '{print $1}'  \
-    | mpc del
+        | ${BIN_HOME}/scripts/negrep ${pattern} \
+        | awk '{print $1}'  \
+        | mpc del
 }
 
-function pid2xid(){
-    wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}"
-}
+function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
 # Change to repository root (starting in parent directory), using the first
 # entry of a recursive globbing.
@@ -682,8 +606,8 @@ function toxrdb(){
 }
 
 function count_music_trash(){
-find ~/music/ -regextype posix-egrep \
-    -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} +
+    find ~/music/ -regextype posix-egrep \
+        -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} +
 }
 
 function consn() { 
@@ -698,152 +622,63 @@ function geteip() { curl http://ifconfig.me }
 function clrz() { ps -eal | awk '{ if ($2 == "Z") {print $4}}' | kill -9 }
 
 function suscp() {
-  for arg in "$@"; do
-    case "$arg" in
-        [!-]*:*) ssh -axqt "$(echo $arg|sed -e 's/:.*//')" sudo -v -p "\"%u@%h's sudo password:\"" || exit ;;
-    esac
-  done
-  args=-P
-  [ "$basename" = suscp ] && args=-P
-  sudo -p "%u@%h's sudo password:" rsync $args -e "ssh -axtF $HOME/.ssh/config -i $HOME/.ssh/id_rsa" --rsync-path="sudo rsync" "$@"
-}
-
-function remove(){
-    if inpath trash-put; then
-      trash=trash-put
-    elif inpath rmtrash; then
-      trash=rmtrash
-    else
-      exec rm "$@"
-    fi
-    trash() {
-      if [ -L "$1" ]; then
-        rm -- "$1"
-      elif [ -d "$1" -a -z "$recurse" ]; then
-        echo "tpope rm: cannot remove \`$1': Is a directory"
-      elif [ ! -e "$1" -a -z "$force" ]; then
-        echo "tpope rm: cannot remove \`$1': No such file or directory"
-      else
-        case "$1" in
-          /*) absolute="$1" ;;
-          *)  absolute="`pwd`/$1" ;;
-        esac
-        case "$file" in
-          "$HOME"/*) $trash -- "$1" ;;
-          *) rm $force $recurse -- "$1" ;;
-        esac
-      fi
-    }
     for arg in "$@"; do
-      case "$arg" in
-        --) break ;;
-        -*)
-          case "$arg" in
-            -*[\ -eg-qs-~]*)
-              echo "tpope rm: invalid option $arg" >&2
-              exit 1
-              ;;
-          esac
-          case "$arg" in -*f*) force=-f ;; esac
-          case "$arg" in -*r*) recurse=-r ;; esac
-          ;;
-        *)
-      esac
+        case "$arg" in
+            [!-]*:*) ssh -axqt "$(echo $arg|sed -e 's/:.*//')" sudo -v -p "\"%u@%h's sudo password:\"" || exit ;;
+        esac
     done
-    for arg in "$@"; do
-      case "$arg" in
-        --) everything=1 ;;
-        -*)
-          if [ -n "$everything" ]; then
-            trash "$arg"
-          fi
-          ;;
-        *) trash "$arg" ;;
-      esac
-    done
+    args=-P
+    [ "$basename" = suscp ] && args=-P
+    sudo -p "%u@%h's sudo password:" rsync $args -e "ssh -axtF $HOME/.ssh/config -i $HOME/.ssh/id_rsa" --rsync-path="sudo rsync" "$@"
 }
 
 _echo() {
-  if [ "X$1" = "X-n" ]; then
-    shift
-    printf "%s" "$*"
-  else
-    printf "%s\n" "$*"
-  fi
+    if [ "X$1" = "X-n" ]; then
+        shift
+        printf "%s" "$*"
+    else
+        printf "%s\n" "$*"
+    fi
 }
 
 spark() {
-  local n numbers=
+    local n numbers=
 
-  # find min/max values
-  local min=0xffffffff max=0
+    # find min/max values
+    local min=0xffffffff max=0
 
-  for n in ${@//,/ }
-  do
-    # on Linux (or with bash4) we could use `printf %.0f $n` here to
-    # round the number but that doesn't work on OS X (bash3) nor does
-    # `awk '{printf "%.0f",$1}' <<< $n` work, so just cut it off
-    n=${n%.*}
-    (( n < min )) && min=$n
-    (( n > max )) && max=$n
-    numbers=$numbers${numbers:+ }$n
-  done
+    for n in ${@//,/ }; do
+        # on Linux (or with bash4) we could use `printf %.0f $n` here to
+        # round the number but that doesn't work on OS X (bash3) nor does
+        # `awk '{printf "%.0f",$1}' <<< $n` work, so just cut it off
+        n=${n%.*}
+        (( n < min )) && min=$n
+        (( n > max )) && max=$n
+        numbers=$numbers${numbers:+ }$n
+    done
+    local ticks=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █) # print ticks
+    local f=$(( (($max-$min)<<8)/(${#ticks[@]}-1) ))
+    (( f < 1 )) && f=1
 
-  # print ticks
-  local ticks=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █)
-
-  local f=$(( (($max-$min)<<8)/(${#ticks[@]}-1) ))
-  (( f < 1 )) && f=1
-
-  for n in $numbers
-  do
-    _echo -n ${ticks[$(( ((($n-$min)<<8)/$f) ))]}
-  done
-  _echo
+    for n in $numbers; do
+        _echo -n ${ticks[$(( ((($n-$min)<<8)/$f) ))]}
+    done
+    _echo
 }
 
-# If we're being sourced, don't worry about such things
-if [ "$BASH_SOURCE" == "$0" ]; then
-  # Prints the help text for spark.
-  help()
-  {
-    cat <<EOF
-
-    USAGE:
-      spark [-h|--help] VALUE,...
-
-    EXAMPLES:
-      spark 1 5 22 13 53
-      ▁▁▃▂█
-      spark 0,30,55,80,33,150
-      ▁▂▃▄▂█
-      echo 9 13 5 17 1 | spark
-      ▄▆▂█▁
-EOF
-  }
-
-  # show help for no arguments if stdin is a terminal
-  if { [ -z "$1" ] && [ -t 0 ] ; } || [ "$1" == '-h' ] || [ "$1" == '--help' ]; then
-    help
-    exit 0
-  fi
-
-  spark ${@:-`cat`}
-fi
-
 function sp() {
-  setopt extendedglob bareglobqual
-  du -sch -- ${~^@:-"*"}(D) | sort -h
+    setopt extendedglob bareglobqual
+    du -sch -- ${~^@:-"*"}(D) | sort -h
 }
 
 function resolve_file {
-  if [[ -f "$1" ]]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
+    if [[ -f "$1" ]]; then
+        echo $(readlink -f "$1")
+    elif [[ "${1#/}" == "$1" ]]; then
+        echo "$(pwd)/$1"
+    else
+        echo $1
+    fi
 }
 
 function ta {
@@ -889,13 +724,12 @@ fi
 # Delete 0 byte file
 d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
 
-
 function g() {
-  if [[ $# > 0 ]]; then
-    git $@
-  else
-    git status
-  fi
+    if [[ $# > 0 ]]; then
+        git $@
+    else
+        git status
+    fi
 }
 
 function sls(){
@@ -908,19 +742,7 @@ function sls(){
             }'
 }
 
-function resolve_file {
-  if [[ -f "$1" ]]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
-}
-
-function _zwrap() {
-    echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]"
-}
+function _zwrap() { echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]" }
 
 function _zfwrap(){
     apply=$1;
@@ -943,17 +765,9 @@ function _zfwrap() {
     echo ${fancy_name}
 }
 
-function _zpref() {
-    echo $(_zwrap ">>")
-}
-
-function _zfg(){
-    echo -ne "[38;5;$1m"
-}
-
-function _zdelim(){
-    echo -ne "$(_zfg 24)::"$(_zfg 8)
-}
+function _zpref() { echo $(_zwrap ">>") }
+function _zfg(){ echo -ne "[38;5;$1m" }
+function _zdelim(){ echo -ne "$(_zfg 24)::"$(_zfg 8) }
 
 function record(){
     local rpath
@@ -988,9 +802,9 @@ function record(){
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
 # MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
 function zurl() {
-  [[ -z ${1} ]] && print "please give an url to shrink." && return 1
-    local url=${1}
-    local tiny="http://tinyurl.com/create.php?url="
-    # print "${tiny}${url}" ; return
-    wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
+    [[ -z ${1} ]] && print "please give an url to shrink." && return 1
+        local url=${1}
+        local tiny="http://tinyurl.com/create.php?url="
+        # print "${tiny}${url}" ; return
+        wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
