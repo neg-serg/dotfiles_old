@@ -10,8 +10,6 @@
     unset _cope_path
 }
 
-eval "$(hub alias -s)"
-
 alias pstree="pstree -U "$@" | sed '
 	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
 	s/[{}]/\x1B[31m&\x1B[0m/g
@@ -132,6 +130,7 @@ if inpath git; then
     alias gc='git commit'
     alias glp='gl -p'
     alias gcu='git commit -m "updates"'
+    eval "$(hub alias -s)"
 fi
 
 alias :x=' exit'
