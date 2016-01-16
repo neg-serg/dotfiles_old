@@ -86,6 +86,7 @@ if has("gui_running")
 
     set fillchars=stl:\ ,stlnc:\ ,vert:│
     set guitablabel=%-0.12t%M
+    set tabpagemax=8                   " Only show 15 tabs
 
     set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
     set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
