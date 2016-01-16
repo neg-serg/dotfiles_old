@@ -20,10 +20,7 @@ if neobundle#tap('fzf.vim')
     nnoremap qe :Files %:p:h<CR>
     nnoremap qE :Files<CR>
     " This is the default extra key bindings
-    let g:fzf_action = {
-    \ 'ctrl-t': 'tab split',
-    \ 'ctrl-x': 'split',
-    \ 'ctrl-v': 'vsplit' }
+    let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
 
     " Default fzf layout
     " - down / up / left / right
