@@ -75,10 +75,8 @@ function eprocess_list() {
 }
 
 function v { 
-    while IFS='\n' read -r arg; do
-        for i in "${arg[@]}"; do
-            wim_run $i
-        done
+    while read -r arg; do
+        wim_run ${arg[@]}
     done <<< "$(printf '%q\n' "$@")"
 }
 
