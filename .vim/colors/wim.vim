@@ -38,7 +38,7 @@ hi! Keyword ctermbg=NONE ctermfg=6 cterm=NONE
 hi! StorageClass ctermbg=NONE ctermfg=31 cterm=NONE 
 hi! Structure ctermbg=NONE ctermfg=5 cterm=NONE 
 hi! Typedef ctermbg=NONE ctermfg=6 cterm=NONE 
-hi! Function ctermbg=NONE ctermfg=6 cterm=bold
+hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
 hi! Exception ctermbg=NONE ctermfg=1 cterm=NONE 
 hi! Underlined ctermbg=NONE ctermfg=4 cterm=NONE 
 hi! Title ctermbg=NONE ctermfg=3 cterm=NONE 
@@ -163,6 +163,6 @@ endfunction
 
 au Syntax * call s:HighlightOperators()
 
-hi! Function ctermbg=none ctermfg=30 cterm=none 
+hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
 hi! cFunctionTag ctermbg=none ctermfg=30 cterm=none 
 hi link DeclRefExpr Normal
