@@ -13,6 +13,18 @@ function wim_run(){
     fi
 }
 
+function wim_goto() {
+    if [[ $(pidof notion) && -x $(which notionflux) ]]; then
+        notionflux -e "app.byclass('', 'wim')" > /dev/null
+    else
+        if [[ -x $(which wmctrl) ]]; then
+            wmctrl -i -a $(wmctrl -l -x|awk '/wim.wim/{print $1}')
+        elif [[ -x $(which xdotool) ]]; then
+            xdotool windowfocus $(xdotool search --class wim)
+        fi
+    fi
+}
+
 function vim_file_open() (
     local file_name="$(resolve_file ${line})"
     file_name=$(bash -c "printf %q '${file_name}'")
@@ -46,7 +58,7 @@ function vim_file_open() (
 )
 
 function process_list() {
-    notionflux -e "app.byclass('', 'wim')" > /dev/null
+    wim_goto
     sleep "$1"; shift
     while getopts ":b:a:c:" opt; do
         case ${opt} in
@@ -69,7 +81,7 @@ function process_list() {
 }
 
 function eprocess_list() {
-    notionflux -e "app.byclass('', 'wim')" > /dev/null
+    wim_goto
     sleep "$1"; shift   
     for line; do vim --servername ${vim_server_name} --remote-wait "$@"; done
 }
