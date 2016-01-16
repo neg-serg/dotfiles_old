@@ -1,0 +1,65 @@
+[general]
+accounts = Gmail
+maxsyncaccounts = 3
+pythonfile = ~/bin/scripts/utf7.py
+# ui=Curses.Blinkenlights
+# ui = ttyui
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+status_backend = sqlite
+quick = 30
+postsynchook = notmuch new
+# Minutes between syncs
+autorefresh = 5
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.local/mail/gmail
+sep = .
+nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
+                        '[Gmail]/Trash'     : '[Gmail].Trash',
+                        '[Gmail]/Sent Mail' : '[Gmail].Sent Mail',
+                        '[Gmail]/Important' : '[Gmail].Important',
+                        '[Gmail]/Drafts'    : '[Gmail].Drafts',
+                        '[Gmail]/All Mail'  : '[Gmail].All Mail',
+                        'INBOX'             : 'INBOX'
+                      }.get (s, s).decode ('imap4-utf-7').encode ('utf8')
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = serg.zorg@gmail.com
+sep = .
+remotepass = get_pass()
+realdelete = no
+maxconnections = 3
+# Instead of closing the connection once a sync is complete, offlineimap will
+# send empty data to the server to hold the connection open. A value of 60
+# attempts to hold the connection for a minute between syncs (both quick and
+# autorefresh).This setting has no effect if autorefresh and holdconnectionopen
+# are not both set.
+keepalive = 60
+# OfflineIMAP normally closes IMAP server connections between refreshes if
+# the global option autorefresh is specified.  If you wish it to keep the
+# connection open, set this to true. This setting has no effect if autorefresh
+# is not set.
+holdconnectionopen = yes
+
+nametrans = lambda foldername: foldername.decode('imap4-utf-7').encode('utf-8')
+
+folderfilter = lambda folder: folder not in ['[Gmail].Trash',
+                                             '[Gmail].Important',
+                                             '[Gmail].Spam',
+                                             ]
+
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "~/.local/mail/gmail/%(foldername)s"
+sep = " "
+footer = "\n"
