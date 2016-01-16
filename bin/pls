@@ -5,27 +5,32 @@ local font='PragmataPro for Powerline 17'
 _v=(-lines 1 -columns 11 -location 6 -font "${font}" -o 90 -yoffset -22 -dmenu)
 _s=(-location 6 -font "${font}" -o 90 -yoffset -22 -dmenu)
 
-client=$(pacmd list-sink-inputs | \
-         grep -E 'client:|index:' | \
-         awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| \
-         awk '{print $2" "substr($0, index($0,$5))}' | \
-         sed 's/[<>]/#/g'| \
-         rofi ${_s} -dmenu -p Clients: "$@")
+sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- |sed 's/[<>]/ /g' | rofi ${_s} -p "Sink: " "$@")
+index=$(pacmd list-sinks |grep ${sink} -B1|head -1| awk -F : '{print $2}'|tr -d '[:blank:]')
 
 case $1 in
-    -vol)
-        shift
-        levels="0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n100"
-        volume=$(echo "${levels}" | sed 's/[<>]/ /g' | rofi ${_v} -p "Volume: " "$@")
-        set_vol=$(bc <<< "scale=1; ${volume} / 100 * 65536")
-        pacmd set-sink-input-volume "$(echo "${client}" | awk '{print $1}' 2>/dev/null )" "${set_vol%.*}"
+    -unmute) shift; pactl set-sink-mute ${index} 0 ;;
+    -mute) shift; pactl set-sink-mute ${index} 1 ;;
+    *)  client=$(pacmd list-sink-inputs | \
+                grep -E 'client:|index:' | \
+                awk 'NR % 2 == 1 { o=$0 ; next } { print o " " $0 }'| \
+                awk '{print $2" "substr($0, index($0,$5))}' | \
+                sed 's/[<>]/#/g'| \
+                rofi ${_s} -dmenu -p Clients: "$@")
 
-    ;;
-    -sink)
-        shift
-        sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- |sed 's/[<>]/ /g' | rofi ${_s} -p "Sink: " "$@")
-        pacmd move-sink-input $(echo "${client}" | awk '{print $1}') $(echo ${sink})
-    ;;
-    *)
+        case $1 in
+            -vol)
+                shift
+                levels="0\n10\n20\n30\n40\n50\n60\n70\n80\n90\n100"
+                volume=$(echo "${levels}" | sed 's/[<>]/ /g' | rofi ${_v} -p "Volume: " "$@")
+                set_vol=$(bc <<< "scale=1; ${volume} / 100 * 65536")
+                pacmd set-sink-input-volume "$(echo "${client}" | awk '{print $1}' 2>/dev/null )" "${set_vol%.*}"
+            ;;
+            -sink)
+                shift
+                sink=$(pacmd list-sinks | grep name: | awk 'gsub(">$","")' | cut -c 9- |sed 's/[<>]/ /g' | rofi ${_s} -p "Sink: " "$@")
+                pacmd move-sink-input $(echo "${client}" | awk '{print $1}') $(echo ${sink})
+            ;;
+            *)
+        esac
 esac
-                
