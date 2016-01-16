@@ -13,18 +13,18 @@ fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
 endfun
 
-" if has("autocmd") && exists("+omnifunc")
-"     autocmd Filetype *
-"         \if &omnifunc == "" |
-"         \setlocal omnifunc=syntaxcomplete#Complete |
-"         \endif
-" endif
+if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+        \if &omnifunc == "" |
+        \setlocal omnifunc=syntaxcomplete#Complete |
+        \endif
+endif
 
-" " Return to last edit position (You want this!) *N*
-" autocmd BufReadPost *
-"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
+" Return to last edit position (You want this!) *N*
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 " --- [ Autocmds ] --------------------------------------------------------------------------
 " autocmd vimrc BufNewFile,BufRead  *.sh           if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
 autocmd vimrc BufRead,BufNewFile  *.viki         setlocal ft=viki
@@ -80,7 +80,7 @@ augroup filetypedetect
     autocmd BufReadPost,BufNewFile griffis1.net.*             setfiletype Wikipedia
 augroup END
 
-autocmd vimrc FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+autocmd vimrc FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,rust,sql autocmd BufWritePre <buffer> call StripTrailingWhitespace()
 autocmd vimrc FileType c,cpp,bash,zsh,sh let b:delimitMate_matchpairs = "(:),[:],{:}" | hi Function guifg=#85A2CC | let b:indentLine_enabled = 1
 
 " This handles c++ files with the ".cc" extension.
@@ -93,28 +93,11 @@ augroup ccfiles
 augroup END
 
 autocmd vimrc FileType go                     autocmd BufWritePre <buffer> Fmt
-autocmd vimrc FileType haskell                setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd vimrc FileType haskell,rust           setlocal expandtab shiftwidth=4 softtabstop=4 nospell
 autocmd vimrc BufNewFile,BufRead *.html.twig  set filetype=html.twig
 augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
-
-" " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-" " Restore cursor to file position in previous editing session
-" " To disable this, add the following to your .vimrc.before.local file:
-" "   let g:spf13_no_restore_cursor = 1
-" function! ResCur()
-"     if line("'\"") <= line("$")
-"         normal! g`"
-"         return 1
-"     endif
-" endfunction
-"
-" augroup resCur
-"     autocmd!
-"     autocmd BufWinEnter * call ResCur()
-" augroup END
-
 
 function! StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
