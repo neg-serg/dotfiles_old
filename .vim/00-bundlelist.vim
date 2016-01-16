@@ -4,7 +4,8 @@ NeoBundle 'Valloric/YouCompleteMe'
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
 endif
-NeoBundle 'junegunn/fzf' "use fzf plug for vim
+NeoBundle 'junegunn/fzf'
+NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
@@ -31,6 +32,7 @@ NeoBundle 'Shougo/vimfiler.vim', {
             \ 'mappings' : '<Plug>(vimfiler_', 'explorer' : 1, }
 NeoBundle 'Shougo/vimshell.vim' "shell inside a vim for unite and vimfiler integration
 NeoBundleLazy 'Shougo/unite-outline', { 'unite_sources' : 'outline' }
+NeoBundle 'junkblocker/unite-codesearch' "junkblocker google codesearch wrapper
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
 NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better than astyle -A14
 NeoBundle 'sjbach/lusty.git' "file/buffer explorer
@@ -132,6 +134,7 @@ NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
 if (executable("ghci") && executable("ghcmod"))
     NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
     NeoBundle 'eagletmt/ghcmod-vim.git'
+    NeoBundle 'bitc/vim-hdevtools' "type-related features
 endif                                        
 NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
@@ -176,11 +179,14 @@ NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
 NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
+NeoBundle 'Twinside/vim-haskellConceal' "conceal operator for haskell
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
+NeoBundle 'leafo/moonscript-vim' "basic moonscript support
+NeoBundle 'rodjek/vim-puppet' "basic puppet support
 " if (false && !has("nvim"))
 "     NeoBundle 'bbchung/clighter.git' "hi with clang
 " else
