@@ -47,7 +47,7 @@ local function ws_current(t)
         local fr,cur
 
         local ws_map = {
-            {name="term",       sym=get_pow("right",6)},
+            {name="term",       sym=get_sym("monitor")},
             {name="web",        sym=get_sym("web")},
             {name="dev",        sym=get_sym("text")},
             {name="doc",        sym=get_sym("data")},
