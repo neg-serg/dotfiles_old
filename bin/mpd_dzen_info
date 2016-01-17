@@ -5,26 +5,28 @@ BG='#000000'
 
 font1="PragmataPro:size=10"
 
-(
-artist="$@"
-[[ -z ${artist} ]] && artist=$(mpc --format '%artist%' | head -1) # && \
-echo "---------------------------------------------------"
+function mpd_status(){
+    artist="$@"
+    [[ -z ${artist} ]] && artist=$(mpc --format '%artist%' | head -1) # && \
+    printf '=%.0s' {1..80} && echo
 
-mpc search artist "${artist}" \
-  | perl -pe 's{(.+)/.+$}{$1}' \
-  | sort -u \
-  | perl -pe 's{^}{[ }' \
-  | perl -pe 's{$}{ ]}' \
-#  &&
-echo "---------------------------------------------------"
+    mpc search artist "${artist}" \
+        | perl -pe 's{(.+)/.+$}{$1}' \
+        | sort -u \
+        | perl -pe 's{^}{[>>] }' \
+        | perl -pe 's{$}{ }' \
+        | fmt -80 -p "[>>]"
+    printf '=%.0s' {1..80} && echo
 
-album="$@"
-[[ -z ${album} ]] && album=$(mpc --format '%album%' | head -1)
-mpc search album "${album}" \
-  | perl -pe 's{(.+)/.+$}{$1}' \
-  | sort -u \
-  | perl -pe 's{^}{[>>] $ENV{HOME}/music/}'
+    album="$@"
+    [[ -z ${album} ]] && album=$(mpc --format '%album%' | head -1)
+    mpc search album "${album}" \
+        | perl -pe 's{(.+)/.+$}{$1}' \
+        | sort -u \
+        | perl -pe 's{^}{[>>] ~/music/}' \
+        | fmt -80 -p "[>>]"
 
-mpc|head -2
-
-) | dzen2 -p 8 -x 1260 -y 865 -w 640 -bg $BG -fg $FG -l 10 -sa l -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
+    printf '=%.0s' {1..80} && echo
+    ~/bin/scripts/statusmpc
+}
+( mpd_status "$@") | dzen2 -p 8 -x 1100 -y 965 -w 800 -bg $BG -fg $FG -l 10 -sa l -ta l -e 'onstart=uncollapse;button1=exit;button3=exit' -fn $font1
