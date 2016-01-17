@@ -1,35 +1,53 @@
-local function get_sym(t,size)
+local function table_ret(x)
+    local tt = {
+        ["sym"]=neg.dzen.fancy_table,
+        ["oct"]=neg.dzen.octiconsym,
+        ["pow"]=neg.dzen.powersym,
+        ["ion"]=neg.dzen.ioniconssym,
+        ["typi"]=neg.dzen.typiconssym
+    }
+    return tt[x]
+end
+
+local function font_ret(x,size)
+    local size_part
     if size ~= nil then
-        return "^fn(".. neg.font ..":size=".. size .. ":bold)"
-                     .. neg.dzen.fancy_table[t] .. 
-                     "^fn(".. neg.font ..":bold)"
+        size_part=":size=".. size
+    else 
+        size_part=""
+    end
+    local tt ={
+        ["sym"]="^fn(".. neg.font .. size_part .. ":bold)",
+        ["oct"]="^fn(" .. "octicons:style=Regular".. size_part .. ")",
+        ["ion"]="^fn(" .. "Ionicons:style=Regular".. size_part .. ")",
+        ["typi"]="^fn(" .. " Typicons".. size_part .. ")",
+        ["pow"]="^fn(".. neg.font .. size_part .. ":bold)",
+        ["reset"]="^fn(".. neg.font ..":bold)",
+    }
+    return tt[x]
+end
+
+local function i_getter(x,t,size)
+    if size ~= nil then
+        return font_ret(x,size) .. table_ret(x)[t] .. font_ret("reset")
     else
-        return neg.dzen.fancy_table[t]
+        return font_ret(x) .. table_ret(x)[t] .. font_ret("reset")
     end
 end
 
-local function get_oct(t)
-    return "^fn(octicons:style=Regular)".. 
-           neg.dzen.octiconsym[t]..
-           "^fn(".. neg.font ..":bold)"
-end
-
-local function get_pow(t,size)
-    if size ~= nil then
-        return "^fn(".. neg.font ..":size=".. size .. ":bold)"
-                     .. neg.dzen.powersym[t] .. 
-                     "^fn(".. neg.font ..":bold)"
+local function i_get(index,size,name)
+    local tt = {
+        ["sym"]=function(index,size) return i_getter("sym",index,size) end,
+        ["oct"]=function(index,size) return i_getter("oct",index,size) end,
+        ["pow"]=function(index,size) return i_getter("pow",index,size) end,
+        ["ion"]=function(index,size) return i_getter("ion",index,size) end,
+        ["typi"]=function(index,size) return i_getter("typi",index,size) end,
+    }
+    if name ~= nil then
+        return tt[name](index,size)
     else
-        return neg.dzen.powersym[t]
+        return i_getter("sym",index,size)
     end
-end
-
-local function get_ion(t)
-    return "^fn(Ionicons)".. neg.dzen.ioniconssym[t] .. "^fn(".. neg.font ..":bold)"
-end
-
-local function get_typi(t)
-    return "^fn( Typicons)".. neg.dzen.typiconssym[t] .. "^fn(".. neg.font ..":bold)"
 end
 
 local function get_ico(t)
@@ -72,23 +90,31 @@ local function ws_current(t)
         local fr,cur
 
         local ws_map = {
-            {name="term",       sym=get_sym("term2",15)},
-            {name="web",        sym=get_sym("web")},
-            {name="dev",        sym=get_sym("dev3",15)},
-            {name="doc",        sym=get_sym("data")},
-            {name="media",      sym=get_sym("media")},
-            {name="gimp",       sym=get_sym("pic")},
-            {name="admin",      sym=get_sym("admin")},
-            {name="jetbrains",  sym=get_sym("dev")},
-            {name="steam",      sym=get_sym("game")},
-            {name="torrent",    sym=get_sym("center")},
-            {name="vm",         sym=get_sym("vertical_dots")},
-            {name="wine",       sym=get_sym("game")}
+            -- {name="term"}, {name="web"}, {name="dev"},
+            -- {name="doc"}, {name="media"}, {name="gimp"},
+            -- {name="admin"}, {name="jetbrains"}, {name="steam"},
+            -- {name="torrent"}, {name="vm"}, {name="wine"}
+            {name="term",       sym=i_get("term2",15)},
+            {name="web",        sym=i_get("web")},
+            {name="dev",        sym=i_get("dev3",15)},
+            {name="doc",        sym=i_get("data")},
+            {name="media",      sym=i_get("media")},
+            {name="gimp",       sym=i_get("pic")},
+            {name="admin",      sym=i_get("admin")},
+            {name="jetbrains",  sym=i_get("dev")},
+            {name="steam",      sym=i_get("game")},
+            {name="torrent",    sym=i_get("center")},
+            {name="vm",         sym=i_get("vertical_dots")},
+            {name="wine",       sym=i_get("game")}
         }
         local ws_numbered = false
         for i, v in ipairs(ws_map) do
             if name_pager == ws_map[i].name then
-                dmain.ws = i .. ": " .. ws_map[i].sym .. " ".. ws_map[i].name
+                if ws_map[i].sym ~= nil then
+                    dmain.ws = i .. ": " .. ws_map[i].sym .. " ".. ws_map[i].name
+                else
+                    dmain.ws = i .. ": " .. ws_map[i].name
+                end
                 ws_numbered = true
                 break
             end
