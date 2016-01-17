@@ -3,8 +3,9 @@ neg.dzen = {}
 neg.rofi = {}
 
 neg.font       = "PragmataPro for Powerline"
-neg.basefont   = "xft:".. neg.font .."-12:bold"
-neg.statusfont = "xft:".. neg.font .."-12:bold"
+neg.font_size  = "12"
+neg.basefont   = "xft:".. neg.font .."-"..neg.font_size..":bold"
+neg.statusfont = "xft:".. neg.font .."-"..neg.font_size..":bold"
 
 neg.padding_color     = "#000000"
 neg.def_bg            = "#000000"
@@ -18,32 +19,33 @@ neg.rofi.hlfg = "\"#aaaaaa\""
 neg.rofi.hlbg = "\"#194558\""
 neg.rofi.bc   = "\"#202020\""
 
-neg.dzen.panel_font_ = "'".. neg.font..":style=bold:size=12'"
+neg.dzen.panel_font_ = "'".. neg.font..":style=bold:size=".. neg.font_size .."'"
 neg.dzen.bg_         = '"#000000"'
 neg.dzen.h_          = 19
 neg.dzen.main_w_     = "1000"
 neg.dzen.mpd_w_      = "910"
 
-neg.dzen.fancy_table1 = {
-    ""      , ""      ,
-    ""      , ""      ,
-    " data" , " gtd"  ,
-    " gtd"  , " code" ,
-    " text" , " play" ,
-    " pics" , " game" ,
-    " adm"  , " news" ,
-    "         "
-
+neg.dzen.fancy_table = {
+    term="",    dev="",
+    admin="",   web="",
+    media="",   im="",
+    look="",    right="",
+    center="",  left="",
+    data="",    vertical_dots="",
+    grid="",    gtd="",
+    gtd="",     text="",
+    play="",    pic="",
+    game="",    monitor="",
+    news=""
 }
 
-neg.dzen.fancy_table2 = {"", "", "", "", "", "", "", "", "", ""}
 neg.dzen.powersym = {
     right         = "", -- \xe0b0
     left          = "", -- \xe0b2
     right_bracket = "", -- \xe0b1
     left_bracket  = "", -- \xe0b3
     branch        = "", -- \xe0a0
-    lock          = "" -- \xe0a2
+    lock          = ""  -- \xe0a2
 }
 
 --  font = "Ionicons" -- http://ionicons.com/
