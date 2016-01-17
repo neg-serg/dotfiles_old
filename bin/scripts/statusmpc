@@ -1,0 +1,42 @@
+#!/bin/zsh
+
+name=$(mpc | sed '1!d')
+if [[ $name == *"mp4&gir"* ]]; then
+    name="mps-youtube"
+fi
+
+playlist=$(mpc | awk '/#/ {print $2}' | sed s/\#//g)
+
+time=$(mpc | awk '/#/ {print $3}' | sed 's/:/./g' | sed 's/\// /')
+currentTime=$(echo "$time " | awk '{print $1}')
+maximumTime=$(echo "$time " | awk '{print $2}')
+
+MPCOUT=${MPCOUT:-/tmp/.mpcout}
+mpc | grep 'volume' > $MPCOUT
+
+if [[ $( < $MPCOUT awk '{print $2}') == "on" ]]
+    then REPEAT="r"; else REPEAT="-"
+fi
+
+if [[ $( < $MPCOUT awk '{print $4}') == "on" ]]
+    then CHOICE="z"; else CHOICE="-"
+fi
+
+if [[ $( < $MPCOUT awk '{print $6}') == "on" ]]
+    then SINGLE="s"; else SINGLE="-"
+fi
+
+if [[ $( < $MPCOUT awk '{print $8}') == "on" ]]
+    then CONSUME="c"; else CONSUME="-"
+fi
+
+if [[ $(mpc | awk '{print $NF}') == 'n/a' ]]; then
+    exit
+elif [[ $(mpc) != *"#"* ]]; then
+    exit
+elif [[ $(mpc | awk '/#/ {printf "%s", $1}') == "[paused]" ]]; then
+    printf '%s\n' "[$name] [paused] [$playlist] [$REPEAT$CHOICE$SINGLE$CONSUME]"
+else
+    bar=$(./percentage.zsh $currentTime $maximumTime 40)
+    printf '%s\n' "[$name] [$bar] [$playlist] [$REPEAT$CHOICE$SINGLE$CONSUME]"
+fi
