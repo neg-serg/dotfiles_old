@@ -7,7 +7,7 @@
 
 SCRIPT_SOURCE=${0:A:h}
 if [ -z $GENCOMPL_FPATH ]; then
-    directory="$SCRIPT_SOURCE/completions"
+    directory="$SCRIPT_SOURCE/compdef"
 else
     directory="$GENCOMPL_FPATH"
 fi
@@ -25,7 +25,6 @@ mkdir -p $directory
 
 # define default programs here:
 programs=( "cat" "nl" "tr" "df --help" )
-
 
 for prg in "${programs[@]}"; do
     name=$prg
