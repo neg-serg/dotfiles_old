@@ -1,5 +1,11 @@
-local function get_sym(t)
-    return neg.dzen.fancy_table[t]
+local function get_sym(t,size)
+    if size ~= nil then
+        return "^fn(".. neg.font ..":size=".. size .. ":bold)"
+                     .. neg.dzen.fancy_table[t] .. 
+                     "^fn(".. neg.font ..":bold)"
+    else
+        return neg.dzen.fancy_table[t]
+    end
 end
 
 local function get_oct(t)
@@ -66,9 +72,9 @@ local function ws_current(t)
         local fr,cur
 
         local ws_map = {
-            {name="term",       sym=get_sym("monitor")},
+            {name="term",       sym=get_sym("term2",15)},
             {name="web",        sym=get_sym("web")},
-            {name="dev",        sym=get_sym("text")},
+            {name="dev",        sym=get_sym("dev3",15)},
             {name="doc",        sym=get_sym("data")},
             {name="media",      sym=get_sym("media")},
             {name="gimp",       sym=get_sym("pic")},
