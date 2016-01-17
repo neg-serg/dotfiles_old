@@ -22,6 +22,20 @@ local function get_typi(t)
     return "^fn( Typicons)".. neg.dzen.typiconssym[t] .. "^fn(PragmataPro for Powerline:bold)"
 end
 
+local function get_ico(t)
+    local ico_path
+    if os.getenv("XDG_CONFIG_HOME") ~= nil then
+        ico_path=os.getenv("XDG_CONFIG_HOME").."/dzen/"..t..".xbm"
+    else
+        ico_path=os.getenv("HOME").."/.config/dzen/"..t..".xbm"
+    end
+    if io.open(ico_path,"r") ~= nil then
+        return "^i(" .. ico_path  .. ")"
+    else
+        return ""
+    end
+end
+
 local function ws_current(t)
     local scr=notioncore.find_screen_id(0)
     local curws
