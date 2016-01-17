@@ -10,17 +10,17 @@ ZSH_HIGHLIGHT_STYLES+=(
     function                       'fg=green,underline'
     command                        'fg=green'
 
-    #precommand                    'fg=green,underline'
-    #path                          'underline'
-    #path_prefix                   'fg=underline'
+    precommand                     'fg=green,underline'
+    path                           'fg=underline'
+    path_prefix                    'fg=underline'
     #path_approx                   'fg=yellow,underline'
 
     hashed-command                 'fg=green'
     globbing                       'fg=110'
     history-expansion              'fg=blue'
-    single-hyphen-option           'fg=242'
-    double-hyphen-option           'fg=244'
-    # comment                      'fg=222'
+    single-hyphen-option           'fg=222'
+    double-hyphen-option           'fg=222'
+    comment                        'fg=221'
     # redirection                  'none'
     # commandseparator             'none'
 
@@ -30,7 +30,7 @@ ZSH_HIGHLIGHT_STYLES+=(
     dollar-double-quoted-argument  'fg=004,bold'
     back-double-quoted-argument    'fg=024,bold'
     back-dollar-quoted-argument    'fg=024,bold'
-    assign                         'fg=240,bold'
+    assign                         'fg=222,bold'
 )
 ZSH_HIGHLIGHT_STYLES+=($(< ~/.zsh/highlighters/ft_list.zsh))
 
