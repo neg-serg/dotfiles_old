@@ -24,6 +24,7 @@ local _zsh_files=(
     13-bindkeys                 \
     20-autopair                 \
     21-safepaste                \
+    60-functional               \
     81-completion_gen           \
     89-vim-interation.plugin    \
     92-history-substring-search \
