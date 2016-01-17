@@ -62,14 +62,14 @@ let s:neobundle_repo = 'https://github.com/Shougo/neobundle.vim'
 let g:neobundle#cache_file = expand('$HOME/.vim/neobundlecache')
 let &runtimepath.=','.s:neobundle_dir
 try
-	call neobundle#begin(s:bundle_dir)
-catch /E117/ " neobundle not installed
-	execute "!mkdir -p " .  s:neobundle_dir
-	execute "!" . "git clone " s:neobundle_repo . " " . s:neobundle_dir
-	call neobundle#begin(s:bundle_dir)
-	NeoBundleInstall
-	call neobundle#end()
-	quit
+    call neobundle#begin(s:bundle_dir)
+    catch /E117/ " neobundle not installed
+        execute "silent !mkdir -p " .  s:neobundle_dir
+        execute "silent !" . "git clone " s:neobundle_repo . " " . s:neobundle_dir
+        call neobundle#begin(s:bundle_dir)
+            NeoBundleInstall
+        call neobundle#end()
+    quit
 endtry
 
 if neobundle#load_cache()
