@@ -3,29 +3,34 @@ local function get_sym(t)
 end
 
 local function get_oct(t)
-    return "^fn(octicons:style=Regular)".. neg.dzen.octiconsym[t] .. "^fn(PragmataPro for Powerline:bold)"
+    return "^fn(octicons:style=Regular)".. 
+           neg.dzen.octiconsym[t]..
+           "^fn(".. neg.font ..":bold)"
 end
 
 local function get_pow(t,size)
     if size ~= nil then
-        return "^fn(PragmataPro for Powerline:size=".. size .. ":bold)".. neg.dzen.powersym[t] .. "^fn(PragmataPro for Powerline:bold)"
+        return "^fn(".. neg.font ..":size=".. size .. ":bold)"
+                     .. neg.dzen.powersym[t] .. 
+                     "^fn(".. neg.font ..":bold)"
     else
         return neg.dzen.powersym[t]
     end
 end
 
 local function get_ion(t)
-    return "^fn(Ionicons)".. neg.dzen.ioniconssym[t] .. "^fn(PragmataPro for Powerline:bold)"
+    return "^fn(Ionicons)".. neg.dzen.ioniconssym[t] .. "^fn(".. neg.font ..":bold)"
 end
 
 local function get_typi(t)
-    return "^fn( Typicons)".. neg.dzen.typiconssym[t] .. "^fn(PragmataPro for Powerline:bold)"
+    return "^fn( Typicons)".. neg.dzen.typiconssym[t] .. "^fn(".. neg.font ..":bold)"
 end
 
 local function get_ico(t)
     local ico_path
-    if os.getenv("XDG_CONFIG_HOME") ~= nil then
-        ico_path=os.getenv("XDG_CONFIG_HOME").."/dzen/"..t..".xbm"
+    local xdg_conf_home = os.getenv("XDG_CONFIG_HOME")
+    if xdg_conf ~= nil then
+        ico_path=xdg_conf_home.."/dzen/"..t..".xbm"
     else
         ico_path=os.getenv("HOME").."/.config/dzen/"..t..".xbm"
     end
