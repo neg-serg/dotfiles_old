@@ -1,3 +1,27 @@
+local function get_sym(t)
+    return neg.dzen.fancy_table[t]
+end
+
+local function get_oct(t)
+    return "^fn(octicons:style=Regular)".. neg.dzen.octiconsym[t] .. "^fn(PragmataPro for Powerline:bold)"
+end
+
+local function get_pow(t,size)
+    if size ~= nil then
+        return "^fn(PragmataPro for Powerline:size=".. size .. ":bold)".. neg.dzen.powersym[t] .. "^fn(PragmataPro for Powerline:bold)"
+    else
+        return neg.dzen.powersym[t]
+    end
+end
+
+local function get_ion(t)
+    return "^fn(Ionicons)".. neg.dzen.ioniconssym[t] .. "^fn(PragmataPro for Powerline:bold)"
+end
+
+local function get_typi(t)
+    return "^fn( Typicons)".. neg.dzen.typiconssym[t] .. "^fn(PragmataPro for Powerline:bold)"
+end
+
 local function ws_current(t)
     local scr=notioncore.find_screen_id(0)
     local curws
@@ -23,17 +47,23 @@ local function ws_current(t)
         local fr,cur
 
         local ws_map = {
-            "term", "web",
-            "dev", "doc",
-            "media", "gimp",
-            "admin", "jetbrains",
-            "steam", "torrent",
-            "vm", "wine"
+            {name="term",       sym=get_pow("right",6)},
+            {name="web",        sym=get_sym("web")},
+            {name="dev",        sym=get_sym("text")},
+            {name="doc",        sym=get_sym("data")},
+            {name="media",      sym=get_sym("media")},
+            {name="gimp",       sym=get_sym("pic")},
+            {name="admin",      sym=get_sym("admin")},
+            {name="jetbrains",  sym=get_sym("dev")},
+            {name="steam",      sym=get_sym("game")},
+            {name="torrent",    sym=get_sym("center")},
+            {name="vm",         sym=get_sym("vertical_dots")},
+            {name="wine",       sym=get_sym("game")}
         }
         local ws_numbered = false
         for i, v in ipairs(ws_map) do
-            if name_pager == ws_map[i] then
-                dmain.ws = i .. ": " .. ws_map[i]
+            if name_pager == ws_map[i].name then
+                dmain.ws = i .. ": " .. ws_map[i].sym .. " ".. ws_map[i].name
                 ws_numbered = true
                 break
             end
