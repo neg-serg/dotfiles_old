@@ -31,7 +31,7 @@ hi! Repeat ctermbg=NONE ctermfg=14 cterm=NONE
 hi! Statement ctermbg=NONE ctermfg=4 cterm=bold
 hi! StatusLine ctermbg=NONE ctermfg=4 cterm=bold
 hi! StatusLineNC cterm=NONE ctermfg=NONE ctermbg=NONE
-hi! VertSplit cterm=NONE ctermfg=NONE ctermbg=NONE
+hi! VertSplit cterm=NONE ctermfg=0 ctermbg=0
 hi! Label ctermbg=NONE ctermfg=13 cterm=NONE 
 hi! Operator ctermbg=NONE ctermfg=6 cterm=bold
 hi! Keyword ctermbg=NONE ctermfg=6 cterm=NONE 
