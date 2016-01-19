@@ -49,8 +49,7 @@ NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
 NeoBundleLazy 'sjl/gundo.vim', { 'commands' : 'GundoToggle' }
 NeoBundleLazy 'Raimondi/delimitMate', { 'insert' : 1 } "autopair ()[]{}
 NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
-"NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
-NeoBundle 'Yggdroot/indentLine.git' "indent tabs visually with |-es too slow
+NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too slow
 NeoBundle 'thinca/vim-qfreplace.git' "visual replace for multiple files
 NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
