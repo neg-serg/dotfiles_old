@@ -58,16 +58,6 @@ if neobundle#tap('vim-indent-guides')
     let g:indent_guides_color_change_percent  = 7
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Yggdroot/indentLine.git                                                  │
-" │ https://github.com/Yggdroot/indentLine.git                                        │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('indentLine')
-    let g:indentLine_enabled = 0
-    let g:indentLine_char = '│'
-    let g:indentLine_faster = 1
-    let g:indentLine_color_term = 238
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - SirVer/ultisnips.git                                                     │
 " │ https://github.com/SirVer/ultisnips.git                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -696,35 +686,6 @@ if neobundle#tap('vim-dispatch')
     nmap MC :Make clean<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - luochen1990/rainbow                                                      │
-" │ https://github.com/luochen1990/rainbow.git                                        │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('rainbow')
-    "0 if you want to enable it later via :RainbowToggle
-    let g:rainbow_active = 0 
-    let g:rainbow_conf = {
-        \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-        \   'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan'],
-        \   'operators': '_,_',
-        \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-        \   'separately': {
-        \       '*': {},
-        \       'lisp': {
-        \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-        \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
-        \       },
-        \       'vim': {
-        \           'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-        \       },
-        \       'tex': {
-        \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
-        \       },
-        \       'css': 0,
-        \       'stylus': 0,
-        \   }
-        \}
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - davidhalter/jedi-vim.git                                                 │
 " │ https://github.com/davidhalter/jedi-vim.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -904,4 +865,21 @@ if neobundle#tap('tabular')
     vmap <Leader>a,, :Tabularize /,\zs<CR>
     nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - dag/vim2hs                                                               │ 
+" │ git@github.com:dag/vim2hs                                                         │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim2hs') 
+    let g:haskell_conceal_enumerations = 1
+    let g:haskell_quasi                = 1
+    let g:haskell_interpolation        = 1
+    let g:haskell_regex                = 1
+    let g:haskell_jmacro               = 1
+    let g:haskell_shqq                 = 1
+    let g:haskell_sql                  = 1
+    let g:haskell_json                 = 1
+    let g:haskell_xml                  = 1
+    let g:haskell_hsp                  = 1
+    let g:haskell_multiline_strings    = 1
 endif
