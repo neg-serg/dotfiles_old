@@ -2,15 +2,17 @@ set shell=/bin/bash
 if bufname('%') == ''
   set bufhidden=wipe
 endif
-if v:version >= 704
-  " The new Vim regex engine is currently slooooow as hell which makes syntax
-  " highlighting slow, which introduces typing latency.
-  " Consider removing this in the future when the new regex engine becomes
-  " faster.
-  " set regexpengine=1
-  " Now I make it autodetect
-  set regexpengine=0
-endif
+
+" if v:version >= 704
+"   " The new Vim regex engine is currently slooooow as hell which makes syntax
+"   " highlighting slow, which introduces typing latency.
+"   " Consider removing this in the future when the new regex engine becomes
+"   " faster.
+"   " set regexpengine=1
+"   " Now I make it autodetect
+"   set regexpengine=0
+" endif
+set regexpengine=1
 
 set conceallevel=2 
 set concealcursor=i
@@ -69,8 +71,8 @@ if has("gui_running")
     endif
     set ttyfast                        " more redrawing characters sent to terminal
 
-    set synmaxcol=256                  " improve hi performance
-    syntax sync minlines=200
+    " set synmaxcol=256                " improve hi performance
+    " syntax sync minlines=200
     set ttyscroll=0                    " turnoff scrolling
     set lazyredraw                     " no redraw in macros
 
