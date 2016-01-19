@@ -4,10 +4,9 @@ NeoBundle 'Valloric/YouCompleteMe'
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
 endif
-NeoBundle 'junegunn/fzf'
+NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
-NeoBundle 'rainbow_parentheses.vim' "better rainbow
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
 "vimproc is for faster work of unite
@@ -179,8 +178,7 @@ NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
-NeoBundle 'Twinside/vim-haskellConceal' "conceal operator for haskell
-NeoBundle 'dag/vim2hs'
+NeoBundle 'dag/vim2hs' "better haskell syntax hi
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
