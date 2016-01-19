@@ -269,8 +269,7 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
-" set listchars=tab:▸…,eol:¬,trail:•
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:›…,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
@@ -396,9 +395,9 @@ set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
 set nomodeline                        " disable modelines
 set grepprg=ag\ --nogroup\ --nocolor  " use ag over grep
 
-set iminsert=0                        " write latin1 characters first
-set imsearch=0                        " search with latin1 characters first
-set cmdheight=1                       " standard cmdline height
+set iminsert=0          " write latin1 characters first
+set imsearch=0          " search with latin1 characters first
+set cmdheight=1         " standard cmdline height
 
 set tags=./tags
 " Make tags placed in .git/tags file available in all levels of a repository
