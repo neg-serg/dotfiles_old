@@ -45,13 +45,11 @@ function main() {
                                              -e "/\ 3[0-9][0-9]*/s/3/fg=/"      \
                                              -e "s/, //g" > ${ftype_arr}
 
-    vim -c 'Tabularize/[bf]g=.*' ${ftype_arr} -c 'wq'
+    vim +'Tabularize/[bf]g=.*' ${ftype_arr} +'wq'
     sed "s/^${ftype_pref}//" ${ftype_arr}|awk '{print "*."$1") style=$ZSH_HIGHLIGHT_STYLES[ftype-"$1"];;"}' > ${ftype_rule}
-    vim -c 'Tabularize/)\zs ' ${ftype_rule} -c 'wq'
+    vim +'Tabularize/)\zs ' ${ftype_rule} +'wq'
 
     for t in "${ftype_arr}" "${ftype_rule}"; eat ${t}
-
-    # rm -vf /tmp/{generation,_{fill,result,rules}} && echo :: Cleanup done ::
 }
 
 main $1
