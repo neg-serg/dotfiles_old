@@ -13,20 +13,12 @@ fun! Mks(path)
     exe "mksession! ".a:path."/".fnamemodify(a:path, ':t').".session"
 endfun
 
-if has("autocmd") && exists("+omnifunc")
-    autocmd Filetype *
-        \if &omnifunc == "" |
-        \setlocal omnifunc=syntaxcomplete#Complete |
-        \endif
-endif
-
 " Return to last edit position (You want this!) *N*
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
      \ endif
 " --- [ Autocmds ] --------------------------------------------------------------------------
-" autocmd vimrc BufNewFile,BufRead  *.sh           if getline(1) =~ '#!\s*/bin/dash' | setf sh | endif
 autocmd vimrc BufRead,BufNewFile  *.viki         setlocal ft=viki
 autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal ft=txt2tags
 autocmd vimrc Filetype            txt2tags       source   $HOME/.vim/syntax/txt2tags.vim
@@ -49,19 +41,11 @@ autocmd vimrc BufReadPost *.pdf silent %!pdftotext -nopgbrk "%" - |fmt -csw78
 autocmd vimrc BufReadPre  *.doc set ro | silent %!antiword "%"
 autocmd vimrc BufReadPost *.odt silent %!odt2txt "%"
 
-au FileType mail setl spell fo=wantq1 smc=0
+autocmd vimrc FileType mail setl spell fo=wantq1 smc=0
 
-" Omni-completion
-autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd vimrc FileType javascript    setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd vimrc FileType xml           setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd vimrc FileType css           setlocal omnifunc=csscomplete#CompleteCSS
-autocmd vimrc FileType ruby          setlocal omnifunc=rubycomplete#Complete
 autocmd vimrc BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} set ft=ruby
-autocmd vimrc FileType haskell       setlocal omnifunc=necoghc#omnifunc
-" " markdown filetype file
-" autocmd vimrc BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+autocmd vimrc FileType haskell setlocal omnifunc=necoghc#omnifunc
+autocmd vimrc BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
 
 autocmd vimrc BufRead,BufNewFile rc.lua setlocal foldmethod=marker
 autocmd vimrc FileType ruby setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -198,29 +182,29 @@ augroup modechange_settings
 augroup END
 
 if has('autocmd')
-  fun! MyAutoScrollOff()
-    if exists('g:no_auto_scrolloff')
-      return
-    endif
-    if &ft == 'help'
-      let scrolloff = 999
-    elseif &buftype != ""
-      " Especially with quickfix (mouse jumping, more narrow).
-      let scrolloff = 0
-    elseif &diff
-      let scrolloff = 10
-    else
-      let scrolloff = 3
-    endif
-    if &scrolloff != scrolloff
-      let &scrolloff = scrolloff
-    endif
-  endfun
-  augroup set_scrolloff
-    au!
-    au BufEnter,WinEnter * call MyAutoScrollOff()
-    if exists('#TermOpen')  " neovim
-      au TermOpen * set sidescrolloff=0 scrolloff=0
-    endif
-  augroup END
+    fun! MyAutoScrollOff()
+        if exists('g:no_auto_scrolloff')
+            return
+        endif
+        if &ft == 'help'
+            let scrolloff = 999
+        elseif &buftype != ""
+            " Especially with quickfix (mouse jumping, more narrow).
+            let scrolloff = 0
+        elseif &diff
+            let scrolloff = 10
+        else
+            let scrolloff = 3
+        endif
+        if &scrolloff != scrolloff
+            let &scrolloff = scrolloff
+        endif
+    endfun
+    augroup set_scrolloff
+        au!
+        au BufEnter,WinEnter * call MyAutoScrollOff()
+        if exists('#TermOpen')  " neovim
+            au TermOpen * set sidescrolloff=0 scrolloff=0
+        endif
+    augroup END
 endif
