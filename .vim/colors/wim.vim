@@ -81,6 +81,7 @@ hi! perlStatementStorage ctermbg=NONE ctermfg=1 cterm=NONE
 hi! perlVarPlain ctermbg=NONE ctermfg=3 cterm=NONE 
 hi! perlVarPlain2 ctermbg=NONE ctermfg=11 cterm=NONE 
 hi! rubySharpBang ctermbg=NONE ctermfg=10 cterm=standout
+hi! link Conceal Operator
 
 hi! clear DiffAdd
 hi! clear DiffAdded
@@ -110,7 +111,6 @@ if has("spell")
     hi! clear SpellRare
     hi! clear SpellLocal
 endif
-
 
 syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>" contains=@Spell
 syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>" contains=@Spell
@@ -149,6 +149,8 @@ call s:IgnoreFiletypeIfNotSet('notes')
 call s:IgnoreFiletypeIfNotSet('jinja')
 call s:IgnoreFiletypeIfNotSet('lua')
 call s:IgnoreFiletypeIfNotSet('vidir-ls')
+call s:IgnoreFiletypeIfNotSet('haskell')
+call s:IgnoreFiletypeIfNotSet('text')
 
 fun! s:HighlightOperators()
   if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
@@ -157,7 +159,7 @@ fun! s:HighlightOperators()
   " for the last element of the regex, see :h /\@!
   " basically, searching for "/" is more complex since we want to avoid
   " matching against "//" or "/*" which would break C++ comment highlighting
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|&\||\|!\|\~\|%\|=\|\.\|/\(/\|*\)\@!"
   exec "hi OperatorChars ctermfg=" . g:ophigh_color
 endfunction
 
