@@ -7,9 +7,9 @@ endif
 NeoBundle 'junegunn/fzf'
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
+NeoBundle 'rainbow_parentheses.vim' "better rainbow
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
-NeoBundle 'luochen1990/rainbow.git' "improved rainbow-parentesis
 "vimproc is for faster work of unite
 NeoBundle 'Shougo/vimproc.vim', {
             \ 'build' : {
@@ -79,7 +79,9 @@ NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
-NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
+if !has("nvim")
+    NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
+endif
 NeoBundle 'ReekenX/vim-rename2.git' "rename for files even with spaces in filename
 NeoBundle 'thinca/vim-ref.git' "integrated reference viewer man/perldoc etc
 NeoBundle 'othree/eregex.vim' "Perl-like extended regex for vim
@@ -177,8 +179,8 @@ NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
-NeoBundle 'travitch/hasksyn' "simple highlight for normal haskell code
 NeoBundle 'Twinside/vim-haskellConceal' "conceal operator for haskell
+NeoBundle 'dag/vim2hs'
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
