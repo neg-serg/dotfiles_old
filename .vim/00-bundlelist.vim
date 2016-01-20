@@ -37,8 +37,6 @@ NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better than astyle
 NeoBundle 'sjbach/lusty.git' "file/buffer explorer
 NeoBundle 'SirVer/ultisnips.git' "Snippets with ycm compatibility
 NeoBundle 'godlygeek/tabular.git' "for tabularizing
-" NeoBundle 'luochen1990/rainbow'
-NeoBundle 'otommod/rainbow'
 if executable(resolve(expand("ack")))
     NeoBundle 'mileszs/ack.vim' "ack wrapper
 endif
@@ -102,6 +100,9 @@ NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
 NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
+NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
+NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
+NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
 NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-unimpaired.git' "good mappings and toggles
@@ -115,52 +116,44 @@ if executable("mono")
     NeoBundleLazy 'nosami/Omnisharp.git', { 'filetypes' : 'cs' } "omnisharp completion
 endif
 NeoBundle 'jstemmer/gotags.git' "tags for go
-if executable("go")
+if executable(resolve(expand("go")))
     NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
     NeoBundle 'fatih/vim-go.git' "golang support
 endif
-NeoBundle 'rust-lang/rust.vim' "detection of rust files
-NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
+if executable(resolve(expand("rustc")))
+    NeoBundle 'rust-lang/rust.vim' "detection of rust files
+    NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
+endif
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
 NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
-NeoBundle 'janko-m/vim-test.git' "easy testing with vim
+NeoBundle 'janko-m/vim-test.git' "easy testing for various langs
 NeoBundle 'xolox/vim-lua-ftplugin.git' "test lua bindings
-NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
 NeoBundle 'oscarh/vimerl' "vim erlang support
-NeoBundle 'lyuts/vim-rtags.git' "rtags plugin for vim
 NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
+if executable(resolve(expand("rc")))
+    NeoBundle 'lyuts/vim-rtags.git' "rtags plugin for vim
+endif
 if executable(resolve(expand("ghci")))
     NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
     NeoBundle 'eagletmt/ghcmod-vim.git'
     NeoBundle 'bitc/vim-hdevtools' "type-related features
+    NeoBundle 'neg-serg/vim2hs' "better haskell syntax hi with better indenting
 endif            
 if executable(resolve(expand("ruby")))
-    " NeoBundle 'vim-ruby/vim-ruby'
-    NeoBundle 'zxiest/vim-ruby' "better version
-    NeoBundle 'osyo-manga/vim-monster' "ruby completion
+    NeoBundle 'vim-ruby/vim-ruby' "ruby autocompletion
     NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
     NeoBundle 'tpope/vim-rake.git' "ruby rake support
     NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
     NeoBundle 'tpope/vim-bundler' "ruby bundler support
     NeoBundle 'vim-scripts/dbext.vim' "provides database access to many dbms
 endif
-NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
-NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
 NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
 " html5 autocomplete and syntax
 NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjango']} }
-" It's not compatible with YouCompleteMe
-" --------------------------------------
-" NeoBundle 'davidhalter/jedi-vim'
-" " Do not load vim-pyenv until *.py is opened and
-" " make sure that it is loaded after jedi-vim is loaded.
-" NeoBundleLazy 'lambdalisue/vim-pyenv', {
-"         \ 'depends': ['davidhalter/jedi-vim'],
-"         \ 'autoload': { 'filetypes': ['python', 'python3'], }}
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
 "----------------[  Tags  ]--------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
@@ -168,10 +161,6 @@ if executable(resolve(expand("gtags")))
     NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
     NeoBundle 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
     NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "gtags-cscope navigation
-endif
-if has("cscope")
-    "Alternative workground to work with cscope
-    NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 endif
 "--[ latex ]-----------------------------------------------------------------------------
 NeoBundle 'lervag/vimtex' "LaTeX-Box replacement
@@ -185,7 +174,6 @@ NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
-NeoBundle 'neg-serg/vim2hs' "better haskell syntax hi with better indenting
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
