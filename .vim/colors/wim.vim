@@ -102,8 +102,8 @@ hi! Error ctermfg=162 ctermbg=127
 
 hi! Pmenu ctermfg=253 ctermbg=234
 hi! PmenuSel ctermfg=255 ctermbg=200
-hi! PmenuSbar ctermbg=black guibg=black
-hi! PmenuThumb ctermbg=darkgreen guibg=darkgreen
+hi! PmenuSbar ctermbg=black
+hi! PmenuThumb ctermbg=darkgreen
 
 if has("spell")
     hi! clear SpellBad
@@ -159,7 +159,7 @@ fun! s:HighlightOperators()
   " for the last element of the regex, see :h /\@!
   " basically, searching for "/" is more complex since we want to avoid
   " matching against "//" or "/*" which would break C++ comment highlighting
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|&\||\|!\|\~\|%\|=\|\.\|/\(/\|*\)\@!"
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
   exec "hi OperatorChars ctermfg=" . g:ophigh_color
 endfunction
 
@@ -168,3 +168,5 @@ au Syntax * call s:HighlightOperators()
 hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
 hi! cFunctionTag ctermbg=none ctermfg=30 cterm=none 
 hi link DeclRefExpr Normal
+
+set background=dark
