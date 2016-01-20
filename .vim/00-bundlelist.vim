@@ -37,10 +37,12 @@ NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better than astyle
 NeoBundle 'sjbach/lusty.git' "file/buffer explorer
 NeoBundle 'SirVer/ultisnips.git' "Snippets with ycm compatibility
 NeoBundle 'godlygeek/tabular.git' "for tabularizing
-if executable("ack")
+" NeoBundle 'luochen1990/rainbow'
+NeoBundle 'otommod/rainbow'
+if executable(resolve(expand("ack")))
     NeoBundle 'mileszs/ack.vim' "ack wrapper
 endif
-if executable("ag")
+if executable(resolve(expand("ag")))
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
 NeoBundleLazy 'tpope/vim-repeat', { 'mappings' : '.' } "dot for everything
@@ -52,7 +54,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides' "indent tabs visually with |-es too 
 NeoBundle 'thinca/vim-qfreplace.git' "visual replace for multiple files
 NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
-if executable("git")
+if executable(resolve(expand("git")))
     NeoBundle 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
     NeoBundle 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
     NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
@@ -63,13 +65,12 @@ if executable("git")
     NeoBundle 'airblade/vim-gitgutter.git' "last changes
 endif
 "----------------------------------------------------------------------------------------
-if executable("tmux")
+if executable(resolve(expand("tmux")))
     NeoBundle 'tpope/vim-tbone.git' "tmux basics
     NeoBundle 'benmills/vimux.git' "exec commands in tmux
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
 endif
 "--[ misc ]------------------------------------------------------------------------------
-" NeoBundle 'amix/open_file_under_cursor.vim.git' "better gf
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
 NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
 NeoBundle 'manicmaniac/betterga.git' "better ga
@@ -78,6 +79,7 @@ NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
+" There is no need in fixkey for nvim because of it's default behaviour
 if !has("nvim")
     NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
 endif
@@ -100,7 +102,6 @@ NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
 NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
-"NeoBundle 'tomtom/tcomment_vim.git' "easier comments
 NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
 NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-unimpaired.git' "good mappings and toggles
@@ -120,7 +121,6 @@ if executable("go")
 endif
 NeoBundle 'rust-lang/rust.vim' "detection of rust files
 NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
-" NeoBundle 'racer-rust/vim-racer.git' "rust autocomplete
 NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
@@ -131,16 +131,23 @@ NeoBundle 'vim-scripts/ifdef-highlighting.git' "ifdef highlight
 NeoBundle 'oscarh/vimerl' "vim erlang support
 NeoBundle 'lyuts/vim-rtags.git' "rtags plugin for vim
 NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
-if (executable("ghci") && executable("ghcmod"))
+if executable(resolve(expand("ghci")))
     NeoBundle 'ujihisa/neco-ghc' "autocomplete for hs using ghc-mod
     NeoBundle 'eagletmt/ghcmod-vim.git'
     NeoBundle 'bitc/vim-hdevtools' "type-related features
-endif                                        
+endif            
+if executable(resolve(expand("ruby")))
+    " NeoBundle 'vim-ruby/vim-ruby'
+    NeoBundle 'zxiest/vim-ruby' "better version
+    NeoBundle 'osyo-manga/vim-monster' "ruby completion
+    NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
+    NeoBundle 'tpope/vim-rake.git' "ruby rake support
+    NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
+    NeoBundle 'tpope/vim-bundler' "ruby bundler support
+    NeoBundle 'vim-scripts/dbext.vim' "provides database access to many dbms
+endif
 NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
-NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
-NeoBundle 'tpope/vim-rake.git' "ruby rake support
-NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
 NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
@@ -157,7 +164,7 @@ NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjan
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
 "----------------[  Tags  ]--------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
-if executable("gtags")
+if executable(resolve(expand("gtags")))
     NeoBundle 'yuki777/gtags.vim.git' "Gtags v0.64
     NeoBundle 'bbchung/gasynctags.git' "autogenerate gtags to cscope db
     NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "gtags-cscope navigation
@@ -171,14 +178,14 @@ NeoBundle 'lervag/vimtex' "LaTeX-Box replacement
 "--[ web ]-------------------------------------------------------------------------------
 NeoBundle 'rstacruz/sparkup.git' "write html code faster
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
-"NeoBundleLazy 'marijnh/tern_for_vim', { 'autoload': { 'filetypes': ['javascript'] } }
+NeoBundleLazy 'marijnh/tern_for_vim', { 'autoload': { 'filetypes': ['javascript'] } }
 "---------------[ syntax ]---------------------------------------------------------------
 NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
 NeoBundle 'elzr/vim-json' "syntax hi for json format
 NeoBundle 'cespare/vim-toml' "syntax hi for toml format
 NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
 NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
-NeoBundle 'dag/vim2hs' "better haskell syntax hi
+NeoBundle 'neg-serg/vim2hs' "better haskell syntax hi with better indenting
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
@@ -186,11 +193,6 @@ NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'mark
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
-" if (false && !has("nvim"))
-"     NeoBundle 'bbchung/clighter.git' "hi with clang
-" else
-"     NeoBundle 'bbchung/Clamp' "clighterr for neovim
-" endif
 if has("gui_running")
     NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git' "add restart support
