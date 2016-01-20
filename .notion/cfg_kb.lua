@@ -5,7 +5,7 @@ Neg_kb.WMPlex_toplevel = {
     -- WMPlex toplevel --
     ---------------------
     kpress("M1+space", nil),
-    kpress("M4+M",     "notioncore.exec_on(ioncore.current(), '~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid())"),
+    kpress("M4+M",     "notioncore.exec_on(notioncore.current(), '~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid())"),
     kpress("M4+Sh+L",  "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
     kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     kpress("M4+F11",   "rofi.mainmenu()"),
@@ -13,13 +13,13 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M1+Tab",   "notioncore.goto_previous()"),
     kpress("M4+T",     "min_tabs_tag_wrapper(_,_sub)", "_sub:non-nil"),
     --[[ SCRATCHPADS  ]]--------------------------------
-    kpress("M4+d",       "console()"),
-    kpress("M4+F",       "ncmpcpp()"),
-    kpress("M4+p",       "namsc('float2')"),
-    kpress("M4+E",       "namsc('im')"),
-    kpress("M4+Ct+G",    "rofi.goto_or_create_ws(ioncore.current())"),
-    kpress("M1+G",       "rofi.goto_win(ioncore.current())"),
-    kpress("M4+F9",      "notioncore.create_ws(ioncore.current())"),
+    kpress("M4+d",     "console()"),
+    kpress("M4+F",     "ncmpcpp()"),
+    kpress("M4+p",     "namsc('float2')"),
+    kpress("M4+E",     "namsc('im')"),
+    kpress("M4+Ct+G",  "rofi.goto_or_create_ws(notioncore.current())"),
+    kpress("M1+G",     "rofi.goto_win(notioncore.current())"),
+    kpress("M4+F9",    "notioncore.create_ws(notioncore.current())"),
     --[[  PROGS RUN by APP  ]]-----------------------------
     kpress("M4+1",     "app.byclass('~/bin/wim', 'wim')"),
     kpress("M4+x",     "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
