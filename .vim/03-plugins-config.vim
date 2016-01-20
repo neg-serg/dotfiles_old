@@ -20,8 +20,12 @@ endif
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('fzf.vim')
-    let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-    if ! neobundle#tap('lusty') || has("nvim")
+    if !has("nvim")
+        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
+    else
+        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=dark"
+    endif
+    if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
     nnoremap qe :Files %:p:h<CR>
@@ -94,6 +98,10 @@ if neobundle#tap('lusty')
         nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
     else
         let g:LustyJugglerSuppressRubyWarning = 1
+        if neobundle#tap('lycosaexplorer')
+            let g:LycosaDefaultMappings = 0 
+            nmap <silent> <leader>l :LycosaFilesystemExplorerFromHere<CR>
+        endif
     endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -889,9 +897,11 @@ endif
 " │ plugin - vim-ruby                                                                 │ 
 " │ https://github.com/kana/vim-ruby/vim-ruby.git                                     │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-ruby')
-    autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-    autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-    autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-    autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+if !has("nvim")
+    if neobundle#tap('vim-ruby')
+        autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+    endif
 endif
