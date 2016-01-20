@@ -7,13 +7,11 @@ function MyKeyMapHighlight()
     if &iminsert == 0
         if s:enabled
             let s:enabled = 0
-            inoremap jk <esc>
         endif
     else
         if !s:enabled
             " hi StatusLine ctermfg=white guifg=white
             let s:enabled = 1
-            iunmap jk
         endif
     endif
 endfunction
