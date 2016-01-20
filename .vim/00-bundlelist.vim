@@ -34,7 +34,14 @@ NeoBundleLazy 'Shougo/unite-outline', { 'unite_sources' : 'outline' }
 NeoBundle 'junkblocker/unite-codesearch' "junkblocker google codesearch wrapper
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
 NeoBundle 'rhysd/vim-clang-format.git' "format code by clang, better than astyle -A14
-NeoBundle 'sjbach/lusty.git' "file/buffer explorer
+if !has("nvim")
+    NeoBundle 'sjbach/lusty.git' "file/buffer explorer
+else
+    "temp disable because of segfault
+    if has("ololo")
+        NeoBundle 'https://bitbucket.org/mikehart/lycosaexplorer' "python lusty analog
+    endif
+endif
 NeoBundle 'SirVer/ultisnips.git' "Snippets with ycm compatibility
 NeoBundle 'godlygeek/tabular.git' "for tabularizing
 if executable(resolve(expand("ack")))
@@ -59,6 +66,7 @@ if executable(resolve(expand("git")))
     NeoBundle 'jaxbot/github-issues.vim.git' "github issues autocomp
     NeoBundle 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
     NeoBundle 'cohama/agit.vim.git' "git commit browser
+    NeoBundle 'junegunn/gv.vim' "yet another git commit browser
     NeoBundle 'vim-scripts/DirDiff.vim.git' "diff directories easyer with vim
     NeoBundle 'airblade/vim-gitgutter.git' "last changes
 endif
@@ -69,6 +77,8 @@ if executable(resolve(expand("tmux")))
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
 endif
 "--[ misc ]------------------------------------------------------------------------------
+NeoBundleLazy 'chrisbra/unicode.vim',  \
+    { 'commands' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] } "better digraphs
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
 NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
 NeoBundle 'manicmaniac/betterga.git' "better ga
@@ -181,6 +191,11 @@ NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'mark
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
+if !has("nvim") && has("ololo")
+    NeoBundle 'bbchung/clighter.git' "hi with clang
+elseif  has("nvim")
+    NeoBundle 'bbchung/Clamp' "clighterr for neovim
+endif
 if has("gui_running")
     NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git' "add restart support
