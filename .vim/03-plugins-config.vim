@@ -885,3 +885,13 @@ if neobundle#tap('vim2hs')
     let g:haskell_hsp                  = 1
     let g:haskell_multiline_strings    = 1
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - vim-ruby                                                                 │ 
+" │ https://github.com/kana/vim-ruby/vim-ruby.git                                     │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-ruby')
+    autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+    autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+    autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+    autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+endif
