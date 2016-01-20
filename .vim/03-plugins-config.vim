@@ -9,6 +9,13 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - kana/vim-arpeggio.git                                                    │ 
+" │ https://github.com/kana/vim-arpeggio.git                                          │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-arpeggio')
+    call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -511,42 +518,43 @@ if neobundle#tap('unite.vim')
     " call unite#custom#source( 'neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
     call unite#custom#profile('neomru/file', 'filters', 'sorter_ftime')
 
-    let g:unite_enable_ignore_case               = 1
-    let g:unite_enable_smart_case                = 1
-    let g:unite_enable_start_insert              = 1
-    let g:unite_enable_split_vertically          = 0
-    let g:unite_source_file_mru_limit            = 300
+    call unite#custom#profile('default', 'context', {
+                \ 'prompt_direction': 'below',
+                \ 'direction': 'botright',
+                \ 'vertical' : 0,
+                \ 'marked-icon': '✓',
+                \ 'candidate-icon': '▷',
+                \ 'hide-icon' : 0,
+                \ 'start_insert' : 1,
+                \ 'smartcase' : 1,
+                \ 'ignorecase' : 1,
+                \ 'start-insert' : 1,
+                \ 'prompt' : '>> ',
+                \ 'short-source-names' : 0,
+                \ 'winheight': 10,
+                \ })
     let g:unite_source_file_mru_time_format      = '(%d-%m-%Y %H:%M:%S) '
     let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-    let g:unite_source_mru_update_interval       = 300
     let g:unite_source_file_rec_min_cache_files  = 300
     let g:unite_source_file_rec_max_depth        = 10
     let g:unite_source_history_yank_enable       = 0
-    let g:unite_source_bookmark_directory        = $HOME . "/.config/unite/bookmark"
-    let g:unite_data_directory                   = $HOME.'/.config/unite'
-    let g:junkfile#directory                     = expand($HOME."/.config/unite/junk")
+    let g:unite_source_bookmark_directory        = $XDG_CONFIG_HOME . "/unite/bookmark"
+    let g:unite_data_directory                   = $XDG_CONFIG_HOME.'/unite'
+    let g:junkfile#directory                     = expand($XDG_CONFIG_HOME."/unite/junk")
     let g:unite_source_gtags_treelize            = 1
-    let g:unite_enable_short_source_mes          = 0
-    let g:unite_force_overwrite_statusline       = 0
-    let g:unite_prompt                           = '>> '
-    let g:unite_marked_icon                      = '✓'
-    let g:unite_update_time                      = 200
-    let g:unite_split_rule                       = 'botright'
+    let g:unite_force_overwrite_statusline       = 0 "powerline support
     let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
-    let g:unite_winheight                        = 10
-    let g:unite_candidate_icon                   = "▷"
-
+    let g:unite_marked_icon                      = '✓'
+    let g:unite_candidate_icon                   = '▷'
     if executable('ag')
         let g:unite_source_grep_command               = 'ag'
         let g:unite_source_grep_default_opts =
             \ '--smart-case --line-numbers --nocolor --nogroup'
         let g:unite_source_grep_recursive_opt         = ''
-        let g:unite_source_grep_search_word_highlight = 1
     elseif executable('ack')
         let g:unite_source_grep_command               = 'ack'
         let g:unite_source_grep_default_opts          = '--no-group --no-color'
         let g:unite_source_grep_recursive_opt         = ''
-        let g:unite_source_grep_search_word_highlight = 1
     endif
 
     function! s:vimfiler_toggle()
@@ -797,20 +805,16 @@ if neobundle#tap('vital.vim')
         let g:V = vital#of('vital')
         let g:S = g:V.import("Web.HTTP")
         let g:L = g:V.import("Data.List")
-
         function! DecodeURI(uri)
             return g:S.decodeURI(a:uri)
         endfunction
-
         function! EncodeURI(uri)
             return g:S.encodeURI(a:uri)
         endfunction
-
         command -nargs=1 DecodeURI echo DecodeURI(<args>)
         command -nargs=1 EncodeURI echo EncodeURI(<args>)
     endfunction
 endif
-
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - xolox/vim-lua-ftplugin.git                                               │ 
 " │ git@github.com:xolox/vim-lua-ftplugin.git                                         │ 
@@ -832,7 +836,6 @@ if neobundle#tap('vim-lua-ftplugin')
     let g:lua_define_completion_mappings = 0
     let g:lua_internal = 0
 endif
-
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - racer-rust/vim-racer.git                                                 │ 
 " │ git@github.com:racer-rust/vim-racer.git                                           │ 
@@ -843,26 +846,25 @@ if neobundle#tap('vim-racer')
     let g:echodoc_enable_at_startup = 1
     let g:racer_experimental_completer = 1
 endif
-
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - godlygeek/tabular                                                        │ 
 " │ git@github.com:godlygeek/tabular                                                  │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('tabular') 
-    nmap <Leader>a& :Tabularize /&<CR>
-    vmap <Leader>a& :Tabularize /&<CR>
-    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    nmap <Leader>a=> :Tabularize /=><CR>
-    vmap <Leader>a=> :Tabularize /=><CR>
-    nmap <Leader>a: :Tabularize /:<CR>
-    vmap <Leader>a: :Tabularize /:<CR>
-    nmap <Leader>a:: :Tabularize /:\zs<CR>
-    vmap <Leader>a:: :Tabularize /:\zs<CR>
-    nmap <Leader>a, :Tabularize /,<CR>
-    vmap <Leader>a, :Tabularize /,<CR>
-    nmap <Leader>a,, :Tabularize /,\zs<CR>
-    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a&     :Tabularize /&<CR>
+    vmap <Leader>a&     :Tabularize /&<CR>
+    nmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
+    vmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
+    nmap <Leader>a=>    :Tabularize /=><CR>
+    vmap <Leader>a=>    :Tabularize /=><CR>
+    nmap <Leader>a:     :Tabularize /:<CR>
+    vmap <Leader>a:     :Tabularize /:<CR>
+    nmap <Leader>a::    :Tabularize /:\zs<CR>
+    vmap <Leader>a::    :Tabularize /:\zs<CR>
+    nmap <Leader>a,     :Tabularize /,<CR>
+    vmap <Leader>a,     :Tabularize /,<CR>
+    nmap <Leader>a,,    :Tabularize /,\zs<CR>
+    vmap <Leader>a,,    :Tabularize /,\zs<CR>
     nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
     vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 endif
