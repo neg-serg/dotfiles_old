@@ -99,14 +99,19 @@ if has("gui_running")
 
 endif
 
-if !has("gui_running")
-    set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
-    set t_Co=256 " I use 256-color terminals
-    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
-        colorscheme wim
-    elseif &term =~ 'linux'
-        colorscheme darkblue
-        set t_Co=8 " I use 7-color term in $term = linux
+if !has("gui_running") && !has("nvim")
+    if !has("nvim")
+        set ttymouse=urxvt                 " more accurate mouse tracking
+        set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
+        set t_Co=256 " I use 256-color terminals
+        if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
+            colorscheme wim
+        elseif &term =~ 'linux'
+            colorscheme darkblue
+            set t_Co=8 " I use 7-color term in $term = linux
+        else
+            colorscheme jellybeans
+        endif
     else
         colorscheme jellybeans
     endif
@@ -116,9 +121,6 @@ if !has("gui_running")
     silent !stty start undef > /dev/null 2>/dev/null
     silent !stty stop undef > /dev/null 2>/dev/null
     
-    if !has("nvim")
-        set ttymouse=urxvt                 " more accurate mouse tracking
-    endif
     set ttyfast                        " more redrawing characters sent to terminal
 
     " set synmaxcol=256                  " improve hi performance
@@ -163,6 +165,8 @@ if !has("gui_running")
             set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
         endif
     endif
+else
+    colorscheme jellybeans
 endif
 
 " convert "\\" to "/" on win32 like environment
@@ -197,7 +201,6 @@ set noshowmode                              " no show the mode ("-- INSERT --") 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
 set autoread
-
 set formatprg=par                           " use par as formatter
 
 " 'fileencodings' contains a list of possible encodings to try when reading
@@ -209,7 +212,6 @@ set formatprg=par                           " use par as formatter
 "   latin1   8-bit encoding typical of DOS
 " Setting this value explicitly, though to the default value.
 set fileencodings=utf-8,default,latin1,cp1251,koi8-r,cp866
-
 set termencoding=utf8                       " Set termencoding to utf-8
 "--------------------------------------------------------------------------
 " Where file browser's directory should begin:
