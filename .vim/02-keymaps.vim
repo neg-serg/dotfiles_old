@@ -93,7 +93,6 @@ vnoremap > >gv
 
 map <C-g> g<C-g>
 
-call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
 nnoremap <leader>D "_d
 xnoremap <leader>D "_d
 

@@ -21,7 +21,7 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('fzf.vim')
     let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-    if ! neobundle#tap('lusty')
+    if ! neobundle#tap('lusty') || has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
     nnoremap qe :Files %:p:h<CR>
@@ -88,10 +88,11 @@ endif
 " │ https://github.com/sjbach/lusty.git                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('lusty')
-    let g:LustyJugglerDefaultMappings = 0
-    let LustyExplorerDefaultMappings  = 0
-    nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-    if has('nvim')
+    if !has("nvim")
+        let g:LustyJugglerDefaultMappings = 0
+        let LustyExplorerDefaultMappings  = 0
+        nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
+    else
         let g:LustyJugglerSuppressRubyWarning = 1
     endif
 endif
@@ -517,7 +518,6 @@ if neobundle#tap('unite.vim')
                 \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
     " call unite#custom#source( 'neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
     call unite#custom#profile('neomru/file', 'filters', 'sorter_ftime')
-
     call unite#custom#profile('default', 'context', {
                 \ 'prompt_direction': 'below',
                 \ 'direction': 'botright',
