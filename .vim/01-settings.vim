@@ -393,7 +393,12 @@ set maxmapdepth=1000    " Maximum number of times a mapping is done
 set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.
 
-set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
+if !has("nvim")
+    set viminfo=%100,'100,/100,h,\"500,:100,n~/.viminfo
+else
+    set viminfo=
+    set shada=
+endif
 set nomodeline                        " disable modelines
 set grepprg=ag\ --nogroup\ --nocolor  " use ag over grep
 
