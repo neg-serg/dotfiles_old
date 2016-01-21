@@ -1,6 +1,6 @@
 [user]
-    name = Sergey Miroshnichenko
     email = serg.zorg@gmail.com
+	name = Neg
 [core]
     #pager = vimpager
     pager =
@@ -69,7 +69,7 @@
     graph = log --graph --color --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"
     d = difftool
 [github]
-    user  = neg-serg
+	user = neg-serg
 [credential]
 	helper = cache --timeout=3600
 [push]
@@ -82,3 +82,5 @@
 	tool = ~neg/bin/scripts/wdiff_standalone
 [mergetool]
 	prompt = false
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
