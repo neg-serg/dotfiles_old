@@ -23,10 +23,10 @@ Neg_kb.WMPlex_toplevel = {
     --[[  PROGS RUN by APP  ]]-----------------------------
     kpress("M4+1",     "app.byclass('~/bin/wim', 'wim')"),
     kpress("M4+x",     "app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal')"),
-    kpress("M4+Ct+a",  "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
     kpress("M4+b",     "app.byclass_withtag(nil, 'mpv',nil, 'video')"),
     kpress("M4+w",     "app.byinstance_withtag('/usr/bin/firefox-beta||/usr/bin/firefox-nigtly||firefox', 'Firefox','Navigator',nil,'www')"),
     kpress("M4+o",     "app.byclass_withtag('zathura','Zathura','pdf')"),
+    kpress("M4+Ct+A",  "app.byclass_withtag(nil, 'Vmware',nil, 'virt')"),
     kpress("M4+Ct+C",  "app.byclass('~/bin/sx ~/dw/*', 'Sxiv')"),
     --[[  MISC  ]]---------------------------------------
     kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
@@ -36,8 +36,8 @@ Neg_kb.WMPlex_toplevel = {
     submap("M1+E",{
         kpress("Ct+r", "app.byinstance('cr3', 'Cr3', 'cr3')"),
         kpress("Ct+w", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
-        kpress("d",    "notioncore.exec_on(notioncore.current, 'stardict')"),
-        kpress("i",    "notioncore.exec_on(notioncore.current, '~/bin/pls -output')"),
+        kpress("d",    "notioncore.exec_on(notioncore.current(), '~/bin/scripts/dzen-dict')"),
+        kpress("i",    "notioncore.exec_on(notioncore.current(), '~/bin/pls -output')"),
         kpress("m",    "app.byclass('~/bin/scripts/run_mutt', 'mutt')"),
         kpress("n",    "app.byinstance('nicotine.py || nicotine', 'Nicotine.py', 'nicotine.py')"),
         kpress("o",    "notioncore.exec_on(notioncore.current(), '~/bin/pls -sink')"),
