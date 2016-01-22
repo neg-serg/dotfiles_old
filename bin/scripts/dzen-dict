@@ -1,0 +1,15 @@
+#!/bin/sh
+
+lookup=$(xclip -out)
+font="Terminus Re33:size=10"
+dzen_string="dzen2 -p 12 -l 18 -w 500 -bg black -fg #666677 -x -520 -y -70 -fn Terminus Re33:size=10 -e onstart scrollhome uncollapse key_K scrollup key_J scrolldown key_Escape exit button4 scrollup button5 scrolldown button2 exit"
+
+if [[ "$(pgrep -f Ololo)" ]]; then
+    kill "$(pgrep -f Ololo)"
+    exit 0
+fi
+
+(echo "Enter :: [ -- ${lookup} -- ]"; dict "${lookup}") \
+    | dzen2 -p 90 -l 18 -w 500 \
+    -bg "black" -fg "#666677" -x -520 -y -70 \
+    -fn "${font}" -e 'onstart=scrollhome,uncollapse;key_K=scrollup;key_J=scrolldown;key_Escape=exit;button4=scrollup;button5=scrolldown;button2=exit;Ololo'
