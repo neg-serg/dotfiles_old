@@ -52,6 +52,21 @@ local function i_get(i_size,name)
     end
 end
 
+local ws_map = {
+    {name="term",       sym=i_get({index="term2",size=15})},
+    {name="web",        sym=i_get({index="web"})},
+    {name="dev",        sym=i_get({index="dev3",size=15})},
+    {name="doc",        sym=i_get({index="data"})},
+    {name="media",      sym=i_get({index="media"})},
+    {name="gimp",       sym=i_get({index="pic"})},
+    {name="admin",      sym=i_get({index="admin"})},
+    {name="jetbrains",  sym=i_get({index="dev"})},
+    {name="steam",      sym=i_get({index="game"})},
+    {name="torrent",    sym=i_get({index="center"})},
+    {name="vm",         sym=i_get({index="vertical_dots"})},
+    {name="wine",       sym=i_get({index="game"})}
+}
+
 local function get_ico(t)
     local ico_path
     local xdg_conf_home = os.getenv("XDG_CONFIG_HOME")
@@ -90,25 +105,6 @@ local function ws_current(t)
             end
         end
         local fr,cur
-
-        local ws_map = {
-            -- {name="term"}, {name="web"}, {name="dev"},
-            -- {name="doc"}, {name="media"}, {name="gimp"},
-            -- {name="admin"}, {name="jetbrains"}, {name="steam"},
-            -- {name="torrent"}, {name="vm"}, {name="wine"}
-            {name="term",       sym=i_get({index="term2",size=15})},
-            {name="web",        sym=i_get({index="web"})},
-            {name="dev",        sym=i_get({index="dev3",size=15})},
-            {name="doc",        sym=i_get({index="data"})},
-            {name="media",      sym=i_get({index="media"})},
-            {name="gimp",       sym=i_get({index="pic"})},
-            {name="admin",      sym=i_get({index="admin"})},
-            {name="jetbrains",  sym=i_get({index="dev"})},
-            {name="steam",      sym=i_get({index="game"})},
-            {name="torrent",    sym=i_get({index="center"})},
-            {name="vm",         sym=i_get({index="vertical_dots"})},
-            {name="wine",       sym=i_get({index="game"})}
-        }
         local ws_numbered = false
         for i, v in ipairs(ws_map) do
             if name_pager == ws_map[i].name then
