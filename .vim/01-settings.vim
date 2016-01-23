@@ -46,13 +46,23 @@ if has("gui_running")
         set gfn=PragmataPro\ for\ Powerline\ 10
         set guifontwide=PragmataPro\ for\ Powerline\ 10
         " colorscheme hybrid
-        colorscheme jellybeans
+        if !has("nvim")
+            colorscheme jellybeans
+        else
+            set background=dark
+            colorscheme solarized24
+        endif
     else
         set gfn=PragmataPro\ for\ Powerline\ 14
         set guifontwide=PragmataPro\ for\ Powerline\ 14
         " set lsp=-1
         let g:mirodark_enable_higher_contrast_mode=0
-        colorscheme mirodark
+        if !has("nvim")
+            colorscheme mirodark
+        else
+            set background=dark
+            colorscheme solarized24
+        endif
     endif
 
     set timeout ttimeout
@@ -100,18 +110,14 @@ if has("gui_running")
 endif
 
 if !has("gui_running") && !has("nvim")
-    if !has("nvim")
-        set ttymouse=urxvt                 " more accurate mouse tracking
-        set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
-        set t_Co=256 " I use 256-color terminals
-        if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
-            colorscheme wim
-        elseif &term =~ 'linux'
-            colorscheme darkblue
-            set t_Co=8 " I use 7-color term in $term = linux
-        else
-            colorscheme jellybeans
-        endif
+    set ttymouse=urxvt                 " more accurate mouse tracking
+    set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
+    set t_Co=256 " I use 256-color terminals
+    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
+        colorscheme wim
+    elseif &term =~ 'linux'
+        colorscheme darkblue
+        set t_Co=8 " I use 7-color term in $term = linux
     else
         colorscheme jellybeans
     endif
@@ -166,7 +172,8 @@ if !has("gui_running") && !has("nvim")
         endif
     endif
 else
-    colorscheme jellybeans
+    set background=dark
+    colorscheme solarized24
 endif
 
 " convert "\\" to "/" on win32 like environment
