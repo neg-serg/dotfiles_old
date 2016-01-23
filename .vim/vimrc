@@ -60,6 +60,7 @@ if has('nvim')
     let $NVIM_TUI_ENABLE_TRUE_COLOR=0
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     colorscheme solarized
+    source ~/.vim/01-nvim_terminal_fix.vim
 endif
 
 let s:bundle_dir = expand('$HOME/.vim/bundle')
