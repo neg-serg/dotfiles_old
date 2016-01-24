@@ -921,5 +921,5 @@ endif
 " │ https://github.com/derekwyatt/vim-fswitch                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-fswitch')
-    nmap <silent> <C-a> :FSHere<cr>
+    nnoremap <silent> <C-a> :FSHere<cr>
 endif
