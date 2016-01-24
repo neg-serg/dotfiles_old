@@ -905,3 +905,21 @@ if !has("nvim")
         autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
     endif
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - skalnik/vim-vroom                                                        │ 
+" │ https://github.com/skalnik/vim-vroom                                              │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-vroom')
+    let g:vroom_map_keys = 0     " to not use default keymaps
+    let g:vroom_use_dispatch = 1 " use dispatch by default
+    let g:vroom_use_zeus = 1     " run tests with zeus || bundle exec
+    nnoremap \c :call vroom#RunTestFile()<CR>
+    nnoremap \s :call vroom#RunNearestTest()<CR>
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - derekwyatt/vim-fswitch                                                   │ 
+" │ https://github.com/derekwyatt/vim-fswitch                                         │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('vim-fswitch')
+    nmap <silent> <C-a> :FSHere<cr>
+endif
