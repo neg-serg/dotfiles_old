@@ -1,7 +1,7 @@
 source ~/.zshrc
 
 super + apostrophe
-    {pkill -USR1 -x sxhkd && /home/neg/bin/scripts/toggle_comp.sh && notionflux -e 'notioncore.restart()'}
+    {pkill -USR1 -x sxhkd && ~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'}
 XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
