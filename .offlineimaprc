@@ -31,7 +31,7 @@ nametrans: lambda s: {  '[Gmail]/Starred'   : '[Gmail].Starred',
 type = Gmail
 remoteuser = serg.zorg@gmail.com
 sep = .
-remotepass = get_pass()
+remotepasseval = get_pass()
 realdelete = no
 maxconnections = 3
 # Instead of closing the connection once a sync is complete, offlineimap will
