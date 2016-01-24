@@ -159,12 +159,22 @@ Neg_kb.WMoveresMode = {
     kpress("Up",     "WMoveresMode.resize(_, 0, 0, 1, 0)"),
     kpress("k",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
     kpress("j",      "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+
+    kpress("a",      "WMoveresMode.resize(_, 1, 0, 0, 0)"),
+    kpress("d",      "WMoveresMode.resize(_, 0, 1, 0, 0)"),
+    kpress("w",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
+    kpress("s",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
                     
     kpress("Sh+h",   "WMoveresMode.resize(_,-1, 0, 0, 0)"),
     kpress("Sh+l",   "WMoveresMode.resize(_, 0,-1, 0, 0)"),
     kpress("Sh+Up",  "WMoveresMode.resize(_, 0, 0,-1, 0)"),
     kpress("Sh+k",   "WMoveresMode.resize(_, 0, 0,-1, 0)"),
     kpress("Sh+j",   "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+    
+    kpress("Sh+a",   "WMoveresMode.resize(_,-1, 0, 0, 0)"),
+    kpress("Sh+d",   "WMoveresMode.resize(_, 0,-1, 0, 0)"),
+    kpress("Sh+w",   "WMoveresMode.resize(_, 0, 0,-1, 0)"),
+    kpress("Sh+s",   "WMoveresMode.resize(_, 0, 0, 0,-1)"),
                     
     kpress("M1+h",   "WMoveresMode.move(_,-1, 0)"),
     kpress("M1+l",   "WMoveresMode.move(_, 1, 0)"),
@@ -177,10 +187,6 @@ Neg_kb.Tiling = {
     kpress("M4+j",    "goto_dir('down')"),
     kpress("M4+h",    "goto_dir('left')"),
     kpress("M4+l",    "goto_dir('right')"),
-    kpress("M4+w",    "goto_dir('up')"),
-    kpress("M4+s",    "goto_dir('down')"),
-    kpress("M4+a",    "goto_dir('left')"),
-    kpress("M4+d",    "goto_dir('right')"),
     kpress("M4+Ct+H", "tiling_split('right')"),
     kpress("M4+Ct+L", "tiling_split('left')"),
     kpress("M4+Ct+K", "tiling_split('bottom')"),
