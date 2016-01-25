@@ -59,3 +59,5 @@ let g:terminal_color_219="#008BED"
 let g:terminal_color_255="#000000"
 
 let base16colorspace=256
+
+let s:terminal_italic=1
