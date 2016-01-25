@@ -6,6 +6,7 @@ if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
 endif
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
+NeoBundle 'luochen1990/rainbow'
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
@@ -29,7 +30,9 @@ NeoBundle 'Shougo/vimfiler.vim', {
             \ { 'name' : 'Write', 'complete' : 'customlist,vimfiler#complete' },
             \ 'Read', 'Source'],
             \ 'mappings' : '<Plug>(vimfiler_', 'explorer' : 1, }
-NeoBundle 'Shougo/vimshell.vim' "shell inside a vim for unite and vimfiler integration
+if !has("nvim")
+    NeoBundle 'Shougo/vimshell.vim' "shell inside a vim for unite and vimfiler integration
+endif
 NeoBundleLazy 'Shougo/unite-outline', { 'unite_sources' : 'outline' }
 NeoBundle 'junkblocker/unite-codesearch' "junkblocker google codesearch wrapper
 NeoBundle 'Shougo/junkfile.vim.git' "junkfile for unite
@@ -61,11 +64,9 @@ NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
 if executable(resolve(expand("git")))
     NeoBundle 'tpope/vim-fugitive.git' "Git stuff. Needed for powerline etc
-    NeoBundle 'kablamo/vim-git-log.git' "Git commit browser/log wrapper
     NeoBundle 'junegunn/vim-github-dashboard.git' "Git dashboard in vim
     NeoBundle 'jaxbot/github-issues.vim.git' "github issues autocomp
     NeoBundle 'idanarye/vim-merginal.git' "to handle branches/merge conflicts
-    NeoBundle 'cohama/agit.vim.git' "git commit browser
     NeoBundle 'junegunn/gv.vim' "yet another git commit browser
     NeoBundle 'vim-scripts/DirDiff.vim.git' "diff directories easyer with vim
     NeoBundle 'airblade/vim-gitgutter.git' "last changes
@@ -75,13 +76,12 @@ if executable(resolve(expand("tmux")))
     NeoBundle 'tpope/vim-tbone.git' "tmux basics
     NeoBundle 'benmills/vimux.git' "exec commands in tmux
     NeoBundle 'christoomey/vim-tmux-navigator' "easy jump between windows
+    NeoBundle 'epeli/slimux' "better interaction with tmux
 endif
 "--[ misc ]------------------------------------------------------------------------------
-NeoBundleLazy 'chrisbra/unicode.vim',  \
-    { 'commands' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] } "better digraphs
+NeoBundleLazy 'chrisbra/unicode.vim', { 'commands' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] } "better digraphs
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
 NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
-NeoBundle 'manicmaniac/betterga.git' "better ga
 NeoBundle 'vim-scripts/ViewOutput.git' "VO commandline output
 NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
@@ -99,11 +99,11 @@ NeoBundle 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-
 "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundleLazy 'tpope/vim-surround', { 'mappings' : [ ['n', 'cs', 'ds', 'ys', 'yS'], ['x', 'S']] }
 NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
-NeoBundle 'scrooloose/nerdtree' "classic NERDTree plugin
-NeoBundle 'Xuyuanp/nerdtree-git-plugin' "NERDTree with git support
 NeoBundle 'jamessan/vim-gnupg.git' "Transparent work with gpg-encrypted files
 NeoBundle 'Shougo/echodoc.vim' "prints doc in echo area
-NeoBundle 'blindFS/vim-taskwarrior' "add taskwarrior vim plug wrapper
+if executable(resolve(expand("task")))
+    NeoBundle 'blindFS/vim-taskwarrior' "add taskwarrior vim plug wrapper
+endif
 NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 "--[ dev ]-------------------------------------------------------------------------------
@@ -125,7 +125,9 @@ NeoBundle 'fs111/pydoc.vim' , {'autoload': {'filetypes': ['python']} } "pydoc in
 if executable("mono")
     NeoBundleLazy 'nosami/Omnisharp.git', { 'filetypes' : 'cs' } "omnisharp completion
 endif
-NeoBundle 'jstemmer/gotags.git' "tags for go
+if executable(resolve(expand("gotags")))
+    NeoBundle 'jstemmer/gotags.git' "tags for go
+endif
 if executable(resolve(expand("go")))
     NeoBundle 'Blackrush/vim-gocode.git' "omnicomplete for go
     NeoBundle 'fatih/vim-go.git' "golang support
@@ -158,6 +160,7 @@ if executable(resolve(expand("ruby")))
     NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
     NeoBundle 'tpope/vim-bundler' "ruby bundler support
     NeoBundle 'vim-scripts/dbext.vim' "provides database access to many dbms
+    NeoBundle 'skalnik/vim-vroom' "plugin to run ruby tests
 endif
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
@@ -193,7 +196,7 @@ NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
 if !has("nvim") && has("ololo")
     NeoBundle 'bbchung/clighter.git' "hi with clang
-elseif  has("nvim")
+elseif has("nvim")
     NeoBundle 'bbchung/Clamp' "clighterr for neovim
 endif
 if has("gui_running")
