@@ -3,6 +3,8 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
+let s:nvim_colorscheme = "wim24"
+
 " if v:version >= 704
 "   " The new Vim regex engine is currently slooooow as hell which makes syntax
 "   " highlighting slow, which introduces typing latency.
@@ -50,7 +52,7 @@ if has("gui_running")
             colorscheme jellybeans
         else
             set background=dark
-            colorscheme solarized24
+            exe "colorscheme ".s:nvim_colorscheme
         endif
     else
         set gfn=PragmataPro\ for\ Powerline\ 14
@@ -61,7 +63,7 @@ if has("gui_running")
             colorscheme mirodark
         else
             set background=dark
-            colorscheme solarized24
+            exe "colorscheme ".s:nvim_colorscheme
         endif
     endif
 
@@ -173,7 +175,7 @@ if !has("gui_running") && !has("nvim")
     endif
 else
     set background=dark
-    colorscheme solarized24
+    exe "colorscheme ".s:nvim_colorscheme
 endif
 
 " convert "\\" to "/" on win32 like environment
