@@ -151,6 +151,7 @@ call s:IgnoreFiletypeIfNotSet('lua')
 call s:IgnoreFiletypeIfNotSet('vidir-ls')
 call s:IgnoreFiletypeIfNotSet('haskell')
 call s:IgnoreFiletypeIfNotSet('text')
+call s:IgnoreFiletypeIfNotSet('lisp')
 
 fun! s:HighlightOperators()
   if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
