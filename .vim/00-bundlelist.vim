@@ -81,7 +81,6 @@ endif
 "--[ misc ]------------------------------------------------------------------------------
 NeoBundleLazy 'chrisbra/unicode.vim', { 'commands' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] } "better digraphs
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
-NeoBundle 'junegunn/vim-peekaboo.git' "visual quote(paste) operator
 NeoBundle 'vim-scripts/ViewOutput.git' "VO commandline output
 NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
@@ -136,7 +135,6 @@ if executable(resolve(expand("rustc")))
     NeoBundle 'rust-lang/rust.vim' "detection of rust files
     NeoBundle 'jtdowney/vimux-cargo' "rust-cargo bindings
 endif
-NeoBundle 'vim-scripts/taglist.vim.git' "show taglist
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
 NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
@@ -167,7 +165,6 @@ NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
 " html5 autocomplete and syntax
 NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjango']} }
-NeoBundle 'fatih/vim-nginx' "nginx runtime files
 "----------------[  Tags  ]--------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
 if executable(resolve(expand("gtags")))
@@ -190,10 +187,11 @@ NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
-NeoBundleLazy 'farseer90718/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
+NeoBundleLazy 'blindFS/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
+NeoBundle 'fatih/vim-nginx' "nginx runtime files
 if !has("nvim") && has("ololo")
     NeoBundle 'bbchung/clighter.git' "hi with clang
 elseif has("nvim")
