@@ -210,7 +210,11 @@ set noshowmode                              " no show the mode ("-- INSERT --") 
 " Automatically re-read files that have changed as long as there
 " are no outstanding edits in the buffer.
 set autoread
-set formatprg=par                           " use par as formatter
+if executable(resolve(expand("par")))
+    set formatprg="par -140"  " use par as formatter
+else
+    set formatprg="fmt -140"  " use par as formatter
+endif
 
 " 'fileencodings' contains a list of possible encodings to try when reading
 " a file.  When 'encoding' is a unicode value (such as utf-8), the
