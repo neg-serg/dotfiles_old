@@ -33,6 +33,7 @@ defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="of
 defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{class="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{class="telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
+defwinprop{class="telegram-desktop",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{name="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
 defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im"}
