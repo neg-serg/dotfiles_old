@@ -923,3 +923,32 @@ endif
 if neobundle#tap('vim-fswitch')
     nnoremap <silent> <C-a> :FSHere<cr>
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - luochen1990/rainbow                                                      │
+" │ https://github.com/luochen1990/rainbow.git                                        │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('rainbow')
+    "0 if you want to enable it later via :RainbowToggle
+    let g:rainbow_active = 1 
+    let g:rainbow_conf = {
+        \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \   'ctermfgs': ['cyan', 'darkcyan', 'blue', 'darkblue'],
+        \   'operators': '_,_',
+        \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+        \   'separately': {
+        \       '*': {},
+        \       'lisp': {
+        \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+        \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+        \       },
+        \       'vim': {
+        \           'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+        \       },
+        \       'tex': {
+        \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+        \       },
+        \       'css': 0,
+        \       'stylus': 0,
+        \   }
+        \}
+endif
