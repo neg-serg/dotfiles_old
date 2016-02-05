@@ -952,3 +952,12 @@ if neobundle#tap('rainbow')
         \   }
         \}
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - rstacruz/sparkup                                                         │
+" │ https://github.com/rstacruz/sparkup                                               │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('rainbow')
+    let g:sparkupMapsNormal = 0 "default = 0
+    let g:sparkupMaps = 1 "default = 1
+    let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
+endif
