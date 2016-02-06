@@ -6,8 +6,20 @@ if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
 endif
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
-NeoBundle 'luochen1990/rainbow'
 NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
+NeoBundle 'luochen1990/rainbow'  "rainbow parentheses
+"NeoBundle 'junegunn/rainbow_parentheses.vim' "Much simpler Rainbow Parentheses(fork)
+NeoBundle 'mattboehm/vim-unstack' "stack trace parser
+NeoBundle 'rdnetto/YCM-Generator' "generate config for ycm
+if has('lua')
+    NeoBundleLazy 'jeaye/color_coded', {
+        \ 'build': {
+        \   'unix': 'cmake . && make && make install',
+        \ },
+        \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+        \ 'build_commands' : ['cmake', 'make']
+    \}
+endif
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
 "vimproc is for faster work of unite
@@ -150,15 +162,21 @@ if executable(resolve(expand("ghci")))
     NeoBundle 'eagletmt/ghcmod-vim.git'
     NeoBundle 'bitc/vim-hdevtools' "type-related features
     NeoBundle 'neg-serg/vim2hs' "better haskell syntax hi with better indenting
-endif            
-if executable(resolve(expand("ruby")))
-    NeoBundle 'vim-ruby/vim-ruby' "ruby autocompletion
-    NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
-    NeoBundle 'tpope/vim-rake.git' "ruby rake support
-    NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
-    NeoBundle 'tpope/vim-bundler' "ruby bundler support
-    NeoBundle 'vim-scripts/dbext.vim' "provides database access to many dbms
-    NeoBundle 'skalnik/vim-vroom' "plugin to run ruby tests
+endif
+if has("ruby")
+    if executable(resolve(expand("ruby")))
+        if has("nvim")
+            NeoBundle 'osyo-manga/vim-monster' "alternative ruby autocompletion
+        else
+            NeoBundle 'vim-ruby/vim-ruby' "ruby autocompletion
+        endif
+        NeoBundle 'tpope/vim-rails.git' "rails plugin from Tim Pope
+        NeoBundle 'tpope/vim-rake.git' "ruby rake support
+        NeoBundle 'tpope/vim-rbenv.git' "ruby rbenv support
+        NeoBundle 'tpope/vim-bundler' "ruby bundler support
+        NeoBundle 'vim-scripts/dbext.vim' "provides database access to many dbms
+        NeoBundle 'skalnik/vim-vroom' "plugin to run ruby tests
+    endif
 endif
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
@@ -192,6 +210,7 @@ NeoBundle 'JulesWang/css.vim' "better css syntax hi
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
+NeoBundle 'trapd00r/irc.vim' "syntax file for irc logs
 if !has("nvim") && has("ololo")
     NeoBundle 'bbchung/clighter.git' "hi with clang
 elseif has("nvim")
