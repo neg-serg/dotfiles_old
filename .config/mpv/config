@@ -33,3 +33,5 @@ ytdl
 
 cursor-autohide=1000
 really-quiet
+
+input-unix-socket=/tmp/mpvsocket
