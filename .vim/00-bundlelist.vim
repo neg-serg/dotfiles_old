@@ -11,15 +11,6 @@ NeoBundle 'luochen1990/rainbow'  "rainbow parentheses
 "NeoBundle 'junegunn/rainbow_parentheses.vim' "Much simpler Rainbow Parentheses(fork)
 NeoBundle 'mattboehm/vim-unstack' "stack trace parser
 NeoBundle 'rdnetto/YCM-Generator' "generate config for ycm
-if has('lua')
-    NeoBundleLazy 'jeaye/color_coded', {
-        \ 'build': {
-        \   'unix': 'cmake . && make && make install',
-        \ },
-        \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
-        \ 'build_commands' : ['cmake', 'make']
-    \}
-endif
 NeoBundle 'chrisbra/colorizer'
     \, { 'autoload': { 'commands': ['ColorToggle'] } } "ascii to colors
 "vimproc is for faster work of unite
