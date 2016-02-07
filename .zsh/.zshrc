@@ -23,10 +23,11 @@ local _zsh_files=(
     12-vi_additions             \
     13-bindkeys                 \
     20-autopair                 \
-    21-safepaste                \
+#   21-safepaste                \
     60-functional               \
     81-completion_gen           \
     89-vim-interation.plugin    \
+#   89-nvim-interaction-plugin  \
     92-history-substring-search \
     96-fzf                      \
     98-syntax                   \
