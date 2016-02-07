@@ -8,6 +8,7 @@ let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 
@@ -260,6 +261,12 @@ if neobundle#tap('YouCompleteMe')
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
     nnoremap <silent> <F4> :call youcompleteme#EnableCursorMovedAutocommands()<CR>
+    noremap  <silent> <C-g><C-g> :YcmCompleter GoTo<CR>
+    noremap  <silent> <C-g>c :YcmCompleter GoToDeclaration<CR>
+    noremap  <silent> <C-g>f :YcmCompleter GoToDefinition<CR>
+    noremap  <silent> <C-g>i :YcmCompleter GoToInclude<CR>
+    noremap  <silent> <C-g>i :YcmCompleter GoToInclude<CR>
+    noremap  <silent> <C-g>I :YcmCompleter GoToImprecise<CR>
 
     function! s:SetCompleteFunc()
     if !g:neocomplete#force_overwrite_completefunc
@@ -649,7 +656,6 @@ if neobundle#tap('unite.vim')
         nnoremap [unite]C :execute 'Unite gtags/context'<CR>
         nnoremap [unite]R :execute 'Unite gtags/ref'<CR>
         nnoremap [unite]G :execute 'Unite gtags/grep'<CR>
-        vnoremap <leader>gg <ESC>:execute 'Unite gtags/def:'.GetVisualSelection()<CR>
     endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -960,4 +966,29 @@ if neobundle#tap('rainbow')
     let g:sparkupMapsNormal = 0 "default = 0
     let g:sparkupMaps = 1 "default = 1
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
+endif
+
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - tranngocthachs/gtags-cscope-vim-plugin.git                               │
+" │ https://github.com/tranngocthachs/gtags-cscope-vim-plugin.git                     │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('gtags-cscope-vim-plugin')
+    let g:GtagsCscope_Auto_Load = 1
+    let g:GtagsCscope_Auto_Map = 0
+
+    nmap \s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap \g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap \c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap \t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap \e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap \f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap \i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+
+    nmap \S :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap \G :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap \C :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap \T :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap \E :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap \F :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap \I :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
 endif
