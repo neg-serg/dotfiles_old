@@ -198,7 +198,7 @@
     ftype-pod           fg=23,bold
     ftype-py            fg=30,bold
     ftype-rc            fg=1
-    ftype-rb            fg=32,bold
+    ftype-rb            fg=33,bold
     ftype-ru            fg=1
     ftype-sed           fg=1
     ftype-signature     fg=1
