@@ -342,3 +342,29 @@ fun! MyGetSessionName()
     endif
     return g:MySessionName
 endfun
+
+fun! Ranger()
+  let tmpfile = tempname()
+  if a:0 > 0 && a:1 != ""
+    let dir = a:1
+  elseif expand("%")
+    let dir = "."
+  else
+    let dir = expand("%:p:h")
+  endif
+
+  exe 'silent !ranger --choosefile='.tmpfile dir
+  if filereadable(tmpfile)
+    exe 'edit' readfile(tmpfile)[0]
+    call delete(tmpfile)
+  endif
+  redraw!
+
+  let result = 0
+  if filereadable(tmpfile)
+      silent let result = system('cat '. tmpfile)
+  endif
+  silent call system('rm -rf ' . tmpfile)
+  return result
+endfun
+
