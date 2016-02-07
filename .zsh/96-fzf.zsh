@@ -29,7 +29,7 @@ else
         # CTRL-R - Paste the selected command from history into the command line
         fzf-history-widget() {
             local selected num
-            selected=( $(fc -l 1 | $(__fzfcmd) +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q "${LBUFFER//$/\\$}") )
+            selected=( $(fc -l 1 | $(__fzfcmd) --extended-exact -i +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q "${LBUFFER//$/\\$}") )
             if [ -n "$selected" ]; then
                 num=$selected[1]
                 if [ -n "$num" ]; then
@@ -112,7 +112,7 @@ function pl(){
     local args
     [[ -e "$@" ]] && args="$@"
     [[ -z "${args}" ]] && args="${HOME}/vid/"
-    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16)"
+    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16 --extended-exact)"
     xsel <<< ${find_result}
     if [[ ! -z ${find_result} ]]; then
         exifdata=$(exiftool ${find_result})
@@ -174,5 +174,5 @@ zle -N fkill ; bindkey "^Xq" fkill
 # fh - repeat history
 function fh() {
     zle -I;
-    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s | sed 's/ *[0-9]* *//')
+    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s --extended-exact| sed 's/ *[0-9]* *//')
 }
