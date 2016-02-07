@@ -328,3 +328,4 @@ alias google='web_search google'
 alias starwars='telnet towel.blinkenlights.nl'
 alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias recordmydesktop="recordmydesktop --no-frame"
+alias tig='v -b":GV"'
