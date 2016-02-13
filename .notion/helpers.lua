@@ -216,10 +216,13 @@ function dynamic_view.move_clients (from_frame, to_frame)
         return true
     end)
 end
--- ......................................................................................
-function get_hostname()
-   local out = io.popen("hostname")
-   return out:read()
+
+function move_reg(name, x, y, w, h)
+    if name ~= nil and name ~= "" then
+        notioncore.lookup_region(name):rqgeom({x=x, y=y, w=w, h=h})
+    else
+        notioncore.current():rqgeom({x=x, y=y, w=w, h=h})
+    end
 end
 
 function move_scratch(x, y, w, h)
@@ -249,4 +252,4 @@ function resize_scratch()
    end
 end
 
-notioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)
+-- notioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)
