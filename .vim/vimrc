@@ -88,7 +88,10 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-runtime  00-functions.vim  01-settings.vim
-runtime  02-keymaps.vim    03-plugins-config.vim
-runtime  04-autocmds.vim   11-vimacs.vim
-runtime  21-langmap.vim
+source  ~/.vim/00-functions.vim
+source  ~/.vim/01-settings.vim
+source  ~/.vim/02-keymaps.vim    
+source  ~/.vim/03-plugins-config.vim
+source  ~/.vim/04-autocmds.vim   
+source  ~/.vim/11-vimacs.vim
+source  ~/.vim/21-langmap.vim
