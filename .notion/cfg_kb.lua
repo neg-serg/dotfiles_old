@@ -4,7 +4,7 @@ Neg_kb.WMPlex_toplevel = {
     ---------------------
     -- WMPlex toplevel --
     ---------------------
-    kpress("M1+space", nil),
+    kpress("M1+space", nil), kpress("M4+space", nil),
     kpress("M4+M",     "notioncore.exec_on(notioncore.current(), '~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid())"),
     kpress("M4+Sh+L",  "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
     kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
