@@ -37,8 +37,8 @@ external_editor = "/usr/bin/vim"
 jump_to_now_playing_song_at_start = "yes"
 
 #--[ Bars ]---------------
-# song_status_format = "{%a - }{%t - }{%b}"
-song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
+#song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
+song_status_format = "{$8%a} $5⟫$8⟫$5⟫ {$8%t} $5⟫$8⟫$5⟫ $b{$8%b}$/b $b({$8%y})$/b"
 #progressbar_look = "|> "
 progressbar_look = "─╼ "
 titles_visibility = "no"
