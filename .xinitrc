@@ -34,6 +34,7 @@ setxkbmap -option keypad:pointerkeys -layout 'us,ru' -variant altgr-intl \
 xhost +localhost +local:
 xhost +si:localuser:$(id -un)
 xhost +si:localuser:xdm
+#xinput set-prop "Primax Kensington Eagle Trackball" "Evdev Middle Button Emulation" 0
 
 for wid in $(xwininfo -root -tree | \
     sed '/"plasma-desktop": ("Plasma" "Plasma")/!d; s/^  *\([^ ]*\) .*/\1/g'); do
@@ -45,7 +46,7 @@ xset -b r rate 250 50 m 1 1 b off
 
 hsetroot -fill ${HOME}/pic/wl/Monody.jpg
 
-[[ -f ${HOME}/.Xresources ]] && xrdb -merge ${HOME}/.Xresources
+[[ -f ${HOME}/.Xresources ]] && xrdb -load ${HOME}/.Xresources
 [[ -f ${XDG_CONFIG_HOME}/keymaps/xmodmaprc ]] && xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
 
 nexec dunst && dunst &
