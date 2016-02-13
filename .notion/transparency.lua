@@ -25,7 +25,7 @@ local function maketransparent(reg)
     local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
 
     local opacity_level = 3435973836
-    local cur=notioncore.find_manager(notioncore.current(), "WFrame")
+    -- local cur=notioncore.find_manager(notioncore.current(), "WFrame")
 
     framelist(notioncore.region_i)
     for _,reg in ipairs(transparent_table) do
