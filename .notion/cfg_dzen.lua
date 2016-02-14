@@ -1,7 +1,8 @@
 dopath("dzen_helpers")
 
 function dzen_delete()
-    os.execute("pkill dzen2 && pkill rofi")
+    os.execute("pkill dzen2")
+    os.execute("pkill rofi")
 end
 
 local hook_deinit = notioncore.get_hook("ioncore_deinit_hook")

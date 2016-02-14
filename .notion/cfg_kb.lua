@@ -1,18 +1,15 @@
-Neg_kb = {}
+local Neg_kb = {}
 
 Neg_kb.WMPlex_toplevel = {
-    ---------------------
-    -- WMPlex toplevel --
-    ---------------------
     kpress("M1+space", "query_lua(_)"), kpress("M4+space", function() end),
-    kpress("M4+M",     function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid()) end),
-    kpress("M4+Sh+L",  function() swawn(notioncore.lookup_script('notion-lock')) end),
+    kpress("M4+M",     function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
+    kpress("M4+Sh+L",  function() spawn(notioncore.lookup_script('notion-lock')) end),
     kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     kpress("M4+F11",   function() rofi.mainmenu() end),
     kpress("M4+slash", function() notioncore.goto_previous() end),
     kpress("M1+Tab",   function() notioncore.goto_previous() end),
     kpress("M4+T",     "min_tabs_tag_wrapper(_,_sub)", "_sub:non-nil"),
-    --[[ SCRATCHPADS  ]]--------------------------------
+    --[[ scratchpads  ]]--------------------------------
     kpress("M4+d",     function() console() end),
     kpress("M4+F",     function() ncmpcpp() end),
     kpress("M4+p",     function() namsc('float2') end),
@@ -20,16 +17,22 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+G",  function() rofi.goto_or_create_ws(notioncore.current()) end),
     kpress("M1+G",     function() rofi.goto_win(notioncore.current()) end),
     kpress("M4+F9",    function() notioncore.create_ws(notioncore.current()) end),
-    --[[  PROGS RUN by APP  ]]-----------------------------
+    --[[  progs run by app  ]]-----------------------------
     kpress("M4+1",     function() app.byclass('~/bin/wim', 'wim') end),
     kpress("M4+x",     function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
-    kpress("M4+b",     function() app.byclass_withtag(nil, 'mpv',nil, 'video') end),
-    kpress("M4+w",     function() app.byinstance_withtag('/usr/bin/firefox-beta||/usr/bin/firefox-nigtly||firefox', 'Firefox','Navigator',nil,'www') end),
-    kpress("M4+o",     function() app.byclass_withtag('zathura','Zathura','pdf') end),
-    kpress("M4+Ct+A",  function() app.byclass_withtag(nil, 'Vmware',nil, 'virt') end),
+    kpress("M4+b",     function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
+    kpress("M4+w",     function() app.byinstance_withtag(
+        '/usr/bin/firefox-beta||/usr/bin/firefox-nigtly||firefox',
+        'Firefox',
+        'Navigator',
+        nil,
+        'www') 
+    end),
+    kpress("M4+o",     function() app.byclass_withtag('zathura', 'Zathura', 'pdf') end),
+    kpress("M4+Ct+A",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
     kpress("M4+Ct+C",  function() app.byclass('~/bin/sx ~/dw/*', 'Sxiv') end),
-    --[[  MISC  ]]---------------------------------------
-    kpress("M4+Ct+Q",  "WRegion.rqclose_propagate(_, _sub)"),
+    --[[  misc  ]]---------------------------------------
+    kpress("M4+Ct+Q",  function(_) WRegion.rqclose(_, false) end),
     kpress("M4+Sh+F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
     kpress("M4+Sh+T",  function() namsc('stalonetray') end),
     kpress("M4+Sh+W",  function() weechat() end),
@@ -57,18 +60,13 @@ Neg_kb.WMPlex_toplevel = {
 }
 
 Neg_kb.WScreen = {
-    ---------------------
-        -- WScreen --    
-    ---------------------
     submap("M1+E", {
-            kpress("Ct+A", function() notioncore.goto_activity() end),
-            kpress("Ct+t", function() notioncore.tagged_clear() end),
-            }),
-    kpress("M4+Sh+1", function() notioncore.goto_nth_screen(0) end),
-    kpress("M4+Sh+2", function() notioncore.goto_nth_screen(1) end),
+        kpress("Ct+A", function() notioncore.goto_activity() end),
+        kpress("Ct+t", function() notioncore.tagged_clear() end),
+    }),
     submap("M1+E", {
-        kpress("AnyModifier+L",    "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
-        kpress("AnyModifier+Sh+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
+        kpress("L",    "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
+        kpress("Sh+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
     kpress("M4+grave", "notioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
     ---------------------------------------------------------
@@ -77,56 +75,54 @@ Neg_kb.WScreen = {
     kpress("M4+K", "_chld:focus_direction('up')", "_chld:non-nil"),
     kpress("M4+L", "_chld:focus_direction('right')", "_chld:non-nil"),
     ---------------------------------------------------------
-    -- Screenshots
     kpress("Print", function() make_root_screenshot() end),
     kpress("M1+Print", function() make_current_window_screenshot() end),
 }
 
 Neg_kb.WClientWin = {
-    ---------------------
-      -- WClientWin --   
-    ---------------------
     submap("M1+E", {
-        kpress("C",        "WklientWin.kill(_)"),}),
-        kpress("M1+comma", "WClientWin.quote_next(_)"),
+        kpress("C", function(_) WClientWin.kill(_) end)
+    }),
+    kpress("M1+comma", function(_) WClientWin.quote_next(_) end),
 }
 
 Neg_kb.WGroupCW = {
-    ---------------------
-       -- WGroupCW --   
-    ---------------------
-    kpress_wait("M4+Q", "WGroup.set_fullscreen(_, 'toggle')"),
-    kpress("M4+0",      "rofi.renameworkspace(_)"),
-    kpress("M4+9", function() comp_man_please() end),
+    kpress_wait("M4+Q", function(_) WGroup.set_fullscreen(_, 'toggle') end),
+    kpress("M4+0", function(_) rofi.renameworkspace(_) end),
 }
 
 Neg_kb.WMPlex = {
-    submap(META.."E",{kpress_wait("Q", "WRegion.rqclose_propagate(_, _sub)"),}),
+    submap("M1+E",{
+        kpress_wait("c", function(_) WRegion.rqclose_propagate(_, _sub) end),
+    }),
 }
 
 Neg_kb.WFrame = {
-    kpress("M4+S","mod_sp.set_shown(notioncore.lookup_region(_:name(), 'WFrame'), 'unset' )" ),
-    kpress("M4+6","rofi.renameframe(_)"),
-    kpress("M4+backslash", "WFrame.switch_next(_)"),
-    kpress("M4+3", "WFrame.switch_next(_)"),
+    kpress("M4+S", function(_) mod_sp.set_shown(notioncore.lookup_region(_:name(), 'WFrame'), 'unset' ) end),
+    kpress("M4+6", function(_) rofi.renameframe(_) end),
+    kpress("M4+backslash", function(_) WFrame.switch_next(_) end),
+    kpress("M4+3", function(_) WFrame.switch_next(_) end),
     submap("M1+E", {
-      kpress("H", "WFrame.maximize_horiz(_)"),
-      kpress("V", "WFrame.maximize_vert(_)"),
+        kpress("H", function(_) WFrame.maximize_horiz(_) end),
+        kpress("V", function(_) WFrame.maximize_vert(_) end),
     }),
-    kpress("M4+R",          "WFrame.begin_kbresize(_)"),
-    mclick("Button1@tab",   "WFrame.p_switch_tab(_)"), mclick("Button2@tab", "WFrame.p_switch_tab(_)"),
-    mdrag("Button1@border", "WFrame.p_resize(_)"), mdrag(META.."Button3", "WFrame.p_resize(_)"),
-    mdrag("M1+Button1",     "WFrame.p_move(_)"),
-    mdrag("Button1@tab",    "WFrame.p_tabdrag(_)"), mdrag("Button2@tab", "WFrame.p_tabdrag(_)"),
-    kpress("M1+U",          "WRegion.rqorder(_, 'front')" ),
+    kpress("M4+R",          function(_) WFrame.begin_kbresize(_) end),
+    mclick("Button1@tab",   function(_) WFrame.p_switch_tab(_) end), 
+    mclick("Button2@tab",   function(_) WFrame.p_switch_tab(_) end),
+    mdrag("Button1@border", function(_) WFrame.p_resize(_) end), 
+    mdrag("M4+Button3",     function(_) WFrame.p_resize(_) end),
+    mdrag("M1+Button1",     function(_) WFrame.p_move(_) end),
+    mdrag("Button1@tab",    function(_) WFrame.p_tabdrag(_) end), 
+    mdrag("Button2@tab",    function(_) WFrame.p_tabdrag(_) end),
+    kpress("M1+U",          function(_) WRegion.rqorder(_, 'front') end),
 }
 
 Neg_kb.WFrame_toplevel = {
-    kpress("M4+A", "rofi.attach_win(_)"),
-    kpress("M1+A", "notioncore.tagged_attach(_)"),
+    kpress("M4+A", function(_) rofi.attach_win(_) end),
+    kpress("M1+A", function(_) notioncore.tagged_attach(_) end),
     submap("M1+E", {
-        kpress("H", "WFrame.maximize_horiz(_)"),
-        kpress("V", "WFrame.maximize_vert(_)"),
+        kpress("H", function(_) WFrame.maximize_horiz(_) end),
+        kpress("V", function(_) WFrame.maximize_vert(_) end),
     }),
 }
 
@@ -156,7 +152,6 @@ Neg_kb.WMoveresMode = {
 
     kpress("h",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
     kpress("l",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
-    kpress("Up",     function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
     kpress("k",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
     kpress("j",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
 
@@ -167,7 +162,6 @@ Neg_kb.WMoveresMode = {
 
     kpress("Sh+h",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
     kpress("Sh+l",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
-    kpress("Sh+Up",  function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
     kpress("Sh+k",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
     kpress("Sh+j",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
     
@@ -199,7 +193,7 @@ Neg_kb.Tiling = {
     kpress("M4+Ct+A", function(_) move_current.move(_, "left") end),
     kpress("M4+Ct+D", function(_) move_current.move(_, "right") end),
     kpress("M4+Ct+m", function() rofi.tilingmenu() end),
-    kpress("M4+Ct+d", function() collapse.collapse(_) end),
+    kpress("M4+Ct+d", function(_) collapse.collapse(_) end),
     kpress("M4+i",    function(_) dynamic_view.toggle(_, 'term',  'left') end),
     kpress("M4+Ct+i", "multiple_split(_, _sub, 'top')"), -- vertical layout
     kpress("M4+Ct+o", "multiple_split(_, _sub, 'left')"), -- horizontal layout
