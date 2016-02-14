@@ -20,7 +20,8 @@ function rofi.font(t)
 end
 
 rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 
-rofi.pid = ' -pid /run/user/1000/rofi_notion.pid'
+local id_user = io.popen('id -u'):read("*l")
+rofi.pid = ' -pid /run/user/' .. id_user .. '/rofi_notion.pid'
 
 if width == nil then -- rofi.width = 1850
     local screen_width_fd = io.popen("xrandr -q |awk '/Screen/{print $8}'","r")
