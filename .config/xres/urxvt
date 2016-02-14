@@ -1,8 +1,8 @@
 *.skipBuiltinGlyphs:          true
 *.lineSpace:                  0
-*.font:                       xft:Pragmata Pro for Powerline
-*.boldFont:                   xft:Pragmata Pro for Powerline:style=bold
-*.italicFont:                 xft:Pragmata Pro for Powerline:style=italic
+*.font:                       xft:PragmataPro for Powerline
+*.boldFont:                   xft:PragmataPro for Powerline:style=bold
+*.italicFont:                 xft:PragmataPro for Powerline:style=italic
 *.iso14755:                   false
 *.mouseWheelScrollPage:       false
 *.urgentOnBell:               true
