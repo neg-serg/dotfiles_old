@@ -1,3 +1,7 @@
+function spawn(prog)
+    notioncore.exec_on(notioncore.current(), prog)
+end
+
 function ns_exec(class, prog, ns)
     reg = notioncore.current()
     local win = app.match_class(class)[1]
