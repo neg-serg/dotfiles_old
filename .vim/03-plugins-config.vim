@@ -9,6 +9,7 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:powerline_pycmd          = "py3"
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/neg/.config/dircolors'
 let g:netrw_dirhist_2='/home/neg/.config/colorschemes'
 let g:netrw_dirhist_3='/home/neg/.mplayer'
@@ -7,3 +7,4 @@ let g:netrw_dirhist_4='/home/neg/.config/bspwm'
 let g:netrw_dirhist_5='/one/dev/src/dotfiles/bin/scripts/dmenu'
 let g:netrw_dirhist_6='/one/dev/src/dotfiles/bin/scripts/fun'
 let g:netrw_dirhist_7='/one/dev/src/dotfiles/bin/scripts/homepage.py'
+let g:netrw_dirhist_8='/one/dev/src/1st_level/neg-serg.github.io'
