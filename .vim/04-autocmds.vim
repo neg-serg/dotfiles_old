@@ -139,7 +139,7 @@ autocmd vimrc FileType text,markdown,gitcommit set nocindent
 
 " Turn on spell checking by default for git commit messages
 autocmd vimrc FileType gitcommit setlocal spell! spelllang=en_us
-autocmd vimrc FileType markdown setlocal spell! spelllang=en_us
+autocmd vimrc FileType markdown setlocal spell! spelllang=en_us tw=77 fo+=t
 
 let g:indent_guides_auto_colors = 0
 autocmd vimrc VimEnter,Colorscheme * hi IndentGuidesOdd  ctermbg=239
@@ -208,3 +208,7 @@ if has('autocmd')
         endif
     augroup END
 endif
+
+" enter will work in command edit mode as intended, since by default it's
+" mapped to :nohl
+autocmd vimrc CmdwinEnter * noremap <buffer><CR> <CR>

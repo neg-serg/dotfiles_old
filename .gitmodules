@@ -1,0 +1,3 @@
+[submodule "tmux-resurrect"]
+	path = tmux-resurrect
+	url = /home/neg/.tmux/tmux-resurrect

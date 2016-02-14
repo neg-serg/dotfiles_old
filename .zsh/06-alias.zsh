@@ -328,4 +328,9 @@ alias google='web_search google'
 alias starwars='telnet towel.blinkenlights.nl'
 alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias recordmydesktop="recordmydesktop --no-frame"
-alias tig='v -b":GV"'
+alias gv='v -b":GV"'
+alias xescape='xcape -e "Control_L=Escape" -t 500'
+alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
+alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
+alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
+alias taco='curl -L git.io/taco'

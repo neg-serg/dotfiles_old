@@ -21,7 +21,7 @@ rofi.tokenize:                      true
 rofi.case-sensitive:                false
 
 rofi.separator-style:               dash
-rofi.markup-rows:                   true
+rofi.markup-rows:                   false
 rofi.fullscreen:                    false
 rofi.fake-transparency:             false
 rofi.lazy-filter-limit:             5000

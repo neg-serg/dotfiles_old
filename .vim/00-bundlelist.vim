@@ -1,5 +1,6 @@
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 " python powerline autodetection
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
@@ -108,6 +109,8 @@ if executable(resolve(expand("task")))
 endif
 NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
+NeoBundle 'junegunn/goyo.vim' "distraction free vim writing
+NeoBundle 'justinmk/vim-gtfo' "to term of fm
 "--[ dev ]-------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
@@ -172,6 +175,8 @@ endif
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
 NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
+NeoBundle 'guns/vim-clojure-static' "better clojure support
+NeoBundle 'guns/vim-sexp' "manipulate with s-expressions
 " html5 autocomplete and syntax
 NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjango']} }
 "----------------[  Tags  ]--------------------------------------------------------------
@@ -198,10 +203,13 @@ NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'blindFS/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
+" NeoBundle 'rstacruz/vim-hyperstyle' "easier css
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
 NeoBundle 'trapd00r/irc.vim' "syntax file for irc logs
+NeoBundle 'zah/nim.vim' "syntax file for nim
+NeoBundle 'junegunn/vim-journal' "pretty markdown-like look
 if !has("nvim") && has("ololo")
     NeoBundle 'bbchung/clighter.git' "hi with clang
 elseif has("nvim")

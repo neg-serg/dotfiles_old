@@ -134,3 +134,20 @@ nnoremap ` '
 nnoremap <space>g g<c-]>
 
 nnoremap <leader>R :call Ranger()<CR>
+
+nnoremap <C-w>- :resize -10<CR>
+nnoremap <C-w>+ :resize +10<CR>
+nnoremap <C-w>, :vertical resize -10<CR>
+nnoremap <C-w>. :vertical resize +10<CR>
+
+if has('nvim')
+    nmap <Leader>ds :vsplit<CR>:term<CR>
+    
+    function! QuickTerminal()
+        10new
+        terminal
+        file quickterm
+    endfunction
+
+    nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
+endif

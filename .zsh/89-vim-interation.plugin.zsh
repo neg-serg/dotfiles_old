@@ -105,3 +105,8 @@ function wdiff {
         v -b":diffthis"
     fi
 }
+
+function nv () {
+    mkdir -p /tmp/neovim
+    NVIM_LISTEN_ADDRESS=/tmp/neovim/neovim st nvim 
+}

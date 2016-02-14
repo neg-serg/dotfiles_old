@@ -21,6 +21,9 @@ remove Lock = 66
 keycode 66 = Control_L
 add Control = Control_L
 
+!keycode 49 = asciitilde grave Cyrillic_io Cyrillic_IO
+keycode 105 = ISO_Level3_Shift
+
 ! -- swap contrl-caps. Contrl -> hyper
 !clear      lock 
 !clear   control
