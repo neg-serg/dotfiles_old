@@ -131,55 +131,55 @@ Neg_kb.WFrame_toplevel = {
 }
 
 Neg_kb.floating = {
-    mpress("Button1@tab",    "WRegion.rqorder(_, 'front')"),
-    mpress("Button1@border", "WRegion.rqorder(_, 'front')"),
-    mclick("M1+Button1",     "WRegion.rqorder(_, 'front')"),
-    mclick("M1+Button3",     "WRegion.rqorder(_, 'back')"),
-    kpress("M1+U",           "WRegion.rqorder(_, 'front')" ),
-    mdrag("Button1@tab",     "WFrame.p_move(_)"),
+    mpress("Button1@tab",    function() WRegion.rqorder(_, 'front') end),
+    mpress("Button1@border", function() WRegion.rqorder(_, 'front') end),
+    mclick("M1+Button1",     function() WRegion.rqorder(_, 'front') end),
+    mclick("M1+Button3",     function() WRegion.rqorder(_, 'back') end),
+    kpress("M1+U",           function() WRegion.rqorder(_, 'front') end),
+    mdrag("Button1@tab",     function() WFrame.p_move(_) end),
 
-    kpress("M1+Ct+H", "_:push_direction('left')"),
-    kpress("M1+Ct+J", "_:push_direction('down')"),
-    kpress("M1+Ct+K", "_:push_direction('up')"),
-    kpress("M1+Ct+L", "_:push_direction('right')"),
+    kpress("M1+Ct+H", function(_) _:push_direction('left') end),
+    kpress("M1+Ct+J", function(_) _:push_direction('down') end),
+    kpress("M1+Ct+K", function(_) _:push_direction('up') end),
+    kpress("M1+Ct+L", function(_) _:push_direction('right') end),
 
-    kpress("M1+Ct+F", "_:maximize_fill_toggle('vh')"),
-    kpress("M1+Ct+V", "_:maximize_fill_toggle('vert')"),
+    kpress("M1+Ct+F", function(_) _:maximize_fill_toggle('vh') end),
+    kpress("M1+Ct+V", function(_) _:maximize_fill_toggle('vert') end),
 
-    submap("M1+E", { kpress("B", "mod_tiling.mkbottom(_)"), }),
+    submap("M1+E", { kpress("B", function(_) mod_tiling.mkbottom(_) end), }),
 }
 
 Neg_kb.WMoveresMode = {
-    kpress("Escape", "WMoveresMode.cancel(_)"),
-    kpress("Return", "WMoveresMode.finish(_)"),
-    kpress("Ct+C",   "WMoveresMode.finish(_)"),
+    kpress("Escape", function(_) WMoveresMode.cancel(_) end),
+    kpress("Return", function(_) WMoveresMode.finish(_) end),
+    kpress("Ct+C",   function(_) WMoveresMode.finish(_) end),
 
-    kpress("h",      "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("l",      "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("Up",     "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("k",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("j",      "WMoveresMode.resize(_, 0, 0, 0, 1)"),
+    kpress("h",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
+    kpress("l",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
+    kpress("Up",     function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
+    kpress("k",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
+    kpress("j",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
 
-    kpress("a",      "WMoveresMode.resize(_, 1, 0, 0, 0)"),
-    kpress("d",      "WMoveresMode.resize(_, 0, 1, 0, 0)"),
-    kpress("w",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-    kpress("s",      "WMoveresMode.resize(_, 0, 0, 1, 0)"),
-                    
-    kpress("Sh+h",   "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Sh+l",   "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Sh+Up",  "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Sh+k",   "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Sh+j",   "WMoveresMode.resize(_, 0, 0, 0,-1)"),
+    kpress("a",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
+    kpress("d",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
+    kpress("w",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
+    kpress("s",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
+
+    kpress("Sh+h",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
+    kpress("Sh+l",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
+    kpress("Sh+Up",  function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
+    kpress("Sh+k",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
+    kpress("Sh+j",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
     
-    kpress("Sh+a",   "WMoveresMode.resize(_,-1, 0, 0, 0)"),
-    kpress("Sh+d",   "WMoveresMode.resize(_, 0,-1, 0, 0)"),
-    kpress("Sh+w",   "WMoveresMode.resize(_, 0, 0,-1, 0)"),
-    kpress("Sh+s",   "WMoveresMode.resize(_, 0, 0, 0,-1)"),
-                    
-    kpress("M1+h",   "WMoveresMode.move(_,-1, 0)"),
-    kpress("M1+l",   "WMoveresMode.move(_, 1, 0)"),
-    kpress("M1+k",   "WMoveresMode.move(_, 0,-1)"),
-    kpress("M1+j",   "WMoveresMode.move(_, 0, 1)"),
+    kpress("Sh+a",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
+    kpress("Sh+d",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
+    kpress("Sh+w",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
+    kpress("Sh+s",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
+
+    kpress("M1+h",   function(_) WMoveresMode.move(_,-1, 0) end),
+    kpress("M1+l",   function(_) WMoveresMode.move(_, 1, 0) end),
+    kpress("M1+k",   function(_) WMoveresMode.move(_, 0,-1) end),
+    kpress("M1+j",   function(_) WMoveresMode.move(_, 0, 1) end),
 }
 
 Neg_kb.Tiling = {
@@ -194,13 +194,13 @@ Neg_kb.Tiling = {
     kpress("M4+2",    function() tiling_transpose() end),
     kpress("M4+Sh+3", function() tiling_flip() end),
     kpress("M4+Ct+X", function() tiling_unsplit() end),
-    kpress("M4+Ct+W", function(ws) move_current.move(ws, "up") end),
-    kpress("M4+Ct+S", function(ws) move_current.move(ws, "down") end),
-    kpress("M4+Ct+A", function(ws) move_current.move(ws, "left") end),
-    kpress("M4+Ct+D", function(ws) move_current.move(ws, "right") end),
+    kpress("M4+Ct+W", function(_) move_current.move(_, "up") end),
+    kpress("M4+Ct+S", function(_) move_current.move(_, "down") end),
+    kpress("M4+Ct+A", function(_) move_current.move(_, "left") end),
+    kpress("M4+Ct+D", function(_) move_current.move(_, "right") end),
     kpress("M4+Ct+m", function() rofi.tilingmenu() end),
     kpress("M4+Ct+d", function() collapse.collapse(_) end),
-    kpress("M4+i",    "dynamic_view.toggle(_, 'term',  'left')"),
+    kpress("M4+i",    function(_) dynamic_view.toggle(_, 'term',  'left') end),
     kpress("M4+Ct+i", "multiple_split(_, _sub, 'top')"), -- vertical layout
     kpress("M4+Ct+o", "multiple_split(_, _sub, 'left')"), -- horizontal layout
 }
