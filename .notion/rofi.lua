@@ -135,21 +135,22 @@ local function complete_mainmenu()
 end
 
 local function complete_tilingmenu()
-    local t = { "transpose",
-                "untile",
-                "destroy_frame",
-                "split",
-                "vsplit",
-                "flip",
-                "float/at_left",
-                "float/at_right",
-                "float/above",
-                "float/below",
-                "root/vsplit",
-                "root/split",
-                "root/flip",
-                "root/transpose"
-              }
+    local t = {
+        "transpose",
+        "untile",
+        "destroy_frame",
+        "split",
+        "vsplit",
+        "flip",
+        "float/at_left",
+        "float/at_right",
+        "float/above",
+        "float/below",
+        "root/vsplit",
+        "root/split",
+        "root/flip",
+        "root/transpose"
+    }
     return t
 end
 
