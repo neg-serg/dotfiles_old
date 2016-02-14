@@ -1,16 +1,15 @@
 *.skipBuiltinGlyphs:          true
 *.lineSpace:                  0
-URxvt.font:                   xft:Pragmata Pro for Powerline
-URxvt.boldFont:               xft:Pragmata Pro for Powerline:style=bold
-URxvt.italicFont:             xft:Pragmata Pro for Powerline:style=italic
-URxvt.iso14755:               false
-URxvt.mouseWheelScrollPage:   false
-URxvt.urgentOnBell:           true
+*.font:                       xft:Pragmata Pro for Powerline
+*.boldFont:                   xft:Pragmata Pro for Powerline:style=bold
+*.italicFont:                 xft:Pragmata Pro for Powerline:style=italic
+*.iso14755:                   false
+*.mouseWheelScrollPage:       false
+*.urgentOnBell:               true
 
 *.highlightColor:             #040404
 *.highlightTextColor:         #5DA8C7
 
-mutt.colorUL:                 #0172ae
 *shading:                     15
 *.saveLines:                  0
 *.scrollBar:                  false
@@ -20,69 +19,32 @@ mutt.colorUL:                 #0172ae
 *.keysym.M-Escape:            perl:keyboard-select:activate
 *.keysym.M-u:                 perl:url-select:select_next
 *.keysym.M-C-v:               perl:clipboard:paste_escaped
-*.keysym.C-M-Up:              perl:font-size:increase
-*.keysym.C-M-Down:            perl:font-size:decrease
-*.keysym.C-F1:                \033[1;5P
-*.keysym.C-F2:                \033[1;5Q
-*.keysym.C-F3:                \033[1;5R
-*.keysym.C-F4:                \033[1;5S
-*.keysym.C-F5:                \033[15;5~
-*.keysym.C-F6:                \033[17;5~
-*.keysym.C-F7:                \033[18;5~
-*.keysym.C-F8:                \033[19;5~
-*.keysym.C-F9:                \033[20;5~
-*.keysym.C-F10:               \033[21;5~
-*.keysym.C-F11:               \033[23;5~
-*.keysym.C-F12:               \033[24;5~
-*.keysym.S-C-F1:              \033[1;6P
-*.keysym.S-C-F2:              \033[1;6Q
-*.keysym.S-C-F3:              \033[1;6R
-*.keysym.S-C-F4:              \033[1;6S
-*.keysym.S-C-F5:              \033[15;6~
-*.keysym.S-C-F6:              \033[17;6~
-*.keysym.S-C-F7:              \033[18;6~
-*.keysym.S-C-F8:              \033[19;6~
-*.keysym.S-C-F9:              \033[20;6~
-*.keysym.S-C-F10:             \033[21;6~
-*.keysym.S-C-F11:             \033[23;6~
-*.keysym.S-C-F12:             \033[24;6~
+*.perl-ext:                   default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
 
-spec*font:                    xft:Tewi:regular:size=9
-spec*imFont:                  xft:Tewi:regular:size=9
-spec*boldFont:                xft:Tewi:regular:size=9
-spec*italicFont:              xft:Tewi:regular:size=9
-spec*boldItalicFont:          xft:Tewi:regular:size=9
+*.keysym.C-1:                 perl:url-select:select_next
+*.url-select.launcher:        /usr/bin/firefox -new-tab
+*.url-select.underline:       true
+*.underlineURLs:              true
 
+mutt.colorUL:                   #0172ae
+MainTerminal.colorUL:           #86a2be
 MainTerminal.internalBorder:    10
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
 MainTerminal.scrollTtyOutput:   false
-MainTerminal.termName:          screen-256color
-*.perl-ext:                     default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
-MainTerminal.perl-ext:          default,matcher<C-1>,selection-autotransform,option-popup,selection-popup,-searchable-scrollback
+MainTerminal.termName:          tmux-256color
+MainTerminal.perl-ext:          default,matcher<C-1>,selection-autotransform
 MainTerminal.perl-ext-common:   keyboard-select,url-select,clipboard,font-size
 MainTerminal.selection-autotransform.0: s/^([^:[:space:]]+(\\d+):?$/:e \\Q$1\\E\\x0d:$2\\x0d/
 MainTerminal.selection-autotransform.1: if(/\\n\\[?\\d\\d(\\d\\d-|:)\\d\\d/) { s{^\\[?[\\d:_-]+\\]? +}{}; s/\\s*\\n\\[?[\\d:_-]{5,}\\]? +/ || /g; s/^\\s+/ /mg; s/( ?) \*\\n( ?)/($1||$2)/eg; s{ $}{}; };
 MainTerminal.selection-autotransform.2: if(/^irb.*?> /) { s{^irb.*?[>*]\\s*}{}mg; s/\\n=>/ #=>/mg; s{\\n$}{};}
 MainTerminal.selection-autotransform.3: if(m{^[ab]/}) { s{^[ab]/}{}g; }
 MainTerminal.selection-autotransform.4: s/^([^:\\s]*):(\\d+)(:|:in)?$/+$2 $1/g;
-MainTerminal.colorUL:           #86a2be
-
-!MainTerminal.letterSpace:  -1
-
-!MainTerminal.font:                -elite-laptop-bold-r-normal--28-280-72-72-c-140-koi8-r 
-!MainTerminal.font:                 xft:PragmataPro for Powerline:size=17
-
+MainTerminal.font:                 xft:PragmataPro for Powerline:size=17
 MainTerminal.keysym.C-1:           perl:url-select:select_next
-*.keysym.C-1:                      perl:url-select:select_next
 MainTerminal.url-select.launcher:  /usr/bin/firefox -new-tab
-*.url-select.launcher:             /usr/bin/firefox -new-tab
 MainTerminal.url-select.underline: true
-*.url-select.underline:            true
 MainTerminal.underlineURLs:        true
-*.underlineURLs:                   true
 MainTerminal.selection.pattern-0: ( at .*? line \\d+[,.])
-
 MainTerminal.keysym.M-Escape: perl:keyboard-select:activate
-!MainTerminal.keysym:M-s:      perl:keyboard-select:search
 MainTerminal.keysym.M-C-v:    perl:clipboard:paste_escaped
