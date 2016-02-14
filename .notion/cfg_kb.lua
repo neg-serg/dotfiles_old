@@ -4,9 +4,9 @@ Neg_kb.WMPlex_toplevel = {
     ---------------------
     -- WMPlex toplevel --
     ---------------------
-    kpress("M1+space", function() end), kpress("M4+space", function() end),
+    kpress("M1+space", "query_lua(_)"), kpress("M4+space", function() end),
     kpress("M4+M",     function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. _chld:xid()) end),
-    kpress("M4+Sh+L",  "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
+    kpress("M4+Sh+L",  function() swawn(notioncore.lookup_script('notion-lock')) end),
     kpress("M4+Sh+D",  "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
     kpress("M4+F11",   function() rofi.mainmenu() end),
     kpress("M4+slash", function() notioncore.goto_previous() end),
@@ -78,8 +78,8 @@ Neg_kb.WScreen = {
     kpress("M4+L", "_chld:focus_direction('right')", "_chld:non-nil"),
     ---------------------------------------------------------
     -- Screenshots
-    kpress("Print", "make_root_screenshot()"),
-    kpress("M1+Print", "make_current_window_screenshot()"),
+    kpress("Print", function() make_root_screenshot() end),
+    kpress("M1+Print", function() make_current_window_screenshot() end),
 }
 
 Neg_kb.WClientWin = {
@@ -183,35 +183,35 @@ Neg_kb.WMoveresMode = {
 }
 
 Neg_kb.Tiling = {
-    kpress("M4+k",    "goto_dir('up')"),
-    kpress("M4+j",    "goto_dir('down')"),
-    kpress("M4+h",    "goto_dir('left')"),
-    kpress("M4+l",    "goto_dir('right')"),
-    kpress("M4+Ct+H", "tiling_split('right')"),
-    kpress("M4+Ct+L", "tiling_split('left')"),
-    kpress("M4+Ct+K", "tiling_split('bottom')"),
-    kpress("M4+Ct+J", "tiling_split('top')"),
-    kpress("M4+2",    "tiling_transpose()"),
-    kpress("M4+Sh+3", "tiling_flip()"),
-    kpress("M4+Ct+X", "tiling_unsplit()"),
+    kpress("M4+k",    function() goto_dir('up') end),
+    kpress("M4+j",    function() goto_dir('down') end),
+    kpress("M4+h",    function() goto_dir('left') end),
+    kpress("M4+l",    function() goto_dir('right') end),
+    kpress("M4+Ct+H", function() tiling_split('right') end),
+    kpress("M4+Ct+L", function() tiling_split('left') end),
+    kpress("M4+Ct+K", function() tiling_split('bottom') end),
+    kpress("M4+Ct+J", function() tiling_split('top') end),
+    kpress("M4+2",    function() tiling_transpose() end),
+    kpress("M4+Sh+3", function() tiling_flip() end),
+    kpress("M4+Ct+X", function() tiling_unsplit() end),
     kpress("M4+Ct+W", function(ws) move_current.move(ws, "up") end),
     kpress("M4+Ct+S", function(ws) move_current.move(ws, "down") end),
     kpress("M4+Ct+A", function(ws) move_current.move(ws, "left") end),
     kpress("M4+Ct+D", function(ws) move_current.move(ws, "right") end),
-    kpress("M4+Ct+m", "rofi.tilingmenu()"),
+    kpress("M4+Ct+m", function() rofi.tilingmenu() end),
+    kpress("M4+Ct+d", function() collapse.collapse(_) end),
     kpress("M4+i",    "dynamic_view.toggle(_, 'term',  'left')"),
-    kpress("M4+Ct+d", "collapse.collapse(_)"),
     kpress("M4+Ct+i", "multiple_split(_, _sub, 'top')"), -- vertical layout
     kpress("M4+Ct+o", "multiple_split(_, _sub, 'left')"), -- horizontal layout
 }
 
-defbindings("WMPlex.toplevel", Neg_kb.WMPlex_toplevel)
-defbindings("WScreen", Neg_kb.WScreen)
-defbindings("WClientWin", Neg_kb.WClientWin)
-defbindings("WGroupCW", Neg_kb.WGroupCW)
-defbindings("WMPlex", Neg_kb.WMPlex)
-defbindings("WFrame", Neg_kb.WFrame)
-defbindings("WFrame.toplevel", Neg_kb.WFrame_toplevel)
-defbindings("WFrame.floating", Neg_kb.floating)
-defbindings("WMoveresMode", Neg_kb.WMoveresMode)
-defbindings("WTiling", Neg_kb.Tiling)
+defbindings("WMPlex.toplevel",   Neg_kb.WMPlex_toplevel)
+defbindings("WScreen",           Neg_kb.WScreen)
+defbindings("WClientWin",        Neg_kb.WClientWin)
+defbindings("WGroupCW",          Neg_kb.WGroupCW)
+defbindings("WMPlex",            Neg_kb.WMPlex)
+defbindings("WFrame",            Neg_kb.WFrame)
+defbindings("WFrame.toplevel",   Neg_kb.WFrame_toplevel)
+defbindings("WFrame.floating",   Neg_kb.floating)
+defbindings("WMoveresMode",      Neg_kb.WMoveresMode)
+defbindings("WTiling",           Neg_kb.Tiling)
