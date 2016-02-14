@@ -10,7 +10,7 @@ function main(){
         _NET_WM_STATE 
         _NET_WM_PID
     )
-    local xprop=$(xprop ${xprops} -id $1)
+    local xprop=$(xprop ${xprops} -id $1|grep -v 'not found')
     echo "${xprop}" > "${xprop_pipe}" 
     < "${xprop_pipe}" rofi -dmenu -location 6 -yoffset -24|xsel -i
     rm ${xprop_pipe}
