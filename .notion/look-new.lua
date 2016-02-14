@@ -39,7 +39,9 @@ neg.dzen.fancy_table = {
     play="",    pic="",
     game="",    monitor="",
     news="",    dev2="",
-    dev3="",    term2=""
+    dev3="",    term2="",
+    firefox="", viber="",
+    vid="",     steam=""
 }
 
 neg.dzen.powersym = {
