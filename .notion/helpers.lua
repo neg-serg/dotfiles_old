@@ -26,7 +26,7 @@ end
 function console()
     ns_exec(
         'console',
-        'st -c console',
+        'st -f "PragmataPro for Powerline:12" -c console',
         'console'
     )
 end
@@ -34,7 +34,7 @@ end
 function ranger()
     ns_exec(
         'ranger',
-        'xterm -class ranger -fa PragmataPro:size=16 -e tmux new ranger',
+        'xterm -class ranger -fa PragmataPro for Powerline:size=16 -e tmux new ranger',
         'ranger'
     )
 end
@@ -255,5 +255,4 @@ function resize_scratch()
       move_scratch(2200, 260, 1361, 744)
    end
 end
-
 -- notioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)
