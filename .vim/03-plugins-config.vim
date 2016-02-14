@@ -733,7 +733,7 @@ endif
 if neobundle#tap('lightline.vim')
     " lightline setting {{{
     let g:lightline = {
-                \ 'colorscheme': 'wombat',
+                \ 'colorscheme': 'gotham',
                 \ 'mode_map': {
                 \ 'n' : 'N',
                 \ 'i' : 'I',
