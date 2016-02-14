@@ -1,6 +1,7 @@
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+NeoBundle 'itchyny/landscape.vim' "more colors
 " python powerline autodetection
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
@@ -220,5 +221,8 @@ if has("gui_running")
     NeoBundle 'tyru/restart.vim.git' "add restart support
     NeoBundle 'vim-scripts/utl.vim.git' "Open urls in files
     NeoBundle 'bling/vim-airline.git' "statusline for gvim only
+endif
+if has("nvim")
+    NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
 endif
 NeoBundle 'ryanoasis/vim-devicons.git' "fancy icons for fonts
