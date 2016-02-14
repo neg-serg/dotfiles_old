@@ -1,6 +1,3 @@
-function named_scratchpad_exec_with_class(reg, name, exec, clname)
-end
-
 function named_scratchpad(reg, name, mode)
     local named_sp
     local default_w, default_h = 720, 480
@@ -45,5 +42,3 @@ function named_sp_raiseorhide(reg, name)
         sp:rqorder("front")
     end
 end
-
--- vim: set expandtab sw=4:
