@@ -32,7 +32,6 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M4+Ct+A",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
     kpress("M4+Ct+C",  function() app.byclass('~/bin/sx ~/dw/*', 'Sxiv') end),
     --[[  misc  ]]---------------------------------------
-    kpress("M4+Ct+Q",  function(_) WRegion.rqclose(_, false) end),
     kpress("M4+Sh+F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
     kpress("M4+Sh+T",  function() namsc('stalonetray') end),
     kpress("M4+Sh+W",  function() weechat() end),
@@ -63,8 +62,7 @@ Neg_kb.WScreen = {
     submap("M1+E", {
         kpress("Ct+A", function() notioncore.goto_activity() end),
         kpress("Ct+t", function() notioncore.tagged_clear() end),
-    }),
-    submap("M1+E", {
+        kpress("c", function(_) WRegion.rqclose(_, false) end),
         kpress("L",    "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress("Sh+L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
@@ -80,21 +78,13 @@ Neg_kb.WScreen = {
 }
 
 Neg_kb.WClientWin = {
-    submap("M1+E", {
-        kpress("C", function(_) WClientWin.kill(_) end)
-    }),
+    kpress("M4+Ct+Q", function(_) WClientWin.kill(_) end),
     kpress("M1+comma", function(_) WClientWin.quote_next(_) end),
 }
 
 Neg_kb.WGroupCW = {
     kpress_wait("M4+Q", function(_) WGroup.set_fullscreen(_, 'toggle') end),
-    kpress("M4+0", function(_) rofi.renameworkspace(_) end),
-}
-
-Neg_kb.WMPlex = {
-    submap("M1+E",{
-        kpress_wait("c", function(_) WRegion.rqclose_propagate(_, _sub) end),
-    }),
+    kpress("M4+0", function() rofi.renameworkspace() end),
 }
 
 Neg_kb.WFrame = {
@@ -115,6 +105,10 @@ Neg_kb.WFrame = {
     mdrag("Button1@tab",    function(_) WFrame.p_tabdrag(_) end), 
     mdrag("Button2@tab",    function(_) WFrame.p_tabdrag(_) end),
     kpress("M1+U",          function(_) WRegion.rqorder(_, 'front') end),
+}
+
+Neg_kb.WMPlex = {
+    submap(META.."E",{kpress_wait("Sh+Q", "WRegion.rqclose_propagate(_, _sub)"),}),
 }
 
 Neg_kb.WFrame_toplevel = {
