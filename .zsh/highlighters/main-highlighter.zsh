@@ -15,22 +15,22 @@ ZSH_HIGHLIGHT_STYLES+=(
     path                            fg=white
     path_approx                     fg=white
 
-    hashed-command                 fg=green
-    globbing                       fg=110
-    history-expansion              fg=blue
-    single-hyphen-option           fg=244
-    double-hyphen-option           fg=244
-    comment                        fg=221
-    # redirection                  none
-    # commandseparator             none
+    hashed-command                  fg=green
+    globbing                        fg=110
+    history-expansion               fg=blue
+    single-hyphen-option            fg=244
+    double-hyphen-option            fg=244
+    comment                         fg=221
+    # redirection                   none
+    # commandseparator              none
 
-    back-quoted-argument           fg=024,bold
-    single-quoted-argument         fg=024
-    double-quoted-argument         fg=024
-    dollar-double-quoted-argument  fg=004,bold
-    back-double-quoted-argument    fg=024,bold
-    back-dollar-quoted-argument    fg=024,bold
-    assign                         fg=222,bold
+    back-quoted-argument            fg=024,bold
+    single-quoted-argument          fg=024
+    double-quoted-argument          fg=024
+    dollar-double-quoted-argument   fg=004,bold
+    back-double-quoted-argument     fg=024,bold
+    back-dollar-quoted-argument     fg=024,bold
+    assign                          fg=222,bold
 )
 ZSH_HIGHLIGHT_STYLES+=($(< ~/.zsh/highlighters/ft_list.zsh))
 
@@ -848,31 +848,31 @@ _zsh_highlight_main_highlighter_check_assign() {
 
 # Check if $arg is a path.
 _zsh_highlight_main_highlighter_check_path() {
-  _zsh_highlight_main_highlighter_expand_path $arg;
-  local expanded_path="$REPLY"
+    _zsh_highlight_main_highlighter_expand_path $arg;
+    local expanded_path="$REPLY"
 
-  [[ -z $expanded_path ]] && return 1
-  [[ -e $expanded_path ]] && return 0
+    [[ -z $expanded_path ]] && return 1
+    [[ -d $expanded_path ]] && return 0
 
-  # Search the path in CDPATH
-  local cdpath_dir
-  for cdpath_dir in $cdpath ; do
-    [[ -e "$cdpath_dir/$expanded_path" ]] && return 0
-  done
+    # Search the path in CDPATH
+    local cdpath_dir
+    for cdpath_dir in $cdpath ; do
+        [[ -d "$cdpath_dir/$expanded_path" ]] && return 0
+    done
 
-  # If dirname($arg) doesn't exist, neither does $arg.
-  [[ ! -e ${expanded_path:h} ]] && return 1
+    # If dirname($arg) doesn't exist, neither does $arg.
+    [[ ! -d ${expanded_path:h} ]] && return 1
 
-  # If this word ends the buffer, check if it's the prefix of a valid path.
-  if [[ ${BUFFER[1]} != "-" && ${#BUFFER} == $end_pos ]] &&
-     [[ $WIDGET != accept-* ]]; then
-    local -a tmp
-    tmp=( ${expanded_path}*(N) )
-    (( $#tmp > 0 )) && style_override=path_prefix && return 0
-  fi
+    # If this word ends the buffer, check if it's the prefix of a valid path.
+    if [[ ${BUFFER[1]} != "-" && ${#BUFFER} == $end_pos ]] &&
+            [[ $WIDGET != accept-* ]]; then
+        local -a tmp
+        tmp=( ${expanded_path}*(N) )
+        (( $#tmp > 0 )) && style_override=path_prefix && return 0
+    fi
 
-  # It's not a path.
-  return 1
+    # It's not a path.
+    return 1
 }
 
 # Highlight special chars inside double-quoted strings
