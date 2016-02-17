@@ -1,8 +1,10 @@
+URxvt.font:                       xft:PragmataPro for Powerline              
+URxvt.boldFont:                   xft:PragmataPro for Powerline:style=bold   
+URxvt.italicFont:                 xft:PragmataPro for Powerline:style=italic 
+
 *.skipBuiltinGlyphs:          true
 *.lineSpace:                  0
-*.font:                       xft:PragmataPro for Powerline
-*.boldFont:                   xft:PragmataPro for Powerline:style=bold
-*.italicFont:                 xft:PragmataPro for Powerline:style=italic
+
 *.iso14755:                   false
 *.mouseWheelScrollPage:       false
 *.urgentOnBell:               true
