@@ -1,36 +1,36 @@
 #!/bin/zsh
 
 ZSH_HIGHLIGHT_STYLES+=(
-    default                        'none'
-    #unknown-token                 'fg=88,bg=234'
+    default                         none
+    unknown-token                   none
     suffix-alias                    fg=green,underline
-    reserved-word                  'fg=004'
-    alias                          'fg=green'
-    builtin                        'fg=green'
-    function                       'fg=green,underline'
-    command                        'fg=green'
+    reserved-word                   fg=004
+    alias                           fg=green
+    builtin                         fg=green
+    function                        fg=green,underline
+    command                         fg=green
 
-    precommand                     'fg=green,underline'
-    path                           'fg=underline'
-    path_prefix                    'fg=underline'
-    #path_approx                   'fg=yellow,underline'
+    precommand                      fg=green,underline 
+    path_prefix                     none
+    path                            fg=white
+    path_approx                     fg=white
 
-    hashed-command                 'fg=green'
-    globbing                       'fg=110'
-    history-expansion              'fg=blue'
-    single-hyphen-option           'fg=244'
-    double-hyphen-option           'fg=244'
-    comment                        'fg=221'
-    # redirection                  'none'
-    # commandseparator             'none'
+    hashed-command                 fg=green
+    globbing                       fg=110
+    history-expansion              fg=blue
+    single-hyphen-option           fg=244
+    double-hyphen-option           fg=244
+    comment                        fg=221
+    # redirection                  none
+    # commandseparator             none
 
-    back-quoted-argument           'fg=024,bold'
-    single-quoted-argument         'fg=024'
-    double-quoted-argument         'fg=024'
-    dollar-double-quoted-argument  'fg=004,bold'
-    back-double-quoted-argument    'fg=024,bold'
-    back-dollar-quoted-argument    'fg=024,bold'
-    assign                         'fg=222,bold'
+    back-quoted-argument           fg=024,bold
+    single-quoted-argument         fg=024
+    double-quoted-argument         fg=024
+    dollar-double-quoted-argument  fg=004,bold
+    back-double-quoted-argument    fg=024,bold
+    back-dollar-quoted-argument    fg=024,bold
+    assign                         fg=222,bold
 )
 ZSH_HIGHLIGHT_STYLES+=($(< ~/.zsh/highlighters/ft_list.zsh))
 
