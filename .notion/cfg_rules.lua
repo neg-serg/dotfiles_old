@@ -136,8 +136,8 @@ defwinprop{class="Xfce*",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
 defwinprop{class="Crossover",target="wine",jumpto=true,tag="virt"}
-defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
-defwinprop{class="*exe",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="Wine",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{class="*.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
