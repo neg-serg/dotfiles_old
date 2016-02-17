@@ -231,28 +231,22 @@ _zsh_highlight_load_highlighters()
   done
 }
 
-
-# -------------------------------------------------------------------------------------------------
-# Setup
-# -------------------------------------------------------------------------------------------------
-
 # Try binding widgets.
 _zsh_highlight_bind_widgets || {
-  echo 'zsh-syntax-highlighting: failed binding ZLE widgets, exiting.' >&2
-  return 1
+    echo 'zsh-syntax-highlighting: failed binding ZLE widgets, exiting.' >&2
+    return 1
 }
 
 # Resolve highlighters directory location.
 _zsh_highlight_load_highlighters "${ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR:-${${0:A}:h}/highlighters}" || {
-  echo 'zsh-syntax-highlighting: failed loading highlighters, exiting.' >&2
-  return 1
+    echo 'zsh-syntax-highlighting: failed loading highlighters, exiting.' >&2
+    return 1
 }
 
 # Reset scratch variables when commandline is done.
-_zsh_highlight_preexec_hook()
-{
-  typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER=
-  typeset -gi _ZSH_HIGHLIGHT_PRIOR_CURSOR=
+_zsh_highlight_preexec_hook() {
+    typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER=
+    typeset -gi _ZSH_HIGHLIGHT_PRIOR_CURSOR=
 }
 autoload -U add-zsh-hook
 add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
@@ -262,10 +256,7 @@ add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
 # Initialize the array of active highlighters if needed.
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern) || true
 
-# ZSH_HIGHLIGHT_PATTERNS+=("[0-9]#[<>]&[-!|0-9]#" "fg=blue")
-ZSH_HIGHLIGHT_PATTERNS+=("[&;]"                 "fg=blue")
-ZSH_HIGHLIGHT_PATTERNS+=("[<>]([<>]|)([|!]|)"   "fg=blue")
-ZSH_HIGHLIGHT_PATTERNS+=("&[|!]"                "fg=blue")
-ZSH_HIGHLIGHT_PATTERNS+=('\|'                   "fg=blue")
+ZSH_HIGHLIGHT_PATTERNS+=("[<>]([<>]|)([|!]|)"    fg=blue)
+ZSH_HIGHLIGHT_PATTERNS+=('[\|\\|!&;\./]'         fg=blue)
+ZSH_HIGHLIGHT_PATTERNS+=('~'                     fg=225)
 ZSH_HIGHLIGHT_MAXLENGTH=350
-# ZSH_HIGHLIGHT_PATTERNS+=('/'                     fg=239)
