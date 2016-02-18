@@ -48,6 +48,20 @@
     background = "#900000"
     foreground = "#ffffff"
     timeout    = 0
+    
+[irc_hilight]
+    appname = weechat
+    urgency = low
+    format = "<span weight='normal' letter_spacing='3000' color='#4E9FB1'>%s</span>\n%b"
+
+[notify-send]
+    appname = notify-send
+    format = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
+
+[skype]
+    appname = skype
+    format = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
+    urgency = high
 
 icon_position = left
 icon_folders  = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
