@@ -251,6 +251,7 @@ RESET 0 # reset to "normal" color
 .py            01;38;5;30
 .rc            00;31
 .rb            01;38;5;33
+.erb           01;38;5;33
 .ru            00;31
 .sed           00;31
 .signature     00;31
