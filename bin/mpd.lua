@@ -127,9 +127,9 @@ local function get_mpd_status()
         print(mpd_st)
         return mpd_st
     elseif info.state == "pause" then
-        return "Paused"
+        print(wrp("||","[","]")) return wrp("||")
     else
-        return " "
+        print " " return " "
     end
 end
 
