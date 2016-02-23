@@ -1,9 +1,12 @@
 #!/usr/sbin/rlwrap zsh
 
-printf "[lua >>] "
+autoload colors && colors
+. ~/.zsh/03-helpers.zsh
+
+builtin printf "$(_zwrap "NotionFlux >>") "
 while read x; do
     # if [[ $x =~ '/^\s*([a-zA-Z_0-9]+)\s*=(.*)/' ]]; then
     notionflux -e "${x}"
     # fi
-    printf "[lua >>] "
+    builtin printf "$(_zwrap "NotionFlux >>") "
 done < "${1:-/dev/stdin}"
