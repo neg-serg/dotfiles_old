@@ -57,9 +57,6 @@ function start_execute(key)
                 t_length = string.len(data)
             end
 
-            -- mod_statusbar.inform( t_key, data )
-            -- mod_statusbar.inform(t_key .. "_template", string.rep( ' ', t_length))
-
             if mpd_pipe == nil then
                 mpd_pipe = io.popen("dzen2 -dock -bg ".. 
                                     neg.dzen.bg_ ..
