@@ -6,8 +6,8 @@ require("os")
 local mpd_defaults={
     update_interval=500, -- 500 or less makes seconds increment relatively smoothly while playing
     address="localhost", -- mpd server info (localhost:6600 are mpd defaults)
-    port=6600,
-    password=nil, -- mpd password (if any)
+    port=6600,           -- mpd server default port
+    password=nil,        -- mpd password (if any)
 }
 
 local mpd_len = 80
@@ -25,6 +25,18 @@ local function saferead(file)
     return data, err, errno
 end
 
+local function font_fallback(str)
+    local size = ":size=12"
+    if string.match(str, ".*[а-я][А-Я]*") == nil then
+        mpd_len = 80
+        return str
+    else
+        mpd_len = 110
+        return "^fn(Iosevka" .. size .. ":bold)" .. str .. "^fn()"
+    end
+end
+
+
 local function get_mpd_status()
     local cmd_string = "status\ncurrentsong\nclose\n"
     if mpd_defaults.password ~= nil then
@@ -40,7 +52,7 @@ local function get_mpd_status()
     -- welcome msg
     local data = saferead(mpd)
     if data == nil or string.sub(data,1,6) ~= "OK MPD" then
-    mpd:close()
+        mpd:close()
         return "[ no mpd ]"
     end
 
@@ -92,7 +104,7 @@ local function get_mpd_status()
         end
     until string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
     if data == nil or string.sub(data,1,2) ~= "OK" then
-    mpd:close()
+        mpd:close()
         return "error querying current song"
     end
 
@@ -104,8 +116,7 @@ local function get_mpd_status()
     if info.state == "play" then
         info_artist = info["artist"] or ""
         info_title = info["title"] or ""
-        mpd_st = info_artist .. " - " .. info_title
-    
+        mpd_st = font_fallback(info_artist .. " - " .. info_title)
         if mpd_st:len() > mpd_len then
             mpd_st = string.sub(mpd_st,1,mpd_len - 4)
             mpd_st = mpd_st .. "..."
@@ -114,7 +125,6 @@ local function get_mpd_status()
         mpd_st = wrp(">>", "[","]") .. wrp(mpd_st.." "..mpd_position)
         mpd_st = mpd_st .. wrp("Vol: " .. info.volume.."%")
         print(mpd_st)
-        -- io.stderr:write(mpd_st)
         return mpd_st
     elseif info.state == "pause" then
         return "Paused"
