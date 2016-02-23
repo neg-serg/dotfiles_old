@@ -3,7 +3,7 @@ defwinprop{lazy_resize=true,new_group=true}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true}
-defwinprop{instance="mutt",transient_mode="off",target="float2"}
+defwinprop{class="mutt",transient_mode="off",target="mutt"}
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,target="notes"}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
