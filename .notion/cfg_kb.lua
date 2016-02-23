@@ -40,7 +40,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Ct+w", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
         kpress("d",    function() spawn('~/bin/scripts/dzen-dict') end),
         kpress("i",    function() spawn('~/bin/pls -output') end),
-        kpress("m",    function() app.byclass('~/bin/scripts/run_mutt', 'mutt') end),
+        kpress("m",    function() mutt() end),
         kpress("n",    function() app.byinstance('nicotine.py || nicotine', 'Nicotine.py', 'nicotine.py') end),
         kpress("o",    function() spawn('~/bin/pls -sink') end),
         kpress("p",    function() spawn('st pulsemixer') end),
