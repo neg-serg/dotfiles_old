@@ -127,7 +127,6 @@ bindkey -M menuselect '\e^M'  accept-and-menu-complete
 bindkey . rationalise-dot
 # without this, typing a . aborts incremental history search
 bindkey -M isearch . self-insert
-bindkey "^I" expand-or-complete-and-highlight
 
 # load the lookup subsystem if it's available on the system
 zrcautoload lookupinit && lookupinit
