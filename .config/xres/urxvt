@@ -1,6 +1,6 @@
-URxvt.font:                       xft:PragmataPro for Powerline              
-URxvt.boldFont:                   xft:PragmataPro for Powerline:style=bold   
-URxvt.italicFont:                 xft:PragmataPro for Powerline:style=italic 
+URxvt.font:                   xft:PragmataPro for Powerline              
+URxvt.boldFont:               xft:PragmataPro for Powerline:style=bold   
+URxvt.italicFont:             xft:PragmataPro for Powerline:style=italic 
 
 *.skipBuiltinGlyphs:          true
 *.lineSpace:                  0
@@ -12,7 +12,7 @@ URxvt.italicFont:                 xft:PragmataPro for Powerline:style=italic
 *.highlightColor:             #040404
 *.highlightTextColor:         #5DA8C7
 
-*shading:                     15
+*.shading:                    15
 *.saveLines:                  0
 *.scrollBar:                  false
 *.scrollWithBuffer:           true
@@ -29,7 +29,6 @@ URxvt.italicFont:                 xft:PragmataPro for Powerline:style=italic
 *.underlineURLs:              true
 
 mutt.colorUL:                   #0172ae
-MainTerminal.colorUL:           #86a2be
 MainTerminal.internalBorder:    10
 MainTerminal.saveLines:         0
 MainTerminal.scrollWithBuffer:  false
