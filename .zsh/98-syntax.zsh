@@ -104,23 +104,7 @@ done
         region_highlight+=("$start $end $region")
       fi
     }
-    # YANK_ACTIVE is only available in zsh-5.1.1 and newer
-    (( $+YANK_ACTIVE )) && () {
-      if (( YANK_ACTIVE )) ; then
-        # zle_highlight[paste] defaults to 'standout' if unspecified
-        local paste="${${zle_highlight[(r)paste:*]#paste:}:-standout}"
-        integer start end
-        if (( YANK_END > YANK_START )) ; then
-          start=$YANK_START end=$YANK_END
-        else
-          start=$YANK_END end=$YANK_START
-        fi
-        region_highlight+=("$start $end $paste")
-      fi
-    }
-
     return $ret
-
 
   } always {
     typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER="$BUFFER"
@@ -257,6 +241,6 @@ add-zsh-hook preexec _zsh_highlight_preexec_hook 2>/dev/null || {
 [[ $#ZSH_HIGHLIGHT_HIGHLIGHTERS -eq 0 ]] && ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern) || true
 
 ZSH_HIGHLIGHT_PATTERNS+=("[<>]([<>]|)([|!]|)"    fg=blue)
-ZSH_HIGHLIGHT_PATTERNS+=('[\|\\|!&;\./]'         fg=blue)
+ZSH_HIGHLIGHT_PATTERNS+=('[\|\\|!&;/]'           fg=blue)
 ZSH_HIGHLIGHT_PATTERNS+=('~'                     fg=2)
 ZSH_HIGHLIGHT_MAXLENGTH=350
