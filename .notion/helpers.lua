@@ -35,6 +35,14 @@ function ncmpcpp()
     )
 end
 
+function mutt()
+    ns_exec(
+        'mutt',
+        '~/bin/scripts/run_mutt',
+        'mutt'
+    )
+end
+
 function console()
     ns_exec(
         'console',
