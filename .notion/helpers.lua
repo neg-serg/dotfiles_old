@@ -2,6 +2,18 @@ function spawn(prog)
     notioncore.exec_on(notioncore.current(), prog)
 end
 
+function nsp_hide()
+    local scr = ioncore.find_screen_id(0)
+    local cur = scr:current()
+    if cur:is_grattr("scratchpad", "set") then
+        WMPlex.set_hidden(
+            scr,
+            cur,
+            'set'
+        )
+    end
+end
+
 function ns_exec(class, prog, ns)
     reg = notioncore.current()
     local win = app.match_class(class)[1]

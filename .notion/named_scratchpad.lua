@@ -28,7 +28,7 @@ function named_scratchpad(reg, name, mode)
     if not mode then
         mode = "toggle"
     end
-    mod_sp.set_shown(named_sp, mode)
+    WMPlex.set_hidden(named_sp:parent(), named_sp, mode)
     named_sp:rqorder("front")
     named_sp:set_grattr("scratchpad", "set")
     return named_sp
