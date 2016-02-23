@@ -88,7 +88,7 @@ Neg_kb.WGroupCW = {
 }
 
 Neg_kb.WFrame = {
-    kpress("M4+S", function(_) mod_sp.set_shown(notioncore.lookup_region(_:name(), 'WFrame'), 'unset' ) end),
+    kpress("M4+S", function(_) nsp_hide() end),
     kpress("M4+6", function(_) rofi.renameframe(_) end),
     kpress("M4+backslash", function(_) WFrame.switch_next(_) end),
     kpress("M4+3", function(_) WFrame.switch_next(_) end),
