@@ -1,7 +1,6 @@
 dopath("mod_notionflux")
 dopath("mod_tiling")
 dopath("mod_xrandr")
-dopath("mod_sp")
 dopath("mod_dock")
 dopath("mod_xkbevents")
 
@@ -23,3 +22,5 @@ dopath("cfg_kb")
 dopath("cfg_xrandr")
 dopath("transparency")
 dopath("dzen_bg")
+dopath("lua_repl")
+dopath("dbg")
