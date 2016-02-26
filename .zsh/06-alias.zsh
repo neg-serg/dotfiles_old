@@ -229,6 +229,7 @@ declare -A abk
 abk=(
     'A'    '|& ack -i '
     'G'    '|& grep -i '
+    # 'G'    '|& ucg --color -i -j8 '
     'C'    '| wc -l'
     'H'    '| head'
     'T'    '| tail'
@@ -293,7 +294,7 @@ inpath journalctl && {
     alias log0='journalctl -b -0 | ccze -A' #current log 
     alias log1='journalctl -b -1 | ccze -A' #previous log
 } 
-alias log4="v /tmp/notionerr$(pidof notion)"
+alias log4="v /tmp/notionerr"$(pidof notion)
 inpath iotop && {
     alias iotop='sudo iotop -oPa'
     alias diskact="sudo iotop -Po"
@@ -334,3 +335,4 @@ alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe'
 alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
 alias taco='curl -L git.io/taco'
+alias mnt='sudo mount'
