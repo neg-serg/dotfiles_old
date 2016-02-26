@@ -40,6 +40,8 @@ function zrcautoload() {
 
 zrcautoload colors && colors
 
+zle_highlight+=(suffix:fg=blue)
+
 zle -N zle-keymap-select
 unset MAILCHECK
 
