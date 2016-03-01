@@ -80,9 +80,9 @@ if has("gui_running")
     set mousemodel=popup               " right mouse button pops up a menu in the GUI
     set mouse=                         " enable full mouse support
     if !has('nvim')
-        set ttymouse=urxvt                 " more accurate mouse tracking
+        set ttymouse=urxvt             " more accurate mouse tracking
+        set ttyfast                    " more redrawing characters sent to terminal
     endif
-    set ttyfast                        " more redrawing characters sent to terminal
 
     " set synmaxcol=256                " improve hi performance
     " syntax sync minlines=200
@@ -114,8 +114,8 @@ endif
 
 if !has("gui_running") && !has("nvim")
     set ttymouse=urxvt                 " more accurate mouse tracking
+    set t_Co=256                       " I use 256-color terminals
     set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
-    set t_Co=256 " I use 256-color terminals
     if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
         colorscheme wim
     elseif &term =~ 'linux'
@@ -132,7 +132,7 @@ if !has("gui_running") && !has("nvim")
     
     set ttyfast                        " more redrawing characters sent to terminal
 
-    " set synmaxcol=256                  " improve hi performance
+    " set synmaxcol=256                " improve hi performance
     set showmode                       " show what key had been pressed
     syntax sync minlines=256
     set lazyredraw                     " no redraw in macros : it's doesn't set by default for tmux
@@ -194,6 +194,7 @@ if has('user_commands')
     command! -bang Q q<bang>
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
+    command! -nargs=0 Sw :SudoWrite
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
