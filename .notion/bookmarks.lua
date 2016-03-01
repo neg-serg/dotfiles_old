@@ -29,7 +29,7 @@ for k=0, 9 do
     defbindings("WFrame", {
         submap("Mod4+4", {
             kpress("Shift+"..bm, 
-                   function(frame) bookmarks.set(bm, frame) end),
+            function(frame) bookmarks.set(bm, frame) end),
         })
     })
 end

@@ -21,65 +21,65 @@ local savefile="autoprops"
 local autoprops={}
 
 function autoprop(cwin_group, dest, save)
---  if obj_typename(cwin_group) ~= "WGroupCW" then
---    return
---  end
-  local p={}
+    --  if obj_typename(cwin_group) ~= "WGroupCW" then
+    --    return
+    --  end
+    local p={}
 
-  local cwin = cwin_group:bottom()
+    local cwin = cwin_group:bottom()
 
-  if type(dest)=="nil" then
-    name=nil
-  else
-    name=dest:name()
-  end
+    if type(dest)=="nil" then
+        name=nil
+    else
+        name=dest:name()
+    end
 
-  p.class="*"
-  p.role="*"
-  p.instance="*"
-  p.target=name
+    p.class="*"
+    p.role="*"
+    p.instance="*"
+    p.target=name
 
-  p=table.join(cwin:get_ident(), p)
-  defwinprop{
-    class=p.class,
-    instance=p.instance,
-    role=p.role,
-    target=name
-  }
+    p=table.join(cwin:get_ident(), p)
+    defwinprop{
+        class=p.class,
+        instance=p.instance,
+        role=p.role,
+        target=name
+    }
 
-  if save and p.target then
-    autoprops[p.class..p.role..p.instance]=p
-  end
+    if save and p.target then
+        autoprops[p.class..p.role..p.instance]=p
+    end
 
-  if p.target==nil then
-    autoprops[p.class..p.role..p.instance]=nil
-  end
+    if p.target==nil then
+        autoprops[p.class..p.role..p.instance]=nil
+    end
 end
 
 local function save_autoprops()
-  ioncore.write_savefile(savefile, autoprops)
+    ioncore.write_savefile(savefile, autoprops)
 end
 
 local function load_autoprops()
-  local d=ioncore.read_savefile(savefile)
-  if not d then
-    return
-  end
+    local d=ioncore.read_savefile(savefile)
+    if not d then
+        return
+    end
 
-  for k,tab in pairs(d) do
-     defwinprop{
-        class=tab.class,
-        instance=tab.instance,
-        role=tab.role,
-        target=tab.target
-     }
-     autoprops[tab.class..tab.role..tab.instance]=tab
-  end
+    for k,tab in pairs(d) do
+        defwinprop{
+            class=tab.class,
+            instance=tab.instance,
+            role=tab.role,
+            target=tab.target
+        }
+        autoprops[tab.class..tab.role..tab.instance]=tab
+    end
 end
 
 local function init()
-  load_autoprops()
-  ioncore.get_hook("ioncore_snapshot_hook"):add(save_autoprops)
+    load_autoprops()
+    ioncore.get_hook("ioncore_snapshot_hook"):add(save_autoprops)
 end
 
 init()
