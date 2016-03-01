@@ -3,7 +3,7 @@ defwinprop{lazy_resize=true,new_group=true}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true}
-defwinprop{class="mutt",transient_mode="off",target="mutt"}
+defwinprop{instance="mutt",transient_mode="off",target="mutt"}
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,target="notes"}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
@@ -58,7 +58,7 @@ defwinprop{class="gmpc",target="media"}
 defwinprop{class="MPlayer",jumpto=true,transient_mode="off",target="media",tag="video"}
 defwinprop{class="mplayer2",jumpto=true,transient_mode="off",target="media",tag="video"}
 defwinprop{class="mpv",jumpto=true,transient_mode="off", target="media",tag="video"}
-defwinprop{class="mpv",instance="webcam_mpv",jumpto=true, transient_mode="current",float=true}
+defwinprop{class="mpv",instance="webcam_mpv",target="_webcam_"}
 defwinprop{class="feh",float=true,ignore_cfgrq=true,transient_mode="current"}
 defwinprop{class="qiv",jumpto="on",transient_mode="on",float=true}
 defwinprop{class="cheese",target="media",jumpto=true,transient_mode="off",float=false}
