@@ -28,60 +28,71 @@ function namsc(class)
 end
 
 function ncmpcpp()
+    local st_font='"PragmataPro for Powerline:pixelsize=18"'
     ns_exec(
-        'mpd-pad2',
-        '/usr/local/bin/st-bright -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp',
-        'ncmpcpp'
+        'mpd-pad2', -- class
+        'st-bright -f '..st_font..' -c mpd-pad2 -e ncmpcpp',
+        'ncmpcpp'   --ns
     )
 end
 
 function mutt()
     ns_exec(
-        'mutt',
+        'mutt', --class
         '~/bin/scripts/run_mutt',
-        'mutt'
+        'mutt'  --ns
     )
 end
 
 function console()
     ns_exec(
-        'console',
+        'console', --class
         'st -f "PragmataPro for Powerline:12" -c console',
-        'console'
+        'console'  --ns
     )
 end
 
 function ranger()
+    local ranger_font='"PragmataPro for Powerline:size=16"'
     ns_exec(
-        'ranger',
-        'xterm -class ranger -fa PragmataPro for Powerline:size=16 -e tmux new ranger',
-        'ranger'
+        'ranger', --class
+        'xterm -class ranger -fa'..ranger_font..'-e tmux new ranger',
+        'ranger'  --ns
     )
 end
 
 function gdb()
     ns_exec(
-        'gdb',
+        'gdb', --class
         'st -c gdb -e bash -c "tmux -L gdb new gdb"',
-        'gdb'
+        'gdb'  --ns
     )
 end
 
 function radare2()
     ns_exec(
-        'radare',
+        'radare', --class
         "st -c radare -e bash -c 'tmux -L radare'",
-        'radare2'
+        'radare2' --ns
     )
 end
 
 function weechat()
     ns_exec(
-        '_weechat_',
-        'pidof weechat || st -c _weechat_ -f \'Terminus Re33:size=14:style=Bold\' zsh -c \'tmux -S ~/1st_level/weechat.socket new weechat\'',
+        '_weechat_', --class
+        'pidof weechat || st -c _weechat_ -f \'Terminus Re33:size=14:style=Bold\' zsh -c \'tmux -S ~/1st_level/weechat.socket new weechat\'', 
         'weechat'
     )
 end
+
+function webcam()
+    ns_exec(
+        'webcam_mpv', --class
+        '~/bin/webcam',
+        '_webcam_'    --ns
+    )
+end
+
 
 function move_scratch(x, y, w, h)
    notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
