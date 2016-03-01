@@ -16,7 +16,7 @@ function rofi.font(t)
             font_name = font
         end
     end
-    return '-font "' .. font_name .. ' '.. 'bold' ..' ' .. font_size .. '"'
+    return '-font "' .. font_name .. ' ' .. 'bold' .. ' ' .. font_size .. '"'
 end
 
 rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 

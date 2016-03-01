@@ -326,7 +326,6 @@ de.defstyle("*", {
     highlight_pixels       = 0,
     shadow_pixels          = 0,
     text_align             = "center",
-    transparent_background = false,
 })
 
 de.defstyle("frame", {
