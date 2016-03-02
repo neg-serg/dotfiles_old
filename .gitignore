@@ -1,7 +1,6 @@
 1st_level
 bin/getcurpos
 bin/go/*
-bin/go/go-mtpfs
 bin/lsp
 bin/rtags
 bin/scripts/utf7.pyc
