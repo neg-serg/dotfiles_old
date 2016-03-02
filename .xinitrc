@@ -4,6 +4,7 @@ unset TMUX
 pic_wl_=${HOME}/pic/wl
 
 . ~/.zsh/03-exports.zsh
+~/bin/scripts/systemd_env_forwarding.zsh
 
 pulseaudio --start &
 wmname Sawfish
@@ -39,7 +40,7 @@ setxkbmap \
 xhost +localhost +local: +si:localuser:$(id -un)
 xset -b r rate 250 50 m 1 1 b off
 
-hsetroot -fill ${pic_wl_}/kosmos_planeta_svet_noch_nebo_94442_2400x1350.jpg
+hsetroot -fill ${pic_wl_}/kosmos_planeta_svet_noch_nebo_94442_2400x1350.jpg &
 
 [[ -f ~/.Xresources ]] && \
     xrdb -load ~/.Xresources
