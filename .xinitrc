@@ -57,7 +57,7 @@ nexec klay_watch && ~/bin/mon/klay_watch &
 ~/bin/scripts/email_notifier.py &
 
 nexec stalonetray && \
-    stalonetray -c ${XDG_CONFIG_HOME}/.config/stalonetrayrc &
+    stalonetray -c ${XDG_CONFIG_HOME}/stalonetrayrc &
 
 rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
