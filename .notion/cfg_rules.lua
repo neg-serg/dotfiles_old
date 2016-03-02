@@ -64,9 +64,9 @@ defwinprop{class="qiv",jumpto="on",transient_mode="on",float=true}
 defwinprop{class="cheese",target="media",jumpto=true,transient_mode="off",float=false}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true,
-tag="editor",
-ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true
-}
+tag="editor", ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true }
+defwinprop{class="Atom",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true, tag="editor",
+ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true }
 defwinprop{instance="subl3|sublime_text",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true, tag="editor" }
 defwinprop{class="URxvt",instance="wim",target="dev",jumpto=true,transient_mode="off",transparent=false,
 tag="editor",transparent=false

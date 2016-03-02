@@ -18,7 +18,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress("M1+G",     function() rofi.goto_win(notioncore.current()) end),
     kpress("M4+F9",    function() notioncore.create_ws(notioncore.current()) end),
     --[[  progs run by app  ]]-----------------------------
-    kpress("M4+1",     function() app.byclass('~/bin/wim', 'wim') end),
+    kpress("M4+1",     function() app.byclass_withtag('~/bin/wim', 'wim', nil, 'editor') end),
     kpress("M4+x",     function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
     kpress("M4+b",     function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
     kpress("M4+w",     function() app.byinstance_withtag(
@@ -54,7 +54,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("s",    function() spawn('skype') end),
         kpress("t",    function() spawn('urxvt') end),
         kpress("v",    function() spawn('vmware') end),
-        kpress("w",    function() spawn('~/bin/webcam') end),
+        kpress("w",    function() webcam() end),
     }),
 }
 
