@@ -206,7 +206,7 @@ if neobundle#tap('YouCompleteMe')
         endtry
     endif
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-    let g:ycm_rust_src_path = '/home/neg/src/1st_level/rust_src17/rustc-nightly/src'
+    let g:ycm_rust_src_path = $HOME."/src/1st_level/rust_src18/rustc-nightly/src"
     let g:ycm_filepath_completion_use_working_dir = 0
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_cache_omnifunc = 1
@@ -237,6 +237,7 @@ if neobundle#tap('YouCompleteMe')
         \   'erlang' : [':'],
         \   'ocaml' : ['.', '#'],
         \   'ruby' : ['.', '::'],
+        \   'rust' : ['.', '::'],
         \ }
 
     let g:ycm_collect_identifiers_from_tags_files = 0
@@ -850,16 +851,6 @@ if neobundle#tap('vim-lua-ftplugin')
     let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
     let g:lua_define_completion_mappings = 0
     let g:lua_internal = 0
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - racer-rust/vim-racer.git                                                 │ 
-" │ git@github.com:racer-rust/vim-racer.git                                           │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-racer') 
-    let $RUST_SRC_PATH  = "/home/neg/src/1st_level/rust_src17/rustc-nightly/src"
-    let g:racer_cmd = "/usr/sbin/racer"
-    let g:echodoc_enable_at_startup = 1
-    let g:racer_experimental_completer = 1
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - godlygeek/tabular                                                        │ 
