@@ -20,23 +20,19 @@ dopath("mod_xrandr")
 dopath("mod_dock")
 dopath("mod_xkbevents")
 
-load_file("cfg_settings")
-load_file("cfg_rules")
-load_file("autoprop")
-load_file("cfg_layouts")
-load_file("app")
-load_file("named_scratchpad")
-load_file("min_tabs")
-load_file("net_client_list")
-load_file("directions")
-load_file("screenshot")
-load_file("cfg_dzen")
-load_file("rofi")
-load_file("cfg_autostart")
-load_file("functions")
-load_file("cfg_kb")
-load_file("cfg_xrandr")
-load_file("transparency")
-load_file("dzen_bg")
-load_file("lua_repl")
-load_file("dbg")
+local cfg_list = { 
+    "cfg_settings",   "cfg_rules",
+    "autoprop",       "cfg_layouts",
+    "app",            "named_scratchpad",
+    "min_tabs",       "net_client_list",
+    "directions",     "screenshot",
+    "cfg_dzen",       "rofi",
+    "cfg_autostart",  "functions",
+    "cfg_kb",         "cfg_xrandr",
+    "transparency",   "dzen_bg",
+    "lua_repl",       "dbg"
+}
+
+for i,mod in ipairs(cfg_list) do
+    load_file(mod)
+end
