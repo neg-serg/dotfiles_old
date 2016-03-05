@@ -287,7 +287,7 @@ inpath nmap && {
     alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
 }
 
-alias crossover="LANG=ru_RU.utf8 /mnt/home/crossover/bin/crossover"
+alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
 
 inpath journalctl && {
     alias log='journalctl -f | ccze -A' #follow log
@@ -330,6 +330,7 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias recordmydesktop="recordmydesktop --no-frame"
 alias gv='v -b":GV"'
+alias gj=gitj
 alias xescape='xcape -e "Control_L=Escape" -t 500'
 alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
 alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
