@@ -1,16 +1,14 @@
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-NeoBundle 'itchyny/landscape.vim' "more colors
+" NeoBundle 'itchyny/landscape.vim' "more colors
 " python powerline autodetection
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
 endif
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
-NeoBundle 'xolox/vim-misc.git' "helpers for lua-mode
 NeoBundle 'luochen1990/rainbow'  "rainbow parentheses
-"NeoBundle 'junegunn/rainbow_parentheses.vim' "Much simpler Rainbow Parentheses(fork)
 NeoBundle 'mattboehm/vim-unstack' "stack trace parser
 NeoBundle 'rdnetto/YCM-Generator' "generate config for ycm
 NeoBundle 'chrisbra/colorizer'
@@ -146,7 +144,6 @@ NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
 NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
 NeoBundle 'janko-m/vim-test.git' "easy testing for various langs
-NeoBundle 'xolox/vim-lua-ftplugin.git' "test lua bindings
 NeoBundle 'oscarh/vimerl' "vim erlang support
 NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
 if executable(resolve(expand("rc")))
@@ -204,7 +201,6 @@ NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundle 'jnwhiteh/vim-golang.git' "golang syntax highlight
 NeoBundleLazy 'blindFS/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
 NeoBundle 'JulesWang/css.vim' "better css syntax hi
-" NeoBundle 'rstacruz/vim-hyperstyle' "easier css
 NeoBundle 'leafo/moonscript-vim' "basic moonscript support
 NeoBundle 'rodjek/vim-puppet' "basic puppet support
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
