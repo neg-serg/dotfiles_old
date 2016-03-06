@@ -1,7 +1,7 @@
 #!/bin/zsh
 unset TMUX
 
-pic_wl_=${HOME}/pic/wl
+local pic_wl_=${HOME}/pic/wl
 
 . ~/.zsh/03-exports.zsh
 ~/bin/scripts/systemd_env_forwarding.zsh
@@ -64,4 +64,7 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 systemctl --user restart gpaste
+
+tmp_loc=$(mktemp -d) && ln -fs ${tmp_loc} ~/tmp
+
 exec notion 2>> /tmp/notionerr$$ 2>&1
