@@ -1,7 +1,7 @@
 dbg = {}
 
 function dbg.echon(s)
-        io.stderr:write(dbg.tostring(s))
+    io.stderr:write(dbg.tostring(s))
 end
 
 function dbg.tostring(obj)
@@ -166,4 +166,15 @@ function table.load( sfile )
    return tables[1]
 end
 -- close do
+end
+
+
+function spit(s)
+    io.stderr:write(tostring(s).."\n")
+end
+
+function spittab(t)
+    for k,v in pairs(t) do
+        io.stderr:write(tostring(k).." = "..tostring(v).."\n")
+    end
 end
