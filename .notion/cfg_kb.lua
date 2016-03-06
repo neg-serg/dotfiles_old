@@ -19,6 +19,12 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4.."E",      function() namsc('im') end),
     kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(notioncore.current()) end),
     kpress(M1.."G",      function() rofi.goto_win(notioncore.current()) end),
+
+    kpress(M4..Ct.."W", function(_) _:push_direction('up') end),
+    kpress(M4..Ct.."A", function(_) _:push_direction('left') end),
+    kpress(M4..Ct.."S", function(_) _:push_direction('down') end),
+    kpress(M4..Ct.."D", function(_) _:push_direction('right') end),
+
     --[[  progs run by app  ]]-----------------------------
     kpress(M4.."1",      function() app.byclass_withtag('~/bin/wim', 'wim', nil, 'editor') end),
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
@@ -31,7 +37,7 @@ Neg_kb.WMPlex_toplevel = {
         'www') 
     end),
     kpress(M4.."O",      function() app.byclass_withtag('zathura', 'Zathura', 'pdf') end),
-    kpress(M4..Ct.."A",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
+    kpress(M4..Ct.."E",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
     kpress(M4..Ct.."C",  function() app.byclass('~/bin/sx ~/dw/*', 'Sxiv') end),
     --[[  misc  ]]---------------------------------------
     kpress(M4..Sh.."F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
@@ -121,11 +127,6 @@ Neg_kb.WFrame_toplevel = {
 
 Neg_kb.floating = {
     mdrag("Button1@tab",     function() WFrame.p_move(_) end),
-
-    kpress(M1..Ct.."W", function(_) _:push_direction('up') end),
-    kpress(M1..Ct.."A", function(_) _:push_direction('left') end),
-    kpress(M1..Ct.."S", function(_) _:push_direction('down') end),
-    kpress(M1..Ct.."D", function(_) _:push_direction('right') end),
 
     kpress(M4..Ct.."F", function(_) _:maximize_fill_toggle('vh') end),
     kpress(M4..Ct.."V", function(_) _:maximize_fill_toggle('vert') end),
