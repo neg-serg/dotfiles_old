@@ -1,9 +1,26 @@
-net_conf = {
-      device = "enp6s0",
-      show_avg = 0,       -- show average stat?
-      avg_sec = 3,        -- default, shows average of 1 minute
-      show_count = 0,     -- show tcp connection count?
-      interval = 1*1000,  -- update every second
+function current_interface()
+    local host="google.com"
+
+    local pipe_host_ip = io.popen("getent ahosts "..host.." | head -1 | awk '{print $1}'","r")
+    local host_ip = pipe_host_ip:read("*l")
+    pipe_host_ip:close()
+
+    local pipe_host_dev = io.popen("ip route get "..host_ip.." | grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]'")
+    local host_dev = pipe_host_dev:read("*l")
+    pipe_host_dev:close()
+
+    if host_dev ~= "" and host_dev ~= nil then
+        return host_dev
+    else
+        return "enp6s0"
+    end
+end
+
+local net_conf = {
+    device = current_interface(),
+    show_avg = 0,       -- show average stat?
+    avg_sec = 30,       -- default, shows average of 1 minute
+    interval = 1*1000,  -- update every second
 }
 
 local positions = {}    -- positions where the entries will be
