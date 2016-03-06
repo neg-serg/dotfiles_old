@@ -1,7 +1,11 @@
 #!/usr/sbin/lua
 
-dofile("/home/neg/.notion/dzen_helpers.lua")
+home_=os.getenv("HOME")
+notion_path_=home_.."/.notion"
+
 require("os")
+
+dofile(notion_path_.."/dzen_helpers.lua")
 
 local mpd_defaults={
     update_interval=500, -- 500 or less makes seconds increment relatively smoothly while playing
