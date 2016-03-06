@@ -87,7 +87,7 @@ Neg_kb.WScreen = {
 }
 
 Neg_kb.WClientWin = {
-    kpress(M4..Ct.."Q", function(_) WClientWin.kill(_) end),
+    kpress(M4..Ct.."Q", function(_) WRegion.rqclose(_, false) end),
     kpress(M1.."comma", function(_) WClientWin.quote_next(_) end),
 }
 
