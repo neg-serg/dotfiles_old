@@ -4,7 +4,7 @@ unset TMUX
 local pic_wl_=${HOME}/pic/wl
 
 . ~/.zsh/03-exports.zsh
-~/bin/scripts/systemd_env_forwarding.zsh
+${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
 pulseaudio --start &
 wmname Sawfish
@@ -55,7 +55,7 @@ inpath unclutter && unclutter --fork --timeout 1 &
 sudo pkill compton && \
     compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
 nexec klay_watch && ~/bin/mon/klay_watch &
-~/bin/scripts/email_notifier.py &
+${SCRIPT_HOME}/email_notifier.py &
 
 nexec stalonetray && \
     stalonetray -c ${XDG_CONFIG_HOME}/stalonetrayrc &
