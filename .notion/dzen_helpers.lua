@@ -1,3 +1,5 @@
+home_=os.getenv("HOME")
+
 dmain = {
     ws   = nil,
     kbd  = nil,
