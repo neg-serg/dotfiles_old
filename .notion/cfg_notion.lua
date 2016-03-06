@@ -22,26 +22,26 @@ dopath("mod_dock")
 dopath("mod_xkbevents")
 
 local cfg_list = { 
-    "dbg",
-    "cfg_settings",   
-    "cfg_rules",
-    "autoprop",       
-    "cfg_layouts",
-    "app",            
-    "named_scratchpad",
-    "min_tabs",       
-    "net_client_list",
-    "directions",     
-    "screenshot",
-    "cfg_dzen",       
-    "rofi",
-    "cfg_autostart",  
-    "functions",
-    "cfg_kb",         
-    "cfg_xrandr",
-    "transparency",   
-    "dzen_bg",
-    "lua_repl",       
+    "dbg",               -- functions for stderr debbuging
+    "cfg_settings",      -- notioncore.set
+    "cfg_rules",         -- window placement rules
+    "autoprop",          -- autoprop module
+    "cfg_layouts",       -- a bunch of default layouts
+    "app",               -- module to jump by class, tag, instance etc
+    "named_scratchpad",  -- named scratchpad module
+    "min_tabs",          -- hide tabs
+    "net_client_list",   -- net client list to provide `wmctrl -l`
+    "directions",        -- 2bwm-like directions
+    "screenshot",        -- screenshot script
+    "cfg_dzen",          -- dzen config
+    "rofi",              -- rofi module for menu
+    "cfg_autostart",     -- apps autostart
+    "functions",         -- helpers. Primarily for cfg_kb.lua
+    "cfg_kb",            -- keybindings
+    "cfg_xrandr",        -- xrandr config
+    "transparency",      -- autoset transparency
+    "dzen_bg",           -- background reader for dzen
+    "lua_repl",          -- Lua REPL
 }
 
 for i,mod in ipairs(cfg_list) do
