@@ -83,3 +83,6 @@ vid
 .sbt
 .sbcl_history
 .octave_hist
+.xsel.log
+.vimviews/*
+.vim/.ycm_extra_conf.pyc
