@@ -336,3 +336,4 @@ alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
 alias taco='curl -L git.io/taco'
 alias mnt='sudo mount'
+alias up="rtv -s unixporn"
