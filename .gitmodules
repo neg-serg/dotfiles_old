@@ -1,3 +1,6 @@
-[submodule "tmux-resurrect"]
-	path = tmux-resurrect
-	url = /home/neg/.tmux/tmux-resurrect
+[submodule "tmux-ressurect"]
+	path = tmux-ressurect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+[submodule ".tmux/tmux-ressurect"]
+	path = .tmux/tmux-ressurect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
