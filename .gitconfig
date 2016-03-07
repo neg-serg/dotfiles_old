@@ -72,5 +72,7 @@
 	tool = ~neg/bin/scripts/wdiff_standalone
 [mergetool]
 	prompt = false
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+#[url "ssh://git@github.com/"]
+#    insteadOf = https://github.com/
+[credential]
+    helper = store
