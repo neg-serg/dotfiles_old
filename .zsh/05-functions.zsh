@@ -791,3 +791,15 @@ function zurl() {
         # print "${tiny}${url}" ; return
         wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
+
+function img(){
+    if [[ $# == 0 ]]; then
+        imgur -h
+    elif [[ $# == 1 ]]; then
+        imgur $(gpg -dq ~/.imgur_pass.gpg) upload $1
+    else
+        imgur_command="$1"; shift
+        imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" $@
+        unset imgur_command
+    fi
+}
