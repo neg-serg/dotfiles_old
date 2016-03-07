@@ -326,6 +326,7 @@ de.defstyle("*", {
     highlight_pixels       = 0,
     shadow_pixels          = 0,
     text_align             = "center",
+    transparent_background = true,
 })
 
 de.defstyle("frame", {
@@ -534,4 +535,20 @@ de.defstyle("stdisp", {
     shadow_pixels     = 1,
     spacing           = 0,
 })
+
+de.defstyle("actnotify", {
+    based_on          = "*",
+    font              = neg.statusfont,
+    padding_colour    = neg.padding_color,
+    shadow_colour     = "#3579a8",
+    highlight_colour  = "#3579a8",
+    background_colour = neg.def_bg,
+    foreground_colour = "#AAAAAA",
+    gravity           = "top",
+    padding_pixels    = 2,
+    highlight_pixels  = 1,
+    shadow_pixels     = 1,
+    spacing           = 0,
+})
+
 gr.refresh()
