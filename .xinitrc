@@ -1,10 +1,15 @@
 #!/bin/zsh
 unset TMUX
 
-local pic_wl_=${HOME}/pic/wl
+function set_wallpaper() {
+    local pic_wl_=${HOME}/pic/wl
+    hsetroot -fill "${pic_wl_}/$1" &
+}
 
 . ~/.zsh/03-exports.zsh
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
+
+set_wallpaper o1721200.jpg
 
 pulseaudio --start &
 wmname Sawfish
@@ -40,7 +45,6 @@ setxkbmap \
 xhost +localhost +local: +si:localuser:$(id -un)
 xset -b r rate 250 50 m 1 1 b off
 
-hsetroot -fill ${pic_wl_}/kosmos_planeta_svet_noch_nebo_94442_2400x1350.jpg &
 
 [[ -f ~/.Xresources ]] && \
     xrdb -load ~/.Xresources
