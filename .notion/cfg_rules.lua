@@ -1,5 +1,10 @@
 -------------------------------------[[ KLUDGES ]]----------------------------------
-defwinprop{lazy_resize=true,new_group=true}
+defwinprop{
+    lazy_resize=true,     -- Resize lazy because it's faster
+    new_group=true,       -- Create a new group if needed
+	ignore_cfgrq=false,   -- Configure requests shouldn't be ignored
+	transparent=false,    -- Windows should be transparent when window is selected
+}
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true}
@@ -60,7 +65,7 @@ defwinprop{class="mplayer2",jumpto=true,transient_mode="off",target="media",tag=
 defwinprop{class="mpv",jumpto=true,transient_mode="off", target="media",tag="video"}
 defwinprop{class="mpv",instance="webcam_mpv",target="_webcam_"}
 defwinprop{class="feh",float=true,ignore_cfgrq=true,transient_mode="current"}
-defwinprop{class="qiv",jumpto="on",transient_mode="on",float=true}
+defwinprop{class="qiv",jumpto="on",transient_mode="normal",float=true}
 defwinprop{class="cheese",target="media",jumpto=true,transient_mode="off",float=false}
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop{class="Gvim",instance="gvim",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true,
