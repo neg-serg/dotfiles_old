@@ -116,6 +116,9 @@ function tilingmenu_handler(x)
         ["root/transpose"]=function() 
             tiling_transpose(1)
         end, 
+        ["lock_screen"]=function() 
+            spawn(notioncore.lookup_script('notion-lock')) 
+        end,
         [""]=nil,
     }
     tiling_action[x]()

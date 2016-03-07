@@ -7,7 +7,6 @@ local Sh = "Shift+"
 Neg_kb.WMPlex_toplevel = {
     kpress(M1.."space", "query_lua(_)"), kpress(M4.."space", function() end),
     kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
-    kpress(M4..Sh.."L",  function() spawn(notioncore.lookup_script('notion-lock')) end),
     kpress(M4.."F11",    function() rofi.mainmenu() end),
     kpress(M4.."slash",  function() notioncore.goto_previous() end),
     kpress(M1.."Tab",    function() notioncore.goto_previous() end),

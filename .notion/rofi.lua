@@ -150,7 +150,8 @@ local function complete_tilingmenu()
         "root/vsplit",
         "root/split",
         "root/flip",
-        "root/transpose"
+        "root/transpose",
+        "lock_screen"
     }
     return t
 end
