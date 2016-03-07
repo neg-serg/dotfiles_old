@@ -2,68 +2,24 @@
 --
 -- Copyright (c) 2008 Aron Griffis <agriffis n01se.net>
 -- Released under the GNU GPL v2.1
---
---[[ example bindings
-defbindings("WFrame.floating", {
-    kpress(ALTMETA.."H", "_:push_direction('left')"),
-    kpress(ALTMETA.."J", "_:push_direction('down')"),
-    kpress(ALTMETA.."K", "_:push_direction('up')"),
-    kpress(ALTMETA.."L", "_:push_direction('right')"),
-    kpress(ALTMETA.."F", "_:maximize_fill_toggle('vh')"),
-    kpress(ALTMETA.."V", "_:maximize_fill_toggle('vert')"),
-})
-defbindings("WScreen", {
-    kpress(META.."H", "_chld:focus_direction('left')", "_chld:non-nil"),
-    kpress(META.."J", "_chld:focus_direction('down')", "_chld:non-nil"),
-    kpress(META.."K", "_chld:focus_direction('up')", "_chld:non-nil"),
-    kpress(META.."L", "_chld:focus_direction('right')", "_chld:non-nil"),
-})
---]]
-
 -- debugging function
-local function spit(s)
-    io.stderr:write(tostring(s).."\n")
-end
-
--- debugging function
-local function spittab(t)
-    for k,v in pairs(t) do
-        io.stderr:write(tostring(k).." = "..tostring(v).."\n")
-    end
-end
 
 function WRegion.overlap_score(reg1, reg2, dir)
     local r1g = reg1:geom()
     local r2g = reg2:geom()
     local avg, upper, lower, score
-
-    --[[
-
-     ----------+
-               |
-     lower --> | +--------
-               | |
-               | |
-     ----------+ | <--upper
-                 |
-                 +--------
-
-    --]]
-    
     if dir == 'vert' then
         avg = (r1g.h + r2g.h) / 2
         lower = math.max(r1g.y, r2g.y)
         upper = math.min(r1g.y+r1g.h, r2g.y+r2g.h)
         return (upper - lower) / avg
     end
-
     if dir == 'horiz' then
         avg = (r1g.w + r2g.w) / 2
         lower = math.max(r1g.x, r2g.x)
         upper = math.min(r1g.x+r1g.w, r2g.x+r2g.w)
         return (upper - lower) / avg
     end
-
     notioncore.warn_traced("WRegion.overlap_score called with dir = "..dir)
 end
 
@@ -215,14 +171,10 @@ local XA_INTEGER = 19
 local function set_geom_prop(reg, sg)
     local atom = notioncore.x_intern_atom("_ION_SAVED_GEOM", false)
     local g = {
-        sg.ox or -1,
-        sg.oy or -1,
-        sg.ow or -1,
-        sg.oh or -1,
-        sg.nx or -1,
-        sg.ny or -1,
-        sg.nw or -1,
-        sg.nh or -1,
+        sg.ox or -1, sg.oy or -1,
+        sg.ow or -1, sg.oh or -1,
+        sg.nx or -1, sg.ny or -1,
+        sg.nw or -1, sg.nh or -1,
     }
     return notioncore.x_change_property(reg:xid(), atom, XA_INTEGER, 32, "replace", g)
 end
@@ -254,17 +206,13 @@ end
 -- another floating window or a dock.
 function WRegion.maximize_fill(reg, dir)
     if dir == 'vert' then
-        reg:maximize_fill('up')
-        reg:maximize_fill('down')
+        reg:maximize_fill('up') reg:maximize_fill('down')
     elseif dir == 'horiz' then
-        reg:maximize_fill('left')
-        reg:maximize_fill('right')
+        reg:maximize_fill('left') reg:maximize_fill('right')
     elseif dir == 'vh' then
-        reg:maximize_fill('vert')
-        reg:maximize_fill('horiz')
+        reg:maximize_fill('vert') reg:maximize_fill('horiz')
     elseif dir == 'hv' then
-        reg:maximize_fill('vert')
-        reg:maximize_fill('horiz')
+        reg:maximize_fill('vert') reg:maximize_fill('horiz')
     else
         local pad = notioncore.get().float_placement_padding or 1 -- hardcoded val
         local mgr = reg:manager()
@@ -311,33 +259,20 @@ function WRegion.maximize_fill_toggle(reg, dir)
             if rg.y == sg.ny then
                 ng.y = sg.oy -- restore y only if not moved
             end
-            sg.oy = nil
-            sg.oh = nil
+            sg.oy = nil sg.oh = nil
         end
         reg:rqgeom(ng)
         set_geom_prop(reg, sg)
         return
     end
 
-    if h then
-        sg.ox = rg.x
-        sg.ow = rg.w
-    end
-    if v then
-        sg.oy = rg.y
-        sg.oh = rg.h
-    end
+    if h then sg.ox = rg.x sg.ow = rg.w end
+    if v then sg.oy = rg.y sg.oh = rg.h end
 
     reg:maximize_fill(dir)
 
     rg = reg:geom()
-    if v then
-        sg.ny = rg.y
-        sg.nh = rg.h
-    end
-    if h then
-        sg.nx = rg.x
-        sg.nw = rg.w
-    end
+    if v then sg.ny = rg.y sg.nh = rg.h end
+    if h then sg.nx = rg.x sg.nw = rg.w end
     set_geom_prop(reg, sg)
 end
