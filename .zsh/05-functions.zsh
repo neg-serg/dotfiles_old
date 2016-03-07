@@ -799,7 +799,7 @@ function img(){
         imgur $(gpg -dq ~/.imgur_pass.gpg) upload $1
     else
         imgur_command="$1"; shift
-        imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" $@
+        imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" "$@"
         unset imgur_command
     fi
 }
