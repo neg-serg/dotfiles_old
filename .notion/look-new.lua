@@ -461,67 +461,6 @@ de.defstyle("tab-menuentry-big", {
     font           = neg.basefont,
 })
 
-de.defstyle("input", {
-    padding_colour    = neg.padding_color,
-    shadow_colour     = "#3579a8",
-    highlight_colour  = "#3579a8",
-    background_colour = neg.def_bg,
-    foreground_colour = "#899CA1",
-    padding_pixels    = 2,
-    highlight_pixels  = 1,
-    shadow_pixels     = 1,
-    spacing           = 0,
-    font              = neg.basefont,
-    border_style      = "inlaid",
-    de.substyle("*-cursor", {
-        background_colour = "#5E468C",
-        foreground_colour = "#000000",
-    }),
-    de.substyle("*-selection", {
-        background_colour = "#999999",
-        foreground_colour = "#000000",
-    }),
-})
-
-
--- Defines style for input queries. In will be "blue" for queries in insert
--- mode and "green" for queries in normal (command) mode.
--- mode parameter is string: "insert" or "normal"
-function inputstyle(mode)
-    local t = {
-        based_on          = "*",
-        shadow_colour     = "", -- To be defined below
-        highlight_colour  = "", -- To be defined below
-        background_colour = "", -- To be defined below
-        foreground_colour = "#899CA1",
-        padding_pixels    = 1,
-        highlight_pixels  = 1,
-        shadow_pixels     = 1,
-        border_style      = "elevated",
-        de.substyle("*-cursor", {
-            background_colour = "#5E468C",
-            foreground_colour = "#000000",
-        }),
-        de.substyle("*-selection", {
-            background_colour = "#999999",
-            foreground_colour = "#000000",
-        }),
-        font = neg.basefont,
-    }
-    if mode == "insert" then -- Blue
-        t.shadow_colour     = "#3579a8"
-        t.highlight_colour  = "#3579a8"
-        t.background_colour = neg.def_bg
-    else -- Grey
-        t.shadow_colour     = "#313131"
-        t.highlight_colour  = "#313131"
-        t.background_colour = neg.def_bg
-    end
-    de.defstyle("input", t);
-    gr.refresh()
-end
-
-
 de.defstyle("stdisp", {
     based_on          = "*",
     font              = neg.statusfont,
