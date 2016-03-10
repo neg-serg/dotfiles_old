@@ -1,3 +1,11 @@
+dopath("dzen/climacon_table.lua")
+dopath("dzen/ionicon_table.lua")
+dopath("dzen/power_table.lua")
+dopath("dzen/typicon_table.lua")
+dopath("dzen/fancy_table.lua")
+dopath("dzen/octicon_table.lua")
+-- dopath("dzen/siji_table.lua")
+
 local function table_ret(x)
     local tt = {
         ["sym"]=neg.dzen.fancy_table,
