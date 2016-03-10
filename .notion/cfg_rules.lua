@@ -140,10 +140,10 @@ defwinprop{instance="seahorse",target="admin",jumpto=true}
 defwinprop{class="Xfce*",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
-defwinprop{class="Crossover",target="wine",transient_mode="off",jumpto=true,tag="virt",float=true}
-defwinprop{class="Wine",target="wine",transient_mode="off",jumpto=true,tag="virt",float=true}
-defwinprop{class="*.exe",target="wine",transient_mode="off",jumpto=true,tag="virt",float=true}
-defwinprop{class="explorer.exe",target="wine",transient_mode="off",jumpto=true,tag="virt",float=true}
+defwinprop{class="Crossover",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{class="Wine",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{class="*.exe",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float"}
