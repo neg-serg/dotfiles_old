@@ -21,5 +21,5 @@ echo "You have 5 secs to break general wine-fileassoc stuff" && sleep 5s && {
 }
 
 echo "You have 5 secs to break ${XDG_DATA_HOME} grep wine rm" && sleep 5s && {
-    find ${XDG_DATA_HOME} | grep wine | xargs rm -i
+    find ${XDG_DATA_HOME} -name '*wine*' -type f -print0 | xargs -0 rm -fv
 }
