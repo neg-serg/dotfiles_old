@@ -63,6 +63,25 @@ Neg_kb.WMPlex_toplevel = {
         kpress("V",     function() spawn('vmware') end),
         kpress("W",     function() webcam() end),
         kpress(Sh.."D", "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
+        kpress(Sh.."B", function() 
+            local browser_list = {  "yandex-browser-beta",
+                                    "chromium",
+                                    "google-chrome", 
+                                    "google-chrome-stable"
+                                 }
+            local function gen_www_list_()
+                local str = ""
+                for i,v in ipairs(browser_list) do
+                    if i < #browser_list then
+                        str = str .. v .. " || "
+                    else
+                        str = str .. v
+                    end
+                end
+                return str
+            end
+            spawn(gen_www_list_())
+        end),
     }),
 }
 
