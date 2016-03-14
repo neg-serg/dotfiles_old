@@ -4,10 +4,9 @@ local function framelist(iter)
 
     local entries={}
     local ws_add=function(s) if s then table.insert(entries, s) end end
-    local name=""
 
     iter(function(obj)
-             if obj_is(obj, "WFrame") then
+             if obj_is(obj, "WMPlex") then
                  if obj:mx_count() == 0 then
                     table.insert(transparent_table, obj)
                     ws_add(obj:xid())
@@ -22,16 +21,15 @@ end
 
 local function maketransparent(reg)
     local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
-    local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
-
     local opacity_level = 3435973836
-    -- local cur=notioncore.find_manager(notioncore.current(), "WFrame")
+    -- local full_opacity_level = 4294967295
 
     framelist(notioncore.region_i)
+
     for _,reg in ipairs(transparent_table) do
         notioncore.x_change_property(reg:xid(), atom_client_opacity, 6, 32, "replace", {opacity_level})
     end
-    
+
     for _,reg in ipairs(nontransparent_table) do
         notioncore.x_delete_property(reg:xid(), atom_client_opacity)
     end
