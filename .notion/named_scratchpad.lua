@@ -31,6 +31,7 @@ function named_scratchpad(reg, name, mode)
     WMPlex.set_hidden(named_sp:parent(), named_sp, mode)
     named_sp:rqorder("front")
     named_sp:set_grattr("scratchpad", "set")
+    ioncore.refresh_stylelist()
     return named_sp
 end
 

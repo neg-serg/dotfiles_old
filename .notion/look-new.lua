@@ -75,7 +75,6 @@ de.defstyle("frame", {
         highlight_pixels  = 0,
         shadow_pixels     = 0,
     }),
-    gr.refresh()    
 })
 
 de.defstyle("frame-ionframe",{
