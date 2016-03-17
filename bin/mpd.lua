@@ -1,22 +1,20 @@
 #!/usr/sbin/lua
 
-home_=os.getenv("HOME")
-notion_path_=home_.."/.notion"
+local home_=os.getenv("HOME")
+local notion_path_=home_.."/.notion"
 
 require("os")
 
 dofile(notion_path_.."/dzen_helpers.lua")
+dofile(notion_path_.."/style_settings.lua")
 
 local mpd_defaults={
     update_interval=500, -- 500 or less makes seconds increment relatively smoothly while playing
     address="localhost", -- mpd server info (localhost:6600 are mpd defaults)
     port=6600,           -- mpd server default port
     password=nil,        -- mpd password (if any)
+    mpd_len = 80,        -- default mpd string length
 }
-
-local mpd_len = 80
--- bugs/requests/comments: delirium@hackish.org
--- requires that netcat is available in the path
 
 local success
 local last_success
@@ -30,19 +28,20 @@ local function saferead(file)
 end
 
 local function font_fallback(str)
-    local size = ":size=12"
+    local size = ":size=" .. neg.font_size
     if string.match(str, ".*[а-я][А-Я]*") == nil then
-        mpd_len = 80
+        mpd_defaults.mpd_len = 80
         return str
     else
-        mpd_len = 110
-        return "^fn(Iosevka" .. size .. ":bold)" .. str .. "^fn()"
+        mpd_defaults.mpd_len = 110
+        return "^fn(Iosevka"..size..":bold)"..str.."^fn()"
     end
 end
 
-
 local function get_mpd_status()
-    local cmd_string = "status\ncurrentsong\nclose\n"
+    local cmd_string = "status\n"..
+                       "currentsong\n"..
+                       "close\n"
     if mpd_defaults.password ~= nil then
         cmd_string = "password " .. mpd_defaults.password .. "\n" .. cmd_string
     end
@@ -57,7 +56,7 @@ local function get_mpd_status()
     local data = saferead(mpd)
     if data == nil or string.sub(data,1,6) ~= "OK MPD" then
         mpd:close()
-        return "[ no mpd ]"
+        return wrp("no mpd", "[","]")
     end
 
     -- 'password' response (if necessary)
@@ -66,14 +65,12 @@ local function get_mpd_status()
             data = saferead(mpd)
         until data == nil or string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
         if data == nil or string.sub(data,1,2) ~= "OK" then
-      mpd:close()
-            return "bad mpd password"
+            mpd:close()
+            return wrp("bad mpd password", "[","]")
         end
     end
 
     local info = {}
-
-    -- 'status' response
     repeat
         data = saferead(mpd)
         if data == nil then break end
@@ -90,15 +87,13 @@ local function get_mpd_status()
         end
     until string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
     if data == nil or string.sub(data,1,2) ~= "OK" then
-    mpd:close()
-        return "error querying mpd status"
+        mpd:close()
+        return wrp("error querying mpd status", "[","]")
     end
 
-    -- 'currentsong' response
     repeat
         data = saferead(mpd)
         if data == nil then break end
-
         local _,_,attrib,val = string.find(data, "(.-): (.*)")
         if     attrib == "Artist" then info.artist = val
         elseif attrib == "Title"  then info.title  = val
@@ -109,11 +104,10 @@ local function get_mpd_status()
     until string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
     if data == nil or string.sub(data,1,2) ~= "OK" then
         mpd:close()
-        return "error querying current song"
+        return wrp("error querying current song", "[","]")
     end
 
     mpd:close()
-
     success = true
 
     -- done querying; now build the string
@@ -121,17 +115,16 @@ local function get_mpd_status()
         info_artist = info["artist"] or ""
         info_title = info["title"] or ""
         mpd_st = font_fallback(info_artist .. " - " .. info_title)
-        if mpd_st:len() > mpd_len then
-            mpd_st = string.sub(mpd_st,1,mpd_len - 4)
-            mpd_st = mpd_st .. "..."
+        if mpd_st:len() > mpd_defaults.mpd_len then
+            mpd_st = string.sub(mpd_st,1, mpd_defaults.mpd_len - 4).. "…"
         end
         mpd_position = (info["pos"] or "") .."/".. (info["len"] or "")
         mpd_st = wrp(">>", "[","]") .. wrp(mpd_st.." "..mpd_position)
-        mpd_st = mpd_st .. wrp("Vol: " .. info.volume.."%")
+                 .. wrp("Vol: " .. info.volume.."%")
         print(mpd_st)
         return mpd_st
     elseif info.state == "pause" then
-        print(wrp("||","[","]")) return wrp("||")
+        print(wrp("||","[","]")) return wrp("||","[","]")
     else
         print " " return " "
     end
