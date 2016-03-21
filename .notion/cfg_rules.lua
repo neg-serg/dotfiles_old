@@ -15,6 +15,7 @@ defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,f
 defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",tag="www"}
 defwinprop{class="chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",tag="www"}
 defwinprop{class="Chromium-www",transient_mode="off",transient_mode="off",target="web",tag="www"}
+defwinprop{class="yandex-browser-beta",transient_mode="off",transient_mode="off",target="web",tag="www"}
 defwinprop{class="Opera",instance="startupdialog",transient_mode="off",target="web"}
 defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="web",tag="www"}
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",tag="www"}
