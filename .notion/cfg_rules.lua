@@ -88,28 +88,33 @@ defwinprop{class="Qvim",instance="qvim",target="dev",jumpto=true,transient_mode=
 ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true,
 tag="editor"
 }
-defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true}
-defwinprop{class="Emacs",instance="emacs",name="Question",float=true}
+defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=true, tag="geditor"}
+defwinprop{class="Emacs",instance="emacs",name="Question",float=true, tag="geditor"}
 defwinprop{class="com-sun-javaws-Main",instance="sun-awt-X11-XFramePeer",target="topcoder"}
-defwinprop{class="jetbrains-idea",instance="*",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-idea-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off"}
-defwinprop{class="jetbrains-webstorm",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-webstorm-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off"}
-defwinprop{class="jetbrains-clion",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",target="jetbrains"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off"}
-defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal"}
+
+defwinprop{class="jetbrains-idea",instance="*",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-idea-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide"}
+
+defwinprop{class="jetbrains-webstorm",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-webstorm-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide"}
+
+defwinprop{class="jetbrains-clion",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide"}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide"}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",target="jetbrains",tag="ide"}
+
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off", tag="ide"}
+
+defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",tag="unreal"}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mode="off",float=true,tag="virt"}
 defwinprop{class="VirtualBox",jumpto=true,target="vm",transient_mode="off",tag="virt"}
@@ -118,33 +123,33 @@ defwinprop{class="QEMU",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{class="spicec",instance="spicec",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{instance="spicy",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 -------------------------------------[[   GRARPHIC  ]]-----------------------------
-defwinprop{class="Gimp",target="graphic",acrobatic=true,tag="graphic"}
-defwinprop{class="inkscape",target="graphic",tag="graphic"}
-defwinprop{class="simple-scan",target="graphic"}
-defwinprop{class="gthumb",target="graphic"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-open",transient_mode="off",float=true}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-save",transient_mode="off",float=true}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-image-new",transient_mode="off",float=true}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true}
+defwinprop{class="Gimp",target="graphic",acrobatic=true,tag="graphic",tag="graph"}
+defwinprop{class="inkscape",target="graphic",tag="graph"}
+defwinprop{class="simple-scan",target="graph"}
+defwinprop{class="gthumb",target="graph"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-open",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-save",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-image-new",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true,tag="graph"}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
 defwinprop{class="stalonetray",instance="stalonetray",statusbar="*",float=true,target="stalonetray"}
 defwinprop{is_dockapp=true,statusbar="*",float=true}
 -------------------------------------[[   ADMIN  ]]---------------------------------
-defwinprop{instance="remmina",target="admin",jumpto=true}
-defwinprop{instance="htop_term",target="admin",jumpto=true}
-defwinprop{instance="glances_term",target="admin",jumpto=true}
-defwinprop{instance="gparted",target="admin",jumpto=true}
-defwinprop{instance="gnome-disks",target="admin",jumpto=true}
-defwinprop{instance="seahorse",target="admin",jumpto=true}
+defwinprop{instance="remmina",target="admin",jumpto=true,tag="admin"}
+defwinprop{instance="htop_term",target="admin",jumpto=true,tag="admin"}
+defwinprop{instance="glances_term",target="admin",jumpto=true,tag="admin"}
+defwinprop{instance="gparted",target="admin",jumpto=true,tag="admin"}
+defwinprop{instance="gnome-disks",target="admin",jumpto=true,tag="admin"}
+defwinprop{instance="seahorse",target="admin",jumpto=true,tag="admin"}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="Xfce*",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
 defwinprop{class="Crossover",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Wine",target="wine",jumpto=true,tag="virt",float=true}
-defwinprop{class="*.exe",target="wine",jumpto=true,tag="virt",float=true}
-defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{name="*.exe",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{name="[eE]xplorer.exe",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float"}
@@ -176,4 +181,3 @@ defwinprop{class="Anamnesis",winlist_ignore=true,transient_mode="off",target="fl
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="*",instance="*",transparent=false}
--- defwinprop{class="*",instance="*", winlist_ignore=true,transient_mode="off",target="etc",float=true}
