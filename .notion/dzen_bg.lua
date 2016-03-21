@@ -1,9 +1,11 @@
 local timers,callbacks = {}, {}
 local remove_lines = false
+gdata = ""
 
 if not dzen_tab then
     dzen_tab = {
         { name="mpd", prog = "mpd.lua", delay = 500},
+        -- { name="mpd", prog = "echo -e olool", delay = 500},
     }
 end
 
@@ -34,9 +36,8 @@ local function init_dzen()
     end
 end
 
-local function pipe_write(d)
-    -- dzen_bg_pipe:write(d..'\n')
-    dzen_bg_pipe:write(d)
+local function pipe_write(pipe, d)
+    pipe:write(d)
 end
 
 --remove all but the last line
@@ -51,7 +52,7 @@ function start_execute(key)
    local handle_output_changes = coroutine.create(
        function(input_data)
             local key = input_data
-            data, partial_data = "", ""
+            local data, partial_data = "", ""
             -- Keep reading data until we have it all
             while partial_data do
                 data = data .. partial_data
@@ -62,8 +63,8 @@ function start_execute(key)
 
             if remove_lines then remove_all_but_last_line(data) end
         
-            local ldata = data
-            pipe_write(ldata)
+            gdata = data
+            gdata = string.gsub(gdata, "\n", "")
 
             -- If no updates, then just schedule another run
             if not data or data == "" then
@@ -76,6 +77,7 @@ function start_execute(key)
     coroutine.resume(handle_output_changes, key)
     notioncore.popen_bgread(dzen_tab[key].prog,
                             function(cor) 
+                                pipe_write(dzen_bg_pipe,gdata..'\n')
                                 coroutine.resume(handle_output_changes, cor) 
                             end,
                             function()
