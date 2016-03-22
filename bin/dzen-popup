@@ -1,0 +1,8 @@
+#!/bin/zsh
+font="Terminus Re33:size=10"
+width=500
+timeout=5
+    
+(echo "$@" & sleep ${timeout}s && kill "$(pgrep -f Dzen_Popup)") | dzen2 -l 18 -w ${width} \
+                    -bg "#121212" -fg "#ffffff" -x -$[${width}+20] -y -70 \
+                    -fn "${font}" -e "Dzen_Popup"
