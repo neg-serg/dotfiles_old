@@ -786,10 +786,10 @@ function img(){
     if [[ $# == 0 ]]; then
         imgur -h
     elif [[ $# == 1 ]]; then
-        imgur $(gpg -dq ~/.imgur_pass.gpg) upload $1
+        imgur $(gpg -dq ~/.imgur_pass.gpg) upload $1 | tee -a ~/tmp/imgur_output_
     else
         imgur_command="$1"; shift
-        imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" "$@"
+        imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" "$@" | tee -a ~/tmp/imgur_output_
         unset imgur_command
     fi
 }
