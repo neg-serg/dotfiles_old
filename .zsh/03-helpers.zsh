@@ -25,3 +25,13 @@ function _zpref() { echo $(_zwrap ">>") }
 function _zfg(){ echo -ne "[38;5;$1m" }
 function _zdelim(){ echo -ne "$(_zfg 24)::"$(_zfg 8) }
 
+function resolve_file {
+    if [[ -f "$1" ]]; then
+        echo $(readlink -f "$1")
+    elif [[ "${1#/}" == "$1" ]]; then
+        echo "$(pwd)/$1"
+    else
+        echo $1
+    fi
+}
+

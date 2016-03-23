@@ -681,16 +681,6 @@ function sp() {
     du -sch -- ${~^@:-"*"}(D) | sort -h
 }
 
-function resolve_file {
-    if [[ -f "$1" ]]; then
-        echo $(readlink -f "$1")
-    elif [[ "${1#/}" == "$1" ]]; then
-        echo "$(pwd)/$1"
-    else
-        echo $1
-    fi
-}
-
 function ta {
     local tmp_list=/tmp/torr_list_$$
     local torrent_dir=${HOME}/torrent
@@ -802,4 +792,8 @@ function img(){
         imgur $(gpg -dq ~/.imgur_pass.gpg) "$imgur_command" "$@"
         unset imgur_command
     fi
+}
+
+function torch_activate(){
+    source  ~/src/1st_level/torch/install/bin/torch-activate
 }
