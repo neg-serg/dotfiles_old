@@ -27,5 +27,3 @@ if [[ -z "$DISPLAY"  ]] && [[ $(tty) = /dev/tty1  ]] && [[ -z $DISPLAY && $XDG_V
 elif [[ $(tty) = /dev/tty4  ]]; then
     tmux -f $HOME/.tmux.conf new -S ~/1st_level/main.socket
 fi
-
-# [[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && exec startx -- -keeptty -nolisten tcp > ~/.xorg.log 2>&1
