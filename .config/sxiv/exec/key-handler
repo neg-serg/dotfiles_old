@@ -1,61 +1,70 @@
 #!/bin/zsh
 
-function resolve_file {
-  if [[ -f "$1" ]]; then
-    echo $(readlink -f "$1")
-  elif [[ "${1#/}" == "$1" ]]; then
-    echo "$(pwd)/$1"
-  else
-    echo $1
-  fi
-}
+source ~/.zsh/03-helpers.zsh
+source ${XDG_CONFIG_HOME}/sxiv/exec/rofi_config
 
 opt="$1";
-readonly TAGFILE="${HOME}/.config/sxiv/tags"
-readonly tmp_file="/tmp/sxiv.$$"
-readonly tmp_file2="/tmp/sxiv2.$$"
-readonly rofi_cmd='rofi -dmenu -opacity "90" -lines "10" -font "Pragmata Pro for Powerline 20" -fg "#666666" -bg "#000" -hlfg "#aaaaaa" -hlbg "#194558" -bc "#202020" -bw 2 -location 2 -padding 2 -width 1850'
+
+readonly tmpfs="/tmp"
+readonly TAGFILE="${XDG_CONFIG_HOME}/sxiv/tags"
+
+readonly tmp_file="${tmpfs}/sxiv.$$"
+readonly tmp_file2="${tmpfs}/sxiv2.$$"
+readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
+
 readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
 readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
 
+readonly rofi_cmd=(rofi -dmenu 
+                        -yoffset ${yoffst_} 
+                        -opacity ${opacity_} 
+                        -lines ${lines_} 
+                        -font ${font_} 
+                        ${color_} 
+                        -bw 2 
+                        -location 2 
+                        -padding 2 
+                        -width ${width_}
+                   )
+
 function rotate() {
-	local degree="$1"
-	while read file; do
-		case "$(file -b -i "${file}")" in
-		image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
-		*)           mogrify  -rotate "${degree}" "${file}" ;;
-		esac
-	done
+    local degree="$1"
+    while read file; do
+        case "$(file -b -i "${file}")" in
+        image/jpeg*) jpegtran -rotate "${degree}" -copy all -outfile "${file}" "${file}" ;;
+        *)           mogrify  -rotate "${degree}" "${file}" ;;
+        esac
+    done
 }
 
 function tag_add() {
-	>>"${TAGFILE}"
-	tags=$(dmenu <"${TAGFILE}" | tr '\n' ',')
-	[[ -z "${tags}" ]] && return
-	iptckwed -i -a "${tags}"
-	echo -n "${tags}" | tr ',' '\n' | sort - "${TAGFILE}" | uniq >"${TAGFILE.new}"
-	mv -f "${TAGFILE}"{.new,}
+    >>"${TAGFILE}"
+    tags=$(dmenu <"${TAGFILE}" | tr '\n' ',')
+    [[ -z "${tags}" ]] && return
+    iptckwed -i -a "${tags}"
+    echo -n "${tags}" | tr ',' '\n' | sort - "${TAGFILE}" | uniq >"${TAGFILE.new}"
+    mv -f "${TAGFILE}"{.new,}
 }
 
 function tag_del() {
-	>>"${tmp_file}"
-	tags=$(iptckwed -iql <"${tmp_file}" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
-	[[ -z "${tags}" ]] && return
-	iptckwed -i -r "${tags}" <"${tmp_file}"
-	rm -f "${tmp_file}"
+    >>"${tmp_file}"
+    tags=$(iptckwed -iql <"${tmp_file}" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
+    [[ -z "${tags}" ]] && return
+    iptckwed -i -r "${tags}" <"${tmp_file}"
+    rm -f "${tmp_file}"
 }
 
 function rename() {
-	>>"${tmp_file}"
+    >>"${tmp_file}"
     dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
     [[ -n "${dest}" ]] && fp=$(cat < "${tmp_file}") && mv "${fp}" "$(dirname "$fp")/$dest"
-	rm -f "${tmp_file}"
+    rm -f "${tmp_file}"
 }
 
 function proc() {
     [[ $1 == "copy" ]] && cmd="cp" && cmd_w="copy"
     [[ $1 == "move" ]] && cmd="mv" && cmd_w="move"
-	>>"${tmp_file}"
+    >>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
         dest=$(${HOME}/bin/Z -i "${z_data_file}" | sed 's:^'${HOME}':~:' |eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"")| sed 's:^~:'${HOME}':')
     fi
@@ -70,28 +79,27 @@ function proc() {
     else
         ${HOME}/bin/Z -i "${z_data_file}" -d "${dest}"
     fi
-	rm -f "${tmp_file}"
+    rm -f "${tmp_file}"
 }
 
 function delete() {
-	>>"${tmp_file}"
+    >>"${tmp_file}"
     local dest="${HOME}/trash/1st-level/pic"
     [[ -z "${dest}" ]] && exit 0
-    if [[ -d "${dest}" ]] ; then
+    if [[ -d "${dest}" ]]; then
         while read line; do
             file_name="$(resolve_file ${line})"
-            eval $(echo mv `echo \"${file_name}\"` ${dest})
+            eval $(echo mv $(echo \"${file_name}\") ${dest})
         done < ${tmp_file}
         printf "%s\n" "move "${dest}"" > "${last_action}"
     fi
-	rm -f "${tmp_file}"
+    rm -f "${tmp_file}"
 }
 
 function rep() {
     cat >"${tmp_file}"
     file=($(cat "${last_action}"))
-    action=${file[1]}
-    dest=${file[2]}
+    action=${file[1]} dest=${file[2]}
     if [[ -d "${dest}" ]] ; then
         while read line; do
             file_name="`resolve_file ${line}`"
@@ -101,7 +109,7 @@ function rep() {
             eval $(echo $cmd `echo \"${file_name}\"` ${dest})
         done < ${tmp_file}
     fi
-	rm -f "${tmp_file}"
+    rm -f "${tmp_file}"
 }
 
 function copy_name() {
@@ -114,15 +122,16 @@ function copy_name() {
 }
 
 function imgur_it() {
-    >>"/tmp/lol"    
-    local fp=$(cat < "/tmp/lol")
-    local file_name="$(resolve_file ${fp})"
-    echo ${file_name}|xsel -bi
-    imgur ${file_name}  2>&1 > /tmp/lol
-    # tr '\n' '\0' | xargs -0 imgur|xsel
+    >>"${tmp_imgur}"
+    while read f; do
+        fp="$(resolve_file ${f})"
+        xsel -i <<< $(imgur $(gpg -dq ~/.imgur_pass.gpg) upload "${fp}") >> ~/tmp/imgur_output_
+        xsel -i <<< $(xsel -o|awk '/original/{print $2}')
+    done < "${tmp_imgur}"
+    rm -f "${tmp_imgur}"
 }
 
-case "$opt" in
+case "${opt}" in
     "C-g")      tr '\n' '\0' | xargs -0 gimp & ;;
     "C-comma")  rotate 270 ;;
     "C-period") rotate  90 ;;
