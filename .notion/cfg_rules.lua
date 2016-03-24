@@ -3,7 +3,6 @@ defwinprop{
     lazy_resize=true,     -- Resize lazy because it's faster
     new_group=true,       -- Create a new group if needed
 	ignore_cfgrq=false,   -- Configure requests shouldn't be ignored
-	transparent=false,    -- Windows should be transparent when window is selected
 }
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
@@ -11,6 +10,7 @@ defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="te
 defwinprop{instance="mutt",transient_mode="off",target="mutt"}
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,target="notes"}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,float=true}
+defwinprop{name="float_",float=true}
 -------------------------------------[[ WEB ]]---------------------------------------
 defwinprop{class="Chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",tag="www"}
 defwinprop{class="chromium",transient_mode="off",transient_mode="off",jumpto=true,target="web",tag="www"}
@@ -69,21 +69,17 @@ defwinprop{class="feh",float=true,ignore_cfgrq=true,transient_mode="current"}
 defwinprop{class="qiv",jumpto="on",transient_mode="normal",float=true}
 defwinprop{class="cheese",target="media",jumpto=true,transient_mode="off",float=false}
 -------------------------------------[[ DEV ]]--------------------------------------
-defwinprop{class="Gvim",instance="gvim",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true,
+defwinprop{class="Gvim",instance="gvim",target="dev",jumpto=true,transient_mode="off",userpos=true,
 tag="editor", ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true }
-defwinprop{class="Atom",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true, tag="editor",
+defwinprop{class="Atom",target="dev",jumpto=true,transient_mode="off",userpos=true, tag="editor",
 ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true }
-defwinprop{instance="subl3|sublime_text",target="dev",jumpto=true,transient_mode="off",transparent=false,userpos=true, tag="editor" }
-defwinprop{class="URxvt",instance="wim",target="dev",jumpto=true,transient_mode="off",transparent=false,
+defwinprop{instance="subl3|sublime_text",target="dev",jumpto=true,transient_mode="off",userpos=true, tag="editor" }
+defwinprop{class="URxvt",instance="wim",target="dev",jumpto=true,transient_mode="off",
 tag="editor",transparent=false
 -- ignore_max_size=true, ignore_min_size=true,ignore_resizeinc=true,
 }
-defwinprop{class="wim",target="dev",jumpto=true,transient_mode="off",transparent=false,
-tag="editor",transparent=false
-}
-defwinprop{class="nwim",target="dev",jumpto=true,transient_mode="off",transparent=false,
-tag="editor",transparent=false
-}
+defwinprop{class="wim",target="dev",jumpto=true,transient_mode="off", tag="editor",transparent=false }
+defwinprop{class="nwim",target="dev",jumpto=true,transient_mode="off", tag="editor",transparent=false }
 defwinprop{class="Qvim",instance="qvim",target="dev",jumpto=true,transient_mode="off",
 ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true,
 tag="editor"
