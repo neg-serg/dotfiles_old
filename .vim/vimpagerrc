@@ -1,12 +1,10 @@
-" This is the system-wide default configuration file for vimpager.
-" Uncomment or add configuration options below to make them take effect
-" for all users on the system. These settings can be overwritten by
-" the user's ${VIMPAGER_RC}, ~/.vimpagerrc or ~/.vimrc.
-
-" This file will only be read if the user does not have a ~/.vimrc.
-
-" use light fonts on dark background
-"set background=dark
-"let g:powerline_pycmd="py3"
-let $RUST_SRC_PATH="/home/neg/dev/rust/src"
+set background=dark
+if has("python3")
+    let g:powerline_pycmd="py3"
+endif
+if !has("nvim")
+    set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
+    set rtp+=/home/neg/.vim/bundle/powerline/powerline/bindings/vim
+endif
+set runtimepath=/usr/share/vim/vim74,~/.vim,~/.vim/after
 source ~/.vim/colors/miromiro.vim
