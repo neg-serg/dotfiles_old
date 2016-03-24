@@ -1,27 +1,48 @@
 #!/bin/zsh
 
+function tput_test(){
+    for fg_ in {0..7}; do
+        sf=$(tput setaf $fg_)
+        for bg_ in {0..7}; do
+            sb=$(tput setab $bg_)
+            echo -n $sb$sf
+            printf ' F:%s B:%s ' $fg_ $bg_
+        done
+        echo $(tput sgr0)
+    done
+}
+
 function 256colors(){
     for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done
 }
 
+function color8_init(){
+    for i in {0..8}; do 
+        printf -v f$i %b "\e[38;05;${i}m"
+    done
+    bld=$'\e[1m'
+    rst=$'\e[0m'
+    inv=$'\e[7m'
+    w=$'\e[37m'
+}
+
 function init_ansi() {
-  esc=""
+    esc=""
 
-  Bf="${esc}[30m";   rf="${esc}[31m";   gf="${esc}[32m"
-  yf="${esc}[33m";   bf="${esc}[34m";   pf="${esc}[35m"
-  cf="${esc}[36m";   wf="${esc}[37m";
-  
-  Bb="${esc}[40m";  rb="${esc}[41m";  gb="${esc}[42m"
-  yb="${esc}[43m"   bb="${esc}[44m";   pb="${esc}[45m"
-  cb="${esc}[46m";  wb="${esc}[47m"
+    Bf="${esc}[30m";   rf="${esc}[31m";   gf="${esc}[32m"
+    yf="${esc}[33m";   bf="${esc}[34m";   pf="${esc}[35m"
+    cf="${esc}[36m";   wf="${esc}[37m";
 
-  ON="${esc}[1m";        OFF="${esc}[22m"
-  italicson="${esc}[3m"; italicsoff="${esc}[23m"
-  ulon="${esc}[4m";      uloff="${esc}[24m"
-  invon="${esc}[7m";     invoff="${esc}[27m"
+    Bb="${esc}[40m";  rb="${esc}[41m";  gb="${esc}[42m"
+    yb="${esc}[43m"   bb="${esc}[44m";   pb="${esc}[45m"
+    cb="${esc}[46m";  wb="${esc}[47m"
 
-  reset="${esc}[0m"
+    ON="${esc}[1m";        OFF="${esc}[22m"
+    italicson="${esc}[3m"; italicsoff="${esc}[23m"
+    ulon="${esc}[4m";      uloff="${esc}[24m"
+    invon="${esc}[7m";     invoff="${esc}[27m"
 
+    reset="${esc}[0m"
 }
 
 
@@ -84,15 +105,7 @@ function colorvalues() {
 # first - the new color overrides the old one.
 
 function invader() {
-    f=3 b=4
-    for j in f b; do
-    for i in {0..7}; do
-        eval ${j}${i}=\$\'\\e\[${!j}${i}m\'
-    done
-    done
-    bld=$'\e[1m'
-    rst=$'\e[0m'
-
+    color8_init
     cat << EOF
 
     $f0  ▄██▄     $f1  ▀▄   ▄▀     $f2 ▄▄▄████▄▄▄    $f3  ▄██▄     $f4  ▀▄   ▄▀     $f5 ▄▄▄████▄▄▄    $f6  ▄██▄   $rst
@@ -131,9 +144,7 @@ EOF
 
 function dump(){
     app=$@;
-
     ansi="$(xrdb -query | grep -Ei ${app}[.*]color[01-9] | sort -n -tr -k2 | cut -d: -f2 | tr -d '[:blank:]')"
-
     echo "
     BLK      RED      GRN      YEL      BLU      MAG      CYN      WHT  "
     for i in {0..7}; do printf '%b' "\e[0;3${i}m $(echo "${ansi}" | sed -n $(($i+1))'p')\e[0m "; done;
@@ -147,19 +158,14 @@ function dump(){
 function numbers (){
     init_ansi
     cat << EOF
-
     ${Bf}11111111${reset} ${rf}22222222${reset} ${gf}33333333${reset} ${yf}44444444${reset} ${bf}55555555${reset} ${pf}66666666${reset} ${cf}77777777${reset} ${wf}88888888${reset}
     ${Bb}11111111${reset} ${rb}22222222${reset} ${gb}33333333${reset} ${yb}44444444${reset} ${bb}55555555${reset} ${pb}66666666${reset} ${cb}77777777${reset} ${wb}88888888${reset}
-
 EOF
-
 }
 
 function blocks (){
     init_ansi
-
     cat << EOF
-
     ${Bf}████${reset}${Bb}████${reset} ${rf}████${reset}${rb}████${reset} ${gf}████${reset}${gb}████${reset} ${yf}████${reset}${yb}████${reset} ${bf}████${reset}${bb}████${reset} ${pf}████${reset}${pb}████${reset} ${cf}████${reset}${cb}████${reset} ${wf}████${reset}${wb}████${reset}
     ${Bf}████${reset}${Bb}████${reset} ${rf}████${reset}${rb}████${reset} ${gf}████${reset}${gb}████${reset} ${yf}████${reset}${yb}████${reset} ${bf}████${reset}${bb}████${reset} ${pf}████${reset}${pb}████${reset} ${cf}████${reset}${cb}████${reset} ${wf}████${reset}${wb}████${reset}
     ${Bf}████${reset}${Bb}████${reset} ${rf}████${reset}${rb}████${reset} ${gf}████${reset}${gb}████${reset} ${yf}████${reset}${yb}████${reset} ${bf}████${reset}${bb}████${reset} ${pf}████${reset}${pb}████${reset} ${cf}████${reset}${cb}████${reset} ${wf}████${reset}${wb}████${reset}
@@ -169,12 +175,9 @@ EOF
 }
 
 function colorformatting(){
-    for clbg in {40..47} {100..107} 49 ; do
-        #Foreground
-        for clfg in {30..37} {90..97} 39 ; do
-            #Formatting
-            for attr in 0 1 2 4 5 7 ; do
-                #Print the result
+    for clbg in {40..47} {100..107} 49 ; do  #Foreground
+        for clfg in {30..37} {90..97} 39 ; do #Formatting
+            for attr in 0 1 2 4 5 7 ; do #Print the result
                 echo -en "\e[${attr};${clbg};${clfg}m ^[${attr};${clbg};${clfg}m \e[0m"
             done
             echo #Newline
@@ -350,15 +353,7 @@ function ls_colors(){
 }
 
 function ira(){
-f=3 b=4
-for j in f b; do
-  for i in {0..7}; do
-    printf -v $j$i %b "\e[${!j}${i}m"
-  done
-done
-bld=$'\e[1m'
-rst=$'\e[0m'
-inv=$'\e[7m'
+color8_init
 cat << EOF
 $f1  ▄▄        ▄▄   $f2  ▄▄        ▄▄   $f3  ▄▄        ▄▄   $f4  ▄▄        ▄▄   $f5  ▄▄        ▄▄   $f6  ▄▄        ▄▄   
 $f1▄█████▄  ▄█████▄ $f2▄█████▄  ▄█████▄ $f3▄█████▄  ▄█████▄ $f4▄█████▄  ▄█████▄ $f5▄█████▄  ▄█████▄ $f6▄█████▄  ▄█████▄ 
@@ -379,22 +374,16 @@ $f1  ████████████   $f2  ██████████�
 $f1    ████████     $f2    ████████     $f3    ████████     $f4    ████████     $f5    ████████     $f6    ████████     
 $f1      ████       $f2      ████       $f3      ████       $f4      ████       $f5      ████       $f6      ████       $rst
 
+Ира милая кошка ^_^
+Мурмурмур! :)
+Я тебя люблю)
 EOF
+
 }
 
 function skulls(){
-f=3 b=4
-for j in f b; do
-  for i in {0..7}; do
-    printf -v $j$i %b "\e[${!j}${i}m"
-  done
-done
-bld=$'\e[1m'
-rst=$'\e[0m'
-inv=$'\e[7m'
-w=$'\e[37m'
+color8_init
 cat << EOF
-
 $f1  ▄▄▄▄▄▄▄   $f2  ▄▄▄▄▄▄▄   $f3  ▄▄▄▄▄▄▄   $f4  ▄▄▄▄▄▄▄   $f5  ▄▄▄▄▄▄▄   $f6  ▄▄▄▄▄▄▄   
 $f1▄█▀     ▀█▄ $f2▄█▀     ▀█▄ $f3▄█▀     ▀█▄ $f4▄█▀     ▀█▄ $f5▄█▀     ▀█▄ $f6▄█▀     ▀█▄ 
 $f1█         █ $f2█         █ $f3█         █ $f4█         █ $f5█         █ $f6█         █ 
