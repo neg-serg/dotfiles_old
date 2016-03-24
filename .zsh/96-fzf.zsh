@@ -1,10 +1,10 @@
 if [[ ${source_fzf} ]]; then
-    [[ ! "$PATH" == */home/neg/.vim/bundle/fzf/bin* ]] && export PATH="$PATH:/home/neg/.vim/bundle/fzf/bin"
-    if [[ ! "$MANPATH" == */home/neg/.vim/bundle/fzf/man* && -d "/home/neg/.vim/bundle/fzf/man" ]]; then
-        export MANPATH="$MANPATH:/home/neg/.vim/bundle/fzf/man"
+    [[ ! "${PATH}" == *~/.vim/bundle/fzf/bin* ]] && export PATH="${PATH}:~/.vim/bundle/fzf/bin"
+    if [[ ! "${MANPATH}" == *~/.vim/bundle/fzf/man* && -d "~/.vim/bundle/fzf/man" ]]; then
+        export MANPATH="${MANPATH}:~/.vim/bundle/fzf/man"
     fi
-    [[ $- == *i* ]] && source "/home/neg/.vim/bundle/fzf/shell/completion.zsh" 2> /dev/null
-    source "/home/neg/.vim/bundle/fzf/shell/key-bindings.zsh"
+    [[ $- == *i* ]] && source "~/.vim/bundle/fzf/shell/completion.zsh" 2> /dev/null
+    source "~/.vim/bundle/fzf/shell/key-bindings.zsh"
 else
     if [[ $- == *i* ]]; then
         __fzfcmd() { [ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf" }
