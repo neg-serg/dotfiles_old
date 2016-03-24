@@ -1,32 +1,13 @@
 if [[ ${source_fzf} ]]; then
-    # Setup fzf
-    # ---------
-    if [[ ! "$PATH" == */home/neg/.vim/bundle/fzf/bin* ]]; then
-        export PATH="$PATH:/home/neg/.vim/bundle/fzf/bin"
-    fi
-
-    # Man path
-    # --------
+    [[ ! "$PATH" == */home/neg/.vim/bundle/fzf/bin* ]] && export PATH="$PATH:/home/neg/.vim/bundle/fzf/bin"
     if [[ ! "$MANPATH" == */home/neg/.vim/bundle/fzf/man* && -d "/home/neg/.vim/bundle/fzf/man" ]]; then
         export MANPATH="$MANPATH:/home/neg/.vim/bundle/fzf/man"
     fi
-
-    # Auto-completion
-    # ---------------
     [[ $- == *i* ]] && source "/home/neg/.vim/bundle/fzf/shell/completion.zsh" 2> /dev/null
-
-    # Key bindings
-    # ------------
     source "/home/neg/.vim/bundle/fzf/shell/key-bindings.zsh"
 else
-    # Key bindings
-    # ------------
     if [[ $- == *i* ]]; then
-        __fzfcmd() {
-            [ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
-        }
-
-        # CTRL-R - Paste the selected command from history into the command line
+        __fzfcmd() { [ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf" }
         fzf-history-widget() {
             local selected num
             selected=( $(fc -l 1 | $(__fzfcmd) --extended-exact -i +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q "${LBUFFER//$/\\$}") )
@@ -51,14 +32,11 @@ function fe() {
     fi
 }
 
-# fkill - kill process
 function fkill() {
     zle -I
     ps -ef | sed 1d | fzf -m | awk '{print $2}' | xargs kill -${1:-9}
 }
 
-
-# fco - checkout git commit
 function fco() {
     local commits commit
     commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
@@ -66,7 +44,6 @@ function fco() {
     git checkout $(echo "${commit}" | sed "s/ .*//")
 }
 
-# fshow - git commit browser (enter for show, ctrl-d for diff, backtick toggles sort)
 function fshow() {
     local out shas sha q k
     while out=$(
@@ -113,40 +90,7 @@ function pl(){
     find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16 --extended-exact)"
     xsel <<< ${find_result}
     if [[ ! -z ${find_result} ]]; then
-        exifdata=$(exiftool ${find_result})
-
-        local vid_comment="$(awk -F: '/^Comment/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local doc_type="$(awk -F: '/^Doc Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local muxing_app="$(awk -F: '/^Muxing App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-|tr -d '[:blank:]')"
-        local date_time="$(awk -F: '/^Date Time Original/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local wrighting_app="$(awk -F: '/^Wrighting App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-
-        local fancy_name=$(_zfwrap ${find_result})
-        if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
-            local comment_str="$(zwrap "Comment $(_zdelim) ${vid_comment}")"
-        else
-            local comment_str=""
-        fi
-
-        local img_size_str="$(_zwrap "Size $(_zdelim) ${img_width} x ${img_height}")"
-        local duration_str="$(_zwrap "Duration $(_zdelim) ${duration}")"
-
-        if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
-            local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
-        else
-            local created_str=""
-        fi
-        echo -e "$(_zpref) ${fancy_name}"
-        for i in ${img_size_str} ${duration_str} ${created_str} ${comment_str}; do
-            if [[ ${i} != "" ]]; then
-                echo -ne "${i}\n"
-            fi
-        done
+        vid_fancy_print "${find_result}"
         mpv "${find_result}"
     fi
 }
