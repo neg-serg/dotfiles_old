@@ -797,3 +797,10 @@ function img(){
 function torch_activate(){
     source  ~/src/1st_level/torch/install/bin/torch-activate
 }
+
+function mp(){
+    for i; do
+        vid_fancy_print "${i}"
+        mpv --input-unix-socket=/tmp/mpvsocket "${i}"
+    done
+}
