@@ -35,38 +35,74 @@ function resolve_file {
     fi
 }
 
+function not_empty_in_fact_(){
+    if [[ $(echo "${1}"| tr -d '[:blank:]') != "" ]]; then
+        true
+    else
+        false
+    fi
+}
+
 function vid_fancy_print(){
         local exifdata=$(exiftool "$1")
 
-        local vid_comment="$(awk -F: '/^Comment/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local doc_type="$(awk -F: '/^Doc Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local muxing_app="$(awk -F: '/^Muxing App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-|tr -d '[:blank:]')"
-        local date_time="$(awk -F: '/^Date Time Original/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local wrighting_app="$(awk -F: '/^Wrighting App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-
         local fancy_name=$(_zfwrap "$1")
+        local vid_comment="$(awk -F: '/^Comment/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
         if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
             local comment_str="$(zwrap "Comment $(_zdelim) ${vid_comment}")"
         else
             local comment_str=""
         fi
 
+        local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
         local img_size_str="$(_zwrap "Size $(_zdelim) ${img_width} x ${img_height}")"
+
+        local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-|tr -d '[:blank:]')"
         local duration_str="$(_zwrap "Duration $(_zdelim) ${duration}")"
+
+        local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        local file_size_str="$(_zwrap "File Size $(_zdelim) ${file_size}")"
+
+        local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        not_empty_in_fact_ ${mime_type} && \
+        local mime_type_str="$(_zwrap "MIME Type $(_zdelim) ${mime_type}")"
+
+        local wrighting_app="$(awk -F: '/^Wrighting App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        not_empty_in_fact_ ${wrighting_app} && \
+        local writing_app_str="$(_zwrap "Wrighting App $(_zdelim) ${wrighting_app}")"
+
+        local muxing_app="$(awk -F: '/^Muxing App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        not_empty_in_fact_ ${muxing_app} && \
+        local muxing_app_str="$(_zwrap "Muxing App $(_zdelim) ${wrighting_app}")"
+
+        local doc_type="$(awk -F: '/^Doc Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        not_empty_in_fact_ ${doc_type} && \
+        local doc_type_str="$(_zwrap "Doc Type $(_zdelim) ${doc_type}")"
+
+        local date_time="$(awk -F: '/^Date Time Original/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        not_empty_in_fact_ ${date_time} && \
+        local date_time_str="$(_zwrap "Date/Time $(_zdelim) ${date_time}")"
 
         if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
             local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
         else
             local created_str=""
         fi
+
         echo -e "$(_zpref) ${fancy_name}"
-        for q in ${img_size_str} ${duration_str} ${created_str} ${comment_str}; do
-            [[ ${q} != "" ]] && echo -ne "${q}\n"
+        for q in ${img_size_str} \
+                 ${duration_str} \
+                 ${created_str} \
+                 ${file_size_str} \
+                 ${mime_type_str} \
+                 ${comment_str} \
+                 ${wrighting_app_str} \
+                 ${muxing_app_str} \
+                 ${doc_type_str} \
+                 ${date_time_str} \
+                 ; do
+            [[ ! ${q} == "" ]] && echo -ne "${q}\n"
         done
 }
 
