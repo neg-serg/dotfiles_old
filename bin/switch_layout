@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+xkblayout-state set $1
