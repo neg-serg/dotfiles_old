@@ -43,6 +43,11 @@ function not_empty_in_fact_(){
     fi
 }
 
+function _zfile_sz(){
+    sed "s/\([KMGT]iB\|B\)/$fg[green]&/" || \
+    numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
+}
+
 function vid_fancy_print(){
         local exifdata=$(exiftool "$1")
 
@@ -56,17 +61,17 @@ function vid_fancy_print(){
 
         local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
         local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_size_str="$(_zwrap "Size $(_zdelim) ${img_width} x ${img_height}")"
+        local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width} $(_zfg 24)x$fg[white] ${img_height}")"
 
         local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-|tr -d '[:blank:]')"
-        local duration_str="$(_zwrap "Duration $(_zdelim) ${duration}")"
+        local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
 
         local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local file_size_str="$(_zwrap "File Size $(_zdelim) ${file_size}")"
+        local file_size_str="$(_zwrap "File Size $(_zdelim) $fg[white] $(_zfile_sz <<< ${file_size})")"
 
         local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
         not_empty_in_fact_ ${mime_type} && \
-        local mime_type_str="$(_zwrap "MIME Type $(_zdelim) ${mime_type}")"
+        local mime_type_str="$(_zwrap "MIME Type $(_zdelim) $fg[white]${mime_type}")"
 
         local wrighting_app="$(awk -F: '/^Wrighting App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
         not_empty_in_fact_ ${wrighting_app} && \
