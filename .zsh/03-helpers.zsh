@@ -104,9 +104,9 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${muxing_app} && \
         local muxing_app_str="$(_zwrap "Muxing App $(_zdelim) ${wrighting_app}")"
         #------------------------------------------
-        local doc_type="$(_zex_tag 'Doc Type')"
+        local doc_type="$(_zex_tag 'Doc Type'|tr '\n' ' '|sed 's/ *$//')"
         not_empty_in_fact_ ${doc_type} && \
-        local doc_type_str="$(_zwrap "Doc Type $(_zdelim) ${doc_type}")"
+        local doc_type_str="$(_zwrap "Doc Type $(_zdelim) $fg[white]${doc_type}")"
         #------------------------------------------
         local date_time="$(_zex_tag 'Date Time Original')"
         not_empty_in_fact_ ${date_time} && \
