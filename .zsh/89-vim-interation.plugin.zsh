@@ -95,14 +95,22 @@ function v {
 function wim_embed { wim_run "__wim_embed" "$@" }
 
 function wdiff {
+    local prev_ 
+    local arg2_
     # or it's maybe better to use :windo diffthis
     if [[ $# == 2 ]]; then
+        prev_="$1" 
         wim_run "" && v -b":tabnew" && \
-        {wim_run $1; shift} && \
-        v -b":diffthis" && \
-        v -b":vs" && \
-        {wim_run $1; shift} && \
-        v -b":diffthis"
+        { wim_run $1; shift } && v -b":diffthis" && \
+        { v -b":vs" && {
+            if [[ -d $1 ]]; then  
+                arg2_="$1/$(basename ${prev_})"
+            else
+                arg2_="$1"
+            fi
+            wim_run ${arg2_};
+            shift
+        } && v -b":diffthis" }
     fi
 }
 
