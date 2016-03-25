@@ -48,56 +48,78 @@ function _zfile_sz(){
     numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
 }
 
-function vid_fancy_print(){
-        local exifdata=$(exiftool "$1")
+function _zex_tag(){
+    awk -F: '/^'"$1"'/{print $2}' <<< ${exifdata_}|tr -d '[:blank:]'
+}
 
+function vid_fancy_print(){
+    if [[ -f "$1" ]]; then
+        exifdata_=$(exiftool "$1")
+        #------------------------------------------
         local fancy_name=$(_zfwrap "$1")
-        local vid_comment="$(awk -F: '/^Comment/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        local vid_comment="$(_zex_tag 'Comment')"
         if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
             local comment_str="$(zwrap "Comment $(_zdelim) ${vid_comment}")"
         else
             local comment_str=""
         fi
-
-        local img_width="$(awk -F: '/^Image Width/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
-        local img_height="$(awk -F: '/^Image Height/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local img_width="$(_zex_tag 'Image Width')"
+        local img_height="$(_zex_tag 'Image Height')"
         local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width} $(_zfg 24)x$fg[white] ${img_height}")"
-
-        local duration="$(awk -F: '/^Duration/' <<< ${exifdata}|cut -d: -f 3-|tr -d '[:blank:]')"
+        #------------------------------------------
+        local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|cut -d: -f 3-|tr -d '[:blank:]')"
         local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
-
-        local file_size="$(awk -F: '/^File Size/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local file_size="$(_zex_tag 'File Size'))"
         local file_size_str="$(_zwrap "File Size $(_zdelim) $fg[white] $(_zfile_sz <<< ${file_size})")"
-
-        local mime_type="$(awk -F: '/^MIME Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local mime_type="$(_zex_tag 'MIME Type')"
         not_empty_in_fact_ ${mime_type} && \
         local mime_type_str="$(_zwrap "MIME Type $(_zdelim) $fg[white]${mime_type}")"
-
-        local wrighting_app="$(awk -F: '/^Wrighting App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local average_bitrate="$(_zex_tag 'Average Bitrate')"
+        local max_bitrate="$(_zex_tag 'Max Bitrate')"
+        local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
+        #------------------------------------------
+        local video_frame_rate="$(_zex_tag 'Video Frame Rate')"
+        local vid_fps_str="$(_zwrap "FPS: $(_zdelim) $fg[white]${video_frame_rate}")"
+        #------------------------------------------
+        local audio_bits="$(_zex_tag 'Audio Bits Per Sample')"
+        local audio_sample_rate="$(_zex_tag 'Audio Sample Rate')"
+        local audio_qa_str="$(_zwrap "Audio: $(_zdelim) $fg[white]${audio_bits}/${audio_sample_rate}")"
+        #------------------------------------------
+        local encoder="$(_zex_tag 'Encoder')"
+        local encoder_str="$(_zwrap "Encoder: $(_zdelim) $fg[white]${encoder}")"
+        #------------------------------------------
+        local wrighting_app="$(_zex_tag 'Wrighting App')"
         not_empty_in_fact_ ${wrighting_app} && \
         local writing_app_str="$(_zwrap "Wrighting App $(_zdelim) ${wrighting_app}")"
-
-        local muxing_app="$(awk -F: '/^Muxing App/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local wrighting_app="$(_zex_tag 'Muxing App')"
         not_empty_in_fact_ ${muxing_app} && \
         local muxing_app_str="$(_zwrap "Muxing App $(_zdelim) ${wrighting_app}")"
-
-        local doc_type="$(awk -F: '/^Doc Type/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local doc_type="$(_zex_tag 'Doc Type')"
         not_empty_in_fact_ ${doc_type} && \
         local doc_type_str="$(_zwrap "Doc Type $(_zdelim) ${doc_type}")"
-
-        local date_time="$(awk -F: '/^Date Time Original/{print $2}'<<< ${exifdata}|tr -d '[:blank:]')"
+        #------------------------------------------
+        local date_time="$(_zex_tag 'Date Time Original')"
         not_empty_in_fact_ ${date_time} && \
         local date_time_str="$(_zwrap "Date/Time $(_zdelim) ${date_time}")"
-
+        #------------------------------------------
         if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
             local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
         else
             local created_str=""
         fi
-
+        #------------------------------------------
         echo -e "$(_zpref) ${fancy_name}"
         for q in ${img_size_str} \
                  ${duration_str} \
+                 ${bitrate_str} \
+                 ${vid_fps_str} \
+                 ${audio_qa_str} \
                  ${created_str} \
                  ${file_size_str} \
                  ${mime_type_str} \
@@ -106,8 +128,11 @@ function vid_fancy_print(){
                  ${muxing_app_str} \
                  ${doc_type_str} \
                  ${date_time_str} \
+                 ${encoder_str} \
                  ; do
             [[ ! ${q} == "" ]] && echo -ne "${q}\n"
         done
+        unset exifdata_
+    fi
 }
 
