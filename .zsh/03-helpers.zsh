@@ -80,16 +80,20 @@ function vid_fancy_print(){
         #------------------------------------------
         local average_bitrate="$(_zex_tag 'Average Bitrate')"
         local max_bitrate="$(_zex_tag 'Max Bitrate')"
+        not_empty_in_fact_ ${max_bitrate} && not_empty_in_fact_ ${average_bitrate} && \
         local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
         #------------------------------------------
         local video_frame_rate="$(_zex_tag 'Video Frame Rate')"
+        not_empty_in_fact_ ${video_frame_rate} && \
         local vid_fps_str="$(_zwrap "FPS: $(_zdelim) $fg[white]${video_frame_rate}")"
         #------------------------------------------
         local audio_bits="$(_zex_tag 'Audio Bits Per Sample')"
         local audio_sample_rate="$(_zex_tag 'Audio Sample Rate')"
+        not_empty_in_fact_ ${audio_bits} && not_empty_in_fact_ && ${audio_sample_rate} && \
         local audio_qa_str="$(_zwrap "Audio: $(_zdelim) $fg[white]${audio_bits}/${audio_sample_rate}")"
         #------------------------------------------
         local encoder="$(_zex_tag 'Encoder')"
+        not_empty_in_fact_ ${encoder} && \
         local encoder_str="$(_zwrap "Encoder: $(_zdelim) $fg[white]${encoder}")"
         #------------------------------------------
         local wrighting_app="$(_zex_tag 'Wrighting App')"
