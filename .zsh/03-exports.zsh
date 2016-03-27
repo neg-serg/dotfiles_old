@@ -20,10 +20,10 @@ path_dirs=(
 export PATH=${(j_:_)path_dirs}
 
 # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="${PATH}:${HOME}/.rvm/bin"
 # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && \
-    source "$HOME/.rvm/scripts/rvm"
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && \
+    source "${HOME}/.rvm/scripts/rvm"
 eval $(perl -I /one/dev/perl5/lib/perl5 -Mlocal::lib=/one/dev/perl5)
 
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -86,11 +86,11 @@ export LESS_TERMCAP_se=$'\e[0m'        # end standout
 export LESS_TERMCAP_us=$'\e[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\e[0m'        # end underline
 
-export PWS="$XDG_DATA_HOME/safe/pws"
-export TEXINPUTS=".:$XDG_DATA_HOME/texmf//:"
+export PWS="${XDG_DATA_HOME}/safe/pws"
+export TEXINPUTS=".:${XDG_DATA_HOME}/texmf//:"
 
 # history
-export HISTFILE=$HOME/.zsh_history
+export HISTFILE=${HOME}/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=100000 # useful for setopt append_history
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
