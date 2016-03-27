@@ -78,42 +78,49 @@ function stty_setup(){
 # No core dumps for now
 ulimit -c 0
 
-setopt append_history
-setopt share_history
-setopt extended_history
-setopt histignorealldups 
+setopt append_history # this is default, but set for share_history
+setopt share_history # import new commands from the history file also in other zsh-session
+setopt extended_history # save each command's beginning timestamp and the duration to the history file
+setopt histignorealldups # remove command lines from the history list when the first character on the line is a space
 
-setopt hist_expire_dups_first
+setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
 setopt hist_ignore_dups # ignore duplication command history list
-setopt hist_verify
+setopt hist_verify # don't execute, just expand history
 setopt hist_ignore_space # reduce whitespace in history
-setopt inc_append_history
+setopt inc_append_history # add comamnds as they are typed, don't wait until shell exit
 
 # remove command lines from the history list when the first character on the
 # line is a space
 setopt histignorespace 
+# if a command is issued that can't be executed as a normal command, and the
+# command is the name of a directory, perform the cd command to that directory.
 setopt auto_cd 
-setopt extended_glob 
-setopt longlistjobs 
-setopt nonomatch 
-setopt notify 
-setopt hash_list_all 
-setopt completeinword 
-setopt nohup 
-setopt auto_pushd 
-setopt pushdminus 
-setopt pushdsilent 
-setopt pushdtohome 
-setopt pushd_ignore_dups 
-setopt nobeep # Get rid of beeps
-setopt noglobdots 
-setopt noshwordsplit 
 
-setopt C_BASES  # print $(( [#16] 0xff ))
-setopt prompt_subst # Set the prompt
+# in order to use #, ~ and ^ for filename generation grep word
+# *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
+# don't forget to quote '^', '~' and '#'!
+setopt extended_glob # ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^^ ^ ^ ^ ^
+setopt longlistjobs # display PID when suspending processes as well
+setopt nonomatch # try to avoid the 'zsh: no matches found...'
+setopt notify  # report the status of backgrounds jobs immediately
+setopt hash_list_all  # whenever a command completion is attempted, make sure the entire command path is hashed first.
+setopt completeinword # not just at the end
+setopt nohup  # don't send SIGHUP to background processes when the shell exits.
+setopt auto_pushd # make cd push the old directory onto the directory stack.
+setopt pushdminus # pushd -N goes to Nth dir in stack
+setopt pushdsilent # do not print dirstack after each cd/pushd
+setopt pushdtohome #pushd with no args pushes to home
+setopt pushd_ignore_dups # don't push the same dir twice.
+setopt nobeep # get rid of beeps
+setopt noglobdots  # * shouldn't match dotfiles. ever.
+setopt noshwordsplit  # use zsh style word splitting
+setopt noflowcontrol # no c-s/c-q output freezing
+
+setopt c_bases  # print $(( [#16] 0xff ))
+setopt prompt_subst # set the prompt
 # make sure to use right prompt only when not running a command
-setopt transient_rprompt
-setopt interactivecomments # Allow interactive comments
+setopt transient_rprompt # only show the rprompt on the current prompt
+setopt interactivecomments # allow interactive comments
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
@@ -123,10 +130,9 @@ setopt magicequalsubst
 watch=(notme root)
 
 # automatically remove duplicates from these arrays
-#typeset -U path cdpath fpath manpath
+typeset -U path cdpath fpath manpath
 
-# autoloading
-zrcautoload zmv    # who needs mmv or rename?
+zrcautoload zmv # who needs mmv or rename?
 zrcautoload history-search-end
 zrcautoload zargs
 
@@ -154,7 +160,7 @@ zmodload -ap zsh/mapfile mapfile
 # Use hard limits, except for a smaller stack and no core dumps
 unlimit
 limit stack 8192
-#isgrmlcd && limit core 0 # important for a live-cd-system
+limit core 0 # important for a live-cd-system
 limit -s
 
 # Keeps track of the last used working directory and automatically jumps
