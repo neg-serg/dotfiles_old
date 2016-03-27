@@ -24,7 +24,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && \
     source "$HOME/.rvm/scripts/rvm"
-eval $(perl -I ~/dev/perl5/lib/perl5 -Mlocal::lib=~/dev/perl5)
+eval $(perl -I /one/dev/perl5/lib/perl5 -Mlocal::lib=/one/dev/perl5)
 
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
@@ -67,7 +67,7 @@ export NCURSES_NO_PADDING=1
 export PERLBREW_ROOT=${HOME}/.perl5
 
 if [[ -x "$(which "vimpager" 2>/dev/null)" ]]; then
-    export PAGER="vimpager" SDCV_PAGER=${PAGER}
+    export PAGER="vimpager -u ~/.vim/vimpagerrc" SDCV_PAGER=${PAGER}
     alias less=${PAGER}
     alias zless=${PAGER}
 else
