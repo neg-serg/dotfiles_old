@@ -10,6 +10,7 @@
     unset _cope_path
 }
 
+alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 alias pstree="pstree -U "$@" | sed '
 	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
 	s/[{}]/\x1B[31m&\x1B[0m/g
@@ -84,23 +85,27 @@ if [[ ! -x "${BIN_HOME}/l" ]]; then
     fi
 fi
 alias l.='ls -d .*'
+alias spf="ls -Sshr ./*(.)"
 
 alias primusrun="vblank_mode=0 primusrun"
-alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
 
 alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 alias mk="mkdir -p"
-alias mp="mpv --input-unix-socket=/tmp/mpvsocket"
+
 alias mpa="mpv -fs -ao null --input-unix-socket=/tmp/mpvsocket"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
+#--[ Mount ]----------------------------------------------------------
 alias u="umount"
+alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
+alias mnt='sudo mount'
+alias ym="${SCRIPT_HOME}/yandex.mount > /dev/null"
+
 alias s="sudo"
-alias f='grep -Rli'
 alias x='xargs'
 alias e="open"
 alias rd="rmdir"
@@ -113,8 +118,9 @@ alias ple='perl -wlne' # use perl like awk/sed
 # [pattern] [filename unless STDOUT]
 prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
-alias ftp="lftp"
 alias now="date +'[%H:%M] %A %e %B %G'"
+
+alias mmv="noglob zmv -W"
 alias mv="mv -i"
 
 alias tree="tree --dirsfirst -C"
@@ -128,20 +134,21 @@ if inpath git; then
     alias gp='git push'
     alias gdd='git diff'
     alias gc='git commit'
+    alias gl='git last'
     alias glp='gl -p'
-    alias gcu='git commit -m "updates"'
+    alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
     eval "$(hub alias -s)"
 fi
 
-alias :x=' exit'
-alias :q=' exit'
-alias :Q=' exit'
+for i in x q Q; do
+    eval alias :${i}=\' exit\'
+done
 
 alias iostat='iostat -mtx'
 # alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
 _zsh_proxy=""
-alias yt="${_zsh_proxy} you-get"
+alias yt="${_zsh_proxy} youtubedown || ${_zsh_proxy} you-get"
 alias yr="${_zsh_proxy} youtube-viewer --video-player=mpv -C"
 unset _zsh_proxy
 
@@ -149,8 +156,15 @@ alias qe='cd *(/om[1])'
 alias hi='_v'
 
 alias wine="LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
+alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
+function bnet(){
+    local dir_=~/.wine/drive_c/Program\ Files\ \(x86\)/
+    cd "${dir_}/Battle.net"
+    LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
+    wine ./Battle.net.exe &
+}
+alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
 
-alias ym="${BIN_HOME}/scripts/yandex.mount > /dev/null"
 alias td="[ -z $(pidof transmission-daemon) ] && transmission-daemon"
 
 alias awk="$(whence gawk || whence awk)"
@@ -159,15 +173,13 @@ alias hist10='print -l ${(o)history%%*} | uniq -c | sort -nr | head -n 10' # top
 alias hist='history'
 alias sniff='sudo ngrep -d "enp6s0" -t "^(GET|POST) " "tcp and port 80"'
 
-alias wd="${BIN_HOME}/wd.sh"
 alias pastebinit='pastebinit -a "Neg" -b "http://paste2.org" -t "Neg is here"'
 
 alias objdump='objdump -M intel -d'
-alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
 alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
-alias Cal="${BIN_HOME}/scripts/dzen/time-date"
+alias Cal="${SCRIPT_HOME}/dzen/time-date"
 alias lk="{[[ -x $(which glances)  ]] && glances} || htop || top"
 
 user_commands=(
@@ -229,7 +241,6 @@ declare -A abk
 abk=(
     'A'    '|& ack -i '
     'G'    '|& grep -i '
-    # 'G'    '|& ucg --color -i -j8 '
     'C'    '| wc -l'
     'H'    '| head'
     'T'    '| tail'
@@ -287,8 +298,6 @@ inpath nmap && {
     alias nmap_web_safe_osscan="sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy "
 }
 
-alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
-
 inpath journalctl && {
     alias log='journalctl -f | ccze -A' #follow log
     alias log0='journalctl -b -0 | ccze -A' #current log 
@@ -316,24 +325,25 @@ alias vuze="vuze &>/dev/null&"
     done
 }
 
+if inpath vim || inpath nvim; then
+    alias v.="v ."
+    alias vu='nvim -u NONE -U NONE -i NONE -N'
+    alias gv='v -b":GV"'
+fi
+
 alias java='java "$_SILENT_JAVA_OPTIONS"'
-alias v.="v ."
 alias ya="yaourt -S --noconfirm"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
-alias vu='nvim -u NONE -U NONE -i NONE -N'
 alias vol='st pulsemixer || st alsamixer -g'
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias unison="unison -log=false -auto -ui=text -times"
-alias google='web_search google'
-alias starwars='telnet towel.blinkenlights.nl'
-alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
+alias google='~/bin/scripts/rofi_search'
 alias recordmydesktop="recordmydesktop --no-frame"
-alias gv='v -b":GV"'
 alias xescape='xcape -e "Control_L=Escape" -t 500'
-alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
+alias up="rtv -s unixporn"
+#--[ Fun ]-----------------
+alias taco='curl -L git.io/taco'
+alias starwars='telnet towel.blinkenlights.nl'
+#--[ Csound ]--------------
 alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
-alias taco='curl -L git.io/taco'
-alias mnt='sudo mount'
-alias up="rtv -s unixporn"
