@@ -14,7 +14,6 @@ Neg_kb.WMPlex_toplevel = {
     --[[ scratchpads  ]]--------------------------------
     kpress(M4.."D",      function() console() end),
     kpress(M4.."F",      function() ncmpcpp() end),
-    kpress(M4.."P",      function() namsc('float2') end),
     kpress(M4.."E",      function() namsc('im') end),
     kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(notioncore.current()) end),
     kpress(M1.."G",      function() rofi.goto_win(notioncore.current()) end),
@@ -46,12 +45,13 @@ Neg_kb.WMPlex_toplevel = {
     submap(M1.."E",{
         kpress(Ct.."R", function() app.byinstance('cr3', 'Cr3', 'cr3') end),
         kpress(Ct.."W", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
+        kpress("A",     function() namsc('firefox-dialog') end),
         kpress("D",     function() spawn('~/bin/scripts/dzen-dict') end),
         kpress("F",     function() namsc('float') end),
         kpress("I",     function() spawn('~/bin/pls -output') end),
         kpress("L",     function() radare2() end),
         kpress("M",     function() mutt() end),
-        kpress("N",     function() app.byinstance('nicotine.py || nicotine', 'Nicotine.py', 'nicotine.py') end),
+        kpress("N",     function() nicotine() end),
         kpress("O",     function() spawn('~/bin/pls -sink') end),
         kpress("P",     function() spawn('st pulsemixer') end),
         kpress("Q",     function() spawn('~/bin/mpd_sel.sh') end),
@@ -102,7 +102,8 @@ Neg_kb.WScreen = {
     kpress(M4.."K", "_chld:focus_direction('up')", "_chld:non-nil"),
     kpress(M4.."L", "_chld:focus_direction('right')", "_chld:non-nil"),
     ---------------------------------------------------------
-    kpress("Print", function() make_root_screenshot() end),
+    -- kpress("Print", function() make_root_screenshot() end),
+    kpress("Print", function() make_scr() end),
     kpress(M1.."Print", function() make_current_window_screenshot() end),
 }
 

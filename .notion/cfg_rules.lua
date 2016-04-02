@@ -21,9 +21,9 @@ defwinprop{instance="opera",transient_mode="off",transient_mode="off",target="we
 defwinprop{class="Dwb",transient_mode="off",jumpto="on",target="web",tag="www"}
 defwinprop{class="Tor Browser",transient_mode="off",jumpto="on",target="web",tag="www"}
 defwinprop{class="Firefox",transient_mode="off",jumpto="on",target="web",tag="www"}
-defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="float2"}
+defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="firefox-dialog"}
 defwinprop{class="Firefox",instance="Dialog",float=true}
-defwinprop{class="Firefox",role="Organizer",target="float2"}
+defwinprop{class="Firefox",role="Organizer",target="firefox-dialog"}
 defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
     max_size = {w=1024,h=768},
     min_size = {w=800,h=600},
