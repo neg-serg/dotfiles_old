@@ -11,11 +11,13 @@ path_dirs=(
 	/usr/bin/{site,vendor,core}_perl
 	${HOME}/.rvm/bin
 	${BIN_HOME}/{,go/bin}
-    $(ruby -e 'puts Gem.user_dir')/bin
     /opt/android-sdk/platform-tools
     /mnt/home/.local/bin
     /opt/cuda/bin
 )
+
+whence ruby >/dev/null && \
+    path_dirs+=$($(whence ruby) -e 'puts Gem.user_dir')/bin
 
 export PATH=${(j_:_)path_dirs}
 
