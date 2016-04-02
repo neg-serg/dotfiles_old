@@ -178,6 +178,6 @@ defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="als
 defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top"}
 defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=true,target="float"}
 defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float"}
-defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="float2",tag="soulseek"}
-defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="float2",tag="soulseek"}
+defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="nicotine",tag="soulseek"}
+defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek"}
 defwinprop{class="*",instance="*",transparent=false}
