@@ -101,8 +101,11 @@ local function ws_current(t)
         local name_pager_plus=""
         if curindex == nil then curindex = 0 end
         local curindex = 0
-        if scr == nil then curindex = 0 else
+        if scr == nil then curindex = 0 
+        elseif scr:get_index(curws) ~= nil then
             curindex = scr:get_index(curws)+1
+        else
+            curindex = 1
         end
         n = scr:mx_count(1)
         for i=1,n do
