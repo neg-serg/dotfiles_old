@@ -47,7 +47,7 @@ mycompletion() {
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' tag-order files
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' file-sort name
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' menu select auto
-    zstyle ':completion:*:*:(mplayer*|mp):*'    file-patterns '(#i)*.(rmvb|mkv|vob|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
+    zstyle ':completion:*:*:(mplayer*|mp):*'    file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
     zstyle ':completion:*:default'      \
         select-prompt \
         "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
@@ -206,3 +206,11 @@ if (( $#bash_completions )); then
   fi
   bash_source /etc/bash_completion.d/vzctl.sh
 fi
+
+function expand-or-complete-with-dots() {
+    echo -n "\e[36m-=--...--=-\e[0m"
+    zle expand-or-complete
+    zle redisplay
+}
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots
