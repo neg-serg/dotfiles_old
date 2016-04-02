@@ -9,7 +9,9 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
-let g:powerline_pycmd          = "py3"
+if has("python3")
+    let g:powerline_pycmd          = "py3"
+endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 
@@ -206,8 +208,9 @@ if neobundle#tap('YouCompleteMe')
         endtry
     endif
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-    let g:ycm_rust_src_path = $HOME."/src/1st_level/rust_src18/rustc-nightly/src"
-    let g:ycm_filepath_completion_use_working_dir = 0
+    let g:ycm_rust_src_path = "/usr/src/rust/src"
+    let g:ycm_filepath_completion_use_working_dir = 1
+    let g:ycm_disable_for_files_larger_than_kb = 1024
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_cache_omnifunc = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
@@ -226,6 +229,9 @@ if neobundle#tap('YouCompleteMe')
     " let g:ycm_autoclose_preview_window_after_completion = 0
     " let g:ycm_autoclose_preview_window_after_insertion = 0 
 
+    " let g:ycm_min_num_of_chars_for_completion = 100
+    " let g:ycm_auto_trigger = 0
+
     let g:ycm_semantic_triggers =  {
         \   'c' : ['->', '.'],
         \   'objc' : ['->', '.'],
@@ -233,7 +239,6 @@ if neobundle#tap('YouCompleteMe')
         \   'perl' : ['->'],
         \   'php' : ['->', '::'],
         \   'cs,java,javascript,d,vim,ruby,perl6,scala,vb,elixir,go' : ['.'],
-        \   'lua' : ['.', ':'],
         \   'erlang' : [':'],
         \   'ocaml' : ['.', '#'],
         \   'ruby' : ['.', '::'],
@@ -254,7 +259,8 @@ if neobundle#tap('YouCompleteMe')
         \ 'vimwiki'    : 1,
         \ 'pandoc'     : 1,
         \ 'infolog'    : 1,
-        \ 'mail'       : 1
+        \ 'mail'       : 1,
+        \ 'scala'      : 1
         \}
 
     let g:ycm_min_num_identifier_candidate_chars = 4
@@ -706,8 +712,10 @@ endif
 " │ https://github.com/tpope/vim-dispatch.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('vim-dispatch')
-    nmap MK :Make 
+    nmap MK :Make -j4
     nmap MC :Make clean<cr>
+    nmap <Space>cc :Make -j4<cr>
+    nmap <Space>mc :Make distclean<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - davidhalter/jedi-vim.git                                                 │
@@ -959,7 +967,6 @@ if neobundle#tap('rainbow')
     let g:sparkupMaps = 1 "default = 1
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
 endif
-
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - tranngocthachs/gtags-cscope-vim-plugin.git                               │
 " │ https://github.com/tranngocthachs/gtags-cscope-vim-plugin.git                     │
