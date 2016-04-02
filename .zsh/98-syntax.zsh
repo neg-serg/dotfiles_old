@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/zsh
 # -------------------------------------------------------------------------------------------------
-# Copyright (c) 2010-2011 zsh-syntax-highlighting contributors
+# Copyright (c) 2010-2016 zsh-syntax-highlighting contributors
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted
@@ -23,12 +23,6 @@
 # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 # OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# -------------------------------------------------------------------------------------------------
-# -*- mode: zsh; sh-indentation: 2; indent-tabs-mode: nil; sh-basic-offset: 2; -*-
-# vim: ft=zsh sw=2 ts=2 et
-# -------------------------------------------------------------------------------------------------
-
-
 # -------------------------------------------------------------------------------------------------
 # Core highlighting update system
 # -------------------------------------------------------------------------------------------------
@@ -90,26 +84,61 @@ _zsh_highlight()
     # Use value form cache if any cached
     eval "region_highlight+=(\"\${${cache_place}[@]}\")"
 done
-    # Re-apply zle_highlight settings
-    () {
-      if (( REGION_ACTIVE )) ; then
-        # zle_highlight[region] defaults to 'standout' if unspecified
-        local region="${${zle_highlight[(r)region:*]#region:}:-standout}"
-        integer start end
-        if (( MARK > CURSOR )) ; then
-          start=$CURSOR end=$MARK
-        else
-          start=$MARK end=$CURSOR
-        fi
-        region_highlight+=("$start $end $region")
-      fi
-    }
+    # region
+    (( REGION_ACTIVE )) && _zsh_highlight_apply_zle_highlight region standout "$MARK" "$CURSOR"
+
+    # # yank / paste (zsh-5.1.1 and newer)
+    # (( $+YANK_ACTIVE )) && (( YANK_ACTIVE )) && _zsh_highlight_apply_zle_highlight paste standout "$YANK_START" "$YANK_END"
+
+    # isearch
+    (( $+ISEARCH_ACTIVE )) && (( ISEARCH_ACTIVE )) && _zsh_highlight_apply_zle_highlight isearch underline "$ISEARCH_START" "$ISEARCH_END"
+
+    # suffix
+    (( $+SUFFIX_ACTIVE )) && (( SUFFIX_ACTIVE )) && _zsh_highlight_apply_zle_highlight suffix bold "$SUFFIX_START" "$SUFFIX_END"
+
+
     return $ret
 
   } always {
     typeset -g _ZSH_HIGHLIGHT_PRIOR_BUFFER="$BUFFER"
     typeset -gi _ZSH_HIGHLIGHT_PRIOR_CURSOR=$CURSOR
   }
+}
+
+# Apply highlighting based on entries in the zle_highligh array.
+# This function takes four arguments:
+# 1. The exact entry (no patterns) in the zle_highlight array:
+#    region, paste, isearch, or suffix
+# 2. The default highlighting that should be applied if the entry is unset
+# 3. and 4. Two integer values describing the beginning and end of the
+#    range. The order does not matter.
+_zsh_highlight_apply_zle_highlight() {
+  local entry="$1" default="$2"
+  integer first="$3" second="$4"
+
+  # read the relevant entry from zle_highlight
+  local region="${zle_highlight[(r)$entry:*]}"
+
+  if [[ -z "$region" ]]; then
+    # entry not specified at all, use default value
+    region=$default
+  else
+    # strip prefix
+    region="${region#$entry:}"
+
+    # no highlighting when set to the empty string or to 'none'
+    if [[ -z "$region" ]] || [[ "$region" == none ]]; then
+      return
+    fi
+  fi
+
+  integer start end
+  if (( first < second )); then
+    start=$first end=$second
+  else
+    start=$second end=$first
+  fi
+  region_highlight+=("$start $end $region")
 }
 
 
@@ -162,25 +191,31 @@ _zsh_highlight_bind_widgets()
 
   # Override ZLE widgets to make them invoke _zsh_highlight.
   local cur_widget
-  for cur_widget in ${${(f)"$(builtin zle -la)"}:#(.*|_*|orig-*|run-help|which-command|beep|set-local-history|yank)}; do
+  for cur_widget in ${${(f)"$(builtin zle -la)"}:#(.*|orig-*|run-help|which-command|beep|set-local-history|yank)}; do
     case $widgets[$cur_widget] in
 
       # Already rebound event: do nothing.
-      user:$cur_widget|user:_zsh_highlight_widget_*);;
+      user:_zsh_highlight_widget_*);;
+
+      # The "eval"'s are required to make $cur_widget a closure: the value of the parameter at function
+      # definition time is used.
+      #
+      # We can't use ${0/_zsh_highlight_widget_} because these widgets are always invoked with
+      # NO_function_argzero, regardless of the option's setting here.
 
       # User defined widget: override and rebind old one with prefix "orig-".
-      user:*) eval "zle -N orig-$cur_widget ${widgets[$cur_widget]#*:}; \
-                    _zsh_highlight_widget_$cur_widget() { _zsh_highlight_call_widget orig-$cur_widget \"\$@\" }; \
-                    zle -N $cur_widget _zsh_highlight_widget_$cur_widget";;
+      user:*) zle -N orig-$cur_widget ${widgets[$cur_widget]#*:}
+              eval "_zsh_highlight_widget_${(q)cur_widget}() { _zsh_highlight_call_widget orig-${(q)cur_widget} -- \"\$@\" }"
+              zle -N $cur_widget _zsh_highlight_widget_$cur_widget;;
 
       # Completion widget: override and rebind old one with prefix "orig-".
-      completion:*) eval "zle -C orig-$cur_widget ${${widgets[$cur_widget]#*:}/:/ }; \
-                          _zsh_highlight_widget_$cur_widget() { _zsh_highlight_call_widget orig-$cur_widget \"\$@\" }; \
-                          zle -N $cur_widget _zsh_highlight_widget_$cur_widget";;
+      completion:*) zle -C orig-$cur_widget ${${(s.:.)widgets[$cur_widget]}[2,3]} 
+                    eval "_zsh_highlight_widget_${(q)cur_widget}() { _zsh_highlight_call_widget orig-${(q)cur_widget} -- \"\$@\" }"
+                    zle -N $cur_widget _zsh_highlight_widget_$cur_widget;;
 
       # Builtin widget: override and make it call the builtin ".widget".
-      builtin) eval "_zsh_highlight_widget_$cur_widget() { _zsh_highlight_call_widget .$cur_widget \"\$@\" }; \
-                     zle -N $cur_widget _zsh_highlight_widget_$cur_widget";;
+      builtin) eval "_zsh_highlight_widget_${(q)cur_widget}() { _zsh_highlight_call_widget .${(q)cur_widget} -- \"\$@\" }"
+               zle -N $cur_widget _zsh_highlight_widget_$cur_widget;;
 
       # Default: unhandled case.
       *) echo "zsh-syntax-highlighting: unhandled ZLE widget '$cur_widget'" >&2 ;;
