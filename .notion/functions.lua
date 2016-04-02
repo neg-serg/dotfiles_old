@@ -45,9 +45,10 @@ function mutt()
 end
 
 function console()
+    local st_font='"PragmataPro for Powerline:pixelsize=18"'
     ns_exec(
         'console', --class
-        'st -f "PragmataPro for Powerline:12" -c console',
+        'st -f '..st_font..' -c console',
         'console'  --ns
     )
 end
