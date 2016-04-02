@@ -94,6 +94,13 @@ function webcam()
     )
 end
 
+function nicotine()
+    ns_exec(
+        'Nicotine.py', --class
+        'nicotine.py || nicotine',
+        'nicotine' --ns
+    )
+end
 
 function move_scratch(x, y, w, h)
    notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
