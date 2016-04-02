@@ -1,5 +1,6 @@
 # Dir reload
 .() { [[ $# = 0 ]] && cd . || builtin . "$@"; }
+
 function chpwd() {
     if [ -x ${BIN_HOME}/Z ]; then
         [ "${PWD}" -ef "${HOME}" ] || Z -a "${PWD}"
@@ -8,26 +9,6 @@ function chpwd() {
         export PS1="${_neg_user_pretok}%40<..<$(${ZSH}/neg-prompt)"
     fi
 }
-
-# Rename pictures based on information found in exif headers
-function jpegrename(){
-    if [[ $# -lt 1 ]] ; then
-        echo 'Usage: jpgrename $FILES' >& 2
-        return 1
-    else
-        echo -n 'Checking for jhead with version newer than 1.9: '
-        jhead_version=$(jhead -h | \
-                    grep 'used by most Digital Cameras.  v.*' | \
-                    awk '{print $6}' | tr -d v)
-        if [[ ${jhead_version} -gt '1.9' ]]; then
-            echo 'success - now running jhead.'
-            jhead -n%Y-%m-%d_%Hh%M_%f $*
-        else
-            echo 'failed - exiting.'
-        fi
-    fi
-}
-
 
 function magic-abbrev-expand() {
     local MATCH
@@ -514,20 +495,20 @@ function bookmarks_export(){
 }
 
 function chrome_history(){
-  export CONF_COLS=$[ COLUMNS/2 ]
-  export CONF_SEP='{::}'
+    export CONF_COLS=$[ COLUMNS/2 ]
+    export CONF_SEP='{::}'
 
-  cp -f ${XDG_CONFIG_HOME}/chromium/Default/History /tmp/h
+    cp -f ${XDG_CONFIG_HOME}/chromium/Default/History /tmp/h
 
-  sqlite3 -separator $CONF_SEP /tmp/h 'select title, url from urls order by last_visit_time desc' \
-      | ruby -ne '
-  cols = ENV["CONF_COLS"].to_i
-  title, url = $_.split(ENV["CONF_SEP"])
-  puts "\x1b[33m#{title.ljust(cols)}\x1b[0m #{url}"' \
-      | fzf --ansi --multi --no-hscroll --tiebreak=index \
-      | grep --color=never -o 'https\?://.*'
+    sqlite3 -separator $CONF_SEP /tmp/h 'select title, url from urls order by last_visit_time desc' \
+        | ruby -ne '
+    cols = ENV["CONF_COLS"].to_i
+    title, url = $_.split(ENV["CONF_SEP"])
+    puts "\x1b[33m#{title.ljust(cols)}\x1b[0m #{url}"' \
+        | fzf --ansi --multi --no-hscroll --tiebreak=index \
+        | grep --color=never -o 'https\?://.*'
 
-  unset CONF_COLS CONF_SEP
+    unset CONF_COLS CONF_SEP
 }
 
 function cache_list(){
@@ -540,7 +521,7 @@ function cache_list(){
         ${HOME}/.adobe/
         ${HOME}/.macromedia/
         ${XDG_CACHE_HOME}/mozilla/
-        ~/.thumbnails/
+        ${HOME}/.thumbnails/
     )
     du -shc ${dirlist}
 }
@@ -600,12 +581,14 @@ function RR() {
   fi
 }
 
-function adbpush() {
-  for i; do
-    echo "[>>] -> Pushing ${i} to /sdcard/${i:t}"
-    adb push ${i} /sdcard/${i:t}
-  done
-}
+if whence adb > /dev/null; then
+    function adbpush() {
+        for i; do
+            echo "$(_zpref) -> $(_zwrap Pushing\ ${i}\ to\ /sdcard/${i:t})"
+            adb push ${i} /sdcard/${i:t}
+        done
+    }
+fi
 
 function toxrdb(){
     local cpt=0
@@ -617,7 +600,7 @@ function toxrdb(){
 
 function count_music_trash(){
     find ~/music/ -regextype posix-egrep \
-        -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} +
+        -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} + | sort -h
 }
 
 function consn() { 
@@ -804,3 +787,41 @@ function mp(){
         mpv --input-unix-socket=/tmp/mpvsocket "${i}"
     done
 }
+
+function scm_init(){
+    [[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ]] && source "${HOME}/.scm_breeze/scm_breeze.sh"
+}
+
+function ql(){
+    if [[ $1 != "" ]]; then
+        local file=$(resolve_file "$1")
+        local upload_dir=${HOME}/1st_level/upload/
+        mv "${file}" "${upload_dir}" && \
+        builtin printf "$(_zfwrap ${file})\n"
+        xsel -o <<< "${upload_dir}/$(basename ${file})"
+    fi
+}
+
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM.
+function ram() {
+    local sum
+    local items
+    local app="$1"
+    if [ -z "$app" ]; then
+        echo "First argument - pattern to grep from processes"
+    else
+        sum=0
+        for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
+            sum=$(($i + $sum))
+        done
+        sum=$(echo "scale=2; $sum / 1024.0" | bc)
+        if [[ $sum != "0" ]]; then
+            echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
+        else
+            echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
+        fi
+    fi
+}
+
