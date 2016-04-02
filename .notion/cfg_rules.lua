@@ -109,7 +109,6 @@ defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",t
 defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
 defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
 defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off", tag="ide"}
-defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",tag="unreal"}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mode="off",float=true,tag="virt"}
 defwinprop{class="VirtualBox",jumpto=true,target="vm",transient_mode="off",tag="virt"}
@@ -151,6 +150,7 @@ defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="k
 defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",tag="torrent",float=false}
 defwinprop{class="Vuze",is_transient=true,winlist_ignore=true,transient_mode="off",target="torrent",tag="torrent",float=true}
 -------------------------------------[[  ETC  ]]-------------------------------------
+defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",tag="unreal"}
 defwinprop{class="Xfce*",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
@@ -176,8 +176,8 @@ defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="c
 defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb"}
 defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa"}
 defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top"}
-defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",target="float"}
-defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",target="float"}
+defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=true,target="float"}
+defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float"}
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="float2",tag="soulseek"}
 defwinprop{class="*",instance="*",transparent=false}
