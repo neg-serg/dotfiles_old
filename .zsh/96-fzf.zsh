@@ -11,9 +11,9 @@ else
         fzf-history-widget() {
             local selected num
             selected=( $(fc -l 1 | $(__fzfcmd) --extended-exact -i +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q "${LBUFFER//$/\\$}") )
-            if [ -n "$selected" ]; then
+            if [ -n "${selected}" ]; then
                 num=$selected[1]
-                if [ -n "$num" ]; then
+                if [ -n "${num}" ]; then
                 zle vi-fetch-history -n $num
                 fi
             fi
