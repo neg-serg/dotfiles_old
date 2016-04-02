@@ -148,7 +148,7 @@ RESET 0 # reset to "normal" color
 .epub      00;38;5;7
 .mobi      00;38;5;7
 .lit       00;38;5;7
-.fb2       00;38;5;250
+.fb2       00;38;5;7
 .dvi       00;38;5;250
 .chm       00;38;5;250
 .markdown  00;38;5;110
