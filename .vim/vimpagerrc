@@ -7,4 +7,4 @@ if !has("nvim")
     set rtp+=/home/neg/.vim/bundle/powerline/powerline/bindings/vim
 endif
 set runtimepath=/usr/share/vim/vim74,~/.vim,~/.vim/after
-source ~/.vim/colors/miromiro.vim
+colorscheme wim
