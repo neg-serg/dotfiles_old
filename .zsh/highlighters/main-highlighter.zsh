@@ -84,6 +84,15 @@ _zsh_highlight_main_highlighter() {
     emulate -L zsh
     setopt localoptions extendedglob bareglobqual
 
+  # At the PS3 prompt and in vared, highlight nothing.
+  #
+  # (We can't check this in _zsh_highlight_main_highlighter_predicate because
+  # if the predicate returns false, the previous value of region_highlight
+  # would be reused.)
+  if [[ $CONTEXT == (select|vared) ]]; then
+    return
+  fi
+
     ## Variable declarations and initializations
     local start_pos=0 end_pos highlight_glob=true arg style
     local in_array_assignment=false # true between 'a=(' and the matching ')'
@@ -92,6 +101,7 @@ _zsh_highlight_main_highlighter() {
     typeset -a ZSH_HIGHLIGHT_TOKENS_CONTROL_FLOW
     local -a options_to_set # used in callees
     local buf="$PREBUFFER$BUFFER"
+  integer len="${#buf}"
     region_highlight=()
 
     if (( path_dirs_was_set )); then
@@ -128,7 +138,6 @@ _zsh_highlight_main_highlighter() {
         'coproc'
         '!' # reserved word; unrelated to $histchars[1]
     )
-
 
     # State machine
     #
@@ -202,12 +211,12 @@ _zsh_highlight_main_highlighter() {
         # indistinguishable from 'echo foo echo bar' (one command with three
         # words for arguments).
         local needle=$'[;\n]'
-        integer offset=${${buf[start_pos+1,-1]}[(i)$needle]}
+        integer offset=${${buf[start_pos+1,len]}[(i)$needle]}
         (( start_pos += offset - 1 ))
         (( end_pos = start_pos + $#arg ))
         else
-        ((start_pos+=${#buf[$start_pos+1,-1]}-${#${buf[$start_pos+1,-1]##([[:space:]]|\\[[:space:]])#}}))
-        ((end_pos=$start_pos+${#arg}))
+            ((start_pos+=(len-start_pos)-${#${${buf[start_pos+1,len]}##([[:space:]]|\\[[:space:]])#}}))
+            ((end_pos=$start_pos+${#arg}))
         fi
 
         if [[ -n ${interactive_comments+'set'} && $arg[1] == $histchars[3] ]]; then
@@ -307,8 +316,10 @@ _zsh_highlight_main_highlighter() {
                                 # (For array assignments, the command doesn't start until the ")" token.)
                                 next_word+=':start:'
                             fi
-                            elif [[ $arg[0,1] == $histchars[0,1] || $arg[0,1] == $histchars[2,2] ]]; then
-                            style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
+                            elif [[ $arg[0,1] = $histchars[0,1] ]] && (( $#arg[0,2] == 2 )); then
+                                style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
+                            elif [[ $arg[0,1] == $histchars[2,2] ]]; then
+                                style=$ZSH_HIGHLIGHT_STYLES[history-expansion]
                             elif [[ -n ${(M)ZSH_HIGHLIGHT_TOKENS_COMMANDSEPARATOR:#"$arg"} ]]; then
                             if [[ $this_word == *':regular:'* ]]; then
                                 # This highlights empty commands (semicolon follows nothing) as an error.
