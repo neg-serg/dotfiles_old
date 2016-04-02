@@ -1,11 +1,10 @@
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-" NeoBundle 'itchyny/landscape.vim' "more colors
-" python powerline autodetection
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
 endif
+NeoBundle 'thinca/vim-quickrun' "run a bunch of text
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
 NeoBundle 'luochen1990/rainbow'  "rainbow parentheses
@@ -114,7 +113,7 @@ NeoBundle 'justinmk/vim-gtfo' "to term of fm
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
 NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
-NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
+NeoBundle 'neg-serg/ensime-vim' "scala vim autocompletion
 NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
@@ -145,6 +144,10 @@ NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
 NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
 NeoBundle 'janko-m/vim-test.git' "easy testing for various langs
 NeoBundle 'oscarh/vimerl' "vim erlang support
+if has("nvim")
+    NeoBundle 'baabelfish/nvim-nim' "nim support for vim and advanced support for neovim
+endif
+NeoBundle 'vhdirk/vim-cmake' "experimental cmake support
 NeoBundle 'tpope/vim-dispatch.git' "provide async build via tmux
 if executable(resolve(expand("rc")))
     NeoBundle 'lyuts/vim-rtags.git' "rtags plugin for vim
