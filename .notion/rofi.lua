@@ -25,7 +25,11 @@ rofi.pid = ' -pid /run/user/' .. id_user .. '/rofi_notion.pid'
 
 if width == nil then -- rofi.width = 1850
     local screen_width_fd = io.popen("xrandr -q |awk '/Screen/{print $8}'","r")
-    width = screen_width_fd:read("*l") - 70
+    local screen_width_data = screen_width_fd:read("*l")
+    if screen_width_data == nil then
+        screen_width_data = 1920
+    end
+    width = screen_width_data - 70
     rofi.width = width
     screen_width_fd:close()
 end
