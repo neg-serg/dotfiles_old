@@ -5,7 +5,6 @@ local M5 = "Mod5+" Ct = "Control+"
 local Sh = "Shift+"
 
 Neg_kb.WMPlex_toplevel = {
-    kpress(M1.."space", "query_lua(_)"), kpress(M4.."space", function() end),
     kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
     kpress(M4.."F11",    function() rofi.mainmenu() end),
     kpress(M4.."slash",  function() notioncore.goto_previous() end),
@@ -17,13 +16,12 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4.."E",      function() namsc('im') end),
     kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(notioncore.current()) end),
     kpress(M1.."G",      function() rofi.goto_win(notioncore.current()) end),
-
+    --[[ wasd / push direction ]]-----------------------
     kpress(M4..Ct.."W", function(_) _:push_direction('up') end),
     kpress(M4..Ct.."A", function(_) _:push_direction('left') end),
     kpress(M4..Ct.."S", function(_) _:push_direction('down') end),
     kpress(M4..Ct.."D", function(_) _:push_direction('right') end),
-
-    --[[  progs run by app  ]]-----------------------------
+    --[[  progs run by app  ]]--------------------------
     kpress(M4.."1",      function() app.byclass_withtag('~/bin/wim', 'wim', nil, 'editor') end),
     kpress(M4..Sh.."1",  function() app.byclass_withtag('emacs', 'Emacs', nil, 'geditor') end),
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
@@ -89,7 +87,7 @@ Neg_kb.WMPlex_toplevel = {
 
 Neg_kb.WScreen = {
     submap(M1.."E", {
-        kpress(Ct.."A", function() notioncore.goto_activity() end),
+        kpress("E",     function() notioncore.goto_activity() end),
         kpress(Ct.."T", function() notioncore.tagged_clear() end),
         kpress("C", function(_) WRegion.rqclose(_, false) end),
         kpress("L",     "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
