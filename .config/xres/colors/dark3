@@ -74,3 +74,24 @@
 *.color250: #666666
 *.color251: #afa0f0
 *.color253: #c5c8c6
+
+!base0 - gotham
+*.color202: #0c1014
+!base1 - gotham
+*.color203: #11151c
+!base2 - gotham
+*.color204: #091f2e
+!base3 - gotham
+*.color205: #0a3749
+!base4 - gotham
+*.color206: #245361
+!base5 - gotham
+*.color207: #599cab
+!base6 - gotham
+*.color208: #99d1ce
+!base7 - gotham
+*.color209: #d3ebe9
+
+!*.color210: #000000
+!*.color211: #000000
+!*.color212: #000000

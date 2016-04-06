@@ -100,10 +100,18 @@ hi! link DiffAdded String
 
 hi! Error ctermfg=162 ctermbg=127
 
-hi! Pmenu ctermfg=253 ctermbg=234
-hi! PmenuSel ctermfg=255 ctermbg=200
-hi! PmenuSbar ctermbg=black
-hi! PmenuThumb ctermbg=darkgreen
+if !has("ololo")
+    hi! Pmenu ctermfg=253 ctermbg=234
+    hi! PmenuSel ctermfg=255 ctermbg=200
+    hi! PmenuSbar ctermbg=black
+    hi! PmenuThumb ctermbg=darkgreen
+else
+    hi! Pmenu ctermfg=208 ctermbg=204
+    hi! PmenuSel ctermfg=209 ctermbg=206
+    hi! PmenuSbar ctermfg=NONE ctermbg=204
+    hi! PmenuThumb ctermfg=206 ctermbg=NONE
+
+endif
 
 if has("spell")
     hi! clear SpellBad
