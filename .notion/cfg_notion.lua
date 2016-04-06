@@ -17,7 +17,7 @@ local cfg_list = {
     "cfg_layouts",       -- a bunch of default layouts
     "app",               -- module to jump by class, tag, instance etc
     "named_scratchpad",  -- named scratchpad module
-    "min_tabs",          -- hide tabs
+    "hide_tabs",          -- hide tabs
     "net_client_list",   -- net client list to provide `wmctrl -l`
     "directions",        -- 2bwm-like directions
     "screenshot",        -- screenshot script
@@ -32,6 +32,6 @@ local cfg_list = {
     "lua_repl",          -- Lua REPL
 }
 
-for i,mod in ipairs(cfg_list) do
+for _,mod in ipairs(cfg_list) do
     load_file(mod)
 end
