@@ -21,7 +21,7 @@ local _zsh_files=(
     20-autopair                 60-functional              
     81-completion_gen           89-vim-interation.plugin   
     92-history-substring-search 96-fzf                     
-    98-syntax                   
+    97-open-pr.plugin           98-syntax
 )
 
 for i in ${_zsh_files[@]}; do
