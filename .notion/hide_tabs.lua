@@ -47,7 +47,7 @@ function reconsider_tabs(fr)
         return
     end
 
-    if  fr:mx_nth(0) ~= nil and WMPlex.mx_count(fr) < 4 and not fr:mx_nth(0):is_tagged() then
+    if  fr:mx_nth(0) ~= nil and not fr:mx_nth(0):is_tagged() then
         notioncore.defer(hide_tabs(fr))
     else
         notioncore.defer(show_tabs(fr))
@@ -82,7 +82,7 @@ notioncore.get_hook("ioncore_post_layout_setup_hook"):add(
             function(fr)
                 reconsider_tabs(fr)
                 return true
-            end, "WFrame")
+            end, "WMplex")
     end
 )
 
