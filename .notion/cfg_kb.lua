@@ -9,7 +9,6 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4.."F11",    function() rofi.mainmenu() end),
     kpress(M4.."slash",  function() notioncore.goto_previous() end),
     kpress(M1.."Tab",    function() notioncore.goto_previous() end),
-    kpress(M4.."T",      "min_tabs_tag_wrapper(_,_sub)", "_sub:non-nil"),
     --[[ scratchpads  ]]--------------------------------
     kpress(M4.."D",      function() console() end),
     kpress(M4.."F",      function() ncmpcpp() end),
@@ -23,6 +22,10 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4..Ct.."D", function(_) _:push_direction('right') end),
     --[[  progs run by app  ]]--------------------------
     kpress(M4.."1",      function() app.byclass_withtag('~/bin/wim', 'wim', nil, 'editor') end),
+    kpress(M4.."F1",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh idea', 'jetbrains-idea', nil, 'ide') end),
+    kpress(M4.."F2",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh webstorm', 'jetbrains-webstorm', nil, 'ide') end),
+    kpress(M4.."F3",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh clion', 'jetbrains-clion', nil, 'ide') end),
+    kpress(M4.."F4",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
     kpress(M4..Sh.."1",  function() app.byclass_withtag('emacs', 'Emacs', nil, 'geditor') end),
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
     kpress(M4.."B",      function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
@@ -107,6 +110,7 @@ Neg_kb.WScreen = {
 
 Neg_kb.WClientWin = {
     kpress(M4..Ct.."Q", function(_) WRegion.rqclose(_, false) end),
+    kpress(M4.."T",     function(_) WRegion.set_tagged(_,'toggle') end),
     kpress(M1.."comma", function(_) WClientWin.quote_next(_) end),
 }
 
