@@ -37,14 +37,12 @@ xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 setxkbmap \
     -option keypad:pointerkeys \
     -layout 'us,ru' \
-    -variant altgr-intl \
     -option 'grp:alt_shift_toggle' \
-    -option ctrl:nocaps \
-    -option 'terminate:ctrl_alt_bksp'
+    -variant altgr-intl \
+    -option ctrl:nocaps
 
 xhost +localhost +local: +si:localuser:$(id -un)
 xset -b r rate 250 50 m 1 1 b off
-
 
 [[ -f ~/.Xresources ]] && \
     xrdb -load ~/.Xresources
@@ -68,4 +66,5 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 systemctl --user restart gpaste
+dtach -A ~/tmp/bashbullet.session bashbullet &
 exec notion 2>> /tmp/notionerr$$ 2>&1
