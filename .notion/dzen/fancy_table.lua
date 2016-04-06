@@ -12,5 +12,8 @@ neg.dzen.fancy_table = {
     news="",    dev2="",
     dev3="",    term2="",
     firefox="", viber="",
-    vid="",     steam=""
+    vid="",     steam="",
+    book="",    dw="",
+    shop="",    music="",
+    chat="",    hz=""
 }
