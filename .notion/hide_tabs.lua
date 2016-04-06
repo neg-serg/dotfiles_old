@@ -29,6 +29,8 @@ local excludes = {
     -- transient = true,
 }
 
+local show_tabs = false
+
 function hide_tabs(fr) -- fr must be a WFrame.
     return function()
         fr:set_mode(string.sub(fr:mode(),
@@ -47,9 +49,12 @@ function reconsider_tabs(fr)
         return
     end
 
-    if  fr:mx_nth(0) ~= nil and not fr:mx_nth(0):is_tagged() then
+    if  fr:mx_nth(0) ~= nil 
+        and not fr:mx_nth(0):is_tagged()
+        and WMPlex.mx_count(fr) < 4 
+        then
         notioncore.defer(hide_tabs(fr))
-    else
+    elseif show_tabs == true then
         notioncore.defer(show_tabs(fr))
     end
 end
@@ -82,7 +87,7 @@ notioncore.get_hook("ioncore_post_layout_setup_hook"):add(
             function(fr)
                 reconsider_tabs(fr)
                 return true
-            end, "WMplex")
+            end, "WFrame")
     end
 )
 
