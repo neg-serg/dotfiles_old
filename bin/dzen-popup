@@ -2,8 +2,11 @@
 font="Terminus Re33:size=10"
 width=500
 timeout=5
-    
-(echo -e "$@" & sleep ${timeout}s && kill "$(pgrep -f Dzen_Popup)")\
-    | dzen2 -l 18 -w ${width} \
-            -bg "#121212" -fg "#ffffff" -x -$[${width}+20] -y -70 \
-            -fn "${font}" -e "Dzen_Popup"
+args=$@
+lines=$(wc -l <<< "${args}")
+(echo "Send :: [ -- $1 -- ]";
+ shift;
+ echo -e "$@" & sleep ${timeout}s && kill "$(pgrep -f Dzen_Popup)")\
+ | dzen2 -l ${lines} -w ${width} \
+ -bg "#121212" -fg "#ffffff" -x -$[${width}+20] -y -70 \
+ -fn "${font}" -e "onstart=scrollhome,uncollapse;Dzen_Popup"
