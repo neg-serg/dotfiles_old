@@ -28,7 +28,7 @@ fi
 noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
-    translate links{,2} lynx you-get bower pip sp task)
+    translate links{,2} lynx you-get bower pip task)
 rlwrap_list=( bigloo clisp irb )
 sudo_list=({u,}mount ch{mod,own} modprobe i7z) 
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
@@ -155,12 +155,12 @@ unset _zsh_proxy
 alias qe='cd *(/om[1])'
 alias hi='_v'
 
-alias wine="LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
-alias steamwine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
+alias wine="WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
+alias steamwine='WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
 function bnet(){
     local dir_=~/.wine/drive_c/Program\ Files\ \(x86\)/
     cd "${dir_}/Battle.net"
-    LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
+    WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
     wine ./Battle.net.exe &
 }
 alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
@@ -329,13 +329,14 @@ if inpath vim || inpath nvim; then
     alias v.="v ."
     alias vu='nvim -u NONE -U NONE -i NONE -N'
     alias gv='v -b":GV"'
+    tig(){ if inpath tig; then tig; else v .; sleep 0.2s && v -b":GV"; fi }
 fi
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias ya="yaourt -S --noconfirm"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
-alias vol='st pulsemixer || st alsamixer -g'
+vol(){ {st pulsemixer && exit} || {st alsamixer -g && exit } }
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias google='~/bin/scripts/rofi_search'
 alias recordmydesktop="recordmydesktop --no-frame"
