@@ -125,7 +125,7 @@ function imgur_it() {
     >>"${tmp_imgur}"
     while read f; do
         fp="$(resolve_file ${f})"
-        xsel -i <<< $(imgur $(gpg -dq ~/.imgur_pass.gpg) upload "${fp}") >> ~/tmp/imgur_output_
+        xsel -i <<< $(imgur $(gpg -dq ~/.imgur_pass.gpg) upload "${fp}" |tee -a ~/tmp/imgur_output_)
         xsel -i <<< $(xsel -o|awk '/original/{print $2}')
     done < "${tmp_imgur}"
     rm -f "${tmp_imgur}"
