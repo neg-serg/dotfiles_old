@@ -20,17 +20,17 @@ function magic-abbrev-expand() {
 function no-magic-abbrev-expand() { LBUFFER+=' ' }
 
 function zc(){
-  local cache="${ZSH}/cache"
-  autoload -U compinit zrecompile
-  compinit -d "${cache}/zcomp-${HOST}"
-  for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
-      zcompile ${z}; 
-      echo $(_zpref) $(_zfwrap "${z}"); 
-  done
-  for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
-      zrecompile -p ${f} && command rm -f ${f}.zwc.old
-  done
-  source ${HOME}/.zshrc
+    local cache="${ZSH}/cache"
+    autoload -U compinit zrecompile
+    compinit -d "${cache}/zcomp-${HOST}"
+    for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
+        zcompile ${z}; 
+        echo $(_zpref) $(_zfwrap "${z}"); 
+    done
+    for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
+        zrecompile -p ${f} && command rm -f ${f}.zwc.old
+    done
+    source ${HOME}/.zshrc
 }
 
 # completion system
@@ -661,7 +661,10 @@ spark() {
 
 function sp() {
     setopt extendedglob bareglobqual
-    du -sch -- ${~^@:-"*"}(D) | sort -h
+    output=$(du -smc *)
+    total=$(tail -1 <<< "${output}")
+    distribution.pl -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
+    _zwrap "Total: $(cut -f1 <<< ${total})"
 }
 
 function ta {
