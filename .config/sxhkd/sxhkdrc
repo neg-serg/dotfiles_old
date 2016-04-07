@@ -28,25 +28,4 @@ super + control + r ; { d, i, r }
         xcalib -alter -invert, \
         xcalib -red 0.1 0.0 1 -a \
     }
-
-# alt + e ; {d, o, i, q, O, K, s, t, v, w, l, m, n, G, R, a, control + t} ;
-#     { stardict || goldendict, \
-#       ~/bin/pls -sink, \
-#       ~/bin/pls -output, \
-#       ~/bin/mpd_sel.sh, \
-#       ~/bin/pls -vol, \
-#       ~/bin/scripts/toggle_keynav, \
-#       skype, \
-#       urxvt, \
-#       vmware, \
-#       ~/bin/webcam, \
-#       ~/bin/scripts/notionflux_handler.sh radare2, \
-#       ~/bin/scripts/notionflux_handler.sh run_mutt, \
-#       ~/bin/scripts/notionflux_handler.sh nicotine, \
-#       ~/bin/scripts/notionflux_handler.sh gdb, \
-#       ~/bin/scripts/notionflux_handler.sh ranger, \
-#       notionflux -e 'notioncore.goto\_activity()', \
-#       notionflux -e 'notioncore.tagged\_clear()', \
-#     }
-
 # vim: set ft=sxhkdrc:
