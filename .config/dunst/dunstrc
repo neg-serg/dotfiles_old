@@ -52,12 +52,12 @@
 [irc_hilight]
     appname = weechat
     urgency = low
-    format = "<span weight='normal' letter_spacing='3000' color='#4E9FB1'>%s</span>\n%b"
+    format = "<span weight='normal' letter_spacing='3000' color='#aaaaaa'>%s</span>\n%b"
 
 [notify-send]
     appname = notify-send
     urgency = high
-    format = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
+    format = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>%s</span>\n%b"
 
 [skype]
     appname = skype
