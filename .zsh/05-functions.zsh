@@ -661,7 +661,11 @@ spark() {
 
 function sp() {
     setopt extendedglob bareglobqual
-    output=$(du -smc *)
+    if [[ $# == 0 ]]; then
+        output=$(du -smc *)
+    else
+        output=$(du -smc "$@")
+    fi
     total=$(tail -1 <<< "${output}")
     distribution.pl -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
     _zwrap "Total: $(cut -f1 <<< ${total})"
