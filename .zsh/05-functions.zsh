@@ -398,18 +398,6 @@ function sprunge() {
 }
 
 function XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
-# un-smart function for viewing/editing history file (still use 'fc/history'):
-function zhist {
-    if [[ $# -ge 1 ]]; then
-    case $1 {
-        '-a'|'-all') <${ZDOTDIR:-${HOME}/zsh}/.history | ${PAGER:-less} ;;
-        '-e'|'--edit') ${EDITOR:-/usr/bin/vim} ${ZDOTDIR:-${HOME}/zsh}/.history ;;
-        '-f'|'--find') [[ -n $2 ]] && <${ZDOTDIR:-${HOME}/zsh}/.history|grep -i "${${@:/$1}// /\|}" ;;
-    }
-    else
-        print - "options: -e (edit), -f (find), -a (all)"
-    fi
-}
 
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
 function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
@@ -425,49 +413,6 @@ function zhist {
     else
         print - "options: -e (edit), -f (find), -a (all)"
     fi
-}
-
-function search() {
-    emulate -L zsh
-
-    # define search engine URLS
-    typeset -A urls
-    urls=(
-        google      "https://www.google.com/search?q="
-        bing        "https://www.bing.com/search?q="
-        yahoo       "https://search.yahoo.com/search?p="
-        duckduckgo  "https://www.duckduckgo.com/?q="
-        yandex      "https://yandex.ru/yandsearch?text="
-    )
-
-    # define the open command
-    case "${OSTYPf}E" in
-        darwin*)  open_cmd="open" ;;
-        cygwin*)  open_cmd="cygstart" ;;
-        linux*)   open_cmd="xdg-open" ;;
-        *)        echo "Platform $OSTYPE not supported"
-                return 1
-                ;;
-    esac
-
-    # check whether the search engine is supported
-    if [[ -z "${urls}[$1]" ]]; then
-        echo "Search engine $1 not supported."
-        return 1
-    fi
-
-    # search or go to main page depending on number of arguments passed
-    if [[ $# -gt 1 ]]; then
-        # build search url:
-        # join arguments passed with '+', then append to search engine URL
-        url="${urls[$1]}${(j:+:)@[2,-1]}"
-    else
-        # build main page url:
-        # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
-        url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
-    fi
-
-    nohup ${open_cmd} "${url}" &>/dev/null
 }
 
 function hugepage_disable(){
@@ -572,13 +517,13 @@ function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 # Change to repository root (starting in parent directory), using the first
 # entry of a recursive globbing.
 function RR() {
-  setopt localoptions extendedglob
-  local a
-  # note: removed extraneous / ?!
-  a=( (../)#.(git|hg|svn|bzr)(:h) )
-  if (( $#a )); then
-    cd $a[1]
-  fi
+    setopt localoptions extendedglob
+    local a
+    # note: removed extraneous / ?!
+    a=( (../)#.(git|hg|svn|bzr)(:h) )
+    if (( $#a )); then
+        cd $a[1]
+    fi
 }
 
 if whence adb > /dev/null; then
@@ -593,8 +538,8 @@ fi
 function toxrdb(){
     local cpt=0
     while read hexcode; do
-        printf '*color%d: %s\n' "$cpt" "$hexcode"
-        cpt=$(expr $CPT + 1)
+        printf '*color%d: %s\n' "${cpt}" "${hexcode}"
+        cpt=$(expr ${cpt} + 1)
     done | column -t
 }
 
@@ -605,24 +550,38 @@ function count_music_trash(){
 
 function consn() { 
     echo :: consnumber :: 
-    netstat -nat |awk '{print $6}'|sort|uniq -c|sort -rn
+    netstat -nat \
+    | awk '{print $6}' \
+    | sort \
+    | uniq -c \
+    | sort -rn
     echo :: consip ::
-    netstat -ntu | tail -n +3 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n 
+    netstat -ntu \
+    | tail -n +3 \
+    | awk '{print $5}' \
+    | cut -d:f -f1 \
+    | sort \
+    | uniq -c \
+    | sort -n 
 }
+
 # gather external ip address
 function geteip() { curl http://ifconfig.me }
 # Clear zombie processes
-function clrz() { ps -eal | awk '{ if ($2 == "Z") {print $4}}' | kill -9 }
+function clrz() { ps -eal \
+                  | awk '{ if ($2 == "Z") {print $4}}'\
+                  | kill -9 }
 
 function suscp() {
     for arg in "$@"; do
-        case "$arg" in
-            [!-]*:*) ssh -axqt "$(echo $arg|sed -e 's/:.*//')" sudo -v -p "\"%u@%h's sudo password:\"" || exit ;;
+        case "${arg}" in
+            [!-]*:*) ssh -axqt "$(sed -e 's/:.*//' <<<  ${arg})" \
+                sudo -v -p "\"%u@%h's sudo password:\"" || exit ;;
         esac
     done
     args=-P
-    [ "$basename" = suscp ] && args=-P
-    sudo -p "%u@%h's sudo password:" rsync $args -e "ssh -axtF $HOME/.ssh/config -i $HOME/.ssh/id_rsa" --rsync-path="sudo rsync" "$@"
+    [[ "${basename}" = suscp ]] && args=-P
+    sudo -p "%u@%h's sudo password:" rsync ${args} -e "ssh -axtF ${HOME}/.ssh/config -i ${HOME}/.ssh/id_rsa" --rsync-path="sudo rsync" "$@"
 }
 
 _echo() {
@@ -675,7 +634,7 @@ function ta {
     local tmp_list=/tmp/torr_list_$$
     local torrent_dir=${HOME}/torrent
     local torrent_handler=transmission-remote-cli
-    for i in $@; echo $i >> ${tmp_list}
+    for i in "$@"; echo ${i} >> ${tmp_list}
         while read line; do
             local file_name="$(resolve_file ${line})"
             local base_name="$(basename ${file_name})"
@@ -683,24 +642,24 @@ function ta {
             ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
             echo "$(_zpref) -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
         done < ${tmp_list}
-    rm ${tmp_list}
+    rm -f ${tmp_list}
     unset file_name tmp_list
 }
 
 function w7run {
     qemu-system-x86_64 \
-    -m 4096 \
-    -enable-kvm \
-    -cpu host \
-    -machine type=pc,accel=kvm \
-    -net nic -net user,smb=/mnt/qemu \
-    -drive file=~/1st_level/vm/w7.qcow2 \
-    -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
-    -device virtio-serial-pci \
-    -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
-    -chardev spicevmc,id=spicechannel0,name=vdagent \
-    -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
-    -boot d
+        -m 4096 \
+        -enable-kvm \
+        -cpu host \
+        -machine type=pc,accel=kvm \
+        -net nic -net user,smb=/mnt/qemu \
+        -drive file=~/1st_level/vm/w7.qcow2 \
+        -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
+        -device virtio-serial-pci \
+        -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
+        -chardev spicevmc,id=spicechannel0,name=vdagent \
+        -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
+        -boot d
     ${BIN_HOME}/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
 }
 
@@ -736,40 +695,39 @@ function record(){
     local rpath
     test -n "$2" && rpath=$2 || rpath=$1
 
-    PIDNAME=recorder
-    FRAMERATE=25
-    RESOLUTION=$(wattr wh $(lsw -r) | tr \  x)
-    AREA=":0.0"
+    pidname=recorder
+    framerate=25
+    resolution=$(wattr wh $(lsw -r) | tr \  x)
+    area=":0.0"
 
     case $1 in
-        f) FRAMERATE=50; shift 1 ;;
-        k) kill $(pidof -s $PIDNAME); exit 0 ;;
+        f) framerate=50; shift 1 ;;
+        k) kill $(pidof -s ${pidname}); exit 0 ;;
         s) 
-            eval $(slop -t 2 -b $BW '215,215,215,0.9')
-            RESOLUTION=$(echo $W x $H | sed 's# ##g')
-            AREA=$(echo "$AREA+$X,$Y")
+            eval $(slop -t 2 -b ${bw} '215,215,215,0.9')
+            resolution=$(sed 's# ##g' <<<  "${w} x ${h}")
+            area=$(echo "${area}+${x},${y}")
             ;;
         p|pfw) 
-            W=$(wattr w $(pfw))
-            H=$(wattr h $(pfw))
-            X=$(wattr x $(pfw))
-            Y=$(wattr y $(pfw))
-            RESOLUTION=$(echo $W x $H | sed 's# ##g')
-            AREA=$(echo "$AREA+$X,$Y")
+            w=$(wattr w $(pfw))
+            h=$(wattr h $(pfw))
+            x=$(wattr x $(pfw))
+            y=$(wattr y $(pfw))
+            resolution=$(sed 's# ##g' <<<  "${w} x ${h}")
+            area=$(echo "${area}+${x},${y}")
     esac
 
-    ffmpeg -f x11grab -s ${RESOLUTION} -an -r ${FRAMERATE} -i ${AREA} -c:v libvpx \
-    -b:v 10M -crf 10 -quality realtime -y -loglevel quiet ${rpath}.webm
+    ffmpeg -f x11grab -s ${resolution} -an -r ${framerate} -i ${area} -c:v libvpx \
+    -b:v 10m -crf 10 -quality realtime -y -loglevel quiet ${rpath}.webm
 }
 
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
 # MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
 function zurl() {
     [[ -z ${1} ]] && print "please give an url to shrink." && return 1
-        local url=${1}
-        local tiny="http://tinyurl.com/create.php?url="
-        # print "${tiny}${url}" ; return
-        wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
+    local url=${1}
+    local tiny="http://tinyurl.com/create.php?url="
+    wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
 
 function img(){
@@ -813,18 +771,17 @@ function ql(){
 # $ ram safari
 # # => safari uses 154.69 MBs of RAM.
 function ram() {
-    local sum
-    local items
+    local sum items
     local app="$1"
-    if [ -z "$app" ]; then
+    if [[ -z "${app}" ]]; then
         echo "First argument - pattern to grep from processes"
     else
         sum=0
-        for i in `ps aux | grep -i "$app" | grep -v "grep" | awk '{print $6}'`; do
-            sum=$(($i + $sum))
+        for i in $(ps aux | grep -i "${app}" | grep -v "grep" | awk '{print $6}'); do
+            sum=$((${i} + ${sum}))
         done
-        sum=$(echo "scale=2; $sum / 1024.0" | bc)
-        if [[ $sum != "0" ]]; then
+        sum=$(echo "scale=2; ${sum} / 1024.0" | bc)
+        if [[ ${sum} != "0" ]]; then
             echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
         else
             echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
