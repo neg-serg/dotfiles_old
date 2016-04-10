@@ -173,7 +173,7 @@ function any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
     if [[ -z "$1" ]] ; then
-        if [ ! -x `which peco` ]; then
+        if [ ! -x $(which peco) ]; then
             echo "any - grep for process(es) by keyword" >&2
             echo "Usage: any <keyword>" >&2 ; return 1
         else
@@ -423,7 +423,7 @@ function hugepage_disable(){
 function teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
 
 function bookmarks_export(){
-    printf "----[ 10 days history ]----\n"
+    _zwrap "10 days history"
     limit="10 days"
     places=$(find ${HOME}/.mozilla/ -name "places.sqlite" | head -1)
     sql="SELECT url FROM moz_places, moz_historyvisits \
@@ -432,7 +432,7 @@ function bookmarks_export(){
     ORDER by visit_date;"
     sqlite3 ${places} ${sql}
 
-    printf "----[ All history ]----\n"
+    _zwrap "All history"
     sqlite3 ~/.mozilla/firefox/*/places.sqlite "
     select moz_places.url, moz_bookmarks.title from moz_places, moz_bookmarks
     where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1
@@ -480,8 +480,8 @@ function toggle_mpdsc(){
         pkill mpdscribble
         systemctl --user start mpdscribble
     fi
-    echo $(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
-                                sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")
+    builtin printf "$(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
+                                sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     unset is_run
 }
 
@@ -571,18 +571,6 @@ function geteip() { curl http://ifconfig.me }
 function clrz() { ps -eal \
                   | awk '{ if ($2 == "Z") {print $4}}'\
                   | kill -9 }
-
-function suscp() {
-    for arg in "$@"; do
-        case "${arg}" in
-            [!-]*:*) ssh -axqt "$(sed -e 's/:.*//' <<<  ${arg})" \
-                sudo -v -p "\"%u@%h's sudo password:\"" || exit ;;
-        esac
-    done
-    args=-P
-    [[ "${basename}" = suscp ]] && args=-P
-    sudo -p "%u@%h's sudo password:" rsync ${args} -e "ssh -axtF ${HOME}/.ssh/config -i ${HOME}/.ssh/id_rsa" --rsync-path="sudo rsync" "$@"
-}
 
 _echo() {
     if [ "X$1" = "X-n" ]; then
@@ -677,7 +665,7 @@ function g() {
     if [[ $# > 0 ]]; then
         git $@
     else
-        git status
+        git status ./*
     fi
 }
 
@@ -689,36 +677,6 @@ function sls(){
                 sub(" : .*", "", name);
                 print id ": " name;
             }'
-}
-
-function record(){
-    local rpath
-    test -n "$2" && rpath=$2 || rpath=$1
-
-    pidname=recorder
-    framerate=25
-    resolution=$(wattr wh $(lsw -r) | tr \  x)
-    area=":0.0"
-
-    case $1 in
-        f) framerate=50; shift 1 ;;
-        k) kill $(pidof -s ${pidname}); exit 0 ;;
-        s) 
-            eval $(slop -t 2 -b ${bw} '215,215,215,0.9')
-            resolution=$(sed 's# ##g' <<<  "${w} x ${h}")
-            area=$(echo "${area}+${x},${y}")
-            ;;
-        p|pfw) 
-            w=$(wattr w $(pfw))
-            h=$(wattr h $(pfw))
-            x=$(wattr x $(pfw))
-            y=$(wattr y $(pfw))
-            resolution=$(sed 's# ##g' <<<  "${w} x ${h}")
-            area=$(echo "${area}+${x},${y}")
-    esac
-
-    ffmpeg -f x11grab -s ${resolution} -an -r ${framerate} -i ${area} -c:v libvpx \
-    -b:v 10m -crf 10 -quality realtime -y -loglevel quiet ${rpath}.webm
 }
 
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
