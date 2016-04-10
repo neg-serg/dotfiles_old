@@ -158,10 +158,15 @@ alias hi='_v'
 alias wine="WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
 alias steamwine='WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
 function bnet(){
+    local prefix_=""
+    if [[ $1 =~ ".*32" ]]; then
+        prefix_="setarch i386 -3 "
+        _zwrap "set to 32 bit"
+    fi
     local dir_=~/.wine/drive_c/Program\ Files\ \(x86\)/
     cd "${dir_}/Battle.net"
-    WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
-    wine ./Battle.net.exe &
+    eval WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
+    ${prefix_} wine ./Battle.net.exe &
 }
 alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
 
