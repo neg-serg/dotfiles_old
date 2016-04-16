@@ -3,11 +3,13 @@ notion_path_ = home_ .. "/.notion/"
 
 dofile(notion_path_.."load_file"..".lua")
 
-dopath("mod_notionflux")
-dopath("mod_tiling")
-dopath("mod_xrandr")
-dopath("mod_dock")
-dopath("mod_xkbevents")
+local mod_list = {
+    "mod_notionflux",    -- socket-based notion ipc
+    "mod_tiling",        -- static tiling notion module
+    "mod_xrandr",        -- xrandr support for notion
+    "mod_dock",          -- dock support for notion
+    "mod_xkbevents",     -- xkbevents support
+}
 
 local cfg_list = { 
     "dbg",               -- functions for stderr debbuging
@@ -31,6 +33,10 @@ local cfg_list = {
     "dzen_bg",           -- background reader for dzen
     "lua_repl",          -- Lua REPL
 }
+
+for _,mod in ipairs(mod_list) do
+    dopath(mod)
+end
 
 for _,mod in ipairs(cfg_list) do
     load_file(mod)
