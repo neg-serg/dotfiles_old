@@ -118,8 +118,6 @@ alias ple='perl -wlne' # use perl like awk/sed
 # [pattern] [filename unless STDOUT]
 prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
-alias now="date +'[%H:%M] %A %e %B %G'"
-
 alias mmv="noglob zmv -W"
 alias mv="mv -i"
 
@@ -140,15 +138,19 @@ if inpath git; then
     eval "$(hub alias -s)"
 fi
 
-for i in x q Q; do
-    eval alias :${i}=\' exit\'
-done
+for i in x q Q; eval alias :${i}=\' exit\'
 
 alias iostat='iostat -mtx'
 # alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
 _zsh_proxy=""
-alias yt="${_zsh_proxy} youtubedown || ${_zsh_proxy} you-get"
+function yt(){
+    if inpath youtubedown; then
+        ${_zsh_proxy} youtubedown "$@"
+    else
+        ${_zsh_proxy} you-get "$@"
+    fi
+}
 alias yr="${_zsh_proxy} youtube-viewer --video-player=mpv -C"
 unset _zsh_proxy
 
