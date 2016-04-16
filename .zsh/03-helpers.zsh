@@ -49,7 +49,7 @@ function _zfile_sz(){
 }
 
 function _zex_tag(){
-    awk -F: '/^'"$1"'/{print $2}' <<< ${exifdata_}|tr -d '[:blank:]'
+    grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- | tr -d '[:blank:]'
 }
 
 function vid_fancy_print(){
@@ -66,7 +66,7 @@ function vid_fancy_print(){
         #------------------------------------------
         local img_width="$(_zex_tag 'Image Width')"
         local img_height="$(_zex_tag 'Image Height')"
-        local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width} $(_zfg 24)x$fg[white] ${img_height}")"
+        local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width}$(_zfg 24)x$fg[white]${img_height}")"
         #------------------------------------------
         local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|cut -d: -f 3-|tr -d '[:blank:]')"
         local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
@@ -108,9 +108,9 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${doc_type} && \
         local doc_type_str="$(_zwrap "Doc Type $(_zdelim) $fg[white]${doc_type}")"
         #------------------------------------------
-        local date_time="$(_zex_tag 'Date Time Original')"
+        local date_time="$(_zex_tag 'Date\/Time Original')"
         not_empty_in_fact_ ${date_time} && \
-        local date_time_str="$(_zwrap "Date/Time $(_zdelim) ${date_time}")"
+        local date_time_str="$(_zwrap "Date/Time $(_zdelim) $fg[white]${date_time}")"
         #------------------------------------------
         if [[ ! $(tr -d '[:blank:]' <<< ${created_str}) == "" ]]; then
             local created_str="$(_zwrap Created $(_zdelim) ${date_time})"
