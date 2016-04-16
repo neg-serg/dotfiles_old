@@ -17,7 +17,7 @@ local cfg_list = {
     "cfg_layouts",       -- a bunch of default layouts
     "app",               -- module to jump by class, tag, instance etc
     "named_scratchpad",  -- named scratchpad module
-    "hide_tabs",          -- hide tabs
+    "hide_tabs",         -- hide tabs
     "net_client_list",   -- net client list to provide `wmctrl -l`
     "directions",        -- 2bwm-like directions
     "screenshot",        -- screenshot script
