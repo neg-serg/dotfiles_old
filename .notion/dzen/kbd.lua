@@ -1,10 +1,10 @@
 function kbd_update()
-    local klay
-    local f = nil
+    local f = io.popen(home_.."/bin/mon/klay3", "r")
+    local klay = f:read("*l") f:close()
     local t = ""
-    f = io.popen(home_.."/bin/mon/klay3", "r")
-    klay = f:read("*l") f:close()
-    t = t..klay
+    if klay ~= nil then
+        if klan ~= "" then t = t..klay end
+    end
     dmain.kbd = t
     dzen_update()
 end
