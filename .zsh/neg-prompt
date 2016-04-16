@@ -4,7 +4,7 @@
 
 local red_color="%{"$'\033[03;31m'"%}"
 local green_color="%{"$'\033[03;32m'"%}"
-local white_color="%{"$'\033[00;38;5;245m'"%}"
+local white_color="%{"$'\033[00;38;5;7m'"%}"
 local dark_blue_color="%{"$'\033[00;38;5;4m'"%}"
 local blue_color="%{"$'\033[00;38;5;61m'"%}"
 local purple_color="%{"$'\033[00;38;5;91m'"%}"
