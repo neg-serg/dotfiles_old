@@ -19,10 +19,10 @@ unset message_cachedir
 
 set shell="/bin/zsh"
 set realname="Sergey Miroshnichenko" 
-set charset=utf-8      # Local charset
+set charset=utf-8 # Local charset
 set send_charset="utf-8" 
 # set sendmail="/usr/bin/sendmail"
-set use_from=no         # I want to generate "From:" using my_hdr
+set use_from=no # I want to generate "From:" using my_hdr
 set attribution="On %d, %n wrote:" # Quoting subject
 # set editor="vim +':set textwidth=70' %s"
 set editor="~/bin/scripts/v_standalone %s"
@@ -33,8 +33,8 @@ set postpone=ask-no     # ask to postpone message if i want to
 set print=ask-yes       # ask for printing message if i want to
 set record=ask-no       # ask to save sent message into 'sent' mailbox
 set include=yes         # include the message in replies (reply quoting)
-# set quit=ask-yes        # Do you REALLY want to exit mutt? :)
-set quit
+set move=no             # gmail does that
+set quit=yes            # Do you REALLY want to exit mutt? :)
 set recall=ask-yes      # ask for working with unsent messages 
 unset confirmappend     # prompt for confirm when appending message to ex. mbox
 set allow_8bit          # encoding
@@ -60,17 +60,19 @@ set help
 # MIME types handering - - -  - - - - - - - - - - - - - - - - - - - - - - #
 alternative_order text/plain text/enriched text/html
 alternative_order text/enriched text/plain text/html
-set implicit_autoview   # try to understand MIME types
+alternative_order text/plain text/html *
+
+set implicit_autoview           # try to understand MIME types
 set mailcap_path="~/.mailcap"   # see MIME types in mailcap database
 set mailcap_sanitize=yes        # remove mailcap ugly chars
 set menu_scroll
 set narrow_tree         # To make deep threads to fit on the screen
-set user_agent = no     # let them take fake useragent from my_hdr above
+set user_agent=no       # let them take fake useragent from my_hdr above
 
 set pager=builtin
 set pager_stop             # don't show the next msg after current
-set pager_index_lines = 10 # number of index lines to show
-set pager_context = 3      # number of context lines to show
+set pager_index_lines=10   # number of index lines to show
+set pager_context=3        # number of context lines to show
 set pager_stop             # don't go to next message automatically
 set menu_scroll            # scroll in menus
 set tilde                  # show tildes like in vim
@@ -79,20 +81,20 @@ unset markers              # no ugly plus signs
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 # Status Bar -----------------------------------------
 # - appearance / formatting:
-set folder_format = "%3C| %u:%g [%N] %f %*. %t %4s %F"
-set status_format = "───+ %f %m%?n? [+%n]?%?d? [-%d]?%?t? [*%t]? +%?p?───+ %p waiting to send +?─%>─[%P]──"
-set query_format  = "%3c %t %-40.40a %-25.25n  %># %?e?%e?"
-set alias_format  = "%4n %t %-20a %r"
-set date_format   = "%y-%m-%d %I:%M:%S %Z"
-set index_format  = "%3C| %-4c > %-19.19F  %s%*  %?X?[%X]? %Z| %d"
-set quote_regexp  = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-set reply_regexp  = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set folder_format="%3C| %u:%g [%N] %f %*. %t %4s %F"
+set status_format="───+ %f %m%?n? [+%n]?%?d? [-%d]?%?t? [*%t]? +%?p?───+ %p waiting to send +?─%>─[%P]──"
+set query_format="%3c %t %-40.40a %-25.25n  %># %?e?%e?"
+set alias_format="%4n %t %-20a %r"
+set date_format="%y-%m-%d %I:%M:%S %Z"
+set index_format="%3C| %-4c > %-19.19F  %s%*  %?X?[%X]? %Z| %d"
+set quote_regexp="^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
-set sort = 'reverse-threads'
-set sort_aux = 'last-date-received'
+set sort='reverse-threads'
+set sort_aux='last-date-received'
 set sort_re
 set uncollapse_jump # don't collapse on an unread message
-set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
 unlists *
 unsubscribe *
@@ -106,25 +108,23 @@ set smtp_url = "smtp://serg.zorg@smtp.gmail.com:587/"
 set from = "serg.zorg@gmail.com"
 set realname = "Sergey Miroshnichenko"
 
-set folder      = /home/neg/.local/mail/gmail
-set spoolfile   = "+INBOX"
-set mbox_type   = "Maildir"
-set postponed   = "+[Gmail].Drafts"
-set mbox        = "+[Gmail].All Mail"
+set folder=/home/neg/.local/mail/gmail
+set spoolfile="+INBOX"
+set mbox_type="Maildir"
+set postponed="+[Gmail].Drafts"
+set mbox="+[Gmail].All Mail"
 
 set imap_check_subscribed
 
-set mail_check = 120
-set timeout = 300
-set imap_keepalive = 300
-set move = no
+set mail_check=120
+set timeout=300
+set imap_keepalive=300
 set include
 set auto_tag = yes
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
-alternative_order text/plain text/html *
 auto_view text/html
 
 set query_command="goobook query '%s'"
