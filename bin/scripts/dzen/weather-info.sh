@@ -1,4 +1,4 @@
-#/bin/bash
+#/bin/zsh
 
 FG='#dcdcdc'
 BG='#000000'
@@ -6,8 +6,12 @@ fg_title="#abd4e2"
 
 fn_="PragmataPro for Powerline"
 wfn_="Weather Icons"
-fn1="${fn_}:size=11"      fnT="${fn_}:bold:size=11"  fn_14="${fn_}:bold:size=14"
-wic_13="${wfn_}:size=13"  wic_16="${wfn_}:size=16"   wic_45="${wfn_}:size=45"
+fn1="${fn_}:size=11"      
+fnT="${fn_}:bold:size=11"  
+fn_14="${fn_}:bold:size=14"
+wic_13="${wfn_}:size=13"  
+wic_16="${wfn_}:size=16"   
+wic_45="${wfn_}:size=45"
 
 icons1="Ionicons:size=13"
 icons2="Typicons:size=16"
@@ -15,6 +19,31 @@ icons3="Ionicons:size=16"
 icons4="Typicons:size=13"
 
 forecast_data_=$(readlink -f ~/tmp/forecast.json)
+
+declare -A weather_icon_list
+weather_icon_list=(
+    ["clear-day"]=""
+    ["clear-night"]=""
+    ["rain"]=""
+    ["snow"]=""
+    ["sleet"]=""
+    ["wind"]=""
+    ["fog"]=""
+    ["cloudy"]=""
+    ["partly-cloudy-day"]=""
+    ["partly-cloudy-night"]=""
+    ["hail"]=""
+    ["thunderstorm"]=""
+    ["tornado"]=""
+    ["N"]=""
+    ["E"]=""
+    ["S"]=""
+    ["W"]=""
+    ["NE"]=""
+    ["NW"]=""
+    ["SE"]=""
+    ["SW"]=""
+)
 
 # ---- Today info ----
 today_sum=$(jshon -e daily < ${forecast_data_} | \
@@ -41,7 +70,6 @@ today_temp_min=$(printf "%0.0f\n" \
     jq '.data[0].temperatureMin')
 )
 
-# Sunrise, Sunset
 sunriseTimeStamp=$(jshon -e daily < ${forecast_data_} | jq '.data[0].sunriseTime')
 sunsetTimeStamp=$(jshon -e daily < ${forecast_data_} | jq '.data[0].sunsetTime')
 
@@ -65,7 +93,6 @@ current_temp=$(printf "%0.0f\n" \
     $(jshon -e currently < ${forecast_data_} | \
     jq '.temperature'))
 
-# Cloudiness
 cloudiness=$(jshon -e currently < ${forecast_data_} | jq '.cloudCover')
 if (( $(bc -l <<< "${cloudiness} != 0") )); then
     if [[ "${cloudiness}" = "1" ]]; then
@@ -124,7 +151,7 @@ else
     fi
 fi
 
-wind_icon=$(grep $(echo ${wind_dir} | grep -o '[^\"]*') weather_icon_list | \
+wind_icon=$(grep $(grep -o '[^\"]*' <<<  ${wind_dir}) weather_icon_list | \
     awk 'NR==1' | \
     grep -o "\"[^\"]*\"" | \
     grep -o "[^\"]*")
@@ -157,26 +184,24 @@ next_sunsetTime=$(date -ud @${next_sunsetTimeStamp})
 next_sunrise=$(date -d "${next_sunriseTime}" +'%H:%M')
 next_sunset=$(date -d "${next_sunsetTime}" +'%H:%M')
 
-# Cloudiness
 next_cloudiness=$(jshon -e daily < ${forecast_data_} | jq '.data[1].cloudCover')
-if (( $(echo "${next_cloudiness} != 0" | bc -l) )); then
+if (( $(bc -l <<< "${next_cloudiness} != 0") )); then
     if [[ "${next_cloudiness}" = "1" ]]; then
-        next_cloudiness=$(echo "${next_cloudiness} * 100" | bc -l)
+        next_cloudiness=$(bc -l <<<  "${next_cloudiness} * 100")
     else
-        next_cloudiness=$(echo "${next_cloudiness} * 100" | bc -l | tr -d '.00')
+        next_cloudiness=$(bc -l <<< "${next_cloudiness} * 100" | tr -d '.00')
     fi
 else
     next_cloudiness="${next_cloudiness}"
 fi
 
-# Humidity
 next_humidity=$(jshon -e daily < ${forecast_data_} | jq '.data[1].humidity')
 
 if (( $(echo "${next_humidity} != 0" | bc -l) )); then
     if [[ "${next_humidity}" = "1" ]]; then
-        next_humidity=$(echo "${next_humidity} * 100" | bc -l)
+        next_humidity=$(bc -l <<<  "${next_humidity} * 100")
     else
-        next_humidity=$(echo "${next_humidity} * 100" | bc -l | tr -d '.00')
+        next_humidity=$(bc -l <<<  "${next_humidity} * 100"| tr -d '.00')
     fi
 else
     next_humidity="${next_humidity}"
