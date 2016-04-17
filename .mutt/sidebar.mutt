@@ -1,8 +1,7 @@
 set sidebar_width=24
 set sidebar_visible=no
 set sidebar_delim='│'
-# color sidebar_new color221 color233
-color sidebar_new yellow default
+color sidebar_new yellow black
 
 # color sidebar_new yellow default
 bind index \CP sidebar-prev
@@ -11,8 +10,6 @@ bind index \CO sidebar-open
 bind pager \CP sidebar-prev
 bind pager \CN sidebar-next
 bind pager \CO sidebar-open
-
-set sidebar_delim   = '│'
 
 # up/down to select next, prev folder
 # right to open selected folder
@@ -23,9 +20,4 @@ bind index,pager <right> sidebar-open
 # b toggles sidebar visibility
 macro index b '<enter-command>toggle sidebar_visible<enter>'
 macro pager b '<enter-command>toggle sidebar_visible<enter>'
-
-# Status Bar -----------------------------------------
-set status_chars  = " *%A"
-set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
-
 # vim:ft=muttrc
