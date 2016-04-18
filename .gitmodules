@@ -1,0 +1,4 @@
+[submodule ".tmux/tmux-resurrect"]
+	path = .tmux/tmux-resurrect
+	url = git@github.com:tmux-plugins/tmux-resurrect.git
+	branch = master
