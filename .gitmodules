@@ -2,3 +2,7 @@
 	path = .tmux/tmux-resurrect
 	url = git@github.com:tmux-plugins/tmux-resurrect.git
 	branch = master
+[submodule "bin/neofetch"]
+	path = bin/neofetch
+	url = git@github.com:dylanaraps/neofetch
+	branch = master
