@@ -146,7 +146,13 @@ bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directori
 
 bindkey '^X^X' copy-to-clipboard
 
-jump_dirs=(~/1st_level ~/dw ~/dev ~/pic ~/vid ~/trash)
+local jump_dirs=(
+    ~/1st_level
+    ~/dw
+    ~/tmp
+    ~/src/1st_level
+    ~/vid/new
+)
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
     bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
 done
