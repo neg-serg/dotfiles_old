@@ -1,1 +1,1 @@
-/home/neg/.zsh/.zshrc
+/home/neg/.zsh/zshrc
