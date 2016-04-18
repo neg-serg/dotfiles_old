@@ -1,13 +1,3 @@
-" javascript <<EOM " extented back
-" let back   = mappings.getDefault(modes.NORMAL, 'H').action;
-" let remove = mappings.getDefault(modes.NORMAL, 'd').action;
-" mappings.addUserMap([modes.NORMAL], ['H'], 'exteded back',
-"     function(){
-"         (gBrowser.sessionHistory.index > 0 ? back : remove)(-1)
-"     }
-" );
-" EOM
-
 " Add Mapping `C-c' copy or stop loading
 javascript <<EOF
 mappings.addUserMap([modes.NORMAL,modes.VISUAL],['<C-c>'], 'Copy selected text or stop loading',
@@ -25,27 +15,28 @@ EOF
 map <C-O> <NOP>
 map <C-\> <NOP>
 
-map <C-S-w> <Nop>
-nmap <C-S-w> <Nop>
-vmap <C-S-w> <Nop>
-imap <C-S-w> <Nop>
-cmap <C-S-w> <Nop>
-map <C-q> <Nop>
-nmap <C-q> <Nop>
-vmap <C-q> <Nop>
-imap <C-q> <Nop>
-cmap <C-q> <Nop>
-map <f1> <Nop>
-map q <Nop>
+map <C-S-w> <NOP>
+nmap <C-S-w> <NOP>
+vmap <C-S-w> <NOP>
+imap <C-S-w> <NOP>
+cmap <C-S-w> <NOP>
+map <C-q> <NOP>
+nmap <C-q> <NOP>
+vmap <C-q> <NOP>
+imap <C-q> <NOP>
+cmap <C-q> <NOP>
+map <F1> <NOP>
+map q <NOP>
+
+map  <C-tab> <NOP>
+nmap <C-n> <NOP>
+imap <C-n> <Down>
+imap <C-p> <Up>
 
 noremap j 3j
 noremap k 3k
 map  U :undo<Space>
-
-map  <C-tab> <Nop>
-nmap <C-n> <Nop>
-imap <C-n> <Down>
-imap <C-p> <Up>
+map <F4> gn
 
 imap  <C-y> <S-Ins>
 map  <C-y> <S-Ins>
@@ -150,3 +141,8 @@ map Ё ~
 map gr gT
 map пк gT
 map пе gt
+
+ignorekeys clear
+ignorekeys add inbox\\.google\\.com -except=w,W,;,:,b,B,d,u,f,F,t,T,o,O,J,K,g,q,y,Y
+ignorekeys add mail\\.google\\.com -except=w,W,;,:,b,B,d,u,f,F,t,T,o,O,J,K,z
+ignorekeys add rememberthemilk\\.com/app -except=:,J,K

@@ -236,7 +236,8 @@ function imv() {
 
 function pstop() {
     ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
-    head "${@:--n 20}"
+    head "${@:--n 20}" | 
+    column -t
 }
 
 function finfo() {
@@ -283,8 +284,7 @@ function myip(){
         ( wget -O- -T2 -q http://noone.org/cgi-bin/whatsmyip.cgi || \
         wget -O- -T2 -q http://v4.showip.spamt.net/ || \
         wget -O- -T2 -q http://showipv6.de/shortv4only || \
-        wget -O- -T2 -q http://checkip.dyndns.org/ | sed -e 's|^.*<body>Current IP Address: ||;s|</body>.*$||;s|^50
-    0 .*|N/A|;' || \
+        wget -O- -T2 -q http://checkip.dyndns.org/ | sed -e 's|^.*<body>Current IP Address: ||;s|</body>.*$||;s|^50 0 .*|N/A|;' || \
         wget -O- -T2 -q http://ente.limmat.ch/myip | fgrep 'Your IP' | sed -e 's|^.*(||;s|).*$||;s|^500 .*|N/A|;' | \
         echo N/A ) | \
         sed -e 's:^$:N/A:'

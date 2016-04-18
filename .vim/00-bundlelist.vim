@@ -3,6 +3,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
+    NeoBundle 'nhooyr/neoman.vim' "better alternative to vimpager
 endif
 NeoBundle 'thinca/vim-quickrun' "run a bunch of text
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim

@@ -86,3 +86,4 @@ vid
 .xsel.log
 .vimviews/*
 .vim/.ycm_extra_conf.pyc
+tmp

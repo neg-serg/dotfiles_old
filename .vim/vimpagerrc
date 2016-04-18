@@ -2,9 +2,120 @@ set background=dark
 if has("python3")
     let g:powerline_pycmd="py3"
 endif
+
 if !has("nvim")
     set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
     set rtp+=/home/neg/.vim/bundle/powerline/powerline/bindings/vim
 endif
 set runtimepath=/usr/share/vim/vim74,~/.vim,~/.vim/after
-colorscheme wim
+
+if has('vim_starting')
+    filetype off
+    set nocompatible
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+if has('nvim')
+    let g:python_interpreter='python2'
+        let &rtp = expand('~/.vim/') . ','
+    \        . expand('~/.vim/after/') . ',' . &rtp
+    runtime! plugin/python_setup.vim
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+    source ~/.vim/01-nvim_terminal_fix.vim
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+    NeoBundle 'itchyny/lightline.vim.git'
+    NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
+call neobundle#end()
+
+set laststatus=2
+
+if neobundle#tap('lightline.vim')
+    " lightline setting {{{
+    let g:lightline = {
+                \ 'colorscheme': 'gotham',
+                \ 'mode_map': {
+                \ 'n' : 'N',
+                \ 'i' : 'I',
+                \ 'R' : 'R',
+                \ 'v' : 'V',
+                \ 'V' : 'V-L',
+                \ 'c' : 'COMMAND',
+                \ "\<C-v>": 'V-B',
+                \ 's' : 'SELECT',
+                \ 'S' : 'S-L',
+                \ "\<C-s>": 'S-B',
+                \ '?': ' '
+                \ },
+                \ 'active': {
+                \ 'left': [
+                \ [ 'mode', 'paste' ],
+                \ [ 'filename','fugitive','anzu'],
+                \ ],
+                \ 'right': [
+                \ [ 'lineinfo', 'syntastic' ],
+                \ [ 'percent' ],
+                \ [ 'filetype'],
+                \ ]
+                \ },
+                \ 'component_function': {
+                \ 'modified': 'MyModified',
+                \ 'readonly': 'MyReadonly',
+                \ 'fugitive': 'MyFugitive',
+                \ 'filename': 'MyFilename',
+                \ 'fileformat': 'MyFileformat',
+                \ 'filetype': 'MyFiletype',
+                \ 'fileencoding': 'MyFileencoding',
+                \ 'mode': 'MyMode',
+                \ 'syntastic': 'SyntasticStatuslineFlag',
+                \ 'anzu': 'anzu#search_status',
+                \ }
+                \ }
+    
+    function! neobundle#tapped.hooks.on_source(bundle)
+        let g:unite_force_overwrite_statusline=0
+        let g:vimfiler_force_overwrite_statusline=0
+        let g:vimshell_force_overwrite_statusline=0
+    endfunction 
+    function! MyModified() 
+        return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction 
+    function! MyReadonly() 
+        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+    endfunction 
+    function! MyFilename() 
+        return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+                    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                    \ &ft == 'unite' ? unite#get_status_string() :
+                    \ &ft == 'vimshell' ? vimshell#get_status_string() :
+                    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                    \ ('' != MyModified() ? ' ' . MyModified() : '')
+    endfunction 
+    function! MyFugitive() 
+        try
+            if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+                return fugitive#head()
+            endif
+        catch
+        endtry
+        return ''
+    endfunction 
+    function! MyFileformat() 
+        return winwidth('.') > 70 ? &fileformat : ''
+    endfunction 
+    function! MyFiletype() 
+        return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    endfunction 
+    function! MyFileencoding() 
+        return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    endfunction 
+    function! MyMode()
+        return winwidth('.') > 60 ? lightline#mode() : ''
+    endfunction 
+    call neobundle#untap()
+endif
+
+
+colorscheme wim24

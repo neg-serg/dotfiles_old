@@ -33,7 +33,6 @@ de.defstyle("frame", {
         padding_colour = "#000900",
         foreground_colour = "#ffffff",
     }),
-    transparent_background = true,
 })
 
 de.defstyle("frame-ionframe", {
