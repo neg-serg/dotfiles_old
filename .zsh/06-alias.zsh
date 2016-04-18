@@ -336,7 +336,6 @@ if inpath vim || inpath nvim; then
     alias v.="v ."
     alias vu='nvim -u NONE -U NONE -i NONE -N'
     alias gv='v -b":GV"'
-    tig(){ if inpath tig; then tig; else v .; sleep 0.2s && v -b":GV"; fi }
 fi
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
