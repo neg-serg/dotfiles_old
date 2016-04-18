@@ -31,7 +31,8 @@ local cfg_list = {
     "cfg_xrandr",        -- xrandr config
     "transparency",      -- autoset transparency
     "dzen_bg",           -- background reader for dzen
-    "lua_repl",          -- Lua REPL
+    -- "lua_repl",          -- Lua REPL
+    "lua_repl2",          -- Lua REPL
 }
 
 for _,mod in ipairs(mod_list) do

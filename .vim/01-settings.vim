@@ -452,7 +452,7 @@ iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 " as bash scripts and not sh scripts
 let g:is_posix        = 1
 " When using the taglist plugin, don't attempt to resize the terminal
-let g:is_bash          = 1
+let g:is_bash         = 1
 
 let g:session_autoload = "no"
 let g:session_autosave = "yes"

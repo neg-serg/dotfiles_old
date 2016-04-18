@@ -48,9 +48,8 @@ function _zfile_sz(){
     numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
 }
 
-function _zex_tag(){
-    grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- | tr -d '[:blank:]'
-}
+_zex_tag(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- | tr -d '[:blank:]' }
+_zex_tag_untr(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- }
 
 function vid_fancy_print(){
     if [[ -f "$1" ]]; then
@@ -108,7 +107,7 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${doc_type} && \
         local doc_type_str="$(_zwrap "Doc Type $(_zdelim) $fg[white]${doc_type}")"
         #------------------------------------------
-        local date_time="$(_zex_tag 'Date\/Time Original')"
+        local date_time="$(_zex_tag_untr 'Date\/Time Original')"
         not_empty_in_fact_ ${date_time} && \
         local date_time_str="$(_zwrap "Date/Time $(_zdelim) $fg[white]${date_time}")"
         #------------------------------------------

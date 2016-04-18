@@ -102,8 +102,10 @@ local function ws_current(t)
         if curindex == nil then curindex = 0 end
         local curindex = 0
         if scr == nil then curindex = 0 
-        elseif curws ~= nil and scr:get_index(curws) ~= nil then
-            curindex = scr:get_index(curws)+1
+        elseif curws ~= nil then 
+            if scr:get_index(curws,t) ~= nil then
+                curindex = scr:get_index(curws,t)+1
+            end
         else
             curindex = 1
         end

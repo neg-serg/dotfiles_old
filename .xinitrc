@@ -66,5 +66,5 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 systemctl --user restart gpaste
-dtach -A ~/tmp/bashbullet.session bashbullet &
+# dtach -A ~/tmp/bashbullet.session bashbullet &
 exec notion 2>> /tmp/notionerr$$ 2>&1

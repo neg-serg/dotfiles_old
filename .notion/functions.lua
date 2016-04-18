@@ -14,7 +14,7 @@ function nsp_hide()
     end
 end
 
-function ns_exec(class, prog, ns)
+function ns_exec(class, prog, ns, instance)
     reg = notioncore.current()
     local win = app.match_class(class)[1]
     if not win then
