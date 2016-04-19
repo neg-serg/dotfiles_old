@@ -339,6 +339,7 @@ if inpath vim || inpath nvim; then
 fi
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
+alias zinc="zinc -nailed"
 alias ya="yaourt -S --noconfirm"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"

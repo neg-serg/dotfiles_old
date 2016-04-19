@@ -747,3 +747,6 @@ function ram() {
     fi
 }
 
+function clojure(){
+    drip -cp /usr/share/clojure/clojure.jar clojure.main
+}
