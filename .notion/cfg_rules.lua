@@ -37,6 +37,7 @@ defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto=
 -------------------------------------[[ IM ]]---------------------------------------
 defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
 defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
+defwinprop{class="ViberPC",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
 defwinprop{class="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
 defwinprop{class="telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
 defwinprop{class="telegram-desktop",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
