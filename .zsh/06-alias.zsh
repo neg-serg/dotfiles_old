@@ -25,7 +25,8 @@ alias stderred="LD_PRELOAD=${BIN_HOME}/lib/libstderred.so${LD_PRELOAD:+:\$LD_PRE
 if ! type noglob >/dev/null 2>&1; then
     alias noglob=''
 fi
-noglob_list=( \
+
+local noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
     translate links{,2} lynx you-get bower pip task)
@@ -34,17 +35,17 @@ sudo_list=({u,}mount ch{mod,own} modprobe i7z)
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
 
-user_commands=(
+local user_commands=(
   list-units is-active status show help list-unit-files
   is-enabled list-jobs show-environment cat)
 
-sudo_commands=(
+local sudo_commands=(
   start stop reload restart try-restart isolate kill
   reset-failed enable disable reenable preset mask unmask
   link load cancel set-environment unset-environment
   edit)
 
-nocorrect_commands=(
+local nocorrect_commands=(
     ebuild gist heroku hpodder man mkdir mv mysql sudo
 )
 
