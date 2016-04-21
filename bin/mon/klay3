@@ -1,2 +1,5 @@
 #!/bin/zsh
-xkblayout-state print "%s "|sed 's/us/en/'|tr -d '[:blank:]'|sed 's/^/input: /'
+xkblayout-state print "%s" \
+    | sed 's/us/en/' \
+    | tr -d '[:blank:]' \
+    | sed 's/^/input: /'
