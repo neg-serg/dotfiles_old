@@ -6,3 +6,6 @@
 	path = bin/neofetch
 	url = git@github.com:dylanaraps/neofetch
 	branch = master
+[submodule ".vim/bundle/neobundle.vim"]
+	path = .vim/bundle/neobundle.vim
+	url = https://github.com/Shougo/neobundle.vim
