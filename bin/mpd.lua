@@ -16,6 +16,7 @@ local mpd_defaults={
     mpd_len = 80,        -- default mpd string length
 }
 
+local alter_fn="Iosevka"
 local success
 local last_success
 
@@ -34,7 +35,7 @@ local function font_fallback(str)
         return str
     else
         mpd_defaults.mpd_len = 110
-        return "^fn(Iosevka"..size..":bold)"..str.."^fn()"
+        return "^fn("..alter_fn..size..":Bold)"..str.."^fn()"
     end
 end
 
