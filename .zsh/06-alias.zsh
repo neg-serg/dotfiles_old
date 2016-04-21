@@ -132,9 +132,7 @@ if inpath git; then
     alias gp='git push'
     alias gdd='git diff'
     alias gc='git commit'
-    alias gl='git last'
-    alias glp='gl -p'
-    alias glog="git log --graph --pretty=format:'%Cgreen%h%Creset -%C(yellow)%d%Creset %s %Cred(%cr)%Creset%C(yellow)<%an>'"
+    alias gl='git l|head -20'
     eval "$(hub alias -s)"
 fi
 
