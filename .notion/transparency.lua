@@ -35,15 +35,18 @@ local function maketransparent(reg)
     end
 end
 
+local function setup_scratchpad()
+    local winprop = notioncore.getwinprop(reg)
+    if winprop.scratchpad == true then
+        reg:set_grattr("scratchpad", "set")
+    end
+end
+
 local function hookhandler(reg, how)
     notioncore.defer(function() maketransparent() end)
-    notioncore.defer(function()
-        local winprop = notioncore.getwinprop(reg)
-        if winprop.scratchpad == true then
-            reg:set_grattr("scratchpad", "set")
-        end
-    end)
+    notioncore.defer(function() setup_scratchpad() end)
 end
+
 notioncore.get_hook("clientwin_mapped_hook"):add(hookhandler)
 notioncore.get_hook("clientwin_unmapped_hook"):add(hookhandler)
 notioncore.get_hook("region_notify_hook"):add(hookhandler)
