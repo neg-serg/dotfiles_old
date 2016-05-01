@@ -48,6 +48,12 @@ function _zfile_sz(){
     numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
 }
 
+function _zsufhi(){
+    { sed "s/\([KMGT]\)/$fg[green]&/" 
+    builtin print -n "$fg[white]"  } | \
+    tr -d '\n'
+}
+
 _zex_tag(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- | tr -d '[:blank:]' }
 _zex_tag_untr(){ grep -E '^'"$1"'' <<< ${exifdata_} | cut -d ':' -f 2- }
 
@@ -77,8 +83,8 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${mime_type} && \
         local mime_type_str="$(_zwrap "MIME Type $(_zdelim) $fg[white]${mime_type}")"
         #------------------------------------------
-        local average_bitrate="$(_zex_tag 'Average Bitrate')"
-        local max_bitrate="$(_zex_tag 'Max Bitrate')"
+        local average_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Average Bitrate') / 1000.")K))
+        local max_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Max Bitrate') / 1000.")K))
         not_empty_in_fact_ ${max_bitrate} && not_empty_in_fact_ ${average_bitrate} && \
         local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
         #------------------------------------------
@@ -117,7 +123,7 @@ function vid_fancy_print(){
             local created_str=""
         fi
         #------------------------------------------
-        echo -e "$(_zpref) ${fancy_name}"
+        builtin print "$(_zpref) ${fancy_name}"
         for q in ${img_size_str} \
                  ${duration_str} \
                  ${bitrate_str} \
@@ -133,7 +139,7 @@ function vid_fancy_print(){
                  ${date_time_str} \
                  ${encoder_str} \
                  ; do
-            [[ ! ${q} == "" ]] && echo -ne "${q}\n"
+            [[ ! ${q} == "" ]] && builtin print -n "${q}\n"
         done
         unset exifdata_
     fi
