@@ -76,7 +76,7 @@ function vid_fancy_print(){
         local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|cut -d: -f 3-|tr -d '[:blank:]')"
         local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
         #------------------------------------------
-        local file_size="$(_zex_tag 'File Size'))"
+        local file_size="$(_zex_tag 'File Size')"
         local file_size_str="$(_zwrap "File Size $(_zdelim) $fg[white] $(_zfile_sz <<< ${file_size})")"
         #------------------------------------------
         local mime_type="$(_zex_tag 'MIME Type')"
