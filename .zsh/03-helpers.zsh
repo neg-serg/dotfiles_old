@@ -44,8 +44,10 @@ function not_empty_in_fact_(){
 }
 
 function _zfile_sz(){
-    sed "s/\([KMGT]iB\|B\)/$fg[green]&/" || \
-    numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
+    sed "s/\([KMGT]\)/&i/" | {
+        sed "s/\([KMGT]iB\|B\)/$fg[green]&/" || \
+        numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/"
+    }
 }
 
 function _zsufhi(){
@@ -83,10 +85,14 @@ function vid_fancy_print(){
         not_empty_in_fact_ ${mime_type} && \
         local mime_type_str="$(_zwrap "MIME Type $(_zdelim) $fg[white]${mime_type}")"
         #------------------------------------------
-        local average_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Average Bitrate') / 1000.")K))
-        local max_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Max Bitrate') / 1000.")K))
+        local average_bitrate="$(_zex_tag 'Average Bitrate')"
+        local max_bitrate="$(_zex_tag 'Max Bitrate')"
         not_empty_in_fact_ ${max_bitrate} && not_empty_in_fact_ ${average_bitrate} && \
-        local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
+        {
+            local average_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Average Bitrate') / 1000.")K))
+            local max_bitrate=$(_zsufhi <<< $(builtin print -n $(bc <<< "$(_zex_tag 'Max Bitrate') / 1000.")K))
+            local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
+        }
         #------------------------------------------
         local video_frame_rate="$(_zex_tag 'Video Frame Rate')"
         not_empty_in_fact_ ${video_frame_rate} && \
