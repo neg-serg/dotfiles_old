@@ -354,3 +354,7 @@ alias starwars='telnet towel.blinkenlights.nl'
 #--[ Csound ]--------------
 alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
+
+alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
+alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
+alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
