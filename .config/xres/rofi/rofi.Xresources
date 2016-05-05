@@ -21,5 +21,4 @@ rofi.fake-transparency:             false
 rofi.lazy-filter-limit:             1000
 
 #include </home/neg/.config/xres/rofi/colors.Xresources>
-!#include </home/neg/.config/xres/rofi/colorscheme.Xresources>
 #include </home/neg/.config/xres/rofi/keys.Xresources>
