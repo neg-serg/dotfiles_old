@@ -105,7 +105,7 @@ export ACK_COLOR_FILENAME="cyan bold on_black"
 export ACK_COLOR_LINENO="bold green"
 export LS_COLORS GREP_COLORS
 
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
 fpath=(${HOME}/.zsh/zsh-completions/src $fpath)
 
