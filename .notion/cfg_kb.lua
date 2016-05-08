@@ -7,6 +7,7 @@ local Sh = "Shift+"
 Neg_kb.WMPlex_toplevel = {
     kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
     kpress(M4.."F11",    function() rofi.mainmenu() end),
+    kpress(M1.."grave",  function() spawn('rofi -show run -location 6 -lines 2 -columns 8') end),
     kpress(M4.."slash",  function() notioncore.goto_previous() end),
     kpress(M1.."Tab",    function() notioncore.goto_previous() end),
     --[[ scratchpads  ]]--------------------------------
@@ -117,12 +118,14 @@ Neg_kb.WClientWin = {
 
 Neg_kb.WGroupCW = {
     kpress_wait(M4.."Q", function(_) WGroup.set_fullscreen(_, 'toggle') end),
-    kpress(M4.."0", function() rofi.renameworkspace() end),
+    submap(M4.."0", {
+        kpress_wait("w",   function() submapped(rofi.renameworkspace()) end),
+        kpress_wait("f",   function(_) submapped(rofi.renameframe(_)) end),
+    }),
 }
 
 Neg_kb.WFrame = {
     kpress(M4.."S", function(_) nsp_hide() end),
-    kpress(M4.."6", function(_) rofi.renameframe(_) end),
     kpress(M4.."backslash", function(_) WFrame.switch_next(_) end),
     kpress(M4.."3", function(_) WFrame.switch_next(_) end),
     submap(M1.."E", {
