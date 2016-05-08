@@ -16,12 +16,23 @@ function rofi.font(t)
             font_name = font
         end
     end
-    return '-font "' .. font_name .. ' ' .. 'bold' .. ' ' .. font_size .. '"'
+    return '-font "'
+           .. font_name
+           .. ' '
+           .. 'bold'
+           .. ' '
+           .. font_size
+           .. '"'
 end
 
-rofi.yoff = ' -yoffset ' .. - neg.dzen.h_ - 3 
-local id_user = io.popen('id -u'):read("*l")
-rofi.pid = ' -pid /run/user/' .. id_user .. '/rofi_notion.pid'
+local id_user_pipe = io.popen('id -u')
+local id_user      = id_user_pipe:read("*l")
+rofi.pid           = ' -pid /run/user/' 
+                     .. id_user 
+                     .. '/rofi_notion.pid'
+rofi.yoff          = ' -yoffset ' 
+                     .. - neg.dzen.h_ - 3
+id_user_pipe:close()
 
 if width == nil then -- rofi.width = 1850
     local screen_width_fd = io.popen("xrandr -q |awk '/Screen/{print $8}'","r")
@@ -51,11 +62,16 @@ local function rofi_template(_t,flags,t_font)
     ------------------------------------------
     local function new_rofi_prefix(prefix)
         local function quote(str)
-            return '"' .. str:gsub('\\', '\\\\'):gsub('"', '\\"') .. '"'
+            return '"' 
+                   .. str:gsub('\\', '\\\\'):gsub('"', '\\"') 
+                   .. '"'
         end
-        local lb = '[' rb = ']'
+        local lb     = '[' rb = ']'
         local prompt = ' >> '
-        local str = lb .. prefix .. rb .. prompt
+        local str    = lb
+                    .. prefix
+                    .. rb
+                    .. prompt
         return " -p " .. quote(str)
     end
     ------------------------------------------
@@ -69,8 +85,20 @@ local function rofi_template(_t,flags,t_font)
     local columns_str = ""
     local ipc_file = new_ipc_file(_t.file_name)
     ------------------------------------------
-    local common = ' -dmenu -opacity 90 ' .. rofi.yoff .. rofi.pid .. ' ' 
-    local colors = ' -fg '..neg.rofi.fg..' -bg '..neg.rofi.bg..' -hlfg '..neg.rofi.hlfg..' -hlbg '..neg.rofi.hlbg..' -bc '..neg.rofi.bc
+    local common = ' -dmenu -opacity 90 ' 
+                   .. rofi.yoff 
+                   .. rofi.pid 
+                   .. ' ' 
+    local colors = ' -fg '
+                   .. neg.rofi.fg
+                   .. ' -bg '
+                   .. neg.rofi.bg
+                   .. ' -hlfg '
+                   .. neg.rofi.hlfg
+                   .. ' -hlbg '
+                   .. neg.rofi.hlbg
+                   .. ' -bc '
+                   .. neg.rofi.bc
     if _t.lines == nil then _t.lines = 10 else
         columns = 10
         columns_str = ' -columns ' .. columns
@@ -86,8 +114,17 @@ local function rofi_template(_t,flags,t_font)
         rfont = rofi.font()
     end
 
-    local rofi_cmd='rofi '.. rfont .. common .. ' -lines ' .. _t.lines .. columns_str .. colors .. ' -bw 2 -location 6' ..
-    ' -padding 2 -width ' .. rofi.width .. flags
+    local rofi_cmd='rofi '
+                   .. rfont
+                   .. common 
+                   .. ' -lines ' 
+                   .. _t.lines 
+                   .. columns_str
+                   .. colors
+                   .. ' -bw 2 -location 6' 
+                   .. ' -padding 2 -width ' 
+                   .. rofi.width 
+                   .. flags
     rofi_pipe = io.popen(rofi_cmd .. rofi_prefix .. "> " .. ipc_file, "w")
     rofi_pipe:setvbuf("line")
     if _t.fn ~= nil then handle_input(_t.fn) end
@@ -122,7 +159,7 @@ local function complete_name()
 end
 
 local function complete_mainmenu()
-    local t = {"save", "restart", "ratpoison-restart", "xrandr-set" }
+    local t = {"save", "restart", "ratpoison-restart", "xrandr-set"}
     local str='ctd'
     table.insert(t,"lock_screen")
     table.insert(t,"close")
@@ -138,6 +175,8 @@ local function complete_mainmenu()
     table.insert(t,"detach")
     return t
 end
+
+local function empty_() return {} end
 
 local function complete_tilingmenu()
     local t = {
@@ -160,38 +199,51 @@ local function complete_tilingmenu()
     return t
 end
 
+
+function submapped(_)
+    submap_timer = notioncore.create_timer()
+    submap_timer:set(10, __)
+end
+
 function rofi.renameworkspace()
-    local scr = ioncore.find_screen_id(0)
-    local ws = scr:mx_current()
-    local mplex=notioncore.find_manager(ws, "WMPlex")
-    if not mplex then
-        mplex = ws:current()
-        ws=notioncore.find_manager(mplex, "WGroupWS")
+    function __()
+        local scr   = ioncore.find_screen_id(0)
+        local ws    = scr:mx_current()
+        local mplex = notioncore.find_manager(ws, "WMPlex")
+        if not mplex then
+            mplex = ws:current()
+            ws=notioncore.find_manager(mplex, "WGroupWS")
+        end
+        assert(mplex and ws)
+            
+        local opt = {
+            pref      = "new_ws :: "..ws:name(),
+            file_name = "rename_ws",
+            fn        = empty_
+        }
+        local wsname = rofi_template(opt)
+        rename_workspace_handler(wsname,ws)
     end
-    assert(mplex and ws)
-    local opt = {
-        pref = "new_ws_name :: "..ws:name(),
-        file_name = "rename_ws"
-    }
-    local wsname = rofi_template(opt)
-    rename_workspace_handler(wsname,ws)
 end
 
 function rofi.renameframe(frame)
-    local opt = {
-        pref = "frame_name :: "..frame:name(),
-        file_name = "rename_frame",
-    }
-    local frame_name = rofi_template(opt)
-    rename_frame_handler(frame_name,frame)
+    function __()
+        local opt = {
+            pref      = "frame_name :: "..frame:name(),
+            file_name = "rename_frame",
+            fn        = empty_
+        }
+        local frame_name = rofi_template(opt)
+        rename_frame_handler(frame_name,frame)
+    end
 end
 
 function rofi.mainmenu()
     local opt = {
-        pref = "main_menu",
+        pref      = "main_menu",
         file_name = "main_menu",
-        lines = 2,
-        fn = complete_mainmenu,
+        lines     = 2,
+        fn        = complete_mainmenu,
     }
     local x = rofi_template(opt,nil,{sz=12})
     mainmenu_handler(x)
@@ -199,10 +251,10 @@ end
 
 function rofi.tilingmenu()
     local opt = {
-        pref = "tiling_menu",
+        pref      = "tiling_menu",
         file_name = "tiling_menu",
-        lines = 2,
-        fn = complete_tilingmenu,
+        lines     = 2,
+        fn        = complete_tilingmenu,
     }
     local x = rofi_template(opt,nil,{sz=12})
     tilingmenu_handler(x)
@@ -213,9 +265,9 @@ function rofi.goto_win()
     t = complete_name()
     if #t > 1 then
         local opt = {
-            pref = "goto_win",
+            pref      = "goto_win",
             file_name = "go",
-            fn = complete_name,
+            fn        = complete_name,
         }
         local x = rofi_template(opt)
         local win = notioncore.lookup_clientwin(x)
@@ -234,10 +286,10 @@ end
 
 function rofi.goto_or_create_ws(reg)
     local opt = {
-        pref = "goto_ws",
+        pref      = "goto_ws",
         file_name = "ws",
-        lines = 1,
-        fn = complete_ws,
+        lines     = 1,
+        fn        = complete_ws,
     }
     local name = rofi_template(opt)
     goto_or_create_ws_handler(name,reg)
@@ -245,9 +297,9 @@ end
 
 function rofi.attach_win(frame,str)
     local opt = {
-        pref = "attach",
+        pref      = "attach",
         file_name = "attach_win",
-        fn = complete_name,
+        fn        = complete_name,
     }
     local str = rofi_template(opt)
     attach_win_handler(str,frame)
