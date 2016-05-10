@@ -139,7 +139,6 @@ defwinprop{instance="seahorse",target="admin",jumpto=true,tag="admin"}
 -------------------------------------[[  WINE  ]]------------------------------------
 defwinprop{class="Crossover",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
-defwinprop{name=".*.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{name="wine.*",target="wine",jumpto=true,tag="virt"}
 defwinprop{name="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{name="Explorer.exe",target="wine",jumpto=true,tag="virt"}
@@ -151,7 +150,7 @@ defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent
 defwinprop{class="Vuze",is_transient=true,winlist_ignore=true,transient_mode="off",target="torrent",tag="torrent",jumpto=true,float=true}
 -------------------------------------[[  ETC  ]]-------------------------------------
 defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",tag="unreal"}
-defwinprop{class="Xfce*",float=true}
+defwinprop{class="Xfce",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
@@ -180,4 +179,17 @@ defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=tr
 defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad=true}
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="nicotine",tag="soulseek",scratchpad=true}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek",scratchpad=true}
-defwinprop{class="*",instance="*",transparent=false}
+defwinprop{
+    class="EoCApp",
+    match=function(prop, cwin, id)
+        local geom = cwin:geom()
+        -- warn("Client window class: " .. cwin:name())
+        if cwin:name():find("DOS EE") then
+            return true
+        else
+            return false
+        end
+    end,
+    tag="virt"
+}
+-- defwinprop{transparent=false}
