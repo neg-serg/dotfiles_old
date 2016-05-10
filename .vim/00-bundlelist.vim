@@ -1,6 +1,9 @@
 "--[ Main ]------------------------------------------------------------------------------
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
+NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
+if !has("nvim")
+    NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+endif
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
     NeoBundle 'nhooyr/neoman.vim' "better alternative to vimpager
@@ -89,6 +92,9 @@ NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
+if has("nvim")
+    NeoBundle 'bfredl/nvim-ipy' "nvim client for jupiter
+endif
 " There is no need in fixkey for nvim because of it's default behaviour
 if !has("nvim")
     NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
@@ -110,6 +116,7 @@ NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 NeoBundle 'junegunn/goyo.vim' "distraction free vim writing
 NeoBundle 'justinmk/vim-gtfo' "to term of fm
+NeoBundle 'mhinz/vim-rfc' "view and search rfc
 "--[ dev ]-------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
@@ -126,6 +133,10 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'fs111/pydoc.vim' , {'autoload': {'filetypes': ['python']} } "pydoc integration
+NeoBundle 'artur-shaik/vim-javacomplete2' "completion for java in vim
+if has("nvim")
+    NeoBundle 'jalvesaq/Nvim-R' "nvim R support
+endif
 if executable("mono")
     NeoBundleLazy 'nosami/Omnisharp.git', { 'filetypes' : 'cs' } "omnisharp completion
 endif
@@ -226,3 +237,8 @@ if has("nvim")
     NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
 endif
 NeoBundle 'ryanoasis/vim-devicons.git' "fancy icons for fonts
+if has("google_plugs")
+    NeoBundle 'google/vim-maktaba' "vim plugin library
+    NeoBundle 'google/vim-coverage' "test coverage visualize, require vim-maktaba
+    NeoBundle 'google/vim-glaive' "configuring for maktaba plugins
+endif
