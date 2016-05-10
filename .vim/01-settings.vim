@@ -84,8 +84,8 @@ if has("gui_running")
         set ttyfast                    " more redrawing characters sent to terminal
     endif
 
-    " set synmaxcol=256                " improve hi performance
-    " syntax sync minlines=200
+    set synmaxcol=200                  " improve hi performance
+    syntax sync minlines=200           " fit to screen
     set ttyscroll=0                    " turnoff scrolling
     set lazyredraw                     " no redraw in macros
 
@@ -276,7 +276,6 @@ set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set nu                          " Line numbers on
 set noshowmatch                 " Show matching brackets/parenthesis
-let loaded_matchparen = 1       " Don't show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
 set winminheight=0              " Windows can be 0 line high
