@@ -12,6 +12,7 @@ function named_scratchpad(reg, name, mode)
     geom_loc.y = (geom_scr.h - geom_loc.h) / 2
 
     named_sp = notioncore.lookup_region(name, "WFrame")
+    named_sp:set_grattr("scratchpad", "set")
 
     if not named_sp then
         named_sp = scr:attach_new({
@@ -27,9 +28,8 @@ function named_scratchpad(reg, name, mode)
                               end
     if not mode then mode = "toggle" end
     WMPlex.set_hidden(named_sp:parent(), named_sp, mode)
-    named_sp:rqorder("front")
     named_sp:set_grattr("scratchpad", "set")
-    notioncore.refresh_stylelist()
+    named_sp:rqorder("front")
     return named_sp
 end
 
