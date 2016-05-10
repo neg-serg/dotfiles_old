@@ -15,7 +15,6 @@ local cfg_list = {
     "dbg",               -- functions for stderr debbuging
     "cfg_settings",      -- notioncore.set
     "cfg_rules",         -- window placement rules
-    "autoprop",          -- autoprop module
     "cfg_layouts",       -- a bunch of default layouts
     "app",               -- module to jump by class, tag, instance etc
     "named_scratchpad",  -- named scratchpad module
@@ -31,8 +30,6 @@ local cfg_list = {
     "cfg_xrandr",        -- xrandr config
     "transparency",      -- autoset transparency
     "dzen_bg",           -- background reader for dzen
-    -- "lua_repl",          -- Lua REPL
-    "lua_repl2",          -- Lua REPL
 }
 
 for _,mod in ipairs(mod_list) do
