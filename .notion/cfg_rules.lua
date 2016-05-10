@@ -7,7 +7,7 @@ defwinprop{
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop{class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true}
-defwinprop{instance="mutt",transient_mode="off",target="mutt",scratchpad=true}
+defwinprop{instance="mutt",transient_mode="off",target="mutt",scratchpad="true"}
 defwinprop{class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,target="notes"}
 defwinprop{class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,float=true}
 defwinprop{name="float_",float=true}
@@ -35,18 +35,18 @@ defwinprop{class="Icecat",role="www",transient_mode="off",jumpto="on",target="we
 defwinprop{class="Navigator",role="www",transient_mode="off",jumpto="on",target="web",tag="www"}
 defwinprop{class="Vimprobable2",role="vimprobable2",transient_mode="off",jumpto="on",target="web",tag="www"}
 -------------------------------------[[ IM ]]---------------------------------------
-defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{class="ViberPC",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{class="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{class="telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{class="telegram-desktop",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{name="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad=true}
-defwinprop{instance="weechat-curses",jumpto=false,winlist_ignore=true,transient_mode="off",target="chat",scratchpad=true}
-defwinprop{instance="_weechat_",jumpto=false,winlist_ignore=true,transient_mode="off",target="weechat",scratchpad=true}
+defwinprop{instance="kopete",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{instance="skype",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{class="ViberPC",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{class="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{class="telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{class="telegram-desktop",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{name="Telegram",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{instance="finch",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{instance="centerim",jumpto=false,winlist_ignore=true,transient_mode="off",target="im",scratchpad="true"}
+defwinprop{instance="weechat-curses",jumpto=false,winlist_ignore=true,transient_mode="off",target="chat",scratchpad="true"}
+defwinprop{instance="_weechat_",jumpto=false,winlist_ignore=true,transient_mode="off",target="weechat",scratchpad="true"}
 -------------------------------------[[ DOC ]]---------------------------------------
 defwinprop{class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc", tag="pdf"}
 defwinprop{name="Open Document*",class="Okular",instance="okular",transient_mode="off",jumpto=true,target="doc",float=true}
@@ -155,35 +155,30 @@ defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
-defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad=true}
-defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad=true}
+defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}
+defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}
 defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true,target="rdesktop"}
 defwinprop{class="Conky",winlist_ignore=true,float=true}
-defwinprop{class="URxvt",instance="mpd-pad",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad=true}
-defwinprop{class="URxvt",instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad=true}
-defwinprop{class="mpd-pad2",instance="*",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad=true}
-defwinprop{instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad=true}
-defwinprop{role="mpd",target="ncmpcpp",scratchpad=true}
+defwinprop{instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad="true"}
 defwinprop{class="Tilda",instance="tilda",winlist_ignore=true,transient_mode="off",float=true}
 defwinprop{class="Guake",instance="guake",winlist_ignore=true,transient_mode="off",float=true}
-defwinprop{class="Pavucontrol",instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",scratchpad=true}
-defwinprop{instance="wicd",winlist_ignore=true,transient_mode="off",target="wicd",scratchpad=true}
+defwinprop{class="Pavucontrol",instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",scratchpad="true"}
+defwinprop{instance="wicd",winlist_ignore=true,transient_mode="off",target="wicd",scratchpad="true"}
 defwinprop{instance="ranger",winlist_ignore=true,transient_mode="off",target="ranger",scrachpad=true}
 defwinprop{class="ranger",winlist_ignore=true,transient_mode="off",target="ranger",scrachpad=true}
-defwinprop{class="caja",winlist_ignore=true,transient_mode="off",target="ranger",scratchpad=true}
-defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="console",scratchpad=true}
-defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb",scratchpad=true}
-defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",scratchpad=true}
-defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top",scratchpad=true}
-defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad=true}
-defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad=true}
-defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="nicotine",tag="soulseek",scratchpad=true}
-defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek",scratchpad=true}
+defwinprop{class="caja",winlist_ignore=true,transient_mode="off",target="ranger",scratchpad="true"}
+defwinprop{instance="console",winlist_ignore=true,transient_mode="off",target="console",scratchpad="true"}
+defwinprop{instance="gdb",winlist_ignore=true,transient_mode="off",target="gdb",scratchpad="true"}
+defwinprop{instance="mixer",winlist_ignore=true,transient_mode="off",target="alsa",scratchpad="true"}
+defwinprop{instance="htop",winlist_ignore=true,transient_mode="off",target="top",scratchpad="true"}
+defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad="true"}
+defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad="true"}
+defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="nicotine",tag="soulseek",scratchpad="true"}
+defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek",scratchpad="true"}
 defwinprop{
     class="EoCApp",
     match=function(prop, cwin, id)
         local geom = cwin:geom()
-        -- warn("Client window class: " .. cwin:name())
         if cwin:name():find("DOS EE") then
             return true
         else
