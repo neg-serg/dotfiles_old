@@ -12,7 +12,7 @@ neg.statusfont = "xft:".. neg.font .."-"..neg.font_size..":bold"
 neg.padding_color     = "#000000"
 neg.def_bg            = "#000000"
 neg.def_fg            = "#666666"
-neg.scratchpad_border = "#1F3B4F"
+neg.scratchpad_border = "#1f3b4f"
 neg.frame_def_border  = "#000000"
 
 neg.rofi.bg   = "\"#000000\""
