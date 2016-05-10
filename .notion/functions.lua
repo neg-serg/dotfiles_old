@@ -5,12 +5,15 @@ end
 function nsp_hide()
     local scr = ioncore.find_screen_id(0)
     local cur = scr:current()
+    local reg_ = notioncore.current()
+    notioncore.defer(function ()
+        local winprop = notioncore.getwinprop(reg_)
+        if (winprop.scratchpad == "true") then
+            WMPlex.set_hidden( scr, cur, 'set')
+        end
+    end)
     if cur:is_grattr("scratchpad", "set") then
-        WMPlex.set_hidden(
-            scr,
-            cur,
-            'set'
-        )
+        WMPlex.set_hidden( scr, cur, 'set')
     end
 end
 
