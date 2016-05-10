@@ -32,7 +32,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
     kpress(M4.."B",      function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
     kpress(M4.."W",      function() app.byinstance_withtag(
-        '/usr/bin/firefox-beta||/usr/bin/firefox-nigtly||firefox',
+        'firefox || /usr/bin/firefox-developer',
         'Firefox',
         'Navigator',
         nil,
