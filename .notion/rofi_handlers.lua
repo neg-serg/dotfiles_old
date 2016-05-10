@@ -81,7 +81,7 @@ function mainmenu_handler(x)
         end,
         [""]=nil,
     }
-    action[x]()
+    if x ~= nil then action[x]() end
 end
 
 function tilingmenu_handler(x)
