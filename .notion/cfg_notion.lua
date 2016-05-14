@@ -1,4 +1,4 @@
-home_ = os.getenv("HOME")
+home_        = os.getenv("HOME")
 notion_path_ = home_ .. "/.notion/"
 
 dofile(notion_path_.."load_file"..".lua")
@@ -30,6 +30,7 @@ local cfg_list = {
     "cfg_xrandr",        -- xrandr config
     "transparency",      -- autoset transparency
     "dzen_bg",           -- background reader for dzen
+    "lua_repl"           -- experimental script standalone lua repl
 }
 
 for _,mod in ipairs(mod_list) do
