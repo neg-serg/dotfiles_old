@@ -27,7 +27,7 @@ function zc(){
         zcompile ${z}; 
         echo $(_zpref) $(_zfwrap "${z}"); 
     done
-    for f in ${HOME}/.zshrc "${cache}/zcomp-${HOST}"; do
+    for f in ${HOME}/.zsh/.zshrc "${cache}/zcomp-${HOST}"; do
         zrecompile -p ${f} && command rm -f ${f}.zwc.old
     done
     source ${HOME}/.zshrc
