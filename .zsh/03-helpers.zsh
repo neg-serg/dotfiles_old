@@ -66,7 +66,7 @@ function vid_fancy_print(){
         local fancy_name=$(_zfwrap "$1")
         local vid_comment="$(_zex_tag 'Comment')"
         if [[ ! $(tr -d '[:blank:]'<<< ${vid_comment} ) == "" ]]; then
-            local comment_str="$(zwrap "Comment $(_zdelim) ${vid_comment}")"
+            local comment_str="$(_zwrap "Comment $(_zdelim) ${vid_comment}")"
         else
             local comment_str=""
         fi
