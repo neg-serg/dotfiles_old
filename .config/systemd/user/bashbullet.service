@@ -1,0 +1,8 @@
+[Unit]
+Description=BashBullet
+
+[Service]
+ExecStart=/usr/sbin/bashbullet
+
+[Install]
+WantedBy=default.target
