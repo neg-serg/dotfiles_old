@@ -1,13 +1,12 @@
 #!/bin/zsh
 
-# TODO: Disable Vuze logging
-
 function main() {
-    wrap_command="screen"
+    wrap_command="tmux -S ${HOME}/1st_level/vuzed.socket new -s vuze -n vuze"
     cd /opt/vuze && \
-    ${wrap_command} \
+    eval ${wrap_command} \
     rlwrap \
-    drip -Xmx512m -cp "./Azureus2.jar:/opt/vuze/java-commons-cli/commons-cli.jar:/opt/vuze/apache-log4j-1.2.17/log4j-1.2.17.jar:./swt.jar:/opt/vuze/java-commons-cli/commons-cli.jar:/opt/vuze/apache-log4j-1.2.17/log4j-1.2.17.jar"  -Dazureus.console.multiuser=1 -Djava.library.path="/opt/vuze" -Dazureus.install.path="/opt/vuze" -Dazureus.script="/usr/sbin/vuze" -Dazureus.script.version=5 org.gudy.azureus2.ui.common.Main --ui=console 2> /dev/null
+    java -Xmx512m -cp "./Azureus2.jar:/opt/vuze/java-commons-cli/commons-cli.jar:/opt/vuze/apache-log4j-1.2.17/log4j-1.2.17.jar:./swt.jar:/opt/vuze/java-commons-cli/commons-cli.jar:/opt/vuze/apache-log4j-1.2.17/log4j-1.2.17.jar"  -Dazureus.console.multiuser=1 -Dazureus.log.stdout=0  -Djava.library.path="/opt/vuze" -Dazureus.install.path="/opt/vuze" -Dazureus.script="/usr/sbin/vuze" -Dazureus.script.version=5 org.gudy.azureus2.ui.common.Main --ui=console && \
+    tmux -S ${HOME}/1st_level/vuzed.socket detach
 }
 
-main 2> /dev/null
+main "$@" #|| tmux -S  ${HOME}/1st_level/vuzed.socket a -t vuze
