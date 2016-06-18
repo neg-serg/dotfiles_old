@@ -3,23 +3,23 @@
 ZSH_HIGHLIGHT_STYLES+=(
     default                         none
     unknown-token                   none
-    suffix-alias                    fg=green,underline
+    suffix-alias                    fg=26,underline
     reserved-word                   fg=004
-    alias                           fg=green
-    builtin                         fg=green
-    function                        fg=green,underline
-    command                         fg=green
+    alias                           fg=26
+    builtin                         fg=26
+    function                        fg=26,underline
+    command                         fg=26
 
-    precommand                      fg=green,underline 
+    precommand                      fg=26,underline 
     path_prefix                     none
     path                            fg=white
     path_approx                     fg=white
 
-    hashed-command                  fg=green
+    hashed-command                  fg=26
     globbing                        fg=110
     history-expansion               fg=blue
-    single-hyphen-option            fg=244
-    double-hyphen-option            fg=244
+    single-hyphen-option            fg=33
+    double-hyphen-option            fg=33
     comment                         fg=221
     # redirection                   none
     # commandseparator              none
