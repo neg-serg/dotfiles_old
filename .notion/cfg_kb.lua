@@ -42,7 +42,13 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4..Ct.."C",  function() app.byclass('~/bin/sx ~/dw/*', 'Sxiv') end),
     --[[  misc  ]]---------------------------------------
     kpress(M4..Sh.."F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
-    kpress(M4..Sh.."T",  function() namsc('stalonetray') end),
+    kpress(M4..Sh.."T",  function() 
+        ns_exec(
+            'stalonetray', -- class
+            'stalonetray -c ${XDG_CONFIG_HOME}/stalonetrayrc', --app
+            'stalonetray'   --ns
+        )
+    end),
     kpress(M4..Sh.."E",  function() weechat() end),
     submap(M1.."E",{
         kpress(Ct.."R", function() app.byinstance('cr3', 'Cr3', 'cr3') end),
