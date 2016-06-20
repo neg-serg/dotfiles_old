@@ -175,11 +175,13 @@ defwinprop{instance="gcolor2",winlist_ignore=true,transient_mode="off",jumpto=tr
 defwinprop{instance="gpick",winlist_ignore=true,transient_mode="off",jumpto=true,target="float",scratchpad="true"}
 defwinprop{class="Nicotine",instance="nicotine",transient_mode="off",target="nicotine",tag="soulseek",scratchpad="true"}
 defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek",scratchpad="true"}
+defwinprop{class="Nicotine.py",instance="nicotine.py",transient_mode="off",target="nicotine",tag="soulseek",scratchpad="true"}
+defwinprop{class="XRebirth",target="wine",float=true}
 defwinprop{
     class="EoCApp",
     match=function(prop, cwin, id)
         local geom = cwin:geom()
-        if cwin:name():find("DOS EE") then
+        if cwin:name():find("DOS EE") or  cwin:name():find("stellaris") then
             return true
         else
             return false
