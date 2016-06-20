@@ -4,12 +4,6 @@ pcm.pulse {
 ctl.pulse {
     type pulse
 }
-#pcm.!default {
-#    type pulse
-#}
-#ctl.!default {
-#    type pulse
-#}
 
 pcm.!default {
     @func refer
