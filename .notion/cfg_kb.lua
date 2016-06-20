@@ -7,7 +7,6 @@ local Sh = "Shift+"
 Neg_kb.WMPlex_toplevel = {
     kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
     kpress(M4.."F11",    function() rofi.mainmenu() end),
-    kpress(M1.."grave",  function() spawn('rofi -show run -location 6 -lines 2 -columns 8') end),
     kpress(M4.."slash",  function() notioncore.goto_previous() end),
     kpress(M1.."Tab",    function() notioncore.goto_previous() end),
     --[[ scratchpads  ]]--------------------------------
@@ -49,7 +48,6 @@ Neg_kb.WMPlex_toplevel = {
         kpress(Ct.."R", function() app.byinstance('cr3', 'Cr3', 'cr3') end),
         kpress(Ct.."W", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
         kpress("A",     function() namsc('firefox-dialog') end),
-        kpress("D",     function() spawn('~/bin/scripts/dzen-dict') end),
         kpress("F",     function() namsc('float') end),
         kpress("I",     function() spawn('~/bin/pls -output') end),
         kpress("L",     function() radare2() end),
@@ -69,10 +67,11 @@ Neg_kb.WMPlex_toplevel = {
         kpress("V",     function() spawn('vmware') end),
         kpress("W",     function() webcam() end),
         kpress(Sh.."B", function() 
-            local browser_list = {  "yandex-browser-beta",
-                                    "chromium",
-                                    "google-chrome", 
-                                    "google-chrome-stable"
+            local browser_list = { "yandex-browser-beta"
+                                   , "chromium"
+                                   , "google-chrome"
+                                   , "google-chrome-stable"
+                                   , "tor-browser-en"
                                  }
             local function gen_www_list_()
                 local str = ""

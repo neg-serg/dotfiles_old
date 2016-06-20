@@ -19,10 +19,10 @@ local function framelist(iter)
     return entries
 end
 
-local function maketransparent(reg)
+local function maketransparent()
     local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
     local opacity_level = 3435973836
-    -- local full_opacity_level = 4294967295
+    local full_opacity_level = 4294967295
 
     framelist(notioncore.region_i)
 
@@ -35,16 +35,31 @@ local function maketransparent(reg)
     end
 end
 
-local function setup_scratchpad()
-    local winprop = notioncore.getwinprop(reg)
-    if winprop.scratchpad == true then
-        reg:set_grattr("scratchpad", "set")
-    end
-end
+-- add defer(???)
+
+-- local function scratchpadlist(iter)
+--     sclist = {}
+--     iter(function(obj)
+--         if obj_is(obj, "WMPlex") then
+--             local winprop = notioncore.getwinprop(obj)
+--             if (winprop.scratchpad == "true") then
+--                 table.insert(sclist, obj)
+--             end
+--         end
+--         return true
+--     end)
+-- end
+
+-- local function highlightscratchpads()
+--     scratchpadlist(notioncore.region_i)
+--     for _,reg in ipairs(sclist) do
+--         reg:set_grattr("scratchpad", "set")
+--     end
+-- end
 
 local function hookhandler(reg, how)
     notioncore.defer(function() maketransparent() end)
-    notioncore.defer(function() setup_scratchpad() end)
+    -- notioncore.defer(function() highlightscratchpads() end)
 end
 
 notioncore.get_hook("clientwin_mapped_hook"):add(hookhandler)
