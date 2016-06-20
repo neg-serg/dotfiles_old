@@ -212,8 +212,3 @@ endif
 " enter will work in command edit mode as intended, since by default it's
 " mapped to :nohl
 autocmd vimrc CmdwinEnter * noremap <buffer><CR> <CR>
-
-autocmd WinEnter    * set cursorline
-autocmd WinLeave    * set nocursorline
-autocmd InsertEnter * set nocursorline
-autocmd InsertLeave * set cursorline
