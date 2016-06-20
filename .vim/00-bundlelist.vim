@@ -1,3 +1,4 @@
+NeoBundle 'talek/vorax4' "Oracle DB IDE
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
@@ -92,9 +93,9 @@ NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
-if has("nvim")
-    NeoBundle 'bfredl/nvim-ipy' "nvim client for jupiter
-endif
+" if has("nvim")
+"     NeoBundle 'bfredl/nvim-ipy' "nvim client for jupiter
+" endif
 " There is no need in fixkey for nvim because of it's default behaviour
 if !has("nvim")
     NeoBundle 'drmikehenry/vim-fixkey' "fixes key codes for console Vim
@@ -222,6 +223,7 @@ NeoBundle 'fatih/vim-nginx' "nginx runtime files
 NeoBundle 'trapd00r/irc.vim' "syntax file for irc logs
 NeoBundle 'zah/nim.vim' "syntax file for nim
 NeoBundle 'junegunn/vim-journal' "pretty markdown-like look
+NeoBundle 'baskerville/vim-sxhkdrc' "sxhkd config syntax
 if !has("nvim") && has("ololo")
     NeoBundle 'bbchung/clighter.git' "hi with clang
 elseif has("nvim")
@@ -241,4 +243,5 @@ if has("google_plugs")
     NeoBundle 'google/vim-maktaba' "vim plugin library
     NeoBundle 'google/vim-coverage' "test coverage visualize, require vim-maktaba
     NeoBundle 'google/vim-glaive' "configuring for maktaba plugins
+    NeoBundle 'google/vim-codefmt' "clang-based codeformatter
 endif
