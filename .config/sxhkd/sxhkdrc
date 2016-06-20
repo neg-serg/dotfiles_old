@@ -28,4 +28,7 @@ super + control + r ; { d, i, r }
         xcalib -alter -invert, \
         xcalib -red 0.1 0.0 1 -a \
     }
+alt + grave
+    rofi -show run -location 6 -lines 2 -columns 8
+    
 # vim: set ft=sxhkdrc:
