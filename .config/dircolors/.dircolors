@@ -73,6 +73,7 @@ RESET 0 # reset to "normal" color
 .z      01;38;5;61
 .Z      01;38;5;61
 
+.war      38;5;67
 .jar      38;5;67
 .arj      38;5;67
 .rpm      38;5;68
