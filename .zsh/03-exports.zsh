@@ -133,7 +133,11 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 unset _JAVA_OPTIONS
-export JAVACMD=drip
+
+if which drip > /dev/null 2>&1; then
+  export DRIP_SHUTDOWN=30
+  export JAVACMD=$(which drip)
+fi
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
