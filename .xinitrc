@@ -9,7 +9,7 @@ function set_wallpaper() {
 . ~/.zsh/03-exports.zsh
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
-set_wallpaper o1747307.jpg
+set_wallpaper wallpaper-1767776.jpg
 
 pulseaudio --start &
 wmname Sawfish
@@ -55,7 +55,7 @@ inpath unclutter && unclutter --fork --timeout 1 &
 sudo pkill compton && \
     compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
 nexec klay_watch && ${BIN_HOME}/mon/klay_watch &
-${SCRIPT_HOME}/email_notifier.py &
+${SCRIPT_HOME}/email_notifier.py --body &
 
 rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
