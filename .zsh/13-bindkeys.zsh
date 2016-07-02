@@ -1,24 +1,5 @@
 #!/usr/bin/zsh
 
-if [[ "$TERM" != emacs ]] ; then
-    [[ -z "$terminfo[kdch1]" ]] || bindkey -M emacs "$terminfo[kdch1]" delete-char
-    [[ -z "$terminfo[khome]" ]] || bindkey -M emacs "$terminfo[khome]" beginning-of-line
-    [[ -z "$terminfo[kend]"  ]] || bindkey -M emacs "$terminfo[kend]"  end-of-line
-    [[ -z "$terminfo[kdch1]" ]] || bindkey -M vicmd "$terminfo[kdch1]" vi-delete-char
-    [[ -z "$terminfo[khome]" ]] || bindkey -M vicmd "$terminfo[khome]" vi-beginning-of-line
-    [[ -z "$terminfo[kend]"  ]] || bindkey -M vicmd "$terminfo[kend]"  vi-end-of-line
-    [[ -z "$terminfo[cuf1]"  ]] || bindkey -M viins "$terminfo[cuf1]"  vi-forward-char
-    [[ -z "$terminfo[kcuf1]" ]] || bindkey -M viins "$terminfo[kcuf1]" vi-forward-char
-    [[ -z "$terminfo[kcub1]" ]] || bindkey -M viins "$terminfo[kcub1]" vi-backward-char
-    # ncurses stuff:
-    [[ "$terminfo[kcuf1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcuf1]/O/[}" vi-forward-char
-    [[ "$terminfo[kcub1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcub1]/O/[}" vi-backward-char
-    [[ "$terminfo[khome]" == $'\eO'* ]] && bindkey -M viins "${terminfo[khome]/O/[}" beginning-of-line
-    [[ "$terminfo[kend]"  == $'\eO'* ]] && bindkey -M viins "${terminfo[kend]/O/[}"  end-of-line
-    [[ "$terminfo[khome]" == $'\eO'* ]] && bindkey -M emacs "${terminfo[khome]/O/[}" beginning-of-line
-    [[ "$terminfo[kend]"  == $'\eO'* ]] && bindkey -M emacs "${terminfo[kend]/O/[}"  end-of-line
-fi
-
 bindkey -e
 
 # Search backward in the history for a line beginning with the current
@@ -29,10 +10,6 @@ zle -N history-beginning-search-forward-end  history-search-end
 bindkey '^xp'   history-beginning-search-backward-end
 #k# search history forward for entry beginning with typed text
 bindkey '^xP'   history-beginning-search-forward-end
-#k# search history backward for entry beginning with typed text
-bindkey "\e[5~" history-beginning-search-backward-end # PageUp
-#k# search history forward for entry beginning with typed text
-bindkey "\e[6~" history-beginning-search-forward-end  # PageDown
 
 slash-backward-kill-word() {
     local WORDCHARS="${WORDCHARS:s@/@}"
@@ -50,10 +27,6 @@ bindkey "^X^L" insert-last-command-output
 
 #k# Kill left-side word or everything up to next slash
 bindkey '\ev' slash-backward-kill-word
-#k# Kill left-side word or everything up to next slash
-bindkey '\e^h' slash-backward-kill-word
-#k# Kill left-side word or everything up to next slash
-bindkey '\e^?' slash-backward-kill-word
 
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
@@ -84,11 +57,6 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-if zrcautoload insert-files && zle -N insert-files ; then
-    #k# Insert files and test globbing
-    bindkey "^xf" insert-files # C-x-f
-fi
-
 #bindkey ' '   magic-space    # also do history expansion on space
 bindkey '\ei' menu-complete  # menu completion via esc-i
 
@@ -98,21 +66,13 @@ bindkey '^x1'           jump_after_first_word
 bindkey " "             magic-space
 bindkey ",."            zleiab
 
-# zle -N backward-kill-default-word _backward_kill_default_word
-# bindkey '\e=' backward-kill-default-word   # = is next to backspace
-
 bindkey -M emacs "^[w"  vi-cmd-mode
-bindkey -M emacs "^X^V" vi-cmd-mode
 bindkey -M emacs "^X^F" vi-find-next-char
-bindkey -M emacs "^[|"  vi-goto-column
-bindkey -M emacs "^X^J" vi-join
-bindkey -M emacs "^X^B" vi-match-bracket
 
 # accept a completion and try to complete again by using menu
 # completion; very useful with completing directories
 # by using 'undo' one's got a simple file browser
 bindkey -M menuselect '^o' accept-and-infer-next-history
-
 bindkey -M menuselect 'h'     vi-backward-char                
 bindkey -M menuselect 'j'     vi-down-line-or-history         
 bindkey -M menuselect 'k'     vi-up-line-or-history           
@@ -146,13 +106,8 @@ bindkey '^X^D' fasd-complete-d   # C-x C-d to do fasd-complete-d (only directori
 
 bindkey '^X^X' copy-to-clipboard
 
-local jump_dirs=(
-    ~/1st_level
-    ~/dw
-    ~/tmp
-    ~/src/1st_level
-    ~/vid/new
-)
+local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
+
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
     bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
 done
