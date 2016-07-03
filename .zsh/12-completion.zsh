@@ -1,4 +1,5 @@
 mycompletion() {
+    zstyle ':acceptline:*' rehash true
     # allow one error for every three characters typed in approximate completer
     zstyle ':completion:*:approximate:' \
                                                 max-errors 'reply=( $((($#PREFIX+$#SUFFIX)/3 )) numeric )'
@@ -41,7 +42,6 @@ mycompletion() {
     zstyle ':completion:*:manuals.*'            insert-sections   true
     zstyle ':completion:*:man:*'                menu yes select
     zstyle ':completion:*'                      special-dirs ..
-    zstyle ':completion:*'                      use-perl true
     zstyle ':completion:*:(mv|cp|file|m|mplayer|mp|mpv):*' \
                                                 ignored-patterns '(#i)*.(url|mht)'
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' tag-order files
@@ -70,14 +70,11 @@ mycompletion() {
         zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
         # colorize username completion
         zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
-    zstyle ':completion:*:wine:*'             file-patterns '*.(exe|EXE):exe'
+    zstyle ':completion:*:wine:*'             file-patterns '(#i)*.(exe):exe'
     # highlight parameters with uncommon names
     zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
     # highlight aliases                      
     zstyle ':completion:*:aliases'            list-colors "=*=$color[green]"
-    # show that _* functions are not for normal use
-    # (not needed, since I don't complete _* functions at all)
-    zstyle ':completion:*:functions'          list-colors "=_*=$color[magenta]"
     ### highlight the original input.
     zstyle ':completion:*:original'           list-colors "=*=$color[blue];$color[bold]"
     ### highlight words like 'esac' or 'end'
@@ -85,12 +82,10 @@ mycompletion() {
     ### colorize processlist for 'kill'
     zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
     zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-    zstyle ':completion:*:*:perl:*'           file-patterns '*'
     zstyle ':completion:*:*:zathura:*'        tag-order files
     zstyle ':completion:*:*:zathura:*'        file-patterns '*(/)|*.{pdf,djvu}'
     # make them a little less short, after all (mostly adds -l option to the whatis calll)
     zstyle ':completion:*:command-descriptions' command '_call_whatis -l -s 1 -r .\*; _call_whatis -l -s 6 -r .\* 2>/dev/null'
-    zstyle :complete-recent-args use-histbang yes
     zstyle ':completion:*:*:task:*'                verbose yes         # taskwarrior
     zstyle ':completion:*:*:task:*:descriptions'   format '%U%B%d%b%u' # taskwarrior
     zstyle ':completion:*:*:task:*'                group-name ''       # taskwarrior
