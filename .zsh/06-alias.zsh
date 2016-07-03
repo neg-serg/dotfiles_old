@@ -156,21 +156,6 @@ unset _zsh_proxy
 alias qe='cd *(/om[1])'
 alias hi='_v'
 
-alias wine="WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
-alias steamwine='WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe' 
-function bnet(){
-    local prefix_=""
-    if [[ $1 =~ ".*32" ]]; then
-        prefix_="setarch i386 -3 "
-        _zwrap "set to 32 bit"
-    fi
-    local dir_=~/.wine/drive_c/Program\ Files\ \(x86\)/
-    cd "${dir_}/Battle.net"
-    eval WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C \
-    ${prefix_} wine ./Battle.net.exe &
-}
-alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
-
 alias td="[ -z $(pidof transmission-daemon) ] && transmission-daemon"
 
 alias awk="$(whence gawk || whence awk)"
@@ -354,7 +339,7 @@ alias starwars='telnet towel.blinkenlights.nl'
 #--[ Csound ]--------------
 alias engage='play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +4  synth whitenoise lowpass -1 100 lowpass -1 100  lowpass -1 100 gain +2'
 alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tremolo 0.125 80;'
-
+#--[ gdb ]-----------------
 alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
 alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
 alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
