@@ -154,20 +154,6 @@ function rationalise-dot() {
 }
 zle -N rationalise-dot
 
-# jump behind the first word on the cmdline.
-# useful to add options.
-function jump_after_first_word() {
-    local words
-    words=(${(z)BUFFER})
-
-    if (( ${#words} <= 1 )) ; then
-        CURSOR=${#BUFFER}
-    else
-        CURSOR=${#${words[1]}}
-    fi
-}
-zle -N jump_after_first_word
-
 # grep for running process, like: 'any vime
 function any() {
     emulate -L zsh
@@ -240,32 +226,6 @@ function pstop() {
     column -t
 }
 
-function finfo() {
-while [ $# -gt 0 ] ; do
-    mime_type=$(file -L -b --mime-type "$1")
-    case $mime_type in
-        image/svg+xml) inkscape -S "$1" ;;
-        video/* | application/vnd.rn-realmedia | audio/* | image/*) mediainfo "$1" ;;
-        application/pdf) pdfinfo "$1" ;;
-        application/zip) unzip -l "$1" ;;
-        application/x-lha) lha -l "$1" ;;
-        application/x-rar) unrar lb "$1" ;;
-        application/x-bittorrent) aria2c -S "$1" | grep '\./' ;;
-        application/x-iso9660-image) isoinfo -J -l -i "$1" ;;
-        *)
-            case "$1" in
-                *.torrent) aria2c -S "$1" | grep '\./' ;;
-                *.mkv) mediainfo "$1" ;;
-                *.ace) unace l "$1" ;;
-                *.icns) icns2png -l "$1" ;;
-                *) file -b "$1" ;;
-            esac
-            ;;
-    esac
-    shift
-done
-}
-
 function rfc(){
     uri_tmpl='http://www.rfc-editor.org/rfc/rfc%d.txt';
     rfcn=$( printf $1 | sed 's/[^0-9]//g' );
@@ -336,17 +296,6 @@ zle -N expand-or-complete-or-cd
 
 function ff() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
 
-function magnet_to_torrent() {
-    [[ "$1" =~ xt=urn:btih:([^\&/]+) ]] || return 1
-    hashh=${match[1]}
-    if [[ "$1" =~ dn=([^\&/]+) ]];then
-      filename=${match[1]}
-    else
-      filename=${hashh}
-    fi
-    echo "d10:magnet-uri${#1}:${1}e" > "${filename}.torrent"
-}
-
 function hi2() {
     if [ ! -x $(which pygmentize) ]; then
         echo package \'pygmentize\' is not installed!
@@ -375,28 +324,6 @@ function discover () {
     locate -ir ${keyword}
 }
 
-function sprunge() {
-    if [[ -t 0 ]]; then
-      echo Running interactively, checking for arguments... >&2
-      if [[ "$*" ]]; then
-        echo Arguments present... >&2
-        if [[ -f "$*" ]]; then
-          echo Uploading the contents of "$*"... >&2
-          cat "$*"
-        else
-          echo Uploading the text: \""$*"\"... >&2
-          echo "$*"
-        fi | curl -F 'sprunge=<-' http://sprunge.us
-      else
-        echo No arguments found, printing USAGE and exiting. >&2
-        usage
-      fi
-    else
-      echo Using input from a pipe or STDIN redirection... >&2
-      curl -F 'sprunge=<-' http://sprunge.us
-    fi
-}
-
 function XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
@@ -421,40 +348,6 @@ function hugepage_disable(){
 }
 
 function teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
-
-function bookmarks_export(){
-    _zwrap "10 days history"
-    limit="10 days"
-    places=$(find ${HOME}/.mozilla/ -name "places.sqlite" | head -1)
-    sql="SELECT url FROM moz_places, moz_historyvisits \
-    WHERE moz_places.id = moz_historyvisits.place_id \
-    and visit_date > strftime('%s','now','-$limit')*1000000 \
-    ORDER by visit_date;"
-    sqlite3 ${places} ${sql}
-
-    _zwrap "All history"
-    sqlite3 ~/.mozilla/firefox/*/places.sqlite "
-    select moz_places.url, moz_bookmarks.title from moz_places, moz_bookmarks
-    where moz_bookmarks.fk = moz_places.id and moz_bookmarks.type = 1
-    and length(moz_bookmarks.title) > 0 order by moz_bookmarks.dateAdded"
-}
-
-function chrome_history(){
-    export CONF_COLS=$[ COLUMNS/2 ]
-    export CONF_SEP='{::}'
-
-    cp -f ${XDG_CONFIG_HOME}/chromium/Default/History /tmp/h
-
-    sqlite3 -separator $CONF_SEP /tmp/h 'select title, url from urls order by last_visit_time desc' \
-        | ruby -ne '
-    cols = ENV["CONF_COLS"].to_i
-    title, url = $_.split(ENV["CONF_SEP"])
-    puts "\x1b[33m#{title.ljust(cols)}\x1b[0m #{url}"' \
-        | fzf --ansi --multi --no-hscroll --tiebreak=index \
-        | grep --color=never -o 'https\?://.*'
-
-    unset CONF_COLS CONF_SEP
-}
 
 function cache_list(){
     dirlist=(
@@ -665,18 +558,8 @@ function g() {
     if [[ $# > 0 ]]; then
         git $@
     else
-        git status ./*
+        git status --short ./*
     fi
-}
-
-function sls(){
-    steamcmd '+apps_installed +quit' |\
-        awk '/AppID/ {
-                id = $2;
-                name = substr($0, index($0, " : ") + 3);
-                sub(" : .*", "", name);
-                print id ": " name;
-            }'
 }
 
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
@@ -725,28 +608,14 @@ function ql(){
     fi
 }
 
-# Show how much RAM application uses.
-# $ ram safari
-# # => safari uses 154.69 MBs of RAM.
-function ram() {
-    local sum items
-    local app="$1"
-    if [[ -z "${app}" ]]; then
-        echo "First argument - pattern to grep from processes"
-    else
-        sum=0
-        for i in $(ps aux | grep -i "${app}" | grep -v "grep" | awk '{print $6}'); do
-            sum=$((${i} + ${sum}))
-        done
-        sum=$(echo "scale=2; ${sum} / 1024.0" | bc)
-        if [[ ${sum} != "0" ]]; then
-            echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM."
-        else
-            echo "There are no processes with pattern '${fg[blue]}${app}${reset_color}' are running."
-        fi
-    fi
-}
-
 function clojure(){
     drip -cp /usr/share/clojure/clojure.jar clojure.main
 }
+
+function slash-backward-kill-word () {
+    local WORDCHARS="${WORDCHARS:s@/@}"
+    # zle backward-word
+    zle backward-kill-word
+}
+zle -N slash-backward-kill-word
+
