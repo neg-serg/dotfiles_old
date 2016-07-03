@@ -2,22 +2,6 @@
 
 bindkey -e
 
-# Search backward in the history for a line beginning with the current
-# line up to the cursor and move the cursor to the end of the line then
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end  history-search-end
-#k# search history backward for entry beginning with typed text
-bindkey '^xp'   history-beginning-search-backward-end
-#k# search history forward for entry beginning with typed text
-bindkey '^xP'   history-beginning-search-forward-end
-
-slash-backward-kill-word() {
-    local WORDCHARS="${WORDCHARS:s@/@}"
-    # zle backward-word
-    zle backward-kill-word
-}
-zle -N slash-backward-kill-word
-# Use Ctrl-x,Ctrl-l to get the output of the last command
 zmodload -i zsh/parameter
 insert-last-command-output() {
     LBUFFER+="$(eval $history[$((HISTCMD-1))])"
@@ -31,12 +15,6 @@ bindkey '\ev' slash-backward-kill-word
 bindkey '^r' history-incremental-pattern-search-backward
 bindkey '^s' history-incremental-pattern-search-forward
 
-zstyle ':acceptline:*' rehash true
-
-if zrcautoload insert-files && zle -N insert-files ; then
-    bindkey "^xf" insert-files # C-x-f
-fi
-
 bindkey "^[+" up-one-dir
 bindkey "^[=" back-one-dir
 
@@ -44,9 +22,6 @@ zle -N magic-abbrev-expand
 zle -N no-magic-abbrev-expand
 bindkey " " magic-abbrev-expand
 bindkey "^x " no-magic-abbrev-expand
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
 
 bindkey . rationalise-dot
 
@@ -57,11 +32,8 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-#bindkey ' '   magic-space    # also do history expansion on space
 bindkey '\ei' menu-complete  # menu completion via esc-i
 
-#k# jump to after first word (for adding options)
-bindkey '^x1'           jump_after_first_word
 # do history expansion on space
 bindkey " "             magic-space
 bindkey ",."            zleiab
