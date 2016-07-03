@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+function cache_list(){
+    dirlist=(
+        ${HOME}/.w3m/*
+        ${XDG_DATA_HOME}/recently-used.xbel
+        ${XDG_CACHE_HOME}/mc/*
+        ${XDG_DATA_HOME}/mc/history
+        ${HOME}/.viminfo
+        ${HOME}/.adobe/
+        ${HOME}/.macromedia/
+        ${XDG_CACHE_HOME}/mozilla/
+        ${HOME}/.thumbnails/
+    )
+    du -shc ${dirlist}
+}
+
+cache_list "$@"
