@@ -56,3 +56,30 @@ else
     esac
 fi
 }
+
+function finfo() {
+while [ $# -gt 0 ] ; do
+    mime_type=$(file -L -b --mime-type "$1")
+    case $mime_type in
+        image/svg+xml) inkscape -S "$1" ;;
+        video/* | application/vnd.rn-realmedia | audio/* | image/*) mediainfo "$1" ;;
+        application/pdf) pdfinfo "$1" ;;
+        application/zip) unzip -l "$1" ;;
+        application/x-lha) lha -l "$1" ;;
+        application/x-rar) unrar lb "$1" ;;
+        application/x-bittorrent) aria2c -S "$1" | grep '\./' ;;
+        application/x-iso9660-image) isoinfo -J -l -i "$1" ;;
+        *)
+            case "$1" in
+                *.torrent) aria2c -S "$1" | grep '\./' ;;
+                *.mkv) mediainfo "$1" ;;
+                *.ace) unace l "$1" ;;
+                *.icns) icns2png -l "$1" ;;
+                *) file -b "$1" ;;
+            esac
+            ;;
+    esac
+    shift
+done
+}
+
