@@ -58,7 +58,6 @@ function vim_file_open() (
 )
 
 function process_list() {
-    wim_goto
     sleep "$1"; shift
     while getopts ":b:a:c:" opt; do
         case ${opt} in
@@ -90,6 +89,7 @@ function v {
     while read -r arg; do
         wim_run ${arg[@]}
     done <<< "$(printf '%q\n' "$@")"
+    wim_goto
 }
 
 function wim_embed { wim_run "__wim_embed" "$@" }
