@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+function hi2() {
+    if [ ! -x $(which pygmentize) ]; then
+        echo package \'pygmentize\' is not installed!
+        exit -1
+    fi
+
+    if [ $# -eq 0 ]; then
+        pygmentize -g $@
+    fi
+
+    for file_name in "$@"; do
+        filename=$(basename "${file_name}")
+        lexer=$(pygmentize -N \"$filename\")
+        if [ "Z$lexer" != "Ztext" ]; then
+            pygmentize -l $lexer "${file_name}"
+        else
+            pygmentize -g "${file_name}"
+        fi
+    done
+}
+
+hi2 "$@"

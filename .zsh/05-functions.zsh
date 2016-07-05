@@ -10,15 +10,6 @@ function chpwd() {
     fi
 }
 
-function magic-abbrev-expand() {
-    local MATCH
-    LBUFFER=${LBUFFER%%(#m)[_a-zA-Z0-9]#}
-    LBUFFER+=${abbreviations[$MATCH]:-$MATCH}
-    zle self-insert
-}
-
-function no-magic-abbrev-expand() { LBUFFER+=' ' }
-
 function zc(){
     local cache="${ZSH}/cache"
     autoload -U compinit zrecompile
@@ -32,15 +23,6 @@ function zc(){
     done
     source ${HOME}/.zshrc
 }
-
-# completion system
-if zrcautoload compinit ; then
-    compinit || print 'Notice: no compinit available :('
-else
-    print 'Notice: no compinit available :('
-    function zstyle { }
-    function compdef { }
-fi
 
 # Load is-at-least() for more precise version checks Note that this test will
 # *always* fail, if the is-at-least function could not be marked for
@@ -134,25 +116,8 @@ function extract() {
   done
 }
 
-function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M $(pwd);  }
-function back-one-dir { popd     > /dev/null; zle redisplay; zle -M $(pwd);  }
-zle -N up-one-dir
-zle -N back-one-dir
-
 function xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
 function xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
-# just type '...' to get '../..'
-function rationalise-dot() {
-    local MATCH
-    if [[ $LBUFFER =~ '(^|/| |  |'$'\n''|\||;|&)\.\.$' ]]; then
-        LBUFFER+=/
-        zle self-insert
-        zle self-insert
-    else
-        zle self-insert
-    fi
-}
-zle -N rationalise-dot
 
 # grep for running process, like: 'any vime
 function any() {
@@ -168,46 +133,6 @@ function any() {
     else
         ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
     fi
-}
-
-function inplace_mk_dirs() {
-    # Press ctrl-xM to create the directory under the cursor or the selected area.
-    # To select an area press ctrl-@ or ctrl-space and use the cursor.
-    # Use case: you type "mv abc ~/testa/testb/testc/" and remember that the
-    # directory does not exist yet -> press ctrl-XM and problem solved
-    local PATHTOMKDIR
-    if ((REGION_ACTIVE==1)); then
-        local F=$MARK T=$CURSOR
-        if [[ $F -gt $T ]]; then
-            F=${CURSOR}
-            T=${MARK}
-        fi
-        # get marked area from buffer and eliminate whitespace
-        PATHTOMKDIR=${BUFFER[F+1,T]%%[[:space:]]##}
-        PATHTOMKDIR=${PATHTOMKDIR##[[:space:]]##}
-    else
-        local bufwords iword
-        bufwords=(${(z)LBUFFER})
-        iword=${#bufwords}
-        bufwords=(${(z)BUFFER})
-        PATHTOMKDIR="${(Q)bufwords[iword]}"
-    fi
-    [[ -z "${PATHTOMKDIR}" ]] && return 1
-    PATHTOMKDIR=${~PATHTOMKDIR}
-    if [[ -e "${PATHTOMKDIR}" ]]; then
-        zle -M " path already exists, doing nothing"
-    else
-        zle -M "$(mkdir -p -v "${PATHTOMKDIR}")"
-        zle end-of-line
-    fi
-}
-
-# If I am using vi keys, I want to know what mode I'm currently using.
-# zle-keymap-select is executed every time KEYMAP changes.
-# From http://zshwiki.org/home/examples/zlewidgets
-function zle-keymap-select {
-    VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
-    zle reset-prompt
 }
 
 function imv() {
@@ -251,19 +176,6 @@ function myip(){
     fi
 }
 
-function fg-widget() {
-    stty icanon echo -inlcr < /dev/tty
-    stty lnext '^V' quit '^\' susp '^Z' < /dev/tty
-    zle reset-prompt
-    if jobs %- >/dev/null 2>&1; then
-        fg %-
-    else
-        fg
-    fi
-}
-zle -N fg-widget
-
-
 #pcp - copy files matching pattern $1 to $2
 function pcp(){ find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2" }
 
@@ -274,48 +186,7 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
-function copy-to-clipboard() {
-    (( $+commands[xclip] )) || return
-    echo -E -n - "$BUFFER" | xclip -i
-}
-zle -N copy-to-clipboard
-
-# expand-or-complete, but sets buffer to "cd" if it's empty
-function expand-or-complete-or-cd() {
-    if [[ $#BUFFER == 0 ]]; then
-        BUFFER="cd "
-        CURSOR=3
-        # don't want that after all
-        # zle menu-expand-or-complete
-        zle menu-expand-or-complete
-    else
-        zle expand-or-complete
-    fi
-}
-zle -N expand-or-complete-or-cd
-
 function ff() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
-
-function hi2() {
-    if [ ! -x $(which pygmentize) ]; then
-        echo package \'pygmentize\' is not installed!
-        exit -1
-    fi
-
-    if [ $# -eq 0 ]; then
-        pygmentize -g $@
-    fi
-
-    for file_name in "$@"; do
-        filename=$(basename "${file_name}")
-        lexer=$(pygmentize -N \"$filename\")
-        if [ "Z$lexer" != "Ztext" ]; then
-            pygmentize -l $lexer "${file_name}"
-        else
-            pygmentize -g "${file_name}"
-        fi
-    done
-}
 
 function doc2pdf () { curl -\# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
@@ -361,7 +232,7 @@ function cache_list(){
         ${XDG_CACHE_HOME}/mozilla/
         ${HOME}/.thumbnails/
     )
-    du -shc ${dirlist}
+    sp ${dirlist}
 }
 
 function toggle_mpdsc(){
@@ -377,17 +248,6 @@ function toggle_mpdsc(){
                                 sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     unset is_run
 }
-
-function clock(){
-    while sleep 1; do 
-        tput sc
-        tput cup 0 $(($(tput cols)-29))
-        date
-        tput rc
-    done &
-}
-
-function soneeded() { readelf -d $1 | awk '/NEEDED/ {gsub(/[\[\]]/, "", $5); print $5}' }
 
 function mdel(){
     pattern="$1"
@@ -428,14 +288,6 @@ if whence adb > /dev/null; then
     }
 fi
 
-function toxrdb(){
-    local cpt=0
-    while read hexcode; do
-        printf '*color%d: %s\n' "${cpt}" "${hexcode}"
-        cpt=$(expr ${cpt} + 1)
-    done | column -t
-}
-
 function count_music_trash(){
     find ~/music/ -regextype posix-egrep \
         -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} + | sort -h
@@ -465,39 +317,6 @@ function clrz() { ps -eal \
                   | awk '{ if ($2 == "Z") {print $4}}'\
                   | kill -9 }
 
-_echo() {
-    if [ "X$1" = "X-n" ]; then
-        shift
-        printf "%s" "$*"
-    else
-        printf "%s\n" "$*"
-    fi
-}
-
-spark() {
-    local n numbers=
-
-    # find min/max values
-    local min=0xffffffff max=0
-
-    for n in ${@//,/ }; do
-        # on Linux (or with bash4) we could use `printf %.0f $n` here to
-        # round the number but that doesn't work on OS X (bash3) nor does
-        # `awk '{printf "%.0f",$1}' <<< $n` work, so just cut it off
-        n=${n%.*}
-        (( n < min )) && min=$n
-        (( n > max )) && max=$n
-        numbers=$numbers${numbers:+ }$n
-    done
-    local ticks=(▁ ▂ ▃ ▄ ▅ ▆ ▇ █) # print ticks
-    local f=$(( (($max-$min)<<8)/(${#ticks[@]}-1) ))
-    (( f < 1 )) && f=1
-
-    for n in $numbers; do
-        _echo -n ${ticks[$(( ((($n-$min)<<8)/$f) ))]}
-    done
-    _echo
-}
 
 function sp() {
     setopt extendedglob bareglobqual
@@ -511,48 +330,12 @@ function sp() {
     _zwrap "Total: $(cut -f1 <<< ${total})"
 }
 
-function ta {
-    local tmp_list=/tmp/torr_list_$$
-    local torrent_dir=${HOME}/torrent
-    local torrent_handler=transmission-remote-cli
-    for i in "$@"; echo ${i} >> ${tmp_list}
-        while read line; do
-            local file_name="$(resolve_file ${line})"
-            local base_name="$(basename ${file_name})"
-            command mv ${file_name} ${torrent_dir}/${base_name} && \
-            ${torrent_handler} ${torrent_dir}/${base_name} > /dev/null &&
-            echo "$(_zpref) -> $fg[white] ${base_name} $fg[blue]added $fg[green]"
-        done < ${tmp_list}
-    rm -f ${tmp_list}
-    unset file_name tmp_list
-}
-
-function w7run {
-    qemu-system-x86_64 \
-        -m 4096 \
-        -enable-kvm \
-        -cpu host \
-        -machine type=pc,accel=kvm \
-        -net nic -net user,smb=/mnt/qemu \
-        -drive file=~/1st_level/vm/w7.qcow2 \
-        -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing \
-        -device virtio-serial-pci \
-        -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
-        -chardev spicevmc,id=spicechannel0,name=vdagent \
-        -qmp unix:${HOME}/1st_level/qmp.socket,server --monitor stdio \
-        -boot d
-    ${BIN_HOME}/scripts/qmp/qmp-shell ${HOME}/1st_level/qmp.socket
-}
-
 
 if [ -z "\${which tree}" ]; then
   tree () {
       find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
   }
 fi
-
-# Delete 0 byte file
-d0() { find "$(retval $1)" -type f -size 0 -exec rm -rf {} \; }
 
 function g() {
     if [[ $# > 0 ]]; then
@@ -569,18 +352,6 @@ function zurl() {
     local url=${1}
     local tiny="http://tinyurl.com/create.php?url="
     wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
-}
-
-function img(){
-    if [[ $# == 0 ]]; then
-        imgur -h
-    elif [[ $# == 1 ]]; then
-        imgur $1 | tee -a ~/tmp/imgur_output_
-    else
-        imgur_command="$1"; shift
-        imgur "$imgur_command" "$@" | tee -a ~/tmp/imgur_output_
-        unset imgur_command
-    fi
 }
 
 function torch_activate(){
@@ -602,7 +373,7 @@ function ql(){
     if [[ $1 != "" ]]; then
         local file=$(resolve_file "$1")
         local upload_dir=${HOME}/1st_level/upload/
-        mv "${file}" "${upload_dir}" && \
+        cp "${file}" "${upload_dir}" && \
         builtin printf "$(_zfwrap ${file})\n"
         xsel -o <<< "${upload_dir}/$(basename ${file})"
     fi
@@ -611,11 +382,4 @@ function ql(){
 function clojure(){
     drip -cp /usr/share/clojure/clojure.jar clojure.main
 }
-
-function slash-backward-kill-word () {
-    local WORDCHARS="${WORDCHARS:s@/@}"
-    # zle backward-word
-    zle backward-kill-word
-}
-zle -N slash-backward-kill-word
 
