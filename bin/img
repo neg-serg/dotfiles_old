@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+function img(){
+    if [[ $# == 0 ]]; then
+       ${SCRIPT_HOME}/imgur -h
+    elif [[ $# == 1 ]]; then
+        ${SCRIPT_HOME}/imgur $1 | tee -a ~/tmp/imgur_output_
+    else
+        imgur_command="$1"; shift
+        ${SCRIPT_HOME}/imgur "$imgur_command" "$@" | tee -a ~/tmp/imgur_output_
+        unset imgur_command
+    fi
+}
+
+img "$@"

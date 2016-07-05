@@ -142,27 +142,6 @@ function ansi(){
 EOF
 }
 
-function dump(){
-    app=$@;
-    ansi="$(xrdb -query | grep -Ei ${app}[.*]color[01-9] | sort -n -tr -k2 | cut -d: -f2 | tr -d '[:blank:]')"
-    echo "
-    BLK      RED      GRN      YEL      BLU      MAG      CYN      WHT  "
-    for i in {0..7}; do printf '%b' "\e[0;3${i}m $(echo "${ansi}" | sed -n $(($i+1))'p')\e[0m "; done;
-    echo
-    for i in {0..7}; do printf '%b' "\e[0;9${i}m $(echo "${ansi}" | sed -n $(($i+9))'p')\e[0m "; done;
-    echo
-    echo
-}
-
-
-function numbers (){
-    init_ansi
-    cat << EOF
-    ${Bf}11111111${reset} ${rf}22222222${reset} ${gf}33333333${reset} ${yf}44444444${reset} ${bf}55555555${reset} ${pf}66666666${reset} ${cf}77777777${reset} ${wf}88888888${reset}
-    ${Bb}11111111${reset} ${rb}22222222${reset} ${gb}33333333${reset} ${yb}44444444${reset} ${bb}55555555${reset} ${pb}66666666${reset} ${cb}77777777${reset} ${wb}88888888${reset}
-EOF
-}
-
 function blocks (){
     init_ansi
     cat << EOF
@@ -449,25 +428,23 @@ EOF
 }
 
 case $1 in
-    ""|ref) reference ;;
-    256) 256colors; exit 0 ;;
-    24) 24bit; exit 0 ;;
-    colorvalues) colorvalues; exit 0 ;;
-    inv) invader; exit 0 ;;
-    ansi) ansi; exit 0 ;;
-    numb) numbers; exit 0 ;;
-    blk) blocks; exit 0 ;;
-    dump) shift; dump $@; exit 0 ;;
-    fmt) colorformatting; exit 0 ;;
-    pac) pacman; exit 0 ;;
-    list) list; exit 0 ;;
-    all) all; exit 0 ;;
-    bar) bars; exit 0 ;;
-    fn) fancy; exit 0 ;;
-    tmux) tmux_pallete; exit 0 ;;
-    spectr) spectrum; exit 0 ;; 
-    ls) ls_colors; exit 0 ;;
-    ira) ira; exit 0 ;;
-    skulls) skulls; exit 0 ;;
-    poke) poke; exit 0 ;;
+    ""|ref*) reference ;;
+    256*) 256colors; exit 0 ;;
+    24*) 24bit; exit 0 ;;
+    clrv*) colorvalues; exit 0 ;;
+    inv*) invader; exit 0 ;;
+    ansi*) ansi; exit 0 ;;
+    blk*) blocks; exit 0 ;;
+    fmt*) colorformatting; exit 0 ;;
+    pac*) pacman; exit 0 ;;
+    list*) list; exit 0 ;;
+    all*) all; exit 0 ;;
+    bar*) bars; exit 0 ;;
+    fn*) fancy; exit 0 ;;
+    tmux*) tmux_pallete; exit 0 ;;
+    spectr*) spectrum; exit 0 ;; 
+    ls*) ls_colors; exit 0 ;;
+    ira*) ira; exit 0 ;;
+    skull*) skulls; exit 0 ;;
+    poke*) poke; exit 0 ;;
 esac
