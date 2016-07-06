@@ -61,13 +61,16 @@
     default = simple
 [diff]
 	tool = ~neg/bin/scripts/wdiff_standalone
+	compactionHeuristic = true
 [difftool]
 	prompt = false
 [merge]
 	tool = ~neg/bin/scripts/wdiff_standalone
 [mergetool]
 	prompt = false
-#[url "ssh://git@github.com/"]
-#    insteadOf = https://github.com/
 [credential]
-    helper = store
+    helper = cache
+[interactive]
+	diffFilter = diff-highlight
+[diff "exif"]
+	textconv = exiftool
