@@ -1,0 +1,24 @@
+" Style: Hybrid Colourscheme {{{
+" -----------------------------------------------------------------------------
+
+style -name hybrid http://*,https://*,file://*,about:blank <<EOM
+  * {
+    color: #C5C8C6 !important;
+    background: #1D1F21 !important;
+    border-color: #282A2E !important;
+  }
+  a, a * {
+    color: #81A2BE !important;
+    text-decoration: none !important;
+  }
+  a:hover, a:hover * {
+    color: #F0C674 !important;
+  }
+  a:visited, a:visited * {
+    color: #b294bb !important;
+  }
+  a:visited:hover, a:visited:hover * {
+    color: #de935f !important;
+  }
+EOM
+styledisable -name=hybrid
