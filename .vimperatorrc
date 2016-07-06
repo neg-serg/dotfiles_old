@@ -25,10 +25,11 @@ set history=900
 
 au LocationChange www.xda-developers.com setlocal previouspattern='^newer entries$' nextpattern='^older entries$'
 
+source ~/.vimperator/1st_level/styles.vimp
+source ~/.vimperator/styles/tumbrlr_bus.vimp
 source ~/.vimperator/1st_level/maps.vimp
 source ~/.vimperator/1st_level/copy_paste.vimp
 source ~/.vimperator/1st_level/qmarks.vimp
 source ~/.vimperator/1st_level/firefox.vimp
-source ~/.vimperator/1st_level/styles.vimp
 source ~/.vimperator/1st_level/user_commands.vimp
 source ~/.vimperator/1st_level/fullscreen_fix.vimp
