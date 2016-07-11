@@ -134,7 +134,7 @@ if inpath git; then
     alias gdd='git diff'
     alias gc='git commit'
     alias gl='git l|head -20'
-    eval "$(hub alias -s)"
+    [[ -x $(which hub) ]] && eval "$(hub alias -s)"
 fi
 
 for i in x q Q; eval alias :${i}=\' exit\'
