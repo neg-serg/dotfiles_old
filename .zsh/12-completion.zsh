@@ -91,6 +91,8 @@ mycompletion() {
     zstyle ':completion:*:*:task:*'                group-name ''       # taskwarrior
     # command completion: highlight matching part of command, and 
     zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;248'\'' )'
+    # Filename suffixes to ignore during completion (except after rm command)
+    zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' '*?.old' '*?.pro'
 
     # This is needed to workaround a bug in _setup:12, causing almost 2 seconds delay for bigger LS_COLORS
     # UPDATE: not sure if this is required anymore, with the -command- style above.. keeping it here just to be sure
