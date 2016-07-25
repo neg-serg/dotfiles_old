@@ -134,10 +134,12 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswi
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
 unset _JAVA_OPTIONS
 
-if which drip > /dev/null 2>&1; then
-  export DRIP_SHUTDOWN=30
-  export JAVACMD=$(which drip)
-fi
+(( 0 != 0 )) && {
+    if which drip > /dev/null 2>&1; then
+        export DRIP_SHUTDOWN=30
+        export JAVACMD=$(which drip)
+    fi
+}
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
