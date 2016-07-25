@@ -151,3 +151,6 @@ if has('nvim')
 
     nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
 endif
+
+" Macros editing
+nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
