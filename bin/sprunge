@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function sprunge() {
     if [[ -t 0 ]]; then
       echo Running interactively, checking for arguments... >&2
