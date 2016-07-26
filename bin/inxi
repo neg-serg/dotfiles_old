@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 ########################################################################
 ####  Script Name: inxi
-####  Version: 2.2.28
-####  Date: 2015-08-20
+####  Version: 2.3.0
+####  Date: 2016-04-18
 ####  Patch Number: 00
 ########################################################################
 ####  SPECIAL THANKS
@@ -20,7 +20,7 @@
 ####  Gaim/Pidgin, Weechat, KVIrc and Kopete.
 ####  Original infobash author and copyright holder:
 ####  Copyright (C) 2005-2007  Michiel de Boer a.k.a. locsmif
-####  inxi version: Copyright (C) 2008-2015 Scott Rogers & Harald Hope
+####  inxi version: Copyright (C) 2008-2016 Scott Rogers & Harald Hope
 ####  Further fixes (listed as known): Horst Tritremmel <hjt at sidux.com>
 ####  Steven Barrett (aka: damentz) - usb audio patch; swap percent used patch
 ####  Jarett.Stevens - dmidecde -M patch for older systems with the /sys 
@@ -254,6 +254,7 @@ ORIGINAL_IFS="$IFS"
 ## Initialize
 A_ALSA_DATA=''
 A_AUDIO_DATA=''
+A_BATTERY_DATA=''
 A_CMDL=''
 A_CPU_CORE_DATA=''
 A_CPU_DATA=''
@@ -293,6 +294,8 @@ B_DBUS_CLIENT='false'
 B_DCOP='false'
 # Debug flood override: make 'true' to allow long debug output
 B_DEBUG_FLOOD='false'
+# for special -i debugging cases
+B_DEBUG_I='false'
 B_DMIDECODE_SET='false'
 # show extra output data
 B_EXTRA_DATA='false'
@@ -332,6 +335,8 @@ B_SHOW_BASIC_RAID='false'
 B_SHOW_BASIC_CPU='false'
 B_SHOW_BASIC_DISK='false'
 B_SHOW_BASIC_OPTICAL='false'
+B_SHOW_BATTERY='false'
+B_SHOW_BATTERY_FORCED='false'
 B_SHOW_CPU='false'
 B_SHOW_DISPLAY_DATA='false'
 B_SHOW_DISK_TOTAL='false'
@@ -477,7 +482,8 @@ SCRIPT_DOWNLOAD_BRANCH_BSD='https://github.com/smxi/inxi/raw/bsd/'
 SCRIPT_DOWNLOAD_BRANCH_GNUBSD='https://github.com/smxi/inxi/raw/gnubsd/'
 SCRIPT_DOWNLOAD_DEV='http://smxi.org/test/'
 # note, you can use any ip url here as long as it's the only line on the output page.
-# Also the ip address must be the last thing on that line.
+# Also the ip address must be the last thing on that line. If you abuse this ip tool 
+# you will be banned from further access. Most > 24x daily automated queries to it are abuse.
 WAN_IP_URL='http://smxi.org/opt/ip.php'
 KONVI_CFG="konversation/scripts/$SCRIPT_NAME.conf" # relative path to $(kde-config --path data)
 
@@ -491,6 +497,7 @@ DEV_DISK_LABEL=''
 DEV_DISK_MAPPER=''
 DEV_DISK_UUID=''
 DMIDECODE_DATA=''
+DNSTOOL=''
 DOWNLOADER='wget'
 IRC_CLIENT=''
 IRC_CLIENT_VERSION=''
@@ -599,7 +606,20 @@ MAGENTA,YELLOW,NORMAL
 RED,CYAN,NORMAL
 RED,WHITE,NORMAL 
 BLUE,WHITE,NORMAL
+
+RED,BLUE,NORMAL 
+RED,DBLUE,NORMAL
+BLACK,BLUE,NORMAL
+BLACK,DBLUE,NORMAL
+NORMAL,BLUE,NORMAL
+BLUE,MAGENTA,NORMAL
+DBLUE,MAGENTA,NORMAL
+BLACK,MAGENTA,NORMAL
+MAGENTA,BLUE,NORMAL
+MAGENTA,DBLUE,NORMAL
 )
+
+#echo ${#A_COLOR_SCHEMES[@]};exit
 
 # WARNING: In the main part below (search for 'KONVI')
 # there's a check for Konversation-specific config files.
@@ -624,10 +644,15 @@ DISTROS_OS_RELEASE_GOOD="arch-release SuSE-release "
 ## OUTPUT FILTERS/SEARCH ##
 # Note that \<ltd\> bans only words, not parts of strings; in \<corp\> you can't use punctuation characters like . or ,
 # we're saving about 10+% of the total script exec time by hand building the ban lists here, using hard quotes.
+
 BAN_LIST_NORMAL='chipset|components|computing|computer|corporation|communications|electronics|electrical|electric|gmbh|group|incorporation|industrial|international|nee|revision|semiconductor|software|technologies|technology|ltd\.|\<ltd\>|inc\.|\<inc\>|intl\.|co\.|\<co\>|corp\.|\<corp\>|\(tm\)|\(r\)|®|\(rev ..\)'
 BAN_LIST_CPU='@||cpu |cpu deca|dual core|dual-core|tri core|tri-core|quad core|quad-core|ennea|genuine|hepta|hexa|multi|octa|penta|processor|single|triple|[0-9\.]+ *[MmGg][Hh][Zz]'
+# See github issue 75 for more details on value: *, triggers weird behaviors if present in value
+# /sys/devices/virtual/dmi/id/product_name:['*']
+# this is for bash arrays AND avoiding * in arrays: ( fred * greg ) expands to the contents of the directory
+BAN_LIST_ARRAY=',|\*'
 
-SENSORS_GPU_SEARCH='intel|radeon|nouveau'
+SENSORS_GPU_SEARCH='amdgpu|intel|radeon|nouveau'
 
 ### USB networking search string data, because some brands can have other products than
 ### wifi/nic cards, they need further identifiers, with wildcards.
@@ -688,7 +713,7 @@ main()
 
 	# note: this only works if it's run from inside konversation as a script builtin or something
 	# only do this if inxi has been started as a konversation script, otherwise bypass this	
-#	KONVI=3 ## for testing puroses
+	#	KONVI=3 ## for testing puroses
 	if [[ $KONVI -eq 1 || $KONVI -eq 3 ]];then
 		if [[ $KONVI -eq 1 ]]; then ## dcop Konversation (ie 1.x < 1.2(qt3))	
 			DCPORT="$1"
@@ -834,6 +859,10 @@ initialize_data()
 	
 	initialize_paths
 	
+	if type -p dig &>/dev/null;then
+		DNSTOOL='dig'
+	fi
+	
 	# set downloaders. 
 	if ! type -p wget &>/dev/null;then
 		# first check for bsd stuff
@@ -854,8 +883,8 @@ initialize_data()
 		fi
 	else
 		# found a case of battery existing but having nothing in it on desktop mobo
-		# not all laptops show the first, 
-		if [[ -n $( ls /proc/acpi/battery 2>/dev/null ) ]];then
+		# not all laptops show the first. /proc/acpi/battery is deprecated.
+		if [[ -n $( ls /proc/acpi/battery 2>/dev/null ) || -n $( ls /sys/class/power_supply/ 2>/dev/null )  ]];then
 			B_PORTABLE='true'
 		fi
 	fi
@@ -1208,7 +1237,7 @@ select_default_color_scheme()
 		# print_screen_output "You will see this message only one time per user account, unless you set preferences in: /etc/$SCRIPT_NAME.conf"
 		print_screen_output " "
 	fi
-	print_lines_basic "0" "" "Because there is no way to know your $COLOR_SELECTION foreground/background colors, you can set your color preferences from color scheme option list below. 0 is no colors, 1 neutral. After these, there are 3 sets: 1-dark or light backgrounds; 2-light backgrounds; 3-dark backgrounds."
+	print_lines_basic "0" "" "Because there is no way to know your $COLOR_SELECTION foreground/background colors, you can set your color preferences from color scheme option list below. 0 is no colors, 1 neutral. After these, there are 4 sets: 1-dark or light backgrounds; 2-light backgrounds; 3-dark backgrounds; 4-miscellaneous."
 	if [[ $B_IRC == 'false' ]];then
 		print_lines_basic "0" "" "Please note that this will set the $COLOR_SELECTION preferences only for user: $(whoami)"
 	fi
@@ -1643,7 +1672,11 @@ debug_data_collector()
 	local Line='-------------------------' root_string=''
 	local start_directory=$( pwd )
 	local host=$( tr '[A-Z]' '[a-z]' <<< "$HOSTNAME" )
-	local downloader_error=0
+	local downloader_error=0 debug_i=''
+	
+	if [[ $B_DEBUG_I == 'true' ]];then
+		debug_i='i'
+	fi
 	
 	if [[ -n $host ]];then
 		host=${host// /-}
@@ -1728,7 +1761,10 @@ debug_data_collector()
 		get_repo_data "$SCRIPT_DATA_DIR/$debug_data_dir"
 		
 		if type -p shopt &>/dev/null;then
-			shopt -s nullglob;a_distro_ids=(/etc/*[-_]{release,version});shopt -u nullglob;echo ${a_distro_ids[@]} &> $debug_data_dir/etc-distro-files.txt
+			shopt -s nullglob
+			a_distro_ids=(/etc/*[-_]{release,version})
+			shopt -u nullglob
+			echo ${a_distro_ids[@]} &> $debug_data_dir/etc-distro-files.txt
 			for distro_file in ${a_distro_ids[@]} /etc/issue
 			do
 				if [[ -f $distro_file ]];then
@@ -1748,6 +1784,11 @@ debug_data_collector()
 		lspci -mmnnv &> $debug_data_dir/lspci-mmnnv.txt
 		lspci -v &> $debug_data_dir/lspci-v.txt
 		lsusb &> $debug_data_dir/lsusb.txt
+		if type -p hciconfig &>/dev/null;then
+			hciconfig -a &> $debug_data_dir/hciconfig-a.txt
+		else
+			touch $debug_data_dir/hciconfig-absent
+		fi
 		ls /sys &> $debug_data_dir/ls-sys.txt
 		ps aux &> $debug_data_dir/ps-aux.txt
 		ps -e &> $debug_data_dir/ps-e.txt
@@ -1778,6 +1819,17 @@ debug_data_collector()
 		else
 			touch $debug_data_dir/strings-absent
 		fi
+		local id_dir='/sys/class/power_supply/' 
+		local ids=$( ls $id_dir 2>/dev/null )
+		if [[ -n $ids ]];then
+			for batid in $ids 
+			do
+				cat $id_dir$batid'/uevent' &> $debug_data_dir/sys-power-supply-$batid.txt
+			done
+		else
+			touch $debug_data_dir/sys-power-supply-none
+		fi
+		
 		# leaving this commented out to remind that some systems do not
 		# support strings --version, but will just simply hang at that command
 		# which you can duplicate by simply typing: strings then hitting enter, you will get hang.
@@ -1789,6 +1841,12 @@ debug_data_collector()
 			touch $debug_data_dir/nvidia-smi-absent
 		fi
 		head -n 1 /proc/asound/card*/codec* &> $debug_data_dir/proc-asound-card-codec.txt
+		if [[ -f /proc/version ]];then
+			cat /proc/version &> $debug_data_dir/proc-version.txt
+		else
+			touch $debug_data_dir/proc-version-absent
+		fi
+		echo $CC &> $debug_data_dir/cc-content.txt
 		ls /usr/bin/gcc* &> $debug_data_dir/gcc-sys-versions.txt
 		if type -p gcc &>/dev/null;then
 			gcc --version &> $debug_data_dir/gcc-version.txt
@@ -2044,7 +2102,7 @@ debug_data_collector()
 		echo 'Creating inxi output file now. This can take a few seconds...'
 		echo "Starting $SCRIPT_NAME from: $start_directory"
 		cd $start_directory
-		$SCRIPT_PATH/$SCRIPT_NAME -FRfrploudmxxx -c 0 -@ 8 -y 120 > $SCRIPT_DATA_DIR/$debug_data_dir/inxi-FRfrploudmxxxy120.txt
+		$SCRIPT_PATH/$SCRIPT_NAME -F${debug_i}Rfrploudmxxx -c 0 -@ 8 -y 120 > $SCRIPT_DATA_DIR/$debug_data_dir/inxi-F${debug_i}Rfrploudmxxxy120.txt
 		cp $LOG_FILE $SCRIPT_DATA_DIR/$debug_data_dir
 		if [[ -f $SCRIPT_DATA_DIR/$debug_data_dir.tar.gz ]];then
 			echo "Found and removing previous tar.gz data file: $debug_data_dir.tar.gz"
@@ -2202,8 +2260,10 @@ check_recommends_items()
 	xrandr:x11-xserver-utils~xrandr~x11-server-utils~:-G_single_screen_resolution
 	'
 	local recommended_apps='
+	dig:dnsutils~dnsutils~bind-utils:-i_first_wlan_ip_default_test
 	dmidecode:dmidecode~dmidecode~dmidecode~:-M_if_no_sys_machine_data;_-m_memory 
 	file:file~file~file~:-o_unmounted_file_system
+	hciconfig:bluez~bluez-utils~bluez-utils~:-n_-i_bluetooth_data
 	hddtemp:hddtemp~hddtemp~hddtemp~:-Dx_show_hdd_temp 
 	ifconfig:net-tools~net-tools~net-tools~:-i_ip_lan-deprecated
 	ip:iproute~iproute2~iproute~:-i_ip_lan
@@ -2489,7 +2549,7 @@ get_parameters()
 	# no need to run through these if there are no args
 	# reserved for future use: -g for extra Graphics; -m for extra Machine; -d for extra Disk
 	elif [[ -n $1 ]];then
-		while getopts Abc:CdDfFGhHiIlmMnNopPrRsSt:uUv:V${weather_flag}xy:zZ%@:!: opt
+		while getopts AbBc:CdDfFGhHiIlmMnNopPrRsSt:uUv:V${weather_flag}xy:zZ%@:!: opt
 		do
 			case $opt in
 			A)	B_SHOW_AUDIO='true'
@@ -2502,8 +2562,13 @@ get_parameters()
 				B_SHOW_GRAPHICS='true'
 				B_SHOW_INFO='true'
 				B_SHOW_MACHINE='true'
+				B_SHOW_BATTERY='true'
 				B_SHOW_NETWORK='true'
 				B_SHOW_SYSTEM='true'
+				;;
+			B)	B_SHOW_BATTERY_FORCED='true'
+				B_SHOW_BATTERY='true'
+				use_short='false'
 				;;
 			c)	if [[ $OPTARG =~ ^[0-9][0-9]?$ ]];then
 					case $OPTARG in
@@ -2568,6 +2633,7 @@ get_parameters()
 				B_SHOW_GRAPHICS='true'
 				B_SHOW_INFO='true'
 				B_SHOW_MACHINE='true'
+				B_SHOW_BATTERY='true'
 				B_SHOW_NETWORK='true'
 				B_SHOW_PARTITIONS='true'
 				B_SHOW_RAID='true'
@@ -2594,6 +2660,7 @@ get_parameters()
 				use_short='false'
 				;;
 			M)	B_SHOW_MACHINE='true'
+				B_SHOW_BATTERY='true'
 				use_short='false'
 				;;
 			n)	B_SHOW_ADVANCED_NETWORK='true'
@@ -2660,6 +2727,7 @@ get_parameters()
 					if [[ $OPTARG -ge 2 ]];then
 						B_SHOW_BASIC_DISK='true'
 						B_SHOW_BASIC_RAID='true'
+						B_SHOW_BATTERY='true'
 						B_SHOW_MACHINE='true'
 						B_SHOW_NETWORK='true'
 					fi
@@ -2744,7 +2812,7 @@ get_parameters()
 			## debuggers and testing tools
 			%)	B_HANDLE_CORRUPT_DATA='true'
 				;;
-			@)	if [[ -n $( grep -E "^([1-9]|1[0-4])$" <<< $OPTARG ) ]];then
+			@)	if [[ -n $( grep -E "^([1-9]|1[0-5])$" <<< $OPTARG ) ]];then
 					DEBUG=$OPTARG
 					if [[ $B_EXTRA_EXTRA_DATA == 'true' ]];then
 						B_UPLOAD_DEBUG_DATA='true'
@@ -2764,7 +2832,7 @@ get_parameters()
 							LOGFE=$LOGFE_STRING
 							create_rotate_logfiles # create/rotate logfiles before we do anything else
 							;;
-						11|12|13|14)
+						11|12|13|14|15)
 							case $OPTARG in
 								11)
 									debug_data_type='sys'
@@ -2777,6 +2845,10 @@ get_parameters()
 									;;
 								14)
 									debug_data_type='all'
+									;;
+								15)
+									debug_data_type='all'
+									B_DEBUG_I='true'
 									;;
 							esac
 							initialize_data
@@ -2900,11 +2972,12 @@ show_options()
 	# print_screen_output " "
 	print_lines_basic "0" "" "$SCRIPT_NAME supports the following options. You can combine them, or list them one by one. Examples: $SCRIPT_NAME^-v4^-c6 OR $SCRIPT_NAME^-bDc^6. If you start $SCRIPT_NAME with no arguments, it will show the short form."
 	print_screen_output " "
-	print_lines_basic "0" "" "The following options if used without -F, -b, or -v will show just option line(s): A, C, D, G, I, M, N, P, R, S, f, i, m, n, o, p, l, u, r, s, t - you can use these alone or together to show just the line(s) you want to see. If you use them with -v^[level], -b or -F, it will show the full output for that line along with the output for the chosen verbosity level."
+	print_lines_basic "0" "" "The following options if used without -F, -b, or -v will show just option line(s): A, B, C, D, G, I, M, N, P, R, S, f, i, m, n, o, p, l, u, r, s, t - you can use these alone or together to show just the line(s) you want to see. If you use them with -v^[level], -b or -F, it will show the full output for that line along with the output for the chosen verbosity level."
 	print_screen_output "- - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
 	print_screen_output "Output Control Options:"
 	print_lines_basic "1" "-A" "Audio/sound card information."
-	print_lines_basic "1" "-b" "Basic output, short form. Like $SCRIPT_NAME^-v^2, only minus hard disk names."
+	print_lines_basic "1" "-b" "Basic output, short form. Like $SCRIPT_NAME^-v^2, only minus hard disk names ."
+	print_lines_basic "1" "-B" "Battery info, shows charge, condition, plus extra information (if battery present)."
 	print_lines_basic "1" "-c" "Color schemes. Scheme number is required. Color selectors run a color selector option prior to $SCRIPT_NAME starting which lets you set the config file value for the selection."
 	print_lines_basic "1" "" "Supported color schemes: 0-$color_scheme_count Example:^$SCRIPT_NAME^-c^11"
 	print_lines_basic "1" "" "Color selectors for each type display (NOTE: irc and global only show safe color set):"
@@ -2944,8 +3017,8 @@ show_options()
 	print_lines_basic "1" "" "Supported levels: 0-$VERBOSITY_LEVELS Example: $SCRIPT_NAME^-v^4"
 	print_lines_basic "2" "0" "Short output, same as: $SCRIPT_NAME"
 	print_lines_basic "2" "1" "Basic verbose, -S + basic CPU + -G + basic Disk + -I."
-	print_lines_basic "2" "2" "Networking card (-N), Machine (-M) data, shows basic hard disk data (names only), and, if present, basic raid (devices only, and if inactive, notes that). similar to: $SCRIPT_NAME^-b"
-	print_lines_basic "2" "3" "Advanced CPU (-C), network (-n) data, and switches on -x advanced data option."
+	print_lines_basic "2" "2" "Networking card (-N), Machine (-M) data, if present, Battery (-B), basic hard disk data (names only), and, if present, basic raid (devices only, and if inactive, notes that). similar to: $SCRIPT_NAME^-b"
+	print_lines_basic "2" "3" "Advanced CPU (-C), battery, network (-n) data, and switches on -x advanced data option."
 	print_lines_basic "2" "4" "$partition_string_u size/filled data (-P) for (if present): /, /home, /var/, /boot. Shows full disk data (-D)."
 	print_lines_basic "2" "5" "Audio card (-A); sensors^(-s), memory/ram^(-m), $partition_string label^(-l) and UUID^(-u), short form of optical drives, standard raid data (-R)."
 	print_lines_basic "2" "6" "Full $partition_string (-p), unmounted $partition_string (-o), optical drive (-d), full raid; triggers -xx."
@@ -2954,9 +3027,10 @@ show_options()
 	# if distro maintainers don't want the weather feature disable it
 	if [[ $B_ALLOW_WEATHER == 'true' ]];then
 		print_lines_basic "1" "-w" "Local weather data/time. To check an alternate location, see: -W^<location>. For extra weather data options see -x, -xx, and -xxx."
-		print_lines_basic "1" "-W" "<location> Supported options for <location>: postal code; city, state/country; latitude/longitude. Only use if you want the weather somewhere other than the machine running $SCRIPT_NAME. Use only ascii characters, replace spaces in city/state/country names with '+'. Example:^$SCRIPT_NAME^-W^new+york,ny"
+		print_lines_basic "1" "-W" "<location> Supported options for <location>: postal code; city, state/country; latitude, longitude. Only use if you want the weather somewhere other than the machine running $SCRIPT_NAME. Use only ascii characters, replace spaces in city/state/country names with '+'. Example:^$SCRIPT_NAME^-W^new+york,ny"
 	fi
 	print_lines_basic "1" "-x" "Adds the following extra data (only works with verbose or line output, not short form):"
+	print_lines_basic "2" "-B" "Vendor/model, status (if available)"
 	print_lines_basic "2" "-C" "CPU Flags, Bogomips on Cpu;"
 	print_lines_basic "2" "-d" "Extra optical drive data; adds rev version to optical drive."
 	print_lines_basic "2" "-D" "Hdd temp with disk data if you have hddtemp installed, if you are root OR if you have added to /etc/sudoers (sudo v. 1.7 or newer) Example:^<username>^ALL^=^NOPASSWD:^/usr/sbin/hddtemp"
@@ -2975,6 +3049,7 @@ show_options()
 	fi
 	print_lines_basic "1" "-xx" "Show extra, extra data (only works with verbose or line output, not short form):"
 	print_lines_basic "2" "-A" "Chip vendor:product ID for each audio device."
+	print_lines_basic "2" "-B" "serial number, voltage (if available)."
 	print_lines_basic "2" "-C" "Minimum CPU speed, if available."
 	print_lines_basic "2" "-D" "Disk serial number."
 	print_lines_basic "2" "-G" "Chip vendor:product ID for each video card."
@@ -2989,6 +3064,7 @@ show_options()
 	fi
 	print_lines_basic "2" "-@ 11-14" "Automatically uploads debugger data tar.gz file to ftp.techpatterns.com. EG: $SCRIPT_NAME^-xx@14"
 	print_lines_basic "1" "-xxx" "Show extra, extra, extra data (only works with verbose or line output, not short form):"
+	print_lines_basic "2" "-B" "chemistry, cycles, location (if available)."
 	print_lines_basic "2" "-m" "Width of memory bus, data and total (if present and greater than data); Detail, if present, for Type; module voltage, if available."
 	print_lines_basic "2" "-S" "Panel/shell information in desktop output, if in X (like gnome-shell, cinnamon, mate-panel)."
 	if [[ $B_ALLOW_WEATHER == 'true' ]];then
@@ -3738,7 +3814,7 @@ get_audio_data()
 		audioCard=gensub(/^[0-9a-f:\.]+ [^:]+: (.+)$/,"\\1","g",$0)
 		# The doublequotes are necessary because of the pipes in the variable.
 		gsub(/'"$BAN_LIST_NORMAL"'/, "", audioCard)
-		gsub(/,/, " ", audioCard)
+		gsub(/'"$BAN_LIST_ARRAY"'/, " ", audioCard)
 		gsub(/^ +| +$/, "", audioCard)
 		gsub(/ [ \t]+/, " ", audioCard)
 		aPciBusId[audioCard] = gensub(/(^[0-9a-f:\.]+) [^:]+: .+$/,"\\1","g",$0)
@@ -3746,7 +3822,7 @@ get_audio_data()
 
 		# loop until you get to the end of the data block
 		while (getline && !/^$/) {
-			gsub( /,/, "", $0 )
+			gsub(/'"$BAN_LIST_ARRAY"'/, "", $0 )
 			if (/driver in use/) {
 				drivers[audioCard] = drivers[audioCard] gensub( /(.*): (.*)/ ,"\\2", "g" ,$0 ) ""
 			}
@@ -3857,7 +3933,7 @@ get_audio_usb_data()
 						separator=""
 					}
 					{
-						gsub( /,/, " ", $0 )
+						gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0 )
 						gsub(/'"$BAN_LIST_NORMAL"'/, "", $0)
 						gsub(/ [ \t]+/, " ", $0)
 						for ( i=7; i<= NF; i++ ) {
@@ -3905,8 +3981,8 @@ get_audio_alsa_data()
 			# some alsa strings have the build date in (...)
 			# remove trailing . and remove possible second line if compiled by user
 			$0 !~ /compile/ {
-				gsub( /Driver | [(].*[)]|\.$/,"",$0 )
-				gsub(/,/, " ", $0)
+				gsub(/Driver | [(].*[)]|\.$/,"",$0 )
+				gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0)
 				gsub(/^ +| +$/, "", $0)
 				gsub(/ [ \t]+/, " ", $0)
 				sub(/Advanced Linux Sound Architecture/, "ALSA", $0)
@@ -3921,6 +3997,233 @@ get_audio_alsa_data()
 	fi
 	a_temp=${A_ALSA_DATA[@]}
 	log_function_data "A_ALSA_DATA: $a_temp"
+	eval $LOGFE
+}
+
+get_battery_data()
+{
+	eval $LOGFS
+	local a_temp='' id_file='' count=0
+	local id_dir='/sys/class/power_supply/' 
+	local ids=$( ls $id_dir 2>/dev/null )  battery_file='' 
+	
+	# ids='BAT0 BAT1 BAT2'
+	if [[ -n $ids && $B_FORCE_DMIDECODE == 'false' ]];then
+		for idx in $ids
+		do
+			battery_file=$id_dir$idx'/uevent'
+			if [[ -r $battery_file ]];then
+				#  echo $battery_file
+				count=$(( $count + 1 ))
+				IFS=$'\n'
+				battery_data=$( 
+				gawk -F '=' '
+				BEGIN {
+					IGNORECASE=1
+					name=""
+					status=""
+					present=""
+					chemistry=""
+					cycles=""
+					voltage_min_design=""
+					voltage_now=""
+					power_now=""
+					charge_full_design=""
+					charge_full=""
+					charge_now=""
+					capacity=""
+					capacity_level=""
+					model=""
+					company=""
+					serial=""
+					of_orig=""
+					location=""
+				}
+				{
+					gsub(/'"$BAN_LIST_NORMAL"'|,|battery|unknown/, "", $2)
+					gsub(/^ +| +$/, "", $2)
+				}
+				$1 ~ /^POWER_SUPPLY_NAME$/ {
+					name=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_STATUS$/ {
+					status=$NF
+				}
+				$1 ~ /^POWER_SUPPLY$/ {
+					present=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_TECHNOLOGY$/ {
+					chemistry=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_CYCLE_COUNT$/ {
+					cycles=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_VOLTAGE_MIN_DESIGN$/ {
+					voltage_min_design = $NF / 1000000
+					voltage_min_design = sprintf( "%.1f", voltage_min_design )
+				}
+				$1 ~ /^POWER_SUPPLY_VOLTAGE_NOW$/ {
+					voltage_now = $NF / 1000000
+					voltage_now = sprintf( "%.1f", voltage_now )
+				}
+				$1 ~ /^POWER_SUPPLY_POWER_NOW$/ {
+					power_now=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_ENERGY_FULL_DESIGN$/ {
+					charge_full_design = $NF / 1000000
+				}
+				$1 ~ /^POWER_SUPPLY_ENERGY_FULL$/ {
+					charge_full = $NF / 1000000
+				}
+				$1 ~ /^POWER_SUPPLY_ENERGY_NOW$/ {
+					charge_now = $NF / 1000000
+					charge_now = sprintf( "%.1f", charge_now )
+				}
+				$1 ~ /^POWER_SUPPLY_CHARGE_FULL_DESIGN$/ {
+					charge_full_design = $NF / 100000
+				}
+				$1 ~ /^POWER_SUPPLY_CHARGE_FULL$/ {
+					charge_full = $NF / 100000
+				}
+				$1 ~ /^POWER_SUPPLY_CHARGE_NOW$/ {
+					charge_now = $NF / 100000
+				}
+				$1 ~ /^POWER_SUPPLY_CAPACITY$/ {
+					if ( $NF != "" ){
+						capacity=$NF "%"
+					}
+				}
+				$1 ~ /^POWER_SUPPLY_CAPACITY_LEVEL$/ {
+					capacity_level=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_MODEL_NAME$/ {
+					model=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_MANUFACTURER$/ {
+					company=$NF
+				}
+				$1 ~ /^POWER_SUPPLY_SERIAL_NUMBER$/ {
+					serial=$NF
+				}
+				END {
+					if (charge_now != "" && charge_full != "" ){
+						capacity = 100*charge_now/charge_full
+						capacity = sprintf( "%.1f%", capacity )
+					}
+					if (charge_full_design != "" && charge_full != "" ){
+						of_orig=100*charge_full/charge_full_design
+						of_orig = sprintf( "%.0f%", of_orig )
+					}
+					if (charge_now != "" ){
+						charge_now = sprintf( "%.1f", charge_now )
+					}
+					if (charge_full_design != "" ){
+						charge_full_design = sprintf( "%.1f", charge_full_design )
+					}
+					if ( charge_full != "" ){
+						charge_full = sprintf( "%.1f", charge_full )
+					}
+					entry = name "," status "," present "," chemistry "," cycles "," voltage_min_design "," voltage_now "," 
+					entry = entry power_now "," charge_full_design "," charge_full "," charge_now "," capacity "," 
+					entry = entry capacity_level "," of_orig "," model "," company "," serial "," location
+					print entry
+				}' < $battery_file )
+				# <<< "$data" )
+				# < $battery_file ) 
+				A_BATTERY_DATA[$count]=$battery_data
+				IFS="$ORIGINAL_IFS"
+			fi
+		done
+	elif [[ $B_FORCE_DMIDECODE == 'true'  ]] || [[ ! -d $id_dir && -z $ids ]];then
+		get_dmidecode_data
+		if [[ -n $DMIDECODE_DATA ]];then
+			if [[ $DMIDECODE_DATA == 'dmidecode-error-'* ]];then
+				A_BATTERY_DATA[0]=$DMIDECODE_DATA
+			# please note: only dmidecode version 2.11 or newer supports consistently the -s flag
+			else
+				IFS=$'\n'
+				# NOTE: this logic has a flaw, which is multiple batteries, which won't work without
+				# gawk arrays, but sorry, too much of a pain given how little useful data from dmidecode
+				A_BATTERY_DATA=( $( gawk -F ':' '
+				BEGIN {
+					IGNORECASE=1
+					name=""
+					status=""
+					present=""
+					chemistry=""
+					cycles=""
+					voltage_min_design=""
+					voltage_now=""
+					power_now=""
+					charge_full_design=""
+					charge_full=""
+					charge_now=""
+					capacity=""
+					capacity_level=""
+					model=""
+					company=""
+					serial=""
+					of_orig=""
+					location=""
+					bItemFound="false"
+				}
+				{
+					gsub(/'"$BAN_LIST_NORMAL"'|,|battery|unknown/, "", $2)
+					gsub(/^ +| +$/, "", $1)
+					gsub(/^ +| +$/, "", $2)
+				}
+				/^Portable Battery/ {
+					while ( getline && !/^$/ ) {
+						if ( $1 ~ /^Location/ ) { location=$2 }
+						if ( $1 ~ /^Manufacturer/ ) { company=$2 }
+						if ( $1 ~ /^Serial/ ) { serial=$2 }
+						if ( $1 ~ /^Name/ ) { model=$2 }
+						if ( $1 ~ /^Design Capacity/ ) { 
+							sub(/^[[:space:]]*mwh/, "", $2)
+							charge_full_design = $NF / 1000
+							charge_full_design = sprintf( "%.1f", charge_full_design )
+						}
+						if ( $1 ~ /^Design Voltage/ ) { 
+							sub(/^[[:space:]]*mv/, "", $2)
+							voltage_min_design = $NF / 1000
+							voltage_min_design = sprintf( "%.1f", voltage_min_design )
+						}
+						if ( $1 ~ /^SBDS Chemistry/ ) { chemistry=$2 }
+					}
+					testString=company serial model charge_full_design voltage_min_design
+					if ( testString != ""  ) {
+						bItemFound="true"
+						exit # exit loop, we are not handling > 1 batteries
+					}
+				}
+				END {
+					if ( bItemFound == "true" ) {
+						name="BAT-1"
+						if (charge_now != "" && charge_full != "" ){
+							capacity = 100*charge_now/charge_full
+							capacity = sprintf( "%.1f%", capacity )
+						}
+						if (charge_full_design != "" && charge_full != "" ){
+							of_orig=100*charge_full/charge_full_design
+							of_orig = sprintf( "%.0f%", of_orig )
+						}
+						entry = name "," status "," present "," chemistry "," cycles "," voltage_min_design "," voltage_now "," 
+						entry = entry power_now "," charge_full_design "," charge_full "," charge_now "," capacity "," 
+						entry = entry capacity_level "," of_orig "," model "," company "," serial "," location
+						print entry
+					}
+				}' <<< "$DMIDECODE_DATA" ) )
+				IFS="$ORIGINAL_IFS"
+			fi
+		fi
+	fi
+	# echo $array_string
+	
+	#echo ${#A_BATTERY_DATA[@]}
+	a_temp=${A_BATTERY_DATA[@]}
+	
+ 	# echo $a_temp
+	log_function_data "A_BATTERY_DATA: $a_temp"
 	eval $LOGFE
 }
 
@@ -4065,7 +4368,7 @@ get_cpu_data()
 		# TAKE NOTE: \t+ will work for $FILE_CPUINFO, but SOME ARBITRARY FILE used for TESTING might contain SPACES!
 		# Therefore PATCH to use [ \t]+ when TESTING!
 		/^processor[ \t]+:/ {
-			gsub(/,/, " ", $NF)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $NF)
 			gsub(/^ +| +$/, "", $NF)
 			if ( $NF ~ "^[0-9]+$" ) {
 				nr = $NF
@@ -4082,7 +4385,7 @@ get_cpu_data()
 		/^model name|^cpu\t+:/ {
 			gsub(/'"$BAN_LIST_NORMAL"'/, "", $NF )
 			gsub(/'"$BAN_LIST_CPU"'/, "", $NF )
-			gsub(/,/, " ", $NF)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $NF)
 			gsub(/^ +| +$/, "", $NF)
 			gsub(/ [ \t]+/, " ", $NF)
 			cpu[nr, "model"] = $NF
@@ -4232,7 +4535,7 @@ get_cpu_data_bsd()
 		/^hw.model/ && ( bsdVersion != "darwin" ) {
 			gsub(/'"$BAN_LIST_NORMAL"'/, "", $NF )
 			gsub(/'"$BAN_LIST_CPU"'/, "", $NF )
-			gsub(/,/," ",$NF)
+			gsub(/'"$BAN_LIST_ARRAY"'/," ",$NF)
 			sub(/[a-z]+-core/, "", $NF )
 			gsub(/^ +| +$|\"/, "", $NF)
 			gsub(/ [ \t]+/, " ", $NF)
@@ -4289,7 +4592,7 @@ get_cpu_data_bsd()
 		/^machdep.cpu.brand_string/ {
 			gsub(/'"$BAN_LIST_NORMAL"'/, "", $NF )
 			gsub(/'"$BAN_LIST_CPU"'/, "", $NF )
-			gsub(/,/," ",$NF)
+			gsub(/'"$BAN_LIST_ARRAY"'/," ",$NF)
 			sub(/[a-z]+-core/, "", $NF )
 			gsub(/^ +| +$|\"/, "", $NF)
 			gsub(/ [ \t]+/, " ", $NF)
@@ -4336,7 +4639,7 @@ get_cpu_flags_bsd()
 					gsub(/<[a-z0-9]+>/,"", $2)
 					# all the flags are contained within < ... > on freebsd at least
 					gsub(/.*<|>.*/,"", $2)
-					gsub(/,/," ", $2)
+					gsub(/'"$BAN_LIST_ARRAY"'/," ", $2)
 					cpuFlags = cpuFlags " " $2
 				}
 			}
@@ -4412,7 +4715,7 @@ get_cpu_ht_multicore_smp_data()
 		}
 		# array of logical processors, both HT and physical
 		/^processor/ {
-			gsub(/,/, " ", $NF)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $NF)
 			gsub(/^ +| +$/, "", $NF)
 			if ( $NF ~ "^[0-9]+$" ) {
 				a_processor_id[proc_iter] = $NF
@@ -5054,7 +5357,7 @@ get_display_manager()
 get_distro_data()
 {
 	eval $LOGFS
-	local i='' j='' distro='' distro_file='' a_distro_glob='' a_temp=''
+	local i='' j='' distro='' distro_file='' a_distro_glob='' a_temp='' b_osr='false'
 	
 	# may need modification if archbsd / debian can be id'ed with /etc files
 	if [[ -n $BSD_TYPE ]];then
@@ -5085,7 +5388,7 @@ get_distro_data()
 	shopt -u nullglob
 	
 	a_temp=${a_distro_glob[@]}
-	log_function_data "A_GLX_DATA: $a_temp"
+	log_function_data "a_distro_glob: $a_temp"
 
 	if [[ ${#a_distro_glob[@]} -eq 1 ]];then
 		distro_file="$a_distro_glob"
@@ -5127,6 +5430,7 @@ get_distro_data()
 		distro=$( get_distro_lsb_os_release_data 'lsb-file' )
 	elif [[ $distro_file == 'os-release' ]];then
 		distro=$( get_distro_lsb_os_release_data 'os-release-file' )
+		b_osr='true'
 	# then if the distro id file was found and it's not in the exluded primary distro file list, read it
 	elif [[ -n $distro_file && -s /etc/$distro_file && " $DISTROS_EXCLUDE_LIST " != *" $distro_file "* ]];then
 		# new opensuse uses os-release, but older ones may have a similar syntax, so just use the first line
@@ -5140,9 +5444,12 @@ get_distro_data()
 		fi
 	# otherwise try  the default debian/ubuntu /etc/issue file
 	elif [[ -f /etc/issue ]];then
-		# lsb gives more manageable and accurate output than issue, but mint should use issue for now
+		# os-release/lsb gives more manageable and accurate output than issue, but mint should use issue for now
 		# some bashism, boolean must be in parenthesis to work correctly, ie [[ $(boolean) ]] not [[ $boolean ]]
-		if [[ $B_LSB_FILE == 'true' ]] && [[ -z $( grep -i 'mint' /etc/issue ) ]];then
+		if [[ $B_OS_RELEASE_FILE == 'true' ]] && [[ -z $( grep -i 'mint' /etc/issue ) ]];then
+			distro=$( get_distro_lsb_os_release_data 'os-release-file' )
+			b_osr='true'
+		elif [[ $B_LSB_FILE == 'true' ]] && [[ -z $( grep -i 'mint' /etc/issue ) ]];then
 			distro=$( get_distro_lsb_os_release_data 'lsb-file' )
 		else
 			distro=$( gawk '
@@ -5151,7 +5458,7 @@ get_distro_data()
 			}
 			{
 				gsub(/\\[a-z]/, "")
-				gsub(/,/, " ")
+				gsub(/'"$BAN_LIST_ARRAY"'/, " ")
 				gsub(/^ +| +$/, "")
 				gsub(/ [ \t]+/, " ")
 				print
@@ -5165,20 +5472,28 @@ get_distro_data()
 			fi
 		fi
 	fi
-	
+	# a final check. If a long value, before assigning the debugger output, if os-release
+	# exists then let's use that if it wasn't tried already. Maybe that will be better.
 	if [[ ${#distro} -gt 80 ]] && [[ $B_HANDLE_CORRUPT_DATA != 'true' ]];then
-		distro="${RED}/etc/$distro_file corrupted, use -% to override${NORMAL}"
+		if [[ $B_OS_RELEASE_FILE == 'true' && $b_osr == 'false' ]];then
+			distro=$( get_distro_lsb_os_release_data 'os-release-file' )
+		fi
+		if [[ ${#distro} -gt 80 ]];then
+			distro="${RED}/etc/$distro_file corrupted, use -% to override${NORMAL}"
+		fi
 	fi
 	## note: would like to actually understand the method even if it's not used
 	# : ${distro:=Unknown distro o_O}
 	## test for /etc/lsb-release as a backup in case of failure, in cases where > one version/release file
 	## were found but the above resulted in null distro value
-	if [[ -z $distro ]] && [[ $B_LSB_FILE == 'true' ]];then
-		distro=$( get_distro_lsb_os_release_data 'lsb-file' )
-	fi
+	# Because os-release is now more common, we'll test for it first.
 	if [[ -z $distro ]] && [[ $B_OS_RELEASE_FILE == 'true' ]];then
 		distro=$( get_distro_lsb_os_release_data 'os-release-file' )
 	fi
+	if [[ -z $distro ]] && [[ $B_LSB_FILE == 'true' ]];then
+		distro=$( get_distro_lsb_os_release_data 'lsb-file' )
+	fi
+	
 	# now some final null tries
 	if [[ -z $distro ]];then
 		# if the file was null but present, which can happen in some cases, then use the file name itself to 
@@ -5378,7 +5693,7 @@ get_dmidecode_data()
 			fi
 			# these tests first, because bsd error messages like this (note how many : are in the string)
 			# inxi: line 4928: /usr/local/sbin/dmidecode: Permission denied
-			if [[ ${#dmiData} -lt 100  ]];then
+			if [[ ${#dmiData} -lt 200  ]];then
 				if [[ -z ${dmiData/*Permission denied*/} ]];then
 				# if [[ -n $( grep -i 'Permission denied' <<< "$dmiData" ) ]];then
 					DMIDECODE_DATA='dmidecode-error-requires-root'
@@ -5411,7 +5726,7 @@ get_dmidecode_data()
 						cutExtraTab="true"
 					}
 					gsub(/'"$BAN_LIST_NORMAL"'/, "", twoData)
-					gsub(/,/, " ", twoData)
+					gsub(/'"$BAN_LIST_ARRAY"'/, " ", twoData)
 					# clean out Handle line
 					# sub(/^Handle.*/,"", $0)
 					sub(/^[[:space:]]*Inactive.*/,"",twoData)
@@ -5422,7 +5737,7 @@ get_dmidecode_data()
 					# To Be Filled By O.E.M.
 					# strip out starting white space so that the following stuff will clear properly
 					sub(/^[[:space:]]+/, "", twoData)
-					sub(/^Base Board .*|^Chassis .*|.*O\.E\.M\..*|.*OEM.*|^Not .*|^System .*|.*unknow.*|.*N\/A.*|none|^To be filled.*|^0x[0]+$|\[Empty\]|<Bad Index>|^\.\.$/, "", twoData) 
+					sub(/^Base Board .*|^Chassis .*|empty|.*O\.E\.M\..*|.*OEM.*|^Not .*|^System .*|.*unknow.*|.*N\/A.*|none|^To be filled.*|^0x[0]+$|\[Empty\]|<Bad Index>|^\.\.$/, "", twoData) 
 					sub(/.*(AssetTagNum|Manufacturer| Or Motherboard|PartNum.*|SerNum).*/, "", twoData)
 					gsub(/bios|acpi/, "", twoData)
 					sub(/http:\/\/www.abit.com.tw\//, "Abit", twoData)
@@ -5482,7 +5797,7 @@ get_dmesg_boot_data()
 		dmsg_boot_data="$( cat $FILE_DMESG_BOOT 2>/dev/null | gawk '
 		{
 			sub(/[[:space:]]*=[[:space:]]*|:[[:space:]]*/,":", $0)
-			gsub(/,/," ", $0)
+			gsub(/'"$BAN_LIST_ARRAY"'/," ", $0)
 			gsub(/\"/, "", $0)
 			gsub(/[[:space:]][[:space:]]/, " ", $0)
 			print $0
@@ -5659,7 +5974,7 @@ get_graphics_card_data()
 	# card. .1 would be for example: Display Adapter with bus id x:xx.1, not the right one
 	/vga compatible controller|3D controller|Display controller/ {
 		gsub(/'"$BAN_LIST_NORMAL"'/, "", $NF)
-		gsub(/,/, " ", $NF)
+		gsub(/'"$BAN_LIST_ARRAY"'/, " ", $NF)
 		gsub(/^ +| +$/, "", $NF)
 		gsub(/ [ \t]+/, " ", $NF)
 		busId=gensub(/^([0-9a-f:\.]+) (.+)$/,"\\1","",$1)
@@ -5686,7 +6001,7 @@ get_graphics_driver()
 	eval $LOGFS
 	
 	# list is from sgfxi plus non-free drivers
-	local driver_list='apm|ark|ati|chips|cirrus|cyrix|fbdev|fglrx|glint|i128|i740|intel|i810|imstt|mach64|mga|neomagic|nsc|nvidia|nv|openchrome|nouveau|radeon|radeonhd|rendition|s3virge|s3|savage|siliconmotion|sisusb|sis|tdfx|tga|trident|tseng|unichrome|vboxvideo|vesa|vga|via|voodoo|vmware|v4l'
+	local driver_list='amdgpu|apm|ark|ati|chips|cirrus|cyrix|fbdev|fglrx|glint|i128|i740|intel|i810|imstt|mach64|mga|neomagic|nsc|nvidia|nv|openchrome|nouveau|radeon|radeonhd|rendition|s3virge|s3|savage|siliconmotion|sisusb|sis|tdfx|tga|trident|tseng|unichrome|vboxvideo|vesa|vga|via|voodoo|vmware|v4l'
 	local driver='' driver_string='' xorg_log_data='' status='' a_temp=''
 
 	if [[ $B_XORG_LOG == 'true' ]];then
@@ -5912,7 +6227,7 @@ get_graphics_display_server_data()
 		}
 		/vendor string/ {
 			gsub(/the|inc|foundation|project|corporation/, "", $2)
-			gsub(/,/, " ", $2)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $2)
 			gsub(/^ +| +$/, "", $2)
 			gsub(/ [ \t]+/, " ", $2)
 			vendorString = $2
@@ -6076,7 +6391,7 @@ get_hdd_data_basic()
 	# note that linux 3.2.45-grsec-9th types kernels have this type of partition name: /dev/xvdc (no number, letter)
 	# note: btrfs does not seem to use partition integers, just the primary /dev/sdx identifier
 	# df can also show /dev/disk/(by-label|by-uuid etc)
-	/^\/dev\/(disk\/|mapper\/|[hsv]d[a-z][0-9]*|dm[-]?[0-9]+|ada[0-9]+p[0-9]+.*|(ad|sd|wd)[0-9]+[a-z]|md[0-9]+|[aw]d[0-9]+s.*|xvd[a-z])|^ROOT/ {
+	/^\/dev\/(disk\/|mapper\/|[hsv]d[a-z]+[0-9]*|dm[-]?[0-9]+|(ada|mmcblk|nvme[0-9]+n)[0-9]+p[0-9]+.*|(ad|sd|wd)[0-9]+[a-z]|md[0-9]+|[aw]d[0-9]+s.*|xvd[a-z]+)|^ROOT/ {
 		# this handles the case where the first item is too long
 		# and makes df wrap output to next line, so here we advance
 		# it to the next line for that single case. Using df -P should
@@ -6135,9 +6450,9 @@ get_hdd_data_basic()
 	if [[ $B_PARTITIONS_FILE == 'true' ]];then
 		A_HDD_DATA=( $(
 		gawk -v hddUsed=$hdd_used '
-		/[hsv]d[a-z]$/ {
+		/([hsv]d[a-z]+|(ada|mmcblk|nvme[0-9]+n)[0-9]+)$/ {
 			driveSize = $(NF - 1)*1024/1000**3
-			gsub(/,/, " ", driveSize)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", driveSize)
 			gsub(/^ +| +$/, "", driveSize)
 			printf( $NF",%.1fGB,,\n", driveSize )
 		}
@@ -6147,7 +6462,7 @@ get_hdd_data_basic()
 		# }
 		# special case from this data: 8     0  156290904 sda
 		# note: vm has 252/253/254 known starter, grsec has 202
-		$1 ~ /^(3|8|22|33|202|252|253|254)$/ && $NF ~ /[hsv]d[a-z]$/ && ( $2 % 16 == 0 || $2 % 16 == 8 ) {
+		$1 ~ /^(3|8|22|33|202|252|253|254)$/ && $NF ~ /[hsv]d[a-z]+$/ && ( $2 % 16 == 0 || $2 % 16 == 8 ) {
 			size += $3
 		}
 		END {
@@ -6242,7 +6557,7 @@ get_hard_drive_data_advanced()
 					#c=gensub( /^ *vendor: (.+) +model: (.+) +rev:.*$/,"\\1 \\2","g",a[i] )
 					# the vendor: string is useless, and is a bug, ATA is not a vendor for example
 					c=gensub( /^ *vendor: (.+) +model: (.+) +rev:.*$/, "\\2", "g", a[i] )
-					gsub(/,/, " ", c)
+					gsub(/'"$BAN_LIST_ARRAY"'/, " ", c)
 					gsub(/^ +| +$/, "", c)
 					gsub(/ [ \t]+/, " ", c)
 					#print a[i]
@@ -6365,9 +6680,8 @@ get_hard_drive_data_bsd()
 			size=0
 			bSetSize="false"
 		}
-		
-		$1 ~ /^(ad|ada|sd|wd)[0-9]+(|[[:space:]]at.*)$/ {
-			diskId=gensub(/^((ad|ada|sd|wd)[0-9]+)[^0-9].*/,"\\1",1,$1)
+		$1 ~ /^(ad|ada|mmcblk|nvme[0-9]+n|sd|wd)[0-9]+(|[[:space:]]at.*)$/ {
+			diskId=gensub(/^((ad|ada|mmcblk|nvme[0-9]+n|sd|wd)[0-9]+)[^0-9].*/,"\\1",1,$1)
 			# note: /var/run/dmesg.boot may repeat items since it is not created
 			# fresh every boot, this way, only the last items will be used per disk id
 			if (aIds[diskId] == "" ) {
@@ -6738,13 +7052,13 @@ get_machine_data()
 				}
 				{
 					gsub(/'"$BAN_LIST_NORMAL"'/, "", $0)
-					gsub(/,/, " ", $0)
+					gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0)
 					# yes, there is a typo in a user data set, unknow
 					# Base Board Version|Base Board Serial Number
 					# Chassis Manufacturer|Chassis Version|Chassis Serial Number
 					# System manufacturer|System Product Name|System Version
 					# To Be Filled By O.E.M.
-					sub(/^Base Board .*|^Chassis .*|.*O\.E\.M\..*|.*OEM.*|^Not .*|^System .*|.*unknow.*|.*N\/A.*|none|^To be filled.*/, "", $0) 
+					sub(/^Base Board .*|^Chassis .*|.*O\.E\.M\..*|.*OEM.*|^Not .*|^System .*|.*unknow.*|.*N\/A.*|none|^To be filled.*/, "", $0)
 					gsub(/bios|acpi/, "", $0)
 					sub(/http:\/\/www.abit.com.tw\//, "Abit", $0)
 					gsub(/^ +| +$/, "", $0)
@@ -6870,8 +7184,8 @@ get_machine_data()
 	A_MACHINE_DATA=( $array_string )
 	IFS="$ORIGINAL_IFS"
 	# echo ${A_MACHINE_DATA[5]}
-	a_temp=( ${A_MACHINE_DATA[@]} )
- 	# echo ${#a_temp[@]}
+	a_temp=${A_MACHINE_DATA[@]}
+ 	# echo $a_temp
 	log_function_data "A_MACHINE_DATA: $a_temp"
 	eval $LOGFE
 }
@@ -7015,7 +7329,7 @@ get_module_version_number()
 			IGNORECASE=1
 		}
 		/^version/ {
-			gsub(/,/, " ", $2)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $2)
 			gsub(/^ +| +$/, "", $2)
 			gsub(/ [ \t]+/, " ", $2)
 			print $2
@@ -7052,12 +7366,12 @@ get_networking_data()
 		#gsub(/davicom semiconductor/, "Davicom", aNic[counter])
 		# The doublequotes are necessary because of the pipes in the variable.
 		gsub(/'"$BAN_LIST_NORMAL"'/, "", aNic[counter])
-		gsub(/,/, " ", aNic[counter])
+		gsub(/'"$BAN_LIST_ARRAY"'/, " ", aNic[counter])
 		gsub(/^ +| +$/, "", aNic[counter])
 		gsub(/ [ \t]+/, " ", aNic[counter])
 		aPciBusId[counter] = gensub(/(^[0-9a-f:\.]+) [^:]+: .+$/,"\\1","g",$0)
 		while ( getline && !/^$/ ) {
-			gsub(/,/, "", $0)
+			gsub(/'"$BAN_LIST_ARRAY"'/, "", $0)
 			if ( /^[[:space:]]*I\/O/ ) {
 				aPorts[counter] = aPorts[counter] $4 " "
 			}
@@ -7322,7 +7636,7 @@ get_networking_usb_data()
 			}
 			/'"$USB_NETWORK_SEARCH"'/ && !/bluetooth| hub|keyboard|mouse|printer| ps2|reader|scan|storage/ {
 				string=""
-				gsub( /,/, " ", $0 )
+				gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0 )
 				gsub(/'"$BAN_LIST_NORMAL"'/, "", $0)
 				gsub(/ [ \t]+/, " ", $0)
 				#sub(/realtek semiconductor/, "Realtek", $0)
@@ -7359,7 +7673,7 @@ get_networking_usb_data()
 get_networking_wan_ip_data()
 {
 	eval $LOGFS
-	local ip='' ip_data='' downloader_error=0 ua=''
+	local ip='' ip_data='' downloader_error=0 ua='' b_ipv4_good=true
 	
 	# get ip using wget redirect to stdout. This is a clean, text only IP output url,
 	# single line only, ending in the ip address. May have to modify this in the future
@@ -7367,34 +7681,43 @@ get_networking_wan_ip_data()
 	# awk has bad regex handling so checking it with grep -E instead
 	# ip=$( echo  2001:0db8:85a3:0000:0000:8a2e:0370:7334 | gawk  --re-interval '
 	# ip=$( wget -q -O - $WAN_IP_URL | gawk  --re-interval '
-	case $DOWNLOADER in
-		curl)
-			if [[ -n $( grep 'smxi.org' <<< $WAN_IP_URL ) ]];then
-				ua="-A s-tools/inxi-ip"
-			fi
-			ip_data="$( curl $ua -y $DL_TIMEOUT -s $WAN_IP_URL )" || downloader_error=$?
-			;;
-		fetch)
-			ip_data="$( fetch -T $DL_TIMEOUT -q -o - $WAN_IP_URL )" || downloader_error=$?
-			;;
-		ftp)
-			ip_data="$( ftp -o - $WAN_IP_URL 2>/dev/null )" || downloader_error=$?
-			;;
-		wget)
-			if [[ -n $( grep 'smxi.org' <<< $WAN_IP_URL ) ]];then
-				ua="-U s-tools/inxi-ip"
-			fi
-			ip_data="$( wget $ua -T $DL_TIMEOUT -q -O - $WAN_IP_URL )" || downloader_error=$?
-			;;
-		no-downloader)
-			downloader_error=1
-			;;
-	esac
-	ip=$( gawk  --re-interval '
-	{
-		#gsub("\n","",$2")
-		print $NF
-	}' <<< "$ip_data" )
+	# this generates a direct dns based ipv4 ip address, but if opendns.com goes down, the fall
+	# note: consistently slower than domain based: dig +short +time=1 +tries=1 myip.opendns.com. A @208.67.222.222
+	# backs will still work. 
+	if [[ -n $DNSTOOL ]];then
+		ip=$( dig +short +time=1 +tries=1 myip.opendns.com @resolver1.opendns.com 2>/dev/null)
+	fi
+	if [[ $ip == '' ]];then
+		case $DOWNLOADER in
+			curl)
+				if [[ -n $( grep 'smxi.org' <<< $WAN_IP_URL ) ]];then
+					ua="-A s-tools/inxi-ip"
+				fi
+				ip_data="$( curl $ua -y $DL_TIMEOUT -s $WAN_IP_URL )" || downloader_error=$?
+				;;
+			fetch)
+				ip_data="$( fetch -T $DL_TIMEOUT -q -o - $WAN_IP_URL )" || downloader_error=$?
+				;;
+			ftp)
+				ip_data="$( ftp -o - $WAN_IP_URL 2>/dev/null )" || downloader_error=$?
+				;;
+			wget)
+				if [[ -n $( grep 'smxi.org' <<< $WAN_IP_URL ) ]];then
+					ua="-U s-tools/inxi-ip"
+				fi
+				ip_data="$( wget $ua -T $DL_TIMEOUT -q -O - $WAN_IP_URL )" || downloader_error=$?
+				;;
+			no-downloader)
+				downloader_error=1
+				;;
+		esac
+		ip=$( gawk  --re-interval '
+		{
+			#gsub("\n","",$2")
+			print $NF
+		}' <<< "$ip_data" )
+	fi
+	
 	# validate the data
 	if [[ -z $ip ]];then
 		ip='None Detected!'
@@ -7457,7 +7780,7 @@ get_networking_local_ip_data()
 		/^[a-zA-Z]+[0-9]/ {
 			# not clear on why inet is coming through, but this gets rid of it
 			# as first line item.
-			gsub(/,/, " ", $0)
+			gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0)
 			gsub(/^ +| +$/, "", $0)
 			gsub(/ [ \t]+/, " ", $0)
 			interface = $1
@@ -7534,7 +7857,6 @@ get_networking_local_ip_data()
 }
 # get_networking_local_ip_data;exit
 
-# get_networking_local_ip_data;exit
 get_optical_drive_data()
 {
 	eval $LOGFS
@@ -7641,7 +7963,7 @@ get_optical_drive_data()
 				{
 					gsub(/'"$BAN_LIST_NORMAL"'/, "", $0)
 					sub(/TSSTcorp/, "TSST ", $0) # seen more than one of these weird ones
-					gsub(/,/, " ", $0)
+					gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0)
 					gsub(/^[[:space:]]*|[[:space:]]*$/, "", $0)
 					gsub(/ [[:space:]]+/, " ", $0)
 					print $0
@@ -7821,9 +8143,9 @@ get_partition_data()
 	if [[ $( grep -cs '[[:space:]]/$' <<< "$main_partition_data" ) -gt 1 ]];then
 		main_partition_data="$( grep -vs '^rootfs' <<< "$main_partition_data" )"
 	fi
+	# echo "$main_partition_data"
 	log_function_data 'raw' "main_partition_data_post_rootfs:\n$main_partition_data\n\nswap_data:\n$swap_data"
 	IFS=$'\n'
-	# sample line: /dev/sda2     ext3     15G  8.9G  4.9G  65% /home
 	# $NF = partition name; $(NF - 4) = partition size; $(NF - 3) = used, in gB; $(NF - 1) = percent used
 	## note: by subtracting from the last field number NF, we avoid a subtle issue with LVM df output, where if
 	## the first field is too long, it will occupy its own line, this way we are getting only the needed data
@@ -7837,8 +8159,9 @@ get_partition_data()
 	# skipping these file systems because bsds do not support df --exclude-type=<fstype>
 	# note that using $1 to handle older bsd df, which do not support -T. This will not be reliable but we will see
 	( bsdType != "" ) {
-		# skip if non disk/partition, or if raid primary id, which will not have a / in it
-		if ( $1 ~ /^(aufs|devfs|devtmpfs|fdescfs|iso9660|linprocfs|procfs|squashfs|sysfs|tmpfs|type|unionfs)$/ || 
+		# skip if non disk/partition, or if raid primary id, which will not have a / in it. 
+		# Note: kfreebsd uses /sys, not sysfs, is this a bug or expected behavior?
+		if ( $1 ~ /^(aufs|devfs|devtmpfs|fdescfs|iso9660|linprocfs|procfs|squashfs|\/sys|sysfs|tmpfs|type|unionfs)$/ || 
 		( $1 ~ /^([^\/]+)$/ && $1 !~ /^ROOT/ ) ) {
 			# note use next, not getline or it does not work right
 			next 
@@ -7924,7 +8247,6 @@ get_partition_data()
 			print $(NF - 2) " " $(NF - 1) " " $NF "," $(NF - 6) "," $(NF - 5) "," $(NF - 3) ",secondary," fileSystem "," devBase 
 		}
 	}' )
-	
 	# now add the swap partition data, don't want to show swap files, just partitions,
 	# though this can include /dev/ramzswap0. Note: you can also use /proc/swaps for this
 	# data, it's the same exact output as swapon -s
@@ -7987,7 +8309,7 @@ get_partition_data()
 				}
 				else {
 					# for openbsd: /dev/wd0f on /usr type ffs (local, nodev)
-					gsub( /^.*type[[:space:]]+|[[:space:]]*$/, "", $1 )
+					gsub(/^.*type[[:space:]]+|[[:space:]]*$/, "", $1 )
 					fileSystem=$1
 				}
 				print fileSystem
@@ -8027,7 +8349,7 @@ get_partition_data()
 		fi
 	done
 	a_temp=${A_PARTITION_DATA[@]}
-	# echo $a_temp
+	# echo $a_temp;exit
 	log_function_data "2: A_PARTITION_DATA:\n$a_temp"
 	if [[ $B_SHOW_LABELS == 'true' || $B_SHOW_UUIDS == 'true' ]];then
 		get_partition_data_advanced
@@ -8066,7 +8388,7 @@ get_partition_data_advanced()
 					partTemp = ""
 				}
 				# trying to handle space in name
-# 				gsub( /\\040/, " ", $0 )
+# 				gsub(/\\040/, " ", $0 )
 				/[ \t]'$mount_point'[ \t]/ && $1 != "rootfs" {
 					# initialize the variables
 					label = ""
@@ -8089,7 +8411,7 @@ get_partition_data_advanced()
 						# if this works, great, otherwise, just set this to null values
 						partTemp="'$( readlink /dev/root 2>/dev/null )'"
 						if ( partTemp != "" ) {
-							if ( partTemp ~ /[hsv]d[a-z][0-9]{1,2}/ ) {
+							if ( partTemp ~ /[hsv]d[a-z]+[0-9]{1,2}/ ) {
 								partition=gensub( /^(\/dev\/)(.+)$/, "\\2", 1, partTemp )
 							}
 							else if ( partTemp ~ /by-uuid/ ) {
@@ -8143,7 +8465,7 @@ get_partition_data_advanced()
 				elif [[ -n $DEV_DISK_LABEL && -n $dev_label ]];then
 					dev_item=$( echo "$DEV_DISK_LABEL" | gawk '
 						# first we need to change space x20 in by-label back to a real space
-						#gsub( /x20/, " ", $0 )
+						#gsub(/x20/, " ", $0 )
 						# then we can see if the string is there
 						$0 ~ /[ \t]'$dev_label'[ \t]/ {
 							item=gensub( /..\/..\/(.+)/, "\\1", 1, $NF )
@@ -8662,7 +8984,7 @@ get_raid_data()
 			uData = ""
 			
 			while ( !/^[[:space:]]*$/  ) {
-				gsub(/,/, " ", $0 )
+				gsub(/'"$BAN_LIST_ARRAY"'/, " ", $0 )
 				gsub(/[[:space:]]+/, " ", $0 )
 				if ( $0 ~ /^md/ ) {
 					device = gensub(/(md.*)[[:space:]]?:/, "\\1", "1", $1 )
@@ -9532,7 +9854,7 @@ get_repo_data()
 						urlData=""
 						repoTitle=""
 					}
-					gsub( /\[|\]/, "", $1 ) # strip out the brackets
+					gsub(/\[|\]/, "", $1 ) # strip out the brackets
 					repoTitle = $1 " ~ "
 				}
 				/^(mirrorlist|baseurl)/ {
@@ -9685,7 +10007,7 @@ get_repo_data()
 						urlData=""
 						repoTitle=""
 					}
-					gsub( /\[|\]/, "", $1 ) # strip out the brackets
+					gsub(/\[|\]/, "", $1 ) # strip out the brackets
 					repoTitle = $1 " ~ "
 				}
 				/^(sync-uri)/ {
@@ -9863,7 +10185,7 @@ get_repo_data()
 					repoUrl=""
 					enabled=""
 					while ( getline && $0 !~ /^[[:space:]]*$/ ) {
-						gsub(/,/,"",$0)
+						gsub(/'"$BAN_LIST_ARRAY"'/,"",$0)
 						gsub(/({|}|^[[:space:]]+|[[:space:]]+$)/,"",$1)
 						gsub(/({|}|^[[:space:]]+|[[:space:]]+$)/,"",$2)
 						if ( $1 == "url" ) {
@@ -11101,6 +11423,9 @@ print_it_out()
 		if [[ $B_SHOW_MACHINE == 'true' ]];then
 			print_machine_data
 		fi
+		if [[ $B_SHOW_BATTERY == 'true' ]];then
+			print_battery_data
+		fi
 		if [[ $B_SHOW_BASIC_CPU == 'true' || $B_SHOW_CPU == 'true' ]];then
 			print_cpu_data
 		fi
@@ -11438,6 +11763,188 @@ print_audio_data()
 	eval $LOGFE
 }
 
+print_battery_data()
+{
+	eval $LOGFS
+	local line_starter='Battery' print_data='' 
+	get_battery_data
+	if [[ -n ${A_BATTERY_DATA[@]} ]];then
+		local battery_data='' battery_string=''
+		local present='' chemistry='' cycles='' voltage_min_design='' voltage_now=''
+		local power_now='' charge_full_design='' charge_full='' charge_now='' capacity=''
+		local capacity_level='' model='' company='' serial='' of_orig='' model='' condition=''
+		local power=''
+		
+		# echo ${A_BATTERY_DATA[@]}
+		for (( i=0; i< ${#A_BATTERY_DATA[@]}; i++ ))
+		do
+			battery_data='' 
+			print_data=''
+			battery_string=''
+			charge=''
+			model=''
+			condition=''
+			voltage=''
+			
+			name=''
+			status=''
+			present=''
+			chemistry=''
+			cycles=''
+			voltage_min_design=''
+			voltage_now=''
+			power_now=''
+			charge_full_design=''
+			charge_full=''
+			charge_now=''
+			capacity=''
+			capacity_level=''
+			of_orig=''
+			model=''
+			company=''
+			serial=''
+			location='' # dmidecode only
+			IFS=","
+			a_battery_working=( ${A_BATTERY_DATA[i]} )
+			IFS="$ORIGINAL_IFS"
+			bat_id="$(( $i + 1 ))"
+			
+			if [[ -n ${a_battery_working[10]} ]];then
+				charge="${a_battery_working[10]} Wh "
+			fi
+			if [[ -n ${a_battery_working[11]} ]];then
+				charge="$charge${a_battery_working[11]} "
+			fi
+			if [[ $charge == '' ]];then
+				charge='N/A '
+			fi
+			charge="${C1}charge$SEP3${C2} $charge"
+			if [[ -n ${a_battery_working[9]} ]];then
+				condition="${a_battery_working[9]}"
+			else
+				condition='NA'
+			fi
+			if [[ -n ${a_battery_working[8]} ]];then
+				condition="$condition/${a_battery_working[8]} Wh "
+			else
+				condition="$condition/NA Wh "
+			fi
+			if [[ -n ${a_battery_working[13]} ]];then
+				condition="$condition(${a_battery_working[13]}) "
+			fi
+			if [[ $condition == '' ]];then
+				condition='N/A '
+			fi
+			condition="${C1}condition$SEP3${C2} $condition"
+			if [[ $B_EXTRA_DATA == 'true' ]];then
+				if [[ -n ${a_battery_working[15]} ]];then
+					model="${a_battery_working[15]} "
+				fi
+				if [[ -n ${a_battery_working[14]} ]];then
+					model="$model${a_battery_working[14]} "
+				fi
+				if [[ $model == '' ]];then
+					model='N/A '
+				fi
+				model="${C1}model$SEP3${C2} $model"
+			
+				if [[ -n ${a_battery_working[1]} ]];then
+					status="${a_battery_working[1]} "
+				else
+					status="N/A "
+				fi
+				status="${C1}status$SEP3${C2} $status"
+			fi
+			if [[ $B_EXTRA_EXTRA_DATA == 'true' ]];then
+				if [[ -n ${a_battery_working[16]} ]];then
+					serial="${a_battery_working[16]} "
+				else 
+					serial='N/A '
+				fi
+				serial="${C1}serial$SEP3${C2} $serial"
+				if [[ -n ${a_battery_working[6]} ]];then
+					voltage="${a_battery_working[6]}"
+				fi
+				if [[ -n ${a_battery_working[5]} ]];then
+					if [[ $voltage == '' ]];then
+						voltage='NA'
+					fi
+					voltage="$voltage/${a_battery_working[5]} "
+				fi
+				if [[ $voltage == '' ]];then
+					voltage='NA '
+				fi
+				voltage="${C1}volts$SEP3${C2} $voltage"
+			fi
+			if [[ $B_EXTRA_EXTRA_EXTRA_DATA == 'true' ]];then
+				if [[ -n ${a_battery_working[3]} ]];then
+					chemistry="${a_battery_working[3]} "
+				fi
+				if [[ -n ${a_battery_working[4]} ]];then
+					cycles="${C1}cycles$SEP3${C2} ${a_battery_working[4]} "
+				fi
+				# location is dmidecode only
+				if [[ -n ${a_battery_working[17]} ]];then
+					location="${C1}loc$SEP3${C2} ${a_battery_working[17]} "
+				fi
+			fi
+			if [[ -n ${a_battery_working[15]} ]];then
+				battery_string="${C1}${a_battery_working[0]}$SEP3${C2} $charge$condition"
+				battery_data="$model$chemistry$serial$status$cycles$location"
+			fi
+			
+			if [[ ${A_BATTERY_DATA[0]} == 'dmidecode-error-'* ]];then
+				error_string=$( print_dmidecode_error 'bat' "${A_BATTERY_DATA[0]}" )
+				battery_string=${C2}$error_string
+				battery_data=''
+				voltage=''
+			fi
+			
+			if [[ -n $battery_string ]];then
+				if [[ $( calculate_line_length "$battery_string$voltage$battery_data" ) -lt $COLS_INNER ]];then
+					#echo one
+					print_data=$( create_print_line "$line_starter" "$battery_string$voltage$battery_data" )
+					print_screen_output "$print_data"
+				# print the line
+				else
+					# keep the driver on the same line no matter what, looks weird alone on its own line
+					if [[ $( calculate_line_length "$battery_string$voltage$battery_data" ) -gt $COLS_INNER ]];then
+						if [[ $( calculate_line_length "$battery_string$voltage" ) -gt $COLS_INNER ]];then
+							print_data=$( create_print_line "$line_starter" "$battery_string" )
+							print_screen_output "$print_data"
+							line_starter=' '
+							battery_string=''
+							print_data=$( create_print_line "$line_starter" "$voltage" )
+							print_screen_output "$print_data"
+							voltage=''
+						else 
+							print_data=$( create_print_line "$line_starter" "$battery_string$voltage" )
+							print_screen_output "$print_data"
+							line_starter=' '
+							voltage=''
+							battery_string=''
+						fi
+						#echo two
+						if [[ $battery_data != '' ]];then
+							print_data=$( create_print_line "$line_starter" "$battery_data" )
+							print_screen_output "$print_data"
+						fi
+					else
+						#echo three
+						print_data=$( create_print_line "$line_starter" "$battery_string$voltage$battery_data" )
+						print_screen_output "$print_data"
+					fi
+				fi
+				line_starter=' '
+			fi
+		done
+	elif [[ $B_SHOW_BATTERY_FORCED == 'true' ]];then
+		print_data=$( create_print_line "$line_starter" "No battery data found in /sys or dmidecode. Is one present?" )
+		print_screen_output "$print_data"
+	fi
+	eval $LOGFE
+}
+
 print_cpu_data()
 {
 	eval $LOGFS
@@ -11712,19 +12219,21 @@ print_cpu_flags_full()
 	eval $LOGFE
 }
 
-# args: $1 - type [sys/default]; $2 - get_dmidecode_data error return
+# args: $1 - type [sys/bat/default]; $2 - get_dmidecode_data error return
 print_dmidecode_error()
 {
 	eval $LOGFS
 	local error_message='Unknown dmidecode error.'
 	local sysDmiError='Using '
 	
-	if [[ $1 == 'sys' ]];then
+	if [[ $1 == 'sys' || $1 == 'bat' ]];then
 		if [[ $B_FORCE_DMIDECODE == 'true' ]];then
 			sysDmiError='Forcing '
 		# dragonfly has /sys, but it's empty
-		elif [[ $BSD_TYPE == '' || -d /sys/devices ]];then
+		elif [[ $1 == 'sys' ]] && [[ $BSD_TYPE == '' || -d /sys/devices ]];then
 			sysDmiError='No /sys/class/dmi; using '
+		#elif [[ $1 == 'bat' ]] && [[ $BSD_TYPE == '' || -d /sys/devices ]];then
+		#	sysDmiError='No /sys/ battery; using '
 		else
 			sysDmiError='Using '
 		fi
@@ -11735,6 +12244,8 @@ print_dmidecode_error()
 		error_message="${sysDmiError}dmidecode: dmidecode is not installed."
 	elif [[ $2 == 'dmidecode-error-no-smbios-dmi-data' ]];then
 		error_message="${sysDmiError}dmidecode: no smbios data available. Old system?"
+	elif [[ $2 == 'dmidecode-error-no-battery-data' ]];then
+		error_message="${sysDmiError}dmidecode: no battery data available."
 	elif [[ $2 == 'dmidecode-error-unknown-error' ]];then
 		error_message="${sysDmiError}dmidecode: unknown error occured"
 	fi
@@ -12679,7 +13190,7 @@ print_networking_ip_data()
 					if_ip=${a_interfaces_working[1]}
 				fi
 			fi
-			if_ip_string=" ${C1}ip$SEP3${C2} $if_ip"
+			if_ip_string=" ${C1}ip-v4$SEP3${C2} $if_ip"
 			if [[ $B_EXTRA_DATA == 'true' ]];then
 				if [[ -n ${a_interfaces_working[3]} ]];then
 					if [[ $B_OUTPUT_FILTER == 'true' ]];then
