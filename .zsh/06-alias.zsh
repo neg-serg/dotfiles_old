@@ -94,7 +94,8 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 alias mk="mkdir -p"
 
-alias mpa="mpv -fs -ao null --input-unix-socket=/tmp/mpvsocket"
+function mp(){ for i; do vid_fancy_print "${i}"; ${VIDEO_PLAYER_} --input-unix-socket=~/tmp/${VIDEO_PLAYER_}_socket "${i}"; done }
+alias mpa="${VIDEO_PLAYER_} -fs -ao null --input-unix-socket=${HOME}/tmp/${VIDEO_PLAYER_}_socket"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 alias grep="grep --color=auto"
 
@@ -328,6 +329,8 @@ alias ya="yaourt -S --noconfirm"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
 vol(){ {st pulsemixer && exit} || {st alsamixer -g && exit } }
+alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
+alias capsesc="xcape -e 'Caps_Lock=Escape'"
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias google='~/bin/scripts/rofi_search'
 alias recordmydesktop="recordmydesktop --no-frame"
