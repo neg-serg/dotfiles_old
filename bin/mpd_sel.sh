@@ -1,22 +1,29 @@
 #!/bin/zsh
 
-ROFI='rofi -font "Pragmata Pro for Powerline bold 12" -yoffset -22 -location 6 -width 1850 -lines 10 -dmenu -p "[>>]"'
-ARTIST=$( mpc ls | eval $ROFI)
-if [[ $ARTIST == "" ]]; then
-  exit 1
-else
-  ALBUM=$( echo -e "Play All\n$( mpc ls "$ARTIST" )" | eval $ROFI)
+function main(){
+    font="Pragmata Pro for Powerline bold 12"
+    mon_width_=$(xrandr -q |awk '/Screen/{print $8}')
+    gap_="70"
+    rofi_='rofi -font "${font}" -yoffset -22 -location 6 -width $((${mon_width_} - ${gap_})) -lines 10 -dmenu -p "[>>]"'
+    artist_=$( mpc ls | eval ${rofi_})
 
-  if [[ $ALBUM == "" ]]; then
-    exit 1
-  else
-    if [[ $ALBUM == "Play All" ]]; then
-      mpc add "$ARTIST"
+    [[ ${artist_} == "" ]] && exit 1
+
+    album_=$( echo -e "Play All\n$( mpc ls "${artist_}" )" | eval ${rofi_})
+    if [[ ${album_} == "" ]]; then
+        exit 1
     else
-      mpc add "$ALBUM"
+        if [[ ${album_} == "Play All" ]]; then
+            mpc add "${artist_}"
+        else
+            mpc add "${album_}"
+        fi
+        mpc play
     fi
-    mpc play
-  fi
-fi
+
+    exit 0
+}
+
+main "$@"
 
 exit 0
