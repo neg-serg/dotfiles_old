@@ -1,6 +1,11 @@
 NeoBundle 'talek/vorax4' "Oracle DB IDE
+NeoBundle 'Konfekt/FastFold' "Do not update folds when it's not needed
 "--[ Main ]------------------------------------------------------------------------------
-NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
+if !has("nvim")
+    NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
+else
+    NeoBundle 'Shougo/deoplete.nvim' "Dark powered completion engine for neovim
+endif
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
 if !has("nvim")
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
@@ -121,8 +126,7 @@ NeoBundle 'mhinz/vim-rfc' "view and search rfc
 "--[ dev ]-------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
-NeoBundle 'sombr/vim-scala-worksheet.git' "tiny Vim plugin that turns your file into interactive worksheet
-NeoBundle 'neg-serg/ensime-vim' "scala vim autocompletion
+NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
 NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
 NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
