@@ -1,10 +1,6 @@
-pcm.pulse {
-    type pulse
-}
-ctl.pulse {
-    type pulse
-}
-
+pcm.pulse { type pulse }
+ctl.pulse { type pulse }
+ 
 pcm.!default {
     @func refer
     name { @func concat 
@@ -16,7 +12,7 @@ pcm.!default {
            ]
          }
 }
-
+ 
 ctl.!default {
     @func refer
     name { @func concat 
@@ -30,3 +26,8 @@ ctl.!default {
            ]
          }
 }
+
+# pcm.pulse { type pulse }
+# ctl.pulse { type pulse }
+# pcm.!default { type pulse }
+# ctl.!default { type pulse }
