@@ -3,7 +3,7 @@
 
 include "/home/neg/.gtkrc-2.0.mine"
 gtk-theme-name="Arc-Dark"
-gtk-icon-theme-name="Compass"
+gtk-icon-theme-name="flattrcolor"
 gtk-font-name="PragmataPro for Powerline 12"
 gtk-cursor-theme-name="Vanilla-DMZ-AA"
 gtk-cursor-theme-size=0
