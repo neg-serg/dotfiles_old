@@ -1,0 +1,130 @@
+#!/bin/zsh
+
+(){
+    function pass_init(){
+        tmp_home_="$(readlink -f ~/tmp)" 
+        clipped_fifo_="${tmp_home_}/pass_clipped_fifo"
+        pass_picked_="${tmp_home_}/pass_picked"
+        touch "${clipped_fifo_}"
+        mail_="$(gpg -dq ~/.mail_.gpg)"
+        passwd_store_="${HOME}/.password-store"
+    }
+    pass_init
+
+    function icon_() { export "$1"="%{F${color_icon}}$2%{F${color_fg}}" }
+
+    icon_ vol_icon_      "\uf028"
+    icon_ mute_icon_     "\uf026x"
+    icon_ keyboard_icon_ "\uf11c"
+    icon_ clock_icon_    "\uf017"
+    icon_ calendar_icon_ "\uf073"
+    icon_ redshift_icon_ "\uf042"
+    icon_ tv_icon_       "\uf26c"
+    icon_ vpn_icon_      "\uf0ac"
+    icon_ unlocked_      "\uf084\uf13e"
+
+
+    function wait_(){ inotifywait -e close_write "${clipped_fifo_}" >/dev/null 2>&1 }
+
+    function get_pass_(){
+        pass=$(cat "${clipped_fifo_}" \
+            | gpg -d -r "${mail_}" --no-tty 2>/dev/null \
+            | head -n1)
+    }
+
+    function get_pass_env(){ echo "${HOME}/.password-store/" }
+
+    unfunction icon_
+    unfunction pass_init
+}
+
+function copy_pass() {
+    (
+        wait_ && get_pass_
+        xsel -b <<< "${pass}"
+        notify-no-icon "${unlocked_} copied $(cat ${pass_picked_}) to clipboard"
+    ) &
+    get_pass
+}
+
+function paste_pass() {
+    (   
+        wait_ && get_pass_
+        xdotool type "${pass}"
+        notify-no-icon "${unlocked_} pasted $(cat ${pass_picked_})" 
+    ) &
+    get_pass
+}
+
+function clip_pass() {
+    pass_output="$(pass "$1")"
+    if [[ -z "${pass_output}" ]]; then
+        kill -TERM -$(ps x -o "%p %r %y %x %c " \
+                    | grep _pass \
+                    | awk '{print $2}')
+        exit
+    fi
+
+    echo "${pass_output}" \
+        | gpg -e -r "${mail_}" -o "${clipped_fifo_}" --no-tty --yes
+    echo "$1" > "${pass_picked_}"
+}
+
+function paste_user() {
+    (
+        wait_
+        user_pass=$(cat "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
+        user=$(echo "${user_pass}" | grep "user" | awk -F ":" '{print $2}' | awk '{print $1}')
+        xdotool type ${user}
+        notify-no-icon "${unlocked_} pasted $(cat ${pass_picked_})"
+    ) &
+    get_pass
+}
+
+function paste_user_pass() {
+    (
+        wait_
+        user_pass=$(cat "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
+        pass=$(head -n1 <<< "${user_pass}")
+        user=$(echo "${user_pass}" \
+            | grep "user" \
+            | awk -F ":" '{print $2}' \
+            | awk '{print $1}')
+        xdotool type "${user}"
+        xdotool key Tab
+        sleep .1
+        xdotool type "${pass}"
+        notify-no-icon "${unlocked_} pasted $(cat ${pass_picked_})"
+    ) &
+    get_pass
+}
+
+function search_pass() {
+    win_name="$1"
+    pass_entry=$(find "${passwd_store_}" -name "*${win_name}*.gpg" \
+                | awk -F "${passwd_store_}/" '{print $2}' \
+                | rev \
+                | cut -d "." -f 1 --complement \
+                | rev)
+    [[ -n "$3" ]] && pass_entry="$3"
+
+    if [[ -z ${pass_entry} ]]; then
+        echo "$(find "${passwd_store_}" -name "*.gpg" \
+                | awk -F "${passwd_store_}/" '{print $2}' \
+                | rev \
+                | cut -d "." -f 1 --complement \
+                | rev)" > "${tmp_home_}/pass_rofi_fifo"
+        rofi -show pass:"${HOME}/bin/rofi/pass.sh" >/dev/null 2>&1
+    elif [[ $(grep -c . <<< "${pass_entry}") > 1 ]]; then
+        echo "${pass_entry}" > "${tmp_home_}/pass_rofi_fifo"
+        rofi -show pass:"${HOME}/bin/rofi/pass.sh" >/dev/null 2>&1
+    else
+        clip_pass "${pass_entry}"
+    fi
+}
+
+function get_pass(){
+    win_name="$(xdotool getwindowname $(xdotool getwindowfocus) \
+        | awk -F ' ' '{print tolower($1)}')"
+    search_pass "${win_name}"
+}

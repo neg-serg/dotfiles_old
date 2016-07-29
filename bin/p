@@ -1,0 +1,53 @@
+#!/bin/zsh
+source "${HOME}/bin/pass_funcs"
+
+for arg in "$1"; do
+    case ${arg} in
+        copy) 
+            shift; 
+            [[ $# > 0 ]] && { copy_pass "$@"; exit 0 }
+            { copy_pass; exit 0 }
+            ;;
+        get) 
+            shift; 
+            [[ $# > 0 ]] && { get_pass "$@"; exit 0 }
+            { get_pass; exit 0 }
+            ;;
+        search) 
+            shift; 
+            [[ $# > 0 ]] && { search_pass "$@"; exit 0 }
+            { search_pass; exit 0 }
+            ;;
+        paste) 
+            shift; 
+            [[ $# > 0 ]] && { paste_pass "$@"; exit 0 }
+            { paste_pass; exit 0 }
+            ;;
+        clip) 
+            shift; 
+            [[ $# > 0 ]] && { clip_pass "$@"; exit 0 }
+            { clip_pass; exit 0 }
+            ;;
+        puser) 
+            shift; 
+            [[ $# > 0 ]] && { paste_user "$@"; exit 0 }
+            { paste_user; exit 0 }
+            exit 0
+            ;;
+        puserpass) 
+            shift; 
+            [[ $# > 0 ]] && { paste_user_pass "$@"; exit 0 }
+            { paste_user_pass; exit 0 }
+            ;;
+        search) 
+            shift; 
+            [[ $# > 0 ]] && { search_pass "$@"; exit 0 }
+            { search_pass; exit 0 }
+            ;;
+        get) 
+            shift; 
+            [[ $# > 0 ]] && { get_pass "$@"; exit 0 }
+            { get_pass; exit 0 }
+            ;;
+    esac
+done
