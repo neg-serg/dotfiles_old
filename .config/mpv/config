@@ -6,7 +6,7 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
-sub-scale=0.7
+sub-scale=0.6
 
 vo=vdpau,vaapi,opengl-hq
 #vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
@@ -36,3 +36,5 @@ cursor-autohide=1000
 really-quiet
 
 input-ipc-server=/tmp/mpvsocket
+
+volume=40
