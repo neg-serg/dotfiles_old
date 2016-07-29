@@ -1,5 +1,5 @@
 #!/bin/zsh
-source "${HOME}/bin/pass_funcs"
+source ~/bin/pass_funcs 
 
 for arg in "$1"; do
     case ${arg} in
