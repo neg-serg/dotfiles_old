@@ -1,24 +1,46 @@
-# BACKEND to be used
-backend=worldweatheronline.com
-# LOCATION to be queried
-city=New York
-# NUMBER of days of weather forecast to be displayed
+# wego configuration
+# 
+# This config has https://github.com/schachmat/ingo syntax.
+# Empty lines or lines starting with # will be ignored.
+# All other lines must look like `KEY=VALUE` (without the quotes).
+# The VALUE must not be enclosed in quotes!
+
+# Show geo coordinates (default false)
+aat-coords=false
+
+# BACKEND to be used (default forecast.io)
+backend=forecast.io
+
+# NUMBER of days of weather forecast to be displayed (default 3)
 days=3
-# FRONTEND to be used
+
+# forecast backend: the api KEY to use (default )
+forecast-api-key=26611d19995c5fec79ad67e88cba6b6b
+
+# forecast backend: print raw requests and responses (default false)
+forecast-debug=false
+
+# forecast backend: the LANGUAGE to request from forecast.io (default en)
+forecast-lang=en
+
+# FRONTEND to be used (default ascii-art-table)
 frontend=ascii-art-table
-# json frontend: do not indent the output
+
+# json frontend: do not indent the output (default false)
 jsn-no-indent=false
+
+# LOCATION to be queried (default 40.748,-73.985)
+location=55.763633,48.736553
+
 # UNITSYSTEM to use for output.
-# Choices are: metric, imperial, si
+# Choices are: metric, imperial, si (default metric)
 units=metric
-# wwo backend: the api KEY to use
+
+# wwo backend: the api KEY to use (default )
 wwo-api-key=
-# wwo backend: the LANGUAGE to request from wwo
+
+# wwo backend: print raw requests and responses (default false)
+wwo-debug=false
+
+# wwo backend: the LANGUAGE to request from wwo (default en)
 wwo-lang=en
-
-
-# The following options are probably deprecated and not used currently!
-"Lang"="en"
-"APIKey"="d4df27fc76002c39f08a37df10033",
-"City"="Moscow",
-"Imperial"=false,
