@@ -117,7 +117,7 @@ function search_pass() {
         rofi -show pass:"${HOME}/bin/rofi/pass.sh" >/dev/null 2>&1
     elif [[ $(grep -c . <<< "${pass_entry}") > 1 ]]; then
         echo "${pass_entry}" > "${tmp_home_}/pass_rofi_fifo"
-        rofi -show pass:"${HOME}/bin/rofi/pass.sh" >/dev/null 2>&1
+        rofi -show pass:"${HOME}/bin/scripts/rofi_pass.sh" >/dev/null 2>&1
     else
         clip_pass "${pass_entry}"
     fi
