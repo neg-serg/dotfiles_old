@@ -251,6 +251,7 @@ RESET 0 # reset to "normal" color
 .pod           01;38;5;23
 .py            01;38;5;30
 .rc            00;31
+rc             00;31
 .rb            01;38;5;33
 .irb           01;38;5;33
 .erb           01;38;5;33
