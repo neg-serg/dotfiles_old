@@ -9,3 +9,6 @@
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim
+[submodule ".tmux/tmux-fingers"]
+	path = .tmux/tmux-fingers
+	url = https://github.com/Morantron/tmux-fingers
