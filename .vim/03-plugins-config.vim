@@ -9,6 +9,9 @@ let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
+if has("nvim")
+    let g:deoplete#enable_at_startup = 1 " Use deoplete.
+endif
 if has("python3")
     let g:powerline_pycmd          = "py3"
 endif
