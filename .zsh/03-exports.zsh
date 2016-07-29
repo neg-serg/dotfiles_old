@@ -157,6 +157,8 @@ export QEMU_PA_SINK=alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"
 
+export VIDEO_PLAYER_="mpv"
+
 export vim_server_name="VIM"
 export wim_font="PragmataPro for Powerline"
 export wim_font_s="Mensch:size=14"
