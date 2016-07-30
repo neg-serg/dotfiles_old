@@ -5,8 +5,8 @@
         tmp_home_="$(readlink -f ~/tmp)" 
         clipped_fifo_="${tmp_home_}/pass_clipped_fifo"
         pass_picked_="${tmp_home_}/pass_picked"
-        [[ -z "${clipped_fifo_}" ]] && touch "${clipped_fifo_}"
-        [[ -z "${pass_picked_}" ]]  && touch "${pass_picked_}" 
+        [[ -z "${clipped_fifo_}" ]] && mkfifo "${clipped_fifo_}"
+        [[ -z "${pass_picked_}" ]]  && mkfifo "${pass_picked_}" 
         mail_="$(gpg -dq ~/.mail_.gpg)"
         passwd_store_="${HOME}/.password-store"
 
