@@ -62,4 +62,4 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
 
 systemctl --user restart gpaste
 
-exec notion 2>> /tmp/notionerr$$ 2>&1
+exec notion 2>> ~/tmp/notionerr$$ 2>&1
