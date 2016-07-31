@@ -56,7 +56,7 @@ function copy_pass() {
     (
         wait_ 
         get_pass_
-        xsel -p <<< "${pass}"
+        xclip <<< "${pass}"
         notify-no-icon "${unlocked_} copied $(cat ${pass_picked_}) to clipboard"
     ) &
     get_pass
