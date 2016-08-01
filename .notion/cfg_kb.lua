@@ -52,7 +52,6 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4..Sh.."E",  function() weechat() end),
     submap(M1.."E",{
         kpress(Ct.."R", function() app.byinstance('cr3', 'Cr3', 'cr3') end),
-        kpress(Ct.."W", "autoprop(_sub, _, true)", "_sub:WGroupCW"),
         kpress("A",     function() namsc('firefox-dialog') end),
         submap("C", {
             kpress("C", function() spawn('p copy') end),

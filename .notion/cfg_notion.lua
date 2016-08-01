@@ -24,7 +24,6 @@ local cfg_list = {
     "screenshot",        -- screenshot script
     "cfg_dzen",          -- dzen config
     "rofi",              -- rofi module for menu
-    "cfg_autostart",     -- apps autostart
     "functions",         -- helpers. Primarily for cfg_kb.lua
     "cfg_kb",            -- keybindings
     "cfg_xrandr",        -- xrandr config
