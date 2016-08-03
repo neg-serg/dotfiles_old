@@ -5,6 +5,9 @@ if !has("nvim")
     NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
 else
     NeoBundle 'Shougo/deoplete.nvim' "Dark powered completion engine for neovim
+    NeoBundle 'vhakulinen/neovim-java-client' "nvim java client
+    NeoBundle 'vhakulinen/neovim-intellij-complete' "java autocomp for intellij
+    NeoBundle 'vhakulinen/neovim-intellij-complete-deoplete' "deopete integration
 endif
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
 if !has("nvim")
