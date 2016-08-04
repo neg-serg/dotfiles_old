@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 corner="northeast"
 [[ -n $1 ]] && corner="$1"
 
@@ -25,9 +25,7 @@ last_width=""
 last_lines_c=0
 
 # create 10 tmp files for each line (assume max 10 lines)
-for (( i=0; i<=10; i++ )); do
-    tmp_files[${i}]=$(mktemp)
-done
+for i in {1..10}; tmp_files[i]=$(mktemp)
 
 function start_bar {
     echo $(($(date +%s) + dismiss)) > "${noti_timestamp}"
@@ -36,17 +34,17 @@ function start_bar {
 
     pids=()
     # lemon bars which listen to multi line parser
-    for (( i=0; i<=count; i++ )); do
+    for (( i=1; i<=count+1; i++ )); do
         bar_height="${height}"
         bar_offset="${offset}"
         bar_pad_y="${pad_y}"
         bar_name="bar_noti_name_${corner}"
-        if [[ ${count} -gt 0 ]]; then
-            bar_height=$((height*3 / 4 ))
-            if [[ ${i} -eq 0 ]]; then
+        if [[ ${count} == 0 ]]; then
+            bar_height=$[height*3 / 4]
+            if [[ ${i} == 0 ]]; then
                 bar_offset=7
             else
-                bar_pad_y=$((bar_pad_y + bar_height))
+                bar_pad_y=$[bar_pad_y + bar_height]
                 bar_offset=-12 
             fi
         fi
@@ -54,21 +52,21 @@ function start_bar {
         position_y="${bar_pad_y}"
         position_x=${pad_x}
 
-        bar_opts=("-d -g ${width}x${bar_height}+${position_x}+${position_y}
+        bar_opts=( -d -g ${width}x${bar_height}+${position_x}+${position_y}
                    -B ${color_bg}
                    -f ${font}
                    -f ${font_icons}
                    -f monospace 
                    -o ${bar_offset} 
-                   -n ${bar_name}"
-                   )
+                   -n ${bar_name}
+                  )
         (
             tail -f -n 0 "${tmp_files[$i]}" | ( \
             while read -r noti_line; do
                echo "${noti_line}"
             done
-            ) | lemonbar ${bar_opts[@]} | bash) &
-        pids[${i}]=$!
+            ) | lemonbar ${bar_opts[@]} | zsh) &
+        pids[i]="$(echo $!)"
         sleep .01
     done
 
@@ -77,8 +75,8 @@ function start_bar {
         (
             tail -f -n 0 "${tmp_file}" | (
                 while read -r noti_line; do
-                    IFS=';' read -r -a splitted <<< "${noti_line}"
-                    for (( i=0; i<="${count}"; i++ )); do
+                    IFS=';' read -r -A splitted <<< "${noti_line}"
+                    for (( i=1; i<=count+1; i++ )); do
                         echo "%{c}%{F$color_summary}${splitted[$i]}" >> "${tmp_files[$i]}"
                     done
                 done
@@ -91,9 +89,7 @@ function start_bar {
         done
 
         pkill -P "${pid}"
-        for pid in "${pids[@]}"; do
-            pkill -P "${pid}"
-        done
+        for pid in "${pids[@]}"; pkill -P "${pid}"
     ) &
 
     #wait for lemonbar before echoing to $tmp_file
@@ -107,7 +103,7 @@ while IFS= read -r summary; do
     line_c=$(grep -c ";" <<< "${summary}")
 
     largest_width=0
-    IFS=';' read -r -a splitted <<< "${summary}"
+    IFS=';' read -r -A splitted <<< "${summary}"
         # To be precise
         parsed_summary=$(echo "${splitted}" | sed -e 's/\%[^%}]*}//g')
         text_width=$(txtw -f $font "${parsed_summary}")
