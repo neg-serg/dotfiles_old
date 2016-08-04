@@ -1,11 +1,6 @@
 #!/bin/bash
-#Based on code written by /u/tudurom
 corner="northeast"
 [[ -n $1 ]] && corner="$1"
-
-# Get the size of the monitor
-monitor_width=$(xrandr -q |awk '/Screen/{print $8}')
-monitor_height=$(xrandr -q |awk -F "[ ,]" '/Screen/{print $11}')
 
 # Panel size
 pad_x="50" pad_y="30" height="50"
@@ -13,13 +8,11 @@ pad_x="50" pad_y="30" height="50"
 in_pad="30"
 offset="-2"
 
-# font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
-font="fixed"
+font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
 font_icons="FontAwesome:size=11"
 
 color_summary="#71c2af"
 color_bg="#1d2a30"
-color_fg="#c27171"
 
 dismiss=3
 width_treshold=20
@@ -39,7 +32,7 @@ done
 function start_bar {
     echo $(($(date +%s) + ${dismiss})) > ${noti_timestamp}
 
-    count=$1
+    count="$1"
 
     pids=()
     # lemon bars which listen to multi line parser
@@ -62,69 +55,69 @@ function start_bar {
         position_x=${pad_x}
 
         bar_opts="-d -g ${width}x${bar_height}+${position_x}+${position_y} -B ${color_bg} -f ${font} -f ${font_icons} -f monospace -o ${bar_offset} -n ${bar_name}"
-        (tail -f -n 0 ${tmp_files[$i]} | (
+        (tail -f -n 0 "${tmp_files[$i]}" | ( \
             while read -r noti_line; do
                echo "${noti_line}"
             done
             ) | lemonbar ${bar_opts} | bash) &
-        pids[$i]=$!
+        pids[${i}]=$!
         sleep .01
     done
 
     # multiline parsing
-    (
-        (
-            tail -f -n 0 ${tmp_file} | (
+    ( \
+        ( \
+            tail -f -n 0 "${tmp_file}" | ( \
                 while read -r noti_line; do
                     IFS=';' read -r -a splitted <<< "${noti_line}"
-                    for (( i=0; i<=${count}; i++ )); do
-                        echo "%{c}%{F$color_summary}${splitted[$i]}" >> ${tmp_files[$i]}
+                    for (( i=0; i<="${count}"; i++ )); do
+                        echo "%{c}%{F$color_summary}${splitted[$i]}" >> "${tmp_files[$i]}"
                     done
                 done
-            )
+            ) \
         )  &
         pid=$!
 
-        while [[ $(cat ${noti_timestamp}) > $(($(date +%s))) ]]; do
+        while [[ $(cat "${noti_timestamp}") > $(($(date +%s))) ]]; do
             sleep 4
         done
 
-        pkill -P ${pid}
+        pkill -P "${pid}"
         for pid in "${pids[@]}"; do
-            pkill -P ${pid}
+            pkill -P "${pid}"
         done
     ) &
 
-    sleep .05 #wait for lemonbar before echoing to $tmp_file
+    #wait for lemonbar before echoing to $tmp_file
+    sleep .05 
 } 
 
 
 tail -f -n 0 "/tmp/notify_fifo_${corner}" |\
 # Reads the notifications line by line
 while IFS= read -r summary; do
-    line_c=$(grep -o ";" <<< "${summary}" | wc -l)
+    line_c=$(grep -c ";" <<< "${summary}")
 
     largest_width=0
     IFS=';' read -r -a splitted <<< "${summary}"
         # To be precise
-        parsed_summary=$(echo ${splitted} | sed -e 's/\%[^%}]*}//g')
+        parsed_summary=$(echo "${splitted}" | sed -e 's/\%[^%}]*}//g')
         text_width=$(txtw -f $font "${parsed_summary}")
         if [[ ${splitted} == *$(date +'%H:%M')* ]]; then
-            text_width=$((${text_width} + 30))
+            text_width=$(("${text_width}" + 30))
         fi
 
-        width=$((2 * in_pad + text_width))
+        width=$((2 * ${in_pad} + ${text_width}))
         if [[ ${width} -gt ${largest_width} ]]; then
             largest_width=${width}
         fi
     width=${largest_width}
 
-    if [[ -z $(xdotool search --name "bar_noti_name_"${corner}) ]]; then
-        start_bar ${line_c}
+    if [[ -z $(xdotool search --name "bar_noti_name_${corner}") ]]; then
+        start_bar "${line_c}"
     else
-        #if bar size is too different, resize
-        dist=$((${width} - ${last_width}))
-        if [[ ${line_c} != ${last_lines_c} || ($dist -gt 0 && ${dist} -gt ${width_treshold}) || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold})) ]]; then
+        dist=$(("${width}" - "${last_width}")) #if bar size is too different, resize
+        if [[ "${line_c}" != "${last_lines_c}" || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold})) ]]; then
             while [[ -n $(xdotool search --name "bar_noti_name_"${corner}"$") ]]; do
                 xdotool search --name "bar_noti_name_"${corner}"$" windowkill
             done
