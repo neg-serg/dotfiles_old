@@ -2,9 +2,9 @@
   <component name="DimensionService">
     <location key="WELCOME_SCREEN.0.0.1920.1200" x="959" y="230" />
     <location key="new project wizard.0.0.1920.1200" x="425" y="341" />
-    <location key="com.intellij.ide.util.TipDialog.0.0.1920.1200" x="1" y="21" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1920.1200" x="430" y="57" />
     <location key="#Custom_Plugin_Repositories.0.0.1920.1200" x="799" y="470" />
-    <location key="#Browse_Repositories.0.0.1920.1200" x="737" y="24" />
+    <location key="#Browse_Repositories.0.0.1920.1200" x="0" y="0" />
     <location key="FileChooserDialogImpl.0.0.1920.1200" x="651" y="220" />
     <location key="#Project_Structure.0.0.1920.1200" x="446" y="67" />
     <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" x="738" y="0" />
@@ -26,22 +26,25 @@
     <location key="replaceTextDialog.0.0.1920.1200" x="722" y="290" />
     <location key="#com.intellij.ide.util.MemberChooser.0.0.1920.1200" x="775" y="284" />
     <location key="#Edit_File_Template.0.0.1920.1200" x="708" y="401" />
+    <location key="GitCloneDialog.0.0.1920.1200" x="0" y="0" />
+    <location key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor.0.0.1920.1200" x="485" y="217" />
+    <location key="DetectedRootsChooserDialog.0.0.1920.1200" x="720" y="314" />
     <size key="new project wizard.0.0.1920.1200" width="962" height="652" />
-    <size key="com.intellij.ide.util.TipDialog.0.0.1920.1200" width="952" height="1049" />
+    <size key="com.intellij.ide.util.TipDialog.0.0.1920.1200" width="946" height="1023" />
     <size key="#Project_Structure.0.0.1920.1200" width="1028" height="1042" />
-    <size key="FileChooserDialogImpl.0.0.1920.1200" width="618" height="736" />
+    <size key="FileChooserDialogImpl.0.0.1920.1200" width="622" height="736" />
     <size key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" width="454" height="1176" />
-    <size key="#Browse_Repositories.0.0.1920.1200" width="828" height="1176" />
+    <size key="#Browse_Repositories.0.0.1920.1200" width="1485" height="1176" />
     <size key="#Plugins.0.0.1920.1200" width="804" height="1176" />
     <size key="#Browse_JetBrains_Plugins_.0.0.1920.1200" width="828" height="1176" />
-    <size key="NewModule_or_Project.wizard.0.0.1920.1200" width="654" height="1002" />
+    <size key="NewModule_or_Project.wizard.0.0.1920.1200" width="666" height="1002" />
     <size key="editAsTableFormatDialogDimension.0.0.1920.1200" width="828" height="1176" />
     <size key="SettingsEditor.0.0.1920.1200" width="1394" height="1124" />
     <size key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" width="328" height="727" />
-    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1864" height="324" />
-    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1864" height="324" />
-    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1864" height="324" />
-    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1864" height="324" />
+    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="339" />
+    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="339" />
+    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1916" height="339" />
+    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1916" height="339" />
     <size key="javadoc.popup.0.0.1920.1200" width="446" height="163" />
     <size key="StructurePopup.0.0.1920.1200" width="536" height="370" />
     <size key="#com.intellij.ide.util.TreeClassChooserDialog.0.0.1920.1200" width="895" height="404" />

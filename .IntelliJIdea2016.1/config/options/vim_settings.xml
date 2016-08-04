@@ -51,10 +51,12 @@
       <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/crud/CrudView.java" timestamp="1470062531666">
         <mark key="'" line="43" column="8" />
       </file>
-      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" timestamp="1470166195479">
+      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" timestamp="1470168703251">
         <mark key="'" line="21" column="0" />
-        <mark key="[" line="23" column="0" />
-        <mark key="]" line="41" column="5" />
+        <mark key="[" line="16" column="1" />
+        <mark key="]" line="16" column="0" />
+        <mark key="^" line="16" column="0" />
+        <mark key="." line="16" column="0" />
       </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson16/home03/Solution.java" timestamp="1467994701543">
         <mark key="[" line="18" column="26" />
@@ -116,8 +118,12 @@
         <mark key="^" line="11" column="42" />
         <mark key="." line="11" column="42" />
       </file>
-      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" timestamp="1470152470563">
-        <mark key="'" line="520" column="0" />
+      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" timestamp="1470172761036">
+        <mark key="'" line="91" column="18" />
+        <mark key="[" line="159" column="0" />
+        <mark key="]" line="159" column="0" />
+        <mark key="." line="159" column="0" />
+        <mark key="^" line="158" column="44" />
       </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson10/task04/Solution.java" timestamp="1467970900885">
         <mark key="[" line="17" column="32" />
@@ -148,6 +154,12 @@
         <mark key="]" line="11" column="58" />
         <mark key="^" line="11" column="58" />
         <mark key="." line="11" column="58" />
+      </file>
+      <file name="$USER_HOME$/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/AuthorForm.java" timestamp="1470235992202">
+        <mark key="[" line="40" column="60" />
+        <mark key="]" line="40" column="59" />
+        <mark key="^" line="40" column="59" />
+        <mark key="." line="40" column="59" />
       </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson04/task03/Solution.java" timestamp="1467927566955">
         <mark key="[" line="23" column="43" />
@@ -226,6 +238,29 @@
         <mark key="." line="25" column="15" />
         <mark key="^" line="25" column="15" />
       </file>
+      <file name="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor/src/com/jetbrains/plugins/embeditor/EmbeddedTerminalEditor.java" timestamp="1470236941459">
+        <mark key="'" line="132" column="0" />
+        <mark key="[" line="11" column="67" />
+        <mark key="]" line="11" column="5" />
+        <mark key="." line="11" column="5" />
+        <mark key="^" line="11" column="5" />
+      </file>
+      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" timestamp="1470233453817">
+        <mark key="'" line="58" column="0" />
+        <mark key="[" line="15" column="3" />
+        <mark key="]" line="16" column="0" />
+        <mark key="^" line="16" column="0" />
+        <mark key="." line="16" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditorRPC/src/org/jetbrains/plugins/embeditor/EmbeditorUtil.java" timestamp="1470234431928">
+        <mark key="[" line="166" column="20" />
+        <mark key="]" line="166" column="21" />
+        <mark key="^" line="166" column="21" />
+        <mark key="." line="166" column="21" />
+      </file>
+      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/AuthorForm.java" timestamp="1470233487864">
+        <mark key="'" line="71" column="12" />
+      </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task03/Dog.java" timestamp="1467999688038">
         <mark key="[" line="30" column="0" />
         <mark key="]" line="30" column="0" />
@@ -256,7 +291,7 @@
         <mark key="." line="32" column="46" />
         <mark key="^" line="32" column="46" />
       </file>
-      <file name="/HTML File.txt.ft" timestamp="1466530366362">
+      <file name="/HTML File.txt.ft" timestamp="1470173676553">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level03/lesson08/task03/Solution.java" timestamp="1467903791598">
@@ -400,46 +435,51 @@
       <jump line="34" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
       <jump line="38" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
       <jump line="21" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="91" column="18" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="15" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
+      <jump line="56" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
+      <jump line="71" column="12" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/AuthorForm.java" />
+      <jump line="143" column="0" filename="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor/src/com/jetbrains/plugins/embeditor/EmbeddedTerminalEditor.java" />
     </jumps>
     <registers>
-      <register name="&quot;" type="2">
-        <text encoding="base64">ICAgIHB1YmxpYyBTdHJpbmcgZ2V0VGl0bGUoKSB7CiAgICAgICAgcmV0dXJuIHRpdGxlOwogICAgfQoKICAgIHB1YmxpYyB2b2lkIHNldFRpdGxlKFN0cmluZyB0aXRsZSkgewogICAgICAgIHRoaXMudGl0bGUgPSB0aXRsZTsKICAgIH0KCiAgICBwdWJsaWMgdm9pZCBzZXRUeXBlKFN0cmluZyB0eXBlKSB7CiAgICAgICAgdGhpcy50eXBlID0gdHlwZTsKICAgIH0KCiAgICBwdWJsaWMgU3RyaW5nIGdldFR5cGUoKSB7CiAgICAgICAgcmV0dXJuIHRoaXMudHlwZTsKICAgIH0KCiAgICBwdWJsaWMgU3RyaW5nIGdldEtleSgpIHsKICAgICAgICByZXR1cm4ga2V5OwogICAgfQo=</text>
+      <register name="&quot;" type="4">
+        <text>.*;</text>
       </register>
       <register name="-" type="4">
-        <text>//</text>
+        <text>.*;</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>
       </register>
-      <register name="0" type="2">
-        <text encoding="base64">ICAgIHB1YmxpYyBTdHJpbmcgZ2V0VGl0bGUoKSB7CiAgICAgICAgcmV0dXJuIHRpdGxlOwogICAgfQoKICAgIHB1YmxpYyB2b2lkIHNldFRpdGxlKFN0cmluZyB0aXRsZSkgewogICAgICAgIHRoaXMudGl0bGUgPSB0aXRsZTsKICAgIH0KCiAgICBwdWJsaWMgdm9pZCBzZXRUeXBlKFN0cmluZyB0eXBlKSB7CiAgICAgICAgdGhpcy50eXBlID0gdHlwZTsKICAgIH0KCiAgICBwdWJsaWMgU3RyaW5nIGdldFR5cGUoKSB7CiAgICAgICAgcmV0dXJuIHRoaXMudHlwZTsKICAgIH0KCiAgICBwdWJsaWMgU3RyaW5nIGdldEtleSgpIHsKICAgICAgICByZXR1cm4ga2V5OwogICAgfQo=</text>
+      <register name="0" type="4">
+        <text encoding="base64">SkJUZXJtaW5hbCA=</text>
       </register>
       <register name="1" type="4">
-        <text>//</text>
+        <text>.*;</text>
       </register>
       <register name="2" type="4">
-        <text encoding="base64">0L3QsNC/0LjRiNC40YLQtSA=</text>
+        <text>terminal</text>
       </register>
       <register name="3" type="4">
-        <text encoding="base64">0YLRg9GCIA==</text>
+        <text>como</text>
       </register>
       <register name="4" type="4">
-        <text encoding="base64">0LLQsNGIIA==</text>
+        <text>.</text>
       </register>
       <register name="5" type="4">
-        <text>код</text>
+        <text>intellij</text>
       </register>
       <register name="6" type="4">
-        <text encoding="base64">0L3QsNC/0LjRiNC40YLQtSA=</text>
+        <text>.</text>
       </register>
-      <register name="7" type="4">
-        <text encoding="base64">0YLRg9GCIA==</text>
+      <register name="7" type="2">
+        <text encoding="base64">Ly9pbXBvcnQgb3JnLmpldGJyYWlucy5wbHVnaW5zLnRlcm1pbmFsLkpCVGVybWluYWw7Cg==</text>
       </register>
-      <register name="8" type="4">
-        <text encoding="base64">0LLQsNGIIA==</text>
+      <register name="8" type="2">
+        <text encoding="base64">Ly9pbXBvcnQgb3JnLmpldGJyYWlucy5wbHVnaW5zLmVtYmVkaXRvci5SZXNvbHZlT3V0Y29tZTsK</text>
       </register>
-      <register name="9" type="4">
-        <text>код</text>
+      <register name="9" type="2">
+        <text encoding="base64">Ly9pbXBvcnQgb3JnLmpldGJyYWlucy5wbHVnaW5zLmVtYmVkaXRvci5FbWJlZGl0b3JVdGlsOwo=</text>
       </register>
       <register name=":" type="4">
         <text>w</text>
@@ -466,8 +506,9 @@
       <history-cmd>
         <entry>W</entry>
         <entry encoding="base64">JzwsJz5zO2ZpZ2h0Ozs=</entry>
-        <entry>w</entry>
         <entry>set num</entry>
+        <entry>w</entry>
+        <entry>bd!</entry>
       </history-cmd>
       <history-expr />
       <history-input />

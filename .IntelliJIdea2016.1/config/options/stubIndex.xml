@@ -92,6 +92,14 @@
         <option value="Css.class" />
         <option value="dom.elementClass" />
         <option value="dom.namespaceKey" />
+        <option value="angularjs.symbol.index" />
+        <option value="angularjs.delimiter.index" />
+        <option value="angularjs.directives.doc.index" />
+        <option value="angularjs.ui.router.states.index" />
+        <option value="angularjs.filter.index" />
+        <option value="angularjs.module.index" />
+        <option value="angularjs.controller.index" />
+        <option value="angularjs.directives.index" />
         <option value="sc.value.name" />
         <option value="sc.self.type.class.name.key" />
         <option value="sc.package.fqn" />

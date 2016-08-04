@@ -2,15 +2,17 @@
   <component name="RecentProjectsManager">
     <option name="recentPaths">
       <list>
+        <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor" />
+        <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm" />
+        <option value="$USER_HOME$/src/dmd_project" />
+        <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor" />
         <option value="$USER_HOME$/dev/src/dmd_project" />
         <option value="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork" />
         <option value="$USER_HOME$/src/intellij-community" />
         <option value="$USER_HOME$/src/scala-ex/example/example" />
         <option value="$USER_HOME$/src/1st_level/tmp" />
         <option value="$USER_HOME$/src" />
-        <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor" />
         <option value="$USER_HOME$/src/1st_level/hackathon-Embeditorq" />
-        <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor" />
         <option value="$USER_HOME$/src/_scala/LearningSpark" />
         <option value="$USER_HOME$/src/_scala/aws-wrap" />
         <option value="$USER_HOME$/src/1st_level/kotlin" />
@@ -18,12 +20,6 @@
         <option value="$USER_HOME$/src/IdeaProjects/untitled" />
       </list>
     </option>
-    <option name="openPaths">
-      <list>
-        <option value="$USER_HOME$/dev/src/dmd_project" />
-      </list>
-    </option>
-    <option name="lastPath" value="$USER_HOME$/dev/src/dmd_project" />
     <option name="additionalInfo">
       <map>
         <entry key="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork">
@@ -43,7 +39,7 @@
               <option name="build" value="IU-145.1617" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1470166943070" />
+              <option name="projectOpenTimestamp" value="1470234081710" />
               <option name="buildTimestamp" value="1464901200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -65,7 +61,7 @@
               <option name="build" value="IU-145.1617" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1466502902645" />
+              <option name="projectOpenTimestamp" value="1470235533880" />
               <option name="buildTimestamp" value="1464901200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -76,7 +72,18 @@
               <option name="build" value="IU-145.1617" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1466513530180" />
+              <option name="projectOpenTimestamp" value="1470236340556" />
+              <option name="buildTimestamp" value="1464901200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-145.1617" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1470236312818" />
               <option name="buildTimestamp" value="1464901200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -158,6 +165,17 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/src/dmd_project">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-145.1617" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1470235983617" />
+              <option name="buildTimestamp" value="1464901200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/src/intellij-community">
           <value>
             <RecentProjectMetaInfo>
@@ -182,6 +200,6 @@
         </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="$USER_HOME$/src/1st_level" />
+    <option name="lastProjectLocation" value="$USER_HOME$/src/1st_level/hackathon-Embeditor" />
   </component>
 </application>

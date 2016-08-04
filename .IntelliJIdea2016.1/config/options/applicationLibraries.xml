@@ -1,0 +1,16 @@
+<application>
+  <component name="libraryTable">
+    <library name="jediterm">
+      <CLASSES>
+        <root url="file://$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="file://$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm/src-pty" />
+        <root url="file://$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm/src-ssh" />
+        <root url="file://$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm/src-terminal" />
+        <root url="file://$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm/tests" />
+      </SOURCES>
+    </library>
+  </component>
+</application>

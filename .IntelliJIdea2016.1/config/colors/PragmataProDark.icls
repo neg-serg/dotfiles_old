@@ -892,9 +892,6 @@
     <option name="KOTLIN_ANNOTATION">
       <value />
     </option>
-    <option name="KOTLIN_IMPLICIT_EXHAUSTIVE_WHEN">
-      <value />
-    </option>
     <option name="KOTLIN_KEYWORD">
       <value>
         <option name="FOREGROUND" value="c792ea" />
