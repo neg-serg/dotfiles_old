@@ -1,31 +1,76 @@
 #!/bin/zsh
-corner="northeast"
-[[ -n $1 ]] && corner="$1"
 
-# Panel size
-pad_x="50" pad_y="30" height="50"
+function bar_notifyd_init_(){
+    corner="northeast"
+    [[ -n "$1" ]] && corner="$1"
 
-in_pad="30"
-offset="-2"
+    pad_x=50          pad_y=30    height=50
+    in_pad=30         offset=-2   dismiss=3
+    width_treshold=20 last_width= last_lines_c=0
 
-font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
-font_icons="FontAwesome:size=11"
+    font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
+    font_icons="FontAwesome:size=11"
 
-color_summary="#71c2af"
-color_bg="#1d2a30"
+    color_summary="#71c2af"
+    color_bg="#1d2a30"
 
-dismiss=3
-width_treshold=20
-
-touch "/tmp/notify_fifo_${corner}"
-tmp_file="$(mktemp)"
-noti_timestamp="$(mktemp)"
-
-last_width=""
-last_lines_c=0
+    touch "/tmp/notify_fifo_${corner}"
+    tmp_file="$(mktemp)"
+    noti_timestamp="$(mktemp)"
+}
 
 # create 10 tmp files for each line (assume max 10 lines)
-for i in {1..10}; tmp_files[i]=$(mktemp)
+function mktmp_files_(){
+    for i in {1..10}; tmp_files[i]=$(mktemp)
+}
+
+#Set initial offsets
+function bar_instance_init_(){
+    bar_height="${height}"
+    bar_offset="${offset}"
+    bar_pad_y="${pad_y}"
+    bar_name="bar_noti_name_${corner}"
+
+    if [[ ${count} == 0 ]]; then
+        bar_height=$[height*3 / 4]
+        if [[ ${i} == 0 ]]; then
+            bar_offset=7
+        else
+            bar_pad_y=$[bar_pad_y + bar_height]
+            bar_offset=-12 
+        fi
+    fi
+
+    position_y="${bar_pad_y}"
+    position_x=${pad_x}
+}
+
+function bar_opts_init_(){
+    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+${position_y}
+                -B ${color_bg}
+                -f ${font}
+                -f ${font_icons}
+                -f monospace 
+                -o ${bar_offset} 
+                -n ${bar_name}
+                )
+}
+
+function calc::text_width_(){
+    text_width=$(txtw -f "${font}" "${parsed_summary}")
+    if [[ ${splitted} == *$(date +'%H:%M')* ]]; then
+        text_width=$(("${text_width}" + 30))
+    fi
+}
+
+function calc::width_(){
+    width=$((2 * ${in_pad} + ${text_width}))
+    if [[ ${width} -gt ${largest_width} ]]; then
+        largest_width=${width}
+    fi
+
+    width=${largest_width}
+}
 
 function start_bar {
     echo $(($(date +%s) + dismiss)) > "${noti_timestamp}"
@@ -35,37 +80,18 @@ function start_bar {
     pids=()
     # lemon bars which listen to multi line parser
     for (( i=1; i<=count+1; i++ )); do
-        bar_height="${height}"
-        bar_offset="${offset}"
-        bar_pad_y="${pad_y}"
-        bar_name="bar_noti_name_${corner}"
-        if [[ ${count} == 0 ]]; then
-            bar_height=$[height*3 / 4]
-            if [[ ${i} == 0 ]]; then
-                bar_offset=7
-            else
-                bar_pad_y=$[bar_pad_y + bar_height]
-                bar_offset=-12 
-            fi
-        fi
-
-        position_y="${bar_pad_y}"
-        position_x=${pad_x}
-
-        bar_opts=( -d -g ${width}x${bar_height}+${position_x}+${position_y}
-                   -B ${color_bg}
-                   -f ${font}
-                   -f ${font_icons}
-                   -f monospace 
-                   -o ${bar_offset} 
-                   -n ${bar_name}
-                  )
-        (
-            tail -f -n 0 "${tmp_files[$i]}" | ( \
-            while read -r noti_line; do
-               echo "${noti_line}"
-            done
-            ) | lemonbar ${bar_opts[@]} | zsh) &
+        bar_instance_init_
+        bar_opts_init_
+        ( 
+            #Read file with notification data read_notify_lines_
+            (){
+                tail -f -n 0 "${tmp_files[$i]}" | (
+                    while read -r noti_line; do
+                        builtin printf "%s\n" "${noti_line}"
+                    done
+                )
+            } | lemonbar ${bar_opts[@]} | zsh 
+        ) &
         pids[i]="$(echo $!)"
         sleep .01
     done
@@ -77,14 +103,16 @@ function start_bar {
                 while read -r noti_line; do
                     IFS=';' read -r -A splitted <<< "${noti_line}"
                     for (( i=1; i<=count+1; i++ )); do
-                        echo "%{c}%{F$color_summary}${splitted[$i]}" >> "${tmp_files[$i]}"
+                        builtin printf "%s\n" \
+                            "%{c}%{F$color_summary}${splitted[$i]}" \
+                            >> "${tmp_files[$i]}"
                     done
                 done
             )
-        )  &
+        ) &
         pid=$!
 
-        while [[ $(cat "${noti_timestamp}") > $(($(date +%s))) ]]; do
+        while [[ $(< "${noti_timestamp}") > $(($(date +%s))) ]]; do
             sleep 4
         done
 
@@ -96,6 +124,8 @@ function start_bar {
     sleep .05 
 } 
 
+mktmp_files_
+bar_notifyd_init_
 
 tail -f -n 0 "/tmp/notify_fifo_${corner}" |\
 # Reads the notifications line by line
@@ -104,34 +134,34 @@ while IFS= read -r summary; do
 
     largest_width=0
     IFS=';' read -r -A splitted <<< "${summary}"
-        # To be precise
-        parsed_summary=$(echo "${splitted}" | sed -e 's/\%[^%}]*}//g')
-        text_width=$(txtw -f $font "${parsed_summary}")
-        if [[ ${splitted} == *$(date +'%H:%M')* ]]; then
-            text_width=$(("${text_width}" + 30))
-        fi
 
-        width=$((2 * ${in_pad} + ${text_width}))
-        if [[ ${width} -gt ${largest_width} ]]; then
-            largest_width=${width}
-        fi
-    width=${largest_width}
+    # To be precise
+    parsed_summary=$(sed -e 's/\%[^%}]*}//g' <<< "${splitted}")
+    
+    calc::text_width_
+    calc::width_
 
     if [[ -z $(xdotool search --name "bar_noti_name_${corner}") ]]; then
         start_bar "${line_c}"
     else
         dist=$(("${width}" - "${last_width}")) #if bar size is too different, resize
-        if [[ "${line_c}" != "${last_lines_c}" || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold})) ]]; then
+        if [[ "${line_c}" != "${last_lines_c}" \
+              || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) \
+              || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold}))\
+           ]]; then
             while [[ -n $(xdotool search --name "bar_noti_name_"${corner}"$") ]]; do
                 xdotool search --name "bar_noti_name_"${corner}"$" windowkill
             done
             start_bar "${line_c}"
         else 
-            echo $(($(date +%s) + ${dismiss})) > ${noti_timestamp}
+            builtin printf "%s\n" \
+                $(($(date +%s) + ${dismiss})) \
+                > ${noti_timestamp}
         fi
     fi
 
-    echo "${summary}" >> "${tmp_file}"
+    builtin printf "%s\n" \
+        "${summary}" >> "${tmp_file}"
     last_width="${width}"
     last_lines_c="${line_c}"
 done
