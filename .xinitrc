@@ -39,7 +39,6 @@ setxkbmap \
 
 xhost +localhost +local: +si:localuser:$(id -un)
 xset m 0 0 # disable mouse acceleration
-xset dpms ${DPMS_STANDBY} ${DPMS_SUSPEND} ${DPMS_OFF}
 xset -b r rate 250 50 m 1 1 b off
 
 [[ -f ${HOME}/.Xresources ]] && \
@@ -52,8 +51,8 @@ nexec dunst && dunst &
 
 nexec udiskie && udiskie -q &
 inpath unclutter && unclutter --fork --timeout 1 &
-sudo pkill compton && \
-    compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
+nexec compton || sudo pkill compton
+compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
 nexec klay_watch && ${BIN_HOME}/mon/klay_watch &
 ${SCRIPT_HOME}/email_notifier.py --body &
 
@@ -61,5 +60,7 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 systemctl --user restart gpaste
+
+~/bin/bar_notifyd &
 
 exec notion 2>> ~/tmp/notionerr$$ 2>&1
