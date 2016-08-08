@@ -88,27 +88,27 @@ defwinprop{class="Emacs",instance="emacs",target="dev",lazyresize=true,jumpto=tr
 defwinprop{class="Emacs",instance="emacs",name="Question",float=true, tag="geditor"}
 defwinprop{class="com-sun-javaws-Main",instance="sun-awt-X11-XFramePeer",target="topcoder"}
 -----------------------------------[[ IDEA ]]--------------------------------------
-defwinprop{class="jetbrains-idea",instance="*",target="jetbrains",floating=true,tag="ide"}
-defwinprop{class="jetbrains-idea-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,tag="ide"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,tag="ide"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,tag="ide"}
-defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide"}
+defwinprop{class="jetbrains-idea",instance="*",target="jetbrains",floating=true,tag="ide",jumpto=true}
+defwinprop{class="jetbrains-idea-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,tag="ide",jumpto=true}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,tag="ide",jumpto=true}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,tag="ide",jumpto=true}
+defwinprop{class="jetbrains-idea",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide",jumpto=true}
 ----------------------------------[[ WEBSTORM ]]-----------------------------------
-defwinprop{class="jetbrains-webstorm",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
-defwinprop{class="jetbrains-webstorm-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
-defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide"}
+defwinprop{class="jetbrains-webstorm",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-webstorm-ce",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-webstorm",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",tag="ide",jumpto=true}
 ----------------------------------[[  CLION   ]]-----------------------------------
-defwinprop{class="jetbrains-clion",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide"}
-defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",target="jetbrains",tag="ide"}
+defwinprop{class="jetbrains-clion",instance="*",target="jetbrains",target="jetbrains",floating=true,transient_mode="current",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current",target="jetbrains",tag="ide",jumpto=true}
+defwinprop{class="jetbrains-clion",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off",target="jetbrains",tag="ide",jumpto=true}
 -------------------------------[[ ANDROID STUDIO ]]--------------------------------
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide"}
-defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off", tag="ide"}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide",jumpto=true}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XWindowPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide",jumpto=true}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XDialogPeer",target="jetbrains",floating=true,transient_mode="current", tag="ide",jumpto=true}
+defwinprop{class="jetbrains-android-studio",instance="sun-awt-X11-XFramePeer",target="jetbrains",floating=true,transient_mode="off", tag="ide",jumpto=true}
 -------------------------------------[[ VM ]]--------------------------------------
 defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mode="off",float=true,tag="virt"}
 defwinprop{class="VirtualBox",jumpto=true,target="vm",transient_mode="off",tag="virt"}
