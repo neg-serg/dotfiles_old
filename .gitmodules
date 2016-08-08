@@ -12,3 +12,6 @@
 [submodule ".tmux/tmux-fingers"]
 	path = .tmux/tmux-fingers
 	url = https://github.com/Morantron/tmux-fingers
+[submodule ".tmux/tmux-yank"]
+	path = .tmux/tmux-yank
+	url = git://github.com/tmux-plugins/tmux-yank
