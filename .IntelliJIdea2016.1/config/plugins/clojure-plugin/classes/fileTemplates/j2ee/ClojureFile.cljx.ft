@@ -1,0 +1,3 @@
+#if ($PACKAGE_NAME != "")(ns ${PACKAGE_NAME.replace('_','-')}.${NAME.replace('_','-')})
+#else (ns ${NAME.replace('_','-')})
+#end

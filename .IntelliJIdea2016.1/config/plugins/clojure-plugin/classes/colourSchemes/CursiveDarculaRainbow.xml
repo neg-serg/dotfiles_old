@@ -1,0 +1,48 @@
+<?xml version='1.0'?>
+<list>
+  <option name="Rainbow Parens Level 1 (outermost)">
+    <value>
+      <option name="FOREGROUND" value="AAAAAA"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 2">
+    <value>
+      <option name="FOREGROUND" value="FF0000"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 3">
+    <value>
+      <option name="FOREGROUND" value="FFA500"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 4">
+    <value>
+      <option name="FOREGROUND" value="EEEE00"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 5">
+    <value>
+      <option name="FOREGROUND" value="00DD00"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 6">
+    <value>
+      <option name="FOREGROUND" value="00FFFF"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 7">
+    <value>
+      <option name="FOREGROUND" value="0000FF"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 8">
+    <value>
+      <option name="FOREGROUND" value="AB02FF"/>
+    </value>
+  </option>
+  <option name="Rainbow Parens Level 9">
+    <value>
+      <option name="FOREGROUND" value="FF33CC"/>
+    </value>
+  </option>
+</list>

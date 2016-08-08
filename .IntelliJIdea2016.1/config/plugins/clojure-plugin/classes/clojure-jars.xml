@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+  <artifact name="Clojure" version="1.5.1">
+    <item name="clojure-1.5.1.jar" version="1.5.1"
+          url="http://repo1.maven.org/maven2/org/clojure/clojure/1.5.1/clojure-1.5.1.jar">
+      <required-class fqn="clojure.main"/>
+    </item>
+  </artifact>
+  <artifact name="Clojure" version="1.6.0">
+    <item name="clojure-1.6.0.jar" version="1.6.0"
+          url="http://repo1.maven.org/maven2/org/clojure/clojure/1.6.0/clojure-1.6.0.jar">
+      <required-class fqn="clojure.main"/>
+    </item>
+  </artifact>
+  <artifact name="Clojure" version="1.7.0">
+    <item name="clojure-1.7.0.jar" version="1.7.0"
+          url="http://repo1.maven.org/maven2/org/clojure/clojure/1.7.0/clojure-1.7.0.jar">
+      <required-class fqn="clojure.main"/>
+    </item>
+  </artifact>
+</artifacts>

@@ -2,10 +2,10 @@
   <component name="DimensionService">
     <location key="WELCOME_SCREEN.0.0.1920.1200" x="959" y="230" />
     <location key="new project wizard.0.0.1920.1200" x="425" y="341" />
-    <location key="com.intellij.ide.util.TipDialog.0.0.1920.1200" x="430" y="57" />
+    <location key="com.intellij.ide.util.TipDialog.0.0.1920.1200" x="428" y="55" />
     <location key="#Custom_Plugin_Repositories.0.0.1920.1200" x="799" y="470" />
-    <location key="#Browse_Repositories.0.0.1920.1200" x="0" y="0" />
-    <location key="FileChooserDialogImpl.0.0.1920.1200" x="651" y="220" />
+    <location key="#Browse_Repositories.0.0.1920.1200" x="218" y="0" />
+    <location key="FileChooserDialogImpl.0.0.1920.1200" x="0" y="0" />
     <location key="#Project_Structure.0.0.1920.1200" x="446" y="67" />
     <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" x="738" y="0" />
     <location key="#Plugins.0.0.1920.1200" x="558" y="0" />
@@ -13,7 +13,7 @@
     <location key="#Browse_JetBrains_Plugins_.0.0.1920.1200" x="546" y="0" />
     <location key="NewModule_or_Project.wizard.0.0.1920.1200" x="639" y="87" />
     <location key="editAsTableFormatDialogDimension.0.0.1920.1200" x="544" y="-268" />
-    <location key="SettingsEditor.0.0.1920.1200" x="263" y="21" />
+    <location key="SettingsEditor.0.0.1920.1200" x="269" y="30" />
     <location key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" x="796" y="214" />
     <location key="#com.intellij.ide.actions.ChooseComponentsToExportDialog.0.0.1920.1200" x="718" y="474" />
     <location key="#Options.0.0.1920.1200" x="638" y="326" />
@@ -29,8 +29,9 @@
     <location key="GitCloneDialog.0.0.1920.1200" x="0" y="0" />
     <location key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor.0.0.1920.1200" x="485" y="217" />
     <location key="DetectedRootsChooserDialog.0.0.1920.1200" x="720" y="314" />
+    <location key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog.0.0.1920.1200" x="780" y="516" />
     <size key="new project wizard.0.0.1920.1200" width="962" height="652" />
-    <size key="com.intellij.ide.util.TipDialog.0.0.1920.1200" width="940" height="997" />
+    <size key="com.intellij.ide.util.TipDialog.0.0.1920.1200" width="934" height="971" />
     <size key="#Project_Structure.0.0.1920.1200" width="1028" height="1042" />
     <size key="FileChooserDialogImpl.0.0.1920.1200" width="622" height="736" />
     <size key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" width="454" height="1176" />
@@ -50,5 +51,6 @@
     <size key="#com.intellij.ide.util.TreeClassChooserDialog.0.0.1920.1200" width="895" height="404" />
     <size key="#Solution.0.0.1920.1200" width="704" height="674" />
     <size key="#com.intellij.ide.util.MemberChooser.0.0.1920.1200" width="378" height="612" />
+    <size key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog.0.0.1920.1200" width="359" height="147" />
   </component>
 </application>

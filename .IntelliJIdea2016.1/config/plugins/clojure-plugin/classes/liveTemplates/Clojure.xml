@@ -1,0 +1,219 @@
+<templateSet group="Clojure">
+  <template name="condp" description="condp" value="(condp $pred$ $expr$&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="pred" expression="" defaultValue="&quot;pred&quot;" alwaysStopAt="true"/>
+    <variable name="expr" expression="" defaultValue="&quot;expr&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="defn" description="defn"
+            value="(defn $name$&#10;  &quot;$docstring$&quot;&#10;  [$arglist$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="docstring" expression="" defaultValue="&quot;docstring&quot;" alwaysStopAt="true"/>
+    <variable name="arglist" expression="" defaultValue="&quot;arglist&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="defmacro" name="defm"
+            value="(defmacro $name$&#10;  &quot;$docstring$&quot;&#10;  [$arglist$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="docstring" expression="" defaultValue="&quot;docstring&quot;" alwaysStopAt="true"/>
+    <variable name="arglist" expression="" defaultValue="&quot;arglist&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="defmm" description="defmulti" value="(defmulti $name$ $dispatchfn$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="dispatchfn" expression="" defaultValue="&quot;dispatchfn&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="defmt" description="defmethod" value="(defmethod $name$ $match$&#10;  [$args$]&#10;  $END$)"
+            toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="match" expression="" defaultValue="&quot;match&quot;" alwaysStopAt="true"/>
+    <variable name="args" expression="" defaultValue="&quot;args&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="defp" description="defprotocol" value="(defprotocol $Name$&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="Name" expression="" defaultValue="&quot;Name&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="defr" description="defrecord" value="(defrecord $Name$ [$fields$]&#10;  $Protocol$&#10;  $END$)"
+            toReformat="false" toShortenFQNames="true">
+    <variable name="Name" expression="" defaultValue="&quot;Name&quot;" alwaysStopAt="true"/>
+    <variable name="fields" expression="" defaultValue="&quot;fields&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="deft" description="deftype" value="(deftype $Name$ [$fields$]&#10;  $Protocol$&#10;  $END$)"
+            toReformat="false" toShortenFQNames="true">
+    <variable name="Name" expression="" defaultValue="&quot;Name&quot;" alwaysStopAt="true"/>
+    <variable name="fields" expression="" defaultValue="&quot;fields&quot;" alwaysStopAt="true"/>
+    <variable name="Protocol" expression="" defaultValue="&quot;Protocol&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="doseq" name="doseq" value="(doseq [$binding$ $value$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="binding" expression="" defaultValue="&quot;binding&quot;" alwaysStopAt="true"/>
+    <variable name="value" expression="" defaultValue="&quot;value&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="fn" description="fn" value="(fn [$arglist$] $END$)" toReformat="false" toShortenFQNames="true">
+    <variable name="arglist" expression="" defaultValue="&quot;arglist&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="for" name="for" value="(for [$binding$ $expr$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="binding" expression="" defaultValue="&quot;binding&quot;" alwaysStopAt="true"/>
+    <variable name="expr" expression="" defaultValue="&quot;expr&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="if" description="if" value="(if $test$&#10;  $then$&#10;  $else$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="test" expression="" defaultValue="&quot;test&quot;" alwaysStopAt="true"/>
+    <variable name="then" expression="" defaultValue="&quot;then&quot;" alwaysStopAt="true"/>
+    <variable name="else" expression="" defaultValue="&quot;else&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="ifl" name="ifl" value="(if-let [$binding$ $value$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="binding" expression="" defaultValue="&quot;binding&quot;" alwaysStopAt="true"/>
+    <variable name="value" expression="" defaultValue="&quot;value&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="import" description="import ns clause" value="(:import [$package$])" toReformat="false" toShortenFQNames="true">
+    <variable name="package" expression="" defaultValue="&quot;package&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="is" name="clojure.test 'is' assertion" value="(is (= $first$ $second$))" toReformat="false" toShortenFQNames="true">
+    <variable name="first" expression="" defaultValue="&quot;first&quot;" alwaysStopAt="true"/>
+    <variable name="second" expression="" defaultValue="&quot;second&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="let" name="let" value="(let [$binding$ $value$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="binding" expression="" defaultValue="&quot;binding&quot;" alwaysStopAt="true"/>
+    <variable name="value" expression="" defaultValue="&quot;value&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="letfn" description="letfn" value="(letfn [($name$) [$args$]&#10;          $END$)])" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="args" expression="" defaultValue="&quot;args&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="map with anonymous fn" name="map" value="(map #($expr$) $seq$)" toReformat="false" toShortenFQNames="true">
+    <variable name="expr" expression="" defaultValue="&quot;expr&quot;" alwaysStopAt="true"/>
+    <variable name="seq" expression="" defaultValue="&quot;seq&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="bench" description="Wrap with quick benchmark"
+            value="(dotimes [_ 10]&#10;  (time&#10;    (dotimes [_ $times$] &#10;      $SELECTION$$END$)))" toReformat="true"
+            toShortenFQNames="true">
+    <variable name="times" expression="" defaultValue="&quot;10000&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="print" name="print" value="(println $expr$)" toReformat="false" toShortenFQNames="true">
+    <variable name="expr" expression="" defaultValue="&quot;expr&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="reduce" name="reduce" value="(reduce $function$ $seq$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="function" expression="" defaultValue="&quot;function&quot;" alwaysStopAt="true"/>
+    <variable name="seq" expression="" defaultValue="&quot;seq&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="refer" description="refer-clojure ns clause" value="(:refer-clojure :exclude [$END$])" toReformat="false"
+            toShortenFQNames="true">
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="require" description="require ns clause" value="(:require [$namespace$ :as [$END$]])" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="namespace" expression="" defaultValue="&quot;namespace&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="clojure.test test" name="test" value="(deftest $name$&#10;  (is (= $first$ $second$))&#10;  $END$)"
+            toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="first" expression="" defaultValue="&quot;first&quot;" alwaysStopAt="true"/>
+    <variable name="second" expression="" defaultValue="&quot;second&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="Wrap with try/catch" name="try" value="(try&#10;  $SELECTION$&#10;  (catch $Exception$ e&#10;    $END$))"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="Exception" expression="" defaultValue="&quot;Exception&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template name="use" description="use ns clause" value="(:use [$namespace$ :only [$END$]])" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="namespace" expression="" defaultValue="&quot;namespace&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="when" name="when" value="(when $condition$&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="condition" expression="" defaultValue="&quot;condition&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+  <template description="whenl" name="whenl" value="(when-let [$binding$ $value$]&#10;  $END$)" toReformat="false"
+            toShortenFQNames="true">
+    <variable name="binding" expression="" defaultValue="&quot;binding&quot;" alwaysStopAt="true"/>
+    <variable name="value" expression="" defaultValue="&quot;value&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="Clojure" value="true"/>
+    </context>
+  </template>
+</templateSet>

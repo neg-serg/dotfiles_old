@@ -1,0 +1,333 @@
+<idea-plugin url="https://cursive-ide.com">
+  <name>Cursive</name>
+  <id>com.cursiveclojure.cursive</id>
+  <description>
+    
+    &lt;p&gt;Provides full Clojure and ClojureScript language support.&lt;p/&gt;
+    &lt;ul type="circle"&gt;
+    &lt;li&gt;&lt;b&gt;Intelligent Editor&lt;/b&gt; featuring code completion, syntax highlighting and real-time error highlighting.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;First-class ClojureScript&lt;/b&gt; nearly all functionality is equivalent in Clojure and ClojureScript.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Code Navigation&lt;/b&gt; project and structure views, navigation to symbols, namespaces, classes, and Find Usages.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;REPL Integration&lt;/b&gt; full integration with nREPL and clojure.main style REPLs for Clojure and ClojureScript.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Test Integration&lt;/b&gt; interactive running of clojure.test tests, with failures marked in the editor and visual diffs.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Leiningen Support&lt;/b&gt; full support for Leiningen including support for large multi-module projects.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Structural Editing&lt;/b&gt; full support for paredit style editing.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Code Formatting&lt;/b&gt; smart, customisable formatting support.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Clojure Debugger&lt;/b&gt; full support for debugging Clojure, including expression evaluation and debug REPLs.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Refactorings&lt;/b&gt; seamless rename, extract let, automatic imports and requires, and more.&lt;/li&gt;
+    &lt;li&gt;&lt;b&gt;Interop Support&lt;/b&gt; best in class support for Java interop, including smart completion using type inference.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p&gt;Built on: 2016-08-01 11:45&lt;/p&gt;
+    &lt;p&gt;Built from: 1.3.1-23-gbd5c942&lt;/p&gt;
+    
+  </description>
+  <category>Custom Languages</category>
+  <version>1.3.1-2016.1</version>
+  <vendor url="https://ideogram.co.nz" email="cursive@cursive-ide.com">
+    Ideogram, Ltd.
+  </vendor>
+  <idea-version since-build="145.000" until-build="145.9999"/>
+  <depends optional="true" config-file="copyright.xml">com.intellij.copyright</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <errorHandler implementation="cursive.exception.ClojureErrorReportSubmitter"/>
+    <fileTypeFactory implementation="cursive.file.ClojureFileTypeLoader"/>
+    <lang.braceMatcher language="Clojure" implementationClass="cursive.highlighter.ClojureBraceMatcher"/>
+    <colorSettingsPage implementation="cursive.highlighter.ClojureColorsAndFontsPage"/>
+    <lang.commenter language="Clojure" implementationClass="cursive.highlighter.ClojureCommenter"/>
+    <lang.parserDefinition language="Clojure" implementationClass="cursive.parser.ClojureParserDefinition"/>
+    <lang.syntaxHighlighterFactory key="Clojure" implementationClass="cursive.highlighter.ClojureSyntaxHighlighterFactory"/>
+    <quoteHandler fileType="Clojure" className="cursive.editor.ClojureQuoteHandler"/>
+    <quoteHandler fileType="Clojurescript" className="cursive.editor.ClojureQuoteHandler"/>
+    <quoteHandler fileType="CLJC" className="cursive.editor.ClojureQuoteHandler"/>
+    <quoteHandler fileType="CLJX" className="cursive.editor.ClojureQuoteHandler"/>
+    <quoteHandler fileType="EDN" className="cursive.editor.ClojureQuoteHandler"/>
+    <lang.foldingBuilder language="Clojure" implementationClass="cursive.ClojureFoldingBuilder"/>
+    <lang.psiStructureViewFactory language="Clojure" implementationClass="cursive.structure.ClojureStructureViewBuilderFactory"/>
+    <lang.namesValidator implementationClass="cursive.symbol.ClojureNamesValidator" language="Clojure"/>
+    <lang.documentationProvider language="Clojure" implementationClass="cursive.documentation.ClojureDocumentationProvider"/>
+    <lang.implementationTextSelectioner language="Clojure" implementationClass="cursive.documentation.ClojureImplementationSelectioner"/>
+    <codeInsight.parameterInfo language="Clojure" implementationClass="cursive.documentation.ClojureParameterInfoHandler"/>
+    <codeInsight.fillParagraph language="Clojure" implementationClass="cursive.paragraph.ClojureParagraphFillHandler"/>
+    <copyPastePreProcessor implementation="cursive.editor.copyPaste.ClojureStringLiteralCopyPasteProcessor"/>
+    <codeInsight.lineMarkerProvider language="Clojure" implementationClass="cursive.intellij.gutter.ClojureLineMarkerProvider"/>
+    <codeStyleSettingsProvider implementation="cursive.formatter.codeStyle.ClojureCodeStyleSettingsProvider"/>
+    <langCodeStyleSettingsProvider implementation="cursive.formatter.codeStyle.ClojureLanguageCodeStyleSettingsProvider"/>
+    <editorSmartKeysConfigurable instance="cursive.settings.ClojureSmartKeysOptionsProvider"/>
+    <annotator language="Clojure" implementationClass="cursive.annotator.ClojureAnnotator"/>
+    <lang.formatter language="Clojure" implementationClass="cursive.formatting.ClojureFormattingModelBuilder"/>
+    <preFormatProcessor implementation="cursive.formatter.ClojurePreFormatProcessor"/>
+    <postFormatProcessor implementation="cursive.formatter.CommentPostFormatProcessor"/>
+    <lang.findUsagesProvider language="Clojure" implementationClass="cursive.findUsages.ClojureFindUsagesProvider"/>
+    <findUsagesHandlerFactory implementation="cursive.findUsages.handlers.ClojureFindUsagesHandlerFactory" id="Clojure" order="first"/>
+    <usageTargetProvider implementation="cursive.findUsages.KeysDestructuringUsageTargetProvider"/>
+    <highlightUsagesHandlerFactory implementation="cursive.findUsages.highlight.ClojureHighlightUsagesHandlerFactory"/>
+    <pom.declarationSearcher implementation="cursive.findUsages.declarations.ClassDeclarationSearcher"/>
+    <pom.declarationSearcher implementation="cursive.findUsages.declarations.SyntheticSymbolDeclarationSearcher"/>
+    <pom.declarationSearcher implementation="cursive.findUsages.declarations.NamespaceDeclarationSearcher"/>
+    <targetElementEvaluator language="Clojure" implementationClass="cursive.psi.ClojureTargetElementEvaluator"/>
+    <consoleFilterProvider implementation="cursive.runner.console.ClojureConsoleFilterProvider"/>
+    <exceptionFilter implementation="cursive.runner.console.ClojureExceptionFilterProvider" order="first"/>
+    <configurationType implementation="cursive.runner.ClojureScriptRunConfigurationType"/>
+    <configurationType implementation="cursive.repl.runner.ReplConfigurationType"/>
+    <programRunner implementation="cursive.repl.runner.RemoteProgramRunner" order="first"/>
+    <programRunner implementation="cursive.repl.runner.LeiningenReplRunner" order="first"/>
+    <programRunner implementation="cursive.repl.runner.LeiningenDebugReplRunner" order="first"/>
+    <stepsBeforeRunProvider implementation="cursive.leiningen.run.SyncLeinBeforeRunTaskProvider" id="syncLeinBeforeRun" order="first"/>
+    <configurationProducer implementation="cursive.runner.ClojureScriptRunConfigurationProducer"/>
+    <runConfigurationProducer implementation="cursive.repl.runner.LocalReplRunConfigurationProducer"/>
+    <fileTemplateGroup implementation="cursive.actions.ClojureTemplatesFactory"/>
+    <lang.refactoringSupport language="Clojure" implementationClass="cursive.refactoring.ClRefactoringProvider"/>
+    <inlineActionHandler implementation="cursive.refactoring.rename.ClInlineHandler"/>
+    <renameInputValidator implementation="cursive.refactoring.rename.ClojureRenameSymbolValidator"/>
+    <renameInputValidator implementation="cursive.refactoring.rename.ClojureRenameNsValidator"/>
+    <renameInputValidator implementation="cursive.refactoring.rename.ClojureRenameKeywordValidator"/>
+    <annotator language="Clojure" implementationClass="cursive.editor.braceHighlighter.ClojureBraceHighlighter"/>
+    <debuggerClassFilterProvider implementation="cursive.debugger.filters.ClojureDebugClassesFilterProvider"/>
+    <gotoSymbolContributor implementation="cursive.gotoclass.ClojureGoToSymbolContributor"/>
+    <gotoClassContributor implementation="cursive.gotoclass.ClojureGoToClassContributor"/>
+    <xdebugger.settings implementation="cursive.debugger.filters.ClojureDebuggerSettings"/>
+    <indexPatternBuilder implementation="cursive.editor.todo.ClojureIndexPatternBuilder"/>
+    <java.shortNamesCache implementation="cursive.index.ClojureShortNamesCache"/>
+    <enterHandlerDelegate implementation="cursive.editor.ClojureEnterHandler" order="first"/>
+    <completion.contributor id="clojureCompletionContributor" language="Clojure" implementationClass="cursive.completion.ClojureCompletionContributor" order="first"/>
+    <lookup.charFilter implementation="cursive.psi.resolve.completion.ClojureCharFilter" order="first"/>
+    <resolveScopeEnlarger implementation="cursive.psi.resolve.ClojureResolveScopeEnlarger"/>
+    <liveTemplateContext implementation="cursive.liveTemplates.ClojureTemplateContextType"/>
+    <defaultLiveTemplatesProvider implementation="cursive.liveTemplates.ClojureDefaultLiveTemplatesProvider"/>
+    <editorTypedHandler implementationClass="cursive.editor.ClojureTypedHandler"/>
+    <qualifiedNameProvider implementation="cursive.editor.ClojureQualifiedNameProvider"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$SymbolMeta"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Namespaces"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Imports"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Aliases"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Refers"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Dependencies"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$NamespacesByAlias"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$ImportVar"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Classes"/>
+    <fileBasedIndex implementation="cursive.index.CljIndex$Javascript"/>
+    <fileBasedIndex implementation="cursive.index.DataReadersIndexExtension"/>
+    <fileBasedIndex implementation="cursive.index.KeywordIndexExtension"/>
+    <basicWordSelectionFilter implementation="cursive.editor.selection.ClojureWordSelectionFilter"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojureStringSelectioner"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojureSymbolSelectioner"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojureKeywordSelectioner"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojureBracedSelectioner"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojureWholeElementSelector"/>
+    <extendWordSelectionHandler implementation="cursive.editor.selection.ClojurePreviousBracedSelectioner"/>
+    <debugger.codeFragmentFactory implementation="cursive.debugger.ClojureCodeFragmentFactory"/>
+    <projectConfigurable instance="cursive.compiler.ClojureCompilerConfigurable" id="Clojure.Compiler" displayName="Clojure Compiler" parentId="project.propCompiler"/>
+    <compileServer.plugin classpath="jps-plugin.jar;clojure-1.7.0.jar"/>
+    <moduleBuilder builderClass="cursive.config.ClojureModuleBuilder"/>
+    <framework.type implementation="cursive.config.ClojureFrameworkType"/>
+    <library.type implementation="cursive.config.ClojureDownloadableLibraryType"/>
+    <applicationService serviceInterface="com.intellij.openapi.fileEditor.UniqueVFilePathBuilder" serviceImplementation="cursive.navigation.ClojureUniqueVFilePathBuilder" overrides="true"/>
+    <editorTabTitleProvider implementation="cursive.navigation.ClojureEditorTabTitleProvider" order="first"/>
+    <postStartupActivity implementation="cursive.licence.LicenceStartupActivity"/>
+    <projectService serviceInterface="cursive.psi.util.ClojurePsiFactory" serviceImplementation="cursive.psi.util.ClojurePsiElementFactoryImpl"/>
+    <projectService serviceInterface="cursive.metrics.Metrics" serviceImplementation="cursive.metrics.Metrics"/>
+    <java.elementFinder implementation="cursive.psi.impl.javaView.ClojureClassFinder"/>
+    <referencesSearch implementation="cursive.findUsages.ClojureReferenceSearcher"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.RenameClojureFileProcessor" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameSyntheticSymbolProcessor" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameSyntheticKeywordProcessor" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameLightFieldProcessor" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameSyntheticClassProcessor" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameNamespaceProvider" order="first"/>
+    <renamePsiElementProcessor implementation="cursive.refactoring.rename.ClojureRenameTypeFieldProcessor"/>
+    <psi.treeChangePreprocessor implementation="cursive.psi.changes.ClojureModificationListener"/>
+    <debugger.positionManagerFactory implementation="cursive.debugger.ClojurePositionManagerFactory"/>
+    <debugger.nodeRenderer implementation="cursive.debugger.ClojureRecordRenderer"/>
+    <debugger.nodeRenderer implementation="cursive.debugger.ClojureSeqRenderer" order="first"/>
+    <debugger.sourcePositionProvider implementation="cursive.debugger.ClojureSourcePositionProvider" order="first"/>
+    <debuggerEditorTextProvider language="Clojure" implementationClass="cursive.debugger.ClojureEditorTextProvider"/>
+    <toolWindow id="REPL" secondary="true" icon="/cursive/icons/clojure_tw.png" anchor="right" factoryClass="cursive.repl.toolwindow.REPLToolWindowFactory"/>
+    <editorActionHandler action="EditorEnter" implementationClass="cursive.repl.toolwindow.actions.REPLEnterAction" order="first"/>
+    <editorActionHandler action="EditorBackSpace" implementationClass="cursive.editor.ClojureBackspaceHandler" order="first"/>
+    <editorActionHandler action="EditorDelete" implementationClass="cursive.editor.ClojureDeleteHandler" order="first"/>
+    <editorActionHandler action="EditorTab" implementationClass="cursive.structural.actions.ParinferIndent" order="first"/>
+    <editorActionHandler action="EditorIndentSelection" implementationClass="cursive.structural.actions.ParinferIndent" order="first"/>
+    <editorActionHandler action="EditorUnindentSelection" implementationClass="cursive.structural.actions.ParinferDedent" order="first"/>
+    <lang.emacs language="Clojure" implementationClass="cursive.structural.actions.ParinferEmacsIndent"/>
+    <projectService serviceInterface="cursive.config.components.ReplState" serviceImplementation="cursive.config.components.ReplState"/>
+    <stacktrace.fold substring="  clojure.core"/>
+    <stacktrace.fold substring="  clojure.lang"/>
+    <stacktrace.fold substring="  clojure.main"/>
+    <stacktrace.fold substring="  clojure.test"/>
+    <stacktrace.fold substring="at clojure.core"/>
+    <stacktrace.fold substring="at clojure.lang"/>
+    <stacktrace.fold substring="at clojure.main"/>
+    <stacktrace.fold substring="at clojure.test"/>
+    <additionalTextAttributes scheme="Default" file="colourSchemes/CursiveDefaultRainbow.xml"/>
+    <additionalTextAttributes scheme="Darcula" file="colourSchemes/CursiveDarculaRainbow.xml"/>
+    <codeInsight.linkHandler prefix="#cursive-test-diff/" handlerClass="cursive.testing.TestDiffLinkHandler"/>
+    <psi.referenceContributor implementation="cursive.psi.reference.ClojureApiReferenceContributor"/>
+    <actionPromoter implementation="cursive.actions.ClojureActionPromoter"/>
+    <editorNotificationProvider implementation="cursive.notifications.SourceRootNotificationProvider"/>
+    <editorNotificationProvider implementation="cursive.notifications.LeiningenProjectNotificationProvider"/>
+    <editorNotificationProvider implementation="cursive.notifications.ClojureSdkNotificationProvider"/>
+    <applicationConfigurable id="Clojure.IDE" displayName="Clojure" groupId="language" instance="cursive.settings.ClojureIdeConfigurable"/>
+    <applicationConfigurable id="Clojure.Resolution" displayName="Symbol Resolution" parentId="Clojure.IDE" instance="cursive.settings.ClojureResolveConfigurable"/>
+    <applicationConfigurable id="Keybindings" displayName="Clojure Keybindings" parentId="preferences.keymap" instance="cursive.keymap.ClojureKeybindingsConfigurable"/>
+    <applicationConfigurable id="Leiningen" displayName="Leiningen" groupId="build.tools" groupWeight="100" instance="cursive.leiningen.settings.LeiningenConfigurable"/>
+    <projectConfigurable id="LeiningenProject" displayName="Project Settings" parentId="Leiningen" instance="cursive.leiningen.settings.LeiningenProjectConfigurable"/>
+    <applicationConfigurable id="Clojure.Usage.Statistics" displayName="Cursive Statistics" parentId="preferences.general" instance="cursive.usageStatistics.ClojureUsageStatisticsConfigurable"/>
+    <applicationService serviceInterface="cursive.settings.ClojureIdeSettings" serviceImplementation="cursive.settings.ClojureIdeSettings"/>
+    <applicationService serviceInterface="cursive.usageStatistics.ClojureUsageStatisticsSettings" serviceImplementation="cursive.usageStatistics.ClojureUsageStatisticsSettings"/>
+    <applicationService serviceInterface="cursive.usageStatistics.ClojureUsageStatistics" serviceImplementation="cursive.usageStatistics.ClojureUsageStatistics"/>
+    <applicationService serviceInterface="cursive.usageStatistics.StatisticsSender" serviceImplementation="cursive.usageStatistics.StatisticsSender"/>
+    <applicationService serviceInterface="cursive.leiningen.project.LeinShimProvider" serviceImplementation="cursive.leiningen.project.LeinShimProvider"/>
+    <applicationService serviceInterface="cursive.licence.LicenceSettings" serviceImplementation="cursive.licence.LicenceSettings"/>
+    <applicationService serviceInterface="cursive.settings.ClojureResolveSettings" serviceImplementation="cursive.settings.ClojureResolveSettings"/>
+    <projectService serviceInterface="cursive.leiningen.project.LeiningenProjectDetails" serviceImplementation="cursive.leiningen.project.LeiningenProjectDetails"/>
+    <project.converterProvider implementation="cursive.config.ClojureFacetConverterProvider"/>
+    <project.converterProvider implementation="cursive.repl.runner.ReplRunConfigurationConverterProvider"/>
+    <project.converterProvider implementation="cursive.repl.runner.ReplModuleAdderConverterProvider"/>
+    <applicationService serviceInterface="cursive.leiningen.settings.LeiningenRunnerSettings" serviceImplementation="cursive.leiningen.settings.LeiningenRunnerSettings"/>
+    <projectService serviceInterface="cursive.leiningen.settings.LeiningenProjectSettings" serviceImplementation="cursive.leiningen.settings.LeiningenProjectSettings"/>
+    <configurationType implementation="cursive.leiningen.run.LeiningenRunConfigurationType"/>
+    <projectOpenProcessor implementation="cursive.leiningen.project.LeiningenProjectOpenProcessor"/>
+    <projectImportBuilder implementation="cursive.leiningen.project.LeiningenProjectBuilder"/>
+    <projectImportProvider implementation="cursive.leiningen.project.LeiningenProjectImportProvider"/>
+    <attachSourcesProvider implementation="cursive.leiningen.sources.LeiningenAttachSourcesProvider"/>
+    <moduleBuilder builderClass="cursive.leiningen.project.LeiningenModuleBuilder"/>
+    <programRunner implementation="cursive.leiningen.run.LeiningenRunner" order="first"/>
+    <programRunner implementation="cursive.leiningen.run.LeiningenDebuggerRunner" order="first"/>
+    <localInspection language="Clojure" shortName="ClFullyQualifiedClass" displayName="Fully Qualified Class" groupName="Clojure" enabledByDefault="true" level="WEAK WARNING" implementationClass="cursive.inspections.symbol.ClFullyQualifiedClassInspection"/>
+    <localInspection language="Clojure" shortName="ClUnusedLocalSymbol" displayName="Unused Local Symbol" groupName="Clojure" enabledByDefault="true" level="INFORMATION" implementationClass="cursive.inspections.list.ClUnusedLocalSymbol"/>
+    <localInspection language="Clojure" shortName="ClUnusedImport" displayName="Unused Import" groupName="Clojure" enabledByDefault="true" level="INFORMATION" implementationClass="cursive.inspections.list.ClUnusedImport"/>
+    <localInspection language="Clojure" shortName="ClIncorrectArity" displayName="Incorrect Arity" groupName="Clojure" enabledByDefault="true" level="ERROR" implementationClass="cursive.inspections.list.ClIncorrectArity"/>
+    <localInspection language="Clojure" shortName="ClojureUnusedDeclaration" displayName="Unused Declaration" groupName="Clojure" enabledByDefault="true" level="INFORMATION" implementationClass="cursive.inspections.unused.ClojureUnusedDeclarationInspection" unfair="true"/>
+    <localInspection language="Clojure" shortName="ClUnusedRequire" displayName="Unused Require" groupName="Clojure" enabledByDefault="true" level="INFORMATION" implementationClass="cursive.inspections.unused.UnusedRequire"/>
+    <localInspection language="Clojure" shortName="ClNestedFunctionLiterals" displayName="Nested function literals" groupName="Clojure" enabledByDefault="true" level="ERROR" implementationClass="cursive.inspections.list.ClNestedFunctionLiterals"/>
+    <intentionAction>
+      <className>cursive.intentions.functions.ClConvertAnonymousToFn</className>
+      <category>Clojure</category>
+    </intentionAction>
+    <intentionAction>
+      <className>cursive.intentions.style.ChangeIndentationAction</className>
+      <category>Clojure/Indentation</category>
+    </intentionAction>
+    <intentionAction>
+      <className>cursive.intentions.resolve.CustomiseResolutionAction</className>
+      <category>Clojure</category>
+    </intentionAction>
+  </extensions>
+  <application-components>
+    <component>
+      <implementation-class>cursive.config.InitComponent</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.structural.StructuralEditingWidget$Component</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.repl.commands.ReplCommandManager</implementation-class>
+    </component>
+  </application-components>
+  <project-components>
+    <component>
+      <implementation-class>cursive.compiler.ClojureCompilerSettings</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.psi.impl.javaView.ClojureClassFinder</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.config.InitProject</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.inspections.unused.ClojurePostHighlightingPassFactory</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.config.OptionsSearchRegisterer</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.structural.ParinferComponent</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.repl.commands.ReplProjectCommandManager</implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.leiningen.navigator.LeiningenProjectNavigator
+      </implementation-class>
+    </component>
+    <component>
+      <implementation-class>cursive.leiningen.project.LeiningenProjectsManager</implementation-class>
+    </component>
+  </project-components>
+  <actions>
+    <action id="Clojure.ClojureFile" class="cursive.actions.NewClojureFileAction" text="Clojure Namespace" description="Create new Clojure namespace">
+      <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+    </action>
+    <action id="GotoNamespace" class="cursive.navigation.GotoNamespaceAction" text="Namespace..." description="Go To Namespace">
+      <add-to-group group-id="GoToMenuEx" anchor="after" relative-to-action="GotoFile"/>
+    </action>
+    <group text="REPL" id=":cursive.repl.actions/clojure-repl-group" class="cursive.repl.actions.ReplActionGroup$ActiveReplMenu" popup="true" icon="/cursive/icons/clojure.png">
+      <add-to-group group-id="ToolsMenu"/>
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <action id=":cursive.repl.actions/load-file" class="cursive.repl.actions.Repl$LoadFile" text="Load file in REPL"/>
+      <action id=":cursive.repl.actions/sync-files" class="cursive.repl.actions.Repl$SyncFiles" text="Sync files in REPL"/>
+      <action id=":cursive.repl.actions/run-top-sexp" class="cursive.repl.actions.Repl$RunTopSexp" text="Send top form to REPL"/>
+      <action id=":cursive.repl.actions/run-last-sexp" class="cursive.repl.actions.Repl$RunLastSexp" text="Send form before caret to REPL"/>
+      <action id=":cursive.repl.actions/switch-namespace" class="cursive.repl.actions.Repl$SwitchNamespace" text="Switch REPL NS to current file"/>
+      <action id=":cursive.repl.actions/clear-repl" class="cursive.repl.actions.Repl$ClearRepl" text="Clear output for current REPL" icon="/actions/gc.png"/>
+      <action id=":cursive.repl.actions/jump-to-repl" class="cursive.repl.actions.Repl$JumpToRepl" text="Jump to REPL editor" icon="/cursive/icons/clojure.png"/>
+      <action id=":cursive.repl.actions/jump-to-output" class="cursive.repl.actions.Repl$JumpToOutput" text="Jump to REPL output pane" icon="/cursive/icons/clojure.png"/>
+      <action id=":cursive.repl.actions/print-exception" class="cursive.repl.actions.Repl$PrintException" text="Print last exception" icon="/debugger/stackFrame.png"/>
+      <action id=":cursive.repl.actions/search-history" class="cursive.repl.actions.Repl$SearchReplHistory" text="Search REPL history" icon="/actions/find.png"/>
+      <action id=":cursive.repl.actions/macroexpansion" class="cursive.repl.actions.Repl$ViewMacroexpansion" text="View macro expansion" icon="/actions/expandall.png"/>
+      <group id="ToolsMenuTesting" class="cursive.repl.actions.ReplActionGroup$ToolingMenu">
+        <separator/>
+        <action id=":cursive.testing.actions/run-ns-tests" class="cursive.repl.actions.Repl$RunNsTests" text="Run tests in current NS in REPL"/>
+        <action id=":cursive.testing.actions/run-single-test" class="cursive.repl.actions.Repl$RunSingleTest" text="Run test under caret in REPL"/>
+        <action id=":cursive.testing.actions/rerun-last-test" class="cursive.repl.actions.Repl$RerunLastTest" text="Re-run last test action in REPL"/>
+        <action id=":cursive.testing.actions/remove-test-markers" class="cursive.repl.actions.Repl$ClearTestMarkers" text="Clear all test markers"/>
+      </group>
+      <group id="ToolsMenuTypeCheck" class="cursive.repl.actions.ReplActionGroup$ToolingMenu">
+        <separator/>
+        <action id=":cursive.extensions.clojure.core.typed.actions/type-check-ns" class="cursive.repl.actions.Repl$TypeCheck" text="Type check current NS" icon="/cursive/icons/typed_clojure.png"/>
+      </group>
+      <separator/>
+      <action id=":cursive.repl.commands/add-new" class="cursive.repl.commands.AddNewReplCommandAction" text="Add new REPL command" icon="/cursive/icons/clojure.png"/>
+      <action id=":cursive.repl.commands/edit" class="cursive.repl.commands.EditReplCommandsAction" text="Edit REPL commands" icon="/actions/editSource.png"/>
+      <group text="Commands" id=":cursive.repl.actions/clojure-repl-commands-group" class="cursive.repl.commands.ReplCommandGroup" popup="true" icon="/cursive/icons/clojure.png"/>
+    </group>
+    <action id=":cursive.repl.actions/prev-history-item" class="cursive.repl.actions.Repl$PreviousHistory" text="Previous REPL history item" icon="/actions/previousOccurence.png">
+      <keyboard-shortcut first-keystroke="control UP" keymap="$default"/>
+    </action>
+    <action id=":cursive.repl.actions/next-history-item" class="cursive.repl.actions.Repl$NextHistory" text="Next REPL history item" icon="/actions/nextOccurence.png">
+      <keyboard-shortcut first-keystroke="control DOWN" keymap="$default"/>
+    </action>
+    <action id="Leiningen.RunBuild" class="cursive.leiningen.run.RunBuildAction" text="_Run Leiningen Build" description="Execute selected leiningen goal" icon="/actions/execute.png"/>
+    <action id="Leiningen.AddManagedFiles" class="cursive.leiningen.navigator.AddManagedFilesAction" text="_Add Leiningen file" description="Add a Leiningen file" icon="/general/add.png"/>
+    <action id="Leiningen.AddManagedFile" class="cursive.leiningen.navigator.AddManagedFileAction" text="Add as Leiningen Project" description="Add and import Leiningen project to the projects tree" icon="AllIcons.General.Add">
+      <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+    </action>
+    <action id="Leiningen.RemoveManagedFiles" class="cursive.leiningen.navigator.RemoveManagedFilesAction" text="Remove Projects" description="Remove selected Leiningen projects from the project tree" icon="AllIcons.General.Remove"/>
+    <action id="Leiningen.RefreshProjects" class="cursive.leiningen.navigator.RefreshProjectsAction" text="Refresh Leiningen _Projects" description="Refresh all leiningen projects." icon="/actions/sync.png"/>
+    <action id="Leiningen.ShowSettings" class="cursive.leiningen.navigator.ShowSettingsAction" text="Leiningen Settings" description="Show the Leiningen Settings page" icon="/cursive/icons/settings.png"/>
+    <group id="Leiningen.NavigatorActionsToolbar">
+      <reference ref="Leiningen.RefreshProjects"/>
+      <reference ref="Leiningen.AddManagedFiles"/>
+      <reference ref="Leiningen.RemoveManagedFiles"/>
+      <separator/>
+      <reference ref="Leiningen.RunBuild"/>
+      <separator/>
+      <reference ref="Leiningen.ShowSettings"/>
+    </group>
+    <action internal="true" id="SendCursiveStatistics" class="cursive.usageStatistics.SendStatisticsAction" text="Send Cursive Statistics">
+      <add-to-group group-id="Internal" anchor="after" relative-to-action="SendStatistics"/>
+    </action>
+    <action id="EnterCursiveLicence" class="cursive.licence.EnterLicenceAction" text="Register Cursive...">
+      <add-to-group group-id="HelpMenu" anchor="last"/>
+    </action>
+    <action id=":cursive.editor.actions/show-type" class="cursive.editor.actions.EditorActions$ShowType" text="Show Element Type" icon="/cursive/icons/clojure.png">
+      <keyboard-shortcut first-keystroke="alt EQUALS" keymap="$default"/>
+      <keyboard-shortcut first-keystroke="control shift P" keymap="Mac OS X"/>
+      <keyboard-shortcut first-keystroke="alt EQUALS" keymap="Mac OS X" remove="true"/>
+      <keyboard-shortcut first-keystroke="control shift P" keymap="Mac OS X 10.5+"/>
+      <keyboard-shortcut first-keystroke="alt EQUALS" keymap="Mac OS X 10.5+" remove="true"/>
+      <add-to-group group-id="CodeEditorViewGroup" anchor="last"/>
+    </action>
+  </actions>
+</idea-plugin>

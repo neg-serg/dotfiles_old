@@ -528,51 +528,7 @@
         <option name="myPlugins">
           <set>
             <plugin>
-              <option name="myPluginId" value="com.cursiveclojure.cursive" />
-              <option name="myPluginName" />
-              <option name="myBundled" value="false" />
-            </plugin>
-            <plugin>
               <option name="myPluginId" value="org.intellij.clojure" />
-              <option name="myPluginName" />
-              <option name="myBundled" value="false" />
-            </plugin>
-          </set>
-        </option>
-      </plugins>
-    </entry>
-    <entry key="*.cljc">
-      <plugins>
-        <option name="myPlugins">
-          <set>
-            <plugin>
-              <option name="myPluginId" value="com.cursiveclojure.cursive" />
-              <option name="myPluginName" />
-              <option name="myBundled" value="false" />
-            </plugin>
-          </set>
-        </option>
-      </plugins>
-    </entry>
-    <entry key="*.cljs">
-      <plugins>
-        <option name="myPlugins">
-          <set>
-            <plugin>
-              <option name="myPluginId" value="com.cursiveclojure.cursive" />
-              <option name="myPluginName" />
-              <option name="myBundled" value="false" />
-            </plugin>
-          </set>
-        </option>
-      </plugins>
-    </entry>
-    <entry key="*.cljx">
-      <plugins>
-        <option name="myPlugins">
-          <set>
-            <plugin>
-              <option name="myPluginId" value="com.cursiveclojure.cursive" />
               <option name="myPluginName" />
               <option name="myBundled" value="false" />
             </plugin>
@@ -1061,19 +1017,6 @@
           <set>
             <plugin>
               <option name="myPluginId" value="pl.psi.jls.wuff.plugin" />
-              <option name="myPluginName" />
-              <option name="myBundled" value="false" />
-            </plugin>
-          </set>
-        </option>
-      </plugins>
-    </entry>
-    <entry key="*.edn">
-      <plugins>
-        <option name="myPlugins">
-          <set>
-            <plugin>
-              <option name="myPluginId" value="com.cursiveclojure.cursive" />
               <option name="myPluginName" />
               <option name="myBundled" value="false" />
             </plugin>

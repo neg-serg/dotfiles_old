@@ -1,0 +1,3 @@
+(def make-list (fn [l1 l2] (list l1 l2)))
+
+(def make-list+ (fn [l1 l2 & rest] (apply list l1 l2 rest)))
