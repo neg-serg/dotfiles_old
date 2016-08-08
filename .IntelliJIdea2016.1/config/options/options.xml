@@ -5,12 +5,12 @@
     <property name="evlsprt3.15" value="11" />
     <property name="installed.kotlin.plugin.version" value="1.0.3-release-IJ2016.1-103" />
     <property name="installation.uid" value="923eef34-ba39-4acd-ab1d-742a05b57e7e" />
-    <property name="android-component-compatibility-check" value="1469870904531" />
+    <property name="android-component-compatibility-check" value="1470576958277" />
     <property name="project.wizard.group" value="JAVA_MODULE" />
     <property name="project.wizard.template" value="Java" />
     <property name="toolwindow.stripes.buttons.info.shown" value="true" />
     <property name="DeploymentNotificationsComponent.WarnDisplayed.Java7&amp;Windows7FTPIssue" value="false" />
-    <property name="lastTip" value="95" />
+    <property name="lastTip" value="99" />
     <property name="PLUGIN_FILTER" value="material&#10;mater&#10;Afterglow&#10;ideavim&#10;smali" />
     <property name="file.chooser.recent.files" value="$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm&#10;/home/neg/src/1st_level/hackathon-Embeditor/embeditor&#10;/home/neg/src/dmd_project&#10;/home/neg/src/1st_level/hackathon-Embeditor&#10;/one/dist/idea&#10;/home/neg/dw/neovim-intellij-complete.zip&#10;/home/neg/dw/Visual Studio 2013.jar&#10;/home/neg/dw/Visual Studio 2013 - Dark.jar&#10;/home/neg/dw/Visual Studio 2013(Edit).jar&#10;/home/neg/dw/Electric Expresso.jar&#10;/home/neg/dev/src/dmd_project&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushIdeaPlugin/lib/IdeaPlugin.jar&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/JavaRushHomeWork.iml&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/JavaRushPlugin.properties&#10;/usr/lib/jvm/java-6-jdk&#10;/home/neg/src/intellij-community&#10;/home/neg/src/jetbrains-afterglow-scheme/Afterglow.icls&#10;/home/neg/dw/dark_color_theme/dark_color_theme.jar&#10;/home/neg/dw/dark_color_theme.zip&#10;/home/neg/src&#10;/home/neg/src/1st_level/hackathon-Embeditor.jar&#10;/home/neg/src/1st_level/hackathon-Embeditor/hackathon-embeditor.iml&#10;/home/neg/dw/dark_blue_sea.jar&#10;/home/neg/src/scala-ex/example/example/build.sbt&#10;/home/neg/src/_scala/LearningSpark/build.sbt&#10;/home/neg/src/_scala/graphviz-s/project/plugins.sbt&#10;/home/neg/src/_scala/interviews/build.sbt&#10;/home/neg/src/_scala/game_example/game_example.sbt&#10;/home/neg/src/_scala/graphviz-s/README.md&#10;/home/neg/src/_scala" />
     <property name="plugins.preselection.path" value="$USER_HOME$/dw" />
@@ -56,5 +56,6 @@
     <property name="AFTER.DISTRACTION.MODE.SHOW_METHOD_SEPARATORS" value="false" />
     <property name="AFTER.DISTRACTION.MODE.HIDE_TOOL_STRIPES" value="true" />
     <property name="AFTER.DISTRACTION.MODE.EDITOR_TAB_PLACEMENT" value="0" />
+    <property name="ideavim.statistics.timestamp" value="1470576961348" />
   </component>
 </application>

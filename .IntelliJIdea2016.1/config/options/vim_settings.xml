@@ -384,6 +384,12 @@
         <mark key="." line="14" column="29" />
         <mark key="^" line="14" column="29" />
       </file>
+      <file name="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/authentication/LoginUI.java" timestamp="1470578838055">
+        <mark key="[" line="49" column="8" />
+        <mark key="]" line="49" column="20" />
+        <mark key="^" line="49" column="20" />
+        <mark key="." line="49" column="20" />
+      </file>
       <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson02/task01/Cat.java" timestamp="1467924395072">
         <mark key="[" line="10" column="8" />
         <mark key="]" line="10" column="11" />
@@ -443,10 +449,10 @@
     </jumps>
     <registers>
       <register name="&quot;" type="4">
-        <text>.*;</text>
+        <text>addcom</text>
       </register>
       <register name="-" type="4">
-        <text>.*;</text>
+        <text>addcom</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>

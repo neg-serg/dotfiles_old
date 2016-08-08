@@ -5,5 +5,6 @@
     <option name="SHOW_MEMORY_INDICATOR" value="true" />
     <option name="EDITOR_TAB_PLACEMENT" value="0" />
     <option name="COLOR_BLINDNESS" value="deuteranopia" />
+    <option name="OVERRIDE_NONIDEA_LAF_FONTS" value="true" />
   </component>
 </application>

@@ -2,11 +2,13 @@
   <component name="RecentProjectsManager">
     <option name="recentPaths">
       <list>
+        <option value="$USER_HOME$/dev/src/dmd_project" />
+        <option value="$USER_HOME$/fsrc/akka" />
+        <option value="$USER_HOME$/src/scala-ex/objsets" />
         <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor" />
         <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor/jediterm" />
         <option value="$USER_HOME$/src/dmd_project" />
         <option value="$USER_HOME$/src/1st_level/hackathon-Embeditor" />
-        <option value="$USER_HOME$/dev/src/dmd_project" />
         <option value="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork" />
         <option value="$USER_HOME$/src/intellij-community" />
         <option value="$USER_HOME$/src/scala-ex/example/example" />
@@ -20,6 +22,12 @@
         <option value="$USER_HOME$/src/IdeaProjects/untitled" />
       </list>
     </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/dev/src/dmd_project" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/dev/src/dmd_project" />
     <option name="additionalInfo">
       <map>
         <entry key="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork">
@@ -39,7 +47,18 @@
               <option name="build" value="IU-145.1617" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1470234081710" />
+              <option name="projectOpenTimestamp" value="1470583622237" />
+              <option name="buildTimestamp" value="1464901200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/fsrc/akka">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-145.1617" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1470576960084" />
               <option name="buildTimestamp" value="1464901200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -198,8 +217,19 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/src/scala-ex/objsets">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-145.1617" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1470463959771" />
+              <option name="buildTimestamp" value="1464901200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="$USER_HOME$/src/1st_level/hackathon-Embeditor" />
+    <option name="lastProjectLocation" value="$USER_HOME$/fsrc" />
   </component>
 </application>
