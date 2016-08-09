@@ -124,44 +124,47 @@ function start_bar {
     sleep .05 
 } 
 
+function main_circle_(){
+    tail -f -n 0 "/tmp/notify_fifo_${corner}" | \
+        # Reads the notifications line by line
+        while IFS= read -r summary; do
+            line_c=$(grep -c ";" <<< "${summary}")
+
+            largest_width=0
+            IFS=';' read -r -A splitted <<< "${summary}"
+
+            # To be precise
+            parsed_summary=$(sed -e 's/\%[^%}]*}//g' <<< "${splitted}")
+            
+            calc::text_width_
+            calc::width_
+
+            if [[ -z $(xdotool search --name "bar_noti_name_${corner}") ]]; then
+                start_bar "${line_c}"
+            else
+                #if bar size is too different, resize
+                dist=$(("${width}" - "${last_width}")) 
+                if [[ "${line_c}" != "${last_lines_c}" \
+                    || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) \
+                    || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold}))\
+                ]]; then
+                    while [[ -n $(xdotool search --name "bar_noti_name_"${corner}"$") ]]; do
+                        xdotool search --name "bar_noti_name_"${corner}"$" windowkill
+                    done
+                    start_bar "${line_c}"
+                else 
+                    builtin printf "%s\n" \
+                        $(($(date +%s) + ${dismiss})) \
+                        > ${noti_timestamp}
+                fi
+            fi
+            builtin printf "%s\n" \
+                "${summary}" >> "${tmp_file}"
+            last_width="${width}"
+            last_lines_c="${line_c}"
+        done
+}
+
 mktmp_files_
 bar_notifyd_init_
-
-tail -f -n 0 "/tmp/notify_fifo_${corner}" |\
-# Reads the notifications line by line
-while IFS= read -r summary; do
-    line_c=$(grep -c ";" <<< "${summary}")
-
-    largest_width=0
-    IFS=';' read -r -A splitted <<< "${summary}"
-
-    # To be precise
-    parsed_summary=$(sed -e 's/\%[^%}]*}//g' <<< "${splitted}")
-    
-    calc::text_width_
-    calc::width_
-
-    if [[ -z $(xdotool search --name "bar_noti_name_${corner}") ]]; then
-        start_bar "${line_c}"
-    else
-        dist=$(("${width}" - "${last_width}")) #if bar size is too different, resize
-        if [[ "${line_c}" != "${last_lines_c}" \
-              || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) \
-              || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold}))\
-           ]]; then
-            while [[ -n $(xdotool search --name "bar_noti_name_"${corner}"$") ]]; do
-                xdotool search --name "bar_noti_name_"${corner}"$" windowkill
-            done
-            start_bar "${line_c}"
-        else 
-            builtin printf "%s\n" \
-                $(($(date +%s) + ${dismiss})) \
-                > ${noti_timestamp}
-        fi
-    fi
-
-    builtin printf "%s\n" \
-        "${summary}" >> "${tmp_file}"
-    last_width="${width}"
-    last_lines_c="${line_c}"
-done
+main_circle_
