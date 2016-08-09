@@ -30,8 +30,6 @@ map q <NOP>
 
 map  <C-tab> <NOP>
 nmap <C-n> <NOP>
-imap <C-n> <Down>
-imap <C-p> <Up>
 
 noremap j 3j
 noremap k 3k
@@ -63,15 +61,19 @@ let g:walk_input_map_forward = '<C-,>'
 let g:walk_input_map_backward = '<C-.> <C-S-,>'
 
 nmap <silent> ,, :noh<CR>
-nmap <silent> ,b :sidebar Bookmarks<CR>
 imap <C-y> <S-Ins>
 cmap <C-y> <S-Ins>
 vmap <C-y> <S-Ins>
 
-map <C-n> <Down>
 map <C-p> <Up>
+imap <C-p> <Up>
+map <C-n> <Down>
+imap <C-n> <Down>
 map <C-b> <Left>
 map <C-f> <Right>
+
+imap <C-f> <Right>
+imap <C-b> <Left>
 
 map <silent> B :bmarks<CR>
 map  gr gT
@@ -101,14 +103,14 @@ map <silent> s :sidebar<Space>
 map <silent> S :sbclose<CR>
 map gq :noscript popup<cr>
 
-" Russian language keyboard mappings (UTF-8)
-nmap <silent> щ  :!xkb-switch -s us&<CR>:open<Space>
-nmap <silent> е  :!xkb-switch -s us&<CR>:tabopen<Space>
-nmap <silent> пш :!xkb-switch -s us&<CR>gi
-nmap <silent> а  :!xkb-switch -s us&<CR>f
-nmap <silent> А  :!xkb-switch -s us&<CR>F
-nmap <silent> ж  :!xkb-switch -s us&<CR>;
-nmap <silent> Ж  :!xkb-switch -s us&<CR>:
+" " Russian language keyboard mappings (UTF-8)
+" map <silent> щ  :!xkb-switch -s us 2>/dev/null<CR>o
+" map <silent> е  :!xkb-switch -s us 2>/dev/null<CR>t
+" map <silent> пш :!xkb-switch -s us 2>/dev/null<CR>gi
+" map <silent> а  :!xkb-switch -s us 2>/dev/null<CR>f
+" map <silent> А  :!xkb-switch -s us 2>/dev/null<CR>F
+" map <silent> ж  :!xkb-switch -s us 2>/dev/null<CR>;
+" map <silent> Ж  :!xkb-switch -s us 2>/dev/null<CR>:
 nmap хх [[
 nmap ъъ ]]
 nmap <silent> . :!xkb-switch -s us&<CR>/
@@ -143,6 +145,5 @@ map пк gT
 map пе gt
 
 ignorekeys clear
-ignorekeys add inbox\\.google\\.com -except=w,W,;,:,b,B,d,u,f,F,t,T,o,O,J,K,g,q,y,Y
-ignorekeys add mail\\.google\\.com -except=w,W,;,:,b,B,d,u,f,F,t,T,o,O,J,K,z
-ignorekeys add rememberthemilk\\.com/app -except=:,J,K
+"ignorekeys add inbox\\.google\\.com -except=W,b,B,F,T,O,J,K,g,q,Y
+"ignorekeys add mail\\.google\\.com -except=W,b,B,F,T,O,J,K,z
