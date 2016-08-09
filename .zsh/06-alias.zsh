@@ -311,8 +311,12 @@ alias vuze="vuze &>/dev/null&"
     local jetbrain_products=(idea pycharm rubymine webstorm clion)
     for i in ${jetbrain_products[@]}; do
         jetbrains_path="${dist_dir}/${i}/bin/${i}.sh"
-        if readlink -fq ${jetbrains_path}>/dev/null; then
+        jetbrains_path_alter="/opt/${i}/bin/${i}.sh"
+        if readlink -fq ${jetbrains_path} > /dev/null; then
             alias "$i=${jetbrains_path} > /dev/shm/${i}$$ &" 
+        fi
+        if readlink -fq ${jetbrains_path_alter} > /dev/null; then
+            alias "$i=${jetbrains_path_alter} > /dev/shm/${i}$$ &" 
         fi
     done
 }
