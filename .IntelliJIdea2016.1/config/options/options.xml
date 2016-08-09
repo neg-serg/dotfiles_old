@@ -10,12 +10,12 @@
     <property name="project.wizard.template" value="Java" />
     <property name="toolwindow.stripes.buttons.info.shown" value="true" />
     <property name="DeploymentNotificationsComponent.WarnDisplayed.Java7&amp;Windows7FTPIssue" value="false" />
-    <property name="lastTip" value="103" />
-    <property name="PLUGIN_FILTER" value="cursive&#10;material&#10;mater&#10;Afterglow&#10;ideavim" />
-    <property name="file.chooser.recent.files" value="$USER_HOME$/dw&#10;/home/neg/src/spark&#10;/home/neg/src/1st_level/hackathon-Embeditor/jediterm&#10;/home/neg/src/1st_level/hackathon-Embeditor/embeditor&#10;/home/neg/src/dmd_project&#10;/home/neg/src/1st_level/hackathon-Embeditor&#10;/one/dist/idea&#10;/home/neg/dw/neovim-intellij-complete.zip&#10;/home/neg/dw/Visual Studio 2013.jar&#10;/home/neg/dw/Visual Studio 2013 - Dark.jar&#10;/home/neg/dw/Visual Studio 2013(Edit).jar&#10;/home/neg/dw/Electric Expresso.jar&#10;/home/neg/dev/src/dmd_project&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushIdeaPlugin/lib/IdeaPlugin.jar&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/JavaRushHomeWork.iml&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/JavaRushPlugin.properties&#10;/usr/lib/jvm/java-6-jdk&#10;/home/neg/src/intellij-community&#10;/home/neg/src/jetbrains-afterglow-scheme/Afterglow.icls&#10;/home/neg/dw/dark_color_theme/dark_color_theme.jar&#10;/home/neg/dw/dark_color_theme.zip&#10;/home/neg/src&#10;/home/neg/src/1st_level/hackathon-Embeditor.jar&#10;/home/neg/src/1st_level/hackathon-Embeditor/hackathon-embeditor.iml&#10;/home/neg/dw/dark_blue_sea.jar&#10;/home/neg/src/scala-ex/example/example/build.sbt&#10;/home/neg/src/_scala/LearningSpark/build.sbt&#10;/home/neg/src/_scala/graphviz-s/project/plugins.sbt&#10;/home/neg/src/_scala/interviews/build.sbt&#10;/home/neg/src/_scala/game_example/game_example.sbt" />
-    <property name="plugins.preselection.path" value="$USER_HOME$/dw" />
+    <property name="lastTip" value="105" />
+    <property name="PLUGIN_FILTER" value="material&#10;cursive&#10;mater&#10;Afterglow&#10;ideavim" />
+    <property name="file.chooser.recent.files" value="$USER_HOME$/src/material-theme-jetbrains/Material Theme.zip&#10;/home/neg/src/material-theme-jetbrains/out/artifacts/Material_Theme_jar/Material Theme.jar&#10;/home/neg/src/material-theme-jetbrains&#10;/home/neg/dw&#10;/home/neg/src/spark&#10;/home/neg/src/1st_level/hackathon-Embeditor/jediterm&#10;/home/neg/src/1st_level/hackathon-Embeditor/embeditor&#10;/home/neg/src/dmd_project&#10;/home/neg/src/1st_level/hackathon-Embeditor&#10;/one/dist/idea&#10;/home/neg/dw/neovim-intellij-complete.zip&#10;/home/neg/dw/Visual Studio 2013.jar&#10;/home/neg/dw/Visual Studio 2013 - Dark.jar&#10;/home/neg/dw/Visual Studio 2013(Edit).jar&#10;/home/neg/dw/Electric Expresso.jar&#10;/home/neg/dev/src/dmd_project&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushIdeaPlugin/lib/IdeaPlugin.jar&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/JavaRushHomeWork.iml&#10;/home/neg/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/JavaRushPlugin.properties&#10;/usr/lib/jvm/java-6-jdk&#10;/home/neg/src/intellij-community&#10;/home/neg/src/jetbrains-afterglow-scheme/Afterglow.icls&#10;/home/neg/dw/dark_color_theme/dark_color_theme.jar&#10;/home/neg/dw/dark_color_theme.zip&#10;/home/neg/src&#10;/home/neg/src/1st_level/hackathon-Embeditor.jar&#10;/home/neg/src/1st_level/hackathon-Embeditor/hackathon-embeditor.iml&#10;/home/neg/dw/dark_blue_sea.jar&#10;/home/neg/src/scala-ex/example/example/build.sbt&#10;/home/neg/src/_scala/LearningSpark/build.sbt" />
+    <property name="plugins.preselection.path" value="$USER_HOME$/src/material-theme-jetbrains" />
     <property name="java.module.default.source.root" value="src" />
-    <property name="com.intellij.openapi.roots.ui.configuration.TabbedModuleEditor.selectedEditor" value="Paths" />
+    <property name="com.intellij.openapi.roots.ui.configuration.TabbedModuleEditor.selectedEditor" value="Dependencies" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="kotlin.lastUpdateCheck" value="1452521554416" />
     <property name="ChangesViewManager.DETAILS_SPLITTER_PROPORTION" value="0.5" />
@@ -58,8 +58,8 @@
     <property name="AFTER.DISTRACTION.MODE.EDITOR_TAB_PLACEMENT" value="0" />
     <property name="ideavim.statistics.timestamp" value="1470665022492" />
     <property name="cursive.eap.updates.asked" value="true" />
-    <property name="selected.color.option.type" value="IDENTIFIER_UNDER_CARET_ATTRIBUTES" />
-    <property name="ColorChooser.RecentColors" value="94-70-140-255,,,0-85-255-255,,,102-102-102-255,,,40-115-115-255,,,247-118-105-255,,,202-211-222-255,,,18-18-18-255,,,0-10-34-255,,,23-25-32-255,,,145-78-137-255,,,57-85-115-255,,,43-118-148-255,,,138-47-88-255,,,192-192-192-255,,,35-35-35-255,,,193-67-96-255,,,207-79-136-255,,,18-255-18-255,,,133-133-133-255,,,64-133-133-255" />
+    <property name="selected.color.option.type" value="DEFAULT_FUNCTION_DECLARATION" />
+    <property name="ColorChooser.RecentColors" value="51-255-51-255,,,0-43-54-255,,,7-54-66-255,,,10-119-0-255,,,114-114-56-255,,,145-78-137-255,,,57-85-115-255,,,43-118-148-255,,,0-95-175-255,,,0-95-135-255,,,0-95-95-255,,,34-187-119-255,,,43-118-141-255,,,40-115-115-255,,,83-166-166-255,,,71-149-158-255,,,94-70-140-255,,,83-55-138-255,,,71-121-179-255,,,95-135-215-255" />
     <property name="export.settings.path" value="/mnt/home/dw/WimMirodarkIdea.jar" />
   </component>
 </application>

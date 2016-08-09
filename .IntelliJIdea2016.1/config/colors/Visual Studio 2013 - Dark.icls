@@ -5,8 +5,8 @@
   <colors>
     <option name="ADDED_LINES_COLOR" value="295622" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
-    <option name="CARET_COLOR" value="bbbbbb" />
-    <option name="CARET_ROW_COLOR" value="323232" />
+    <option name="CARET_COLOR" value="bbffbb" />
+    <option name="CARET_ROW_COLOR" value="33ff33" />
     <option name="CONSOLE_BACKGROUND_KEY" value="2b2b2b" />
     <option name="FILESTATUS_ADDED" value="629755" />
     <option name="FILESTATUS_DELETED" value="6c6c6c" />
@@ -25,19 +25,18 @@
     <option name="FILESTATUS_changelistConflict" value="d5756c" />
     <option name="FILESTATUS_modifiedOutside" value="6897bb" />
     <option name="GUTTER_BACKGROUND" value="313335" />
-    <option name="INDENT_GUIDE" value="373737" />
-    <option name="LINE_NUMBERS_COLOR" value="888888" />
-    <option name="METHOD_SEPARATORS_COLOR" value="4d4d4d" />
+    <option name="INDENT_GUIDE" value="ffffff" />
+    <option name="LINE_NUMBERS_COLOR" value="ffffff" />
+    <option name="METHOD_SEPARATORS_COLOR" value="ffffff" />
     <option name="MODIFIED_LINES_COLOR" value="415f69" />
     <option name="NOTIFICATION_BACKGROUND" value="5c5c42" />
     <option name="READONLY_FRAGMENT_BACKGROUND" value="" />
     <option name="RECURSIVE_CALL_ATTRIBUTES" value="574300" />
-    <option name="RIGHT_MARGIN_COLOR" value="323232" />
-    <option name="SELECTED_INDENT_GUIDE" value="505050" />
-    <option name="SELECTED_TEARLINE_COLOR" value="787878" />
+    <option name="RIGHT_MARGIN_COLOR" value="ffffff" />
+    <option name="SELECTED_INDENT_GUIDE" value="44ff44" />
+    <option name="SELECTED_TEARLINE_COLOR" value="ffffff" />
     <option name="SELECTION_BACKGROUND" value="214283" />
-    <option name="SELECTION_FOREGROUND" value="" />
-    <option name="TEARLINE_COLOR" value="555555" />
+    <option name="TEARLINE_COLOR" value="ffffff" />
     <option name="WHITESPACES" value="505050" />
   </colors>
   <attributes>
@@ -314,7 +313,7 @@
     </option>
     <option name="DEFAULT_BLOCK_COMMENT">
       <value>
-        <option name="FOREGROUND" value="57a64a" />
+        <option name="FOREGROUND" value="ff44ff" />
       </value>
     </option>
     <option name="DEFAULT_BRACES">

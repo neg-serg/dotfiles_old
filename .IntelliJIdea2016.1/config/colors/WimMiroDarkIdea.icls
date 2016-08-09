@@ -29,24 +29,27 @@
     <option name="DIFF_SEPARATORS_TOP_BORDER" value="171717" />
     <option name="FILESTATUS_ADDED" value="80cbc4" />
     <option name="FILESTATUS_COPIED" value="659d9a" />
-    <option name="FILESTATUS_DELETED" value="f77669" />
-    <option name="FILESTATUS_HIJACKED" value="ffcb6b" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_DELETED_FROM_FILE_SYSTEM" value="f77669" />
+    <option name="FILESTATUS_DELETED" value="8a2f58" />
+    <option name="FILESTATUS_HIJACKED" value="73642" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_DELETED_FROM_FILE_SYSTEM" value="8a2f58" />
     <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="546e7a" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_BOTH_CONFLICTS" value="d5756c" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_CONFLICTS" value="d5756c" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_PROPERTY_CONFLICTS" value="d5756c" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_BOTH_CONFLICTS" value="8a2f58" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_CONFLICTS" value="8a2f58" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_PROPERTY_CONFLICTS" value="8a2f58" />
     <option name="FILESTATUS_IDEA_SVN_FILESTATUS_EXTERNAL" value="c3e88d" />
+    <option name="FILESTATUS_IDEA_SVN_FILESTATUS_OBSTRUCTED" value="914e89" />
+    <option name="FILESTATUS_IDEA_SVN_REPLACED" value="395573" />
     <option name="FILESTATUS_IGNORE.PROJECT_VIEW.IGNORED" value="546e7a" />
     <option name="FILESTATUS_MERGED" value="65738e" />
-    <option name="FILESTATUS_MODIFIED" value="80cbc4" />
+    <option name="FILESTATUS_MODIFIED" value="395573" />
     <option name="FILESTATUS_NOT_CHANGED" value="" />
-    <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="80cbc4" />
-    <option name="FILESTATUS_NOT_CHANGED_RECURSIVE" value="80cbc4" />
-    <option name="FILESTATUS_UNKNOWN" value="f77669" />
-    <option name="FILESTATUS_addedOutside" value="629755" />
-    <option name="FILESTATUS_changelistConflict" value="d5756c" />
-    <option name="FILESTATUS_modifiedOutside" value="80cbc4" />
+    <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="395573" />
+    <option name="FILESTATUS_NOT_CHANGED_RECURSIVE" value="395573" />
+    <option name="FILESTATUS_OBSOLETE" value="914e89" />
+    <option name="FILESTATUS_UNKNOWN" value="8a2f58" />
+    <option name="FILESTATUS_addedOutside" value="408585" />
+    <option name="FILESTATUS_changelistConflict" value="8a2f58" />
+    <option name="FILESTATUS_modifiedOutside" value="395573" />
     <option name="GUTTER_BACKGROUND" value="121212" />
     <option name="INDENT_GUIDE" value="212121" />
     <option name="LINE_NUMBERS_COLOR" value="353535" />
@@ -57,11 +60,11 @@
     <option name="RECURSIVE_CALL_ATTRIBUTES" value="574300" />
     <option name="RIGHT_MARGIN_COLOR" value="303030" />
     <option name="SELECTED_INDENT_GUIDE" value="505050" />
-    <option name="SELECTED_TEARLINE_COLOR" value="232323" />
+    <option name="SELECTED_TEARLINE_COLOR" value="73642" />
     <option name="SELECTION_BACKGROUND" value="2b36" />
     <option name="SELECTION_FOREGROUND" value="c0c0c0" />
     <option name="SOFT_WRAP_SIGN_COLOR" value="3b3b3b" />
-    <option name="TEARLINE_COLOR" value="121212" />
+    <option name="TEARLINE_COLOR" value="2b36" />
     <option name="WHITESPACES" value="303030" />
     <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="d9f5dd" />
   </colors>
@@ -328,11 +331,7 @@
         <option name="EFFECT_TYPE" value="1" />
       </value>
     </option>
-    <option name="CUSTOM_NUMBER_ATTRIBUTES">
-      <value>
-        <option name="FOREGROUND" value="f36e3a" />
-      </value>
-    </option>
+    <option name="CUSTOM_NUMBER_ATTRIBUTES" baseAttributes="DEFAULT_NUMBER" />
     <option name="CUSTOM_STRING_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="287373" />
@@ -411,7 +410,7 @@
     </option>
     <option name="DEFAULT_FUNCTION_DECLARATION">
       <value>
-        <option name="FOREGROUND" value="76d4ff" />
+        <option name="FOREGROUND" value="5f87d7" />
       </value>
     </option>
     <option name="DEFAULT_IDENTIFIER">
@@ -755,7 +754,7 @@
     </option>
     <option name="JS.PARENTHS">
       <value>
-        <option name="FOREGROUND" value="d0f5d4" />
+        <option name="FOREGROUND" value="4779b3" />
       </value>
     </option>
     <option name="JS.REGEXP">
@@ -1088,6 +1087,52 @@
         <option name="BACKGROUND" value="252b39" />
       </value>
     </option>
+    <option name="Rainbow Parens Level 1 (outermost)">
+      <value>
+        <option name="FOREGROUND" value="5faf" />
+        <option name="FONT_TYPE" value="1" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 2">
+      <value>
+        <option name="FOREGROUND" value="5f87" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 3">
+      <value>
+        <option name="FOREGROUND" value="5f5f" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 4">
+      <value>
+        <option name="FOREGROUND" value="2b768d" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 5">
+      <value>
+        <option name="FOREGROUND" value="287373" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 6">
+      <value>
+        <option name="FOREGROUND" value="53a6a6" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 7">
+      <value>
+        <option name="FOREGROUND" value="47959e" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 8">
+      <value>
+        <option name="FOREGROUND" value="5e468c" />
+      </value>
+    </option>
+    <option name="Rainbow Parens Level 9">
+      <value>
+        <option name="FOREGROUND" value="53378a" />
+      </value>
+    </option>
     <option name="SASS_IDENTIFIER">
       <value>
         <option name="FOREGROUND" value="c2c8d7" />
@@ -1211,7 +1256,7 @@
     </option>
     <option name="WRONG_REFERENCES_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="bc3f3c" />
+        <option name="FOREGROUND" value="8a2f58" />
       </value>
     </option>
     <option name="XML_TAG_NAME">

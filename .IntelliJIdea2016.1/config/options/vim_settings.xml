@@ -57,7 +57,7 @@
       <file name="/ColdFusion Script Component.txt.ft" timestamp="1470696405233">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/HTML File.txt.ft" timestamp="1470696563089">
+      <file name="/HTML File.txt.ft" timestamp="1470737341028">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
@@ -111,12 +111,12 @@
       <file name="/Kotlin File.txt.ft" timestamp="1470696410244">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470697347572">
-        <mark key="'" line="186" column="8" />
-        <mark key="[" line="47" column="0" />
-        <mark key="]" line="47" column="3" />
-        <mark key="." line="47" column="3" />
-        <mark key="^" line="47" column="3" />
+      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470740432214">
+        <mark key="'" line="187" column="8" />
+        <mark key="[" line="226" column="18" />
+        <mark key="]" line="226" column="17" />
+        <mark key="." line="226" column="17" />
+        <mark key="^" line="226" column="17" />
       </file>
       <file name="/XML Properties File.txt.ft" timestamp="1470696403850">
         <mark key="[" line="0" column="0" />
@@ -151,7 +151,7 @@
       <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/fragment.java" timestamp="1470166491629">
+      <file name="/fragment.java" timestamp="1470737233217">
         <mark key="[" line="0" column="0" />
       </file>
     </filemarks>
