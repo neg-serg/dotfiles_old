@@ -1,0 +1,363 @@
+<application>
+  <component name="VimSettings">
+    <state version="4" enabled="true" />
+    <globalmarks />
+    <filemarks>
+      <file name="/File Header.txt.ft" timestamp="1470151795840">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Trait.txt.ft" timestamp="1470696408918">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ActionScript Class with Supers.txt.ft" timestamp="1470696407261">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Script.txt.ft" timestamp="1470696409458">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/XSLT Stylesheet.txt.ft" timestamp="1470696412903">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Flex 4 Component.txt.ft" timestamp="1470696407819">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/HTML4 File.txt.ft" timestamp="1470696401660">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Interface.txt.ft" timestamp="1470696402789">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Flex 3 Component.txt.ft" timestamp="1470696407690">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/CoffeeScript File.txt.ft" timestamp="1470696408376">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Kotlin Enum.txt.ft" timestamp="1470696410690">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Stylus File.txt.ft" timestamp="1470696411976">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/SCSS File.txt.ft" timestamp="1470696411666">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/AMD JavaScript File.txt.ft" timestamp="1470696406026">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Object.txt.ft" timestamp="1470696409105">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Kotlin Interface.txt.ft" timestamp="1470696410873">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Package Object.txt.ft" timestamp="1470696409568">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/XHTML File.txt.ft" timestamp="1470696401999">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Sass File.txt.ft" timestamp="1470696411229">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ActionScript Interface.txt.ft" timestamp="1470696407483">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Script Interface.txt.ft" timestamp="1470696405509">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Worksheet.txt.ft" timestamp="1470696409890">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" timestamp="1470766840141">
+        <mark key="'" line="22" column="4" />
+        <mark key="[" line="22" column="0" />
+        <mark key="]" line="23" column="4" />
+        <mark key="." line="23" column="4" />
+        <mark key="^" line="23" column="4" />
+      </file>
+      <file name="/Kotlin File.txt.ft" timestamp="1470696410244">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Tag Interface.txt.ft" timestamp="1470696404938">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470771816608">
+        <mark key="'" line="410" column="0" />
+        <mark key="[" line="226" column="18" />
+        <mark key="]" line="226" column="17" />
+        <mark key="." line="226" column="17" />
+        <mark key="^" line="226" column="17" />
+      </file>
+      <file name="/XML Properties File.txt.ft" timestamp="1470696403850">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/JavaFXApplication.txt.ft" timestamp="1470696412175">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Gradle Build Script.txt.ft" timestamp="1470696408004">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Class.txt.ft" timestamp="1470696408736">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Play 2 template.scala.txt.ft" timestamp="1470696410054">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ActionScript Class.txt.ft" timestamp="1470696406834">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Script Component.txt.ft" timestamp="1470696405233">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Less File.txt.ft" timestamp="1470696411037">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/HTML File.txt.ft" timestamp="1470737341028">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Singleton.txt.ft" timestamp="1470696412695">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Tag Component.txt.ft" timestamp="1470696404593">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/TypeScript File.txt.ft" timestamp="1470696406312">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/package-info.txt.ft" timestamp="1470696403605">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/tsconfig.json.txt.ft" timestamp="1470696406592">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion File.txt.ft" timestamp="1470696404182">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Enum.txt.ft" timestamp="1470696403067">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Class.txt.ft" timestamp="1470696402305">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/AnnotationType.txt.ft" timestamp="1470696403330">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/fragment.java" timestamp="1470737233217">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/MobileResourceBundle.txt.ft" timestamp="1470696412433">
+        <mark key="[" line="0" column="0" />
+      </file>
+    </filemarks>
+    <jumps>
+      <jump line="727" column="0" filename="/one/dev/src/_scala/aws-wrap/src/main/scala/s3/s3.scala" />
+      <jump line="203" column="0" filename="/one/dev/src/_scala/aws-wrap/src/main/scala/simpledb/simpledb.scala" />
+      <jump line="46" column="34" filename="/one/dev/src/scala-ex/example/example/src/main/scala/example/Lists.scala" />
+      <jump line="0" column="0" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="8" column="13" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="9" column="30" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="10" column="24" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="16" column="1" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="24" column="10" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="17" column="26" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
+      <jump line="2" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson01/task01/Solution.java" />
+      <jump line="11" column="17" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson02/task04/Cat.java" />
+      <jump line="18" column="23" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson06/task03/Solution.java" />
+      <jump line="52" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson06/task03/Solution.java" />
+      <jump line="13" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson10/task01/Solution.java" />
+      <jump line="4" column="46" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson16/home01/Solution.java" />
+      <jump line="13" column="44" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
+      <jump line="19" column="26" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
+      <jump line="35" column="23" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
+      <jump line="24" column="19" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" />
+      <jump line="94" column="20" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="108" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="119" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="130" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="141" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="152" column="47" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="194" column="19" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="43" column="8" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/crud/CrudView.java" />
+      <jump line="83" column="13" filename="$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.5.6/vaadin-server-7.5.6.jar!/com/vaadin/ui/Grid.class" />
+      <jump line="364" column="99" filename="$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.5.6/vaadin-server-7.5.6.jar!/com/vaadin/ui/Grid.class" />
+      <jump line="212" column="19" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="24" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="520" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="96" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="23" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="26" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="30" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="34" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="38" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="21" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
+      <jump line="91" column="18" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
+      <jump line="15" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
+      <jump line="56" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
+      <jump line="71" column="12" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/AuthorForm.java" />
+      <jump line="143" column="0" filename="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor/src/com/jetbrains/plugins/embeditor/EmbeddedTerminalEditor.java" />
+      <jump line="143" column="14" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="186" column="8" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="23" column="4" filename="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" />
+      <jump line="526" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="374" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="410" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+    </jumps>
+    <registers>
+      <register name="&quot;" type="4">
+        <text>addcom</text>
+      </register>
+      <register name="-" type="4">
+        <text>}</text>
+      </register>
+      <register name="/" type="4">
+        <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>
+      </register>
+      <register name="0" type="4">
+        <text encoding="base64">SkJUZXJtaW5hbCA=</text>
+      </register>
+      <register name="1" type="2">
+        <text encoding="base64">ICAgICAgICBUZXJlcncgCg==</text>
+      </register>
+      <register name="2" type="2">
+        <text encoding="base64">ICAgICAgICAK</text>
+      </register>
+      <register name="3" type="4">
+        <text encoding="base64">aGVyZQogICAgICAgIA==</text>
+      </register>
+      <register name="4" type="4">
+        <text encoding="base64">c291cmNlCiAgICA=</text>
+      </register>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIHRoaXMuc291Cg==</text>
+      </register>
+      <register name="6" type="4">
+        <text>.*;</text>
+      </register>
+      <register name="7" type="4">
+        <text>terminal</text>
+      </register>
+      <register name="8" type="4">
+        <text>como</text>
+      </register>
+      <register name="9" type="4">
+        <text>.</text>
+      </register>
+      <register name=":" type="4">
+        <text>q</text>
+      </register>
+    </registers>
+    <search>
+      <last-search encoding="base64">XDxwYXBlckxpc3RcPg==</last-search>
+      <last-offset />
+      <last-pattern encoding="base64">XDxwYXBlckxpc3RcPg==</last-pattern>
+      <last-replace />
+      <last-substitute>fight</last-substitute>
+      <last-dir>-1</last-dir>
+      <show-last>false</show-last>
+    </search>
+    <history>
+      <history-search>
+        <entry>guess</entry>
+        <entry>age</entry>
+        <entry>applesp</entry>
+        <entry>fight</entry>
+        <entry encoding="base64">XDxzcWxRdWVyeVw+</entry>
+        <entry encoding="base64">XDxwYXBlckxpc3RcPg==</entry>
+      </history-search>
+      <history-cmd>
+        <entry>W</entry>
+        <entry encoding="base64">JzwsJz5zO2ZpZ2h0Ozs=</entry>
+        <entry>set num</entry>
+        <entry encoding="base64">aW1hcCA8Qy1lPiA8RW5kPg==</entry>
+        <entry>restart</entry>
+        <entry>w</entry>
+        <entry>set ruler</entry>
+        <entry>set listchars=tab:▸▸</entry>
+        <entry>help</entry>
+        <entry>e ~/.xinitrc</entry>
+        <entry>bd!</entry>
+        <entry>action</entry>
+        <entry>action w</entry>
+        <entry>actions</entry>
+        <entry>action Search</entry>
+        <entry>action Find</entry>
+        <entry>command</entry>
+        <entry>q</entry>
+      </history-cmd>
+      <history-expr />
+      <history-input />
+    </history>
+    <shortcut-conflicts>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed D</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed X</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed C</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed W</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed E</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed V</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed OPEN_BRACKET</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed O</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed P</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed Q</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed F</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed S</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed A</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed T</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed R</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed U</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed H</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed B</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed 2</text>
+      </shortcut-conflict>
+    </shortcut-conflicts>
+  </component>
+</application>
