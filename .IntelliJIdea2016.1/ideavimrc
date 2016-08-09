@@ -1,6 +1,6 @@
 set ignorecase
 set smartcase
-set scrolloff=3         " 3 lines above/below cursor when scrolling
+set scrolloff=4         " 4 lines above/below cursor when scrolling
 
 " Integrate with system clipboard
 set clipboard=unnamedplus,unnamed
@@ -35,6 +35,10 @@ vnoremap > >gv
 
 nnoremap Y y$
 
+" Search for trailing spaces and tabs.
+nnoremap g/s /\s\+$<CR>
+nnoremap g/t /\t<CR>
+
 nmap <Space>g :action GotoDeclaration<cr>
 nmap <Space>b :action Back<cr>
 nmap <Space>f :action Forward<cr>
@@ -68,3 +72,27 @@ nnoremap <Space>gd :action GotoDeclaration<cr>
 
 nnoremap ]e :action GotoNextError<cr>
 nnoremap [e :action GotoPreviousError<cr>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap g<c-o> <c-o>
+nnoremap g<c-i> <c-i>
+
+" built in search looks better
+nnoremap / :action Find<cr>
+" but preserve ideavim search
+nnoremap g/ /
+
+" code refactoring
+nnoremap <Space>rr :action RenameElement<cr>
+
+nnoremap \r :action RunClass<cr>
+nnoremap \R :action Run<cr>
+nnoremap \d :action DebugClass<cr>
+nnoremap \D :action Debug<cr>
+nnoremap \c :action CheckStyleCurrentFileAction<cr>
+
+" Hide open panels
+nmap <Space>F :action HideAllWindows<CR> 

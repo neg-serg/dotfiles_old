@@ -253,7 +253,7 @@
         <text>.</text>
       </register>
       <register name=":" type="4">
-        <text>help</text>
+        <text>q</text>
       </register>
     </registers>
     <search>
@@ -289,6 +289,10 @@
         <entry>action</entry>
         <entry>action w</entry>
         <entry>actions</entry>
+        <entry>action Search</entry>
+        <entry>action Find</entry>
+        <entry>command</entry>
+        <entry>q</entry>
       </history-cmd>
       <history-expr />
       <history-input />
