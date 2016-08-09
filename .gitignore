@@ -91,3 +91,7 @@ README.md
 .IntelliJIdea2016.1/config/tasks/*
 .IntelliJIdea2016.1/system/*
 .IntelliJIdea2016.1/config/*.key
+.IntelliJIdea2016.2/config/tasks/*
+.IntelliJIdea2016.2/system/*
+.IntelliJIdea2016.2/config/*.key
+.IntelliJIdea2016.2/config/plugins/*
