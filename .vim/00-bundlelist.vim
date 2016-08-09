@@ -129,9 +129,10 @@ NeoBundle 'mhinz/vim-rfc' "view and search rfc
 "--[ dev ]-------------------------------------------------------------------------------
 NeoBundleLazy 'majutsushi/tagbar', { 'commands' : 'TagbarToggle' }
 NeoBundle 'chrisbra/vim-diff-enhanced.git' "patience diff
-NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
-NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
-NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
+" " [ Delete Scala support for now ]
+" NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
+" NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
+" NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 NeoBundle 'tpope/vim-commentary.git' "try it instead of tcomment
 NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on
 NeoBundle 'tpope/vim-unimpaired.git' "good mappings and toggles
