@@ -1,3 +1,0 @@
-(def make-list  #(<spot>list %1 %2</spot>))
-
-(def make-list+ #(<spot>apply list %1 %2 %&</spot>))
