@@ -20,24 +20,51 @@ nmap zk O<Esc>j
 
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
-nmap <leader>h <c-w>h
-nmap <leader>l <c-w>l
-nmap <leader>k <c-w>k
-nmap <leader>j <c-w>j
+nmap <Space>h <c-w>h
+nmap <Space>l <c-w>l
+nmap <Space>k <c-w>k
+nmap <Space>j <c-w>j
 
 imap <C-a> <Home>
 imap <C-e> <End>
+imap <C-b> <Left>
+imap <C-f> <Right>
 
-nmap <leader>g :action GotoDeclaration<cr>
-nmap <leader>b :action Back<cr>
-nmap <leader>f :action Forward<cr>
+vnoremap < <gv
+vnoremap > >gv
 
-nmap <leader>t :action GotoFile<cr>
-nmap <leader>c :action GotoClass<cr>
-nmap <leader>ns :action GotoSymbol<cr>
-nmap <leader>nm :action FileStructurePopup<cr>
-nmap <leader>d :action ShowErrorDescription<cr>
+nnoremap Y y$
+
+nmap <Space>g :action GotoDeclaration<cr>
+nmap <Space>b :action Back<cr>
+nmap <Space>f :action Forward<cr>
+
+nmap <Space>t :action GotoFile<cr>
+nmap <Space>c :action GotoClass<cr>
+nmap <Space>ns :action GotoSymbol<cr>
+nmap <Space>nm :action FileStructurePopup<cr>
+nmap <Space>d :action ShowErrorDescription<cr>
 
 " Won't work in visual mode (with vmap) for some reason.
 " Use default map of <c-/> for that.
 nmap gcc :action CommentByLineComment<cr>
+
+nnoremap <Space>fu :action FindUsages<cr>
+nnoremap <Space>su :action ShowUsages<cr>
+nnoremap <Space>cv :action ChangeView<cr>
+nnoremap <Space>bb :action ToggleLineBreakpoint<cr>
+nnoremap <Space>br :action ViewBreakpoints<cr>
+nnoremap <Space>ic :action InspectCode<cr>
+nnoremap <Space>oi :action OptimizeImports<cr>
+nnoremap <Space>re :action RenameElement<cr>
+nnoremap <Space>rf :action RenameFile<cr>
+nnoremap <Space>mv :action ActivateMavenProjectsToolWindow<cr>
+nnoremap <Space>dc :action ChooseDebugConfiguration<cr>
+nnoremap <Space>rc :action ChooseRunConfiguration<cr>
+nnoremap <Space>q  :action CloseActiveTab<cr>
+nnoremap <Space>gi :action GotoImplementation<cr>
+nnoremap <Space>gs :action GotoSuperMethod<cr>
+nnoremap <Space>gd :action GotoDeclaration<cr>
+
+nnoremap ]e :action GotoNextError<cr>
+nnoremap [e :action GotoPreviousError<cr>

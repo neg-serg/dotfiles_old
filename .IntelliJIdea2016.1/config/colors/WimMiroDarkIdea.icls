@@ -18,13 +18,13 @@
     <option name="EDITOR_FONT_SIZE" value="14" />
   </console-font>
   <colors>
-    <option name="ADDED_LINES_COLOR" value="444444" />
+    <option name="ADDED_LINES_COLOR" value="91a1a" />
     <option name="ANNOTATIONS_COLOR" value="8b999f" />
-    <option name="BORDER_LINES_COLOR" value="334444" />
+    <option name="BORDER_LINES_COLOR" value="153d3d" />
     <option name="CARET_COLOR" value="b0d0f0" />
     <option name="CARET_ROW_COLOR" value="121212" />
     <option name="CONSOLE_BACKGROUND_KEY" value="212121" />
-    <option name="DELETED_LINES_COLOR" value="f77669" />
+    <option name="DELETED_LINES_COLOR" value="331221" />
     <option name="DIFF_SEPARATORS_BACKGROUND" value="1c1c1c" />
     <option name="DIFF_SEPARATORS_TOP_BORDER" value="171717" />
     <option name="FILESTATUS_ADDED" value="80cbc4" />
@@ -54,7 +54,7 @@
     <option name="INDENT_GUIDE" value="212121" />
     <option name="LINE_NUMBERS_COLOR" value="353535" />
     <option name="METHOD_SEPARATORS_COLOR" value="303030" />
-    <option name="MODIFIED_LINES_COLOR" value="d9f5dd" />
+    <option name="MODIFIED_LINES_COLOR" value="161616" />
     <option name="NOTIFICATION_BACKGROUND" value="287373" />
     <option name="READONLY_FRAGMENT_BACKGROUND" value="" />
     <option name="RECURSIVE_CALL_ATTRIBUTES" value="574300" />
@@ -66,7 +66,7 @@
     <option name="SOFT_WRAP_SIGN_COLOR" value="3b3b3b" />
     <option name="TEARLINE_COLOR" value="2b36" />
     <option name="WHITESPACES" value="303030" />
-    <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="d9f5dd" />
+    <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="222222" />
   </colors>
   <attributes>
     <option name="ANNOTATION_ATTRIBUTE_NAME_ATTRIBUTES">
@@ -1147,6 +1147,30 @@
       <value>
         <option name="FOREGROUND" value="c3cee3" />
         <option name="BACKGROUND" value="2b36" />
+      </value>
+    </option>
+    <option name="SPY-JS.EXCEPTION">
+      <value>
+        <option name="BACKGROUND" value="73284b" />
+        <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="SPY-JS.FUNCTION_SCOPE">
+      <value>
+        <option name="BACKGROUND" value="1b4d4d" />
+        <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="SPY-JS.PATH_LEVEL_ONE">
+      <value>
+        <option name="BACKGROUND" value="141414" />
+        <option name="EFFECT_TYPE" value="2" />
+      </value>
+    </option>
+    <option name="SPY-JS.PROGRAM_SCOPE">
+      <value>
+        <option name="BACKGROUND" value="287373" />
+        <option name="EFFECT_TYPE" value="2" />
       </value>
     </option>
     <option name="SQL_SYNTHETIC_ENTITY">

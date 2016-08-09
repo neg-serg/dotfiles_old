@@ -13,13 +13,13 @@
     <location key="#Browse_JetBrains_Plugins_.0.0.1920.1200" x="546" y="0" />
     <location key="NewModule_or_Project.wizard.0.0.1920.1200" x="639" y="87" />
     <location key="editAsTableFormatDialogDimension.0.0.1920.1200" x="544" y="-268" />
-    <location key="SettingsEditor.0.0.1920.1200" x="408" y="25" />
+    <location key="SettingsEditor.0.0.1920.1200" x="263" y="0" />
     <location key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" x="796" y="214" />
     <location key="#com.intellij.ide.actions.ChooseComponentsToExportDialog.0.0.1920.1200" x="718" y="474" />
     <location key="#Options.0.0.1920.1200" x="638" y="326" />
     <location key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog.0.0.1920.1200" x="740" y="444" />
     <location key="extract.method.dialog.0.0.1920.1200" x="684" y="350" />
-    <location key="#Vim_Emulation.0.0.1920.1200" x="721" y="316" />
+    <location key="#Vim_Emulation.0.0.1920.1200" x="0" y="0" />
     <location key="StructurePopup.0.0.1920.1200" x="695" y="400" />
     <location key="#com.intellij.ide.util.TreeClassChooserDialog.0.0.1920.1200" x="517" y="384" />
     <location key="#Solution.0.0.1920.1200" x="612" y="249" />
@@ -40,7 +40,7 @@
     <size key="#Browse_JetBrains_Plugins_.0.0.1920.1200" width="828" height="1176" />
     <size key="NewModule_or_Project.wizard.0.0.1920.1200" width="666" height="1002" />
     <size key="editAsTableFormatDialogDimension.0.0.1920.1200" width="828" height="1176" />
-    <size key="SettingsEditor.0.0.1920.1200" width="1394" height="1124" />
+    <size key="SettingsEditor.0.0.1920.1200" width="1394" height="1181" />
     <size key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" width="328" height="727" />
     <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="339" />
     <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="339" />
@@ -52,5 +52,6 @@
     <size key="#Solution.0.0.1920.1200" width="704" height="674" />
     <size key="#com.intellij.ide.util.MemberChooser.0.0.1920.1200" width="378" height="612" />
     <size key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog.0.0.1920.1200" width="359" height="147" />
+    <size key="#Vim_Emulation.0.0.1920.1200" width="695" height="544" />
   </component>
 </application>

@@ -6,16 +6,28 @@
       <file name="/File Header.txt.ft" timestamp="1470151795840">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/Scala Trait.txt.ft" timestamp="1470696408918">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/ActionScript Class with Supers.txt.ft" timestamp="1470696407261">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Scala Script.txt.ft" timestamp="1470696409458">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/XSLT Stylesheet.txt.ft" timestamp="1470696412903">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Flex 4 Component.txt.ft" timestamp="1470696407819">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/HTML4 File.txt.ft" timestamp="1470696401660">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Interface.txt.ft" timestamp="1470696402789">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Flex 3 Component.txt.ft" timestamp="1470696407690">
@@ -30,7 +42,19 @@
       <file name="/Stylus File.txt.ft" timestamp="1470696411976">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/SCSS File.txt.ft" timestamp="1470696411666">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/AMD JavaScript File.txt.ft" timestamp="1470696406026">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Scala Object.txt.ft" timestamp="1470696409105">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/Kotlin Interface.txt.ft" timestamp="1470696410873">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Package Object.txt.ft" timestamp="1470696409568">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/XHTML File.txt.ft" timestamp="1470696401999">
@@ -45,70 +69,20 @@
       <file name="/ColdFusion Script Interface.txt.ft" timestamp="1470696405509">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/ColdFusion Tag Interface.txt.ft" timestamp="1470696404938">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Gradle Build Script.txt.ft" timestamp="1470696408004">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Play 2 template.scala.txt.ft" timestamp="1470696410054">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/ColdFusion Script Component.txt.ft" timestamp="1470696405233">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/HTML File.txt.ft" timestamp="1470737341028">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/ColdFusion Tag Component.txt.ft" timestamp="1470696404593">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/package-info.txt.ft" timestamp="1470696403605">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/tsconfig.json.txt.ft" timestamp="1470696406592">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/AnnotationType.txt.ft" timestamp="1470696403330">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/MobileResourceBundle.txt.ft" timestamp="1470696412433">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Scala Trait.txt.ft" timestamp="1470696408918">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/XSLT Stylesheet.txt.ft" timestamp="1470696412903">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Flex 4 Component.txt.ft" timestamp="1470696407819">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/SCSS File.txt.ft" timestamp="1470696411666">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/AMD JavaScript File.txt.ft" timestamp="1470696406026">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Scala Object.txt.ft" timestamp="1470696409105">
-        <mark key="[" line="0" column="0" />
-      </file>
-      <file name="/Package Object.txt.ft" timestamp="1470696409568">
-        <mark key="[" line="0" column="0" />
-      </file>
       <file name="/Scala Worksheet.txt.ft" timestamp="1470696409890">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" timestamp="1470766840141">
+        <mark key="'" line="22" column="4" />
+        <mark key="[" line="22" column="0" />
+        <mark key="]" line="23" column="4" />
+        <mark key="." line="23" column="4" />
+        <mark key="^" line="23" column="4" />
+      </file>
       <file name="/Kotlin File.txt.ft" timestamp="1470696410244">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Tag Interface.txt.ft" timestamp="1470696404938">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470740432214">
@@ -124,22 +98,49 @@
       <file name="/JavaFXApplication.txt.ft" timestamp="1470696412175">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/Gradle Build Script.txt.ft" timestamp="1470696408004">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/Scala Class.txt.ft" timestamp="1470696408736">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Play 2 template.scala.txt.ft" timestamp="1470696410054">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/ActionScript Class.txt.ft" timestamp="1470696406834">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/ColdFusion Script Component.txt.ft" timestamp="1470696405233">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/Less File.txt.ft" timestamp="1470696411037">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/HTML File.txt.ft" timestamp="1470737341028">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Singleton.txt.ft" timestamp="1470696412695">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/ColdFusion Tag Component.txt.ft" timestamp="1470696404593">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/TypeScript File.txt.ft" timestamp="1470696406312">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/package-info.txt.ft" timestamp="1470696403605">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/tsconfig.json.txt.ft" timestamp="1470696406592">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/ColdFusion File.txt.ft" timestamp="1470696404182">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Enum.txt.ft" timestamp="1470696403067">
@@ -151,7 +152,13 @@
       <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/AnnotationType.txt.ft" timestamp="1470696403330">
+        <mark key="[" line="0" column="0" />
+      </file>
       <file name="/fragment.java" timestamp="1470737233217">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/MobileResourceBundle.txt.ft" timestamp="1470696412433">
         <mark key="[" line="0" column="0" />
       </file>
     </filemarks>
@@ -203,13 +210,14 @@
       <jump line="143" column="0" filename="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor/src/com/jetbrains/plugins/embeditor/EmbeddedTerminalEditor.java" />
       <jump line="143" column="14" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
       <jump line="186" column="8" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="23" column="4" filename="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
         <text>addcom</text>
       </register>
       <register name="-" type="4">
-        <text>this</text>
+        <text>}</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>
@@ -217,35 +225,35 @@
       <register name="0" type="4">
         <text encoding="base64">SkJUZXJtaW5hbCA=</text>
       </register>
-      <register name="1" type="4">
-        <text encoding="base64">c291cmNlCiAgICA=</text>
+      <register name="1" type="2">
+        <text encoding="base64">ICAgICAgICBUZXJlcncgCg==</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgIHRoaXMuc291Cg==</text>
+        <text encoding="base64">ICAgICAgICAK</text>
       </register>
       <register name="3" type="4">
-        <text>.*;</text>
+        <text encoding="base64">aGVyZQogICAgICAgIA==</text>
       </register>
       <register name="4" type="4">
-        <text>terminal</text>
+        <text encoding="base64">c291cmNlCiAgICA=</text>
       </register>
-      <register name="5" type="4">
-        <text>como</text>
+      <register name="5" type="2">
+        <text encoding="base64">ICAgIHRoaXMuc291Cg==</text>
       </register>
       <register name="6" type="4">
-        <text>.</text>
+        <text>.*;</text>
       </register>
       <register name="7" type="4">
-        <text>intellij</text>
+        <text>terminal</text>
       </register>
       <register name="8" type="4">
+        <text>como</text>
+      </register>
+      <register name="9" type="4">
         <text>.</text>
       </register>
-      <register name="9" type="2">
-        <text encoding="base64">Ly9pbXBvcnQgb3JnLmpldGJyYWlucy5wbHVnaW5zLnRlcm1pbmFsLkpCVGVybWluYWw7Cg==</text>
-      </register>
       <register name=":" type="4">
-        <text>w</text>
+        <text>help</text>
       </register>
     </registers>
     <search>
@@ -271,8 +279,16 @@
         <entry encoding="base64">JzwsJz5zO2ZpZ2h0Ozs=</entry>
         <entry>set num</entry>
         <entry encoding="base64">aW1hcCA8Qy1lPiA8RW5kPg==</entry>
-        <entry>bd!</entry>
+        <entry>restart</entry>
         <entry>w</entry>
+        <entry>set ruler</entry>
+        <entry>set listchars=tab:▸▸</entry>
+        <entry>help</entry>
+        <entry>e ~/.xinitrc</entry>
+        <entry>bd!</entry>
+        <entry>action</entry>
+        <entry>action w</entry>
+        <entry>actions</entry>
       </history-cmd>
       <history-expr />
       <history-input />
@@ -325,6 +341,15 @@
       </shortcut-conflict>
       <shortcut-conflict owner="vim">
         <text>ctrl pressed U</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="ide">
+        <text>ctrl pressed H</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed B</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed 2</text>
       </shortcut-conflict>
     </shortcut-conflicts>
   </component>
