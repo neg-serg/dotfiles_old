@@ -5,7 +5,7 @@
     <feature id="editing.completion.second.smarttype.aslist" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="codeassists.surroundwith.statement" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="refactoring.rename" count="0" last-shown="0" last-used="0" shown-count="0" />
-    <feature id="navigation.popup.action" count="407" last-shown="0" last-used="1470772058542" shown-count="0" />
+    <feature id="navigation.popup.action" count="419" last-shown="0" last-used="1470774598152" shown-count="0" />
     <feature id="editing.completion.cancelByControlArrows" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="editing.completion.finishBySmartEnter" count="0" last-shown="1470466383237" last-used="0" shown-count="4" />
     <feature id="navigation.popup.symbol" count="0" last-shown="0" last-used="0" shown-count="0" />
@@ -15,7 +15,7 @@
     <feature id="codeassists.complete.statement" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="navigation.goto.inspection" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="editing.completion.variable.name" count="375" last-shown="0" last-used="1468001193282" shown-count="0" />
-    <feature id="navigation.popup.file" count="16" last-shown="0" last-used="1470771416959" shown-count="0" />
+    <feature id="navigation.popup.file" count="19" last-shown="0" last-used="1470774546088" shown-count="0" />
     <feature id="codeassists.overrideimplement" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="editing.completion.smarttype.casting" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="db.console.run.intention" count="0" last-shown="0" last-used="0" shown-count="0" />
@@ -46,7 +46,7 @@
     <feature id="ant.quickfix.CreateProperty" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="editing.completion.second.smarttype.toar" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="navigation.popup.camelprefix" count="40" last-shown="0" last-used="1470771376302" shown-count="0" />
-    <feature id="SearchEverywhere" count="42" last-shown="0" last-used="1470772037318" shown-count="0" />
+    <feature id="SearchEverywhere" count="43" last-shown="0" last-used="1470772181912" shown-count="0" />
     <feature id="navigation.popup.class" count="0" last-shown="0" last-used="0" shown-count="0" />
     <feature id="codeassists.highlight.throws" count="1" last-shown="0" last-used="1470062543982" shown-count="0" />
     <feature id="db.table.editor.wrapper" count="0" last-shown="0" last-used="0" shown-count="0" />

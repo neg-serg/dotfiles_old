@@ -1,4 +1,8 @@
 <keymap version="1" name="Neg" parent="Emacs">
+  <action id="$Copy">
+    <keyboard-shortcut first-keystroke="ctrl insert" />
+    <keyboard-shortcut first-keystroke="alt c" />
+  </action>
   <action id="$Cut" />
   <action id="$Delete">
     <keyboard-shortcut first-keystroke="ctrl d" />
@@ -47,9 +51,7 @@
   <action id="EditorDuplicate" />
   <action id="EditorEscape" />
   <action id="EditorForwardParagraph" />
-  <action id="EditorJoinLines">
-    <keyboard-shortcut first-keystroke="shift j" />
-  </action>
+  <action id="EditorJoinLines" />
   <action id="EditorKillRegion">
     <keyboard-shortcut first-keystroke="ctrl w" />
     <keyboard-shortcut first-keystroke="ctrl d" />
@@ -100,13 +102,12 @@
     <keyboard-shortcut first-keystroke="ctrl f" />
   </action>
   <action id="EditorScrollToCenter" />
-  <action id="EditorTextEnd">
-    <keyboard-shortcut first-keystroke="shift alt period" />
-  </action>
-  <action id="EditorTextStart">
-    <keyboard-shortcut first-keystroke="escape" second-keystroke="comma" />
-  </action>
+  <action id="EditorTextEnd" />
+  <action id="EditorTextEndWithSelection" />
+  <action id="EditorTextStart" />
+  <action id="EditorTextStartWithSelection" />
   <action id="EditorToggleColumnMode" />
+  <action id="EditorToggleInsertState" />
   <action id="EditorUp">
     <keyboard-shortcut first-keystroke="ctrl p" />
   </action>
@@ -138,6 +139,9 @@
   </action>
   <action id="Images.ShowThumbnails" />
   <action id="JumpToLastChange" />
+  <action id="ReloadFromDisk">
+    <keyboard-shortcut first-keystroke="alt u" />
+  </action>
   <action id="ReopenClosedTab">
     <keyboard-shortcut first-keystroke="shift ctrl t" />
   </action>

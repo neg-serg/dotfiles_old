@@ -85,7 +85,7 @@
       <file name="/ColdFusion Tag Interface.txt.ft" timestamp="1470696404938">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470771816608">
+      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470774608034">
         <mark key="'" line="410" column="0" />
         <mark key="[" line="226" column="18" />
         <mark key="]" line="226" column="17" />
@@ -256,7 +256,7 @@
         <text>.</text>
       </register>
       <register name=":" type="4">
-        <text>q</text>
+        <text>w</text>
       </register>
     </registers>
     <search>
@@ -283,7 +283,6 @@
         <entry>set num</entry>
         <entry encoding="base64">aW1hcCA8Qy1lPiA8RW5kPg==</entry>
         <entry>restart</entry>
-        <entry>w</entry>
         <entry>set ruler</entry>
         <entry>set listchars=tab:▸▸</entry>
         <entry>help</entry>
@@ -296,6 +295,7 @@
         <entry>action Find</entry>
         <entry>command</entry>
         <entry>q</entry>
+        <entry>w</entry>
       </history-cmd>
       <history-expr />
       <history-input />

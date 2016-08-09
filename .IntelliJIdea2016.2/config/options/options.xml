@@ -62,10 +62,11 @@
     <property name="ColorChooser.RecentColors" value="83-166-166-255,,,71-149-158-255,,,94-70-140-255,,,83-55-138-255,,,71-121-179-255,,,95-135-215-255,,,18-18-18-255,,,255-204-204-255,,,138-47-88-255,,,20-20-20-255,,,27-77-77-255,,,115-40-75-255,,,34-34-34-255,,,217-245-221-255,,,22-64-64-255,,,68-68-68-255,,,21-61-61-255,,,9-26-26-255,,,51-18-33-255,,,22-22-22-255" />
     <property name="export.settings.path" value="/mnt/home/dw/WimMirodarkIdea.jar" />
     <property name="color.picker.is.hsb" value="true" />
-    <property name="KEYMAP" value="keyboa&#10;escape&#10;keyboard&#10;esca&#10;close" />
+    <property name="KEYMAP" value="escape&#10;move caret to text&#10;reload&#10;copy doc&#10;keyboa" />
     <property name="evlsprt3.162" value="12" />
     <property name="org.intellij.images.editor.actions.SetBackgroundImageDialog#recent" value="$USER_HOME$/pic/wl/wallhaven-403957.png" />
     <property name="idea.background.editor" value="$USER_HOME$/pic/wl/wallhaven-403957.png,15,scale,center" />
     <property name="idea.background.frame" value="$USER_HOME$/pic/wl/wallhaven-403957.png,15,scale,center" />
+    <property name="search.everywhere.max.popup.width" value="620" />
   </component>
 </application>
