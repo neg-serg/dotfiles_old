@@ -119,6 +119,15 @@
       <file name="/HTML File.txt.ft" timestamp="1470737341028">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" timestamp="1470776408072">
+        <mark key="'" line="3" column="18" />
+        <mark key="[" line="24" column="0" />
+        <mark key="]" line="24" column="0" />
+        <mark key="." line="24" column="0" />
+      </file>
+      <file name="/one/dev/src/hyperdsl/delite/framework/delite-test/src/ppl/tests/scalatest/DeliteSuite.scala" timestamp="1470777162907">
+        <mark key="'" line="348" column="0" />
+      </file>
       <file name="/Singleton.txt.ft" timestamp="1470696412695">
         <mark key="[" line="0" column="0" />
       </file>
@@ -148,6 +157,12 @@
       </file>
       <file name="/Class.txt.ft" timestamp="1470696402305">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/one/dev/src/hyperdsl/delite/runtime/src/ppl/delite/runtime/graph/DeliteTaskGraph.scala" timestamp="1470823260083">
+        <mark key="'" line="586" column="0" />
+        <mark key="[" line="610" column="0" />
+        <mark key="]" line="610" column="0" />
+        <mark key="." line="610" column="0" />
       </file>
       <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
         <mark key="[" line="0" column="0" />
@@ -214,13 +229,17 @@
       <jump line="526" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
       <jump line="374" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
       <jump line="410" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="340" column="4" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
+      <jump line="3" column="18" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" />
+      <jump line="348" column="0" filename="/one/dev/src/hyperdsl/delite/framework/delite-test/src/ppl/tests/scalatest/DeliteSuite.scala" />
+      <jump line="586" column="0" filename="/one/dev/src/hyperdsl/delite/runtime/src/ppl/delite/runtime/graph/DeliteTaskGraph.scala" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
-        <text>addcom</text>
+        <text>i</text>
       </register>
       <register name="-" type="4">
-        <text>}</text>
+        <text>System</text>
       </register>
       <register name="/" type="4">
         <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>
@@ -229,31 +248,31 @@
         <text encoding="base64">SkJUZXJtaW5hbCA=</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgICAgICBUZXJlcncgCg==</text>
+        <text encoding="base64">ICAgIAo=</text>
       </register>
       <register name="2" type="2">
         <text encoding="base64">ICAgICAgICAK</text>
       </register>
-      <register name="3" type="4">
-        <text encoding="base64">aGVyZQogICAgICAgIA==</text>
+      <register name="3" type="2">
+        <text encoding="base64">ICAgICAgICAK</text>
       </register>
       <register name="4" type="4">
-        <text encoding="base64">c291cmNlCiAgICA=</text>
+        <text encoding="base64">CgogICAgICAgIA==</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">ICAgIHRoaXMuc291Cg==</text>
+        <text encoding="base64">a2lpICAgICAgICByZXR1cm4gbT4xOwo=</text>
       </register>
-      <register name="6" type="4">
-        <text>.*;</text>
+      <register name="6" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOygpOwo=</text>
       </register>
-      <register name="7" type="4">
-        <text>terminal</text>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsK</text>
       </register>
-      <register name="8" type="4">
-        <text>como</text>
+      <register name="8" type="2">
+        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsK</text>
       </register>
-      <register name="9" type="4">
-        <text>.</text>
+      <register name="9" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwo=</text>
       </register>
       <register name=":" type="4">
         <text>w</text>

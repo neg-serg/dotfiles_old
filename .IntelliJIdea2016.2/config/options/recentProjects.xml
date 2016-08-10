@@ -3,6 +3,7 @@
     <option name="recentPaths">
       <list>
         <option value="$USER_HOME$/src/spark" />
+        <option value="$USER_HOME$/src/hyperdsl/delite" />
         <option value="$USER_HOME$/src/material-theme-jetbrains" />
         <option value="$USER_HOME$/src/scala-ex/example/example" />
         <option value="$USER_HOME$/dev/src/dmd_project" />
@@ -196,6 +197,17 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/src/hyperdsl/delite">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1470779972800" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/src/intellij-community">
           <value>
             <RecentProjectMetaInfo>
@@ -246,13 +258,13 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1470771495373" />
+              <option name="projectOpenTimestamp" value="1470828298164" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="$USER_HOME$/src" />
+    <option name="lastProjectLocation" value="$USER_HOME$/src/hyperdsl" />
   </component>
 </application>
