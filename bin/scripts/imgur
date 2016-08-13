@@ -19,22 +19,18 @@ fi
 
 current_version="v1.7.4"
 
-### IMGUR-SCREENSHOT DEFAULT CONFIG ####
-
-# You can override the config in ~/.config/imgur-screenshot/settings.conf
-
 imgur_anon_id="ea6c0ef2987808e"
-imgur_icon_path="${HOME}/Pictures/imgur.png"
+imgur_icon_path="${XDG_PICTURES_DIR}/imgur.png"
 
-imgur_acct_key="fe9eb43c7996c30"
-imgur_secret="dd7293768b5a719a59df529f0fc9579c513a5b29"
+imgur_acct_key="$(pass imgur_acct_key)"
+imgur_secret="$(pass imgur_secret)"
 login="true"
 album_title=""
 album_id=""
 credentials_file="${HOME}/.config/imgur-screenshot/credentials.conf"
 
 file_name_format="imgur-%Y_%m_%d-%H:%M:%S.png" # when using scrot, must end with .png!
-file_dir="${HOME}/Pictures"
+file_dir="${XDG_PICTURES_DIR}"
 
 upload_connect_timeout="5"
 upload_timeout="120"
@@ -91,19 +87,7 @@ function notify() {
 }
 
 function take_screenshot() {
-    echo "Please select area"
-    # https://bbs.archlinux.org/viewtopic.php?pid=1246173#p1246173
-    sleep 0.1 
-
-    cmd="screenshot_${mode}_command"
-    cmd=${!cmd//\%img/${1}}
-
-    shot_err="$(${cmd} &>/dev/null)" #takes a screenshot with selection
-    if [ "${?}" != "0" ]; then
-        echo "Failed to take screenshot '${1}': '${shot_err}'. For more information visit https://github.com/jomo/imgur-screenshot/wiki/Troubleshooting" | tee -a "${log_file}"
-        notify error "Something went wrong :(" "Information has been logged"
-        exit 1
-    fi
+    echo lol
 }
 
 function check_oauth2_client_secrets() {
@@ -143,7 +127,8 @@ function acquire_access_token() {
     echo "Go to"
     echo "${authorize_url}"
     echo "and grant access to this application."
-    read -rp "Enter the PIN: " imgur_pin
+    echo -n "Enter the PIN: " 
+    read imgur_pin
 
     if [ -z "${imgur_pin}" ]; then
         echo "PIN not entered, exiting"
@@ -404,53 +389,52 @@ if [ -n "${album_title}" ]; then
 fi
 
 if [ -z "${upload_files}" ]; then
-    upload_files[0]=""
+    upload_files[1]=""
 fi
 
 for upload_file in "${upload_files[@]}"; do
+  if [ -z "${upload_file}" ]; then
+    cd "${file_dir}" || exit 1
 
-    if [ -z "${upload_file}" ]; then
-        cd "${file_dir}" || exit 1
+    # new filename with date
+    img_file="$(date +"${file_name_format}")"
+    take_screenshot "${img_file}"
+  else
+    # upload file instead of screenshot
+    img_file="${upload_file}"
+  fi
 
-        # new filename with date
-        img_file="$(date +"${file_name_format}")"
-        take_screenshot "${img_file}"
-    else
-        # upload file instead of screenshot
-        img_file="${upload_file}"
+  # get full path
+  img_file="$(cd "$( dirname "${img_file}")" && echo "$(pwd)/$(basename "${img_file}")")"
+
+  # check if file exists
+  if [ ! -f "${img_file}" ]; then
+    echo "file '${img_file}' doesn't exist !"
+    exit 1
+  fi
+
+  # open image in editor if configured
+  if [ "${edit}" = "true" ]; then
+    edit_cmd=${edit_command//\%img/${img_file}}
+    echo "Opening editor '${edit_cmd}'"
+    if ! (eval "${edit_cmd}"); then
+      echo "Error for image '${img_file}': command '${edit_cmd}' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot/wiki/Troubleshooting" | tee -a "${log_file}"
+      notify error "Something went wrong :(" "Information has been logged"
+      exit 1
     fi
+  fi
 
-    # get full path
-    img_file="$(cd "$( dirname "${img_file}")" && echo "$(pwd)/$(basename "${img_file}")")"
+  if [ "${login}" = "true" ]; then
+    upload_authenticated_image "${img_file}"
+  else
+    upload_anonymous_image "${img_file}"
+  fi
 
-    # check if file exists
-    if [ ! -f "${img_file}" ]; then
-        echo "file '${img_file}' doesn't exist !"
-        exit 1
-    fi
+  # delete file if configured
+  if [ "${keep_file}" = "false" ] && [ -z "${1}" ]; then
+    echo "Deleting temp file ${file_dir}/${img_file}"
+    rm -rf "${img_file}"
+  fi
 
-    # open image in editor if configured
-    if [ "${edit}" = "true" ]; then
-        edit_cmd=${edit_command//\%img/${img_file}}
-        echo "Opening editor '${edit_cmd}'"
-        if ! (eval "${edit_cmd}"); then
-            echo "Error for image '${img_file}': command '${edit_cmd}' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot/wiki/Troubleshooting" | tee -a "${log_file}"
-            notify error "Something went wrong :(" "Information has been logged"
-            exit 1
-        fi
-    fi
-
-    if [ "${login}" = "true" ]; then
-        upload_authenticated_image "${img_file}"
-    else
-        upload_anonymous_image "${img_file}"
-    fi
-
-    # delete file if configured
-    if [ "${keep_file}" = "false" ] && [ -z "${1}" ]; then
-        echo "Deleting temp file ${file_dir}/${img_file}"
-        rm -rf "${img_file}"
-    fi
-
-    echo ""
+  echo ""
 done
