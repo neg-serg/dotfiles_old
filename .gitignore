@@ -99,3 +99,15 @@ vid
 .zsh_history
 .zsh/.zcompdump
 *.zwc
+.config/pulse/*
+.config/octave
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsSettings.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatistics.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable$1.class
+.ideaconfig/config/options/ClojureUsageStatisticsSettings.xml
+.ideaconfig/config/options/ClojureUsageStatistics.xml
+.ideaconfig/config/options/feature.usage.statistics.xml
+.ideaconfig/config/options/proxy.settings.pwd
+.ideaconfig/config/options/recentProjects.xml
+.ideaconfig/options/statistics.application.usages.xml

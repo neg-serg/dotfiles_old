@@ -11,7 +11,7 @@ map <leader>ev :vsp %%
 nnoremap <Leader>sb :call ToggleBg()<cr>
 
 " paste from clipboard
-map <space>pp :set paste<CR>o<esc> "*]p:set nopaste<cr> 
+map <space>pp :set paste<CR>o<esc> "*]p:set nopaste<cr>
 
 nnoremap Y y$
 
@@ -142,7 +142,6 @@ nnoremap <C-w>. :vertical resize +10<CR>
 
 if has('nvim')
     nmap <Leader>ds :vsplit<CR>:term<CR>
-    
     function! QuickTerminal()
         10new
         terminal
@@ -154,3 +153,19 @@ endif
 
 " Macros editing
 nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
+" Toggle some options
+nnoremap <silent> cof :call ToggleOptionFlags('formatoptions', ['a','t'])<Return>
+nnoremap <silent> cop :setlocal paste!<Return>
+nnoremap <silent> cos :setlocal spell!<Return>
+nnoremap <silent> coz :setlocal foldenable!<Return>
+
+" use U for redo
+noremap U <C-r>
+
+" Strip trailing workspaces
+nnoremap <silent> <Space><C-s> :call StripTrailingWhitespace()<Return>
+
+" copy to attached terminal using the yank(1) script:
+" https://github.com/sunaku/home/blob/master/bin/yank
+noremap <silent> <Space>y y:call system(expand($HOME.'/bin/scripts/yank').' > /dev/tty', @0)<Return>

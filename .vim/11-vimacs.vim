@@ -55,9 +55,15 @@ function! <SID>KillLine()
   endif
 endfunction
 
-for key in split("ñ ô ÷ ò é ï ð è ê ã ö í õ Ñ × Å Ò Ô Ù É Ð Á Ó Ä Æ Ç È Ê Ç Ë Ú Ø Ã Ö Â Î Í")
-    exe 'imap '.key.' <nop>'
-endfor
+" don't bother with the following workarounds if `:set noesckeys` is enabled
+if &esckeys
+    for key in [ 'ñ','Ñ','ô','Ô','÷','ò','Ò','é','ï','Ï','î','Î','ì','Ì','ð','Ð',
+               \ 'ù','Ù','è','È','ê','Ê','ã','ö','Ö','í','Í','õ','Õ','×','å','Å',
+               \ 'É','á','Á','ó','Ó','ä','Ä','æ','Æ','ç','Ç','ë','Ë','ú','Ú','ø',
+               \ 'Ø','Ã','â', 'Â' ]
+        exe 'imap '.key.' <nop>'
+    endfor
+endif
 
 function! <SID>ttext(mode) range
    let last_search = histget('search', -1)

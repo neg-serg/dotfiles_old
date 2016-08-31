@@ -21,7 +21,7 @@ set shell='/bin/dash'
 set shellcmdflag='-c'
 
 set titlestring=vimperator
-set history=900
+set history=90000
 
 au LocationChange www.xda-developers.com setlocal previouspattern='^newer entries$' nextpattern='^older entries$'
 

@@ -152,6 +152,9 @@
       <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" timestamp="1472402687419">
+        <mark key="'" line="59" column="4" />
+      </file>
       <file name="/Enum.txt.ft" timestamp="1470696403067">
         <mark key="[" line="0" column="0" />
       </file>
@@ -233,6 +236,7 @@
       <jump line="3" column="18" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" />
       <jump line="348" column="0" filename="/one/dev/src/hyperdsl/delite/framework/delite-test/src/ppl/tests/scalatest/DeliteSuite.scala" />
       <jump line="586" column="0" filename="/one/dev/src/hyperdsl/delite/runtime/src/ppl/delite/runtime/graph/DeliteTaskGraph.scala" />
+      <jump line="59" column="4" filename="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">

@@ -87,7 +87,7 @@ function pl(){
     local args
     [[ -e "$@" ]] && args="$@"
     [[ -z "${args}" ]] && args="${HOME}/vid/"
-    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16 --extended-exact)"
+    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16)"
     xsel <<< ${find_result}
     if [[ ! -z ${find_result} ]]; then
         vid_fancy_print "${find_result}"

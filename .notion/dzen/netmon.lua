@@ -1,18 +1,21 @@
 function current_interface()
     local host="google.com"
+    local default_net_="enp7s0"
 
     local pipe_host_ip = io.popen("getent ahosts "..host.." | head -1 | awk '{print $1}'","r")
     local host_ip = pipe_host_ip:read("*l")
     pipe_host_ip:close()
 
-    local pipe_host_dev = io.popen("ip route get "..host_ip.." | grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]'")
-    local host_dev = pipe_host_dev:read("*l")
-    pipe_host_dev:close()
+    if host_ip ~= nil and host_ip ~= "" then
+        local pipe_host_dev = io.popen("ip route get "..host_ip.." | grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]'")
+        local host_dev = pipe_host_dev:read("*l")
+        pipe_host_dev:close()
+    end
 
     if host_dev ~= "" and host_dev ~= nil then
         return host_dev
     else
-        return "enp6s0"
+        return default_net_
     end
 end
 
