@@ -135,6 +135,37 @@ if inpath git; then
     alias gdd='git diff'
     alias gc='git commit'
     alias gl='git l|head -20'
+
+    # http://neurotap.blogspot.com/2012/04/character-level-diff-in-git-gui.html
+    intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
+    intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
+    alias gdiff="${intra_line_less} git diff ${intra_line_diff}"
+
+    # commit staged changes with the given message
+    alias gcm='git commit -m'
+
+    function git_confclicts() {
+        # list all conflicted files
+        alias gkl='git ls-files --unmerged | cut -f2 | uniq'
+
+        # add changes from all conflicted files
+        alias gka='git add $(gkl)'
+
+        # edit conflicted files
+        alias gke='vim +"set hlsearch" +"/^[<=>]\{7\}/\( \|$\)" $(gkl)'
+
+        # use local version of the given files
+        alias gko='git checkout --$(test -f .git/MERGE_HEAD && echo ours || echo theirs) --'
+
+        # use local version of all conflicted files
+        alias gkO='gko $(gkl)'
+
+        # use upstream version of the given files
+        alias gkt='git checkout --$(test -f .git/MERGE_HEAD && echo theirs || echo ours) --'
+
+        # use upstream version of all conflicted files
+        alias gkT='gkt $(gkl)'
+    }
     eval "$(hub alias -s)"
 fi
 
