@@ -6,7 +6,7 @@
     <location key="#Custom_Plugin_Repositories.0.0.1920.1200" x="799" y="470" />
     <location key="#Browse_Repositories.0.0.1920.1200" x="218" y="0" />
     <location key="FileChooserDialogImpl.0.0.1920.1200" x="650" y="123" />
-    <location key="#Project_Structure.0.0.1920.1200" x="446" y="67" />
+    <location key="#Project_Structure.0.0.1920.1200" x="450" y="71" />
     <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" x="738" y="0" />
     <location key="#Plugins.0.0.1920.1200" x="558" y="0" />
     <location key="#com.intellij.execution.impl.EditConfigurationsDialog.0.0.1920.1200" x="410" y="237" />
@@ -33,22 +33,28 @@
     <location key="#Notifications.0.0.1920.1200" x="712" y="298" />
     <location key="org.intellij.images.editor.actions.SetBackgroundImageDialog.0.0.1920.1200" x="487" y="302" />
     <location key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog.0.0.1920.1200" x="696" y="343" />
-    <size key="new project wizard.0.0.1920.1200" width="962" height="652" />
+    <location key="refactoring.ChangeSignatureDialog.0.0.1920.1200" x="693" y="186" />
+    <location key="chooseDestDirectoryDialog.0.0.1920.1200" x="719" y="356" />
+    <location key="com.intellij.testIntegration.createTest.CreateTestDialog.0.0.1920.1200" x="698" y="313" />
+    <location key="#TrueBenchMark.0.0.1920.1200" x="664" y="241" />
+    <location key="#DSA-MS12-1.0-SNAPSHOT.jar.0.0.1920.1200" x="664" y="212" />
+    <location key="Maven.ArtifactSearchDialog.0.0.1920.1200" x="496" y="248" />
+    <size key="new project wizard.0.0.1920.1200" width="1246" height="652" />
     <size key="com.intellij.ide.util.TipDialog.0.0.1920.1200" width="928" height="945" />
-    <size key="#Project_Structure.0.0.1920.1200" width="1028" height="1042" />
-    <size key="FileChooserDialogImpl.0.0.1920.1200" width="618" height="732" />
+    <size key="#Project_Structure.0.0.1920.1200" width="1020" height="1034" />
+    <size key="FileChooserDialogImpl.0.0.1920.1200" width="612" height="706" />
     <size key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" width="454" height="1176" />
     <size key="#Browse_Repositories.0.0.1920.1200" width="1485" height="1176" />
     <size key="#Plugins.0.0.1920.1200" width="804" height="1176" />
     <size key="#Browse_JetBrains_Plugins_.0.0.1920.1200" width="828" height="1176" />
-    <size key="NewModule_or_Project.wizard.0.0.1920.1200" width="734" height="1002" />
+    <size key="NewModule_or_Project.wizard.0.0.1920.1200" width="902" height="1002" />
     <size key="editAsTableFormatDialogDimension.0.0.1920.1200" width="828" height="1176" />
-    <size key="SettingsEditor.0.0.1920.1200" width="1394" height="1181" />
+    <size key="SettingsEditor.0.0.1920.1200" width="1390" height="1177" />
     <size key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" width="328" height="727" />
-    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="339" />
-    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="339" />
-    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1916" height="339" />
-    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1916" height="339" />
+    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="331" />
+    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="331" />
+    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1916" height="331" />
+    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1916" height="331" />
     <size key="javadoc.popup.0.0.1920.1200" width="446" height="163" />
     <size key="StructurePopup.0.0.1920.1200" width="536" height="370" />
     <size key="#com.intellij.ide.util.TreeClassChooserDialog.0.0.1920.1200" width="895" height="404" />
@@ -57,5 +63,11 @@
     <size key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog.0.0.1920.1200" width="449" height="188" />
     <size key="#Vim_Emulation.0.0.1920.1200" width="695" height="544" />
     <size key="#Notifications.0.0.1920.1200" width="490" height="553" />
+    <size key="refactoring.ChangeSignatureDialog.0.0.1920.1200" width="505" height="759" />
+    <size key="chooseDestDirectoryDialog.0.0.1920.1200" width="475" height="429" />
+    <size key="GridCell.Tab.1.left.0.0.1920.1200" width="1916" height="407" />
+    <size key="GridCell.Tab.1.center.0.0.1920.1200" width="1916" height="407" />
+    <size key="GridCell.Tab.1.right.0.0.1920.1200" width="1916" height="407" />
+    <size key="GridCell.Tab.1.bottom.0.0.1920.1200" width="1916" height="407" />
   </component>
 </application>

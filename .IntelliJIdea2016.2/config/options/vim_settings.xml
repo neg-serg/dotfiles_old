@@ -3,11 +3,25 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" timestamp="1472627827893">
+        <mark key="'" line="133" column="0" />
+        <mark key="[" line="134" column="16" />
+        <mark key="]" line="134" column="18" />
+        <mark key="^" line="134" column="18" />
+        <mark key="." line="134" column="18" />
+      </file>
       <file name="/File Header.txt.ft" timestamp="1470151795840">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Scala Trait.txt.ft" timestamp="1470696408918">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/benchmark/test/pom.xml" timestamp="1472763253719">
+        <mark key="'" line="88" column="16" />
+        <mark key="[" line="68" column="68" />
+        <mark key="]" line="68" column="68" />
+        <mark key="." line="68" column="68" />
+        <mark key="^" line="65" column="26" />
       </file>
       <file name="/ActionScript Class with Supers.txt.ft" timestamp="1470696407261">
         <mark key="[" line="0" column="0" />
@@ -15,11 +29,22 @@
       <file name="/Scala Script.txt.ft" timestamp="1470696409458">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Lecture.java" timestamp="1472676716576">
+        <mark key="[" line="7" column="0" />
+        <mark key="]" line="7" column="0" />
+        <mark key="^" line="7" column="41" />
+        <mark key="." line="7" column="0" />
+      </file>
       <file name="/XSLT Stylesheet.txt.ft" timestamp="1470696412903">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Flex 4 Component.txt.ft" timestamp="1470696407819">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/Link.java" timestamp="1472624296860">
+        <mark key="[" line="1" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
       </file>
       <file name="/HTML4 File.txt.ft" timestamp="1470696401660">
         <mark key="[" line="0" column="0" />
@@ -27,14 +52,55 @@
       <file name="/Interface.txt.ft" timestamp="1470696402789">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/Main.java" timestamp="1472638895516">
+        <mark key="[" line="1" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Name.java" timestamp="1472674765380">
+        <mark key="^" line="7" column="11" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" timestamp="1472989516112">
+        <mark key="'" line="10" column="11" />
+        <mark key="[" line="56" column="78" />
+        <mark key="]" line="56" column="82" />
+        <mark key="." line="56" column="82" />
+        <mark key="^" line="56" column="82" />
+      </file>
       <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" timestamp="1472762211721">
+        <mark key="[" line="96" column="35" />
+        <mark key="]" line="96" column="41" />
+        <mark key="." line="96" column="41" />
+        <mark key="^" line="96" column="41" />
       </file>
       <file name="/Flex 3 Component.txt.ft" timestamp="1470696407690">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/CoffeeScript File.txt.ft" timestamp="1470696408376">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/benchmark/test/src/main/java/Test.java" timestamp="1472899315882">
+        <mark key="'" line="4" column="15" />
+        <mark key="[" line="4" column="0" />
+        <mark key="]" line="15" column="0" />
+        <mark key="^" line="13" column="26" />
+        <mark key="." line="13" column="26" />
+      </file>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ArrayLong.java" timestamp="1472624198790">
+        <mark key="[" line="7" column="11" />
+        <mark key="]" line="7" column="16" />
+        <mark key="^" line="7" column="16" />
+        <mark key="." line="7" column="16" />
+      </file>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ListLongImpl.java" timestamp="1472623677831">
+        <mark key="'" line="61" column="4" />
+        <mark key="[" line="101" column="15" />
+        <mark key="]" line="101" column="28" />
+        <mark key="^" line="101" column="28" />
+        <mark key="." line="101" column="28" />
       </file>
       <file name="/Kotlin Enum.txt.ft" timestamp="1470696410690">
         <mark key="[" line="0" column="0" />
@@ -45,8 +111,20 @@
       <file name="/SCSS File.txt.ft" timestamp="1470696411666">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/IStudent.java" timestamp="1472675983157">
+        <mark key="[" line="8" column="19" />
+        <mark key="]" line="8" column="19" />
+        <mark key="^" line="8" column="18" />
+        <mark key="." line="8" column="19" />
+      </file>
       <file name="/AMD JavaScript File.txt.ft" timestamp="1470696406026">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ArrayLongImpl.java" timestamp="1472426630062">
+        <mark key="[" line="13" column="8" />
+        <mark key="]" line="13" column="7" />
+        <mark key="." line="13" column="7" />
+        <mark key="^" line="13" column="7" />
       </file>
       <file name="/Scala Object.txt.ft" timestamp="1470696409105">
         <mark key="[" line="0" column="0" />
@@ -57,11 +135,22 @@
       <file name="/Package Object.txt.ft" timestamp="1470696409568">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/MyBenchmark.java" timestamp="1472989091625">
+        <mark key="[" line="34" column="0" />
+        <mark key="]" line="34" column="0" />
+        <mark key="." line="34" column="0" />
+      </file>
       <file name="/XHTML File.txt.ft" timestamp="1470696401999">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Sass File.txt.ft" timestamp="1470696411229">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/TrueBenchMark.java" timestamp="1472639509553">
+        <mark key="[" line="0" column="11" />
+        <mark key="]" line="0" column="20" />
+        <mark key="^" line="0" column="20" />
+        <mark key="." line="0" column="20" />
       </file>
       <file name="/ActionScript Interface.txt.ft" timestamp="1470696407483">
         <mark key="[" line="0" column="0" />
@@ -79,6 +168,13 @@
         <mark key="." line="23" column="4" />
         <mark key="^" line="23" column="4" />
       </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/LinkedListLongImpl.java" timestamp="1472638946047">
+        <mark key="'" line="4" column="13" />
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
+        <mark key="^" line="1" column="0" />
+      </file>
       <file name="/Kotlin File.txt.ft" timestamp="1470696410244">
         <mark key="[" line="0" column="0" />
       </file>
@@ -92,6 +188,13 @@
         <mark key="." line="226" column="17" />
         <mark key="^" line="226" column="17" />
       </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" timestamp="1472676505690">
+        <mark key="'" line="11" column="74" />
+        <mark key="[" line="6" column="0" />
+        <mark key="]" line="16" column="4" />
+        <mark key="^" line="15" column="29" />
+        <mark key="." line="15" column="29" />
+      </file>
       <file name="/XML Properties File.txt.ft" timestamp="1470696403850">
         <mark key="[" line="0" column="0" />
       </file>
@@ -103,6 +206,13 @@
       </file>
       <file name="/Scala Class.txt.ft" timestamp="1470696408736">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/University.java" timestamp="1472676639770">
+        <mark key="'" line="28" column="0" />
+        <mark key="[" line="30" column="0" />
+        <mark key="]" line="30" column="0" />
+        <mark key="^" line="29" column="80" />
+        <mark key="." line="30" column="0" />
       </file>
       <file name="/Play 2 template.scala.txt.ft" timestamp="1470696410054">
         <mark key="[" line="0" column="0" />
@@ -116,20 +226,29 @@
       <file name="/Less File.txt.ft" timestamp="1470696411037">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/HTML File.txt.ft" timestamp="1470737341028">
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLong.java" timestamp="1472677007741">
+        <mark key="[" line="14" column="35" />
+        <mark key="]" line="15" column="3" />
+        <mark key="^" line="15" column="3" />
+        <mark key="." line="15" column="3" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/benchmark/TrueBenchMark.java" timestamp="1472639496166">
+        <mark key="[" line="0" column="11" />
+        <mark key="]" line="0" column="11" />
+        <mark key="." line="0" column="11" />
+      </file>
+      <file name="/HTML File.txt.ft" timestamp="1472627756385">
         <mark key="[" line="0" column="0" />
-      </file>
-      <file name="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" timestamp="1470776408072">
-        <mark key="'" line="3" column="18" />
-        <mark key="[" line="24" column="0" />
-        <mark key="]" line="24" column="0" />
-        <mark key="." line="24" column="0" />
-      </file>
-      <file name="/one/dev/src/hyperdsl/delite/framework/delite-test/src/ppl/tests/scalatest/DeliteSuite.scala" timestamp="1470777162907">
-        <mark key="'" line="348" column="0" />
       </file>
       <file name="/Singleton.txt.ft" timestamp="1470696412695">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="/Dummy.txt" timestamp="1472685516712">
+        <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Assistant.java" timestamp="1472676573999">
+        <mark key="]" line="13" column="1" />
+        <mark key="^" line="9" column="33" />
       </file>
       <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
         <mark key="[" line="0" column="0" />
@@ -140,6 +259,12 @@
       <file name="/TypeScript File.txt.ft" timestamp="1470696406312">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/DSA/src/src/test/java/dsa/benchmark/TrueBenchMark.java" timestamp="1472685553602">
+        <mark key="[" line="22" column="0" />
+        <mark key="]" line="22" column="0" />
+        <mark key="." line="22" column="0" />
+        <mark key="^" line="22" column="1" />
+      </file>
       <file name="/package-info.txt.ft" timestamp="1470696403605">
         <mark key="[" line="0" column="0" />
       </file>
@@ -149,11 +274,39 @@
       <file name="/ColdFusion File.txt.ft" timestamp="1470696404182">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/Main.java" timestamp="1473028473221">
+        <mark key="'" line="115" column="13" />
+        <mark key="[" line="105" column="0" />
+        <mark key="]" line="105" column="0" />
+        <mark key="." line="105" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Main.java" timestamp="1472674232982">
+        <mark key="[" line="2" column="15" />
+        <mark key="]" line="5" column="7" />
+        <mark key="^" line="5" column="7" />
+        <mark key="." line="5" column="7" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Grade.java" timestamp="1472674383684">
+        <mark key="[" line="6" column="4" />
+        <mark key="]" line="6" column="4" />
+        <mark key="." line="6" column="4" />
+        <mark key="^" line="6" column="4" />
+      </file>
       <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" timestamp="1472402687419">
+      <file name="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" timestamp="1472409189965">
         <mark key="'" line="59" column="4" />
+        <mark key="[" line="6" column="56" />
+        <mark key="]" line="6" column="55" />
+        <mark key="^" line="6" column="55" />
+        <mark key="." line="6" column="55" />
+      </file>
+      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/Main.java" timestamp="1472628262555">
+        <mark key="[" line="28" column="0" />
+        <mark key="]" line="28" column="12" />
+        <mark key="." line="28" column="12" />
+        <mark key="^" line="28" column="82" />
       </file>
       <file name="/Enum.txt.ft" timestamp="1470696403067">
         <mark key="[" line="0" column="0" />
@@ -161,163 +314,258 @@
       <file name="/Class.txt.ft" timestamp="1470696402305">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/one/dev/src/hyperdsl/delite/runtime/src/ppl/delite/runtime/graph/DeliteTaskGraph.scala" timestamp="1470823260083">
-        <mark key="'" line="586" column="0" />
-        <mark key="[" line="610" column="0" />
-        <mark key="]" line="610" column="0" />
-        <mark key="." line="610" column="0" />
-      </file>
       <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Student.java" timestamp="1472676432096">
+        <mark key="[" line="6" column="0" />
+        <mark key="]" line="9" column="22" />
+        <mark key="." line="30" column="36" />
+        <mark key="^" line="30" column="36" />
+      </file>
+      <file name="$USER_HOME$/st/ITP/UI/src/com/company/LectureCourse.java" timestamp="1472674439797">
+        <mark key="[" line="9" column="0" />
+        <mark key="]" line="9" column="0" />
+        <mark key="." line="9" column="0" />
       </file>
       <file name="/AnnotationType.txt.ft" timestamp="1470696403330">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/fragment.java" timestamp="1470737233217">
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" timestamp="1472991707170">
+        <mark key="'" line="46" column="34" />
+        <mark key="[" line="125" column="26" />
+        <mark key="]" line="126" column="7" />
+        <mark key="." line="126" column="7" />
+        <mark key="^" line="126" column="7" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/ArrayLong.java" timestamp="1472638913817">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
+        <mark key="^" line="1" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/DSA/src/pom.xml" timestamp="1472679176392">
+        <mark key="'" line="29" column="27" />
+        <mark key="[" line="14" column="5" />
+        <mark key="]" line="14" column="5" />
+        <mark key="." line="14" column="5" />
+        <mark key="^" line="13" column="15" />
+      </file>
+      <file name="/fragment.java" timestamp="1472761211357">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/MobileResourceBundle.txt.ft" timestamp="1470696412433">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" timestamp="1472638932959">
+        <mark key="'" line="4" column="0" />
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="1" column="0" />
+        <mark key="." line="1" column="0" />
+        <mark key="^" line="1" column="0" />
+      </file>
     </filemarks>
     <jumps>
-      <jump line="727" column="0" filename="/one/dev/src/_scala/aws-wrap/src/main/scala/s3/s3.scala" />
-      <jump line="203" column="0" filename="/one/dev/src/_scala/aws-wrap/src/main/scala/simpledb/simpledb.scala" />
-      <jump line="46" column="34" filename="/one/dev/src/scala-ex/example/example/src/main/scala/example/Lists.scala" />
-      <jump line="0" column="0" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="8" column="13" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="9" column="30" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="10" column="24" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="16" column="1" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="24" column="10" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="17" column="26" filename="/one/dev/src/scala-ex/example/example/src/main/scala/wsws.sc" />
-      <jump line="2" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson01/task01/Solution.java" />
-      <jump line="11" column="17" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson02/task04/Cat.java" />
-      <jump line="18" column="23" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson06/task03/Solution.java" />
-      <jump line="52" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson06/task03/Solution.java" />
-      <jump line="13" column="0" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson10/task01/Solution.java" />
-      <jump line="4" column="46" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level04/lesson16/home01/Solution.java" />
-      <jump line="13" column="44" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
-      <jump line="19" column="26" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
-      <jump line="35" column="23" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task05/Solution.java" />
-      <jump line="24" column="19" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" />
-      <jump line="94" column="20" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="108" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="119" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="130" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="141" column="16" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="152" column="47" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="194" column="19" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="43" column="8" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/crud/CrudView.java" />
-      <jump line="83" column="13" filename="$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.5.6/vaadin-server-7.5.6.jar!/com/vaadin/ui/Grid.class" />
-      <jump line="364" column="99" filename="$MAVEN_REPOSITORY$/com/vaadin/vaadin-server/7.5.6/vaadin-server-7.5.6.jar!/com/vaadin/ui/Grid.class" />
-      <jump line="212" column="19" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="24" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="520" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="96" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="23" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="26" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="30" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="34" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="38" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="21" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/Paper.java" />
-      <jump line="91" column="18" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/backend/PaperService.java" />
-      <jump line="15" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
-      <jump line="56" column="0" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/MainScreen.java" />
-      <jump line="71" column="12" filename="$USER_HOME$/dev/src/dmd_project/src/main/java/com/vaadin/tutorial/dmdproject/AuthorForm.java" />
-      <jump line="143" column="0" filename="$USER_HOME$/src/1st_level/hackathon-Embeditor/embeditor/src/com/jetbrains/plugins/embeditor/EmbeddedTerminalEditor.java" />
-      <jump line="143" column="14" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="186" column="8" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="23" column="4" filename="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" />
-      <jump line="526" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="374" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="410" column="0" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="340" column="4" filename="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" />
-      <jump line="3" column="18" filename="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork/src/com/javarush/test/level05/lesson05/task02/Cat.java" />
-      <jump line="348" column="0" filename="/one/dev/src/hyperdsl/delite/framework/delite-test/src/ppl/tests/scalatest/DeliteSuite.scala" />
-      <jump line="586" column="0" filename="/one/dev/src/hyperdsl/delite/runtime/src/ppl/delite/runtime/graph/DeliteTaskGraph.scala" />
-      <jump line="59" column="4" filename="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" />
+      <jump line="149" column="13" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/Link.java" />
+      <jump line="1" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/Link.java" />
+      <jump line="50" column="13" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="213" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="44" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="84" column="4" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="216" column="4" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="103" column="10" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="106" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="110" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="112" column="19" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="219" column="19" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="118" column="17" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="221" column="17" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="62" column="8" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="116" column="17" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="117" column="19" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="137" column="7" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="273" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="90" column="19" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="280" column="18" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="179" column="18" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="91" column="8" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="168" column="17" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="175" column="12" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="269" column="17" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="228" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="144" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="232" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="85" column="19" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="148" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="229" column="8" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="202" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="119" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="145" column="16" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="204" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="102" column="8" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="150" column="8" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="44" column="10" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/Main.java" />
+      <jump line="133" column="0" filename="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" />
+      <jump line="69" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="5" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="9" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="7" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="62" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="225" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/LinkedListLongImpl.java" />
+      <jump line="214" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/LinkedListLongImpl.java" />
+      <jump line="149" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="138" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="140" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="78" column="59" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="75" column="54" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="0" column="14" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="48" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="22" column="24" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="5" column="0" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="113" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="2" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/Main.java" />
+      <jump line="67" column="0" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="65" column="2" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="1" column="1" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="10" column="0" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="50" column="17" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="16" column="44" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="2" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" />
+      <jump line="2" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/LinkedListLongImpl.java" />
+      <jump line="129" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Main.java" />
+      <jump line="40" column="27" filename="$USER_HOME$/st/DSA/src/pom.xml" />
+      <jump line="5" column="25" filename="$USER_HOME$/st/ITP/UI/src/com/company/Main.java" />
+      <jump line="11" column="31" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="23" column="40" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="30" column="8" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="37" column="8" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="12" column="0" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="22" column="0" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
+      <jump line="8" column="73" filename="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" />
+      <jump line="11" column="74" filename="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" />
+      <jump line="20" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" />
+      <jump line="7" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="9" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="30" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="68" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="19" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="36" column="27" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="20" column="35" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
+      <jump line="11" column="11" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" />
+      <jump line="81" column="16" filename="$USER_HOME$/st/DSA/benchmark/test/pom.xml" />
+      <jump line="4" column="15" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/Test.java" />
+      <jump line="1" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="78" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="105" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="56" column="24" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="31" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="108" column="22" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="49" column="16" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="20" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="111" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="42" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="44" column="32" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
+      <jump line="45" column="34" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
         <text>i</text>
       </register>
+      <register name="*" type="2">
+        <text encoding="base64">ICAgIHB1YmxpYyBib29sZWFuIGluc2VydEFmdGVyKGludCBwb3MsIGxvbmcgdmFsdWUpOwo=</text>
+      </register>
       <register name="-" type="4">
-        <text>System</text>
+        <text>initArray</text>
       </register>
       <register name="/" type="4">
-        <text encoding="base64">XDxwYXBlckxpc3RcPg==</text>
+        <text encoding="base64">XDxbXD4=</text>
       </register>
-      <register name="0" type="4">
-        <text encoding="base64">SkJUZXJtaW5hbCA=</text>
+      <register name="0" type="2">
+        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsKICAgICAgICBhLmRpc3BsYXkoKTsK</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgIAo=</text>
+        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsK</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgICAgICAK</text>
+        <text encoding="base64">ICAgICAgICBhLmRlbGV0ZSgobG9uZyk5KTsK</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgICAgICAK</text>
+        <text encoding="base64">ICAgICAgICAgICAgICAgICAgICAK</text>
       </register>
-      <register name="4" type="4">
-        <text encoding="base64">CgogICAgICAgIA==</text>
+      <register name="4" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgCg==</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">a2lpICAgICAgICByZXR1cm4gbT4xOwo=</text>
+        <text encoding="base64">ICAgICAgICAgICAgICAgIGNvdW50Kys7Cg==</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwogICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOygpOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="7" type="2">
-        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsK</text>
+        <text encoding="base64">ICAgICAgICBhcnJbcG9zXSA9IHZhbHVlOwogICAgICAgIGZvcihpbnQgaSA9IHBvcyArIDE7IGkgPCBhcnIubGVuZ3RoOyBpKyspewogICAgICAgICAgICBhcnJbaV0gPSBhcnJbaSAtIDFdOwogICAgICAgICAgICBjb3VudCsrOwogICAgICAgIH0KICAgICAgICByZXR1cm4gdHJ1ZTsK</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICBTeXN0ZW0ub3V0LnByaW50bG4oKTsK</text>
+        <text encoding="base64">ICAgIAo=</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgICAgIFN5c3RlbS5vdXQucHJpbnRsbigpOwo=</text>
+        <text encoding="base64">ICAgICAgICBhLmFkZCg4KTsKICAgICAgICBhLmFkZCg4KTsKICAgICAgICBhLmFkZCgxNik7CiAgICAgICAgYS5hZGQoMik7CiAgICAgICAgYS5hZGQoNCk7CiAgICAgICAgYS5hZGQoMTYpOwogICAgICAgIGEuYWRkKDUpOwogICAgICAgIGEuYWRkKDE1KTsKICAgICAgICBhLmFkZCg0KTsKICAgICAgICBhLmFkZCgxKTsKICAgICAgICBhLmFkZCg5KTsK</text>
       </register>
       <register name=":" type="4">
         <text>w</text>
       </register>
     </registers>
     <search>
-      <last-search encoding="base64">XDxwYXBlckxpc3RcPg==</last-search>
+      <last-search encoding="base64">XDxbXD4=</last-search>
       <last-offset />
-      <last-pattern encoding="base64">XDxwYXBlckxpc3RcPg==</last-pattern>
-      <last-replace />
-      <last-substitute>fight</last-substitute>
+      <last-pattern encoding="base64">XDxbXD4=</last-pattern>
+      <last-replace>instructors</last-replace>
+      <last-substitute>assistants</last-substitute>
       <last-dir>-1</last-dir>
       <show-last>false</show-last>
     </search>
     <history>
       <history-search>
-        <entry>guess</entry>
-        <entry>age</entry>
-        <entry>applesp</entry>
-        <entry>fight</entry>
-        <entry encoding="base64">XDxzcWxRdWVyeVw+</entry>
-        <entry encoding="base64">XDxwYXBlckxpc3RcPg==</entry>
+        <entry encoding="base64">XDx0ZXN0QXJyYXlJbnNlcnRcPg==</entry>
+        <entry encoding="base64">XDwoXD4=</entry>
+        <entry encoding="base64">XDxpc0VtcHR5XD4=</entry>
+        <entry encoding="base64">XDxhZGRGaXJzdFw+</entry>
+        <entry encoding="base64">XDxkZWxldGVcPg==</entry>
+        <entry encoding="base64">XDxpbnNlcnRBZnRlclw+</entry>
+        <entry encoding="base64">XDxkaXNwbGF5TGlzdFw+</entry>
+        <entry encoding="base64">XDxpbnNlcnRBZnRlcl9cPg==</entry>
+        <entry encoding="base64">XDxhZGRMYXN0XD4=</entry>
+        <entry encoding="base64">XDxhZGRcPg==</entry>
+        <entry encoding="base64">XDxkZWxldGVGaXJzdFw+</entry>
+        <entry encoding="base64">XDxkZWxldGVMYXN0XD4=</entry>
+        <entry encoding="base64">XDxkZWxldGVCeUluZGV4XD4=</entry>
+        <entry>);</entry>
+        <entry encoding="base64">XDxwcm9qZWN0XD4=</entry>
+        <entry>std</entry>
+        <entry>Ser</entry>
+        <entry>Mir</entry>
+        <entry>assistants</entry>
+        <entry encoding="base64">XDxbXD4=</entry>
       </history-search>
       <history-cmd>
-        <entry>W</entry>
-        <entry encoding="base64">JzwsJz5zO2ZpZ2h0Ozs=</entry>
-        <entry>set num</entry>
-        <entry encoding="base64">aW1hcCA8Qy1lPiA8RW5kPg==</entry>
-        <entry>restart</entry>
-        <entry>set ruler</entry>
-        <entry>set listchars=tab:▸▸</entry>
-        <entry>help</entry>
-        <entry>e ~/.xinitrc</entry>
-        <entry>bd!</entry>
-        <entry>action</entry>
         <entry>action w</entry>
         <entry>actions</entry>
         <entry>action Search</entry>
-        <entry>action Find</entry>
         <entry>command</entry>
         <entry>q</entry>
+        <entry encoding="base64">JzwsJz5zO05vZGU7TGluaw==</entry>
+        <entry>action CommentByLineComment</entry>
+        <entry encoding="base64">JzwsJz5zLyk7Lyw=</entry>
+        <entry>action Forward</entry>
+        <entry>w\</entry>
+        <entry encoding="base64">JzwsJz53</entry>
+        <entry encoding="base64">JzwsJz5zO3N0ZDthc3Npc3RhbnRzOw==</entry>
+        <entry encoding="base64">JzwsJz5zO1NlcjtRZXI7</entry>
+        <entry encoding="base64">JzwsJz5zO01pcjtEaXI=</entry>
+        <entry encoding="base64">JzwsJz5zO2Fzc2lzdGFudHM7aW5zdHJ1Y3RvcnM7</entry>
+        <entry>action Back</entry>
+        <entry>we</entry>
+        <entry>action Find</entry>
+        <entry>W</entry>
         <entry>w</entry>
       </history-cmd>
       <history-expr />
@@ -380,6 +628,12 @@
       </shortcut-conflict>
       <shortcut-conflict owner="vim">
         <text>ctrl pressed 2</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed N</text>
+      </shortcut-conflict>
+      <shortcut-conflict owner="vim">
+        <text>ctrl pressed I</text>
       </shortcut-conflict>
     </shortcut-conflicts>
   </component>

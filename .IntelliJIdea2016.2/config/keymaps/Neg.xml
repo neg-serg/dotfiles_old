@@ -32,6 +32,7 @@
   <action id="EditorAddRectangularSelectionOnMouseDrag" />
   <action id="EditorBackSpace">
     <keyboard-shortcut first-keystroke="ctrl h" />
+    <keyboard-shortcut first-keystroke="back_space" />
   </action>
   <action id="EditorBackwardParagraph" />
   <action id="EditorCodeBlockEnd" />
@@ -42,25 +43,20 @@
   <action id="EditorCutLineBackward" />
   <action id="EditorDeleteToWordEnd" />
   <action id="EditorDeleteToWordStart" />
-  <action id="EditorDown">
-    <keyboard-shortcut first-keystroke="ctrl n" />
-  </action>
   <action id="EditorDownWithSelection">
     <keyboard-shortcut first-keystroke="shift ctrl n" />
   </action>
   <action id="EditorDuplicate" />
-  <action id="EditorEscape" />
+  <action id="EditorEscape">
+    <keyboard-shortcut first-keystroke="enter" />
+  </action>
   <action id="EditorForwardParagraph" />
   <action id="EditorJoinLines" />
   <action id="EditorKillRegion">
-    <keyboard-shortcut first-keystroke="ctrl w" />
     <keyboard-shortcut first-keystroke="ctrl d" />
   </action>
   <action id="EditorKillRingSave" />
   <action id="EditorKillToWordStart" />
-  <action id="EditorLeft">
-    <keyboard-shortcut first-keystroke="ctrl b" />
-  </action>
   <action id="EditorLeftWithSelection">
     <keyboard-shortcut first-keystroke="shift ctrl b" />
   </action>
@@ -89,7 +85,6 @@
   </action>
   <action id="EditorPageDownWithSelection" />
   <action id="EditorPageUp">
-    <keyboard-shortcut first-keystroke="ctrl z" />
     <keyboard-shortcut first-keystroke="alt v" />
   </action>
   <action id="EditorPageUpWithSelection" />
@@ -98,9 +93,6 @@
   <action id="EditorPreviousWord">
     <keyboard-shortcut first-keystroke="alt b" />
   </action>
-  <action id="EditorRight">
-    <keyboard-shortcut first-keystroke="ctrl f" />
-  </action>
   <action id="EditorScrollToCenter" />
   <action id="EditorTextEnd" />
   <action id="EditorTextEndWithSelection" />
@@ -108,9 +100,6 @@
   <action id="EditorTextStartWithSelection" />
   <action id="EditorToggleColumnMode" />
   <action id="EditorToggleInsertState" />
-  <action id="EditorUp">
-    <keyboard-shortcut first-keystroke="ctrl p" />
-  </action>
   <action id="EditorUpWithSelection" />
   <action id="Emacs+.TransposeChars">
     <keyboard-shortcut first-keystroke="ctrl t" />
