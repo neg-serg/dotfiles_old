@@ -159,6 +159,8 @@ export SXHKD_SHELL="zsh"
 
 export VIDEO_PLAYER_="mpv"
 
+export AUTOPAIR_INHIBIT_INIT=1
+
 export vim_server_name="VIM"
 export wim_font="PragmataPro for Powerline"
 export wim_font_s="Mensch:size=14"
