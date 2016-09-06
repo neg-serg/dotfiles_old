@@ -35,6 +35,26 @@ if neobundle#tap('fzf.vim')
     if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
+
+    " Taken from :
+    " [https://github.com/aliev/vim/blob/master/vimrc]
+    if executable('ag')
+        " Silver searcher instead of grep
+        set grepprg=ag\ --vimgrep
+        set grepformat=%f:%l:%c%m
+
+        " If you're running fzf in a large git repository, git ls-tree can boost up
+        " the speed of the traversal.
+        if isdirectory('.git') && executable('git')
+            let $FZF_DEFAULT_COMMAND='
+                        \ (git ls-tree -r --name-only HEAD ||
+                        \ find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+                        \ sed s/^..//) 2> /dev/null'
+        else
+            let $FZF_DEFAULT_COMMAND='ag -g ""'
+        endif
+    endif
+
     nnoremap qe :Files %:p:h<CR>
     nnoremap qE :Files<CR>
     " This is the default extra key bindings
