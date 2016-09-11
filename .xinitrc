@@ -60,6 +60,6 @@ systemctl --user restart gpaste
 eval $(gpg-agent --daemon)
 
 ~/bin/bar_notifyd &
-~/bin/scripts/get_logs &
+~/bin/scripts/get_logs
 
 exec notion 2>> ~/tmp/notionerr$$ 2>&1
