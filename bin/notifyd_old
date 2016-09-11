@@ -1,0 +1,51 @@
+#!/bin/bash
+
+function main {
+    # Get coords of the monitor
+    monitor_x=10 monitor_y=20
+    # Get the size of the monitor
+    monitor_width="1920" monitor_height="1200"
+    # Panel size
+    pad_x="50" pad_y="30" height="50"
+    # Padding of the text in the panel
+    in_pad="30"
+    # Yes.
+    font="-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso10646-1"
+
+    color_summary="#71c2af"
+    color_bg="#000000"
+    color_fg="#c27171"
+
+    dismiss=3
+
+    tmp_file_="${HOME}/tmp/$(mktemp notifydXXX)"
+    trap "rm ${tmp_file_}" INT
+    # No notifications on screen
+    echo "0" > ${tmp_file_}
+
+    sind -d -t ${dismiss} -f '%s^%b' |\
+        # Reads the notifications line by line
+        while read -r line; do
+            active=$(< ${tmp_file_})
+            active=$[active + 1]
+            echo ${active} > ${tmp_file_}
+            summary=$(echo ${line} | awk -F^ '{print $1}')
+            body=$(echo ${line} | awk -F^ '{print $2}')
+            # No body, no space
+            [[ -n body ]] && space=" "
+            # To be precise
+            text_width=$(txtw -f $font "${summary}${body}")
+            width=$[2 * in_pad + text_width]
+            bar_y=$[ monitor_y + monitor_height - active * (pad_y + height) ]
+            bar_opts="-d -g ${width}x${height}+$[monitor_x + monitor_width - pad_x - width]+${bar_y} -B ${color_bg} -f ${font}"
+            # Show it and wait 3 seconds
+            (
+                echo "%{c}%{F${color_summary}}${summary}${space}%{F$color_fg}${body}"; \
+                sleep ${dismiss}; \
+                current=$(< ${tmp_file_}); \
+                echo "$((current - 1))" > ${tmp_file_}
+            ) | lemonbar ${bar_opts} &
+        done
+}
+
+main "$@"
