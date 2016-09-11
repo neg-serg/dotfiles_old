@@ -3,7 +3,7 @@
 FG='#dcdcdc'
 BG='#000000'
 
-font1="PragmataPro:size=10"
+font1="PragmataPro for Powerline:size=10"
 
 function mpd_status(){
     artist="$@"
