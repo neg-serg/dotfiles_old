@@ -131,6 +131,7 @@ defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-toolbox-color-di
 defwinprop{class="stalonetray",instance="stalonetray",statusbar="*",float=true,target="stalonetray"}
 defwinprop{is_dockapp=true,statusbar="*",float=true}
 -------------------------------------[[   ADMIN  ]]---------------------------------
+defwinprop{instance="_logs_",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="remmina",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="htop_term",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="glances_term",target="admin",jumpto=true,tag="admin"}
