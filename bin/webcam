@@ -1,8 +1,9 @@
 #!/bin/zsh
-local snapshot_name="${HOME}/tmp/snapshot_$$.png"
-local rec_name="${HOME}/tmp/rec-$(date +%y%m%d_%H%M)_$$.avi"
+local dir_="${HOME}/tmp/shots"
+local snapshot_name="${dir_}/snapshot_$$.png"
+local rec_name="${dir_}/rec-$(date +%y%m%d_%H%M)_$$.avi"
 local adev="hw.0,0"
-local frec_pid="${HOME}/tmp/f_rec$$.pid"
+local frec_pid="${dir_}/f_rec$$.pid"
 
 for i in /dev/v4l/by-id/*; do
     if [[ $1 == "" ]]; then
