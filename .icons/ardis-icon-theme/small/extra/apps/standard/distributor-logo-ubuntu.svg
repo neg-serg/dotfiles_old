@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91+devel r13804 custom"
+   sodipodi:docname="distributor-logo-ubuntu.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="709"
+     id="namedview3010"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="-8.6779661"
+     inkscape:cy="237.55932"
+     inkscape:window-x="-2"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata241">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="ButtonShadow-5"
+       x1="45.448"
+       gradientUnits="userSpaceOnUse"
+       y1="92.54"
+       gradientTransform="scale(1.0059 .99417)"
+       x2="45.448"
+       y2="7.0165">
+      <stop
+         id="stop3750-0"
+         offset="0" />
+      <stop
+         id="stop3752-8"
+         stop-opacity=".58824"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter3174-8"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-5"
+         stdDeviation="1.71" />
+    </filter>
+    <linearGradient
+       id="linearGradient3737">
+      <stop
+         id="stop3739"
+         stop-color="#fff"
+         offset="0" />
+      <stop
+         id="stop3741"
+         stop-color="#fff"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter3174"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3794"
+       height="1.384"
+       width="1.384"
+       color-interpolation-filters="sRGB"
+       y="-.192"
+       x="-.192">
+      <feGaussianBlur
+         id="feGaussianBlur3796"
+         stdDeviation="5.28" />
+    </filter>
+    <linearGradient
+       id="linearGradient3613"
+       x1="48"
+       xlink:href="#linearGradient3737"
+       gradientUnits="userSpaceOnUse"
+       y1="20.221"
+       x2="48"
+       y2="138.66" />
+    <clipPath
+       id="clipPath3613">
+      <rect
+         id="rect3615"
+         rx="6"
+         ry="6"
+         height="84"
+         width="84"
+         y="6"
+         x="6"
+         fill="#fff" />
+    </clipPath>
+    <filter
+       id="filter3174-3"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-2"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3794-0"
+       height="1.384"
+       width="1.384"
+       color-interpolation-filters="sRGB"
+       y="-.192"
+       x="-.192">
+      <feGaussianBlur
+         id="feGaussianBlur3796-3"
+         stdDeviation="5.28" />
+    </filter>
+    <clipPath
+       id="clipPath3613-1">
+      <rect
+         id="rect3615-9"
+         rx="6"
+         ry="6"
+         height="84"
+         width="84"
+         y="6"
+         x="6"
+         fill="#fff" />
+    </clipPath>
+    <filter
+       id="filter3174-8-3"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-5-8"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3174-0"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-6"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3794-9"
+       height="1.384"
+       width="1.384"
+       color-interpolation-filters="sRGB"
+       y="-.192"
+       x="-.192">
+      <feGaussianBlur
+         id="feGaussianBlur3796-2"
+         stdDeviation="5.28" />
+    </filter>
+    <clipPath
+       id="clipPath3613-2">
+      <rect
+         id="rect3615-3"
+         rx="6"
+         ry="6"
+         height="84"
+         width="84"
+         y="6"
+         x="6"
+         fill="#fff" />
+    </clipPath>
+    <filter
+       id="filter3174-35"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-3"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3794-91"
+       height="1.384"
+       width="1.384"
+       color-interpolation-filters="sRGB"
+       y="-.192"
+       x="-.192">
+      <feGaussianBlur
+         id="feGaussianBlur3796-7"
+         stdDeviation="5.28" />
+    </filter>
+    <clipPath
+       id="clipPath3613-8">
+      <rect
+         id="rect3615-8"
+         rx="6"
+         ry="6"
+         height="84"
+         width="84"
+         y="6"
+         x="6"
+         fill="#fff" />
+    </clipPath>
+    <filter
+       id="filter3174-4"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-37"
+         stdDeviation="1.71" />
+    </filter>
+    <filter
+       id="filter3794-4"
+       height="1.384"
+       width="1.384"
+       color-interpolation-filters="sRGB"
+       y="-.192"
+       x="-.192">
+      <feGaussianBlur
+         id="feGaussianBlur3796-9"
+         stdDeviation="5.28" />
+    </filter>
+    <clipPath
+       id="clipPath3613-9">
+      <rect
+         id="rect3615-1"
+         rx="6"
+         ry="6"
+         height="84"
+         width="84"
+         y="6"
+         x="6"
+         fill="#fff" />
+    </clipPath>
+    <linearGradient
+       id="linearGradient11572"
+       y2="7.0165"
+       xlink:href="#ButtonShadow-5"
+       gradientUnits="userSpaceOnUse"
+       x2="45.448"
+       gradientTransform="scale(1.0059 .99417)"
+       y1="92.54"
+       x1="45.448" />
+  </defs>
+  <g
+     id="layer2"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1705.8 -834.03)">
+    <rect
+       id="rect3745"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer5"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1705.8 -834.03)">
+    <rect
+       id="rect3171"
+       height="66"
+       stroke="#fff"
+       stroke-linecap="round"
+       stroke-width=".5"
+       fill="url(#linearGradient3613)"
+       rx="12"
+       ry="12"
+       width="66"
+       opacity=".1"
+       clip-path="url(#clipPath3613)"
+       filter="url(#filter3794)"
+       y="15"
+       x="15" />
+  </g>
+  <g
+     id="layer2-5"
+     display="none"
+     transform="translate(-118.36 -21.072)">
+    <rect
+       id="rect3745-0"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-8)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer2-8"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1708.9 -839.43)">
+    <rect
+       id="rect3745-3"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-3)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer5-5"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1708.9 -839.43)">
+    <rect
+       id="rect3171-2"
+       height="66"
+       stroke="#fff"
+       stroke-linecap="round"
+       stroke-width=".5"
+       fill="url(#linearGradient3613)"
+       rx="12"
+       ry="12"
+       width="66"
+       opacity=".1"
+       clip-path="url(#clipPath3613-1)"
+       filter="url(#filter3794-0)"
+       y="15"
+       x="15" />
+  </g>
+  <g
+     id="layer2-3"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1693.5 -882.16)">
+    <rect
+       id="rect3745-6"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-0)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer5-3"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1693.5 -882.16)">
+    <rect
+       id="rect3171-7"
+       height="66"
+       stroke="#fff"
+       stroke-linecap="round"
+       stroke-width=".5"
+       fill="url(#linearGradient3613)"
+       rx="12"
+       ry="12"
+       width="66"
+       opacity=".1"
+       clip-path="url(#clipPath3613-2)"
+       filter="url(#filter3794-9)"
+       y="15"
+       x="15" />
+  </g>
+  <g
+     id="layer2-5-4"
+     display="none"
+     transform="translate(-106.08 -69.206)">
+    <rect
+       id="rect3745-0-9"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-8-3)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer2-33"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1500.2 -968.07)">
+    <rect
+       id="rect3745-1"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-35)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer5-6"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1500.2 -968.07)">
+    <rect
+       id="rect3171-4"
+       height="66"
+       stroke="#fff"
+       stroke-linecap="round"
+       stroke-width=".5"
+       fill="url(#linearGradient3613)"
+       rx="12"
+       ry="12"
+       width="66"
+       opacity=".1"
+       clip-path="url(#clipPath3613-8)"
+       filter="url(#filter3794-91)"
+       y="15"
+       x="15" />
+  </g>
+  <g
+     id="layer2-58"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1659.8 -887.77)">
+    <rect
+       id="rect3745-7"
+       opacity=".9"
+       rx="6"
+       ry="6"
+       height="85"
+       filter="url(#filter3174-4)"
+       width="86"
+       y="7"
+       x="5"
+       fill="url(#linearGradient11572)" />
+  </g>
+  <g
+     id="layer5-0"
+     display="none"
+     transform="matrix(13.4 0 0 13.4 -1659.8 -887.77)">
+    <rect
+       id="rect3171-9"
+       height="66"
+       stroke="#fff"
+       stroke-linecap="round"
+       stroke-width=".5"
+       fill="url(#linearGradient3613)"
+       rx="12"
+       ry="12"
+       width="66"
+       opacity=".1"
+       clip-path="url(#clipPath3613-9)"
+       filter="url(#filter3794-4)"
+       y="15"
+       x="15" />
+  </g>
+  <g
+     id="g6359"
+     transform="translate(145.35593,-232.13559)">
+    <rect
+       x="-145.35793"
+       y="232.13559"
+       width="512"
+       height="512"
+       rx="25.988001"
+       id="rect9"
+       style="fill:#f15a24" />
+    <path
+       d="m 245.69207,273.13359 0,0.002 c -23.61,0.004 -42.77,19.122 -42.77,42.738 l 42.78,42.782 -42.78,-42.78 c 0,11.81 4.79,22.5 12.53,30.25 0.02,0.01 0.03,0.03 0.04,0.04 l 22.89,22.89 c -0.38,-0.05 -0.75,-0.11 -1.13,-0.17 l -44.56,-44.559 0,-0.002 c -14.94,-4.191 -30.7,-6.472 -46.99,-6.472 l -0.01,-0.006 c -27.63,0 -53.710002,6.461 -76.840002,17.919 l 31.530002,54.62 142.75,142.74 c -0.48,1.02 -0.97,2.03 -1.47,3.03 l -190.370002,-190.37 c -34.92,22.75 -60.9700002,57.75 -71.86,98.82 l 0.04,0.04 c -0.02,-0.01 -0.03,-0.02 -0.04,-0.03 l 9.89,9.89 c 5.5599998,7.22 9.3299998,15.89 10.6299998,25.35 l -22.9199998,-22.92 c 0.05,0.05 0.1,0.11 0.16,0.17 l -0.16,-0.16 c -7.74,-7.74 -18.43,-12.53 -30.242,-12.53 l -0.007,-0.01 c -23.619,0 -42.78,19.16 -42.78,42.78 l 42.78,42.78 -0.004,0 -42.778,-42.78 c 0,11.12 4.244,21.24 11.198,28.85 l 0.101,0.1 c 0.749,0.82 1.536,1.59 2.346,2.35 l 225.660002,225.65 197.35,0 c 14.4,0 25.99,-11.59 25.99,-25.99 l 0,-341.8 -90.68,-90.681 c -7.74,-7.744 -18.45,-12.531 -30.27,-12.531 z"
+       id="path59"
+       style="opacity:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 245.70207,273.13559 c -23.619,0 -42.779,19.12 -42.779,42.739 0,23.619 19.16,42.779 42.779,42.779 23.619,0 42.779,-19.16 42.779,-42.779 0,-23.619 -19.16,-42.739 -42.78,-42.739 m -100,44.709 c -27.631,0 -53.715002,6.462 -76.843002,17.917 l 31.532002,54.618 c 13.773,-6.416 29.12,-10.02 45.3,-10.02 55.721,0 101.52,42.42 106.91,96.72 l 64.6,0 c -2.745,-43.578 -22.12,-82.69 -51.895,-111.24 -14.682,5.761 -31.731,5.03 -46.45,-3.472 -14.577,-8.416 -23.704,-22.624 -26.16,-38.04 -14.938,-4.192 -30.709,-6.473 -47,-6.473 m -94.400002,27.94 c -34.923,22.748 -60.9750002,57.749 -71.863,98.82 12.7739998,9.812 21.0299998,25.23 21.0299998,42.581 0,17.475 -8.341,32.979 -21.2709998,42.779 10.737,41.584 36.974,77.03 72.26,99.96 l 31.65,-54.815 c -27.15,-19.504 -44.877,-51.32 -44.877,-87.29 0,-35.916 17.643,-67.7 44.709,-87.21 l -31.65,-54.814 m -104.5,98.62 c -23.619,0 -42.779,19.16 -42.779,42.779 0,23.619 19.16,42.779 42.779,42.779 23.619,0 42.779,-19.16 42.779,-42.779 0,-23.619 -19.16,-42.779 -42.779,-42.779 m 305.930002,52.882 c -4.8,54.903 -50.881,97.99 -107.03,97.99 -16.14,0 -31.414,-3.573 -45.15,-9.945 l -31.532002,54.618 c 23.08,11.408 49.120002,17.838 76.670002,17.838 15.917,0 31.31,-2.152 45.936,-6.157 2.536,-15.292 11.654,-29.377 26.13,-37.727 14.823,-8.559 32.01,-9.205 46.764,-3.314 30.507,-28.901 50.29,-68.829 52.764,-113.3 l -64.56,0 m -8.13,120.33 c -23.619,0 -42.779,19.16 -42.779,42.779 0,23.619 19.16,42.739 42.779,42.739 23.619,0 42.779,-19.12 42.779,-42.739 0,-23.619 -19.16,-42.779 -42.779,-42.779"
+       id="path157"
+       style="fill:#ffffff"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="any_do.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview41"
+     showgrid="false"
+     inkscape:zoom="0.5546875"
+     inkscape:cx="36.056338"
+     inkscape:cy="240.67606"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8">
+    <clipPath
+       id="clipPath3249">
+      <path
+         id="path3251"
+         fill="#009cce"
+         d="m26 0c-14.397 0-26 11.603-26 26v460c0 14.397 11.603 26 26 26h460c14.397 0 26-11.603 26-26v-460c0-14.397-11.6-26-26-26h-460z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3249-1">
+      <path
+         style="fill:#009cce"
+         inkscape:connector-curvature="0"
+         id="path3251-6"
+         d="M 26,0 C 11.603,0 0,11.603 0,26 l 0,460 c 0,14.397 11.603,26 26,26 l 460,0 c 14.397,0 26,-11.603 26,-26 L 512,26 C 512,11.603 500.4,0 486,0 L 26,0 Z" />
+    </clipPath>
+  </defs>
+  <g
+     id="g3420"
+     transform="translate(562.47887,12.619718)">
+    <path
+       d="m -536.47887,-12.619718 c -14.397,0 -26,11.6029997 -26,26 l 0,459.999998 c 0,14.397 11.603,26 26,26 l 459.999997,0 c 14.397,0 26,-11.603 26,-26 l 0,-459.999998 c 0,-14.3970003 -11.6,-26 -26,-26 l -459.999997,0 z"
+       id="rect2986"
+       style="fill:#009cce"
+       inkscape:connector-curvature="0" />
+    <g
+       transform="translate(-562.47887,-12.619718)"
+       clip-path="url(#clipPath3249-1)"
+       id="g3161"
+       style="opacity:0.25">
+      <path
+         d="M 384.1,41 214.96,333.98 603.87,722.89 773.01,429.91 Z"
+         id="path3163"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 214.96,333.98 91.14,262.52 480.05,651.43 603.87,722.89 Z"
+         id="path3165"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 91.143,262.52 -50.144,86.872 388.91,388.91 50.144,-86.872 z"
+         id="path3167"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 40.999,349.39 251.639,471 640.549,859.91 429.909,738.3 Z"
+         id="path3169"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 251.64,471 0.0278,-0.0278 388.91,388.91 -0.0278,0.0278 z"
+         id="path3171"
+         inkscape:connector-curvature="0" />
+      <path
+         d="m 251.66,470.97 0.0278,0.0278 388.91,388.91 -0.0278,-0.0278 z"
+         id="path3173"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 251.69,471 471,91.17 859.91,480.08 640.6,859.91 Z"
+         id="path3175"
+         inkscape:connector-curvature="0" />
+      <path
+         d="M 471,91.171 384.1,41 l 388.91,388.91 86.9,50.171 z"
+         id="path3177"
+         inkscape:connector-curvature="0" />
+    </g>
+    <path
+       d="m -178.37887,28.380282 -169.14,292.979998 -123.82,-71.46 -50.141,86.87 210.64,121.61 0.02,-0.03 0.03,0.03 219.309997,-379.829998 -86.899997,-50.17 z"
+       id="rect4131"
+       style="fill:#ffffff"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

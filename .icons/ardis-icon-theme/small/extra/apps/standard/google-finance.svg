@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="google-finance.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview48"
+     showgrid="false"
+     inkscape:zoom="0.5546875"
+     inkscape:cx="36.056338"
+     inkscape:cy="240.67606"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8">
+    <clipPath
+       id="clipPath3286">
+      <path
+         id="path3288"
+         fill="#28a645"
+         d="m26 0c-14.397 0-26 11.603-26 26v460c0 14.397 11.603 26 26 26h460c14.397 0 26-11.603 26-26v-460c0-14.397-11.6-26-26-26h-460z" />
+    </clipPath>
+    <clipPath
+       id="clipPath3286-1">
+      <path
+         style="fill:#28a645"
+         inkscape:connector-curvature="0"
+         id="path3288-2"
+         d="M 26,0 C 11.603,0 0,11.603 0,26 l 0,460 c 0,14.397 11.603,26 26,26 l 460,0 c 14.397,0 26,-11.603 26,-26 L 512,26 C 512,11.603 500.4,0 486,0 L 26,0 Z" />
+    </clipPath>
+  </defs>
+  <g
+     id="g3542"
+     transform="translate(349.74647,-324.50704)">
+    <path
+       d="m -323.74572,324.50594 c -14.397,0 -26,11.603 -26,26 l 0,460 c 0,14.397 11.603,26 26,26 l 460,0 c 14.397,0 26,-11.603 26,-26 l 0,-460 c 0,-14.397 -11.6,-26 -26,-26 l -460,0 z"
+       id="rect2986"
+       style="fill:#28a645"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 23.414276,516.97594 -0.28125,0.1875 -95.438,65.094 -0.0312,0 -112.529996,71.438 -64.812,-38.906 -0.25,-0.125 -0.2188,0.0937 -99.601,45.72 0,150.03 c 0,14.397 11.603,26 26,26 l 460,0 c 14.397,0 26,-11.603 26,-26 l 0,-274.5 -41.062,44.906 -34.562004,-16 -62.906,-47.719 -0.3125,-0.21875 z"
+       style="color:#000000;text-indent:0;text-transform:none;block-progression:tb;fill:#005c2b"
+       id="path3144"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path3189"
+       d="m 21.594956,477.72579 -1.40625,1 0.002,0.002 -0.87109,0.62305 -0.006,-0.004 c -66.52154,49.13692 -133.067016,98.19809 -199.685546,147.375 -22.08799,-13.51879 -44.10506,-27.13713 -66.37305,-40.33593 -34.451,15.49 -68.712,31.45984 -103,47.33984 l 0,48.25 154.5293,154.5293 331.4707,0 c 14.397,0 26,-11.603 26,-26 l 0,-316.18946 c -18.406,19.626 -37.9475,38.5465 -57.0625,57.6875 C 77.421196,527.11972 49.509036,502.43214 21.600726,477.72575 L 131.23354,587.35856 c -9.8e-4,9.8e-4 -9.8e-4,0.003 -0.002,0.004 L 21.594956,477.72579 Z"
+       style="color:#000000;text-indent:0;text-transform:none;block-progression:tb;opacity:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 21.594276,477.72594 -1.4062,1 -0.875,0.625 c -66.52,49.14 -133.059996,98.21 -199.679996,147.38 -22.09,-13.52 -44.11,-27.14 -66.38,-40.34 -34.451,15.49 -68.712,31.46 -103,47.34 l 0,48.25 c 33.131,-15.894 66.692,-30.823 100.03,-46.312 23.926,14.597 47.807,29.338 72,43.469 65.372,-48.765 131.129996,-96.659 196.559996,-145.38 29.237,26.245 58.584,52.27 88.031004,78.281 18.248,-18.729 36.81,-37.165 55.375,-55.594 l 0,-62.125 c -18.406,19.626 -37.947,38.547 -57.062,57.688 -27.772004,-24.884 -55.685004,-49.574 -83.594004,-74.281 z"
+       style="color:#000000;text-indent:0;text-transform:none;block-progression:tb;fill:#ffffff"
+       id="path3115"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

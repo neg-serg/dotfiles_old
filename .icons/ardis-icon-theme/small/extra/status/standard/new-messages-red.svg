@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg2"
+   viewBox="0 0 512 512"
+   height="100%"
+   width="100%"
+   version="1.1">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs104">
+    <filter
+       id="filter3174"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176"
+         stdDeviation="1.71" />
+    </filter>
+    <linearGradient
+       id="ButtonShadow"
+       y2="7.0165"
+       gradientUnits="userSpaceOnUse"
+       x2="45.448"
+       gradientTransform="scale(1.0059,0.99417)"
+       y1="92.54"
+       x1="45.448">
+      <stop
+         id="stop3750-1"
+         offset="0" />
+      <stop
+         id="stop3752-6"
+         style="stop-opacity:.58824"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter3174-2"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-6"
+         stdDeviation="1.71" />
+    </filter>
+    <linearGradient
+       y2="7.0165"
+       x2="45.448"
+       y1="92.54"
+       x1="45.448"
+       gradientTransform="scale(1.0059,0.99417)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient62873"
+       xlink:href="#ButtonShadow" />
+  </defs>
+  <g
+     id="layer2"
+     style="display:none"
+     transform="matrix(6.7274189,0,0,6.7274189,-1328.8681,-712.41656)">
+    <rect
+       id="rect3745"
+       style="opacity:0.9;fill:url(#ButtonShadow);filter:url(#filter3174)"
+       rx="6"
+       ry="6"
+       height="85"
+       width="86"
+       y="7"
+       x="5" />
+  </g>
+  <g
+     id="layer2-1"
+     style="display:none"
+     transform="matrix(6.7274189,0,0,6.7274189,-1522.6492,-780.80988)">
+    <rect
+       id="rect3745-0"
+       style="opacity:0.9;fill:url(#linearGradient62873);filter:url(#filter3174-2)"
+       rx="6"
+       ry="6"
+       height="85"
+       width="86"
+       y="7"
+       x="5" />
+  </g>
+  <path
+     style="fill:#cd1d31;fill-opacity:1;stroke:none"
+     id="rect2986"
+     d="m 25.99968,0 c -14.39735,0 -26,11.60265 -26,26 l 0,460 c 0,14.39735 11.60265,26 26,26 l 460,0 c 14.39735,0 26,-11.60265 26,-26 l 0,-460 c 0,-14.39735 -11.60265,-26 -26,-26 l -460,0 z" />
+  <path
+     id="path3014"
+     d="m 437.34015,112.66326 -365.16406,0.52734 -0.0117,0 c -14.55551,0.01 -31.16407,18.1652 -31.16407,31.39649 l 0,222.14062 c 0,7.97895 3.93286,15.47388 9.72071,21.26172 l 124.00976,124.00977 311.26953,0 c 14.39735,0 26,-11.60265 26,-26 l 0,-311.41406 -51.73242,-51.73243 c -6.22637,-6.22634 -14.48743,-10.18945 -22.92775,-10.18945 z"
+     style="opacity:0.25;fill:#000000" />
+  <path
+     style="fill:#ffffff"
+     id="rect3170"
+     d="m 72.17554,113.19065 c -14.55829,0 -31.17586,18.16083 -31.17586,31.39565 l 0,222.14178 c 0,17.46326 18.84647,32.60924 34.72347,32.60924 l 359.48999,0 c 19.06386,0 35.78654,-16.19712 35.78654,-32.87202 l 0,-218.81398 c 0,-18.52873 -16.4599,-34.98864 -33.66037,-34.98864 l -365.1757,0.52797 z m 12.8717,27.09313 163.50487,163.49532 14.18443,0 164.24068,-163.49532 16.42406,16.42408 -97.80383,99.29215 73.9095,75.4002 -16.42407,16.42407 -75.39543,-75.39543 -54.49207,55.23264 -34.35318,0 -54.49206,-55.23264 -75.40021,76.13601 -16.42646,-17.17659 74.65485,-75.39543 -98.5444,-99.28976 16.42646,-16.42646 z" />
+</svg>

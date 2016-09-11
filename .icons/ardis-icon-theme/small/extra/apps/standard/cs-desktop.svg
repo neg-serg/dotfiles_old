@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="cs-desktop.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview912"
+     showgrid="false"
+     inkscape:zoom="0.5546875"
+     inkscape:cx="36.056338"
+     inkscape:cy="240.67606"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata1821">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <linearGradient
+       id="0"
+       y1=".107"
+       x2="0"
+       y2="512.54"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop7"
+         stop-color="#6a6a6a"
+         offset="0" />
+      <stop
+         id="stop9"
+         offset=".47" />
+      <stop
+         id="stop11"
+         stop-color="#fff"
+         offset="0.494" />
+      <stop
+         id="stop13"
+         stop-color="#fff"
+         offset="0.901" />
+      <stop
+         id="stop15"
+         offset="0.955" />
+      <stop
+         id="stop17"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="0-1"
+       y1="0.107"
+       x2="0"
+       y2="512.53998"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-5e-4,-5e-4)">
+      <stop
+         id="stop7-0"
+         stop-color="#6a6a6a"
+         offset="0" />
+      <stop
+         id="stop9-5"
+         offset=".47" />
+      <stop
+         id="stop11-5"
+         stop-color="#fff"
+         offset="0.494" />
+      <stop
+         id="stop13-0"
+         stop-color="#fff"
+         offset="0.901" />
+      <stop
+         id="stop15-0"
+         offset="0.955" />
+      <stop
+         id="stop17-7"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:#6997c7;fill-rule:evenodd"
+     id="path19"
+     d="m 50.2495,-5e-4 c -27.823,0 -50.25,22.395 -50.25,50.22 l 0,411.56 c 0,27.82 22.427,50.22 50.25,50.22 l 411.53,0 c 27.82,0 50.22,-22.4 50.22,-50.22 l 0,-411.56 c 0,-27.823 -22.4,-50.22 -50.22,-50.22 l -411.53,0" />
+  <path
+     inkscape:connector-curvature="0"
+     style="opacity:0.05;fill:url(#0-1);fill-rule:evenodd"
+     id="path1333"
+     d="m 50.2495,-5e-4 c -27.823,0 -50.25,22.395 -50.25,50.22 l 0,411.56 c 0,27.82 22.427,50.22 50.25,50.22 l 411.53,0 c 27.82,0 50.22,-22.4 50.22,-50.22 l 0,-411.56 c 0,-27.823 -22.4,-50.22 -50.22,-50.22 l -411.53,0" />
+  <g
+     id="g1813"
+     style="color:#000000"
+     transform="translate(-5e-4,-5e-4)">
+    <path
+       style="opacity:0.25"
+       inkscape:connector-curvature="0"
+       id="path1815"
+       d="m 94.72,55 0,28.28 21.531,21.531 -21.5,0 0,204.94 61.09,61.09 -114.84,0 0,86.16 55,55 365.78,0 c 27.823,0 50.22,-22.394 50.22,-50.22 l 0,-329.16 -77.62,-77.62 -339.66,0" />
+    <path
+       style="fill:#ffffff"
+       inkscape:connector-curvature="0"
+       id="path1817"
+       d="m 94.72,55 0,28.28 339.66,0 0,-28.28 -339.66,0 m 0.031,49.813 0,204.94 339.63,0 0,-204.94 -339.62,0 m -53.75,266.03 0,86.16 430,0 0,-86.16 -430,0" />
+  </g>
+</svg>

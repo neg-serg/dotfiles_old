@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 512 512"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="glade.svg">
+  <metadata
+     id="metadata332">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs330" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview328"
+     showgrid="false"
+     inkscape:zoom="0.5546875"
+     inkscape:cx="36.056338"
+     inkscape:cy="240.67606"
+     inkscape:current-layer="svg2" />
+  <g
+     id="g3684"
+     transform="translate(468.73239,-374.98591)">
+    <rect
+       id="rect274"
+       height="512"
+       rx="25.988001"
+       width="512"
+       style="fill:#e46431"
+       x="-468.73239"
+       y="374.9859" />
+    <g
+       transform="translate(-468.73239,374.98592)"
+       id="g322"
+       style="fill-rule:evenodd">
+      <path
+         id="path324"
+         d="m 471,88.3 -430,335.4 88.3,88.3 356.71,0 c 14.397,0 25.988,-11.591 25.988,-25.988 l 0,-356.71 -41,-41"
+         inkscape:connector-curvature="0"
+         style="opacity:0.25" />
+      <path
+         id="path326"
+         d="m 471,88.3 -430,335.4 67.19,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 40.31,0 0,-40.25 13.438,0 0,40.25 26.876,0 0,-335.4 m -67.19,147.58 0,120.74 -161.25,0 161.25,-120.74"
+         inkscape:connector-curvature="0"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+</svg>

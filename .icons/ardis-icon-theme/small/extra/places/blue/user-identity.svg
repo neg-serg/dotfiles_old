@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="100%"
+   height="100%"
+   viewBox="0 0 512 512"
+   id="svg2">
+  <metadata
+     id="metadata1395">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <linearGradient
+       gradientTransform="translate(-0.0045,-5e-4)"
+       y1="0.107"
+       x2="0"
+       y2="512.53998"
+       id="0-4"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop7-7"
+         style="stop-color:#6a6a6a;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop9-4"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0.47" />
+      <stop
+         id="stop11-6"
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0.49399999" />
+      <stop
+         id="stop13-8"
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0.90100002" />
+      <stop
+         id="stop15-8"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="0.95499998" />
+      <stop
+         id="stop17-3"
+         style="stop-color:#000000;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <path
+     d="m 50.2455,-5e-4 c -27.823,0 -50.25,22.395 -50.25,50.22 l 0,411.56 c 0,27.823 22.427,50.22 50.25,50.22 l 411.53,0 c 27.823,0 50.22,-22.395 50.22,-50.22 l 0,-411.56 c 0,-27.823 -22.395,-50.22 -50.22,-50.22 l -411.53,0"
+     id="path19"
+     style="fill:#6997c7;fill-rule:evenodd" />
+  <path
+     d="m 50.2455,-5e-4 c -27.823,0 -50.25,22.395 -50.25,50.22 l 0,411.56 c 0,27.823 22.427,50.22 50.25,50.22 l 411.53,0 c 27.823,0 50.22,-22.395 50.22,-50.22 l 0,-411.56 c 0,-27.823 -22.395,-50.22 -50.22,-50.22 l -411.53,0"
+     id="path1333"
+     style="opacity:0.05;fill:url(#0-4);fill-rule:evenodd" />
+  <g
+     transform="translate(-0.0045,-5e-4)"
+     id="g1387"
+     style="fill-rule:evenodd">
+    <path
+       d="m 255.75,41 c -53.786,0 -99.07,53.971 -87.5,106.5 10.863,49.34 24.2,36.793 19.719,60.66 l 38.469,38.469 c 18.349,19.839 33.08,35.11 44.844,46.75 4.835,-3.53 10.445,-8.459 17.5,-14.844 2.684,0.014 63.64,95.13 -17.5,14.844 -16.788,12.257 -24.06,7.327 -48.563,-14.844 -15.941,-14.427 -33.01,-19.896 -49.31,-18.344 -48.871,4.683 -90.67,72.33 -76,150.5 l 11,60.31 41,41 312.38,0 c 27.823,0 50.22,-22.394 50.22,-50.22 l 0,-205.12 -187.03,-187.06 c -17.68,-17.68 -42.2,-28.594 -69.22,-28.594"
+       id="path1389"
+       style="opacity:0.25" />
+    <path
+       d="m 255.76,41 c -53.786,0 -97.53,43.23 -97.53,97.01 0,53.786 43.746,97.53 97.53,97.53 53.786,0 97.53,-43.746 97.53,-97.53 C 353.29,84.224 309.544,41 255.76,41 m -82.34,219.19 c -48.885,4.657 -90.71,72.31 -76.04,150.5 l 11.01,60.31 147.35,0 147.35,0 11.536,-60.31 c 19.558,-104.26 -62.09,-189.85 -125.85,-132.15 -31.551,28.556 -34.519,28.556 -66.08,0 -15.941,-14.427 -32.997,-19.906 -49.3,-18.354"
+       id="path1391"
+       style="fill:#ffffff" />
+  </g>
+</svg>

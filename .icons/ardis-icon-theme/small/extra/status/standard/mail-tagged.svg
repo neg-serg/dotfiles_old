@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg2"
+   viewBox="0 0 512 512"
+   height="100%"
+   width="100%"
+   version="1.1">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs104">
+    <filter
+       id="filter3174"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176"
+         stdDeviation="1.71" />
+    </filter>
+    <linearGradient
+       id="ButtonShadow"
+       y2="7.0165"
+       gradientUnits="userSpaceOnUse"
+       x2="45.448"
+       gradientTransform="scale(1.0059,0.99417)"
+       y1="92.54"
+       x1="45.448">
+      <stop
+         id="stop3750-1"
+         offset="0" />
+      <stop
+         id="stop3752-6"
+         style="stop-opacity:.58824"
+         offset="1" />
+    </linearGradient>
+    <filter
+       id="filter3174-2"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3176-6"
+         stdDeviation="1.71" />
+    </filter>
+    <linearGradient
+       y2="7.0165"
+       x2="45.448"
+       y1="92.54"
+       x1="45.448"
+       gradientTransform="scale(1.0059,0.99417)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient62873"
+       xlink:href="#ButtonShadow" />
+  </defs>
+  <g
+     id="layer2"
+     style="display:none"
+     transform="matrix(6.7274189,0,0,6.7274189,-1328.8681,-712.41656)">
+    <rect
+       id="rect3745"
+       style="opacity:0.9;fill:url(#ButtonShadow);filter:url(#filter3174)"
+       rx="6"
+       ry="6"
+       height="85"
+       width="86"
+       y="7"
+       x="5" />
+  </g>
+  <g
+     id="layer2-1"
+     style="display:none"
+     transform="matrix(6.7274189,0,0,6.7274189,-1522.6492,-780.80988)">
+    <rect
+       id="rect3745-0"
+       style="opacity:0.9;fill:url(#linearGradient62873);filter:url(#filter3174-2)"
+       rx="6"
+       ry="6"
+       height="85"
+       width="86"
+       y="7"
+       x="5" />
+  </g>
+  <rect
+     style="fill:#0078ac"
+     id="rect4"
+     y="3.1494142e-06"
+     x="-0.00199417"
+     rx="25.988001"
+     height="512"
+     width="512" />
+  <path
+     style="fill-opacity:0.23500001"
+     id="path52"
+     d="m 56.49801,43.719 0.844,169.19001 c 99.88999,99.64 199.25999,199.79 299.49999,299.09 l 129.16,0 c 14.39701,0 26,-11.603 26,-26 l 0,-158.41 C 416.97201,232.55901 321.11201,138.389 225.66201,43.779 l -169.16,-0.063 m 35.625,235.53001 102.83999,189.06 c 15.1,15.1 29.468,29.455 43.75,43.688 l 91.63,0 c -51.18,-51.33 -105.23,-105.25 -155.28,-152.78 l -82.93799,-79.969" />
+  <g
+     style="fill:#ffffff"
+     id="g54"
+     transform="matrix(1.52022,0,0,1.52022,-35.88199,-35.883)">
+    <path
+       id="path56"
+       d="M 212.15,313.63 61,163.71 60.754,52.37 l 111.33,0.258 151.16,149.95 M 96.294,75.688 c -7.04,0 -12.73,5.699 -12.73,12.742 0,7.03 5.695,12.734 12.73,12.734 7.04,0 12.742,-5.707 12.742,-12.734 0,-7.04 -5.707,-12.742 -12.742,-12.742 m 10.121,71.2 103.82,103.82 14.645,-14.656 -103.81,-103.83 m 32.582,-32.559 -14.664,14.664 103.17,103.19 14.664,-14.668" />
+    <path
+       id="path58"
+       d="M 192.54,312.21 151.7,331.632 84.19,207.272" />
+  </g>
+</svg>

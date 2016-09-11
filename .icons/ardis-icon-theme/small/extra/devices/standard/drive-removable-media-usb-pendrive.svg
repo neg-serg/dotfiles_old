@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="100%"
+   height="100%"
+   viewBox="0 0 512 512"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="drive-removable-media-usb-pendrive.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview1477"
+     showgrid="false"
+     inkscape:zoom="0.546875"
+     inkscape:cx="34.742857"
+     inkscape:cy="240.45714"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata2952">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2950" />
+  <g
+     id="g4832"
+     transform="translate(376.68571,-418.74286)">
+    <rect
+       style="fill:#e96d63"
+       id="rect2578"
+       y="418.73785"
+       x="-376.69821"
+       rx="26.26"
+       height="512"
+       width="512" />
+    <path
+       style="fill-opacity:0.23500001"
+       id="path2736"
+       inkscape:connector-curvature="0"
+       d="m 5.1817857,464.98786 -67.0899997,67.13 c 59.8769997,59.906 137.03,138.42 197.220004,198.63 l 0,-135.59 c -38.751004,-38.753 -95.220004,-95.22 -130.1200043,-130.16 m -107.5299957,64.06 c -73.73,74.31 -148.67,147.51 -221.62,222.5 -15.759,23.485 8.04,42.63 23.375,57.63 33.16,33.17 85.08,86.1 120.41,121.56 l 289.25,0 c 14.546,0 26.25,-11.704 26.25,-26.25 l 0,-137.41 c -72.860004,-72.894 -166.390004,-166.82 -237.62,-238.03 l -0.031,0" />
+    <g
+       style="fill:#ffffff"
+       id="g2942"
+       transform="matrix(13.1242,0,0,13.1242,-329.20821,464.98786)">
+      <path
+         id="path2944"
+         inkscape:connector-curvature="0"
+         d="M 17.268,4.883 0.677,21.475 c -0.902,0.902 -0.902,2.367 0,3.272 l 6.543,6.54 c 0.904,0.904 2.369,0.9 3.268,0 L 27.079,14.697 17.268,4.883" />
+      <path
+         id="path2946"
+         inkscape:connector-curvature="0"
+         d="M 31.774,6.312 25.464,0 20.353,5.115 26.662,11.426 31.774,6.312 M 29.043,5.946 27.989,6.995 26.706,5.712 27.757,4.659 29.043,5.946 M 24.751,3.754 25.802,2.705 27.085,3.988 26.032,5.037 24.751,3.754" />
+    </g>
+  </g>
+</svg>

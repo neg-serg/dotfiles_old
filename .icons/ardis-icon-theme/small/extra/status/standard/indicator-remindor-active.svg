@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2"
+   viewBox="0 0 512 512"
+   height="100%"
+   width="100%"
+   version="1.1">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs104" />
+  <path
+     id="rect2986"
+     d="m 25.99978,-9e-5 c -14.39735,0 -26,11.60265 -26,26 l 0,460 c 0,14.39735 11.60265,26 26,26 l 460,0 c 14.39735,0 26,-11.60265 26,-26 l 0,-460 c 0,-14.39735 -11.60265,-26 -26,-26 l -460,0 z"
+     style="fill:#55405f;fill-opacity:1;stroke:none" />
+  <path
+     id="path23370"
+     d="m 255.9846,41.00009 c -118.47057,0 -214.98438,96.51379 -214.98438,214.98437 0,59.24255 24.13413,113.00327 63.08008,151.94922 l 104.06641,104.06641 277.85351,0 c 14.39735,0 26,-11.60265 26,-26 l 0,-277.85352 -104.0664,-104.0664 C 368.98787,65.13422 315.22715,41.00009 255.9846,41.00009 Z"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;visibility:visible;opacity:0.25;fill:#000000;fill-opacity:1;stroke:none;stroke-width:14.90484715;marker:none" />
+  <path
+     id="path3050-4"
+     d="m 255.98526,40.99991 c -118.47057,0 -214.98548,96.5149 -214.98548,214.98548 0,118.47058 96.51491,215.01452 214.98548,215.01452 118.47058,0 215.01452,-96.54394 215.01452,-215.01452 0,-118.47058 -96.54394,-214.98548 -215.01452,-214.98548 z m 0,47.3874 c 92.86089,0 167.71423,74.73719 167.71423,167.59808 0,92.86088 -74.85334,167.62712 -167.71423,167.62712 -92.86088,0 -167.59808,-74.76624 -167.59808,-167.62712 0,-92.86089 74.7372,-167.59808 167.59808,-167.59808 z m -6.59126,37.77635 a 25.296842,25.296842 0 0 0 -24.91323,25.66818 l 0,108.16057 a 25.296842,25.296842 0 0 0 25.2907,25.29071 l 97.03964,0 a 25.296842,25.296842 0 1 0 0,-50.58141 l -71.74894,0 0,-82.86987 A 25.296842,25.296842 0 0 0 249.394,126.16366 Z"
+     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:Sans;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:14.90484715;marker:none;enable-background:accumulate" />
+</svg>

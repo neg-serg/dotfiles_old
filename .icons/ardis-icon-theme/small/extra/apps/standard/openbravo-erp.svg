@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="100%"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="openbravo-erp.svg">
+  <defs
+     id="defs32" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview30"
+     showgrid="false"
+     inkscape:zoom="0.5546875"
+     inkscape:cx="36.056338"
+     inkscape:cy="240.67606"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata84">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="g3381"
+     transform="translate(337.12676,-315.49296)">
+    <path
+       d="m -311.13176,315.49296 c -14.397,0 -26,11.603 -26,26 l 0,460 c 0,14.397 11.603,26 26,26 l 460,0 c 14.397,0 26,-11.603 26,-26 l 0,-460 c 0,-14.397 -11.6,-26 -26,-26 l -460,0"
+       id="path30"
+       style="fill:#68af4c"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m -260.04176,356.49296 0,251.09 c 0,49.42 20.03,94.15 52.41,126.53 l 93.38,93.38 263.13,0 c 14.397,0 26,-11.603 26,-26 l 0,-190.91 -129.470001,-129.47 c -32.39,-32.39 -77.13,-52.41 -126.56,-52.41 l 0,17.188 -89.409999,-89.41 0,89.47 -89.47,-89.472"
+       id="path78"
+       style="opacity:0.25"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m -260.05176,356.49296 0,251.08 c 0,98.81 80.06,178.92 178.869999,178.92 98.81,0 178.96,-80.11 178.96,-178.92 0,-98.81 -80.15,-178.87 -178.96,-178.87 l 0,89.39 c 49.4,0 89.4800004,40.08 89.4800004,89.48 0,49.4 -40.0800004,89.48 -89.4800004,89.48 -49.409999,0 -89.389999,-40.08 -89.389999,-89.48 l 0,-251.08 z"
+       id="path80"
+       style="fill:#ffffff"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
