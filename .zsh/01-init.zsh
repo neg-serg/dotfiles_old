@@ -132,11 +132,19 @@ watch=(notme root)
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
+fpath=(
+    ${HOME}/.zsh/zsh-completions/src 
+    ~/.zsh/compdef 
+    ${HOME}/.zsh/zle 
+    ${fpath}
+)
+
 zrcautoload zmv # who needs mmv or rename?
 zrcautoload history-search-end
 zrcautoload zargs
+zrcautoload grep2awk
+zrcautoload split-shell-arguments
 
-fpath=(~/.zsh/compdef $fpath) 
 # completion system
 if zrcautoload compinit ; then
     compinit || print 'Notice: no compinit available :('
