@@ -43,7 +43,7 @@
     function wait_(){ inotifywait -e close_write "${clipped_fifo_}" >/dev/null 2>&1 }
 
     function get_pass_(){
-        pass=$(cat "${clipped_fifo_}" \
+        pass=$(< "${clipped_fifo_}" \
             | gpg -d -r "${mail_}" --no-tty 2>/dev/null \
             | head -n1)
     }
@@ -57,7 +57,7 @@ function copy_pass() {
         wait_ 
         get_pass_
         xclip <<< "${pass}"
-        notify-no-icon "${unlocked_} copied [$(cat ${pass_picked_})] to clipboard"
+        notify-no-icon "${unlocked_} copied [$(< ${pass_picked_})] to clipboard"
     ) &
     get_pass
 }
@@ -67,7 +67,7 @@ function paste_pass() {
         wait_ 
         get_pass_
         xdotool type "${pass}"
-        notify-no-icon "${unlocked_} pasted [$(cat ${pass_picked_})]" 
+        notify-no-icon "${unlocked_} pasted [$(< ${pass_picked_})]" 
     ) &
     get_pass
 }
@@ -88,7 +88,7 @@ function clip_pass() {
 function paste_user() {
     (
         wait_
-        user_pass=$(cat "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
+        user_pass=$(< "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
         user=$(grep "user" <<< "${user_pass}" | awk -F ":" '{print $2}' | awk '{print $1}')
         xdotool type "${user}"
         notify-no-icon "${unlocked_} pasted [$(< ${pass_picked_})]"
@@ -99,7 +99,7 @@ function paste_user() {
 function paste_user_pass() {
     (
         wait_
-        user_pass=$(cat "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
+        user_pass=$(< "${clipped_fifo_}" | gpg -d -r "${mail_}" --no-tty 2>/dev/null)
         pass=$(head -n1 <<< "${user_pass}")
         user=$(builtin printf "${user_pass}\n" \
             | grep "user" \
