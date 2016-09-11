@@ -3,8 +3,11 @@
     <option name="recentPaths">
       <list>
         <option value="$USER_HOME$/st/DSA/src" />
-        <option value="$USER_HOME$/st/DSA/benchmark/test" />
+        <option value="$USER_HOME$/tmp/test" />
+        <option value="$USER_HOME$/st/DSA/benchmark" />
         <option value="$USER_HOME$/st/ITP/UI" />
+        <option value="$USER_HOME$/st/DSA/benchmark/test" />
+        <option value="$USER_HOME$/st/ITP/parser" />
       </list>
     </option>
     <option name="openPaths">
@@ -268,13 +271,24 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/st/DSA/benchmark">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1473352183933" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/st/DSA/benchmark/test">
           <value>
             <RecentProjectMetaInfo>
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1472899111633" />
+              <option name="projectOpenTimestamp" value="1473317134060" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -285,7 +299,7 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1473028243647" />
+              <option name="projectOpenTimestamp" value="1473563851906" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -296,13 +310,35 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1472676940641" />
+              <option name="projectOpenTimestamp" value="1473343840950" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/st/ITP/parser">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1473312484910" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/tmp/test">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1473417455736" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="$USER_HOME$/st/DSA/benchmark" />
+    <option name="lastProjectLocation" value="$USER_HOME$/tmp" />
   </component>
 </application>

@@ -56,14 +56,14 @@ function! <SID>KillLine()
 endfunction
 
 " don't bother with the following workarounds if `:set noesckeys` is enabled
-if &esckeys
-    for key in [ 'ñ','Ñ','ô','Ô','÷','ò','Ò','é','ï','Ï','î','Î','ì','Ì','ð','Ð',
-               \ 'ù','Ù','è','È','ê','Ê','ã','ö','Ö','í','Í','õ','Õ','×','å','Å',
-               \ 'É','á','Á','ó','Ó','ä','Ä','æ','Æ','ç','Ç','ë','Ë','ú','Ú','ø',
-               \ 'Ø','Ã','â', 'Â' ]
-        exe 'imap '.key.' <nop>'
-    endfor
-endif
+" if &esckeys
+"     for key in [ 'ñ','Ñ','ô','Ô','÷','ò','Ò','é','ï','Ï','î','Î','ì','Ì','ð','Ð',
+"                \ 'ù','Ù','è','È','ê','Ê','ã','ö','Ö','í','Í','õ','Õ','×','å','Å',
+"                \ 'É','á','Á','ó','Ó','ä','Ä','æ','Æ','ç','Ç','ë','Ë','ú','Ú','ø',
+"                \ 'Ø','Ã','â', 'Â' ]
+"         exe 'imap '.key.' <nop>'
+"     endfor
+" endif
 
 function! <SID>ttext(mode) range
    let last_search = histget('search', -1)

@@ -3,6 +3,7 @@ bin/getcurpos
 bin/go/*
 bin/lsp
 bin/rtags
+bin/scripts/qmp/qmp.pyc
 bin/scripts/utf7.pyc
 bin/trash
 .config/chromium
@@ -11,6 +12,8 @@ bin/trash
 .config/easytag/easytagrc
 .config/fonts/*
 .config/gtk-2.0/gtkfilechooser.ini
+.config/octave
+.config/pulse/*
 .config/ranger/bookmarks
 .config/ranger/history
 .config/z
@@ -25,8 +28,18 @@ games
 .ghc/ghci_history
 .icons/LibreOffice Pack Icons-0.3.6
 .ideaconfig/config/*.key
+.ideaconfig/config/options/ClojureUsageStatisticsSettings.xml
+.ideaconfig/config/options/ClojureUsageStatistics.xml
+.ideaconfig/config/options/feature.usage.statistics.xml
+.ideaconfig/config/options/proxy.settings.pwd
+.ideaconfig/config/options/recentProjects.xml
 .ideaconfig/config/plugins/*
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatistics.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable$1.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable.class
+.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsSettings.class
 .ideaconfig/config/tasks/*
+.ideaconfig/options/statistics.application.usages.xml
 .ideaconfig/system/*
 .IntelliJIdea2016.1/config/*.key
 .IntelliJIdea2016.1/config/tasks/*
@@ -99,15 +112,3 @@ vid
 .zsh_history
 .zsh/.zcompdump
 *.zwc
-.config/pulse/*
-.config/octave
-.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsSettings.class
-.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable.class
-.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatistics.class
-.ideaconfig/config/plugins/clojure-plugin/classes/cursive/usageStatistics/ClojureUsageStatisticsConfigurable$1.class
-.ideaconfig/config/options/ClojureUsageStatisticsSettings.xml
-.ideaconfig/config/options/ClojureUsageStatistics.xml
-.ideaconfig/config/options/feature.usage.statistics.xml
-.ideaconfig/config/options/proxy.settings.pwd
-.ideaconfig/config/options/recentProjects.xml
-.ideaconfig/options/statistics.application.usages.xml

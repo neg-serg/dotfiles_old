@@ -114,6 +114,7 @@ defwinprop{class="vmware",instance="Vmware",target="vm",jumpto=true,transient_mo
 defwinprop{class="VirtualBox",jumpto=true,target="vm",transient_mode="off",tag="virt"}
 defwinprop{class="Vmware",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{class="QEMU",jumpto=true,target="vm",transient_mode="on",tag="virt"}
+defwinprop{instance="qemu-system-x86_64",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{class="spicec",instance="spicec",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{instance="spicy",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 -------------------------------------[[   GRARPHIC  ]]-----------------------------
@@ -153,6 +154,7 @@ defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",
 defwinprop{class="Xfce",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
+defwinprop{class="steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}

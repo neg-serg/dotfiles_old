@@ -60,14 +60,6 @@ case ${UID} in
     DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
     _neg_user_pretok="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){ 
-        # _neg_hashes="$(hash -d|tr -d \')"
-        # while read i; do 
-        #     what_change=$(echo ${_neg_tilda_path}|grep -o "$(awk -F '=' '{print $2}' <<< ${i})")
-        #     if [[ ${what_change} != "" ]]; then
-        #         fst_arg=$(awk -F '=' '{print $1}' <<< ${i})
-        #         _neg_tilda_path=${fst_arg}
-        #     fi
-        # done <<< ${_neg_hashes[@]}
         export PS1="${_neg_user_pretok}%40<..<$(${ZSH}/neg-prompt)" 
     }
     PS2="%{$fg[magenta]%}» %{$reset_color%}"

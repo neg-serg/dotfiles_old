@@ -1,5 +1,7 @@
 NeoBundle 'talek/vorax4' "Oracle DB IDE
 NeoBundle 'Konfekt/FastFold' "Do not update folds when it's not needed
+NeoBundle 'sunaku/vim-dasht' "dasht integration
+NeoBundle 'sunaku/vim-hicterm' "highlight colors in terminal
 "--[ Main ]------------------------------------------------------------------------------
 if !has("nvim")
     NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now

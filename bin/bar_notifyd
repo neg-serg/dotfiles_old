@@ -1,18 +1,25 @@
 #!/bin/zsh
 
+function start_reader_(){
+    rm -fv "${1}" && mkfifo "${1}"
+    while read line < "${1}"; do
+        printf "%s\n" "${line}";
+    done
+}
+
 function bar_notifyd_init_(){
     corner="northeast"
     [[ -n "$1" ]] && corner="$1"
 
-    pad_x=50          pad_y=30    height=50
-    in_pad=30         offset=-2   dismiss=3
-    width_treshold=20 last_width= last_lines_c=0
+    pad_x=50          pad_y=30       height=50
+    in_pad=30         offset=40      dismiss=3
+    width_treshold=20 last_width=10  last_lines_c=2
 
     font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
     font_icons="FontAwesome:size=11"
 
-    color_summary="#71c2af"
-    color_bg="#1d2a30"
+    color_summary="#aacccc"
+    color_bg="#001111"
 
     touch "/tmp/notify_fifo_${corner}"
     tmp_file="$(mktemp)"
@@ -46,7 +53,8 @@ function bar_instance_init_(){
 }
 
 function bar_opts_init_(){
-    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+${position_y}
+    bar_y=$1
+    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+$((position_y + bar_y * 30))
                 -B ${color_bg}
                 -f ${font}
                 -f ${font_icons}
@@ -80,18 +88,18 @@ function start_bar {
     pids=()
     # lemon bars which listen to multi line parser
     for (( i=1; i<=count+1; i++ )); do
-        bar_instance_init_
-        bar_opts_init_
-        ( 
+        {   
+            jjj_=0
+            bar_instance_init_
+            bar_opts_init_ ${jjj_}
             #Read file with notification data read_notify_lines_
-            (){
-                tail -f -n 0 "${tmp_files[$i]}" | (
-                    while read -r noti_line; do
-                        builtin printf "%s\n" "${noti_line}"
-                    done
-                )
-            } | lemonbar ${bar_opts[@]} | zsh 
-        ) &
+            tail -f -n 0 "${tmp_files[$i]}" | (
+                while read -r noti_line; do
+                    builtin printf '%s\n' "${noti_line}"
+                    jjj_=$[jjj_+1]
+                    bar_opts_init_ ${jjj_}
+                done ) | lemonbar ${bar_opts[@]} | zsh
+        } &
         pids[i]="$(echo $!)"
         sleep .01
     done
@@ -143,7 +151,7 @@ function main_circle_(){
                 start_bar "${line_c}"
             else
                 #if bar size is too different, resize
-                dist=$(("${width}" - "${last_width}")) 
+                dist=$[width-last_width] 
                 if [[ "${line_c}" != "${last_lines_c}" \
                     || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) \
                     || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold}))\

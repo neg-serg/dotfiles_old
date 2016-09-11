@@ -26,11 +26,30 @@ autocmd vimrc FileType            make           setlocal noexpandtab
 autocmd vimrc FileType            javascript     setlocal noautoindent nosmartindent
 autocmd vimrc FileType            tex            setlocal conceallevel=0
 autocmd vimrc FileType            latex          setlocal conceallevel=0
+autocmd vimrc FileType            markdown       call MarkdownKeymaps()
 autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal wrap lbr
 autocmd vimrc BufRead,BufNewFile  *.json         setlocal filetype=json foldmethod=syntax
 autocmd vimrc BufNewFile,BufRead  .pentadactylrc setlocal filetype=pentadactyl
 
 autocmd vimrc FileType git set nofoldenable
+
+function! MarkdownKeymaps()
+    " format current line as a top-level heading in Markdown (uses `z marker)
+    nnoremap <silent><buffer> <Leader>=1 mzyyp:s/^\s*//<Return>Vr===:.+g/^\s*=\+\s*/d<Return>`z
+
+    " format current line as a second-level heading in Markdown (uses `z marker)
+    nnoremap <silent><buffer> <Leader>=2 mzyyp:s/^\s*//<Return>Vr-==:.+g/^\s*-\+\s*/d<Return>`z
+
+    " format current line as table/body separator in Markdown (uses `z marker)
+    nnoremap <silent><buffer> <Leader>=<Bar> mzyyp:s/^\s*//
+        \ <Bar>s/[^<Bar>]/-/g
+        \ <Bar>s/-<Bar>/ <Bar>/g
+        \ <Bar>s/<Bar>-/<Bar> /g<Return>
+        \ ==:.+g/^\s*[<Bar>-]\+\s*/d<Return>`z
+
+    " format selected Markdown indented code block into a fenced code block
+    vnoremap <silent><buffer> <Leader>=` 2<']o<Esc>3i`<Esc>yy<C-o>PA
+endfunction
 
 autocmd vimrc BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |

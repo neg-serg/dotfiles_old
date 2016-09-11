@@ -17,7 +17,7 @@ let s:nvim_colorscheme = "gotham"
 " endif
 set regexpengine=1
 
-set conceallevel=2 
+set conceallevel=2
 set concealcursor=i
 
 if (has('win16') || has('win32') || has('win64'))
@@ -129,7 +129,7 @@ if !has("gui_running") && !has("nvim")
     silent !stty -ixon > /dev/null 2>/dev/null
     silent !stty start undef > /dev/null 2>/dev/null
     silent !stty stop undef > /dev/null 2>/dev/null
-    
+
     set ttyfast                        " more redrawing characters sent to terminal
 
     " set synmaxcol=256                " improve hi performance
@@ -215,7 +215,7 @@ set autoread
 if executable(resolve(expand("par")))
     set formatprg="par -140"  " use par as formatter
 else
-    set formatprg="fmt -140"  " use par as formatter
+    set formatprg="fmt -140"  " use fmt as formatter
 endif
 
 " 'fileencodings' contains a list of possible encodings to try when reading
@@ -264,10 +264,10 @@ else
 endif
 
 " Protect home directory
-if !empty($SUDO_USER) && $USER !=# $SUDO_USER                                                                                                           
-  set viminfo=                                                                                                                                          
-  set directory-=~/trash                                                                                                                                  
-  set backupdir-=~/trash                                                                                                                                  
+if !empty($SUDO_USER) && $USER !=# $SUDO_USER
+  set viminfo=
+  set directory-=~/trash
+  set backupdir-=~/trash
 endif
 
 set completeopt=menu,menuone,longest
@@ -285,7 +285,16 @@ set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set matchtime=2                 " Default time to hi brackets too long for me
-set listchars=tab:›…,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+if has('multi_byte') && &encoding ==# 'utf-8'
+    set listchars=tab:›…,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+    if has('patch-7.4.338')
+        " Show ↪ at the beginning of wrapped lines
+        let &showbreak = nr2char(8618).' '
+        set breakindent
+        set breakindentopt=sbr
+    endif
+endif
 
 " allow backspace and cursor keys to cross line boundaries
 set gdefault                    " this makes search/replace global by default
@@ -298,8 +307,8 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 
 set scrolljump=1                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
-set sidescroll=1                " The minimal number of columns to scroll horizontally. 
-set sidescrolloff=10            " min num of scr columns to keep to the left and to the 
+set sidescroll=1                " The minimal number of columns to scroll horizontally.
+set sidescrolloff=10            " min num of scr columns to keep to the left and to the
                                 " right of the cursor if 'nowrap' is set.
 set virtualedit=onemore,block   " Allow for cursor beyond last character
 set noswapfile                  " Disable swap to prevent ugly messages
@@ -357,14 +366,16 @@ endif
 set formatoptions+=t    " auto-wrap using textwidth (not comments)
 set formatoptions+=c    " auto-wrap comments too
 set formatoptions+=r    " continue the comment header automatically on <CR>
-set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
 set formatoptions+=q    " allow formatting of comments with gq
 set formatoptions+=n    " recognize numbered lists when autoindenting
+set formatoptions+=l    " don't break long lines in insert mode
+set formatoptions+=1    " don't break lines after one-letter words, if possible
+" -------------------------------------------------------------------
+set formatoptions-=o    " don't insert comment leader with 'o' or 'O'
 set formatoptions-=2    " don't use second line of paragraph when autoindenting
 set formatoptions-=v    " don't worry about vi compatiblity
 set formatoptions-=b    " don't worry about vi compatiblity
-set formatoptions+=l    " don't break long lines in insert mode
-set formatoptions+=1    " don't break lines after one-letter words, if possible
+set formatoptions-=j    " delete comment character when joining
 " Where it makes sense, remove a comment leader when joining lines.  For
 " example, joining:
 try
@@ -402,7 +413,7 @@ set cpoptions+=$        " no line redisplay -> put a '$' at the end
 
 set maxfuncdepth=100    " Maximum depth of function calls for user functions
 set maxmemtot=2000000   " Maximum amount of memory in Kbyte to use for all buffers together.
-set maxmapdepth=1000    " Maximum number of times a mapping is done 
+set maxmapdepth=1000    " Maximum number of times a mapping is done
                         " without resulting in a character to be used.
 set maxmem=8188370      " Maximum amount of memory (in Kbyte) to use for one buffer
 set maxmempattern=1000  " Maximum amount of memory (in Kbyte) to use for pattern matching.

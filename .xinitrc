@@ -9,7 +9,7 @@ function set_wallpaper() {
 . ~/.zsh/03-exports.zsh
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
-set_wallpaper wallpaper-1767776.jpg
+set_wallpaper wallhaven-334682.jpg
 
 pulseaudio --start &
 wmname Sawfish
@@ -60,6 +60,8 @@ rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
     nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
 
 systemctl --user restart gpaste
+
+eval $(gpg-agent --daemon)
 
 ~/bin/bar_notifyd &
 

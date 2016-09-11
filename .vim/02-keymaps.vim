@@ -169,3 +169,14 @@ nnoremap <silent> <Space><C-s> :call StripTrailingWhitespace()<Return>
 " copy to attached terminal using the yank(1) script:
 " https://github.com/sunaku/home/blob/master/bin/yank
 noremap <silent> <Space>y y:call system(expand($HOME.'/bin/scripts/yank').' > /dev/tty', @0)<Return>
+
+nmap <F1> :echom
+	\ ' hi['
+	\ . synIDattr(synID(line('.'),col('.'),1),'name')
+	\ . '] trans['
+	\ . synIDattr(synID(line('.'),col('.'),0),'name')
+	\ . '] lo['
+	\ . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'name')
+	\ . ']'
+	\ . ' fg[' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'fg#')
+	\ . ']' <CR>
