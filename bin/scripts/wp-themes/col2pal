@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+function main(){
+
+  while read colorLine; do
+    echo -n "${colorLine}"
+  done >> "${1:-palette.txt}"
+}
+
+main "${1}"
