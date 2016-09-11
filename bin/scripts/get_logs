@@ -1,18 +1,20 @@
 #!/bin/zsh
 
 function proc(){
-    st -c "${logs_classname}" -f 'Terminus Re33:size=10:style=Bold' \
-        zsh -c 'tmux -S ~neg/1st_level/logs.socket new tail -f /var/log/*.log ~/.xsession-errors' &
-    sleep $1
     tmux -S $(readlink -f ~neg/1st_level/logs.socket) neww 'dmesg --follow --human --nopager'
+    tmux -S $(readlink -f ~neg/1st_level/logs.socket) neww tail -f /var/log/*.log ~/.xsession-errors
 }
 
 function main(){
     local logs_classname="_logs_"
     local wid=$(xdotool search --classname _logs_)
-    local time_=".2s"
+    local time_=1s
     if [[ -z "${wid}" ]]; then
-        proc ${time_}
+        st -c '_logs_' -e bash -c "tmux -S $(readlink -f ~neg/1st_level/logs.socket) new -s _logs_ -n _logs_ dmesg --follow --human --nopager" &
+        {
+            sleep 0.3s;
+            tmux -S $(readlink -f ~neg/1st_level/logs.socket) neww tail -f /var/log/*.log ~/.xsession-errors
+        }
     fi
 }
 
