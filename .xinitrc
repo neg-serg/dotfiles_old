@@ -1,15 +1,11 @@
 #!/bin/zsh
 unset TMUX
 
-function set_wallpaper() {
-    local pic_wl_=${HOME}/pic/wl
-    hsetroot -fill "${pic_wl_}/$1" &
-}
-
 . ~/.zsh/03-exports.zsh
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
-set_wallpaper wallhaven-334682.jpg
+hsetroot -fill \
+${HOME}/pic/wl/wallhaven-334682.jpg
 
 pulseaudio --start &
 wmname Sawfish
@@ -64,6 +60,6 @@ systemctl --user restart gpaste
 eval $(gpg-agent --daemon)
 
 ~/bin/bar_notifyd &
+~/bin/scripts/get_logs &
 
-~/bin/scripts/get_logs
 exec notion 2>> ~/tmp/notionerr$$ 2>&1
