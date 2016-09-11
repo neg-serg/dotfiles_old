@@ -112,3 +112,16 @@ vid
 .zsh_history
 .zsh/.zcompdump
 *.zwc
+.thumbnails
+.m2
+.tor-browser-en
+.cargo
+.swt
+.theano
+.yandex
+.qt
+.texlive
+.cpan
+.cpanm
+.cxoffice
+.dbus
