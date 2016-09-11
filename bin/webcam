@@ -7,9 +7,9 @@ local frec_pid="${dir_}/f_rec$$.pid"
 
 for i in /dev/v4l/by-id/*; do
     if [[ $1 == "" ]]; then
-            mpv --x11-name=webcam_mpv tv:// -tv device=${i}
+            mpv --x11-name=webcam_mpv tv:// -tv device="${i}"
     elif [[ $1 =~ s* ]]; then
-            ffmpeg -f video4linux2 -i ${i} -f image2 ${snapshot_name} 2>/dev/null || \
+            ffmpeg -f video4linux2 -i ${i} -f image2 "${snapshot_name}" 2>/dev/null || \
                 notify-send "Cannot to take screenshot: You are using webcam now :("
     elif [[ $1 =~ r* ]]; then 
         frec 
@@ -19,13 +19,13 @@ done
 local function frec(){
     local w_=1280
     local h_=720
-    ffmpeg -f video4linux2 -i ${i} -f image2 ${snapshot_name} 2>/dev/null
-    mencoder tv:// -tv driver=v4l2:width=${w_}:height=${h_}:device=${i}:alsa:forceaudio:amode=0:adevice=${adev} \
+    ffmpeg -f video4linux2 -i "${i}" -f image2 "${snapshot_name}" 2>/dev/null
+    mencoder tv:// -tv driver=v4l2:width="${w_}":height="${h_}":device="${i}":alsa:forceaudio:amode=0:adevice="${adev}" \
         -ovc lavc -lavcopts vcodec=mpeg4 -oac mp3lame -lameopts vbr=3:br=32:mode=3 -af volnorm \
-        -o ${rec_name} &>/dev/null&
-    echo $! >> ${frec_pid}
-    if [ -f ${frec_pid}  ]; then
-        kill $(cat ${frec_pid}) && rm ${frec_pid}
+        -o "${rec_name}" &>/dev/null&
+    echo $! >> "${frec_pid}"
+    if [[ -f "${frec_pid}"  ]]; then
+        kill $(< "${frec_pid}") && rm "${frec_pid}"
     else
         f_rec
     fi
