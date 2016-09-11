@@ -1,0 +1,372 @@
+#!/usr/bin/env bash
+
+#set -e
+
+wmTMP='/tmp/.wm'
+
+wmGroups="${wmTMP}/groups"
+wmWindows="${wmTMP}/windows"
+wmBackups="${wmTMP}/backups"
+wmWinFS="${wmBackups}/win.fs"
+
+[[ ! -d "${wmGroups}" ]] && mkdir -p "${wmGroups}"
+[[ ! -d "${wmWindows}" ]] && mkdir -p "${wmWindows}"
+[[ ! -d "${wmBackups}" ]] && mkdir -p "${wmBackups}"
+[[ ! -f "${wmWinFS}" ]] && touch "${wmWinFS}"
+
+PAD_TOP="${PAD_TOP:-0}"
+PAD_BOT="${PAD_BOT:-0}"
+PAD_LEFT="${PAD_LEFT:-0}"
+PAD_RIGHT="${PAD_RIGHT:-0}"
+WIN_BORDER="${WIN_BORDER:-0}"
+
+# b(ac)k(u)p w(indow) <WID> [.. <WID>]
+function bkpw(){
+  for winID in "${@}"; do
+    local winX=$(wattr x "${winID}")
+    local winY=$(wattr y "${winID}")
+    local winW=$(wattr w "${winID}")
+    local winH=$(wattr h "${winID}")
+    local winB=$(wattr b "${winID}")
+    local bakFile="${wmBackups}/win.${winID}"
+
+    [[ -f "${bakFile}" ]] && continue
+
+    echo "${winX};${winY};${winW};${winH};${winB}" > "${bakFile}"
+  done
+}
+
+# r(e)st(ore) w(indow) <WID> [.. <WID>]
+function rstw(){
+  for winID in "${@}"; do
+    local bakFile="${wmBackups}/win.${winID}"
+
+    [[ ! -f "${bakFile}" ]] && continue
+
+    local winProp=$(cat "${bakFile}")
+    local winX=$(echo "${winProp}" | cut -d ';' -f 1)
+    local winY=$(echo "${winProp}" | cut -d ';' -f 2)
+    local winW=$(echo "${winProp}" | cut -d ';' -f 3)
+    local winH=$(echo "${winProp}" | cut -d ';' -f 4)
+    local winB=$(echo "${winProp}" | cut -d ';' -f 5)
+
+    wtp "${winX}" "${winY}" "${winW}" "${winH}" "${winID}" # Teleport window
+    mapw -m "${winID}" # Show window
+
+    rm "${bakFile}"
+  done
+}
+
+# foc(us) w(indow) l(eft)/r(ight)/u(p)/d(own)/p(rev)/n(ext) [<WID>]
+function focw(){
+  local winID=${1}
+
+  [[ "${winID}" == '' ]] && winID=$(pfw)
+
+  case $1 in
+    l) wtf $(lsw | xargs wattr xi | sort -nr | sed "0,/${winID}/d" | sed "1s/^[0-9]* //p;d");;
+    r) wtf $(lsw | xargs wattr yi | sort -n | sed "0,/${winID}/d" | sed "1s/^[0-9]* //p;d");;
+    u) wtf $(lsw | xargs wattr yi | sort -nr | sed "0,/${winID}/d" | sed "1s/^[0-9]* //p;d");;
+    d) wtf $(lsw | xargs wattr xi | sort -n | sed "0,/${winID}/d" | sed "1s/^[0-9]* //p;d");;
+    n) wtf $(lsw | grep -v "${winID}" | sed '1 p;d') ;;
+    p) wtf $(lsw | grep -v "${winID}" | sed '$ p;d') ;;
+  esac
+}
+
+# mov(e) w(indow) l(eft)/r(ight)/u(p)/d(own) inc(+)/dec(-)/to(=) ?px/?% <WID> [.. <WID>]
+function movw(){
+  local moveDir=${1} # l|r|u|d
+  local moveMod=${2} # +|-|=
+  local moveVal=${3} # ?px|?%
+  shift; shift; shift # clear above args
+  local winIDs="${@}" # other args should be windows
+
+  local rootWin=$(lsw -r)
+  local rootW=$(wattr w "${rootWin}")
+  local rootH=$(wattr h "${rootWin}")
+
+  local rootW=$((rootW - PAD_LEFT - PAD_RIGHT))
+  local rootH=$((rootH - PAD_TOP - PAD_BOT))
+
+  # if value is in percentage, calculate it now
+  if [[ "${moveVal}" == *% ]]; then
+    moveVal=$(echo "${moveVal}" | tr -d '%')
+    if [[ "${moveDir}" == 'l' || "${moveDir}" == 'r' ]]; then
+      moveVal=$(echo "scale=0; ${rootW}/100*${moveVal}" | bc -s)
+    else
+      moveVal=$(echo "scale=0; ${rootH}/100*${moveVal}" | bc -s)
+    fi
+  fi
+
+  # if value has pixel suffix, remove it
+  [[ "${moveVal}" == *px ]] && moveVal=$(echo "${moveVal}" | tr -d 'px')
+
+  for winID in "${winIDs[@]}"; do
+    local winX=$(wattr x "${winID}")
+    local winY=$(wattr y "${winID}")
+    local winW=$(wattr w "${winID}")
+    local winH=$(wattr h "${winID}")
+
+    if [[ "${moveDir}" == 'l' && "${moveMod}" == '-' ]] || [[ "${moveDir}" == 'r' && "${moveMod}" == '+' ]]; then
+      wmv "${moveVal}" 0 "${winID}"
+    elif [[ "${moveDir}" == 'l' && "${moveMod}" == '+' ]] || [[ "${moveDir}" == 'r' && "${moveMod}" == '-' ]]; then
+      wmv "$((0 - moveVal))" 0 "${winID}"
+    elif [[ "${moveDir}" == 'l' && "${moveMod}" == '=' ]]; then
+      wtp "$((PAD_LEFT + moveVal))" "${winY}" "${winW}" "${winH}" "${winID}"
+    elif [[ "${moveDir}" == 'r' && "${moveMod}" == '=' ]]; then
+      wtp "$((rootW - winW - moveVal - PAD_RIGHT))" "${winY}" "${winW}" "${winH}" "${winID}"
+    elif [[ "${moveDir}" == 'u' && "${moveMod}" == '-' ]] || [[ "${moveDir}" == 'd' && "${moveMod}" == '+' ]]; then
+      wmv 0 "${moveVal}" "${winID}"
+    elif [[ "${moveDir}" == 'u' && "${moveMod}" == '+' ]] || [[ "${moveDir}" == 'd' && "${moveMod}" == '-' ]]; then
+      wmv 0 "$((0 - moveVal))" "${winID}"
+    elif [[ "${moveDir}" == 'u' && "${moveMod}" == '=' ]]; then
+      wtp "${winX}" "$((PAD_TOP + moveVal))" "${winW}" "${winH}" "${winID}"
+    elif [[ "${moveDir}" == 'd' && "${moveMod}" == '=' ]]; then
+      wtp "${winX}" "$((rootH - winH - moveVal - PAD_BOT))" "${winW}" "${winH}" "${winID}"
+    fi
+  done
+}
+
+# tel(eport) w(indow) <x> <y> <WID> [.. <WID>]
+function telw(){
+  local newX=${1}
+  local newY=${2}
+  shift; shift
+  local winIDS="${@}"
+
+  for winID in "${winIDs[@]}"; do
+    local winW=$(wattr w "${winID}")
+    local winH=$(wattr h "${winID}")
+
+    wtp "${newX}" "${newY}" "${winW}" "${winH}" "${winID}"
+  done
+}
+
+# res(ize) w(indow) l(eft)/r(ight)/u(p)/d(own)/h(eight)/w(idth) inc(+)/dec(-)/to(=) ?px/?% <WID> [.. <WID>]
+function resw(){
+  local resDir=${1} # l|r|u|d
+  local resMod=${2} # +|-|=
+  local resVal=${3} # ?px|?%
+  shift; shift; shift # clear above args
+  local winIDs="${@}" # other args should be windows
+
+  # if value is in percentage, calculate it now
+  if [[ "${resVal}" == *% ]]; then
+    resVal=$(echo "${resVal}" | tr -d '%')
+    local rootWin=$(lsw -r)
+    local rootW=$(wattr w "${rootWin}")
+    local rootH=$(wattr h "${rootWin}")
+
+    local rootW=$((rootW - PAD_LEFT - PAD_RIGHT))
+    local rootH=$((rootH - PAD_TOP - PAD_BOT))
+
+    if [[ "${resDir}" == 'l' || "${resDir}" == 'r' || "${resDir}" == 'w' ]]; then
+      resVal=$(echo "scale=0; ${rootW}/100*${resVal}" | bc -s)
+    else
+      resVal=$(echo "scale=0; ${rootH}/100*${resVal}" | bc -s)
+    fi
+  fi
+
+  # if value has pixel suffix, reres it
+  [[ "${resVal}" == *px ]] && resVal=$(echo "${resVal}" | tr -d 'px')
+
+  for winID in "${winIDs[@]}"; do
+    local winW=$(wattr w "${winID}")
+    local winH=$(wattr h "${winID}")
+
+    if [[ "${resDir}" == 'l' && "${resMod}" == '+' ]] || [[ "${resDir}" == 'r' && "${resMod}" == '-' ]]; then
+      winW=$((winW + resVal))
+    elif [[ "${resDir}" == 'l' && "${resMod}" == '-' ]] || [[ "${resDir}" == 'r' && "${resMod}" == '+' ]]; then
+      winW=$((winW - resVal))
+    elif [[ "${resDir}" == 'w' && "${resMod}" == '=' ]]; then
+      winW=$((resVal))
+    elif [[ "${resDir}" == 'u' && "${resMod}" == '+' ]] || [[ "${resDir}" == 'd' && "${resMod}" == '-' ]]; then
+      winH=$((winH + resVal))
+    elif [[ "${resDir}" == 'u' && "${resMod}" == '-' ]] || [[ "${resDir}" == 'd' && "${resMod}" == '+' ]]; then
+      winH=$((winH - resVal))
+    elif [[ "${resDir}" == 'h' && "${resMod}" == '=' ]]; then
+      winH=$((resVal))
+    fi
+    wrs -a "${winW}" "${winH}" "${winID}"
+  done
+}
+
+# mod(ify) w(indow) h(ide)/(m)a(ximize)/d(efault)/f(ullscreen) <WID> [.. <WID>]
+function modw(){
+  local winAct=${1}
+  shift
+  local winIDs="${@}"
+
+  for winID in "${winIDs[@]}"; do
+    case "${winAct}" in
+      'h')
+        bkpw "${winID}"
+        mapw -u "${winID}"
+      ;;
+      'd')
+        rstw "${winID}"
+        mapw -m "${winID}"
+      ;;
+      'a')
+        local rootWin=$(lsw -r)
+        local rootW=$(wattr w "${rootWin}")
+        local rootH=$(wattr h "${rootWin}")
+
+        local rootW=$((rootW - PAD_LEFT - PAD_RIGHT))
+        local rootH=$((rootH - PAD_TOP - PAD_BOT))
+
+        bkpw "${winID}"
+        mapw -m "${winID}"
+        wtp "${PAD_LEFT}" "${PAD_TOP}" "${rootW}" "${rootH}" "${winID}"
+      ;;
+      'f')
+        if [[ -f "${wmWinFS}" ]]; then
+          rstw $(cat "${wmWinFS}")
+        fi
+
+        bkpw "${winID}"
+        mapw -m "${winID}"
+        wtp $(wattr xywh `lsw -r`) "${winID}"
+
+        echo "${winID}" > "${wmWinFS}"
+      ;;
+    esac
+  done
+
+  return
+}
+
+# mo(dify) w(indow) s(tacking order) inc(+)/dec(-)/to(=)/f(ront)/b(ack) ? <WID> [.. <WID>]
+function mows(){
+  return
+}
+
+# sna(p) w(indow) t(op)/b(ottom)/l(eft)/r(ight)/t(op)l(eft)/t(op)r(ight)/b(ottom)l(eft)/b(ottom)r(ight)/c(enter) <WID> [.. <WID>]
+function snaw(){
+  local winPos=${1}
+  shift
+  local winIDs="${@}"
+
+  local rootWin=$(lsw -r)
+  local rootW=$(wattr w "${rootWin}")
+  local rootH=$(wattr h "${rootWin}")
+
+  local rootW=$((rootW - PAD_LEFT - PAD_RIGHT))
+  local rootH=$((rootH - PAD_TOP - PAD_BOT))
+
+  for winID in "${winIDs[@]}"; do
+    case "${winPos}" in
+      #         DISTANCE_LEFT           DISTANCE_TOP            WINDOW_WIDTH                      WINDOW_HEIGHT                     WINDOW_ID
+      't')  wtp "${PAD_LEFT}"           "${PAD_TOP}"            "$((rootW - (2 * WIN_BORDER)))"   "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'b')  wtp "${PAD_LEFT}"           "$((PAD_TOP+rootH/2))"  "$((rootW - (2 * WIN_BORDER)))"   "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'l')  wtp "${PAD_LEFT}"           "${PAD_TOP}"            "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH - (2 * WIN_BORDER)))"   "${winID}";;
+      'r')  wtp "$((PAD_LEFT+rootW/2))" "${PAD_TOP}"            "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH - (2 * WIN_BORDER)))"   "${winID}";;
+      'tl') wtp "${PAD_LEFT}"           "${PAD_TOP}"            "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'tr') wtp "$((PAD_LEFT+rootW/2))" "${PAD_TOP}"            "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'bl') wtp "${PAD_LEFT}"           "$((PAD_TOP+rootH/2))"  "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'br') wtp "$((PAD_LEFT+rootW/2))" "$((PAD_TOP+rootH/2))"  "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+      'c')  wtp "$((PAD_LEFT+rootW/4))" "$((PAD_TOP+rootH/4))"  "$((rootW/2 - (2 * WIN_BORDER)))" "$((rootH/2 - (2 * WIN_BORDER)))" "${winID}";;
+    esac
+  done
+}
+
+# b(ac)k(u)p g(roup) <GID> [.. <GID>]
+function bkpg(){
+  for grpID in "${@}"; do
+    local grpFile="${wmGroups}/${grpID}"
+    local bakFile="${wmBackups}/grp.${grpID}"
+
+    [[ ! -f "${grpFile}" ]] && continue
+
+    cat "${grpFile}" > "${bakFile}"
+  done
+}
+
+# r(e)st(ore) g(roup) <GID> [.. <GID>]
+function rstg(){
+  for grpID in "${@}"; do
+    local grpFile="${wmGroups}/${grpID}"
+    local bakFile="${wmBackups}/grp.${grpID}"
+
+    [[ ! -f "${bakFile}" ]] && continue
+
+    cat "${bakFile}" > "${grpFile}"
+    local grpState=$(cat "${grpFile}" | cut -d ';' -f 1)
+    local winIDs=$(cat "${grpFile}" | cut -d ';' -f 2+)
+
+    for winID in "${winIDs}"; do
+      case "${grpState}" in
+        's') mapw -m "${winID}";;
+        'h') mapw -u "${winID}";;
+      esac
+    done
+  done
+}
+
+# gro(up) w(indow) <GID> add(+)/del(-)/set(=) <WID> [.. <WID>]
+function grow(){
+  local grpID=${1}
+  local grpAct=${2}
+  shift; shift
+  local winIDs="${@}"
+  local grpFile="${wmGroups}/${grpID}"
+
+  if [[ ! -f "${grpFile}" ]]; then
+    echo "s;" >> "${grpFile}"
+  fi
+
+  for winID in "${winIDs[@]}"; do
+    case "${grpAct}" in
+      '+'|'=') sed -i "s/$/${winID}\;/" "${grpFile}";;
+      '-') sed -i "s/${winID}\;//" "${grpFile}";;
+    esac
+  done
+}
+
+# mod(ify) g(roup) <GID> s(how)/h(ide)/t(oggle)/c(lear)
+function modg(){
+  local grpID=${1}
+  local grpAct=${2}
+  local grpFile="${wmGroups}/${grpID}"
+
+  if [[ ! -f "${grpFile}" ]]; then
+    return 1
+  fi
+
+  local winIDs=$(cat "${grpFile}" | cut -d ';' -f 2+)
+
+  case "${grpAct}" in
+    's')
+      sed -i "s/\^h/s/" "${grpFile}"
+      local newMod='s'
+    ;;
+    'h')
+      sed -i "s/\^s/h/" "${grpFile}"
+      local newMod='h'
+    ;;
+    't')
+      if [[ $(cat "${grpFile}" | cut -d ';' -f 1) == 's' ]]; then
+        sed -i "s/\^s/h/" "${grpFile}"
+        local newMod='h'
+      else
+        sed -i "s/\^h/s/" "${grpFile}"
+        local newMod='s'
+      fi
+    ;;
+    'c') rm "${grpFile}"
+  esac
+
+  for winID in "${winIDs[@]}"; do
+    case "${newMod}" in
+      's') rstw "${winID}";;
+      'h') modw h "${winID}";;
+    esac
+  done
+}
+
+# ch(ange) w(indow) l(ayout) t(ile)/f(loating)/m(onocycle)
+function chwl(){
+  return
+}
+
+export -f bkpw rstw focw movw telw resw modw mows snaw bkpg grow modg chwl
