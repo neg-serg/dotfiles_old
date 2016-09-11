@@ -107,8 +107,6 @@ export LS_COLORS GREP_COLORS
 
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
-fpath=(${HOME}/.zsh/zsh-completions/src ${HOME}/.zsh/zle $fpath)
-
 # dirstack handling
 DIRSTACKSIZE=${DIRSTACKSIZE:-20}
 DIRSTACKFILE=${HOME}/.zsh/.99-zdirs
