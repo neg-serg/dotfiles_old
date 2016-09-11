@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+palette="/tmp/.palette.png"
+
+fps=15
+scale=320
+flags=""
+
+while getopts ":f:l:t:d:" opt; do
+  case $opt in
+    f)
+      fps=$OPTARG
+      ;;
+    l)
+      scale=$OPTARG
+      ;;
+    t)
+      flags="${flags} -ss ${OPTARG}"
+      ;;
+    d)
+      flags="${flags} -t ${OPTARG}"
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+while test $# -gt 2; do
+  shift
+done
+
+test $# -eq 2 || exit 2
+
+filters="fps=${fps},scale=${scale}:-1:flags=lanczos"
+
+#echo "[INFO] Using flags: \"${flags}\""
+
+echo "[INFO] Generating color palette"
+ffmpeg -v error ${flags} -i $1 -vf "$filters,palettegen" -y $palette
+
+echo "[INFO] Converting \"${1}\" to \"${2}\""
+ffmpeg -v error ${flags} -i $1 -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -y $2
+
+echo "[INFO] Finished!"
