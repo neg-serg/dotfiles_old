@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+function main(){
+    local logs_classname="_logs_"
+    local logs_socket="$(readlink -f ~neg/1st_level/logs.socket)"
+    local wid=$(xdotool search --classname _logs_)
+    local time_=1s
+    if [[ -z "${wid}" ]]; then
+        st -c "${logs_classname}" -e bash -c "tmux -S "${logs_socket}" new -s _logs_ \; source ~/bin/scripts/tmux/log_runner" &
+    fi
+}
+
+main "$@"
