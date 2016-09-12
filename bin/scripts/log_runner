@@ -8,18 +8,19 @@ function main(){
     local tmux_log_runner_=~/bin/scripts/tmux/log_runner.tmux
 
     local fn_name="PragmataPro for Powerline"
-    local fn_size="17"
+    local fn_size="12"
 
     local logs_detect=$(tmux -S "${logs_socket}" list-sessions|awk -F ':' '/_logs_/ {print $1}')
     
     if [[ "${logs_detect}" != "_logs_" ]]; then
         [[ -z "${wid}" ]] && \
-            st -c "${name_}" \
-                -e tmux -S ${logs_socket} \
-                new -s "${name_}" \; \
-                source ${tmux_log_runner_} &
+            st -f ${fn_name}:size=${fn_size} \
+               -c "${name_}" \
+               -e tmux -S ${logs_socket} \
+               new -s "${name_}" \; \
+               source ${tmux_log_runner_} &
     else 
-        [[ -z ${wid} ]] && st -c "${name_}" tmux -S ${logs_socket} a &
+        [[ -z ${wid} ]] && st -c "${name_}" -f ${fn_name}:size=${fn_size} tmux -S ${logs_socket} a &
         notionflux -e "app.byclass('', '_logs_')" > /dev/null
     fi
 }
