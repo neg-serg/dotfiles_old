@@ -6,7 +6,7 @@ function main(){
     local wid=$(xdotool search --classname _logs_)
     local time_=1s
     if [[ -z "${wid}" ]]; then
-        st -c "${logs_classname}" -e bash -c "tmux -S "${logs_socket}" new -s _logs_ \; source ~/bin/scripts/tmux/log_runner" &
+        st -c "${logs_classname}" -e bash -c "tmux -S "${logs_socket}" new -s _logs_ \; source ~/bin/scripts/tmux/log_runner.tmux" &
     fi
 }
 
