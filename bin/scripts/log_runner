@@ -19,6 +19,7 @@ function main(){
                 new -s "${name_}" \; \
                 source ${tmux_log_runner_} &
     else 
+        [[ -z ${wid} ]] && st -c "${name_}" tmux -S ${logs_socket} a &
         notionflux -e "app.byclass('', '_logs_')" > /dev/null
     fi
 }
