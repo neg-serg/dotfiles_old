@@ -6,7 +6,7 @@
     <location key="#Custom_Plugin_Repositories.0.0.1920.1200" x="799" y="470" />
     <location key="#Browse_Repositories.0.0.1920.1200" x="218" y="0" />
     <location key="FileChooserDialogImpl.0.0.1920.1200" x="650" y="123" />
-    <location key="#Project_Structure.0.0.1920.1200" x="450" y="71" />
+    <location key="#Project_Structure.0.0.1920.1200" x="448" y="69" />
     <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" x="738" y="0" />
     <location key="#Plugins.0.0.1920.1200" x="558" y="0" />
     <location key="#com.intellij.execution.impl.EditConfigurationsDialog.0.0.1920.1200" x="410" y="237" />
@@ -55,10 +55,10 @@
     <size key="editAsTableFormatDialogDimension.0.0.1920.1200" width="828" height="1176" />
     <size key="SettingsEditor.0.0.1920.1200" width="1390" height="1177" />
     <size key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" width="328" height="727" />
-    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="331" />
-    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="331" />
-    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1916" height="331" />
-    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1916" height="331" />
+    <size key="GridCell.Tab.0.left.0.0.1920.1200" width="1916" height="332" />
+    <size key="GridCell.Tab.0.center.0.0.1920.1200" width="1916" height="332" />
+    <size key="GridCell.Tab.0.right.0.0.1920.1200" width="1916" height="332" />
+    <size key="GridCell.Tab.0.bottom.0.0.1920.1200" width="1916" height="332" />
     <size key="javadoc.popup.0.0.1920.1200" width="446" height="163" />
     <size key="StructurePopup.0.0.1920.1200" width="536" height="370" />
     <size key="#com.intellij.ide.util.TreeClassChooserDialog.0.0.1920.1200" width="895" height="404" />

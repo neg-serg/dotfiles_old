@@ -89,11 +89,11 @@
         <mark key="^" line="84" column="9" />
         <mark key="." line="100" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" timestamp="1473509600093">
-        <mark key="'" line="13" column="8" />
-        <mark key="[" line="14" column="8" />
-        <mark key="]" line="25" column="36" />
-        <mark key="." line="14" column="21" />
+      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" timestamp="1473707309334">
+        <mark key="'" line="103" column="0" />
+        <mark key="[" line="168" column="37" />
+        <mark key="]" line="168" column="38" />
+        <mark key="." line="168" column="38" />
         <mark key="^" line="14" column="95" />
       </file>
       <file name="/ActionScript Interface.txt.ft" timestamp="1470696407483">
@@ -118,6 +118,12 @@
         <mark key="]" line="5" column="42" />
         <mark key="^" line="5" column="42" />
         <mark key="." line="5" column="42" />
+      </file>
+      <file name="/tmp/Hash.class/untitled/src/HashTest.java" timestamp="1473715873229">
+        <mark key="[" line="7" column="28" />
+        <mark key="]" line="7" column="23" />
+        <mark key="." line="7" column="23" />
+        <mark key="^" line="7" column="23" />
       </file>
       <file name="/Gradle Build Script.txt.ft" timestamp="1470696408004">
         <mark key="[" line="0" column="0" />
@@ -166,6 +172,11 @@
       <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/tmp/Hash.class/untitled/src/Hash11.java" timestamp="1473715941030">
+        <mark key="'" line="3" column="19" />
+        <mark key="[" line="3" column="0" />
+        <mark key="]" line="24" column="0" />
+      </file>
       <file name="/ColdFusion Tag Component.txt.ft" timestamp="1470696404593">
         <mark key="[" line="0" column="0" />
       </file>
@@ -177,6 +188,11 @@
       </file>
       <file name="/package-info.txt.ft" timestamp="1470696403605">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/dw/Hash.class" timestamp="1473715833715">
+        <mark key="'" line="5" column="0" />
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="26" column="0" />
       </file>
       <file name="/tsconfig.json.txt.ft" timestamp="1470696406592">
         <mark key="[" line="0" column="0" />
@@ -282,6 +298,11 @@
       <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="/tmp/Hash.class/untitled/src/HashHash.java" timestamp="1473715840368">
+        <mark key="[" line="3" column="0" />
+        <mark key="]" line="3" column="0" />
+        <mark key="." line="3" column="0" />
+      </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" timestamp="1472762211721">
         <mark key="[" line="96" column="35" />
         <mark key="]" line="96" column="41" />
@@ -294,9 +315,6 @@
         <mark key="]" line="15" column="0" />
         <mark key="^" line="13" column="26" />
         <mark key="." line="13" column="26" />
-      </file>
-      <file name="/DSA-MS12-effective-pom.xml" timestamp="1473348151969">
-        <mark key="'" line="0" column="0" />
       </file>
       <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ArrayLong.java" timestamp="1472624198790">
         <mark key="[" line="7" column="11" />
@@ -341,6 +359,9 @@
         <mark key="." line="13" column="7" />
         <mark key="^" line="13" column="7" />
       </file>
+      <file name="/tmp/Hash.class/untitled/src/Hash.java" timestamp="1473715867133">
+        <mark key="[" line="3" column="16" />
+      </file>
       <file name="/Scala Object.txt.ft" timestamp="1470696409105">
         <mark key="[" line="0" column="0" />
       </file>
@@ -379,11 +400,23 @@
         <mark key="." line="226" column="17" />
         <mark key="^" line="226" column="17" />
       </file>
+      <file name="$USER_HOME$/tmp/Loled/src/com/company/Main.java" timestamp="1473722197890">
+        <mark key="[" line="13" column="14" />
+        <mark key="]" line="13" column="61" />
+        <mark key="." line="13" column="13" />
+        <mark key="^" line="13" column="13" />
+      </file>
       <file name="/XML Properties File.txt.ft" timestamp="1470696403850">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/JavaFXApplication.txt.ft" timestamp="1470696412175">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/tmp/Loled/src/com/company/Hash11.java" timestamp="1473724288700">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="26" column="0" />
+        <mark key="^" line="5" column="0" />
+        <mark key="." line="5" column="0" />
       </file>
       <file name="/Scala Class.txt.ft" timestamp="1470696408736">
         <mark key="[" line="0" column="0" />
@@ -468,10 +501,10 @@
         <mark key="." line="1" column="0" />
         <mark key="^" line="1" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/pom.xml" timestamp="1473354753918">
+      <file name="$USER_HOME$/st/DSA/src/pom.xml" timestamp="1473706340686">
         <mark key="'" line="34" column="27" />
-        <mark key="[" line="21" column="0" />
-        <mark key="]" line="25" column="21" />
+        <mark key="[" line="14" column="0" />
+        <mark key="]" line="31" column="18" />
         <mark key="." line="21" column="0" />
         <mark key="^" line="13" column="15" />
       </file>
@@ -480,10 +513,6 @@
       </file>
     </filemarks>
     <jumps>
-      <jump line="37" column="8" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
-      <jump line="12" column="0" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
-      <jump line="22" column="0" filename="$USER_HOME$/st/ITP/UI/src/com/company/University.java" />
-      <jump line="8" column="73" filename="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" />
       <jump line="11" column="74" filename="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" />
       <jump line="20" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" />
       <jump line="7" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
@@ -580,203 +609,56 @@
       <jump line="57" column="2" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
       <jump line="105" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
       <jump line="13" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
+      <jump line="103" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
+      <jump line="10" column="30" filename="$USER_HOME$/dw/Hash.class" />
+      <jump line="5" column="0" filename="$USER_HOME$/dw/Hash.class" />
+      <jump line="3" column="19" filename="/tmp/Hash.class/untitled/src/Hash11.java" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
         <text>i</text>
       </register>
-      <register name="*" type="2">
-        <text encoding="base64">ICAgIHB1YmxpYyBib29sZWFuIGluc2VydEFmdGVyKGludCBwb3MsIGxvbmcgdmFsdWUpOwo=</text>
+      <register name="*" type="4">
+        <text>28629151</text>
       </register>
       <register name="-" type="4">
-        <text>0</text>
+        <text encoding="base64">aW50IA==</text>
       </register>
       <register name="/" type="4">
         <text>Size()/2</text>
       </register>
-      <register name="0" type="2">
-        <text encoding="base64">ICAgIHB1YmxpYyBib29sZWFuIGluc2VydEFmdGVyVmFsKGxvbmcgc2VlaywgbG9uZyBmaWxsKXsKICAgICAgICBmb3IgKGludCBpID0gMDsgaSA8IGNvdW50OyBpKyspewogICAgICAgICAgICBpZiAoYXJyW2ldID09IHNlZWspewogICAgICAgICAgICAgICAgcmV0dXJuIGluc2VydEFmdGVyKGksIGZpbGwpOwogICAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIHJldHVybiBmYWxzZTsKICAgIH0K</text>
+      <register name="0" type="4">
+        <text>31^5*(i*31^(n-1) + d[1]*31^(n-2) + ... + d[n-1])</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgIHByaXZhdGUgc3RhdGljIGludFtdIHNpemVTID0gbmV3IGludFtzaXplU18ubGVuZ3RoXTsK</text>
+        <text encoding="base64">ICAgICAgICAgICAgfQo=</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgICAgICBwb3MrKzsK</text>
+        <text encoding="base64">ICAgICAgICAgICAgZm9yKGkgOiBkKXsK</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">Cg==</text>
+        <text encoding="base64">ICAgICAgICAgICAgCg==</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">CS8vIHdyaXRlIHlvdXIgY29kZSBoZXJlCg==</text>
+        <text encoding="base64">ICAgICAgICAgICAgCg==</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">cHVibGljIGNsYXNzIE1haW4gewo=</text>
+        <text encoding="base64">ICAgICAgICAgICAgMzFeNSooZFswXSozMV4obi0xKSArIGRbMV0qMzFeKG4tMikgKyAuLi4gKyBkW24tMV0pCg==</text>
       </register>
-      <register name="6" type="8">
-        <text>dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd
-dd</text>
+      <register name="6" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgQmlnSW50ZWdlciB4ID0gbmV3IEJpZ0ludGVnZXIoU3RyaW5nLnZhbHVlT2YoMjg2MjkxNTEqaSsxOTg0NzE4OSkpOwo=</text>
       </register>
-      <register name="7" type="8">
-        <text>//
-//
-//
-//
-//</text>
+      <register name="7" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgaSsrOwo=</text>
       </register>
-      <register name="8" type="8">
-        <text>//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//</text>
+      <register name="8" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHNzKTsK</text>
       </register>
-      <register name="9" type="8">
-        <text>//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//</text>
+      <register name="9" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgU3RyaW5nIHNzID0gbmV3IFN0cmluZyhieXRlcyk7Cg==</text>
       </register>
       <register name=":" type="4">
-        <text>action Find</text>
+        <text>w</text>
       </register>
     </registers>
     <search>
@@ -828,10 +710,10 @@ dd</text>
         <entry encoding="base64">JzwsJz5zO3NpemVTO3NpemVTMjtj</entry>
         <entry encoding="base64">JzwsJz5zO1NpemUoKS8yO1NpemUoKSowLjg4O2M=</entry>
         <entry>action Forward</entry>
-        <entry>action Back</entry>
-        <entry>W</entry>
-        <entry>w</entry>
         <entry>action Find</entry>
+        <entry>W</entry>
+        <entry>action Back</entry>
+        <entry>w</entry>
       </history-cmd>
       <history-expr />
       <history-input />

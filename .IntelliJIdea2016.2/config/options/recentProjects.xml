@@ -2,6 +2,8 @@
   <component name="RecentProjectsManager">
     <option name="recentPaths">
       <list>
+        <option value="$USER_HOME$/tmp/Loled" />
+        <option value="/tmp/Hash.class" />
         <option value="$USER_HOME$/st/DSA/src" />
         <option value="$USER_HOME$/tmp/test" />
         <option value="$USER_HOME$/st/DSA/benchmark" />
@@ -10,12 +12,6 @@
         <option value="$USER_HOME$/st/ITP/parser" />
       </list>
     </option>
-    <option name="openPaths">
-      <list>
-        <option value="$USER_HOME$/st/DSA/src" />
-      </list>
-    </option>
-    <option name="lastPath" value="$USER_HOME$/st/DSA/src" />
     <option name="additionalInfo">
       <map>
         <entry key="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork">
@@ -299,7 +295,7 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1473563851906" />
+              <option name="projectOpenTimestamp" value="1473706111685" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -326,6 +322,17 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/tmp/Loled">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1473724276458" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/tmp/test">
           <value>
             <RecentProjectMetaInfo>
@@ -333,6 +340,17 @@
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="projectOpenTimestamp" value="1473417455736" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="/tmp/Hash.class">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1473715289552" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
