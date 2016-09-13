@@ -86,3 +86,9 @@ local jump_dirs=( ~/1st_level ~/dw ~/tmp ~/src/1st_level ~/vid/new)
 for index in $(seq 1 $((${#jump_dirs[@]} ))); do
     bindkey -s "${index}" "cd ${jump_dirs[$index]/${HOME}/~}"
 done
+
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
