@@ -41,7 +41,7 @@ bind-key -n M-t run-shell                                     ' \
   shift $(( 2*vim + max ));                                     \
   eval "$1";                                                    \
 '
-bind-key -n M-n run-shell                                     ' \
+bind-key -n M-C-n run-shell                                   ' \
   test #{window_zoomed_flag} -eq 0; max=$?;                     \
   cmd="#{pane_current_command}"; test -n "${cmd#*vim}"; vim=$?; \
   set --                                                        \
