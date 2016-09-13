@@ -155,7 +155,7 @@ defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",
 defwinprop{class="Xfce",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
-defwinprop{class="steam",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="steam",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}
