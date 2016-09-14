@@ -10,7 +10,7 @@
 #     | 11 (3)   | yes     | yes        | focus directional Vim split |
 #     +----------+---------+------------+-----------------------------+
 #
-bind-key -n M-d run-shell                                     ' \
+bind-key -n M-C-d run-shell                                   ' \
   test #{window_zoomed_flag} -eq 0; max=$?;                     \
   cmd="#{pane_current_command}"; test -n "${cmd#*vim}"; vim=$?; \
   if test $max -eq 1 -a $vim -eq 1; then                        \
@@ -19,7 +19,8 @@ bind-key -n M-d run-shell                                     ' \
     tmux select-pane -l || tmux select-pane -t 1;               \
   fi                                                            \
 '
-bind-key -n M-h run-shell                                     ' \
+
+bind-key -n M-C-h run-shell                                   ' \
   test #{window_zoomed_flag} -eq 0; max=$?;                     \
   cmd="#{pane_current_command}"; test -n "${cmd#*vim}"; vim=$?; \
   set --                                                        \
@@ -30,7 +31,7 @@ bind-key -n M-h run-shell                                     ' \
   shift $(( 2*vim + max ));                                     \
   eval "$1";                                                    \
 '
-bind-key -n M-t run-shell                                     ' \
+bind-key -n M-C-t run-shel                                    ' \
   test #{window_zoomed_flag} -eq 0; max=$?;                     \
   cmd="#{pane_current_command}"; test -n "${cmd#*vim}"; vim=$?; \
   set --                                                        \
@@ -52,7 +53,7 @@ bind-key -n M-C-n run-shell                                   ' \
   shift $(( 2*vim + max ));                                     \
   eval "$1";                                                    \
 '
-bind-key -n M-s run-shell                                     ' \
+bind-key -n M-C-s run-shell                                   ' \
   test #{window_zoomed_flag} -eq 0; max=$?;                     \
   cmd="#{pane_current_command}"; test -n "${cmd#*vim}"; vim=$?; \
   set --                                                        \
