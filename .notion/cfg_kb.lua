@@ -54,8 +54,8 @@ Neg_kb.WMPlex_toplevel = {
         kpress(Ct.."R", function() app.byinstance('cr3', 'Cr3', 'cr3') end),
         kpress("A",     function() namsc('firefox-dialog') end),
         submap("C", {
-            kpress("C", function() spawn('p copy') end),
-            kpress("P", function() spawn('p paste') end),
+            kpress("C", function() spawn('~/bin/p/copy_pass') end),
+            kpress("P", function() spawn('~/bin/p/paste_pass') end),
         }),
         kpress("D",     function() spawn('~/bin/scripts/dzen-dict') end),
         kpress("F",     function() namsc('float') end),

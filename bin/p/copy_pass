@@ -1,0 +1,8 @@
+#!/bin/bash -xv
+touch /tmp/pass_clipped_fifo
+(inotifywait -e close_write /tmp/pass_clipped_fifo >/dev/null 2>&1
+ pass=$(cat /tmp/pass_clipped_fifo | gpg -d -r serg.zorg@gmail.com --no-tty 2>/dev/null | head -n 1)
+ echo $pass | xclip
+ notify-no-icon "$UNLOCKED copied $(cat /tmp/pass_picked) to clipboard"
+ ) &
+~/bin/p/get_pass
