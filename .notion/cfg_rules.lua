@@ -118,15 +118,19 @@ defwinprop{instance="qemu-system-x86_64",jumpto=true,target="vm",transient_mode=
 defwinprop{class="spicec",instance="spicec",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 defwinprop{instance="spicy",jumpto=true,target="vm",transient_mode="on",tag="virt"}
 -------------------------------------[[   GRARPHIC  ]]-----------------------------
-defwinprop{class="Gimp",target="graphic",acrobatic=true,tag="graphic",tag="graph"}
 defwinprop{class="inkscape",target="graphic",tag="graph"}
 defwinprop{class="simple-scan",target="graph"}
 defwinprop{class="gthumb",target="graph"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-open",transient_mode="off",float=true,tag="graph"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-file-save",transient_mode="off",float=true,tag="graph"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true,tag="graph"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-image-new",transient_mode="off",float=true,tag="graph"}
-defwinprop{class="Gimp",target="graphic",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true,tag="graph"}
+defwinprop{
+    class="Gimp",target="gimp",jumpto=true,tag="graph",float=true,
+    max_size = {w=1600,h=1200,x=300,y=200},
+    min_size = {w=1024,h=768},
+}
+defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-image-new",transient_mode="off",float=true,tag="graph"}
+defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-toolbox-color-dialog",transient_mode="off",float=true,tag="graph"}
 -------------------------------------[[ TRAY'n'DOCK ]]------------------------------
 defwinprop{class="stalonetray",instance="stalonetray",statusbar="*",float=true,target="stalonetray"}
 defwinprop{is_dockapp=true,statusbar="*",float=true}
