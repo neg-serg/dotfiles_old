@@ -30,6 +30,7 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4.."F4",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
     kpress(M4.."B",      function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
+    kpress(M4..Sh.."L",  function() app.byclass_withtag(nil, '_logs_', nil, 'logs') end),
     kpress(M4.."W",      function() app.byinstance_withtag(
         'firefox || /usr/bin/firefox-developer',
         'Firefox',
