@@ -1,8 +1,5 @@
 priority -50
 
-###########################
-# Sections and Paragraphs #
-###########################
 snippet sec "Section" b
 # ${1:Section Name} #
 $0
@@ -14,8 +11,7 @@ $0
 endsnippet
 
 snippet sssec "SubSub Section" b
-### ${1:Section Name} ###
-$0
+### ${1:Section Name} ### $0
 endsnippet
 
 snippet par "Paragraph" b
@@ -26,13 +22,6 @@ endsnippet
 snippet spar "Paragraph" b
 ##### ${1:Paragraph Name} #####
 $0
-endsnippet
-
-################
-# Common stuff #
-################
-snippet link "Link to something"
-[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
 endsnippet
 
 snippet img "Image"
@@ -50,4 +39,13 @@ $1
 $0
 endsnippet
 
+snippet a "Link to something"
+	[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
+snippet front
+	---
+	title: ${1:Title}
+	author: Joel
+	layout: post
+	permalink: `strftime("/%Y/%m/%d")`/${2:slug}.html
+	---
 # vim:ft=snippets:
