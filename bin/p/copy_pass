@@ -1,8 +1,23 @@
-#!/bin/bash -xv
+#!/bin/zsh
 touch /tmp/pass_clipped_fifo
-(inotifywait -e close_write /tmp/pass_clipped_fifo >/dev/null 2>&1
- pass=$(cat /tmp/pass_clipped_fifo | gpg -d -r serg.zorg@gmail.com --no-tty 2>/dev/null | head -n 1)
- echo $pass | xclip
- notify-no-icon "$UNLOCKED copied $(cat /tmp/pass_picked) to clipboard"
- ) &
+mail_key_="$(gpg -dq ~/.mail_.gpg)"
+
+function icon_() { export "$1"="%{F${color_icon}}$2%{F${color_fg}}" }
+
+icon_ vol_icon_      "\uf028"
+icon_ mute_icon_     "\uf026x"
+icon_ keyboard_icon_ "\uf11c"
+icon_ clock_icon_    "\uf017"
+icon_ calendar_icon_ "\uf073"
+icon_ redshift_icon_ "\uf042"
+icon_ tv_icon_       "\uf26c"
+icon_ vpn_icon_      "\uf0ac"
+icon_ unlocked_      "\uf084\uf13e"
+
+(   
+    inotifywait -e close_write /tmp/pass_clipped_fifo >/dev/null 2>&1
+    pass=$(gpg -d -r "${mail_key_}" < /tmp/pass_clipped_fifo --no-tty 2>/dev/null | head -n1)
+    echo "${pass}" | xclip
+    notify-no-icon "${unlocked_} copied $(cat /tmp/pass_picked) to clipboard"
+) &
 ~/bin/p/get_pass
