@@ -24,6 +24,6 @@ bind-key -n M-K \
   display-message 'monitor-activity #{?monitor-activity,on,off} (global)'
 
 new -n dmesg 'dmesg -L never --follow --nopager | ccze -A' 
-neww -n var_log 'tail -f /var/log/*.log ~/.xsession-errors |ccze -A' 
+neww -n var_log 'sudo tail -f /var/log/*.log ~/.xsession-errors |ccze -A' 
 neww -n journalctl 'journalctl|ccze -A ; echo "--------------------" ; journalctl -fq | ccze -A'
 
