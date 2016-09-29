@@ -40,7 +40,10 @@ Neg_kb.WMPlex_toplevel = {
     end),
     kpress(M4.."O",      function() app.byclass_withtag('zathura', 'Zathura', 'pdf') end),
     kpress(M4..Ct.."E",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
-    kpress(M4..Ct.."C",  function() app.byclass('~/bin/sx ~/dw/*', 'Sxiv') end),
+    kpress(M4..Ct.."C",  function() 
+        local downloads_dir_="~/dw/"
+        app.byclass('~/bin/sx '..downloads_dir_..'*', 'Sxiv') 
+    end),
     --[[  misc  ]]---------------------------------------
     kpress(M4..Sh.."F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
     kpress(M4..Sh.."T",  function() 
@@ -74,7 +77,8 @@ Neg_kb.WMPlex_toplevel = {
         kpress(Sh.."K", function() spawn('~/bin/scripts/toggle_keynav') end),
         kpress(Sh.."O", function() spawn('~/bin/pls -vol') end),
         kpress(Sh.."R", function() ranger() end),
-        kpress("T",     function() spawn('urxvt') end),
+        kpress("T",     function() app.byclass('telegram-desktop', 'telegram-desktop') end),
+        kpress(Sh.."T", function() spawn('urxvt') end),
         kpress("V",     function() spawn('vmware') end),
         kpress("W",     function() webcam() end),
         kpress(Sh.."B", function() 
