@@ -8,7 +8,8 @@ geometry=50%:50%
 
 sub-scale=0.6
 
-vo=opengl-hq,vdpau,vaapi,xv
+profile=opengl-hq
+#vo=opengl-hq,vdpau,vaapi,xv
 #vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 #vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
 #vf=pp=de,hqdn3d
