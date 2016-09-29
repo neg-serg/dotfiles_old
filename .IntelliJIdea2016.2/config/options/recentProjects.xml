@@ -2,16 +2,16 @@
   <component name="RecentProjectsManager">
     <option name="recentPaths">
       <list>
-        <option value="$USER_HOME$/tmp/Loled" />
-        <option value="/tmp/Hash.class" />
-        <option value="$USER_HOME$/st/DSA/src" />
-        <option value="$USER_HOME$/tmp/test" />
-        <option value="$USER_HOME$/st/DSA/benchmark" />
-        <option value="$USER_HOME$/st/ITP/UI" />
-        <option value="$USER_HOME$/st/DSA/benchmark/test" />
-        <option value="$USER_HOME$/st/ITP/parser" />
+        <option value="$USER_HOME$/st/trash/arch" />
+        <option value="$USER_HOME$/st/trash/srt" />
       </list>
     </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/st/trash/arch" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/st/trash/arch" />
     <option name="additionalInfo">
       <map>
         <entry key="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork">
@@ -33,6 +33,28 @@
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="projectOpenTimestamp" value="1470583622237" />
               <option name="buildTimestamp" value="1464901200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/dw/Telegram Desktop/_CodeTester/_CodeTester">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474482530745" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/dw/Telegram Desktop/_CodeTester/_CodeTester/src">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474482894297" />
+              <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
@@ -245,6 +267,28 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/src/scribblehunter">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474485553752" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/sorting">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474482971511" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
         <entry key="$USER_HOME$/src/spark">
           <value>
             <RecentProjectMetaInfo>
@@ -252,6 +296,17 @@
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="projectOpenTimestamp" value="1472408757794" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/srt">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474974791192" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -295,7 +350,7 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1473706111685" />
+              <option name="projectOpenTimestamp" value="1474482842240" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -317,7 +372,40 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1473312484910" />
+              <option name="projectOpenTimestamp" value="1474391998700" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/st/trash/arch">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1475140741093" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/st/trash/srt">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474974820844" />
+              <option name="buildTimestamp" value="1470085200000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/st/trash/untitled">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IU-162.1447.26" />
+              <option name="productionCode" value="IU" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1474503352761" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>
@@ -357,6 +445,6 @@
         </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="$USER_HOME$/tmp" />
+    <option name="lastProjectLocation" value="$USER_HOME$/st/trash" />
   </component>
 </application>

@@ -1,242 +1,297 @@
 <application>
   <component name="StatisticsApplicationUsages">
     <group name="JavaScript versions">
-      <project id="dmd_project" values="ECMAScript 5.1" collectionTime="1470583631661" />
-      <project id="parser" values="ECMAScript 5.1" collectionTime="1473312497720" />
-      <project id="kotlin" values="ECMAScript 5.1" collectionTime="1452521568294" />
-      <project id="untitled" values="ECMAScript 5.1" collectionTime="1450807341809" />
-      <project id="hackathon-Embeditor" values="ECMAScript 5.1" collectionTime="1470235983386" />
       <project id="Material Theme UI" values="ECMAScript 5.1" collectionTime="1470771476615" />
-      <project id="aws-wrap" values="ECMAScript 5.1" collectionTime="1463252004537" />
-      <project id="benchmark" values="ECMAScript 5.1" collectionTime="1473360732884" />
-      <project id="intellij-community" values="ECMAScript 5.1" collectionTime="1467014700601" />
-      <project id="Hash.class" values="ECMAScript 5.1" collectionTime="1473715947160" />
-      <project id="JavaRushHomeWork" values="ECMAScript 5.1" collectionTime="1472628763208" />
-      <project id="jediterm" values="ECMAScript 5.1" collectionTime="1470236338585" />
+      <project id="hackathon-Embeditor" values="ECMAScript 5.1" collectionTime="1470235983386" />
       <project id="test" values="ECMAScript 5.1" collectionTime="1473418108851" />
-      <project id="delite" values="ECMAScript 5.1" collectionTime="1470823536236" />
-      <project id="Loled" values="ECMAScript 5.1" collectionTime="1473753331314" />
-      <project id="dsa_ia1" values="ECMAScript 5.1" collectionTime="1472564975071" />
-      <project id="spark" values="ECMAScript 5.1" collectionTime="1472409195409" />
-      <project id="LearningSpark" values="ECMAScript 5.1" collectionTime="1463254179001" />
-      <project id="kotlin_prog" values="ECMAScript 5.1" collectionTime="1452241443069" />
-      <project id="objsets" values="ECMAScript 5.1" collectionTime="1470507769025" />
-      <project id="tmp" values="ECMAScript 5.1" collectionTime="1466522856664" />
-      <project id="UI" values="ECMAScript 5.1" collectionTime="1473344095815" />
-      <project id="progfun1-example" values="ECMAScript 5.1" collectionTime="1470687760012" />
-      <project id="akka" values="ECMAScript 5.1" collectionTime="1470576943792" />
-      <project id="hackathon-Embeditorq" values="ECMAScript 5.1" collectionTime="1466513280102" />
+      <project id="untitled" values="ECMAScript 5.1" collectionTime="1474503253050" />
+      <project id="dmd_project" values="ECMAScript 5.1" collectionTime="1470583631661" />
       <project id="src" values="ECMAScript 5.1" collectionTime="1466522448366" />
+      <project id="_CodeTester" values="ECMAScript 5.1" collectionTime="1474482557284" />
+      <project id="Hash.class" values="ECMAScript 5.1" collectionTime="1473715947160" />
+      <project id="intellij-community" values="ECMAScript 5.1" collectionTime="1467014700601" />
+      <project id="arch" values="ECMAScript 5.1" collectionTime="1474974772060" />
+      <project id="scribblehunter" values="ECMAScript 5.1" collectionTime="1474485564231" />
+      <project id="sorting" values="ECMAScript 5.1" collectionTime="1474483001727" />
+      <project id="Sorting" values="ECMAScript 5.1" collectionTime="1474488000818" />
+      <project id="akka" values="ECMAScript 5.1" collectionTime="1470576943792" />
+      <project id="DSA" values="ECMAScript 5.1" collectionTime="1474393240437" />
+      <project id="progfun1-example" values="ECMAScript 5.1" collectionTime="1470687760012" />
+      <project id="spark" values="ECMAScript 5.1" collectionTime="1472409195409" />
+      <project id="Loled" values="ECMAScript 5.1" collectionTime="1473753331314" />
+      <project id="benchmark" values="ECMAScript 5.1" collectionTime="1473360732884" />
+      <project id="DSA-MS12" values="ECMAScript 5.1" collectionTime="1474482970002" />
+      <project id="delite" values="ECMAScript 5.1" collectionTime="1470823536236" />
+      <project id="objsets" values="ECMAScript 5.1" collectionTime="1470507769025" />
+      <project id="jediterm" values="ECMAScript 5.1" collectionTime="1470236338585" />
+      <project id="UI" values="ECMAScript 5.1" collectionTime="1473344095815" />
+      <project id="aws-wrap" values="ECMAScript 5.1" collectionTime="1463252004537" />
+      <project id="kotlin_prog" values="ECMAScript 5.1" collectionTime="1452241443069" />
+      <project id="dsa_ia1" values="ECMAScript 5.1" collectionTime="1472564975071" />
+      <project id="tmp" values="ECMAScript 5.1" collectionTime="1466522856664" />
+      <project id="parser" values="ECMAScript 5.1" collectionTime="1474392070484" />
+      <project id="hackathon-Embeditorq" values="ECMAScript 5.1" collectionTime="1466513280102" />
+      <project id="LearningSpark" values="ECMAScript 5.1" collectionTime="1463254179001" />
+      <project id="srt" values="ECMAScript 5.1" collectionTime="1474974795396" />
+      <project id="kotlin" values="ECMAScript 5.1" collectionTime="1452521568294" />
+      <project id="JavaRushHomeWork" values="ECMAScript 5.1" collectionTime="1472628763208" />
       <project id="embeditor" values="ECMAScript 5.1" collectionTime="1470236946046" />
-      <project id="DSA" values="ECMAScript 5.1" collectionTime="1473715277945" />
     </group>
     <group name="module type">
-      <project id="dmd_project" values="JAVA_MODULE" collectionTime="1470583631504" />
-      <project id="parser" values="JAVA_MODULE" collectionTime="1473312497541" />
-      <project id="kotlin" values="JAVA_MODULE" collectionTime="1452521567805" />
-      <project id="untitled" values="JAVA_MODULE" collectionTime="1450807341711" />
-      <project id="embeditor" values="JAVA_MODULE" collectionTime="1470236945996" />
       <project id="Material Theme UI" values="PLUGIN_MODULE" collectionTime="1470771476477" />
-      <project id="aws-wrap" values="SBT_MODULE,JAVA_MODULE" collectionTime="1463252004455" />
-      <project id="benchmark" values="JAVA_MODULE" collectionTime="1473360732855" />
-      <project id="intellij-community" values="JAVA_MODULE" collectionTime="1467014700467" />
-      <project id="Hash.class" values="JAVA_MODULE" collectionTime="1473715947149" />
-      <project id="jediterm" values="JAVA_MODULE" collectionTime="1470236338537" />
       <project id="hackathon-Embeditor" values="JAVA_MODULE" collectionTime="1470235983310" />
-      <project id="delite" values="SBT_MODULE,JAVA_MODULE" collectionTime="1470823536143" />
-      <project id="Loled" values="JAVA_MODULE" collectionTime="1473753331195" />
-      <project id="dsa_ia1" values="JAVA_MODULE" collectionTime="1472564974920" />
-      <project id="spark" values="JAVA_MODULE" collectionTime="1472409195329" />
-      <project id="LearningSpark" values="SBT_MODULE,JAVA_MODULE" collectionTime="1463254178803" />
-      <project id="kotlin_prog" values="JAVA_MODULE" collectionTime="1452241442604" />
-      <project id="objsets" values="JAVA_MODULE" collectionTime="1470507768945" />
-      <project id="UI" values="JAVA_MODULE" collectionTime="1473344095632" />
-      <project id="progfun1-example" values="JAVA_MODULE,SBT_MODULE" collectionTime="1470687759948" />
-      <project id="akka" values="JAVA_MODULE" collectionTime="1470576943769" />
-      <project id="hackathon-Embeditorq" values="WEB_MODULE" collectionTime="1466513280003" />
       <project id="test" values="JAVA_MODULE" collectionTime="1473418108766" />
+      <project id="untitled" values="JAVA_MODULE" collectionTime="1474503253016" />
+      <project id="dmd_project" values="JAVA_MODULE" collectionTime="1470583631504" />
+      <project id="Hash.class" values="JAVA_MODULE" collectionTime="1473715947149" />
+      <project id="intellij-community" values="JAVA_MODULE" collectionTime="1467014700467" />
+      <project id="arch" values="JAVA_MODULE" collectionTime="1474974771881" />
+      <project id="scribblehunter" values="JAVA_MODULE" collectionTime="1474485564077" />
+      <project id="Sorting" values="JAVA_MODULE" collectionTime="1474488000803" />
+      <project id="akka" values="JAVA_MODULE" collectionTime="1470576943769" />
+      <project id="embeditor" values="JAVA_MODULE" collectionTime="1470236945996" />
+      <project id="DSA" values="JAVA_MODULE" collectionTime="1474393240231" />
+      <project id="progfun1-example" values="SBT_MODULE,JAVA_MODULE" collectionTime="1470687759948" />
+      <project id="spark" values="JAVA_MODULE" collectionTime="1472409195329" />
+      <project id="Loled" values="JAVA_MODULE" collectionTime="1473753331195" />
+      <project id="benchmark" values="JAVA_MODULE" collectionTime="1473360732855" />
+      <project id="LearningSpark" values="SBT_MODULE,JAVA_MODULE" collectionTime="1463254178803" />
+      <project id="DSA-MS12" values="JAVA_MODULE" collectionTime="1474482969990" />
+      <project id="delite" values="SBT_MODULE,JAVA_MODULE" collectionTime="1470823536143" />
+      <project id="jediterm" values="JAVA_MODULE" collectionTime="1470236338537" />
+      <project id="UI" values="JAVA_MODULE" collectionTime="1473344095632" />
+      <project id="aws-wrap" values="SBT_MODULE,JAVA_MODULE" collectionTime="1463252004455" />
+      <project id="kotlin_prog" values="JAVA_MODULE" collectionTime="1452241442604" />
+      <project id="dsa_ia1" values="JAVA_MODULE" collectionTime="1472564974920" />
+      <project id="parser" values="JAVA_MODULE" collectionTime="1474392070349" />
+      <project id="hackathon-Embeditorq" values="WEB_MODULE" collectionTime="1466513280003" />
+      <project id="sorting" values="JAVA_MODULE" collectionTime="1474483001718" />
+      <project id="kotlin" values="JAVA_MODULE" collectionTime="1452521567805" />
       <project id="JavaRushHomeWork" values="JAVA_MODULE" collectionTime="1472628763179" />
-      <project id="DSA" values="JAVA_MODULE" collectionTime="1473715277914" />
+      <project id="objsets" values="JAVA_MODULE" collectionTime="1470507768945" />
     </group>
     <group name="vcs">
       <project id="embeditor" values="Git" collectionTime="1470236945996" />
       <project id="dmd_project" values="Git" collectionTime="1470583631504" />
       <project id="delite" values="Git" collectionTime="1470823536143" />
-      <project id="LearningSpark" values="Git" collectionTime="1463254178803" />
-      <project id="benchmark" values="Git" collectionTime="1473360732855" />
       <project id="intellij-community" values="Git" collectionTime="1467014700467" />
+      <project id="benchmark" values="Git" collectionTime="1473360732855" />
+      <project id="scribblehunter" values="Git" collectionTime="1474485564076" />
+      <project id="LearningSpark" values="Git" collectionTime="1463254178803" />
+      <project id="DSA-MS12" values="Git" collectionTime="1474482969990" />
       <project id="jediterm" values="Git" collectionTime="1470236338537" />
-      <project id="DSA" values="Git" collectionTime="1473715277914" />
+      <project id="DSA" values="Git" collectionTime="1474393240230" />
       <project id="aws-wrap" values="Git" collectionTime="1463252004455" />
       <project id="Material Theme UI" values="Git" collectionTime="1470771476476" />
     </group>
     <group name="VCS Log 2">
-      <project id="Material Theme UI" values="data.git.root.count.1,data.commit.count.100+" collectionTime="1470771476544" />
+      <project id="Material Theme UI" values="data.commit.count.100+,data.git.root.count.1" collectionTime="1470771476544" />
       <project id="delite" values="data.commit.count.1K+,data.git.root.count.1" collectionTime="1470823536233" />
-      <project id="DSA" values="data.commit.count.1+,data.git.root.count.1" collectionTime="1473715277943" />
+      <project id="DSA" values="data.git.root.count.1,data.commit.count.1+" collectionTime="1474393240346" />
+      <project id="DSA-MS12" values="data.git.root.count.1,data.commit.count.1+" collectionTime="1474482970002" />
       <project id="benchmark" values="data.commit.count.1+,data.git.root.count.2+" collectionTime="1473360732881" />
     </group>
     <group name="run-configuration-type">
-      <project id="intellij-community" values="JUnit,Application" collectionTime="1467014700468" />
-      <project id="DSA" values="Application" collectionTime="1473715277915" />
       <project id="JavaRushHomeWork" values="Application" collectionTime="1472628763179" />
+      <project id="DSA" values="Application" collectionTime="1474393240231" />
+      <project id="intellij-community" values="Application,JUnit" collectionTime="1467014700468" />
     </group>
     <group name="Scala">
       <project id="objsets" values="Scala  2.11.8" collectionTime="1470507769031" />
       <project id="delite" values="Scala  2.11.8" collectionTime="1470823536244" />
       <project id="spark" values="Library  Spark,Scala  2.11.8" collectionTime="1472409195422" />
-      <project id="LearningSpark" values="Scala  2.11.7,Library  Spark,Library  Akka for Scala" collectionTime="1463254179006" />
-      <project id="progfun1-example" values="Library  Scalaz,Library  ScalaTest,Library  JUnit for Scala,Scala  2.11.7" collectionTime="1470687760021" />
+      <project id="LearningSpark" values="Library  Spark,Library  Akka for Scala,Scala  2.11.7" collectionTime="1463254179006" />
+      <project id="progfun1-example" values="Library  ScalaTest,Scala  2.11.7,Library  JUnit for Scala,Library  Scalaz" collectionTime="1470687760021" />
     </group>
     <group name="run-configuration-type-temp">
-      <project id="progfun1-example" values="Application,ScalaScriptConsoleRunConfiguration" collectionTime="1470687759948" />
-      <project id="dsa_ia1" values="Application" collectionTime="1472564974920" />
-      <project id="test" values="Application" collectionTime="1473418108767" />
-      <project id="benchmark" values="Application" collectionTime="1473360732856" />
-      <project id="objsets" values="Application" collectionTime="1470507768946" />
-      <project id="parser" values="Application" collectionTime="1473312497541" />
-      <project id="UI" values="Application" collectionTime="1473344095632" />
-      <project id="DSA" values="Application,JUnit" collectionTime="1473715277915" />
       <project id="Loled" values="Application" collectionTime="1473753331196" />
       <project id="Hash.class" values="Application" collectionTime="1473715947149" />
+      <project id="dsa_ia1" values="Application" collectionTime="1472564974920" />
+      <project id="test" values="Application" collectionTime="1473418108767" />
+      <project id="objsets" values="Application" collectionTime="1470507768946" />
+      <project id="benchmark" values="Application" collectionTime="1473360732856" />
+      <project id="srt" values="Application" collectionTime="1474974795389" />
+      <project id="parser" values="Application" collectionTime="1474392070349" />
+      <project id="UI" values="Application" collectionTime="1473344095632" />
+      <project id="scribblehunter" values="Application" collectionTime="1474485564077" />
+      <project id="DSA" values="Application,JUnit" collectionTime="1474393240231" />
+      <project id="progfun1-example" values="ScalaScriptConsoleRunConfiguration,Application" collectionTime="1470687759948" />
+      <project id="sorting" values="Application" collectionTime="1474483001718" />
     </group>
     <group name="file-type">
-      <project id="dmd_project" values="JAVA,PLAIN_TEXT,Images,HTML,XML,IDEA_MODULE,SCSS" collectionTime="1470583631536" />
-      <project id="parser" values="JAVA,IDEA_MODULE" collectionTime="1473312497646" />
-      <project id="kotlin" values="UNKNOWN,PLAIN_TEXT,ARCHIVE,XML,IDEA_MODULE,Kotlin" collectionTime="1452521567844" />
-      <project id="hackathon-Embeditorq" values="IDEA_MODULE" collectionTime="1466513280026" />
-      <project id="Material Theme UI" values="Images,IDEA_MODULE,XML,CSS,PLAIN_TEXT,ARCHIVE,JAVA,Properties" collectionTime="1470771476538" />
-      <project id="aws-wrap" values="CSS,IDEA_MODULE,Properties,PLAIN_TEXT,SBT,YAML,XML,Scala,UNKNOWN" collectionTime="1463252004527" />
-      <project id="benchmark" values="XML,ARCHIVE,JAVA,IDEA_MODULE,PLAIN_TEXT" collectionTime="1473360732878" />
-      <project id="intellij-community" values="UML,HTML,ProGuard File,PATCH,Erlang,PLAIN_TEXT,YAML,Scala,XHTML,VTL,JSON,JavaFX,AspectJ,GUI_DESIGNER_FORM,CSS,RNG Compact,RegExp,AndroidDataBinding,FTL,DTD,JAVA,JSP,Manifest,ARCHIVE,JQL,IDEA_PROJECT,JavaScript,HOCON,UNKNOWN,Images,Android RenderScript,IDEA_MODULE,C++,XML,CLASS,VmTrace,IDEA_WORKSPACE,C#,Groovy,Cucumber,SPI,Native,Kotlin,Properties,Perl,TypeScript,AIDL,Eclipse,CoffeeScript" collectionTime="1467014700504" />
-      <project id="Hash.class" values="IDEA_MODULE,JAVA,CLASS" collectionTime="1473715947158" />
-      <project id="JavaRushHomeWork" values="Images,IDEA_MODULE,PLAIN_TEXT,JAVA,Properties" collectionTime="1472628763207" />
-      <project id="jediterm" values="ARCHIVE,XML,YAML,UNKNOWN,JAVA,Manifest,PLAIN_TEXT,IDEA_MODULE" collectionTime="1470236338584" />
-      <project id="hackathon-Embeditor" values="JAVA,IDEA_MODULE,XML" collectionTime="1470235983386" />
-      <project id="DSA" values="IDEA_MODULE,JAVA,XML,ARCHIVE,PLAIN_TEXT" collectionTime="1473715277935" />
-      <project id="delite" values="Scala,C++,SBT,ARCHIVE,XML,HTML,JAVA,PLAIN_TEXT,UNKNOWN,SourceMap,JavaScript,Perl,IDEA_MODULE,CSS,Images,Properties" collectionTime="1470823536220" />
+      <project id="Material Theme UI" values="Images,Properties,ARCHIVE,IDEA_MODULE,JAVA,PLAIN_TEXT,CSS,XML" collectionTime="1470771476538" />
+      <project id="hackathon-Embeditor" values="JAVA,XML,IDEA_MODULE" collectionTime="1470235983386" />
+      <project id="test" values="CLASS,ARCHIVE,IDEA_MODULE,JAVA,PLAIN_TEXT,XML,Native,Properties" collectionTime="1473418108781" />
+      <project id="untitled" values="JAVA,IDEA_MODULE" collectionTime="1474503253046" />
+      <project id="dmd_project" values="IDEA_MODULE,PLAIN_TEXT,XML,Images,SCSS,JAVA,HTML" collectionTime="1470583631536" />
+      <project id="Hash.class" values="IDEA_MODULE,CLASS,JAVA" collectionTime="1473715947158" />
+      <project id="intellij-community" values="Eclipse,RegExp,TypeScript,SPI,ProGuard File,YAML,JQL,JavaFX,CSS,UNKNOWN,XML,UML,JavaScript,GUI_DESIGNER_FORM,HOCON,C#,AndroidDataBinding,PLAIN_TEXT,AIDL,Images,VTL,Perl,ARCHIVE,VmTrace,C++,CLASS,Manifest,Android RenderScript,IDEA_WORKSPACE,HTML,JSON,PATCH,XHTML,JAVA,RNG Compact,Kotlin,FTL,AspectJ,CoffeeScript,Scala,IDEA_MODULE,DTD,JSP,Erlang,Cucumber,Native,IDEA_PROJECT,Groovy,Properties" collectionTime="1467014700504" />
+      <project id="arch" values="XML,JAVA,IDEA_MODULE" collectionTime="1474974771952" />
+      <project id="DSA" values="XML,JAVA,PLAIN_TEXT,ARCHIVE,IDEA_MODULE" collectionTime="1474393240333" />
+      <project id="kotlin_prog" values="UNKNOWN,XML,IDEA_MODULE,PLAIN_TEXT" collectionTime="1452241442616" />
+      <project id="Sorting" values="IDEA_MODULE,JAVA,XML,PLAIN_TEXT" collectionTime="1474488000815" />
+      <project id="akka" values="HTML,JAVA,UNKNOWN,IDEA_MODULE,XML,Native,PLAIN_TEXT,Images" collectionTime="1470576943790" />
+      <project id="scribblehunter" values="IDEA_MODULE,PLAIN_TEXT,JAVA,UNKNOWN" collectionTime="1474485564134" />
+      <project id="progfun1-example" values="SBT,Properties,Scala,IDEA_MODULE,PLAIN_TEXT,XML" collectionTime="1470687759999" />
+      <project id="spark" values="Images,HOCON,PLAIN_TEXT,JavaScript,JSON Schema,JAVA,XML,Properties,HTML,UNKNOWN,IDEA_MODULE,ARCHIVE,Scala,SQL,CSS,SPI" collectionTime="1472409195395" />
       <project id="Loled" values="JAVA,IDEA_MODULE" collectionTime="1473753331235" />
+      <project id="benchmark" values="ARCHIVE,XML,JAVA,IDEA_MODULE,PLAIN_TEXT" collectionTime="1473360732878" />
+      <project id="LearningSpark" values="Properties,JAVA,JSON,IDEA_MODULE,PLAIN_TEXT,UNKNOWN,Scala,XML,SBT" collectionTime="1463254178890" />
+      <project id="DSA-MS12" values="PLAIN_TEXT,JAVA,XML,IDEA_MODULE" collectionTime="1474482970002" />
+      <project id="delite" values="HTML,JavaScript,JAVA,XML,Perl,C++,IDEA_MODULE,ARCHIVE,Scala,PLAIN_TEXT,SourceMap,UNKNOWN,Images,Properties,CSS,SBT" collectionTime="1470823536220" />
+      <project id="jediterm" values="IDEA_MODULE,JAVA,YAML,ARCHIVE,XML,UNKNOWN,Manifest,PLAIN_TEXT" collectionTime="1470236338584" />
+      <project id="UI" values="IDEA_MODULE,UNKNOWN,JAVA,PLAIN_TEXT" collectionTime="1473344095712" />
+      <project id="aws-wrap" values="IDEA_MODULE,Scala,YAML,UNKNOWN,CSS,Properties,XML,PLAIN_TEXT,SBT" collectionTime="1463252004527" />
       <project id="dsa_ia1" values="JAVA,IDEA_MODULE" collectionTime="1472564974968" />
-      <project id="spark" values="UNKNOWN,Properties,CSS,XML,Scala,PLAIN_TEXT,SPI,ARCHIVE,IDEA_MODULE,HTML,Images,JSON Schema,HOCON,JAVA,SQL,JavaScript" collectionTime="1472409195395" />
-      <project id="LearningSpark" values="Scala,UNKNOWN,IDEA_MODULE,PLAIN_TEXT,JAVA,JSON,Properties,XML,SBT" collectionTime="1463254178890" />
-      <project id="kotlin_prog" values="IDEA_MODULE,UNKNOWN,PLAIN_TEXT,XML" collectionTime="1452241442616" />
-      <project id="UI" values="PLAIN_TEXT,IDEA_MODULE,JAVA,UNKNOWN" collectionTime="1473344095712" />
-      <project id="progfun1-example" values="Scala,IDEA_MODULE,Properties,SBT,XML,PLAIN_TEXT" collectionTime="1470687759999" />
-      <project id="akka" values="UNKNOWN,HTML,Native,IDEA_MODULE,PLAIN_TEXT,XML,JAVA,Images" collectionTime="1470576943790" />
-      <project id="test" values="ARCHIVE,Properties,IDEA_MODULE,JAVA,CLASS,Native,PLAIN_TEXT,XML" collectionTime="1473418108781" />
-      <project id="embeditor" values="IDEA_MODULE,XML,Images,Manifest,PLAIN_TEXT,JAVA" collectionTime="1470236946045" />
-      <project id="untitled" values="XML,IDEA_MODULE,PLAIN_TEXT,UNKNOWN" collectionTime="1450807341717" />
+      <project id="parser" values="IDEA_MODULE,JAVA" collectionTime="1474392070379" />
+      <project id="hackathon-Embeditorq" values="IDEA_MODULE" collectionTime="1466513280026" />
+      <project id="sorting" values="IDEA_MODULE,JAVA" collectionTime="1474483001727" />
+      <project id="kotlin" values="IDEA_MODULE,ARCHIVE,UNKNOWN,Kotlin,XML,PLAIN_TEXT" collectionTime="1452521567844" />
+      <project id="JavaRushHomeWork" values="Images,PLAIN_TEXT,IDEA_MODULE,Properties,JAVA" collectionTime="1472628763207" />
+      <project id="embeditor" values="Manifest,IDEA_MODULE,JAVA,Images,XML,PLAIN_TEXT" collectionTime="1470236946045" />
     </group>
     <group name="images.ide.background">
-      <project id="Loled" values="editor,frame" collectionTime="1473753331236" />
-      <project id="Hash.class" values="editor,frame" collectionTime="1473715947158" />
-      <project id="dsa_ia1" values="editor,frame" collectionTime="1472564974968" />
-      <project id="test" values="frame,editor" collectionTime="1473418108781" />
-      <project id="spark" values="frame,editor" collectionTime="1472409195405" />
-      <project id="Material Theme UI" values="frame,editor" collectionTime="1470771476544" />
-      <project id="parser" values="frame,editor" collectionTime="1473312497646" />
-      <project id="UI" values="frame,editor" collectionTime="1473344095713" />
-      <project id="delite" values="editor,frame" collectionTime="1470823536233" />
-      <project id="DSA" values="editor,frame" collectionTime="1473715277943" />
+      <project id="parser" values="editor,frame" collectionTime="1474392070379" />
+      <project id="Loled" values="frame,editor" collectionTime="1473753331236" />
+      <project id="JavaRushHomeWork" values="editor,frame" collectionTime="1472628763207" />
+      <project id="_CodeTester" values="editor,frame" collectionTime="1474482557283" />
+      <project id="DSA-MS12" values="editor,frame" collectionTime="1474482970002" />
+      <project id="sorting" values="frame,editor" collectionTime="1474483001727" />
+      <project id="scribblehunter" values="frame,editor" collectionTime="1474485564141" />
       <project id="benchmark" values="frame,editor" collectionTime="1473360732881" />
-      <project id="JavaRushHomeWork" values="frame,editor" collectionTime="1472628763207" />
+      <project id="Hash.class" values="frame,editor" collectionTime="1473715947158" />
+      <project id="test" values="frame,editor" collectionTime="1473418108781" />
+      <project id="srt" values="frame,editor" collectionTime="1474974795395" />
+      <project id="delite" values="frame,editor" collectionTime="1470823536233" />
+      <project id="dsa_ia1" values="frame,editor" collectionTime="1472564974968" />
+      <project id="UI" values="frame,editor" collectionTime="1473344095713" />
+      <project id="arch" values="frame,editor" collectionTime="1474974771962" />
+      <project id="untitled" values="frame,editor" collectionTime="1474503253047" />
+      <project id="Material Theme UI" values="frame,editor" collectionTime="1470771476544" />
+      <project id="Sorting" values="frame,editor" collectionTime="1474488000818" />
+      <project id="spark" values="frame,editor" collectionTime="1472409195405" />
+      <project id="DSA" values="editor,frame" collectionTime="1474393240346" />
     </group>
     <group name="frameworks">
       <project id="dmd_project" values="web" collectionTime="1470583631504" />
     </group>
     <group name="javaScript Scope Usages">
-      <project id="dmd_project" values="Project,Project" collectionTime="1470583631661" />
-      <project id="parser" values="Project,Project" collectionTime="1473312497720" />
-      <project id="kotlin" values="Project,Project" collectionTime="1452521568294" />
-      <project id="untitled" values="Project,Project" collectionTime="1450807341809" />
-      <project id="hackathon-Embeditor" values="Project,Project" collectionTime="1470235983386" />
       <project id="Material Theme UI" values="Project,Project" collectionTime="1470771476615" />
-      <project id="aws-wrap" values="Project,Project" collectionTime="1463252004537" />
-      <project id="benchmark" values="Project,Project" collectionTime="1473360732884" />
-      <project id="intellij-community" values="Project,Project" collectionTime="1467014700601" />
-      <project id="Hash.class" values="Project,Project" collectionTime="1473715947160" />
-      <project id="JavaRushHomeWork" values="Project,Project" collectionTime="1472628763208" />
-      <project id="jediterm" values="Project,Project" collectionTime="1470236338585" />
+      <project id="hackathon-Embeditor" values="Project,Project" collectionTime="1470235983386" />
       <project id="test" values="Project,Project" collectionTime="1473418108851" />
-      <project id="delite" values="Project,Project" collectionTime="1470823536236" />
-      <project id="Loled" values="Project,Project" collectionTime="1473753331314" />
-      <project id="dsa_ia1" values="Project,Project" collectionTime="1472564975071" />
-      <project id="spark" values="Project,Project" collectionTime="1472409195409" />
-      <project id="LearningSpark" values="Project,Project" collectionTime="1463254179001" />
-      <project id="kotlin_prog" values="Project,Project" collectionTime="1452241443069" />
-      <project id="objsets" values="Project,Project" collectionTime="1470507769025" />
-      <project id="tmp" values="Project,Project" collectionTime="1466522856664" />
-      <project id="UI" values="Project,Project" collectionTime="1473344095815" />
-      <project id="progfun1-example" values="Project,Project" collectionTime="1470687760012" />
-      <project id="akka" values="Project,Project" collectionTime="1470576943792" />
-      <project id="hackathon-Embeditorq" values="Project,Project" collectionTime="1466513280102" />
+      <project id="untitled" values="Project,Project" collectionTime="1474503253050" />
+      <project id="dmd_project" values="Project,Project" collectionTime="1470583631661" />
       <project id="src" values="Project,Project" collectionTime="1466522448366" />
+      <project id="_CodeTester" values="Project,Project" collectionTime="1474482557284" />
+      <project id="Hash.class" values="Project,Project" collectionTime="1473715947160" />
+      <project id="intellij-community" values="Project,Project" collectionTime="1467014700601" />
+      <project id="arch" values="Project,Project" collectionTime="1474974772060" />
+      <project id="scribblehunter" values="Project,Project" collectionTime="1474485564231" />
+      <project id="sorting" values="Project,Project" collectionTime="1474483001727" />
+      <project id="Sorting" values="Project,Project" collectionTime="1474488000818" />
+      <project id="akka" values="Project,Project" collectionTime="1470576943792" />
+      <project id="DSA" values="Project,Project" collectionTime="1474393240437" />
+      <project id="progfun1-example" values="Project,Project" collectionTime="1470687760012" />
+      <project id="spark" values="Project,Project" collectionTime="1472409195409" />
+      <project id="Loled" values="Project,Project" collectionTime="1473753331314" />
+      <project id="benchmark" values="Project,Project" collectionTime="1473360732884" />
+      <project id="DSA-MS12" values="Project,Project" collectionTime="1474482970002" />
+      <project id="delite" values="Project,Project" collectionTime="1470823536236" />
+      <project id="objsets" values="Project,Project" collectionTime="1470507769025" />
+      <project id="jediterm" values="Project,Project" collectionTime="1470236338585" />
+      <project id="UI" values="Project,Project" collectionTime="1473344095815" />
+      <project id="aws-wrap" values="Project,Project" collectionTime="1463252004537" />
+      <project id="kotlin_prog" values="Project,Project" collectionTime="1452241443069" />
+      <project id="dsa_ia1" values="Project,Project" collectionTime="1472564975071" />
+      <project id="tmp" values="Project,Project" collectionTime="1466522856664" />
+      <project id="parser" values="Project,Project" collectionTime="1474392070484" />
+      <project id="hackathon-Embeditorq" values="Project,Project" collectionTime="1466513280102" />
+      <project id="LearningSpark" values="Project,Project" collectionTime="1463254179001" />
+      <project id="srt" values="Project,Project" collectionTime="1474974795396" />
+      <project id="kotlin" values="Project,Project" collectionTime="1452521568294" />
+      <project id="JavaRushHomeWork" values="Project,Project" collectionTime="1472628763208" />
       <project id="embeditor" values="Project,Project" collectionTime="1470236946046" />
-      <project id="DSA" values="Project,Project" collectionTime="1473715277945" />
     </group>
     <group name="Git">
-      <project id="dmd_project" values="config.ssh.enabled,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,data.local.branches.count.1,config.save.policy.STASH,data.remote.branches.count.5+,config.update.type.BRANCH_DEFAULT,config.push.autoupdate.disabled,data.remotes.in.project.1,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.force.push.enabled" collectionTime="1470583631551" />
-      <project id="parser" values="config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.save.policy.STASH,config.push.update.all.roots.enabled,config.ssh.enabled,config.warn.about.detached.enabled,config.force.push.enabled,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.push.autoupdate.disabled" collectionTime="1473312497648" />
-      <project id="akka" values="config.ssh.enabled,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.push.update.all.roots.enabled,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.force.push.enabled,config.push.autoupdate.disabled,config.repo.sync.NOT_DECIDED,config.save.policy.STASH" collectionTime="1470576943791" />
-      <project id="Loled" values="config.save.policy.STASH,config.push.autoupdate.disabled,config.push.update.all.roots.enabled,config.warn.about.crlf.enabled,config.cherry-pick.autocommit.disabled,config.ssh.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT" collectionTime="1473753331237" />
-      <project id="hackathon-Embeditor" values="config.ssh.enabled,config.cherry-pick.autocommit.disabled,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,config.save.policy.STASH,config.warn.about.detached.enabled,config.force.push.enabled,config.update.type.BRANCH_DEFAULT,config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled" collectionTime="1470235983386" />
-      <project id="UI" values="config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.save.policy.STASH,config.warn.about.detached.enabled,config.ssh.enabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.force.push.enabled,config.repo.sync.NOT_DECIDED" collectionTime="1473344095715" />
-      <project id="benchmark" values="config.push.update.all.roots.enabled,data.local.branches.count.1,data.local.branches.count.1,config.save.policy.STASH,config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.ssh.enabled,data.remotes.in.project.0,data.remote.branches.count.0,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,data.remotes.in.project.0,data.remote.branches.count.0" collectionTime="1473360732883" />
-      <project id="intellij-community" values="data.remotes.in.project.1,data.remote.branches.count.15+,config.save.policy.STASH,data.remotes.in.project.1,config.warn.about.detached.enabled,data.remote.branches.count.1,data.remotes.in.project.1,data.local.branches.count.1,config.push.autoupdate.disabled,config.ssh.enabled,config.repo.sync.NOT_DECIDED,data.local.branches.count.1,config.warn.about.crlf.enabled,config.push.update.all.roots.enabled,config.update.type.BRANCH_DEFAULT,data.local.branches.count.1,config.force.push.enabled,config.cherry-pick.autocommit.disabled,data.remote.branches.count.15+" collectionTime="1467014700518" />
-      <project id="Hash.class" values="config.force.push.enabled,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.save.policy.STASH,config.push.autoupdate.disabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.ssh.enabled,config.warn.about.crlf.enabled" collectionTime="1473715947158" />
-      <project id="jediterm" values="data.remotes.in.project.1,data.local.branches.count.1,config.warn.about.detached.enabled,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.ssh.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.save.policy.STASH,data.remote.branches.count.1,config.push.autoupdate.disabled,config.cherry-pick.autocommit.disabled,config.push.update.all.roots.enabled" collectionTime="1470236338584" />
-      <project id="test" values="config.push.autoupdate.disabled,config.save.policy.STASH,config.force.push.enabled,config.warn.about.detached.enabled,config.warn.about.crlf.enabled,config.ssh.enabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.cherry-pick.autocommit.disabled" collectionTime="1473418108783" />
-      <project id="delite" values="config.ssh.enabled,data.remotes.in.project.1,config.push.autoupdate.disabled,data.remote.branches.count.15+,config.push.update.all.roots.enabled,config.warn.about.detached.enabled,config.force.push.enabled,config.warn.about.crlf.enabled,data.local.branches.count.1,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT,config.save.policy.STASH" collectionTime="1470823536235" />
-      <project id="dsa_ia1" values="config.cherry-pick.autocommit.disabled,config.push.autoupdate.disabled,config.update.type.BRANCH_DEFAULT,config.warn.about.detached.enabled,config.ssh.enabled,config.push.update.all.roots.enabled,config.save.policy.STASH,config.warn.about.crlf.enabled,config.force.push.enabled,config.repo.sync.NOT_DECIDED" collectionTime="1472564974970" />
-      <project id="embeditor" values="config.push.autoupdate.disabled,data.remotes.in.project.1,config.ssh.enabled,config.save.policy.STASH,config.cherry-pick.autocommit.disabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.push.update.all.roots.enabled,config.force.push.enabled,config.repo.sync.NOT_DECIDED,data.remote.branches.count.1,data.local.branches.count.1,config.warn.about.detached.enabled" collectionTime="1470236946046" />
-      <project id="spark" values="config.save.policy.STASH,config.ssh.enabled,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.force.push.enabled" collectionTime="1472409195407" />
-      <project id="objsets" values="config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,config.repo.sync.NOT_DECIDED,config.warn.about.crlf.enabled,config.save.policy.STASH,config.force.push.enabled,config.push.update.all.roots.enabled,config.cherry-pick.autocommit.disabled,config.ssh.enabled,config.push.autoupdate.disabled" collectionTime="1470507769005" />
-      <project id="tmp" values="config.repo.sync.NOT_DECIDED,config.ssh.enabled,config.update.type.BRANCH_DEFAULT,config.save.policy.STASH,config.force.push.enabled,config.cherry-pick.autocommit.disabled,config.warn.about.detached.enabled,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.push.update.all.roots.enabled" collectionTime="1466522856597" />
-      <project id="Material Theme UI" values="config.warn.about.detached.enabled,config.repo.sync.NOT_DECIDED,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.ssh.enabled,data.remotes.in.project.1,config.update.type.BRANCH_DEFAULT,data.local.branches.count.1,config.force.push.enabled,config.warn.about.crlf.enabled,config.push.update.all.roots.enabled,data.remote.branches.count.2+,config.push.autoupdate.disabled" collectionTime="1470771476545" />
-      <project id="progfun1-example" values="config.update.type.BRANCH_DEFAULT,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.push.update.all.roots.enabled,config.ssh.enabled,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled" collectionTime="1470687760011" />
-      <project id="hackathon-Embeditorq" values="config.push.autoupdate.disabled,config.force.push.enabled,config.warn.about.crlf.enabled,config.save.policy.STASH,config.cherry-pick.autocommit.disabled,config.push.update.all.roots.enabled,config.ssh.enabled,config.warn.about.detached.enabled,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT" collectionTime="1466513280030" />
-      <project id="src" values="config.repo.sync.NOT_DECIDED,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.ssh.enabled,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.force.push.enabled,config.save.policy.STASH" collectionTime="1466522448065" />
-      <project id="JavaRushHomeWork" values="config.update.type.BRANCH_DEFAULT,config.push.autoupdate.disabled,config.save.policy.STASH,config.warn.about.crlf.enabled,config.force.push.enabled,config.push.update.all.roots.enabled,config.cherry-pick.autocommit.disabled,config.ssh.enabled,config.repo.sync.NOT_DECIDED,config.warn.about.detached.enabled" collectionTime="1472628763207" />
-      <project id="DSA" values="config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.ssh.enabled,data.remotes.in.project.0,config.cherry-pick.autocommit.disabled,config.update.type.BRANCH_DEFAULT,config.repo.sync.NOT_DECIDED,config.warn.about.crlf.enabled,config.warn.about.detached.enabled,data.local.branches.count.1,config.force.push.enabled,data.remote.branches.count.0,config.save.policy.STASH" collectionTime="1473715277944" />
+      <project id="Material Theme UI" values="config.repo.sync.NOT_DECIDED,config.ssh.enabled,config.cherry-pick.autocommit.disabled,data.remote.branches.count.2+,config.warn.about.crlf.enabled,config.push.update.all.roots.enabled,data.remotes.in.project.1,config.force.push.enabled,config.save.policy.STASH,config.update.type.BRANCH_DEFAULT,data.local.branches.count.1,config.warn.about.detached.enabled,config.push.autoupdate.disabled" collectionTime="1470771476545" />
+      <project id="hackathon-Embeditor" values="config.push.update.all.roots.enabled,config.save.policy.STASH,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.warn.about.crlf.enabled,config.ssh.enabled,config.force.push.enabled,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,config.push.autoupdate.disabled" collectionTime="1470235983386" />
+      <project id="test" values="config.warn.about.detached.enabled,config.save.policy.STASH,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,config.ssh.enabled,config.force.push.enabled,config.update.type.BRANCH_DEFAULT,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED" collectionTime="1473418108783" />
+      <project id="untitled" values="config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.update.type.BRANCH_DEFAULT,config.warn.about.detached.enabled,config.save.policy.STASH,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.ssh.enabled,config.force.push.enabled" collectionTime="1474503253049" />
+      <project id="dmd_project" values="config.save.policy.STASH,data.remotes.in.project.1,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.ssh.enabled,data.local.branches.count.1,config.force.push.enabled,config.warn.about.detached.enabled,config.push.autoupdate.disabled,config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,data.remote.branches.count.5+" collectionTime="1470583631551" />
+      <project id="src" values="config.push.update.all.roots.enabled,config.cherry-pick.autocommit.disabled,config.push.autoupdate.disabled,config.force.push.enabled,config.repo.sync.NOT_DECIDED,config.save.policy.STASH,config.warn.about.crlf.enabled,config.warn.about.detached.enabled,config.ssh.enabled,config.update.type.BRANCH_DEFAULT" collectionTime="1466522448065" />
+      <project id="_CodeTester" values="config.push.update.all.roots.enabled,config.warn.about.detached.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.cherry-pick.autocommit.disabled,config.ssh.enabled,config.push.autoupdate.disabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.save.policy.STASH" collectionTime="1474482557283" />
+      <project id="Hash.class" values="config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.update.type.BRANCH_DEFAULT,config.repo.sync.NOT_DECIDED,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,config.force.push.enabled,config.ssh.enabled,config.push.update.all.roots.enabled" collectionTime="1473715947158" />
+      <project id="intellij-community" values="config.ssh.enabled,data.remote.branches.count.15+,config.warn.about.crlf.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,data.remotes.in.project.1,config.push.update.all.roots.enabled,data.local.branches.count.1,data.local.branches.count.1,config.update.type.BRANCH_DEFAULT,data.remote.branches.count.1,data.remotes.in.project.1,config.warn.about.detached.enabled,config.save.policy.STASH,data.remote.branches.count.15+,data.local.branches.count.1,data.remotes.in.project.1,config.push.autoupdate.disabled,config.cherry-pick.autocommit.disabled" collectionTime="1467014700518" />
+      <project id="arch" values="config.ssh.enabled,config.cherry-pick.autocommit.disabled,config.push.update.all.roots.enabled,config.warn.about.crlf.enabled,config.warn.about.detached.enabled,config.force.push.enabled,config.save.policy.STASH,config.push.autoupdate.disabled,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT" collectionTime="1474974771964" />
+      <project id="DSA" values="config.ssh.enabled,config.push.autoupdate.disabled,config.warn.about.detached.enabled,data.local.branches.count.1,data.remotes.in.project.0,data.remote.branches.count.0,config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled,config.force.push.enabled,config.save.policy.STASH,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.cherry-pick.autocommit.disabled" collectionTime="1474393240347" />
+      <project id="Sorting" values="config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.ssh.enabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.warn.about.detached.enabled" collectionTime="1474488000818" />
+      <project id="akka" values="config.force.push.enabled,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.warn.about.detached.enabled,config.repo.sync.NOT_DECIDED,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.ssh.enabled" collectionTime="1470576943791" />
+      <project id="scribblehunter" values="config.save.policy.STASH,config.cherry-pick.autocommit.disabled,config.force.push.enabled,config.warn.about.detached.enabled,data.local.branches.count.1,config.ssh.enabled,data.remote.branches.count.1,config.push.update.all.roots.enabled,data.remotes.in.project.1,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT,config.push.autoupdate.disabled,config.warn.about.crlf.enabled" collectionTime="1474485564143" />
+      <project id="progfun1-example" values="config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.save.policy.STASH,config.ssh.enabled,config.force.push.enabled,config.push.update.all.roots.enabled,config.warn.about.detached.enabled,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT" collectionTime="1470687760011" />
+      <project id="spark" values="config.save.policy.STASH,config.push.autoupdate.disabled,config.ssh.enabled,config.push.update.all.roots.enabled,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,config.force.push.enabled,config.repo.sync.NOT_DECIDED,config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled" collectionTime="1472409195407" />
+      <project id="Loled" values="config.warn.about.detached.enabled,config.ssh.enabled,config.force.push.enabled,config.cherry-pick.autocommit.disabled,config.update.type.BRANCH_DEFAULT,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.repo.sync.NOT_DECIDED,config.warn.about.crlf.enabled,config.save.policy.STASH" collectionTime="1473753331237" />
+      <project id="benchmark" values="data.remotes.in.project.0,config.warn.about.detached.enabled,data.remote.branches.count.0,config.push.autoupdate.disabled,config.warn.about.crlf.enabled,data.local.branches.count.1,data.local.branches.count.1,config.ssh.enabled,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,data.remote.branches.count.0,data.remotes.in.project.0,config.update.type.BRANCH_DEFAULT,config.cherry-pick.autocommit.disabled,config.save.policy.STASH" collectionTime="1473360732883" />
+      <project id="DSA-MS12" values="config.save.policy.STASH,data.remote.branches.count.0,data.local.branches.count.1,config.repo.sync.NOT_DECIDED,config.update.type.BRANCH_DEFAULT,config.force.push.enabled,data.remotes.in.project.0,config.warn.about.crlf.enabled,config.ssh.enabled,config.cherry-pick.autocommit.disabled,config.push.autoupdate.disabled,config.push.update.all.roots.enabled,config.warn.about.detached.enabled" collectionTime="1474482970002" />
+      <project id="delite" values="config.warn.about.detached.enabled,config.push.update.all.roots.enabled,config.force.push.enabled,data.remote.branches.count.15+,config.repo.sync.NOT_DECIDED,data.local.branches.count.1,data.remotes.in.project.1,config.save.policy.STASH,config.push.autoupdate.disabled,config.ssh.enabled,config.warn.about.crlf.enabled,config.update.type.BRANCH_DEFAULT,config.cherry-pick.autocommit.disabled" collectionTime="1470823536235" />
+      <project id="objsets" values="config.repo.sync.NOT_DECIDED,config.warn.about.detached.enabled,config.cherry-pick.autocommit.disabled,config.warn.about.crlf.enabled,config.ssh.enabled,config.force.push.enabled,config.push.autoupdate.disabled,config.push.update.all.roots.enabled,config.update.type.BRANCH_DEFAULT,config.save.policy.STASH" collectionTime="1470507769005" />
+      <project id="jediterm" values="config.push.autoupdate.disabled,config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled,data.remote.branches.count.1,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.force.push.enabled,data.remotes.in.project.1,config.warn.about.detached.enabled,data.local.branches.count.1,config.cherry-pick.autocommit.disabled,config.save.policy.STASH,config.ssh.enabled" collectionTime="1470236338584" />
+      <project id="UI" values="config.push.update.all.roots.enabled,config.cherry-pick.autocommit.disabled,config.repo.sync.NOT_DECIDED,config.force.push.enabled,config.warn.about.crlf.enabled,config.push.autoupdate.disabled,config.save.policy.STASH,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,config.ssh.enabled" collectionTime="1473344095715" />
+      <project id="dsa_ia1" values="config.repo.sync.NOT_DECIDED,config.save.policy.STASH,config.cherry-pick.autocommit.disabled,config.warn.about.detached.enabled,config.push.autoupdate.disabled,config.push.update.all.roots.enabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.force.push.enabled,config.ssh.enabled" collectionTime="1472564974970" />
+      <project id="tmp" values="config.cherry-pick.autocommit.disabled,config.force.push.enabled,config.push.autoupdate.disabled,config.update.type.BRANCH_DEFAULT,config.warn.about.crlf.enabled,config.ssh.enabled,config.warn.about.detached.enabled,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.save.policy.STASH" collectionTime="1466522856597" />
+      <project id="parser" values="config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled,config.warn.about.crlf.enabled,config.save.policy.STASH,config.push.autoupdate.disabled,config.warn.about.detached.enabled,config.ssh.enabled,config.cherry-pick.autocommit.disabled,config.force.push.enabled,config.update.type.BRANCH_DEFAULT" collectionTime="1474392070381" />
+      <project id="hackathon-Embeditorq" values="config.warn.about.crlf.enabled,config.save.policy.STASH,config.update.type.BRANCH_DEFAULT,config.ssh.enabled,config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled,config.push.autoupdate.disabled,config.warn.about.detached.enabled,config.force.push.enabled,config.cherry-pick.autocommit.disabled" collectionTime="1466513280030" />
+      <project id="sorting" values="config.update.type.BRANCH_DEFAULT,config.repo.sync.NOT_DECIDED,config.ssh.enabled,config.warn.about.crlf.enabled,config.save.policy.STASH,config.warn.about.detached.enabled,config.push.autoupdate.disabled,config.cherry-pick.autocommit.disabled,config.force.push.enabled,config.push.update.all.roots.enabled" collectionTime="1474483001727" />
+      <project id="srt" values="config.update.type.BRANCH_DEFAULT,config.ssh.enabled,config.repo.sync.NOT_DECIDED,config.push.update.all.roots.enabled,config.save.policy.STASH,config.force.push.enabled,config.warn.about.crlf.enabled,config.cherry-pick.autocommit.disabled,config.warn.about.detached.enabled,config.push.autoupdate.disabled" collectionTime="1474974795395" />
+      <project id="JavaRushHomeWork" values="config.save.policy.STASH,config.warn.about.crlf.enabled,config.force.push.enabled,config.push.autoupdate.disabled,config.ssh.enabled,config.warn.about.detached.enabled,config.push.update.all.roots.enabled,config.repo.sync.NOT_DECIDED,config.cherry-pick.autocommit.disabled,config.update.type.BRANCH_DEFAULT" collectionTime="1472628763207" />
+      <project id="embeditor" values="config.force.push.enabled,config.save.policy.STASH,config.ssh.enabled,config.warn.about.crlf.enabled,config.warn.about.detached.enabled,config.update.type.BRANCH_DEFAULT,data.remotes.in.project.1,config.repo.sync.NOT_DECIDED,data.local.branches.count.1,config.push.update.all.roots.enabled,config.cherry-pick.autocommit.disabled,config.push.autoupdate.disabled,data.remote.branches.count.1" collectionTime="1470236946046" />
     </group>
     <group name="libraries">
       <project id="progfun1-example" values="Scala" collectionTime="1470687760006" />
-      <project id="LearningSpark" values="CDI,Scala,TransactionJavaee,JAX-RS,groovy" collectionTime="1463254178910" />
+      <project id="LearningSpark" values="JAX-RS,TransactionJavaee,CDI,Scala,groovy" collectionTime="1463254178910" />
       <project id="kotlin" values="kotlin-java-runtime" collectionTime="1452521567851" />
-      <project id="intellij-community" values="groovy,org.osgi.core,CDI,kotlin-java-runtime,griffon,gant" collectionTime="1467014700513" />
+      <project id="intellij-community" values="griffon,groovy,org.osgi.core,gant,CDI,kotlin-java-runtime" collectionTime="1467014700513" />
       <project id="spark" values="Scala" collectionTime="1472409195405" />
+      <project id="scribblehunter" values="repository" collectionTime="1474485564140" />
       <project id="objsets" values="Scala" collectionTime="1470507769000" />
       <project id="delite" values="Scala" collectionTime="1470823536228" />
+      <project id="Sorting" values="JAX-RS,CDI" collectionTime="1474488000818" />
     </group>
     <group name="language-level">
-      <project id="dmd_project" values="JDK_1_3,JDK_1_8" collectionTime="1470583631549" />
-      <project id="parser" values="JDK_1_8" collectionTime="1473312497647" />
-      <project id="kotlin" values="JDK_1_8" collectionTime="1452521567867" />
-      <project id="untitled" values="JDK_1_6" collectionTime="1450807341721" />
-      <project id="hackathon-Embeditor" values="JDK_1_8" collectionTime="1470235983386" />
       <project id="Material Theme UI" values="JDK_1_6" collectionTime="1470771476544" />
-      <project id="aws-wrap" values="JDK_1_8" collectionTime="1463252004536" />
-      <project id="benchmark" values="JDK_1_8" collectionTime="1473360732882" />
-      <project id="intellij-community" values="JDK_1_8,JDK_1_3,JDK_1_6,JDK_1_5,JDK_1_4" collectionTime="1467014700517" />
-      <project id="Hash.class" values="JDK_1_3" collectionTime="1473715947158" />
-      <project id="JavaRushHomeWork" values="JDK_1_7" collectionTime="1472628763207" />
-      <project id="jediterm" values="JDK_1_8" collectionTime="1470236338584" />
+      <project id="hackathon-Embeditor" values="JDK_1_8" collectionTime="1470235983386" />
       <project id="test" values="JDK_1_8" collectionTime="1473418108782" />
-      <project id="delite" values="JDK_1_8" collectionTime="1470823536234" />
-      <project id="Loled" values="JDK_1_8" collectionTime="1473753331236" />
-      <project id="dsa_ia1" values="JDK_1_8" collectionTime="1472564974969" />
-      <project id="spark" values="JDK_1_6" collectionTime="1472409195406" />
-      <project id="LearningSpark" values="JDK_1_8" collectionTime="1463254178913" />
-      <project id="kotlin_prog" values="JDK_1_6" collectionTime="1452241442633" />
-      <project id="objsets" values="JDK_1_8" collectionTime="1470507769004" />
-      <project id="tmp" values="JDK_1_8" collectionTime="1466522856596" />
-      <project id="UI" values="JDK_1_8" collectionTime="1473344095714" />
-      <project id="progfun1-example" values="JDK_1_8" collectionTime="1470687760010" />
-      <project id="akka" values="JDK_1_8" collectionTime="1470576943791" />
-      <project id="hackathon-Embeditorq" values="JDK_1_6" collectionTime="1466513280029" />
+      <project id="untitled" values="JDK_1_8" collectionTime="1474503253048" />
+      <project id="dmd_project" values="JDK_1_3,JDK_1_8" collectionTime="1470583631549" />
       <project id="src" values="JDK_1_8" collectionTime="1466522448065" />
+      <project id="_CodeTester" values="JDK_1_6" collectionTime="1474482557283" />
+      <project id="Hash.class" values="JDK_1_3" collectionTime="1473715947158" />
+      <project id="intellij-community" values="JDK_1_4,JDK_1_8,JDK_1_3,JDK_1_6,JDK_1_5" collectionTime="1467014700517" />
+      <project id="arch" values="JDK_1_8,JDK_1_5,JDK_1_6" collectionTime="1474974771963" />
+      <project id="scribblehunter" values="JDK_1_8" collectionTime="1474485564141" />
+      <project id="sorting" values="JDK_1_8" collectionTime="1474483001727" />
+      <project id="Sorting" values="JDK_1_5,JDK_1_6" collectionTime="1474488000818" />
+      <project id="akka" values="JDK_1_8" collectionTime="1470576943791" />
+      <project id="DSA" values="JDK_1_8" collectionTime="1474393240347" />
+      <project id="progfun1-example" values="JDK_1_8" collectionTime="1470687760010" />
+      <project id="spark" values="JDK_1_6" collectionTime="1472409195406" />
+      <project id="Loled" values="JDK_1_8" collectionTime="1473753331236" />
+      <project id="benchmark" values="JDK_1_8" collectionTime="1473360732882" />
+      <project id="DSA-MS12" values="JDK_1_8,JDK_1_6" collectionTime="1474482970002" />
+      <project id="delite" values="JDK_1_8" collectionTime="1470823536234" />
+      <project id="objsets" values="JDK_1_8" collectionTime="1470507769004" />
+      <project id="jediterm" values="JDK_1_8" collectionTime="1470236338584" />
+      <project id="UI" values="JDK_1_8" collectionTime="1473344095714" />
+      <project id="aws-wrap" values="JDK_1_8" collectionTime="1463252004536" />
+      <project id="kotlin_prog" values="JDK_1_6" collectionTime="1452241442633" />
+      <project id="dsa_ia1" values="JDK_1_8" collectionTime="1472564974969" />
+      <project id="tmp" values="JDK_1_8" collectionTime="1466522856596" />
+      <project id="parser" values="JDK_1_8" collectionTime="1474392070380" />
+      <project id="hackathon-Embeditorq" values="JDK_1_6" collectionTime="1466513280029" />
+      <project id="LearningSpark" values="JDK_1_8" collectionTime="1463254178913" />
+      <project id="srt" values="JDK_1_3" collectionTime="1474974795395" />
+      <project id="kotlin" values="JDK_1_8" collectionTime="1452521567867" />
+      <project id="JavaRushHomeWork" values="JDK_1_7" collectionTime="1472628763207" />
       <project id="embeditor" values="JDK_1_8" collectionTime="1470236946046" />
-      <project id="DSA" values="JDK_1_8" collectionTime="1473715277944" />
     </group>
   </component>
   <component name="UsageTrigger">
@@ -246,7 +301,7 @@
       <entry feature="execute.#org.jetbrains.idea.devkit.run.PluginConfigurationType.Run" count="4" />
       <entry feature="execute.Application.Coverage" count="1" />
       <entry feature="execute.Application.Debug" count="3" />
-      <entry feature="execute.Application.Run" count="454" />
+      <entry feature="execute.Application.Run" count="581" />
       <entry feature="execute.JUnit.Run" count="1" />
       <entry feature="execute.JarApplication.Run" count="3" />
       <entry feature="execute.ScalaScriptConsoleRunConfiguration.Run" count="1" />
@@ -271,6 +326,7 @@
       <entry feature="ide.settings.JSON" count="1" />
       <entry feature="ide.settings.Java" count="5" />
       <entry feature="ide.settings.JavaScript" count="2" />
+      <entry feature="ide.settings.Java_Compiler" count="1" />
       <entry feature="ide.settings.Keymap" count="26" />
       <entry feature="ide.settings.Language_Defaults" count="6" />
       <entry feature="ide.settings.Plugins" count="15" />
@@ -286,9 +342,9 @@
       <entry feature="ide.settings.XPath" count="1" />
       <entry feature="ide.settings.YAML" count="1" />
       <entry feature="idea.caches.invalidated" count="1" />
-      <entry feature="ideaapp.started" count="186" />
+      <entry feature="ideaapp.started" count="199" />
       <entry feature="scala.collection.pack.highlighting" count="31201" />
-      <entry feature="scala.file.script.parsed" count="12277" />
+      <entry feature="scala.file.script.parsed" count="12412" />
       <entry feature="scala.file.with.type.aware.annotated" count="1448" />
       <entry feature="scala.introduce.variable" count="1" />
       <entry feature="scala.move.class" count="1" />
@@ -296,14 +352,14 @@
       <entry feature="scala.worksheet" count="206" />
       <entry feature="terminal.linux" count="5" />
       <entry feature="tips.of.the.day.next" count="9" />
-      <entry feature="uml.ShowDiagram.JAVA" count="1" />
-      <entry feature="uml.ShowDiagram.JAVA.popup" count="1" />
-      <entry feature="uml.ShowDiagram.MODULES" count="1" />
+      <entry feature="uml.ShowDiagram.JAVA" count="8" />
+      <entry feature="uml.ShowDiagram.JAVA.popup" count="2" />
+      <entry feature="uml.ShowDiagram.MODULES" count="2" />
       <entry feature="welcome.screen.WelcomeScreen.Configure" count="3" />
-      <entry feature="welcome.screen.WelcomeScreen.CreateNewProject" count="11" />
-      <entry feature="welcome.screen.WelcomeScreen.GetFromVcs" count="3" />
-      <entry feature="welcome.screen.WelcomeScreen.ImportProject" count="20" />
-      <entry feature="welcome.screen.WelcomeScreen.OpenProject" count="7" />
+      <entry feature="welcome.screen.WelcomeScreen.CreateNewProject" count="15" />
+      <entry feature="welcome.screen.WelcomeScreen.GetFromVcs" count="5" />
+      <entry feature="welcome.screen.WelcomeScreen.ImportProject" count="31" />
+      <entry feature="welcome.screen.WelcomeScreen.OpenProject" count="10" />
       <entry feature="welcome.screen.WelcomeScreen.Plugins" count="2" />
     </counts>
   </component>

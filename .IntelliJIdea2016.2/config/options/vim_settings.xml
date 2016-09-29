@@ -3,14 +3,14 @@
     <state version="4" enabled="true" />
     <globalmarks />
     <filemarks>
+      <file name="$USER_HOME$/st/trash/untitled/src/DisplayLayer.java" timestamp="1474500360749">
+        <mark key="[" line="5" column="25" />
+        <mark key="]" line="7" column="17" />
+        <mark key="^" line="7" column="17" />
+        <mark key="." line="7" column="17" />
+      </file>
       <file name="/File Header.txt.ft" timestamp="1470151795840">
         <mark key="[" line="0" column="0" />
-      </file>
-      <file name="$USER_HOME$/st/DSA/benchmark/test/pom.xml" timestamp="1473352252941">
-        <mark key="'" line="165" column="0" />
-        <mark key="[" line="63" column="0" />
-        <mark key="]" line="63" column="0" />
-        <mark key="." line="63" column="0" />
       </file>
       <file name="/ActionScript Class with Supers.txt.ft" timestamp="1470696407261">
         <mark key="[" line="0" column="0" />
@@ -18,15 +18,29 @@
       <file name="/Scala Script.txt.ft" timestamp="1470696409458">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/HTML4 File.txt.ft" timestamp="1470696401660">
+      <file name="/a.dummy" timestamp="1474470814040">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" timestamp="1473295492022">
-        <mark key="'" line="78" column="0" />
-        <mark key="[" line="92" column="0" />
-        <mark key="]" line="92" column="0" />
-        <mark key="^" line="8" column="50" />
-        <mark key="." line="92" column="0" />
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/InternalObjTree.java" timestamp="1474503181951">
+        <mark key="[" line="7" column="9" />
+        <mark key="]" line="7" column="9" />
+        <mark key="^" line="7" column="9" />
+        <mark key="." line="7" column="9" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ReactRX.java" timestamp="1474499942826">
+        <mark key="[" line="3" column="27" />
+        <mark key="]" line="3" column="27" />
+        <mark key="^" line="3" column="20" />
+        <mark key="." line="3" column="27" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Display/DisplayLayer.java" timestamp="1474502027531">
+        <mark key="[" line="8" column="32" />
+        <mark key="]" line="9" column="3" />
+        <mark key="^" line="9" column="3" />
+        <mark key="." line="9" column="3" />
+      </file>
+      <file name="/HTML4 File.txt.ft" timestamp="1470696401660">
+        <mark key="[" line="0" column="0" />
       </file>
       <file name="/Interface.txt.ft" timestamp="1470696402789">
         <mark key="[" line="0" column="0" />
@@ -37,12 +51,15 @@
         <mark key="." line="10" column="12" />
         <mark key="^" line="10" column="12" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" timestamp="1472989516112">
-        <mark key="'" line="10" column="11" />
-        <mark key="[" line="56" column="78" />
-        <mark key="]" line="56" column="82" />
-        <mark key="." line="56" column="82" />
-        <mark key="^" line="56" column="82" />
+      <file name="$USER_HOME$/st/ITP/parser/src/com/company/Operation.java" timestamp="1473905740214">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="0" />
+        <mark key="." line="5" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/srt/pom.xml" timestamp="1474975034273">
+        <mark key="[" line="25" column="0" />
+        <mark key="]" line="25" column="40" />
+        <mark key="." line="22" column="0" />
       </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ArrayLongImpl.java" timestamp="1473507665879">
         <mark key="[" line="57" column="0" />
@@ -56,14 +73,42 @@
       <file name="/CoffeeScript File.txt.ft" timestamp="1470696408376">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/trash/arch/src/LangBindings/RPCFile.java" timestamp="1474536064368">
+        <mark key="[" line="14" column="0" />
+        <mark key="]" line="14" column="0" />
+        <mark key="." line="14" column="0" />
+      </file>
       <file name="/Kotlin Enum.txt.ft" timestamp="1470696410690">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Stylus File.txt.ft" timestamp="1470696411976">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Serializers/Serializer.java" timestamp="1474502238834">
+        <mark key="[" line="10" column="0" />
+        <mark key="]" line="10" column="0" />
+        <mark key="." line="10" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/SimilarityUtil.java" timestamp="1474470498322">
+        <mark key="[" line="10" column="13" />
+        <mark key="]" line="10" column="28" />
+        <mark key="." line="10" column="28" />
+        <mark key="^" line="10" column="28" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/RPC/RPCFileSystem/Transferable.java" timestamp="1474502915125">
+        <mark key="[" line="8" column="13" />
+        <mark key="]" line="8" column="13" />
+        <mark key="^" line="7" column="28" />
+        <mark key="." line="8" column="13" />
+      </file>
       <file name="/Kotlin Interface.txt.ft" timestamp="1470696410873">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/ObjectManager/Action.java" timestamp="1474536097481">
+        <mark key="[" line="8" column="44" />
+        <mark key="]" line="8" column="60" />
+        <mark key="." line="8" column="60" />
+        <mark key="^" line="8" column="60" />
       </file>
       <file name="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/MyBenchmark.java" timestamp="1473345523243">
         <mark key="[" line="43" column="20" />
@@ -82,42 +127,32 @@
         <mark key="^" line="0" column="20" />
         <mark key="." line="0" column="20" />
       </file>
-      <file name="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" timestamp="1473355507644">
-        <mark key="'" line="86" column="0" />
-        <mark key="[" line="12" column="0" />
-        <mark key="]" line="79" column="56" />
-        <mark key="^" line="84" column="9" />
-        <mark key="." line="100" column="0" />
-      </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" timestamp="1473707309334">
-        <mark key="'" line="103" column="0" />
-        <mark key="[" line="168" column="37" />
-        <mark key="]" line="168" column="38" />
-        <mark key="." line="168" column="38" />
-        <mark key="^" line="14" column="95" />
-      </file>
       <file name="/ActionScript Interface.txt.ft" timestamp="1470696407483">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/ColdFusion Script Interface.txt.ft" timestamp="1470696405509">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/material-theme-jetbrains/src/com/chrisrm/idea/MTColorScheme.java" timestamp="1470766840141">
-        <mark key="'" line="22" column="4" />
-        <mark key="[" line="22" column="0" />
-        <mark key="]" line="23" column="4" />
-        <mark key="." line="23" column="4" />
-        <mark key="^" line="23" column="4" />
+      <file name="$USER_HOME$/st/trash/untitled/src/RPC/RPCFileSystem/CapNProtoTransfer.java" timestamp="1474500616278">
+        <mark key="[" line="5" column="30" />
+        <mark key="]" line="5" column="57" />
+        <mark key="^" line="5" column="57" />
+        <mark key="." line="5" column="57" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Views/Keyboard/EclipseKeyView.java" timestamp="1474501525729">
+        <mark key="[" line="12" column="28" />
+        <mark key="]" line="12" column="51" />
+        <mark key="^" line="12" column="51" />
+        <mark key="." line="12" column="51" />
       </file>
       <file name="/ColdFusion Tag Interface.txt.ft" timestamp="1470696404938">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" timestamp="1473313749986">
-        <mark key="'" line="30" column="74" />
-        <mark key="[" line="5" column="23" />
-        <mark key="]" line="5" column="42" />
-        <mark key="^" line="5" column="42" />
-        <mark key="." line="5" column="42" />
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/Action.java" timestamp="1474502170474">
+        <mark key="[" line="8" column="36" />
+        <mark key="]" line="8" column="36" />
+        <mark key="^" line="12" column="63" />
+        <mark key="." line="8" column="36" />
       </file>
       <file name="/tmp/Hash.class/untitled/src/HashTest.java" timestamp="1473715873229">
         <mark key="[" line="7" column="28" />
@@ -125,25 +160,29 @@
         <mark key="." line="7" column="23" />
         <mark key="^" line="7" column="23" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/SpecObject.java" timestamp="1474503225941">
+        <mark key="[" line="23" column="0" />
+        <mark key="]" line="23" column="0" />
+        <mark key="." line="23" column="0" />
+        <mark key="^" line="14" column="68" />
+      </file>
       <file name="/Gradle Build Script.txt.ft" timestamp="1470696408004">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/ITP/UI/src/com/company/University.java" timestamp="1473313894878">
-        <mark key="'" line="30" column="0" />
-        <mark key="[" line="8" column="20" />
-        <mark key="]" line="8" column="22" />
-        <mark key="^" line="8" column="22" />
-        <mark key="." line="8" column="22" />
-      </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/TestBenchmark.java" timestamp="1473357563702">
-        <mark key="'" line="9" column="14" />
-        <mark key="[" line="9" column="0" />
-        <mark key="]" line="74" column="0" />
-        <mark key="." line="74" column="0" />
-        <mark key="^" line="74" column="0" />
-      </file>
       <file name="/Play 2 template.scala.txt.ft" timestamp="1470696410054">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/LangBindings/Lua.java" timestamp="1474501799713">
+        <mark key="[" line="7" column="22" />
+        <mark key="]" line="27" column="0" />
+        <mark key="." line="7" column="20" />
+        <mark key="^" line="7" column="20" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/main/src/main/java/RPC/RPCFileSystem/FuseOperations.java" timestamp="1474536987284">
+        <mark key="[" line="14" column="19" />
+        <mark key="]" line="14" column="18" />
+        <mark key="^" line="14" column="18" />
+        <mark key="." line="14" column="18" />
       </file>
       <file name="/ColdFusion Script Component.txt.ft" timestamp="1470696405233">
         <mark key="[" line="0" column="0" />
@@ -157,11 +196,30 @@
       <file name="/HTML File.txt.ft" timestamp="1472627756385">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/src/sorting/src/com/company/TestSorting.java" timestamp="1474482987684">
+        <mark key="[" line="11" column="0" />
+        <mark key="]" line="11" column="0" />
+        <mark key="^" line="6" column="3" />
+        <mark key="." line="11" column="0" />
+      </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/BenchmarkHelper.java" timestamp="1473357125962">
         <mark key="[" line="38" column="0" />
         <mark key="]" line="45" column="34" />
         <mark key="^" line="23" column="8" />
         <mark key="." line="23" column="8" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Views/Keyboard/KeyboardView.java" timestamp="1474501708617">
+        <mark key="[" line="4" column="0" />
+        <mark key="]" line="4" column="0" />
+        <mark key="^" line="7" column="41" />
+        <mark key="." line="4" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/FuseBuffFlags.java" timestamp="1474536524258">
+        <mark key="'" line="7" column="36" />
+        <mark key="[" line="0" column="2" />
+        <mark key="]" line="0" column="31" />
+        <mark key="^" line="1" column="21" />
+        <mark key="." line="1" column="21" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/Assistant.java" timestamp="1473313702364">
         <mark key="[" line="10" column="8" />
@@ -172,13 +230,14 @@
       <file name="/Gradle Build Script with wrapper.txt.ft" timestamp="1470696408198">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="/tmp/Hash.class/untitled/src/Hash11.java" timestamp="1473715941030">
-        <mark key="'" line="3" column="19" />
-        <mark key="[" line="3" column="0" />
-        <mark key="]" line="24" column="0" />
-      </file>
       <file name="/ColdFusion Tag Component.txt.ft" timestamp="1470696404593">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/FuseOperations.java" timestamp="1474536588654">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="1" />
+        <mark key="^" line="0" column="1" />
+        <mark key="." line="0" column="1" />
       </file>
       <file name="$USER_HOME$/st/DSA/src/src/test/java/dsa/benchmark/TrueBenchMark.java" timestamp="1472685553602">
         <mark key="[" line="22" column="0" />
@@ -188,11 +247,6 @@
       </file>
       <file name="/package-info.txt.ft" timestamp="1470696403605">
         <mark key="[" line="0" column="0" />
-      </file>
-      <file name="$USER_HOME$/dw/Hash.class" timestamp="1473715833715">
-        <mark key="'" line="5" column="0" />
-        <mark key="[" line="5" column="0" />
-        <mark key="]" line="26" column="0" />
       </file>
       <file name="/tsconfig.json.txt.ft" timestamp="1470696406592">
         <mark key="[" line="0" column="0" />
@@ -205,12 +259,10 @@
       <file name="/JavaScript File.txt.ft" timestamp="1470696405758">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/spark/external/kafka-0-10/src/main/scala/org/apache/spark/streaming/kafka010/KafkaRDD.scala" timestamp="1472409189965">
-        <mark key="'" line="59" column="4" />
-        <mark key="[" line="6" column="56" />
-        <mark key="]" line="6" column="55" />
-        <mark key="^" line="6" column="55" />
-        <mark key="." line="6" column="55" />
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/DiffObj.java" timestamp="1474502798726">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="0" />
+        <mark key="." line="5" column="0" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/LectureCourse.java" timestamp="1473313786608">
         <mark key="[" line="34" column="0" />
@@ -220,19 +272,22 @@
       <file name="/AnnotationType.txt.ft" timestamp="1470696403330">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" timestamp="1473347149585">
-        <mark key="'" line="11" column="11" />
-        <mark key="[" line="0" column="10" />
-        <mark key="]" line="6" column="31" />
-        <mark key="." line="6" column="31" />
-        <mark key="^" line="6" column="31" />
+      <file name="$USER_HOME$/src/sorting/src/com/company/MyBucketSort.java" timestamp="1474450098280">
+        <mark key="[" line="8" column="13" />
+        <mark key="]" line="8" column="13" />
+        <mark key="." line="8" column="13" />
       </file>
-      <file name="$USER_HOME$/st/ITP/parser/src/com/company/Main.java" timestamp="1473293181368">
-        <mark key="'" line="150" column="15" />
-        <mark key="[" line="16" column="54" />
-        <mark key="]" line="16" column="50" />
-        <mark key="^" line="16" column="50" />
-        <mark key="." line="16" column="50" />
+      <file name="$USER_HOME$/st/trash/untitled/src/Serializers/MsgPack.java" timestamp="1474501978401">
+        <mark key="[" line="7" column="16" />
+        <mark key="]" line="7" column="43" />
+        <mark key="^" line="7" column="43" />
+        <mark key="." line="7" column="43" />
+      </file>
+      <file name="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineMetric.java" timestamp="1474475484716">
+        <mark key="[" line="68" column="8" />
+        <mark key="]" line="68" column="9" />
+        <mark key="^" line="68" column="9" />
+        <mark key="." line="68" column="9" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/Course.java" timestamp="1473313480811">
         <mark key="[" line="26" column="31" />
@@ -240,25 +295,47 @@
         <mark key="." line="27" column="27" />
         <mark key="^" line="27" column="27" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/LangBindings/ScalaJS.java" timestamp="1474499830929">
+        <mark key="[" line="8" column="0" />
+        <mark key="]" line="27" column="1" />
+        <mark key="." line="8" column="0" />
+        <mark key="^" line="7" column="41" />
+      </file>
       <file name="/MobileResourceBundle.txt.ft" timestamp="1470696412433">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/ArrayLongImpl.java" timestamp="1472638932959">
-        <mark key="'" line="4" column="0" />
-        <mark key="[" line="0" column="0" />
-        <mark key="]" line="1" column="0" />
-        <mark key="." line="1" column="0" />
-        <mark key="^" line="1" column="0" />
+      <file name="$USER_HOME$/st/trash/untitled/src/RPC/RPCFileSystem/TransferProtocol.java" timestamp="1474502902874">
+        <mark key="[" line="7" column="18" />
+        <mark key="]" line="9" column="18" />
+        <mark key="." line="9" column="18" />
+        <mark key="^" line="9" column="18" />
       </file>
-      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/LinkedListLongImpl.java" timestamp="1472627827893">
-        <mark key="'" line="133" column="0" />
-        <mark key="[" line="134" column="16" />
-        <mark key="]" line="134" column="18" />
-        <mark key="^" line="134" column="18" />
-        <mark key="." line="134" column="18" />
+      <file name="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" timestamp="1474980173847">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="0" />
+        <mark key="." line="5" column="0" />
+        <mark key="^" line="19" column="67" />
       </file>
       <file name="/Scala Trait.txt.ft" timestamp="1470696408918">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/FuseBinding.java" timestamp="1474536364231">
+        <mark key="[" line="7" column="0" />
+        <mark key="]" line="7" column="0" />
+        <mark key="^" line="7" column="0" />
+        <mark key="." line="7" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/sorting/src/com/company/MyQuickSOrt.java" timestamp="1474448792502">
+        <mark key="[" line="5" column="18" />
+        <mark key="]" line="5" column="22" />
+        <mark key="^" line="5" column="15" />
+        <mark key="." line="5" column="22" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Serializers/SerializableObj.java" timestamp="1474502265344">
+        <mark key="[" line="7" column="28" />
+        <mark key="]" line="7" column="48" />
+        <mark key="." line="7" column="48" />
+        <mark key="^" line="7" column="48" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/Lecture.java" timestamp="1472676716576">
         <mark key="[" line="7" column="0" />
@@ -266,15 +343,14 @@
         <mark key="^" line="7" column="41" />
         <mark key="." line="7" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/LinkedListLongImpl.java" timestamp="1473358572211">
-        <mark key="'" line="90" column="20" />
-        <mark key="[" line="95" column="0" />
-        <mark key="]" line="95" column="8" />
-        <mark key="." line="95" column="8" />
-        <mark key="^" line="96" column="3" />
-      </file>
       <file name="/XSLT Stylesheet.txt.ft" timestamp="1470696412903">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/main/src/main/java/RPC/RPCFileSystem/FuseBuffFlags.java" timestamp="1474536925480">
+        <mark key="'" line="8" column="12" />
+        <mark key="[" line="4" column="0" />
+        <mark key="]" line="4" column="0" />
+        <mark key="." line="4" column="0" />
       </file>
       <file name="/Flex 4 Component.txt.ft" timestamp="1470696407819">
         <mark key="[" line="0" column="0" />
@@ -290,13 +366,31 @@
         <mark key="^" line="9" column="11" />
         <mark key="." line="9" column="11" />
       </file>
+      <file name="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" timestamp="1474486000204">
+        <mark key="[" line="3" column="0" />
+        <mark key="]" line="3" column="0" />
+        <mark key="^" line="7" column="15" />
+        <mark key="." line="3" column="0" />
+      </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/Main.java" timestamp="1472638895516">
         <mark key="[" line="1" column="0" />
         <mark key="]" line="1" column="0" />
         <mark key="." line="1" column="0" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/KeyboardView.java" timestamp="1474499478786">
+        <mark key="[" line="1" column="7" />
+        <mark key="]" line="1" column="15" />
+        <mark key="." line="1" column="15" />
+        <mark key="^" line="1" column="15" />
+      </file>
       <file name="/Kotlin Class.txt.ft" timestamp="1470696410447">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/HighLevelObjTree.java" timestamp="1474503188980">
+        <mark key="[" line="5" column="30" />
+        <mark key="]" line="5" column="39" />
+        <mark key="." line="5" column="39" />
+        <mark key="^" line="5" column="39" />
       </file>
       <file name="/tmp/Hash.class/untitled/src/HashHash.java" timestamp="1473715840368">
         <mark key="[" line="3" column="0" />
@@ -309,12 +403,17 @@
         <mark key="." line="96" column="41" />
         <mark key="^" line="96" column="41" />
       </file>
-      <file name="$USER_HOME$/st/DSA/benchmark/test/src/main/java/Test.java" timestamp="1472899315882">
-        <mark key="'" line="4" column="15" />
-        <mark key="[" line="4" column="0" />
-        <mark key="]" line="15" column="0" />
-        <mark key="^" line="13" column="26" />
-        <mark key="." line="13" column="26" />
+      <file name="$USER_HOME$/st/trash/untitled/src/VimKeyView.java" timestamp="1474499499238">
+        <mark key="[" line="3" column="24" />
+        <mark key="]" line="3" column="47" />
+        <mark key="^" line="3" column="47" />
+        <mark key="." line="3" column="47" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/RPC/RPCFileSystem/CryptableProtocol.java" timestamp="1474502365347">
+        <mark key="[" line="7" column="20" />
+        <mark key="]" line="7" column="20" />
+        <mark key="." line="7" column="20" />
+        <mark key="^" line="7" column="20" />
       </file>
       <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ArrayLong.java" timestamp="1472624198790">
         <mark key="[" line="7" column="11" />
@@ -322,21 +421,26 @@
         <mark key="^" line="7" column="16" />
         <mark key="." line="7" column="16" />
       </file>
-      <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ListLongImpl.java" timestamp="1472623677831">
-        <mark key="'" line="61" column="4" />
-        <mark key="[" line="101" column="15" />
-        <mark key="]" line="101" column="28" />
-        <mark key="^" line="101" column="28" />
-        <mark key="." line="101" column="28" />
+      <file name="$USER_HOME$/st/trash/untitled/src/ElectronBinding.java" timestamp="1474499275969">
+        <mark key="[" line="3" column="29" />
+        <mark key="]" line="3" column="52" />
+        <mark key="^" line="3" column="52" />
+        <mark key="." line="3" column="52" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/LangBindings/LangBinding.java" timestamp="1474502489448">
+        <mark key="[" line="7" column="29" />
+        <mark key="]" line="7" column="43" />
+        <mark key="." line="7" column="43" />
+        <mark key="^" line="7" column="43" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/Region.java" timestamp="1474502847863">
+        <mark key="[" line="14" column="25" />
+        <mark key="]" line="15" column="3" />
+        <mark key="." line="15" column="3" />
+        <mark key="^" line="15" column="3" />
       </file>
       <file name="/SCSS File.txt.ft" timestamp="1470696411666">
         <mark key="[" line="0" column="0" />
-      </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/Main.java" timestamp="1473361611085">
-        <mark key="'" line="124" column="0" />
-        <mark key="[" line="176" column="0" />
-        <mark key="]" line="176" column="0" />
-        <mark key="." line="176" column="0" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/IStudent.java" timestamp="1472675983157">
         <mark key="[" line="8" column="19" />
@@ -353,11 +457,28 @@
         <mark key="." line="15" column="26" />
         <mark key="^" line="15" column="26" />
       </file>
+      <file name="$USER_HOME$/st/trash/srt/src/main/java/MyQuickSort.java" timestamp="1474980029583">
+        <mark key="[" line="0" column="0" />
+        <mark key="]" line="0" column="0" />
+        <mark key="." line="0" column="0" />
+      </file>
       <file name="$USER_HOME$/src/inno/dsa_ia1/src/com/company/ArrayLongImpl.java" timestamp="1472426630062">
         <mark key="[" line="13" column="8" />
         <mark key="]" line="13" column="7" />
         <mark key="." line="13" column="7" />
         <mark key="^" line="13" column="7" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Serializers/SpecObj.java" timestamp="1474502383681">
+        <mark key="[" line="7" column="22" />
+        <mark key="]" line="8" column="23" />
+        <mark key="^" line="8" column="23" />
+        <mark key="." line="8" column="23" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Serializers/CapNProto.java" timestamp="1474501967763">
+        <mark key="[" line="7" column="18" />
+        <mark key="]" line="7" column="45" />
+        <mark key="^" line="7" column="45" />
+        <mark key="." line="7" column="45" />
       </file>
       <file name="/tmp/Hash.class/untitled/src/Hash.java" timestamp="1473715867133">
         <mark key="[" line="3" column="16" />
@@ -374,15 +495,31 @@
       <file name="/Package Object.txt.ft" timestamp="1470696409568">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/ITP/parser/src/com/company/Expression.java" timestamp="1473902725220">
+        <mark key="[" line="6" column="4" />
+        <mark key="]" line="6" column="3" />
+        <mark key="." line="6" column="3" />
+        <mark key="^" line="6" column="3" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/EmacsKeyView.java" timestamp="1474499514359">
+        <mark key="[" line="3" column="26" />
+        <mark key="]" line="3" column="49" />
+        <mark key="^" line="3" column="49" />
+        <mark key="." line="3" column="49" />
+      </file>
+      <file name="$USER_HOME$/src/srt/pom.xml" timestamp="1474483109274">
+        <mark key="[" line="27" column="19" />
+        <mark key="]" line="28" column="3" />
+        <mark key="." line="28" column="3" />
+        <mark key="^" line="28" column="3" />
+      </file>
       <file name="/Scala Worksheet.txt.ft" timestamp="1470696409890">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/src/main/java/LinkedListLongImpl.java" timestamp="1472638946047">
-        <mark key="'" line="4" column="13" />
-        <mark key="[" line="0" column="0" />
-        <mark key="]" line="1" column="0" />
-        <mark key="." line="1" column="0" />
-        <mark key="^" line="1" column="0" />
+      <file name="$USER_HOME$/src/sorting/src/com/company/BucketSOrt.java" timestamp="1474450033440">
+        <mark key="[" line="8" column="17" />
+        <mark key="]" line="9" column="0" />
+        <mark key="." line="9" column="0" />
       </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/TimeTable.java" timestamp="1473313415398">
         <mark key="[" line="11" column="16" />
@@ -390,21 +527,44 @@
         <mark key="." line="11" column="27" />
         <mark key="^" line="11" column="27" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/Views/View.java" timestamp="1474501687633">
+        <mark key="[" line="10" column="49" />
+        <mark key="]" line="10" column="49" />
+        <mark key="." line="10" column="49" />
+        <mark key="^" line="10" column="49" />
+      </file>
       <file name="/Kotlin File.txt.ft" timestamp="1470696410244">
         <mark key="[" line="0" column="0" />
       </file>
-      <file name="$USER_HOME$/src/spark/sql/core/src/main/scala/org/apache/spark/sql/DataFrameReader.scala" timestamp="1470774608034">
-        <mark key="'" line="410" column="0" />
-        <mark key="[" line="226" column="18" />
-        <mark key="]" line="226" column="17" />
-        <mark key="." line="226" column="17" />
-        <mark key="^" line="226" column="17" />
+      <file name="$USER_HOME$/st/trash/arch/src/ObjectManager/HighLevelObjTree.java" timestamp="1474536115547">
+        <mark key="[" line="16" column="33" />
+        <mark key="]" line="16" column="48" />
+        <mark key="." line="16" column="48" />
+        <mark key="^" line="16" column="48" />
+      </file>
+      <file name="$USER_HOME$/st/trash/srt/src/main/java/QuickSort.java" timestamp="1474979957119">
+        <mark key="[" line="15" column="27" />
+        <mark key="]" line="15" column="27" />
+        <mark key="^" line="15" column="27" />
+        <mark key="." line="15" column="27" />
       </file>
       <file name="$USER_HOME$/tmp/Loled/src/com/company/Main.java" timestamp="1473722197890">
         <mark key="[" line="13" column="14" />
         <mark key="]" line="13" column="61" />
         <mark key="." line="13" column="13" />
         <mark key="^" line="13" column="13" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/GetAttrCallback.java" timestamp="1474536236069">
+        <mark key="[" line="9" column="0" />
+        <mark key="]" line="9" column="0" />
+        <mark key="^" line="8" column="0" />
+        <mark key="." line="9" column="0" />
+      </file>
+      <file name="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/AuthorStats.java" timestamp="1474470465351">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="1" />
+        <mark key="^" line="5" column="1" />
+        <mark key="." line="5" column="1" />
       </file>
       <file name="/XML Properties File.txt.ft" timestamp="1470696403850">
         <mark key="[" line="0" column="0" />
@@ -421,8 +581,19 @@
       <file name="/Scala Class.txt.ft" timestamp="1470696408736">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/trash/arch/main/src/main/java/ObjectManager/HighLevelObjTree.java" timestamp="1474537662213">
+        <mark key="[" line="16" column="0" />
+        <mark key="]" line="16" column="0" />
+        <mark key="." line="16" column="0" />
+      </file>
       <file name="/ActionScript Class.txt.ft" timestamp="1470696406834">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ObjectManager/DiffMap.java" timestamp="1474501314189">
+        <mark key="[" line="5" column="17" />
+        <mark key="]" line="5" column="38" />
+        <mark key="." line="5" column="38" />
+        <mark key="^" line="5" column="38" />
       </file>
       <file name="/Less File.txt.ft" timestamp="1470696411037">
         <mark key="[" line="0" column="0" />
@@ -438,17 +609,36 @@
         <mark key="]" line="0" column="11" />
         <mark key="." line="0" column="11" />
       </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/HighLevelObjTree.java" timestamp="1474499380380">
+        <mark key="[" line="3" column="7" />
+        <mark key="]" line="3" column="15" />
+        <mark key="." line="3" column="15" />
+        <mark key="^" line="3" column="15" />
+      </file>
       <file name="/Singleton.txt.ft" timestamp="1470696412695">
         <mark key="[" line="0" column="0" />
       </file>
       <file name="/Dummy.txt" timestamp="1473348190751">
         <mark key="[" line="0" column="0" />
       </file>
+      <file name="$USER_HOME$/st/trash/arch/src/LangBindings/LangBinding.java" timestamp="1474536077272">
+        <mark key="[" line="3" column="0" />
+        <mark key="]" line="3" column="0" />
+        <mark key="." line="3" column="0" />
+        <mark key="^" line="9" column="0" />
+      </file>
       <file name="$USER_HOME$/st/ITP/UI/src/com/company/CourseTimeTable.java" timestamp="1473313183831">
         <mark key="[" line="5" column="34" />
         <mark key="]" line="6" column="48" />
         <mark key="." line="6" column="48" />
         <mark key="^" line="6" column="48" />
+      </file>
+      <file name="$USER_HOME$/st/trash/srt/src/main/java/Main.java" timestamp="1474980116708">
+        <mark key="'" line="14" column="74" />
+        <mark key="[" line="24" column="0" />
+        <mark key="]" line="52" column="8" />
+        <mark key="^" line="54" column="26" />
+        <mark key="." line="54" column="26" />
       </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/dsa2/CaliperTest.java" timestamp="1473357718302">
         <mark key="[" line="13" column="19" />
@@ -483,8 +673,20 @@
         <mark key="^" line="5" column="0" />
         <mark key="." line="6" column="0" />
       </file>
+      <file name="$USER_HOME$/src/srt/src/main/java/CodeTester.java" timestamp="1474485638112">
+        <mark key="[" line="6" column="22" />
+        <mark key="]" line="6" column="22" />
+        <mark key="^" line="6" column="22" />
+        <mark key="." line="6" column="22" />
+      </file>
       <file name="/Class.txt.ft" timestamp="1470696402305">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/main/src/main/java/RPC/RPCFileSystem/FuseBinding.java" timestamp="1474537167048">
+        <mark key="[" line="7" column="17" />
+        <mark key="]" line="7" column="32" />
+        <mark key="^" line="7" column="32" />
+        <mark key="." line="7" column="32" />
       </file>
       <file name="/CoffeeScript Class.txt.ft" timestamp="1470696408560">
         <mark key="[" line="0" column="0" />
@@ -495,98 +697,34 @@
         <mark key="." line="12" column="12" />
         <mark key="^" line="12" column="12" />
       </file>
+      <file name="$USER_HOME$/src/srt/src/main/java/SortTester.java" timestamp="1474486403265">
+        <mark key="[" line="16" column="39" />
+        <mark key="]" line="16" column="39" />
+        <mark key="." line="16" column="39" />
+        <mark key="^" line="72" column="3" />
+      </file>
+      <file name="$USER_HOME$/st/trash/untitled/src/ServerSide.java" timestamp="1474499686953">
+        <mark key="[" line="4" column="12" />
+        <mark key="]" line="4" column="28" />
+        <mark key="^" line="4" column="28" />
+        <mark key="." line="4" column="28" />
+      </file>
       <file name="$USER_HOME$/st/DSA/src/src/main/java/ArrayLong.java" timestamp="1472638913817">
         <mark key="[" line="0" column="0" />
         <mark key="]" line="1" column="0" />
         <mark key="." line="1" column="0" />
         <mark key="^" line="1" column="0" />
       </file>
-      <file name="$USER_HOME$/st/DSA/src/pom.xml" timestamp="1473706340686">
-        <mark key="'" line="34" column="27" />
-        <mark key="[" line="14" column="0" />
-        <mark key="]" line="31" column="18" />
-        <mark key="." line="21" column="0" />
-        <mark key="^" line="13" column="15" />
-      </file>
-      <file name="/fragment.java" timestamp="1473373746185">
+      <file name="/fragment.java" timestamp="1474537666080">
         <mark key="[" line="0" column="0" />
+      </file>
+      <file name="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/Pointer.java" timestamp="1474536260252">
+        <mark key="[" line="5" column="0" />
+        <mark key="]" line="5" column="0" />
+        <mark key="." line="5" column="0" />
       </file>
     </filemarks>
     <jumps>
-      <jump line="11" column="74" filename="$USER_HOME$/st/ITP/UI/src/com/company/Instructor.java" />
-      <jump line="20" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" />
-      <jump line="7" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="9" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="30" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="68" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="19" column="7" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="36" column="27" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="20" column="35" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Matrix3D.java" />
-      <jump line="11" column="11" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/Hanoi.java" />
-      <jump line="81" column="16" filename="$USER_HOME$/st/DSA/benchmark/test/pom.xml" />
-      <jump line="4" column="15" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/Test.java" />
-      <jump line="1" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="78" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="105" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="56" column="24" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="31" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="108" column="22" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="49" column="16" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="20" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="111" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="42" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="44" column="32" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="45" column="34" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="225" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Main.java" />
-      <jump line="184" column="15" filename="$USER_HOME$/st/ITP/parser/src/com/company/Main.java" />
-      <jump line="163" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="136" column="57" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="6" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="171" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="102" column="51" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="11" column="32" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="0" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="94" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="78" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/Parser.java" />
-      <jump line="5" column="15" filename="$USER_HOME$/st/ITP/UI/src/com/company/Grade.java" />
-      <jump line="2" column="2" filename="$USER_HOME$/st/ITP/UI/src/com/company/Grade.java" />
-      <jump line="11" column="11" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa/ArrayLongImpl.java" />
-      <jump line="174" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/pom.xml" />
-      <jump line="67" column="16" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="0" column="0" filename="/DSA-MS12-effective-pom.xml" />
-      <jump line="100" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="1" column="6" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="64" column="8" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="17" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="118" column="13" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/Main.java" />
-      <jump line="12" column="20" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="25" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="32" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="49" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="66" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="80" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="91" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="86" column="0" filename="$USER_HOME$/st/DSA/benchmark/test/src/main/java/org/sample/ArrayLongBenchMark.java" />
-      <jump line="12" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/TestBenchmark.java" />
-      <jump line="74" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/TestBenchmark.java" />
-      <jump line="9" column="14" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/TestBenchmark.java" />
-      <jump line="90" column="20" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/LinkedListLongImpl.java" />
-      <jump line="62" column="17" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="15" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="51" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="110" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="153" column="3" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="157" column="5" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="163" column="3" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="148" column="8" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/Main.java" />
-      <jump line="124" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/Main.java" />
-      <jump line="56" column="52" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ArrayLongImpl.java" />
-      <jump line="104" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ArrayLongImpl.java" />
-      <jump line="101" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ArrayLongImpl.java" />
-      <jump line="145" column="4" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ArrayLongImpl.java" />
-      <jump line="54" column="4" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="114" column="32" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
-      <jump line="179" column="1" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
       <jump line="173" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
       <jump line="166" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
       <jump line="159" column="0" filename="$USER_HOME$/st/DSA/src/src/main/java/dsa2/ListTest.java" />
@@ -613,72 +751,139 @@
       <jump line="10" column="30" filename="$USER_HOME$/dw/Hash.class" />
       <jump line="5" column="0" filename="$USER_HOME$/dw/Hash.class" />
       <jump line="3" column="19" filename="/tmp/Hash.class/untitled/src/Hash11.java" />
+      <jump line="10" column="11" filename="$USER_HOME$/st/ITP/parser/src/com/company/Value.java" />
+      <jump line="187" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/ArifmeticAST.java" />
+      <jump line="51" column="15" filename="$USER_HOME$/st/ITP/parser/src/com/company/ArifmeticAST.java" />
+      <jump line="138" column="37" filename="$USER_HOME$/st/ITP/parser/src/com/company/ArifmeticAST.java" />
+      <jump line="146" column="0" filename="$USER_HOME$/st/ITP/parser/src/com/company/ArifmeticAST.java" />
+      <jump line="9" column="1" filename="$USER_HOME$/src/sorting/src/com/company/Main.java" />
+      <jump line="47" column="47" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="8" column="5" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="45" column="0" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="12" column="0" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="30" column="16" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="7" column="54" filename="$USER_HOME$/src/sorting/src/com/company/Main.java" />
+      <jump line="8" column="4" filename="$USER_HOME$/src/sorting/src/com/company/Main.java" />
+      <jump line="41" column="3" filename="$USER_HOME$/src/sorting/src/com/company/RadixSort.java" />
+      <jump line="56" column="3" filename="$USER_HOME$/src/sorting/src/com/company/mergeSort.java" />
+      <jump line="6" column="0" filename="$USER_HOME$/src/sorting/src/com/company/mergeSort.java" />
+      <jump line="6" column="18" filename="$USER_HOME$/src/sorting/src/com/company/Sorter.java" />
+      <jump line="56" column="5" filename="$USER_HOME$/src/sorting/src/com/company/Sorter.java" />
+      <jump line="57" column="0" filename="$USER_HOME$/src/sorting/src/com/company/mergeSort.java" />
+      <jump line="33" column="5" filename="$USER_HOME$/src/sorting/src/com/company/quickSOrt.java" />
+      <jump line="28" column="16" filename="$USER_HOME$/src/sorting/src/com/company/quickSOrt.java" />
+      <jump line="36" column="3" filename="$USER_HOME$/src/sorting/src/com/company/BucketSort.java" />
+      <jump line="28" column="56" filename="$USER_HOME$/src/sorting/src/com/company/BucketSort.java" />
+      <jump line="8" column="29" filename="$USER_HOME$/src/sorting/src/com/company/BucketSort.java" />
+      <jump line="52" column="0" filename="$USER_HOME$/src/sorting/src/com/company/BucketSort.java" />
+      <jump line="5" column="0" filename="$USER_HOME$/src/sorting/src/com/company/BucketSOrt.java" />
+      <jump line="98" column="0" filename="$USER_HOME$/src/sorting/src/com/company/BucketSOrt.java" />
+      <jump line="40" column="3" filename="$USER_HOME$/src/sorting/src/com/company/BucketSOrt.java" />
+      <jump line="47" column="0" filename="$USER_HOME$/src/sorting/src/com/company/BucketSOrt.java" />
+      <jump line="5" column="29" filename="$USER_HOME$/src/sorting/src/com/company/InsertionSort.java" />
+      <jump line="6" column="5" filename="$USER_HOME$/src/sorting/src/com/company/InsertionSort.java" />
+      <jump line="100" column="0" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineSimilarity.java" />
+      <jump line="11" column="0" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineSimilarity.java" />
+      <jump line="12" column="37" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineSimilarity.java" />
+      <jump line="10" column="0" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineSimilarity.java" />
+      <jump line="45" column="0" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineMetric.java" />
+      <jump line="6" column="0" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineMetric.java" />
+      <jump line="13" column="15" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/CosineMetric.java" />
+      <jump line="109" column="16" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Passage.java" />
+      <jump line="60" column="28" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="61" column="32" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="63" column="51" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="64" column="51" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="99" column="70" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="81" column="46" filename="$USER_HOME$/src/scribblehunter/src/innopolis/dsa/scribblehunter/Main.java" />
+      <jump line="2" column="13" filename="$USER_HOME$/src/sorting/src/com/company/MyQuickSort.java" />
+      <jump line="39" column="0" filename="$USER_HOME$/src/sorting/src/com/company/MyQuickSort.java" />
+      <jump line="5" column="18" filename="$USER_HOME$/dw/Telegram Desktop/_CodeTester/_CodeTester/src/main/java/CodeTester/CodeTester.java" />
+      <jump line="47" column="0" filename="$USER_HOME$/src/srt/src/main/java/InsertionSort.java" />
+      <jump line="31" column="0" filename="$USER_HOME$/src/srt/src/main/java/Main.java" />
+      <jump line="101" column="2" filename="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" />
+      <jump line="56" column="0" filename="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" />
+      <jump line="25" column="0" filename="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" />
+      <jump line="3" column="0" filename="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" />
+      <jump line="51" column="2" filename="$USER_HOME$/src/srt/src/main/java/MyQuickSort.java" />
+      <jump line="39" column="0" filename="$USER_HOME$/src/srt/src/main/java/testSort.java" />
+      <jump line="44" column="3" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="77" column="0" filename="$USER_HOME$/st/trash/untitled/src/Multimap.java" />
+      <jump line="9" column="0" filename="$USER_HOME$/st/trash/untitled/src/LangBindings/RPCFile.java" />
+      <jump line="5" column="36" filename="$USER_HOME$/st/trash/arch/src/RPC/RPCFileSystem/FuseBuffFlags.java" />
+      <jump line="7" column="12" filename="$USER_HOME$/st/trash/arch/main/src/main/java/RPC/RPCFileSystem/FuseBuffFlags.java" />
+      <jump line="74" column="8" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="96" column="0" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="94" column="0" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="87" column="8" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="64" column="27" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="9" column="27" filename="$USER_HOME$/st/trash/srt/src/main/java/MyQuickSort.java" />
+      <jump line="55" column="23" filename="$USER_HOME$/st/trash/srt/src/main/java/MyQuickSort.java" />
+      <jump line="43" column="17" filename="$USER_HOME$/st/trash/srt/src/main/java/MyQuickSort.java" />
+      <jump line="14" column="22" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="106" column="0" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="55" column="23" filename="$USER_HOME$/st/trash/srt/src/main/java/SortTester.java" />
+      <jump line="43" column="4" filename="$USER_HOME$/st/trash/srt/src/main/java/Main.java" />
+      <jump line="14" column="74" filename="$USER_HOME$/st/trash/srt/src/main/java/Main.java" />
     </jumps>
     <registers>
       <register name="&quot;" type="4">
         <text>i</text>
       </register>
-      <register name="*" type="4">
-        <text>28629151</text>
+      <register name="*" type="2">
+        <text encoding="base64">ICAgICAgICAgICAgPHZlcnNpb24+MS4wLWJldGEtMjwvdmVyc2lvbj4K</text>
       </register>
       <register name="-" type="4">
-        <text encoding="base64">aW50IA==</text>
+        <text>10000000</text>
       </register>
       <register name="/" type="4">
-        <text>Size()/2</text>
+        <text encoding="base64">XDxwYXNzYWdlc1w+</text>
       </register>
-      <register name="0" type="4">
-        <text>31^5*(i*31^(n-1) + d[1]*31^(n-2) + ... + d[n-1])</text>
+      <register name="0" type="2">
+        <text encoding="base64">ICAgICAgICBTY2FubmVyIHNjYW47CiAgICAgICAgdHJ5IHsKICAgICAgICAgICAgc2NhbiA9IG5ldyBTY2FubmVyKGZwMSk7CiAgICAgICAgICAgIGZvciAoaW50IGkgPSAwOyBpIDwgc3pfOyBpKyspIHsKICAgICAgICAgICAgICAgIGFycjEuYWRkKGksIHNjYW4ubmV4dERvdWJsZSgpKTsKICAgICAgICAgICAgfQogICAgICAgIH0gY2F0Y2ggKEZpbGVOb3RGb3VuZEV4Y2VwdGlvbiBmaWxlTm90Rm91bmQpIHsKICAgICAgICAgICAgZmlsZU5vdEZvdW5kLnByaW50U3RhY2tUcmFjZSgpOwogICAgICAgIH0KCiAgICAgICAgLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogICAgICAgIHRyeSB7CiAgICAgICAgICAgIHNjYW4gPSBuZXcgU2Nhbm5lcihmcDIpOwogICAgICAgICAgICBmb3IgKGludCBpID0gMDsgaSA8IHN6XzsgaSsrKSB7CiAgICAgICAgICAgICAgICBhcnIyLmFkZChpLCBzY2FuLm5leHREb3VibGUoKSk7CiAgICAgICAgICAgIH0KICAgICAgICB9IGNhdGNoIChGaWxlTm90Rm91bmRFeGNlcHRpb24gZmlsZU5vdEZvdW5kKSB7CiAgICAgICAgICAgIGZpbGVOb3RGb3VuZC5wcmludFN0YWNrVHJhY2UoKTsKICAgICAgICB9CgogICAgICAgIC8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgICB0cnkgewogICAgICAgICAgICBzY2FuID0gbmV3IFNjYW5uZXIoZnAzKTsKICAgICAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBzel87IGkrKykgewogICAgICAgICAgICAgICAgYXJyMy5hZGQoaSwgc2Nhbi5uZXh0RG91YmxlKCkpOwogICAgICAgICAgICB9CiAgICAgICAgfSBjYXRjaCAoRmlsZU5vdEZvdW5kRXhjZXB0aW9uIGZpbGVOb3RGb3VuZCkgewogICAgICAgICAgICBmaWxlTm90Rm91bmQucHJpbnRTdGFja1RyYWNlKCk7CiAgICAgICAgfQo=</text>
       </register>
       <register name="1" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgfQo=</text>
+        <text encoding="base64">aW1wb3J0IGNvbS5nb29nbGUuY2FsaXBlci5CZW5jaG1hcms7Cg==</text>
       </register>
       <register name="2" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgZm9yKGkgOiBkKXsK</text>
+        <text encoding="base64">aW1wb3J0IGNvbS5nb29nbGUuY2FsaXBlci5ydW5uZXIuUnVubmluZzsK</text>
       </register>
       <register name="3" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgCg==</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="4" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgCg==</text>
+        <text encoding="base64">ICAgIC8vcHVibGljIHN0YXRpYyBkb3VibGVbXSBhcnIxID0gbmV3IGRvdWJsZVsxMDAwMDAwMF07CiAgICAvL3B1YmxpYyBzdGF0aWMgZG91YmxlW10gYXJyMiA9IG5ldyBkb3VibGVbMTAwMDAwMDBdOwogICAgLy9wdWJsaWMgc3RhdGljIGRvdWJsZVtdIGFycjMgPSBuZXcgZG91YmxlWzEwMDAwMDAwXTsK</text>
       </register>
       <register name="5" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgMzFeNSooZFswXSozMV4obi0xKSArIGRbMV0qMzFeKG4tMikgKyAuLi4gKyBkW24tMV0pCg==</text>
+        <text encoding="base64">aW1wb3J0IHN0YXRpYyBqYXZhLnV0aWwuQ29sbGVjdGlvbnMuc3dhcDsKCi8qKgogKiBDcmVhdGVkIGJ5IG5lZyBvbiA3LzIxLzE2LgogKi8K</text>
       </register>
       <register name="6" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgQmlnSW50ZWdlciB4ID0gbmV3IEJpZ0ludGVnZXIoU3RyaW5nLnZhbHVlT2YoMjg2MjkxNTEqaSsxOTg0NzE4OSkpOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="7" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgaSsrOwo=</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="8" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgU3lzdGVtLm91dC5wcmludGxuKHNzKTsK</text>
+        <text encoding="base64">Cg==</text>
       </register>
       <register name="9" type="2">
-        <text encoding="base64">ICAgICAgICAgICAgU3RyaW5nIHNzID0gbmV3IFN0cmluZyhieXRlcyk7Cg==</text>
+        <text encoding="base64">ICAgIC8vc3VwZXIuc2V0VXAoKTsK</text>
       </register>
       <register name=":" type="4">
         <text>w</text>
       </register>
     </registers>
     <search>
-      <last-search>Size()/2</last-search>
+      <last-search encoding="base64">XDxwYXNzYWdlc1w+</last-search>
       <last-offset />
-      <last-pattern>Size()/2</last-pattern>
-      <last-replace>Size()*0.88</last-replace>
-      <last-substitute>Size()/2</last-substitute>
+      <last-pattern encoding="base64">XDxwYXNzYWdlc1w+</last-pattern>
+      <last-replace>long</last-replace>
+      <last-substitute>int</last-substitute>
       <last-dir>1</last-dir>
       <show-last>false</show-last>
     </search>
     <history>
       <history-search>
-        <entry encoding="base64">XDxkZWxldGVGaXJzdFw+</entry>
-        <entry encoding="base64">XDxkZWxldGVMYXN0XD4=</entry>
-        <entry encoding="base64">XDxkZWxldGVCeUluZGV4XD4=</entry>
-        <entry>);</entry>
-        <entry encoding="base64">XDxwcm9qZWN0XD4=</entry>
-        <entry>std</entry>
-        <entry>Ser</entry>
         <entry>Mir</entry>
         <entry>assistants</entry>
         <entry encoding="base64">XDxbXD4=</entry>
@@ -692,27 +897,34 @@
         <entry>3</entry>
         <entry>sizeS</entry>
         <entry>Size()/2</entry>
+        <entry>10</entry>
+        <entry>256</entry>
+        <entry>Sorter</entry>
+        <entry>int</entry>
+        <entry encoding="base64">XDxmbm9ybVw+</entry>
+        <entry encoding="base64">XDxwcmludFByb3BlcnRpZXNcPg==</entry>
+        <entry encoding="base64">XDxwYXNzYWdlc1w+</entry>
       </history-search>
       <history-cmd>
-        <entry encoding="base64">JzwsJz5zO1NlcjtRZXI7</entry>
-        <entry encoding="base64">JzwsJz5zO01pcjtEaXI=</entry>
-        <entry encoding="base64">JzwsJz5zO2Fzc2lzdGFudHM7aW5zdHJ1Y3RvcnM7</entry>
-        <entry>we</entry>
-        <entry encoding="base64">JzwsJz5zO29wZXJhbmQ7b3A7Yw==</entry>
-        <entry encoding="base64">JzwsJz5zO2xCcmFja2V0OyIoIjtj</entry>
-        <entry encoding="base64">JzwsJz5zO3JCcmFja2V0OyIpIjtj</entry>
-        <entry encoding="base64">JzwsJz5zOzM7NDs=</entry>
-        <entry encoding="base64">JzwsJz5zOzM7NTs=</entry>
-        <entry encoding="base64">JzwsJz5zOzM7Njs=</entry>
         <entry encoding="base64">JzwsJz5zOzM7Nzs=</entry>
         <entry encoding="base64">JzwsJz5zOzY7Nzs=</entry>
         <entry encoding="base64">JzwsJz5zOzM7OA==</entry>
         <entry encoding="base64">JzwsJz5zO3NpemVTO3NpemVTMjtj</entry>
         <entry encoding="base64">JzwsJz5zO1NpemUoKS8yO1NpemUoKSowLjg4O2M=</entry>
+        <entry>wq</entry>
+        <entry>s;10;256</entry>
+        <entry encoding="base64">JzwsJz5zOzEwOzI1Njtj</entry>
+        <entry encoding="base64">JzwsJz5zOzI1NjsxMDtn</entry>
+        <entry encoding="base64">JzwsJz5zO2ludDtkb3VibGU7</entry>
+        <entry encoding="base64">JzwsJz5zO2ludDtkb3VibGU7Zw==</entry>
+        <entry encoding="base64">JzwsJz5zO1NvcnRlcjtRdWlja1NvcnQ7Yw==</entry>
+        <entry encoding="base64">JzwsJz5zO1NvcnRlcjtRdWlja1NvcnQ7Y2c=</entry>
+        <entry encoding="base64">JzwsJz5zO2ludDtsb25nO2c=</entry>
+        <entry>ws</entry>
         <entry>action Forward</entry>
+        <entry>action Back</entry>
         <entry>action Find</entry>
         <entry>W</entry>
-        <entry>action Back</entry>
         <entry>w</entry>
       </history-cmd>
       <history-expr />

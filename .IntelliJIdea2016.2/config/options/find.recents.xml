@@ -1,18 +1,6 @@
 <application>
   <component name="FindRecents">
     <findStrings>
-      <find>next</find>
-      <find>getDAta</find>
-      <find>head</find>
-      <find>getHead</find>
-      <find>return false</find>
-      <find>Link</find>
-      <find>size</find>
-      <find>sz</find>
-      <find>plugins</find>
-      <find>maventest</find>
-      <find>kkkkk</find>
-      <find>static</find>
       <find>Main</find>
       <find>jmh</find>
       <find>Vector</find>
@@ -22,7 +10,6 @@
       <find>nextop</find>
       <find>jar</find>
       <find>dsa</find>
-      <find>insert</find>
       <find>insertAfter</find>
       <find>count</find>
       <find>main</find>
@@ -31,6 +18,19 @@
       <find>delete</find>
       <find>pos</find>
       <find>reps</find>
+      <find>destr</find>
+      <find>destroy</find>
+      <find>insert</find>
+      <find>map</find>
+      <find>sorter</find>
+      <find>getB</find>
+      <find>tmp2</find>
+      <find>int</find>
+      <find>Double</find>
+      <find>passages</find>
+      <find>average</find>
+      <find>pv</find>
+      <find>swap</find>
     </findStrings>
   </component>
 </application>
