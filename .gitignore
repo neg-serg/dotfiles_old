@@ -135,3 +135,8 @@ vid
 .zsh_history
 .zsh/.zcompdump
 *.zwc
+.config/inkscape
+.python_history
+.pythonhist
+.mime.types
+.wget-hsts
