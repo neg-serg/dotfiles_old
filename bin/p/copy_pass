@@ -17,7 +17,7 @@ icon_ unlocked_      "\uf084\uf13e"
 (   
     inotifywait -e close_write /tmp/pass_clipped_fifo >/dev/null 2>&1
     pass=$(gpg -d -r "${mail_key_}" < /tmp/pass_clipped_fifo --no-tty 2>/dev/null | head -n1)
-    echo "${pass}" | xclip
-    notify-no-icon "${unlocked_} copied $(cat /tmp/pass_picked) to clipboard"
+    xclip <<< "${pass}"
+    notify-no-icon "${unlocked_} cp [$(< /tmp/pass_picked)] to clipbrd"
 ) &
 ~/bin/p/get_pass
