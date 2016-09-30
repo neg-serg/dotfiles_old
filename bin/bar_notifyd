@@ -24,7 +24,7 @@ function bar_notifyd_init_(){
 
     width_treshold=20 last_width=10  last_lines_c=2
 
-    font="fixed"
+    font="PragmataPro for Powerline:style=Regular"
     font_icons="FontAwesome:size=11"
 
     color_summary="#aacccc"
