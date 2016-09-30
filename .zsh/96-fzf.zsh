@@ -118,3 +118,12 @@ function fh() {
     zle -I;
     echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s --extended-exact| sed 's/ *[0-9]* *//')
 }
+
+#fzf locate
+function foc() {
+  local selected
+  if selected=$(locate / | fzf -q "$LBUFFER"); then
+    LBUFFER=$selected
+  fi
+  zle redisplay
+}
