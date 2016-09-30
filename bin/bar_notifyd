@@ -11,15 +11,24 @@ function bar_notifyd_init_(){
     corner="northeast"
     [[ -n "$1" ]] && corner="$1"
 
-    pad_x=50          pad_y=30       height=50
-    in_pad=30         offset=40      dismiss=3
+    pad_x=50
+    pad_y=30
+    height=50
+
+    in_pad=30
+    offset=40
+
+    intt=-10
+
+    dismiss=3
+
     width_treshold=20 last_width=10  last_lines_c=2
 
-    font="-gohu-gohufont-medium-*-*-*-14-*-*-*-*-*-iso8859-*"
+    font="fixed"
     font_icons="FontAwesome:size=11"
 
     color_summary="#aacccc"
-    color_bg="#001111"
+    color_bg="#000404"
 
     touch "/tmp/notify_fifo_${corner}"
     tmp_file="$(mktemp)"
@@ -40,11 +49,11 @@ function bar_instance_init_(){
 
     if [[ ${count} == 0 ]]; then
         bar_height=$[height*3 / 4]
-        if [[ ${i} == 0 ]]; then
+        if [[ $i == 0 ]]; then
             bar_offset=7
         else
             bar_pad_y=$[bar_pad_y + bar_height]
-            bar_offset=-12 
+            bar_offset=-12
         fi
     fi
 
@@ -53,26 +62,29 @@ function bar_instance_init_(){
 }
 
 function bar_opts_init_(){
-    bar_y=$1
-    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+$((position_y + bar_y * 30))
-                -B ${color_bg}
-                -f ${font}
-                -f ${font_icons}
-                -f monospace 
-                -o ${bar_offset} 
-                -n ${bar_name}
+    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+$[position_y + bar_y * 30]
+                -B "${color_bg}"
+                -f "${font}"
+                -f "${font_icons}"
+                -f monospace
+                -o "${intt}"
+                -n "${bar_name}"
                 )
+}
+
+function bar_opts_init_intt_update_(){
+    intt=$[intt+5]
 }
 
 function calc::text_width_(){
     text_width=$(txtw -f "${font}" "${parsed_summary}")
     if [[ ${splitted} == *$(date +'%H:%M')* ]]; then
-        text_width=$(("${text_width}" + 30))
+        text_width=$[text_width + 30]
     fi
 }
 
 function calc::width_(){
-    width=$((2 * ${in_pad} + ${text_width}))
+    width=$[2*in_pad+text_width]
     if [[ ${width} -gt ${largest_width} ]]; then
         largest_width=${width}
     fi
@@ -81,24 +93,21 @@ function calc::width_(){
 }
 
 function start_bar {
-    echo $(($(date +%s) + dismiss)) > "${noti_timestamp}"
-
+    echo $[$(date +%s) + dismiss] > "${noti_timestamp}"
     count="$1"
-
     pids=()
     # lemon bars which listen to multi line parser
     for (( i=1; i<=count+1; i++ )); do
-        {   
-            jjj_=0
+        {
+            bar_opts_init_intt_update_
             bar_instance_init_
-            bar_opts_init_ ${jjj_}
+            bar_opts_init_
             #Read file with notification data read_notify_lines_
-            tail -f -n 0 "${tmp_files[$i]}" | (
+            tail -f -n 0 "${tmp_files[$i]}" | {
                 while read -r noti_line; do
+                    bar_opts_init_intt_update_
                     builtin printf '%s\n' "${noti_line}"
-                    jjj_=$[jjj_+1]
-                    bar_opts_init_ ${jjj_}
-                done ) | lemonbar ${bar_opts[@]} | zsh
+                done } | lemonbar ${bar_opts[@]} | zsh
         } &
         pids[i]="$(echo $!)"
         sleep .01
@@ -129,8 +138,8 @@ function start_bar {
     ) &
 
     #wait for lemonbar before echoing to $tmp_file
-    sleep .05 
-} 
+    sleep .05
+}
 
 function main_circle_(){
     tail -f -n 0 "/tmp/notify_fifo_${corner}" | \
@@ -143,7 +152,7 @@ function main_circle_(){
 
             # To be precise
             parsed_summary=$(sed -e 's/\%[^%}]*}//g' <<< "${splitted}")
-            
+
             calc::text_width_
             calc::width_
 
@@ -151,7 +160,7 @@ function main_circle_(){
                 start_bar "${line_c}"
             else
                 #if bar size is too different, resize
-                dist=$[width-last_width] 
+                dist=$[width-last_width]
                 if [[ "${line_c}" != "${last_lines_c}" \
                     || (${dist} -gt 0 && ${dist} -gt ${width_treshold}) \
                     || (${dist} -lt 0 && ${dist} -lt -$(echo ${width_treshold}))\
@@ -160,10 +169,9 @@ function main_circle_(){
                         xdotool search --name "bar_noti_name_"${corner}"$" windowkill
                     done
                     start_bar "${line_c}"
-                else 
+                else
                     builtin printf "%s\n" \
-                        $(($(date +%s) + ${dismiss})) \
-                        > ${noti_timestamp}
+                        $[$(date +%s) + ${dismiss}] > ${noti_timestamp}
                 fi
             fi
             builtin printf "%s\n" \
