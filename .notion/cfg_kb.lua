@@ -191,20 +191,20 @@ Neg_kb.WMoveresMode = {
     kpress("K",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
     kpress("J",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
 
-    kpress("A",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
-    kpress("D",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
     kpress("W",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
-    kpress("S",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
+    kpress("A",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
+    kpress("S",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
+    kpress("D",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
 
     kpress(Sh.."H",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
     kpress(Sh.."L",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
     kpress(Sh.."K",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
     kpress(Sh.."J",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
     
-    kpress(Sh.."A",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
-    kpress(Sh.."D",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
     kpress(Sh.."W",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
+    kpress(Sh.."A",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
     kpress(Sh.."S",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
+    kpress(Sh.."D",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
 
     kpress(M1.."H",   function(_) WMoveresMode.move(_,-1, 0) end),
     kpress(M1.."L",   function(_) WMoveresMode.move(_, 1, 0) end),
