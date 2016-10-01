@@ -7,16 +7,16 @@ function gpaste_run() {
     elif [[ -x $(which gpaste) ]]; then
         echo $(which gpaste) -client --oneline
     else
-        echo There is now gpaste in \$PATH>/dev/stderr
+        echo There is no gpaste in \$PATH>/dev/stderr
     fi
 }
 
 function clip_main(){
     local rofi_pid=" -pid /run/user/$(id -u)/rofi_clip.pid"
-    local rofi_font="Pragmata Pro for Powerline bold 12"
+    local rofi_font="PragmataPro for Powerline bold 12"
     local menu=$($(gpaste_run)|rofi -font ${rofi_font}  -yoffset -22 -location 6 -width 1850 -lines 10 ${rofi_pid} -dmenu -p "[>>]")
     local selection=$(echo "${menu}" | cut -d ':' -f1)
-    gpaste-client select ${selection} || gpaste select ${selection}
+    $(gpaste_run) select ${selection}
 }
 
 clip_main
