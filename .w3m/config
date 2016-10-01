@@ -1,0 +1,47 @@
+simple_preserve_space 0
+gb18030_as_ucs 0
+strict_iso2022 1
+use_jisx0213 0
+use_jisx0212 0
+use_jisx0201k 0
+use_jisc6226 0
+use_jisx0201 0
+use_gb12345_map 0
+fix_width_conv 1
+search_conv 1
+pre_conv 0
+ucs_conv 1
+use_language_tag 1
+east_asian_width 0
+use_combining 1
+use_wide 1
+ext_halfdump 0
+follow_locale 1
+system_charset UTF-8
+auto_detect 2
+document_charset UTF-8
+display_charset UTF-8
+cookie_avoid_wrong_number_of_dots 
+cookie_accept_domains 
+cookie_reject_domains 
+accept_bad_cookie 0
+accept_cookie 0
+show_cookie 1
+use_cookie 0
+ssl_ca_file 
+ssl_ca_path 
+ssl_key_file 
+ssl_cert_file 
+ssl_verify_server 0
+ssl_forbid_method 
+no_cache 0
+noproxy_netaddr 1
+no_proxy 
+ftp_proxy 
+https_proxy 
+http_proxy 
+use_proxy 1
+max_news 50
+nntpmode 
+nntpserver 
+dns_order 0
