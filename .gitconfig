@@ -3,6 +3,7 @@
     name = Neg
 [core]
     pager =
+    whitespace = trailing-space,cr-at-eol
 [color]
     branch     = auto
     diff       = 1
