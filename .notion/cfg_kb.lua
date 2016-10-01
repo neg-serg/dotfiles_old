@@ -42,7 +42,13 @@ Neg_kb.WMPlex_toplevel = {
     kpress(M4..Ct.."E",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
     kpress(M4..Ct.."C",  function() 
         local downloads_dir_="~/dw/"
-        app.byclass('~/bin/sx '..downloads_dir_..'*', 'Sxiv') 
+        local shots_dir_="~/tmp/shots"
+        app.byclass('~/bin/sx '
+                    ..'{'
+                    ..downloads_dir_
+                    ..','
+                    ..shots_dir_
+                    ..'}'..'*', 'Sxiv') 
     end),
     --[[  misc  ]]---------------------------------------
     kpress(M4..Sh.."F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
