@@ -89,6 +89,8 @@ local function rofi_template(_t,flags,t_font)
                    .. rofi.yoff 
                    .. rofi.pid 
                    .. ' ' 
+                   ..' -i -auto-select -matching fuzzy '
+                   .. ' ' 
     local colors = ' -fg '
                    .. neg.rofi.fg
                    .. ' -bg '
