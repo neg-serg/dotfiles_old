@@ -276,3 +276,6 @@ def_key "ctrl-p"
 
 def_key "q"
   quit
+
+def_key "P"
+  dummy
