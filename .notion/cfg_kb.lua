@@ -85,6 +85,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress(Sh.."R", function() ranger() end),
         kpress("T",     function() app.byclass('telegram-desktop', 'telegram-desktop') end),
         kpress(Sh.."T", function() spawn('urxvt') end),
+        kpress(Ct.."T", function() spawn('tor-browser-en') end),
         kpress("V",     function() spawn('vmware') end),
         kpress("W",     function() webcam() end),
         kpress(Sh.."B", function() 
