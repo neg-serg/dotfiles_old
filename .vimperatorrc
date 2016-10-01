@@ -1,7 +1,8 @@
 set gui=none
 set verbose=0
+set defsearch=ix
 "set defsearch=searx
-set defsearch=google
+"set defsearch=google
 set suggestengines=
 "set suggestengines=google
 
