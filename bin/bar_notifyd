@@ -18,7 +18,7 @@ function bar_notifyd_init_(){
     in_pad=30
     offset=40
 
-    intt=-10
+    intt=-5
 
     dismiss=3
 
@@ -36,25 +36,16 @@ function bar_notifyd_init_(){
 }
 
 # create 10 tmp files for each line (assume max 10 lines)
-function mktmp_files_(){
-    for i in {1..10}; tmp_files[i]=$(mktemp)
-}
+function mktmp_files_(){ for i in {1..10}; tmp_files[i]=$(mktemp) }
 
 #Set initial offsets
 function bar_instance_init_(){
     bar_height="${height}"
-    bar_offset="${offset}"
     bar_pad_y="${pad_y}"
     bar_name="bar_noti_name_${corner}"
 
     if [[ ${count} == 0 ]]; then
         bar_height=$[height*3 / 4]
-        if [[ $i == 0 ]]; then
-            bar_offset=7
-        else
-            bar_pad_y=$[bar_pad_y + bar_height]
-            bar_offset=-12
-        fi
     fi
 
     position_y="${bar_pad_y}"
@@ -62,18 +53,15 @@ function bar_instance_init_(){
 }
 
 function bar_opts_init_(){
-    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+$[position_y + bar_y * 30]
+    bar_opts=( -d -g ${width}x${bar_height}+${position_x}+$[position_y + bar_y*count * 30]
                 -B "${color_bg}"
                 -f "${font}"
                 -f "${font_icons}"
                 -f monospace
-                -o "${intt}"
+                -o $[intt]
                 -n "${bar_name}"
                 )
-}
-
-function bar_opts_init_intt_update_(){
-    intt=$[intt+5]
+                echo cnt="${count}"
 }
 
 function calc::text_width_(){
@@ -98,14 +86,12 @@ function start_bar {
     pids=()
     # lemon bars which listen to multi line parser
     for (( i=1; i<=count+1; i++ )); do
+        bar_instance_init_
         {
-            bar_opts_init_intt_update_
-            bar_instance_init_
             bar_opts_init_
             #Read file with notification data read_notify_lines_
             tail -f -n 0 "${tmp_files[$i]}" | {
                 while read -r noti_line; do
-                    bar_opts_init_intt_update_
                     builtin printf '%s\n' "${noti_line}"
                 done } | lemonbar ${bar_opts[@]} | zsh
         } &
@@ -142,13 +128,15 @@ function start_bar {
 }
 
 function main_circle_(){
+    local delimiter=';'
     tail -f -n 0 "/tmp/notify_fifo_${corner}" | \
         # Reads the notifications line by line
         while IFS= read -r summary; do
-            line_c=$(grep -c ";" <<< "${summary}")
+            line_c=$(echo ${summary}|tr -cd ${delimiter}| wc -c)
 
             largest_width=0
-            IFS=';' read -r -A splitted <<< "${summary}"
+            IFS=${delimiter} read -r -A splitted <<< "${summary}"
+            echo ${summary[@]}
 
             # To be precise
             parsed_summary=$(sed -e 's/\%[^%}]*}//g' <<< "${splitted}")
@@ -157,7 +145,7 @@ function main_circle_(){
             calc::width_
 
             if [[ -z $(xdotool search --name "bar_noti_name_${corner}") ]]; then
-                start_bar "${line_c}"
+                start_bar $[line_c]
             else
                 #if bar size is too different, resize
                 dist=$[width-last_width]
@@ -168,7 +156,7 @@ function main_circle_(){
                     while [[ -n $(xdotool search --name "bar_noti_name_"${corner}"$") ]]; do
                         xdotool search --name "bar_noti_name_"${corner}"$" windowkill
                     done
-                    start_bar "${line_c}"
+                    start_bar $[line_c]
                 else
                     builtin printf "%s\n" \
                         $[$(date +%s) + ${dismiss}] > ${noti_timestamp}
