@@ -85,11 +85,12 @@ local function rofi_template(_t,flags,t_font)
     local columns_str = ""
     local ipc_file = new_ipc_file(_t.file_name)
     ------------------------------------------
+    local auto_select_ =  '-auto-select'
     local common = ' -dmenu -opacity 90 ' 
                    .. rofi.yoff 
                    .. rofi.pid 
                    .. ' ' 
-                   ..' -i -auto-select -matching fuzzy '
+                   ..' -i -levenshtein-sort -matching fuzzy '
                    .. ' ' 
     local colors = ' -fg '
                    .. neg.rofi.fg
