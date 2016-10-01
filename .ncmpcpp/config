@@ -1,33 +1,24 @@
-#--[ mpd ]---------------
-mpd_host = "127.0.0.1"
+#--=[ mpd ]=---------------
+mpd_host = "localhost"
 mpd_port = 6600
 mpd_music_dir = "~/music"
 mpd_crossfade_time = "0"
 user_interface = "classic"
-#--[ Visualizer ]---------------
+#--=[ Visualizer ]=---------------
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_in_stereo = "yes"
-# visualizer_sync_interval = "1"
-# visualizer_type = "spectrum" (spectrum/wave)
 
-#--[ Playlist ]---------------
+#--=[ Playlist ]=---------------
 playlist_disable_highlight_delay = "1"
 playlist_show_remaining_time = "yes"
 song_columns_list_format = "$L(9)[white]{l} (20)[red]{a} (30)[green]{b}$R(20)[cyan]{t}"
-now_playing_prefix = "$b"
-#now_playing_subfix = "/$b"
-playlist_display_mode = "classic" (classic/columns)
+playlist_display_mode = "classic"
 centered_cursor = "yes"
 cyclic_scrolling = "no"
 lines_scrolled = "2"
 mouse_list_scroll_whole_page = "no"
 song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)~>$7 $6%44t$(244) $R $(236)< $8%5l $(236)| $(244)%28b$(244)  "
-
-#--[ Try ]---------------
-# song_status_format = " $2%a $4⟫$3⟫ $8%t $4⟫$3⟫ $5%b "
-# now_playing_prefix = "$b$8»$2»$4»$3» "
-# now_playing_prefix = "$b$2⟩$3⟩ "
 
 song_library_format = "{%n > }{%t}|{%f}"
 
@@ -36,10 +27,10 @@ external_editor = "/usr/bin/vim"
 
 jump_to_now_playing_song_at_start = "yes"
 
-#--[ Bars ]---------------
-#song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
+#--=[ Bars ]=---------------
+# song_status_format = "{$8%a} $5»$8»$5» {$8%t} $5»$8»$5» $b{$8%b}$/b $b({$8%y})$/b"
 song_status_format = "{$8%a} $5⟫$8⟫$5⟫ {$8%t} $5⟫$8⟫$5⟫ $b{$8%b}$/b $b({$8%y})$/b"
-#progressbar_look = "|> "
+now_playing_suffix = "$/b$2⟩$3⟩"
 progressbar_look = "─╼ "
 titles_visibility = "no"
 header_visibility = "no"
@@ -48,14 +39,14 @@ display_bitrate = "yes"
 display_remaining_time = "no"
 clock_display_seconds = "yes"
 
-#--[ Browser ]---------------
+#--=[ Browser ]=--------------
 browser_playlist_prefix = "$2plist »$9 "
-browser_display_mode = "classic" (classic/columns)
+browser_display_mode = "classic"
 incremental_seeking = "yes"
 seek_time = "4"
 message_delay_time = "1"
 
-#--[ Colors ]---------------
+#--=[ Colors ]=---------------
 colors_enabled = "yes"
 discard_colors_if_item_is_selected = "yes"
 header_window_color = "black"
@@ -74,25 +65,15 @@ progressbar_boldness = "no"
 statusbar_color = "white"
 active_column_color = "cyan"
 visualizer_color = "cyan"
-# alternative_ui_separator_color = "white"
-# empty_tag_color = "white"
 
-# Others
-# song_window_title_format = "MPD: {%a > }{%t}{ [%b{ Disc %d}]}|{%f}"
-song_window_title_format = "ncmpcpp - {%a - %t [%l]}"
+song_window_title_format = "ncmpcpp ─╼ {%a - %t} {[%b{%d}]} <{%l}>"
 search_engine_display_mode = "columns" (classic/columns)
 follow_now_playing_lyrics = "yes"
-# ignore_leading_the = "no"
-# display_screens_numbers_on_start = "no"
-# block_search_constraints_change_if_items_found = "no"
 default_tag_editor_pattern = "%n - %t"
 default_find_mode = "wrapped"
-# default_space_mode = "add"
 default_place_to_search_in = "database"
 show_hidden_files_in_local_browser = "no"
-
-# active_window_border = "black"
+active_window_border = "black"
 empty_tag_marker = "[...]"
-
 regular_expressions = "extended"
 #  vim: set ts=2 sw=2 tw=0 :
