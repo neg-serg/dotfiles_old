@@ -8,17 +8,32 @@ bin/scripts/qmp/qmp.pyc
 bin/scripts/utf7.pyc
 bin/trash
 .cargo
+.config/asciinema
 .config/chromium
+.config/dconf
 .config/easytag
 .config/easytag/browser_path.history
 .config/easytag/easytagrc
 .config/EgoSoft
+.config/Epic
+.config/fasd
 .config/fonts/*
+.config/gconf
+.config/gpick
 .config/gtk-2.0/gtkfilechooser.ini
+.config/inkscape
+.config/MusicBrainz
 .config/octave
+.config/pavucontrol.ini
 .config/pulse/*
 .config/ranger/bookmarks
 .config/ranger/history
+.config/Recoll.org
+.config/Trolltech.conf
+.config/Unreal Engine
+.config/vkopt
+.config/yandex-disk/iid
+.config/yandex-disk/passwd
 .config/z
 .config/z107798146
 .config/z151832623
@@ -60,6 +75,7 @@ games
 .kde4
 .m2
 .macromedia
+.mime.types
 .mozilla
 music
 .newsbeuter/cache.db
@@ -75,6 +91,8 @@ music
 pic
 .pip
 .pry_history
+.pythonhist
+.python_history
 .qt
 .quarkcoin
 README.md
@@ -123,6 +141,7 @@ vid
 .weechat/logs/
 .weechat/logs/core.weechat.weechatlog
 .weechat/weechat.log
+.wget-hsts
 .wine
 .xsel.log
 .yandex
@@ -135,8 +154,3 @@ vid
 .zsh_history
 .zsh/.zcompdump
 *.zwc
-.config/inkscape
-.python_history
-.pythonhist
-.mime.types
-.wget-hsts
