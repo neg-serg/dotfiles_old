@@ -142,7 +142,7 @@ defwinprop{instance="glances_term",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="gparted",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="gnome-disks",target="admin",jumpto=true,tag="admin"}
 defwinprop{instance="seahorse",target="admin",jumpto=true,tag="admin"}
--------------------------------------[[  WINE  ]]------------------------------------
+-------------------------------------[[  wine / games  ]]---------------------------
 defwinprop{class="Crossover",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Wine",target="wine",jumpto=true,tag="virt"}
 defwinprop{name="wine.*",target="wine",jumpto=true,tag="virt"}
@@ -150,6 +150,9 @@ defwinprop{name="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{name="Explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="Explorer.exe",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="steam",target="wine",jumpto=true,tag="virt",float=true}
+defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
+defwinprop{class="dota2",target="wine",jumpto=true,float=true,tag="virt"}
 -------------------------------------[[ TORRENT ]]-----------------------------------
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",tag="torrent"}
 defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",tag="torrent",jumpto=true,float=false}
@@ -159,8 +162,6 @@ defwinprop{class="UE4Editor",floating=true,transient_mode="off",target="unreal",
 defwinprop{class="Xfce",float=true}
 defwinprop{class="Xmessage",float=true}
 defwinprop{class="com-sun-javaws-Main",float=true}
-defwinprop{class="steam",target="wine",jumpto=true,tag="virt",float=true}
-defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{instance="recoll",jumpto=false,winlist_ignore=true,target="search"}
 defwinprop{instance="stardict",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}
 defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mode="off",winlist_ignore=true,target="float",scratchpad="true"}
@@ -196,4 +197,3 @@ defwinprop{
     end,
     tag="virt"
 }
--- defwinprop{transparent=false}
