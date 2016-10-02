@@ -34,5 +34,8 @@ function dzen_update()
     if dmain.net then 
         template = template..wrp("net: " .. dmain.net)
     end
+    if dmain.mail then 
+        template = template..wrp("mail: " .. dmain.mail)
+    end
     dzen_pipe:write(template..'\n')
 end
