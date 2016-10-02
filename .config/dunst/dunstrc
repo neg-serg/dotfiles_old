@@ -1,7 +1,8 @@
 [global]
     font                 = PragmataPro for Powerline 10
     allow_markup         = yes
-    format               = "<b>%s</b>\n[%b]"
+    plain_text           = no
+    format               = "<b>%s</b>\n%b"
     sort                 = yes
     indicate_hidden      = yes
     show_indicators      = yes
@@ -10,12 +11,13 @@
     show_age_threshold   = 60
     # word_wrap          = yes
     ignore_newline       = no
-    geometry             = "400x8-30+20"
+    geometry             = "400x8-10-40"
+    shrink               = yes
     transparency         = 0
     idle_threshold       = 120
     monitor              = 0
     follow               = mouse
-    sticky_history       = yes
+    sticky_history       = no
     line_height          = 0
     separator_height     = 1
     padding              = 8
@@ -24,6 +26,8 @@
     startup_notification = false
     dmenu                = /usr/bin/dmenu -p dunst:
     browser              = /usr/bin/firefox -new-tab
+    icon_position        = left
+    icon_folders         = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
 [frame]
     width = 1
@@ -64,5 +68,8 @@
     format = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
     urgency = high
 
-icon_position = left
-icon_folders  = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+[mpd]
+    appname = mpd-notification
+    #format = "<b>%s</b>\n<span weight='normal' color='#395573'>[</span>%b<span weight='normal' color='#395573'>]</span>"
+    format = ""
+    script = /home/neg/bin/prepare_image
