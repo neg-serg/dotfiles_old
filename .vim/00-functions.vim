@@ -377,3 +377,7 @@ endfunction
 function! ToggleOptionFlags(option, flags)
   map(flags, 'call ToggleOptionFlag(a:option, v:val)')
 endfunction
+
+function! DequoteLang()
+    %s/[‘’]/'/|s/[“”¿¿]/\"/
+endfunction
