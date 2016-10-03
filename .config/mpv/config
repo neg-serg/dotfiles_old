@@ -19,8 +19,10 @@ hwdec=auto
 # no-osc
 
 osd-font="PragmataPro for Powerline"
-osd-font-size=14
+#sub-text-font="Zag Regular"
 sub-text-font="PragmataPro for Powerline"
+osd-font-size=12
+term-osd-bar-chars = "──╼ ·"
 # make the OSD progress bar be big and centered like in mplayer and mplayer2
 osd-bar-align-y=0
 osd-bar-h=2
@@ -38,3 +40,4 @@ really-quiet
 input-ipc-server=/tmp/mpvsocket
 
 volume=40
+
