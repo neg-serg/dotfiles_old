@@ -7,3 +7,7 @@ silent qmark k http://kickass.to/
 silent qmark L http://gen.lib.rus.ec/
 silent qmark s http://store.steampowered.com/?l=russian
 silent qmark m https://moodle.university.innopolis.ru/
+silent qmark q https://quora.com/
+silent qmark c https://coursera.com/
+silent qmark V https://www.reddit.com/r/vim/
+silent qmark y https://youtube.com/
