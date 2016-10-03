@@ -287,7 +287,10 @@ if neobundle#tap('YouCompleteMe')
         \}
 
     let g:ycm_min_num_identifier_candidate_chars = 4
-    let g:ycm_filetype_specific_completion_to_disable = {'javascript': 1, 'python': 1}
+    let g:ycm_filetype_specific_completion_to_disable = {
+                \ 'javascript': 1, 
+                \ 'python': 1 
+                \ }
     let g:ycm_goto_buffer_command = 'vertical-split'
 
     nnoremap <silent> <F3> :call youcompleteme#DisableCursorMovedAutocommands()<CR>
@@ -759,7 +762,7 @@ if neobundle#tap('jedi-vim')
         setlocal omnifunc=jedi#completions
         command! -nargs=0 JediRename call jedi#rename()
     endfunction
-    autocmd vimrc Filetype python call <SID>jedi_settings()
+    autocmd Filetype python call <SID>jedi_settings()
 endif
 
 if neobundle#tap('lightline.vim')

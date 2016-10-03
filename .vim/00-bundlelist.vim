@@ -90,6 +90,7 @@ if !has("nvim")
     NeoBundle 'Shougo/vimshell.vim' "shell inside a vim for unite and vimfiler integration
 endif
 NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
+NeoBundle 'tpope/vim-abolish' "for different case coersion
 NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
 NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
@@ -157,6 +158,7 @@ if !has("nvim") && has("ololo")
     NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 endif
 "--[ Python ]-----------------------------------------------------------------------------
+NeoBundle 'davidhalter/jedi-vim' "I think that standalone jedi-vim is better than from ycm
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'fs111/pydoc.vim' , {'autoload': {'filetypes': ['python']} } "pydoc integration
