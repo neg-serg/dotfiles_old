@@ -1,34 +1,36 @@
 #!/bin/zsh
 
+summary_="$2" body_="$3" image_="$4" urgency_="$5"
+
 function conv_image_(){ convert -resize 200x "$1" "$2" }
-function send_notify_(){ notify-send -a "prepare_image" -u "${urgency}" -i "${new_image}" "${summary}" "${body}"  }
+function send_notify_(){ notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${body_}"  }
+function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 function main(){
     local dunst_pics_="/tmp/dunst-images"
-    local summary="$2" body="$3" image="$4" urgency="$5"
     local previous_="${dunst_pics_}/prev.png"
 
-    if [[ ${image} == "info" ]]; then
-        image="${dunst_pics_}/cover_not.png"
-        conv_image_ "${image}" "${dunst_pics_}/cover_inter.png"
+    if [[ ${image_} == "info" ]]; then
+        image_="${dunst_pics_}/cover_not.png"
+        conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
-    elif [[ ! -f ${dunst_pics_}/prev.png ]]; then
-        file_name=$(basename "${image}")
+    else
+        file_name=$(basename "${image_}")
         file_name=${file_name%.*}
         mkdir -p ${dunst_pics_}
         new_image="${dunst_pics_}"/"${file_name}.png"
-        conv_image_ "${image}" "${new_image}"
+        conv_image_ "${image_}" "${new_image}"
     fi
 
     # send notification with compatible image
     if [[ ! -f "${previous_}" ]]; then
-        send_notify_
         cp -v "${new_image}" "${previous_}"
+        send_notify_
         exit 0
     else 
-        if [[ $(~/bin/scripts/compare_images.py ${new_image} "${previous_}") == "False" ]]; then
-            send_notify_
+        if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]]; then
             cp -v "${new_image}" "${previous_}"
+            send_notify_
         fi
     fi
 }
