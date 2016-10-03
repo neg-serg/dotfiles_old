@@ -1,29 +1,36 @@
-#!/bin/bash
-# script to prepare icon for dunst:
-# 1. convert to png (dunst only works with png currently)
-# 2. resize if icon too large
+#!/bin/zsh
 
-# appname="$1"
-summary="$2"
-body="$3"
-image="$4"
-urgency="$5"
+function conv_image_(){ convert -resize 200x "$1" "$2" }
+function send_notify_(){ notify-send -a "prepare_image" -u "${urgency}" -i "${new_image}" "${summary}" "${body}"  }
 
-# if [[ -f "$image" ]] && \
-# else
-# 	# no changes necessary
-# 	new_image="$4"
-# fi
+function main(){
+    local dunst_pics_="/tmp/dunst-images"
+    local summary="$2" body="$3" image="$4" urgency="$5"
+    local previous_="${dunst_pics_}/prev.png"
 
-# if [[ ! $(file --mime-type "$image" | grep -q "image/png") || $(identify -format "%w" "$image") -gt 200 ]]; then
-    file_name=$(basename "$image")
-    file_name=${file_name%.*}
-    mkdir -p /tmp/dunst-images
-    new_image=/tmp/dunst-images/"${file_name}.png"
-    # convert -resize 200x -format png "$image" "$new_image"
-    convert -resize 200x "$image" "$new_image"
-# fi
+    if [[ ${image} == "info" ]]; then
+        image="${dunst_pics_}/cover_not.png"
+        conv_image_ "${image}" "${dunst_pics_}/cover_inter.png"
+        new_image="${dunst_pics_}/cover_inter.png"
+    elif [[ ! -f ${dunst_pics_}/prev.png ]]; then
+        file_name=$(basename "${image}")
+        file_name=${file_name%.*}
+        mkdir -p ${dunst_pics_}
+        new_image="${dunst_pics_}"/"${file_name}.png"
+        conv_image_ "${image}" "${new_image}"
+    fi
 
-# send notification with compatible image
-notify-send -a "prepare_image" -u "$urgency" -i "$new_image" "$summary" "$body"
-# rm /tmp/dunst-images/*
+    # send notification with compatible image
+    if [[ ! -f "${previous_}" ]]; then
+        send_notify_
+        cp -v "${new_image}" "${previous_}"
+        exit 0
+    else 
+        if [[ $(~/bin/scripts/compare_images.py ${new_image} "${previous_}") == "False" ]]; then
+            send_notify_
+            cp -v "${new_image}" "${previous_}"
+        fi
+    fi
+}
+
+main "$@"
