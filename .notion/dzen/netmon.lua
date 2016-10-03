@@ -3,6 +3,7 @@ function current_interface()
     local default_net_="enp7s0"
 
     local pipe_host_ip = io.popen("getent ahosts "..host.." | head -1 | awk '{print $1}'","r")
+    local active_net_interface= io.popen("ip link show up | awk -F \":\" '/state UP/ {print $2}'")
     local host_ip = pipe_host_ip:read("*l")
     pipe_host_ip:close()
 

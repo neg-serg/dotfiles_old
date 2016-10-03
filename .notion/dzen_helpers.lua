@@ -31,11 +31,11 @@ function dzen_update()
     if dmain.kbd then
         template = template..wrp(dmain.kbd)
     end
-    if dmain.net then 
-        template = template..wrp("net: " .. dmain.net)
-    end
     if dmain.mail then 
         template = template..wrp("mail: " .. dmain.mail)
+    end
+    if dmain.net then 
+        template = template..wrp("net: " .. dmain.net)
     end
     dzen_pipe:write(template..'\n')
 end
