@@ -80,3 +80,8 @@ set recolor-darkcolor "#E0E0E0" #06
 # setting recolor-keep true will keep any color your pdf has.
 # if it is false, it'll just be black and white
 set recolor-keephue "true"
+
+map [normal] q zoom out
+map [normal] w zoom in
+map [normal] e adjust_window best-fit
+map [normal] R adjust_window width
