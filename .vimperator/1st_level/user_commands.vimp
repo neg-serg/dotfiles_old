@@ -1,14 +1,6 @@
-command! backgroundimage :js let (doc = content.document) let (m = doc.defaultView.getComputedStyle(doc.body, '').backgroundImage.match(/url\s*\(\s*['"](.+)['"]\s*\)/)) m ? liberator.open(m[1], liberator.NEW_TAB) : liberator.echoerr('background image not found')
-command! cal :js liberator.echo(<datepicker type="grid" xmlns={XUL}/>)
-command! calcpluginauthor echo let c={}; $('//tr/td[3]').evaluate().map($f.textContent()).forEach(function(n){ c[n] ? c[n]+=1 : c[n] = 1 }); c
 command! dta js DTA_ContextOverlay.findLinks(false);
+command nonblock -description "disable addblock edge for current page" emenu Tools.Adblock Edge.Disable on this page only
 command! evernote js evernote_doAction( document.popupNode, 'CLIP_ACTION_SELECTION' );
-command! execlip js util.readFromClipboard().split(/\n/).filter(function(v) v.trim().length).forEach(liberator.execute)
-command! -nargs=+ sitesearch :exe ":tabopen <args> site:" + content.document.domain
-command! -nargs=1 feed subscrldr -rate=<args>
-command! sopen js [liberator.open(a.href, liberator.NEW_BACKGROUND_TAB) for (a in util.evaluateXPath("//a")) if (content.window.getSelection().containsNode(a, true))]
-command! sum echo let (sum=0) (util.readFromClipboard().match(/\d+/g).map(function(s) parseInt(s)).forEach(function(v) sum+=v),sum)
-" command! googlesidewiki js document.getElementById('gtbSidewiki').click()
 command! webcon :emenu Tools.Web Console
 command! -nargs=* gg open google <args>
 
@@ -34,7 +26,3 @@ function inspect(what) {
     liberator.echo(nodes.sort().join(', '));
 }
 EOB
-
-command! ghost open javascript:(function(){document.body.innerHTML+="<style>*{background:%20#000%20!important;color:%20#0f0%20!important;outline:%20solid%20#f00%201px%20!important;}</style>";})();
-
-command! inlineimages js (function($) {orig$=$; $.each(buffer.allFrames, function(){win=this.wrappedJSObject; $=function(sel){return orig$(sel, win.document)} ; win.document.ondragstart=function(){return false};dst=function(e){return (p=Math.pow)(p(e.clientX-(rc=e.target.getBoundingClientRect()).left,2)+p(e.clientY-rc.top,2),.5)};$("[href~=imgur]").not($(t="[href$=jpeg],[href$=gif],[href$=png],[href$=jpg]")).each(function(){this.href+='.jpg'});void($(t).not(".EGraw").attr({'class':'EGraw',target:'blank'}).each(function(){$(this).append($('<span />').toggle(function(e){$(this).html(' [-]').next().show();return false},function(e){$(this).html(' [+]').next().hide();return false}).click()).append($('<img>').attr({src:this.href,style:'display:block;max-width:500px;max-height:500px',title:'Drag to resize'}).mousedown(function(e){(t=this.wrappedJSObject).iw=t.width;t.d=dst(e);t.dr=false;t.style.maxHeight="none";e.preventDefault();}).mousemove(function(e){if((t=this.wrappedJSObject).d){t.style.maxWidth=t.style.width=((dst(e))*t.iw/t.d)+"px";t.dr=true}}).mouseout(f=function(e){(t=this.wrappedJSObject).d=false;if(t.dr)return false}).click(f))}))})})(content.wrappedJSObject.$ || $);
