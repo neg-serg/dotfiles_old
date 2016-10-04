@@ -120,7 +120,7 @@ alias ple='perl -wlne' # use perl like awk/sed
 # [pattern] [filename unless STDOUT]
 prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
-alias mmv="noglob zmv -W"
+alias {z,m}mv="noglob zmv -W"
 alias mv="mv -i"
 
 alias tree="tree --dirsfirst -C"
@@ -326,7 +326,7 @@ inpath journalctl && {
     alias log0='journalctl -b -0 | ccze -A' #current log 
     alias log1='journalctl -b -1 | ccze -A' #previous log
 } 
-alias log4="v /tmp/notionerr"$(pidof notion)
+alias log4="v \"/tmp/notionerr\$(pidof notion)\""
 inpath iotop && {
     alias iotop='sudo iotop -oPa'
     alias diskact="sudo iotop -Po"
@@ -334,8 +334,7 @@ inpath iotop && {
 
 inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
 
-alias vuze="vuze &>/dev/null&"
-# alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css"
+alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css vuze&>/dev/null&"
 
 (){
     local dist_dir="/one/dist"
