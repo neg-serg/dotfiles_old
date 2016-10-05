@@ -9,6 +9,8 @@ function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 function main(){
     local dunst_pics_="/tmp/dunst-images"
     local previous_="${dunst_pics_}/prev.png"
+    local timeout_=5
+    local tiny_timeout=0.2
 
     if [[ ${image_} == "info" ]]; then
         image_="${dunst_pics_}/cover_not.png"
@@ -25,14 +27,19 @@ function main(){
     # send notification with compatible image
     if [[ ! -f "${previous_}" ]]; then
         cp -v "${new_image}" "${previous_}"
-        send_notify_
+        sleep ${tiny_timeout}
+        send_notify_ 
+        sleep ${timeout_} && rm "${new_image}"
         exit 0
-    else 
+    else
         if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]]; then
             cp -v "${new_image}" "${previous_}"
-            send_notify_
+            sleep ${tiny_timeout}
+            send_notify_ 
+            sleep ${timeout_} && rm "${new_image}"
         fi
     fi
+    find ${dunst_pics_} -name prev.png -not -newermt '-900 seconds' -delete
 }
 
 main "$@"
