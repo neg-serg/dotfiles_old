@@ -27,11 +27,11 @@
     dmenu                = /usr/bin/dmenu -p dunst:
     browser              = /usr/bin/firefox -new-tab
     icon_position        = left
-    icon_folders         = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_folders         = /home/neg/.icons/dunst_status
 
 [frame]
-    width = 1
-    color = "#073642"
+    width     = 1
+    color     = "#073642"
 
 [shortcuts]
     close_all = mod4+space
@@ -54,22 +54,23 @@
     timeout    = 0
     
 [irc_hilight]
-    appname = weechat
-    urgency = low
-    format = "<span weight='normal' letter_spacing='3000' color='#aaaaaa'>%s</span>\n%b"
+    appname    = weechat
+    urgency    = low
+    format     = "<span weight='normal' letter_spacing='3000' color='#aaaaaa'>%s</span>\n%b"
 
 [notify-send]
-    appname = notify-send
-    urgency = high
-    format = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>%s</span>\n%b"
+    appname    = notify-send
+    urgency    = high
+    format     = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>%s</span>\n%b"
 
 [skype]
-    appname = skype
-    format = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
-    urgency = high
+    appname    = skype
+    format     = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
+    urgency    = high
 
 [mpd]
-    appname = mpd-notification
-    #format = "<b>%s</b>\n<span weight='normal' color='#395573'>[</span>%b<span weight='normal' color='#395573'>]</span>"
-    format = ""
-    script = /home/neg/bin/scripts/prepare_image
+    appname    = mpd-notification
+    #format    = "<b>%s</b>\n<span weight='normal' color='#395573'>[</span>%b<span weight='normal' color='#395573'>]</span>"
+    format     = ""
+    script     = /home/neg/bin/scripts/prepare_image
+    timeout    = 12
