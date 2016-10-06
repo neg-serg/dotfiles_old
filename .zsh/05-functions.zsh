@@ -389,3 +389,9 @@ function ju(){
     fi
     notionflux -e "app.byclass('', 'Firefox')"
 }
+
+function steam(){
+    SDL_AUDIODRIVER="alsa" \
+    LD_PRELOAD='/usr/lib/libSDL2-2.0.so.0.4.0 /usr/lib/libSDL_sound-1.0.so.1.0.2' \
+    steam-native
+}
