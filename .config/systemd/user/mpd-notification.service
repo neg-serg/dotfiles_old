@@ -1,0 +1,10 @@
+[Unit]
+Description=MPD Notification
+Requires=mpd.service
+
+[Service]
+Type=simple
+ExecStart=/home/neg/bin/scripts/mpd-notification
+
+[Install]
+WantedBy=default.target
