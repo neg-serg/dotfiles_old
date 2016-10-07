@@ -21,9 +21,8 @@ neg.rofi.hlfg = "\"#aaaaaa\""
 neg.rofi.hlbg = "\"#194558\""
 neg.rofi.bc   = "\"#202020\""
 
-neg.dzen.panel_font_ = "'".. neg.font..":style=bold:size=".. neg.font_size .."'"
+neg.dzen.panel_font_ = "'".. neg.font..":bold:size=".. neg.font_size .."'"
 neg.dzen.bg_         = '"#000000"'
 neg.dzen.h_          = 19
 neg.dzen.main_w_     = "1000"
 neg.dzen.mpd_w_      = "910"
-
