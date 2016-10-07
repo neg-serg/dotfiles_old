@@ -30,12 +30,17 @@ end
 
 local function font_fallback(str)
     local size = ":size=" .. neg.font_size
-    if string.match(str, ".*[а-я][А-Я]*") == nil then
-        mpd_defaults.mpd_len = 80
-        return str
+    local need_in_fallback_ = true
+    if need_in_fallback_ then
+        if string.match(str, ".*[a-zA-Zа-яА-Я].*") ~= nil then
+            mpd_defaults.mpd_len = 80
+            return str
+        else
+            mpd_defaults.mpd_len = 110
+            return "^fn("..alter_fn..size..":Bold)"..str.."^fn()"
+        end
     else
-        mpd_defaults.mpd_len = 110
-        return "^fn("..alter_fn..size..":Bold)"..str.."^fn()"
+        return str
     end
 end
 
