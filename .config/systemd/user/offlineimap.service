@@ -3,12 +3,10 @@ Description=OfflineIMAP Service
 After=network.target
 
 [Service]
-Type=simple
+Type=idle
 ExecStart=/usr/bin/offlineimap -l /dev/null
+EnvironmentFile=/home/neg/.gpg-agent-info
+KillSignal=SIGUSR2
 
 [Install]
-WantedBy=multi-user.target
-
-# [Service]
-# KillSignal=SIGUSR2
-# Restart=always
+WantedBy=default.target
