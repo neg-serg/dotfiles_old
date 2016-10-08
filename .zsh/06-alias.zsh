@@ -94,7 +94,8 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 alias mk="mkdir -p"
 
-function mp(){ for i; do vid_fancy_print "${i}"; ${VIDEO_PLAYER_} --input-unix-socket=~/tmp/${VIDEO_PLAYER_}_socket "${i}"; done }
+function mp(){ for i; do vid_fancy_print "${i}"; ${VIDEO_PLAYER_} --input-unix-socket=~/tmp/${VIDEO_PLAYER_}.socket "${i}"; done }
+alias mpvc="SOCKET=${HOME}/tmp/${VIDEO_PLAYER_}.socket mpvc"
 alias mpa="${VIDEO_PLAYER_} -fs -ao null --input-unix-socket=${HOME}/tmp/${VIDEO_PLAYER_}_socket"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 alias grep="grep --color=auto"
@@ -107,7 +108,7 @@ alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias mnt='sudo mount'
 alias ym="${SCRIPT_HOME}/yandex.mount > /dev/null"
 
-alias s="sudo"
+s(){ if [[ $# > 1 ]]; then sudo "$@"; fi }
 alias x='xargs'
 alias e="open"
 alias rd="rmdir"
@@ -380,3 +381,27 @@ alias ocean='play -q -n -c 2 synth 0 noise 100 noise 100 lowpass 100 gain 12 tre
 alias gdb8="gdb -x ${XDG_CONFIG_HOME}/gdb/gdbinit8.gdb"
 alias gdbv="gdb -x ${XDG_CONFIG_HOME}/gdb/voltron.gdb"
 alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
+
+function ju(){
+    if [[ $(any jupyter|wc -l) == 0  ]]; then
+        jupyter notebook --ip=127.0.0.1 &
+    fi
+    notionflux -e "app.byclass('', 'Firefox')"
+}
+
+function steam(){
+    SDL_AUDIODRIVER="alsa" \
+    LD_PRELOAD='/usr/lib/libSDL2-2.0.so.0.4.0 /usr/lib/libSDL_sound-1.0.so.1.0.2' \
+    steam-native
+}
+
+clojure(){ drip -cp /usr/share/clojure/clojure.jar clojure.main }
+
+function g() {
+    if [[ $# > 0 ]]; then
+        git $@
+    else
+        git status --short ./*
+    fi
+}
+

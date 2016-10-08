@@ -337,14 +337,6 @@ if [ -z "\${which tree}" ]; then
   }
 fi
 
-function g() {
-    if [[ $# > 0 ]]; then
-        git $@
-    else
-        git status --short ./*
-    fi
-}
-
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
 # MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
 function zurl() {
@@ -372,26 +364,8 @@ function ql(){
     fi
 }
 
-function clojure(){
-    drip -cp /usr/share/clojure/clojure.jar clojure.main
-}
-
 # this is similar to cut(1) but using awk(1) fields:
 # print only the given columns, numbered from 1 to N
 kut() { awk "{ print $(for n; do echo -n "\$$n,"; done | sed 's/,$//') }" ;}
 +strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
 +show_coredumps() { locate -b '^core\.?[0-9]*$' --regex | xargs file | fgrep ELF | awk '{print $1}' | sed 's,:$,,'}
-
-#--[ data science ]--------
-function ju(){
-    if [[ $(any jupyter|wc -l) == 0  ]]; then
-        jupyter notebook --ip=127.0.0.1 &
-    fi
-    notionflux -e "app.byclass('', 'Firefox')"
-}
-
-function steam(){
-    SDL_AUDIODRIVER="alsa" \
-    LD_PRELOAD='/usr/lib/libSDL2-2.0.so.0.4.0 /usr/lib/libSDL_sound-1.0.so.1.0.2' \
-    steam-native
-}
