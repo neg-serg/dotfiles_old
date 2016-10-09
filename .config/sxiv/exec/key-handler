@@ -124,7 +124,8 @@ function copy_name() {
     local file_name="$(resolve_file ${fp})"
     xsel -bi <<< "${file_name}"
     [[ ${file_name} =~ "^/mnt/home" ]] && file_name="Ϡ${file_name#/mnt/home/}"
-    notify-send "${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}${file_name}${cl_}${st_}]${cl_}"
+    local prefix_="${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}"
+    notify-send "${prefix_}${file_name}${cl_}${st_}]${cl_}"
     rm -f ${tmp_file2}
 }
 
