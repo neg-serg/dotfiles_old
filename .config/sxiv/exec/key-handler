@@ -66,7 +66,10 @@ function proc() {
     [[ $1 == "move" ]] && cmd="mv" && cmd_w="move"
     >>"${tmp_file}"
     if [[ -z "${dest}" ]] ; then
-        dest=$(${HOME}/bin/Z -i "${z_data_file}" | sed 's:^'${HOME}':~:' |eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"")| sed 's:^~:'${HOME}':')
+        dest=$(${HOME}/bin/Z -i "${z_data_file}" \
+      | sed 's:^'${HOME}':~:' \
+      | eval $(echo ${rofi_cmd} -p "\"[${cmd}] >> \"") \
+      | sed 's:^~:'${HOME}':')
     fi
     [[ -z "${dest}" ]] && exit 0
     if [[ -d "${dest}" ]] ; then
@@ -113,11 +116,15 @@ function rep() {
 }
 
 function copy_name() {
+    local st_="<span weight='bold' color='#395573'>"
+    local cl_="</span>"
+    local bold_="<span weight='bold'>"
     >>"${tmp_file2}"
     local fp=$(cat < "${tmp_file2}")
     local file_name="$(resolve_file ${fp})"
-    echo ${file_name}|xsel -bi
-    notify-send "[>>] [ ${file_name} ]"
+    xsel -bi <<< "${file_name}"
+    [[ ${file_name} =~ "^/mnt/home" ]] && file_name="Ϡ${file_name#/mnt/home/}"
+    notify-send "${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}${file_name}${cl_}${st_}]${cl_}"
     rm -f ${tmp_file2}
 }
 
