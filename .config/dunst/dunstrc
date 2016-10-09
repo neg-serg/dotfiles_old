@@ -12,7 +12,7 @@
     # word_wrap          = yes
     ignore_newline       = no
     geometry             = "400x8-8-35"
-    shrink               = yes
+    shrink               = no
     transparency         = 0
     idle_threshold       = 120
     monitor              = 0
