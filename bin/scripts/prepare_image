@@ -3,23 +3,52 @@
 summary_="$2" body_="$3" image_="$4" urgency_="$5"
 
 function conv_image_(){ convert -resize 200x "$1" "$2" }
-function send_notify_(){ notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${body_}"  }
+function wf_(){
+    echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
+}
+
+function send_notify_(){ 
+    local st_="<span weight='bold' color='#395573'>"
+    local cl_="</span>"
+    local bold_="<span weight='bold'>"
+    local prefix_=$(wf_ "➣")
+    declare -a bodyarr_
+    local c=1
+    while read line; do
+        bodyarr_[$c]=${line}
+        c=$[c+1]
+    done <<< ${body_}
+    bodyarr_[1]=$(wf_ '')"${bodyarr_[1]}\n"
+    bodyarr_[2]=$(wf_ '')"${bodyarr_[2]}\n"
+    bodyarr_[3]=$(wf_ '》')"${bodyarr_[3]}\n"
+    local output
+    for i in ${bodyarr_[@]}; do
+        output="${output}${i}"
+    done
+    summary_="◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇"
+	output="${output}${summary_}"
+	
+    notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
+}
+
 function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 function main(){
-    local dunst_pics_="/tmp/dunst-images"
-    local previous_="${dunst_pics_}/prev.png"
     local timeout_=5
     local tiny_timeout=0.2
 
-    if [[ ${image_} == "info" ]]; then
+    local dunst_pics_="/tmp/dunst-images"
+    [[ ! -d "${dunst_pics_}" ]] && mkdir -p "${dunst_pics_}"
+    local previous_="${dunst_pics_}/prev.png"
+
+    if [[ "${image_}" == "info" ]]; then
         image_="${dunst_pics_}/cover_not.png"
         conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
     else
         file_name=$(basename "${image_}")
         file_name=${file_name%.*}
-        mkdir -p ${dunst_pics_}
+        [[ ! -d "${dunst_pics_}" ]] && mkdir -p "${dunst_pics_}"
         new_image="${dunst_pics_}"/"${file_name}.png"
         conv_image_ "${image_}" "${new_image}"
     fi
@@ -27,14 +56,12 @@ function main(){
     # send notification with compatible image
     if [[ ! -f "${previous_}" ]]; then
         cp -v "${new_image}" "${previous_}"
-        sleep ${tiny_timeout}
         send_notify_ 
         sleep ${timeout_} && rm "${new_image}"
         exit 0
     else
         if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]]; then
             cp -v "${new_image}" "${previous_}"
-            sleep ${tiny_timeout}
             send_notify_ 
             sleep ${timeout_} && rm "${new_image}"
         fi
