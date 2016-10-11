@@ -1,6 +1,5 @@
 set sidebar_width=24
 set sidebar_visible=no
-set sidebar_delim='│'
 color sidebar_new yellow black
 
 # color sidebar_new yellow default
