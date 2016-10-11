@@ -2,7 +2,7 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/neg/.gtkrc-2.0.mine"
-gtk-theme-name="Arc-Dark"
+gtk-theme-name="Neg-Dark"
 gtk-icon-theme-name="flattrcolor"
 gtk-font-name="PragmataPro for Powerline 12"
 gtk-cursor-theme-name="Vanilla-DMZ-AA"
