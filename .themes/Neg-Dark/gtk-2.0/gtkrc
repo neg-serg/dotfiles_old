@@ -1,4 +1,17 @@
-gtk-color-scheme = "base_color:#010204\nfg_color:#D3DAE3\ntooltip_fg_color:#FFFFFF\nselected_bg_color:#003454\nselected_fg_color:#FFFFFF\ntext_color:#D3DAE3\nbg_color:#1F2229\ninsensitive_bg_color:#3e4350\ninsensitive_fg_color:#7c818c\nnotebook_bg:#010204\ndark_sidebar_bg:#353945\ntooltip_bg_color:#353945\nlink_color:#003454\nmenu_bg:#1F2229"
+gtk-color-scheme = "base_color: #191C21"
+gtk-color-scheme = "text_color: #d3dae3"
+gtk-color-scheme = "bg_color: #191C21"
+gtk-color-scheme = "fg_color: #d3dae3"
+gtk-color-scheme = "tooltip_bg_color: #4B5162"
+gtk-color-scheme = "tooltip_fg_color: #ffffff"
+gtk-color-scheme = "selected_bg_color: #073642"
+gtk-color-scheme = "selected_fg_color: #ffffff"
+gtk-color-scheme = "insensitive_bg_color: #2E343D"
+gtk-color-scheme = "insensitive_fg_color: #7c818c"
+gtk-color-scheme = "notebook_bg: #191C21"
+gtk-color-scheme = "dark_sidebar_bg: #272B33"
+gtk-color-scheme = "link_color: #5294e2"
+gtk-color-scheme = "menu_bg: #191C21"
 
 gtk-icon-sizes = "gtk-button=16,16" # This makes button icons smaller.
 gtk-auto-mnemonics = 1
@@ -7,4 +20,5 @@ gtk-primary-button-warps-slider = 1
 include "main.rc"
 include "apps.rc"
 include "panel.rc"
+include "xfce-notify.rc"
 include "menubar-toolbar/menubar-toolbar-dark.rc"
