@@ -71,7 +71,7 @@
 [mergetool]
 	prompt = false
 [credential]
-    helper = cache
+    helper = cache --timeout=28800
 [interactive]
 	diffFilter = diff-highlight
 [diff "exif"]
