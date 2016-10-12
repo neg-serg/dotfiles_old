@@ -335,7 +335,7 @@ inpath iotop && {
 
 inpath nc && alias nyan='nc -v nyancat.dakko.us 23'
 
-alias vuze="GTK_THEME=${HOME}/.themes/Numix-flatstudio-dark/gtk-3.0/gtk-dark.css vuze&>/dev/null&"
+alias vuze="vuze&>/dev/null&"
 
 (){
     local dist_dir="/one/dist"
@@ -360,6 +360,7 @@ fi
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
+alias py="bpython"
 alias ya="yaourt -S --noconfirm"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
@@ -404,4 +405,3 @@ function g() {
         git status --short ./*
     fi
 }
-
