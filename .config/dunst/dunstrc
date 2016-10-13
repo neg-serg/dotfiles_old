@@ -39,7 +39,7 @@
     context   = mod4+ctrl+shift+period
 
 [urgency_low]
-    background = "#222222"
+    background = "#010204"
     foreground = "#888888"
     timeout    = 4
 
@@ -49,9 +49,14 @@
     timeout    = 4
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
+    background = "#010204"
+    foreground = "#cc2222"
     timeout    = 0
+
+[urgency_mpd]
+    background = "#000000"
+    foreground = "#ffffff"
+    timeout    = 10
     
 [irc_hilight]
     appname    = weechat
@@ -73,4 +78,4 @@
     #format    = "<b>%s</b>\n<span weight='normal' color='#395573'>[</span>%b<span weight='normal' color='#395573'>]</span>"
     format     = ""
     script     = /home/neg/bin/scripts/prepare_image
-    timeout    = 12
+    urgency    = mpd
