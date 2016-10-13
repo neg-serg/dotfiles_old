@@ -34,7 +34,7 @@ function send_notify_(){
 function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 function main(){
-    local timeout_=5
+    local timeout_=10
     local tiny_timeout=0.2
 
     local dunst_pics_="/tmp/dunst-images"
