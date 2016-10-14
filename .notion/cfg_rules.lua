@@ -24,10 +24,11 @@ defwinprop{class="Firefox",transient_mode="off",jumpto="on",target="web",tag="ww
 defwinprop{class="Firefox",role="Manager",instance="Download",transient_mode="off",jumpto="off",target="firefox-dialog"}
 defwinprop{class="Firefox",instance="Dialog",float=true}
 defwinprop{class="Firefox",role="Organizer",target="firefox-dialog"}
-defwinprop{class="Firefox",instance="firefox",role="GtkFileChooserDialog",
-    max_size = {w=1024,h=768},
-    min_size = {w=800,h=600},
+defwinprop{class="Firefox",role="GtkFileChooserDialog",
+    max_size = {w=1024,h=600},
+    min_size = {w=1024,h=600},
     float=true,
+    jumpto=true
 }
 defwinprop{class="Conkeror",instance="Navigator",transient_mode="off",target="web",tag="www"}
 defwinprop{class="Iceweasel",role="www",transient_mode="off",jumpto="on",target="web",tag="www"}
@@ -121,11 +122,7 @@ defwinprop{instance="spicy",jumpto=true,target="vm",transient_mode="on",tag="vir
 defwinprop{class="inkscape",target="graphic",tag="graph"}
 defwinprop{class="simple-scan",target="graph"}
 defwinprop{class="gthumb",target="graph"}
-defwinprop{
-    class="Gimp",target="gimp",jumpto=true,tag="graph",float=true,
-    max_size = {w=1600,h=1200,x=300,y=200},
-    min_size = {w=1024,h=768},
-}
+defwinprop{class="Gimp",target="gimp",jumpto=true,tag="graph",transient_mode="current"}
 defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-file-open",transient_mode="off",float=true,tag="graph"}
 defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-file-save",transient_mode="off",float=true,tag="graph"}
 defwinprop{class="Gimp",target="gimp",jumpto=true,role="gimp-message-dialog",transient_mode="off",float=true,tag="graph"}
@@ -153,6 +150,7 @@ defwinprop{class="Explorer.exe",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="steam",target="wine",jumpto=true,tag="virt",float=true}
 defwinprop{class="Steam",target="wine",jumpto=true,tag="virt"}
 defwinprop{class="dota2",target="wine",jumpto=true,float=true,tag="virt"}
+defwinprop{class="darkest.bin.x86_64",target="wine",jumpto=true,float=true,tag="virt"}
 -------------------------------------[[ TORRENT ]]-----------------------------------
 defwinprop{class="Ktorrent",winlist_ignore=true,transient_mode="off",instance="ktorrent",target="torrent",tag="torrent"}
 defwinprop{class="Vuze",winlist_ignore=true,transient_mode="off",target="torrent",tag="torrent",jumpto=true,float=false}
