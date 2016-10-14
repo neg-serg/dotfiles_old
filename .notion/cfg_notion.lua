@@ -28,7 +28,6 @@ local cfg_list = {
     "cfg_kb",            -- keybindings
     "cfg_xrandr",        -- xrandr config
     "transparency",      -- autoset transparency
-    "dzen_bg",           -- background reader for dzen
     "lua_repl"           -- experimental script standalone lua repl
 }
 
