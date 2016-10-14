@@ -117,13 +117,15 @@ function rep() {
 
 function copy_name() {
     local st_="<span weight='bold' color='#395573'>"
+    local gr_="<span weight='bold' color='#287373'>"
     local cl_="</span>"
     local bold_="<span weight='bold'>"
     >>"${tmp_file2}"
     local fp=$(cat < "${tmp_file2}")
     local file_name="$(resolve_file ${fp})"
     xsel -bi <<< "${file_name}"
-    [[ ${file_name} =~ "^/mnt/home" ]] && file_name="Ϡ${file_name#/mnt/home/}"
+    [[ ${file_name} =~ "^${HOME}" ]] && file_name="${gr_}~${cl_}${file_name#${HOME}}"
+    [[ ${file_name} =~ "^/mnt/home" ]] && file_name="${gr_}Ϡ${cl_}${file_name#/mnt/home/}"
     local prefix_="${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}"
     notify-send "${prefix_}${file_name}${cl_}${st_}]${cl_}"
     rm -f ${tmp_file2}
