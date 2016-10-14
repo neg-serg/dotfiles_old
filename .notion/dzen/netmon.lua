@@ -142,12 +142,11 @@ local function update_netmon_info()
     local output = string.format("%.1fK/%.1fK", kbsin, kbsout)
 
     if net_conf.show_avg == 1 then
-    local avgin, avgout = calc_avg(lin/1024, lout/1024)
+        local avgin, avgout = calc_avg(lin/1024, lout/1024)
         output = output .. string.format(" (%.1fK/%.1fK)", avgin, avgout)
-
-    netmon_avgin = fmt(avgin)
-    netmon_avgout = fmt(avgout)
-    dzen_update()
+        netmon_avgin = fmt(avgin)
+        netmon_avgout = fmt(avgout)
+        dzen_update()
     end
 
     netmon_kbsin = fmt(kbsin)
