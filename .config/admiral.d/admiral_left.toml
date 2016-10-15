@@ -1,15 +1,9 @@
 [admiral]
 items = [
-    "clock",
-    "left",
-    "workspaces",
-    "right",
-    "left",
-    "klay",
-    "right",
-    "left",
-    "network" ,
-    "right" 
+    "left" , "clock"      , "right" ,
+    "left" , "workspaces" , "right" ,
+    "left" , "klay"       , "right" ,
+    "left" , "network"    , "right"
 ] 
 
 [workspaces]
@@ -20,7 +14,7 @@ path = "/home/neg/bin/mon/klay2"
 reload = 0.1
 
 [clock]
-path = "~/bin/scripts/wrp.sh $(date '+%H:%M')"
+path = "date '+%H:%M'"
 reload = 1
 
 [network]
