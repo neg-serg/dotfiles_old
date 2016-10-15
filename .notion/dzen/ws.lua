@@ -119,6 +119,9 @@ local function ws_current(t)
         end
         local fr,cur
         local ws_numbered = false
+
+        local out = assert(io.open("/tmp/ws_out.fifo", "w"))
+
         for i, v in ipairs(ws_map) do
             if name_pager == ws_map[i].name then
                 if ws_map[i].sym ~= nil then
@@ -126,14 +129,22 @@ local function ws_current(t)
                 else
                     dmain.ws = i .. ": " .. ws_map[i].name
                 end
+
+                if dmain.ws ~= nil and dmain.ws ~= "" then
+                    local s = i .. ": " .. ws_map[i].name
+                    out:write(s..'\n')
+                end
+
                 ws_numbered = true
                 break
             end
         end
+
         if not ws_numbered then
             dmain.ws = name_pager
         end
         dzen_update()
+        assert(out:close())
     end
 end
 
