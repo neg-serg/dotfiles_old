@@ -4,33 +4,37 @@ local M3 = "Mod3+" M4 = "Mod4+"
 local M5 = "Mod5+" Ct = "Control+"
 local Sh = "Shift+"
 
+local core = notioncore
+local wmr_ = WMoveresMode
+local withtag = app.byclass_withtag
+
 Neg_kb.WMPlex_toplevel = {
-    kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. notioncore.current():xid()) end),
+    kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. core.current():xid()) end),
     kpress(M4.."F11",    function() rofi.mainmenu() end),
-    kpress(M4.."slash",  function() notioncore.goto_previous() end),
-    kpress(M1.."Tab",    function() notioncore.goto_previous() end),
+    kpress(M4.."slash",  function() core.goto_previous() end),
+    kpress(M1.."Tab",    function() core.goto_previous() end),
     --[[ scratchpads  ]]--------------------------------
     kpress(M4.."D",      function() console() end),
     kpress(M4.."F",      function() ncmpcpp() end),
     kpress(M4.."E",      function() namsc('im') end),
-    kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(notioncore.current()) end),
-    kpress(M1.."G",      function() rofi.goto_win(notioncore.current()) end),
+    kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(core.current()) end),
+    kpress(M1.."G",      function() rofi.goto_win(core.current()) end),
     --[[ wasd / push direction ]]-----------------------
     kpress(M4..Ct.."W", function(_) _:push_direction('up') end),
     kpress(M4..Ct.."A", function(_) _:push_direction('left') end),
     kpress(M4..Ct.."S", function(_) _:push_direction('down') end),
     kpress(M4..Ct.."D", function(_) _:push_direction('right') end),
     --[[  progs run by app  ]]--------------------------
-    kpress(M4.."1",      function() app.byclass_withtag('~/bin/wim', 'wim', nil, 'editor') end),
-    kpress(M4..Sh.."1",  function() app.byclass_withtag('emacs', 'Emacs', nil, 'geditor') end),
-    kpress(M4..Ct.."1",  function() app.byclass_withtag('atom', 'Atom', nil, 'aeditor') end),
-    kpress(M4.."F1",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh idea', 'jetbrains-idea', nil, 'ide') end),
-    kpress(M4.."F2",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh webstorm', 'jetbrains-webstorm', nil, 'ide') end),
-    kpress(M4.."F3",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh clion', 'jetbrains-clion', nil, 'ide') end),
-    kpress(M4.."F4",     function() app.byclass_withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
+    kpress(M4.."1",      function() withtag('~/bin/wim', 'wim', nil, 'editor') end),
+    kpress(M4..Sh.."1",  function() withtag('emacs', 'Emacs', nil, 'geditor') end),
+    kpress(M4..Ct.."1",  function() withtag('atom', 'Atom', nil, 'aeditor') end),
+    kpress(M4.."F1",     function() withtag('~/bin/scripts/jetbrains.sh idea', 'jetbrains-idea', nil, 'ide') end),
+    kpress(M4.."F2",     function() withtag('~/bin/scripts/jetbrains.sh webstorm', 'jetbrains-webstorm', nil, 'ide') end),
+    kpress(M4.."F3",     function() withtag('~/bin/scripts/jetbrains.sh clion', 'jetbrains-clion', nil, 'ide') end),
+    kpress(M4.."F4",     function() withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
     kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
-    kpress(M4.."B",      function() app.byclass_withtag(nil, 'mpv', nil, 'video') end),
-    kpress(M4..Sh.."L",  function() app.byclass_withtag(nil, '_logs_', nil, 'logs') end),
+    kpress(M4.."B",      function() withtag(nil, 'mpv', nil, 'video') end),
+    kpress(M4..Sh.."L",  function() withtag(nil, '_logs_', nil, 'logs') end),
     kpress(M4.."W",      function() app.byinstance_withtag(
         'firefox || /usr/bin/firefox-developer',
         'Firefox',
@@ -38,8 +42,8 @@ Neg_kb.WMPlex_toplevel = {
         nil,
         'www') 
     end),
-    kpress(M4.."O",      function() app.byclass_withtag('zathura', 'Zathura', 'pdf') end),
-    kpress(M4..Ct.."E",  function() app.byclass_withtag(nil, 'Vmware', nil, 'virt') end),
+    kpress(M4.."O",      function() withtag('zathura', 'Zathura', 'pdf') end),
+    kpress(M3..Ct.."E",  function() withtag(nil, 'Vmware', nil, 'virt') end),
     kpress(M4..Ct.."C",  function() 
         local downloads_dir_="~/dw/"
         local shots_dir_="~/tmp/shots"
@@ -78,7 +82,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("Q",     function() spawn('~/bin/mpd_sel.sh') end),
         kpress("S",     function() spawn('skype') end),
         kpress(Sh.."D", function() spawn('~/bin/scripts/exec_demo.sh') end),
-        kpress(Sh.."D", "notioncore.detach(_chld, 'toggle')", "_chld:non-nil"),
+        kpress(Sh.."D", "core.detach(_chld, 'toggle')", "_chld:non-nil"),
         kpress(Sh.."G", function() gdb() end),
         kpress(Sh.."K", function() spawn('~/bin/scripts/toggle_keynav') end),
         kpress(Sh.."O", function() spawn('~/bin/pls -vol') end),
@@ -90,10 +94,10 @@ Neg_kb.WMPlex_toplevel = {
         kpress("W",     function() webcam() end),
         kpress(Sh.."B", function() 
             local browser_list = { "yandex-browser-beta"
-                                   , "chromium"
-                                   , "google-chrome"
-                                   , "google-chrome-stable"
-                                   , "tor-browser-en"
+                                 , "chromium"
+                                 , "google-chrome"
+                                 , "google-chrome-stable"
+                                 , "tor-browser-en"
                                  }
             local function gen_www_list_()
                 local str = ""
@@ -113,13 +117,13 @@ Neg_kb.WMPlex_toplevel = {
 
 Neg_kb.WScreen = {
     submap(M1.."E", {
-        kpress("E",     function() notioncore.goto_activity() end),
-        kpress(Ct.."T", function() notioncore.tagged_clear() end),
+        kpress("E",     function() core.goto_activity() end),
+        kpress(Ct.."T", function() core.tagged_clear() end),
         kpress("C", function(_) WRegion.rqclose(_, false) end),
         kpress("L",     "WRegion.rqorder(_chld, 'front')","_chld:non-nil"),
         kpress(Sh.."L", "WRegion.rqorder(_chld, 'back')","_chld:non-nil"),
     }),
-    kpress(M4.."grave", "notioncore.goto_next(_chld, 'right')", "_chld:non-nil"),
+    kpress(M4.."grave", "core.goto_next(_chld, 'right')", "_chld:non-nil"),
     ---------------------------------------------------------
     kpress(M4.."H", "_chld:focus_direction('left')", "_chld:non-nil"),
     kpress(M4.."J", "_chld:focus_direction('down')", "_chld:non-nil"),
@@ -166,7 +170,7 @@ Neg_kb.WMPlex = {
 
 Neg_kb.WFrame_toplevel = {
     kpress(M4.."A", function(_) rofi.attach_win(_) end),
-    kpress(M1.."A", function(_) notioncore.tagged_attach(_) end),
+    kpress(M1.."A", function(_) core.tagged_attach(_) end),
     submap(M1.."E", {
         kpress("H", function(_) WFrame.maximize_horiz(_) end),
         kpress("V", function(_) WFrame.maximize_vert(_) end),
@@ -183,34 +187,34 @@ Neg_kb.floating = {
 }
 
 Neg_kb.WMoveresMode = {
-    kpress("Escape", function(_) WMoveresMode.cancel(_) end),
-    kpress("Return", function(_) WMoveresMode.finish(_) end),
-    kpress(Ct.."C",  function(_) WMoveresMode.finish(_) end),
+    kpress("Escape", function(_) wmr_.cancel(_) end),
+    kpress("Return", function(_) wmr_.finish(_) end),
+    kpress(Ct.."C",  function(_) wmr_.finish(_) end),
 
-    kpress("H",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
-    kpress("L",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
-    kpress("K",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
-    kpress("J",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
+    kpress("H",      function(_) wmr_.resize(_, 1, 0, 0, 0) end),
+    kpress("L",      function(_) wmr_.resize(_, 0, 1, 0, 0) end),
+    kpress("K",      function(_) wmr_.resize(_, 0, 0, 1, 0) end),
+    kpress("J",      function(_) wmr_.resize(_, 0, 0, 0, 1) end),
 
-    kpress("W",      function(_) WMoveresMode.resize(_, 0, 0, 1, 0) end),
-    kpress("A",      function(_) WMoveresMode.resize(_, 1, 0, 0, 0) end),
-    kpress("S",      function(_) WMoveresMode.resize(_, 0, 0, 0, 1) end),
-    kpress("D",      function(_) WMoveresMode.resize(_, 0, 1, 0, 0) end),
+    kpress("W",      function(_) wmr_.resize(_, 0, 0, 1, 0) end),
+    kpress("A",      function(_) wmr_.resize(_, 1, 0, 0, 0) end),
+    kpress("S",      function(_) wmr_.resize(_, 0, 0, 0, 1) end),
+    kpress("D",      function(_) wmr_.resize(_, 0, 1, 0, 0) end),
 
-    kpress(Sh.."H",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
-    kpress(Sh.."L",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
-    kpress(Sh.."K",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
-    kpress(Sh.."J",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
+    kpress(Sh.."H",   function(_) wmr_.resize(_,-1, 0, 0, 0) end),
+    kpress(Sh.."L",   function(_) wmr_.resize(_, 0,-1, 0, 0) end),
+    kpress(Sh.."K",   function(_) wmr_.resize(_, 0, 0,-1, 0) end),
+    kpress(Sh.."J",   function(_) wmr_.resize(_, 0, 0, 0,-1) end),
     
-    kpress(Sh.."W",   function(_) WMoveresMode.resize(_, 0, 0,-1, 0) end),
-    kpress(Sh.."A",   function(_) WMoveresMode.resize(_,-1, 0, 0, 0) end),
-    kpress(Sh.."S",   function(_) WMoveresMode.resize(_, 0, 0, 0,-1) end),
-    kpress(Sh.."D",   function(_) WMoveresMode.resize(_, 0,-1, 0, 0) end),
+    kpress(Sh.."W",   function(_) wmr_.resize(_, 0, 0,-1, 0) end),
+    kpress(Sh.."A",   function(_) wmr_.resize(_,-1, 0, 0, 0) end),
+    kpress(Sh.."S",   function(_) wmr_.resize(_, 0, 0, 0,-1) end),
+    kpress(Sh.."D",   function(_) wmr_.resize(_, 0,-1, 0, 0) end),
 
-    kpress(M1.."H",   function(_) WMoveresMode.move(_,-1, 0) end),
-    kpress(M1.."L",   function(_) WMoveresMode.move(_, 1, 0) end),
-    kpress(M1.."K",   function(_) WMoveresMode.move(_, 0,-1) end),
-    kpress(M1.."J",   function(_) WMoveresMode.move(_, 0, 1) end),
+    kpress(M1.."H",   function(_) wmr_.move(_,-1, 0) end),
+    kpress(M1.."L",   function(_) wmr_.move(_, 1, 0) end),
+    kpress(M1.."K",   function(_) wmr_.move(_, 0,-1) end),
+    kpress(M1.."J",   function(_) wmr_.move(_, 0, 1) end),
 }
 
 Neg_kb.Tiling = {
