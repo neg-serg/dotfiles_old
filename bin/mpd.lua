@@ -1,11 +1,10 @@
 #!/usr/sbin/lua
 
+require("os")
+
 local home_=os.getenv("HOME")
 local notion_path_=home_.."/.notion"
 
-require("os")
-
-dofile(notion_path_.."/dzen_helpers.lua")
 dofile(notion_path_.."/style_settings.lua")
 
 local mpd_defaults={
