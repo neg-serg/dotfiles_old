@@ -1,0 +1,6 @@
+[admiral]
+items = ["mpd"]
+
+[mpd]
+path = "~/bin/mpd.lua"
+reload = 0.05
