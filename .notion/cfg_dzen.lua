@@ -31,7 +31,6 @@ function dzen_delete()
     os.execute("pkill dzen2")
     os.execute("pkill rofi")
     if not notion_dzen_ then
-        os.execute("pkill admiral")
         os.execute(home_.."/bin/scripts/panels")
     end
 end
