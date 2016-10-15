@@ -26,3 +26,16 @@ neg.dzen.bg_         = '"#000000"'
 neg.dzen.h_          = 19
 neg.dzen.main_w_     = "1000"
 neg.dzen.mpd_w_      = "910"
+
+function wrp(tmplte, left_side, right_side)
+    local bracket_color = "#287373"
+    local fg_color      = "#cccccc"
+    local left_side     = left_side or "[ "
+    local right_side    = right_side or " ]"
+    local function setcol(color)
+        return "^fg(".. color .. ")"
+    end
+    return setcol(bracket_color) .. left_side ..
+           setcol(fg_color) .. tmplte .. setcol(bracket_color) 
+           .. right_side .. setcol(fg_color)
+end
