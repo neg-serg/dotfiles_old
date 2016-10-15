@@ -9,6 +9,7 @@ old_received_bytes=""
 transmitted_bytes=""
 old_transmitted_bytes=""
 
+Kb="K" Mb="M"
 
 # This function parses /proc/net/dev file searching for a line containing $interface data.
 # Within that line, the first and ninth numbers after ':' are respectively the received and transmited bytes.
@@ -29,18 +30,22 @@ get_velocity() {
     value=$1   old_value=$2
 
     let vel=$[value-old_value]
-    let velKB=$[vel/1024]
-    if [[ $velKB != 0 ]]; then
-        echo -n "${velKB}K";
+    let velKB=$[vel/1024.]
+    let velMB=$[vel/1024./1024.]
+
+    if [[ ${velMB} > 1 ]]; then
+        builtin printf "%.1f%s" "${velMB}" "${Mb}";
+    elif [[ ${velKB} > 1 ]]; then
+        builtin printf "%.1f%s" "${velKB}" "${Kb}";
     else
-        echo -n "${vel}B";
+        builtin printf "%.1f%s" "${vel}" "B";
     fi
 }
 
 # Gets initial values.
 get_bytes
-old_received_bytes=$received_bytes
-old_transmitted_bytes=$transmitted_bytes
+old_received_bytes=${received_bytes}
+old_transmitted_bytes=${transmitted_bytes}
 
 # Main loop. It will repeat forever.
 while true; do
