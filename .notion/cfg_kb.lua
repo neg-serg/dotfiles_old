@@ -43,7 +43,7 @@ Neg_kb.WMPlex_toplevel = {
         'www') 
     end),
     kpress(M4.."O",      function() withtag('zathura', 'Zathura', 'pdf') end),
-    kpress(M3..Ct.."E",  function() withtag(nil, 'Vmware', nil, 'virt') end),
+    kpress(M4..Ct.."E",  function() withtag(nil, 'Vmware', nil, 'virt') end),
     kpress(M4..Ct.."C",  function() 
         local downloads_dir_="~/dw/"
         local shots_dir_="~/tmp/shots"
