@@ -7,6 +7,19 @@ function wf_(){
     echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
 }
 
+function get_pid_(){
+    local mpdsc_="$(which mpdscribble) --conf"
+    pgrep -f "${mpdsc_} ${XDG_CONFIG_HOME}/mpdscribble/$1.conf --no-daemon"
+}
+
+function get_lastfm_(){
+    if [[ $(get_pid_ neg) != ""  ]]; then
+        builtin printf "$(wf_ "L")Neg last.fm"
+    elif [[ $(get_pid_ hextrick) != "" ]]; then
+        builtin printf "$(wf_ "L")Hextrick last.fm"
+    fi
+}
+
 function send_notify_(){ 
     local st_="<span weight='bold' color='#395573'>"
     local cl_="</span>"
@@ -26,7 +39,7 @@ function send_notify_(){
         output="${output}${i}"
     done
     summary_="◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇"
-	output="${output}${summary_}"
+    output="${output}$(get_lastfm_)${summary_}"
 	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
 }
