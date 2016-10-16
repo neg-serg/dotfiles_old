@@ -131,7 +131,7 @@ local function ws_current(t)
                 end
 
                 if dmain.ws ~= nil and dmain.ws ~= "" then
-                    local s = i .. ": " .. ws_map[i].name
+                    local s = i .. ": " .. ws_map[i].sym .. " ".. ws_map[i].name
                     out:write(s..'\n')
                 end
 
