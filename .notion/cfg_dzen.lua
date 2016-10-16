@@ -56,6 +56,8 @@ if notion_dzen_ then
 end
 
 dopath("dzen/ws")
-dopath("dzen/date")
-dopath("dzen/kbd")
-dopath("dzen/netmon")
+if notion_dzen_ then
+    dopath("dzen/date")
+    dopath("dzen/kbd")
+    dopath("dzen/netmon")
+end
