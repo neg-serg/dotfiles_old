@@ -2,7 +2,7 @@
 items = [
     "left" , "clock"      , "right" ,
     "left" , "workspaces" , "right" ,
-    "left" , "klay"       , "right" ,
+    "left" , "input"      , "klay"  , "right" ,
     "left" , "network"    , "right"
 ] 
 
@@ -10,20 +10,23 @@ items = [
 path = 'tail -f /tmp/ws_out.fifo 2>/dev/null'
 
 [klay]
-path = "~/bin/mon/klay2"
-reload = 0.1
+path   = "~/bin/mon/klay"
 
 [clock]
-path = "date '+%H:%M'"
+path   = "date '+%H:%M'"
 reload = 1
 
 [network]
 path = '~/bin/mon/network_speed.sh'
 
+[input]
+path   = "echo 'input: '"
+static = true
+
 [left]
-path = "~/bin/scripts/wrp.sh __left__"
+path   = "~/bin/scripts/wrp.sh __left__"
 static = true
 
 [right]
-path = "~/bin/scripts/wrp.sh __right__"
+path   = "~/bin/scripts/wrp.sh __right__"
 static = true
