@@ -39,7 +39,7 @@ function send_notify_(){
         output="${output}${i}"
     done
     summary_="◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇◇"
-    output="${output}$(get_lastfm_)${summary_}"
+    output="\n${output}$(get_lastfm_)\n\n${summary_}"
 	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
 }
