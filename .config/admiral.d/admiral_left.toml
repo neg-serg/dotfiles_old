@@ -10,7 +10,7 @@ items = [
 path = 'tail -f /tmp/ws_out.fifo 2>/dev/null'
 
 [klay]
-path = "/home/neg/bin/mon/klay2"
+path = "~/bin/mon/klay2"
 reload = 0.1
 
 [clock]
@@ -18,7 +18,7 @@ path = "date '+%H:%M'"
 reload = 1
 
 [network]
-path = '~/bin/mon/network_speed.sh enp7s0 2'
+path = '~/bin/mon/network_speed.sh'
 
 [left]
 path = "~/bin/scripts/wrp.sh __left__"
