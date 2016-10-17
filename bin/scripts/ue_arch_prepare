@@ -1,2 +1,0 @@
-#!/bin/zsh
-mkdir ~/bin2/ && cd ~/bin2/ && ln -s /bin/ld.bfd ./ld.gold; export PATH=$HOME/bin2:$PATH

@@ -10,5 +10,3 @@ for i in *.{jpg,png}; do
 done
 range=${#files[@]}
 ((range)) && hsetroot -fill "${files[RANDOM % range]}"
-	# sleep 120m
-# done

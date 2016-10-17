@@ -1,7 +1,0 @@
-#!/bin/zsh
-while read p url; do \
-    bundle_name="${url#*://github.com/}"; \
-    dir="$(command git config -f .gitmodules --get ${p%.url}.path)"; \
-    echo "NeoBundle '$bundle_name', { 'directory': '${dir##*/}' }"; \
-done < <(command git config -f .gitmodules \
-    --get-regexp 'submodule.vim/bundle/\S+.(url)' | sort)

@@ -1,4 +1,0 @@
-#!/bin/zsh
-
-find -type f -exec sed -i 's/5294e2/00465F/g' {} \;
-find -type f -exec sed -i 's/5294E2/00465F/g' {} \;

@@ -1,4 +1,0 @@
-#!/bin/zsh
-# moint dir readonly
-rodir() { sudo mount --bind "$@" && sudo mount -o remount,ro,bind "$@" }
-rodir "$@"
