@@ -58,8 +58,14 @@ BEL="\007"
 DSC="${ESC}P"
 OSC="${ESC}]"
 
-colors=( background foreground cursor mouse_background mouse_foreground highlight border color0 color1 color2 color3 color4 color5 color6 color7 color8 color9 color10 color11 color12 color13 color14 color15 )
-color_names=( black red green yellow blue magenta cyan white brblack brred brgreen bryellow brblue brmagenta brcyan brwhite )
+colors=( 
+    background foreground
+    mouse_{background,foreground}
+    cursor
+    highlight
+    border
+    color{0..255}
+)
 
 if [ -z "${DYNAMIC_COLORS_ROOT}" ]; then
     DYNAMIC_COLORS_ROOT="${HOME}/.config"
@@ -84,13 +90,13 @@ init () {
 }
 
 unset_colors () {
-    for color in ${colors[@]}; do
+    for color in "${colors[@]}"; do
         unset ${!color}
     done
 }
 
 set_colors () {
-    for color in ${colors[@]}; do
+    for color in "${colors[@]}"; do
         [[ ${!color} ]] && change_color "$color" "${!color}"
     done
 }
@@ -110,7 +116,7 @@ audit () {
     unset_colors
     load_colorscheme "$1"
     declare -a problems
-    for color in ${colors[@]}; do
+    for color in "${colors[@]}"; do
         if [ ! ${!color} ]; then
             problems=( "${problems[@]}" "\033[4m$color\033[0m is not defined" )
         fi
@@ -163,18 +169,6 @@ edit () {
     else
         ${EDITOR:-/usr/bin/vim} "${@/%/.sh}"
     fi
-}
-
-create () {
-    [ -f "$COLORSCHEMES/$1.sh" ] && die "error: colorscheme '$1' already exists"
-    output="# $1\n"
-    for color in ${colors[@]}; do
-        output+="\n$color=\"\""
-        [[ $color == color* ]] && output+=" # ${color_names[${color#color}]}"
-    done
-    cd "$COLORSCHEMES"
-    echo -e "$output" >> "$1.sh"
-    edit "$1"
 }
 
 usage () {
