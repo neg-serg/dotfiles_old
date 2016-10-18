@@ -361,7 +361,7 @@ fi
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
 alias py="bpython"
-alias ya="yaourt -S --noconfirm"
+alias ya="~/bin/scripts/pkgsearch"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
 vol(){ {st pulsemixer && exit} || {st alsamixer -g && exit } }
@@ -405,3 +405,22 @@ function g() {
         git status --short ./*
     fi
 }
+
+function d(){
+    case "$1" in
+        clean)   docker volume ls -qf dangling=true | xargs -r docker volume rm  -v ;;
+        craft)   docker run -t -i -d -p 0.0.0.0:25565:25565 -v /var/run/docker.sock:/var/run/docker.sock --name dockercraft gaetan/dockercraft ;;
+        check*)  bash <(curl -s https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh) ;;
+        mysqld)  docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=1 --name mysql mariadb ;;
+        mysql)   docker run -it --rm --link mysql:mysql mariadb sh -c 'exec mysql -h$MYSQL_PORT_3306_TCP_ADDR -P$MYSQL_PORT_3306_TCP_PORT -uroot $@' ;;
+        pg*)     docker run -d -p 5432:5432 --name postgres postgres ;;
+        psql)    docker run -it --rm --link postgres:postgres postgres psql -h postgres -U postgres $@ ;;
+        rbt*)    docker run -d --hostname rabbitmq --name rabbitmq -p 15672:15672 -p 5672:5672 rabbitmq:3-management ;;
+    esac
+}
+alias dpa="docker ps -a"
+
+mysql_create() { echo "CREATE USER '$1'@'%' IDENTIFIED BY '$2'; CREATE DATABASE $1 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci; GRANT ALL ON $1.* TO '$1'@'%'; FLUSH PRIVILEGES;" }
+mysql_drop() { echo "DROP DATABASE $1; DROP USER '$1'@'%'; FLUSH PRIVILEGES;" }
+psql_create() { echo "CREATE DATABASE $1" }
+psql_drop() { echo "DROP DATABASE $1" }
