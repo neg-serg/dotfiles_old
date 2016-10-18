@@ -19,26 +19,13 @@
 *.color14:#47959E
 *.color7:#899CA1
 *.color15:#C0C0C0
-
 *.color108:#4C407C
-*.color17:#002b36
-*.color18:#073642
-*.color222:#5c9caa
-
 *.color226:#6D0031
 *.color227:#006D39
 *.color228:#00406D
 *.color229:#ED0022
 *.color218:#00ED85
 *.color219:#008BED
-
-!*.color220: #0f141a
-!*.color222: #5c9caa
-!*.color222: #5c9caa
-!*.color221: #265360
-!*.color223: #091f2c
-!*.color224: #10151b
-!*.color225: #25535f
 
 *.color17: #002b36
 *.color18: #073642
@@ -91,7 +78,3 @@
 *.color208: #99d1ce
 !base7 - gotham
 *.color209: #d3ebe9
-
-!*.color210: #000000
-!*.color211: #000000
-!*.color212: #000000
