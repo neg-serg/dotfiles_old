@@ -108,7 +108,7 @@ alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias mnt='sudo mount'
 alias ym="${SCRIPT_HOME}/yandex.mount > /dev/null"
 
-s(){ if [[ $# > 1 ]]; then sudo "$@"; fi }
+alias s="sudo"
 alias x='xargs'
 alias e="open"
 alias rd="rmdir"
