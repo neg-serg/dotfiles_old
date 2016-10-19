@@ -116,7 +116,7 @@ zle -N fkill ; bindkey "^Xq" fkill
 # fh - repeat history
 function fh() {
     zle -I;
-    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s --extended-exact| sed 's/ *[0-9]* *//')
+    echo $(([[ -n "$ZSH_NAME" ]] && fc -l 1 || history) | fzf +s| sed 's/ *[0-9]* *//')
 }
 
 #fzf locate
