@@ -57,7 +57,7 @@ end
 
 dopath("dzen/ws")
 if notion_dzen_ then
-    dopath("dzen/date")
-    dopath("dzen/kbd")
-    dopath("dzen/netmon")
+    dopath("lib/deprecated/dzen/date")
+    dopath("lib/deprecated/dzen/kbd")
+    dopath("lib/deprecated/dzen/netmon")
 end

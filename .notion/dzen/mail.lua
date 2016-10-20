@@ -8,4 +8,4 @@ local function mail_update()
 end
 
 mail_timer = notioncore.create_timer()
-mail_timer:set(0, mail_update)
+mail_timer:set(12000, mail_update)
