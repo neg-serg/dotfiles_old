@@ -12,23 +12,23 @@ local mod_list = {
 }
 
 local cfg_list = { 
-    "dbg",               -- functions for stderr debbuging
-    "cfg_settings",      -- notioncore.set
-    "cfg_rules",         -- window placement rules
-    "cfg_layouts",       -- a bunch of default layouts
-    "app",               -- module to jump by class, tag, instance etc
-    "named_scratchpad",  -- named scratchpad module
-    "hide_tabs",         -- hide tabs
-    "net_client_list",   -- net client list to provide `wmctrl -l`
-    "directions",        -- 2bwm-like directions
-    "screenshot",        -- screenshot script
-    "cfg_dzen",          -- dzen config
-    "rofi",              -- rofi module for menu
-    "functions",         -- helpers. Primarily for cfg_kb.lua
-    "cfg_kb",            -- keybindings
-    "cfg_xrandr",        -- xrandr config
-    "transparency",      -- autoset transparency
-    "lua_repl"           -- experimental script standalone lua repl
+    "lib/dbg",               -- functions for stderr debbuging
+    "lib/app",               -- module to jump by class, tag, instance etc
+    "cfg_settings",          -- notioncore.set
+    "cfg_rules",             -- window placement rules
+    "cfg_layouts",           -- a bunch of default layouts
+    "lib/named_scratchpad",  -- named scratchpad module
+    "lib/hide_tabs",         -- hide tabs
+    "lib/net_client_list",   -- net client list to provide `wmctrl -l`
+    "lib/directions",        -- 2bwm-like directions
+    "lib/screenshot",        -- screenshot script
+    "cfg_dzen",              -- dzen config
+    "rofi",                  -- rofi module for menu
+    "functions",             -- helpers. Primarily for cfg_kb.lua
+    "cfg_kb",                -- keybindings
+    "cfg_xrandr",            -- xrandr config
+    "transparency",          -- autoset transparency
+    "lua_repl"               -- experimental script standalone lua repl
 }
 
 for _,mod in ipairs(mod_list) do
