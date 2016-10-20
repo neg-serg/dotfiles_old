@@ -1,9 +1,11 @@
 [admiral]
 items = [
-    "left" , "clock"      , "right" ,
-    "left" , "workspaces" , "right" ,
-    "left" , "input"      , "klay"  , "right" ,
-    "left" , "network"    , "right"
+    "left"   , "clock"      , "right"   ,
+    "left"   , "workspaces" , "right"   ,
+    "left"   , "input"      , "klay"    , "right" ,
+    # "left" , "cpu"        , "cpumon"  , "right" ,
+    # "left" , "mail"       , "mailmon" , "right" ,
+    "left"   , "network"    , "right"
 ] 
 
 [workspaces]
@@ -11,6 +13,20 @@ path = 'tail -f /tmp/ws_out.fifo 2>/dev/null'
 
 [klay]
 path   = "~/bin/mon/klay"
+
+# [cpu]
+# path = "echo 'cpu: '"
+# static = true
+
+# [cpumon]
+# path = '~/bin/mon/cpu.sh'
+
+# [mail]
+# path = "echo 'mail: '"
+# static = true
+
+# [mailmon]
+# path = '~/bin/scripts/mail/mail_count.zsh'
 
 [clock]
 path   = "date '+%H:%M'"
