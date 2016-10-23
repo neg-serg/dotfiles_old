@@ -15,16 +15,20 @@ readonly tmp_imgur="${tmpfs}/sxiv_imgur.$$"
 readonly z_data_file="${XDG_DATA_HOME}/sxiv_do.data"
 readonly last_action="${XDG_DATA_HOME}/sxiv_do.last"
 
+readonly location_=2
+readonly padding_=2
+readonly bw_=2
+
 readonly rofi_cmd=(rofi -dmenu 
-                        -yoffset ${yoffst_} 
-                        -opacity ${opacity_} 
-                        -lines ${lines_} 
-                        -font ${font_} 
-                        ${color_} 
-                        -bw 2 
-                        -location 2 
-                        -padding 2 
-                        -width ${width_}
+                        -yoffset "${yoffst_}"
+                        -opacity "${opacity_}"
+                        -lines "${lines_}"
+                        -font "${font_}"
+                        "${color_}"
+                        -bw "${bw_}"
+                        -location "${location_}"
+                        -padding "${padding_}"
+                        -width "${width_}"
                    )
 
 function rotate() {
@@ -37,27 +41,12 @@ function rotate() {
     done
 }
 
-function tag_add() {
-    >>"${TAGFILE}"
-    tags=$(dmenu <"${TAGFILE}" | tr '\n' ',')
-    [[ -z "${tags}" ]] && return
-    iptckwed -i -a "${tags}"
-    echo -n "${tags}" | tr ',' '\n' | sort - "${TAGFILE}" | uniq >"${TAGFILE.new}"
-    mv -f "${TAGFILE}"{.new,}
-}
-
-function tag_del() {
-    >>"${tmp_file}"
-    tags=$(iptckwed -iql <"${tmp_file}" | cut -f 2 | tr ',' '\n' | sort | uniq | dmenu | tr '\n' ',')
-    [[ -z "${tags}" ]] && return
-    iptckwed -i -r "${tags}" <"${tmp_file}"
-    rm -f "${tmp_file}"
-}
-
 function rename() {
     >>"${tmp_file}"
     dest=$(printf "%s" "$(basename "${fp}")" | eval $(echo ${rofi_cmd} -p '"[rem] >> "'))
-    [[ -n "${dest}" ]] && fp=$(cat < "${tmp_file}") && mv "${fp}" "$(dirname "$fp")/$dest"
+    [[ -n "${dest}" ]] && \
+        fp=$(< "${tmp_file}") && \
+        mv "${fp}" "$(dirname "${fp}")/${dest}"
     rm -f "${tmp_file}"
 }
 
@@ -76,7 +65,7 @@ function proc() {
         while read line; do
             file_name="$(resolve_file ${line})"
             eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
-        done < ${tmp_file}
+        done < "${tmp_file}"
         ${HOME}/bin/Z -i "${z_data_file}" -a "${dest}"
         printf "%s\n" "${cmd_w} "${dest}"" > "${last_action}"
     else
@@ -87,21 +76,21 @@ function proc() {
 
 function delete() {
     >>"${tmp_file}"
-    local dest="${HOME}/trash/1st-level/pic"
+    local readonly dest="${HOME}/trash/1st-level/pic"
     [[ -z "${dest}" ]] && exit 0
     if [[ -d "${dest}" ]]; then
         while read line; do
             file_name="$(resolve_file ${line})"
             eval $(echo mv $(echo \"${file_name}\") ${dest})
-        done < ${tmp_file}
+        done < "${tmp_file}"
         printf "%s\n" "move "${dest}"" > "${last_action}"
     fi
     rm -f "${tmp_file}"
 }
 
 function rep() {
-    cat >"${tmp_file}"
-    file=($(cat "${last_action}"))
+    >"${tmp_file}"
+    file=($(< "${last_action}"))
     action=${file[1]} dest=${file[2]}
     if [[ -d "${dest}" ]] ; then
         while read line; do
@@ -109,33 +98,35 @@ function rep() {
             echo $file_name
             [[ ${action} == "move" ]] && cmd="mv"
             [[ ${action} == "copy" ]] && cmd="cp"
-            eval $(echo $cmd `echo \"${file_name}\"` ${dest})
+            eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
         done < ${tmp_file}
     fi
     rm -f "${tmp_file}"
 }
 
 function copy_name() {
-    local st_="<span weight='bold' color='#395573'>"
-    local gr_="<span weight='bold' color='#287373'>"
+    local st_="<span weight='bold' color='$(xrq color4)'>"
+    local gr_="<span weight='bold' color='$(xrq color2)'>"
     local cl_="</span>"
     local bold_="<span weight='bold'>"
     >>"${tmp_file2}"
-    local fp=$(cat < "${tmp_file2}")
-    local file_name="$(resolve_file ${fp})"
-    xsel -bi <<< "${file_name}"
-    [[ ${file_name} =~ "^${HOME}" ]] && file_name="${gr_}~${cl_}${file_name#${HOME}}"
-    [[ ${file_name} =~ "^/mnt/home" ]] && file_name="${gr_}Ϡ${cl_}${file_name#/mnt/home/}"
+    local fp=$(< "${tmp_file2}")
+    local fname="$(resolve_file ${fp})"
+    xsel -bi <<< "${fname}"
+    [[ ${fname} =~ "^${HOME}" ]] && \
+        fname="${gr_}~${cl_}${fname#${HOME}}"
+    [[ ${fname} =~ "^/mnt/home" ]] && \
+        fname="${gr_}Ϡ${cl_}${fname#/mnt/home/}"
     local prefix_="${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}"
-    notify-send "${prefix_}${file_name}${cl_}${st_}]${cl_}"
-    rm -f ${tmp_file2}
+    notify-send "${prefix_}${fname}${cl_}${st_}]${cl_}"
+    rm -f "${tmp_file2}"
 }
 
 function imgur_it() {
     >>"${tmp_imgur}"
     while read f; do
         fp="$(resolve_file ${f})"
-        xsel -i <<< $(imgur $(gpg -dq ~/.imgur_pass.gpg) upload "${fp}" |tee -a ~/tmp/imgur_output_)
+        xsel -i <<< $(~/bin/img "${fp}" |tee -a ~/tmp/imgur_output_)
         xsel -i <<< $(xsel -o|awk '/original/{print $2}')
     done < "${tmp_imgur}"
     rm -f "${tmp_imgur}"
@@ -157,7 +148,5 @@ case "${opt}" in
     "C-2")      xargs -n1 hsetroot -fill ;;
     "C-3")      xargs -n1 hsetroot -full ;;
     "C-4")      xargs -n1 hsetroot -tile ;;
-    "C-t")      tag_add ;;
     "C-i")      imgur_it ;;
-    "M-T")      tag_del ;;
 esac
