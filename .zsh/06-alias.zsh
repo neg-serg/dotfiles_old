@@ -1,13 +1,20 @@
 (){
-    if [[ -x $(which cope_path 2> /dev/null) ]]; then
-        # to prevent slow cope_path evaluation
-        local _cope_path=$(cope_path)
-        for i in ${_cope_path}/*; alias $i=\"$i\"
-        alias df="${_cope_path}/df -hT"
-    else
-        alias df="df -hT"
+    local readonly use_cope_path=false
+    if [[ ${use_cope_path} == true  ]]; then
+        if [[ -x $(which cope_path 2> /dev/null) ]]; then
+            # to prevent slow cope_path evaluation
+            local cope_path_=$(cope_path)
+            for i in "${cope_path_}"/*; alias $(basename ${i})=\"$i\"
+            alias df="${cope_path_}/df -hT"
+        else
+            alias df="df -hT"
+        fi
+    else 
+        local cope_path_=~/bin/scripts/Cope
+        for i in "${cope_path_}"/*; alias $(basename ${i})=\"$i\"
+        alias df="${cope_path_}/df -hT"
     fi
-    unset _cope_path
+    unset cope_path_
 }
 
 alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
@@ -121,7 +128,7 @@ alias ple='perl -wlne' # use perl like awk/sed
 # [pattern] [filename unless STDOUT]
 prep() { perl -nle 'print if /'"$1"'/;' $2 }
 
-alias {z,m}mv="noglob zmv -W"
+alias {z,m}mv="noglob zmv -Wn"
 alias mv="mv -i"
 
 alias tree="tree --dirsfirst -C"
