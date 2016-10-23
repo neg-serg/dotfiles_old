@@ -1,0 +1,25 @@
+#!/usr/bin/env perl
+use App::Cope;
+
+# inspired by acoc
+# http://www.caliban.org/ruby/acoc.shtml
+
+sub process {
+        # load average < 0.70
+        line qr{(0\.[0-6]\d(?!\s+\w))} => 'green', 'green bold';
+        # load average 0.99 < load < 0.70
+        line qr{(0\.[7-9]\d(?!\s+\w))} => 'yellow', 'yellow bold';
+        # load average > 1.00
+        line qr{([^0]\.\d\d(?!\s+\w))} => 'yellow', 'yellow bold';
+
+        # memory
+        line qr{(\d+k)} => 'cyan', 'cyan bold';
+
+        # stat names (doesn't quite work)
+        line qr{(\b(up|load average|processes|sleeping|running|zombie|stopped|user|users|system|nice|iowait|av|used|free|shrd|buff|(?:in)?active|cached)\b)} => 'magenta', 'magenta bold';
+
+        # header!
+        line qr{((top) - )} => 'yellow bold', 'yellow bold';
+}
+
+run( \&process, real_path, @ARGV );

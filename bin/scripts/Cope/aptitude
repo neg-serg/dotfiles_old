@@ -1,0 +1,206 @@
+#!/usr/bin/env perl
+use App::Cope;
+$App::Cope::line_buffered = 0;
+
+my $package = qr/[\w\-:\.]+/;
+
+my %yes_no_state = (
+  'yes' => 'green',
+  'no'  => 'red',
+);
+
+my %package_state = (
+  'i' => 'green bold',
+  'p' => 'cyan',
+  'v' => 'magenta',
+  'c' => 'yellow',
+  'd' => 'red',
+  'A' => 'green'
+);
+
+sub process {
+        # Hit http://apt.puppetlabs.com wheezy/main amd64 Packages
+        # Ign http://security.debian.org testing/updates/contrib Translation-en
+        # Get: 1 http://http.debian.net experimental Release [161 kB]
+
+        line qr{^(Ign)} => 'yellow';
+        line qr{^(Hit)} => 'green';
+        line qr{(Get): (\d+)(.*) \[(.*)\]} => 'cyan', 'bold', '', 'blue';
+        line qr{\d(T)\s} => 'red bold';
+
+        # Fetched 7,819 B in 8s (910 B/s)
+        # Fetched 43.2 MB in 1min 50s (392 kB/s)
+        line qr{^Fetched ([\d,\.]+)} => 'blue';
+        line qr{in (.*) \((.*)\)} => 'yellow', 'blue';
+
+        # The following packages will be upgraded:
+        line qr{The following will be (upgraded):} => 'magenta';
+
+        # The following packages will be REMOVED:
+        line qr{The following packages will be (REMOVED):} => 'red bold';
+
+        # The following NEW packages will be installed:
+        line qr{The following (NEW) packages will be (installed):} => 'green bold', 'green';
+
+        # 1 packages upgraded, 0 newly installed, 0 to remove and 686 not upgraded.
+        line qr{(\d+) packages upgraded} => 'magenta';
+        line qr{(\d+) newly installed}   => 'green';
+        line qr{(\d+) to remove}         => 'red';
+        line qr{and (\d+) not upgraded}  => 'cyan';
+
+        # Do you want to continue? [Y/n/?]
+        # Accept this solution? [Y/n/q/?]
+        line qr{\[([Yy])/([Nn])/(\?)\]}        => 'green', 'red', 'yellow';
+        line qr{\[([Yy])/([Nn])/([Qq])/(\?)\]}        => 'green', 'red', 'magenta', 'yellow';
+
+        # (Reading database ... 213736 files and directories currently installed.)
+        line qr{(\d+) files and directories}   => 'bold';
+
+        # Current status: 686 updates [-1].
+        line qr{Current status: (\d+) updates} => 'bold';
+
+        # Setting up smplayer (0.8.4-1) ...
+        # Setting up libqt4-declarative:amd64 (4:4.8.2+dfsg-11) ...
+        # Setting up libgupnp-av-1.0-2 (0.10.3-1) ...
+        # Setting up python-brlapi (4.4-9) ...
+        line qr{(Setting up) ($package) \((.*)\) ...}   => 'green', 'blue bold', 'blue';
+
+        # Preparing to replace smplayer 0.8.3-1 (using .../smplayer_0.8.4-1_amd64.deb) ...
+        line qr{Preparing to replace ($package) \((.*)\) \(using (.*)\) ...} => ' blue bold', 'blue', 'bold';
+
+        # Unpacking replacement smplayer ...
+        # Unpacking smplayer (from .../smplayer_0.8.4-1_amd64.deb) ...
+        line qr{Unpacking (replacement|) ($package)} => '', 'blue bold';
+        # line qr{Unpacking ($package)} => 'blue bold'; # ([\w|-|^replacement]+)} Maybe? matches replacemenet now too...
+
+        # Removing smplayer-themes ...
+        # Removing smplayer ...
+        # TODO fix so it doesn't match: Removing all DKMS Modules
+        line qr{(Removing) ($package) ...} => 'red bold', 'blue bold';
+
+        # 63% [6 emacs-snapshot-common 8,885 kB/20.5 MB 43%]
+        line qr{(^\d+)\% \[(\d+) ($package) (.*) (\d+)\%\]} => 'green bold', 'bold', 'blue bold', 'blue', 'green';
+
+        ## aptitude show
+        # Package: zsh-beta
+        line qr{^(Package): ($package)} => 'bold', 'blue bold';
+
+        # State: not installed
+        # State: installed
+        line qr{^(State): (not installed)} => 'bold', 'red';
+        line qr{^(State): (installed)} => 'bold', 'green';
+
+        # Automatically installed: no
+        line qr{^(Automatically installed): (\S+)} => 'bold', \%yes_no_state;
+
+        # Version: 1.0.1-1
+        line qr{^(Version): (.*)} => 'bold', 'blue';
+
+        # Homepage: http://htop.sourceforge.net
+        line qr{^(Homepage):} => 'bold';
+
+        # Architecture: amd64
+        line qr{^(Architecture):} => 'bold';
+
+        # Section: utils
+        line qr{^(Section):} => 'bold';
+
+        # Conflicts: htop
+        line qr{^(Conflicts):} => 'bold';
+
+        # Breaks: puppetlabs-release-devel (< 1.0-3), puppetlabs-release-devel (< 1.0-3)
+        line qr{^(Breaks):} => 'bold';
+
+        # Suggests: strace, ltrace
+        line qr{^(Suggests):} => 'bold';
+
+        # Description: interactive processes viewer
+        line qr{^(Description):} => 'bold';
+
+        # Depends: libc6 (>= 2.3.4), libncursesw5 (>= 5.6+20070908), libtinfo5
+        line qr{^(Depends):} => 'bold';
+
+        # Maintainer: Eugene V. Lyubimkin <jackyf@debian.org>
+        line qr{^(Maintainer):} => 'bold';
+
+        # Uncompressed Size: 216 k
+        line qr{^(Uncompressed Size):} => 'bold';
+
+        # Compressed Size: 74.9 k
+        line qr{^(Compressed Size):} => 'bold';
+
+        # Priority: optional
+        line qr{^(Priority):} => 'bold';
+
+        # New: yes
+        line qr{^(New): (\S+)} => 'bold', \%yes_no_state;
+
+        # Filename:
+        line qr{^(Filename):} => 'bold';
+
+        # MD5sum:
+        line qr{^(MD5sum):} => 'bold';
+
+        # Replaces: virtualbox, virtualbox
+        line qr{^(Replaces):} => 'bold';
+
+        # Provides: virtualbox
+        line qr{^(Provides):} => 'bold';
+        # PreDepends: debconf (>= 1.1) | debconf-2.0
+        line qr{^(PreDepends):} => 'bold';
+
+        # Recommends: libasound2, libpulse0, libsdl-ttf2.0-0, dkms, linux-headers, gcc, make, binutils, pdf-viewer, libgl1, python-central
+        line qr{^(Recommends):} => 'bold';
+
+        # Archive: now
+        line qr{^(Archive):} => 'bold';
+
+        # The following packages have unmet dependencies:
+        #  skype:i386 : Depends: libasound2:i386 (>= 1.0.16) but it is not going to be installed.
+        #               Depends: libc6:i386 (>= 2.3.6-6~) but it is not going to be installed.
+        line qr{^ ($package) : Depends: ($package) \((.*)\)} => 'blue bold', 'blue bold', 'blue';
+        line qr{^\s+Depends: ($package) \((.*)\)} => 'blue bold', 'blue';
+
+        # but it is not going to be installed
+        line qr{but it is (not) going to be installed} => 'red bold';
+
+        # Remove the following packages:
+        # 1)     skype:i386
+        line qr{^(Remove the following packages:)} => 'red bold';
+        line qr{^(\d+)\)\s+($package)} => 'bold', 'blue bold';
+
+        # Package htop:
+        # Package htop:i386:
+        line qr{^(Package) ($package):} => 'bold', 'blue bold';
+
+        # i   1.0.1-1    testing     990
+        # p   1.0.2-1    experimental      1
+        # i A linux-kbuild-3.2       - Kbuild infrastructure for Linux 3.2
+        # p   linux-kbuild-3.2:i386  - Kbuild infrastructure for Linux 3.2
+        # id  linux-kbuild-3.8
+        line qr{^([ipvcd])\s+}          => \%package_state;
+        line qr{^[ipvcd]\s+([A])}       => \%package_state;
+        line qr{^([ipvcd])([ipvcd])\s+} => \%package_state, \%package_state;
+        line qr{^\w\s+([\d|.\\|-]+)\s+($package)\s+(\d+)} => 'blue', 'yellow', 'red';
+
+        # Del xulrunner-21.0 21.0~a2+20130315042012-1 [14.5 MB]
+        # Del subversion 1.6.17dfsg-4 [1,315 kB]
+        # Del emacs-snapshot-el 2:20130403-1 [15.1 MB]
+        # Freed 281 MB of disk space
+        line qr{^(Del) (.*) \[(.*)\]} => 'red', 'blue bold', 'blue';
+        line qr{^Freed (.*) of disk space} => 'blue';
+
+        # W: Failed to fetch http://http.debian.net/debian/dists/experimental/main/source/SourcesIndex: MD5Sum mismatch
+        # E: Some index files failed to download. They have been ignored, or old ones used instead.
+        line qr{^(W):} => 'yellow';
+        line qr{^(E):} => 'red';
+
+        # Current status: 14 updates [+7], 22543 new [-1233].
+        # Current status: 0 updates [-14].
+        line qr{^(Current status): (\d+) update[s] \[(.*)\], (\d+) new \[(.*)\]} => 'bold', 'magenta', 'magenta bold', 'green bold', 'green';
+        line qr{^(Current status): (\d+) update[s] \[(.*)\].} => 'bold', 'magenta', 'magenta bold';
+}
+
+run( \&process, real_path, @ARGV );
+
+# Need to get 0 B/45.8 MB of archives. After unpacking 267 MB will be used.

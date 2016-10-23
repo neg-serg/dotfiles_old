@@ -1,0 +1,28 @@
+#!/usr/bin/env perl
+use App::Cope;
+$App::Cope::line_buffered = 0;
+
+sub process {  
+  # --> Working on Plack
+  line qr{(-->) Working on (.*)} => 'cyan bold', 'blue bold';
+
+  # Fetching http://www.cpan.org/authors/id/M/MI/MIYAGAWA/Plack-1.0023.tar.gz ... OK
+  # Fetching http://www.cpan.org/authors/id/D/DO/DOY/Try-Tiny-0.12.tar.gz ... FAIL
+  line qr{^Fetching (.*) ...} => 'yellow';
+  line qr{ (FAIL)} => 'red bold';
+  
+  # ==> Found dependencies: File::ShareDir::Install
+  line qr{(==>) Found dependencies: (.*)} => 'cyan', 'blue bold';
+
+  # Successfully installed File-ShareDir-Install-0.04
+  line qr{(Successfully installed) (.*)} => 'green', 'blue bold';
+
+  # ! Download cancelled.
+  # ! Failed to fetch distribution ExtUtils-MakeMaker-6.64
+  # ! Bailing out the installation for Hash-MultiValue-0.13. Retry with --prompt or --force.
+  line qr{^(!) (.*)} => 'red bold', '';
+
+  # 31 distributions installed
+  line qr{^(\d+) distributions installed} => 'magenta';
+}
+run( \&process, real_path, @ARGV );
