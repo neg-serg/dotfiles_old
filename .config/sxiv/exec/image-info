@@ -5,7 +5,7 @@
 # with the name of the image file as its first argument.
 # The output is displayed in sxiv's status bar.
 
-s=" : " # field separator
+s="  " # field separator
 
 filename="${1##*/}"
 filesize=$(du -Hh "$1" | awk '{print $1}')
