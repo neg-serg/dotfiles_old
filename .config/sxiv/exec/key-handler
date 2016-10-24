@@ -31,6 +31,12 @@ readonly rofi_cmd=(rofi -dmenu
                         -width "${width_}"
                    )
 
+function finish_(){
+    rm -f "${tmp_file}"
+    rm -f "${tmp_file2}"
+    rm -f "${tmp_imgur}"
+}
+
 function rotate() {
     local degree="$1"
     while read file; do
@@ -47,7 +53,7 @@ function rename() {
     [[ -n "${dest}" ]] && \
         fp=$(< "${tmp_file}") && \
         mv "${fp}" "$(dirname "${fp}")/${dest}"
-    rm -f "${tmp_file}"
+    trap finish_ EXIT
 }
 
 function proc() {
@@ -71,7 +77,7 @@ function proc() {
     else
         ${HOME}/bin/Z -i "${z_data_file}" -d "${dest}"
     fi
-    rm -f "${tmp_file}"
+    trap finish_ EXIT
 }
 
 function delete() {
@@ -85,7 +91,7 @@ function delete() {
         done < "${tmp_file}"
         printf "%s\n" "move "${dest}"" > "${last_action}"
     fi
-    rm -f "${tmp_file}"
+    trap finish_ EXIT
 }
 
 function rep() {
@@ -101,7 +107,7 @@ function rep() {
             eval $(echo ${cmd} $(echo \"${file_name}\") ${dest})
         done < ${tmp_file}
     fi
-    rm -f "${tmp_file}"
+    trap finish_ EXIT
 }
 
 function copy_name() {
@@ -119,7 +125,7 @@ function copy_name() {
         fname="${gr_}Ϡ${cl_}${fname#/mnt/home/}"
     local prefix_="${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}"
     notify-send "${prefix_}${fname}${cl_}${st_}]${cl_}"
-    rm -f "${tmp_file2}"
+    trap finish_ EXIT
 }
 
 function imgur_it() {
@@ -129,7 +135,7 @@ function imgur_it() {
         xsel -i <<< $(~/bin/img "${fp}" |tee -a ~/tmp/imgur_output_)
         xsel -i <<< $(xsel -o|awk '/original/{print $2}')
     done < "${tmp_imgur}"
-    rm -f "${tmp_imgur}"
+    trap finish_ EXIT
 }
 
 case "${opt}" in
