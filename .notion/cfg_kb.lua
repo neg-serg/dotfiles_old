@@ -93,7 +93,8 @@ Neg_kb.WMPlex_toplevel = {
         kpress("V",     function() spawn('vmware') end),
         kpress("W",     function() webcam() end),
         kpress(Sh.."B", function() 
-            local browser_list = { "yandex-browser-beta"
+            local browser_list = { "brave"
+                                 , "yandex-browser-beta"
                                  , "chromium"
                                  , "google-chrome"
                                  , "google-chrome-stable"
