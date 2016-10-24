@@ -118,6 +118,7 @@ NeoBundle 'vim-scripts/ViewOutput.git' "VO commandline output
 NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
+NeoBundle 'ardagnir/vimbed' "embeded vim for athame
 if has("nvim")
     NeoBundle 'bfredl/nvim-ipy' "nvim client for jupiter
 endif
@@ -236,6 +237,7 @@ if executable(resolve(expand("gtags")))
 endif
 "--[ LaTeX ]-----------------------------------------------------------------------------
 NeoBundle 'lervag/vimtex' "LaTeX-Box replacement
+NeoBundle 'xuhdev/vim-latex-live-preview' "add latex live preview
 "--[ Web ]-------------------------------------------------------------------------------
 NeoBundle 'rstacruz/sparkup.git' "write html code faster
 NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
