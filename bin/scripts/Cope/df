@@ -26,10 +26,12 @@ sub process {
   }
   else {
     line qr{(\d+%)\s+(\S+)$} => \&{ percent_b 25, 50, 75 }, 'bold';
-    line qr{(\d+\.?\d+)(K)} => 'blue', 'white';
-    line qr{(\d+\.?\d+)(M)} => 'blue', 'cyan';
-    line qr{(\d+\.?\d+)(G)} => 'blue', 'yellow';
-    line qr{(\d+\.?\d+)(T)} => 'blue', 'yellow bold';
+    line qr{(\d+\.?\d+)(K)} => 'bold blue', 'white';
+    line qr{(\d+\.?\d+)(M)} => 'bold blue', 'cyan';
+    line qr{(\d+\.?\d+)(G)} => 'bold blue', 'yellow';
+    line qr{(\d+\.?\d+)(T)} => 'bold blue', 'yellow bold';
+
+    line qr{(/)(\w+)(/)*?} => 'blue', 'white', 'blue';
 
     # filesystems
     mark qr{^(?:$system_fs)\b} => 'magenta'
