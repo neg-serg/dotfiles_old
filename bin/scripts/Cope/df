@@ -11,14 +11,15 @@ my @headers = (
   'Use%', 
   'Mounted on',
   'Size', 
-  'Type', # -T
+  'Type',
   'Inodes',
   'IUsed',
   'IFree',
-  'IUse%', # -i
+  'IUse%',
 );
 
 my $system_fs = join '|', qw[none devtmpfs tmpfs udev proc devpts sysfs procbususb rpc_pipefs];
+my $non_system_fs = join '|', qw[btrfs cramfs exfat ext2 ext3 ext4 ext4dev fat jfs minix msdos reiserfs vfat xfs];
 
 sub process {
   if (/^Filesystem/) {
@@ -30,8 +31,11 @@ sub process {
     line qr{(\d+\.?\d+)(M)} => 'bold blue', 'cyan';
     line qr{(\d+\.?\d+)(G)} => 'bold blue', 'yellow';
     line qr{(\d+\.?\d+)(T)} => 'bold blue', 'yellow bold';
+    # line qr{(\d+[%KMGT.])} => 'white';
 
     line qr{(/)(\w+)(/)*?} => 'blue', 'white', 'blue';
+    line qr{($system_fs)*} => 'magenta';
+    line qr{($non_system_fs)*} => 'white';
 
     # filesystems
     mark qr{^(?:$system_fs)\b} => 'magenta'

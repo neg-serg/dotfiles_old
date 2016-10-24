@@ -11,7 +11,7 @@ sub process {
         line qr{: (\d+%)} => \&{ percent_b 25, 50, 75 }, 'bold';
         for my $f (@flags) { mark $f => 'white underline'; }
         line qr{: (on)}  => 'green bold';
-        line qr{: (off)} => 'blue bold';
+        line qr{: (off|n/a)} => 'blue bold';
     }
     elsif (/^\[($states)\]/) {
         line qr{^(\[)($states)(\])\s+(#)(\d+)(/\d+)\s+(.*)(/)(.*) (\()(\d+%)(\))$}

@@ -32,7 +32,7 @@ sub process {
 
   # highlight headers
   if ( m{^(?:Destination|Source)} ) {
-    for my $h (@headers) { mark $h => 'underline'; }
+    for my $h (@headers) { mark $h => 'white underline'; }
   }
 
   # determine when things go wrong
