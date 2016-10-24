@@ -17,10 +17,10 @@ sub process {
   # final ping statistics
   line qr{(\d+\.?\d*% packet loss)} => \&{ percent_b 0, 1, 26 };
   line qr{min/avg/(?:max/mdev|ewma/max)\s=\s
-	  ([0-9.]+)/    # minimum
-	  ([0-9.]+)/    # average
-	  ([0-9.]+)/    # maximum or moving average
-	  ([0-9.]+\sms) # mean deviation or maximum
+      ([0-9.]+)/    # minimum
+      ([0-9.]+)/    # average
+      ([0-9.]+)/    # maximum or moving average
+      ([0-9.]+\sms) # mean deviation or maximum
        }x => ( \&ping_time ) x 4;
 
 }

@@ -6,14 +6,14 @@ my @headers = qw[NAME LINE TIME IDLE PID COMMENT EXIT];
 my $me = (getpwuid( $< ))[0] || "nobody";
 
 my $date_re = qr!(?: \d{4}-\d{2}-\d{2} # 1970-01-01
-		 |   \w{3}\s[\s\d]\d      # Jan 01 / Jan  1
-		 ) \s
-		 \d{2}:\d{2}!x;   # time: 12:34
+         |   \w{3}\s[\s\d]\d      # Jan 01 / Jan  1
+         ) \s
+         \d{2}:\d{2}!x;   # time: 12:34
 
 my $idle_re = qr!\d{2}:\d{2} # standard time
-		 | [.?]	     # or no/unknown time
-		 | old	     # or "old"
-		!x;
+         | [.?]      # or no/unknown time
+         | old       # or "old"
+        !x;
 
 sub process {
   if (/^NAME/) {
@@ -23,14 +23,14 @@ sub process {
 
     # user name
     line qr{^(\w+)} => { $me   => 'yellow bold',  # current user
-			 LOGIN => 'magenta bold', # login user
-			 _else => 'yellow',	  # anyone else
-		       };
+             LOGIN => 'magenta bold', # login user
+             _else => 'yellow',   # anyone else
+               };
 
     line qr{^\w+\s+([-+?])} => { '+' => 'green bold', # write access to other users
-				 '-' => 'red bold',   # no write access
-				 '?' => 'cyan bold',  # unable to determine
-			       };
+                 '-' => 'red bold',   # no write access
+                 '?' => 'cyan bold',  # unable to determine
+                   };
 
     # line
     line qr{\s(vc)(/\d+)\b}       => 'blue',    'blue bold';

@@ -11,7 +11,7 @@ sub process {
   line qr{Access: \(\d+/(.)(.)(.)(.)(.)(.)(.)(.)(.)(.)\)} =>
     \%filetypes, ( \%permissions ) x 9;
 
-  line qr{Uid: \(\s*(\d+)/\s*(\w+)} => ( \&{ user 'yellow' } ) x 2;
+  line qr{Uid: \(\s*(\d+)/\s*(\w+)} => ( \&{ user 'cyan bold' } ) x 2;
 }
 
 run( \&process, real_path, @ARGV );

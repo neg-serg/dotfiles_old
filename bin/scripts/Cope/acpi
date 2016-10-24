@@ -3,25 +3,24 @@ use App::Cope;
 use App::Cope::Extra qw[percent];
 
 my %battery_states = (
-  'Full,'        => 'green bold',
-  'Charged,'     => 'green bold',
-  'Charging,'    => 'yellow bold',
-  'Discharging,' => 'red bold',
+    'Full,'        => 'green bold',
+    'Charged,'     => 'green bold',
+    'Charging,'    => 'yellow bold',
+    'Discharging,' => 'red bold',
 );
 
 my %adapter_states = (
-  'on-line'  => 'green bold',
-  'off-line' => 'red bold',
+    'on-line'  => 'green bold',
+    'off-line' => 'red bold',
 );
 
 sub process {
+    # generic labels
+    line qr{^(\S+ \d+:)} => 'cyan bold';
 
-  # generic labels
-  line qr{^(\S+ \d+:)} => 'cyan bold';
-
-  # more specific ones
-  line qr{^Battery \d+: (\S+,) (\d+%)} => \%battery_states, \&{ percent 34, 67, 100 };
-  line qr{^Adapter \d+: (\S+)}         => \%adapter_states;
+    # more specific ones
+    line qr{^Battery \d+: (\S+,) (\d+%)} => \%battery_states, \&{ percent 34, 67, 100 };
+    line qr{^Adapter \d+: (\S+)}         => \%adapter_states;
 }
 
 run( \&process, real_path, @ARGV );

@@ -4,20 +4,20 @@ use App::Cope::Extra qw[user %permissions %filetypes];
 
 # Regex for ISO date formats, such as 03-23 18:07
 my $iso_re = qr{
-		 (?:\d{4}-)?     # year
-		 \d{2} - \d{2}   # month-day
-		 \s \d{2}:\d{2}  # hour-minute
-		 (?::\d{2}.\d+\s # iso time thing
-		   \+\d{4})?
-		 \b              # end on a boundary
-	     }x;
+         (?:\d{4}-)?     # year
+         \d{2} - \d{2}   # month-day
+         \s \d{2}:\d{2}  # hour-minute
+         (?::\d{2}.\d+\s # iso time thing
+           \+\d{4})?
+         \b              # end on a boundary
+         }x;
 
 # Regex for common date format, such as Mar 23 18:07
 my $mdt_re = qr{
-		 (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \s+
-		 \d+ \s+	# day
-		 \d\d:?\d\d	# year or time
-	     }x;
+         (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \s+
+         \d+ \s+    # day
+         \d\d:?\d\d # year or time
+         }x;
 
 sub size {
   # Only files have actual file sizes

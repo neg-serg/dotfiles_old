@@ -2,7 +2,7 @@
 use App::Cope;
 
 sub process {
-  line qr{(\d+)\((\w+)\)} => 'yellow', 'yellow bold';
+  line qr{(\d+)\((\w+)\)} => 'blue', 'blue bold';
 }
 
 run( \&process, real_path, @ARGV );

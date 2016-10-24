@@ -6,7 +6,7 @@ my @headers = qw[Device Boot Start End Blocks Id System];
 
 sub process {
   if (/^\s*Device/) {
-    for my $h (@headers) { mark $h => 'underline'; }
+    for my $h (@headers) { mark $h => 'white underline'; }
   }
   else {
     line qr{(?:^|:)(\S+/)(\S+)(?:\s+(\*))?} => 'blue', 'blue bold', 'green bold';

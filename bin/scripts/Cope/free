@@ -5,7 +5,7 @@ my @headers = qw[total used free shared buffers cached];
 
 sub process {
   if (/^\s+total/) {
-    for my $h (@headers) { mark $h => 'underline'; }
+    for my $h (@headers) { mark $h => 'white underline'; }
   }
   else {
     line qr{^([^\d]+:)} => 'blue bold';

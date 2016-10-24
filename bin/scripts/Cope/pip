@@ -26,12 +26,12 @@ sub process {
   line qr{(Successfully installed) (.*)} => 'green', 'blue bold';
 
   # Successfully uninstalled pyrg
-  line qr{(Successfully uninstalled) (.*)} => 'red', 'blue bold';
+  line qr{(Successfully uninstalled) (.*)} => 'white', 'blue bold';
 
   # Uninstalling pyrg:
   line qr{^Uninstalling (.*):} => 'blue bold';
 
   # Proceed (y/n)? y
-  line qr{\(([Yy])/([Nn])\)\?}        => 'green', 'red';
+  line qr{\(([Yy])/([Nn])\)\?}        => 'green', 'white';
 }
 run( \&process, real_path, @ARGV );

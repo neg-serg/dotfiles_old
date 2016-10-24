@@ -17,10 +17,10 @@ sub process {
   else {
 
     my $time = line qr{^\s*
-		       (  [0-9.]+) \s+ # %Time
-		       (-?[0-9.]*) \s+ # ExclSec
-		       (-?[0-9.]+)     # CumulS
-		    }x => \&{ percent_b 10, 20, 30 }, '', 'bold';
+               (  [0-9.]+) \s+ # %Time
+               (-?[0-9.]*) \s+ # ExclSec
+               (-?[0-9.]+)     # CumulS
+            }x => \&{ percent_b 10, 20, 30 }, '', 'bold';
 
     if ($time or m/^\s{5,}/) {
       line qr{((?:\S+?::)*)(\S+)$} => 'blue', 'blue bold'; # name

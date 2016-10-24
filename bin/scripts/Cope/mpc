@@ -9,7 +9,7 @@ my $states = join '|', qw[playing paused];
 sub process {
     if (/^volume: /) {
         line qr{: (\d+%)} => \&{ percent_b 25, 50, 75 }, 'bold';
-        for my $f (@flags) { mark $f => 'underline'; }
+        for my $f (@flags) { mark $f => 'white underline'; }
         line qr{: (on)}  => 'green bold';
         line qr{: (off)} => 'red bold';
     }

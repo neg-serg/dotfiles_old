@@ -5,10 +5,10 @@ sub process {
   line qr{^(Screen \d+)} => 'cyan bold';
 
   line qr{^(\S+) ((?:dis)?connected) (?:(\d+x\d+)(\+\d+\+\d+))?} =>
-    'yellow', { connected => 'green bold', disconnected => 'red bold' },
+    'blue', { connected => 'green bold', disconnected => 'red' },
       'yellow bold', 'yellow';
 
-  line qr{^\s*(\d+x\d+)\s+(\S+?)\*} => 'underline', '';
+  line qr{^\s*(\d+x\d+)\s+(\S+?)\*} => 'white underline', '';
 }
 
 run( \&process, real_path, @ARGV );

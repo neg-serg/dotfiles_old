@@ -56,16 +56,16 @@ my %types = (
 # A network address, plus a colon, minus its port.
 
 my $address_regex = qr{
-			\*: |	# a single star, or
-			::: |	# two colons, or
-			\S+?:	# an address
-		    }x;
+            \*: |   # a single star, or
+            ::: |   # two colons, or
+            \S+?:   # an address
+            }x;
 
 # netstat provides a tricky column-based layout. It's best to
 # highlight each column in turn, based on how many characters come
 # before its entry in the header line.
 
-my %header_offsets;		# list of offsets in the header
+my %header_offsets;     # list of offsets in the header
 
 # Like line, but matching a specific header.
 
@@ -91,10 +91,10 @@ sub process {
 
     # active internet connections
     line qr{^
-	     (tcp|udp|raw) \s+	# Proto
-	     (\d+) \s+		# Recv-Q
-	     (\d+)		# Send-Q
-	 }x => { tcp => 'magenta bold', udp => 'red bold', raw => 'red' }, ( \&{ nonzero 'green' } ) x 2;
+         (tcp|udp|raw) \s+  # Proto
+         (\d+) \s+      # Recv-Q
+         (\d+)      # Send-Q
+     }x => { tcp => 'magenta bold', udp => 'red bold', raw => 'red' }, ( \&{ nonzero 'green' } ) x 2;
     line qr{^(unix)\s+(\d+)} => 'blue bold', 'green';
 
     # miscellaneous information
@@ -115,11 +115,11 @@ sub process {
 
     # timers
     line qr{
-	     (on|off|timewait|keepalive) \s \( # timer state
-	     [0-9.]+ /	     # one
-	     [0-9.]+ /	     # two
-	     [0-9.]+ \)	     # three
-	 }x => \%timers;
+         (on|off|timewait|keepalive) \s \( # timer state
+         [0-9.]+ /       # one
+         [0-9.]+ /       # two
+         [0-9.]+ \)      # three
+     }x => \%timers;
 
     # ignore boring lines
     line qr{\s(-)\s} => 'black bold';

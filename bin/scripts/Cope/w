@@ -9,12 +9,12 @@ my $using_from = 0;
 
 sub process {
   if (/^USER/) {
-    for my $h (@headers) { mark $h => 'underline'; }
+    for my $h (@headers) { mark $h => 'white underline'; }
     $what_pos   = $-[0] if /WHAT/;
     $using_from = 1     if /FROM/;
   }
   else {
-    line qr{^(\w+)} => \&{ user 'yellow' };
+    line qr{^(\w+)} => \&{ user 'bold blue' };
 
     line qr{^\w+\s+(vc)(/\d+)}   => 'blue',    'blue bold';
     line qr{^\w+\s+(console)}    => 'blue',    'blue bold';

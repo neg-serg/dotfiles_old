@@ -20,9 +20,11 @@ sub process {
     local $_ = $line;
     if ( m{^g?cc|g\+\+} ) {
       if ( m{\s-c\s} ) {
-          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold'; # object file
+          # object file
+          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold'; 
       } else {
-          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold underline'; # executable file
+          # executable file
+          line qr{\s(-o)\s+(\S+)} => 'blue', 'blue bold underline'; 
       }
     }
   }

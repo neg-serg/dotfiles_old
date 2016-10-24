@@ -3,19 +3,33 @@ use App::Cope;
 use App::Cope::Extra qw[percent_b];
 
 my @headers = (
-  'Filesystem', '1K-blocks', 'Used', qr/Avail(?:able)?/, 'Use%', 'Mounted on',
-  'Size', 'Type', # -T
-  'Inodes', 'IUsed', 'IFree', 'IUse%', # -i
+  'Filesystem', 
+  '1K-blocks',
+  '1M-blocks',
+  'Used',
+  qr/Avail(?:able)?/, 
+  'Use%', 
+  'Mounted on',
+  'Size', 
+  'Type', # -T
+  'Inodes',
+  'IUsed',
+  'IFree',
+  'IUse%', # -i
 );
 
-my $system_fs = join '|', qw[none tmpfs udev proc devpts sysfs procbususb rpc_pipefs];
+my $system_fs = join '|', qw[none devtmpfs tmpfs udev proc devpts sysfs procbususb rpc_pipefs];
 
 sub process {
   if (/^Filesystem/) {
-    for my $h (@headers) { mark $h => 'underline'; }
+    for my $h (@headers) { mark $h => 'white underline'; }
   }
   else {
     line qr{(\d+%)\s+(\S+)$} => \&{ percent_b 25, 50, 75 }, 'bold';
+    line qr{(\d+\.?\d+)(K)} => 'blue', 'white';
+    line qr{(\d+\.?\d+)(M)} => 'blue', 'cyan';
+    line qr{(\d+\.?\d+)(G)} => 'blue', 'yellow';
+    line qr{(\d+\.?\d+)(T)} => 'blue', 'yellow bold';
 
     # filesystems
     mark qr{^(?:$system_fs)\b} => 'magenta'
