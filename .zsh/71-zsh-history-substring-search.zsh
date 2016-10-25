@@ -42,8 +42,8 @@
 # configuration variables
 #-----------------------------------------------------------------------------
 
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=white,bold'
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=cyan,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
 HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
 HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=''
 
