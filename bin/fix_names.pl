@@ -13,6 +13,7 @@ foreach my $file_name (@ARGV) {
     $new_name =~ s/_/-/g;
     $new_name =~ s/[\(\)\[\]<>\\]//g;
     $new_name =~ s/[\'\`]/=/g;
+    $new_name =~ s/^-//g;
     $new_name =~ s/\&/.and./g;
     $new_name =~ s/\$/.dol./g;
     $new_name =~ s/;/:/g;
