@@ -27,10 +27,9 @@ local _zsh_files=(
     20-autopair.zsh
     60-functional.zsh
     70-games.zsh
-    71-zsh-history-substring-search.zsh.zsh
+    71-zsh-history-substring-search.zsh
     81-completion_gen.zsh
     89-vim-interation.plugin.zsh
-    92-history-substring-search.zsh
     96-fzf.zsh
     97-open-pr.plugin.zsh
     98-syntax.zsh
