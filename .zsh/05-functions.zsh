@@ -11,7 +11,7 @@ function chpwd() {
 }
 
 function zc(){
-    local cache="${ZSH}/cache"
+    local cache="${ZSH}/compdef"
     autoload -U compinit zrecompile
     compinit -d "${cache}/zcomp-${HOST}"
     for z in ${ZSH}/*.zsh ${HOME}/.zshrc; do 
