@@ -124,11 +124,11 @@ function any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
     if [[ -z "$1" ]] ; then
-        if [ ! -x $(which peco) ]; then
+        if [ ! -x $(which percol) ]; then
             echo "any - grep for process(es) by keyword" >&2
             echo "Usage: any <keyword>" >&2 ; return 1
         else
-            ps xauwww | peco --layout=bottom-up
+            ps xauwww | percol
         fi
     else
         ps xauwww | grep  --color=auto -i "[${1[1]}]${1[2,-1]}"
