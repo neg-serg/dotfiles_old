@@ -16,6 +16,33 @@ path_dirs=(
     /opt/cuda/bin
 )
 
+
+# path=(
+#     "$lpath[@]"
+#     /usr/local/bin
+#     /bin
+#     /usr/bin
+#     /usr/X11/bin
+#     /usr/bin/X11
+#     /usr/local/X11/bin
+#     /usr/local/games
+#     /usr/games
+#     /usr/lib/nagios/plugins
+#     "$fpath[@]"
+#     "$path[@]"
+#     "$PATH[@]"
+# )
+# if [ "`id -u`" = "0" ] || ! [ -x /usr/bin/id ]; then
+#     path=(
+#         "$path[@]"
+#         /usr/local/sbin
+#         /usr/sbin
+#         /sbin
+#     )
+# fi
+# # Only unique entries please.
+# typeset -gU path
+
 whence ruby >/dev/null && \
     path_dirs+=$($(whence ruby) -e 'puts Gem.user_dir')/bin
 
@@ -92,11 +119,22 @@ export PWS="${XDG_DATA_HOME}/safe/pws"
 export TEXINPUTS=".:${XDG_DATA_HOME}/texmf//:"
 
 # history
-export HISTFILE=${HOME}/.zsh_history
-export HISTSIZE=50000
+export HISTFILE=${HOME}/.zsh/zsh_history
 export SAVEHIST=100000 # useful for setopt append_history
+export HISTSIZE=$(( $SAVEHIST * 1.10 ))
 export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
+
+local -a timefmt_=(
+    $(_zwrap "$(_zfwrap "%J")") 
+    $(_zwrap "%U")
+    $(_zwrap "user %S") 
+    $(_zwrap "system %P") 
+    $(_zwrap "cpu %*E total")
+    $(_zwrap "-||-") 
+    $(_zwrap "Mem: %M kb max")
+)
+export TIMEFMT="${timefmt_[@]}"
 
 export COLORTERM="yes"
 
