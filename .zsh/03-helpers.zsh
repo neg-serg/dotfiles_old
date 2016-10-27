@@ -1,6 +1,6 @@
 function _zwrap() { echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]" }
 
-function _zfwrap(){
+function _zFwrap(){
     apply=$1;
     body=$2;
     shift
