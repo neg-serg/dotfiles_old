@@ -1,22 +1,57 @@
 #!/bin/perl
 # Original taken from wicked cool perl scripts 2006
 
+use strict;
+use warnings;
+
+use Getopt::Std;
+use Term::ANSIColor;
+
+getopts('i');
+our($opt_i);
+
+sub wrp_{
+    my ($str) = @_;
+    return color('blue') . 
+           "[" .
+           color('white') .
+           $str  .
+           color('blue') .
+           "]" .
+           color('reset'); 
+}
+
+sub fancy_string {
+    my ($old_name, $new_name) = @_;
+    return 
+        wrp_(">>") .
+        " " .
+        color('white') .
+        $old_name .
+        color('green') .
+        " -> " . 
+        color('white') .
+        " $new_name\n" .
+        color('reset');
+}
+
 foreach my $file_name (@ARGV) {
     # Compute the new name
     my $new_name = $file_name;
 
-    $new_name =~ s/[ \t]/./g;
+    $new_name =~ tr/ /./;
+    $new_name =~ tr/\t/./;
+    $new_name =~ tr/;/:/;
+    $new_name =~ tr/_/-/;
     $new_name =~ s/\.-\./-/g;
     $new_name =~ s/\,\././g;
     $new_name =~ s/-\./-/g;
     $new_name =~ s/\.-/-/g;
-    $new_name =~ s/_/-/g;
     $new_name =~ s/[\(\)\[\]<>\\]//g;
     $new_name =~ s/[\'\`]/=/g;
-    $new_name =~ s/^-//g;
+    $new_name =~ s/^[--]//g;
     $new_name =~ s/\&/.and./g;
     $new_name =~ s/\$/.dol./g;
-    $new_name =~ s/;/:/g;
 
     # Make sure the names are different
     if ($file_name ne $new_name){
@@ -30,8 +65,10 @@ foreach my $file_name (@ARGV) {
             }
             $new_name = $new_name.".".$ext;
         }
-        print "$file_name -> $new_name\n";
-        rename($file_name, $new_name);
+        print fancy_string($file_name, $new_name);
+        if ($opt_i){
+            rename($file_name, $new_name);
+        }
     }
 }
 
