@@ -7,8 +7,8 @@ use warnings;
 use Getopt::Std;
 use Term::ANSIColor;
 
-getopts('i');
-our($opt_i);
+getopts('is');
+our($opt_i, $opt_s);
 
 sub wrp_{
     my ($str) = @_;
@@ -42,9 +42,14 @@ foreach my $file_name (@ARGV) {
     $new_name =~ tr/ /./;
     $new_name =~ tr/\t/./;
     $new_name =~ tr/;/:/;
-    $new_name =~ tr/_/-/;
+    if ($opt_s){
+        $new_name =~ tr/_/./;
+    } else {
+        $new_name =~ tr/_/-/;
+    }
     $new_name =~ s/\.-\./-/g;
-    $new_name =~ s/\,\././g;
+    $new_name =~ s/\,[_-]/-/g;
+    $new_name =~ s/[,.]\././g;
     $new_name =~ s/-\./-/g;
     $new_name =~ s/\.-/-/g;
     $new_name =~ s/[\(\)\[\]<>\\]//g;
