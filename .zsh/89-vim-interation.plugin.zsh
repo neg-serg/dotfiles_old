@@ -33,8 +33,12 @@ function vim_file_open() (
             sleep ${wim_timer}
         done \
         && vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
-        local file_size=$(stat -c%s "${file_name}" 2>/dev/null| numfmt --to=iec-i --suffix=B|sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
-        local file_length="$(wc -l ${file_name} 2>/dev/null|grep -owE '[0-9]* '|tr -d ' ')"
+        local file_size=$(stat -c%s "${file_name}" 2>/dev/null | \
+                          numfmt --to=iec-i --suffix=B | \
+                          sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
+        local file_length=$(wc -l ${file_name} 2>/dev/null| \
+            grep -owE '[0-9]* '| \
+            tr -d ' ')
         local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
         local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
         local new_file_msg=$(_zwrap new_file)
