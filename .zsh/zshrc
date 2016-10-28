@@ -15,8 +15,8 @@ export ZDOTDIR="${HOME}/.zsh" && local _zsh_home="${ZDOTDIR}"
 local _zsh_files=(
     01-init.zsh
     02-async.zsh
-    03-exports.zsh
     03-helpers.zsh
+    03-exports.zsh
     04-oldprompt.zsh
     05-functions.zsh
     06-alias.zsh
