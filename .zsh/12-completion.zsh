@@ -12,6 +12,8 @@ mycompletion() {
     zstyle ':completion:*:descriptions'         format "%{${fg[blue]}%}--%{${reset_color}%} %d%{${reset_color}%}%{${reset_color}%}"
     zstyle ':completion:*:correct:*'            original true
     zstyle ':completion:*:-tilde-:*'            group-order 'named-directories'
+    # Don't complete unavailable commands.
+    zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
     # insert all expansions for expand completer
     zstyle ':completion:*:expand:*'             tag-order all-expansions
     zstyle ':completion:*:history-words'        list false
@@ -48,6 +50,10 @@ mycompletion() {
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' file-sort name
     zstyle ':completion:*:*:(mplayer|mp|mpv):*' menu select auto
     zstyle ':completion:*:*:(mplayer*|mp):*'    file-patterns '(#i)*.(rmvb|mkv|vob|ts|mp4|m4a|iso|wmv|webm|flv|ogv|avi|mpg|mpeg|iso|nrg|mp3|flac|rm|wv|m4v):files:mplayer\ play *(-/):directories:directories'
+    zstyle ':completion:*:*:mpg123:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
+    zstyle ':completion:*:*:mpg321:*' file-patterns '*.(mp3|MP3):mp3\ files *(-/):directories'
+    zstyle ':completion:*:*:ogg123:*' file-patterns '*.(ogg|OGG|flac):ogg\ files *(-/):directories'
+    zstyle ':completion:*:*:mocp:*' file-patterns '*.(wav|WAV|mp3|MP3|ogg|OGG|flac):ogg\ files *(-/):directories'
     zstyle ':completion:*:default'      \
         select-prompt \
         "%{${fg[cyan]}%}Match %{${fg_bold[cyan]}%}%m%{${fg_no_bold[cyan]}%}  Line %{${fg_bold[cyan]}%}%l%{${fg_no_bold[blue]}%}  %p%{${reset_color}%}"
@@ -66,10 +72,20 @@ mycompletion() {
     _ssh_config_hosts=()
     hosts=($HOST "$_ssh_hosts[@]" $_ssh_config_hosts[@] localhost)
     zstyle ':completion:*:hosts' hosts ${hosts}
-        # highlight the original input.
-        zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
-        # colorize username completion
-        zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
+    # highlight the original input.
+    zstyle ':completion:*:original' list-colors "=*=$color[blue];$color[bold]"
+    # colorize username completion
+    zstyle ':completion:*:*:*:*:users' list-colors "=*=$color[blue];$color[bg-black]"
+    
+    # Don't complete uninteresting users...
+    zstyle ':completion:*:*:*:users' ignored-patterns \
+        adm amanda apache avahi beaglidx bin cacti canna clamav daemon \
+        dbus distcache dovecot fax ftp games gdm gkrellmd gopher \
+        hacluster haldaemon halt hsqldb ident junkbust ldap lp mail \
+        mailman mailnull mldonkey mysql nagios \
+        named netdump news nfsnobody nobody nscd ntp nut nx openvpn \
+        operator pcap postfix postgres privoxy pulse pvm quagga radvd \
+        rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs '_*'
     zstyle ':completion:*:wine:*'             file-patterns '(#i)*.(exe):exe'
     # highlight parameters with uncommon names
     zstyle ':completion:*:parameters'         list-colors "=[^a-zA-Z]*=$color[cyan]"
