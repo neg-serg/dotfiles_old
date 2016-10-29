@@ -225,3 +225,34 @@ function flac2mp3(){
         flac --decode --stdout "$f" | lame -b 320 --add-id3v2 --tt "$title" --ta "$artist" --tl "$album" --ty "$year" --tn "$tracknumber" --tg "$genre" - "${f%.flac}.mp3"
     done
 }
+
+# tmux-neww-in-cwd - open a new shell with same cwd as calling pane
+# http://chneukirchen.org/dotfiles/bin/tmux-neww-in-cwd
+tmux-neww-in-cwd() {
+    SIP=$(tmux display-message -p "#S:#I:#P")
+
+    PTY=$(tmux server-info |
+    egrep flags=\|bytes |
+    awk '/windows/ { s = $2 }
+    /references/ { i = $1 }
+    /bytes/ { print s i $1 $2 } ' |
+    grep "$SIP" |
+    cut -d: -f4)
+
+    PTS=${PTY#/dev/}
+
+    PID=$(ps -eao pid,tty,command --forest | awk '$2 == "'$PTS'" {print $1; exit}')
+
+    DIR=$(readlink /proc/$PID/cwd)
+
+    tmux neww "cd '$DIR'; $SHELL"
+}
+
+function print_hooks() {
+    print -C 1 ":::pwd_functions:" ${chpwd_functions}
+    print -C 1 ":::periodic_functions:" ${periodic_functions}
+    print -C 1 ":::precmd_functions:" ${precmd_functions}
+    print -C 1 ":::preexec_functions:" ${preexec_functions}
+    print -C 1 ":::zshaddhistory_functions:" ${zshaddhistory_functions}
+    print -C 1 ":::zshexit_functions:" ${zshexit_functions}
+}
