@@ -72,19 +72,12 @@ $endif
 "\ew": copy-backward-word
 "\C-p": history-search-backward
 "\C-n": history-search-forward
-"\C-\M-p": dynamic-complete-history
 "\C-x\C-i": menu-complete
 "\C-x\C-o": menu-complete-backward
-"\ea": alias-expand-line
 "\C-x\C-r": re-read-init-file
 "\C-u": kill-whole-line
 "\C-\M-w": unix-word-rubout
-"\C-\M-d": shell-kill-word
-"\C-\M-f": shell-forward-word
-"\C-\M-b": shell-backward-word
-
 "\ei": tab-insert
-"\e,": shell-expand-line
 
 "\e]": character-search
 "\e[": character-search-backward
