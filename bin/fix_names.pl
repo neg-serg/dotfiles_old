@@ -6,9 +6,15 @@ use warnings;
 
 use Getopt::Std;
 use Term::ANSIColor;
+use Encode;
 
-getopts('is');
-our($opt_i, $opt_s);
+getopts('islu');
+our(
+    $opt_i, 
+    $opt_s, 
+    $opt_l,
+    $opt_u
+);
 
 sub wrp_{
     my ($str) = @_;
@@ -38,7 +44,11 @@ sub fancy_string {
 foreach my $file_name (@ARGV) {
     # Compute the new name
     my $new_name = $file_name;
-
+    if ($opt_l) {
+        $new_name = encode_utf8(lc(decode_utf8($new_name)));
+    } elsif ($opt_u) {
+        $new_name = encode_utf8(uc(decode_utf8($new_name)));
+    }
     $new_name =~ tr/ /./;
     $new_name =~ tr/\t/./;
     $new_name =~ tr/;/:/;
@@ -49,14 +59,15 @@ foreach my $file_name (@ARGV) {
     }
     $new_name =~ s/\.-\./-/g;
     $new_name =~ s/\,[_-]/-/g;
-    $new_name =~ s/[,.]\././g;
     $new_name =~ s/-\./-/g;
+    $new_name =~ s/-+/-/g;
     $new_name =~ s/\.-/-/g;
     $new_name =~ s/[\(\)\[\]<>\\]//g;
     $new_name =~ s/[\'\`]/=/g;
-    $new_name =~ s/^[--]//g;
+    $new_name =~ s/^[--]+//g;
     $new_name =~ s/\&/.and./g;
     $new_name =~ s/\$/.dol./g;
+    $new_name =~ s/[,.]{2}/./g;
 
     # Make sure the names are different
     if ($file_name ne $new_name){
