@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use utf8;
 
 use Getopt::Std;
 use Term::ANSIColor;
@@ -13,7 +14,8 @@ our(
     $opt_i, 
     $opt_s, 
     $opt_l,
-    $opt_u
+    $opt_u,
+    $opt_B
 );
 
 sub wrp_{
@@ -45,9 +47,9 @@ foreach my $file_name (@ARGV) {
     # Compute the new name
     my $new_name = $file_name;
     if ($opt_l) {
-        $new_name = encode_utf8(lc(decode_utf8($new_name)));
+        $new_name = lc $new_name;
     } elsif ($opt_u) {
-        $new_name = encode_utf8(uc(decode_utf8($new_name)));
+        $new_name = uc $new_name;
     }
     $new_name =~ tr/ /./;
     $new_name =~ tr/\t/./;
@@ -62,7 +64,13 @@ foreach my $file_name (@ARGV) {
     $new_name =~ s/-\./-/g;
     $new_name =~ s/-+/-/g;
     $new_name =~ s/\.-/-/g;
-    $new_name =~ s/[\(\)\[\]<>\\]//g;
+    if ($opt_B){
+        $new_name =~ s/[\(\)<>\\]//g;
+    } else {
+        $new_name =~ s/[<>\\]//g;
+        $new_name =~ tr/\(/\[/;
+        $new_name =~ tr/\)/\]/;
+    }
     $new_name =~ s/[\'\`]/=/g;
     $new_name =~ s/^[--]+//g;
     $new_name =~ s/\&/.and./g;
