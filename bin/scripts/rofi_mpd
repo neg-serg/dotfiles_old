@@ -6,11 +6,15 @@ mpd_menu=(
     "mpd_show"
 )
 
+blue_="<span weight='bold' color='$(xrq color4)'>"
+norm_="<span weight='bold' color='$(xrq foreground)'>"
+close_="</span>"
+
 function generate(){
     local j=0
     for i in ${mpd_menu[@]}; do
         (( j++ ))
-        echo "$j - [ $i ]"
+        echo "$j - ${blue_}[</span> $i ${blue_}]</span>"
     done
 }
 
@@ -27,20 +31,38 @@ function handler(){
 }
 
 
-local neg_rofi_bg="#000000"
-local neg_rofi_fg="#666666"
+local neg_rofi_bg="$(xrq background)"
+local neg_rofi_fg="$(xrq foreground)"
 local neg_rofi_hlfg="#aaaaaa"
 local neg_rofi_hlbg="#194558"
 local neg_rofi_bc="#202020"
 
+local pref="${blue_}[${close_}mpd action${blue_}]${close_}"
+
 local rofi_font="Pragmata Pro for Powerline bold 17"
 
-local rofi_colors=" -fg '${neg_rofi_fg}' -bg '${neg_rofi_bg}' -hlfg '${neg_rofi_hlfg}' -hlbg '${neg_rofi_hlbg}' -bc '${neg_rofi_bc}' "
+local rofi_colors=(
+    -fg '${neg_rofi_fg}'
+    -bg '${neg_rofi_bg}' 
+    -hlfg '${neg_rofi_hlfg}' 
+    -hlbg '${neg_rofi_hlbg}'
+    -bc '${neg_rofi_bc}' 
+)
+
 local mon_width_=$(xrandr -q |awk '/Screen/{print $8}')
 local gap_="70"
-local rofi_options=$(builtin printf " -dmenu -auto-select -font '${rofi_font}' -b -disable-history -columns 3 \
-                                      -lines 1 -width $((${mon_width_} - ${gap_})) \
-                                      -yoffset -22 -location 6 -p \[mpd\]\ \>\>\ " | sed 's/ \+/ /gp')
+
+local rofi_options=(
+    -markup-rows
+    -mesg \"${pref}\"
+    -dmenu
+    -auto-select
+    -font '${rofi_font}'
+    -b -disable-history -columns 3
+    -lines 1
+    -width $((${mon_width_} - ${gap_}))
+    -yoffset -22 -location 6 -p '\>'
+)
 local rofi_pid=" -pid /run/user/$(id -u)/rofi_mpd.pid"
 
 generate | eval "rofi ${rofi_colors} ${rofi_options} ${rofi_pid}" | handler 
