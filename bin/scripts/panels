@@ -1,8 +1,12 @@
 #!/bin/zsh
-pkill dzen && pkill admiral
-{ \
-    admiral -c ~/.config/admiral.d/admiral_left.toml | \
-        dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn "PragmataPro for Powerline:bold:size=12" &
-    sleep 0.1 && admiral | \
-        dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta r -w 910 -p -fn "PragmataPro for Powerline:bold:size=12"  &
-} &
+if [[ -z "$1" || "$1" == "dzen*" ]]; then
+    pkill dzen && pkill admiral
+    { \
+        admiral -c ~/.config/admiral.d/admiral_left.toml | \
+            dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta l -w 1000 -p -fn "PragmataPro for Powerline:bold:size=12" &
+        sleep 0.1 && admiral | \
+            dzen2 -dock -bg '#000000' -h 19 -tw 0 -x 0 -ta r -w 910 -p -fn "PragmataPro for Powerline:bold:size=12"  &
+    } &
+elif [[ "$1" == "lemon" ]]; then 
+    true
+fi
