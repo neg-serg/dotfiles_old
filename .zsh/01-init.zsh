@@ -1,3 +1,5 @@
+_start_time=$(( $(( $(date +%s) * 1000000000 )) + $(date +%N) ))
+
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
