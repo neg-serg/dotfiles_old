@@ -101,9 +101,14 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 alias mk="mkdir -p"
 
-function mp(){ for i; do vid_fancy_print "${i}"; ${VIDEO_PLAYER_} --input-unix-socket=~/tmp/${VIDEO_PLAYER_}.socket "${i}"; done }
+function mp(){ 
+    for i; do 
+        vid_fancy_print "${i}"; ${VIDEO_PLAYER_} "${i}";
+    done 
+}
+
 alias mpvc="SOCKET=${HOME}/tmp/${VIDEO_PLAYER_}.socket mpvc"
-alias mpa="${VIDEO_PLAYER_} -fs -ao null --input-unix-socket=${HOME}/tmp/${VIDEO_PLAYER_}_socket"
+alias mpa="${VIDEO_PLAYER_} -fs -ao null"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 alias grep="grep --color=auto"
 
@@ -431,3 +436,7 @@ mysql_create() { echo "CREATE USER '$1'@'%' IDENTIFIED BY '$2'; CREATE DATABASE 
 mysql_drop() { echo "DROP DATABASE $1; DROP USER '$1'@'%'; FLUSH PRIVILEGES;" }
 psql_create() { echo "CREATE DATABASE $1" }
 psql_drop() { echo "DROP DATABASE $1" }
+
+alias -s Dockerfile="docker build - < "
+alias ocr='docker run --rm -v `pwd`:/home/docker jbarlow83/ocrmypdf --skip-text'
+alias -s tex='docker run -i -t --rm -v `pwd`:/build docker-registry.eccenca.com/eccenca-latex:v1.4.0 rubber --inplace --maxerr -1 --short --force --warn all --pdf'
