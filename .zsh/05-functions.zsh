@@ -331,12 +331,6 @@ function sp() {
 }
 
 
-if [ -z "\${which tree}" ]; then
-  tree () {
-      find $@ -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
-  }
-fi
-
 # shameless stolen from http://ft.bewatermyfriend.org/comp/data/zsh/zfunct.html
 # MISC: zurl() create small urls via tinyurl.com needs wget, grep and sed. yes, it's a hack ;)
 function zurl() {
