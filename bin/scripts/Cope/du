@@ -2,9 +2,8 @@
 use App::Cope;
 
 sub process {
-    # TODO: fix?
-        line qr{(\d+)[\s|K|M|G]} => 'cyan';
-        line qr{(\d+\.\d+)[\s|K|M|G]} => 'cyan';
+    line qr{^(\d+)[\s|K|M|G]} => 'cyan';
+    line qr{^(\d+\.\d+)[\s|K|M|G]} => 'cyan';
 
     line qr{\d(K)\s} => 'green';
     line qr{\d(M)\s} => 'blue';

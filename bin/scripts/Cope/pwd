@@ -2,7 +2,7 @@
 use App::Cope;
 
 sub process {
-    line qr{(/)(\w+)(/)*?} => 'blue', 'white', 'blue';
+    line qr{(/)([^/]*)(/)*?} => 'blue', 'white', 'blue';
 }
 
 run( \&process, real_path, @ARGV );
