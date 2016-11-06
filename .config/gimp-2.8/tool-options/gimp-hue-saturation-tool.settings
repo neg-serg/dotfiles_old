@@ -1,10 +1,10 @@
 # settings
 
-(GimpHueSaturationConfig "2016-09-28 01:20:07"
-    (time 1475014807)
+(GimpHueSaturationConfig "2016-11-06 02:41:06"
+    (time 1478389266)
     (range all-hues)
     (hue 0.000000)
-    (saturation 0.000000)
+    (saturation -1.000000)
     (lightness 0.000000)
     (range red-hues)
     (hue 0.000000)
@@ -31,11 +31,11 @@
     (saturation 0.000000)
     (lightness 0.000000)
     (overlap 0.000000))
-(GimpHueSaturationConfig "2016-09-03 16:15:30"
-    (time 1472908530)
+(GimpHueSaturationConfig "2016-09-28 01:20:07"
+    (time 1475014807)
     (range all-hues)
     (hue 0.000000)
-    (saturation -1.000000)
+    (saturation 0.000000)
     (lightness 0.000000)
     (range red-hues)
     (hue 0.000000)
