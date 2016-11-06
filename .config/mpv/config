@@ -1,3 +1,5 @@
+#input-ipc-server=/home/neg/tmp/mpv.socket
+
 ao=pulse
 
 monitoraspect=16:10
@@ -6,21 +8,26 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
-sub-scale=0.6
+#[vo.opengl-hq]
+#vo=opengl-hq:scale=ewa_lanczossharp:cscale=ewa_lanczossharp:interpolation:temporal-dither:gamma=0.9:blend-subtitles=yes:target-prim=bt.709:target-trc=srgb
 
-profile=opengl-hq
-#vo=opengl-hq,vdpau,vaapi,xv
-#vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
-#vc=ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivx,ffmpeg12vdpau,ffdivx,ffflv,theora,ffvp6f,
-#vf=pp=de,hqdn3d
+vo=vdpau,vaapi
+screenshot-template="~/dw/scr-%F_%P"
+vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+hwdec=cuda
 
-hwdec=auto
 # # I am dont like gui
 # no-osc
 
 osd-font="PragmataPro for Powerline"
-#sub-text-font="Zag Regular"
-sub-text-font="PragmataPro for Powerline"
+
+sub-scale=0.6
+sub-gauss=.75
+sub-gray=yes
+sub-auto=fuzzy
+sub-font="PragmataPro for Powerline"
+
+osd-status-msg="${time-pos} / ${duration} (${percent-pos}%)${?vo-drop-frame-count:${!vo-drop-frame-count==0: Dropped: ${vo-drop-frame-count}}}${?estimated-vf-fps: FPS: ${estimated-vf-fps}}"
 osd-font-size=12
 term-osd-bar-chars = "──╼ ·"
 # make the OSD progress bar be big and centered like in mplayer and mplayer2
@@ -33,11 +40,9 @@ osd-bar-align-y=0.8
 #osd-margin-y=600
 
 ytdl
+ytdl-format=bestvideo+bestaudio
 
 cursor-autohide=1000
 really-quiet
 
-input-ipc-server=/tmp/mpvsocket
-
 volume=40
-
