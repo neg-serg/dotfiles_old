@@ -7,8 +7,8 @@ function setcol(){
 main(){
     local bracket_color="#287373"
     local fg_color="#cccccc"
-    local left_side="[ "
-    local right_side=" ]"
+    local left_side="${2:-[ }"
+    local right_side="${3:- ]}"
 
     if [[ $1 == "__left__" ]]; then
         builtin printf "$(setcol "${bracket_color}")${left_side}$(setcol "${fg_color}")"
