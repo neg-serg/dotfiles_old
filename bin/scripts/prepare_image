@@ -38,7 +38,7 @@ function send_notify_(){
     for i in ${bodyarr_[@]}; do
         output="${output}${i}"
     done
-    summary_=$(repeat 16 builtin print -e "◇")
+    summary_=$(repeat 16 builtin print -n "◇")
     output="\n${output}$(get_lastfm_)\n\n${summary_}"
 	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
