@@ -21,7 +21,8 @@ function get_lastfm_(){
 }
 
 function send_notify_(){ 
-    local st_="<span weight='bold' color='#395573'>"
+    local st_="<span weight='bold' color='$(xrq color4)'>"
+    local st2_="<span weight='bold' color='$(xrq color8)'>"
     local cl_="</span>"
     local bold_="<span weight='bold'>"
     local prefix_=$(wf_ "➣")
@@ -38,7 +39,7 @@ function send_notify_(){
     for i in ${bodyarr_[@]}; do
         output="${output}${i}"
     done
-    summary_=$(repeat 16 builtin print -n "◇")
+    summary_="${st2_}$(repeat 16 builtin print -n "◇")${cl_}"
     output="\n${output}$(get_lastfm_)\n\n${summary_}"
 	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
