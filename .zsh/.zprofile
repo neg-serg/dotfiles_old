@@ -20,6 +20,12 @@ fi
 
 if [[ -o LOGIN  ]]; then
     (( $#commands[tmux]  )) && tmux list-sessions 2>/dev/null
+
+    uptimestart=$(uptime | colrm 1 13 | colrm 6)
+    print "$fg[blue]Host: $fg[green]${HOST}$fg[blue], Zeit: $fg[green]$(date +%d.%m.%Y' '%H:%M:%S)$fg[blue], Up: $fg[green]$uptimestart"
+    print "$fg[blue]Term: $fg[green]${TTY} $fg[blue], $fg[blue]Shell: $fg[green]Zsh ${ZSH_VERSION} $fg[blue] (PID=$$)"
+    print "$fg[blue]Login: $fg[green]${LOGNAME} $fg[blue] (UID=${EUID}), cars: $fg[green]${COLUMNS} x ${LINES}"
+
 fi
 
 if [[ -z "$DISPLAY"  ]] && [[ $(tty) = /dev/tty1  ]] && [[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && [ -z `pgrep xinit`  ]; then
