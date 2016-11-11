@@ -3,8 +3,8 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
-let s:nvim_colorscheme = "gotham"
-" let s:nvim_colorscheme = "wim24"
+" let s:nvim_colorscheme = "gotham"
+let s:nvim_colorscheme = "wim24"
 
 " if v:version >= 704
 "   " The new Vim regex engine is currently slooooow as hell which makes syntax
@@ -195,6 +195,7 @@ if has('user_commands')
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
     command! -nargs=0 Sw :SudoWrite
+    "command! -nargs=0 curf let @+=expand("%:p")
 endif
 "----------------------------------------------------------------------------
 set keywordprg=:help
