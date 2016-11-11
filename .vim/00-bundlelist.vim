@@ -1,11 +1,3 @@
-"--[ Lib ]-------------------------------------------------------------------------------
-NeoBundle 'vim-jp/vital.vim.git' "improve unite perf
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \ 'windows' : 'make -f make_mingw32.mak',
-            \ 'cygwin' : 'make -f make_cygwin.mak',
-            \ 'mac' : 'make -f make_mac.mak',
-            \ 'unix' : 'make -f make_unix.mak', } }
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
 if !has("nvim")
@@ -36,11 +28,9 @@ endif
 if executable(resolve(expand("ag")))
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-NeoBundle 'wincent/ferret' "potential replacement for unite in [ag,grep,ack, etc] case
 NeoBundle 'junegunn/fzf'     "to work with fzf-vim
 NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
-NeoBundle 'junkblocker/unite-codesearch' "junkblocker google codesearch wrapper
 if !has("nvim")
     NeoBundle 'sjbach/lusty.git' "file/buffer explorer
 endif
