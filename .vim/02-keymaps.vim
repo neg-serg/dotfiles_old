@@ -53,7 +53,6 @@ vnoremap <F1> <Nop>
 nnoremap <silent> <leader>4 :set cursorline!<CR>
 
 nnoremap <silent> <space>cd :lcd %:p:h<CR>:pwd<CR>
-nnoremap <silent> <space>e  :<C-u>JunkFile<CR>
 
 nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <M-z> :set invpaste paste?<CR>
