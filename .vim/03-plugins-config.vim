@@ -74,6 +74,25 @@ if neobundle#tap('fzf.vim')
     " Insert mode completion
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-l> <plug>(fzf-complete-line)
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+    nnoremap <silent> <Leader>. :call fzf#run({
+                \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
+                \ 'options': '--multi --reverse --margin 15%,0',
+                \ 'down': '20%',
+                \ 'sink': 'e '
+                \ })<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
@@ -830,6 +849,4 @@ if neobundle#tap('denite.nvim')
     call denite#custom#option('default', 'prompt', '>>')
 
     nnoremap <silent><Leader>. :Denite file_mru<CR>
-else
-    nnoremap <silent><Leader>. :History<CR>
 endif
