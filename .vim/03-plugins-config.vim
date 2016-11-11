@@ -7,7 +7,6 @@ let g:livepreview_previewer    = 'zathura'
 let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
-let g:unite_source_codesearch_command = $HOME.'/bin/go/bin/csearch'
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
 if has("nvim")
     let g:deoplete#enable_at_startup = 1 " Use deoplete.
@@ -275,6 +274,7 @@ if neobundle#tap('YouCompleteMe')
         \ 'markdown'   : 1,
         \ 'text'       : 1,
         \ 'unite'      : 1,
+        \ 'lycosa'     : 1,
         \ 'conqueterm' : 1,
         \ 'asm'        : 1,
         \ 'tagbar'     : 1,
@@ -533,166 +533,6 @@ if neobundle#tap('YankRing.vim')
     endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - Shougo/unite.vim                                                         │
-" │ https://github.com/Shougo/unite.vim.git                                           │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('unite.vim')
-    function! s:unite_my_settings()
-        nnoremap <silent><buffer> <C-o> :call unite#mappings#do_action('tabopen')<CR>
-        nnoremap <silent><buffer> <C-v> :call unite#mappings#do_action('vsplit')<CR>
-        nnoremap <silent><buffer> <C-s> :call unite#mappings#do_action('split')<CR>
-        nnoremap <silent><buffer> <C-r> :call unite#mappings#do_action('rec')<CR>
-        nnoremap <silent><buffer> <C-f> :call unite#mappings#do_action('preview')<CR>
-        inoremap <silent><buffer> <C-o> <Esc>:call unite#mappings#do_action('tabopen')<CR>
-        inoremap <silent><buffer> <C-v> <Esc>:call unite#mappings#do_action('vsplit')<CR>
-        inoremap <silent><buffer> <C-s> <Esc>:call unite#mappings#do_action('split')<CR>
-        inoremap <silent><buffer> <C-r> <Esc>:call unite#mappings#do_action('rec')<CR>
-        inoremap <silent><buffer> <C-e> <Esc>:call unite#mappings#do_action('edit')<CR>
-        inoremap <silent><buffer> <C-f> <C-o>:call unite#mappings#do_action('preview')<CR>
-        " I hope to use <C-o> and return to the selected item after action...
-        nmap <silent><buffer> jl <Plug>(unite_exit)
-        imap <silent><buffer> jl <Plug>(unite_exit)
-        imap <silent><buffer> <C-c> <Plug>(unite_exit)
-        imap <silent><buffer> <C-j> <Plug>(unite_exit)
-        imap <silent><buffer> <ESC> <NOP>
-        nmap <silent><buffer> <C-j> <Plug>(unite_all_exit)
-        inoremap <silent><buffer> <SPACE> _
-        inoremap <silent><buffer> _ <SPACE>
-    endfunction
-    autocmd FileType unite call s:unite_my_settings()
-
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    call unite#filters#sorter_default#use(['sorter_rank'])
-    call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
-                \ 'ignore_pattern', join(['\.git/', 'tmp/', 'bundle/'], '\|'))
-    " call unite#custom#source( 'neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
-    call unite#custom#profile('neomru/file', 'filters', 'sorter_ftime')
-    call unite#custom#profile('default', 'context', {
-                \ 'prompt_direction': 'below',
-                \ 'direction': 'botright',
-                \ 'vertical' : 0,
-                \ 'marked-icon': '✓',
-                \ 'candidate-icon': '▷',
-                \ 'hide-icon' : 0,
-                \ 'start_insert' : 1,
-                \ 'smartcase' : 1,
-                \ 'ignorecase' : 1,
-                \ 'start-insert' : 1,
-                \ 'prompt' : '>> ',
-                \ 'short-source-names' : 0,
-                \ 'winheight': 10,
-                \ })
-    let g:unite_source_file_mru_time_format      = '(%d-%m-%Y %H:%M:%S) '
-    let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-    let g:unite_source_file_rec_min_cache_files  = 300
-    let g:unite_source_file_rec_max_depth        = 10
-    let g:unite_source_history_yank_enable       = 0
-    let g:unite_source_bookmark_directory        = $XDG_CONFIG_HOME . "/unite/bookmark"
-    let g:unite_data_directory                   = $XDG_CONFIG_HOME.'/unite'
-    let g:junkfile#directory                     = expand($XDG_CONFIG_HOME."/unite/junk")
-    let g:unite_source_gtags_treelize            = 1
-    let g:unite_force_overwrite_statusline       = 0 "powerline support
-    let g:unite_source_buffer_time_format        = '(%d-%m-%Y %H:%M:%S) '
-    let g:unite_marked_icon                      = '✓'
-    let g:unite_candidate_icon                   = '▷'
-    if executable('ag')
-        let g:unite_source_grep_command               = 'ag'
-        let g:unite_source_grep_default_opts =
-            \ '--smart-case --line-numbers --nocolor --nogroup'
-        let g:unite_source_grep_recursive_opt         = ''
-    elseif executable('ack')
-        let g:unite_source_grep_command               = 'ack'
-        let g:unite_source_grep_default_opts          = '--no-group --no-color'
-        let g:unite_source_grep_recursive_opt         = ''
-    endif
-
-    function! s:vimfiler_toggle()
-        if &filetype == 'vimfiler'
-            execute 'silent! buffer #'
-            if &filetype == 'vimfiler'
-                execute 'enew'
-            endif
-        elseif exists('t:vimfiler_buffer') && bufexists(t:vimfiler_buffer)
-            execute 'buffer ' . t:vimfiler_buffer
-        else
-            execute 'VimFilerCreate'
-            let t:vimfiler_buffer = @%
-        endif
-    endfunction
-    function! s:vimfiler_settings()
-        setlocal nobuflisted
-        setlocal colorcolumn=
-        nmap <buffer> q :call <SID>vimfiler_toggle()<CR>
-        nmap <buffer> <ENTER> o
-        nmap <buffer> <expr>  o vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-        nmap <buffer> <expr>  C vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "")
-        nmap <buffer> j       <Plug>(vimfiler_loop_cursor_down)
-        nmap <buffer> k       <Plug>(vimfiler_loop_cursor_up)
-        nmap <buffer> gg      <Plug>(vimfiler_cursor_top)
-        nmap <buffer> R       <Plug>(vimfiler_redraw_screen)
-        nmap <buffer> <SPACE> <Plug>(vimfiler_toggle_mark_current_line)
-        nmap <buffer> U       <Plug>(vimfiler_clear_mark_all_lines)
-        nmap <buffer> cp      <Plug>(vimfiler_copy_file)
-        nmap <buffer> mv      <Plug>(vimfiler_move_file)
-        nmap <buffer> rm      <Plug>(vimfiler_delete_file)
-        nmap <buffer> mk      <Plug>(vimfiler_make_directory)
-        nmap <buffer> e       <Plug>(vimfiler_new_file)
-        nmap <buffer> u       <Plug>(vimfiler_switch_to_parent_directory)
-        nmap <buffer> .       <Plug>(vimfiler_toggle_visible_ignore_files)
-        nmap <buffer> I       <Plug>(vimfiler_toggle_visible_ignore_files)
-        nmap <buffer> yy      <Plug>(vimfiler_yank_full_path)
-        nmap <buffer> cd      <Plug>(vimfiler_cd_vim_current_dir)
-        vmap <buffer> <Space> <Plug>(vimfiler_toggle_mark_selected_lines)
-    endfunction
-    autocmd FileType vimfiler call s:vimfiler_settings()
-    let g:vimfiler_as_default_explorer = 1
-    let g:vimfiler_safe_mode_by_default = 0
-    let g:vimfiler_tree_leaf_icon = ' '
-    let g:vimfiler_tree_opened_icon = '▾'
-    let g:vimfiler_tree_closed_icon = '▸'
-    let g:vimfiler_enable_auto_cd = 1
-    let g:vimfiler_no_default_key_mappings = 1
-
-    nmap e [unite]
-    xmap e [unite]
-    nnoremap [unite] <Nop>
-    xnoremap [unite] <Nop>
-    nnoremap <silent> [unite]r :UniteResume<CR>
-    nnoremap [unite]R :Unite ref/
-    nnoremap <silent> [unite]t :Unite tab<CR>
-    nnoremap <silent> [unite]y :Unite register<CR>
-    nnoremap <silent> [unite]H :<C-u>Unite history/yank<CR>
-    nnoremap <silent> [unite]j :Unite buffer_tab <CR>
-    nnoremap <silent> [unite]o :Unite -vertical -winwidth=40 -direction=topleft -toggle outline<CR>
-    nnoremap <silent> [unite]q :Unite quickfix -no-start-insert<CR>
-    nnoremap <expr> [unite]g ':Unite grep:'. expand("%:h") . ':-r'
-    nnoremap <space>/ :Unite grep:.<cr>
-    nnoremap <silent> [unite]d :Unite -silent buffer<CR>
-    nnoremap <silent><Leader>. :Unite -silent -start-insert neomru/file<CR>
-    nnoremap <silent><Leader>D :Unite -silent junkfile/new junkfile<CR>
-    nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit
-                \ quickfix"<CR>:redraw!<CR>
-    nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit
-                \ quickfix"<CR>:redraw!<CR>
-    nnoremap <Leader>gg :exe 'silent Gvimrcgrep -i '.input("Pattern: ")<Bar>Unite
-                \ quickfix -no-quit<CR>
-    nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>
-                \Unite -no-quit quickfix'<CR>
-    nnoremap <Leader>ggt :exe 'silent Glog -S='.input("Pattern: ").' <Bar>
-                \Unite -no-quit quickfix'<CR>
-    nnoremap <Leader>gn :Unite output:echo\ system("git\ init")<CR>
-    " ┌───────────────────────────────────────────────────────────────────────────────┐
-    " │ plugin - hewes/unite-gtags.git                                                │
-    " │ https://github.com/hewes/unite-gtags.git                                      │
-    " └───────────────────────────────────────────────────────────────────────────────┘
-    if neobundle#tap('unite-gtags')
-        nnoremap [unite]D :execute 'Unite gtags/def:'.expand('<cword>')<CR>
-        nnoremap [unite]C :execute 'Unite gtags/context'<CR>
-        nnoremap [unite]R :execute 'Unite gtags/ref'<CR>
-        nnoremap [unite]G :execute 'Unite gtags/grep'<CR>
-    endif
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - drmikehenry/vim-fontsize.git                                             │
 " │ https://github.com/drmikehenry/vim-fontsize.git                                   │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -764,92 +604,6 @@ if neobundle#tap('jedi-vim')
     endfunction
     autocmd Filetype python call <SID>jedi_settings()
 endif
-
-if neobundle#tap('lightline.vim')
-    " lightline setting {{{
-    let g:lightline = {
-                \ 'colorscheme': 'gotham',
-                \ 'mode_map': {
-                \ 'n' : 'N',
-                \ 'i' : 'I',
-                \ 'R' : 'R',
-                \ 'v' : 'V',
-                \ 'V' : 'V-L',
-                \ 'c' : 'COMMAND',
-                \ "\<C-v>": 'V-B',
-                \ 's' : 'SELECT',
-                \ 'S' : 'S-L',
-                \ "\<C-s>": 'S-B',
-                \ '?': ' '
-                \ },
-                \ 'active': {
-                \ 'left': [
-                \ [ 'mode', 'paste' ],
-                \ [ 'filename','fugitive','anzu'],
-                \ ],
-                \ 'right': [
-                \ [ 'lineinfo', 'syntastic' ],
-                \ [ 'percent' ],
-                \ [ 'filetype'],
-                \ ]
-                \ },
-                \ 'component_function': {
-                \ 'modified': 'MyModified',
-                \ 'readonly': 'MyReadonly',
-                \ 'fugitive': 'MyFugitive',
-                \ 'filename': 'MyFilename',
-                \ 'fileformat': 'MyFileformat',
-                \ 'filetype': 'MyFiletype',
-                \ 'fileencoding': 'MyFileencoding',
-                \ 'mode': 'MyMode',
-                \ 'syntastic': 'SyntasticStatuslineFlag',
-                \ 'anzu': 'anzu#search_status',
-                \ }
-                \ }
-    
-    function! neobundle#tapped.hooks.on_source(bundle)
-        let g:unite_force_overwrite_statusline=0
-        let g:vimfiler_force_overwrite_statusline=0
-        let g:vimshell_force_overwrite_statusline=0
-    endfunction 
-    function! MyModified() 
-        return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-    endfunction 
-    function! MyReadonly() 
-        return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
-    endfunction 
-    function! MyFilename() 
-        return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-                    \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-                    \ &ft == 'unite' ? unite#get_status_string() :
-                    \ &ft == 'vimshell' ? vimshell#get_status_string() :
-                    \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-                    \ ('' != MyModified() ? ' ' . MyModified() : '')
-    endfunction 
-    function! MyFugitive() 
-        try
-            if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
-                return fugitive#head()
-            endif
-        catch
-        endtry
-        return ''
-    endfunction 
-    function! MyFileformat() 
-        return winwidth('.') > 70 ? &fileformat : ''
-    endfunction 
-    function! MyFiletype() 
-        return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-    endfunction 
-    function! MyFileencoding() 
-        return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-    endfunction 
-    function! MyMode()
-        return winwidth('.') > 60 ? lightline#mode() : ''
-    endfunction 
-    call neobundle#untap()
-endif
-
 if neobundle#tap('vital.vim') 
     function! neobundle#tapped.hooks.on_source(bundle)
         let g:V = vital#of('vital')
@@ -1016,4 +770,66 @@ if neobundle#tap('gtags-cscope-vim-plugin')
     nmap \E :vert scs find e <C-R>=expand("<cword>")<CR><CR>
     nmap \F :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
     nmap \I :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - Shougo/denite.nvim                                                       │
+" │ https://github.com/Shougo/denite.nvim                                             │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if neobundle#tap('denite.nvim')
+    " Change file_rec command.
+    call denite#custom#var('file_rec', 'command',
+                \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    " For ripgrep
+    " Note: It is slower than ag
+    call denite#custom#var('file_rec', 'command',
+                \ ['rg', '--files'])
+
+    " Change mappings.
+    call denite#custom#map('insert', '<C-n>', 'move_to_next_line')
+    call denite#custom#map('insert', '<C-p>', 'move_to_prev_line')
+
+    " Change matchers.
+    call denite#custom#source('file_mru', 'matchers', ['matcher_fuzzy'])
+    call denite#custom#source('file_mru', 'filters', 'sorter_ftime')
+    call denite#custom#source(
+                \ 'file_rec', 'matchers', ['matcher_cpsm'])
+
+    " Add custom menus
+    let s:menus = {}
+
+    let s:menus.zsh = {
+                \ 'description': 'Edit your import zsh configuration'
+                \ }
+    let s:menus.zsh.file_candidates = [
+                \ ['zshrc', '~/.config/zsh/.zshrc'],
+                \ ['zshenv', '~/.zshenv'],
+                \ ]
+
+    let s:menus.my_commands = {
+                \ 'description': 'Example commands'
+                \ }
+    let s:menus.my_commands.command_candidates = [
+                \ ['Split the window', 'vnew'],
+                \ ['Open zsh menu', 'Denite menu:zsh'],
+                \ ]
+
+    call denite#custom#var('menu', 'menus', s:menus)
+
+    " Ripgrep command on grep source
+    call denite#custom#var('grep', 'command', ['rg'])
+    call denite#custom#var('grep', 'recursive_opts', [])
+    call denite#custom#var('grep', 'final_opts', [])
+    call denite#custom#var('grep', 'separator', ['--'])
+
+    " Define alias
+    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+    call denite#custom#var('file_rec/git', 'command',
+                \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+    " Change default prompt
+    call denite#custom#option('default', 'prompt', '>>')
+
+    nnoremap <silent><Leader>. :Denite file_mru<CR>
+else
+    nnoremap <silent><Leader>. :History<CR>
 endif
