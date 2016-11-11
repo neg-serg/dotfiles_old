@@ -180,3 +180,5 @@ nmap <F1> :echom
 	\ . ']'
 	\ . ' fg[' . synIDattr(synIDtrans(synID(line('.'),col('.'),1)),'fg#')
 	\ . ']' <CR>
+
+nnoremap <leader>L :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
