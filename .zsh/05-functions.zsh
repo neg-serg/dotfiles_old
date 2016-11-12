@@ -235,18 +235,31 @@ function cache_list(){
     sp ${dirlist}
 }
 
-function toggle_mpdsc(){
+function lastfm_scrobbler_toggle(){
     local is_run="active (running)"
-    if [[ "$(systemctl --user status mpdscribble.service|grep -o "${is_run}")" == "${is_run}" ]]; then
-        systemctl --user stop mpdscribble
-        =mpdscribble --conf ${XDG_CONFIG_HOME}/mpdscribble/hextrick.conf --no-daemon &!
+    local use_mpdscribble=false
+    if [[ use_mpdscribble == true ]]; then
+        if [[ "$(systemctl --user status mpdscribble.service|grep -o "${is_run}")" != "" ]]; then
+            systemctl --user stop mpdscribble
+            =mpdscribble --conf ${XDG_CONFIG_HOME}/mpdscribble/hextrick.conf --no-daemon &!
+        else
+            pkill mpdscribble
+            systemctl --user start mpdscribble.service
+        fi
+        builtin printf "$(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
+                                    sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     else
-        pkill mpdscribble
-        systemctl --user start mpdscribble
+        if [[ "$(systemctl --user status mpdas.service|grep -o "${is_run}")" != "" ]]; then
+            systemctl --user stop mpdas.service
+            =mpdas -c ${XDG_CONFIG_HOME}/mpdas/hextrick.rc 1>2 2&> /dev/null &!
+        else
+            pkill mpdas
+            systemctl --user start mpdas.service
+        fi
+        builtin printf "$(_zpref) $(_zfwrap "$(any mpdas | awk  '{print substr($0, index($0,$11))}'|
+                                    sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
     fi
-    builtin printf "$(_zpref) $(_zfwrap "$(any mpdscribble | awk  '{print substr($0, index($0,$11))}'|
-                                sed "s|${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")")\n"
-    unset is_run
+    unset is_run use_mpdscribble
 }
 
 function mdel(){
