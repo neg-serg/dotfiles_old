@@ -75,7 +75,7 @@ function vid_fancy_print(){
         local img_height="$(_zex_tag 'Image Height')"
         local img_size_str="$(_zwrap "Size $(_zdelim) $fg[white]${img_width}$(_zfg 24)x$fg[white]${img_height}")"
         #------------------------------------------
-        local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|cut -d: -f 3-|tr -d '[:blank:]')"
+        local duration="$(awk -F: '/^Duration/' <<< ${exifdata_}|awk -F ':' '{print substr($0, index($0,$2))}'|tr -d '[:blank:]')"
         local duration_str="$(_zwrap "Duration $(_zdelim) $fg[white]${duration}")"
         #------------------------------------------
         local file_size="$(_zex_tag 'File Size')"
@@ -94,14 +94,18 @@ function vid_fancy_print(){
             local bitrate_str="$(_zwrap "Bitrate $(_zdelim) $fg[white]${average_bitrate}/${max_bitrate}")"
         }
         #------------------------------------------
+        local genre="$(_zex_tag_untr 'Genre')"
+        not_empty_in_fact_ ${genre} && \
+        local genre_str="$(_zwrap "Genre: $(_zdelim) $fg[white]${genre}")"
+        #------------------------------------------
         local video_frame_rate="$(_zex_tag 'Video Frame Rate')"
         not_empty_in_fact_ ${video_frame_rate} && \
         local vid_fps_str="$(_zwrap "FPS: $(_zdelim) $fg[white]${video_frame_rate}")"
         #------------------------------------------
         local audio_bits="$(_zex_tag 'Audio Bits Per Sample')"
         local audio_sample_rate="$(_zex_tag 'Audio Sample Rate')"
-        not_empty_in_fact_ ${audio_bits} && not_empty_in_fact_ && ${audio_sample_rate} && \
-        local audio_qa_str="$(_zwrap "Audio: $(_zdelim) $fg[white]${audio_bits}/${audio_sample_rate}")"
+        not_empty_in_fact_ ${audio_bits} && not_empty_in_fact_ ${audio_sample_rate} && \
+        local audio_qa_str="$(_zwrap "Audio: $(_zdelim) $fg[white]${audio_bits}$fg[green]bits$fg[blue]/$fg[white]$(printf "%.1f" $[${audio_sample_rate}/1000.])$fg[green]Khz")"
         #------------------------------------------
         local encoder="$(_zex_tag 'Encoder')"
         not_empty_in_fact_ ${encoder} && \
@@ -110,6 +114,10 @@ function vid_fancy_print(){
         local wrighting_app="$(_zex_tag 'Wrighting App')"
         not_empty_in_fact_ ${wrighting_app} && \
         local writing_app_str="$(_zwrap "Wrighting App $(_zdelim) ${wrighting_app}")"
+        #------------------------------------------
+        local description="$(_zex_tag_untr 'Description'|par -120)"
+        not_empty_in_fact_ ${description} && \
+        local description_str="$(_zwrap "Description $(_zdelim) $fg[white]${description}")"
         #------------------------------------------
         local wrighting_app="$(_zex_tag 'Muxing App')"
         not_empty_in_fact_ ${muxing_app} && \
@@ -144,6 +152,8 @@ function vid_fancy_print(){
                  ${doc_type_str} \
                  ${date_time_str} \
                  ${encoder_str} \
+                 ${genre_str} \
+                 ${description_str} \
                  ; do
             [[ ! ${q} == "" ]] && builtin print -n "${q}\n"
         done
