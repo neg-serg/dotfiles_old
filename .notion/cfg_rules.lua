@@ -166,6 +166,7 @@ defwinprop{instance="lxappearance",jumpto=true,winlist_ignore=true,transient_mod
 defwinprop{class="rdesktop",instance="rdesktop",transient_mode="off",jumpto=true,target="rdesktop"}
 defwinprop{class="Conky",winlist_ignore=true,float=true}
 defwinprop{instance="mpd-pad2",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad="true"}
+defwinprop{class="cool-retro-term",winlist_ignore=true,transient_mode="off",target="ncmpcpp",scratchpad="true"}
 defwinprop{class="Tilda",instance="tilda",winlist_ignore=true,transient_mode="off",float=true}
 defwinprop{class="Guake",instance="guake",winlist_ignore=true,transient_mode="off",float=true}
 defwinprop{class="Pavucontrol",instance="pavucontrol",winlist_ignore=true,transient_mode="off",target="float",scratchpad="true"}
