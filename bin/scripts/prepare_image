@@ -2,7 +2,7 @@
 
 summary_="$2" body_="$3" image_="$4" urgency_="$5"
 
-function conv_image_(){ convert -resize 200x "$1" "$2" }
+function conv_image_(){ convert -resize ${size_}x "$1" "$2" }
 function wf_(){
     echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
 }
@@ -39,7 +39,7 @@ function send_notify_(){
     for i in ${bodyarr_[@]}; do
         output="${output}${i}"
     done
-    summary_="${st2_}$(repeat 16 builtin print -n "◇")${cl_}"
+    summary_="${st2_}$(repeat ${length_} builtin print -n "◇")${cl_}"
     output="\n${output}$(get_lastfm_)\n\n${summary_}"
 	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
@@ -82,5 +82,8 @@ function main(){
     fi
     find ${dunst_pics_} -name prev.png -not -newermt '-900 seconds' -delete
 }
+
+readonly length_=24
+readonly size_=200
 
 main "$@"
