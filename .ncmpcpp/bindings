@@ -279,3 +279,16 @@ def_key "q"
 
 def_key "P"
   dummy
+
+def_key "up"
+  dummy
+
+def_key "down"
+  dummy
+
+def_key "left"
+  dummy
+
+def_key "right"
+  dummy
+
