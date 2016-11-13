@@ -46,20 +46,11 @@ function pk () {
     fi
 }
 
-function extract() {
+extract() {
   local remove_archive
   local success
   local file_name
   local extract_dir
-
-  if (( $# == 0 )); then
-    echo "Usage: extract [-option] [file ...]"
-    echo
-    echo Options:
-    echo "    -r, --remove    Remove archive."
-    echo
-    echo "Report bugs to <sorin.ionescu@gmail.com>."
-  fi
 
   remove_archive=1
   if [[ "$1" == "-r" ]] || [[ "$1" == "--remove" ]]; then
@@ -76,9 +67,9 @@ function extract() {
 
     success=0
     file_name="$( basename "$1" )"
-    extract_dir="$( echo "$file_name" | sed "s/\.${1##*.}//g" )"
+    extract_dir="$( echo "${file_name}" | sed "s/\.${1##*.}//g" )"
     case "$1" in
-      (*.tar.gz|*.tgz) [ -z $commands[pigz] ] && tar zxvf "$1" || pigz -dc "$1" | tar xv ;;
+      (*.tar.gz|*.tgz) [ -z ${commands}[pigz] ] && tar zxvf "$1" || pigz -dc "$1" | tar xv ;;
       (*.tar.bz2|*.tbz|*.tbz2) tar xvjf "$1" ;;
       (*.tar.xz|*.txz) tar --xz --help &> /dev/null \
         && tar --xz -xvf "$1" \
@@ -87,7 +78,7 @@ function extract() {
         && tar --lzma -xvf "$1" \
         || lzcat "$1" | tar xvf - ;;
       (*.tar) tar xvf "$1" ;;
-      (*.gz) [ -z $commands[pigz] ] && gunzip "$1" || pigz -d "$1" ;;
+      (*.gz) [ -z ${commands}[pigz] ] && gunzip "$1" || pigz -d "$1" ;;
       (*.bz2) bunzip2 "$1" ;;
       (*.xz) unxz "$1" ;;
       (*.lzma) unlzma "$1" ;;
@@ -96,8 +87,8 @@ function extract() {
       (*.rar) unrar x -ad "$1" ;;
       (*.7z) 7za x "$1" ;;
       (*.deb)
-        mkdir -p "$extract_dir/control"
-        mkdir -p "$extract_dir/data"
+        mkdir -p "${extract_dir}/control"
+        mkdir -p "${extract_dir}/data"
         cd "$extract_dir"; ar vx "../${1}" > /dev/null
         cd control; tar xzvf ../control.tar.gz
         cd ../data; tar xzvf ../data.tar.gz
@@ -110,14 +101,14 @@ function extract() {
       ;; 
     esac
 
-    (( success = $success > 0 ? $success : $? ))
-    (( $success == 0 )) && (( $remove_archive == 0 )) && rm "$1"
+    (( success = ${success} > 0 ? ${success} : $? ))
+    (( ${success} == 0 )) && (( ${remove_archive} == 0 )) && rm "$1"
     shift
   done
 }
 
-function xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
-function xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
+xkcdrandom(){ wget -qO- dynamic.xkcd.com/comic/random|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
+xkcd(){ wget -qO- http://xkcd.com/|tee >(feh $(grep -Po '(?<=")http://imgs[^/]+/comics/[^"]+\.\w{3}'))|grep -Po '(?<=(\w{3})" title=").*(?=" alt)';}
 
 # grep for running process, like: 'any vime
 function any() {
@@ -159,43 +150,25 @@ function rfc(){
     curl --silent ${uri} | ${PAGER}
 }
 
-function myip(){
-    [[ -n "$1" ]] && sleep $1;
-    [[ -x $(which dig) ]] && DNSQUERY=$(dig +short myip.opendns.com @resolver1.opendns.com)
-
-    if [[ -n "$DNSQUERY" ]]; then
-        echo "$DNSQUERY"
-    else
-        ( wget -O- -T2 -q http://noone.org/cgi-bin/whatsmyip.cgi || \
-        wget -O- -T2 -q http://v4.showip.spamt.net/ || \
-        wget -O- -T2 -q http://showipv6.de/shortv4only || \
-        wget -O- -T2 -q http://checkip.dyndns.org/ | sed -e 's|^.*<body>Current IP Address: ||;s|</body>.*$||;s|^50 0 .*|N/A|;' || \
-        wget -O- -T2 -q http://ente.limmat.ch/myip | fgrep 'Your IP' | sed -e 's|^.*(||;s|).*$||;s|^500 .*|N/A|;' | \
-        echo N/A ) | \
-        sed -e 's:^$:N/A:'
-    fi
-}
-
 #pcp - copy files matching pattern $1 to $2
 function pcp(){ find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2" }
 
-fasd_cache="$HOME/bin/.fasd-init-cache"
-if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-    fasd --init auto >| "$fasd_cache"
+fasd_cache="${HOME}/bin/.fasd-init-cache"
+if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "$fasd_cache" ]; then
+    fasd --init auto >| "${fasd_cache}"
 fi
-source "$fasd_cache"
+source "${fasd_cache}"
 unset fasd_cache
 
-function ff() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
-
-function doc2pdf () { curl -\# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
+ff() { find . -iregex ".*$@.*" -printf '%P\0' | xargs -r0 ls --color=auto -1d }
+doc2pdf () { curl -\# -F inputDocument=@"$1" http://www.doc2pdf.net/convert/document.pdf > "${1%.*}.pdf" }
 
 function discover () {
     keyword=$(echo "$@" |  sed 's/ /.*/g' | sed 's:|:\\|:g' | sed 's:(:\\(:g' | sed 's:):\\):g')
     locate -ir ${keyword}
 }
 
-function XC () { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
+XC() { xclip -in -selection clipboard <(history | tail -n1 | cut -f2) }
 
 function slow_output() { while IFS= read -r -N1; do printf "%c" "$REPLY"; sleep ${1:-.02}; done; }
 function dropcache { sync && command su -s /bin/zsh -c 'echo 3 > /proc/sys/vm/drop_caches' root }
@@ -222,15 +195,15 @@ function teapot_xterm(){ curl http://www.dim13.org/tek/teapot.tek }
 
 function cache_list(){
     dirlist=(
-        ${HOME}/.w3m/*
-        ${XDG_DATA_HOME}/recently-used.xbel
-        ${XDG_CACHE_HOME}/mc/*
-        ${XDG_DATA_HOME}/mc/history
-        ${HOME}/.viminfo
-        ${HOME}/.adobe/
-        ${HOME}/.macromedia/
-        ${XDG_CACHE_HOME}/mozilla/
-        ${HOME}/.thumbnails/
+        "${HOME}/.w3m/*"
+        "${XDG_DATA_HOME}/recently-used.xbel"
+        "${XDG_CACHE_HOME}/mc/*"
+        "${XDG_DATA_HOME}/mc/history"
+        "${HOME}/.viminfo"
+        "${HOME}/.adobe/"
+        "${HOME}/.macromedia/"
+        "${XDG_CACHE_HOME}/mozilla/"
+        "${HOME}/.thumbnails/"
     )
     sp ${dirlist}
 }
@@ -262,22 +235,6 @@ function lastfm_scrobbler_toggle(){
     unset is_run use_mpdscribble
 }
 
-function mdel(){
-    pattern="$1"
-    mpc --format "%position% %artist% %album% %title%" playlist \
-        | grep -iP $pattern \
-        | awk '{print $1}'  \
-        | mpc del
-}
-
-function mkeep(){
-    pattern="$1"
-    mpc --format "%position% %artist% %album% %title%" playlist \
-        | ${BIN_HOME}/scripts/negrep ${pattern} \
-        | awk '{print $1}'  \
-        | mpc del
-}
-
 function pid2xid(){ wmctrl -lp | awk "\$3 == $(pgrep $1) {print \$1}" }
 
 # Change to repository root (starting in parent directory), using the first
@@ -301,35 +258,12 @@ if whence adb > /dev/null; then
     }
 fi
 
-function count_music_trash(){
-    find ~/music/ -regextype posix-egrep \
-        -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} + | sort -h
-}
-
-function consn() { 
-    echo :: consnumber :: 
-    netstat -nat \
-    | awk '{print $6}' \
-    | sort \
-    | uniq -c \
-    | sort -rn
-    echo :: consip ::
-    netstat -ntu \
-    | tail -n +3 \
-    | awk '{print $5}' \
-    | cut -d:f -f1 \
-    | sort \
-    | uniq -c \
-    | sort -n 
-}
-
 # gather external ip address
 function geteip() { curl http://ifconfig.me }
 # Clear zombie processes
 function clrz() { ps -eal \
                   | awk '{ if ($2 == "Z") {print $4}}'\
                   | kill -9 }
-
 
 function sp() {
     setopt extendedglob bareglobqual
@@ -353,13 +287,8 @@ function zurl() {
     wget -O- -o /dev/null "${tiny}${url}"|grep -Eio "copy\('http://tinyurl.com/.*'"|grep -o "http://.*"|sed s/\'//
 }
 
-function torch_activate(){
-    source  ~/src/1st_level/torch/install/bin/torch-activate
-}
-
-function scm_init(){
-    [[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ]] && source "${HOME}/.scm_breeze/scm_breeze.sh"
-}
+torch_activate(){ source  ~/src/1st_level/torch/install/bin/torch-activate }
+scm_init(){ [[ -s "${HOME}/.scm_breeze/scm_breeze.sh" ]] && source "${HOME}/.scm_breeze/scm_breeze.sh" }
 
 function ql(){
     if [[ $1 != "" ]]; then
