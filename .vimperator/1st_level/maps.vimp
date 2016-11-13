@@ -105,16 +105,17 @@ map <silent> S :sbclose<CR>
 map gq :noscript popup<cr>
 
 " " Russian language keyboard mappings (UTF-8)
-" map <silent> щ  :!xkb-switch -s us 2>/dev/null<CR>o
-" map <silent> е  :!xkb-switch -s us 2>/dev/null<CR>t
-" map <silent> пш :!xkb-switch -s us 2>/dev/null<CR>gi
-" map <silent> а  :!xkb-switch -s us 2>/dev/null<CR>f
-" map <silent> А  :!xkb-switch -s us 2>/dev/null<CR>F
-" map <silent> ж  :!xkb-switch -s us 2>/dev/null<CR>;
-" map <silent> Ж  :!xkb-switch -s us 2>/dev/null<CR>:
+map <silent> щ  :silent !xkb-switch -s us &<CR>o
+map <silent> е  :silent !xkb-switch -s us &<CR>t
+map <silent> пш :silent !xkb-switch -s us &<CR>gi
+map <silent> а  :silent !xkb-switch -s us &<CR>f
+map <silent> А  :silent !xkb-switch -s us &<CR>F
+map <silent> ж  :silent !xkb-switch -s us &<CR>;
+map <silent> Ж  :silent !xkb-switch -s us &<CR>:
+nmap <silent> . :silent !xkb-switch -s us &<CR>/
+
 nmap хх [[
 nmap ъъ ]]
-nmap <silent> . :!xkb-switch -s us&<CR>/
 
 map ё `
 map э '
