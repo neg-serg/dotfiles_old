@@ -1,11 +1,16 @@
+#leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿ ❱❱❰❰
 [admiral]
 items = [
-    "left"   , "clock"      , "right"   ,
-    "left"   , "workspaces" , "right"   ,
-    "left"   , "input"      , "klay"    , "right" ,
-    # "left" , "cpu"        , "cpumon"  , "right" ,
-    # "left" , "mail"       , "mailmon" , "right" ,
-    "left"   , "network"    , "right"
+    "left"   , "clock"      , "right"       ,
+    "left"   , "workspaces" , "right"       ,
+    "left"   , "input"      , "klay"        , "right" ,
+    # "left" , "cpu"        , "cpumon"      , "right" ,
+    # "left" , "mail"       , "mailmon"     , "right" ,
+    # "left" , "hd"         , "hdperf"      , "right" ,
+    # "left" , "hd"         , "hdperf"      , "right" ,
+    # "left" , "cpu_c"      , "cpu_temp"    , "right" ,
+    # "left" , "gpu_c"      , "nvidia_temp" , "right" ,
+    "left"   , "network"    , "right",
 ] 
 
 [workspaces]
@@ -27,6 +32,26 @@ path   = "~/bin/mon/klay"
 
 # [mailmon]
 # path = '~/bin/scripts/mail/mail_count.zsh'
+
+# [hd]
+# path = "echo 'hd: '"
+# static = true
+
+# [gpu_c]
+# path = "echo 'gpu °C: '"
+# static = true
+
+# [nvidia_temp]
+# path = 'echo "$(nvidia-settings -q gpucoretemp -t | head -n 1).0°C"'
+# reload = 1
+
+# [cpu_c]
+# path = "echo 'cpu °C: '"
+# static = true
+
+# [cpu_temp]
+# path = 'sensors | grep Phys | cut -c 18-24'
+# reload = 1
 
 [clock]
 path   = "date '+%H:%M'"
