@@ -1,8 +1,9 @@
 set database sqlite
 
 unmap q
-unmap <c-q>
-set font "PragmataPro for Powerline 14"
+unmap d 
+unmap <C-q>
+set font "PragmataPro for Powerline 12"
 
 set default-bg "#191C21"
 set default-fg "#969896"
@@ -44,11 +45,8 @@ set notification-warning-fg "#000000"
 set statusbar-bg "#191C21"
 set statusbar-fg "#cccccc"
 
-set adjust-open width
-
-set zoom-step 10
-
 map <C-[> abort
+map <C-с> abort
 map <F11> toggle_fullscreen
 map <C-l> reload
 map R rotate rotate-ccw
@@ -68,14 +66,20 @@ set notification-warning-fg "#151515"
 set notification-bg "#191C21"
 set notification-fg "#6A9FB5"
 
+set statusbar-home-tilde true
+set window-title-home-tilde true
+
 # setting recolor-keep true will keep any color your pdf has.
 # if it is false, it'll just be black and white
 set recolor-keephue "false"
 map <A-w> set recolor "true"
+map <C-w> set recolor-keephue "false"
+map <C-e> set recolor-reverse-video "true"
 set recolor-lightcolor "#191C21"
 set recolor-darkcolor "#D3DAE3"
 
+set zoom-step 10
 map [normal] q zoom out
 map [normal] w zoom in
 map [normal] e adjust_window best-fit
-map [normal] R adjust_window width
+map ,, nohlsearch
