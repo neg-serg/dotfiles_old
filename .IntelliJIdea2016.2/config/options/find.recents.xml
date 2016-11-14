@@ -1,21 +1,6 @@
 <application>
   <component name="FindRecents">
     <findStrings>
-      <find>Main</find>
-      <find>jmh</find>
-      <find>Vector</find>
-      <find>add</find>
-      <find>insertAf</find>
-      <find>index</find>
-      <find>nextop</find>
-      <find>jar</find>
-      <find>dsa</find>
-      <find>insertAfter</find>
-      <find>count</find>
-      <find>main</find>
-      <find>displayL</find>
-      <find>while</find>
-      <find>delete</find>
       <find>pos</find>
       <find>reps</find>
       <find>destr</find>
@@ -31,6 +16,21 @@
       <find>average</find>
       <find>pv</find>
       <find>swap</find>
+      <find>par</find>
+      <find>insertAll</find>
+      <find>initialSize</find>
+      <find>sizeHint</find>
+      <find>printing</find>
+      <find>ss</find>
+      <find>following</find>
+      <find>Random</find>
+      <find>value</find>
+      <find>Some</find>
+      <find>b</find>
+      <find>N</find>
+      <find>/atomic</find>
+      <find>atomic</find>
+      <find>sync</find>
     </findStrings>
   </component>
 </application>
