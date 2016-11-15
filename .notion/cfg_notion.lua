@@ -1,3 +1,6 @@
+require("lfs")
+os.setlocale(os.getenv("LANG"))
+
 home_        = os.getenv("HOME")
 notion_path_ = home_ .. "/.notion/"
 
