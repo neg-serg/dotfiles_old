@@ -4,8 +4,7 @@ unset TMUX
 . ~/.zsh/03-exports.zsh
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
-hsetroot -fill \
-${HOME}/pic/wl/wallhaven-334682.jpg
+~/bin/scripts/set_wallpaper
 
 pulseaudio --start &
 wmname Sawfish
@@ -59,7 +58,12 @@ systemctl --user restart gpaste
 
 eval $(gpg-agent --daemon)
 
-~/bin/bar_notifyd &
-~/bin/scripts/log_runner
+~/bin/pass_notifyd &
+[[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
+~/bin/scripts/mpd-notification &
+
+cat /tmp/ws_out.txt &
+~/bin/scripts/panels
+disown
 
 exec notion 2>> ~/tmp/notionerr$$ 2>&1
