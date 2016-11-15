@@ -16,33 +16,6 @@ path_dirs=(
     /opt/cuda/bin
 )
 
-
-# path=(
-#     "$lpath[@]"
-#     /usr/local/bin
-#     /bin
-#     /usr/bin
-#     /usr/X11/bin
-#     /usr/bin/X11
-#     /usr/local/X11/bin
-#     /usr/local/games
-#     /usr/games
-#     /usr/lib/nagios/plugins
-#     "$fpath[@]"
-#     "$path[@]"
-#     "$PATH[@]"
-# )
-# if [ "`id -u`" = "0" ] || ! [ -x /usr/bin/id ]; then
-#     path=(
-#         "$path[@]"
-#         /usr/local/sbin
-#         /usr/sbin
-#         /sbin
-#     )
-# fi
-# # Only unique entries please.
-# typeset -gU path
-
 whence ruby >/dev/null && \
     path_dirs+=$($(whence ruby) -e 'puts Gem.user_dir')/bin
 
@@ -54,18 +27,6 @@ export PATH="${PATH}:${HOME}/.rvm/bin"
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && \
     source "${HOME}/.rvm/scripts/rvm"
 eval $(perl -I /one/dev/perl5/lib/perl5 -Mlocal::lib=/one/dev/perl5)
-
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DOWNLOAD_DIR="${HOME}/dw"
-export XDG_MUSIC_DIR="${HOME}/music"
-export XDG_DESKTOP_DIR="${HOME}/.local/desktop"
-export XDG_TEMPLATES_DIR="${HOME}/1st_level/templates"
-export XDG_DOCUMENTS_DIR="${HOME}/doc/"
-export XDG_PICTURES_DIR="${HOME}/pic"
-export XDG_VIDEOS_DIR="${HOME}/vid"
-export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
 
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
