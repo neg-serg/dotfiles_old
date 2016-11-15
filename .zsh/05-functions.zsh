@@ -224,7 +224,7 @@ function lastfm_scrobbler_toggle(){
     else
         if [[ "$(systemctl --user status mpdas.service|grep -o "${is_run}")" != "" ]]; then
             systemctl --user stop mpdas.service
-            =mpdas -c ${XDG_CONFIG_HOME}/mpdas/hextrick.rc 1>2 2&> /dev/null &!
+            =mpdas -c ${XDG_CONFIG_HOME}/mpdas/hextrick.rc 2&> /dev/null &!
         else
             pkill mpdas
             systemctl --user start mpdas.service
