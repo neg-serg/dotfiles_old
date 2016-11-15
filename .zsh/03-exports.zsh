@@ -1,5 +1,8 @@
 0=zsh
 SHELL=$(which zsh)
+
+source ~/.zsh/03-xdg_vars.zsh
+
 export ZSHDIR=${HOME}/.zsh
 export BIN_HOME=${HOME}/bin
 export SCRIPT_HOME=${BIN_HOME}/scripts
