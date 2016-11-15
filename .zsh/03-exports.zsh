@@ -1,11 +1,7 @@
-0=zsh
-SHELL=$(which zsh)
-
 source ~/.zsh/03-xdg_vars.zsh
 
-export ZSHDIR=${HOME}/.zsh
-export BIN_HOME=${HOME}/bin
-export SCRIPT_HOME=${BIN_HOME}/scripts
+0=zsh
+SHELL=$(which zsh)
 
 path_dirs=(
     /usr/{s,}bin
@@ -150,9 +146,10 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=0
 
 export STEAM_RUNTIME=1
 
+local audio_card_="alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo"
 export QEMU_AUDIO_DRV=pa
 export QEMU_PA_SOURCE=input
-export QEMU_PA_SINK=alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo
+export QEMU_PA_SINK="${audio_card_}"
 
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
 export SXHKD_SHELL="zsh"

@@ -9,3 +9,7 @@ export XDG_DOCUMENTS_DIR="${HOME}/doc/"
 export XDG_PICTURES_DIR="${HOME}/pic"
 export XDG_VIDEOS_DIR="${HOME}/vid"
 export XDG_PUBLICSHARE_DIR="${HOME}/1st_level/upload/share"
+
+export ZSHDIR=${HOME}/.zsh
+export BIN_HOME=${HOME}/bin
+export SCRIPT_HOME=${BIN_HOME}/scripts
