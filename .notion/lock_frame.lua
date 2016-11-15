@@ -32,58 +32,58 @@ local locks = setmetatable({}, {__mode="k"})
 local saved = {}
 
 function lock_frame(frame, save)
-	local name = frame:name()
+    local name = frame:name()
 
-	if locks[frame] then
-		locks[frame] = nil
-		frame:set_grattr("locked", "unset")
-		if save and name then
-			frame:set_grattr("locked_saved", "unset")
-			saved[name] = nil
-		end
-	else
-		locks[frame] = true
-		frame:set_grattr("locked", "set")
-		if save and name then
-			frame:set_grattr("locked_saved", "set")
-			saved[name] = true
-		end
-	end
+    if locks[frame] then
+        locks[frame] = nil
+        frame:set_grattr("locked", "unset")
+        if save and name then
+            frame:set_grattr("locked_saved", "unset")
+            saved[name] = nil
+        end
+    else
+        locks[frame] = true
+        frame:set_grattr("locked", "set")
+        if save and name then
+            frame:set_grattr("locked_saved", "set")
+            saved[name] = true
+        end
+    end
 end
 
 function check_before_kill(reg)
-	if not locks[reg] then
-		WClientWin.kill(reg)
-	end
+    if not locks[reg] then
+        WClientWin.kill(reg)
+    end
 end
 
 function check_before_close(reg, sub)
-	if (not locks[reg]) and (not locks[sub]) then
-		WRegion.rqclose_propagate(reg, sub)
-	end
+    if (not locks[reg]) and (not locks[sub]) then
+        WRegion.rqclose_propagate(reg, sub)
+    end
 end
 
 notioncore.defbindings("WFrame",{
-	kpress("F11", "lock_frame(_)"),
-	kpress(META.."F11", "lock_frame(_, true)")
+    kpress("F11", "lock_frame(_)"),
+    kpress(META.."F11", "lock_frame(_, true)")
 })
 
 function save_locked()
-	notioncore.write_savefile("saved_lock_frame", saved)
+    notioncore.write_savefile("saved_lock_frame", saved)
 end
 
 function load_locked()
-	local locked = notioncore.read_savefile("saved_lock_frame") or {}
+    local locked = notioncore.read_savefile("saved_lock_frame") or {}
 
-	for k,v in pairs(locked) do
-		local reg = notioncore.lookup_region(k)
-		lock_frame(reg, true)
-	end
+    for k,v in pairs(locked) do
+        local reg = notioncore.lookup_region(k)
+        lock_frame(reg, true)
+    end
 end
 
 local hook = notioncore.get_hook("ioncore_deinit_hook")
 if hook then
-	hook:add(save_locked)
+    hook:add(save_locked)
 end
 hook = nil
 
