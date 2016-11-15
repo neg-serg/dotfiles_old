@@ -110,6 +110,10 @@ function mp(){
 alias mpvc="SOCKET=${HOME}/tmp/${VIDEO_PLAYER_}.socket mpvc"
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
+
+alias mpclove="mpc sendmessage mpdas love"
+alias mpcunlove="mpc sendmessage mpdas unlove"
+
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
@@ -440,3 +444,9 @@ psql_drop() { echo "DROP DATABASE $1" }
 alias -s Dockerfile="docker build - < "
 alias ocr='docker run --rm -v `pwd`:/home/docker jbarlow83/ocrmypdf --skip-text'
 alias -s tex='docker run -i -t --rm -v `pwd`:/build docker-registry.eccenca.com/eccenca-latex:v1.4.0 rubber --inplace --maxerr -1 --short --force --warn all --pdf'
+
+# Aliases for functions
+(){
+    alias mdel="~/bin/scripts/mpd/mdel"
+    alias mkeep="~/bin/scripts/mpd/mkeep"
+}
