@@ -1,4 +1,5 @@
 scratchpad_table = {}
+
 local function find(a, tbl)
     for _,a_ in ipairs(tbl) do if
         a_ == a then return true end
@@ -14,21 +15,6 @@ local function find_manager(obj, t)
     end
 end
 
-local function framelist(iter)
-    iter(function(obj)
-        if obj_is(obj, "WFrame") then
-            if find(obj, scratchpad_table) then
-                table.insert(transparent_table, obj)
-                -- table.insert(ultratransparent_table, obj)
-            else
-                table.insert(ultratransparent_table, obj)
-            end
-        end
-        return true
-    end)
-    return true
-end
-
 local function maketransparent()
     local atom_client_opacity = notioncore.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
     local opacity_level = 3435973836
@@ -36,9 +22,9 @@ local function maketransparent()
     local ultra_opacity_level = 400000000
     local s
 
-    ultratransparent_table = {}
-    transparent_table = {}
-    nontransparent_table = {}
+    local ultratransparent_table = {}
+    local transparent_table = {}
+    local nontransparent_table = {}
 
     notioncore.clientwin_i(function(cwin)
         local winprop = ioncore.getwinprop(cwin)
@@ -54,6 +40,32 @@ local function maketransparent()
         return true
     end)
 
+    local function framelist(iter)
+        iter(function(obj)
+            if obj_is(obj, "WFrame") then
+                if find(obj, scratchpad_table) then
+                    table.insert(transparent_table, obj)
+                else
+                    -- table.insert(ultratransparent_table, obj)
+                    local group = find_manager(obj,"WTiling")
+                    if group then
+                        -- if WTiling.split_tree(group).dir == nil then
+                        table.insert(ultratransparent_table, obj)
+                        -- end
+                        -- dbg.echon("objparent = ")
+                        -- dbg.echon("<")
+                        -- dbg.echon(obj)
+                        -- dbg.echon(",")
+                        -- dbg.echon(WTiling.split_tree(group))
+                        -- dbg.echon(find_manager(obj,"WSplit"))
+                        -- dbg.echon(">\n")
+                    end
+                end
+            end
+            return true
+        end)
+        return true
+    end
     framelist(notioncore.region_i)
 
     for _,reg in ipairs(transparent_table) do
