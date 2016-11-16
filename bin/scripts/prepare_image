@@ -2,7 +2,7 @@
 
 summary_="$2" body_="$3" image_="$4" urgency_="$5"
 
-function conv_image_(){ convert -resize ${size_}x "$1" "$2" }
+function conv_image_(){ convert -resize ${size_}x "$1" "$2" 2>/dev/null }
 function wf_(){
     echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
 }
@@ -32,16 +32,16 @@ function send_notify_(){
         bodyarr_[$c]=${line}
         c=$[c+1]
     done <<< ${body_}
+    length_=(${#bodyarr_[1]} ${#bodyarr_[2]} ${#bodyarr_[3]})
+    length_=($(printf "%s\n" "${length_[@]}"|sort -nr))
+    length_=${length_}[1]
     bodyarr_[1]=$(wf_ '')"${bodyarr_[1]}\n"
     bodyarr_[2]=$(wf_ '')"${bodyarr_[2]}\n"
     bodyarr_[3]=$(wf_ '》')"${bodyarr_[3]}\n"
     local output
-    for i in ${bodyarr_[@]}; do
-        output="${output}${i}"
-    done
-    summary_="${st2_}$(repeat ${length_} builtin print -n "◇")${cl_}"
+    for i in ${bodyarr_[@]}; do output="${output}${i}" done
+    summary_=$'\n'"${st2_}$(repeat ${length_} builtin print -n "◇")${cl_}"
     output="\n${output}$(get_lastfm_)\n\n${summary_}"
-	
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
 }
 
@@ -83,7 +83,6 @@ function main(){
     find ${dunst_pics_} -name prev.png -not -newermt '-900 seconds' -delete
 }
 
-readonly length_=24
 readonly size_=200
 
 main "$@"
