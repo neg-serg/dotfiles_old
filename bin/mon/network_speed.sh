@@ -1,22 +1,23 @@
 #!/bin/zsh
 
 # Original taken from : http://www.adminsehow.com/2010/03/shell-script-to-show-network-speed/
-
 function interface_autodetect(){
     local host="google.com"
     local default_net_="enp7s0"
 
     local host_ip=$(getent ahosts ${host} | head -1 | awk '{print $1}')
-    local active_net_interface=$(ip link show up | awk -F \":\" '/state UP/ {print $2}')
+    local active_net_interface=$(ip link show up | \
+        awk -F \":\" '/state UP/ {print $2}')
 
-    if [[ host_ip != "" ]]; then
-        local host_dev=$(ip route get "${host_ip}" | grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]')
+    if [[ "${host_ip}" != "" ]]; then
+        local host_dev=$(ip route get "${host_ip}" | \
+            grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]')
     fi
 
-    if [[ host_dev != "" && host_dev ]]; then
-        builtin printf "%s\n" ${host_dev}
+    if [[ "${host_dev}" != "" && "${host_dev}" ]]; then
+        builtin printf "%s\n" "${host_dev}"
     else
-        builtin printf "%s\n" ${default_net_}
+        builtin printf "%s\n" "${default_net_}"
     fi
 }
 
@@ -24,11 +25,11 @@ function interface_autodetect(){
 # Within that line, the first and ninth numbers after ':' are respectively the received and transmited bytes.
 function get_bytes() {
     line=$(cat /proc/net/dev \
-        | grep ${interface} \
+        | grep "${interface}" \
         | cut -d ':' -f 2 \
         | awk '{print "received_bytes="$1, "transmitted_bytes="$9}'\
     )
-    eval ${line}
+    eval "${line}"
 }
 
 # Function which calculates the speed using actual and old byte number.
@@ -59,6 +60,10 @@ function get_velocity() {
 
 if [[ $# == 0 ]]; then
     interface=$(interface_autodetect)
+    if [[ ! -e "${interface}" ]]; then
+        echo "net: oOps :("
+        sleep 1m; exit 0
+    fi
 else
     interface=$1
 fi
@@ -76,8 +81,10 @@ old_transmitted_bytes="${transmitted_bytes}"
 # Main loop. It will repeat forever.
 while true; do
     local use_terminal_=false
+
     # Get new transmitted and received byte number values.
     get_bytes
+
     # Calculates speeds.
     vel_recv=$(get_velocity "${received_bytes}" "${old_received_bytes}")
     vel_trans=$(get_velocity "${transmitted_bytes}" "${old_transmitted_bytes}")
