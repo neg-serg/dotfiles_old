@@ -7,7 +7,7 @@ function interface_autodetect(){
 
     local host_ip=$(getent ahosts ${host} | head -1 | awk '{print $1}')
     local active_net_interface=$(ip link show up | \
-        awk -F \":\" '/state UP/ {print $2}')
+        awk -F \: '/state UP/ {print $2}')
 
     if [[ "${host_ip}" != "" ]]; then
         local host_dev=$(ip route get "${host_ip}" | \
@@ -60,7 +60,7 @@ function get_velocity() {
 
 if [[ $# == 0 ]]; then
     interface=$(interface_autodetect)
-    if [[ ! -e "${interface}" ]]; then
+    if [[ -e "${interface}" ]]; then
         echo "net: oOps :("
         sleep 1m; exit 0
     fi
