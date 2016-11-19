@@ -40,7 +40,7 @@ local function maketransparent()
 
     local function framelist(iter)
         iter(function(obj)
-            if obj_is(obj, "WFrame") then
+            if obj_is(obj, "WMPlex") then
                 if find(obj, scratchpad_) or
                     find(obj:name(), scratchpad_list) 
                 then
@@ -48,7 +48,11 @@ local function maketransparent()
                 else
                     local group = find_manager(obj,"WTiling")
                     if group then
-                        table.insert(ultratransparent_, obj)
+                        if group:current() ~= obj then
+                            table.insert(transparent_, obj)
+                        else
+                            table.insert(ultratransparent_, obj)
+                        end
                     end
                 end
             end
