@@ -3,6 +3,7 @@ os.setlocale(os.getenv("LANG"))
 
 home_        = os.getenv("HOME")
 notion_path_ = home_ .. "/.notion/"
+core = notioncore
 
 dofile(notion_path_.."load_file"..".lua")
 
@@ -31,7 +32,7 @@ local cfg_list = {
     "cfg_kb",                -- keybindings
     "cfg_xrandr",            -- xrandr config
     "transparency",          -- autoset transparency
-    "lua_repl"               -- experimental script standalone lua repl
+    "lua_repl",              -- experimental script standalone lua repl
 }
 
 for _,mod in ipairs(mod_list) do

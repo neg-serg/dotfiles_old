@@ -1,67 +1,3 @@
--- @@ -20,6 +20,7 @@
---   *
---   * To understand everything else, start reading main().
---   */
--- +#include <assert.h>
---  #include <errno.h>
---  #include <locale.h>
---  #include <stdarg.h>
--- @@ -28,6 +29,8 @@
---  #include <stdlib.h>
---  #include <string.h>
---  #include <unistd.h>
--- +#include <libgen.h>
--- +#include <sys/stat.h>
---  #include <sys/types.h>
---  #include <sys/wait.h>
---  #include <X11/cursorfont.h>
--- @@ -1661,11 +1664,45 @@ sigchld(int unused) {
---   while(0 < waitpid(-1, NULL, WNOHANG));
---  }
-
--- +#define SPAWN_CWD_DELIM " []{}()<>\"':"
--- +
---  void
---  spawn(const Arg *arg) {
---   if(fork() == 0) {
---     if(dpy)
---       close(ConnectionNumber(dpy));
--- +       if(selmon->sel) {
--- +           const char* const home = getenv("HOME");
--- +           assert(home && strchr(home, '/'));
--- +           const size_t homelen = strlen(home);
--- +           char *cwd, *pathbuf = NULL;
--- +           struct stat statbuf;
--- +
--- +           cwd = strtok(selmon->sel->name, SPAWN_CWD_DELIM);
--- +           /* NOTE: strtok() alters selmon->sel->name in-place,
--- +            * but that does not matter because we are going to
--- +            * exec() below anyway; nothing else will use it */
--- +           while(cwd) {
--- +               if(*cwd == '~') { /* replace ~ with $HOME */
--- +                   if(!(pathbuf = malloc(homelen + strlen(cwd)))) /* ~ counts for NULL term */
--- +                       die("fatal: could not malloc() %u bytes\n", homelen + strlen(cwd));
--- +                   strcpy(strcpy(pathbuf, home) + homelen, cwd + 1);
--- +                   cwd = pathbuf;
--- +               }
--- +
--- +               if(strchr(cwd, '/') && !stat(cwd, &statbuf)) {
--- +                   if(!S_ISDIR(statbuf.st_mode))
--- +                       cwd = dirname(cwd);
--- +
--- +                   if(!chdir(cwd))
--- +                       break;
--- +               }
--- +
--- +               cwd = strtok(NULL, SPAWN_CWD_DELIM);
--- +           }
--- +
--- +           free(pathbuf);
--- +       }
---     setsid();
---     execvp(((char **)arg->v)[0], (char **)arg->v);
---     fprintf(stderr, "dwm: execvp %s", ((char **)arg->v)[0]);
-
 function spawn(prog)
     notioncore.exec_on(notioncore.current(), prog)
 end
@@ -167,10 +103,6 @@ function nicotine()
         'nicotine.py || nicotine',
         'nicotine' --ns
     )
-end
-
-function move_scratch(x, y, w, h)
-   notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
 end
 
 function tiling_split(dir)
@@ -335,30 +267,7 @@ function move_reg(name, x, y, w, h)
     end
 end
 
-function move_scratch(x, y, w, h)
-   notioncore.lookup_region("*scratchpad*"):rqgeom({x=x, y=y, w=w, h=h})
+function toggle_frame_transp()
+    frame_transparency_ = not frame_transparency_
+    maketransparent()
 end
-
-function get_display()
-   local out = io.popen("xrandr")
-   local line = out:read()
-
-   while line do
-      local b, e, id = string.find(line, "^(%w.+) connected %d+x%d+")
-
-      if id then
-         return id
-      end
-
-      line = out:read()
-   end
-end
-
-function resize_scratch()
-   if get_display() == "HDMI-0" then
-      move_scratch(300, 160, 1361, 744)
-   else
-      move_scratch(2200, 260, 1361, 744)
-   end
-end
--- notioncore.get_hook("ioncore_post_layout_setup_hook"):add(resize_scratch)

@@ -9,42 +9,43 @@ local wmr_ = WMoveresMode
 local withtag = app.byclass_withtag
 
 Neg_kb.WMPlex_toplevel = {
-    kpress(M4.."M",      function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. core.current():xid()) end),
-    kpress(M4.."F11",    function() rofi.mainmenu() end),
-    kpress(M4.."slash",  function() core.goto_previous() end),
-    kpress(M1.."Tab",    function() core.goto_previous() end),
+    kpress(M4.."M",         function() spawn('~/bin/scripts/rofi_xprop' .. ' ' .. core.current():xid()) end),
+    kpress(M4..Sh.."space", function() toggle_frame_transp() end),
+    kpress(M4.."F11",       function() rofi.mainmenu() end),
+    kpress(M4.."slash",     function() core.goto_previous() end),
+    kpress(M1.."Tab",       function() core.goto_previous() end),
     --[[ scratchpads  ]]--------------------------------
-    kpress(M4.."D",      function() console() end),
-    kpress(M4.."F",      function() ncmpcpp() end),
-    kpress(M4.."E",      function() namsc('im') end),
-    kpress(M4..Ct.."G",  function() rofi.goto_or_create_ws(core.current()) end),
-    kpress(M1.."G",      function() rofi.goto_win(core.current()) end),
+    kpress(M4.."D",         function() console() end),
+    kpress(M4.."F",         function() ncmpcpp() end),
+    kpress(M4.."E",         function() namsc('im') end),
+    kpress(M4..Ct.."G",     function() rofi.goto_or_create_ws(core.current()) end),
+    kpress(M1.."G",         function() rofi.goto_win(core.current()) end),
     --[[ wasd / push direction ]]-----------------------
-    kpress(M4..Ct.."W", function(_) _:push_direction('up') end),
-    kpress(M4..Ct.."A", function(_) _:push_direction('left') end),
-    kpress(M4..Ct.."S", function(_) _:push_direction('down') end),
-    kpress(M4..Ct.."D", function(_) _:push_direction('right') end),
+    kpress(M4..Ct.."W",     function(_) _:push_direction('up') end),
+    kpress(M4..Ct.."A",     function(_) _:push_direction('left') end),
+    kpress(M4..Ct.."S",     function(_) _:push_direction('down') end),
+    kpress(M4..Ct.."D",     function(_) _:push_direction('right') end),
     --[[  progs run by app  ]]--------------------------
-    kpress(M4.."1",      function() withtag('~/bin/wim', 'wim', nil, 'editor') end),
-    kpress(M4..Sh.."1",  function() withtag('emacs', 'Emacs', nil, 'geditor') end),
-    kpress(M4..Ct.."1",  function() withtag('atom', 'Atom', nil, 'aeditor') end),
-    kpress(M4.."F1",     function() withtag('~/bin/scripts/jetbrains.sh idea', 'jetbrains-idea', nil, 'ide') end),
-    kpress(M4.."F2",     function() withtag('~/bin/scripts/jetbrains.sh webstorm', 'jetbrains-webstorm', nil, 'ide') end),
-    kpress(M4.."F3",     function() withtag('~/bin/scripts/jetbrains.sh clion', 'jetbrains-clion', nil, 'ide') end),
-    kpress(M4.."F4",     function() withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
-    kpress(M4.."X",      function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
-    kpress(M4.."B",      function() withtag(nil, 'mpv', nil, 'video') end),
-    kpress(M4..Sh.."L",  function() withtag(nil, '_logs_', nil, 'logs') end),
-    kpress(M4.."W",      function() app.byinstance_withtag(
+    kpress(M4.."1",         function() withtag('~/bin/wim', 'wim', nil, 'editor') end),
+    kpress(M4..Sh.."1",     function() withtag('emacs', 'Emacs', nil, 'geditor') end),
+    kpress(M4..Ct.."1",     function() withtag('atom', 'Atom', nil, 'aeditor') end),
+    kpress(M4.."F1",        function() withtag('~/bin/scripts/jetbrains.sh idea', 'jetbrains-idea', nil, 'ide') end),
+    kpress(M4.."F2",        function() withtag('~/bin/scripts/jetbrains.sh webstorm', 'jetbrains-webstorm', nil, 'ide') end),
+    kpress(M4.."F3",        function() withtag('~/bin/scripts/jetbrains.sh clion', 'jetbrains-clion', nil, 'ide') end),
+    kpress(M4.."F4",        function() withtag('~/bin/scripts/jetbrains.sh android-studio', 'jetbrains-android-studio', nil, 'ide') end),
+    kpress(M4.."X",         function() app.byinstance('~/bin/urxvt', 'URxvt','MainTerminal') end),
+    kpress(M4.."B",         function() withtag(nil, 'mpv', nil, 'video') end),
+    kpress(M4..Sh.."L",     function() withtag(nil, '_logs_', nil, 'logs') end),
+    kpress(M4.."W",         function() app.byinstance_withtag(
         'firefox || /usr/bin/firefox-developer',
         'Firefox',
         'Navigator',
         nil,
         'www') 
     end),
-    kpress(M4.."O",      function() withtag('zathura', 'Zathura', 'pdf') end),
-    kpress(M4..Ct.."E",  function() withtag(nil, 'Vmware', nil, 'virt') end),
-    kpress(M4..Ct.."C",  function() 
+    kpress(M4.."O",         function() withtag('zathura', 'Zathura', 'pdf') end),
+    kpress(M4..Ct.."E",     function() withtag(nil, 'Vmware', nil, 'virt') end),
+    kpress(M4..Ct.."C",     function() 
         local downloads_dir_="~/dw/"
         local shots_dir_="~/tmp/shots"
         app.byclass('~/bin/sx '

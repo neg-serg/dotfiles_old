@@ -1,3 +1,4 @@
+frame_transparency_ = false
 local function find(a, tbl)
     for _,a_ in ipairs(tbl) do if
         a_ == a then return true end
@@ -13,7 +14,7 @@ local function find_manager(obj, t)
     end
 end
 
-local function maketransparent()
+function maketransparent()
     local atom_client_opacity = core.x_intern_atom("_NET_WM_WINDOW_OPACITY", false)
     local std_opacity         = 3435973836
     local full_opacity        = 4000000
@@ -38,6 +39,11 @@ local function maketransparent()
         return true
     end)
 
+    -- (1) find client for current workspace
+    -- (2) if count of clients == 0 then
+    --     full transparency
+    --     else everything else
+
     local function framelist(iter)
         iter(function(obj)
             if obj_is(obj, "WMPlex") then
@@ -49,7 +55,11 @@ local function maketransparent()
                     local group = find_manager(obj,"WTiling")
                     if group then
                         if group:current() ~= obj then
-                            table.insert(transparent_, obj)
+                            if not frame_transparency_ then
+                                table.insert(transparent_, obj)
+                            else
+                                table.insert(ultratransparent_, obj)
+                            end
                         else
                             table.insert(ultratransparent_, obj)
                         end
