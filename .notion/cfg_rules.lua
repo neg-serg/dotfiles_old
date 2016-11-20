@@ -13,6 +13,7 @@ scratchpad_list = {
     "top",
     "nicotine",
     "_webcam_",
+    "firefox-dialog",
 }
 
 -------------------------------------[[ KLUDGES ]]----------------------------------
