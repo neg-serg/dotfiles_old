@@ -2,6 +2,12 @@ source ~/.zshrc
 
 super + apostrophe
     {pkill -USR1 -x sxhkd && ~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'}
+super + quotedbl
+    { pkill -USR1 -x sxhkd; \
+      pkill admiral; \  
+      pkill dzen2; \
+      pkill rofi; \
+      ~/bin/scripts/panels }
 XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
