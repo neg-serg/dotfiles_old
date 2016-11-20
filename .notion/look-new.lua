@@ -17,10 +17,10 @@ de.defstyle("*", {
 })
 
 de.defstyle("frame", {
-    shadow_colour     = neg.frame_def_border,
-    highlight_colour  = neg.frame_def_border,
+    shadow_colour     = "#333333",
+    highlight_colour  = "#333333",
+    padding_colour    = "#333333",
     border_sides      = tnl,
-    padding_colour    = neg.padding_color,
     background_colour = neg.def_bg,
     padding_pixels    = 0,
     highlight_pixels  = 1,
@@ -39,8 +39,8 @@ de.defstyle("frame", {
         spacing           = 3,
     }),
     de.substyle("active", {
-        shadow_colour     = "#222222",
-        highlight_colour  = "#222222",
+        shadow_colour     = "#000000",
+        highlight_colour  = "#000000",
         border_sides      = tnl,
         padding_colour    = neg.padding_color,
         background_colour = "#000000",
@@ -171,7 +171,7 @@ de.defstyle("actnotify", {
     background_colour = neg.def_bg,
     foreground_colour = "#AAAAAA",
     gravity           = "top",
-    padding_pixels    = 2,
+    padding_pixels    = 0,
     highlight_pixels  = 1,
     shadow_pixels     = 1,
     spacing           = 0,
