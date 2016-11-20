@@ -1,3 +1,20 @@
+scratchpad_list = {
+    "im",
+    "mutt",
+    "chat",
+    "console",
+    "weechat",
+    "float",
+    "scratchpad",
+    "wicd",
+    "ranger",
+    "gdb",
+    "alsa",
+    "top",
+    "nicotine",
+    "_webcam_",
+}
+
 -------------------------------------[[ KLUDGES ]]----------------------------------
 defwinprop{
     lazy_resize=true,     -- Resize lazy because it's faster
