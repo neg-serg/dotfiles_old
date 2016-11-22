@@ -1,2 +1,19 @@
 # Ignore Backup Copies from Text Editor
 *~
+
+# Ignore SASS files
+.sass-cache
+gtk.gresource
+dist
+
+# Jetbrains IDEs
+.idea
+*.iml
+
+# python stuff
+__pycache__
+
+# pkgbuild
+oomox/
+pkg/
+*.tar.xz
