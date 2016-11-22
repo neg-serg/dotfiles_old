@@ -83,6 +83,9 @@ function maketransparent()
     for _,reg in ipairs(nontransparent_) do
         core.x_delete_property(reg:xid(), atom_client_opacity)
     end
+    ultratransparent_ = {}
+    transparent_ = {}
+    nontransparent_ = {}
 end
 
 local setup_scratchpads = function()
