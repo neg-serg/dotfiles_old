@@ -103,11 +103,12 @@ alias mk="mkdir -p"
 
 function mp(){ 
     for i; do 
-        vid_fancy_print "${i}"; ${VIDEO_PLAYER_} "${i}";
+        vid_fancy_print "${i}"
+        ${VIDEO_PLAYER_} --input-ipc-server=$(readlink -f -- ${HOME}/tmp/${VIDEO_PLAYER_}.socket) "${i}"
     done 
 }
 
-alias mpvc="SOCKET=${HOME}/tmp/${VIDEO_PLAYER_}.socket mpvc"
+alias mpvc="SOCKET=$(readlink -f ${HOME}/tmp/${VIDEO_PLAYER_}.socket) mpvc"
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 
@@ -120,6 +121,8 @@ alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
 
 #--[ Mount ]----------------------------------------------------------
 alias u="umount"
+# Taken from https://github.com/blacpythoz/.dots
+nmount() { (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2=$4="";1') | column -t; }
 alias usrmount="sudo mount -o umask=0,uid=nobody,gid=nobody "$1" "$2""
 alias mnt='sudo mount'
 alias ym="${SCRIPT_HOME}/yandex.mount > /dev/null"
@@ -191,6 +194,7 @@ for i in x q Q; eval alias :${i}=\' exit\'
 alias iostat='iostat -mtx'
 # alias yt="tsocks youtube-dl  -o '%(autonumber)s_%(title)s.%(ext)s' -c -t -f best --no-part --restrict-filenames 'url'"
 # alias yt='cert exec -f ~/.certificates/google.com.crt -- youtube-dl --user-agent Mozilla/5.0'; TCOMP youtube-dl yt
+alias ytmp3='youtube-dl -x --audio-format ogg'
 _zsh_proxy=""
 function yt(){
     if inpath youtubedown; then
@@ -199,7 +203,7 @@ function yt(){
         ${_zsh_proxy} you-get "$@"
     fi
 }
-alias yr="${_zsh_proxy} youtube-viewer --video-player=mpv -C"
+alias yr="clear; figlet -c Youtube Viewer; ${_zsh_proxy} youtube-viewer --video-player=mpv -C"
 unset _zsh_proxy
 
 alias qe='cd *(/om[1])'
@@ -230,7 +234,8 @@ sudo_commands=(
   start stop reload restart try-restart isolate kill
   reset-failed enable disable reenable preset mask unmask
   link load cancel set-environment unset-environment
-  node npm)
+  node npm reaver aircrack-ng
+)
 
 for c in ${user_commands}; do; alias sc-${c}="systemctl ${c}"; done
 for c in ${sudo_commands}; do; alias sc-${c}="sudo systemctl ${c}"; done
@@ -444,6 +449,7 @@ psql_drop() { echo "DROP DATABASE $1" }
 alias -s Dockerfile="docker build - < "
 alias ocr='docker run --rm -v `pwd`:/home/docker jbarlow83/ocrmypdf --skip-text'
 alias -s tex='docker run -i -t --rm -v `pwd`:/build docker-registry.eccenca.com/eccenca-latex:v1.4.0 rubber --inplace --maxerr -1 --short --force --warn all --pdf'
+alias htcnet='sshfs root@192.168.0.107:/storage/emulated/0 /media/phone/ -p 22'
 
 # Aliases for functions
 (){
