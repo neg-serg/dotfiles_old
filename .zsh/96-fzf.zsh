@@ -91,7 +91,7 @@ function pl(){
     xsel <<< ${find_result}
     if [[ ! -z ${find_result} ]]; then
         vid_fancy_print "${find_result}"
-        mpv --input-unix-socket=/tmp/mpvsocket  "${find_result}"
+        mpv --input-ipc-server=~/tmp/mpv.socket "${find_result}"
     fi
 }
 
