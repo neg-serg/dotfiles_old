@@ -46,6 +46,7 @@
     st   = status
     pu   = push
     pl   = pull
+    wtf   = "!~/bin/git/git-wtf"
     undo = checkout --
     log1 = log --
     whatthefuckdidido = diff HEAD
