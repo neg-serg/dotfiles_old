@@ -1,0 +1,19 @@
+#!/bin/zsh
+function main() { 
+    echo :: consnumber :: 
+    netstat -nat \
+    | awk '{print $6}' \
+    | sort \
+    | uniq -c \
+    | sort -rn
+    echo :: consip ::
+    netstat -ntu \
+    | tail -n +3 \
+    | awk '{print $5}' \
+    | cut -d:f -f1 \
+    | sort \
+    | uniq -c \
+    | sort -n 
+}
+
+main "$@"
