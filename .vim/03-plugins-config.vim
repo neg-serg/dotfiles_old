@@ -249,7 +249,8 @@ if neobundle#tap('YouCompleteMe')
         endtry
     endif
     let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-    let g:ycm_rust_src_path = "/usr/src/rust/src"
+    let g:racer_experimental_completer = 1
+    let g:ycm_rust_src_path=substitute(system("rustc --print sysroot")."/lib/rustlib/src/rust/src","\n",'','g')
     let g:ycm_filepath_completion_use_working_dir = 1
     let g:ycm_disable_for_files_larger_than_kb = 1024
     let g:ycm_confirm_extra_conf = 0
