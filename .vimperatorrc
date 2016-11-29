@@ -1,27 +1,23 @@
-set gui=none
 set verbose=0
+colorscheme vimpwhite
+set gui=none
+
 set defsearch=google
 set suggestengines=
 
-set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s' or @class='lk cs' or @class='msc' or @class='ll'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //tr[@class='rr' or @class='ur']/td[position()=5]"
-"au LocationChange .* js modes.passAllKeys = /.*\.google\.com/.test(buffer.URL) | /docs\.google\.com/.test(buffer.URL) | /mail\.google\.com/.test(buffer.URL) | /google\.com\/reader/.test(buffer.URL) | /mangafox\.com/.test(buffer.URL) | /mangareader\.net/.test(buffer.URL) | /webchat\.freenode\.net/.test(buffer.URL) | /mangahere\.com/.test(buffer.URL) | /feedly\.com/.test(buffer.URL) | /newsblur\.com/.test(buffer.URL)
-
-colorscheme vimpwhite
 set hintchars=12345
 set hintmatching=fuzzy
 set status=location,bookmark,input,history,tabcount,position,ssl
 set complete=hS
 set focuscontent=false
-set animations=false
+set animations=true
 
-set maxitems=9
-set shell='/bin/dash'
+set maxitems=12
+set shell='/bin/zsh'
 set shellcmdflag='-c'
 
-set titlestring=vimperator
-set history=90000
-
-au LocationChange www.xda-developers.com setlocal previouspattern='^newer entries$' nextpattern='^older entries$'
+set titlestring="[-= vimperator =-]"
+set history=9000
 
 source ~/.vimperator/1st_level/styles.vimp
 source ~/.vimperator/styles/tumbrlr_bus.vimp
