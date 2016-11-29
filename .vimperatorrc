@@ -10,7 +10,7 @@ set hintmatching=fuzzy
 set status=location,bookmark,input,history,tabcount,position,ssl
 set complete=hS
 set focuscontent=false
-set animations=true
+set animations=false
 
 set maxitems=12
 set shell='/bin/zsh'
