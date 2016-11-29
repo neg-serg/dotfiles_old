@@ -120,3 +120,5 @@ core.get_hook("clientwin_unmapped_hook"):add(transparency_handler)
 core.get_hook("region_notify_hook"):add(transparency_handler)
 
 core.get_hook("clientwin_mapped_hook"):add(scratchpads_handler)
+core.get_hook("clientwin_unmapped_hook"):add(scratchpads_handler)
+core.get_hook("region_notify_hook"):add(scratchpads_handler)
