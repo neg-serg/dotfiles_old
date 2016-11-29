@@ -1,10 +1,7 @@
 set gui=none
 set verbose=0
-set defsearch=ix
-"set defsearch=searx
-"set defsearch=google
+set defsearch=google
 set suggestengines=
-"set suggestengines=google
 
 set hinttags="//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s' or @class='lk cs' or @class='msc' or @class='ll'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @class='s'] | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //tr[@class='rr' or @class='ur']/td[position()=5]"
 "au LocationChange .* js modes.passAllKeys = /.*\.google\.com/.test(buffer.URL) | /docs\.google\.com/.test(buffer.URL) | /mail\.google\.com/.test(buffer.URL) | /google\.com\/reader/.test(buffer.URL) | /mangafox\.com/.test(buffer.URL) | /mangareader\.net/.test(buffer.URL) | /webchat\.freenode\.net/.test(buffer.URL) | /mangahere\.com/.test(buffer.URL) | /feedly\.com/.test(buffer.URL) | /newsblur\.com/.test(buffer.URL)
