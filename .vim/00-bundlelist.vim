@@ -11,8 +11,7 @@ NeoBundle 'thinca/vim-quickrun' "run a bunch of text
 if has("nvim")
     NeoBundle 'Shougo/denite.nvim' "newer replacement for unite
 endif
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'lvht/fzf-mru'
+NeoBundle 'Shougo/neomru.vim' "add neomru source
 "--[ Additions ]--------------------------------------------------------------------------
 NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
@@ -28,8 +27,7 @@ endif
 if executable(resolve(expand("ag")))
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-NeoBundle 'junegunn/fzf'     "to work with fzf-vim
-NeoBundle 'junegunn/fzf.vim' "use fzf plug for vim
+NeoBundle 'lotabout/skim.vim' "replacement for fzf
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
 if !has("nvim")
     NeoBundle 'sjbach/lusty.git' "file/buffer explorer
