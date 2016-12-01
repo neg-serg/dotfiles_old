@@ -1,4 +1,4 @@
-frame_transparency_ = false
+frame_transparency_ = true
 local function find(a, tbl)
     for _,a_ in ipairs(tbl) do if
         a_ == a then return true end
