@@ -19,10 +19,10 @@ def_key "{"
 def_key "}"
   scroll_down_artist
 
-def_key "ctrl-b"
+def_key "ctrl-u"
   page_up
 
-def_key "ctrl-f"
+def_key "ctrl-d"
   page_down
 
 def_key "g"
