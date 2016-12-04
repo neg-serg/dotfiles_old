@@ -1,4 +1,4 @@
-#input-ipc-server=/home/neg/tmp/mpv.socket
+input-ipc-server=/home/neg/tmp/mpv.socket
 
 ao=pulse
 
@@ -8,10 +8,8 @@ slang=ru,rus
 alang=en
 geometry=50%:50%
 
-#[vo.opengl-hq]
-#vo=opengl-hq:scale=ewa_lanczossharp:cscale=ewa_lanczossharp:interpolation:temporal-dither:gamma=0.9:blend-subtitles=yes:target-prim=bt.709:target-trc=srgb
-
-vo=vdpau,vaapi
+profile=opengl-hq
+vd-lavc-threads=9
 screenshot-template="~/dw/scr-%F_%P"
 vd=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 hwdec=cuda
@@ -46,3 +44,18 @@ cursor-autohide=1000
 really-quiet
 
 volume=40
+
+[profile.opengl-hq]
+hwdec=vdpau
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+interpolation
+temporal-dither
+blend-subtitles=yes
+target-prim=bt.709
+target-trc=srgb
+
+[extension.flac]
+term-osd-bar=yes
+[extension.mp3]
+term-osd-bar=yes
