@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # vim:fdm=marker
 #
 # Neofetch config file
@@ -100,7 +100,7 @@ speed_type="max"
 # CPU Display
 # Set shorthand setting and progress bar setting
 # --cpu_display (name, speed, tiny, on, off) (bar, infobar, barinfo, off)
-cpu_shorthand="off"
+cpu_shorthand="on"
 cpu_display="on"
 
 # CPU Cores
@@ -120,14 +120,14 @@ gpu_shorthand="on"
 # Display refresh rate next to each monitor
 # Unsupported on Windows
 # --refresh_rate on/off
-refresh_rate="on"
+refresh_rate="off"
 
 
 # Gtk Theme / Icons
 
 # Shorten output (Hide [GTK2] etc)
 # --gtk_shorthand on/off
-gtk_shorthand="off"
+gtk_shorthand="on"
 
 
 # Enable/Disable gtk2 theme/icons output
@@ -285,7 +285,7 @@ disk_display="infobar"
 # Image Source
 # --image wall, ascii, /path/to/img, /path/to/dir/, off
 # image="wall"
-image="${HOME}/pic/grls/inet/ira/ira0x1.jpg"
+image="/home/neg/pic/grlz/inet/ira/img_fullsize0243.jpg"
 
 # Thumbnail directory
 thumbnail_dir="$HOME/.cache/thumbnails/neofetch"
@@ -307,12 +307,12 @@ crop_mode="normal"
 # Only affects normal mode.
 # --crop_offset northwest/north/northeast/west/center
 #               east/southwest/south/southeast
-crop_offset="center"
+crop_offset="northwest"
 
 # Image size
 # The image is half the terminal width by default.
 # --size auto, 00px, 00%
-image_size="400px"
+image_size="auto"
 
 # Right gap between image and text
 # --gap num
@@ -382,7 +382,7 @@ scrot_name="neofetch-$(date +%F-%T).png"
 
 # Separator for stdout mode
 # --stdout_separator string
-stdout_separator="  "
+# stdout_separator="  "
 
 # }}}
 
@@ -391,11 +391,11 @@ stdout_separator="  "
 
 # Enable/Disable config file
 # --config off, none
-config="on"
+# config="on"
 
 # Path to custom config file location
 # --config path/to/config
-config_file="${XDG_CONFIG_HOME:-${HOME}/.config}/neofetch/config"
+# config_file="${XDG_CONFIG_HOME:-${HOME}/.config}/neofetch/config"
 
 
 # }}}
