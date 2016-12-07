@@ -9,7 +9,7 @@ path_dirs=(
     {/usr/local,}/{s,}bin
 	/usr/bin/{site,vendor,core}_perl
 	${HOME}/.rvm/bin
-	${BIN_HOME}/{,go/bin}
+	${BIN_HOME}/{,go/bin,local}
     /opt/android-sdk/platform-tools
     /mnt/home/.local/bin
     /opt/cuda/bin
