@@ -203,7 +203,7 @@ function yt(){
         ${_zsh_proxy} you-get "$@"
     fi
 }
-alias yr="clear; figlet -c Youtube Viewer; ${_zsh_proxy} youtube-viewer --video-player=mpv -C"
+alias yr="clear; figlet -c Youtube Viewer|lolcat; ${_zsh_proxy} youtube-viewer --video-player=mpv -C"
 unset _zsh_proxy
 
 alias qe='cd *(/om[1])'
