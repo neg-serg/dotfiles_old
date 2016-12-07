@@ -69,8 +69,8 @@ function copy-to-clipboard() {
 }
 zle -N copy-to-clipboard
 
-function up-one-dir   { pushd .. > /dev/null; zle redisplay; zle -M $(pwd);  }
-function back-one-dir { popd     > /dev/null; zle redisplay; zle -M $(pwd);  }
+function up-one-dir   { pushd .. 2> /dev/null; zle redisplay; zle -M $(pwd);  }
+function back-one-dir { popd     2> /dev/null; zle redisplay; zle -M $(pwd);  }
 zle -N up-one-dir
 zle -N back-one-dir
 
