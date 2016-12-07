@@ -1,0 +1,6 @@
+#!/bin/zsh
+main(){
+    local ranger_font='PragmataPro for Powerline:size=16'
+    xterm -class ranger -fa "${ranger_font}" -e tmux new ranger    
+}
+main "$@"
