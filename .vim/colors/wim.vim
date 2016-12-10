@@ -58,7 +58,6 @@ hi! IncSearch ctermbg=62 ctermfg=7 cterm=NONE
 hi! WarningMsg ctermbg=NONE ctermfg=250 cterm=NONE 
 hi! Question ctermbg=NONE ctermfg=10 cterm=NONE 
 hi! Visual ctermbg=62 ctermfg=7 cterm=NONE 
-hi! VertSplit ctermbg=8 ctermfg=0 cterm=NONE 
 hi! TabLine ctermbg=0 ctermfg=7 cterm=NONE 
 hi! TabLineFill ctermbg=NONE ctermfg=0 cterm=NONE 
 hi! TabLineSel ctermbg=0 ctermfg=7 cterm=NONE 
