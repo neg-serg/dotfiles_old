@@ -385,8 +385,8 @@ alias py="bpython"
 alias ya="~/bin/scripts/pkgsearch"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
-vol(){ {st pulsemixer && exit} || {st alsamixer -g && exit } }
 alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
+alias vol=~/bin/scripts/vol_
 alias capsesc="xcape -e 'Caps_Lock=Escape'"
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias google='~/bin/scripts/rofi_search'
