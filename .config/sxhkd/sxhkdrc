@@ -2,6 +2,8 @@ source ~/.zshrc
 
 super + apostrophe
     {pkill -USR1 -x sxhkd && ~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'}
+XF86AudioMute
+    pactl set-sink-mute 1 toggle
 super + quotedbl
     { pkill -USR1 -x sxhkd; \
       pkill admiral; \  
@@ -11,7 +13,11 @@ super + quotedbl
 XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
-    mpc volume {-1,+1}
+	~/bin/scripts/vol_ {-1,+1}
+super + XF86AudioRaiseVolume
+     dash -c "pactl set-sink-mute 1 ; pactl set-sink-volume 1 +5%"
+super + XF86AudioLowerVolume
+     dash -c "pactl set-sink-mute 1 ; pactl set-sink-volume 1 -5%" 
 super + control + t
     dipser -S
 super + 8
@@ -28,11 +34,12 @@ super + u
     udiskie-umount -a
 super + M
     ~/bin/scripts/rofi_mpd
-super + control + r ; { d, i, r }
+super + control + r ; { c, d, i, r }
     { \
         xcalib -c, \
         xcalib -alter -invert, \
-        xcalib -red 0.1 0.0 1 -a \
+        xcalib -alter -invert, \
+        xcalib -gc 1.08 -co 97 ~/.config/color_profiles/x230.icm
     }
 alt + grave
     rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize 
