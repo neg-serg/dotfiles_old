@@ -57,10 +57,9 @@ function console()
 end
 
 function ranger()
-    local ranger_font='"PragmataPro for Powerline:size=16"'
     ns_exec(
         'ranger', --class
-        'xterm -class ranger -fa'..ranger_font..'-e tmux new ranger',
+        '~/bin/scripts/run_ranger',
         'ranger'  --ns
     )
 end
