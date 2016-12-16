@@ -1,6 +1,10 @@
 #!/bin/zsh
-main(){
-    local ranger_font='PragmataPro for Powerline:size=16'
-    xterm -class ranger -fa "${ranger_font}" -e tmux new ranger    
+function main() {
+    local font_size=12
+    local font_name="PragmataPro for Powerline"
+    local ranger_font="${font_name}:size=${font_size}"
+    xterm -class ranger -fa "${ranger_font}" \
+        -e tmux -S ~/1st_level/ranger.socket \
+        new ranger \; set status off
 }
 main "$@"
