@@ -15,17 +15,18 @@ function named_scratchpad(reg, name, mode)
     named_sp:set_grattr("scratchpad", "set")
 
     if not named_sp then
-        named_sp = scr:attach_new({
-                                   type="WFrame",
-                                   name=name,
-                                   unnumbered=true,
-                                   modal=false,
-                                   hidden=true,
-                                   sizepolicy="free",
-                                   geom=geom_loc,
-                                   style="scratchpad",
-                                  })
-                              end
+        named_sp = scr:attach_new
+        ({
+            type="WFrame",
+            name=name,
+            unnumbered=true,
+            modal=false,
+            hidden=true,
+            sizepolicy="free",
+            geom=geom_loc,
+            style="scratchpad",
+        })
+    end
     if not mode then mode = "toggle" end
     WMPlex.set_hidden(named_sp:parent(), named_sp, mode)
     named_sp:set_grattr("scratchpad", "set")
