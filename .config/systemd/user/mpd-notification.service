@@ -1,10 +1,11 @@
 [Unit]
 Description=MPD Notification
-Requires=mpd.service
+After=network.target sound.target mpd2.service
 
 [Service]
-Type=simple
 ExecStart=/home/neg/bin/scripts/mpd-notification
+Restart=always
+RestartSec=30
 
 [Install]
 WantedBy=default.target
