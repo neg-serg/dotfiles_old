@@ -1,65 +1,39 @@
 #!/bin/zsh
 unset TMUX
-
 . ~/.zsh/03-exports.zsh
-${SCRIPT_HOME}/systemd_env_forwarding.zsh
 
-~/bin/scripts/set_wallpaper
+${SCRIPT_HOME}/systemd_env_forwarding.zsh
+${SCRIPT_HOME}/set_wallpaper
+
+[[ -f ${HOME}/.Xresources ]] && \
+    xrdb -load ${HOME}/.Xresources
 
 pulseaudio --start &
 wmname Sawfish
 
-local width_x11=$(xrandr -q |awk '/Screen/{print $8}')
-local height_x11=$(xrandr -q | awk '/Screen/{print $10}' | awk -F"," '{print $1}')
-swarp ${width_x11} ${height_x11}
-
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-if egrep -iq 'touchpad' /proc/bus/input/devices; then
-    synclient PalmDetect=1
-    synclient VertEdgeScroll=0 &
-    synclient TapButton1=1 &
-    synclient HorizTwoFingerScroll=1 &
-    syndaemon -t -k -i 2 -d
-    syndaemon -i 0.8 -d &
-fi
-
-setxkbmap \
-    -option keypad:pointerkeys \
-    -layout 'us,ru' \
-    -option 'grp:alt_shift_toggle' \
-    -variant altgr-intl \
-    -option ctrl:nocaps
-
-xhost +localhost +local: +si:localuser:$(id -un)
-xset m 0 0 # disable mouse acceleration
-xset -b r rate 250 50 m 1 1 b off
-
-[[ -f ${HOME}/.Xresources ]] && \
-    xrdb -load ${HOME}/.Xresources
-[[ -f ${XDG_CONFIG_HOME}/keymaps/xmodmaprc ]] && \
-    xmodmap ${XDG_CONFIG_HOME}/keymaps/xmodmaprc
+source ${XDG_CONFIG_HOME}/xinit/touchpad.zsh
+source ${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh
+source ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh
 
 nexec dunst && dunst &
 (urxvtd -q -f -o && ${BIN_HOME}/urxvt) &
 
 nexec udiskie && udiskie -q &
-inpath unclutter && unclutter --fork --timeout 1 &
 nexec compton || sudo pkill compton
 compton -b --config ${XDG_CONFIG_HOME}/compton/compton.conf &
-nexec klay_watch && ${BIN_HOME}/mon/klay_watch &
 ${SCRIPT_HOME}/email_notifier.py --body &
 
-rm -f "${SXHKD_FIFO}" && mkfifo "${SXHKD_FIFO}" && \
-    nexec sxhkd && sxhkd -s "${SXHKD_FIFO}" &
+source ${XDG_CONFIG_HOME}/xinit/hotkeys.zsh
 
-systemctl --user restart gpaste
+systemctl --user restart gpaste &
 
 eval $(gpg-agent --daemon)
 
-~/bin/pass_notifyd &
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
+~/bin/pass_notifyd &
 ~/bin/scripts/mpd-notification &
 
 cat /tmp/ws_out.txt &
