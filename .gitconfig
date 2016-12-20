@@ -70,7 +70,8 @@
 [merge]
 	tool = ~neg/bin/scripts/wdiff_standalone
 [mergetool]
-	prompt = false
+    prompt = false
+    tool = vimdiff
 [credential]
     helper = cache --timeout=28800
 [interactive]
