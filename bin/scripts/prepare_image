@@ -9,7 +9,9 @@ function wf_(){
 
 function get_pid_(){
     local mpdsc_="$(which mpdscribble) --conf"
-    pgrep -f "${mpdsc_} ${XDG_CONFIG_HOME}/mpdscribble/$1.conf --no-daemon"
+    local mpdas_="${XDG_CONFIG_HOME}/mpdas"
+    pgrep -f "${mpdsc_} ${XDG_CONFIG_HOME}/mpdscribble/$1.conf --no-daemon" || \
+    pgrep -f "${mpdas_}/$1.rc"
 }
 
 function get_lastfm_(){
