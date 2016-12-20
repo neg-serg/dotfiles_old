@@ -12,7 +12,7 @@ if has("nvim")
     let g:deoplete#enable_at_startup = 1 " Use deoplete.
 endif
 if has("python3")
-    let g:powerline_pycmd          = "py3"
+    let g:powerline_pycmd = "py3"
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
@@ -25,74 +25,103 @@ endif
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('fzf.vim')
-    if !has("nvim")
-        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
-    else
-        let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=dark"
-    endif
-    if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
-        nnoremap <leader>l :Files %:p:h<CR>
-    endif
-
-    " Taken from :
-    " [https://github.com/aliev/vim/blob/master/vimrc]
-    if executable('ag')
-        " Silver searcher instead of grep
-        set grepprg=ag\ --vimgrep
-        set grepformat=%f:%l:%c%m
-
-        " If you're running fzf in a large git repository, git ls-tree can boost up
-        " the speed of the traversal.
-        if isdirectory('.git') && executable('git')
-            let $FZF_DEFAULT_COMMAND='
-                        \ (git ls-tree -r --name-only HEAD ||
-                        \ find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-                        \ sed s/^..//) 2> /dev/null'
-        else
-            let $FZF_DEFAULT_COMMAND='ag -g ""'
-        endif
-    endif
-
-    nnoremap qe :Files %:p:h<CR>
-    nnoremap qE :Files<CR>
-    " This is the default extra key bindings
-    let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-
-    " Default fzf layout
-    " - down / up / left / right
-    " - window (nvim only)
-    let g:fzf_layout = { 'down': '~20%' }
-
-    " For Commits and BCommits to customize the options used by 'git log':
-    let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-    " Advanced customization using autoload functions
-    autocmd VimEnter * command! Colors
-    \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
-
-    " Insert mode completion
-    imap <c-x><c-f> <plug>(fzf-complete-path)
-    imap <c-x><c-l> <plug>(fzf-complete-line)
-    let g:fzf_colors =
-    \ { 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Comment'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Statement'],
-      \ 'info':    ['fg', 'PreProc'],
-      \ 'prompt':  ['fg', 'Conditional'],
-      \ 'pointer': ['fg', 'Exception'],
-      \ 'marker':  ['fg', 'Keyword'],
-      \ 'spinner': ['fg', 'Label'],
-      \ 'header':  ['fg', 'Comment'] }
-    nnoremap <silent> <Leader>. :call fzf#run({
+if neobundle#tap('skim.vim')
+    let $SKIM_DEFAULT_OPTS = $SKIM_DEFAULT_OPTS . " " . "-t index"
+    nnoremap <silent> <Leader>. :call skim#run({
                 \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
-                \ 'options': '--multi --reverse --margin 15%,0',
+                \ 'options': '--multi 15%,0',
                 \ 'down': '20%',
                 \ 'sink': 'e '
                 \ })<CR>
+    nnoremap qe :Files %:p:h<CR>
+    nnoremap qE :Files<CR>
+    nnoremap ed :Buffers<CR>
+    if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
+        nnoremap <leader>l :Files %:p:h<CR>
+    endif
+    " Insert mode completion
+    imap <c-x><c-f> <plug>(skim-complete-path)
+    imap <c-x><c-l> <plug>(skim-complete-line)
+
+    " Default skim layout
+    " - down / up / left / right
+    " - window (nvim only)
+    let g:skim_layout = { 'down': '~20%' }
+else
+    " ┌───────────────────────────────────────────────────────────────────────────────────┐
+    " │ plugin - junegunn/fzf.vim                                                         │ 
+    " │ https://github.com/junegunn/fzf.vim                                               │ 
+    " └───────────────────────────────────────────────────────────────────────────────────┘
+    if neobundle#tap('fzf.vim')
+        if !has("nvim")
+            let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
+        else
+            let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=dark"
+        endif
+        if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
+            nnoremap <leader>l :Files %:p:h<CR>
+        endif
+
+        " Taken from :
+        " [https://github.com/aliev/vim/blob/master/vimrc]
+        if executable('ag')
+            " Silver searcher instead of grep
+            set grepprg=ag\ --vimgrep
+            set grepformat=%f:%l:%c%m
+
+            " If you're running fzf in a large git repository, git ls-tree can boost up
+            " the speed of the traversal.
+            if isdirectory('.git') && executable('git')
+                let $FZF_DEFAULT_COMMAND='
+                            \ (git ls-tree -r --name-only HEAD ||
+                            \ find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+                            \ sed s/^..//) 2> /dev/null'
+            else
+                let $FZF_DEFAULT_COMMAND='ag -g ""'
+            endif
+        endif
+
+        nnoremap qe :Files %:p:h<CR>
+        nnoremap qE :Files<CR>
+        nnoremap ed :Buffers<CR>
+        " This is the default extra key bindings
+        let g:fzf_action = { 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
+
+        " Default fzf layout
+        " - down / up / left / right
+        " - window (nvim only)
+        let g:fzf_layout = { 'down': '~20%' }
+
+        " For Commits and BCommits to customize the options used by 'git log':
+        let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+        " Advanced customization using autoload functions
+        autocmd VimEnter * command! Colors
+        \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'})
+
+        " Insert mode completion
+        imap <c-x><c-f> <plug>(fzf-complete-path)
+        imap <c-x><c-l> <plug>(fzf-complete-line)
+        let g:fzf_colors =
+        \ { 'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header':  ['fg', 'Comment'] }
+        nnoremap <silent> <Leader>. :call fzf#run({
+                    \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
+                    \ 'options': '--tiebreak=index --multi --reverse --margin 15%,0',
+                    \ 'down': '20%',
+                    \ 'sink': 'e '
+                    \ })<CR>
+    endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - sjl/gundo.vim.git                                                        │ 
