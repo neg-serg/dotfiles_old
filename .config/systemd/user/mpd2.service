@@ -4,6 +4,8 @@ After=network.target sound.target
 
 [Service]
 ExecStart=/usr/bin/mpd --no-daemon /home/neg/.mpd.conf
+Restart=always
+RestartSec=30
 
 [Install]
 WantedBy=default.target
