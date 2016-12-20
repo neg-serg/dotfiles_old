@@ -87,6 +87,9 @@ try
 endtry
 if neobundle#load_cache()
     source ~/.vim/00-bundlelist.vim
+    if has('nvim')
+        source ~/.vim/00-nvim_bundles.vim
+    endif
     NeoBundleSaveCache
 endif
 call neobundle#end()
