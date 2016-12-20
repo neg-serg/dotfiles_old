@@ -2,6 +2,8 @@
 NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
 if !has("nvim")
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+else
+    NeoBundle 'aperezdc/vim-lining' "statusline for neovim
 endif
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
@@ -12,6 +14,33 @@ if has("nvim")
     NeoBundle 'Shougo/denite.nvim' "newer replacement for unite
 endif
 NeoBundle 'Shougo/neomru.vim' "add neomru source
+if has('nvim')
+    call dein#begin('~/.vim/bundle', [expand('<sfile>')])
+    if len(s:local_plugs)
+        call dein#local('~/devel', {'frozen': 1}, s:local_plugs)
+    endif
+    unlet s:local_plugs
+    delfunction s:plug
+
+    call dein#end()
+    if dein#check_install()
+        call dein#install()
+    endif
+
+    call s:plug('Shougo/deoplete.nvim')
+    call s:plug('Shougo/neco-vim')
+    call s:plug('Shougo/neco-syntax')
+    call s:plug('Shougo/neoinclude.vim')
+    call s:plug('zchee/deoplete-jedi')
+    call s:plug('zchee/deoplete-clang')
+    call s:plug('zchee/deoplete-zsh')
+    call s:plug('carlitux/deoplete-ternjs')
+    call dein#end()
+    if dein#check_install()
+        call dein#install()
+    endif
+endif
+NeoBundle 'junegunn/vim-pseudocl'
 "--[ Additions ]--------------------------------------------------------------------------
 NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
@@ -27,7 +56,12 @@ endif
 if executable(resolve(expand("ag")))
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
-NeoBundle 'lotabout/skim.vim' "replacement for fzf
+if has("fzf_use") 
+    NeoBundle 'junegunn/fzf'
+    NeoBundle 'junegunn/fzf.vim'
+else
+    NeoBundle 'lotabout/skim.vim' "replacement for fzf
+endif
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
 if !has("nvim")
     NeoBundle 'sjbach/lusty.git' "file/buffer explorer
@@ -68,6 +102,7 @@ if executable(resolve(expand("git")))
     NeoBundle 'junegunn/gv.vim' "yet another git commit browser
     NeoBundle 'vim-scripts/DirDiff.vim.git' "diff directories easyer with vim
     NeoBundle 'airblade/vim-gitgutter.git' "last changes
+    NeoBundle 'jreybert/vimagit' "vimagit like magit from emacs inter. mode
 endif
 "----------------------------------------------------------------------------------------
 if executable(resolve(expand("tmux")))
@@ -130,6 +165,7 @@ NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'fs111/pydoc.vim' , {'autoload': {'filetypes': ['python']} } "pydoc integration
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
+NeoBundle 'python-rope/ropevim' "python refactoring
 "--[ R ]----------------------------------------------------------------------------------
 if has("nvim")
     NeoBundle 'jalvesaq/Nvim-R' "nvim R support
@@ -241,6 +277,8 @@ endif
 if has("nvim")
     NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
 endif
+NeoBundle 'aperezdc/vim-elrond' "new colorscheme
+NeoBundle 'cstrahan/vim-capnp' "capnproto syntax highlighting
 NeoBundle 'ryanoasis/vim-devicons.git' "fancy icons for fonts
 if has("google_plugs")
     NeoBundle 'google/vim-maktaba' "vim plugin library
