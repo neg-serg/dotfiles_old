@@ -34,7 +34,6 @@ eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
-~/bin/scripts/mpd-notification &
 
 cat /tmp/ws_out.txt &
 ~/bin/scripts/panels
