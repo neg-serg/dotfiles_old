@@ -23,6 +23,9 @@ NeoBundle 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l
 NeoBundle 'othree/eregex.vim' "Perl-like extended regex for vim
 NeoBundle 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
+NeoBundle 'tyru/open-browser.vim' "open browser with gx
+NeoBundle 'tyru/open-browser-github.vim' "open links in vim
+NeoBundle 'rhysd/vim-grammarous' "powerful vim spell-checking with LangTool
 "--[ Search ]-----------------------------------------------------------------------------
 if executable(resolve(expand("ack")))
     NeoBundle 'mileszs/ack.vim' "ack wrapper
@@ -252,6 +255,7 @@ if has("nvim")
     NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
 endif
 NeoBundle 'aperezdc/vim-elrond' "new colorscheme
+NeoBundle 'chriskempson/base16-vim' "base16 colorschemes pack
 NeoBundle 'cstrahan/vim-capnp' "capnproto syntax highlighting
 NeoBundle 'ryanoasis/vim-devicons.git' "fancy icons for fonts
 if has("google_plugs")
