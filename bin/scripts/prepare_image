@@ -36,7 +36,7 @@ function send_notify_(){
     done <<< ${body_}
     length_=(${#bodyarr_[1]} ${#bodyarr_[2]} ${#bodyarr_[3]})
     length_=($(printf "%s\n" "${length_[@]}"|sort -nr))
-    length_=${length_}[1]
+    length_=${(@)length_[1]}
     bodyarr_[1]=$(wf_ '')"${bodyarr_[1]}\n"
     bodyarr_[2]=$(wf_ '')"${bodyarr_[2]}\n"
     bodyarr_[3]=$(wf_ '》')"${bodyarr_[3]}\n"
@@ -76,7 +76,9 @@ function main(){
         sleep ${timeout_} && rm "${new_image}"
         exit 0
     else
-        if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]]; then
+        local dunst_pics_list_=$(setopt nullglob dotglob; builtin print ${dunst_pics_}/*)
+        if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]] \
+           && [[ ${#dunst_pics_list_[@]} -gt 1 ]]; then
             cp -v "${new_image}" "${previous_}"
             send_notify_ 
             sleep ${timeout_} && rm "${new_image}"
