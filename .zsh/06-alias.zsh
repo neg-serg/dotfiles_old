@@ -456,3 +456,5 @@ alias htcnet='sshfs root@192.168.0.107:/storage/emulated/0 /media/phone/ -p 22'
     alias mdel="~/bin/scripts/mpd/mdel"
     alias mkeep="~/bin/scripts/mpd/mkeep"
 }
+
+alias gcd='cd $(git rev-parse --show-toplevel 2> /dev/null || builtin print ".")'
