@@ -100,6 +100,14 @@ filetype plugin indent on
 
 NeoBundleCheck
 
+let g:use_base16_colorscheme=''
+if !g:use_base16_colorscheme
+    if filereadable(expand("~/.vimrc_background"))
+        let base16colorspace=256
+        source ~/.vimrc_background
+    endif
+endif
+
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
 source ~/.vim/02-keymaps.vim    

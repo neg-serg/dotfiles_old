@@ -1,20 +1,23 @@
+let base16colorspace=256  " Access colors present in 256 colorspace
 set shell=/bin/bash
 if bufname('%') == ''
   set bufhidden=wipe
 endif
 
-" let s:nvim_colorscheme = "gotham"
 let s:nvim_colorscheme = "wim24"
 
-" if v:version >= 704
-"   " The new Vim regex engine is currently slooooow as hell which makes syntax
-"   " highlighting slow, which introduces typing latency.
-"   " Consider removing this in the future when the new regex engine becomes
-"   " faster.
-"   " set regexpengine=1
-"   " Now I make it autodetect
-"   set regexpengine=0
-" endif
+if !g:use_base16_colorscheme
+    if v:version >= 704
+      " The new Vim regex engine is currently slooooow as hell which makes syntax
+      " highlighting slow, which introduces typing latency.
+      " Consider removing this in the future when the new regex engine becomes
+      " faster.
+      " set regexpengine=1
+      " Now I make it autodetect
+      set regexpengine=0
+    endif
+endif
+
 set regexpengine=1
 
 set conceallevel=2
@@ -45,26 +48,28 @@ execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
 execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
 
 if has("gui_running")
-    if &diff
-        set gfn=PragmataPro\ for\ Powerline\ 10
-        set guifontwide=PragmataPro\ for\ Powerline\ 10
-        " colorscheme hybrid
-        if !has("nvim")
-            colorscheme jellybeans
+    if !g:use_base16_colorscheme
+        if &diff
+            set gfn=PragmataPro\ for\ Powerline\ 10
+            set guifontwide=PragmataPro\ for\ Powerline\ 10
+            " colorscheme hybrid
+            if !has("nvim")
+                colorscheme jellybeans
+            else
+                set background=dark
+                exe "colorscheme ".s:nvim_colorscheme
+            endif
         else
-            set background=dark
-            exe "colorscheme ".s:nvim_colorscheme
-        endif
-    else
-        set gfn=PragmataPro\ for\ Powerline\ 14
-        set guifontwide=PragmataPro\ for\ Powerline\ 14
-        " set lsp=-1
-        let g:mirodark_enable_higher_contrast_mode=0
-        if !has("nvim")
-            colorscheme mirodark
-        else
-            set background=dark
-            exe "colorscheme ".s:nvim_colorscheme
+            set gfn=PragmataPro\ for\ Powerline\ 14
+            set guifontwide=PragmataPro\ for\ Powerline\ 14
+            " set lsp=-1
+            let g:mirodark_enable_higher_contrast_mode=0
+            if !has("nvim")
+                colorscheme mirodark
+            else
+                set background=dark
+                exe "colorscheme ".s:nvim_colorscheme
+            endif
         endif
     endif
 
@@ -116,13 +121,16 @@ if !has("gui_running") && !has("nvim")
     set ttymouse=urxvt                 " more accurate mouse tracking
     set t_Co=256                       " I use 256-color terminals
     set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
-    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
-        colorscheme wim
-    elseif &term =~ 'linux'
-        colorscheme darkblue
-        set t_Co=8 " I use 7-color term in $term = linux
-    else
-        colorscheme jellybeans
+
+    if !g:use_base16_colorscheme
+        if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
+            colorscheme wim
+        elseif &term =~ 'linux'
+            colorscheme darkblue
+            set t_Co=8 " I use 7-color term in $term = linux
+        else
+            colorscheme jellybeans
+        endif
     endif
 
     " enable ctrl interpreting for vim
@@ -176,7 +184,9 @@ if !has("gui_running") && !has("nvim")
     endif
 else
     set background=dark
-    exe "colorscheme ".s:nvim_colorscheme
+    if !g:use_base16_colorscheme
+        exe "colorscheme ".s:nvim_colorscheme
+    endif 
 endif
 
 " convert "\\" to "/" on win32 like environment
