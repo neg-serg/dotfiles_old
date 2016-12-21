@@ -467,3 +467,23 @@ let g:is_bash         = 1
 
 let g:session_autoload = "no"
 let g:session_autosave = "yes"
+
+if has('clpum')
+    set wildmode=popup
+    set wildmenu
+    set clpumheight=40
+    set clcompletefunc=UserDefinedClComplete
+    function! UserDefinedClComplete(findstart, base)
+        if a:findstart
+            return getcmdpos()
+        else
+            return [
+            \   { 'word': 'Jan', 'menu': 'January' },
+            \   { 'word': 'Feb', 'menu': 'February' },
+            \   { 'word': 'Mar', 'menu': 'March' },
+            \   { 'word': 'Apr', 'menu': 'April' },
+            \   { 'word': 'May', 'menu': 'May' },
+            \ ]
+        endif
+    endfunc
+endif
