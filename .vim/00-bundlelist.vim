@@ -20,6 +20,7 @@ NeoBundle 'kopischke/vim-fetch' "vim path/to/file.ext:12:3
 NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
+NeoBundle 'tpope/vim-projectionist' "better alternate files switcher and more
 NeoBundle 'othree/eregex.vim' "Perl-like extended regex for vim
 NeoBundle 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
