@@ -35,7 +35,7 @@
 
 [shortcuts]
     close_all = mod4+space
-    history   = mod4+ctrl+grave
+    history   = mod4+shift+grave
     context   = mod4+ctrl+shift+period
 
 [urgency_low]
@@ -65,16 +65,16 @@
 
 [notify-send]
     appname    = notify-send
-    urgency    = high
+    urgency    = normal
     format     = "<span weight='normal' letter_spacing='1000' color='#aaaaaa'>%s</span>\n%b"
 
 [skype]
     appname    = skype
     format     = "<span weight='normal' letter_spacing='1000' color='#4E9FB1'>%s</span>\n%b"
-    urgency    = high
+    urgency    = normal
 
 [mpd]
     appname    = mpd-notification
     format     = ""
     script     = "/home/neg/bin/scripts/prepare_image"
-    urgency    = mpd
+    urgency    = normal
