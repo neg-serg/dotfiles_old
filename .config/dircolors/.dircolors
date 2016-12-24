@@ -199,6 +199,7 @@ RESET 0 # reset to "normal" color
 # all of the rest
 .asm           38;5;228
 .asoundrc      00;36
+.mutt          00;36
 .awk           00;36
 .coffee        00;36
 .cs            00;36
