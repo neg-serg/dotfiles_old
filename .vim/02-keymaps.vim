@@ -1,8 +1,12 @@
+let g:strange_keymaps=''
+
 noremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
-nnoremap 4 $
-nnoremap $ 4
+if g:strange_keymaps
+    nnoremap 4 $
+    nnoremap $ 4
+endif
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -184,3 +188,8 @@ nmap <F1> :echom
 	\ . ']' <CR>
 
 nnoremap <leader>L :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+
+nnoremap <silent> <Up>    :cprevious<CR>
+nnoremap <silent> <Down>  :cnext<CR>
+nnoremap <silent> <Left>  :cpfile<CR>
+nnoremap <silent> <Right> :cnfile<CR>
