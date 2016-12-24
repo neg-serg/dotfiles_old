@@ -90,6 +90,11 @@ imap <a-b> <C-Left>
 cmap <a-b> <C-Left>
 imap <c-e> <end>
 cmap <c-e> <end>
+
+map <silent> <C-s>i  :silent set defsearch=ix<CR>
+map <silent> <C-s>s  :silent set defsearch=searx<CR>
+map <silent> <C-s>g  :silent set defsearch=google<CR>
+
 imap <a-d> <C-S-Right><Del>
 cmap <a-d> <C-S-Right><Del>
 imap <A-и> <C-Left>
