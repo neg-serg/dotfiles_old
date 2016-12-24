@@ -15,6 +15,8 @@ scratchpad_list = {
     "ncmpcpp",
     "_webcam_",
     "firefox-dialog",
+    "skype",
+    "telegram-desktop",
 }
 
 -------------------------------------[[ KLUDGES ]]----------------------------------
@@ -26,6 +28,7 @@ defwinprop{
 -------------------------------------[[ TERM ]]-------------------------------------
 defwinprop({class="URxvt",instance="MainTerminal",transient_mode="off",target="term"
 ,ignore_max_size=false,ignore_min_size=false,ignore_aspect=false,ignore_resizeinc=true})
+defwinprop({class="URxvt",instance="fzf-menu",transient_mode="off",target="term",float=true})
 defwinprop({instance="mutt",transient_mode="off",target="mutt",scratchpad="true"})
 defwinprop({class="URxvt",instance="code",transient_mode="off",ignore_cfgrq=true,target="notes"})
 defwinprop({class="yakuake",instance="*",transient_mode="off",ignore_cfgrq=true,float=true})
@@ -89,6 +92,7 @@ defwinprop({class="mpv",instance="webcam_mpv",target="_webcam_"})
 defwinprop({class="feh",float=true,ignore_cfgrq=true,transient_mode="current"})
 defwinprop({class="qiv",jumpto="on",transient_mode="normal",float=true})
 defwinprop({class="cheese",target="media",jumpto=true,transient_mode="off",float=false})
+defwinprop({class="spotify",target="ncmpcpp"})
 -------------------------------------[[ DEV ]]--------------------------------------
 defwinprop({class="Gvim",instance="gvim",target="dev",jumpto=true,transient_mode="off",userpos=true,
 tag="editor", ignore_max_size=true,ignore_min_size=true,ignore_aspect=true,ignore_resizeinc=true })
