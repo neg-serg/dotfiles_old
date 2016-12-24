@@ -77,6 +77,7 @@ Neg_kb.WMPlex_toplevel = {
         kpress("I",     function() spawn('~/bin/pls -output') end),
         kpress("L",     function() radare2() end),
         kpress("M",     function() mutt() end),
+        kpress(Sh.."M", function() app.byclass('spotify --experimental-network', 'Spotify') end),
         kpress("N",     function() nicotine() end),
         kpress("O",     function() spawn('~/bin/pls -sink') end),
         kpress("P",     function() spawn('st pulsemixer') end),
