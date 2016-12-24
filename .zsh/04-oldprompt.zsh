@@ -1,3 +1,4 @@
+export PROMPT_EOL_MARK='' # Do not show percentage
 export _zsh_oldprompt_is_sourced="true"
 
 local _lambda_ok="" # "%{$fg_bold[green]%}=λ\\"
