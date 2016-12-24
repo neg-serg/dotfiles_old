@@ -14,4 +14,4 @@ xset -b r rate 250 50 m 1 1 b off
 
 inpath unclutter && unclutter --fork --timeout 1 &
 
-nexec klay_watch && ${BIN_HOME}/mon/klay_watch &
+nexec ${BIN_HOME}/mon/klay_watch && ${BIN_HOME}/mon/klay_watch &
