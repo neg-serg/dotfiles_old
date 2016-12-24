@@ -18,7 +18,7 @@ local _zsh_files=(
     03-helpers.zsh
     03-exports.zsh
     04-powerline_prompt.zsh
-    04-oldprompt.zsh
+    # 04-oldprompt.zsh
     05-functions.zsh
     06-alias.zsh
     10-zle_functions.zsh
@@ -27,7 +27,7 @@ local _zsh_files=(
     12-vi_additions.zsh
     13-bindkeys.zsh
     20-autopair.zsh
-#   56-base16-plugin.zsh
+    # 56-base16-plugin.zsh
     60-functional.zsh
     70-games.zsh
     71-zsh-history-substring-search.zsh
