@@ -89,6 +89,7 @@ local function rofi_template(_t,flags,t_font)
     local common = ' -dmenu -opacity 90 ' 
                    .. rofi.yoff 
                    .. rofi.pid 
+                   .. '-nosync'
                    .. ' ' 
                    ..' -i -levenshtein-sort -matching fuzzy '
                    .. ' ' 
