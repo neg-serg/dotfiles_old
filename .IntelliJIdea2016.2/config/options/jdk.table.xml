@@ -83,6 +83,7 @@
     <jdk version="2">
       <name value="IntelliJ IDEA IU-145.1617.8" />
       <type value="IDEA JDK" />
+      <version value="java version &quot;1.8.0_92&quot;" />
       <homePath value="$APPLICATION_HOME_DIR$" />
       <roots>
         <annotationsPath>
