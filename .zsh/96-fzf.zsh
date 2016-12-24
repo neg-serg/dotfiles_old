@@ -85,15 +85,30 @@ function ftpane () {
 
 function pl(){
     local args
-    [[ -e "$@" ]] && args="$@"
-    [[ -z "${args}" ]] && args="${HOME}/vid/"
-    find_result="$(find ${args}|${HOME}/.zsh/fzf-tmux -d 30% -- --color=16)"
+    [[ -e "$1" ]] && arg_="$1"
+    [[ -e "$2" ]] && pref_="$1"
+    [[ -z "${arg_}" ]] && arg_="${HOME}/vid/"
+    find_result="$(find "${arg_}"|${BIN_HOME}/sk-tmux -d 40% -q "${pref_}" --)"
     xsel <<< ${find_result}
     if [[ ! -z ${find_result} ]]; then
         vid_fancy_print "${find_result}"
         mpv --input-ipc-server=~/tmp/mpv.socket "${find_result}"
     fi
 }
+
+function pl2(){
+    local args
+    [[ -e "$1" ]] && arg_="$1"
+    [[ -e "$2" ]] && pref_="$1"
+    [[ -z "${arg_}" ]] && arg_="${HOME}/vid/"
+    find_result="$(find "${arg_}"|=fzf-tmux -d 40% -q "${pref_}" --)"
+    xsel <<< ${find_result}
+    if [[ ! -z ${find_result} ]]; then
+        vid_fancy_print "${find_result}"
+        mpv --input-ipc-server=~/tmp/mpv.socket "${find_result}"
+    fi
+}
+
 
 function fmpc() {
     local song_position
