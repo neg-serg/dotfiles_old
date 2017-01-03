@@ -44,11 +44,14 @@ local function font_fallback(str)
 end
 
 local function get_mpd_status()
-    local cmd_string = "status\n"..
-                       "currentsong\n"..
-                       "close\n"
+    local cmd_string = "status\n"
+                     .. "currentsong\n"
+                     .. "close\n"
     if mpd_defaults.password ~= nil then
-        cmd_string = "password " .. mpd_defaults.password .. "\n" .. cmd_string
+        cmd_string = "password " 
+                   .. mpd_defaults.password
+                   .. "\n"
+                   .. cmd_string
     end
     cmd_string = string.format('echo -n "%s" | netcat %s %d',
                                cmd_string, mpd_defaults.address, mpd_defaults.port)
@@ -61,6 +64,7 @@ local function get_mpd_status()
     local data = saferead(mpd)
     if data == nil or string.sub(data,1,6) ~= "OK MPD" then
         mpd:close()
+        print(wrp("no mpd", "[","]"))
         return wrp("no mpd", "[","]")
     end
 
@@ -71,6 +75,7 @@ local function get_mpd_status()
         until data == nil or string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
         if data == nil or string.sub(data,1,2) ~= "OK" then
             mpd:close()
+            print(wrp("bad mpd password", "[","]"))
             return wrp("bad mpd password", "[","]")
         end
     end
@@ -93,6 +98,7 @@ local function get_mpd_status()
     until string.sub(data,1,2) == "OK" or string.sub(data,1,3) == "ACK"
     if data == nil or string.sub(data,1,2) ~= "OK" then
         mpd:close()
+        print("error querying mpd status")
         return wrp("error querying mpd status", "[","]")
     end
 
@@ -124,14 +130,15 @@ local function get_mpd_status()
             mpd_st = string.sub(mpd_st,1, mpd_defaults.mpd_len - 4).. "…"
         end
         mpd_position = (info["pos"] or "") .."/".. (info["len"] or "")
-        mpd_st = wrp(">>", "[","]") .. wrp(mpd_st.." "..mpd_position)
-                 .. wrp("Vol: " .. info.volume.."%")
+        mpd_st = wrp(">>", "[","]") 
+              .. wrp(mpd_st.." "..mpd_position)
+              .. wrp("Vol: " .. info.volume.."%")
         print(mpd_st)
         return mpd_st
     elseif info.state == "pause" then
         print(wrp("||","[","]")) return wrp("||","[","]")
     else
-        print " " return " "
+        return "Mda"
     end
 end
 
