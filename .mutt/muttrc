@@ -6,7 +6,7 @@ source ~/.mutt/aliases.mutt
 source ~/.mutt/hooks.mutt
 source ~/.mutt/sidebar.mutt
 source ~/.mutt/gmail.mutt
-source ~/.mutt/themes/milomouse
+source ~/.mutt/themes/fscety
 source ~/.mutt/mailboxes
 
 set nm_default_uri = "notmuch:///home/neg/.local/mail/gmail"
@@ -62,9 +62,9 @@ alternative_order text/plain text/enriched text/html
 alternative_order text/enriched text/plain text/html
 alternative_order text/plain text/html *
 
-set implicit_autoview           # try to understand MIME types
-set mailcap_path="~/.mailcap"   # see MIME types in mailcap database
-set mailcap_sanitize=yes        # remove mailcap ugly chars
+set implicit_autoview                # try to understand MIME types
+set mailcap_path="~/.mutt/mailcap"   # see MIME types in mailcap database
+set mailcap_sanitize=yes             # remove mailcap ugly chars
 set menu_scroll
 set narrow_tree         # To make deep threads to fit on the screen
 set user_agent=no       # let them take fake useragent from my_hdr above
