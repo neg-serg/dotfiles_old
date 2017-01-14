@@ -91,8 +91,9 @@ set index_format="%3C| %-4c > %-19.19F  %s%*  %?X?[%X]? %Z| %d"
 set quote_regexp="^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 
-set sort='reverse-threads'
-set sort_aux='last-date-received'
+set sort=reverse-last-date-received  # like gmail
+#set sort='reverse-threads'
+#set sort_aux='last-date-received'
 set sort_re
 set uncollapse_jump # don't collapse on an unread message
 set reply_regexp="^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
