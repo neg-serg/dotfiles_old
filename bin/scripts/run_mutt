@@ -1,2 +1,2 @@
 #!/bin/zsh
-BROWSER=firefox-beta st -f 'Pragmata Pro for Powerline:size=17' -c mutt -e mutt
+BROWSER=w3m st -f 'Pragmata Pro for Powerline:size=13' -c mutt -e mutt
