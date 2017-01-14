@@ -29,6 +29,8 @@ bind pager R group-reply
 bind attach <return> view-mailcap
 bind attach,browser,pager,index ZZ exit
 
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+
 macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
 macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/Trash\"\n <delete-message>" "Gmail delete message"
 
@@ -44,5 +46,8 @@ macro index,pager gb "<pipe-message>goobook add<enter><pipe-message>goobook relo
 macro index A "<limit>all\n" "show all messages (undo limit)"
 macro index X "|~/.mutt/mimedump"
 macro pager X "|~/.mutt/mimedump"
+
+macro index g/ "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/external/mutt-notmuch-py/mutt-notmuch-py<enter><change-folder-readonly>~/tmp/mutt_results<enter>" \
+          "search mail (using notmuch)"
 
 # vim:ft=muttrc
