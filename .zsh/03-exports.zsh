@@ -9,7 +9,7 @@ path_dirs=(
     {/usr/local,}/{s,}bin
 	/usr/bin/{site,vendor,core}_perl
 	${HOME}/.rvm/bin
-	${BIN_HOME}/{,go/bin,local}
+	${BIN_HOME}/{,go/bin,local,wm/bin}
     /opt/android-sdk/platform-tools
     /mnt/home/.local/bin
     /opt/cuda/bin
@@ -29,6 +29,8 @@ eval $(perl -I /one/dev/perl5/lib/perl5 -Mlocal::lib=/one/dev/perl5)
 
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
+
+export AURDEST=~/tmp/pacaur
 
 export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
