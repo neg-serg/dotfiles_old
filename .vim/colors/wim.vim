@@ -5,7 +5,7 @@ if exists("syntax on")
 endif
 let colors_name="wim"
 
-hi! Normal ctermbg=NONE ctermfg=15 cterm=NONE
+hi! Normal ctermbg=NONE ctermfg=NONE cterm=NONE
 hi! Ignore ctermbg=NONE ctermfg=8 cterm=NONE
 hi! Comment ctermbg=NONE ctermfg=7 cterm=NONE
 hi! SpecialComment ctermbg=NONE ctermfg=7 cterm=underline
