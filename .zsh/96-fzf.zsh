@@ -118,7 +118,7 @@ function fmpc() {
     [[ -n "${song_position}" ]] && mpc -q play $song_position
 }
 
-function fq() {
+function fqq() {
     local file=$(find ${1:-.} -maxdepth 1 -type f -print 2> /dev/null | fzf +m)
     echo ${file}
 }
