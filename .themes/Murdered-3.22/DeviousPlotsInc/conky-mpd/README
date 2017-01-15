@@ -1,0 +1,11 @@
+conky-mpd
+=========
+
+Small conky setup that displays the current playing song info and cover art on the desktop. It fetches the covers from Last.fm and has a cache function.
+
+USAGE: copy cover.sh, case.png and nocover.png to ~/.conky/conky-mpd and conkyrc-mpd to ~/.conky. Change the APIKEY variable in cover.sh to your own Last.fm API key.
+
+conkyrc-mpd is based on the "Conky panel and MPD cover art" by SuNjACk94 (see http://sunjack94.deviantart.com/gallery/#/d2jvuuh)
+License: Creative Commons Attribution NonCommercial 3.0 Unported license (see http://creativecommons.org/licenses/by-nc/3.0/)
+The jewel case and no-cover images are taken from the covergloobus project (see https://launchpad.net/covergloobus)
+License: GPLv3

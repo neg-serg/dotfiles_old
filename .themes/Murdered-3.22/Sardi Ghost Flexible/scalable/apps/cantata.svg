@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="512"
+   viewBox="0 0 512 512"
+   width="512"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="cantata.svg">
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1031"
+     inkscape:window-height="620"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-x="0"
+     inkscape:window-y="29"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata74">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     style="fill:#BFBFBF"
+     inkscape:connector-curvature="0"
+     d="m 228.35921,347.68206 c -119.6065,-53.1719 -192.915663,1.44353 -173.831888,70.18536 11.746823,42.30243 109.661158,81.7523 195.296108,15.02293 5.55165,-3.86975 12.84625,-17.0636 13.14078,-23.80158 12.48314,-80.76488 28.1032,-161.85889 40.18085,-242.59243 135.26085,92.66097 92.07018,148.70894 64.10214,213.26755 57.49545,-18.40837 147.54629,-99.68264 49.16395,-214.31767 C 369.85156,114.6645 374.22105,150.52047 329.122,49.22818 313.22355,47.187508 297.32309,45.148402 281.42464,43.107729 262.46997,147.49238 247.30784,243.30369 228.35316,347.68834"
+     id="path68" />
+</svg>

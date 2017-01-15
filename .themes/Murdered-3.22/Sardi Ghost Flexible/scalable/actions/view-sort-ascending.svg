@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="100%"
+   width="100%"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 512 512"
+   inkscape:version="0.91 r"
+   sodipodi:docname="view-sort-ascending.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <metadata
+     id="metadata133">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4" />
+  <path
+     id="path10"
+     d="m 288.1548,54.96551 -33.18966,33.16092 67.35633,67.35633 33.1609,33.16092 33.16094,-33.16092 67.35632,-67.3276 -33.16092,-33.18965 -67.35634,67.35633 -67.32757,-67.35633 z m -183.90806,0.0287 c -26.65035,0 -48.24713,21.5738 -48.24713,48.21839 0,26.65612 21.60254,48.27586 48.24713,48.27586 26.65036,0 48.24713,-21.6255 48.24713,-48.27586 0,-26.65035 -21.60254,-48.21839 -48.24713,-48.21839 z m 0,152.75863 c -26.65035,0 -48.24713,21.60252 -48.24713,48.24712 0,26.65035 21.60254,48.24712 48.24713,48.24712 26.65036,0 48.24713,-21.60253 48.24713,-48.24712 0,-26.65036 -21.60254,-48.24712 -48.24713,-48.24712 z m 0,152.78735 c -26.65035,0 -48.24713,21.59679 -48.24713,48.24714 0,26.65035 21.60254,48.24712 48.24713,48.24712 26.65036,0 48.24713,-21.60253 48.24713,-48.24712 0,-26.65611 -21.60254,-48.24714 -48.24713,-48.24714 z"
+     style="fill:#BFBFBF" />
+</svg>
