@@ -11,7 +11,7 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  transition: opacity .8s ease;
+  /* transition: opacity .8s ease; */
   overflow: hidden;
 }
 ul, li {
@@ -170,7 +170,7 @@ textarea {
   border-radius: 2px;
 }
 #mainContainer {
-  transition: opacity .8s ease .1s;
+  /* transition: opacity .8s ease .1s; */
   opacity: 0;
 }
 #searchContainer {
