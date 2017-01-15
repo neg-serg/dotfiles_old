@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 if [[ ${X11_WM} == "notion" ]]; then
-    if $[[ -e "${PANELS}" ]]; then
+    if [[ -e "${PANELS}" ]]; then
         "${SCRIPT_HOME}/panels"
     fi
     source ${XDG_CONFIG_HOME}/xinit/hotkeys.zsh
