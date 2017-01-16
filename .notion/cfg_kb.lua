@@ -56,7 +56,6 @@ Neg_kb.WMPlex_toplevel = {
                     ..'}'..'*', 'Sxiv') 
     end),
     --[[  misc  ]]---------------------------------------
-    kpress(M4..Sh.."F",  function() app.byinstance('lowriter', 'VCLSalFrame', 'libreoffice-writer') end),
     kpress(M4..Sh.."T",  function() 
         ns_exec(
             'stalonetray', -- class
