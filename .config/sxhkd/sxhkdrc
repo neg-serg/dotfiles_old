@@ -1,5 +1,3 @@
-source ~/.zshrc
-
 super + apostrophe
     {pkill -USR1 -x sxhkd && ~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'}
 XF86AudioMute
