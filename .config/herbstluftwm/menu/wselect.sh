@@ -5,7 +5,7 @@
 #               dmenu with multiline support (command line flag -l)
 
 hc() { ${herbstclient_command:-herbstclient} "$@" ;}
-dm() { ${dmenu_command:-dmenu} "$@" ;}
+dm() { ${dmenu_command:-rofi -dmenu} "$@" ;}
 dmenu_lines=${dmenu_lines:-10}
 
 case "$1" in
@@ -27,8 +27,12 @@ case "$1" in
             local winid=$(sed 's,0x[0]*,0x,' <<< "$*")
             local tag=$(hc attr clients."$winid".tag)
             hc lock
-            hc use "$tag"
-            hc jumpto "$*"
+            if [[ ${tag} != "scratchpad" ]]; then
+                hc use "$tag"
+                hc jumpto "$*"
+            else
+                ~/.config/herbstluftwm/scratchpad.sh
+            fi
             hc unlock
         }
         ;;
@@ -41,5 +45,5 @@ case "$1" in
 esac
 
 id=$(wmctrl -l |cat -n| sed 's/\t/) /g'| sed 's/^[ ]*//' \
-    | dm -i -l $dmenu_lines -p "$name") \
-    && action $(awk '{ print $2 ; }' <<< "$id")
+    | dm -i -l ${dmenu_lines} -p "${name}") \
+    && action $(awk '{ print $2 ; }' <<< "${id}")
