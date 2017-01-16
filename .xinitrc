@@ -14,8 +14,6 @@ wmname Sawfish
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-(urxvtd -q -f -o && ${BIN_HOME}/urxvt) &
-
 source ${XDG_CONFIG_HOME}/xinit/touchpad.zsh
 source ${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh
 source ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh
@@ -32,6 +30,5 @@ eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
-disown
 
-X11_WM="notion" PANELS="dzen" source ${XDG_CONFIG_HOME}/xinit/wm.zsh
+X11_WM="notion" PANELS="dzen" ${XDG_CONFIG_HOME}/xinit/wm.zsh
