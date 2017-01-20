@@ -15,3 +15,15 @@
 [submodule ".tmux/tmux-yank"]
 	path = .tmux/tmux-yank
 	url = git://github.com/tmux-plugins/tmux-yank
+[submodule "bin/local_/colors"]
+	path = bin/local_/colors
+	url = git://git.2f30.org/colors.git
+[submodule "bin/wm/opt"]
+	path = bin/wm/opt
+	url = https://github.com/wmutils/opt
+[submodule "bin/wm/contrib"]
+	path = bin/wm/contrib
+	url = https://github.com/wmutils/contrib
+[submodule "bin/wm/wmtls"]
+	path = bin/wm/wmtls
+	url = https://github.com/dkeg/wmtls

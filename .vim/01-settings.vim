@@ -47,6 +47,9 @@ set path+=.,..,./include,../include,/usr/include
 execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/include'
 execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/include'
 
+set isfname+={
+set isfname+=}
+
 if has("gui_running")
     if !g:use_base16_colorscheme
         if &diff

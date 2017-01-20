@@ -305,7 +305,17 @@ function ql(){
 kut() { awk "{ print $(for n; do echo -n "\$$n,"; done | sed 's/,$//') }" ;}
 +strip_trailing_workspaces(){  sed ${1:+-i} 's/\s\+$//' "$@" }
 +show_coredumps() { locate -b '^core\.?[0-9]*$' --regex | xargs file | fgrep ELF | awk '{print $1}' | sed 's,:$,,'}
-wh() {_v -c 'set ft=sh' <<< $(which $1)}
+
+function which() {
+    if [[ $# > 0 ]]; then
+        if [[ -x ~/bin/_v ]]; then
+            _v -c 'set ft=sh' <<< $(builtin which "$@")
+        else
+            builtin which "$@"
+        fi
+    fi
+}
+
 function wnvim(){
     st nvim &
 }
