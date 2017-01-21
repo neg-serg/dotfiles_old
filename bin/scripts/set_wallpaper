@@ -1,6 +1,4 @@
 #!/bin/zsh
-. ~/.zsh/03-helpers.zsh
-. ~/.zsh/03-exports.zsh
 . ${XDG_CONFIG_HOME}/.wallpapers
 
 local -a filtered_wall_=()
