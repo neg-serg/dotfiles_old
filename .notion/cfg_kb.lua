@@ -228,6 +228,8 @@ Neg_kb.Tiling = {
     kpress(M4..Sh.."S", function() tiling_split('bottom') end),
     kpress(M4..Sh.."D", function() tiling_split('right') end),
     kpress(M4.."2",     function() tiling_transpose() end),
+    kpress(M4..Sh.."5", function() spawn('~/bin/scripts/set_wallpaper') end),
+    kpress(M4..Sh.."6", function() spawn('~/bin/scripts/random_wall') end),
     kpress(M4..Sh.."3", function() tiling_flip() end),
     kpress(M4..Ct.."X", function() tiling_unsplit() end),
     kpress(M4..Ct.."W", function(_) move_current.move(_, "up") end),
