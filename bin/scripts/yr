@@ -1,0 +1,2 @@
+#!/bin/dash
+figlet -c Youtube Viewer|lolcat -t; youtube-viewer --video-player=mpv -C "$@"
