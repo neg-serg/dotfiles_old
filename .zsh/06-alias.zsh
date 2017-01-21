@@ -101,14 +101,18 @@ alias magnet2torrent="aria2c -q --bt-metadata-only --bt-save-metadata"
 
 alias mk="mkdir -p"
 
-function mp(){ 
+function eat(){ 
     for i; do 
         vid_fancy_print "${i}"
         ${VIDEO_PLAYER_} --input-ipc-server=$(readlink -f -- ${HOME}/tmp/${VIDEO_PLAYER_}.socket) "${i}"
     done 
 }
 
-alias mpvc="SOCKET=$(readlink -f ${HOME}/tmp/${VIDEO_PLAYER_}.socket) mpvc"
+function mp(){ 
+    for i; do vid_fancy_print "${i}"; done
+    ${VIDEO_PLAYER_} --input-ipc-server=$(readlink -f -- ${HOME}/tmp/${VIDEO_PLAYER_}.socket) "$@"
+}
+
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
 alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache-min 3 -framedrop -utf8  -autoq 100 -bpp 32 -subfont PragmataPro"
 
@@ -462,3 +466,12 @@ alias gcd='cd $(git rev-parse --show-toplevel 2> /dev/null || builtin print ".")
 function yaourt() {
     pacaur "$@"
 }
+
+function pacnews() {
+    sudo find /etc -name '*.pacnew' | sed -e 's|^/etc/||' -e 's/.pacnew$//'
+}
+
+alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
+
+# kill any current poppers (thanks Dylan)
+ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null

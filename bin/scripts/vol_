@@ -1,5 +1,8 @@
 #!/bin/zsh
-function main(){
+
+MPV_SOCKET="/tmp/mpv.socket"
+
+main(){
     if [[ $# == 0 ]]; then
         vol_manager
     else
@@ -20,12 +23,17 @@ function main(){
             echo -ne "volume "$1"\nclose\n" | \
             netcat "${addr_}" "${port_}"
         else
-            mpvc
+            mpvc -S ${MPV_SOCKET} -v "$1"
         fi
     fi
 }
 
-function vol_manager(){
+# Inspired by z3bra and dkeg
+state() {
+    amixer get Master | sed -n 's/^.*\[\(o[nf]\+\)]$/\1/p' | uniq
+}
+
+vol_manager(){
     local pulse_=true
     if [[ ! -e ${pulse_} ]]; then
         st pulsemixer && exit
