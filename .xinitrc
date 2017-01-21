@@ -1,6 +1,11 @@
 #!/bin/zsh
+
+windowmanager="${1}"
+[[ ${windowmanager} ]] || \
+    windowmanager=$(< ${XDG_CONFIG_HOME}/.windowmanager)
+export windowmanager
+
 unset TMUX
-. ~/.zsh/03-exports.zsh
 
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 ${SCRIPT_HOME}/set_wallpaper
@@ -31,4 +36,6 @@ eval $(gpg-agent --daemon)
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
 
-X11_WM="notion" PANELS="dzen" ${XDG_CONFIG_HOME}/xinit/wm.zsh
+nexec urxvtd && urxvtd -q -f -o
+
+${XDG_CONFIG_HOME}/xinit/wm.zsh

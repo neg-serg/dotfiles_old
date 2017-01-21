@@ -11,16 +11,37 @@ function notion_run(){
     cat /tmp/ws_out.txt &
     ~/bin/scripts/panels
 
-    exec notion 2>> ~/tmp/${X11_WM}err$$ 2>&1
+    exec notion 2>> ~/tmp/${windowmanager}err$$ 2>&1
 }
 
 function windowchef_run() {
     sxhkd -c "${XDG_CONFIG_HOME}/windowchef/sxhkd.conf" &
-    exec windowchef 2>> ~/tmp/${X11_WM}err$$ 2>&1
+    exec windowchef 2>> ~/tmp/${windowmanager}err$$ 2>&1
 }
 
 function herbstluftwm_run() {
-    herbstluftwm -c ~/.config/herbstluftwm/autostart
+    exec herbstluftwm -c ~/.config/herbstluftwm/autostart
 }
 
-eval "${X11_WM}"_run "$@"
+function bspwm_run(){
+    sxhkd -c "${XDG_CONFIG_HOME}/windowchef/sxhkd.conf" &
+    exec bspwm 2>> ~/tmp/${windowmanager}err$$ 2>&1
+}
+
+function 2bwm_run(){
+    sxhkd -c "${XDG_CONFIG_HOME}/windowchef/sxhkd.conf" &
+    exec 2bwm 2>> ~/tmp/${windowmanager}err$$ 2>&1
+}
+
+function nowm_run(){
+    sxhkd -c "${XDG_CONFIG_HOME}/windowchef/sxhkd.conf" &
+    wew | ~/bin/yawee &
+    exec ~/bin/wm/wmtls/xwait 2>> ~/tmp/${windowmanager}err$$ 2>&1
+}
+
+if type "${windowmanager}"_run; then
+    eval "${windowmanager}"_run "$@"
+else
+    exec ${windowmanager} "$@"
+fi
+
