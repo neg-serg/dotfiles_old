@@ -23,11 +23,15 @@
     (gimp-dock
         (side right)
         (book
-            (current-page 0)
+            (current-page 1)
             (dockable "gimp-tool-options"
                 (tab-style automatic)
                 (aux-info
-                    (show-button-bar "false"))))))
+                    (show-button-bar "false")))
+            (dockable "gimp-brush-grid"
+                (tab-style automatic)
+                (aux-info
+                    (show-button-bar "true"))))))
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
     (position 0 0)
