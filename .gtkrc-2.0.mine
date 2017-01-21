@@ -3,4 +3,4 @@ style "vimfix" {
 }
 widget "vim-main-window.*GtkForm" style "vimfix"
 gtk-key-theme-name = "Emacs-custom"
-gtk-cursor-theme-size=48
+gtk-cursor-theme-size=32

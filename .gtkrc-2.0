@@ -3,7 +3,7 @@
 
 include "/home/neg/.gtkrc-2.0.mine"
 gtk-theme-name="Neg-Dark"
-gtk-icon-theme-name="Lüv"
+gtk-icon-theme-name="la-capitaine-icon-theme"
 gtk-font-name="PragmataPro for Powerline 10"
 gtk-cursor-theme-name="Breeze_Hacked"
 gtk-cursor-theme-size=0
