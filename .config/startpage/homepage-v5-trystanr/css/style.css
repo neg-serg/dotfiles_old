@@ -31,7 +31,7 @@ textarea {
 }
 
 .background {
-  background: #0d1011 url("../media/cosmos.jpg") no-repeat center fixed;
+  background: #0d1011 url("/home/neg/pic/wl/bg.png") no-repeat center fixed;
   background-size: cover;
   position: fixed;
   left: 0;
