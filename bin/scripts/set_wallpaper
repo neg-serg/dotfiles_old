@@ -1,8 +1,4 @@
 #!/bin/zsh
-if [[ -f  ${XDG_CONFIG_HOME}/.wallpapers ]]; then
-    cp ${XDG_CONFIG_HOME}/.wallpapers /tmp/.walls
-fi
-
 . ${XDG_CONFIG_HOME}/.wallpapers
 
 local -a filtered_wall_=()
