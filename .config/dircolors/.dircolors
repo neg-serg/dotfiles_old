@@ -238,6 +238,7 @@ RESET 0 # reset to "normal" color
 .jsm           00;38;5;68
 .jsp           00;38;5;68
 .lisp          00;38;5;68
+.scm           00;38;5;68
 .lam           00;38;5;68
 .lesshst       01;38;5;23
 .log           01;38;5;23
