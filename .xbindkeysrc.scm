@@ -1,38 +1,61 @@
 ; http://www.gnu.org/software/guile/guile.html
 ; Version: 1.8.6
-
 ; List of modifier: Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock), Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+(use-modules (oop goops))
+(define-method (+ (a <list>) (b <list>)) (append a b))
+(define-method (+ (a <string>) (b <string>)) (string-append a b))
 
+(ungrab-all-keys)
 (grab-all-keys)
-; (ungrab-all-keys)
-; (remove-all-keys)
 (debug)
 
-;(set-numlock! #t) ; Now you can use numlock as modifier
-;(set-scrolllock! #t) ; Now you can use numlock as modifier
-;(set-capslock! #t) ; Now you can use numlock as modifier
+(set-numlock! #t) ; Now you can use numlock as modifier
+(set-scrolllock! #t) ; Now you can use numlock as modifier
+(set-capslock! #t) ; Now you can use numlock as modifier
 
-;(xbindkey '(Mod4 shift space) "notionflux -e 'toggle_frame_transp()'")
-;(xbindkey '(Mod4 F11) "notionflux -e 'rofi.mainmenu()'")
-;(xbindkey '(Mod1 Tab) "notionflux -e 'core.goto_previous()'")
-;(xbindkey '(Mod4 slash) "notionflux -e 'core.goto_previous()'")
-;(xbindkey '(Mod4 f) "notionflux -e 'ncmpcpp()'")
-;(xbindkey '(Mod4 d) "notionflux -e 'console()'")
-
-;;; Double click test
-;(xbindkey-function '(control w)
-;          (let ((count 0))
-;            (lambda ()
-;              (set! count (+ count 1))
-;              (if (> count 1)
-;              (begin
-;               (set! count 0)
-;               (run-command "xterm"))))))
+(xbindkey '(Mod4 shift space) "notionflux -e 'toggle_frame_transp()'")
+(xbindkey '(Mod4 F11) "notionflux -e 'rofi.mainmenu()'")
+(xbindkey '(Mod1 Tab) "notionflux -e 'core.goto_previous()'")
+(xbindkey '(Mod4 slash) "notionflux -e 'core.goto_previous()'")
+(xbindkey '(Mod4 f) "notionflux -e 'ncmpcpp()'")
+(xbindkey '(Mod4 d) "notionflux -e 'console()'")
+(xbindkey '(Mod4 e) "~/bin/scripts/scratchpad im")
+(xbindkey '(Mod4 Control g) "notionflux -e 'rofi.goto_or_create_ws(core.current())'")
+(xbindkey '(Mod1 g) "notionflux -e 'rofi.goto_win(core.current())'")
+(xbindkey '(Mod4 u) "udiskie-umount -a")
+(xbindkey '(Mod4 c) "~/bin/clip")
+(xbindkey '(Mod4 "c:17") "mpc volume 0 \|\| amixer -q set Master 0% mute")
+(xbindkey '(Mod4 shift "c:17") "mpc volume 35 \|\| amixer -q set Master 35% unmute")
+(xbindkey '(Mod1 control t) "dipser -S")
+(xbindkey '(Mod4 shift M) "~/bin/scripts/rofi_mpd")
+(xbindkey '(Mod4 shift U) "eject -T")
+(xbindkey '(Mod4 apostrophe) "~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'")
+(xbindkey '(Mod1 grave) "rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize")
+(xbindkey '(Mod4 control shift u) "sudo systemctl suspend")
+(xbindkey '(XF86Sleep) "sudo systemctl suspend")
+(xbindkey '(Mod4 XF86AudioRaiseVolume) "dash -c 'pactl set-sink-mute 1 ; pactl set-sink-volume 1 +5%'")
+(xbindkey '(Mod4 XF86AudioLowerVolume) "dash -c 'pactl set-sink-mute 1 ; pactl set-sink-volume 1 -5%'")
+(xbindkey '(XF86AudioMute) "pactl set-sink-mute 1 toggle")
+(xbindkey '(XF86AudioLowerVolume) "~/bin/scripts/vol_ -1")
+(xbindkey '(XF86AudioRaiseVolume) "~/bin/scripts/vol_ +1")
+(xbindkey '(XF86AudioPrev) "mpc prev")
+(xbindkey '(XF86AudioStop) "mpc stop")
+(xbindkey '(XF86AudioPlay) "mpc toggle")
+(xbindkey '(XF86AudioStop) "mpc stop")
+(xbindkey '(Mod4 quotedbl) "~/bin/scripts/soft_restart_wm")    
+;(xbindkey '(Mod4 control r) "~/bin/scripts/soft_restart_wm")    
+;super + control + r ; { c, d, i, r }
+;    { \
+;        xcalib -c, \
+;        xcalib -alter -invert, \
+;        xcalib -alter -invert, \
+;        xcalib -gc 1.08 -co 97 ~/.config/color_profiles/x230.icm
+;    }
 
 ;; Time double click test:
 ;;  - short double click -> run an xterm
 ;;  - long  double click -> run an rxvt
-;(xbindkey-function '(shift w)
+;(xbindkey-function '(mod4 shift i)
 ;          (let ((time (current-time))
 ;            (count 0))
 ;            (lambda ()
