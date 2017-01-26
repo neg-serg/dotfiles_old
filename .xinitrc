@@ -23,19 +23,15 @@ source ${XDG_CONFIG_HOME}/xinit/touchpad.zsh
 source ${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh
 source ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh
 source ${XDG_CONFIG_HOME}/xinit/compositing.zsh
+source ${XDG_CONFIG_HOME}/xinit/email.dash
 
 nexec dunst && dunst &
 nexec udiskie && udiskie -q &
-
-${SCRIPT_HOME}/email_notifier.py --body &
-
 systemctl --user restart gpaste &
 
 eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
-
-nexec urxvtd && urxvtd -q -f -o
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
