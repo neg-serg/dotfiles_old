@@ -1,15 +1,44 @@
 #!/bin/zsh
 
-if [[ ${X11_WM} == "notion" ]]; then
+function soft_restart(){
+    if [[ ${windowmanager} == "notion" ]]; then
+        restart_panel
+    fi
+}
+
+function restart_panel() {
     pkill -USR1 -x sxhkd
     pkill admiral
     pkill dzen2
     pkill rofi
     ~/bin/scripts/panels
-    notionflux -e 'notioncore.restart()'
-fi
+}
 
-if [[ ${X11_WM} == "windowchef" ]]; then
-	$HOME/.config/windowchef/windowchefrc 
-	pkill -USR1 -x sxhkd
-fi
+function notion_restart() {
+    restart_panel
+    if [[ ${1} != "soft" ]]; then
+        notionflux -e 'notioncore.restart()'
+    fi
+}
+
+function windowchef_restart(){
+    "${XDG_CONFIG_HOME}/windowchef/windowchefrc"
+    pkill -USR1 -x sxhkd
+}
+
+function main() {
+    if [[ ${1} != "" ]]; then
+        if [[ ${1} == "soft" ]]; then
+            soft_restart
+        else
+            wm_="$1"
+            shift
+            eval "$(echo ${wm_}_restart) $@"
+        fi
+    else
+        wm_="${windowmanager}"
+        eval "$(echo ${wm_}_restart)"
+    fi
+}
+
+main "$@"
