@@ -20,10 +20,10 @@ fi
 current_version="v1.7.4"
 
 imgur_anon_id="ea6c0ef2987808e"
-imgur_icon_path="${XDG_PICTURES_DIR}/imgur.png"
+imgur_icon_path=""
+imgur_acct_key=""
+imgur_secret=""
 
-imgur_acct_key="$(pass imgur_acct_key)"
-imgur_secret="$(pass imgur_secret)"
 login="true"
 album_title=""
 album_id=""
@@ -87,7 +87,18 @@ function notify() {
 }
 
 function take_screenshot() {
-    echo lol
+  echo "Please select area"
+
+  cmd="screenshot_${mode}_command"
+  eval cmd=\$${cmd}
+  cmd="${cmd%%\%img}${1}"
+
+  shot_err="$(eval ${cmd} &>/dev/null)" #takes a screenshot with selection
+  if [[ "${?}" != "0" ]]; then
+    echo "Failed to take screenshot '${1}': '${shot_err}'. For more information visit https://github.com/jomo/imgur-screenshot/wiki/Troubleshooting" | tee -a "${log_file}"
+    notify error "Something went wrong :(" "Information has been logged"
+    exit 1
+  fi
 }
 
 function check_oauth2_client_secrets() {
@@ -127,8 +138,7 @@ function acquire_access_token() {
     echo "Go to"
     echo "${authorize_url}"
     echo "and grant access to this application."
-    echo -n "Enter the PIN: " 
-    read imgur_pin
+    read -rp "Enter the PIN: " imgur_pin
 
     if [ -z "${imgur_pin}" ]; then
         echo "PIN not entered, exiting"
