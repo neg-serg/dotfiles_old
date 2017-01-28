@@ -1,5 +1,6 @@
 "--[ Main ]------------------------------------------------------------------------------
 NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
+NeoBundle 'metakirby5/codi.vim' "nice repl for vim8
 if !has("nvim")
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 else
@@ -69,7 +70,10 @@ NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'mopp/autodirmake.vim.git' "automake dir which didnt exists
 NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
 NeoBundle 'tpope/vim-abolish' "for different case coersion
-NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
+if has("ololo")
+    NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
+endif
+NeoBundle 'https://github.com/w0rp/ale' "async syntastic
 NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
 if executable(resolve(expand("git")))
@@ -91,6 +95,10 @@ if executable(resolve(expand("tmux")))
     NeoBundle 'wincent/terminus' "better tmux support(focuslist for example)
 endif
 "--[ misc ]------------------------------------------------------------------------------
+NeoBundle 's3rvac/AutoFenc' " try to autodelect filetype
+NeoBundle 'sheerun/vim-polyglot' "language pack collection
+NeoBundle 'wellle/targets.vim' "better text objects
+NeoBundle 'vim-scripts/Improved-AnsiEsc' "text to esc-seqs in vim
 NeoBundle 'Konfekt/FastFold' "Do not update folds when it's not needed
 NeoBundle 'Shougo/neossh.vim.git' "work with ssh easier
 NeoBundle 'vim-scripts/ViewOutput.git' "VO commandline output
@@ -130,6 +138,7 @@ NeoBundle 'tpope/vim-endwise' "to insert endif for if, end for begin and so on
 NeoBundle 'dbakker/vim-projectroot' "better rooter
 NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files (e.g. .h and .cpp)
 NeoBundle 'janko-m/vim-test.git' "easy testing for various langs
+NeoBundle 'mh21/errormarker.vim' "mark strings with errors
 "--[ Scala ]-----------------------------------------------------------------------------
 if !has("nvim") && has("ololo")
 " [ Delete Scala support for now ]
@@ -195,7 +204,9 @@ if has("ruby")
 endif
 "--[ Lisp-like ]---------------------------------------------------------------------------
 NeoBundle 'guns/vim-clojure-static' "better clojure support
-NeoBundle 'guns/vim-sexp' "manipulate with s-expressions
+if has("ololo")
+    NeoBundleLazy 'guns/vim-sexp' "manipulate with s-expressions
+endif
 "--[ Misc Langs ]--------------------------------------------------------------------------
 NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
@@ -204,11 +215,11 @@ NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
 NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjango']} }
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
-NeoBundle 'sbl/scvim.git' "vim plugin for supercollider
-NeoBundle 'oscarh/vimerl' "vim erlang support
-NeoBundle 'kballard/vim-swift' "tiny swift support
+NeoBundleLazy 'sbl/scvim.git', { 'filetypes' : 'sc' } "vim plugin for supercollider
+NeoBundleLazy 'oscarh/vimerl', { 'filetypes' : 'erl' } "vim erlang support
+NeoBundleLazy 'kballard/vim-swift', { 'filetypes' : 'swift' } "tiny swift support
 "----------------[  DBMS  ]--------------------------------------------------------------
-NeoBundle 'talek/vorax4' "Oracle DB IDE
+" NeoBundle 'talek/vorax4' "Oracle DB IDE
 "----------------[  Tags  ]--------------------------------------------------------------
 NeoBundle 'szw/vim-tags' "autogen ctags
 if executable(resolve(expand("gtags")))
@@ -217,35 +228,31 @@ if executable(resolve(expand("gtags")))
     NeoBundle 'tranngocthachs/gtags-cscope-vim-plugin.git' "gtags-cscope navigation
 endif
 "--[ LaTeX ]-----------------------------------------------------------------------------
-NeoBundle 'lervag/vimtex' "LaTeX-Box replacement
-NeoBundle 'xuhdev/vim-latex-live-preview' "add latex live preview
+NeoBundleLazy 'lervag/vimtex', { 'filetypes' : ['tex'] } "LaTeX-Box replacement
+NeoBundleLazy 'xuhdev/vim-latex-live-preview', { 'filetypes' : ['tex'] } "add latex live preview
 "--[ Web ]-------------------------------------------------------------------------------
-NeoBundle 'rstacruz/sparkup.git' "write html code faster
-NeoBundle 'Valloric/vim-instant-markdown' "realtime markdown preview
+NeoBundleLazy 'rstacruz/sparkup.git', { 'filetypes' : ['html'] } "write html code faster
+NeoBundleLazy 'Valloric/vim-instant-markdown', { 'filetypes' : ['markdown'] } "realtime markdown preview
 NeoBundleLazy 'marijnh/tern_for_vim', { 'autoload': { 'filetypes': ['javascript'] } }
 "---------------[ Misc syntax ]----------------------------------------------------------
-NeoBundle 'vimez/vim-tmux' "syntax hi for tmux
-NeoBundle 'elzr/vim-json' "syntax hi for json format
-NeoBundle 'cespare/vim-toml' "syntax hi for toml format
-NeoBundle 'rsmenon/vim-mathematica.git' "Mathematica syntax and omnicomp
-NeoBundle 'jelera/vim-javascript-syntax.git' "js highlighting
+NeoBundleLazy 'vimez/vim-tmux', { 'filetypes' : ['tmux'] } "syntax hi for tmux
+NeoBundleLazy 'elzr/vim-json', { 'filetypes' : ['json'] } "syntax hi for json format
+NeoBundleLazy 'cespare/vim-toml', { 'filetypes' : ['toml'] } "syntax hi for toml format
+NeoBundleLazy 'rsmenon/vim-mathematica.git', { 'filetypes' : ['mathematica'] } "Mathematica syntax and omnicomp
+NeoBundleLazy 'jelera/vim-javascript-syntax.git', { 'filetypes' : ['javascript'] } "js highlighting
 NeoBundle 'tpope/vim-git' "syntax, indent, and filetype plugin files for git
 NeoBundle 'ekalinin/Dockerfile.vim' "dockerfile hi
 NeoBundleLazy 'blindFS/vim-regionsyntax', { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
-NeoBundle 'JulesWang/css.vim' "better css syntax hi
-NeoBundle 'leafo/moonscript-vim' "basic moonscript support
-NeoBundle 'rodjek/vim-puppet' "basic puppet support
+NeoBundleLazy 'JulesWang/css.vim', { 'filetypes' : ['css'] } "better css syntax hi
+NeoBundleLazy 'leafo/moonscript-vim', { 'filetypes' : ['moonscript'] } "basic moonscript support
+NeoBundleLazy 'rodjek/vim-puppet', { 'filetypes' : ['puppet'] } "basic puppet support
 NeoBundle 'fatih/vim-nginx' "nginx runtime files
 NeoBundle 'trapd00r/irc.vim' "syntax file for irc logs
-NeoBundle 'zah/nim.vim' "syntax file for nim
+NeoBundleLazy 'zah/nim.vim', { 'filetypes' : ['nim'] } "syntax file for nim
 NeoBundle 'junegunn/vim-journal' "pretty markdown-like look
 NeoBundle 'baskerville/vim-sxhkdrc' "sxhkd config syntax
-NeoBundleLazy 'peterhoeg/vim-qml', { 'filetypes' : ['qml'] }
-if !has("nvim") && has("ololo")
-    NeoBundle 'bbchung/clighter.git' "hi with clang
-elseif has("nvim")
-    NeoBundle 'bbchung/Clamp' "clighterr for neovim
-endif
+NeoBundleLazy 'peterhoeg/vim-qml', { 'filetypes' : ['qml'] } "qml syntax file
+" NeoBundle 'bbchung/clighter8' "10x faster clighter highlighter replacement
 if has("gui_running")
     NeoBundle 'drmikehenry/vim-fontsize.git' "set fontsize on the fly
     NeoBundle 'tyru/restart.vim.git' "add restart support
