@@ -23,7 +23,7 @@ main(){
             echo -ne "volume "$1"\nclose\n" | \
             netcat "${addr_}" "${port_}"
         else
-            mpvc -S ${MPV_SOCKET} -v "$1"
+            mpvc -v "$1"
         fi
     fi
 }
