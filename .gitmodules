@@ -27,3 +27,6 @@
 [submodule "bin/wm/wmtls"]
 	path = bin/wm/wmtls
 	url = https://github.com/dkeg/wmtls
+[submodule ".icons/Flat-Remix"]
+	path = .icons/Flat-Remix
+	url = https://github.com/daniruiz/Flat-Remix

@@ -65,6 +65,7 @@
 [diff]
 	tool = ~neg/bin/scripts/wdiff_standalone
 	compactionHeuristic = true
+	indentHeuristic = on
 [difftool]
 	prompt = false
 [merge]
