@@ -68,14 +68,13 @@ fi
 export X_OSD_COLOR='#00ffff'
 
 export LESSCHARSET=UTF-8
-# support colors in less
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin blinking
-export LESS_TERMCAP_md=$'\e[1;35m'     # begin bold
-export LESS_TERMCAP_me=$'\e[0m'        # end mode
-export LESS_TERMCAP_so=$'\e[1;40;36m'  # begin standout - info box
-export LESS_TERMCAP_se=$'\e[0m'        # end standout
-export LESS_TERMCAP_us=$'\e[1;32m'     # begin underline
-export LESS_TERMCAP_ue=$'\e[0m'        # end underline
+export LESS_TERMCAP_mb="$(tput bold; tput setaf 2)" # begin blinking
+export LESS_TERMCAP_md="$(tput bold)"               # begin bold
+export LESS_TERMCAP_me="$(tput sgr0)"               # end mode
+export LESS_TERMCAP_so="$(tput bold; tput setaf 6)" # begin standout - info box
+export LESS_TERMCAP_se="$(tput sgr0)"               # end standout
+export LESS_TERMCAP_us="$(tput bold; tput setaf 2)" # begin underline
+export LESS_TERMCAP_ue="$(tput sgr0)"               # end underline
 
 export PWS="${XDG_DATA_HOME}/safe/pws"
 export TEXINPUTS=".:${XDG_DATA_HOME}/texmf//:"
