@@ -37,7 +37,7 @@ local noglob_list=( \
     fc find {,s,l}ftp history locate rake rsync scp \
     eix {z,m}mv wget clive{,scan} youtube-{dl,viewer} \
     translate links{,2} lynx you-get bower pip task)
-rlwrap_list=( bigloo clisp irb )
+rlwrap_list=( bigloo clisp irb guile)
 sudo_list=({u,}mount ch{mod,own} modprobe i7z) 
 [[ -x /usr/bin/systemctl ]] && sysctl_pref="systemctl"
 sys_sudo_list=(reboot halt poweroff)
@@ -110,7 +110,7 @@ function eat(){
 
 function mp(){ 
     for i; do vid_fancy_print "${i}"; done
-    ${VIDEO_PLAYER_} --input-ipc-server=$(readlink -f -- ${HOME}/tmp/${VIDEO_PLAYER_}.socket) "$@"
+    ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@"
 }
 
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
