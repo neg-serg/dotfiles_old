@@ -1,0 +1,19 @@
+#!/bin/dash
+
+# wm-related stuff
+scratchpad() {
+    if [ ! -z "$1" ]; then
+        eval $(echo "notionflux -e \"namsc('$1')\">/dev/null")
+    fi
+}
+
+case $1 in
+    scratch*) 
+        shift; 
+        scratchpad "$@" ;;
+    restart*)
+        shift
+        ~/bin/scripts/wm_restart "$@" ;;
+    *) ;;
+esac
+
