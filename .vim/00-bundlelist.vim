@@ -213,6 +213,7 @@ NeoBundle 'shawncplus/phpcomplete.vim.git' "better than default phpcomplete.vim
 NeoBundleLazy 'joonty/vdebug', { 'autoload': { 'commands': 'VdebugStart' }}
 " html5 autocomplete and syntax
 NeoBundleLazy 'othree/html5.vim' , {'autoload': {'filetypes': ['html', 'htmldjango']} }
+NeoBundle 'mattn/emmet-vim' "expanding abbreviations similar to emmet
 NeoBundleLazy 'vim-perl/vim-perl', { 'filetypes' : 'perl' }
 NeoBundleLazy 'wannesm/wmgraphviz.vim', { 'filetypes' : 'dot' }
 NeoBundleLazy 'sbl/scvim.git', { 'filetypes' : 'sc' } "vim plugin for supercollider
