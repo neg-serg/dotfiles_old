@@ -1,8 +1,0 @@
-#!/bin/zsh
-{
-    pkill -USR1 -x sxhkd 
-    pkill admiral
-    pkill dzen2 
-    pkill rofi 
-};
-~/bin/scripts/panels
