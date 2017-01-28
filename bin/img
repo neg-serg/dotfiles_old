@@ -7,7 +7,7 @@ function img(){
         ${SCRIPT_HOME}/imgur $1 | tee -a ~/tmp/imgur_output_
     else
         imgur_command="$1"; shift
-        ${SCRIPT_HOME}/imgur "$imgur_command" "$@" | tee -a ~/tmp/imgur_output_
+        ${SCRIPT_HOME}/imgur "${imgur_command}" "$@" | tee -a ~/tmp/imgur_output_
         unset imgur_command
     fi
 }
