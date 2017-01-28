@@ -1,2 +1,6 @@
-# !/bin/sh
-if [ -z `pidof keynav`  ]; then keynav "loadconfig ~/.keynavrc"; else kill `pidof keynav`; fi
+# !/bin/zsh
+if [[ -z $(pidof keynav)  ]]; then
+    keynav "loadconfig ~/.keynavrc";
+else 
+    kill $(pidof keynav) 
+fi
