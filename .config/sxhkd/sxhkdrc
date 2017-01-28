@@ -1,13 +1,9 @@
 super + apostrophe
-    {pkill -USR1 -x sxhkd && ~/bin/scripts/toggle_comp.sh twice && notionflux -e 'notioncore.restart()'}
+    ~/bin/scripts/wm_restart
 XF86AudioMute
     pactl set-sink-mute 1 toggle
 super + quotedbl
-    { pkill -USR1 -x sxhkd; \
-      pkill admiral; \  
-      pkill dzen2; \
-      pkill rofi; \
-      ~/bin/scripts/panels }
+    ~/bin/scripts/wm_restart soft
 XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
@@ -41,5 +37,4 @@ super + control + r ; { c, d, i, r }
     }
 alt + grave
     rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize 
-    
 # vim: set ft=sxhkdrc:
