@@ -7,9 +7,13 @@ local main_detect=$(tmux list-sessions|awk -F ':' '/main/ {print $1}')
 local term_name="MainTerminal"
 local session_name="main"
 
+if ! pgrep urxvtd; then
+    urxvtd -q -f -o
+fi
+
 if [[ ${main_detect} != "main" ]]; then
     wid=$(xdotool search --classname ${term_name})
-    if [ -z "$wid" ]; then
+    if [ -z "${wid}" ]; then
         urxvtc -tr -name ${term_name} -fn "${main_term_fn}" \
             -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
     fi

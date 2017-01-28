@@ -6,9 +6,9 @@ source ~/.zsh/03-exports.zsh
 function notion_run(){
     "${SCRIPT_HOME}/panels"
     source "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
-    (urxvtd -q -f -o && ${BIN_HOME}/urxvt) &
+    (${BIN_HOME}/term) &
     cat /tmp/ws_out.txt &
-    exec notion 2>> ~/tmp/${windowmanager}err$$ 2>&1
+    exec notion -oneroot 2>> ~/tmp/${windowmanager}err$$ 2>&1
 }
 
 function windowchef_run() {
