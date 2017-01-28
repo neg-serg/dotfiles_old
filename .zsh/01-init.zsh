@@ -123,6 +123,7 @@ setopt prompt_subst # set the prompt
 # make sure to use right prompt only when not running a command
 setopt transient_rprompt # only show the rprompt on the current prompt
 setopt interactivecomments # allow interactive comments
+setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 
 # ~ substitution and tab completion after a = (for --x=filename args)
 setopt magicequalsubst
