@@ -95,7 +95,7 @@ FileTypes = {}
 Extensions.keys.each { |key| FileTypes[key] = {:icon => Icons[key], :extensions => Extensions[key]} }
 
 ColumnSpacing = 2
-Separator = '  '
+Separator = ' '
 
 # if we want colors, get $LS_COLORS if it exists, otherwise use a standard
 if @using_color
