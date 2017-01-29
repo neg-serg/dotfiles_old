@@ -81,7 +81,12 @@ if [[ $UID != 0 ]]; then
     fi
 fi
 
-alias ls="ls --color=auto"   # do we have GNU ls with color-support?
+if [[ -x ~/bin/els ]]; then
+    alias ls="els --els-icons=fontawesome"
+else
+    alias ls="ls --color=auto"   # do we have GNU ls with color-support?
+fi
+
 if [[ ! -x "${BIN_HOME}/l" ]]; then
     if  [[ -x "${BIN_HOME}/lsp" ]]; then
         alias l="lsp"
