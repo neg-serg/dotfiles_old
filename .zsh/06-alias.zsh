@@ -10,7 +10,7 @@
             alias df="df -hT"
         fi
     else 
-        local cope_path_=~/bin/scripts/Cope
+        local cope_path_=${SCRIPT_HOME}/Cope
         for i in "${cope_path_}"/*; alias $(basename ${i})=\"$i\"
         alias df="${cope_path_}/df -hT"
     fi
@@ -75,16 +75,19 @@ alias fevil='find . -regextype posix-extended -regex'
 alias cdu='cdu -idh'
 
 if [[ $UID != 0 ]]; then
-    if [ -f "$HOME/.ssh/config" ]; then
+    if [ -f "${HOME}/.ssh/config" ]; then
         for host in $( perl -ne 'print "$1\n" if /\A[Hh]ost\s+(.+)$/' ${HOME}/.ssh/config);
-            alias $host="ssh $host '$@'";
+            alias ${host}="ssh ${host} '$@'";
     fi
 fi
 
-if [[ -x ~/bin/els ]]; then
-    alias ls="els --els-icons=fontawesome"
-else
+if [[ ! -x ${BIN_HOME}/els ]]; then
     alias ls="ls --color=auto"   # do we have GNU ls with color-support?
+else
+    ls(){
+        els --els-icons=fontawesome "$@" 2>/dev/null || \
+            command ls "$@"
+    }
 fi
 
 if [[ ! -x "${BIN_HOME}/l" ]]; then
@@ -214,7 +217,7 @@ function yt(){
 }
 
 function yr(){
-    st ~/bin/scripts/yr "$@"
+    st ${SCRIPT_HOME}/yr "$@"
 }
 
 alias qe='cd *(/om[1])'
@@ -393,14 +396,14 @@ fi
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
 alias py="bpython"
-alias ya="~/bin/scripts/pkgsearch"
+alias ya="${SCRIPT_HOME}/pkgsearch"
 alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
 alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
-alias vol=~/bin/scripts/vol_
+alias vol="${SCRIPT_HOME}/vol_"
 alias capsesc="xcape -e 'Caps_Lock=Escape'"
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias google='~/bin/scripts/rofi_search'
+alias google="${SCRIPT_HOME}/rofi_search"
 alias recordmydesktop="recordmydesktop --no-frame"
 alias xescape='xcape -e "Control_L=Escape" -t 500'
 alias up="rtv -s unixporn"
@@ -418,8 +421,11 @@ alias gdbp="gdb -x ${XDG_CONFIG_HOME}/gdb/peda.gdb"
 function ju(){
     if [[ $(any jupyter|wc -l) == 0  ]]; then
         jupyter notebook --ip=127.0.0.1 &
+        sleep 1s && {
+            [[ ${windowmanager} == "notion" ]] && \
+                notionflux -e "app.byclass('', 'Firefox')"
+        } &
     fi
-    notionflux -e "app.byclass('', 'Firefox')"
 }
 
 function steam(){
@@ -464,8 +470,8 @@ alias htcnet='sshfs root@192.168.0.107:/storage/emulated/0 /media/phone/ -p 22'
 
 # Aliases for functions
 (){
-    alias mdel="~/bin/scripts/mpd/mdel"
-    alias mkeep="~/bin/scripts/mpd/mkeep"
+    alias mdel="${SCRIPT_HOME}/mpd/mdel"
+    alias mkeep="${SCRIPT_HOME}/mpd/mkeep"
 }
 
 alias gcd='cd $(git rev-parse --show-toplevel 2> /dev/null || builtin print ".")'
