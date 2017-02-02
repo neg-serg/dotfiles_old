@@ -308,8 +308,8 @@ kut() { awk "{ print $(for n; do echo -n "\$$n,"; done | sed 's/,$//') }" ;}
 
 function which() {
     if [[ $# > 0 ]]; then
-        if [[ -x ~/bin/_v ]]; then
-            _v -c 'set ft=sh' <<< $(builtin which "$@")
+        if [[ -x ${BIN_HOME}/_v ]]; then
+            ${BIN_HOME}/_v -c 'set ft=sh' <<< $(builtin which "$@")
         else
             builtin which "$@"
         fi
@@ -318,4 +318,15 @@ function which() {
 
 function wnvim(){
     st nvim &
+}
+
+function set_proxy(){
+    if [[ -z ${http_proxy} ]]; then
+        echo $(_zpref) $(_zwrap "$(echo "setting proxy to http://127.0.0.1:8118/")")
+        export http_proxy="http://127.0.0.1:8118/"
+    else
+        echo $(_zpref) $(_zwrap "$(echo "unsetting proxy")")
+        unset http_proxy
+        export http_proxy
+    fi
 }
