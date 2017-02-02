@@ -1,3 +1,18 @@
+readonly to_normal="<C-\><C-N>:call<SPACE>foreground()<CR>"
+
+function nwim_run(){
+    local proc="process_list"
+    [[ $1 == "__nwim_embed" ]] && {proc="eprocess_list"; shift}
+    local wid=$(xdotool search --classname nwim)
+    if [[ -z "${wid}" ]]; then
+        st -f "${nwim_font}:pixelsize=${nwim_font_size}" -c 'nwim' -e bash -c "tmux -S ${nwim_sock_path} new -s nvim -n nvim \"nvim\" && \
+            tmux -S ${nwim_sock_path} switch-client -t nvim" 2>/dev/null &!
+        eval ${proc} ${nwim_timer} "$@"
+    else  
+        eval ${proc} ${nwim_timer} "$@"
+    fi
+}
+
 function nwim_goto() {
     if [[ $(pidof notion) && -x $(which notionflux) ]]; then
         notionflux -e "app.byclass('', 'nwim')" > /dev/null
@@ -10,27 +25,6 @@ function nwim_goto() {
     fi
 }
 
-function eprocess_list() {
-    nwim_goto
-    sleep "$1"; shift   
-    for line; do nvr --servername /tmp/nvimsocket --remote-wait "$@"; done
-}
-
-function nwim_embed { nwim_run "__nwim_embed" "$@" }
-
-function nwdiff {
-    # or it's maybe better to use :windo diffthis
-    if [[ $# == 2 ]]; then
-        nwim_run "" && nv -b":tabnew" && \
-        {nwim_run $1; shift} && \
-        nv -b":diffthis" && \
-        nv -b":vs" && \
-        {nwim_run $1; shift} && \
-        nv -b":diffthis"
-    fi
-}
-
-
 function nvim_file_open() (
     local file_name="$(resolve_file ${line})"
     file_name=$(bash -c "printf %q '${file_name}'")
@@ -39,8 +33,12 @@ function nvim_file_open() (
             sleep ${nwim_timer}
         done \
         && nvr --servername /tmp/nvimsocket --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
-        local file_size=$(_zfile_sz <<< stat -c%s "${file_name}" 2>/dev/null)
-        local file_length="$(wc -l ${file_name} 2>/dev/null|grep -owE '[0-9]* '|tr -d ' ')"
+        local file_size=$(stat -c%s "${file_name}" 2>/dev/null | \
+                          numfmt --to=iec-i --suffix=B | \
+                          sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
+        local file_length=$(wc -l ${file_name} 2>/dev/null| \
+            grep -owE '[0-9]* '| \
+            tr -d ' ')
         local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
         local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
         local new_file_msg=$(_zwrap new_file)
@@ -63,8 +61,7 @@ function nvim_file_open() (
     unset file_name
 )
 
-function nprocess_list() {
-    nwim_goto
+function process_list() {
     sleep "$1"; shift
     while getopts ":b:a:c:" opt; do
         case ${opt} in
@@ -86,22 +83,37 @@ function nprocess_list() {
     unset before; unset after
 }
 
-function nwim_run(){
-    local proc="nprocess_list"
-    [[ $1 == "__nwim_embed" ]] && {proc="eprocess_list"; shift}
-    local wid=$(xdotool search --classname nwim)
-    if [[ -z "${wid}" ]]; then
-        st -f "${nwim_font}:pixelsize=${nwim_font_size}" -c 'nwim' -e bash -c "tmux -S ${nwim_sock_path} new -s nvim -n nvim \"nvr --servername /tmp/nvimsocket\" && \
-            tmux -S ${nwim_sock_path} switch-client -t nvim" 2>/dev/null &!
-        eval ${proc} ${nwim_timer} "$@"
-    else  
-        eval ${proc} ${nwim_timer} "$@"
-    fi
+function eprocess_list() {
+    nwim_goto
+    sleep "$1"; shift   
+    for line; do nvr --servername /tmp/nvimsocket --remote-wait "$@"; done
 }
 
-function nv { 
+function v { 
     while read -r arg; do
         nwim_run ${arg[@]}
     done <<< "$(printf '%q\n' "$@")"
+    nwim_goto
 }
 
+function nwim_embed { nwim_run "__nwim_embed" "$@" }
+
+function wdiff {
+    local prev_ 
+    local arg2_
+    # or it's maybe better to use :windo diffthis
+    if [[ $# == 2 ]]; then
+        prev_="$1" 
+        nwim_run "" && v -b":tabnew" && \
+        { nwim_run $1; shift } && v -b":diffthis" && \
+        { v -b":vs" && {
+            if [[ -d $1 ]]; then  
+                arg2_="$1/$(basename ${prev_})"
+            else
+                arg2_="$1"
+            fi
+            nwim_run ${arg2_};
+            shift
+        } && v -b":diffthis" }
+    fi
+}
