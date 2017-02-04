@@ -46,7 +46,7 @@ function main() {
                                              -e "s/, //g" > ${ftype_arr}
 
     vim +'Tabularize/[bf]g=.*' ${ftype_arr} +'wq'
-    sed "s/^${ftype_pref}//" ${ftype_arr}|awk '{print "*."$1") style=$ZSH_HIGHLIGHT_STYLES[ftype-"$1"];;"}' > ${ftype_rule}
+    sed "s/^${ftype_pref}//" ${ftype_arr}|awk '{print "*."$1") style=ftype-"$1" ;;"}' > ${ftype_rule}
     vim +'Tabularize/)\zs ' ${ftype_rule} +'wq'
 
     for t in "${ftype_arr}" "${ftype_rule}"; eat ${t}
