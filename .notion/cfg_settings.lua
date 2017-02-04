@@ -21,6 +21,6 @@ notioncore.set{
     autosave_layout=false,              -- Do not autosave layout state
     autoraise=true,                     -- Autoraise regions in groups on goto.
 	edge_resistance=200,                -- The default is so unrestrictive that I wasn't even aware of it!
-	framed_transients=false,            -- Put transients in nested frames
+	framed_transients=true,             -- Put transients in nested frames
 	window_stacking_request="activate", -- Activate after window stacking request
 }
