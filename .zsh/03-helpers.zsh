@@ -1,24 +1,24 @@
 function _zwrap() { echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]" }
 
 function _zFwrap(){
-    apply=$1;
-    body=$2;
+    apply="${1}";
+    body="${2}";
     shift
-    echo $(apply) ${body} $(apply)
+    echo "$(apply)" "${body}" "$(apply)"
 }
 
 function _zgwrap(){
-    side=$1;
-    body=$2;
+    side="${1}"
+    body="${2}"
     shift
-    echo ${side} ${body} ${side}
+    echo "${side}" "${body}" "${side}"
 }
 
 function _zfwrap() {
     local tmp_name="$(echo $1|sed "s|^${HOME}|$fg[green]~|;s|/|$fg[blue]&$fg[white]|g")"
     local decoration="$fg[green]‒$fg[white]"
     local fancy_name="${decoration} $fg[white]${tmp_name} ${decoration}"
-    echo ${fancy_name}
+    echo "${fancy_name}"
 }
 
 function _zpref() { echo $(_zwrap ">>") }
@@ -31,7 +31,7 @@ function resolve_file {
     elif [[ "${1#/}" == "$1" ]]; then
         echo "$(pwd)/$1"
     else
-        echo $1
+        echo "${1}"
     fi
 }
 
