@@ -1,5 +1,5 @@
 setterm -bfreq 0 # disable annoying pc speaker
-if [ "$TERM" = "linux" ]; then
+if [[ "${TERM}" = "linux" ]]; then
     echo -en "\e]P0000000" #black
     echo -en "\e]P83d3d3d" #darkgrey
     echo -en "\e]P18c4665" #darkred
@@ -25,20 +25,22 @@ if [[ -o LOGIN  ]]; then
     print "$fg[blue]Host: $fg[green]${HOST}$fg[blue], Zeit: $fg[green]$(date +%d.%m.%Y' '%H:%M:%S)$fg[blue], Up: $fg[green]$uptimestart"
     print "$fg[blue]Term: $fg[green]${TTY} $fg[blue], $fg[blue]Shell: $fg[green]Zsh ${ZSH_VERSION} $fg[blue] (PID=$$)"
     print "$fg[blue]Login: $fg[green]${LOGNAME} $fg[blue] (UID=${EUID}), cars: $fg[green]${COLUMNS} x ${LINES}"
-
 fi
 
-if [[ -z "$DISPLAY"  ]] && [[ $(tty) = /dev/tty1  ]] && [[ -z $DISPLAY && $XDG_VTNR -eq 1  ]] && [ -z `pgrep xinit`  ]; then
+if [[ -z "${DISPLAY}"  ]] && \
+   [[ $(tty) = /dev/tty1  ]] && \
+   [[ -z ${DISPLAY} && ${XDG_VTNR} -eq 1  ]] && \
+   [[ -z $(pgrep xinit)  ]]; then
     exec startx -- -keeptty -nolisten tcp > /tmp/xorg.log 2>&1
 elif [[ $(tty) = /dev/tty4  ]]; then
-    tmux -f $HOME/.tmux.conf new -S ~/1st_level/main.socket
+    tmux -f ${HOME}/.tmux.conf new -S ~/1st_level/main.socket
 fi
 
 # Let's set up some colors. By default, we won't use any color.
 EYES="" TRUNK="" LEAVES="" CLEAR=""
 
 # If we're in a terminal, we can play with some color.
-if [ -t 1 ]; then
+if [[ -t 1 ]]; then
     # We'll choose our palette based on the number of available colors.
     case $(tput colors) in
         256)
@@ -65,13 +67,9 @@ if [ -t 1 ]; then
     esac
 fi
 
-
-if [[ "$EUID" != 0 ]]; then
-    # # Non-root
-    # echo "It's a weird tree."
+if [[ "${EUID}" != 0 ]]; then
     true
 else
-    # Root!
     cat <<-EOF
 	${LEAVES}    _              ${TRUNK}__
 	${LEAVES}   / \`\\  ${TRUNK}(~._    ./  )
