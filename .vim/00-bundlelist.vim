@@ -3,10 +3,8 @@ NeoBundle 'Valloric/YouCompleteMe' "best vim autocomplete engine for now
 NeoBundle 'metakirby5/codi.vim' "nice repl for vim8
 if !has("nvim")
     NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-else
-    NeoBundle 'aperezdc/vim-lining' "statusline for neovim
 endif
-if !(&runtimepath =~ 'site-packages/powerline/bindings/vim')
+if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
     NeoBundle 'itchyny/lightline.vim.git' "lightline is more fancy than default
     NeoBundle 'nhooyr/neoman.vim' "better alternative to vimpager
 endif
@@ -36,15 +34,13 @@ if executable(resolve(expand("ag")))
     NeoBundle 'rking/ag.vim.git' "ag (ack replacement) wrapper
 endif
 if has("fzf_use") 
-    NeoBundle 'junegunn/fzf'
-    NeoBundle 'junegunn/fzf.vim'
+    NeoBundle 'junegunn/fzf' "fast fuzzy finder
+    NeoBundle 'junegunn/fzf.vim' "fzf vim bindings
 else
     NeoBundle 'lotabout/skim.vim' "replacement for fzf
 endif
 NeoBundle 'eugen0329/vim-esearch' "interactive search in vim
-if !has("nvim")
-    NeoBundle 'sjbach/lusty.git' "file/buffer explorer
-endif
+NeoBundle 'sjbach/lusty.git' "file/buffer explorer
 "--[ Rice ]-------------------------------------------------------------------------------
 NeoBundle 'luochen1990/rainbow'  "rainbow parentheses
 NeoBundleLazy 'chrisbra/colorizer' "css and colors colorizer
@@ -94,7 +90,8 @@ if executable(resolve(expand("tmux")))
     NeoBundle 'epeli/slimux' "better interaction with tmux
     NeoBundle 'wincent/terminus' "better tmux support(focuslist for example)
 endif
-"--[ misc ]------------------------------------------------------------------------------
+"--[ Misc ]------------------------------------------------------------------------------
+NeoBundle 'mjbrownie/swapit' "vim nice swapit
 NeoBundle 's3rvac/AutoFenc' " try to autodelect filetype
 NeoBundle 'sheerun/vim-polyglot' "language pack collection
 NeoBundle 'wellle/targets.vim' "better text objects
@@ -106,6 +103,7 @@ NeoBundle 'kana/vim-gf-user.git' "framework open file by context
 NeoBundle 'kana/vim-gf-diff.git' "go to the changed block under the cursor from diff output
 NeoBundle 'mattn/gf-user-vimfn.git' "vim-gf-user extension: jump Vim script function
 NeoBundle 'ardagnir/vimbed' "embeded vim for athame
+NeoBundle 'wikitopian/hardmode' "funny vim hardmode plugin
 if has("nvim")
     NeoBundle 'bfredl/nvim-ipy' "nvim client for jupiter
 endif
