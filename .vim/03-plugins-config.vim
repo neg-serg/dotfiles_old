@@ -8,6 +8,7 @@ let g:eregex_default_enable    = 0
 let g:mta_use_matchparen_group = 0
 let g:colorizer_startup        = 0
 let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:livepreview_previewer = 'zathura'
 if has("nvim")
     let g:deoplete#enable_at_startup = 1 " Use deoplete.
 endif
@@ -21,6 +22,68 @@ endif
 if neobundle#tap('vim-arpeggio')
     call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
 endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - itchyny/lightline.vim                                                    │ 
+" │ https://github.com/itchyny/lightline.vim                                          │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
+let g:lightline = {
+      \ 'colorscheme': 'Tomorrow_Night_Eighties',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+let g:lightline.mode_map = {
+            \ 'n' : 'N',
+            \ 'i' : 'INSERT',
+            \ 'R' : 'REPLACE',
+            \ 'v' : 'VISUAL',
+            \ 'V' : 'V-LINE',
+            \ "\<C-v>": 'V-BLOCK',
+            \ 'c' : 'COMMAND',
+            \ 's' : 'SELECT',
+            \ 'S' : 'S-LINE',
+            \ "\<C-s>": 'S-BLOCK',
+            \ 't': 'TERMINAL',
+            \ }
+
+" let s:base03 = [ '#151513', 233 ]
+" let s:base02 = [ '#30302c ', 236 ]
+" let s:base01 = [ '#4e4e43', 239 ]
+" let s:base00 = [ '#666656', 242  ]
+" let s:base0 = [ '#808070', 244 ]
+" let s:base1 = [ '#949484', 246 ]
+" let s:base2 = [ '#a8a897', 248 ]
+" let s:base3 = [ '#e8e8d3', 253 ]
+" let s:yellow = [ '#d8af5f', 3 ]
+" let s:orange = [ '#d7875f', 216 ]
+" let s:red = [ '#d68787', 131 ]
+" let s:magenta = [ '#df5f87', 168 ]
+" let s:peach = [ '#d7afaf', 181 ]
+" let s:blue = [ '#87afaf', 109 ]
+" let s:cyan = [ '#87d7d7', 23 ]
+" let s:green = [ '#87af87', 108 ]
+" let s:white = [ '#d0d0d0', 252 ]
+
+" let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
+" let s:p.normal.left = [ [ s:base02, s:blue ], [ s:base3, s:base01 ] ]
+" let s:p.normal.right = [ [ s:base02, s:base1 ], [ s:base2, s:base01 ] ]
+" let s:p.inactive.right = [ [ s:base02, s:base00 ], [ s:base0, s:base02 ] ]
+" let s:p.inactive.left =  [ [ s:base0, s:base02 ], [ s:base00, s:base02 ] ]
+" let s:p.insert.left = [ [ s:base02, s:green ], [ s:base3, s:base01 ] ]
+" let s:p.replace.left = [ [ s:base02, s:magenta ], [ s:base3, s:base01 ] ]
+" let s:p.visual.left = [ [ s:base02, s:peach ], [ s:base3, s:base01 ] ]
+" let s:p.normal.middle = [ [ s:base0, s:base02 ] ]
+" let s:p.inactive.middle = [ [ s:base00, s:base02 ] ]
+" let s:p.tabline.left = [ [ s:base3, s:base00 ] ]
+" let s:p.tabline.tabsel = [ [ s:base3, s:base02 ] ]
+" let s:p.tabline.middle = [ [ s:base01, s:base1 ] ]
+" let s:p.tabline.right = copy(s:p.normal.right)
+" let s:p.normal.error = [ [ s:red, s:base02 ] ]
+" let s:p.normal.warning = [ [ s:yellow, s:base01 ] ]
+
+" let g:lightline#colorscheme#seoul256#palette = lightline#colorscheme#flatten(s:p)
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
@@ -166,17 +229,9 @@ endif
 " │ https://github.com/sjbach/lusty.git                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if neobundle#tap('lusty')
-    if !has("nvim")
-        let g:LustyJugglerDefaultMappings = 0
-        let LustyExplorerDefaultMappings  = 0
-        nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
-    else
-        let g:LustyJugglerSuppressRubyWarning = 1
-        if neobundle#tap('lycosaexplorer')
-            let g:LycosaDefaultMappings = 0 
-            nmap <silent> <leader>l :LycosaFilesystemExplorerFromHere<CR>
-        endif
-    endif
+    let g:LustyJugglerDefaultMappings = 0
+    let LustyExplorerDefaultMappings  = 0
+    nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lyokha/vim-xkbswitch.git                                                 │
