@@ -24,8 +24,8 @@ autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal ft=txt2tags
 autocmd vimrc Filetype            txt2tags       source   $HOME/.vim/syntax/txt2tags.vim
 autocmd vimrc FileType            make           setlocal noexpandtab
 autocmd vimrc FileType            javascript     setlocal noautoindent nosmartindent
-autocmd vimrc FileType            tex            setlocal conceallevel=0
-autocmd vimrc FileType            latex          setlocal conceallevel=0
+autocmd vimrc FileType            tex            setlocal conceallevel=0 updatetime=1000
+autocmd vimrc FileType            latex          setlocal conceallevel=0 updatetime=1000
 autocmd vimrc FileType            markdown       call MarkdownKeymaps()
 autocmd vimrc BufNewFile,BufRead  *.t2t          setlocal wrap lbr
 autocmd vimrc BufRead,BufNewFile  *.json         setlocal filetype=json foldmethod=syntax
