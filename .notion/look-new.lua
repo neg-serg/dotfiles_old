@@ -26,7 +26,6 @@ de.defstyle("frame", {
     highlight_pixels  = 1,
     shadow_pixels     = 1,
     border_style      = "groove",
-    bar = "none",
     de.substyle("*-*-active-scratchpad", {
         shadow_colour     = neg.scratchpad_border,
         highlight_colour  = neg.scratchpad_border,
@@ -72,7 +71,6 @@ de.defstyle("frame-transient", {
 de.defstyle("frame-floating", {
     based_on               = "frame",
     border_style           = "ridge",
-    floatframe_bar_max_w_q = 1,
 })
 
 de.defstyle("stdisp", {
@@ -102,22 +100,6 @@ de.defstyle("actnotify", {
     highlight_pixels  = 1,
     shadow_pixels     = 1,
     spacing           = 0,
-})
-
-de.defstyle("frame-tiled-alt", {
-    bar = "none",
-})
-
-de.defstyle("frame-unknown-alt", {
-    bar = "none",
-})
-
-de.defstyle("frame-floating-alt", {
-    bar = "none",
-})
-
-de.defstyle("frame-transient-alt", {
-    bar = "none",
 })
 
 gr.refresh()
