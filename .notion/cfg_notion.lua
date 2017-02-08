@@ -12,7 +12,6 @@ local mod_list = {
     "mod_tiling",        -- static tiling notion module
     "mod_xrandr",        -- xrandr support for notion
     "mod_dock",          -- dock support for notion
-    "mod_xkbevents",     -- xkbevents support
 }
 
 local cfg_list = { 
@@ -22,7 +21,6 @@ local cfg_list = {
     "cfg_rules",             -- window placement rules
     "cfg_layouts",           -- a bunch of default layouts
     "lib/named_scratchpad",  -- named scratchpad module
-    "lib/hide_tabs",         -- hide tabs
     "lib/net_client_list",   -- net client list to provide `wmctrl -l`
     "lib/directions",        -- 2bwm-like directions
     "lib/screenshot",        -- screenshot script
