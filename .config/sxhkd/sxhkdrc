@@ -8,12 +8,9 @@ XF86Audio{Prev,Next,Play,Stop}
     mpc {prev,next,toggle,stop}
 XF86Audio{Lower,Raise}Volume
 	~/bin/scripts/vol_ {-1,+1}
-super + XF86AudioRaiseVolume
-     dash -c "pactl set-sink-mute 1 ; pactl set-sink-volume 1 +5%"
-super + XF86AudioLowerVolume
-     dash -c "pactl set-sink-mute 1 ; pactl set-sink-volume 1 -5%" 
-super + control + t
-    dipser -S
+super + control + XF86Audio{Raise,Lower}Volume
+     dash -c "pactl set-sink-mute $(SCRIPT_OUTPUT=1 ~/bin/pls -sink) 0 ; \
+              pactl set-sink-volume $(SCRIPT_OUTPUT=1 ~/bin/pls -sink) {+,-}5%"
 super + 8
     mpc volume 0 || amixer -q set Master 0% mute
 super + shift + 8

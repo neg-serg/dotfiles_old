@@ -15,6 +15,12 @@ else
     sink_runner=(fzf --prompt "Sink: ")
 fi
 
+if [[ ${SCRIPT_OUTPUT} ]]; then
+    client_runner=(cat)
+    volume_runner=(cat)
+    sink_runner=(cat)
+fi
+
 get_index() {
     sink=$(pacmd list-sinks | \
         grep name:          | \
@@ -41,7 +47,6 @@ case $1 in
                 awk '{print $2" "substr($0, index($0,$5))}'          | \
                 sed 's/[<>]/#/g'                                     | \
                 ${client_runner[@]})
-
         case $1 in
             -vol)
                 shift
@@ -61,6 +66,7 @@ case $1 in
                        cut -c 9-           | \
                        sed 's/[<>]/ /g'    | \
                        ${sink_runner[@]})
+                [[ ${SCRIPT_OUTPUT} ]] && echo "${sink}"
                 pacmd move-sink-input $(awk '{print $1}' <<< "${client}") $(echo ${sink})
             ;;
             *)
