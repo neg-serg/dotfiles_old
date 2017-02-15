@@ -1,3 +1,4 @@
+source ~/.zsh/03-helpers.zsh
 source ~/.zsh/03-xdg_vars.zsh
 
 0=zsh
