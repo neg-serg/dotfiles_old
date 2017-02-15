@@ -1,8 +1,6 @@
 #!/bin/zsh
-
 windowmanager="${1}"
-[[ ${windowmanager} ]] || \
-    windowmanager=$(< ${XDG_CONFIG_HOME}/.windowmanager)
+[[ ${windowmanager} ]] || source ${XDG_CONFIG_HOME}/.windowmanager
 export windowmanager
 
 unset TMUX
@@ -10,8 +8,8 @@ unset TMUX
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
 ${SCRIPT_HOME}/set_wallpaper
 
-[[ -f ${HOME}/.Xresources ]] && \
-    xrdb -load ${HOME}/.Xresources
+[[ -f "${HOME}/.Xresources" ]] && \
+    xrdb -load "${HOME}/.Xresources"
 
 pulseaudio --start &
 wmname Sawfish
@@ -19,11 +17,11 @@ wmname Sawfish
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-source ${XDG_CONFIG_HOME}/xinit/touchpad.zsh
-source ${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh
-source ${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh
-source ${XDG_CONFIG_HOME}/xinit/compositing.zsh
-source ${XDG_CONFIG_HOME}/xinit/email.dash
+source "${XDG_CONFIG_HOME}/xinit/touchpad.zsh"
+source "${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh"
+source "${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh"
+source "${XDG_CONFIG_HOME}/xinit/compositing.zsh"
+source "${XDG_CONFIG_HOME}/xinit/email.dash"
 
 nexec dunst && dunst &
 nexec udiskie && udiskie -q &
