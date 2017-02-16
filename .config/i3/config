@@ -1,10 +1,20 @@
-for_window [class="^.*"] border pixel 0
+font pango:PragmataPro for Powerline 12
+
+# enable-ssh-support
+# default-cache-ttl-ssh  800
+# max-cache-ttl-ssh      800
+
+bindsym $mod+Shift+o exec quickswitch.py -s
+
+set workspace_layout tabbed
 
 set $mod Mod4
 set $alt Mod1
 set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 set shmlog on
+
+set $soft_restart killall -SIGUSR1 i3status
 
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
@@ -46,29 +56,36 @@ gaps outer 5
 smart_gaps on
 smart_borders on
 
+for_window [class="^.*"] border pixel 1
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
+
+# set $psst --no-startup-id
+
+for_window [instance="mpd-pad2"] move scratchpad, move absolute position 680 0, resize set 1200 600
+bindsym $mod+f [instance="^mpd-pad2$"] scratchpad show
+
+for_window [class="^(skypeforlinux|TelegramDesktop)$"] move scratchpad, move absolute position 100 100, resize set 500 600
+bindsym $mod+e [class="^(skypeforlinux|TelegramDesktop)$"] scratchpad show
+
 
 assign [instance="^MainTerminal$"] $ws1
 assign [class="^Firefox$"]         $ws2
 assign [instance="^wim$"]          $ws4
 
-bindsym $mod+x exec --no-startup-id [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
-bindsym $mod+w exec --no-startup-id [ "$(i3-msg '[class=Firefox] focus')" = '[{"success":true}]' ] || i3-msg exec "firefox"
-bindsym $mod+1 exec --no-startup-id [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
+bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
+bindsym $mod+w exec $psst [ "$(i3-msg '[class=Firefox] focus')" = '[{"success":true}]' ] || i3-msg exec "firefox"
+bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
+bindsym $mod+3 scratchpad show
+
+bindsym $mod+Shift+b exec i3-input -F 'mark %s' -P 'Mark name: '
+bindsym $mod+b exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 client.focused            $black       $black       $magenta    $darkblack
 client.focused_inactive   $black       $black       $white      $darkblack
 client.unfocused          $black       $black       $white      $darkblack
 client.urgent             $black       $black       $red        $darkblack
-
-#new_window none
-#hide_edge_borders both
-
-set workspace_layout tabbed
-
-font pango:PragmataPro for Powerline 12
 
 floating_modifier $mod
 focus_on_window_activation smart
@@ -94,9 +111,6 @@ bindsym $alt+g exec rofi -show
 
 bindsym $mod+q fullscreen toggle
 
-#bindsym $mod+f [con_mark="music"] exec ~/bin/scripts/ncmpcpp, scratchpad show
-#for_window [instance="mpd-pad2"] mark "music"
-
 bindsym $alt+Tab workspace back_and_forth
 
 # toggle tiling / floating
@@ -111,8 +125,6 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+2 workspace  $ws2
-bindsym $mod+3 workspace  $ws3
 bindsym $mod+4 workspace  $ws4
 bindsym $mod+5 workspace  $ws5
 bindsym $mod+6 workspace  $ws6
@@ -123,17 +135,19 @@ bindsym $mod+0 workspace  $ws10
 #bindsym $mod+0 workspace $ws11
 #bindsym $mod+0 workspace $ws12
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+# # move focused container to workspace
+# bindsym $mod+Shift+1 move container to workspace $ws1
+# bindsym $mod+Shift+2 move container to workspace $ws2
+# bindsym $mod+Shift+3 move container to workspace $ws3
+# bindsym $mod+Shift+4 move container to workspace $ws4
+# bindsym $mod+Shift+5 move container to workspace $ws5
+# bindsym $mod+Shift+6 move container to workspace $ws6
+# bindsym $mod+Shift+7 move container to workspace $ws7
+# bindsym $mod+Shift+8 move container to workspace $ws8
+# bindsym $mod+Shift+9 move container to workspace $ws9
+# bindsym $mod+Shift+0 move container to workspace $ws10
+
+#bindsym $mod+s [workspace=*] scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -250,3 +264,11 @@ mode "resize" {
 }
 
 bindsym $mod+Pause mode "$mode_system"
+
+
+set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
+mode "$passthrough_keys" {
+        bindcode Alt+Shift+22 mode "default"
+}
+bindcode Alt+Shift+22 mode "$passthrough_keys"
+
