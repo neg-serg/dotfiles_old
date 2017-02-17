@@ -1,5 +1,8 @@
 font pango:PragmataPro for Powerline 12
 
+new_window 1pixel
+new_float normal
+
 # enable-ssh-support
 # default-cache-ttl-ssh  800
 # max-cache-ttl-ssh      800
@@ -13,9 +16,13 @@ set $alt Mod1
 set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 set shmlog on
+set shmlog 1
 
 set $soft_restart killall -SIGUSR1 i3status
 
+bindsym $alt+e mode "alt_e"
+
+set_from_resource $black       color0  #000000
 set_from_resource $darkred     color1  #000000
 set_from_resource $red         color9  #000000
 set_from_resource $darkgreen   color2  #000000
@@ -44,48 +51,213 @@ set $ws10  10:torrent
 set $ws11 11:vm
 set $ws12 12:wine
 
-# Initialize workspace
-#                     
+set $term     1:term
+set $web      2:web
+set $doc      3:doc
+set $dev      4:dev
+set $media    5:media
+set $gimp    6:gimp
+set $admin   7:admin
+set $ide     8:ide
+set $steam    9:steam
+set $torrent  10:torrent
+set $vm      11:vm
+set $wine    12:wine
 
-#workspace $ws1 gaps inner 10
-#workspace $ws1 gaps inner 10
-
-gaps inner 20
-gaps outer 5
-
-smart_gaps on
-smart_borders on
+#gaps inner 10
+#gaps outer 5
+#smart_gaps on
+#smart_borders on
 
 for_window [class="^.*"] border pixel 1
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [title="Preferences$"] floating enable
+for_window [window_role="pop-up"] floating enable border normal
+for_window [window_role="task_dialog"] floating enable border normal
+for_window [title="Preferences$"] floating enable border normal
 
-# set $psst --no-startup-id
+for_window [instance="mpd-pad2"]  mark "ncmpcpp", move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [class="skypeforlinux"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [class="TelegramDesktop"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="centerim"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="centerim"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="kopete"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="skype"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [class="skypeforlinux"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [class="ViberPC"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="finch"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
 
-for_window [instance="mpd-pad2"] move scratchpad, move absolute position 680 0, resize set 1200 600
-bindsym $mod+f [instance="^mpd-pad2$"] scratchpad show
+# bindsym $mod+f [con_mark="ncmpcpp"] move container to workspace current, mode "default"
+bindsym $mod+f [con_mark="ncmpcpp"] scratchpad show
+# @ bindsym $mod+e [con_mark="im"] move container to workspace current, mode "default"
 
-for_window [class="^(skypeforlinux|TelegramDesktop)$"] move scratchpad, move absolute position 100 100, resize set 500 600
-bindsym $mod+e [class="^(skypeforlinux|TelegramDesktop)$"] scratchpad show
+bindsym $mod+s [con_id=__focused__] scratchpad show
 
+for_window [instance="^Update"]        floating enable border normal
+for_window [instance="^gcalctool"]     floating enable border normal
+for_window [instance="^galculator"]    floating enable border normal
+for_window [instance="^gnome-keyring"] floating enable border normal
+for_window [instance="^file_progress"] floating enable border normal
+for_window [title="^Compress"]         floating enable border normal
+for_window [title="^Compression"]      floating enable border normal
+for_window [title="^screenkey"]        floating enable border normal
+for_window [title="^Debconf"]          floating enable border normal
+for_window [class="control-center"]    floating enable border normal
+for_window [class="^Pavucontrol"]      floating enable border normal
+for_window [class="^B2G$"]             floating enable border normal
+for_window [class="^B2g$"]             floating enable border normal
 
-assign [instance="^MainTerminal$"] $ws1
-assign [class="^Firefox$"]         $ws2
-assign [instance="^wim$"]          $ws4
+assign [instance="weechat-curses"] $weechat
+assign [instance="_weechat_"] $weechat
+assign [class="^libreoffice.*"] $doc
+assign [class="abiword"] $doc
+assign [class="guncharmap"] $doc
+assign [class="Cr3" instance="cr3"] $doc
+assign [class="spotify"] spotify
+assign [class="Atom"] $dev
+assign [instance="^(subl3|sublime_text)$"] $dev
+assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] $dev
+assign [class="simple-scan"] graph
+assign [class="gthumb"] graph
+assign [instance="_logs_"] $admin
+assign [instance="remmina"] $admin
+assign [instance="htop_term"] $admin
+assign [instance="glances_term"] $admin
+assign [instance="gnome-disks"] $admin
+
+for_window [instance="mutt"] floating enable border normal
+for_window [class="yakuake"] floating enable border normal
+
+mode "alt_e" {
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space focus mode_toggle
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+C mode "default"
+    bindsym Control+G mode "default"
+}
+
+assign [instance="^MainTerminal$"] $term
+assign [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"] $web
+assign [instance="^(wim|nwim)$"] $dev
+assign [class="^Gvim$"] $dev
+assign [class="^(Vuze|Ktorrent)$"] $torrent
+assign [class="MPlayer"] $media
+assign [class="mplayer2"] $media
+assign [class="mpv"] $media
+assign [class="gmpc"] $media
+assign [class="cheese"] $media
+assign [class="^([sS]team|steam|dota2|darkest.bin.x86_64)$"] $steam
+assign [class="Emacs" instance="emacs"] $dev
+
+assign [class="Okular" instance="okular"] $doc
+assign [title="Open Document*" class="Okular" instance="okular"] $doc
+assign [class="Apvlv" instance="apvlv" ] $doc
+assign [class="Zathura" instance="zathura" ] $doc
+assign [class="Xpdf" instance="openDialog_popup" ] $doc
+assign [class="Evince" instance="evince" ] $doc
+assign [class="XDvi"] $doc
+
+assign [instance="gparted"] $admin
+
+assign [class="Crossover"] $wine
+assign [class="Wine"] $wine
+assign [title="wine.*"] $wine
+assign [title="explorer.exe"] $wine
+assign [title="Explorer.exe"] $wine
+assign [class="UE4Editor"] $wine
+assign [class="XRebirth"] $wine
+
+for_window [class="XRebirth"] floating enable border normal
+
+for_window [class="Emacs" instance="emacs" title="Question"] floating enable border normal
+
+assign [class="Gimp"] $gimp
+for_window [class="Gimp" window_role="gimp-file-open"] floating enable border normal
+for_window [class="Gimp" window_role="gimp-file-save"] floating enable border normal
+for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable border normal
+for_window [class="Gimp" window_role="gimp-image-new"] floating enable border normal
+for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable border normal
+
+for_window [class="Firefox" window_role="Manager" instance="Download"] floating enable border normal
+for_window [class="Firefox" instance="Dialog"] floating enable border normal
+for_window [class="Firefox" window_role="Organizer"] floating enable border normal
+for_window [class="Firefox" window_role="GtkFileChooserDialog"] floating enable border normal
+
+for_window [class="feh"] floating enable border normal
+for_window [class="qiv"] floating enable border normal
+
+for_window [class="Xfce"] floating enable border normal
+for_window [class="Xmessage"] floating enable border normal
+for_window [class="com-sun-javaws-Main"] floating enable border normal
+
+for_window [instance="console"] floating enable border normal
+for_window [instance="gdb"] floating enable border normal
+for_window [instance="mixer"] floating enable border normal
+for_window [instance="htop"] floating enable border normal
+for_window [instance="gcolor2"] floating enable border normal
+for_window [instance="gpick"] floating enable border normal
+
+assign [class="jetbrains-idea"] $ide
+assign [class="jetbrains-idea-ce"] $ide
+assign [class="jetbrains-idea" instance="sun-awt-X11-XWindowPeer"] $ide
+assign [class="jetbrains-idea" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-idea" instance="sun-awt-X11-XFramePeer"] $ide
+assign [class="jetbrains-webstorm" instance="*"] $ide
+assign [class="jetbrains-webstorm-ce" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-webstorm" instance="sun-awt-X11-XWindowPeer"] $ide
+assign [class="jetbrains-webstorm" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-webstorm" instance="sun-awt-X11-XFramePeer"] $ide
+assign [class="jetbrains-clion" instance="*"] $ide
+assign [class="jetbrains-clion" instance="sun-awt-X11-XWindowPeer"] $ide
+assign [class="jetbrains-clion" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-clion" instance="sun-awt-X11-XFramePeer"] $ide
+assign [class="jetbrains-android-studio" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-android-studio" instance="sun-awt-X11-XWindowPeer"] $ide
+assign [class="jetbrains-android-studio" instance="sun-awt-X11-XDialogPeer"] $ide
+assign [class="jetbrains-android-studio" instance="sun-awt-X11-XFramePeer"] $ide
+
+assign [instance="recoll"] search
+for_window [instance="stardict"] floating enable border normal
+for_window [instance="lxappearance"] floating enable border normal
+for_window [class="Awf-gtk3"] floating enable border normal
+for_window [class="rdesktop" instance="rdesktop"] floating enable border normal
+for_window [class="Conky"] floating enable border normal
+for_window [class="cool-retro-term"] floating enable border normal
+for_window [class="Tilda" instance="tilda"] floating enable border normal
+for_window [class="Guake" instance="guake"] floating enable border normal
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
+for_window [instance="wicd"] floating enable border normal
+for_window [instance="ranger"] floating enable border normal
+for_window [class="ranger"] floating enable border normal
+for_window [class="caja"] floating enable border normal
+for_window [class="Nicotine" instance="nicotine"] floating enable border normal
+for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
+for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
+
+assign [class="vmware" instance="Vmware"] $vm
+assign [class="VirtualBox"] $vm
+assign [class="Vmware"] $vm
+assign [class="QEMU"] $vm
+assign [instance="qemu-system-x86_64"] $vm
+assign [class="spicec" instance="spicec"] $vm
+assign [instance="spicy"] $vm
+assign [class="inkscape"] graphic
 
 bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
 bindsym $mod+w exec $psst [ "$(i3-msg '[class=Firefox] focus')" = '[{"success":true}]' ] || i3-msg exec "firefox"
 bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
 bindsym $mod+3 scratchpad show
 
+for_window [class="mpv" instance="webcam_mpv"] mark webcam
+for_window [class="mpv"] mark media
+
 bindsym $mod+Shift+b exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+b exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
-client.focused            $black       $black       $magenta    $darkblack
-client.focused_inactive   $black       $black       $white      $darkblack
-client.unfocused          $black       $black       $white      $darkblack
-client.urgent             $black       $black       $red        $darkblack
+client.focused            $darkblue        $darkblue        $magenta    $darkblue
+client.focused_inactive   $darkblue        $darkblue        $white      $darkblue
+client.unfocused          $black           $black           $white      $darkblue
+client.urgent             $darkblue        $darkblue        $red        $darkblue
 
 floating_modifier $mod
 focus_on_window_activation smart
@@ -112,49 +284,19 @@ bindsym $alt+g exec rofi -show
 bindsym $mod+q fullscreen toggle
 
 bindsym $alt+Tab workspace back_and_forth
+bindsym $mod+slash workspace back_and_forth
+bindsym $mod+Shift+a focus parent
+bindsym $mod+Shift+d focus child
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-bindsym $mod+d focus child
+bindsym $mod+a exec i3-input -F '[con_mark=%s] move container to workspace current' -P 'Fetch mark: ', mode "default"
 
 # switch to workspace
 bindsym $mod+4 workspace  $ws4
 bindsym $mod+5 workspace  $ws5
 bindsym $mod+6 workspace  $ws6
 bindsym $mod+7 workspace  $ws7
-bindsym $mod+8 workspace  $ws8
 bindsym $mod+9 workspace  $ws9
 bindsym $mod+0 workspace  $ws10
-#bindsym $mod+0 workspace $ws11
-#bindsym $mod+0 workspace $ws12
-
-# # move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace $ws1
-# bindsym $mod+Shift+2 move container to workspace $ws2
-# bindsym $mod+Shift+3 move container to workspace $ws3
-# bindsym $mod+Shift+4 move container to workspace $ws4
-# bindsym $mod+Shift+5 move container to workspace $ws5
-# bindsym $mod+Shift+6 move container to workspace $ws6
-# bindsym $mod+Shift+7 move container to workspace $ws7
-# bindsym $mod+Shift+8 move container to workspace $ws8
-# bindsym $mod+Shift+9 move container to workspace $ws9
-# bindsym $mod+Shift+0 move container to workspace $ws10
-
-#bindsym $mod+s [workspace=*] scratchpad show
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 bindsym $mod+r mode "resize"
 
@@ -165,10 +307,9 @@ bar {
     workspace_buttons yes
     tray_output       primary
     #binding_mode_indicator no
-    i3bar_command i3bar -t
+    #i3bar_command i3bar -t
+    binding_mode_indicator yes
     
-    #font: PragmataPro for Powerline 10, Icons 10
-
     colors {
         background #000000
         statusline #ffffff
@@ -181,7 +322,6 @@ bar {
 }
 
 mode "focused" {
-    # hardcoded focus keybindings
     bindsym b [class="(?i)firefox"] focus, mode "default"
     bindsym w [class="(?i)terminal" title="weechat"] focus
     bindsym z [class="(?i)zathura"] focus
@@ -193,16 +333,6 @@ mode "focused" {
     # Assign marks to keys 1-5
     bindsym Shift+1 mark mark1
     bindsym Shift+2 mark mark2
-    bindsym Shift+3 mark mark3
-    bindsym Shift+4 mark mark4
-    bindsym Shift+5 mark mark5
-
-    # Jump to clients marked 1-5
-    bindsym 1 [con_mark="mark1"] focus
-    bindsym 2 [con_mark="mark2"] focus
-    bindsym 3 [con_mark="mark3"] focus
-    bindsym 4 [con_mark="mark4"] focus
-    bindsym 5 [con_mark="mark5"] focus
 
     # Exit to the default mode
     bindsym Return mode "default"
@@ -213,25 +343,13 @@ bindsym $mod+n mode "focused"
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
 
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-
-    # They resize the border in the direction you pressed, e.g.
-    # when pressing left, the window is resized so that it has
-    # more space on its left
-
     bindsym j resize shrink left 2 px or 2 ppt
     bindsym Shift+J resize grow   left 2 px or 2 ppt
 
@@ -257,10 +375,10 @@ mode "resize" {
     bindsym Right resize shrink right 2 px or 2 ppt
     bindsym Shift+Right resize grow   right 2 px or 2 ppt
 
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym Control+C mode "default"
+    bindsym Control+G mode "default"
 }
 
 bindsym $mod+Pause mode "$mode_system"
@@ -272,3 +390,4 @@ mode "$passthrough_keys" {
 }
 bindcode Alt+Shift+22 mode "$passthrough_keys"
 
+# vim:filetype=i3
