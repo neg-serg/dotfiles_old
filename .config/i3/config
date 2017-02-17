@@ -1,4 +1,11 @@
-font pango:PragmataPro for Powerline 12
+set $myfont PragmataPro for Powerline 12
+font pango: $myfont
+
+# macro for warping the pointer into the middle of the focused window
+#set $wrap exec --no-startup-id "xdotool mousemove --window $(xdotool getactivewindow) --polar 0 0"
+
+# warp the mouse to the middle of the window when changing to a different screen
+mouse_warping output
 
 new_window 1pixel
 new_float normal
@@ -16,27 +23,10 @@ set $alt Mod1
 set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 set shmlog on
-set shmlog 1
 
 set $soft_restart killall -SIGUSR1 i3status
 
 bindsym $alt+e mode "alt_e"
-
-set_from_resource $black       color0  #000000
-set_from_resource $darkred     color1  #000000
-set_from_resource $red         color9  #000000
-set_from_resource $darkgreen   color2  #000000
-set_from_resource $green       color10 #000000
-set_from_resource $darkyellow  color3  #000000
-set_from_resource $yellow      color11 #000000
-set_from_resource $darkblue    color4  #000000
-set_from_resource $blue        color12 #000000
-set_from_resource $darkmagenta color5  #000000
-set_from_resource $magenta     color13 #000000
-set_from_resource $darkcyan    color6  #000000
-set_from_resource $cyan        color14 #000000
-set_from_resource $darkwhite   color7  #000000
-set_from_resource $white       color15 #000000
 
 set $ws1   1:term
 set $ws2   2:web
@@ -85,7 +75,6 @@ for_window [class="skypeforlinux"] mark "im", move scratchpad, move absolute pos
 for_window [class="ViberPC"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [instance="finch"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
 
-# bindsym $mod+f [con_mark="ncmpcpp"] move container to workspace current, mode "default"
 bindsym $mod+f [con_mark="ncmpcpp"] scratchpad show
 # @ bindsym $mod+e [con_mark="im"] move container to workspace current, mode "default"
 
@@ -102,26 +91,28 @@ for_window [title="^screenkey"]        floating enable border normal
 for_window [title="^Debconf"]          floating enable border normal
 for_window [class="control-center"]    floating enable border normal
 for_window [class="^Pavucontrol"]      floating enable border normal
-for_window [class="^B2G$"]             floating enable border normal
-for_window [class="^B2g$"]             floating enable border normal
+for_window [class="^B2[Gg]$"]          floating enable border normal
 
-assign [instance="weechat-curses"] $weechat
-assign [instance="_weechat_"] $weechat
-assign [class="^libreoffice.*"] $doc
-assign [class="abiword"] $doc
-assign [class="guncharmap"] $doc
-assign [class="Cr3" instance="cr3"] $doc
-assign [class="spotify"] spotify
-assign [class="Atom"] $dev
-assign [instance="^(subl3|sublime_text)$"] $dev
-assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] $dev
-assign [class="simple-scan"] graph
-assign [class="gthumb"] graph
-assign [instance="_logs_"] $admin
-assign [instance="remmina"] $admin
-assign [instance="htop_term"] $admin
-assign [instance="glances_term"] $admin
-assign [instance="gnome-disks"] $admin
+for_window [window_type="dialog|menu"] floating enable border normal
+no_focus [window_role="pop-up"]
+
+assign [instance="weechat-curses"] → $weechat
+assign [instance="_weechat_"] → $weechat
+assign [class="^libreoffice.*"] → $doc
+assign [class="abiword"] →  $doc
+assign [class="guncharmap"] → $doc
+assign [class="Cr3" instance="cr3"] → $doc
+assign [class="spotify"] → spotify
+assign [class="Atom"] → $dev
+assign [instance="^(subl3|sublime_text)$"] → $dev
+assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] → $dev
+assign [class="simple-scan"] → graph
+assign [class="gthumb"] → graph
+assign [instance="_logs_"] → $admin
+assign [instance="remmina"] → $admin
+assign [instance="htop_term"] → $admin
+assign [instance="glances_term"] → $admin
+assign [instance="gnome-disks"] → $admin
 
 for_window [instance="mutt"] floating enable border normal
 for_window [class="yakuake"] floating enable border normal
@@ -129,6 +120,8 @@ for_window [class="yakuake"] floating enable border normal
 mode "alt_e" {
     bindsym $mod+Shift+space floating toggle
     bindsym $mod+space focus mode_toggle
+    bindsym e [urgent=latest] focus
+    bindsym s exec skypeforlinux, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -136,42 +129,42 @@ mode "alt_e" {
     bindsym Control+G mode "default"
 }
 
-assign [instance="^MainTerminal$"] $term
-assign [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"] $web
-assign [instance="^(wim|nwim)$"] $dev
-assign [class="^Gvim$"] $dev
-assign [class="^(Vuze|Ktorrent)$"] $torrent
-assign [class="MPlayer"] $media
-assign [class="mplayer2"] $media
-assign [class="mpv"] $media
-assign [class="gmpc"] $media
-assign [class="cheese"] $media
-assign [class="^([sS]team|steam|dota2|darkest.bin.x86_64)$"] $steam
-assign [class="Emacs" instance="emacs"] $dev
+assign [instance="^MainTerminal$"] → $term
+assign [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"] → $web
+assign [instance="^(wim|nwim)$"] → $dev
+assign [class="^Gvim$"] → $dev
+assign [class="^(Vuze|Ktorrent)$"] → $torrent
+assign [class="MPlayer"] → $media
+assign [class="mplayer2"] → $media
+assign [class="mpv"] → $media
+assign [class="gmpc"] → $media
+assign [class="cheese"] → $media
+assign [class="^(Steam|steam|dota2|darkest.bin.x86_64)$"] → $steam
+assign [class="Emacs" instance="emacs"] → $dev
 
-assign [class="Okular" instance="okular"] $doc
-assign [title="Open Document*" class="Okular" instance="okular"] $doc
-assign [class="Apvlv" instance="apvlv" ] $doc
-assign [class="Zathura" instance="zathura" ] $doc
-assign [class="Xpdf" instance="openDialog_popup" ] $doc
-assign [class="Evince" instance="evince" ] $doc
-assign [class="XDvi"] $doc
+assign [class="Okular" instance="okular"] → $doc
+assign [title="Open Document*" class="Okular" instance="okular"] → $doc
+assign [class="Apvlv" instance="apvlv"] → $doc
+assign [class="Zathura" instance="zathura"] → $doc
+assign [class="Xpdf" instance="openDialog_popup"] → $doc
+assign [class="Evince" instance="evince"] → $doc
+assign [class="XDvi"] → $doc
 
-assign [instance="gparted"] $admin
+assign [instance="gparted"] → $admin
 
-assign [class="Crossover"] $wine
-assign [class="Wine"] $wine
-assign [title="wine.*"] $wine
-assign [title="explorer.exe"] $wine
-assign [title="Explorer.exe"] $wine
-assign [class="UE4Editor"] $wine
-assign [class="XRebirth"] $wine
+assign [class="Crossover"] → $wine
+assign [class="Wine"] → $wine
+assign [title="wine.*"] → $wine
+assign [title="explorer.exe"] → $wine
+assign [title="Explorer.exe"] → $wine
+assign [class="UE4Editor"] → $wine
+assign [class="XRebirth"] → $wine
 
 for_window [class="XRebirth"] floating enable border normal
 
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable border normal
 
-assign [class="Gimp"] $gimp
+assign [class="Gimp"] → $gimp
 for_window [class="Gimp" window_role="gimp-file-open"] floating enable border normal
 for_window [class="Gimp" window_role="gimp-file-save"] floating enable border normal
 for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable border normal
@@ -188,6 +181,8 @@ for_window [class="qiv"] floating enable border normal
 
 for_window [class="Xfce"] floating enable border normal
 for_window [class="Xmessage"] floating enable border normal
+for_window [class="XFontSel"] floating enable border normal
+for_window [class="XCalc"] floating enable border normal
 for_window [class="com-sun-javaws-Main"] floating enable border normal
 
 for_window [instance="console"] floating enable border normal
@@ -197,24 +192,14 @@ for_window [instance="htop"] floating enable border normal
 for_window [instance="gcolor2"] floating enable border normal
 for_window [instance="gpick"] floating enable border normal
 
-assign [class="jetbrains-idea"] $ide
-assign [class="jetbrains-idea-ce"] $ide
-assign [class="jetbrains-idea" instance="sun-awt-X11-XWindowPeer"] $ide
-assign [class="jetbrains-idea" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-idea" instance="sun-awt-X11-XFramePeer"] $ide
-assign [class="jetbrains-webstorm" instance="*"] $ide
-assign [class="jetbrains-webstorm-ce" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-webstorm" instance="sun-awt-X11-XWindowPeer"] $ide
-assign [class="jetbrains-webstorm" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-webstorm" instance="sun-awt-X11-XFramePeer"] $ide
-assign [class="jetbrains-clion" instance="*"] $ide
-assign [class="jetbrains-clion" instance="sun-awt-X11-XWindowPeer"] $ide
-assign [class="jetbrains-clion" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-clion" instance="sun-awt-X11-XFramePeer"] $ide
-assign [class="jetbrains-android-studio" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-android-studio" instance="sun-awt-X11-XWindowPeer"] $ide
-assign [class="jetbrains-android-studio" instance="sun-awt-X11-XDialogPeer"] $ide
-assign [class="jetbrains-android-studio" instance="sun-awt-X11-XFramePeer"] $ide
+assign [class="jetbrains-idea.*"] → $ide
+assign [class="jetbrains-webstorm.*"] → $ide
+assign [class="jetbrains-clion.*" instance="*"] → $ide
+assign [class="jetbrains-android-studio.*"] → $ide
+
+for_window [instance="sun-awt-X11-XWindowPeer"] floating enable border normal
+for_window [instance="sun-awt-X11-XDialogPeer"] floating enable border normal
+for_window [instance="sun-awt-X11-XFramePeer"]  floating enable border normal
 
 assign [instance="recoll"] search
 for_window [instance="stardict"] floating enable border normal
@@ -234,9 +219,7 @@ for_window [class="Nicotine" instance="nicotine"] floating enable border normal
 for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
 for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
 
-assign [class="vmware" instance="Vmware"] $vm
-assign [class="VirtualBox"] $vm
-assign [class="Vmware"] $vm
+assign [class="^(VirtualBox|vmware)$"] $vm
 assign [class="QEMU"] $vm
 assign [instance="qemu-system-x86_64"] $vm
 assign [class="spicec" instance="spicec"] $vm
@@ -246,23 +229,85 @@ assign [class="inkscape"] graphic
 bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
 bindsym $mod+w exec $psst [ "$(i3-msg '[class=Firefox] focus')" = '[{"success":true}]' ] || i3-msg exec "firefox"
 bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
-bindsym $mod+3 scratchpad show
+bindsym $mod+3 exec i3-cycle up
 
 for_window [class="mpv" instance="webcam_mpv"] mark webcam
 for_window [class="mpv"] mark media
 
-bindsym $mod+Shift+b exec i3-input -F 'mark %s' -P 'Mark name: '
-bindsym $mod+b exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+bindsym $mod+Shift+b exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
+bindsym $mod+b exec i3-input -f $myfont -F '[con_mark=%s] focus' -P 'Go to mark: '
 
-client.focused            $darkblue        $darkblue        $magenta    $darkblue
-client.focused_inactive   $darkblue        $darkblue        $white      $darkblue
-client.unfocused          $black           $black           $white      $darkblue
-client.urgent             $darkblue        $darkblue        $red        $darkblue
+# #black
+# set_from_resource color0  #020202
+# #lightblack
+# set_from_resource color8  #5E5E5E
+# #red
+# set_from_resource color1  #8A2F58
+# #lightred
+# set_from_resource color9  #CF4F88
+
+# set_from_resource color2  #287373
+# set_from_resource color10 #53A6A6
+# set_from_resource color3  #914E89
+# set_from_resource color11 #BF85CC
+# set_from_resource color4  #395573
+# set_from_resource color12 #4779B3
+# set_from_resource color5  #5E468C
+# set_from_resource color13 #7F62B3
+# set_from_resource color6  #2B7694
+# set_from_resource color14 #47959E
+# set_from_resource color7  #899CA1
+# set_from_resource color15 #C0C0C0
+
+# client.focused            $color2          $color2          $color4     $color2
+# client.focused_inactive   $color2          $color2          $color15    $color2
+# client.unfocused          $color0          $color0          $color15    $color2
+# client.urgent             $color2          $color2          $color1     $color2
+
+# Colors
+# inspired by gruvbox
+set $c_bright_red       #fb4934
+set $c_neutral_red      #cc241d
+set $c_dark_red         #9d0006
+set $c_bright_green     #b8bb26
+set $c_neutral_green    #98971a
+set $c_dark_green       #79740e
+set $c_bright_yellow    #fabd2f
+set $c_neutral_yellow   #d79921
+set $c_dark_yellow      #b57614
+set $c_bright_blue      #83a598
+set $c_neutral_blue     #458588
+set $c_dark_blue        #076678
+set $c_bright_purple    #d3869b
+set $c_neutral_purple   #b16286
+set $c_dark_purple      #8f3f71
+set $c_bright_aqua      #8ec07c
+set $c_neutral_aqua     #689d6a
+set $c_dark_aqua        #427b58
+set $c_bright_orange    #fe8019
+set $c_neutral_orange   #d65d0e
+set $c_dark_orange      #af3a03
+set $c_black            #1d2021
+set $c_white            #ebdbb2
+set $c_dark_grey        #282828
+set $c_neutral_grey     #3c3836
+set $c_bright_grey      #a89984
+
+# set colors
+# name                      border              back                text                indicator           child_border
+client.focused_inactive     $c_neutral_blue     $c_dark_blue        $c_white            $c_dark_blue        $c_dark_blue
+client.focused              $c_neutral_blue     $c_bright_blue      $c_black            $c_bright_yellow    $c_neutral_blue
+client.unfocused            $c_neutral_grey     $c_dark_grey        $c_bright_grey      $c_dark_grey        $c_dark_grey
+client.urgent               $c_bright_red       $c_neutral_red      $c_white            $c_bright_red       $c_neutral_red
+client.placeholder          #000000             $c_black            $c_neutral_blue     #000000             $c_black
+client.background           $c_black
+
+new_window normal 2
+new_float normal 2
 
 floating_modifier $mod
 focus_on_window_activation smart
 
-bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Control+q kill
 
 bindsym $mod+j focus left
@@ -276,10 +321,8 @@ bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+colon move right
 
-bindsym $mod+h split h
-bindsym $mod+v split v
-
-bindsym $alt+g exec rofi -show
+#bindsym $alt+g exec rofi -show
+bindsym $alt+g exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
@@ -288,9 +331,9 @@ bindsym $mod+slash workspace back_and_forth
 bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
-bindsym $mod+a exec i3-input -F '[con_mark=%s] move container to workspace current' -P 'Fetch mark: ', mode "default"
+bindsym $mod+a exec i3-input -f $myfont -F '[con_mark=%s] move container to workspace current' -P 'Fetch mark: ', mode "default"
 
-# switch to workspace
+# switch to workspace 
 bindsym $mod+4 workspace  $ws4
 bindsym $mod+5 workspace  $ws5
 bindsym $mod+6 workspace  $ws6
@@ -300,26 +343,8 @@ bindsym $mod+0 workspace  $ws10
 
 bindsym $mod+r mode "resize"
 
-bar {
-    status_command    i3status
-    position          bottom
-    #mode              hide
-    workspace_buttons yes
-    tray_output       primary
-    #binding_mode_indicator no
-    #i3bar_command i3bar -t
-    binding_mode_indicator yes
-    
-    colors {
-        background #000000
-        statusline #ffffff
-
-        focused_workspace  #ffffff #000000
-        active_workspace   #ffffff #000000
-        inactive_workspace #888888 #000000
-        urgent_workspace   #ffffff #900000
-    }
-}
+for_window [class=".*"]     title_format "%class :: %instance :: %title"
+for_window [class="^URxvt"] title_format "Terminal :: %instance :: %title"
 
 mode "focused" {
     bindsym b [class="(?i)firefox"] focus, mode "default"
@@ -327,8 +352,8 @@ mode "focused" {
     bindsym z [class="(?i)zathura"] focus
 
     # keybindings for marking and jumping to clients
-    bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '
-    bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+    bindsym a exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
+    bindsym g exec i3-input -f $myfont -F '[con_mark=%s] focus' -P 'Go to mark: '
 
     # Assign marks to keys 1-5
     bindsym Shift+1 mark mark1
@@ -339,7 +364,8 @@ mode "focused" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+n mode "focused"
+#bindsym $mod+n mode "focused"
+#bindsym $alt+n mode "default"
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -351,29 +377,16 @@ mode "$mode_system" {
 # resize window (you can also use the mouse for that)
 mode "resize" {
     bindsym j resize shrink left 2 px or 2 ppt
-    bindsym Shift+J resize grow   left 2 px or 2 ppt
+    bindsym Shift+J resize grow left 2 px or 2 ppt
 
     bindsym k resize shrink down 2 px or 2 ppt
-    bindsym Shift+K resize grow   down 2 px or 2 ppt
+    bindsym Shift+K resize grow down 2 px or 2 ppt
 
     bindsym l resize shrink up 2 px or 2 ppt
-    bindsym Shift+L resize grow   up 2 px or 2 ppt
+    bindsym Shift+L resize grow up 2 px or 2 ppt
 
     bindsym semicolon resize shrink right 2 px or 2 ppt
-    bindsym Shift+colon resize grow   right 2 px or 2 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink left 2 px or 2 ppt
-    bindsym Shift+Left resize grow   left 2 px or 2 ppt
-
-    bindsym Down resize shrink down 2 px or 2 ppt
-    bindsym Shift+Down resize grow   down 2 px or 2 ppt
-
-    bindsym Up resize shrink up 2 px or 2 ppt
-    bindsym Shift+Up resize grow   up 2 px or 2 ppt
-
-    bindsym Right resize shrink right 2 px or 2 ppt
-    bindsym Shift+Right resize grow   right 2 px or 2 ppt
+    bindsym Shift+colon resize grow right 2 px or 2 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -389,5 +402,114 @@ mode "$passthrough_keys" {
         bindcode Alt+Shift+22 mode "default"
 }
 bindcode Alt+Shift+22 mode "$passthrough_keys"
+
+mode "move" {
+	bindsym $alt+h move left 1 px
+	bindsym $alt+j move down 1 px
+	bindsym $alt+k move up 1 px
+	bindsym $alt+l move right 1 px
+
+	bindsym h move left 4 px
+	bindsym j move down 4 px
+	bindsym k move up 4 px
+	bindsym l move right 4 px
+
+	bindsym Shift+h move left 16 px
+	bindsym Shift+j move down 16 px
+	bindsym Shift+k move up 16 px
+	bindsym Shift+l move right 16 px
+
+	bindsym Control+h move left 32 px
+	bindsym Control+j move down 32 px
+	bindsym Control+k move up 32 px
+	bindsym Control+l move right 32 px
+
+	bindsym Control+Shift+h move left 64 px
+	bindsym Control+Shift+j move down 64 px
+	bindsym Control+Shift+k move up 64 px
+	bindsym Control+Shift+l move right 64 px
+
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
+
+mode "layout" {
+	bindsym grave layout default; $exit
+	bindsym 1 layout tabbed; $exit
+	bindsym 2 layout stacking; $exit
+	bindsym 3 layout splith; $exit
+	bindsym 4 layout splitv; $exit
+
+    bindsym h split h
+    bindsym v split v
+
+	bindsym j split vertical; $exit
+	bindsym k split vertical; $exit
+	bindsym h split horizontal; $exit
+	bindsym l split horizontal; $exit
+
+	# toggle [stacking, tabbed, splith, splitv]
+	bindsym a layout toggle all; $exit
+	# toggle [splith, splitv]
+	bindsym s layout toggle split; $exit
+	# toggle [stacking, tabbed, split]
+	bindsym t layout toggle; $exit
+	# toggle fullscreen
+	bindsym f fullscreen; $exit
+	bindsym Shift+f fullscreen global; $exit
+	# toggle [floating, tiled]
+	bindsym space floating toggle; $exit
+
+	# borders
+	bindsym b mode "border"
+
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
+
+mode "border" {
+	# cycle through border styles
+	bindsym space border toggle; $exit
+
+	bindsym 0 border none; $exit
+	bindsym 1 border 1pixel; $exit
+	bindsym 2 border normal; $exit
+
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
+
+mode "gaps" {
+	bindsym o mode "gaps-outer"
+	bindsym i mode "gaps-inner"
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
+
+mode "gaps-outer" {
+	bindsym plus  gaps outer current plus 5
+	bindsym minus gaps outer current minus 5
+	bindsym 0     gaps outer current set 0
+
+	bindsym Shift+plus  gaps outer all plus 5
+	bindsym Shift+minus gaps outer all minus 5
+	bindsym Shift+0     gaps outer all set 0
+
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
+
+mode "gaps-inner" {
+	bindsym plus  gaps inner current plus 5
+	bindsym minus gaps inner current minus 5
+	bindsym 0     gaps inner current set 0
+
+	bindsym Shift+plus  gaps inner all plus 5
+	bindsym Shift+minus gaps inner all minus 5
+	bindsym Shift+0     gaps inner all set 0
+
+	bindsym $mod+space $return
+	bindsym Escape $exit
+}
 
 # vim:filetype=i3
