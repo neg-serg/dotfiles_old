@@ -81,14 +81,7 @@ if [[ $UID != 0 ]]; then
     fi
 fi
 
-if [[ ! -x ${BIN_HOME}/els ]]; then
-    alias ls="ls --color=auto"   # do we have GNU ls with color-support?
-else
-    ls(){
-        els --els-icons=fontawesome "$@" 2>/dev/null || \
-            command ls "$@"
-    }
-fi
+alias ls="ls --color=auto"   # do we have GNU ls with color-support?
 
 if [[ ! -x "${BIN_HOME}/l" ]]; then
     if  [[ -x "${BIN_HOME}/lsp" ]]; then
@@ -119,6 +112,37 @@ function eat(){
 function mp(){ 
     for i; do vid_fancy_print "${i}"; done
     ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@"
+
+    # mpvs() {
+    #     local file="$1"
+    #     mpv --sub-file="${file%.*}".srt "$file"
+    # }
+    
+    
+    # # Play subtitles for a film if they exist
+    # movie="$1"
+    # mdir="${movie%/*}"
+    # name="${movie##*/}"
+
+    # cd "$mdir"
+    # for file in *; do
+    #     if [[ ${file%.*} == ${name%.*} ]]; then
+    #         title="${file%.*}"
+    #         for match in "$title"*; do
+    #             if [[ $match =~ @*.(ass|srt|sub) ]]; then
+    #                 subtitles="$match"
+    #             fi
+    #         done
+    #     fi
+    # done
+
+    # if [[ -n $subtitles ]]; then
+    #     mpv --subfile="$subtitles" "$name"
+    # else
+    #     printf "%s\n" "No subs found, playing film anyway..."
+    #     mpv "$name"
+    # fi
+
 }
 
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
@@ -428,12 +452,6 @@ function ju(){
     fi
 }
 
-function steam(){
-    SDL_AUDIODRIVER="alsa" \
-    LD_PRELOAD='/usr/lib/libSDL2-2.0.so.0.4.0 /usr/lib/libSDL_sound-1.0.so.1.0.2' \
-    steam-native
-}
-
 clojure(){ drip -cp /usr/share/clojure/clojure.jar clojure.main }
 
 function g() {
@@ -485,6 +503,3 @@ function pacnews() {
 }
 
 alias pkglist="comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)"
-
-# kill any current poppers (thanks Dylan)
-ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
