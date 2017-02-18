@@ -26,6 +26,13 @@ function windowchef_restart(){
     pkill -USR1 -x sxhkd
 }
 
+function i3_restart(){
+    i3-msg restart
+    pkill -USR1 -x sxhkd
+    # kill any current poppers (thanks Dylan)
+    ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
+}
+
 function main() {
     if [[ ${1} != "" ]]; then
         if [[ ${1} == "soft" ]]; then
