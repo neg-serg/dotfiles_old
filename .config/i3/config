@@ -75,10 +75,8 @@ for_window [instance="finch"] mark finch_im, move scratchpad, move absolute posi
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec ~/bin/scripts/ncmpcpp
 bindsym $mod+d [con_mark="console"] exec tdrop -a st
-# bindsym $mod+e [con_mark="^(skype_im|telegram_im)$"] scratchpad show
-bindsym $mod+e exec ~/src/i3_ns.py toggle
-# bindsym $mod+i exec ~/src/i3_ns.py hide
-# bindsym $mod+3 exec ~/src/i3_ns.py next
+bindsym $mod+e exec ~/.config/i3/i3_ns.py im toggle
+bindsym $mod+3 exec ~/.config/i3/i3_ns.py im next
 
 mode im {
     bindsym e exec ~/bin/scripts/skype, mode "default"
