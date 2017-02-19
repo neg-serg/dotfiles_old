@@ -1,6 +1,8 @@
 set $myfont PragmataPro for Powerline 12
 font pango: $myfont
 
+focus_follows_mouse no
+
 # macro for warping the pointer into the middle of the focused window
 #set $wrap exec --no-startup-id "xdotool mousemove --window $(xdotool getactivewindow) --polar 0 0"
 
@@ -64,21 +66,37 @@ for_window [window_role="pop-up"] floating enable border normal
 for_window [window_role="task_dialog"] floating enable border normal
 for_window [title="Preferences$"] floating enable border normal
 
-for_window [instance="mpd-pad2"]  mark "ncmpcpp", move scratchpad, move absolute position 400 400, resize set 1200 600
-for_window [class="skypeforlinux"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [class="TelegramDesktop"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="centerim"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="centerim"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="kopete"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="skype"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [class="skypeforlinux"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [class="ViberPC"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="finch"] mark "im", move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [class="^(skypeforlinux)$"] mark skype_im, move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="telegram-desktop"] mark telegram_im, move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="kopete"] mark kopete_im, move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [class="ViberPC"] mark viber_im, move scratchpad, move absolute position 100 100, resize set 500 600
+for_window [instance="finch"] mark finch_im, move scratchpad, move absolute position 100 100, resize set 500 600
 
-bindsym $mod+f [con_mark="ncmpcpp"] scratchpad show
-# @ bindsym $mod+e [con_mark="im"] move container to workspace current, mode "default"
+bindsym $mod+f [con_mark="ncmpcpp"] exec ~/bin/scripts/ncmpcpp
+bindsym $mod+d [con_mark="console"] exec tdrop -a st
+# bindsym $mod+e [con_mark="^(skype_im|telegram_im)$"] scratchpad show
+bindsym $mod+e exec ~/src/i3_ns.py toggle
+# bindsym $mod+i exec ~/src/i3_ns.py hide
+# bindsym $mod+3 exec ~/src/i3_ns.py next
+
+mode im {
+    bindsym e exec ~/bin/scripts/skype, mode "default"
+    bindsym $mod+e exec ~/bin/scripts/skype, mode "default"
+    bindsym $alt+e exec ~/bin/scripts/skype, mode "default"
+
+    bindsym t exec ~/bin/scripts/telegram, mode "default"
+    bindsym $mod+t exec ~/bin/scripts/telegram, mode "default"
+    bindsym $alt+t exec ~/bin/scripts/telegram, mode "default"
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Control+C mode "default"
+    bindsym Control+G mode "default"
+}
 
 bindsym $mod+s [con_id=__focused__] scratchpad show
+bindsym $mod+Shift+s [con_id=__focused__] move scratchpad
 
 for_window [instance="^Update"]        floating enable border normal
 for_window [instance="^gcalctool"]     floating enable border normal
@@ -118,9 +136,9 @@ for_window [instance="mutt"] floating enable border normal
 for_window [class="yakuake"] floating enable border normal
 
 mode "alt_e" {
-    bindsym $mod+Shift+space floating toggle
-    bindsym $mod+space focus mode_toggle
-    bindsym e [urgent=latest] focus
+    bindsym $mod+Shift+space floating toggle, mode "default"
+    bindsym $mod+space focus mode_toggle, mode "default"
+    bindsym e [urgent=latest] focus, mode "default"
     bindsym s exec skypeforlinux, mode "default"
 
     bindsym Return mode "default"
@@ -227,9 +245,9 @@ assign [instance="spicy"] $vm
 assign [class="inkscape"] graphic
 
 bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
-bindsym $mod+w exec $psst [ "$(i3-msg '[class=Firefox] focus')" = '[{"success":true}]' ] || i3-msg exec "firefox"
+bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
 bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
-bindsym $mod+3 exec i3-cycle up
+#bindsym $mod+3 exec i3-cycle up
 
 for_window [class="mpv" instance="webcam_mpv"] mark webcam
 for_window [class="mpv"] mark media
@@ -321,8 +339,8 @@ bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+colon move right
 
-#bindsym $alt+g exec rofi -show
-bindsym $alt+g exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
+bindsym $alt+g exec rofi -show
+# bindsym $alt+g exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
@@ -433,6 +451,8 @@ mode "move" {
 	bindsym Escape $exit
 }
 
+bindsym $mod+Shift+w mode "layout"
+
 mode "layout" {
 	bindsym grave layout default; $exit
 	bindsym 1 layout tabbed; $exit
@@ -512,4 +532,24 @@ mode "gaps-inner" {
 	bindsym Escape $exit
 }
 
+bar {
+    status_command    i3status
+    position          bottom
+    #mode              hide
+    workspace_buttons yes
+    tray_output       primary
+    #binding_mode_indicator no
+    #i3bar_command i3bar -t
+    binding_mode_indicator yes
+    
+    colors {
+            background #000000
+            statusline #ffffff
+    
+            focused_workspace  #ffffff #000000
+            active_workspace   #ffffff #000000
+            inactive_workspace #888888 #000000
+            urgent_workspace   #ffffff #900000
+        }
+}
 # vim:filetype=i3
