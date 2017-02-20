@@ -1,34 +1,58 @@
-set $myfont PragmataPro for Powerline 12
-font pango: $myfont
-
-focus_follows_mouse no
-
-# macro for warping the pointer into the middle of the focused window
-#set $wrap exec --no-startup-id "xdotool mousemove --window $(xdotool getactivewindow) --polar 0 0"
-
-# warp the mouse to the middle of the window when changing to a different screen
-mouse_warping output
-
-new_window 1pixel
-new_float normal
-
-# enable-ssh-support
-# default-cache-ttl-ssh  800
-# max-cache-ttl-ssh      800
-
-bindsym $mod+Shift+o exec quickswitch.py -s
-
+set shmlog on
 set workspace_layout tabbed
 
 set $mod Mod4
 set $alt Mod1
+floating_modifier $mod
+
+set $myfont PragmataPro for Powerline 12
+set $zerofont PragmataPro for Powerline 0 
+font pango: $myfont
+
+focus_follows_mouse no
+focus_on_window_activation smart
+focus_follows_mouse no
+
+mouse_warping none # warp the mouse to the middle of the window when changing to a different screen
+popup_during_fullscreen smart
+
+# Disable titlebar
+new_window 1pixel
+new_float 1pixel
+
+show_marks no
+
 set $Locker i3lock && sleep 1
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-set shmlog on
 
 set $soft_restart killall -SIGUSR1 i3status
 
+default_orientation vertical
+
+#--[ Gaps ]--------------------------------
+smart_gaps on
+smart_borders on
+gaps inner 8
+gaps outer 4
+hide_edge_borders both 
+#------------------------------------------
+set $exit mode "default"
 bindsym $alt+e mode "alt_e"
+bindsym $mod+r mode "resize"
+bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Shift+w mode "[Layout]"
+#------------------------------------------
+
+set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
+mode "$passthrough_keys" {
+        bindcode Alt+Shift+22 mode "default"
+}
+bindcode Alt+Shift+22 mode "$passthrough_keys"
+# kpress("Print", function() make_scr() end),
+# kpress(M1.."Print", function() make_current_window_screenshot() end),
+# kpress_wait("w",   function() submapped(rofi.renameworkspace()) end),
+# kpress_wait("f",   function(_) submapped(rofi.renameframe(_)) end),
+#------------------------------------------
 
 set $ws1   1:term
 set $ws2   2:web
@@ -56,17 +80,11 @@ set $torrent  10:torrent
 set $vm      11:vm
 set $wine    12:wine
 
-#gaps inner 10
-#gaps outer 5
-#smart_gaps on
-#smart_borders on
-
-for_window [class="^.*"] border pixel 1
-for_window [window_role="pop-up"] floating enable border normal
-for_window [window_role="task_dialog"] floating enable border normal
-for_window [title="Preferences$"] floating enable border normal
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
 
 for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
+for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position 293 0, resize set 1250 700
 for_window [class="^(skypeforlinux)$"] mark skype_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [instance="telegram-desktop"] mark telegram_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [instance="kopete"] mark kopete_im, move scratchpad, move absolute position 100 100, resize set 500 600
@@ -78,39 +96,26 @@ bindsym $mod+d [con_mark="console"] exec tdrop -a st
 bindsym $mod+e exec ~/.config/i3/i3_ns.py im toggle
 bindsym $mod+3 exec ~/.config/i3/i3_ns.py im next
 
-mode im {
-    bindsym e exec ~/bin/scripts/skype, mode "default"
-    bindsym $mod+e exec ~/bin/scripts/skype, mode "default"
-    bindsym $alt+e exec ~/bin/scripts/skype, mode "default"
-
-    bindsym t exec ~/bin/scripts/telegram, mode "default"
-    bindsym $mod+t exec ~/bin/scripts/telegram, mode "default"
-    bindsym $alt+t exec ~/bin/scripts/telegram, mode "default"
-    
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+C mode "default"
-    bindsym Control+G mode "default"
-}
+bindsym $mod+k exec i3-cycle 'up'
+bindsym $mod+j exec i3-cycle 'down'
+bindsym $mod+h exec i3-cycle 'left'
+bindsym $mod+l exec i3-cycle 'right'
 
 bindsym $mod+s [con_id=__focused__] scratchpad show
 bindsym $mod+Shift+s [con_id=__focused__] move scratchpad
 
-for_window [instance="^Update"]        floating enable border normal
-for_window [instance="^gcalctool"]     floating enable border normal
-for_window [instance="^galculator"]    floating enable border normal
-for_window [instance="^gnome-keyring"] floating enable border normal
-for_window [instance="^file_progress"] floating enable border normal
-for_window [title="^Compress"]         floating enable border normal
-for_window [title="^Compression"]      floating enable border normal
-for_window [title="^screenkey"]        floating enable border normal
-for_window [title="^Debconf"]          floating enable border normal
-for_window [class="control-center"]    floating enable border normal
-for_window [class="^Pavucontrol"]      floating enable border normal
-for_window [class="^B2[Gg]$"]          floating enable border normal
+for_window [instance="^(gcalctool|galculator)$"] floating enable
+for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
+for_window [title="^Compress.*"] floating enable
+for_window [title="^screenkey"] floating enable
+for_window [title="^Debconf"] floating enable
+for_window [class="control-center"] floating enable
+for_window [class="^Pavucontrol"] floating enable
+for_window [class="^B2[Gg]$"] floating enable
 
-for_window [window_type="dialog|menu"] floating enable border normal
-no_focus [window_role="pop-up"]
+for_window [window_type="dialog|menu"] floating enable
+# no_focus [window_role="pop-up"]
+# for_window [window_role="pop-up"] floating enable
 
 assign [instance="weechat-curses"] → $weechat
 assign [instance="_weechat_"] → $weechat
@@ -125,24 +130,52 @@ assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] → $dev
 assign [class="simple-scan"] → graph
 assign [class="gthumb"] → graph
 assign [instance="_logs_"] → $admin
-assign [instance="remmina"] → $admin
-assign [instance="htop_term"] → $admin
-assign [instance="glances_term"] → $admin
-assign [instance="gnome-disks"] → $admin
+assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] → $admin
 
-for_window [instance="mutt"] floating enable border normal
-for_window [class="yakuake"] floating enable border normal
+for_window [class="yakuake"] floating enable
 
 mode "alt_e" {
-    bindsym $mod+Shift+space floating toggle, mode "default"
-    bindsym $mod+space focus mode_toggle, mode "default"
-    bindsym e [urgent=latest] focus, mode "default"
-    bindsym s exec skypeforlinux, mode "default"
+    #-------------------------------------------------------
+    bindsym c mode "password"
+    bindsym $mod+Shift+space mode "default", floating toggle
+    bindsym $mod+space mode "default", focus mode_toggle
+    bindsym e mode "default", [urgent=latest] focus
+    bindsym s exec ~/bin/scripts/skype, mode "default"
+    bindsym $mod+s exec ~/bin/scripts/skype, mode "default"
+    bindsym $alt+s exec ~/bin/scripts/skype, mode "default"
+    bindsym Control+R mode "default", [class=Cr3] focus
+    bindsym a mode "default", [con_mark=_dialog] scratchpad show
+    bindsym w mode "default", exec ~/bin/webcam
+    bindsym d mode "default", exec ~/bin/scripts/dzen-dict
+    bindsym f mode "default", [con_mark=_float] scratchpad show
+    bindsym i mode "default", exec ~/bin/pls -output
+    bindsym o mode "default", exec ~/bin/pls -sink
+    bindsym Shift+O mode "default", exec ~/bin/pls -vol
+    bindsym q mode "default", exec ~/bin/mpd_sel.sh
+    bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
+    bindsym Control+t mode "default", exec tor-browser-en
+    bindsym Shift+r [con_mark="ranger"] mode "default", exec ~/bin/scripts/run_ranger
+    bindsym m [con_mark="mutt"] mode "default", exec ~/bin/scripts/run_mutt
+    bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
+    bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
+    bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
+    bindsym t exec ~/bin/scripts/telegram, mode "default"
+    bindsym $mod+t exec ~/bin/scripts/telegram, mode "default"
+    bindsym $alt+t exec ~/bin/scripts/telegram, mode "default"
+    
+    bindsym Return $exit
+    bindsym Escape $exit
+    bindsym Control+C $exit
+    bindsym Control+G $exit 
+}
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+C mode "default"
-    bindsym Control+G mode "default"
+mode "password" {
+    bindsym C exec ~/bin/p/copy_pass, $exit
+    bindsym P exec ~/bin/p/paste_pass, $exit
+    bindsym Return $exit
+    bindsym Escape $exit
+    bindsym Control+C $exit
+    bindsym Control+G $exit 
 }
 
 assign [instance="^MainTerminal$"] → $term
@@ -150,21 +183,13 @@ assign [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromi
 assign [instance="^(wim|nwim)$"] → $dev
 assign [class="^Gvim$"] → $dev
 assign [class="^(Vuze|Ktorrent)$"] → $torrent
-assign [class="MPlayer"] → $media
-assign [class="mplayer2"] → $media
-assign [class="mpv"] → $media
-assign [class="gmpc"] → $media
-assign [class="cheese"] → $media
+assign [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"] → $media
 assign [class="^(Steam|steam|dota2|darkest.bin.x86_64)$"] → $steam
 assign [class="Emacs" instance="emacs"] → $dev
+for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 
-assign [class="Okular" instance="okular"] → $doc
+assign [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"] → $doc
 assign [title="Open Document*" class="Okular" instance="okular"] → $doc
-assign [class="Apvlv" instance="apvlv"] → $doc
-assign [class="Zathura" instance="zathura"] → $doc
-assign [class="Xpdf" instance="openDialog_popup"] → $doc
-assign [class="Evince" instance="evince"] → $doc
-assign [class="XDvi"] → $doc
 
 assign [instance="gparted"] → $admin
 
@@ -176,64 +201,49 @@ assign [title="Explorer.exe"] → $wine
 assign [class="UE4Editor"] → $wine
 assign [class="XRebirth"] → $wine
 
-for_window [class="XRebirth"] floating enable border normal
-
-for_window [class="Emacs" instance="emacs" title="Question"] floating enable border normal
+for_window [class="XRebirth"] floating enable
+bindsym $mod+F1 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh idea'
+bindsym $mod+F2 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh webstorm'
+bindsym $mod+F3 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh clion'
+bindsym $mod+F4 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh android-studio'
 
 assign [class="Gimp"] → $gimp
-for_window [class="Gimp" window_role="gimp-file-open"] floating enable border normal
-for_window [class="Gimp" window_role="gimp-file-save"] floating enable border normal
-for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable border normal
-for_window [class="Gimp" window_role="gimp-image-new"] floating enable border normal
-for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable border normal
+for_window [class="Gimp" window_role="gimp-file-open"] floating enable
+for_window [class="Gimp" window_role="gimp-file-save"] floating enable
+for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable
+for_window [class="Gimp" window_role="gimp-image-new"] floating enable
+for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable
 
-for_window [class="Firefox" window_role="Manager" instance="Download"] floating enable border normal
-for_window [class="Firefox" instance="Dialog"] floating enable border normal
-for_window [class="Firefox" window_role="Organizer"] floating enable border normal
-for_window [class="Firefox" window_role="GtkFileChooserDialog"] floating enable border normal
+for_window [instance="Dialog"] mark _dialog, floating enable
+for_window [window_role="Organizer"] mark _dialog, floating enable
+for_window [window_role="Manager" instance="Download"] mark _dialog, floating enable
 
-for_window [class="feh"] floating enable border normal
-for_window [class="qiv"] floating enable border normal
+for_window [window_role="GtkFileChooserDialog"] mark _file_select, floating enable
 
-for_window [class="Xfce"] floating enable border normal
-for_window [class="Xmessage"] floating enable border normal
-for_window [class="XFontSel"] floating enable border normal
-for_window [class="XCalc"] floating enable border normal
-for_window [class="com-sun-javaws-Main"] floating enable border normal
+for_window [class="(feh|qiv)"] mark _img, floating enable
 
-for_window [instance="console"] floating enable border normal
-for_window [instance="gdb"] floating enable border normal
-for_window [instance="mixer"] floating enable border normal
-for_window [instance="htop"] floating enable border normal
-for_window [instance="gcolor2"] floating enable border normal
-for_window [instance="gpick"] floating enable border normal
+for_window [class="Xfce"] floating enable
+for_window [class="^(Xmessage|XFontSel|XCalc)$"] floating enable
+for_window [class="com-sun-javaws-Main"] floating enable
 
-assign [class="jetbrains-idea.*"] → $ide
-assign [class="jetbrains-webstorm.*"] → $ide
-assign [class="jetbrains-clion.*" instance="*"] → $ide
-assign [class="jetbrains-android-studio.*"] → $ide
-
-for_window [instance="sun-awt-X11-XWindowPeer"] floating enable border normal
-for_window [instance="sun-awt-X11-XDialogPeer"] floating enable border normal
-for_window [instance="sun-awt-X11-XFramePeer"]  floating enable border normal
+assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"] → $ide
+for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
+for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
 
 assign [instance="recoll"] search
-for_window [instance="stardict"] floating enable border normal
-for_window [instance="lxappearance"] floating enable border normal
-for_window [class="Awf-gtk3"] floating enable border normal
-for_window [class="rdesktop" instance="rdesktop"] floating enable border normal
-for_window [class="Conky"] floating enable border normal
-for_window [class="cool-retro-term"] floating enable border normal
-for_window [class="Tilda" instance="tilda"] floating enable border normal
-for_window [class="Guake" instance="guake"] floating enable border normal
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable border normal
-for_window [instance="wicd"] floating enable border normal
-for_window [instance="ranger"] floating enable border normal
-for_window [class="ranger"] floating enable border normal
-for_window [class="caja"] floating enable border normal
-for_window [class="Nicotine" instance="nicotine"] floating enable border normal
-for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
-for_window [class="Nicotine.py" instance="nicotine.py"] floating enable border normal
+for_window [instance="stardict"] floating enable
+for_window [instance="lxappearance"] floating enable
+for_window [class="Awf-gtk3"] floating enable
+for_window [class="rdesktop" instance="rdesktop"] floating enable
+for_window [class="Conky"] floating enable
+for_window [class="cool-retro-term"] mark _term, floating enable
+for_window [class="^(Tilda|Guake)$"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [instance="wicd"] floating enable
+for_window [instance="ranger"] floating enable
+for_window [class="ranger"] floating enable
+for_window [class="caja"] floating enable
+for_window [class="Nicotine.*" instance="nicotine"] floating enable
 
 assign [class="^(VirtualBox|vmware)$"] $vm
 assign [class="QEMU"] $vm
@@ -243,15 +253,14 @@ assign [instance="spicy"] $vm
 assign [class="inkscape"] graphic
 
 bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
-bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
 bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
-#bindsym $mod+3 exec i3-cycle up
+bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
 
 for_window [class="mpv" instance="webcam_mpv"] mark webcam
 for_window [class="mpv"] mark media
 
 bindsym $mod+Shift+b exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
-bindsym $mod+b exec i3-input -f $myfont -F '[con_mark=%s] focus' -P 'Go to mark: '
+bindsym $mod+b exec i3-msg [class=mpv] focus
 
 # #black
 # set_from_resource color0  #020202
@@ -309,7 +318,6 @@ set $c_dark_grey        #282828
 set $c_neutral_grey     #3c3836
 set $c_bright_grey      #a89984
 
-# set colors
 # name                      border              back                text                indicator           child_border
 client.focused_inactive     $c_neutral_blue     $c_dark_blue        $c_white            $c_dark_blue        $c_dark_blue
 client.focused              $c_neutral_blue     $c_bright_blue      $c_black            $c_bright_yellow    $c_neutral_blue
@@ -318,18 +326,7 @@ client.urgent               $c_bright_red       $c_neutral_red      $c_white    
 client.placeholder          #000000             $c_black            $c_neutral_blue     #000000             $c_black
 client.background           $c_black
 
-new_window normal 2
-new_float normal 2
-
-floating_modifier $mod
-focus_on_window_activation smart
-
 bindsym $mod+Control+q kill
-
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -338,7 +335,8 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+colon move right
 
 bindsym $alt+g exec rofi -show
-# bindsym $alt+g exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
+bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
+bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
@@ -347,17 +345,6 @@ bindsym $mod+slash workspace back_and_forth
 bindsym $mod+Shift+a focus parent
 bindsym $mod+Shift+d focus child
 
-bindsym $mod+a exec i3-input -f $myfont -F '[con_mark=%s] move container to workspace current' -P 'Fetch mark: ', mode "default"
-
-# switch to workspace 
-bindsym $mod+4 workspace  $ws4
-bindsym $mod+5 workspace  $ws5
-bindsym $mod+6 workspace  $ws6
-bindsym $mod+7 workspace  $ws7
-bindsym $mod+9 workspace  $ws9
-bindsym $mod+0 workspace  $ws10
-
-bindsym $mod+r mode "resize"
 
 for_window [class=".*"]     title_format "%class :: %instance :: %title"
 for_window [class="^URxvt"] title_format "Terminal :: %instance :: %title"
@@ -371,17 +358,10 @@ mode "focused" {
     bindsym a exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
     bindsym g exec i3-input -f $myfont -F '[con_mark=%s] focus' -P 'Go to mark: '
 
-    # Assign marks to keys 1-5
-    bindsym Shift+1 mark mark1
-    bindsym Shift+2 mark mark2
-
     # Exit to the default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
-#bindsym $mod+n mode "focused"
-#bindsym $alt+n mode "default"
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -409,15 +389,6 @@ mode "resize" {
     bindsym Control+C mode "default"
     bindsym Control+G mode "default"
 }
-
-bindsym $mod+Pause mode "$mode_system"
-
-
-set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
-mode "$passthrough_keys" {
-        bindcode Alt+Shift+22 mode "default"
-}
-bindcode Alt+Shift+22 mode "$passthrough_keys"
 
 mode "move" {
 	bindsym $alt+h move left 1 px
@@ -449,22 +420,26 @@ mode "move" {
 	bindsym Escape $exit
 }
 
-bindsym $mod+Shift+w mode "layout"
 
-mode "layout" {
+mode "[Layout]" {
 	bindsym grave layout default; $exit
-	bindsym 1 layout tabbed; $exit
-	bindsym 2 layout stacking; $exit
-	bindsym 3 layout splith; $exit
-	bindsym 4 layout splitv; $exit
+	bindsym t layout tabbed; $exit
+	bindsym s layout stacking; $exit
+	bindsym h layout splith; $exit
+	bindsym v layout splitv; $exit
 
-    bindsym h split h
-    bindsym v split v
+    bindsym h split h; $exit
+    bindsym v split v; $exit
 
 	bindsym j split vertical; $exit
 	bindsym k split vertical; $exit
 	bindsym h split horizontal; $exit
 	bindsym l split horizontal; $exit
+
+    bindsym Control+W move up
+    bindsym Control+S move down
+    bindsym Control+A move left
+    bindsym Control+D move right
 
 	# toggle [stacking, tabbed, splith, splitv]
 	bindsym a layout toggle all; $exit
@@ -477,21 +452,6 @@ mode "layout" {
 	bindsym Shift+f fullscreen global; $exit
 	# toggle [floating, tiled]
 	bindsym space floating toggle; $exit
-
-	# borders
-	bindsym b mode "border"
-
-	bindsym $mod+space $return
-	bindsym Escape $exit
-}
-
-mode "border" {
-	# cycle through border styles
-	bindsym space border toggle; $exit
-
-	bindsym 0 border none; $exit
-	bindsym 1 border 1pixel; $exit
-	bindsym 2 border normal; $exit
 
 	bindsym $mod+space $return
 	bindsym Escape $exit
@@ -533,12 +493,10 @@ mode "gaps-inner" {
 bar {
     status_command    i3status
     position          bottom
-    #mode              hide
     workspace_buttons yes
     tray_output       primary
-    #binding_mode_indicator no
-    #i3bar_command i3bar -t
     binding_mode_indicator yes
+    i3bar_command i3bar -t
     
     colors {
             background #000000
@@ -551,3 +509,33 @@ bar {
         }
 }
 # vim:filetype=i3
+
+# kpress(M4..Ct.."G",     function() rofi.goto_or_create_ws(core.current()) end),
+# kpress(M4..Ct.."W",     function(_) _:push_direction('up') end),
+# kpress(M4..Ct.."A",     function(_) _:push_direction('left') end),
+# kpress(M4..Ct.."S",     function(_) _:push_direction('down') end),
+# kpress(M4..Ct.."D",     function(_) _:push_direction('right') end),
+# kpress(M4..Sh.."1",     function() withtag('emacs', 'Emacs', nil, 'geditor') end),
+# kpress(M4..Ct.."1",     function() withtag('atom', 'Atom', nil, 'aeditor') end),
+# kpress(M4..Ct.."T",     function() withtag('vuze', 'Vuze', nil, 'torrent') end),
+# kpress(M4..Sh.."L",     function() withtag(nil, '_logs_', nil, 'logs') end),
+# kpress(M4.."W",         function() app.byinstance_withtag(
+#     'firefox || /usr/bin/firefox-developer',
+#     'Firefox',
+#     'Navigator',
+#     nil,
+#     'www') 
+# end),
+# kpress(M4.."O",         function() withtag('zathura', 'Zathura', 'pdf') end),
+# kpress(M4..Ct.."E",     function() withtag(nil, 'Vmware', nil, 'virt') end),
+# kpress(M4..Ct.."C",     function() 
+#     local downloads_dir_="~/dw/"
+#     local shots_dir_="~/tmp/shots"
+#     app.byclass('~/bin/sx '
+#                 ..'{'
+#                 ..downloads_dir_
+#                 ..','
+#                 ..shots_dir_
+#                 ..'}'..'*', 'Sxiv') 
+# end),
+# kpress(M4..Sh.."E",  function() weechat() end),
