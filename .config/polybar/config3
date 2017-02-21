@@ -6,32 +6,35 @@ margin-bottom = 0
 white = #d1d1d1
 gray = #585858
 black = #090909
-red = #c795ae
-blue = #95aec7
-yellow = #c7ae95
-green = #aec795
+blue = #005f5f
+green = #287373
+
+overline-size = 2
+overline-color = #287373
 
 [bar/Bar]
 bottom=true
+#dock = true
+#override-redirect = true
 wm-restack = i3
-separator = ❭❬ 
-dim-value = 0.5
+
 width = 100%
 height = 22
 
 enable-ipc = true
 
-padding-left = 0
-padding-right = 1
+padding-left  = 0
+padding-right = 0
 
-module-margin-right = 1
-module-margin-left = 0
+module-margin-right = 0
+module-margin-left  = 0
 
-modules-left = date i3 xkeyboard
+separator = ∇
+modules-left = date i3 xkeyboard network temperature
 modules-center = 
 modules-right = mpd volume
 
-background = #66090909
+background = #cc090909
 foreground = ${colors.white}
 
 underline-size = 2
@@ -40,20 +43,20 @@ underline-color = ${colors.white}
 tray-detached = false
 tray-position = right
 tray-offset-x = 0
-tray-maxsize = 
-tray-padding = 
+tray-maxsize = 16
+tray-padding = 0
 
 font-0 = "PragmataPro for Powerline:weight=bold:style=bold:size=12"
-
-[module/xwindow]
-type = internal/xwindow
-label = %title%
-label-maxlen = 30
+font-1 = "Segoe UI Symbol";-2
+font-2 = FreeMono:style=bold:size=12;-2
+font-3 = FontAwesome:style=bold:size=12;-2
 
 [module/i3]
 type = internal/i3
-format = <label-mode> <label-state>
+format-underline = ${colors.blue}
 index-sort = true
+fuzzy-match = true
+format = %{F#287373}[%{F#fff}<label-mode> <label-state>%{F#287373}]
 
 label-focused-font = 4
 label-unfocused-font = 4
@@ -64,38 +67,12 @@ label-unfocused=
 label-unfocused-padding = 1
 label-unfocused-underlinde = ${colors.white}
 
-label-urgent = 
-;label-urgent = %index%!
-;label-urgent-background = ${colors.red}
+label-urgent = [%index%!]
 label-urgent-padding = 1
-label-urgent-foreground = ${colors.red}
-
-label-visible = 
-;label-visible = %index%
+;label-urgent-background = ${colors.gray}
+label-urgent-foreground = ${colors.gray}
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
-
-[module/mpd]
-type = internal/mpd
-host = 127.0.0.1
-port = 6600
-interval = 1
-
-format-online = <label-song>
-format-offline = <label-offline>
-
-label-offline =  no music
-label-offline-foreground = ${colors.gray}
-
-label-song = %artist% - %title%
-label-song-maxlen = 95
-label-song-ellipsis = true
-
-icon-random = S
-icon-repeat = R
-
-toggle-on-foreground = #e60053
-toggle-off-foreground = #66
 
 [module/cpu]
 format-label = internal/cpu
@@ -126,30 +103,15 @@ label = %{F${colors.white}  %percentage_used% %{F-}
 label-underline = ${colors.white}
 label-foreground = ${colors.white}
 
-[module/eth]
-type = internal/network
-interface = enp7s0
-interval = 3.0
-
-format-connected-padding = 1
-format-disconnected-padding = 1
-
-format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
-
-label-connected =  
-label-disconnected = 
-label-disconnected-foreground = ${colors.gray}
-
 [module/date]
 type = internal/date
-date = [%H:%M]
-date-alt = [%H:%M]
+date = %{F#287373}[ %{F#fff}%H:%M%{F#287373} ]
 interval = 5
 format-underline = ${colors.blue}
 format-background = ${colors.black}
 format-foreground = ${colors.white}
-format-padding = 1
+format-padding = 0
+FontAwesome:style=Regular
 
 [module/volume]
 type = internal/volume
@@ -159,35 +121,35 @@ label-volume-foreground = ${root.foreground}
 label-muted =  sound muted
 label-muted-foreground = ${colors.gray}
 
-bar-volume-width = 10
+bar-volume-width = 18
 bar-volume-foreground-0 = ${colors.green}
 bar-volume-foreground-1 = ${colors.green}
 bar-volume-foreground-2 = ${colors.green}
 bar-volume-foreground-3 = ${colors.green}
-bar-volume-foreground-4 = ${colors.yellow}
-bar-volume-foreground-5 = ${colors.red}
+bar-volume-foreground-4 = ${colors.gray}
+bar-volume-foreground-5 = ${colors.white}
 bar-volume-gradient = false
-bar-volume-indicator = 
 bar-volume-indicator-font = 4
 bar-volume-indicator-foreground = ${colors.white}
 bar-volume-fill = 
-bar-volume-fill-font = 4
 bar-volume-empty = 
+bar-volume-fill-font = 4
 bar-volume-empty-font = 4
 bar-volume-empty-foreground = ${colors.gray}
+bar-volume-indicator = >
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 65
 
-format = <label>
+format = #<label>#
 format-underline = ${colors.white}
 format-warn = <label-warn>
-format-warn-underline = ${colors.red}
+format-warn-underline = ${colors.blue}
 
-format-padding = 1
-format-warn-padidng = 1
+format-padding = 0
+format-warn-padidng = 0
 
 label =  %temperature%
 label-warn =  %temperature%
@@ -210,13 +172,29 @@ type = internal/xkeyboard
 blacklist-0 = num lock
  
 format-underline = ${colors.blue}
-format-prefix = "input: "
-format-prefix-foreground = ${colors.red}
+format-prefix =
+format-prefix-foreground = ${colors.white}
  
-label-layout = %layout%
- 
-label-indicator-padding = 4
+label-layout = %{F#287373}< %{F#fff}input: %layout%%{F#287373} >%{F#fff}
+label-indicator-padding = 0
 label-indicator-background = ${colors.blue}
-label-indicator-underline = ${colors.red}
+label-indicator-underline = ${colors.blue}
+
+[module/mpd]
+type = custom/script
+exec = ~/.config/i3/mpd.lua
+interval = 0.05
+
+[module/network]
+type = custom/script
+exec = ~/bin/mon/network_speed.sh
+tail = true
+label = %output:0:20:...%
+format = %{o#ff9900 +o} orange overline %{o#0000ff} blue overline %{o-} default overline color %{-o} overline disabled 
+#format = %{F#287373}[ %{F#fff}<label>%{F#287373} ]%{F#fff}
+#format-underline = ${colors.blue}
+#format-overline = ${colors.blue}
+interval = 0
+
 
 ; vim:ft=dosini
