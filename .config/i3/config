@@ -1,3 +1,7 @@
+# Placeholder for yabar
+# exec zsh -c "dzen2 -y -1 -h 38 -dock & sleep 0.5s && transset-df --id $(printf '0x%x' $(xdotool search --classname dzen2)) 0"
+# exec yabar -c ~/.config/yabar/main.conf
+
 set shmlog on
 set workspace_layout tabbed
 
@@ -40,8 +44,8 @@ client.background       #000000
 #--[ Gaps ]--------------------------------
 smart_gaps on
 smart_borders on
-gaps inner 8
-gaps outer 4
+gaps inner 4
+gaps outer 8
 hide_edge_borders both 
 #------------------------------------------
 set $exit mode "default"
@@ -58,33 +62,33 @@ bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
 # }
 # bindcode Alt+Shift+22 mode "$passthrough_keys"
 #------------------------------------------
-bindsym Print exec --no-startup-id ~/bin/scripts/screenshot
-bindsym $alt+Print exec --no-startup-id ~/bin/scripts/screenshot
+bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 ~/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
+bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
 # kpress_wait("w",   function() submapped(rofi.renameworkspace()) end),
 # kpress_wait("f",   function(_) submapped(rofi.renameframe(_)) end),
 #------------------------------------------
 
-set $ws1   1:term
-set $ws2   2:web
+set $ws1   1:term
+set $ws2   2:web
 set $ws3   3:doc
-set $ws4   4:dev
+set $ws4   4:dev
 set $ws5   5:media
 set $ws6  6:gimp
 set $ws7  7:admin
-set $ws8  8:ide
+set $ws8   8:ide
 set $ws9   9:steam
 set $ws10  10:torrent
 set $ws11 11:vm
 set $ws12 12:wine
 
-set $term     1:term
-set $web      2:web
+set $term     1:term
+set $web      2:web
 set $doc      3:doc
-set $dev      4:dev
+set $dev      4:dev
 set $media    5:media
 set $gimp    6:gimp
 set $admin   7:admin
-set $ide     8:ide
+set $ide      8:ide
 set $steam    9:steam
 set $torrent  10:torrent
 set $vm      11:vm
@@ -438,17 +442,6 @@ mode "gaps-inner" {
 	bindsym $mod+space $return
 	bindsym Escape $exit
 }
-
-
-# bar {
-#     position          bottom
-#     workspace_buttons yes
-#     tray_output       primary
-#     binding_mode_indicator no
-#     i3bar_command yabar -c ~/.config/yabar/main.conf
-# }
-
-exec yabar -c ~/.config/yabar/main.conf
 
 # vim:filetype=i3
 
