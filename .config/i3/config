@@ -17,8 +17,8 @@ mouse_warping none # warp the mouse to the middle of the window when changing to
 popup_during_fullscreen smart
 
 # Disable titlebar
-new_window 1pixel
-new_float 1pixel
+new_window pixel 2
+new_float pixel 3
 
 show_marks no
 
@@ -27,7 +27,15 @@ set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) re
 
 set $soft_restart killall -SIGUSR1 i3status
 
-default_orientation vertical
+default_orientation horizontal
+
+#--[ Colorscheme ]----------------------------------------------------
+client.focused_inactive #121212   #000000   #121212  #121212   #121212
+client.focused          #002b36   #000000   #002b36  #002b36   #002b36
+client.unfocused        #101010   #000000   #151515  #101010   #101010
+client.urgent           #4c438b   #000000   #4c438b  #4c438b   #4c438b
+client.placeholder      #000000   #000000   #002b36  #000000   #002b36
+client.background       #000000
 
 #--[ Gaps ]--------------------------------
 smart_gaps on
@@ -42,14 +50,16 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+Shift+w mode "[Layout]"
 #------------------------------------------
+bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
 
-set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
-mode "$passthrough_keys" {
-        bindcode Alt+Shift+22 mode "default"
-}
-bindcode Alt+Shift+22 mode "$passthrough_keys"
-# kpress("Print", function() make_scr() end),
-# kpress(M1.."Print", function() make_current_window_screenshot() end),
+# set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
+# mode "$passthrough_keys" {
+#         bindcode Alt+Shift+22 mode "default"
+# }
+# bindcode Alt+Shift+22 mode "$passthrough_keys"
+#------------------------------------------
+bindsym Print exec --no-startup-id ~/bin/scripts/screenshot
+bindsym $alt+Print exec --no-startup-id ~/bin/scripts/screenshot
 # kpress_wait("w",   function() submapped(rofi.renameworkspace()) end),
 # kpress_wait("f",   function(_) submapped(rofi.renameframe(_)) end),
 #------------------------------------------
@@ -80,13 +90,19 @@ set $torrent  10:torrent
 set $vm      11:vm
 set $wine    12:wine
 
+# for_window [class="^.*"] border pixel 2
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
+for_window [class="Sxiv$"] floating enable, move position center, focus
+for_window [instance="^(wim|nwim)$"] focus
+
+set $im_geom move absolute position 1372 127, resize set 528 1029
+
+for_window [class="^(skypeforlinux)$"] mark skype_im, move scratchpad, $im_geom
+for_window [instance="telegram-desktop"] mark telegram_im, move scratchpad, $im_geom
 
 for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
 for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position 293 0, resize set 1250 700
-for_window [class="^(skypeforlinux)$"] mark skype_im, move scratchpad, move absolute position 100 100, resize set 500 600
-for_window [instance="telegram-desktop"] mark telegram_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [instance="kopete"] mark kopete_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [class="ViberPC"] mark viber_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [instance="finch"] mark finch_im, move scratchpad, move absolute position 100 100, resize set 500 600
@@ -117,6 +133,7 @@ for_window [window_type="dialog|menu"] floating enable
 # no_focus [window_role="pop-up"]
 # for_window [window_role="pop-up"] floating enable
 
+assign [class="Sxiv"] → sxiv
 assign [instance="weechat-curses"] → $weechat
 assign [instance="_weechat_"] → $weechat
 assign [class="^libreoffice.*"] → $doc
@@ -162,6 +179,8 @@ mode "alt_e" {
     bindsym t exec ~/bin/scripts/telegram, mode "default"
     bindsym $mod+t exec ~/bin/scripts/telegram, mode "default"
     bindsym $alt+t exec ~/bin/scripts/telegram, mode "default"
+	# toggle [floating, tiled]
+	bindsym Shift+d floating toggle; $exit
     
     bindsym Return $exit
     bindsym Escape $exit
@@ -261,70 +280,6 @@ for_window [class="mpv"] mark media
 
 bindsym $mod+Shift+b exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
 bindsym $mod+b exec i3-msg [class=mpv] focus
-
-# #black
-# set_from_resource color0  #020202
-# #lightblack
-# set_from_resource color8  #5E5E5E
-# #red
-# set_from_resource color1  #8A2F58
-# #lightred
-# set_from_resource color9  #CF4F88
-
-# set_from_resource color2  #287373
-# set_from_resource color10 #53A6A6
-# set_from_resource color3  #914E89
-# set_from_resource color11 #BF85CC
-# set_from_resource color4  #395573
-# set_from_resource color12 #4779B3
-# set_from_resource color5  #5E468C
-# set_from_resource color13 #7F62B3
-# set_from_resource color6  #2B7694
-# set_from_resource color14 #47959E
-# set_from_resource color7  #899CA1
-# set_from_resource color15 #C0C0C0
-
-# client.focused            $color2          $color2          $color4     $color2
-# client.focused_inactive   $color2          $color2          $color15    $color2
-# client.unfocused          $color0          $color0          $color15    $color2
-# client.urgent             $color2          $color2          $color1     $color2
-
-# Colors
-# inspired by gruvbox
-set $c_bright_red       #fb4934
-set $c_neutral_red      #cc241d
-set $c_dark_red         #9d0006
-set $c_bright_green     #b8bb26
-set $c_neutral_green    #98971a
-set $c_dark_green       #79740e
-set $c_bright_yellow    #fabd2f
-set $c_neutral_yellow   #d79921
-set $c_dark_yellow      #b57614
-set $c_bright_blue      #83a598
-set $c_neutral_blue     #458588
-set $c_dark_blue        #076678
-set $c_bright_purple    #d3869b
-set $c_neutral_purple   #b16286
-set $c_dark_purple      #8f3f71
-set $c_bright_aqua      #8ec07c
-set $c_neutral_aqua     #689d6a
-set $c_dark_aqua        #427b58
-set $c_bright_orange    #fe8019
-set $c_neutral_orange   #d65d0e
-set $c_dark_orange      #af3a03
-set $c_black            #1d2021
-set $c_white            #ebdbb2
-set $c_dark_grey        #282828
-set $c_neutral_grey     #3c3836
-set $c_bright_grey      #a89984
-
-# name                      border              back                text                indicator           child_border
-client.focused_inactive     $c_neutral_blue     $c_dark_blue        $c_white            $c_dark_blue        $c_dark_blue
-client.focused              $c_neutral_blue     $c_bright_blue      $c_black            $c_bright_yellow    $c_neutral_blue
-client.unfocused            $c_neutral_grey     $c_dark_grey        $c_bright_grey      $c_dark_grey        $c_dark_grey
-client.urgent               $c_bright_red       $c_neutral_red      $c_white            $c_bright_red       $c_neutral_red
-client.placeholder          #000000             $c_black            $c_neutral_blue     #000000             $c_black
-client.background           $c_black
 
 bindsym $mod+Control+q kill
 
@@ -447,13 +402,7 @@ mode "[Layout]" {
 	bindsym s layout toggle split; $exit
 	# toggle [stacking, tabbed, split]
 	bindsym t layout toggle; $exit
-	# toggle fullscreen
-	bindsym f fullscreen; $exit
-	bindsym Shift+f fullscreen global; $exit
-	# toggle [floating, tiled]
-	bindsym space floating toggle; $exit
 
-	bindsym $mod+space $return
 	bindsym Escape $exit
 }
 
@@ -490,24 +439,17 @@ mode "gaps-inner" {
 	bindsym Escape $exit
 }
 
-bar {
-    status_command    i3status
-    position          bottom
-    workspace_buttons yes
-    tray_output       primary
-    binding_mode_indicator yes
-    i3bar_command i3bar -t
-    
-    colors {
-            background #000000
-            statusline #ffffff
-    
-            focused_workspace  #ffffff #000000
-            active_workspace   #ffffff #000000
-            inactive_workspace #888888 #000000
-            urgent_workspace   #ffffff #900000
-        }
-}
+
+# bar {
+#     position          bottom
+#     workspace_buttons yes
+#     tray_output       primary
+#     binding_mode_indicator no
+#     i3bar_command yabar -c ~/.config/yabar/main.conf
+# }
+
+exec yabar -c ~/.config/yabar/main.conf
+
 # vim:filetype=i3
 
 # kpress(M4..Ct.."G",     function() rofi.goto_or_create_ws(core.current()) end),
@@ -528,14 +470,5 @@ bar {
 # end),
 # kpress(M4.."O",         function() withtag('zathura', 'Zathura', 'pdf') end),
 # kpress(M4..Ct.."E",     function() withtag(nil, 'Vmware', nil, 'virt') end),
-# kpress(M4..Ct.."C",     function() 
-#     local downloads_dir_="~/dw/"
-#     local shots_dir_="~/tmp/shots"
-#     app.byclass('~/bin/sx '
-#                 ..'{'
-#                 ..downloads_dir_
-#                 ..','
-#                 ..shots_dir_
-#                 ..'}'..'*', 'Sxiv') 
-# end),
 # kpress(M4..Sh.."E",  function() weechat() end),
+
