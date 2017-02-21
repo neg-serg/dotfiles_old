@@ -1,6 +1,7 @@
 [global/wm]
 margin-top = 0
-margin-bottom = 0
+margin-bottom = -2
+#margin-bottom = 0
 
 [colors]
 white = #d1d1d1
@@ -14,19 +15,17 @@ bottom=true
 wm-restack = i3
 
 height=22
-
 spacing = 0
-
 width = 100%
-
 enable-ipc = true
 
-padding-left  = 1 # offset from x
-padding-right = 1 # offset from -x
+padding-left  = 0 # offset from x
+padding-right = 0 # offset from -x
 
 module-margin-right = 1 ; looks nice
 module-margin-left  = 0
 
+#separator = 
 #separator = >
 modules-left = date i3 xkeyboard network
 modules-center = 
@@ -225,5 +224,4 @@ font-0 = fixed
 [module/hack]
 type = custom/text
 content = -----------------
-
 ; vim:ft=dosini
