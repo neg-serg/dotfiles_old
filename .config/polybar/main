@@ -31,7 +31,7 @@ modules-left = date i3 xkeyboard network
 modules-center = 
 modules-right = mpd 
 
-background = #cc090909
+background = #bb020209
 foreground = ${colors.white}
 
 underline-size = 1
@@ -187,7 +187,7 @@ type = custom/script
 exec = ~/bin/mon/network_speed.sh
 tail = true
 label = %output:0:30:...%
-format = %{F#287373}[ %{F#fff}<label>%{F#287373} ]%{F#fff}
+format = %{F#287373}[ %{F#fff}<label>%{F#287373}]%{F#fff}
 format-underline = ${colors.blue}
 interval = 0
 
