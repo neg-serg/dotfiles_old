@@ -439,8 +439,8 @@ mode "gaps-inner" {
 	bindsym Escape $exit
 }
 
-exec --no-startup-id polybar -c ~/.config/polybar/config3 tiny
-exec --no-startup-id polybar -c ~/.config/polybar/config3 Bar
+exec --no-startup-id polybar -c ~/.config/polybar/main tiny
+exec --no-startup-id polybar -c ~/.config/polybar/main main
 
 # vim:filetype=i3
 
@@ -463,4 +463,3 @@ exec --no-startup-id polybar -c ~/.config/polybar/config3 Bar
 # kpress(M4.."O",         function() withtag('zathura', 'Zathura', 'pdf') end),
 # kpress(M4..Ct.."E",     function() withtag(nil, 'Vmware', nil, 'virt') end),
 # kpress(M4..Sh.."E",  function() weechat() end),
-

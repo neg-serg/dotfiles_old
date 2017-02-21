@@ -27,10 +27,11 @@ function windowchef_restart(){
 }
 
 function i3_restart(){
+    polybar_cfg=${XDG_CONFIG_HOME}/polybar/main
     # kill any current poppers (thanks Dylan)
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
         ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
-        {polybar -c ~/.config/polybar/config3 tiny; sleep .1s; polybar -c ~/.config/polybar/config3 Bar} &
+        {polybar -c ${polybar_cfg} tiny; sleep .2s; polybar -c ${polybar_cfg} main} &
         i3-msg reload
     else
         i3-msg restart
