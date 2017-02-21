@@ -13,12 +13,7 @@ green = #287373
 bottom=true
 wm-restack = i3
 
-border-top = 1
-border-bottom = 0
-border-left = 1
-border-right = 1
 spacing = 0
-border-color = #ee287373
 
 width = 100%
 
@@ -33,7 +28,7 @@ module-margin-left  = 0
 #separator = >
 modules-left = date i3 xkeyboard network
 modules-center = 
-modules-right = mpd volume
+modules-right = mpd 
 
 background = #cc090909
 foreground = ${colors.white}
@@ -196,13 +191,13 @@ format-underline = ${colors.blue}
 interval = 0
 
 [bar/tiny]
-margin-top = -10
-margin-bottom = 4
+margin-top = 0
+margin-bottom = 0
 
 bottom=true
 
 width = 100%
-height = 1
+height = 2
 
 padding-left  = 0
 padding-right = 0
@@ -213,8 +208,13 @@ modules-left = hack
 modules-center = hack
 modules-right = hack
 
-background = #99287373
-foreground = #99287373
+border-top = 1
+border-bottom = 0
+border-left = 0
+border-right = 0
+border-color = #ee287373
+background = #00000000
+foreground = #00000000
 underline-size = 0
 underline-color = ${colors.white}
 
