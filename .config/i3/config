@@ -1,7 +1,3 @@
-# Placeholder for yabar
-# exec zsh -c "dzen2 -y -1 -h 38 -dock & sleep 0.5s && transset-df --id $(printf '0x%x' $(xdotool search --classname dzen2)) 0"
-# exec yabar -c ~/.config/yabar/main.conf
-
 set shmlog on
 set workspace_layout tabbed
 
@@ -442,6 +438,9 @@ mode "gaps-inner" {
 	bindsym $mod+space $return
 	bindsym Escape $exit
 }
+
+exec --no-startup-id polybar -c ~/.config/polybar/config3 tiny
+exec --no-startup-id polybar -c ~/.config/polybar/config3 Bar
 
 # vim:filetype=i3
 
