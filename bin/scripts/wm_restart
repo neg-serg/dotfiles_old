@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+function wait_a_bit(){
+    sleep .2s; 
+}
+
 function soft_restart(){
     if [[ ${windowmanager} == "notion" ]]; then
         restart_panel
@@ -31,7 +35,12 @@ function i3_restart(){
     # kill any current poppers (thanks Dylan)
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
         ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
-        {polybar -c ${polybar_cfg} tiny; sleep .2s; polybar -c ${polybar_cfg} main} &
+        {
+            polybar -c ${polybar_cfg} tiny; 
+            wait_a_bit
+            polybar -c ${polybar_cfg} main
+        }
+        wait_a_bit
         i3-msg reload
     else
         i3-msg restart
