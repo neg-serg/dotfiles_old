@@ -506,7 +506,6 @@ killProcess() {
 
 # formats and echos according to $FORMATSTRING
 formatPrint() {
-    # this is super hacky but works!
     FORMATSTRING=$(echo "${FORMATSTRING}" | sed "
     s#%year%#$(getMetadata date)#;
     s#%genre%#$(getMetadata genre)#;
@@ -525,10 +524,10 @@ formatPrint() {
     s#%single%#$(getLoopStatus loop-file)#;
     s#%playlistlength%#$(getValue playlist-count)#;
     s#%position%#$(getValue $[playlist-pos + 1])#;
+    s#%filename%#$(getMediaFilename)#;
     ")
-    #s#%filename%#$(getMediaFilename)#;
 
-    echo "${FORMATSTRING}"
+    echo "${FORMATSTRING}" | grep .
 }
 
 # print default status of mpv instance
