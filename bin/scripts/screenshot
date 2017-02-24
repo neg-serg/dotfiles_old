@@ -1,0 +1,26 @@
+#!/bin/bash
+
+scr_dir=~/tmp/shots
+scr_prompt=false
+window='root'
+name="screenshot"
+filename="${name}-$(date +%Y-%m-%d_%H-%M-%S).png"
+size_=200
+colorspace='0.96,0.5,0.09'
+urgency_=normal
+summary_="${scr_dir}/${filename}"
+
+function shot_notify(){
+    ~/bin/scripts/pic_notify "${summary_}"
+}
+
+case $1 in
+    current) 
+        maim -s -p 0 -c ${colorspace} "${summary_}" 
+        shot_notify
+        ;;
+    *) 
+        maim -p 0 -c ${colorspace} "${summary_}" 
+        shot_notify
+        ;;
+esac
