@@ -79,6 +79,8 @@ set {$torrent,$ws10}  10:torrent
 set {$vm,$ws11} 11:vm
 set {$wine,$ws12} 12:wine
 set {$spotify,ws13}  13: spotify
+set {$sxiv}  [pic]
+set {$graph}  [graph]
 
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
@@ -121,21 +123,46 @@ for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focu
 # no_focus [window_role="pop-up"]
 # for_window [window_role="pop-up"] floating enable
 
-assign [class="Sxiv"]                                                            → sxiv
-assign [instance="weechat-curses"]                                               → $weechat
-assign [instance="_weechat_"]                                                    → $weechat
-assign [class="^libreoffice.*"]                                                  → $doc
-assign [class="abiword"]                                                         → $doc
-assign [class="guncharmap"]                                                      → $doc
-assign [class="Cr3" instance="cr3"]                                              → $doc
-assign [class="spotify"]                                                         → spotify
-assign [class="Atom"]                                                            → $dev
-assign [instance="^(subl3|sublime_text)$"]                                       → $dev
-assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"]           → $dev
-assign [class="simple-scan"]                                                     → graph
-assign [class="gthumb"]                                                          → graph
-assign [instance="_logs_"]                                                       → $admin
-assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"]               → $admin
+assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"]     → $ide
+assign [instance="recoll"]                                             → $admin
+assign [instance="^MainTerminal$"]                                     → $term
+assign [class="^MainTerminal$"]                                        → $term
+assign $browsers                                                       → $web
+assign [instance="^(wim|nwim)$"]                                       → $dev
+assign [class="(?i)^.*vim$"]                                           → $dev
+assign [class="^(Vuze|Ktorrent)$"]                                     → $torrent
+assign [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"]                  → $media
+assign $steam_games                                                    → $steam
+assign [class="Emacs" instance="emacs"]                                → $dev
+assign [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]                  → $doc
+assign [title="Open Document*" class="Okular" instance="okular"]       → $doc
+assign [instance="gparted"]                                            → $admin
+assign [class="Crossover"]                                             → $wine
+assign [class="(?i)Wine.*"]                                            → $wine
+assign [title=".*.exe"]                                                → $wine
+assign [class="UE4Editor"]                                             → $wine
+assign [class="XRebirth"]                                              → $wine
+assign [class="Sxiv"]                                                  → $sxiv
+assign [instance="weechat-curses"]                                     → $weechat
+assign [instance="_weechat_"]                                          → $weechat
+assign [class="^libreoffice.*"]                                        → $doc
+assign [class="abiword"]                                               → $doc
+assign [class="guncharmap"]                                            → $doc
+assign [class="Cr3" instance="cr3"]                                    → $doc
+assign [class="spotify"]                                               → $spotify
+assign [class="Atom"]                                                  → $dev
+assign [instance="^(subl3|sublime_text)$"]                             → $dev
+assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] → $dev
+assign [class="simple-scan"]                                           → $graph
+assign [class="gthumb"]                                                → $graph
+assign [instance="_logs_"]                                             → $admin
+assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"]     → $admin
+assign [class="^(VirtualBox|vmware)$"]                                 → $vm
+assign [class="QEMU"]                                                  → $vm
+assign [instance="qemu-system-x86_64"]                                 → $vm
+assign [class="spicec" instance="spicec"]                              → $vm
+assign [instance="spicy"]                                              → $vm
+assign [class="inkscape"]                                              → $graphic
 
 set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
@@ -180,74 +207,42 @@ mode "password" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-assign [instance="^MainTerminal$"] → $term
-assign [class="^MainTerminal$"] → $term
-assign $browsers → $web
-assign [instance="^(wim|nwim)$"] → $dev
-assign [class="(?i)^.*vim$"] → $dev
-assign [class="^(Vuze|Ktorrent)$"] → $torrent
-assign [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"] → $media
-assign $steam_games → $steam
-assign [class="Emacs" instance="emacs"] → $dev
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 
-assign [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"] → $doc
-assign [title="Open Document*" class="Okular" instance="okular"] → $doc
-
-assign [instance="gparted"] → $admin
-
-assign [class="Crossover"] → $wine
-assign [class="(?i)Wine.*"] → $wine
-assign [title=".*.exe"] → $wine
-assign [class="UE4Editor"] → $wine
-assign [class="XRebirth"] → $wine
 
 for_window [class="XRebirth"] floating enable
 bindsym $mod+{F1,F2,F3,F4} $ror "[workspace=$ide]" '~/bin/scripts/jetbrains.sh {idea,webstorm,clion,android-studio}' focus
 
 assign [class="Gimp"] → $gimp
-for_window [class="Gimp" window_role="gimp-file-{open,save}"] floating enable
-for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable
-for_window [class="Gimp" window_role="gimp-image-new"] floating enable
+for_window [class="Gimp" window_role="gimp-file-{open,save}"]     floating enable
+for_window [class="Gimp" window_role="gimp-message-dialog"]       floating enable
+for_window [class="Gimp" window_role="gimp-image-new"]            floating enable
 for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable
 
-for_window [instance="Dialog"] mark _dialog, floating enable
-for_window [window_role="Organizer"] mark _dialog, floating enable
-for_window [window_role="Manager" instance="Download"] mark _dialog, floating enable
+for_window {[instance="Dialog"],[window_role="Organizer"],[window_role="Manager" instance="Download"]} mark _dialog, floating enable
+for_window [window_role="GtkFileChooserDialog"]                                                        mark _file_select, floating enable
+for_window [class="(feh|qiv)"]                                                                         mark _img, floating enable
 
-for_window [window_role="GtkFileChooserDialog"] mark _file_select, floating enable
+for_window [class="Xfce"]                                                floating enable
+for_window [class="^(Xmessage|XFontSel|XCalc)$"]                         floating enable
+for_window [class="com-sun-javaws-Main"]                                 floating enable
 
-for_window [class="(feh|qiv)"] mark _img, floating enable
-
-for_window [class="Xfce"] floating enable
-for_window [class="^(Xmessage|XFontSel|XCalc)$"] floating enable
-for_window [class="com-sun-javaws-Main"] floating enable
-
-assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"] → $ide
-for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
+for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"]         floating enable
 for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
 
-assign [instance="recoll"] search
-for_window [instance="stardict"] floating enable
-for_window [instance="lxappearance"] floating enable
-for_window [class="Awf-gtk3"] floating enable
-for_window [class="rdesktop" instance="rdesktop"] floating enable
-for_window [class="Conky"] floating enable
-for_window [class="cool-retro-term"] mark _term, floating enable
-for_window [class="^(Tilda|Guake)$"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [instance="wicd"] floating enable
-for_window [instance="ranger"] floating enable
-for_window [class="ranger"] floating enable
-for_window [class="caja"] floating enable
-for_window [class="Nicotine.*" instance="nicotine"] floating enable
-
-assign [class="^(VirtualBox|vmware)$"] $vm
-assign [class="QEMU"] $vm
-assign [instance="qemu-system-x86_64"] $vm
-assign [class="spicec" instance="spicec"] $vm
-assign [instance="spicy"] $vm
-assign [class="inkscape"] graphic
+for_window [instance="stardict"]                                         floating enable
+for_window [instance="lxappearance"]                                     floating enable
+for_window [class="Awf-gtk3"]                                            floating enable
+for_window [class="rdesktop" instance="rdesktop"]                        floating enable
+for_window [class="Conky"]                                               floating enable
+for_window [class="cool-retro-term"] mark _term,                         floating enable
+for_window [class="^(Tilda|Guake)$"]                                     floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"]                  floating enable
+for_window [instance="wicd"]                                             floating enable
+for_window [instance="ranger"]                                           floating enable
+for_window [class="ranger"]                                              floating enable
+for_window [class="caja"]                                                floating enable
+for_window [class="Nicotine.*" instance="nicotine"]                      floating enable
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
