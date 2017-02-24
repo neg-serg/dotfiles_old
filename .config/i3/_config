@@ -53,7 +53,6 @@ bindsym $alt+e mode "alt_e"
 bindsym $mod+r mode "resize"
 bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+Shift+w mode "[Layout]"
-bindsym $mod+Shift+m exec ~/.config/i3/pseudo_fullscreen toggle
 #------------------------------------------
 bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
 bindsym $mod+Shift+BackSpace mode "passthrough_keys"
@@ -61,8 +60,8 @@ mode "passthrough_keys" {
     bindsym $mod+Shift+BackSpace mode "default"
 }
 #------------------------------------------
-bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 ~/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
-bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
+bindsym --release Print exec ~/bin/scripts/screenshot
+bindsym --release Shift+Print ~/bin/scripts/screenshot current
 bindsym $mod+Control+{W,A,S,D} move {up,left,down,right}
 bindsym $mod+Control+G exec ~/.config/i3/i3_switch_workspace
 #------------------------------------------
@@ -82,7 +81,7 @@ set {$wine,$ws12} 12:wine
 
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
-for_window [class="Sxiv$"] floating enable, move position center, focus
+for_window [class="Sxiv$"] move scratchpad, move position 0 0, resize set 1920 1200, focus
 for_window [instance="^(wim|nwim)$"] focus
 
 set $im_geom move absolute position 1372 127, resize set 528 1029
