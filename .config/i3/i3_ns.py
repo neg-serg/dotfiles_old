@@ -1,29 +1,13 @@
 #!/bin/python3
 
-import i3
 import i3ipc
-import sys
-
-def scratchpad_windows():
-    # get containers with appropriate scratchpad state
-    containers = i3.filter(scratchpad_state='changed')
-    # filter out windows (leaf nodes of the above containers)
-    return i3.filter(containers, nodes=[])
-
-# def main():
-#     windows = scratchpad_windows()
-#     # search for focused window among scratchpad windows
-#     if i3.filter(windows, focused=True):
-#         # move that window back to scratchpad
-#         i3.move('scratchpad')
-#     # show the next scratchpad window
-#     i3.scratchpad('show')
-
-# if __name__ == '__main__':
-# main()
+from sys import argv
+from sys import exit
+from itertools import cycle
+from subprocess import check_output
 
 def debug():
-    return 1
+    return 0
 
 def focus():
     print("---------------------ALL--------------------")
@@ -43,6 +27,10 @@ def focus():
 
 def toggle():
     focused = i3.get_tree().find_focused()
+    if visible() > 0:
+        unfocus()
+        return
+
     j=0
     for i in sorted(marked, key=lambda im: im.name):
         if debug():
@@ -62,6 +50,24 @@ def unfocus():
         marked[j].command('move scratchpad')
         j=j+1
 
+def get_windows_on_ws(i3):
+   return filter(lambda x: x.window, i3.get_tree().find_focused().workspace().descendents())
+
+def find_visible_windows(windows_on_workspace):
+    visible_windows = []
+    for w in windows_on_workspace:
+        try:
+            xprop = check_output(['xprop', '-id', str(w.window)]).decode()
+        except FileNotFoundError:
+            raise SystemExit("The `xprop` utility is not found!"
+                             " Please install it and retry.")
+
+        if '_NET_WM_STATE_HIDDEN' not in xprop:
+            visible_windows.append(w)
+
+    return visible_windows
+
+
 def iterate_over():
     j=0
     focused = i3.get_tree().find_focused()
@@ -73,65 +79,46 @@ def iterate_over():
         if focused.id != i.id:
             marked[j].command('move container to workspace current')
             i.command('move scratchpad')
-            # break
-        # else:
-        #     i.command('scratchpad show')
         j=j+1
 
     focus()
 
-def get_marks(i3):
-    """ Returns a list of all currently used marks. """
-    return json.loads(i3.message(i3ipc.MessageType.GET_MARKS, ''))
+def visible():
+    # if len(argv) > 1 and argv[1] == "reverse":
+    #     cycle_windows = cycle(reversed(visible_windows))
+    # else:
+    #     cycle_windows = cycle(visible_windows)
 
-def get_groups(i3):
-    """ Returns a list of sticky groups currently in use. """
-    matches = [ STICKY_GROUP.match(mark) for mark in get_marks(i3) ]
-    return [ match.group(1) for match in matches if match is not None ]
+    # for window in cycle_windows:
+    #     if window.focused:
+    #         focus_to = next(cycle_windows)
+    #         i3.command('[id="%d"] focus' % focus_to.window)
+    #         break
 
-def get_suffixed_mark(i3, mark):
-    """ Returns the name of a currently unused mark starting with the given mark. """
-    marks = get_marks(i3)
+    visible_windows = find_visible_windows(get_windows_on_ws(i3))
 
-    suffix = 1
-    while True:
-        result = '%s_%d' % (mark, suffix)
-        if not result in marks:
-            return result
-        suffix += 1
+    if debug():
+        print("Visible and marked")
 
-def swap(i3, _):
-    """ Swaps each sticky container into the current workspace if possible. """
+    vmarked = 0
+    for w in visible_windows:
+        for i in sorted(marked, key=lambda im: im.name):
+            if w.id == i.id:
+                if debug():
+                    print("{name,id}=", i.name, i.id)
+                    print("name=", w.name)
+                vmarked+=1
 
-    # For each sticky group, try swapping the sticky container into this
-    # workspace.
-    for group in get_groups(i3):
-        # TODO XXX For the (technically invalid) case of the placeholder being
-        # on the same workspace as the sticky container, perhaps we should
-        # first look up the sticky container by mark, check that it's on a
-        # different workspace and then execute the command.
-        i3.command('[workspace="__focused__" con_mark="^_sticky_%s_"] swap container with mark "_sticky_%s"' % (group, group))
-
-def on_new_window(i3, event):
-    instance = event.container.window_instance
-    if not instance:
-        return
-
-    match = re.match(r'^i3-sticky-(.*)$', instance)
-    if not match:
-        return
-
-    mark = get_suffixed_mark(i3, '_sticky_%s' % match.group(1))
-    event.container.command('mark --add %s' % mark)
+    return vmarked
 
 #------------------------------------------------
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        sys.exit('Usage: %s'  % sys.argv[0])
+    if len(argv) < 3:
+        exit('Usage: %s'  % argv[0])
     else:
         i3 = i3ipc.Connection()
         window_list = i3.get_tree().leaves()
-        marked = i3.get_tree().find_marked(sys.argv[1])
+        marked = i3.get_tree().find_marked(argv[1])
 
         # i3 = i3ipc.Connection()
         # i3.on('workspace::focus', swap)
@@ -139,14 +126,12 @@ if __name__ == '__main__':
         # i3.on('window::fullscreen_mode', swap)
         # # TODO XXX Handle window::mark (does not yet exist)
         # i3.main()
-        if sys.argv[2] == "show":
+        if argv[2] == "show":
             focus()
-        elif sys.argv[2] == "hide":
+        elif argv[2] == "hide":
             unfocus()
-        elif sys.argv[2] == "toggle":
+        elif argv[2] == "toggle":
             toggle()
-        elif sys.argv[2] == "next":
+        elif argv[2] == "next":
             iterate_over()
-        elif sys.argv[1] == "scratch":
-            show_scratch()
 #------------------------------------------------
