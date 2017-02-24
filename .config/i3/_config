@@ -78,6 +78,7 @@ set {$steam,$ws9}   9:steam
 set {$torrent,$ws10}  10:torrent
 set {$vm,$ws11} 11:vm
 set {$wine,$ws12} 12:wine
+set {$spotify,ws13}  13: spotify
 
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
@@ -120,24 +121,24 @@ for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focu
 # no_focus [window_role="pop-up"]
 # for_window [window_role="pop-up"] floating enable
 
-assign [class="Sxiv"] → sxiv
-assign [instance="weechat-curses"] → $weechat
-assign [instance="_weechat_"] → $weechat
+assign [class="Sxiv"]                                                            → sxiv
+assign [instance="weechat-curses"]                                               → $weechat
+assign [instance="_weechat_"]                                                    → $weechat
+assign [class="^libreoffice.*"]                                                  → $doc
+assign [class="abiword"]                                                         → $doc
+assign [class="guncharmap"]                                                      → $doc
+assign [class="Cr3" instance="cr3"]                                              → $doc
+assign [class="spotify"]                                                         → spotify
+assign [class="Atom"]                                                            → $dev
+assign [instance="^(subl3|sublime_text)$"]                                       → $dev
+assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"]           → $dev
+assign [class="simple-scan"]                                                     → graph
+assign [class="gthumb"]                                                          → graph
+assign [instance="_logs_"]                                                       → $admin
+assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"]               → $admin
+
 set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
-assign [class="^libreoffice.*"] → $doc
-assign [class="abiword"] →  $doc
-assign [class="guncharmap"] → $doc
-assign [class="Cr3" instance="cr3"] → $doc
-assign [class="spotify"] → spotify
-assign [class="Atom"] → $dev
-assign [instance="^(subl3|sublime_text)$"] → $dev
-assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] → $dev
-assign [class="simple-scan"] → graph
-assign [class="gthumb"] → graph
-assign [instance="_logs_"] → $admin
-assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] → $admin
-
 for_window [class="yakuake"] floating enable
 
 mode "alt_e" {
@@ -332,15 +333,5 @@ mode "gaps-inner" {
 }
 
 exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
-
-# [nautilus] full_text= 
-# [sublime] full_text= 
-# [steam] full_text= 
-# [spotify] full_text=
-# [ssid] label=
-# [battery] label= 
-# [volume] label=🔊
-# [date] label=
-# [time] label=⏰
 
 # vim:filetype=i3
