@@ -1,20 +1,13 @@
 #!/bin/dash
- 
-c1=#ffffff
-c2=#d7a978
-c3=#728b78
+
+mail_dir=~/.local/mail/gmail
+c1=#fff
  
 colorm() {
-    if [ "$1" -ge "5" ]; then
-        echo %{F${c1}}$1%{F-}
-        elif [ "$1" -ge "1" ]; then
-        echo %{F$c2}$1%{F-}
-        else
-        echo "$1"
-        fi
+    echo %{F${c1}}$1%{F-}
 }
  
-m1=$(find ~/.local/mail/gmail/INBOX -type f | wc -l)
-m2=$(find ~/.local/mail/gmail/INBOX/new -type f | wc -l)
+m1=$(find $mail_dir/INBOX -type f | wc -l)
+m2=$(find $mail_dir/INBOX/new -type f | wc -l)
  
 echo "mail: $(colorm $m1)/$(colorm $m2)"
