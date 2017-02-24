@@ -1,0 +1,11 @@
+#!/bin/sh
+wid=$(xdotool search --classname skypeforlinux)
+if [[ -z "${wid}" ]]; then
+    skypeforlinux
+else
+    source "${XDG_CONFIG_HOME}/.windowmanager"
+    if [[ "${windowmanager}" = "i3" ]]; then
+        i3-msg '[con_mark="skype"] scratchpad show'
+    fi
+fi
+
