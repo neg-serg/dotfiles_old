@@ -1,6 +1,6 @@
 #!/bin/zsh
 font_size=12
-font="Terminus Re33:size=${font_size}"
+font="PragmataPro for Powerline:size=${font_size}"
 width=$[50*${font_size}]
 strlen=$[${font_size}*${font_size}]
 args="$@"
@@ -13,5 +13,5 @@ echo -e "$@" \
     sleep ${timeout}s && \
     kill "$(pgrep -f Dzen_Popup)") \
     | dzen2 -l ${lines} -w ${width} \
-    -bg "#121212" -fg "#ffffff" -x -$[${width}+20] -y -70 \
+    -bg "#000000" -fg "#ffffff" -x -$[${width}+20] -y -70 \
     -fn "${font}" -e "onstart=scrollhome,uncollapse;Dzen_Popup"
