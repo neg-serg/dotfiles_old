@@ -1,0 +1,17 @@
+#!/bin/zsh
+font_size=12
+font="PragmataPro for Powerline:size=${font_size}"
+width=$[50*${font_size}]
+strlen=$[${font_size}*${font_size}]
+args="$@"
+lines=$(wc -l <<< $(fmt -${strlen} <<< $(cat "$2")))
+timeout=$[5+${lines}/2.]
+(echo "Send :: [ -- $1 -- ]";
+    shift;
+    cat "$@" \
+    | fmt -${strlen} & \
+    sleep ${timeout}s && \
+    kill "$(pgrep -f Dzen_Popup)") \
+    | dzen2 -l ${lines} -w ${width} \
+    -bg "#000000" -fg "#ffffff" -x -$[${width}+20] -y -70 \
+    -fn "${font}" -e "onstart=scrollhome,uncollapse;Dzen_Popup"
