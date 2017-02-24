@@ -1,3 +1,7 @@
+set $ror exec ~/.config/i3/ror.sh
+set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
+set $steam_games [class="^(Steam|steam|dota2|darkest.bin.x86_64)$"]
+
 set shmlog on
 set workspace_layout tabbed
 
@@ -52,45 +56,29 @@ bindsym $mod+Shift+w mode "[Layout]"
 bindsym $mod+Shift+m exec ~/.config/i3/pseudo_fullscreen toggle
 #------------------------------------------
 bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
-
-# set $passthrough_keys Suspend all window manager keys exit: Mod+Shift+Backspace)
-# mode "$passthrough_keys" {
-#         bindcode Alt+Shift+22 mode "default"
-# }
-# bindcode Alt+Shift+22 mode "$passthrough_keys"
+bindsym $mod+Shift+BackSpace mode "passthrough_keys"
+mode "passthrough_keys" {
+    bindsym $mod+Shift+BackSpace mode "default"
+}
 #------------------------------------------
 bindsym --release Print exec --no-startup-id "maim -p 0 -c 0.96,0.5,0.09 ~/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
 bindsym --release Shift+Print exec --no-startup-id "maim -s -p 0 -c 0.96,0.5,0.09 $/tmp/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'OK'"
 bindsym $mod+Control+{W,A,S,D} move {up,left,down,right}
-# kpress_wait("w",   function() submapped(rofi.renameworkspace()) end),
-# kpress_wait("f",   function(_) submapped(rofi.renameframe(_)) end),
+bindsym $mod+Control+G exec ~/.config/i3/i3_switch_workspace
 #------------------------------------------
 
-set $ws1   1:term
-set $ws2   2:web
-set $ws3   3:doc
-set $ws4   4:dev
-set $ws5   5:media
-set $ws6  6:gimp
-set $ws7  7:admin
-set $ws8   8:ide
-set $ws9   9:steam
-set $ws10  10:torrent
-set $ws11 11:vm
-set $ws12 12:wine
-
-set $term     1:term
-set $web      2:web
-set $doc      3:doc
-set $dev      4:dev
-set $media    5:media
-set $gimp    6:gimp
-set $admin   7:admin
-set $ide      8:ide
-set $steam    9:steam
-set $torrent  10:torrent
-set $vm      11:vm
-set $wine    12:wine
+set {$term,$ws1}   1:term
+set {$web,$ws2}   2:web
+set {$doc,$ws3}   3:doc
+set {$dev,$ws4}   4:dev
+set {$media,$ws5}   5:media
+set {$gimp,$ws6}  6:gimp
+set {$admin,$ws7}  7:admin
+set {$ide,$ws8}   8:ide
+set {$steam,$ws9}   9:steam
+set {$torrent,$ws10}  10:torrent
+set {$vm,$ws11} 11:vm
+set {$wine,$ws12} 12:wine
 
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
@@ -136,6 +124,8 @@ for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focu
 assign [class="Sxiv"] → sxiv
 assign [instance="weechat-curses"] → $weechat
 assign [instance="_weechat_"] → $weechat
+set $weechat_geom move absolute position 144 20, resize set 1612 1099
+for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
 assign [class="^libreoffice.*"] → $doc
 assign [class="abiword"] →  $doc
 assign [class="guncharmap"] → $doc
@@ -182,29 +172,22 @@ mode "alt_e" {
 	# toggle [floating, tiled]
 	bindsym Shift+d floating toggle; $exit
     
-    bindsym Return $exit
-    bindsym Escape $exit
-    bindsym Control+C $exit
-    bindsym Control+G $exit 
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "password" {
-    bindsym C exec ~/bin/p/copy_pass, $exit
-    bindsym P exec ~/bin/p/paste_pass, $exit
-    bindsym Return $exit
-    bindsym Escape $exit
-    bindsym Control+C $exit
-    bindsym Control+G $exit 
+    bindsym {C,P} exec ~/bin/p/{copy,paste}_pass, $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 assign [instance="^MainTerminal$"] → $term
 assign [class="^MainTerminal$"] → $term
-assign [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"] → $web
+assign $browsers → $web
 assign [instance="^(wim|nwim)$"] → $dev
 assign [class="(?i)^.*vim$"] → $dev
 assign [class="^(Vuze|Ktorrent)$"] → $torrent
 assign [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"] → $media
-assign [class="^(Steam|steam|dota2|darkest.bin.x86_64)$"] → $steam
+assign $steam_games → $steam
 assign [class="Emacs" instance="emacs"] → $dev
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 
@@ -220,14 +203,10 @@ assign [class="UE4Editor"] → $wine
 assign [class="XRebirth"] → $wine
 
 for_window [class="XRebirth"] floating enable
-#bindsym $mod+F1 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh idea'
-#bindsym $mod+F2 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh webstorm'
-#bindsym $mod+F3 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh clion'
-#bindsym $mod+F4 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh android-studio'
+bindsym $mod+{F1,F2,F3,F4} $ror "[workspace=$ide]" '~/bin/scripts/jetbrains.sh {idea,webstorm,clion,android-studio}' focus
 
 assign [class="Gimp"] → $gimp
-for_window [class="Gimp" window_role="gimp-file-open"] floating enable
-for_window [class="Gimp" window_role="gimp-file-save"] floating enable
+for_window [class="Gimp" window_role="gimp-file-{open,save}"] floating enable
 for_window [class="Gimp" window_role="gimp-message-dialog"] floating enable
 for_window [class="Gimp" window_role="gimp-image-new"] floating enable
 for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable
@@ -270,9 +249,13 @@ assign [class="spicec" instance="spicec"] $vm
 assign [instance="spicy"] $vm
 assign [class="inkscape"] graphic
 
-set $ror exec ~/.config/i3/ror.sh
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
+bindsym $mod+Control+v $ror "[class=^(VirtualBox|vmware)$]" vmware focus
+bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
+
+bindsym $mod+Shift+e exec ~/bin/scripts/weechat
+
 bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
 bindsym $mod+Control+t exec i3-run-or-raise -c "Vuze" vuze
 
@@ -291,49 +274,21 @@ bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
-bindsym $alt+{Tab,slash} workspace back_and_forth
-
-for_window [class=".*"]     title_format "%class :: %instance :: %title"
-for_window [class="^URxvt"] title_format "Terminal :: %instance :: %title"
-
-mode "focused" {
-    bindsym b [class="(?i)firefox"] focus, mode "default"
-    bindsym w [class="(?i)terminal" title="weechat"] focus
-    bindsym z [class="(?i)zathura"] focus
-
-    # keybindings for marking and jumping to clients
-    bindsym a exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
-    bindsym g exec i3-input -f $myfont -F '[con_mark=%s] focus' -P 'Go to mark: '
-
-    # Exit to the default mode
-    bindsym {Return,Escape} mode "default"
-}
+bindsym $alt+Tab workspace back_and_forth
+bindsym $mod+slash workspace back_and_forth
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    bindsym j resize shrink left 2 px or 2 ppt
-    bindsym Shift+J resize grow left 2 px or 2 ppt
-
-    bindsym k resize shrink down 2 px or 2 ppt
-    bindsym Shift+K resize grow down 2 px or 2 ppt
-
-    bindsym l resize shrink up 2 px or 2 ppt
-    bindsym Shift+L resize grow up 2 px or 2 ppt
-
-    bindsym semicolon resize shrink right 2 px or 2 ppt
-    bindsym Shift+colon resize grow right 2 px or 2 ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Control+C mode "default"
-    bindsym Control+G mode "default"
+    bindsym {j,Shift+J} resize {shrink,grow} left 2 px or 2 ppt
+    bindsym {k,Shift+K} resize {shrink,grow} down 2 px or 2 ppt
+    bindsym {l,Shift+L} resize {shrink,grow} up 2 px or 2 ppt
+    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 2 px or 2 ppt
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "[Layout]" {
@@ -349,60 +304,35 @@ mode "[Layout]" {
 	# toggle [stacking, tabbed, split]
 	bindsym t layout toggle; $exit
 
-	bindsym Escape $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "gaps" {
 	bindsym {o,i} mode gaps-{outer,inner}
-	bindsym $mod+space $return
-	bindsym Escape $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "gaps-outer" {
-	bindsym plus  gaps outer current plus 5
-	bindsym minus gaps outer current minus 5
+	bindsym {plus,minus}  gaps outer current {plus,minus} 5
 	bindsym 0     gaps outer current set 0
 
-	bindsym Shift+plus  gaps outer all plus 5
-	bindsym Shift+minus gaps outer all minus 5
+	bindsym Shift+{plus,minus}  gaps outer all {plus,minus} 5
 	bindsym Shift+0     gaps outer all set 0
 
-	bindsym $mod+space $return
-	bindsym Escape $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "gaps-inner" {
-	bindsym plus  gaps inner current plus 5
-	bindsym minus gaps inner current minus 5
+	bindsym {plus,minus}  gaps inner current {plus,minus} 5
 	bindsym 0     gaps inner current set 0
 
-	bindsym Shift+plus  gaps inner all plus 5
-	bindsym Shift+minus gaps inner all minus 5
+	bindsym Shift+{plus,minus}  gaps inner all {plus,minus} 5
 	bindsym Shift+0     gaps inner all set 0
 
-	bindsym $mod+space $return
-	bindsym Escape $exit
+    bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-exec --no-startup-id polybar -c ~/.config/polybar/main tiny
-exec --no-startup-id polybar -c ~/.config/polybar/main main
-
-# vim:filetype=i3
-
-# kpress(M4..Sh.."1",     function() withtag('emacs', 'Emacs', nil, 'geditor') end),
-# kpress(M4..Ct.."1",     function() withtag('atom', 'Atom', nil, 'aeditor') end),
-# kpress(M4..Ct.."T",     function() withtag('vuze', 'Vuze', nil, 'torrent') end),
-# kpress(M4..Sh.."L",     function() withtag(nil, '_logs_', nil, 'logs') end),
-# kpress(M4.."W",         function() app.byinstance_withtag(
-#     'firefox || /usr/bin/firefox-developer',
-#     'Firefox',
-#     'Navigator',
-#     nil,
-#     'www') 
-# end),
-# kpress(M4.."O",         function() withtag('zathura', 'Zathura', 'pdf') end),
-# kpress(M4..Ct.."E",     function() withtag(nil, 'Vmware', nil, 'virt') end),
-# kpress(M4..Sh.."E",  function() weechat() end),
+exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
 
 # [nautilus] full_text= 
 # [sublime] full_text= 
@@ -413,3 +343,5 @@ exec --no-startup-id polybar -c ~/.config/polybar/main main
 # [volume] label=🔊
 # [date] label=
 # [time] label=⏰
+
+# vim:filetype=i3
