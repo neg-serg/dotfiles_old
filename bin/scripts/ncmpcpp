@@ -1,3 +1,12 @@
 #!/bin/zsh
 wid=$(xdotool search --classname mpd-pad2)
-[[ -z "$wid" ]] && /usr/local/bin/st-bright -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp
+if [[ -z "${wid}" ]]; then
+    /usr/local/bin/st-bright -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp &
+    # sleep .2s && i3-msg '[con_mark="ncmpcpp"] scratchpad show'
+else
+    source ${XDG_CONFIG_HOME}/.windowmanager
+    if [[ ${windowmanager} = "i3" ]]; then
+        i3-msg '[con_mark="ncmpcpp"] scratchpad show'
+    fi
+fi
+

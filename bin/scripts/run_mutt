@@ -1,2 +1,13 @@
 #!/bin/zsh
-BROWSER=w3m st -f 'Pragmata Pro for Powerline:size=13' -c mutt -e mutt
+wid=$(xdotool search --classname mutt)
+if [[ -z "${wid}" ]]; then
+    BROWSER=w3m \
+        st -f 'PragmataPro for Powerline:size=12' -c mutt -e 'mutt' &
+        # sleep .2s && i3-msg '[con_mark="mutt"] scratchpad show'
+else
+    source ${XDG_CONFIG_HOME}/.windowmanager
+    if [[ ${windowmanager} = "i3" ]]; then
+        i3-msg '[con_mark="mutt"] scratchpad show'
+    fi
+fi
+
