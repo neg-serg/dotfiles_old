@@ -72,7 +72,8 @@ function main(){
     [[ ! -d "${dunst_pics_}" ]] && mkdir -p "${dunst_pics_}"
     local previous_="${dunst_pics_}/prev.png"
 
-    if [[ "${image_}" == "info" ]]; then
+    echo IMAGE="${image_}"
+    if [[ $(xargs <<< ${image_}) == "info" ]]; then
         image_="${dunst_pics_}/cover_not.png"
         conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
@@ -91,7 +92,7 @@ function main(){
         sleep ${timeout_} && rm "${new_image}"
         exit 0
     else
-        local dunst_pics_list_=$(setopt nullglob dotglob; builtin print ${dunst_pics_}/*)
+        local dunst_pics_list_=$(setopt nullglob dotglob; builtin print "${dunst_pics_}"/*)
         if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]] \
            && [[ ${#dunst_pics_list_[@]} -gt 1 ]]; then
             cp -v "${new_image}" "${previous_}"
