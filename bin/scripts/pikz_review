@@ -1,0 +1,12 @@
+#!/bin/zsh
+wid=$(xdotool search --classname Sxiv)
+if [[ -z "${wid}" ]]; then
+    ~/bin/sx ~/{dw,tmp}/* & \
+    sleep .1s && i3-msg '[class="Sxiv"] focus'
+else
+    source ${XDG_CONFIG_HOME}/.windowmanager
+    if [[ ${windowmanager} = "i3" ]]; then
+        i3-msg '[class="Sxiv"] focus'
+    fi
+fi
+
