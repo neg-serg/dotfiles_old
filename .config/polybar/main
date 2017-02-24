@@ -3,11 +3,16 @@ margin-top = 0
 margin-bottom = 0
 
 [colors]
-white = #d1d1d1
-gray = #585858
-black = #090909
-blue = #005f5f
-green = #287373
+white = ${xrdb:color15}
+gray = ${xrdb:color8}
+black = ${xrdb:color0}
+blue = ${xrdb:color4}
+green = ${xrdb:color2}
+background = #bb020209
+topbar_border = #cc1f3b4f
+bracket_border = ${self.green}
+border = #1f3b4f
+urgent = #420020
 
 [bar/main]
 bottom=true
@@ -26,20 +31,21 @@ module-margin-left  = 0
 
 #separator = 
 #separator = >
-modules-left = date i3 xkeyboard network
+modules-left = date i3 xkeyboard network mail
 modules-center = 
 modules-right = mpd 
 
-background = #bb020209
+background = ${colors.background}
 foreground = ${colors.white}
 
-underline-size = 1
+underline-size = 2
 
 tray-detached = false
 tray-position = right
-tray-offset-x = 0
+tray-offset-x = 1
+tray-padding = 1
 tray-maxsize = 16
-tray-padding = 0
+tray-background = ${colors.background}
 
 font-0 = PragmataPro for Powerline:weight=bold:size=12;2
 #font-1 = "Segoe UI Symbol";0
@@ -48,7 +54,7 @@ font-0 = PragmataPro for Powerline:weight=bold:size=12;2
 
 [module/i3]
 type = internal/i3
-format-underline = ${colors.blue}
+format-underline = ${colors.border}
 index-sort = true
 fuzzy-match = true
 format = %{F#287373}[%{F#fff}<label-mode> <label-state>%{F#287373} ]
@@ -62,16 +68,20 @@ label-unfocused=
 label-unfocused-padding = 1
 label-unfocused-underlinde = ${colors.white}
 
-label-urgent = !
+label-urgent = 
 label-urgent-padding = 1
 label-urgent-background = #00000000
-label-urgent-foreground = ${colors.gray}
+label-urgent-foreground = ${colors.urgent}
 label-visible-foreground = ${colors.white}
 label-visible-padding = 1
 
 [module/cpu]
-format-label = internal/cpu
+type = internal/cpu
+interval = 2
+label = %{F${colors.white}  %percentage% %{F-}
+label-underline = ${colors.white}
 
+format-label = internal/cpu
 format = <label>
 
 ramp-coreload-0 = ▁
@@ -83,12 +93,6 @@ ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
 ramp-coreload-underline = ${colors.white}
-
-type = internal/cpu
-interval = 2
-label = %{F${colors.white}  %percentage% %{F-}
-label-underline = ${colors.white}
-padding= 2
 
 [module/memory]
 type = internal/memory
@@ -102,8 +106,7 @@ label-foreground = ${colors.white}
 type = internal/date
 date = %{F#287373}[ %{F#fff}%H:%M%{F#287373} ]
 interval = 5
-format-underline = ${colors.blue}
-format-background = ${colors.black}
+format-underline = ${colors.border}
 format-foreground = ${colors.white}
 format-padding = 0
 FontAwesome:style=Regular
@@ -139,9 +142,9 @@ thermal-zone = 0
 warn-temperature = 65
 
 format = [<label>]
-format-underline = ${colors.white}
+format-underline = ${colors.border}
 format-warn = <label-warn>
-format-warn-underline = ${colors.blue}
+format-warn-underline = ${colors.red}
 
 format-padding      = 0
 format-warn-padidng = 0
@@ -166,7 +169,7 @@ ramp-foreground = #55
 type = internal/xkeyboard
 blacklist-0 = num lock
  
-format-underline = ${colors.blue}
+format-underline = ${colors.border}
 format-prefix =
 format-prefix-foreground = ${colors.white}
  
@@ -178,6 +181,7 @@ label-indicator-underline = ${colors.blue}
 [module/mpd]
 type = custom/script
 exec = ~/.config/i3/mpd.lua
+format-underline = ${colors.border}
 interval = 0.05
 
 [module/network]
@@ -186,8 +190,15 @@ exec = ~/bin/mon/network_speed.sh
 tail = true
 label = %output:0:30:...%
 format = %{F#287373}[ %{F#fff}<label>%{F#287373}]%{F#fff}
-format-underline = ${colors.blue}
+format-underline = ${colors.border}
 interval = 0
+
+[module/mail]
+type = custom/script
+exec = ~/bin/mon/mail_count
+format = %{F#287373}[ %{F#fff}<label>%{F#287373} ]%{F#fff}
+format-underline = ${colors.border}
+interval = 180
 
 [bar/tiny]
 margin-top = 0
@@ -207,15 +218,15 @@ modules-left = hack
 modules-center = hack
 modules-right = hack
 
-border-top = 1
+border-top = 2
 border-bottom = 0
-border-left = 0
-border-right = 0
-border-color = #ee287373
-background = #00000000
+border-left = 1
+border-right = 1
+border-color = ${colors.topbar_border}
+background = ${colors.background}
 foreground = #00000000
 underline-size = 0
-underline-color = ${colors.white}
+underline-color = ${colors.blue}
 
 font-0 = fixed
 
