@@ -9,8 +9,29 @@ function conv_image_(){
 
 function send_notify_(){ 
     input=${image_}
-    output="[$(sed s:${HOME}:~: <<< ${input})]"
-    notify-send -a "pic_notify" -i "${new_image}" "${output}"
+    local st_=$(highlight_ 4)
+    local st2_=$(highlight_ 8)
+    local st3_=$(highlight_ 6)
+    local cl_="</span>"
+
+    local header="[$input]"
+    header="$(sed -e "s:${HOME}:~:" \
+                  -e "s:\/:${st_}/${cl_}:g" \
+                  -e "s:\(\[\|\]\):${st3_}\1${cl_}:g" -e "s:~:${st2_}~${cl_}:g" <<< ${header})"
+
+    local info_=$(exiftool -ImageSize -MIMEType -Megapixels ${image_})
+
+    output=$(xargs -n4 <<< "${info_}")
+    
+    local bold_="<span weight='bold'>"
+    local prefix_=$(wf_ "➣")
+
+    notify-send -a "pic_notify" -i "${new_image}" "${header}" "${output}"
+}
+
+function highlight_(){
+    local msg="$(xrq color$1)"
+    builtin print "<span weight='bold' color='${msg}'>"
 }
 
 function main(){
