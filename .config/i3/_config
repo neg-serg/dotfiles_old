@@ -220,10 +220,10 @@ assign [class="UE4Editor"] → $wine
 assign [class="XRebirth"] → $wine
 
 for_window [class="XRebirth"] floating enable
-bindsym $mod+F1 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh idea'
-bindsym $mod+F2 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh webstorm'
-bindsym $mod+F3 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh clion'
-bindsym $mod+F4 exec $psst [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh android-studio'
+#bindsym $mod+F1 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh idea'
+#bindsym $mod+F2 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh webstorm'
+#bindsym $mod+F3 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh clion'
+#bindsym $mod+F4 exec [ "$(i3-msg '[workspace=$ide] focus')" = '[{"success":true}]' ] || i3-msg exec '~/bin/scripts/jetbrains.sh android-studio'
 
 assign [class="Gimp"] → $gimp
 for_window [class="Gimp" window_role="gimp-file-open"] floating enable
@@ -270,8 +270,9 @@ assign [class="spicec" instance="spicec"] $vm
 assign [instance="spicy"] $vm
 assign [class="inkscape"] graphic
 
-bindsym $mod+x exec $psst [ "$(i3-msg '[instance=MainTerminal] focus')" = '[{"success":true}]' ] || [ "$(i3-msg '[class=MainTerminal] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/term"
-bindsym $mod+1 exec $psst [ "$(i3-msg '[instance=wim] focus')" = '[{"success":true}]' ] || i3-msg exec "~/bin/wim"
+set $ror exec ~/.config/i3/ror.sh
+bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
+bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
 bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
 bindsym $mod+Control+t exec i3-run-or-raise -c "Vuze" vuze
 
@@ -290,8 +291,7 @@ bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
-bindsym $alt+Tab workspace back_and_forth
-bindsym $mod+slash workspace back_and_forth
+bindsym $alt+{Tab,slash} workspace back_and_forth
 
 for_window [class=".*"]     title_format "%class :: %instance :: %title"
 for_window [class="^URxvt"] title_format "Terminal :: %instance :: %title"
