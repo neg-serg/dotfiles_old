@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+image_="$1"
+
+function conv_image_(){ 
+    readonly size_=200
+    convert -resize ${size_} "$1" "$2"
+}
+
+function send_notify_(){ 
+    input=${image_}
+    output="[$(sed s:${HOME}:~: <<< ${input})]"
+    notify-send -a "pic_notify" -i "${new_image}" "${output}"
+}
+
+function main(){
+    local shots_pikz="${HOME}/tmp/shots"
+    [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
+    new_image=${image_}_new.png
+    conv_image_ "${image_}" "${new_image}"
+    send_notify_ 
+}
+
+main "$@"
