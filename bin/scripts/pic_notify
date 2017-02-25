@@ -4,7 +4,8 @@ image_="$1"
 
 function conv_image_(){ 
     readonly size_=200
-    convert -resize ${size_} "$1" "$2"
+    convert -resize ${size_} "$1" "$2" &
+    conv_pid=$$
 }
 
 function send_notify_(){ 
@@ -25,7 +26,8 @@ function send_notify_(){
     
     local bold_="<span weight='bold'>"
     local prefix_=$(wf_ "➣")
-
+    
+    wait ${conv_pid}
     notify-send -a "pic_notify" -i "${new_image}" "${header}" "${output}"
 }
 
@@ -34,12 +36,17 @@ function highlight_(){
     builtin print "<span weight='bold' color='${msg}'>"
 }
 
+function finish_(){
+    (sleep 60s && rm -f "${new_image}")&
+}
+
 function main(){
     local shots_pikz="${HOME}/tmp/shots"
     [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
-    new_image=${image_}_new.png
+    new_image="${HOME}/tmp/$(basename ${image_})_new.png"
     conv_image_ "${image_}" "${new_image}"
     send_notify_ 
+    trap finish_ EXIT
 }
 
 main "$@"
