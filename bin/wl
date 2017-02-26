@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+function main(){
+    . ${XDG_CONFIG_HOME}/.wallpapers
+    . ~/.zsh/03-helpers.zsh
+
+    local wall_dir="${HOME}/pic/wl"
+    local prev_list="${HOME}/tmp/current_walls"
+    local trash_dir="${HOME}/tmp/trash"
+    local last_count=4
+
+    case ${1} in
+        "set") 
+            local -a filtered_wall_=()
+            for i in ${wall_}; [[ -e "$i" ]] && filtered_wall_+=(${i})
+            hsetroot -full ${wall_[$[RANDOM % $#filtered_wall_]+1]} 
+            ;;
+        "rand")
+            local -a walls=(${wall_dir}/*.{jpg,png})
+            local current_wallpaper="${walls[$[RANDOM % $#walls]+1]}"
+            {
+                print "${current_wallpaper}" >> "${prev_list}" && \
+                local buf=$(tail -${last_count} "${prev_list}")
+                echo "${buf}" > "${prev_list}"
+            } &
+            hsetroot -full "${current_wallpaper}"
+            ;;
+        "del")
+            [[ ! -d ${trash_dir} ]] && mkdir "${trash_dir}"
+            mv -iv "$(tail -1 ${prev_list})" "${trash_dir}"
+            ;;
+        l*)
+            while IFS='' read -r line; do
+                print $(_zpref) $(_zfwrap "${line}")
+            done < "${prev_list}"
+            ;;
+    esac
+}
+
+main "$@"
