@@ -34,4 +34,8 @@ super + control + r ; { c, d, i, r }
     }
 alt + grave
     rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize 
+super + shift + 5
+    ~/bin/wl set
+super + shift + 6 
+    ~/bin/wl rand
 # vim: set ft=sxhkdrc:
