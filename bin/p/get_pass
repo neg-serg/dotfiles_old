@@ -1,3 +1,0 @@
-#!/bin/bash
-win_name=""
-~/bin/p/search_pass "${win_name}"
