@@ -47,6 +47,7 @@ function main(){
             ;;
         (curr|pr)*)
             print_wall "${current}"
+            xclip <<< "${current}"
             ;;
     esac
 }
