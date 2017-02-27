@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+shopt -s nullglob globstar
+
+typeit=0
+if [[ $1 == "--type" ]]; then
+  typeit=1
+  shift
+fi
+name=$(lpass ls | rofi -dmenu)
+id=$(echo $name | sed -r 's/.*\id:\s([0-9]+).*/\1/g')
+if [[ $typeit -eq 0 ]]; then
+  lpass show -c --password ${id}
+else
+  xdotool - <<<"type --clearmodifiers -- $(lpass show --password $id)"
+fi
