@@ -1,6 +1,0 @@
-#!/bin/zsh
-. ${XDG_CONFIG_HOME}/.wallpapers
-
-local -a filtered_wall_=()
-for i in ${wall_}; [[ -e "$i" ]] && filtered_wall_+=(${i})
-hsetroot -full ${wall_[$[RANDOM % $#filtered_wall_]+1]}

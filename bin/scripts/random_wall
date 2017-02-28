@@ -1,9 +1,0 @@
-#!/bin/zsh
-local -a walls=(~/pic/wl/*)
-local current_wallpaper="${walls[$[RANDOM % $#walls]+1]}"
-{
-    print "${current_wallpaper}" >> /tmp/current_walls && \
-    local buf=$(tail -4 /tmp/current_walls)
-    echo "${buf}" > /tmp/current_walls
-} &
-hsetroot -full "${current_wallpaper}"
