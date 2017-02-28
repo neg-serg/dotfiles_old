@@ -35,10 +35,15 @@ state() {
 
 vol_manager(){
     local pulse_=true
-    if [[ ! -e ${pulse_} ]]; then
-        st pulsemixer && exit
+    local term_class="st"
+    if [[ $(xprop -id $(pfw) | grep -ow "${term_class}" | head -1) = "${term_class}"  ]]; then
+        pulsemixer
     else
-        st alsamixer -g && exit 
+        if [[ ! -e ${pulse_} ]]; then
+            st pulsemixer && exit
+        else
+            st alsamixer -g && exit 
+        fi
     fi
 }
 
