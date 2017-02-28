@@ -16,7 +16,7 @@ notioncore.set{
     mousefocus="disabled",              -- Do not use mouse focus
     opaque_resize=true,                 -- Draw window while resize
     switchto=true,                      -- Switch to new apps by default
-    unsqueeze=false,                    -- Do not unsqueeze transients/menus/queries/etc
+    unsqueeze=true,                     -- Unsqueeze transients/menus/queries/etc
     screen_notify=true,                 -- Use actnotify for urgent windows 
     autosave_layout=false,              -- Do not autosave layout state
     autoraise=true,                     -- Autoraise regions in groups on goto.
