@@ -1,16 +1,19 @@
-#!/usr/bin/env bash
+#!/bin/zsh
 
 shopt -s nullglob globstar
 
 typeit=0
 if [[ $1 == "--type" ]]; then
-  typeit=1
-  shift
+    typeit=1
+    shift
 fi
-name=$(lpass ls | rofi -dmenu)
+if [[ $(lpass status = "Not logged in.") ]]; then
+    lpass login serg.zorg@gmail.com
+fi
+name=$(lpass ls | rofi -dmenu -p '[>>]')
 id=$(echo $name | sed -r 's/.*\id:\s([0-9]+).*/\1/g')
 if [[ $typeit -eq 0 ]]; then
-  lpass show -c --password ${id}
+    lpass show -c --password ${id}
 else
-  xdotool - <<<"type --clearmodifiers -- $(lpass show --password $id)"
+    xdotool - <<<"type --clearmodifiers -- $(lpass show --password $id)"
 fi
