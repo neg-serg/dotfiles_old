@@ -2,10 +2,13 @@
 
 local fn_size="17"
 local fn_name="PragmataPro for Powerline"
+
 local main_detect=$(tmux list-sessions|awk -F ':' '/main/ {print $1}')
+
 local term_name="MainTerminal"
 local term_class="MainTerminal"
 local session_name="main"
+
 local st=true
 
 if ! ${st}; then
@@ -16,7 +19,7 @@ if ! ${st}; then
 
     if [[ ${main_detect} != "main" ]]; then
         wid=$(xdotool search --classname ${term_name})
-        if [ -z "${wid}" ]; then
+        if [[ -z "${wid}" ]]; then
             urxvtc -tr -name ${term_name} -fn "${main_term_fn}" \
                 -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
         fi
@@ -28,12 +31,12 @@ else
     local main_term_fn="${fn_name}:size=${fn_size}"
     if [[ ${main_detect} != "main" ]]; then
         wid=$(xdotool search --classname ${term_name})
-        if [ -z "${wid}" ]; then
-            st -T "${term_name}" -c "${term_class}" -f ${main_term_fn} \
-                -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
+        if [[ -z "${wid}" ]]; then
+            st -t "${term_name}" -c "${term_class}" -f ${main_term_fn} \
+                -e dash -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
         fi
     else
-    st -T "${term_name}" -c "${term_class}" -f ${main_term_fn} \
-        -e zsh -i -c "tmux a -t ${session_name}"
+    st -t "${term_name}" -c "${term_class}" -f ${main_term_fn} \
+        -e dash -c "tmux a -t ${session_name}"
     fi
 fi
