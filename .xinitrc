@@ -6,7 +6,7 @@ export windowmanager
 unset TMUX
 
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
-${SCRIPT_HOME}/set_wallpaper
+~/bin/wl rand
 
 [[ -f "${HOME}/.Xresources" ]] && \
     xrdb -load "${HOME}/.Xresources"
@@ -31,5 +31,7 @@ eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
+
+powerline-daemon -q
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
