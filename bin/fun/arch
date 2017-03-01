@@ -1,0 +1,48 @@
+#!/bin/bash
+# aitb.sh by Yu-Jie Lin, 2015-07-26T03:47:58Z, Public Domain
+
+: ${F:=/tmp/Arch_is_the_best.html}
+
+W='https://wiki.archlinux.org/index.php/Arch_is_the_best'
+[[ ! -f "$F" ]] && wget -O "$F" "$W"
+
+# D=/tmp/aitb
+# mkdir -p $D
+#
+# grab() {
+#   printf -v N '%04d.png' $ii
+#   xsnap $REGION -file $D/$N
+#   let ii++
+# }
+#
+# ii=1
+
+clear
+
+# grab
+
+echo -ne '\e[1;37m'
+cat "$F" |
+sed -n '/ASCII Banner/,/<\/pre>/p' |
+sed -n '/<pre>/,/<\/pre>/{s/<pre>//;p}' |
+head -n -1
+echo -e '\e[0m'
+
+# for ((j=0; j<20; j++)); do grab; done
+
+cat "$F" |
+sed -n '/id="Translations"/,/<!--/p' |
+sed '/ASCII/,/<\/pre>/d' |
+sed -n '/<pre>/{s/<pre>//;p}' |
+while read line; do
+  echo -ne "\e[1;$((RANDOM*6/32768 + 31))m"
+  for ((i=0; i<${#line}; i++)); do
+    echo -n "${line:i:1}"
+    sleep 0.02
+    # grab
+  done
+  echo -ne '\e[0m  '
+  sleep 0.2
+  # for ((j=0; j<10; j++)); do grab; done
+done
+echo
