@@ -4,8 +4,10 @@ image_="$1"
 
 function conv_image_(){ 
     readonly size_=200
-    convert -resize ${size_} "$1" "$2" &
-    conv_pid=$$
+    if ! [[ $1 =~ .*gif ]]; then
+        convert -resize ${size_} "$1" "$2"
+        conv_pid=$$
+    fi
 }
 
 function send_notify_(){ 
@@ -37,7 +39,7 @@ function highlight_(){
 }
 
 function finish_(){
-    (sleep 60s && rm -f "${new_image}")&
+    (sleep 3s && rm -f "${new_image}")&
 }
 
 function main(){
@@ -45,6 +47,7 @@ function main(){
     [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
     new_image="${HOME}/tmp/$(basename ${image_})_new.png"
     conv_image_ "${image_}" "${new_image}"
+    xclip <<< "${image_}"
     send_notify_ 
     trap finish_ EXIT
 }
