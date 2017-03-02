@@ -1,3 +1,5 @@
+autoload -U colors && colors
+
 function _zwrap() { echo "$fg[blue][$fg[white]$1$fg[blue]]$fg[default]" }
 
 function _zFwrap(){
