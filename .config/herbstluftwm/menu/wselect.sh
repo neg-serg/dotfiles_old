@@ -27,11 +27,11 @@ case "$1" in
             local winid=$(sed 's,0x[0]*,0x,' <<< "$*")
             local tag=$(hc attr clients."$winid".tag)
             hc lock
-            if [[ ${tag} != "scratchpad" ]]; then
+            if [[ ! ${tag} =~ .*_scratchpad ]]; then
                 hc use "$tag"
                 hc jumpto "$*"
             else
-                ~/.config/herbstluftwm/scratchpad.sh
+                ~/.config/herbstluftwm/scratchpad.sh ${tag}
             fi
             hc unlock
         }

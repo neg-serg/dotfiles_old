@@ -15,7 +15,7 @@
 tag="${1:-scratchpad}"
 hc() { "${herbstclient_command[@]:-herbstclient}" "$@" ;}
 
-mrect=( $(hc monitor_rect "" ) )
+mrect=( $(hc monitor_rect -1 ) )
 
 width=${mrect[2]}
 height=${mrect[3]}
@@ -29,11 +29,11 @@ rect=(
 
 hc add "$tag"
 
-monitor=scratchpad
+monitor=${2:-scratchpad}
 
 exists=false
 if ! hc add_monitor $(printf "%dx%d%+d%+d" "${rect[@]}") \
-                    "$tag" $monitor 2> /dev/null ; then
+                    "$tag" ${monitor} 2> /dev/null ; then
     exists=true
 else
     # remember which monitor was focused previously
@@ -45,20 +45,20 @@ fi
 
 show() {
     hc lock
-    hc raise_monitor "$monitor"
-    hc focus_monitor "$monitor"
+    hc raise_monitor "${monitor}"
+    hc focus_monitor "${monitor}"
     hc unlock
-    hc lock_tag "$monitor"
+    hc lock_tag "${monitor}"
 }
 
 hide() {
     # if q3terminal still is focused, then focus the previously focused monitor
     # (that mon which was focused when starting q3terminal)
-    hc substitute M monitors.by-name."$monitor".my_prev_focus \
-        and + compare monitors.focus.name = "$monitor" \
+    hc substitute M monitors.by-name."${monitor}".my_prev_focus \
+        and + compare monitors.focus.name = "${monitor}" \
             + focus_monitor M
-    hc remove_monitor "$monitor"
+    hc remove_monitor "${monitor}"
 }
 
-[ $exists = true ] && hide || show
+[ ${exists} = true ] && hide || show
 
