@@ -36,6 +36,28 @@ function nowm_run(){
     exec ~/bin/wm/wmtls/xwait 2>> ~/tmp/${windowmanager}err$$ 2>&1
 }
 
+function pantheon_run(){
+    gsettings-data-convert &
+    xdg-user-dirs-gtk-update &
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+    /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
+    /usr/lib/gnome-user-share/gnome-user-share &
+    eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
+    export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+    exec cerbere
+}
+
+function i3_run(){
+    (${BIN_HOME}/term) &
+    source "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
+    #exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
+    exec i3
+}
+
+function fallback_run(){
+    ${BIN_HOME}/term
+}
+
 if type "${windowmanager}"_run; then
     eval "${windowmanager}"_run "$@"
 else
