@@ -13,6 +13,7 @@ rofi.fuzzy:                         true
 rofi.glob:                          true
 rofi.tokenize:                      true
 rofi.case-sensitive:                false
+rofi.fixed-num-lines:               false
 
 rofi.separator-style:               solid
 rofi.markup-rows:                   false
