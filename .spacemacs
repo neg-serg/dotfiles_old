@@ -8,12 +8,11 @@
    dotspacemacs-configuration-layers
    '(
      auto-completion
-     ;better-defaults
 
      emacs-lisp
 
-     ;markdown
-     ;ycmd
+     markdown
+     ycmd
 
      spell-checking
      syntax-checking
@@ -24,6 +23,7 @@
      scala
      clojure
      lua
+     latex
 
      vim-powerline
 
@@ -31,6 +31,8 @@
      spotify
      ranger
      pdf-tools
+
+     autocompletion
     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -258,6 +260,13 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
 
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  dotspacemacs-configuration-layers '(
+    (latex :variables latex-build-command "LaTeX"))
+  dotspacemacs-configuration-layers '(
+    (latex :variables latex-enable-auto-fill t))
+  (setq TeX-view-program-list '(("Zathura" "zathura --page=%(outpage) %o")))
+  (setq TeX-view-program-selection '((output-pdf "Zathura")))
   (add-to-list 'custom-theme-load-path "~/.config/emacs/themes")
   ;(load-theme 'behelit t)
 
@@ -335,7 +344,7 @@ you should place you code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (god-mode quack malabar-mode groovy-mode jdee memoize grizzl ggtags spotify ranger pdf-tools tablist lua-mode helm-spotify multi geeknote ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file noflet neotree move-text magit-gitflow macrostep lusty-explorer lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ensime elisp-slime-nav dumb-jump diff-hl define-word company-statistics column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (mmm-mode markdown-toc markdown-mode gh-md flycheck-ycmd company-ycmd ycmd request-deferred deferred company-auctex auctex-latexmk auctex god-mode quack malabar-mode groovy-mode jdee memoize grizzl ggtags spotify ranger pdf-tools tablist lua-mode helm-spotify multi geeknote ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file noflet neotree move-text magit-gitflow macrostep lusty-explorer lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ensime elisp-slime-nav dumb-jump diff-hl define-word company-statistics column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
