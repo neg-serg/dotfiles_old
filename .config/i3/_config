@@ -87,10 +87,9 @@ for_window [title="Preferences$"] floating enable
 for_window [class="Sxiv$"] move scratchpad, move position 0 0, resize set 1920 1200, focus
 for_window [instance="^(wim|nwim)$"] focus
 
-set $im_geom move absolute position 1372 127, resize set 528 1029
-
-for_window [class="^(skypeforlinux)$"] mark skype_im, move scratchpad, $im_geom
-for_window [instance="telegram-desktop"] mark telegram_im, move scratchpad, $im_geom
+#set $im_geom move absolute position 1372 127, resize set 528 1029
+#for_window [class="^(skypeforlinux)$"] move scratchpad, $im_geom
+#for_window [instance="telegram-desktop"] move scratchpad, $im_geom
 
 for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
 for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position 293 0, resize set 1250 700
@@ -119,10 +118,6 @@ for_window [class="^Pavucontrol"] floating enable
 for_window [class="^B2[Gg]$"] floating enable
 
 for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focus
-
-# window_role="!GtkFileChooserDialog"
-# no_focus [window_role="pop-up"]
-# for_window [window_role="pop-up"] floating enable
 
 assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"]     → $ide
 assign [instance="recoll"]                                             → $admin
@@ -216,9 +211,8 @@ for_window [class="Gimp" window_role="gimp-message-dialog"]       floating enabl
 for_window [class="Gimp" window_role="gimp-image-new"]            floating enable
 for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enable
 
-for_window {[instance="Dialog"],[window_role="Organizer"],[window_role="Manager" instance="Download"]} mark _dialog, floating enable
-for_window [window_role="GtkFileChooserDialog"]                                                        mark _file_select, floating enable
-for_window [class="(feh|qiv)"]                                                                         mark _img, floating enable
+for_window {[instance="Dialog"],[window_role="Organizer"],[window_role="Manager" instance="Download"]} floating enable
+for_window [class="(feh|qiv)"] mark _img, floating enable
 
 for_window [class="Xfce"]                                                floating enable
 for_window [class="^(Xmessage|XFontSel|XCalc)$"]                         floating enable
@@ -254,7 +248,6 @@ bindsym $mod+Control+t exec i3-run-or-raise -c "Vuze" vuze
 for_window [class="mpv" instance="webcam_mpv"] mark webcam
 for_window [class="mpv"] mark media, focus, fullscreen
 
-bindsym $mod+Shift+b exec i3-input -f $myfont -F 'mark %s' -P 'Mark name: '
 bindsym $mod+b exec i3-msg [class=mpv] focus
 
 bindsym $mod+Control+q kill
@@ -265,8 +258,12 @@ bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
 bindsym $mod+q fullscreen toggle
 
-bindsym $alt+Tab workspace back_and_forth
-bindsym $mod+slash workspace back_and_forth
+bindsym $alt+Tab exec ~/.config/i3/focus-last.py --switch
+bindsym $mod+slash exec ~/.config/i3/focus-last.py --switch
+bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
+bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
+
+bindsym $mod+Shift+slash workspace back_and_forth
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -275,10 +272,11 @@ mode "$mode_system" {
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-    bindsym {j,Shift+J} resize {shrink,grow} left 2 px or 2 ppt
-    bindsym {k,Shift+K} resize {shrink,grow} down 2 px or 2 ppt
-    bindsym {l,Shift+L} resize {shrink,grow} up 2 px or 2 ppt
-    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 2 px or 2 ppt
+    bindsym {h,Shift+h} resize {shrink,grow} left 4 ppt
+    bindsym {j,Shift+j} resize {shrink,grow} down 4 ppt
+    bindsym {k,Shift+k} resize {shrink,grow} up 4 ppt
+    bindsym {l,Shift+l} resize {shrink,grow} right 4 ppt
+    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4 ppt
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -288,12 +286,9 @@ mode "[Layout]" {
     bindsym {h,v} split {h,v}; $exit
 	bindsym {j,k,h,l} split {vertical,vertical,horizontal,horizontal}; $exit
 
-	# toggle [stacking, tabbed, splith, splitv]
-	bindsym a layout toggle all; $exit
-	# toggle [splith, splitv]
-	bindsym s layout toggle split; $exit
-	# toggle [stacking, tabbed, split]
-	bindsym t layout toggle; $exit
+	bindsym {a,3} layout toggle all
+	bindsym s layout toggle split
+	bindsym t layout toggle
 
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
@@ -323,9 +318,8 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-bindsym $mod+i exec i3-msg '[class="^(skypeforlinux)$"] mark skype_im, move scratchpad, $im_geom', exec i3-msg '[instance="telegram-desktop"] mark telegram_im, move scratchpad, $im_geom'
-
 exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
 exec --no-startup-id python3 ~/.config/i3/disable-standby-fs.py
+exec --no-startup-id python3 ~/.config/i3/focus-last.py
 
 # vim:filetype=i3
