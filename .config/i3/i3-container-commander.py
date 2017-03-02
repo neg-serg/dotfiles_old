@@ -63,7 +63,8 @@ def find_group(container):
 
 def show_menu(items, prompt):
     menu_input = bytes(str.join('\n', items), 'UTF-8')
-    menu_cmd = [ args.menu ] + ['-l', str(len(items)), '-p', prompt] + menu_args
+    # menu_cmd = [ args.menu ] + ['-l', str(len(items)), '-p', prompt] + menu_args
+    menu_cmd = [ args.menu ] + ['-l', '2', '-columns', '10', '-p', prompt] + menu_args
     menu_result = check_output(menu_cmd, input=menu_input)
     return menu_result.decode('UTF-8').strip()
 
