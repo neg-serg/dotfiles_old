@@ -97,6 +97,7 @@ for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position
 for_window [instance="kopete"] mark kopete_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [class="ViberPC"] mark viber_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [class="youtube-get"] mark console2, move scratchpad, move absolute position 247 13, resize set 1339 866
+for_window [class="fzf_run"] mark console3, move scratchpad, move absolute position 240 978, resize set 1298 184
 for_window [instance="finch"] mark finch_im, move scratchpad, move absolute position 100 100, resize set 500 600
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec ~/bin/scripts/ncmpcpp
@@ -107,7 +108,6 @@ bindsym $mod+{e,3} exec ~/.config/i3/i3_ns.py im {toggle,next}
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
 bindsym $mod+s [con_id=__focused__] scratchpad show
-bindsym $mod+Shift+s [con_id=__focused__] move scratchpad
 
 for_window [instance="^(gcalctool|galculator)$"] floating enable
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
@@ -120,6 +120,7 @@ for_window [class="^B2[Gg]$"] floating enable
 
 for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focus
 
+# window_role="!GtkFileChooserDialog"
 # no_focus [window_role="pop-up"]
 # for_window [window_role="pop-up"] floating enable
 
@@ -157,7 +158,7 @@ assign [class="simple-scan"]                                           → $grap
 assign [class="gthumb"]                                                → $graph
 assign [instance="_logs_"]                                             → $admin
 assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"]     → $admin
-assign [class="^(VirtualBox|vmware)$"]                                 → $vm
+assign [class="(?i)^(VirtualBox|vmware)$"]                             → $vm
 assign [class="QEMU"]                                                  → $vm
 assign [instance="qemu-system-x86_64"]                                 → $vm
 assign [class="spicec" instance="spicec"]                              → $vm
@@ -174,9 +175,7 @@ mode "alt_e" {
     bindsym $mod+Shift+space mode "default", floating toggle
     bindsym $mod+space mode "default", focus mode_toggle
     bindsym e mode "default", [urgent=latest] focus
-    bindsym s exec ~/bin/scripts/skype, mode "default"
-    bindsym $mod+s exec ~/bin/scripts/skype, mode "default"
-    bindsym $alt+s exec ~/bin/scripts/skype, mode "default"
+    bindsym {$mod,$alt,}+s exec ~/bin/scripts/skype, mode "default"
     bindsym Control+R mode "default", [class=Cr3] focus
     bindsym a mode "default", [con_mark=_dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
@@ -193,9 +192,7 @@ mode "alt_e" {
     bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
-    bindsym t exec ~/bin/scripts/telegram, mode "default"
-    bindsym $mod+t exec ~/bin/scripts/telegram, mode "default"
-    bindsym $alt+t exec ~/bin/scripts/telegram, mode "default"
+    bindsym {$mod,$alt,}+t exec ~/bin/scripts/telegram, mode "default"
 	# toggle [floating, tiled]
 	bindsym Shift+d floating toggle; $exit
     
@@ -203,7 +200,7 @@ mode "alt_e" {
 }
 
 mode "password" {
-    bindsym {C,P} exec ~/bin/p/{copy,paste}_pass, $exit
+    bindsym {C,P} exec ~/bin/scripts/lpasswd {,type}, $exit
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -246,12 +243,12 @@ for_window [class="Nicotine.*" instance="nicotine"]                      floatin
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
-bindsym $mod+Control+v $ror "[class=^(VirtualBox|vmware)$]" vmware focus
+bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
 bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
 
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 
-bindsym $mod+w exec i3-run-or-raise -c "Firefox" firefox
+bindsym $mod+w $ror "[class=(?i)^(firefox|Navigator)$]" firefox focus
 bindsym $mod+Control+t exec i3-run-or-raise -c "Vuze" vuze
 
 for_window [class="mpv" instance="webcam_mpv"] mark webcam
@@ -263,7 +260,6 @@ bindsym $mod+b exec i3-msg [class=mpv] focus
 bindsym $mod+Control+q kill
 
 bindsym $alt+g exec rofi -show
-bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
 bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 
@@ -327,6 +323,9 @@ mode "gaps-inner" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
+bindsym $mod+i exec i3-msg '[class="^(skypeforlinux)$"] mark skype_im, move scratchpad, $im_geom', exec i3-msg '[instance="telegram-desktop"] mark telegram_im, move scratchpad, $im_geom'
+
 exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
+exec --no-startup-id python3 ~/.config/i3/disable-standby-fs.py
 
 # vim:filetype=i3
