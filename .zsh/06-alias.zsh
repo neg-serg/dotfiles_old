@@ -241,7 +241,15 @@ function yt(){
 }
 
 function yr(){
-    st ${SCRIPT_HOME}/yr "$@"
+    wid=$(xdotool search --classname youtube-get)
+    if [[ -z "${wid}" ]]; then
+        st -c youtube-get ${SCRIPT_HOME}/yr "$@"
+    else
+        source ${XDG_CONFIG_HOME}/.windowmanager
+        if [[ ${windowmanager} = "i3" ]]; then
+            i3-msg '[con_mark="console2"] scratchpad show'
+        fi
+    fi
 }
 
 alias qe='cd *(/om[1])'
