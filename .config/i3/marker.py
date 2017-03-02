@@ -7,6 +7,8 @@ from sys import exit
 from itertools import cycle
 from subprocess import check_output
 
+import uuid
+
 group_classes = {
     'TelegramDesktop',
     'Telegram-desktop',
@@ -14,13 +16,10 @@ group_classes = {
     'skypeforlinux'
 }
 
-counter = 0
-
 def make_mark():
-    return 'mark {}'.format(group) + str(counter)
+    return 'mark {}'.format(group) + str(str(uuid.uuid4().fields[-1]))
 
 def mark_group(self, event):
-    global counter
     global group_classes
 
     con = event.container
@@ -28,7 +27,6 @@ def mark_group(self, event):
         con.command(make_mark())
         con.command('move scratchpad,  move absolute position 1372 127, resize set 528 1029')
         print(make_mark())
-        counter+=1
 
 if len(argv) > 1:
     group=argv[1]
