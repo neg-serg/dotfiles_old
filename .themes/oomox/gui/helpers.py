@@ -22,6 +22,8 @@ user_theme_dir = os.path.join(user_config_dir, "colors/")
 colors_dir = os.path.join(oomox_root_dir, "colors/")
 user_palette_path = os.path.join(user_config_dir, "recent_palette.json")
 
+FALLBACK_COLOR = "333333"
+
 
 def create_value_filter(key, value):
     def value_filter(colorscheme):
@@ -107,8 +109,11 @@ def mix_theme_colors(theme_color_1, theme_color_2, ratio):
         color_list.append(color_text[4:])
     result = ''
     for channel_index, channel_1_text in enumerate(color_list_1):
-        channel_1 = text_to_int(channel_1_text)
-        channel_2 = text_to_int(color_list_2[channel_index])
+        try:
+            channel_1 = text_to_int(channel_1_text)
+            channel_2 = text_to_int(color_list_2[channel_index])
+        except ValueError:
+            return FALLBACK_COLOR
         result += int_to_text(
             channel_1 * ratio + channel_2 * (1 - ratio)
         )
@@ -190,13 +195,13 @@ def read_colorscheme_from_path(preset_path):
                 value = colorscheme[key] = colorscheme[fallback_key]
 
         if value is None:
-            colorscheme[key] = "ff3333"
+            colorscheme[key] = FALLBACK_COLOR
         # migration workaround #2: resolve color links
         elif isinstance(value, str) and value.startswith("$"):
             try:
                 colorscheme[key] = colorscheme[value.lstrip("$")]
             except KeyError:
-                colorscheme[key] = "ff3333"
+                colorscheme[key] = FALLBACK_COLOR
 
         value_type = theme_value['type']
         if value_type == 'bool':
@@ -228,6 +233,19 @@ def save_colorscheme(preset_name, colorscheme):
         mkdir_p(os.path.dirname(path))
         return save_colorscheme(preset_name, colorscheme)
     return path
+
+
+def remove_colorscheme(preset_name):
+    path = os.path.join(user_theme_dir, preset_name)
+    os.remove(path)
+
+
+def is_user_colorscheme(preset_path):
+    return preset_path.startswith(user_theme_dir)
+
+
+def is_colorscheme_exists(preset_path):
+    return os.path.exists(preset_path)
 
 
 class CenterLabel(Gtk.Label):
