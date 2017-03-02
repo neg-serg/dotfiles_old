@@ -21,11 +21,11 @@ if ! ${st}; then
         wid=$(xdotool search --classname ${term_name})
         if [[ -z "${wid}" ]]; then
             urxvtc -tr -name ${term_name} -fn "${main_term_fn}" \
-                -e zsh -i -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
+                -e dash -c "tmux new-session -s ${session_name} && tmux a -t ${session_name}"
         fi
     else
         urxvtc -tr -name ${term_name} -fn "${main_term_fn}" \
-            -e zsh -i -c "tmux a -t ${session_name}"
+            -e dash -c "tmux a -t ${session_name}"
     fi
 else
     local main_term_fn="${fn_name}:size=${fn_size}"
