@@ -66,10 +66,10 @@ NeoBundle 'rdnetto/YCM-Generator'
 NeoBundle 'mopp/autodirmake.vim.git' "automake dir which didnt exists
 NeoBundle 'tpope/vim-eunuch.git' "for SudoWrite, Locate, Find etc
 NeoBundle 'tpope/vim-abolish' "for different case coersion
+NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
 if has("ololo")
-    NeoBundleLazy 'scrooloose/syntastic', { 'insert' : 1 } "syntax checker
+    NeoBundle 'https://github.com/w0rp/ale' "async syntastic
 endif
-NeoBundle 'https://github.com/w0rp/ale' "async syntastic
 NeoBundle 'c9s/vimomni.vim' "autocompletion for VimL
 "--[ dcvs ]------------------------------------------------------------------------------
 if executable(resolve(expand("git")))
@@ -145,12 +145,11 @@ if !has("nvim") && has("ololo")
     NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 endif
 "--[ Python ]-----------------------------------------------------------------------------
-NeoBundle 'davidhalter/jedi-vim' "I think that standalone jedi-vim is better than from ycm
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
 NeoBundle 'fs111/pydoc.vim' , {'autoload': {'filetypes': ['python']} } "pydoc integration
 NeoBundle 'mkomitee/vim-gf-python.git' "gf for python
-NeoBundle 'python-rope/ropevim' "python refactoring
+" NeoBundle 'python-rope/ropevim' "python refactoring
 "--[ R ]----------------------------------------------------------------------------------
 if has("nvim")
     NeoBundle 'jalvesaq/Nvim-R' "nvim R support
@@ -262,6 +261,7 @@ if has("nvim")
     NeoBundle 'whatyouhide/vim-gotham' "gotham colorscheme for nvim
 endif
 NeoBundle 'aperezdc/vim-elrond' "new colorscheme
+NeoBundle 'joshdick/onedark.vim' "nice atom-like colorscheme
 NeoBundle 'chriskempson/base16-vim' "base16 colorschemes pack
 NeoBundle 'cstrahan/vim-capnp' "capnproto syntax highlighting
 NeoBundle 'ryanoasis/vim-devicons.git' "fancy icons for fonts
@@ -271,3 +271,4 @@ if has("google_plugs")
     NeoBundle 'google/vim-glaive' "configuring for maktaba plugins
     NeoBundle 'google/vim-codefmt' "clang-based codeformatter
 endif
+NeoBundle 'PotatoesMaster/i3-vim-syntax' "i3 syntax
