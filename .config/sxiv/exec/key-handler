@@ -119,12 +119,7 @@ function copy_name() {
     local fp=$(< "${tmp_file2}")
     local fname="$(resolve_file ${fp})"
     xsel -bi <<< "${fname}"
-    [[ ${fname} =~ "^${HOME}" ]] && \
-        fname="${gr_}~${cl_}${fname#${HOME}}"
-    [[ ${fname} =~ "^/mnt/home" ]] && \
-        fname="${gr_}Ϡ${cl_}${fname#/mnt/home/}"
-    local prefix_="${st_}[${cl_}${bold_}>>${cl_}${st_}][${cl_}${bold_}"
-    notify-send "${prefix_}${fname}${cl_}${st_}]${cl_}"
+    ~/bin/scripts/pic_notify "${fname}"
     trap finish_ EXIT
 }
 
