@@ -17,6 +17,7 @@ map <C-\> <NOP>
 
 map e gt
 map E gT
+map  gr gT
 
 map <C-S-w> <NOP>
 nmap <C-S-w> <NOP>
@@ -75,11 +76,7 @@ imap <C-n> <Down>
 map <C-b> <Left>
 map <C-f> <Right>
 
-imap <C-f> <Right>
-imap <C-b> <Left>
-
 map <silent> B :bmarks<CR>
-map  gr gT
 
 map <silent> <F4> :set complete=lS<CR>
 map <silent> <F5> :set complete=bookmark<CR>
@@ -93,6 +90,8 @@ imap <a-b> <C-Left>
 cmap <a-b> <C-Left>
 imap <c-e> <end>
 cmap <c-e> <end>
+imap <c-f> <Right>
+imap <c-b> <Left>
 
 map <silent> <C-s>i  :silent set defsearch=ix<CR>
 map <silent> <C-s>s  :silent set defsearch=searx<CR>
