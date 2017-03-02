@@ -10,10 +10,7 @@ from subprocess import check_output
 import uuid
 
 group_classes = {
-    'TelegramDesktop',
-    'Telegram-desktop',
-    'telegram-desktop',
-    'skypeforlinux'
+    'im' : { 'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop', 'skypeforlinux' }
 }
 
 def make_mark():
@@ -21,9 +18,10 @@ def make_mark():
 
 def mark_group(self, event):
     global group_classes
+    global group
 
     con = event.container
-    if con.window_class in group_classes:
+    if con.window_class in group_classes[group]:
         con.command(make_mark())
         con.command('move scratchpad,  move absolute position 1372 127, resize set 528 1029')
         print(make_mark())

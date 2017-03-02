@@ -22,7 +22,7 @@ def focus():
         dprint(i.name, i.id)
 
     dprint(strwrap("IM"))
-    for j,i in zip(range(len(window_list)), sorted(marked, key=lambda im: im.name)):
+    for j,i in zip(range(len(marked)), sorted(marked, key=lambda im: im.name)):
         dprint(i.name, i.id)
         marked[j].command('move container to workspace current')
 
@@ -32,7 +32,7 @@ def toggle():
         unfocus()
         return
 
-    for j,i in zip(range(len(window_list)), sorted(marked, key=lambda im: im.name)):
+    for j,i in zip(range(len(marked)), sorted(marked, key=lambda im: im.name)):
         dprint(i.name, i.id)
         if focused.id == i.id:
             unfocus()
