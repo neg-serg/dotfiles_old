@@ -103,6 +103,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                          kaolin
                           spacemacs-dark
                           monochrome
                           underwater
@@ -268,7 +269,6 @@ you should place you code here."
   (setq TeX-view-program-list '(("Zathura" "zathura --page=%(outpage) %o")))
   (setq TeX-view-program-selection '((output-pdf "Zathura")))
   (add-to-list 'custom-theme-load-path "~/.config/emacs/themes")
-  ;(load-theme 'behelit t)
 
   (setq-default evil-escape-key-sequence "jk")
   (define-key evil-insert-state-map "\C-e" 'end-of-line)
@@ -351,3 +351,23 @@ you should place you code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (kaolin-theme winum underwater-theme tronesque-theme planet-theme omtose-phellack-theme monochrome-theme helm-purpose window-purpose imenu-list mmm-mode markdown-toc markdown-mode gh-md flycheck-ycmd company-ycmd ycmd request-deferred deferred company-auctex auctex-latexmk auctex god-mode quack malabar-mode groovy-mode jdee memoize grizzl ggtags spotify ranger pdf-tools tablist lua-mode helm-spotify multi geeknote ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline smeargle restart-emacs rainbow-delimiters quelpa popwin persp-mode pcre2el paradox orgit org-plus-contrib org-bullets open-junk-file noflet neotree move-text magit-gitflow macrostep lusty-explorer lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ensime elisp-slime-nav dumb-jump diff-hl define-word company-statistics column-enforce-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
