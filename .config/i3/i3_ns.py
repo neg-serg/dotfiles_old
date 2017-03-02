@@ -9,21 +9,22 @@ from subprocess import check_output
 def debug():
     return 0
 
-def focus():
-    print("---------------------ALL--------------------")
-    j=0
-    for i in sorted(window_list, key=lambda im: im.name):
-        if debug():
-            print(i.name, i.id)
-        j=j+1
+def dprint(*args):
+    if debug():
+        print(*args)
 
-    print("---------------------IM--------------------")
-    j=0
-    for i in sorted(marked, key=lambda im: im.name):
-        if debug():
-            print(i.name, i.id)
+def strwrap(s):
+    return "[-- " + s + " --]"
+
+def focus():
+    dprint(strwrap("ALL"))
+    for j,i in zip(range(len(window_list)), sorted(window_list, key=lambda im: im.name)):
+        dprint(i.name, i.id)
+
+    dprint(strwrap("IM"))
+    for j,i in zip(range(len(window_list)), sorted(marked, key=lambda im: im.name)):
+        dprint(i.name, i.id)
         marked[j].command('move container to workspace current')
-        j=j+1
 
 def toggle():
     focused = i3.get_tree().find_focused()
@@ -31,22 +32,16 @@ def toggle():
         unfocus()
         return
 
-    j=0
-    for i in sorted(marked, key=lambda im: im.name):
-        if debug():
-            print(i.name, i.id)
+    for j,i in zip(range(len(window_list)), sorted(marked, key=lambda im: im.name)):
+        dprint(i.name, i.id)
         if focused.id == i.id:
             unfocus()
             return
-        j=j+1
-
     focus()
 
 def unfocus():
-    j=0
-    for i in sorted(marked, key=lambda im: im.name):
-        if debug():
-            print(i.name, i.id)
+    for j,i in zip(range(len(marked)), sorted(marked, key=lambda im: im.name)):
+        dprint(i.name, i.id)
         marked[j].command('move scratchpad')
         j=j+1
 
