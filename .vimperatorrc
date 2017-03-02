@@ -1,9 +1,10 @@
 set verbose=0
-colorscheme vimpwhite
 set gui=none
+colorscheme vimpwhite
 
+"set defsearch=google
 set defsearch=google
-set suggestengines=
+set suggestengines=dc
 
 set hintchars=12345
 set hintmatching=fuzzy
