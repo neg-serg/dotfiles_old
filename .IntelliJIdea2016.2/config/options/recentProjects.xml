@@ -3,12 +3,14 @@
     <option name="recentPaths">
       <list>
         <option value="$USER_HOME$/tmp/untitled" />
-        <option value="$USER_HOME$/tmp/qwe" />
-        <option value="$USER_HOME$/src/innopolis-showcase/backend" />
-        <option value="$USER_HOME$/src/innopolis-showcase" />
-        <option value="$USER_HOME$/tmp/lol" />
       </list>
     </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/tmp/untitled" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/tmp/untitled" />
     <option name="additionalInfo">
       <map>
         <entry key="$USER_HOME$/dev/javarush/JavaRushHomeWork/JavaRushHomeWork">
@@ -710,7 +712,7 @@
               <option name="build" value="IU-162.1447.26" />
               <option name="productionCode" value="IU" />
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
-              <option name="projectOpenTimestamp" value="1480888251056" />
+              <option name="projectOpenTimestamp" value="1487959989181" />
               <option name="buildTimestamp" value="1470085200000" />
             </RecentProjectMetaInfo>
           </value>

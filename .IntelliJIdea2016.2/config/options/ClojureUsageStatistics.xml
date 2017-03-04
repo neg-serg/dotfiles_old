@@ -6,6 +6,14 @@
         <value>
           <map>
             <entry>
+              <key long="27" />
+              <value long="1" />
+            </entry>
+            <entry>
+              <key long="36" />
+              <value long="1" />
+            </entry>
+            <entry>
               <key long="340" />
               <value long="4" />
             </entry>
@@ -21,6 +29,14 @@
         <value>
           <map>
             <entry>
+              <key long="27" />
+              <value long="1" />
+            </entry>
+            <entry>
+              <key long="36" />
+              <value long="1" />
+            </entry>
+            <entry>
               <key long="340" />
               <value long="4" />
             </entry>
@@ -35,6 +51,18 @@
         <key keyword="project-opened" />
         <value>
           <map>
+            <entry>
+              <key long="27" />
+              <value long="1" />
+            </entry>
+            <entry>
+              <key long="55" />
+              <value long="1" />
+            </entry>
+            <entry>
+              <key long="36" />
+              <value long="1" />
+            </entry>
             <entry>
               <key long="340" />
               <value long="5" />
