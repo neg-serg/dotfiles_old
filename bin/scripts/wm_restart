@@ -36,6 +36,7 @@ function i3_restart(){
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
         ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
         {
+            pkill -USR1 -x sxhkd
             polybar -c ${polybar_cfg} tiny; 
             wait_a_bit
             polybar -c ${polybar_cfg} main
