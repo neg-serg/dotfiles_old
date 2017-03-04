@@ -9,9 +9,9 @@ set $mod Mod4
 set $alt Mod1
 floating_modifier $mod
 
-set $myfont PragmataPro for Powerline 0
+set $myfont PragmataPro for Powerline 10
 set $zerofont PragmataPro for Powerline 0 
-font pango: $myfont
+font pango: $zerofont
 
 focus_follows_mouse no
 focus_on_window_activation smart
@@ -27,7 +27,6 @@ new_float pixel 3
 show_marks no
 
 set $Locker i3lock && sleep 1
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 
 set $soft_restart killall -SIGUSR1 i3status
 
@@ -49,9 +48,8 @@ gaps outer 8
 hide_edge_borders both 
 #------------------------------------------
 set $exit mode "default"
-bindsym $alt+e mode "alt_e"
-bindsym $mod+r mode "resize"
-bindsym $mod+Pause mode "$mode_system"
+bindsym $alt+e mode "[alt_e]"
+bindsym $mod+r mode "[resize]"
 bindsym $mod+Shift+w mode "[Layout]"
 #------------------------------------------
 bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
@@ -82,14 +80,9 @@ set {$spotify,ws13}  13: spotify
 set {$sxiv}  [pic]
 set {$graph}  [graph]
 
-for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [class="Sxiv$"] move scratchpad, move position 0 0, resize set 1920 1200, focus
 for_window [instance="^(wim|nwim)$"] focus
-
-#set $im_geom move absolute position 1372 127, resize set 528 1029
-#for_window [class="^(skypeforlinux)$"] move scratchpad, $im_geom
-#for_window [instance="telegram-desktop"] move scratchpad, $im_geom
 
 for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
 for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position 293 0, resize set 1250 700
@@ -111,14 +104,11 @@ bindsym $mod+s [con_id=__focused__] scratchpad show
 for_window [instance="^(gcalctool|galculator)$"] floating enable
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
 for_window [title="^Compress.*"] floating enable
-for_window [title="^screenkey"] floating enable
-for_window [title="^Debconf"] floating enable
-for_window [class="control-center"] floating enable
-for_window [class="^Pavucontrol"] floating enable
-for_window [class="^B2[Gg]$"] floating enable
+for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
 
 for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focus
 
+assign [class="Gimp"] → $gimp
 assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"]     → $ide
 assign [instance="recoll"]                                             → $admin
 assign [instance="^MainTerminal$"]                                     → $term
@@ -164,7 +154,7 @@ set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
 for_window [class="yakuake"] floating enable
 
-mode "alt_e" {
+mode "[alt_e]" {
     #-------------------------------------------------------
     bindsym c mode "password"
     bindsym $mod+Shift+space mode "default", floating toggle
@@ -172,7 +162,7 @@ mode "alt_e" {
     bindsym e mode "default", [urgent=latest] focus
     bindsym {$mod,$alt,}+s exec ~/bin/scripts/skype, mode "default"
     bindsym Control+R mode "default", [class=Cr3] focus
-    bindsym a mode "default", [con_mark=_dialog] scratchpad show
+    bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
     bindsym d mode "default", exec ~/bin/scripts/dzen-dict
     bindsym f mode "default", [con_mark=_float] scratchpad show
@@ -188,24 +178,20 @@ mode "alt_e" {
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
     bindsym {$mod,$alt,}+t exec ~/bin/scripts/telegram, mode "default"
-	# toggle [floating, tiled]
 	bindsym Shift+d floating toggle; $exit
-    
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 mode "password" {
-    bindsym {C,P} exec ~/bin/scripts/lpasswd {,type}, $exit
+    bindsym {c,p} exec ~/bin/scripts/lpasswd {,type}, $exit
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 
-
 for_window [class="XRebirth"] floating enable
 bindsym $mod+{F1,F2,F3,F4} $ror "[workspace=$ide]" '~/bin/scripts/jetbrains.sh {idea,webstorm,clion,android-studio}' focus
 
-assign [class="Gimp"] → $gimp
 for_window [class="Gimp" window_role="gimp-file-{open,save}"]     floating enable
 for_window [class="Gimp" window_role="gimp-message-dialog"]       floating enable
 for_window [class="Gimp" window_role="gimp-image-new"]            floating enable
@@ -214,26 +200,20 @@ for_window [class="Gimp" window_role="gimp-toolbox-color-dialog"] floating enabl
 for_window {[instance="Dialog"],[window_role="Organizer"],[window_role="Manager" instance="Download"]} floating enable
 for_window [class="(feh|qiv)"] mark _img, floating enable
 
-for_window [class="Xfce"]                                                floating enable
-for_window [class="^(Xmessage|XFontSel|XCalc)$"]                         floating enable
-for_window [class="com-sun-javaws-Main"]                                 floating enable
-
-for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"]         floating enable
-for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
-
-for_window [instance="stardict"]                                         floating enable
-for_window [instance="lxappearance"]                                     floating enable
-for_window [class="Awf-gtk3"]                                            floating enable
-for_window [class="rdesktop" instance="rdesktop"]                        floating enable
-for_window [class="Conky"]                                               floating enable
-for_window [class="cool-retro-term"] mark _term,                         floating enable
-for_window [class="^(Tilda|Guake)$"]                                     floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"]                  floating enable
-for_window [instance="wicd"]                                             floating enable
-for_window [instance="ranger"]                                           floating enable
-for_window [class="ranger"]                                              floating enable
-for_window [class="caja"]                                                floating enable
-for_window [class="Nicotine.*" instance="nicotine"]                      floating enable
+for_window [class="Xfce"]                                                             floating enable
+for_window [class="^(Xmessage|XFontSel|XCalc)$"]                                      floating enable
+for_window [class="com-sun-javaws-Main"]                                              floating enable
+                                                                                     
+for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"]                      floating enable
+for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"]              floating enable
+ 
+for_window [class="rdesktop" instance="rdesktop"]                                     floating enable
+for_window [class="cool-retro-term"]                                                  floating enable
+for_window [class="^(Tilda|Guake)$"]                                                  floating enable
+for_window [instance="wicd"]                                                          floating enable
+for_window [instance="ranger"]                                                        floating enable
+for_window [class="^(ranger|caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
+for_window [class="Nicotine.*" instance="nicotine"]                                   floating enable
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
@@ -243,9 +223,9 @@ bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 
 bindsym $mod+w $ror "[class=(?i)^(firefox|Navigator)$]" firefox focus
-bindsym $mod+Control+t exec i3-run-or-raise -c "Vuze" vuze
+bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
 
-for_window [class="mpv" instance="webcam_mpv"] mark webcam
+for_window [class="webcam_mpv"] mark webcam, move scratchpad, resize set 720 480, move position center, focus
 for_window [class="mpv"] mark media, focus, fullscreen
 
 bindsym $mod+b exec i3-msg [class=mpv] focus
@@ -271,12 +251,12 @@ mode "$mode_system" {
 }
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
-    bindsym {h,Shift+h} resize {shrink,grow} left 4 ppt
-    bindsym {j,Shift+j} resize {shrink,grow} down 4 ppt
-    bindsym {k,Shift+k} resize {shrink,grow} up 4 ppt
-    bindsym {l,Shift+l} resize {shrink,grow} right 4 ppt
-    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4 ppt
+mode "[resize]" {
+    bindsym {h,Shift+h} resize {shrink,grow} left 4
+    bindsym {j,Shift+j} resize {shrink,grow} down 4
+    bindsym {k,Shift+k} resize {shrink,grow} up 4
+    bindsym {l,Shift+l} resize {shrink,grow} right 4
+    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -321,6 +301,6 @@ mode "gaps-inner" {
 exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
 exec --no-startup-id python3 ~/.config/i3/disable-standby-fs.py
 exec --no-startup-id python3 ~/.config/i3/focus-last.py
-exec --no-startup-id python3 ~/.config/i3/marker.py
+exec --no-startup-id python3 ~/.config/i3/marker.py im
 
 # vim:filetype=i3
