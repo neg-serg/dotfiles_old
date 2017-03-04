@@ -106,7 +106,7 @@ for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
 for_window [title="^Compress.*"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
 
-for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, focus
+for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
 assign [class="Gimp"] → $gimp
 assign [class="^jetbrains-(idea|webstorm|clion|andrond-studio).*"]     → $ide
@@ -211,9 +211,9 @@ for_window [class="rdesktop" instance="rdesktop"]                               
 for_window [class="cool-retro-term"]                                                  floating enable
 for_window [class="^(Tilda|Guake)$"]                                                  floating enable
 for_window [instance="wicd"]                                                          floating enable
-for_window [instance="ranger"]                                                        floating enable
-for_window [class="^(ranger|caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
+for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"]        floating enable
 for_window [class="Nicotine.*" instance="nicotine"]                                   floating enable
+for_window [class="ranger"] mark ranger, floating enable, move scratchpad, resize set 1132 760, move position 760 18
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
