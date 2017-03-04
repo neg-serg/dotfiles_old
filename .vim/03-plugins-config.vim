@@ -392,8 +392,7 @@ if neobundle#tap('YouCompleteMe')
 
     let g:ycm_min_num_identifier_candidate_chars = 4
     let g:ycm_filetype_specific_completion_to_disable = {
-                \ 'javascript': 1, 
-                \ 'python': 1 
+                \ 'javascript': 1
                 \ }
     let g:ycm_goto_buffer_command = 'vertical-split'
 
