@@ -8,22 +8,31 @@ from itertools import cycle
 from subprocess import check_output
 
 import uuid
+import re
 
-group_classes = {
-    'im' : { 'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop', 'skypeforlinux' }
+settings = {
+    'im' : {
+        'classes' : { 'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop', 'skypeforlinux' },
+        'geom' : "528x1029+1372+127"
+    }
 }
+
+def parse_geom():
+    geom=re.split(r'[x+]', settings[group]["geom"])
+    return "move absolute position {} {}, resize set {} {}".format(*geom)
 
 def make_mark():
     return 'mark {}'.format(group) + str(str(uuid.uuid4().fields[-1]))
 
 def mark_group(self, event):
-    global group_classes
+    global settings
     global group
 
     con = event.container
-    if con.window_class in group_classes[group]:
+    if con.window_class in settings[group]["classes"]:
         con.command(make_mark())
-        con.command('move scratchpad,  move absolute position 1372 127, resize set 528 1029')
+        scratch_cmd='move scratchpad, '+parse_geom()
+        con.command(scratch_cmd)
         print(make_mark())
 
 if len(argv) > 1:
