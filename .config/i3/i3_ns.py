@@ -1,10 +1,46 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 import i3ipc
+import i3 as i3hl
+
 from sys import argv
 from sys import exit
 from itertools import cycle
 from subprocess import check_output
+
+import uuid
+import re
+
+settings = {
+    'im' : {
+        'classes' : {
+            'TelegramDesktop',
+            'Telegram-desktop',
+            'telegram-desktop',
+            'skypeforlinux'
+        },
+        'geom' : "528x1029+1372+127"
+    }
+}
+
+def parse_geom():
+    geom={}
+    geom=re.split(r'[x+]', settings[group]["geom"])
+    return "move absolute position {2} {3}, resize set {0} {1}".format(*geom)
+
+def make_mark():
+    return 'mark {}'.format(group) + str(str(uuid.uuid4().fields[-1]))
+
+def mark_group(self, event):
+    global settings
+    global group
+
+    con = event.container
+    if con.window_class in settings[group]["classes"]:
+        con.command(make_mark())
+        scratch_cmd='move scratchpad, '+parse_geom()
+        con.command(scratch_cmd)
+        print(make_mark())
 
 def debug():
     return 0
@@ -113,14 +149,10 @@ if __name__ == '__main__':
     else:
         i3 = i3ipc.Connection()
         window_list = i3.get_tree().leaves()
-        marked = i3.get_tree().find_marked(argv[1])
+        group=argv[1]
+        marked=i3.get_tree().find_marked(group+"[0-9]+")
+        marks=i3hl.get_marks()
 
-        # i3 = i3ipc.Connection()
-        # i3.on('workspace::focus', swap)
-        # i3.on('window::new', on_new_window)
-        # i3.on('window::fullscreen_mode', swap)
-        # # TODO XXX Handle window::mark (does not yet exist)
-        # i3.main()
         if argv[2] == "show":
             focus()
         elif argv[2] == "hide":
@@ -129,4 +161,10 @@ if __name__ == '__main__':
             toggle()
         elif argv[2] == "next":
             iterate_over()
+        elif argv[2] == "marker":
+            i3.on('window::new', mark_group)
+            dprint("::My marks::")
+            for i in marks:
+                dprint(i)
+            i3.main()
 #------------------------------------------------

@@ -299,8 +299,9 @@ mode "gaps-inner" {
 }
 
 exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
+
 exec --no-startup-id python3 ~/.config/i3/disable-standby-fs.py
 exec --no-startup-id python3 ~/.config/i3/focus-last.py
-exec --no-startup-id python3 ~/.config/i3/marker.py im
+exec --no-startup-id python3 ~/.config/i3/i3_ns.py im marker
 
 # vim:filetype=i3
