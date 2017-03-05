@@ -9,9 +9,6 @@ if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
     NeoBundle 'nhooyr/neoman.vim' "better alternative to vimpager
 endif
 NeoBundle 'thinca/vim-quickrun' "run a bunch of text
-if has("nvim")
-    NeoBundle 'Shougo/denite.nvim' "newer replacement for unite
-endif
 NeoBundle 'Shougo/neomru.vim' "add neomru source
 NeoBundle 'junegunn/vim-pseudocl'
 "--[ Additions ]--------------------------------------------------------------------------
@@ -20,7 +17,6 @@ NeoBundle 'FooSoft/vim-argwrap' "vim arg wrapper
 "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
 NeoBundle 'Valloric/ListToggle.git' "toggle quickfix and location list <leader>l by def
 NeoBundle 'tpope/vim-projectionist' "better alternate files switcher and more
-NeoBundle 'othree/eregex.vim' "Perl-like extended regex for vim
 NeoBundle 'lyokha/vim-xkbswitch.git' "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
 NeoBundle 'kana/vim-arpeggio.git' "mappings for simultaneously pressed keys
 NeoBundle 'tyru/open-browser.vim' "open browser with gx
@@ -138,12 +134,9 @@ NeoBundle 'derekwyatt/vim-fswitch.git' "switching between companion source files
 NeoBundle 'janko-m/vim-test.git' "easy testing for various langs
 NeoBundle 'mh21/errormarker.vim' "mark strings with errors
 "--[ Scala ]-----------------------------------------------------------------------------
-if !has("nvim") && has("ololo")
-" [ Delete Scala support for now ]
-    NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
-    NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
-    NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
-endif
+NeoBundle 'ensime/ensime-vim' "scala vim autocompletion
+NeoBundle 'derekwyatt/vim-scala' "various initial scala support for vim
+NeoBundle 'derekwyatt/vim-sbt' "basic SBT support for vim
 "--[ Python ]-----------------------------------------------------------------------------
 NeoBundle 'vim-scripts/IndentConsistencyCop.git' "autochecks for indent
 NeoBundle 'hynek/vim-python-pep8-indent.git' "python autoindent pep8 compatible
