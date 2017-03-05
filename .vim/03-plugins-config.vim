@@ -19,7 +19,7 @@ endif
 " │ plugin - kana/vim-arpeggio.git                                                    │ 
 " │ https://github.com/kana/vim-arpeggio.git                                          │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-arpeggio')
+if dein#tap('vim-arpeggio')
     call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
@@ -88,7 +88,7 @@ let g:lightline.mode_map = {
 " │ plugin - junegunn/fzf.vim                                                         │ 
 " │ https://github.com/junegunn/fzf.vim                                               │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('skim.vim')
+if dein#tap('skim.vim')
     let $SKIM_DEFAULT_OPTS = $SKIM_DEFAULT_OPTS . " " . "-t index"
     nnoremap <silent> <Leader>. :call skim#run({
                 \ 'source': 'sed "1d" $HOME/.cache/neomru/file',
@@ -99,7 +99,7 @@ if neobundle#tap('skim.vim')
     nnoremap qe :Files %:p:h<CR>
     nnoremap qE :Files<CR>
     nnoremap ed :Buffers<CR>
-    if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
+    if !dein#tap('lusty') && !dein#tap('lycosaexplorer') && has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
     " Insert mode completion
@@ -115,13 +115,13 @@ else
     " │ plugin - junegunn/fzf.vim                                                         │ 
     " │ https://github.com/junegunn/fzf.vim                                               │ 
     " └───────────────────────────────────────────────────────────────────────────────────┘
-    if neobundle#tap('fzf.vim')
+    if dein#tap('fzf.vim')
         if !has("nvim")
             let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
         else
             let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=dark"
         endif
-        if !neobundle#tap('lusty') && !neobundle#tap('lycosaexplorer') && has("nvim")
+        if !dein#tap('lusty') && !dein#tap('lycosaexplorer') && has("nvim")
             nnoremap <leader>l :Files %:p:h<CR>
         endif
 
@@ -190,7 +190,7 @@ endif
 " │ plugin - sjl/gundo.vim.git                                                        │ 
 " │ https://github.com/sjl/gundo.vim.git                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('gundo.vim')
+if dein#tap('gundo.vim')
     let g:gundo_playback_delay = 240
     nnoremap <Leader>u :GundoToggle<CR>
 endif
@@ -198,7 +198,7 @@ endif
 " │ plugin - nathanaelkane/vim-indent-guides.git                                      │
 " │ https://github.com/nathanaelkane/vim-indent-guides.git                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-indent-guides')
+if dein#tap('vim-indent-guides')
     let g:indent_guides_auto_colors = 1
     let g:indent_guides_start_level           = 2
     let g:indent_guides_guide_size            = 1
@@ -209,7 +209,7 @@ endif
 " │ plugin - SirVer/ultisnips.git                                                     │
 " │ https://github.com/SirVer/ultisnips.git                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('ultisnips')
+if dein#tap('ultisnips')
     let g:UltiSnipsSnippetsDir         = $HOME . './vim/UltiSnips'
     if has("gui_macvim")
         " Ctrl conflicts with Dvorak-Qwerty Command
@@ -228,7 +228,7 @@ endif
 " │ plugin - sjbach/lusty.git                                                         │
 " │ https://github.com/sjbach/lusty.git                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('lusty')
+if dein#tap('lusty')
     let g:LustyJugglerDefaultMappings = 0
     let LustyExplorerDefaultMappings  = 0
     nmap <silent> <leader>l :LustyFilesystemExplorerFromHere<CR>
@@ -237,7 +237,7 @@ endif
 " │ plugin - lyokha/vim-xkbswitch.git                                                 │
 " │ https://github.com/lyokha/vim-xkbswitch.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-xkbswitch')
+if dein#tap('vim-xkbswitch')
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchIMappings = ['ru']
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
@@ -247,7 +247,7 @@ endif
 " │ plugin - bling/vim-airline.git                                                    │
 " │ https://github.com/bling/vim-airline.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-airline')
+if dein#tap('vim-airline')
     let g:airline#extensions#tabline#enabled          = 1
     let g:airline#extensions#tabline#tab_nr_type      = 1
     let g:airline#extensions#tabline#buffer_min_count = 1
@@ -285,7 +285,7 @@ endif
 " │ plugin - scrooloose/syntastic.git                                                 │
 " │ https://github.com/scrooloose/syntastic.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('syntastic')
+if dein#tap('syntastic')
     " '⚡' '😱' '✗' '➽'
     " ⚑ ⚐ ♒ ⛢ ❕ ❗
     let g:syntastic_error_symbol='✗'
@@ -322,7 +322,7 @@ endif
 " │ plugin - Valloric/YouCompleteMe.git                                               │
 " │ https://github.com/Valloric/YouCompleteMe.git                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('YouCompleteMe')
+if dein#tap('YouCompleteMe')
     " Do not display "Pattern not found" messages during YouCompleteMe completion.
     " Patch: https://groups.google.com/forum/#!topic/vim_dev/WeBBjkXE8H8
     if 1 && exists(':try')
@@ -428,7 +428,7 @@ endif
 " │ plugin - majutsushi/tagbar.git                                                    │
 " │ https://github.com/majutsushi/tagbar.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('tagbar')
+if dein#tap('tagbar')
     nnoremap <silent> <leader>tt :TagbarToggle<CR>
 	let g:tagbar_type_markdown = {
         \ 'ctagstype' : 'markdown',
@@ -461,7 +461,7 @@ endif
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
 " │ https://github.com/derekwyatt/vim-fswitch.git                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-fswitch')
+if dein#tap('vim-fswitch')
     " A "companion" file is a .cpp file to an .h file and vice versa
     " Opens the companion file in the current window
     nnoremap <Space>fs :FSHere<cr>
@@ -478,7 +478,7 @@ endif
 " │ plugin - chrisbra/Join.git                                                        │
 " │ https://github.com/chrisbra/Join.git                                              │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('Join')
+if dein#tap('Join')
     nmap J :Join<CR>
     vmap J :Join<CR>
 endif
@@ -486,7 +486,7 @@ endif
 " │ plugin - utl.vim                                                                  │
 " │ https://github.com/vim-scripts/utl.vim.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('utl')
+if dein#tap('utl')
     let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
     let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'
     let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'
@@ -497,7 +497,7 @@ endif
 " │ plugin - klen/python-mode.git                                                     │
 " │ https://github.com/klen/python-mode.git                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('python-mode')
+if dein#tap('python-mode')
     nmap <silent><Leader>n :PymodeLint<CR>
     let g:pymode_breakpoint_bind = '<Leader>B'
     let g:pymode_lint = 1
@@ -513,7 +513,7 @@ endif
 " │ plugin - gregsexton/gitv.git                                                      │
 " │ https://github.com/gregsexton/gitv.git                                            │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('gitv')
+if dein#tap('gitv')
     let g:Gitv_OpenHorizontal = 'auto'
     let g:Gitv_OpenPreviewOnLaunch = 1
     let g:Gitv_WipeAllOnClose = 1
@@ -527,7 +527,7 @@ endif
 " │ plugin - Valloric/ListToggle.git                                                  │
 " │ https://github.com/Valloric/ListToggle.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('ListToggle')
+if dein#tap('ListToggle')
     let g:lt_height = 10
     let g:lt_location_list_toggle_map = '[Quickfix]<Space>'
     let g:lt_quickfix_list_toggle_map = '[Quickfix]q'
@@ -536,7 +536,7 @@ endif
 " │ plugin - mattn/zencoding-vim.git                                                  │
 " │ https://github.com/mattn/zencoding-vim.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('zencoding-vim')
+if dein#tap('zencoding-vim')
     let g:user_zen_leader_key = '<c-b>'
     let g:user_zen_settings = {
         \  'indentation' : '  '
@@ -546,7 +546,7 @@ endif
 " │ plugin - Raimondi/delimitMate.git                                                 │
 " │ https://github.com/Raimondi/delimitMate.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('delimitMate')
+if dein#tap('delimitMate')
     let g:delimitMate_expand_space = 1
     let g:delimitMate_expand_cr    = 0
     let g:delimitMate_smart_quotes = 1
@@ -559,7 +559,7 @@ endif
 " │ plugin - xolox/vim-easytags.git                                                   │
 " │ https://github.com/xolox/vim-easytags.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-easytags')
+if dein#tap('vim-easytags')
     let g:easytags_updatetime_min = 9000
     let g:easytags_dynamic_files  = 1
     let g:easytags_events         = ['BufWritePost']
@@ -570,7 +570,7 @@ endif
 " │ plugin - benmills/vimux                                                           │
 " │ https://github.com/benmills/vimux.git                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vimux')
+if dein#tap('vimux')
     let g:VimuxUseNearestPane = 1
     " Vimux should split horizontally, but only if there isn't already a split
     " and only if there is room to split to the side and have two windows open.
@@ -597,7 +597,7 @@ endif
 " │ plugin - tpope/vim-fugitive.git                                                   │
 " │ https://github.com/tpope/vim-fugitive.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-fugitive')
+if dein#tap('vim-fugitive')
     nnoremap <Space>gs :Gstatus<CR>
     nnoremap <Space>gw :Gwrite<CR>
     nnoremap <Space>go :Gread<CR>
@@ -620,7 +620,7 @@ endif
 " │ plugin - YankRing.vim                                                             │
 " │ https://github.com/vim-scripts/YankRing.vim.git                                   │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('YankRing.vim')
+if dein#tap('YankRing.vim')
     let g:yankring_history_dir = '/tmp'
     let g:yankring_history_file = 'yankring_hist'
     " this is so that single char deletes don't end up in the yankring
@@ -639,7 +639,7 @@ endif
 " │ plugin - drmikehenry/vim-fontsize.git                                             │
 " │ https://github.com/drmikehenry/vim-fontsize.git                                   │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-fontsize')
+if dein#tap('vim-fontsize')
     nmap <silent> <F11>                       <Plug>FontsizeBegin
     nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
     nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
@@ -649,14 +649,14 @@ endif
 " │ plugin - dbakker/vim-projectroot.git                                              │
 " │ https://github.com/dbakker/vim-projectroot.git                                    │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-projectroot')
+if dein#tap('vim-projectroot')
     nnoremap <silent> cd :ProjectRootCD<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - bbchung/gasynctags.git                                                   │
 " │ https://github.com/bbchung/gasynctags.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('gasynctags')
+if dein#tap('gasynctags')
     let g:gasynctags_autostart = 0
     nmap <silent><space>d :GasyncTagsEnable<CR>:GtagsCscope<CR>
 endif
@@ -664,7 +664,7 @@ endif
 " │ plugin - othree/eregex.vim.git                                                    │
 " │ https://github.com/othree/eregex.vim.git                                          │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('eregex.vim')
+if dein#tap('eregex.vim')
     " With this map, we can select some text in visual mode and by invoking the map,
     " have the selection automatically filled in as the search text and the cursor
     " placed in the position for typing the replacement text. Also, this will ask
@@ -680,7 +680,7 @@ endif
 " │ plugin - tpope/vim-dispatch.git                                                   │
 " │ https://github.com/tpope/vim-dispatch.git                                         │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-dispatch')
+if dein#tap('vim-dispatch')
     nmap MK :Make -j4
     nmap MC :Make clean<cr>
     nmap <Space>cc :Make -j4<cr>
@@ -690,7 +690,7 @@ endif
 " │ plugin - davidhalter/jedi-vim.git                                                 │
 " │ https://github.com/davidhalter/jedi-vim.git                                       │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('jedi-vim')
+if dein#tap('jedi-vim')
     let g:jedi#popup_on_dot = 1
     let g:jedi#popup_select_first = 0
     let g:jedi#completions_enabled = 1
@@ -707,8 +707,8 @@ if neobundle#tap('jedi-vim')
     endfunction
     autocmd Filetype python call <SID>jedi_settings()
 endif
-if neobundle#tap('vital.vim') 
-    function! neobundle#tapped.hooks.on_source(bundle)
+if dein#tap('vital.vim') 
+    function! dein#tapped.hooks.on_source(bundle)
         let g:V = vital#of('vital')
         let g:S = g:V.import("Web.HTTP")
         let g:L = g:V.import("Data.List")
@@ -726,7 +726,7 @@ endif
 " │ plugin - xolox/vim-lua-ftplugin.git                                               │ 
 " │ git@github.com:xolox/vim-lua-ftplugin.git                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-lua-ftplugin') 
+if dein#tap('vim-lua-ftplugin') 
     let g:lua_complete_omni = 1
     " This sets the default value for all buffers.
     let g:lua_compiler_name = '/usr/bin/luac'
@@ -747,7 +747,7 @@ endif
 " │ plugin - godlygeek/tabular                                                        │ 
 " │ git@github.com:godlygeek/tabular                                                  │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('tabular') 
+if dein#tap('tabular') 
     nmap <Leader>a&     :Tabularize /&<CR>
     vmap <Leader>a&     :Tabularize /&<CR>
     nmap <Leader>a=     :Tabularize /^[^=]*\zs=<CR>
@@ -769,7 +769,7 @@ endif
 " │ plugin - dag/vim2hs                                                               │ 
 " │ git@github.com:dag/vim2hs                                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim2hs') 
+if dein#tap('vim2hs') 
     let g:haskell_conceal_enumerations = 1
     let g:haskell_quasi                = 1
     let g:haskell_interpolation        = 1
@@ -787,7 +787,7 @@ endif
 " │ https://github.com/kana/vim-ruby/vim-ruby.git                                     │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if !has("nvim")
-    if neobundle#tap('vim-ruby')
+    if dein#tap('vim-ruby')
         autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
         autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
         autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -798,7 +798,7 @@ endif
 " │ plugin - skalnik/vim-vroom                                                        │ 
 " │ https://github.com/skalnik/vim-vroom                                              │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-vroom')
+if dein#tap('vim-vroom')
     let g:vroom_map_keys = 0     " to not use default keymaps
     let g:vroom_use_dispatch = 1 " use dispatch by default
     let g:vroom_use_zeus = 1     " run tests with zeus || bundle exec
@@ -809,14 +809,14 @@ endif
 " │ plugin - derekwyatt/vim-fswitch                                                   │ 
 " │ https://github.com/derekwyatt/vim-fswitch                                         │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('vim-fswitch')
+if dein#tap('vim-fswitch')
     nnoremap <silent> <C-a> :FSHere<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - luochen1990/rainbow                                                      │
 " │ https://github.com/luochen1990/rainbow.git                                        │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('rainbow')
+if dein#tap('rainbow')
     "0 if you want to enable it later via :RainbowToggle
     let g:rainbow_active = 1 
     let g:rainbow_conf = {
@@ -845,7 +845,7 @@ endif
 " │ plugin - rstacruz/sparkup                                                         │
 " │ https://github.com/rstacruz/sparkup                                               │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('rainbow')
+if dein#tap('rainbow')
     let g:sparkupMapsNormal = 0 "default = 0
     let g:sparkupMaps = 1 "default = 1
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
@@ -854,7 +854,7 @@ endif
 " │ plugin - tranngocthachs/gtags-cscope-vim-plugin.git                               │
 " │ https://github.com/tranngocthachs/gtags-cscope-vim-plugin.git                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('gtags-cscope-vim-plugin')
+if dein#tap('gtags-cscope-vim-plugin')
     let g:GtagsCscope_Auto_Load = 1
     let g:GtagsCscope_Auto_Map = 0
 
@@ -878,7 +878,7 @@ endif
 " │ plugin - Shougo/denite.nvim                                                       │
 " │ https://github.com/Shougo/denite.nvim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
-if neobundle#tap('denite.nvim')
+if dein#tap('denite.nvim')
     " Change file_rec command.
     call denite#custom#var('file_rec', 'command',
                 \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])

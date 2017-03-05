@@ -54,7 +54,6 @@ endif
 if has('vim_starting')
     filetype off
     set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
     if !has("nvim")
         set runtimepath+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
     endif
@@ -71,34 +70,19 @@ if has('nvim')
     source ~/.vim/01-nvim_terminal_fix.vim
 endif
 
-let s:bundle_dir = expand('$HOME/.vim/bundle')
-let s:neobundle_dir = s:bundle_dir . '/neobundle.vim'
-let s:neobundle_repo = 'https://github.com/Shougo/neobundle.vim'
-let g:neobundle#cache_file = expand('$HOME/.vim/neobundlecache')
-let &runtimepath.=','.s:neobundle_dir
-try
-    call neobundle#begin(s:bundle_dir)
-    catch /E117/ " neobundle not installed
-        execute "silent !mkdir -p " .  s:neobundle_dir
-        execute "silent !" . "git clone " s:neobundle_repo . " " . s:neobundle_dir
-        NeoBundleInstall
-    call neobundle#end()
-    quit
-endtry
-if neobundle#load_cache()
-    source ~/.vim/00-bundlelist.vim
-    if has('nvim')
-        source ~/.vim/00-nvim_bundles.vim
-    endif
-    NeoBundleSaveCache
+if (!isdirectory(expand("$HOME/.vim/repos/github.com/Shougo/dein.vim")))
+    call system(expand("mkdir -p $HOME/.vim/repos/github.com"))
+    call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.vim/repos/github.com/Shougo/dein.vim"))
 endif
-call neobundle#end()
+
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim/
+
+source ~/.vim/00-bundlelist.vim
+
 if (&t_Co > 2 || has("gui_running"))
     syntax on
 endif
 filetype plugin indent on
-
-NeoBundleCheck
 
 let g:use_base16_colorscheme=''
 if !g:use_base16_colorscheme
