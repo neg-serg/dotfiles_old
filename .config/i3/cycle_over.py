@@ -22,7 +22,11 @@ settings = {
             'Chromium',
         },
         'prog':"firefox",
-        'priority':'Tor Browser',
+        'priority':'Firefox',
+    },
+    'vid':{
+        'classes': {'mpv'},
+        'priority':'mpv',
     }
 }
 
@@ -49,14 +53,16 @@ def cycle_next():
                 j=int(f.readline())
                 cur=tw[j]
 
-                if cur.id != focused.id:
+                if not focused.window_class in settings[tag]["classes"]:
                     for pr in window_list:
                         if pr.window_class == settings[tag]["priority"]:
                             pr.command('focus')
+                            f.seek(0)
+                            f.write('0\n')
                 else:
                     tw[j+1].command('focus')
-                f.seek(0)
-                f.write(str(j+1)+'\n')
+                    f.seek(0)
+                    f.write(str(j+1)+'\n')
         except (IndexError, FileNotFoundError) as ex:
             with open(filename, "w") as f:
                 f = open(filename, 'w')
@@ -92,6 +98,7 @@ if __name__ == '__main__':
         tag=argv[1]
 
         if argv[2] == "next":
+            print_me()
             cycle_next()
         if argv[2] == "print":
             print_me()
