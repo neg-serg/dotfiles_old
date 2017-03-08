@@ -54,11 +54,11 @@ def cycle_next():
                 j=int(f.readline())
                 cur=tw[j]
                 if not focused.window_class in settings[tag]["classes"]:
-                    for pr in window_list:
+                    for num,pr in zip(range(len(window_list)),window_list):
                         if pr.window_class == settings[tag]["priority"]:
                             pr.command('focus')
                             f.seek(0)
-                            f.write('0\n')
+                            f.write(str(num)+'\n')
                 else:
                     if tw[j].fullscreen_mode != False and len(tw) > 1:
                         tw[j].command('fullscreen disable')
