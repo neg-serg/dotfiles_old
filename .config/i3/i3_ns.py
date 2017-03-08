@@ -20,6 +20,17 @@ settings = {
             'skypeforlinux'
         },
         'geom' : "528x1029+1372+127"
+    },
+    'ncmpcpp': {
+        'classes' : { 'mpd-pad2' },
+        'geom' : "1200x600+400+400",
+        'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
+    },
+    'mutt': {
+        'classes' : { 'qwe' },
+        'instances' : { 'mutt' },
+        'geom' : "1250x700+293+0",
+        'prog': "st -f 'PragmataPro for Powerline:size=12' -c mutt -e mutt",
     }
 }
 
@@ -43,6 +54,15 @@ def mark_group(self, event):
         scratch_cmd='move scratchpad, '+parse_geom()
         con.command(scratch_cmd)
         print(make_mark())
+
+    try:
+        if con.window_class in settings[group]["instances"]:
+            con.command(make_mark())
+            scratch_cmd='move scratchpad, '+parse_geom()
+            con.command(scratch_cmd)
+            print(make_mark())
+    except KeyError:
+        return
 
 def debug():
     return 1
@@ -165,6 +185,8 @@ if __name__ == '__main__':
         window_list = i3.get_tree().leaves()
         group=argv[1]
         marked=i3.get_tree().find_marked(group+"[0-9]+")
+        if marked == [] and settings[group]["prog"] != None:
+            i3.command("exec {}".format(settings[group]["prog"]))
         marks=i3hl.get_marks()
 
         if argv[2] == "show":

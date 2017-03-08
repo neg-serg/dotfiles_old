@@ -84,15 +84,13 @@ for_window [title="Preferences$"] floating enable
 for_window [class="Sxiv$"] move scratchpad, move position 0 0, resize set 1920 1200, focus
 for_window [instance="^(wim|nwim)$"] focus
 
-for_window [instance="mpd-pad2"]  mark ncmpcpp, move scratchpad, move absolute position 400 400, resize set 1200 600
-for_window [instance="mutt"] mark mutt, move scratchpad,  move absolute position 293 0, resize set 1250 700
 for_window [instance="kopete"] mark kopete_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [class="ViberPC"] mark viber_im, move scratchpad, move absolute position 100 100, resize set 500 600
 for_window [class="youtube-get"] mark console2, move scratchpad, move absolute position 247 13, resize set 1339 866
 for_window [class="fzf_run"] mark console3, move scratchpad, move absolute position 240 978, resize set 1298 184
 for_window [instance="finch"] mark finch_im, move scratchpad, move absolute position 100 100, resize set 500 600
 
-bindsym $mod+f [con_mark="ncmpcpp"] exec ~/bin/scripts/ncmpcpp
+bindsym $mod+f [con_mark="ncmpcpp"] exec ~/.config/i3/i3_ns.py ncmpcpp toggle
 bindsym $mod+d [con_mark="console"] exec ~/.config/i3/fullscreen_wrapper.sh 'tdrop -a st'
 bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
 bindsym $mod+{e,3} exec ~/.config/i3/i3_ns.py im {toggle,next}
@@ -173,7 +171,7 @@ mode "[alt_e]" {
     bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym Control+t mode "default", exec tor-browser-en
     bindsym Shift+r mode "default", exec ~/bin/scripts/run_ranger
-    bindsym m [con_mark="mutt"] mode "default", exec ~/bin/scripts/run_mutt
+    bindsym m exec ~/.config/i3/i3_ns.py mutt toggle, mode "default"
     bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
@@ -228,7 +226,7 @@ bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
 for_window [class="mpv"] focus, fullscreen
 for_window [title="webcam"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 
-bindsym $mod+b exec i3-msg [class=mpv] focus
+bindsym $mod+b exec ~/.config/i3/cycle_over.py vid next
 
 bindsym $mod+Control+q kill
 
@@ -303,5 +301,7 @@ exec --no-startup-id polybar -c ~/.config/polybar/main {tiny,main}
 exec --no-startup-id python3 ~/.config/i3/disable-standby-fs.py
 exec --no-startup-id python3 ~/.config/i3/focus-last.py
 exec --no-startup-id python3 ~/.config/i3/i3_ns.py im marker
+exec --no-startup-id python3 ~/.config/i3/i3_ns.py ncmpcpp marker
+exec --no-startup-id python3 ~/.config/i3/i3_ns.py mutt marker
 
 # vim:filetype=i3
