@@ -23,6 +23,8 @@ settings = {
     }
 }
 
+ns_data="/tmp/ns_data"
+
 def parse_geom():
     geom={}
     geom=re.split(r'[x+]', settings[group]["geom"])
@@ -43,7 +45,7 @@ def mark_group(self, event):
         print(make_mark())
 
 def debug():
-    return 0
+    return 1
 
 def dprint(*args):
     if debug():
@@ -73,13 +75,32 @@ def toggle():
         if focused.id == i.id:
             unfocus()
             return
+
+    if focused.fullscreen_mode:
+        focused.command('fullscreen toggle')
+        with open(ns_data, "w") as f:
+            f.write("%s\n" % focused.id)
+
     focus()
+
+def restore_fullscreens():
+    with open(ns_data, "r") as f:
+        for line in f:
+            fullscreen_me=line
+
+    for i in i3.get_tree().leaves():
+        if i.id == int(fullscreen_me):
+            i.command('fullscreen toggle')
+    with open(ns_data, "w") as f:
+        f.write("")
+
 
 def unfocus():
     for j,i in zip(range(len(marked)), sorted(marked, key=lambda im: im.name)):
         dprint(i.name, i.id)
         marked[j].command('move scratchpad')
-        j=j+1
+
+    restore_fullscreens()
 
 def get_windows_on_ws(i3):
    return filter(lambda x: x.window, i3.get_tree().find_focused().workspace().descendents())
@@ -100,37 +121,20 @@ def find_visible_windows(windows_on_workspace):
 
 
 def iterate_over():
-    j=0
     focused = i3.get_tree().find_focused()
     focus()
-    for i in sorted(marked, key=lambda im: im.name):
-        if debug():
-            print(i.name, i.id)
-            print("focused id=",focused.id)
+    for j,i in zip(range(len(marked)),sorted(marked, key=lambda im: im.name)):
+        dprint(i.name, i.id)
+        dprint("focused id=",focused.id)
         if focused.id != i.id:
             marked[j].command('move container to workspace current')
             i.command('move scratchpad')
-        j=j+1
-
     focus()
 
 def visible():
-    # if len(argv) > 1 and argv[1] == "reverse":
-    #     cycle_windows = cycle(reversed(visible_windows))
-    # else:
-    #     cycle_windows = cycle(visible_windows)
-
-    # for window in cycle_windows:
-    #     if window.focused:
-    #         focus_to = next(cycle_windows)
-    #         i3.command('[id="%d"] focus' % focus_to.window)
-    #         break
-
     visible_windows = find_visible_windows(get_windows_on_ws(i3))
 
-    if debug():
-        print("Visible and marked")
-
+    dprint("Visible and marked")
     vmarked = 0
     for w in visible_windows:
         for i in sorted(marked, key=lambda im: im.name):
@@ -141,6 +145,16 @@ def visible():
                 vmarked+=1
 
     return vmarked
+
+def scratch_list():
+    v=[]
+    for i in settings:
+        v.append(i)
+    return v
+
+def print_info():
+    v=scratch_list()
+    print(v)
 
 #------------------------------------------------
 if __name__ == '__main__':
@@ -161,6 +175,8 @@ if __name__ == '__main__':
             toggle()
         elif argv[2] == "next":
             iterate_over()
+        elif argv[2] == "d":
+            print_info()
         elif argv[2] == "marker":
             i3.on('window::new', mark_group)
             dprint("::My marks::")
