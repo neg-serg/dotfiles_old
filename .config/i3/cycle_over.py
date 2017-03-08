@@ -27,11 +27,12 @@ settings = {
     'vid':{
         'classes': {'mpv'},
         'priority':'mpv',
+        'usual_fullscreen':True,
     }
 }
 
 def debug():
-    return 1
+    return 0
 
 def dprint(*args):
     if debug():
@@ -52,7 +53,6 @@ def cycle_next():
             with open(filename, "r+") as f:
                 j=int(f.readline())
                 cur=tw[j]
-
                 if not focused.window_class in settings[tag]["classes"]:
                     for pr in window_list:
                         if pr.window_class == settings[tag]["priority"]:
@@ -60,25 +60,28 @@ def cycle_next():
                             f.seek(0)
                             f.write('0\n')
                 else:
+                    if tw[j].fullscreen_mode != False and len(tw) > 1:
+                        tw[j].command('fullscreen disable')
                     tw[j+1].command('focus')
                     f.seek(0)
                     f.write(str(j+1)+'\n')
         except (IndexError, FileNotFoundError) as ex:
-            with open(filename, "w") as f:
-                f = open(filename, 'w')
-                f.write('0\n')
             cur=tw[0]
             if cur.id != focused.id:
                 cur.command('focus')
+            with open(filename, "w") as f:
+                f = open(filename, 'w')
+                f.write('0\n')
 
 def print_me():
     s=""
-    for j,i in zip(range(len(find_acceptable_windows_by_class())),find_acceptable_windows_by_class()):
+    ws=find_acceptable_windows_by_class()
+    for j,i in zip(range(len(ws)),ws):
         if i.id == focused.id:
             s="[x]["+str(j)+"] "+" ["+str(i.id)+"] "+i.name
         else:
             s="["+str(j)+"] "+" ["+str(i.id)+"] "+i.name
-        print(s)
+        dprint(s)
 
 def find_acceptable_windows_by_class():
     tagged_windows=[]
@@ -98,7 +101,8 @@ if __name__ == '__main__':
         tag=argv[1]
 
         if argv[2] == "next":
-            print_me()
+            if debug():
+                print_me()
             cycle_next()
         if argv[2] == "print":
             print_me()
