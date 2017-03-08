@@ -32,7 +32,7 @@ settings = {
 }
 
 def debug():
-    return 0
+    return 1
 
 def dprint(*args):
     if debug():
@@ -53,7 +53,7 @@ def cycle_next():
             with open(filename, "r+") as f:
                 j=int(f.readline())
                 cur=tw[j]
-                if not focused.window_class in settings[tag]["classes"]:
+                if not focused.id in tw:
                     for num,pr in zip(range(len(window_list)),window_list):
                         if pr.window_class == settings[tag]["priority"]:
                             pr.command('focus')
@@ -62,9 +62,13 @@ def cycle_next():
                 else:
                     if tw[j].fullscreen_mode != False and len(tw) > 1:
                         tw[j].command('fullscreen disable')
-                    tw[j+1].command('focus')
+                    if j < len(tw):
+                        indexofnext=j+1
+                    else:
+                        indexofnext=0
+                    tw[indexofnext].command('focus')
                     f.seek(0)
-                    f.write(str(j+1)+'\n')
+                    f.write(str(indexofnext)+'\n')
         except (IndexError, FileNotFoundError) as ex:
             cur=tw[0]
             if cur.id != focused.id:
