@@ -12,7 +12,7 @@
 (session-info "toplevel"
     (factory-entry "gimp-single-image-window")
     (position 0 0)
-    (size 1916 1172)
+    (size 1920 1174)
     (open-on-exit)
     (aux-info
         (left-docks-width "58")
@@ -23,7 +23,7 @@
     (gimp-dock
         (side right)
         (book
-            (current-page 1)
+            (current-page 0)
             (dockable "gimp-tool-options"
                 (tab-style automatic)
                 (aux-info
@@ -58,7 +58,7 @@
     (position 0 0))
 (session-info "toplevel"
     (factory-entry "gimp-hue-saturation-tool-dialog")
-    (position 0 0))
+    (position 0 15))
 (session-info "toplevel"
     (factory-entry "gimp-colorize-tool-dialog")
     (position 0 0))
