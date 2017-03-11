@@ -17,7 +17,9 @@ settings = {
             'TelegramDesktop',
             'Telegram-desktop',
             'telegram-desktop',
-            'skypeforlinux'
+            'skypeforlinux',
+            'ViberPC',
+            'finch',
         },
         'geom' : "528x1029+1372+127"
     },
@@ -27,10 +29,15 @@ settings = {
         'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
     },
     'mutt': {
-        'classes' : { 'qwe' },
+        'classes' : { '' },
         'instances' : { 'mutt' },
         'geom' : "1250x700+293+0",
-        'prog': "st -f 'PragmataPro for Powerline:size=12' -c mutt -e mutt",
+        'prog' : "st -f \'PragmataPro for Powerline:size=12\' -c mutt -e mutt",
+    },
+    'ranger': {
+        'classes' : { 'ranger' },
+        'geom' : "1132x760+170+18",
+        'prog' : "~/bin/scripts/run_ranger"
     }
 }
 
@@ -185,7 +192,7 @@ if __name__ == '__main__':
         window_list = i3.get_tree().leaves()
         group=argv[1]
         marked=i3.get_tree().find_marked(group+"[0-9]+")
-        if marked == [] and settings[group]["prog"] != None:
+        if marked == [] and "prog" in settings[group]:
             i3.command("exec {}".format(settings[group]["prog"]))
         marks=i3hl.get_marks()
 
