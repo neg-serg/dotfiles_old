@@ -9,5 +9,5 @@ colorm() {
  
 m1=$(find $mail_dir/INBOX -type f | wc -l)
 m2=$(find $mail_dir/INBOX/new -type f | wc -l)
- 
-echo "mail: $(colorm $m1)/$(colorm $m2)"
+
+[ $m1 != "0" ] && [ $m2 != "0" ] && echo "mail: $(colorm $m1)/$(colorm $m2)"
