@@ -99,43 +99,36 @@ for_window [instance="^(gcalctool|galculator)$"] floating enable
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
 for_window [title="^Compress.*"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
-
 for_window [window_type="^(dialog|menu|utility|toolbar)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
-
-assign [class="Gimp"]                                                  → $gimp
-assign [class="^jetbrains-(idea|clion|andrond-studio).*"]              → $ide
-assign [instance="recoll"]                                             → $admin
-assign [class="^MainTerminal$"]                                        → $term
-assign $browsers                                                       → $web
-assign [instance="^(wim|nwim)$"]                                       → $dev
-assign [class="(?i)^.*vim$"]                                           → $dev
-assign [class="^(Vuze|Ktorrent)$"]                                     → $torrent
-assign [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"]                  → $media
-assign $steam_games                                                    → $steam
-assign [class="Emacs" instance="emacs"]                                → $dev
-assign [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]                  → $doc
-assign [instance="gparted"]                                            → $admin
-assign [class="(?i)(Wine|Crossover)"]                                  → $wine
-assign [class="(?i)dota.*"]                                            → $wine
-assign [title="^.*.exe$"]                                              → $wine
-assign [class="^(XRebirth|UE4Editor)$"]                                → $wine
-assign [class="Sxiv"]                                                  → $sxiv
-assign [instance="_weechat_"]                                          → $weechat
-assign [class="^(libreoffice|abiword).*$"]                             → $doc
-assign [class="guncharmap"]                                            → $doc
-assign [class="Cr3" instance="cr3"]                                    → $doc
-assign [class="spotify"]                                               → $spotify
-assign [class="Atom"]                                                  → $dev
-assign [instance="^(subl3|sublime_text)$"]                             → $dev
-assign [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] → $dev
-assign [class="simple-scan"]                                           → $graph
-assign [instance="_logs_"]                                             → $admin
-assign [instance="^(remmina|htop_term|glances_term|gnome-disks)$"]     → $admin
-assign [class="(?i)^(VirtualBox|vmware|QEMU|spicec)$"]                 → $vm
-assign [instance="qemu-system-x86_64"]                                 → $vm
-assign [instance="spicy"]                                              → $vm
-assign [class="inkscape"]                                              → $graphic
-
+for_window [class="Gimp"] move container to workspace $gimp, workspace $gimp, focus
+for_window [class="^jetbrains-(idea|clion|andrond-studio).*"] move container to workspace $ide, workspace $ide, focus
+for_window [instance="recoll"] move container to workspace $admin
+for_window [class="^MainTerminal$"] move container to workspace $term, workspace $gimp, focus
+for_window $browsers  move container to workspace $web, workspace $web, focus
+for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
+for_window [class="(?i)^.*vim$"] move container to workspace $dev, workspace $dev, focus
+for_window [class="^(Vuze|Ktorrent)$"] move container to workspace
+for_window [class="^(MPlayer|mplayer2|mpv|gmpc|cheese)$"] move container to workspace $media, workspace $media, focus
+for_window $steam_games move container to workspace $steam, workspace $steam, focus
+for_window [class="^(Emacs|Atom)$"] move container to workspace $dev, workspace $dev, focus
+for_window [instance="^(subl3|sublime_text)$"] move container to workspace $dev, workspace $dev, focus
+for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to workspace $doc, workspace $doc, focus
+for_window [instance="gparted"] move container to workspace $admin
+for_window [class="(?i)(Wine|Crossover)"] move container to workspace $wine, workspace $wine, focus
+for_window [class="(?i)dota.*"] move container to workspace $wine, workspace $wine, focus
+for_window [title="^.*.exe$"] move container to workspace $wine, workspace $wine, focus
+for_window [class="^(XRebirth|UE4Editor)$"] move container to workspace $wine, workspace $wine, focus
+for_window [class="Sxiv"]  move container to workspace $sxiv, workspace $sxiv, focus
+for_window [instance="_weechat_"]  move container to workspace $weechat
+for_window [class="^(libreoffice|abiword).*$"]  move container to workspace $doc
+for_window [class="guncharmap"]  move container to workspace $doc
+for_window [class="Cr3" instance="cr3"] move container to workspace $doc
+for_window [class="(?i)^(VirtualBox|vmware|QEMU|spic).*$"] move container to workspace $vm
+for_window [class="spotify"] move container to workspace $spotify
+for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] move container to workspace $dev, workspace $dev, focus
+for_window [class="^(inkscape|simple-scan)$"] move container to workspace $graph
+for_window [instance="_logs_"] move container to workspace $admin
+for_window [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] move container to workspace $admin
 set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
 for_window [class="yakuake"] floating enable
@@ -174,7 +167,7 @@ mode "password" {
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 
 for_window [class="XRebirth"] floating enable
-bindsym $mod+{F1,F2} $ror "[workspace=$ide]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
+bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
 for_window [class="Gimp" window_role="gimp-file-{open,save}"]     floating enable
 for_window [class="Gimp" window_role="gimp-message-dialog"]       floating enable
@@ -209,6 +202,7 @@ bindsym $mod+w exec ~/.config/i3/cycle_over.py web next
 bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
 
 for_window [class="mpv"] focus, fullscreen
+for_window [class="Zathura"] focus
 for_window [title="webcam"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 
 bindsym $mod+b exec ~/.config/i3/cycle_over.py vid next
