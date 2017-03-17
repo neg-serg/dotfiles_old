@@ -38,6 +38,11 @@ settings = {
         'classes' : { 'ranger' },
         'geom' : "1132x760+170+18",
         'prog' : "~/bin/scripts/run_ranger"
+    },
+    'console': {
+        'classes' : { 'console' },
+        'geom' : "1823x489+38+0",
+        'prog' : "st -c console -f \'PragmataPro for Powerline:size=12\'"
     }
 }
 
