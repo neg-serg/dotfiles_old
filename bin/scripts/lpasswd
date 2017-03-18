@@ -7,7 +7,7 @@ if [[ $1 == "--type" ]]; then
     typeit=1
     shift
 fi
-if [[ $(lpass status = "Not logged in.") ]]; then
+if [[ $(lpass status) = "Not logged in." ]]; then
     lpass login serg.zorg@gmail.com
 fi
 name=$(lpass ls | rofi -dmenu -p '[>>]')
