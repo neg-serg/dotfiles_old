@@ -94,6 +94,7 @@ if [[ ! -x "${BIN_HOME}/l" ]]; then
     fi
 fi
 alias l.='ls -d .*'
+alias l='l -g'
 alias spf="ls -Sshr ./*(.)"
 
 alias primusrun="vblank_mode=0 primusrun"
@@ -422,7 +423,10 @@ alias vuze="vuze&>/dev/null&"
 if inpath vim || inpath nvim; then
     alias v.="v ."
     alias vu='nvim -u NONE -U NONE -i NONE -N'
-    alias gv='v -b":GV"'
+    function gv(){
+        v . && sleep .5s
+        v -b":GV"
+    }
 fi
 
 alias java='java "$_SILENT_JAVA_OPTIONS"'
