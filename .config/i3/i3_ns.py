@@ -42,7 +42,7 @@ settings = {
     'console': {
         'classes' : { 'console' },
         'geom' : "1823x489+38+0",
-        'prog' : "st -c console -f \'PragmataPro for Powerline:size=12\'"
+        'prog' : "st -c console -f \'PragmataPro for Powerline:size=12\' tmux new pulsemixer"
     }
 }
 
