@@ -32,6 +32,4 @@ eval $(gpg-agent --daemon)
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 ~/bin/pass_notifyd &
 
-powerline-daemon -q
-
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
