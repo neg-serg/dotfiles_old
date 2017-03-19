@@ -11,7 +11,6 @@ function soft_restart(){
 }
 
 function restart_panel() {
-    pkill -USR1 -x sxhkd
     pkill admiral
     pkill dzen2
     pkill rofi
@@ -30,38 +29,54 @@ function windowchef_restart(){
     pkill -USR1 -x sxhkd
 }
 
+function i3::common_restart(){
+    ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
+    {
+        polybar -c ${polybar_cfg} tiny; 
+        sleep .2s
+        polybar -c ${polybar_cfg} main
+    } &
+    wait_a_bit
+    ppi3 ${XDG_CONFIG_HOME}/i3/_config > ${XDG_CONFIG_HOME}/i3/config
+}
+
 function i3_restart(){
     polybar_cfg=${XDG_CONFIG_HOME}/polybar/main
     # kill any current poppers (thanks Dylan)
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
-        ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
-        {
-            pkill -USR1 -x sxhkd
-            polybar -c ${polybar_cfg} tiny; 
-            wait_a_bit
-            polybar -c ${polybar_cfg} main
-        }
-        wait_a_bit
+        i3::common_restart
         i3-msg reload
     else
+        i3::common_restart
         i3-msg restart
     fi
-    pkill -USR1 -x sxhkd
 }
 
 function main() {
-    if [[ ${1} != "" ]]; then
-        if [[ ${1} == "soft" ]]; then
-            soft_restart
+    lockfile=/tmp/main.lock
+    if ( set -o noclobber; echo "locked" > "$lockfile") 2> /dev/null; then
+        trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
+        echo "Locking succeeded" >&2
+        #----------------------------------------------
+        if [[ ${1} != "" ]]; then
+            if [[ ${1} == "soft" ]]; then
+                soft_restart
+            else
+                wm_="$1"
+                shift
+                eval "$(echo ${wm_}_restart) $@"
+            fi
         else
-            wm_="$1"
-            shift
-            eval "$(echo ${wm_}_restart) $@"
+            wm_="${windowmanager}"
+            eval "$(echo ${wm_}_restart)"
         fi
+        #----------------------------------------------
+        rm -f "$lockfile"
     else
-        wm_="${windowmanager}"
-        eval "$(echo ${wm_}_restart)"
+        echo "Lock failed - exit" >&2
+        exit 1
     fi
+
 }
 
 main "$@"
