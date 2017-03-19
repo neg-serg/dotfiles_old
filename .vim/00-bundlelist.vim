@@ -1,11 +1,10 @@
+if dein#load_state(expand('~/.vim'))
 "--[ ain ]------------------------------------------------------------------------------
 call dein#begin(expand('~/.vim'))
 "best vim autocomplete engine for now
-call dein#add('Valloric/YouCompleteMe')
-call dein#add('Valloric/YouCompleteMe')
+call dein#add('Valloric/YouCompleteMe') 
 if !has("nvim")
     call dein#add('powerline/powerline')
-    " NeoBundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 endif
 if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
     "lightline is more fancy than default
@@ -40,11 +39,14 @@ if executable(resolve(expand("ag")))
     "ag (ack replacement) wrapper
     call dein#add('rking/ag.vim.git')
 endif
-if has("fzf_use") 
-    "fast fuzzy finder
-    call dein#add('junegunn/fzf')
+let s:fzf_use=1
+if (s:fzf_use) 
+    " https://github.com/Shougo/dein.vim/issues/74
+    " fast fuzzy finder
+    " call dein#add('junegunn/fzf', { 'tag': '0.12.1', 'build': './install', 'rtp': '' })
+    call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
     "fzf vim bindings
-    call dein#add('junegunn/fzf.vim')
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 else
     "replacement for fzf
     call dein#add('lotabout/skim.vim')
@@ -425,3 +427,8 @@ endif
 "i3 syntax
 call dein#add('PotatoesMaster/i3-vim-syntax')
 call dein#end()
+call dein#save_state()
+endif
+if dein#check_install()
+    call dein#install()
+endif
