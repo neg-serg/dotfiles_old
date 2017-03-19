@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+case ${1} in
+    toggle) 
+        if [[ $(pgrep 'polybar') ]]; then
+            pkill polybar
+        else
+            i3-msg "exec --no-startup-id polybar -c ~/.config/polybar/main tiny"
+            i3-msg "exec --no-startup-id polybar -c ~/.config/polybar/main main"
+        fi
+    ;;
+    *) [[ $(pgrep 'polybar') ]] && pkill polybar ;;
+esac
