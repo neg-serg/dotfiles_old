@@ -1,20 +1,11 @@
 #!/bin/zsh
 
-function wait_a_bit(){
-    sleep .2s; 
-}
-
-function soft_restart(){
-    if [[ ${windowmanager} == "notion" ]]; then
-        restart_panel
-    fi
-}
+wait_a_bit(){ sleep .2s; }
+soft_restart(){ [[ ${windowmanager} == "notion" ]] && restart_panel }
 
 function restart_panel() {
-    pkill admiral
-    pkill dzen2
-    pkill rofi
-    ~/bin/scripts/panels
+    for i in admiral rofi dzen2; pkill "${i}"
+    ${SCRIPT_HOME}/panels
 }
 
 function notion_restart() {
@@ -31,12 +22,12 @@ function windowchef_restart(){
 
 function i3::common_restart(){
     ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
-    {
-        polybar -c ${polybar_cfg} tiny; 
-        sleep .2s
-        polybar -c ${polybar_cfg} main
-    } &
-    wait_a_bit
+    (
+        polybar -q -c ${polybar_cfg} tiny &
+        while ! pgrep -f "polybar -q -c ${XDG_CONFIG_HOME}/polybar/main tiny"; do
+            wait_a_bit
+        done && sleep 1s && polybar -q -c ${polybar_cfg} main
+    )
     ppi3 ${XDG_CONFIG_HOME}/i3/_config > ${XDG_CONFIG_HOME}/i3/config
 }
 
@@ -53,9 +44,9 @@ function i3_restart(){
 }
 
 function main() {
-    lockfile=/tmp/main.lock
+    lockfile="${HOME}/tmp/$(basename $0).lock"
     if ( set -o noclobber; echo "locked" > "$lockfile") 2> /dev/null; then
-        trap 'rm -f "$lockfile"; exit $?' INT TERM EXIT
+        trap 'sleep 10s; rm -f "$lockfile"; exit $?' INT TERM EXIT
         echo "Locking succeeded" >&2
         #----------------------------------------------
         if [[ ${1} != "" ]]; then
@@ -71,12 +62,10 @@ function main() {
             eval "$(echo ${wm_}_restart)"
         fi
         #----------------------------------------------
-        rm -f "$lockfile"
     else
         echo "Lock failed - exit" >&2
         exit 1
     fi
-
 }
 
 main "$@"
