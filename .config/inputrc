@@ -2,13 +2,13 @@ set editing-mode emacs
 set keymap emacs-meta
 
 set bell-style                 none
-set bind-tty-special-chars     off
+set bind-tty-special-chars     on
 set completion-ignore-case     on
 set completion-map-case        on
 set completion-query-items     200
-set convert-meta               on
-set echo-control-characters    on
-set enable-keypad              off
+set convert-meta               off
+set echo-control-characters    off
+set enable-keypad              on
 set enable-meta-key            on
 set history-preserve-point     off
 set history-size               1000
@@ -17,7 +17,6 @@ set input-meta                 on
 set mark-directories           on
 set mark-modified-lines        off
 set mark-symlinked-directories on
-set match-hidden-files         off
 set match-hidden-files         off
 set meta-flag                  on
 set output-meta                on
@@ -46,13 +45,6 @@ $if re.pl
   "\C-v": "perldoc perlvar\n"
 $endif
 
-$if Bash
-  "\C-x0": " &>/dev/null "
-  "\C-x1": " >/dev/null "
-  "\C-x2": " 2>/dev/null "
-  "\C-x3": " 2>&1 "
-$endif
-
 $if mode=vi
   set keymap vi-insert
   "gg": beginning-of-history
@@ -78,18 +70,3 @@ $endif
 "\C-u": kill-whole-line
 "\C-\M-w": unix-word-rubout
 "\ei": tab-insert
-
-"\e]": character-search
-"\e[": character-search-backward
-
-"\e[3~": delete-char
-
-$if mode=vi
-    set keymap vi-command
-    "gg": beginning-of-history
-    "G": end-of-history
-$endif
-
-$if Python
-    TAB: complete
-$endif
