@@ -6,13 +6,6 @@ readonly wim_font="PragmataPro for Powerline"
 readonly font_size=20
 readonly sock_path="${HOME}/1st_level/vim.socket"
 
-# # tmux_pid=$(lsof /tmp/tmux-$(id -u)/default |tail -1|awk '{print $2}')
-# n_string=$(tmux -S /tmp/tmux-$(id -u)/default list-windows -F '#{pane_current_path} #{pane_id}')
-# current_pane=$(tmux -S /tmp/tmux-$(id -u)/default list-windows -F '#{window_active} #{window_layout}'|grep '^1'|awk -F ',' '{print $NF}')
-# string_number=$(echo ${n_string}|grep -n $current_pane|awk -F: '{print $1}'|tail -1)
-# pwd_list=$(tmux -S /tmp/tmux-$(id -u)/default list-windows -F '#{pane_current_path}')
-# pwd_string=$(sed "${string_number}q;d" <<< ${pwd_list})
-
 if [[ $(lsof "${sock_path}"|grep -o "${sock_path} type=STREAM") == "${sock_path} type=STREAM" ]]; then
     st -f "${wim_font}:pixelsize=20" -c 'wim' -e zsh -i -c "tmux -S ${sock_path} attach-session -d -t vim"
 else
