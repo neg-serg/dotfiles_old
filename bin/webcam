@@ -7,7 +7,7 @@ local frec_pid="${dir_}/f_rec$$.pid"
 
 for i in /dev/v4l/by-id/*; do
     if [[ $1 == "" ]]; then
-        mpv --x11-name=webcam_mpv tv:// --tv-driver=v4l2 --tv-device="${i}"
+        mpv --x11-name="webcam" --title="webcam" tv:// --tv-driver=v4l2 --tv-device="${i}"
     elif [[ $1 =~ s* ]]; then
         ffmpeg -f video4linux2 -i ${i} -f image2 "${snapshot_name}" 2>/dev/null || \
             notify-send "Cannot to take screenshot: You are using webcam now :("
