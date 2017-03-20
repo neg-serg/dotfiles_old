@@ -35,5 +35,11 @@ function bnet(){
 function doom(){
     cd "${wine_progs_}/Steam/steamapps/common/DOOM/"
     local doom_path="DOOMx64vk.exe"
-    wine ${doom_path}
+    SDL_AUDIODRIVER="alsa" wine "${doom_path}"
+}
+
+function steam(){
+    SDL_AUDIODRIVER="alsa" \
+    LD_PRELOAD='/usr/lib/libSDL2-2.0.so.0.4.0 /usr/lib/libSDL_sound-1.0.so.1.0.2' \
+    steam-native
 }
