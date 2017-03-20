@@ -47,7 +47,10 @@ let g:lightline.mode_map = {
             \ "\<C-s>": 'S-BLOCK',
             \ 't': 'T',
             \ }
-
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - lotabout/skim                                                            │ 
+" │ https://github.com/lotabout/skim                                                  │ 
+" └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('skim.vim')
     let $SKIM_DEFAULT_OPTS = $SKIM_DEFAULT_OPTS . " " . "-t index"
     nnoremap <silent> <Leader>. :call skim#run({
@@ -79,7 +82,7 @@ else
         if !has("nvim")
             let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
         else
-            let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=dark"
+            let $FZF_DEFAULT_OPTS = $FZF_DEFAULT_OPTS . " " . " --color=16"
         endif
         if !dein#tap('lusty') && !dein#tap('lycosaexplorer') && has("nvim")
             nnoremap <leader>l :Files %:p:h<CR>
@@ -145,6 +148,24 @@ else
                     \ 'down': '20%',
                     \ 'sink': 'e '
                     \ })<CR>
+        function! s:escape(path)
+            return substitute(a:path, ' ', '\\ ', 'g')
+        endfunction
+
+        function! AgHandler(line)
+            let parts = split(a:line, ':')
+            let [fn, lno] = parts[0 : 1]
+            execute 'e '. s:escape(fn)
+            execute lno
+            normal! zz
+        endfunction
+
+        command! -nargs=+ Fag call fzf#run({
+                    \ 'source': 'ag "<args>"',
+                    \ 'sink': function('AgHandler'),
+                    \ 'options': '+m',
+                    \ 'tmux_height': '60%'
+                    \ })
     endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
