@@ -36,9 +36,11 @@ function i3_restart(){
     # kill any current poppers (thanks Dylan)
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
         i3::common_restart
+        wait_a_bit
         i3-msg reload
     else
         i3::common_restart
+        wait_a_bit
         i3-msg restart
     fi
 }
