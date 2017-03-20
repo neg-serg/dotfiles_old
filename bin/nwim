@@ -1,0 +1,13 @@
+#!/bin/zsh
+source ${HOME}/.zsh/03-exports.zsh
+source ${HOME}/.zsh/89-vim-interation.plugin.zsh
+
+readonly wim_font="PragmataPro for Powerline"
+readonly font_size=20
+readonly sock_path="${HOME}/1st_level/nvim.socket"
+
+if [[ $(lsof "${sock_path}"|grep -o "${sock_path} type=STREAM") == "${sock_path} type=STREAM" ]]; then
+    st -c 'nwim' -f "${wim_font}:pixelsize=20" -e zsh -i -c "tmux -S ${sock_path} attach-session -d -t nvim"
+else
+    nv
+fi
