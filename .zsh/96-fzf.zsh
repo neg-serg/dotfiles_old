@@ -1,26 +1,4 @@
-if [[ ${source_fzf} ]]; then
-    [[ ! "${PATH}" == *~/.vim/bundle/fzf/bin* ]] && export PATH="${PATH}:~/.vim/bundle/fzf/bin"
-    if [[ ! "${MANPATH}" == *~/.vim/bundle/fzf/man* && -d "~/.vim/bundle/fzf/man" ]]; then
-        export MANPATH="${MANPATH}:~/.vim/bundle/fzf/man"
-    fi
-    [[ $- == *i* ]] && source "~/.vim/bundle/fzf/shell/completion.zsh" 2> /dev/null
-    source "~/.vim/bundle/fzf/shell/key-bindings.zsh"
-else
-    if [[ $- == *i* ]]; then
-        __fzfcmd() { [ ${FZF_TMUX:-1} -eq 1 ] && echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf" }
-        fzf-history-widget() {
-            local selected num
-            selected=( $(fc -l 1 | $(__fzfcmd) --extended-exact -i +s --tac +m -n2..,.. --tiebreak=index --toggle-sort=ctrl-r -q "${LBUFFER//$/\\$}") )
-            if [ -n "${selected}" ]; then
-                num=$selected[1]
-                if [ -n "${num}" ]; then
-                zle vi-fetch-history -n $num
-                fi
-            fi
-            zle redisplay
-        }
-    fi
-fi
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 function fe() {
     local out file key
