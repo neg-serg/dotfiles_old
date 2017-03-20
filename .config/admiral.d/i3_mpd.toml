@@ -1,0 +1,6 @@
+[admiral]
+items = ["mpd"]
+
+[mpd]
+path = "~/.config/i3/mpd.lua"
+reload = 0.05

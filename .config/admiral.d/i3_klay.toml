@@ -1,0 +1,27 @@
+#leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿ ❱❱❰❰
+[admiral]
+items = [
+    "left"   , "input"      , "klay"        , "right" ,
+] 
+
+[klay]
+path   = "~/bin/mon/klay"
+
+[clock]
+path   = "date '+%H:%M'"
+reload = 1
+
+[network]
+path = '~/bin/mon/network_speed.sh'
+
+[input]
+path   = "echo 'input: '"
+static = true
+
+[left]
+path   = "~/bin/scripts/wrp.sh __left__"
+static = true
+
+[right]
+path   = "~/bin/scripts/wrp.sh __right__"
+static = true
