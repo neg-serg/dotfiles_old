@@ -1,0 +1,59 @@
+# sdothum - 2016 (c) wtfpl
+[ $TRACE ] && CHILD="focus/frame $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# ................................ Find empty subframe to open (spawn) window in
+
+[ -e $DYNAMIC ] || exit
+
+# fill empty grid locations once
+# fill=true
+unset fill
+
+lock
+# do not overlay a window over a fullscreen window, revert to normal view first!
+# this prevents a fullscreen window from resizing to a differing monitor geometry
+restore windowed
+frames=$(query fcount $TAG)
+
+# cycle back to original frame unless empty frame found
+herbstclient cycle_frame 1
+for i in $(seq 1 $frames)
+do
+  herbstclient cycle_frame 1
+  # right fill the desktop to to avoid visual frame gaps
+  if herbstclient compare tags.by-name.$TAG.curframe_wcount = 0 ;then
+    herbstclient chain . focus_edge right >/dev/null
+    break
+  fi
+done
+
+for i in $(seq 1 $frames)
+do
+  herbstclient cycle_frame 1
+  herbstclient compare tags.by-name.$TAG.curframe_wcount = 0 && break
+  if [ $i -ge $frames ] ;then
+    if [ $fill ] ;then
+      # all frames occupied, look for an empty grid region then
+      herbstclient cycle_frame -1
+      for i in $(seq 1 $frames)
+      do
+        herbstclient cycle_frame 1
+        if herbstclient layout | grep '\[FOCUS\]' | grep 'grid:' ;then
+          [ $(expr $(herbstclient attr tags.focus.curframe_wcount) % 2) -gt 0 ] && break
+        fi
+        if [ $i -ge $frames ] ;then
+          herbstclient cycle_frame 1
+          unset fill
+          break
+        fi
+      done
+    fi
+  fi
+done
+
+unlock
+
+# vim: set ft=sh: #

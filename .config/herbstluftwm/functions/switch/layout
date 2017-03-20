@@ -1,0 +1,20 @@
+# sdothum - 2016 (c) wtfpl
+[ $TRACE ] && CHILD="switch/layout $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# ........................................................... Smart cycle layout
+
+# restore layout if in fullscreen, as cycle layout is just one keystroke away
+restore tiled
+if is fullscreen ;then
+  toggle fullscreen
+elif herbstclient compare tags.focus.curframe_wcount = 2 ;then
+  # skip grid if only 2 windows in subframe (layout is effectively same as horizontal)
+  herbstclient cycle_layout 1 vertical horizontal
+else
+  herbstclient cycle_layout 1 vertical grid horizontal
+fi
+
+# vim: set ft=sh: #

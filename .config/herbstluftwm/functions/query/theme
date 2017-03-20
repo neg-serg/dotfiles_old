@@ -1,0 +1,13 @@
+# sdothum - 2016 (c) wtfpl
+# [ $TRACE ] && CHILD="query/theme $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# .................................................................... Wallpaper
+
+[ $WALLPAPER ] || . ${0%/query}/config/ENV
+
+ls -l $WALLPAPER | awk '{ gsub(".png", ".theme", $NF); print $NF }'
+
+# vim: set ft=sh: #

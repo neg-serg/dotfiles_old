@@ -1,0 +1,19 @@
+
+[ $TRACE ] && CHILD="pin/tag $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# ............................................................... Smart move tag
+
+# move window to non-empty tag subframe and focus next window
+tag=$(query tag)
+winid=$(herbstclient attr clients.focus.winid)
+lock use $1
+focus frame
+# use_previous restores unexpected tag if movement is to already visible tag
+herbstclient chain . bring $winid . use $tag
+focus window
+unlock
+
+# vim: set ft=sh: #

@@ -1,0 +1,127 @@
+#!/usr/bin/dash
+# sdothum - 2016 (c) wtfpl
+[ $TRACE ] && CHILD="autostart $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# chain herbstclient commands (note: keybind chains use ".")
+hc() {
+  cmds="$cmds , $@"
+}
+
+dohc() {
+  if [ $TRACE ]; then
+    echo -n '> herbstclient chain' >>$TRACE
+    echo $cmds | sed 's/ , /\n -> /g' >>$TRACE
+  fi
+  # herbstclient chain $cmds
+  herbstclient chain $cmds &
+  unset cmds
+}
+
+# ................................................................... Initialize
+
+# re-entrant (startx) cleanup
+pkill -TERM -f 'panel' &
+pkill -TERM -f 'pulsar' &
+
+# unlock, just to be sure
+hc emit_hook reload
+hc unlock
+
+# remove all existing keybindings and rules
+hc keyunbind --all
+hc unrule -F
+# split/remove frame created by herbstluftwm on startup to allow custom default_frame_layout
+hc split vertical 0.5 && hc remove
+dohc
+
+# ...................................................... Configuration framework
+
+for i in $HOME/.config/herbstluftwm/config/*
+do
+  ditto "loading herbstluftwm config ${i##*/}"
+  . $i
+  # add dummy hc cmd for any sources that don't e.g. ENV
+  hc echo done ${i##*/}
+  dohc
+done
+# monitor dependent env must be set after detect monitors
+. ${0%/autostart}/config/ENV
+# env
+
+# ...................................................................... Desktop
+
+# initialize desktop blur and panel / conky rules
+# enable conky early to avoid visual screen refresh
+toggle compton
+
+# appropriately wild herbstluftwm background color! see .xinitrc
+background=$(cat $SETROOT 2>/dev/null)
+case $background in
+  blank    ) draw root blank $(cat $COLOR 2>/dev/null) ;;
+  wallpaper) draw root wallpaper ;;
+  *        ) draw root blank ;;
+esac
+
+# initialize tag layouts
+# load cannot be chained due to shell expansion limitation with quoted '(layout spec)'
+restore layout tags
+
+# ..................................................................... Monitors
+
+if is multihead ;then
+  draw monitor secondary
+  toggle conky
+  # enable panel for secondary monitor by default
+  touch $PANEL:1
+elif nvidia ;then
+  toggle conky
+else
+  draw monitor fullframe
+  toggle panel
+fi
+
+# ................................................................ Startup suite
+
+# session startup stuff, see .xinitrc
+if [ ! -e $HLWM:autostart ] ;then
+  if arm ;then
+    toggle unclutter
+    vimbt
+  else
+    # lock out desktop switching flickering
+    herbstclient lock
+    $HOME/bin/autostart
+    herbstclient unlock
+    # close dunst notifications
+    xdotool key ctrl+shift+space
+  fi
+fi
+touch $HLWM:autostart
+
+# wait for slowest emit_hook process
+sleep 1
+if [ $(herbstclient list_monitors | wc -l) -gt 1 ] ;then
+  herbstclient chain . focus_monitor 1 . use 2
+  # xdotool search --sync --onlyvisible --limit 1 --classname IRC >/dev/null
+  herbstclient chain . focus_monitor 0 . use 1
+  # xdotool search --sync --onlyvisible --limit 1 --classname $BROWSER >/dev/null
+else
+  herbstclient use 1
+fi
+
+# .................................................................... Emit hook
+
+# add window management extensions
+emithook &
+toggle focus
+
+# ................................................................ Final touches
+
+# emit hook stalled otherwise until a new window action..
+focus frame
+focus window
+
+# vim: set ft=sh: #

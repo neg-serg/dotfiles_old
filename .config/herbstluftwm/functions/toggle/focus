@@ -1,0 +1,19 @@
+# sdothum - 2016 (c) wtfpl
+[ $TRACE ] && CHILD="toggle/focus $@" . $PARENT
+
+# herbstluftwm
+# ▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂▂
+
+# ......................................................... Toggle dynamic focus
+
+# see emit_hook and focus functions
+if [ -e $DYNAMIC ] ;then
+  rm -f $DYNAMIC
+  notify low 'Dynamic Focus' Off
+else
+  touch $DYNAMIC
+  notify low 'Dynamic Focus' On
+  focus window
+fi
+
+# vim: set ft=sh: #
