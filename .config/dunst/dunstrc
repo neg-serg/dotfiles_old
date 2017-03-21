@@ -89,4 +89,5 @@
 [mpd]
     appname    = mpd-notification
     format     = ""
+    script     = "/home/neg/bin/scripts/prepare_image"
     urgency    = normal
