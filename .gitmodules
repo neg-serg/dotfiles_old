@@ -33,3 +33,6 @@
 [submodule ".config/i3/i3-sticky"]
 	path = .config/i3/i3-sticky
 	url = https://github.com/Airblader/i3-sticky
+[submodule ".themes/vertex-theme"]
+	path = .themes/vertex-theme
+	url = https://github.com/horst3180/vertex-theme
