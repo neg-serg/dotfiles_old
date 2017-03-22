@@ -23,10 +23,6 @@ source "${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh"
 source "${XDG_CONFIG_HOME}/xinit/compositing.zsh"
 source "${XDG_CONFIG_HOME}/xinit/email.dash"
 
-nexec dunst && dunst &
-nexec udiskie && udiskie -q &
-systemctl --user restart gpaste &
-
 eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
