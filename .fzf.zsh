@@ -1,20 +1,14 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/neg/.vim/bundle/fzf/bin* ]]; then
-  export PATH="$PATH:/home/neg/.vim/bundle/fzf/bin"
-fi
-
-# Man path
-# --------
-if [[ ! "$MANPATH" == */home/neg/.vim/bundle/fzf/man* && -d "/home/neg/.vim/bundle/fzf/man" ]]; then
-  export MANPATH="$MANPATH:/home/neg/.vim/bundle/fzf/man"
+if [[ ! "$PATH" == */home/neg/.vim/repos/github.com/junegunn/fzf/bin* ]]; then
+  export PATH="$PATH:/home/neg/.vim/repos/github.com/junegunn/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/home/neg/.vim/bundle/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "/home/neg/.vim/repos/github.com/junegunn/fzf/shell/completion.zsh" 2> /dev/null
 
+FZF_TMUX=1
 # Key bindings
 # ------------
-source "/home/neg/.vim/bundle/fzf/shell/key-bindings.zsh"
-
+source "/home/neg/.vim/repos/github.com/junegunn/fzf/shell/key-bindings.zsh"
