@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+function main(){
+    local music_prefix="$(awk -F '=' '/music_dir/{print $2}' "${HOME}/.ncmpcpp/config"|tr -d ' "')"
+    local output="$(mpc -f '%file%')"
+    local len="$(wc -l <<< ${output})"
+    if [[ ${len} == 3 ]]; then
+        local cur_song_path=$(head -1 <<< "${music_prefix}/${output}"  |sed "s;\~;${HOME};")
+        find "$(dirname "${cur_song_path}")" -exec albumdetails 2>/dev/null {} \+
+    fi
+}
+
+main "$@"
