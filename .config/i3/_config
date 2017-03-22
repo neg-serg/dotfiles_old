@@ -83,7 +83,7 @@ set {$sxiv}  [pic]
 set {$graph}  [graph]
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec ~/.config/i3/i3_ns.py ncmpcpp toggle
-bindsym $mod+d exec ~/.config/i3/i3_ns.py console toggle
+bindsym $mod+d exec ~/.config/i3/i3_ns.py teardrop toggle
 bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
 bindsym $mod+{e,3} exec ~/.config/i3/i3_ns.py im {toggle,next}
 
@@ -182,7 +182,7 @@ mode "password" {
 bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
-bindsym $mod+1 $ror "[instance=wim]" ~/bin/wim focus
+bindsym $mod+1 $ror "[instance=nwim]" ~/bin/nwim focus
 bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
 bindsym $mod+Control+e $ror $steam_all steam focus
 bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
@@ -262,7 +262,7 @@ exec_always python3 ~/.config/i3/i3_ns.py im marker
 exec_always python3 ~/.config/i3/i3_ns.py ncmpcpp marker
 exec_always python3 ~/.config/i3/i3_ns.py mutt marker
 exec_always python3 ~/.config/i3/i3_ns.py ranger marker
-exec_always python3 ~/.config/i3/i3_ns.py console marker
+exec_always python3 ~/.config/i3/i3_ns.py teardrop marker
 
 exec_always ~/.config/i3/per-workspace-layout.pl
 
