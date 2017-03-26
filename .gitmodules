@@ -36,3 +36,6 @@
 [submodule ".themes/vertex-theme"]
 	path = .themes/vertex-theme
 	url = https://github.com/horst3180/vertex-theme
+[submodule ".themes/Cloak-3.20"]
+	path = .themes/Cloak-3.20
+	url = https://github.com/killhellokitty/Cloak-3.20
