@@ -39,10 +39,10 @@ settings = {
         'geom' : "1132x760+170+18",
         'prog' : "~/bin/scripts/run_ranger"
     },
-    'console': {
-        'classes' : { 'console' },
+    'teardrop': {
+        'classes' : { 'teardrop' },
         'geom' : "1823x489+38+0",
-        'prog' : "st -c console -f \'PragmataPro for Powerline:size=12\' tmux new pulsemixer"
+        'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=10\' -e ~/bin/scripts/console"
     }
 }
 
