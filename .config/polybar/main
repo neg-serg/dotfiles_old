@@ -94,14 +94,6 @@ ramp-coreload-6 = ▇
 ramp-coreload-7 = █
 ramp-coreload-underline = ${colors.white}
 
-[module/memory]
-type = internal/memory
-interval = 2
-
-label = %{F${colors.white}  %percentage_used% %{F-}
-label-underline = ${colors.white}
-label-foreground = ${colors.white}
-
 [module/date]
 type = internal/date
 date = %{F#287373}[ %{F#fff}%H:%M%{F#287373} ]
@@ -109,7 +101,34 @@ interval = 5
 format-underline = ${colors.border}
 format-foreground = ${colors.white}
 format-padding = 0
-FontAwesome:style=Regular
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-background = #783e57
+format-underline = #a45476
+format-padding = 2
+label = ": %gb_used%"
+
+[module/pacman]
+type = custom/script
+exec = ~/bin/pkg
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+format-background = #783e57
+format-underline = #a45476
+format-padding = 2
+interval = 60
+click-left = urxvt -name "updates" --geometry 94x50 -e zsh -c "$HOME/bin/upg"
+click-right = urxvt -name "updates" --geometry 100x70 -e zsh -c "$HOME/bin/listupg"
+
+[module/checkvpn]
+type = custom/script
+format-padding = 2
+exec = pgrep openvpn
+interval = 5
+label = " vpn"
+format-background = #783e57
+format-underline = #a45476
 
 [module/volume]
 type = internal/volume
