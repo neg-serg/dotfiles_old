@@ -15,7 +15,8 @@ function clip_main(){
     local rofi_pid=" -pid /run/user/$(id -u)/rofi_clip.pid"
     local rofi_font="PragmataPro for Powerline bold 12"
     declare -a rofi_opts_
-    rofi_opts_=(-font ${rofi_font}  -yoffset -22 -location 6 -width 1850 -lines 10 ${rofi_pid} -i -levenshtein-sort -matching glob -dmenu -p "[>>]")
+    local x11_width="$(xrandr -q |awk '/Screen/{print $8}')"
+    rofi_opts_=(-font ${rofi_font}  -yoffset -22 -location 6 -width $[x11_width-70] -lines 10 "${rofi_pid}" -i -levenshtein-sort -matching glob -dmenu -p "[>>]")
     local menu=$($(gpaste_run)|rofi ${rofi_opts_[@]})
     local selection=$(echo "${menu}" | cut -d ':' -f1)
     $(gpaste_run) select ${selection}
