@@ -19,7 +19,7 @@ hwdec=cuda
 
 osd-font="PragmataPro for Powerline"
 
-sub-scale=0.4
+sub-scale=.4
 sub-gauss=.75
 sub-gray=yes
 sub-auto=fuzzy
