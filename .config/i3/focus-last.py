@@ -10,7 +10,6 @@ import i3ipc
 SOCKET_FILE = '/tmp/i3_focus_last'
 MAX_WIN_HISTORY = 15
 
-
 class FocusWatcher:
 
     def __init__(self):
@@ -77,9 +76,7 @@ if __name__ == '__main__':
     parser = ArgumentParser(prog='focus-last.py',
         description='''
         Focus last focused window.
-
         This script should be launch from the .xsessionrc without argument.
-
         Then you can bind this script with the `--switch` option to one of your
         i3 keybinding.
         ''')
