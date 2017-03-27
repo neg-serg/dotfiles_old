@@ -39,3 +39,9 @@
 [submodule ".themes/Cloak-3.20"]
 	path = .themes/Cloak-3.20
 	url = https://github.com/killhellokitty/Cloak-3.20
+[submodule ".tmux/tmux-open"]
+	path = .tmux/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open
+[submodule ".tmux/tmux-prefix-highlight"]
+	path = .tmux/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
