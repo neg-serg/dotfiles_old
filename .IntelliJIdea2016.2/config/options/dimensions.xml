@@ -1,21 +1,21 @@
 <application>
   <component name="DimensionService">
-    <location key="WELCOME_SCREEN.0.0.1920.1200" x="957" y="230" />
-    <location key="new project wizard.0.0.1920.1200" x="417" y="300" />
+    <location key="WELCOME_SCREEN.0.0.1920.1200" x="958" y="230" />
+    <location key="new project wizard.0.0.1920.1200" x="413" y="288" />
     <location key="com.intellij.ide.util.TipDialog.0.0.1920.1200" x="428" y="55" />
     <location key="#Custom_Plugin_Repositories.0.0.1920.1200" x="799" y="470" />
-    <location key="#Browse_Repositories.0.0.1920.1200" x="218" y="0" />
+    <location key="#Browse_Repositories.0.0.1920.1200" x="216" y="-6" />
     <location key="FileChooserDialogImpl.0.0.1920.1200" x="648" y="117" />
     <location key="#Project_Structure.0.0.1920.1200" x="448" y="69" />
     <location key="#com.intellij.fileTypes.FileTypeChooser.0.0.1920.1200" x="742" y="0" />
-    <location key="#Plugins.0.0.1920.1200" x="558" y="0" />
+    <location key="#Plugins.0.0.1920.1200" x="556" y="-6" />
     <location key="#com.intellij.execution.impl.EditConfigurationsDialog.0.0.1920.1200" x="410" y="237" />
-    <location key="#Browse_JetBrains_Plugins_.0.0.1920.1200" x="546" y="0" />
+    <location key="#Browse_JetBrains_Plugins_.0.0.1920.1200" x="542" y="-6" />
     <location key="NewModule_or_Project.wizard.0.0.1920.1200" x="639" y="87" />
     <location key="editAsTableFormatDialogDimension.0.0.1920.1200" x="544" y="-268" />
     <location key="SettingsEditor.0.0.1920.1200" x="263" y="-6" />
     <location key="com.intellij.openapi.editor.actions.MultiplePasteAction$1.0.0.1920.1200" x="796" y="214" />
-    <location key="#com.intellij.ide.actions.ChooseComponentsToExportDialog.0.0.1920.1200" x="718" y="474" />
+    <location key="#com.intellij.ide.actions.ChooseComponentsToExportDialog.0.0.1920.1200" x="716" y="468" />
     <location key="#Options.0.0.1920.1200" x="638" y="326" />
     <location key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog.0.0.1920.1200" x="740" y="444" />
     <location key="extract.method.dialog.0.0.1920.1200" x="684" y="350" />
@@ -83,5 +83,6 @@
     <size key="bookmarks.0.0.1920.1200" width="758" height="344" />
     <size key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog.0.0.1920.1200" width="488" height="257" />
     <size key="ProcessPopupWindow.0.0.1920.1200" width="338" height="207" />
+    <size key="#com.intellij.ide.actions.ChooseComponentsToExportDialog.0.0.1920.1200" width="538" height="303" />
   </component>
 </application>

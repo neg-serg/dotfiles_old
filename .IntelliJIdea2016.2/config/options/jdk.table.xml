@@ -3,7 +3,6 @@
     <jdk version="2">
       <name value="1.8" />
       <type value="JavaSDK" />
-      <version value="java version &quot;1.8.0_112&quot;" />
       <homePath value="/usr/lib/jvm/java-8-openjdk" />
       <roots>
         <annotationsPath>
@@ -35,6 +34,7 @@
         </javadocPath>
         <sourcePath>
           <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/java-8-openjdk/src.zip!/" />
             <root type="simple" url="jar:///usr/lib/jvm/java-8-openjdk/src.zip!/" />
             <root type="simple" url="jar:///usr/lib/jvm/java-8-openjdk/src.zip!/" />
           </root>
@@ -45,7 +45,6 @@
     <jdk version="2">
       <name value="1.6" />
       <type value="JavaSDK" />
-      <version value="java version &quot;1.8.0_112&quot;" />
       <homePath value="/usr/lib/jvm/java-8-openjdk" />
       <roots>
         <annotationsPath>
@@ -77,6 +76,7 @@
         </javadocPath>
         <sourcePath>
           <root type="composite">
+            <root type="simple" url="jar:///usr/lib/jvm/java-8-openjdk/src.zip!/" />
             <root type="simple" url="jar:///usr/lib/jvm/java-8-openjdk/src.zip!/" />
           </root>
         </sourcePath>
