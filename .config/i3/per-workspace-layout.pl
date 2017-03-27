@@ -11,26 +11,28 @@
 
 use strict;
 use warnings;
+
 use AnyEvent;
 use AnyEvent::I3;
 use v5.10;
+use Encode;
 
 my %layouts = (
-    ' 1:term'=> 'tabbed',
-    ' 2:web'=> 'tabbed',
-    ' 3:doc'=> 'tabbed',
-    ' 4:dev'=> 'tabbed',
-    ' 5:media'=> 'tabbed',
-    '6:gimp'=> 'tabbed',
-    '7:admin'=> 'tabbed',
-    ' 8:ide'=> 'tabbed',
-    ' 9:steam'=> 'tabbed',
-    ' 10:torrent'=> 'tabbed',
-    '11:vm'=> 'tabbed',
-    '12:wine'=> 'tabbed',
-    ' 13: spotify'=> 'tabbed',
-    ' [pic]'=> 'tabbed',
-    ' [graph]'=> 'tabbed',
+    encode_utf8(lc(decode_utf8(' 1:term'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 2:web'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 3:doc'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 4:dev'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 5:media'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8('6:gimp'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8('7:admin'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 8:ide'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 9:steam'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 10:torrent'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8('11:vm'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8('12:wine'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' 13: spotify'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' [pic]'))) => 'tabbed',
+    encode_utf8(lc(decode_utf8(' [graph]'))) => 'tabbed',
 );
 
 my $i3 = i3();
@@ -52,6 +54,7 @@ die "Could not subscribe to the workspace event: $!" unless
             my $name = $ws->{name};
             my $con_id = $ws->{id};
 
+            print $layouts{$name};
             return unless exists $layouts{$name};
 
             $i3->command(qq|[con_id="$con_id"] layout | . $layouts{$name});
