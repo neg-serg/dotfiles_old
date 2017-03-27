@@ -53,7 +53,7 @@ def cycle_next():
             with open(filename, "r+") as f:
                 j=int(f.readline())
                 cur=tw[j]
-                if not focused.id in tw:
+                if not focused.window_class in settings[tag]["priority"]:
                     for num,pr in zip(range(len(window_list)),window_list):
                         if pr.window_class == settings[tag]["priority"]:
                             pr.command('focus')
@@ -95,6 +95,7 @@ def find_acceptable_windows_by_class():
 
     return sorted(tagged_windows, key=lambda w:w.id, reverse=False)
 
+# handle events, do not try to do it from the one script
 if __name__ == '__main__':
     if len(argv) < 3:
         exit('Usage: %s'  % argv[0])
