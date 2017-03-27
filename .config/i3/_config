@@ -2,7 +2,7 @@ set $ror exec ~/.config/i3/ror.sh
 set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
 set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
 set $sclient [class="^(Steam|steam)$"]
-set $steam_all [class="^(dota2|darkest.bin.x86_64|Steam|steam)$"]
+set $steam_all [class="^(wine|dota2|darkest.bin.x86_64|Steam|steam)$"]
 
 set shmlog on
 set workspace_layout tabbed
@@ -139,6 +139,7 @@ for_window [instance="wicd"] floating enable
 for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
 for_window $sclient move container to workspace $steam, workspace $steam, focus 
 for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus 
+for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, fullscreen enable, focus 
 for_window [title="^Compress.*"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
@@ -182,9 +183,9 @@ mode "password" {
 bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
-bindsym $mod+1 $ror "[instance=nwim]" ~/bin/nwim focus
+bindsym $mod+1 $ror "[instance=(?i)^(nwim|wim)$]" ~/bin/nwim focus
 bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
-bindsym $mod+Control+e $ror $steam_all steam focus
+bindsym $mod+Control+e $ror [con_mark=steam_all] /bin/true focus
 bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 bindsym $mod+w exec ~/.config/i3/cycle_over.py web next
