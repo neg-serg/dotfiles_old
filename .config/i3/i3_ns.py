@@ -42,7 +42,7 @@ settings = {
     'teardrop': {
         'classes' : { 'teardrop' },
         'geom' : "1823x489+38+0",
-        'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=10\' -e ~/bin/scripts/console"
+        'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=10\' -e ~/bin/scripts/teardrop"
     }
 }
 
