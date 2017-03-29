@@ -1,6 +1,3 @@
-set editing-mode emacs
-set keymap emacs-meta
-
 set bell-style                 none
 set bind-tty-special-chars     on
 set completion-ignore-case     on
@@ -34,15 +31,6 @@ $if pimpd2
   "\C-k": "stop\n"
   "\C-y": "copy\n"
   "\C-ya": "copya\n"
-$endif
-
-$if re.pl
-  "\C-e": "perldoc perlre\n"
-  "\C-g": "perldoc perlguts\n"
-  "\C-p": "perldoc perlipc\n"
-  "\C-o": "perldoc perlop\n"
-  "\C-u": "perldoc perlunicode\n"
-  "\C-v": "perldoc perlvar\n"
 $endif
 
 $if mode=vi
