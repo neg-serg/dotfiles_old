@@ -7,32 +7,30 @@ user_interface = "classic"
 #--=[ Visualizer ]=---------------
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
-visualizer_in_stereo = "yes"
-# Thanks to [sdothum]
-visualizer_color = 053,089,125,161,197,203,209,010,215,221
-visualizer_look = ││
+visualizer_in_stereo = "no"
+visualizer_color = 091,097,108,104,99,105,111
+visualizer_type = ellipse
 
 #--=[ Playlist ]=---------------
 playlist_disable_highlight_delay = "1"
 playlist_show_remaining_time = "yes"
 playlist_display_mode = "classic"
-centered_cursor = "yes"
 cyclic_scrolling = "no"
-lines_scrolled = "2"
+lines_scrolled = "4"
 mouse_list_scroll_whole_page = "no"
 
 use_console_editor = "yes"
-external_editor = "/usr/bin/vim"
+external_editor = "/usr/sbin/nvim"
 
 jump_to_now_playing_song_at_start = "yes"
 
 #--=[ Bars ]=---------------
 song_status_format = "{$8%a} $5⟫$8⟫$5⟫ {$8%t} $5⟫$8⟫$5⟫ $b{$8%b}$/b $b({$8%y})$/b"
-song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)~>$7 $6%44t$(244) $R $(236)< $8%5l $(236)| $(8)%28b$(8)  "
+song_list_format = " $0$8$8%5n$0$8 $(236)|$7 $7%26a$7 $(236)~>$7 $6%44t$(1) $R $(236)< $8%5l $(236)| $(8)%28b$(8)  "
 song_library_format = "{%n > }{%t}|{%f}"
-now_playing_suffix = "$/b$2⟩$3⟩"
-progressbar_look = "─□"
-#progressbar_look = "─╼ "
+now_playing_suffix = "$/b$(24)◂$3"
+progressbar_look = "─╼ "
+#progressbar_look = "─□"
 #progressbar_look = "─╼━"
 #progressbar_look = "─═ "
 titles_visibility = "no"
@@ -58,7 +56,7 @@ state_line_color = "black"
 state_flags_color = "green"
 main_window_color = "default"
 color1 = "cyan"
-color2 = "black"
+color2 = "default"
 main_window_highlight_color = "blue"
 
 progressbar_color = "white"
