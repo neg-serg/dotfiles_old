@@ -188,7 +188,7 @@ bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
 bindsym $mod+Control+e $ror [con_mark=steam_all] /bin/true focus
 bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
-bindsym $mod+w exec ~/.config/i3/cycle_over.py web next
+bindsym $mod+w exec jumpapp -c Firefox Chromium firefox
 bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
 bindsym $mod+b exec ~/.config/i3/cycle_over.py vid next
 bindsym $mod+Control+q kill
