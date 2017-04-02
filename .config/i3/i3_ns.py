@@ -1,15 +1,33 @@
 #!/usr/bin/env python3
 
+""" i3 Named Scratchpads
+
+Usage:
+  i3_ns.py show <name>
+  i3_ns.py hide <name>
+  i3_ns.py toggle <name>
+  i3_ns.py next <name>
+  i3_ns.py marker <name>
+  i3_ns.py d
+  i3_ns.py (-h | --help)
+  i3_ns.py --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+
+"""
+
 import i3ipc
 import i3 as i3hl
 
-from sys import argv
 from sys import exit
 from itertools import cycle
 from subprocess import check_output
 
 import uuid
 import re
+from docopt import docopt
 
 from ns_config import *
 
@@ -154,34 +172,30 @@ class named_scratchpad(object):
         v=scratch_list()
         print(v)
 
-#------------------------------------------------
 if __name__ == '__main__':
-    if len(argv) < 3:
-        exit('Usage: %s'  % argv[0])
-    else:
-        ns=named_scratchpad()
-        i3 = i3ipc.Connection()
-        window_list = i3.get_tree().leaves()
-        ns.group=argv[1]
-        marked=i3.get_tree().find_marked(ns.group+"[0-9]+")
-        if marked == [] and "prog" in ns.settings[ns.group]:
-            i3.command("exec {}".format(ns.settings[ns.group]["prog"]))
-        marks=i3hl.get_marks()
+    argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
+    ns=named_scratchpad()
+    i3 = i3ipc.Connection()
+    window_list = i3.get_tree().leaves()
+    ns.group=argv["<name>"]
+    marked=i3.get_tree().find_marked(ns.group+"[0-9]+")
+    if marked == [] and "prog" in ns.settings[ns.group]:
+        i3.command("exec {}".format(ns.settings[ns.group]["prog"]))
+    marks=i3hl.get_marks()
 
-        if argv[2] == "show":
-            ns.focus()
-        elif argv[2] == "hide":
-            ns.unfocus()
-        elif argv[2] == "toggle":
-            ns.toggle()
-        elif argv[2] == "next":
-            ns.iterate_over()
-        elif argv[2] == "d":
-            ns.print_info()
-        elif argv[2] == "marker":
-            i3.on('window::new', mark_group)
-            dprint("::My marks::")
-            for i in marks:
-                dprint(i)
-            i3.main()
-#------------------------------------------------
+    if argv["show"]:
+        ns.focus()
+    elif argv["hide"]:
+        ns.unfocus()
+    elif argv["toggle"]:
+        ns.toggle()
+    elif argv["next"]:
+        ns.iterate_over()
+    elif argv["d"]:
+        ns.print_info()
+    elif argv["marker"]:
+        i3.on('window::new', mark_group)
+        dprint("::My marks::")
+        for i in marks:
+            dprint(i)
+        i3.main()
