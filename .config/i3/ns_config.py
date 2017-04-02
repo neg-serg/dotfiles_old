@@ -35,4 +35,8 @@ class ns_settings(object):
         }
     }
 
+    group_list=[]
+    for group in settings:
+        group_list.append(group)
+
     ns_data="/tmp/ns_data"

@@ -29,6 +29,8 @@ import uuid
 import re
 from docopt import docopt
 
+import redis
+
 from ns_config import *
 
 def dprint(*args):
@@ -44,6 +46,9 @@ def strwrap(s):
 class named_scratchpad(object):
     settings=ns_settings().settings
     ns_data=ns_settings().ns_data
+    group_list=ns_settings().group_list
+
+    r=redis.StrictRedis(host='localhost', port=6379, db=666)
 
     def parse_geom(self):
         geom={}
@@ -193,9 +198,10 @@ if __name__ == '__main__':
         ns.iterate_over()
     elif argv["d"]:
         ns.print_info()
-    elif argv["marker"]:
-        i3.on('window::new', mark_group)
-        dprint("::My marks::")
-        for i in marks:
-            dprint(i)
-        i3.main()
+
+    for group in ns.group_list:
+        i3.on('window::new', group)
+    dprint("::My marks::")
+    for i in marks:
+        dprint(i)
+    i3.main()
