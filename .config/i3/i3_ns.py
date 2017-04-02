@@ -13,42 +13,38 @@ import re
 
 from ns_config import *
 
-settings=ns_settings().settings
-ns_data=ns_settings().ns_data
-
 def dprint(*args):
     if debug():
         print(*args)
 
 def debug():
-    return 1
+    return 0
 
 def strwrap(s):
     return "[-- " + s + " --]"
 
-
 class named_scratchpad(object):
+    settings=ns_settings().settings
+    ns_data=ns_settings().ns_data
+
     def parse_geom(self):
         geom={}
-        geom=re.split(r'[x+]', settings[group]["geom"])
+        geom=re.split(r'[x+]', self.settings[self.group]["geom"])
         return "move absolute position {2} {3}, resize set {0} {1}".format(*geom)
 
     def make_mark(self):
-        return 'mark {}'.format(group) + str(str(uuid.uuid4().fields[-1]))
+        return 'mark {}'.format(self.group) + str(str(uuid.uuid4().fields[-1]))
 
     def mark_group(self, event):
-        global settings
-        global group
-
         con = event.container
-        if con.window_class in settings[group]["classes"]:
+        if con.window_class in self.settings[self.group]["classes"]:
             con.command(make_mark())
             scratch_cmd='move scratchpad, '+parse_geom()
             con.command(scratch_cmd)
             print(make_mark())
 
         try:
-            if con.window_class in settings[group]["instances"]:
+            if con.window_class in self.settings[self.group]["instances"]:
                 con.command(make_mark())
                 scratch_cmd='move scratchpad, '+parse_geom()
                 con.command(scratch_cmd)
@@ -150,7 +146,7 @@ class named_scratchpad(object):
 
     def scratch_list(self):
         v=[]
-        for i in settings:
+        for i in self.settings:
             v.append(i)
         return v
 
@@ -166,10 +162,10 @@ if __name__ == '__main__':
         ns=named_scratchpad()
         i3 = i3ipc.Connection()
         window_list = i3.get_tree().leaves()
-        group=argv[1]
-        marked=i3.get_tree().find_marked(group+"[0-9]+")
-        if marked == [] and "prog" in settings[group]:
-            i3.command("exec {}".format(settings[group]["prog"]))
+        ns.group=argv[1]
+        marked=i3.get_tree().find_marked(ns.group+"[0-9]+")
+        if marked == [] and "prog" in ns.settings[ns.group]:
+            i3.command("exec {}".format(ns.settings[ns.group]["prog"]))
         marks=i3hl.get_marks()
 
         if argv[2] == "show":
