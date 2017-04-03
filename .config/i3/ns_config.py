@@ -39,8 +39,3 @@ class ns_settings(object):
                 'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=10\' -e ~/bin/scripts/teardrop"
             }
         }
-
-        for group in self.settings:
-            self.group_list.append(group)
-
-        self.ns_data="/tmp/ns_data"

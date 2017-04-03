@@ -85,7 +85,8 @@ set {$graph}  [graph]
 bindsym $mod+f [con_mark="ncmpcpp"] exec ~/.config/i3/i3_ns.py toggle ncmpcpp
 bindsym $mod+d exec ~/.config/i3/i3_ns.py toggle teardrop 
 bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
-bindsym $mod+{e,3} exec ~/.config/i3/i3_ns.py {toggle,next} im 
+bindsym $mod+e "sh -c 'echo -n toggle im > /tmp/ns_scratchpad.fifo'"
+bindsym $mod+3 "sh -c 'echo -n next im > /tmp/ns_scratchpad.fifo'"
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
@@ -259,7 +260,7 @@ exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
 exec_always python3 ~/.config/i3/disable-standby-fs.py
 exec_always python3 ~/.config/i3/focus-last.py
-
+exec python3 ~/.config/i3/i3_ns.py daemon
 exec_always ~/.config/i3/per-workspace-layout.pl
 
 # vim:filetype=i3

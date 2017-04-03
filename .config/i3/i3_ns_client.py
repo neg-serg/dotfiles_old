@@ -21,13 +21,6 @@ from redis import Redis
 from rq import Queue
 import i3_ns_daemon
 
-def dprint(*args):
-    if debug():
-        print(*args)
-
-def debug():
-    return 1
-
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
     ns=i3_ns_daemon.named_scratchpad()
@@ -36,10 +29,10 @@ if __name__ == '__main__':
     queue = Queue(connection=redis_conn)
 
     if argv["show"]:
-        job = queue.enqueue(ns.focus(argv['<name>']), argv['<name>'])
+        job = queue.enqueue(ns.focus(), argv['<name>'])
     elif argv["hide"]:
-        job = queue.enqueue(ns.unfocus(argv['<name>']), argv['<name>'])
+        job = queue.enqueue(ns.unfocus(), argv['<name>'])
     elif argv["toggle"]:
-        job = queue.enqueue(ns.toggle(argv['<name>']), argv['<name>'])
+        job = queue.enqueue(ns.toggle(), argv['<name>'])
     elif argv["next"]:
-        job = queue.enqueue(ns.next(argv['<name>']), argv['<name>'])
+        job = queue.enqueue(ns.next(), argv['<name>'])
