@@ -3,14 +3,13 @@
 """ i3 Named Scratchpads
 
 Usage:
-  i3_ns.py show <name>
-  i3_ns.py hide <name>
-  i3_ns.py toggle <name>
-  i3_ns.py next <name>
-  i3_ns.py daemon
-  i3_ns.py (-h | --help)
-  i3_ns.py --version
-  i3_ns.py --debug
+  i3_ns_daemon.py show <name>
+  i3_ns_daemon.py hide <name>
+  i3_ns_daemon.py toggle <name>
+  i3_ns_daemon.py next <name>
+  i3_ns_daemon.py d
+  i3_ns_daemon.py (-h | --help)
+  i3_ns_daemon.py --version
 
 Options:
   -h --help     Show this screen.
@@ -33,48 +32,67 @@ import redis
 
 from ns_config import *
 
+def dprint(*args):
+    if debug():
+        print(*args)
+
+def debug():
+    return 0
+
+def strwrap(s):
+    return "[-- " + s + " --]"
+
+settings=ns_settings().settings
+ns_data=ns_settings().ns_data
+group_list=ns_settings().group_list
+
 class named_scratchpad(object):
-    def __init__(self):
-        self.debug=0
-        self.settings=ns_settings().settings
-        self.ns_data=ns_settings().ns_data
-        self.group_list=ns_settings().group_list
 
-    def dprint(self, *args):
-        if self.debug:
-            print(*args)
-
-    def strwrap(self, s):
-        return "[-- " + s + " --]"
-
-    def parse_geom(self, group):
+    def parse_geom(self):
         geom={}
-        geom=re.split(r'[x+]', self.settings[group]["geom"])
+        geom=re.split(r'[x+]', settings[self.group]["geom"])
         return "move absolute position {2} {3}, resize set {0} {1}".format(*geom)
 
-    def make_mark(self, group):
-        return 'mark {}'.format(group) + str(str(uuid.uuid4().fields[-1]))
+    def make_mark(self):
+        return 'mark {}'.format(self.group) + str(str(uuid.uuid4().fields[-1]))
 
-    def focus(self, gr):
-        handle_marked_group(gr)
-        self.dprint(self.strwrap("ALL"))
-        for j,i in zip(range(len(window_list)), sorted(window_list, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
+    def mark_group(self, event):
+        con = event.container
+        if con.window_class in settings[self.group]["classes"]:
+            con.command(make_mark())
+            scratch_cmd='move scratchpad, '+parse_geom()
+            con.command(scratch_cmd)
+            print(make_mark())
 
-        self.dprint(self.strwrap("IM"))
+        try:
+            if con.window_class in settings[self.group]["instances"]:
+                con.command(make_mark())
+                scratch_cmd='move scratchpad, '+parse_geom()
+                con.command(scratch_cmd)
+                print(make_mark())
+        except KeyError:
+            return
+
+    def focus(self, group):
+        if self.marked == [] and "prog" in settings[group]:
+            i3.command("exec {}".format(settings[group]["prog"]))
+        dprint(strwrap("ALL"))
+        for j,i in zip(range(len(self.window_list)), sorted(self.window_list, key=lambda im: im.name)):
+            dprint(i.name, i.id)
+
+        dprint(strwrap("IM"))
         for j,i in zip(range(len(self.marked)), sorted(self.marked, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
+            dprint(i.name, i.id)
             self.marked[j].command('move container to workspace current')
 
-    def toggle(self, gr):
-        handle_marked_group(gr)
+    def toggle(self):
         focused = i3.get_tree().find_focused()
         if self.visible() > 0:
             self.unfocus()
             return
 
         for j,i in zip(range(len(self.marked)), sorted(self.marked, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
+            dprint(i.name, i.id)
             if focused.id == i.id:
                 self.unfocus()
                 return
@@ -86,8 +104,7 @@ class named_scratchpad(object):
 
         self.focus()
 
-    def restore_fullscreens(self, gr):
-        handle_marked_group(gr)
+    def restore_fullscreens(self):
         with open(ns_data, "r") as f:
             for line in f:
                 fullscreen_me=line
@@ -99,10 +116,9 @@ class named_scratchpad(object):
             f.write("")
 
 
-    def unfocus(self, gr):
-        handle_marked_group(gr)
+    def unfocus(self):
         for j,i in zip(range(len(self.marked)), sorted(self.marked, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
+            dprint(i.name, i.id)
             self.marked[j].command('move scratchpad')
 
         restore_fullscreens()
@@ -125,13 +141,12 @@ class named_scratchpad(object):
         return visible_windows
 
 
-    def iterate_over(self, gr):
-        handle_marked_group(gr)
+    def iterate_over(self):
         focused = i3.get_tree().find_focused()
         self.focus()
         for j,i in zip(range(len(self.marked)),sorted(self.marked, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
-            self.dprint("focused id=",focused.id)
+            dprint(i.name, i.id)
+            dprint("focused id=",focused.id)
             if focused.id != i.id:
                 self.marked[j].command('move container to workspace current')
                 i.command('move scratchpad')
@@ -140,12 +155,12 @@ class named_scratchpad(object):
     def visible(self):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
 
-        self.dprint("Visible and marked")
+        dprint("Visible and marked")
         vmarked = 0
         for w in visible_windows:
-            for i in sorted(marked, key=lambda im: im.name):
+            for i in sorted(self.marked, key=lambda im: im.name):
                 if w.id == i.id:
-                    if self.debug:
+                    if debug():
                         print("{name,id}=", i.name, i.id)
                         print("name=", w.name)
                     vmarked+=1
@@ -154,7 +169,7 @@ class named_scratchpad(object):
 
     def scratch_list(self):
         v=[]
-        for i in self.settings:
+        for i in settings:
             v.append(i)
         return v
 
@@ -162,44 +177,21 @@ class named_scratchpad(object):
         v=scratch_list()
         print(v)
 
-    def handle_marked_group(group):
-        self.marked=i3.get_tree().find_marked(group+"[0-9]+")
-        if self.marked == [] and "prog" in ns.settings[group]:
-            i3.command("exec {}".format(ns.settings[group]["prog"]))
-
-class Singleton(named_scratchpad):
-    def __init__(self):
-        named_scratchpad.__init__(self)
-    def __str__(self):
-        return self.val
-
-def mark_group(self, event):
-    ns=Singleton()
-    for group in ns.group_list:
-        print("group={}",group)
-        con = event.container
-        if con.window_class in ns.settings[group]["classes"]:
-            con.command
-            scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-            con.command(scratch_cmd)
-            print(ns.make_mark(group))
-
-        try:
-            if con.window_class in ns.settings[group]["instances"]:
-                con.command(make_mark())
-                scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-                con.command(scratch_cmd)
-                print(ns.make_mark(group))
-        except KeyError:
-            return
-
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    ns=Singleton()
-    i3 = i3ipc.Connection()
-    window_list = i3.get_tree().leaves()
-    marks=i3hl.get_marks()
+    def main(group):
+        i3 = i3ipc.Connection()
 
-    if argv["daemon"]:
-        i3.on('window::new', mark_group)
+        ns=named_scratchpad()
+
+        ns.window_list = i3.get_tree().leaves()
+        ns.marked=i3.get_tree().find_marked(group+"[0-9]+")
+
+        marks=i3hl.get_marks()
+
+        for group in group_list:
+            i3.on('window::new', group)
+
         i3.main()
+
+    main(argv["<name>"])
