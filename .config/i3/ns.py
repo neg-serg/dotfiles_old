@@ -200,17 +200,19 @@ def mark_group(self, event):
         except KeyError:
             pass
 
-FIFO = '/tmp/ns_scratchpad.fifo'
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
+if os.path.exists(fifo_):
+    os.remove(fifo_)
 
 try:
-    os.mkfifo(FIFO)
+    os.mkfifo(fifo_)
 except OSError as oe:
     if oe.errno != errno.EEXIST:
         raise
 
 def fifo_listner():
     ns=named_scratchpad.instance()
-    with open(FIFO) as fifo:
+    with open(fifo_) as fifo:
         while True:
             data = fifo.read()
             if len(data) == 0:
@@ -263,10 +265,17 @@ def cleanup_mark(self, event):
         marked[i]=list()
     mark_all()
 
+def cleanup_all():
+    if os.path.exists(fifo_):
+        os.remove(fifo_)
+
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    os.remove(FIFO)
     i3 = i3ipc.Connection()
+
+    import atexit
+    atexit.register(cleanup_all)
+
     ns=named_scratchpad.instance()
 
     if argv["daemon"]:
