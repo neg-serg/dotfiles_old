@@ -34,4 +34,4 @@ if __name__ == '__main__':
             fp.write("ns.toggle(\"%s\")\n" % (argv['<name>'],))
     elif argv["next"]:
         with open(fifo_,"w") as fp:
-            fp.write("ns.next(\"%s\")\n" % (argv['<name>'],))
+            fp.write("ns.iterate_over(\"%s\")\n" % (argv['<name>'],))

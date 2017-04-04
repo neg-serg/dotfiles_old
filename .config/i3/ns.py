@@ -76,18 +76,12 @@ class named_scratchpad(SingletonMixin):
         return 'mark {}'.format(output)
 
     def focus(self, gr):
-        self.dprint(self.strwrap("ALL"))
-        for j,i in zip(range(len(window_list)), sorted(window_list, key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
-
-        self.dprint(self.strwrap("IM"))
         for j,i in zip(range(len(marked[gr])), sorted(marked[gr], key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
             marked[gr][j].command('move container to workspace current')
 
     def toggle(self, gr):
-        if marked[gr] == [] and "prog" in ns.settings[gr]:
-            i3.command("exec {}".format(ns.settings[gr]["prog"]))
+        if marked[gr] == [] and "prog" in self.settings[gr]:
+            i3.command("exec {}".format(self.settings[gr]["prog"]))
 
         focused = i3.get_tree().find_focused()
         if self.visible(gr) > 0:
@@ -196,7 +190,6 @@ def mark_group(self, event):
         ns=named_scratchpad.instance()
         con = event.container
         if con.window_class in ns.settings[group]["classes"]:
-            con.command
             scratch_cmd='move scratchpad, '+ns.parse_geom(group)
             con.command(scratch_cmd)
             # print(ns.make_mark(group))
@@ -236,7 +229,6 @@ def fifo_listner():
             # print('Read: "{0}"'.format(data))
             eval_str=data.split('\n', 1)[0]
             eval(eval_str)
-            print("eval_str={}".format(eval_str))
             return
 
 q = Queue()
@@ -252,18 +244,37 @@ def worker():
         q.task_done()
 
 def before_i3_main():
-    sleep(2)
     while True:
         put()
         Thread(target=worker).start()
-        sleep(0.05)
+
+def mark_all():
+    window_list = i3.get_tree().leaves()
+    for group in glob_settings:
+        ns=named_scratchpad.instance()
+        for con in window_list:
+            if con.window_class in ns.settings[group]["classes"]:
+                scratch_cmd='move scratchpad, '+ns.parse_geom(group)
+                con.command(scratch_cmd)
+                marked[group].append(con)
+
+            try:
+                if con.window_class in ns.settings[group]["instances"]:
+                    con.command(ns.make_mark(group))
+                    scratch_cmd='move scratchpad, '+ns.parse_geom(group)
+                    con.command(scratch_cmd)
+
+                    marked[group].append(con)
+            except KeyError:
+                pass
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
     i3 = i3ipc.Connection()
-    window_list = i3.get_tree().leaves()
+    ns=named_scratchpad.instance()
 
     if argv["daemon"]:
+        mark_all()
         i3.on('window::new', mark_group)
         Thread(target=before_i3_main).start()
         i3.main()
