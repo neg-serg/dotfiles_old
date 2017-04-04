@@ -17,22 +17,21 @@ Options:
 """
 
 from docopt import docopt
-from redis import Redis
-from rq import Queue
-import i3_ns_daemon
+
+fifo_="/tmp/ns_scratchpad.fifo"
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    ns=i3_ns_daemon.named_scratchpad()
-
-    redis_conn = Redis()
-    queue = Queue(connection=redis_conn)
 
     if argv["show"]:
-        job = queue.enqueue(ns.focus(), argv['<name>'])
+        with open(fifo_,"w") as fp:
+            fp.write("ns.focus(\"%s\")" % (argv['<name>'],))
     elif argv["hide"]:
-        job = queue.enqueue(ns.unfocus(), argv['<name>'])
+        with open(fifo_,"w") as fp:
+            fp.write("ns.unfocus(\"%s\")" % (argv['<name>'],))
     elif argv["toggle"]:
-        job = queue.enqueue(ns.toggle(), argv['<name>'])
+        with open(fifo_,"w") as fp:
+            fp.write("ns.toggle(\"%s\")" % (argv['<name>'],))
     elif argv["next"]:
-        job = queue.enqueue(ns.next(), argv['<name>'])
+        with open(fifo_,"w") as fp:
+            fp.write("ns.next(\"%s\")" % (argv['<name>'],))

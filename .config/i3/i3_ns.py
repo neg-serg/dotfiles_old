@@ -32,6 +32,7 @@ import errno
 import os
 import redis
 
+glob_settings=ns_settings().settings
 marked={'im':[], 'ncmpcpp':[], 'mutt':[], 'ranger':[], 'teardrop':[] }
 
 # Based on tornado.ioloop.IOLoop.instance() approach.
@@ -189,30 +190,29 @@ class named_scratchpad(SingletonMixin):
         print(v)
 
 def mark_group(self, event):
-    group="im"
-    ns=named_scratchpad.instance()
-    con = event.container
-    print("group={}".format(group))
-    if con.window_class in ns.settings[group]["classes"]:
-        con.command
-        scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-        con.command(scratch_cmd)
-        print(ns.make_mark(group))
-
-        marked[group].append(con)
-        print("marked={}".format(marked))
-
-    try:
-        if con.window_class in ns.settings[group]["instances"]:
-            con.command(make_mark())
+    for group in glob_settings:
+        ns=named_scratchpad.instance()
+        con = event.container
+        if con.window_class in ns.settings[group]["classes"]:
+            con.command
             scratch_cmd='move scratchpad, '+ns.parse_geom(group)
             con.command(scratch_cmd)
             print(ns.make_mark(group))
 
             marked[group].append(con)
             print("marked={}".format(marked))
-    except KeyError:
-        return
+
+        try:
+            if con.window_class in ns.settings[group]["instances"]:
+                con.command(make_mark())
+                scratch_cmd='move scratchpad, '+ns.parse_geom(group)
+                con.command(scratch_cmd)
+                print(ns.make_mark(group))
+
+                marked[group].append(con)
+                print("marked={}".format(marked))
+        except KeyError:
+            return
 
 FIFO = '/tmp/ns_scratchpad.fifo'
 
@@ -233,8 +233,7 @@ def fifo_listner():
                 print("Writer closed")
                 break
             print('Read: "{0}"'.format(data))
-            if data == "toggle im":
-                ns.toggle("im")
+            eval(data)
 
 q = Queue()
 
@@ -266,13 +265,6 @@ if __name__ == '__main__':
     red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
     if argv["daemon"]:
-        # it seems I need some code generation
-        global group
-        group="im"
-
         i3.on('window::new', mark_group)
-
         Thread(target=before_i3_main).start()
         i3.main()
-    elif argv["toggle"]:
-        ns.toggle(argv["<name>"])
