@@ -1,0 +1,9 @@
+[Unit]
+Description=Deluge Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/deluged -d -P %h/.config/deluge/deluge.pid
+
+[Install]
+WantedBy=default.target
