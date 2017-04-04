@@ -28,10 +28,17 @@ import re
 import errno
 import os
 
+q = Queue()
 glob_settings=ns_settings().settings
 marked={}
+debug=0
+
 for i in glob_settings:
     marked[i]=list()
+
+def dprint(self, *args):
+    if debug:
+        print(*args)
 
 # Based on tornado.ioloop.IOLoop.instance() approach.
 # See https://github.com/facebook/tornado
@@ -40,27 +47,24 @@ class SingletonMixin(object):
     __singleton_instance = None
 
     @classmethod
-    def instance(cls):
-        if not cls.__singleton_instance:
-            with cls.__singleton_lock:
-                if not cls.__singleton_instance:
-                    cls.__singleton_instance = cls()
-        return cls.__singleton_instance
+    def instance(class_):
+        if not class_.__singleton_instance:
+            with class_.__singleton_lock:
+                if not class_.__singleton_instance:
+                    class_.__singleton_instance = class_()
+        return class_.__singleton_instance
 
 class named_scratchpad(SingletonMixin):
     def __init__(self):
         self.debug=0
         self.settings=ns_settings().settings
         self.group_list=[]
+        self.fullscreen_list=[]
 
         for group in self.settings:
             self.group_list.append(group)
 
         self.ns_data="/tmp/ns_data"
-
-    def dprint(self, *args):
-        if self.debug:
-            print(*args)
 
     def strwrap(self, s):
         return "[-- " + s + " --]"
@@ -88,39 +92,32 @@ class named_scratchpad(SingletonMixin):
             return
 
         for j,i in zip(range(len(marked[gr])), sorted(marked[gr], key=lambda im: im.name)):
-            self.dprint(i.name, i.id)
+            dprint(i.name, i.id)
             if focused.id == i.id:
                 self.unfocus(gr)
                 return
 
         if focused.fullscreen_mode:
             focused.command('fullscreen toggle')
-            with open(self.ns_data, "w") as f:
-                f.write("%s\n" % focused.id)
+            self.fullscreen_list.append(focused)
 
         self.focus(gr)
 
-    # def restore_fullscreens(self, gr):
-    #     fullscreen_me=""
-    #     with open(self.ns_data, "r") as f:
-    #         for line in f:
-    #             fullscreen_me=line
+    def restore_fullscreens(self, gr):
+        for i in self.fullscreen_list:
+            i.command('fullscreen toggle')
 
-    #     for i in i3.get_tree().leaves():
-    #         if i.id == int(fullscreen_me):
-    #             i.command('fullscreen toggle')
-    #     with open(self.ns_data, "w") as f:
-    #         f.write("")
+        self.fullscreen_list=[]
 
     def unfocus(self, gr):
         for j,i in zip(
                 range(len(marked[gr])),
                 sorted(marked[gr], key=lambda im: im.name)
             ):
-            self.dprint(i.name, i.id)
+            dprint(i.name, i.id)
             marked[gr][j].command('move scratchpad')
 
-        # self.restore_fullscreens(gr)
+        self.restore_fullscreens(gr)
 
     def get_windows_on_ws(self,i3):
         return filter(
@@ -152,8 +149,8 @@ class named_scratchpad(SingletonMixin):
             range(len(marked[gr])),
             sorted(marked[gr], key=lambda im: im.name)):
 
-            self.dprint(i.name, i.id)
-            self.dprint("focused id=",focused.id)
+            dprint(i.name, i.id)
+            dprint("focused id=",focused.id)
             if focused.id != i.id:
                 marked[gr][j].command('move container to workspace current')
                 i.command('move scratchpad')
@@ -162,7 +159,7 @@ class named_scratchpad(SingletonMixin):
     def visible(self, gr):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
 
-        self.dprint("Visible and marked")
+        dprint("Visible and marked")
         vmarked = 0
         for w in visible_windows:
             for i in sorted(marked[gr], key=lambda im: im.name):
@@ -191,10 +188,7 @@ def mark_group(self, event):
         if con.window_class in ns.settings[group]["classes"]:
             scratch_cmd='move scratchpad, '+ns.parse_geom(group)
             con.command(scratch_cmd)
-            # print(ns.make_mark(group))
-
             marked[group].append(con)
-            # print("marked={}".format(marked))
 
         try:
             if con.window_class in ns.settings[group]["instances"]:
@@ -203,7 +197,6 @@ def mark_group(self, event):
                 con.command(scratch_cmd)
 
                 marked[group].append(con)
-                # print("marked={}".format(marked))
         except KeyError:
             pass
 
@@ -230,11 +223,6 @@ def fifo_listner():
             eval(eval_str)
             return
 
-q = Queue()
-
-def put():
-    q.put(fifo_listner())
-
 def worker():
     while True:
         if q.empty():
@@ -244,7 +232,7 @@ def worker():
 
 def mainloop_ns():
     while True:
-        put()
+        q.put(fifo_listner())
         Thread(target=worker).start()
 
 def mark_all():
@@ -279,7 +267,10 @@ if __name__ == '__main__':
 
     if argv["daemon"]:
         mark_all()
+
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
+
         mainloop=Thread(target=mainloop_ns).start()
+
         i3.main()
