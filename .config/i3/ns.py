@@ -32,7 +32,9 @@ import errno
 import os
 
 glob_settings=ns_settings().settings
-marked={'ncmpcpp':[], 'im':[],  'mutt':[], 'ranger':[], 'teardrop':[]}
+marked={}
+for i in glob_settings:
+    marked[i]=list()
 
 # Based on tornado.ioloop.IOLoop.instance() approach.
 # See https://github.com/facebook/tornado
@@ -254,19 +256,24 @@ def mark_all():
         ns=named_scratchpad.instance()
         for con in window_list:
             if con.window_class in ns.settings[group]["classes"]:
-                scratch_cmd='move scratchpad, '+ns.parse_geom(group)
+                scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
                 con.command(scratch_cmd)
                 marked[group].append(con)
 
             try:
                 if con.window_class in ns.settings[group]["instances"]:
                     con.command(ns.make_mark(group))
-                    scratch_cmd='move scratchpad, '+ns.parse_geom(group)
+                    scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
                     con.command(scratch_cmd)
 
                     marked[group].append(con)
             except KeyError:
                 pass
+
+def cleanup_mark(self, event):
+    for i in glob_settings:
+        marked[i]=list()
+    mark_all()
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
@@ -276,5 +283,6 @@ if __name__ == '__main__':
     if argv["daemon"]:
         mark_all()
         i3.on('window::new', mark_group)
+        i3.on('window::close', cleanup_mark)
         Thread(target=before_i3_main).start()
         i3.main()
