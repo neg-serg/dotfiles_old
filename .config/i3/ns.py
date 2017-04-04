@@ -14,17 +14,14 @@ Options:
 """
 
 import i3ipc
-import i3 as i3hl
 
 from sys import exit
-from itertools import cycle
 from subprocess import check_output
 from docopt import docopt
 from ns_config import *
 
-from time import sleep
-from queue import *
-from threading import Thread, enumerate, Lock
+from queue import Queue
+from threading import Thread, Lock, enumerate
 
 import uuid
 import re
@@ -245,7 +242,7 @@ def worker():
         i = q.get()
         q.task_done()
 
-def before_i3_main():
+def mainloop_ns():
     while True:
         put()
         Thread(target=worker).start()
@@ -284,5 +281,5 @@ if __name__ == '__main__':
         mark_all()
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
-        Thread(target=before_i3_main).start()
+        mainloop=Thread(target=mainloop_ns).start()
         i3.main()
