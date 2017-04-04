@@ -25,13 +25,13 @@ if __name__ == '__main__':
 
     if argv["show"]:
         with open(fifo_,"w") as fp:
-            fp.write("ns.focus(\"%s\")" % (argv['<name>'],))
+            fp.write("ns.focus(\"%s\")\n" % (argv['<name>'],))
     elif argv["hide"]:
         with open(fifo_,"w") as fp:
-            fp.write("ns.unfocus(\"%s\")" % (argv['<name>'],))
+            fp.write("ns.unfocus(\"%s\")\n" % (argv['<name>'],))
     elif argv["toggle"]:
         with open(fifo_,"w") as fp:
-            fp.write("ns.toggle(\"%s\")" % (argv['<name>'],))
+            fp.write("ns.toggle(\"%s\")\n" % (argv['<name>'],))
     elif argv["next"]:
         with open(fifo_,"w") as fp:
-            fp.write("ns.next(\"%s\")" % (argv['<name>'],))
+            fp.write("ns.next(\"%s\")\n" % (argv['<name>'],))

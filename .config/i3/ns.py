@@ -30,10 +30,9 @@ import uuid
 import re
 import errno
 import os
-import redis
 
 glob_settings=ns_settings().settings
-marked={'im':[], 'ncmpcpp':[], 'mutt':[], 'ranger':[], 'teardrop':[] }
+marked={'ncmpcpp':[], 'im':[],  'mutt':[], 'ranger':[], 'teardrop':[]}
 
 # Based on tornado.ioloop.IOLoop.instance() approach.
 # See https://github.com/facebook/tornado
@@ -87,6 +86,9 @@ class named_scratchpad(SingletonMixin):
             marked[gr][j].command('move container to workspace current')
 
     def toggle(self, gr):
+        if marked[gr] == [] and "prog" in ns.settings[gr]:
+            i3.command("exec {}".format(ns.settings[gr]["prog"]))
+
         focused = i3.get_tree().find_focused()
         if self.visible(gr) > 0:
             self.unfocus(gr)
@@ -197,22 +199,21 @@ def mark_group(self, event):
             con.command
             scratch_cmd='move scratchpad, '+ns.parse_geom(group)
             con.command(scratch_cmd)
-            print(ns.make_mark(group))
+            # print(ns.make_mark(group))
 
             marked[group].append(con)
-            print("marked={}".format(marked))
+            # print("marked={}".format(marked))
 
         try:
             if con.window_class in ns.settings[group]["instances"]:
-                con.command(make_mark())
+                con.command(ns.make_mark(group))
                 scratch_cmd='move scratchpad, '+ns.parse_geom(group)
                 con.command(scratch_cmd)
-                print(ns.make_mark(group))
 
                 marked[group].append(con)
-                print("marked={}".format(marked))
+                # print("marked={}".format(marked))
         except KeyError:
-            return
+            pass
 
 FIFO = '/tmp/ns_scratchpad.fifo'
 
@@ -224,16 +225,19 @@ except OSError as oe:
 
 def fifo_listner():
     ns=named_scratchpad.instance()
-    print("Opening FIFO...")
+    # print("Opening FIFO...")
     with open(FIFO) as fifo:
-        print("FIFO opened")
+        # print("FIFO opened")
         while True:
             data = fifo.read()
             if len(data) == 0:
-                print("Writer closed")
+                # print("Writer closed")
                 break
-            print('Read: "{0}"'.format(data))
-            eval(data)
+            # print('Read: "{0}"'.format(data))
+            eval_str=data.split('\n', 1)[0]
+            eval(eval_str)
+            print("eval_str={}".format(eval_str))
+            return
 
 q = Queue()
 
@@ -252,17 +256,12 @@ def before_i3_main():
     while True:
         put()
         Thread(target=worker).start()
-        sleep(0.2)
+        sleep(0.05)
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    ns=named_scratchpad.instance()
-
     i3 = i3ipc.Connection()
     window_list = i3.get_tree().leaves()
-    marks=i3hl.get_marks()
-
-    red = redis.StrictRedis(host='localhost', port=6379, db=0)
 
     if argv["daemon"]:
         i3.on('window::new', mark_group)
