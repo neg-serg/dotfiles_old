@@ -265,6 +265,7 @@ def cleanup_mark(self, event):
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
+    os.remove(FIFO)
     i3 = i3ipc.Connection()
     ns=named_scratchpad.instance()
 
