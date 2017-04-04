@@ -17,8 +17,9 @@ Options:
 """
 
 from docopt import docopt
+import os.path
 
-fifo_="/tmp/ns_scratchpad.fifo"
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
@@ -27,4 +28,4 @@ if __name__ == '__main__':
     for i in argv:
         if argv[i] and i in set(possible_commands):
             with open(fifo_,"w") as fp:
-                fp.write(i+" "+argv["<name>"])
+                fp.write(i+" "+argv["<name>"]+"\n")
