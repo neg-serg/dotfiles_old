@@ -210,18 +210,21 @@ except OSError as oe:
 
 def fifo_listner():
     ns=named_scratchpad.instance()
-    # print("Opening FIFO...")
     with open(FIFO) as fifo:
-        # print("FIFO opened")
         while True:
             data = fifo.read()
             if len(data) == 0:
-                # print("Writer closed")
                 break
-            # print('Read: "{0}"'.format(data))
             eval_str=data.split('\n', 1)[0]
-            eval(eval_str)
-            return
+            args=list(filter(lambda x: x != '', eval_str.split(' ')))
+            if args[0] == "show":
+                ns.focus(args[1])
+            elif args[0] == "hide":
+                ns.unfocus(args[1])
+            elif args[0] == "toggle":
+                ns.toggle(args[1])
+            elif args[0] == "next":
+                ns.iterate_over(args[1])
 
 def worker():
     while True:

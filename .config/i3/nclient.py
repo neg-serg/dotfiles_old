@@ -22,16 +22,9 @@ fifo_="/tmp/ns_scratchpad.fifo"
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
+    possible_commands=["show","hide","toggle","next"]
 
-    if argv["show"]:
-        with open(fifo_,"w") as fp:
-            fp.write("ns.focus(\"%s\")\n" % (argv['<name>'],))
-    elif argv["hide"]:
-        with open(fifo_,"w") as fp:
-            fp.write("ns.unfocus(\"%s\")\n" % (argv['<name>'],))
-    elif argv["toggle"]:
-        with open(fifo_,"w") as fp:
-            fp.write("ns.toggle(\"%s\")\n" % (argv['<name>'],))
-    elif argv["next"]:
-        with open(fifo_,"w") as fp:
-            fp.write("ns.iterate_over(\"%s\")\n" % (argv['<name>'],))
+    for i in argv:
+        if argv[i] and i in set(possible_commands):
+            with open(fifo_,"w") as fp:
+                fp.write(i+" "+argv["<name>"])
