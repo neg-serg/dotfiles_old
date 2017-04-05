@@ -33,7 +33,7 @@ q = Queue()
 
 tagged={}
 for i in glob_settings:
-    tagged[i]=list()
+    tagged[i]=list({})
 
 # Based on tornado.ioloop.IOLoop.instance() approach.
 # See https://github.com/facebook/tornado
@@ -50,41 +50,24 @@ class SingletonMixin(object):
         return class_.__singleton_instance
 
 class cycle_window(SingletonMixin):
-    def __init__(self):
-        self.tab_position=0
-        self.wlist=[]
-        self.focused=[]
-
     def go_next(self, tag):
-        self.wlist = i3.get_tree().leaves()
-        self.focused = i3.get_tree().find_focused()
-        print("tagged={}".format(tagged))
-        print("tagged[tag]={}".format(tagged[tag]))
+        print_tagged_info(tag)
         if tagged[tag] == []:
             prog=glob_settings[tag]["prog"]
             i3.command('exec {}'.format(prog))
         else:
-            try:
-                self.cur=tagged[tag][self.tab_position]
-                if not self.focused.window_class in glob_settings[tag]["priority"]:
-                    for num,pr in zip(range(len(self.wlist)),self.wlist):
-                        if pr.window_class == glob_settings[tag]["priority"]:
-                            pr.command('focus')
-                            self.tab_position+=1
-                else:
-                    if tagged[tag][self.tab_position].fullscreen_mode != False and len(tagged[tab]) > 1:
-                        tagged[tag][self.tab_position].command('fullscreen disable')
-                    if self.tab_position < len(tagged[tag]):
-                        indexofnext=self.tab_position+1
-                    else:
-                        indexofnext=0
-                    tagged[tag][indexofnext].command('focus')
-                    self.tab_position=indexofnext
-            except IndexError as ex:
-                self.cur=tagged[tag][0]
-                if self.cur.id != self.focused.id:
-                    self.cur.command('focus')
-                    self.tab_position=0
+            return
+            # for iter in tagged[tag]:
+            #     if iter['focused'] == False:
+            #         counter+=1
+            # if counter == len(tagged[tag]):
+            #     tagged[tag][0]['win'].command('focus')
+            #     tagged[tag][0]['focused']=True
+            #     counter=0
+
+def fullscreen_handle():
+    if tagged[tag]['win'].fullscreen_mode != False:
+        tagged[tag]['win'].command('fullscreen disable')
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
 if os.path.exists(fifo_):
@@ -126,12 +109,31 @@ def find_acceptable_windows_by_class(tag, wlist):
     global tagged
     for cur in wlist:
         if cur.window_class in glob_settings[tag]["classes"]:
-            tagged[tag].append(cur)
+            tagged[tag].append(
+                {
+                    'win':cur,
+                    'focused':cur.focused
+                }
+            )
+
+def print_tagged_info(tag):
+    print("tagged={}".format(tagged))
+    for i in tagged[tag]:
+        print("tagged[tag]={}".format(i))
 
 def find_all():
     wlist = i3.get_tree().leaves()
     for tag in glob_settings:
         find_acceptable_windows_by_class(tag, wlist)
+        print_tagged_info(tag)
+
+def handle_focused(self, event):
+    con = event.container
+    return
+
+def handle_unfocused(self, event):
+    con = event.container
+    return
 
 def cleanup_all():
     if os.path.exists(fifo_):
@@ -140,8 +142,8 @@ def cleanup_all():
 def add_acceptable(self, event):
     con = event.container
     for tag in glob_settings:
-        if not con.window_class in glob_settings[tag]["priority"]:
-            tagged[tag].append(con)
+        if con.window_class in glob_settings[tag]["classes"]:
+            tagged[tag]['win'].append(con, con.focused)
 
 # handle events, do not try to do it from the one script
 if __name__ == '__main__':
@@ -154,5 +156,7 @@ if __name__ == '__main__':
     if argv["daemon"]:
         find_all()
         i3.on('window::new', add_acceptable)
+        i3.on('window::focus', handle_focused)
+        i3.on('window::unfocus', handle_unfocused)
         mainloop=Thread(target=mainloop_cycle).start()
         i3.main()
