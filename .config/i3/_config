@@ -258,11 +258,10 @@ mode "gaps-inner" {
 
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
-exec_always python3 ~/.config/i3/disable-standby-fs.py
-exec_always python3 ~/.config/i3/focus-last.py
-exec python3 ~/.config/i3/i3_ns.py daemon
-exec_always ~/.config/i3/per-workspace-layout.pl
-exec_always python3 ~/.config/i3/ns.py daemon
-exec_always python3 ~/.config/i3/circle.py daemon
+exec python3 ~/.config/i3/disable-standby-fs.py
+exec python3 ~/.config/i3/focus-last.py
+exec ~/.config/i3/per-workspace-layout.pl
+exec python3 ~/.config/i3/ns.py daemon
+exec python3 ~/.config/i3/circle.py daemon
 
 # vim:filetype=i3
