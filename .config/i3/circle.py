@@ -54,11 +54,11 @@ class cycle_window(SingletonMixin):
                 self.counters[tag]+=1
             else:
                 self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
+                self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['focused']=True
                 self.counters[tag]+=1
         except KeyError:
             find_all()
-            if self.counters[tag] > 0:
-                self.counters[tag]-=1
+            self.counters[tag]=0
             self.go_next(tag)
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
@@ -102,6 +102,9 @@ def find_acceptable_windows_by_class(tag, wlist):
     for con in wlist:
         if con.window_class in glob_settings[tag]["classes"]:
             cw.tagged[tag].append({ 'win':con, 'focused':False })
+        elif "instances" in glob_settings[tag]:
+            if con.window_instance in glob_settings[tag]["instances"]:
+                cw.tagged[tag].append({ 'win':con, 'focused':False })
 
 def print_tagged_info(tag):
     cw=cycle_window.instance()
@@ -128,20 +131,33 @@ def add_acceptable(self, event):
     cw=cycle_window.instance()
     con = event.container
     for tag in glob_settings:
-        if con.window_class in glob_settings[tag]["classes"]:
-            try:
+        try:
+            if con.window_class in glob_settings[tag]["classes"]:
                 cw.tagged[tag].append({'win':con,'focused':con.focused})
-            except KeyError:
-                find_all()
-                self.counters[tag]+=1
-                cw.tagged[tag].append({'win':con,'focused':con.focused})
+                return
+            elif "instances" in glob_settings[tag]:
+                if con.window_instance in glob_settings[tag]["instances"]:
+                    cw.tagged[tag].append({'win':con,'focused':con.focused})
+                    return
+        except KeyError:
+            find_all()
+            add_acceptable(self, event)
 
 def del_acceptable(self, event):
     cw=cycle_window.instance()
     con = event.container
     for tag in glob_settings:
-        if con.window_class in glob_settings[tag]["classes"]:
-            del cw.tagged[tag]
+        try:
+            if con.window_class in glob_settings[tag]["classes"]:
+                del cw.tagged[tag]
+                return
+            elif "instances" in glob_settings[tag]:
+                if con.window_instance in glob_settings[tag]["instances"]:
+                    del cw.tagged[tag]
+                    return
+        except KeyError:
+            find_all()
+            del_acceptable(self, event)
 
 # handle events, do not try to do it from the one script
 if __name__ == '__main__':
