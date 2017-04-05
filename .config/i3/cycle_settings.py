@@ -7,7 +7,6 @@ class cycle_settings(object):
             'web' : {
                 'classes' : {
                     'Firefox',
-                    'Navigator',
                     'Tor Browser',
                     'Chromium',
                 },
