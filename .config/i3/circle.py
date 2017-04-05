@@ -129,7 +129,12 @@ def add_acceptable(self, event):
     con = event.container
     for tag in glob_settings:
         if con.window_class in glob_settings[tag]["classes"]:
-            cw.tagged[tag].append({ 'win':con, 'focused':con.focused })
+            try:
+                cw.tagged[tag].append({'win':con,'focused':con.focused})
+            except KeyError:
+                find_all()
+                self.counters[tag]+=1
+                cw.tagged[tag].append({'win':con,'focused':con.focused})
 
 def del_acceptable(self, event):
     cw=cycle_window.instance()
