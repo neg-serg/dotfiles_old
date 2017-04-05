@@ -3,9 +3,8 @@
 """ i3 Named Scratchpads
 
 Usage:
-  i3_ns.py daemon
-  i3_ns.py toggle <name>
-
+  ns.py daemon
+  ns.py toggle <name>
 
 Options:
   -h --help     Show this screen.
@@ -219,14 +218,15 @@ def fifo_listner():
                 break
             eval_str=data.split('\n', 1)[0]
             args=list(filter(lambda x: x != '', eval_str.split(' ')))
-            if args[0] == "show":
-                ns.focus(args[1])
-            elif args[0] == "hide":
-                ns.unfocus(args[1])
-            elif args[0] == "toggle":
-                ns.toggle(args[1])
-            elif args[0] == "next":
-                ns.iterate_over(args[1])
+            if len(args) > 0:
+                if args[0] == "show":
+                    ns.focus(args[1])
+                elif args[0] == "hide":
+                    ns.unfocus(args[1])
+                elif args[0] == "toggle":
+                    ns.toggle(args[1])
+                elif args[0] == "next":
+                    ns.iterate_over(args[1])
 
 def worker():
     while True:

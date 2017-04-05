@@ -3,12 +3,12 @@
 """ i3 Named Scratchpads
 
 Usage:
-  i3_ns_client.py show <name>
-  i3_ns_client.py hide <name>
-  i3_ns_client.py toggle <name>
-  i3_ns_client.py next <name>
-  i3_ns_client.py (-h | --help)
-  i3_ns_client.py --version
+  nclient.py show <name>
+  nclient.py hide <name>
+  nclient.py toggle <name>
+  nclient.py next <name>
+  nclient.py (-h | --help)
+  nclient.py --version
 
 Options:
   -h --help     Show this screen.
