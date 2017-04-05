@@ -66,9 +66,10 @@ class cycle_window(SingletonMixin):
             elif len(self.tagged[tag]) == 1:
                 self.tagged[tag][0]['win'].command('focus')
                 self.tagged[tag][0]['focused']=True
+                self.counters[tag]+=1
             else:
                 self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
-            self.counters[tag]+=1
+                self.counters[tag]+=1
         except KeyError:
             find_all()
             if self.counters[tag] > 0:
