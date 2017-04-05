@@ -21,6 +21,8 @@ from ns_config import *
 
 from queue import Queue
 from threading import Thread, Lock, enumerate
+from singleton_mixin import *
+from threading import Thread, enumerate
 
 import uuid
 import re
@@ -38,20 +40,6 @@ for i in glob_settings:
 def dprint(self, *args):
     if debug:
         print(*args)
-
-# Based on tornado.ioloop.IOLoop.instance() approach.
-# See https://github.com/facebook/tornado
-class SingletonMixin(object):
-    __singleton_lock = Lock()
-    __singleton_instance = None
-
-    @classmethod
-    def instance(class_):
-        if not class_.__singleton_instance:
-            with class_.__singleton_lock:
-                if not class_.__singleton_instance:
-                    class_.__singleton_instance = class_()
-        return class_.__singleton_instance
 
 class named_scratchpad(SingletonMixin):
     def __init__(self):

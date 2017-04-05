@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 
-""" i3 Named Scratchpads
-
+""" i3 window tag circle
 Usage:
-  cycle_i3.py daemon
-
+    circle.py daemon
 """
 
 import i3ipc
@@ -22,30 +20,17 @@ from docopt import docopt
 from cycle_settings import *
 
 from queue import Queue
-from threading import Thread, Lock, enumerate
 
 import re
 import errno
 import os
 
 from itertools import cycle
+from singleton_mixin import *
+from threading import Thread, enumerate
 
 glob_settings=cycle_settings().settings
 q = Queue()
-
-# Based on tornado.ioloop.IOLoop.instance() approach.
-# See https://github.com/facebook/tornado
-class SingletonMixin(object):
-    __singleton_lock = Lock()
-    __singleton_instance = None
-
-    @classmethod
-    def instance(class_):
-        if not class_.__singleton_instance:
-            with class_.__singleton_lock:
-                if not class_.__singleton_instance:
-                    class_.__singleton_instance = class_()
-        return class_.__singleton_instance
 
 class cycle_window(SingletonMixin):
     def __init__(self):
@@ -155,7 +140,7 @@ def del_acceptable(self, event):
 
 # handle events, do not try to do it from the one script
 if __name__ == '__main__':
-    argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
+    argv = docopt(__doc__, version='i3 window tag circle 0.5')
     i3 = i3ipc.Connection()
 
     import atexit
