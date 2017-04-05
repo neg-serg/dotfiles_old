@@ -50,10 +50,11 @@ class SingletonMixin(object):
 class cycle_window(SingletonMixin):
     def __init__(self):
         self.win_iter=None
-        self.tab_counter=0
         self.tagged={}
+        self.counters={}
         for i in glob_settings:
             self.tagged[i]=list({})
+            self.counters[i]=0
 
     def go_next(self, tag):
         try:
@@ -65,12 +66,13 @@ class cycle_window(SingletonMixin):
             elif len(self.tagged[tag]) == 1:
                 self.tagged[tag][0]['win'].command('focus')
                 self.tagged[tag][0]['focused']=True
-                self.tab_counter+=1
             else:
-                self.tagged[tag][self.tab_counter%len(self.tagged[tag])]['win'].command('focus')
-                self.tab_counter+=1
+                self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
+            self.counters[tag]+=1
         except KeyError:
             find_all()
+            if self.counters[tag] > 0:
+                self.counters[tag]-=1
             self.go_next(tag)
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
@@ -124,7 +126,6 @@ def find_all():
     cw=cycle_window.instance()
     wlist = i3.get_tree().leaves()
     cw.tagged={}
-    cw.tab_counter=0
 
     for i in glob_settings:
         cw.tagged[i]=list({})
