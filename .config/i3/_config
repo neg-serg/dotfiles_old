@@ -183,15 +183,14 @@ mode "password" {
 
 bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
-bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
+bindsym $mod+x exec python ~/.config/i3/cclient.py next term
 bindsym $mod+1 $ror "[instance=(?i)^(nwim|wim)$]" ~/bin/nwim focus
-bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
-bindsym $mod+Control+e python ~/.config/i3/cclient.py next steam
+bindsym $mod+Control+v exec python ~/.config/i3/cclient.py next vm
+bindsym $mod+Control+e exec python ~/.config/i3/cclient.py next steam
 bindsym $mod+w exec python ~/.config/i3/cclient.py next web
 bindsym $mod+b exec python ~/.config/i3/cclient.py next vid
 bindsym $mod+o exec python ~/.config/i3/cclient.py next doc
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
-bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)

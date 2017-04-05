@@ -44,7 +44,6 @@ class cycle_window(SingletonMixin):
     def go_next(self, tag):
         try:
             self.win_iter=cycle(self.tagged[tag])
-
             if len(self.tagged[tag]) == 0:
                 prog=glob_settings[tag]["prog"]
                 i3.command('exec {}'.format(prog))
@@ -58,7 +57,6 @@ class cycle_window(SingletonMixin):
                 self.counters[tag]+=1
         except KeyError:
             find_all()
-            self.counters[tag]=0
             self.go_next(tag)
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
@@ -172,6 +170,7 @@ if __name__ == '__main__':
 
         i3.on('window::new', add_acceptable)
         i3.on('window::close', del_acceptable)
+        # i3.on("window::focus", save_current_tag)
 
         mainloop=Thread(target=mainloop_cycle).start()
 

@@ -34,4 +34,15 @@ class cycle_settings(object):
                     'Zathura',
                 },
             },
+            'vm':{
+                'classes': {
+                    'VirtualBox',
+                    'vmware'
+                },
+            },
+            'term':{
+                'classes': { 'MainTerminal' },
+                'instances': { 'MainTerminal' },
+                'prog':"~/bin/term",
+            },
         }
