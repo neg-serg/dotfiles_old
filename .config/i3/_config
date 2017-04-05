@@ -186,12 +186,12 @@ bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clio
 bindsym $mod+x $ror "[instance=MainTerminal]" ~/bin/term focus  || $ror "[class=MainTerminal]" "~/bin/term" focus
 bindsym $mod+1 $ror "[instance=(?i)^(nwim|wim)$]" ~/bin/nwim focus
 bindsym $mod+Control+v $ror "[class=(?i)^(VirtualBox|vmware)$]" vmware focus
-bindsym $mod+Control+e $ror [con_mark=steam_all] /bin/true focus
-bindsym $mod+o $ror "[class=Zathura]" /bin/true focus
+bindsym $mod+Control+e python ~/.config/i3/cclient.py next steam
+bindsym $mod+w exec python ~/.config/i3/cclient.py next web
+bindsym $mod+b exec python ~/.config/i3/cclient.py next vid
+bindsym $mod+o exec python ~/.config/i3/cclient.py next doc
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
-bindsym $mod+w exec ~/.config/i3/jumpapp -c Firefox firefox
 bindsym $mod+Control+t $ror "[class=(?i)^(Vuze)$]" vuze focus
-bindsym $mod+b exec ~/.config/i3/jumpapp -c mpv /bin/true
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
@@ -263,5 +263,6 @@ exec_always python3 ~/.config/i3/focus-last.py
 exec python3 ~/.config/i3/i3_ns.py daemon
 exec_always ~/.config/i3/per-workspace-layout.pl
 exec_always python3 ~/.config/i3/ns.py daemon
+exec_always python3 ~/.config/i3/circle.py daemon
 
 # vim:filetype=i3

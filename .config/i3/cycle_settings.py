@@ -17,5 +17,21 @@ class cycle_settings(object):
                 'classes': {'mpv'},
                 'priority':'mpv',
                 'usual_fullscreen':True,
-            }
+            },
+            'steam':{
+                'classes': {
+                    'wine',
+                    'dota2',
+                    'darkest.bin.x86_64',
+                    'Steam',
+                    'steam',
+                },
+                'prog':"steam",
+                'priority':'mpv',
+            },
+            'doc':{
+                'classes': {
+                    'Zathura',
+                },
+            },
         }
