@@ -27,7 +27,6 @@ class cycle_settings(object):
                     'steam',
                 },
                 'prog':"steam",
-                'priority':'mpv',
             },
             'doc':{
                 'classes': {
