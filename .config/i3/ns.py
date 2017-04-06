@@ -142,6 +142,7 @@ class named_scratchpad(SingletonMixin):
                 ):
                 if focused_.id != win.id:
                     marked[group][number].command('move container to workspace current')
+                    marked[group].insert(len(marked[group]), marked[group].pop(number))
                     win.command('move scratchpad')
             self.focus(group)
 
