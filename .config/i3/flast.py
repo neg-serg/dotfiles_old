@@ -3,9 +3,9 @@
 """ i3 focus last client
 
 Usage:
-  focus-last-client.py switch
-  focus-last-client.py (-h | --help)
-  focus-last-client.py --version
+  flast.py switch
+  flast.py (-h | --help)
+  flast.py --version
 
 Options:
   -h --help     Show this screen.
@@ -16,7 +16,7 @@ Options:
 from docopt import docopt
 import os.path
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/focus_last_i3.fifo'))
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/flastd_i3.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 alt-tabber')

@@ -8,7 +8,7 @@ Then you can bind this script with the `--switch` option to one of your
 i3 keybinding.
 
 Usage:
-    focus-last.py daemon
+    flastd.py daemon
 
 Options:
     -h, --help  show this help message and exit
@@ -23,10 +23,10 @@ from docopt import docopt
 from singleton_mixin import *
 from queue import Queue
 
-max_win_history_ = 15
+max_win_history_ = 10
 
 q = Queue()
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/focus_last_i3.fifo'))
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/flastd_i3.fifo'))
 if os.path.exists(fifo_):
     os.remove(fifo_)
 
@@ -63,7 +63,7 @@ def mainloop_fw():
 
 class FocusWatcher(SingletonMixin):
     def __init__(self):
-        self.window_list = []
+        self.window_list = i3.get_tree().leaves()
 
     def alt_tab(self):
         windows = set(w.id for w in i3.get_tree().leaves())
