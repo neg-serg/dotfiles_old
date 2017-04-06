@@ -107,18 +107,6 @@ class named_scratchpad(SingletonMixin):
 
         return visible_windows
 
-    def iterate_over(self, group):
-        focused = i3.get_tree().find_focused()
-        self.focus(group)
-        for number,win in zip(
-                range(len(marked[group])),
-                sorted(marked[group], key=lambda im: im.name)
-            ):
-            if focused.id != win.id:
-                marked[group][number].command('move container to workspace current')
-                win.command('move scratchpad')
-        self.focus(group)
-
     def visible(self, gr):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
         vmarked = 0
@@ -128,13 +116,35 @@ class named_scratchpad(SingletonMixin):
                     vmarked+=1
         return vmarked
 
+    def apply_to_current_group(self, func):
+        def get_current_group(self,focused):
+            for group in settings_:
+                for i in sorted(marked[group], key=lambda im: im.name):
+                    if focused.id == i.id:
+                        return group
+
+        curr_group=get_current_group(self,i3.get_tree().find_focused())
+        if curr_group  != None:
+            func(curr_group)
+
+    def next_win(self):
+        focused_=i3.get_tree().find_focused()
+
+        def next_win_(group):
+            self.focus(group)
+            for number,win in zip(
+                    range(len(marked[group])),
+                    sorted(marked[group], key=lambda im: im.name)
+                ):
+                if focused_.id != win.id:
+                    marked[group][number].command('move container to workspace current')
+                    win.command('move scratchpad')
+            self.focus(group)
+
+        self.apply_to_current_group(next_win_)
+
     def hide_current(self):
-        focused = i3.get_tree().find_focused()
-        for group in settings_:
-            for i in sorted(marked[group], key=lambda im: im.name):
-                if focused.id == i.id:
-                    self.unfocus(group)
-                    return
+        self.apply_to_current_group(self.unfocus)
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
 if os.path.exists(fifo_):
@@ -158,7 +168,7 @@ def fifo_listner():
             switch = {
                 "show": ns.focus,
                 "hide": ns.unfocus,
-                "next": ns.iterate_over,
+                "next": ns.next_win,
                 "toggle": ns.toggle,
                 "hide_current": ns.hide_current,
             }
