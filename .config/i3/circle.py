@@ -59,7 +59,13 @@ class cycle_window(SingletonMixin):
                 self.tagged[tag][0]['focused']=True
                 self.counters[tag]+=1
             else:
-                if self.current_win.id == self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].id:
+                if ("priority" in glob_settings[tag]) and (self.current_win.window_class != glob_settings[tag]["priority"]):
+                    for count,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
+                        if item['win'].window_class == glob_settings[tag]["priority"]:
+                            self.tagged[tag][count]['win'].command('focus')
+                            self.tagged[tag][count]['focused']=True
+                            return
+                elif self.current_win.id == self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].id:
                     self.counters[tag]+=1
                     self.go_next(tag)
                 else:
