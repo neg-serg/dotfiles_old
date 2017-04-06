@@ -106,12 +106,10 @@ def mainloop_cycle():
 def find_acceptable_windows_by_class(tag, wlist):
     cw=cycle_window.instance()
     for con in wlist:
-        if "classes" in glob_settings[tag]:
-            if con.window_class in glob_settings[tag]["classes"]:
-                cw.tagged[tag].append({ 'win':con, 'focused':False })
-        elif "instances" in glob_settings[tag]:
-            if con.window_instance in glob_settings[tag]["instances"]:
-                cw.tagged[tag].append({ 'win':con, 'focused':False })
+        if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+            cw.tagged[tag].append({ 'win':con, 'focused':False })
+        elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+            cw.tagged[tag].append({ 'win':con, 'focused':False })
 
 def print_tagged_info(tag):
     cw=cycle_window.instance()
@@ -134,35 +132,33 @@ def cleanup_all():
         os.remove(fifo_)
 
 def add_acceptable(self, event):
+    def add_tagged_win():
+        cw.tagged[tag].append({'win':con,'focused':con.focused})
+
     cw=cycle_window.instance()
     con = event.container
     for tag in glob_settings:
         try:
-            if "classes" in glob_settings[tag]:
-                if con.window_class in glob_settings[tag]["classes"]:
-                    cw.tagged[tag].append({'win':con,'focused':con.focused})
-                    return
-            elif "instances" in glob_settings[tag]:
-                if con.window_instance in glob_settings[tag]["instances"]:
-                    cw.tagged[tag].append({'win':con,'focused':con.focused})
-                    return
+            if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                add_tagged_win()
+            elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                add_tagged_win()
         except KeyError:
             invalidate_tags_info()
             add_acceptable(self, event)
 
 def del_acceptable(self, event):
+    def del_tagged_win():
+        del cw.tagged[tag]
+
     cw=cycle_window.instance()
     con = event.container
     for tag in glob_settings:
         try:
-            if "classes" in glob_settings[tag]:
-                if con.window_class in glob_settings[tag]["classes"]:
-                    del cw.tagged[tag]
-                    return
-            elif "instances" in glob_settings[tag]:
-                if con.window_instance in glob_settings[tag]["instances"]:
-                    del cw.tagged[tag]
-                    return
+            if ("classes" in glob_settings[tag]) and (con.window_class in glob_settings[tag]["classes"]):
+                del_tagged_win()
+            elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
+                del_tagged_win()
         except KeyError:
             invalidate_tags_info()
             del_acceptable(self, event)
