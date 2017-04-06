@@ -157,21 +157,24 @@ class named_scratchpad(SingletonMixin):
         print(v)
 
 def mark_group(self, event):
+    def scratch_move():
+        con.command(ns.make_mark(group))
+        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
+        con.command(scratch_cmd)
+        marked[group].append(con)
+
+    def check_class():
+        return bool(con.window_class in ns.settings[group]["classes"])
+
+    def check_instance():
+        return bool(con.window_instance in ns.settings[group]["instances"])
+
     for group in glob_settings:
         ns=named_scratchpad.instance()
         con = event.container
-        if con.window_class in ns.settings[group]["classes"]:
-            scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-            con.command(scratch_cmd)
-            marked[group].append(con)
-
         try:
-            if con.window_class in ns.settings[group]["instances"]:
-                con.command(ns.make_mark(group))
-                scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-                con.command(scratch_cmd)
-
-                marked[group].append(con)
+            if check_class() or check_instance():
+                scratch_move()
         except KeyError:
             pass
 
@@ -217,22 +220,25 @@ def mainloop_ns():
         Thread(target=worker).start()
 
 def mark_all():
+    def scratch_move():
+        con.command(ns.make_mark(group))
+        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
+        con.command(scratch_cmd)
+        marked[group].append(con)
+
+    def check_class():
+        return bool(con.window_class in ns.settings[group]["classes"])
+
+    def check_instance():
+        return bool(con.window_instance in ns.settings[group]["instances"])
+
     window_list = i3.get_tree().leaves()
     for group in glob_settings:
         ns=named_scratchpad.instance()
         for con in window_list:
-            if con.window_class in ns.settings[group]["classes"]:
-                scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
-                con.command(scratch_cmd)
-                marked[group].append(con)
-
             try:
-                if con.window_class in ns.settings[group]["instances"]:
-                    con.command(ns.make_mark(group))
-                    scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
-                    con.command(scratch_cmd)
-
-                    marked[group].append(con)
+                if check_class() or check_instance():
+                    scratch_move()
             except KeyError:
                 pass
 
