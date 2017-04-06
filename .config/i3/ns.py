@@ -159,7 +159,7 @@ class named_scratchpad(SingletonMixin):
 def mark_group(self, event):
     def scratch_move():
         con.command(ns.make_mark(group))
-        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
+        scratch_cmd='move scratchpad, '+ns.parse_geom(group)
         con.command(scratch_cmd)
         marked[group].append(con)
 
@@ -219,10 +219,19 @@ def mainloop_ns():
         q.put(fifo_listner())
         Thread(target=worker).start()
 
-def mark_all():
-    def scratch_move():
+def mark_all(hide):
+    def scratch_move(by):
         con.command(ns.make_mark(group))
-        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+', [con_id=__focused__] scratchpad show'
+
+        if not hide:
+            suff=''
+        else:
+            if by == "class":
+                suff=', [con_id=__focused__ {}={}] scratchpad show'.format(by,con.window_class)
+            elif by == "instance":
+                suff=', [con_id=__focused__ {}={}] scratchpad show'.format(by,con.window_instance)
+
+        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+suff
         con.command(scratch_cmd)
         marked[group].append(con)
 
@@ -237,15 +246,19 @@ def mark_all():
         ns=named_scratchpad.instance()
         for con in window_list:
             try:
-                if check_class() or check_instance():
-                    scratch_move()
+                if check_class():
+                    scratch_move(by="class")
+                    return
+                if check_instance():
+                    scratch_move(by="instance")
+                    return
             except KeyError:
                 pass
 
 def cleanup_mark(self, event):
     for i in glob_settings:
         marked[i]=list()
-    mark_all()
+    mark_all(hide=False)
 
 def cleanup_all():
     if os.path.exists(fifo_):
@@ -261,7 +274,7 @@ if __name__ == '__main__':
     ns=named_scratchpad.instance()
 
     if argv["daemon"]:
-        mark_all()
+        mark_all(hide=True)
 
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
