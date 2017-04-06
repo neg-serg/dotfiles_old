@@ -49,8 +49,11 @@ class cycle_window(SingletonMixin):
     def go_next(self, tag):
         try:
             if len(self.tagged[tag]) == 0:
-                prog=glob_settings[tag]["prog"]
-                i3.command('exec {}'.format(prog))
+                if "prog" in glob_settings[tag]:
+                    prog=glob_settings[tag]["prog"]
+                    i3.command('exec {}'.format(prog))
+                else:
+                    return
             elif len(self.tagged[tag]) == 1:
                 self.tagged[tag][0]['win'].command('focus')
                 self.tagged[tag][0]['focused']=True
