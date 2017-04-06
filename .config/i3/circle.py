@@ -34,7 +34,6 @@ q = Queue()
 
 class cycle_window(SingletonMixin):
     def __init__(self):
-        self.win_iter=None
         self.tagged={}
         self.counters={}
         for i in glob_settings:
@@ -43,7 +42,6 @@ class cycle_window(SingletonMixin):
 
     def go_next(self, tag):
         try:
-            self.win_iter=cycle(self.tagged[tag])
             if len(self.tagged[tag]) == 0:
                 prog=glob_settings[tag]["prog"]
                 i3.command('exec {}'.format(prog))
@@ -52,9 +50,13 @@ class cycle_window(SingletonMixin):
                 self.tagged[tag][0]['focused']=True
                 self.counters[tag]+=1
             else:
-                self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
-                self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['focused']=True
-                self.counters[tag]+=1
+                if self.current_win.id == self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].id:
+                    self.counters[tag]+=1
+                    self.go_next(tag)
+                else:
+                    self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
+                    self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['focused']=True
+                    self.counters[tag]+=1
         except KeyError:
             find_all()
             self.go_next(tag)
@@ -119,7 +121,6 @@ def find_all():
 
     for tag in glob_settings:
         find_acceptable_windows_by_class(tag, wlist)
-        print_tagged_info(tag)
 
 def cleanup_all():
     if os.path.exists(fifo_):
@@ -157,7 +158,11 @@ def del_acceptable(self, event):
             find_all()
             del_acceptable(self, event)
 
-# handle events, do not try to do it from the one script
+def save_current_win(self,event):
+    con=event.container
+    cw=cycle_window.instance()
+    cw.current_win=con
+
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 window tag circle 0.5')
     i3 = i3ipc.Connection()
@@ -166,11 +171,13 @@ if __name__ == '__main__':
     atexit.register(cleanup_all)
 
     if argv["daemon"]:
+        cw=cycle_window.instance()
+        cw.current_win=i3.get_tree().find_focused()
         find_all()
 
         i3.on('window::new', add_acceptable)
         i3.on('window::close', del_acceptable)
-        # i3.on("window::focus", save_current_tag)
+        i3.on("window::focus", save_current_win)
 
         mainloop=Thread(target=mainloop_cycle).start()
 
