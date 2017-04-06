@@ -143,18 +143,21 @@ class named_scratchpad(SingletonMixin):
             for i in sorted(marked[gr], key=lambda im: im.name):
                 if w.id == i.id:
                     vmarked+=1
-
         return vmarked
+
+    def hide_current(self):
+        focused = i3.get_tree().find_focused()
+        for group in glob_settings:
+            for i in sorted(marked[group], key=lambda im: im.name):
+                if focused.id == i.id:
+                    self.unfocus(group)
+                    return
 
     def scratch_list(self):
         v=[]
         for i in self.settings:
             v.append(i)
         return v
-
-    def print_info(self):
-        v=scratch_list()
-        print(v)
 
 def mark_group(self, event):
     def scratch_move(by):
@@ -209,7 +212,7 @@ def fifo_listner():
                 elif args[0] == "next":
                     ns.iterate_over(args[1])
                 elif args[0] == "hide_current":
-                    ns.hide_current(args[1])
+                    ns.hide_current()
 
 def worker():
     while True:

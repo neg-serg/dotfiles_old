@@ -90,11 +90,11 @@ bindsym $mod+3 exec python3 ~/.config/i3/nclient.py next im
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
-bindsym $mod+s [con_id=__focused__] scratchpad show
+bindsym $mod+s exec python ~/.config/i3/nclient.py hide_current
 
 set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window $browsers  move container to workspace $web, workspace $web, focus
-for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"]        floating enable
+for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
 for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
 for_window [class="cool-retro-term"] floating enable
 for_window [class="Cr3" instance="cr3"] move container to workspace $doc
@@ -179,7 +179,6 @@ mode "password" {
     bindsym {c,p} exec ~/bin/scripts/lpasswd {,type}, $exit
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
-
 
 bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
