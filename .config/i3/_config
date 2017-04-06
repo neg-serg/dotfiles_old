@@ -196,8 +196,8 @@ bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
 bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 bindsym $mod+q fullscreen toggle
-bindsym $alt+Tab exec ~/.config/i3/focus-last.py --switch
-bindsym $mod+slash exec ~/.config/i3/focus-last.py --switch
+bindsym $alt+Tab exec ~/.config/i3/flast.py switch
+bindsym $mod+slash exec ~/.config/i3/flast.py switch
 bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
 bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
 bindsym $mod+Shift+slash workspace back_and_forth
@@ -258,9 +258,9 @@ mode "gaps-inner" {
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
 exec python3 ~/.config/i3/disable-standby-fs.py
-exec python3 ~/.config/i3/focus-last.py
 exec ~/.config/i3/per-workspace-layout.pl
 exec python3 ~/.config/i3/ns.py daemon
 exec python3 ~/.config/i3/circle.py daemon
+exec python3 ~/.config/i3/flastd.py daemon
 
 # vim:filetype=i3
