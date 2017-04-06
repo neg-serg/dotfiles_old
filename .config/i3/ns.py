@@ -10,6 +10,11 @@ Options:
   -h --help     Show this screen.
   --version     Show version.
 
+Created by :: Neg
+email :: <serg.zorg@gmail.com>
+github :: https://github.com/neg-serg?tab=repositories
+year :: 2017
+
 """
 
 import i3ipc
