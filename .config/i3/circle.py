@@ -64,7 +64,7 @@ class cycle_window(SingletonMixin):
                     self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['focused']=True
                     self.counters[tag]+=1
         except KeyError:
-            find_all()
+            invalidate_tags_info()
             self.go_next(tag)
 
 fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
@@ -106,8 +106,9 @@ def mainloop_cycle():
 def find_acceptable_windows_by_class(tag, wlist):
     cw=cycle_window.instance()
     for con in wlist:
-        if con.window_class in glob_settings[tag]["classes"]:
-            cw.tagged[tag].append({ 'win':con, 'focused':False })
+        if "classes" in glob_settings[tag]:
+            if con.window_class in glob_settings[tag]["classes"]:
+                cw.tagged[tag].append({ 'win':con, 'focused':False })
         elif "instances" in glob_settings[tag]:
             if con.window_instance in glob_settings[tag]["instances"]:
                 cw.tagged[tag].append({ 'win':con, 'focused':False })
@@ -117,7 +118,7 @@ def print_tagged_info(tag):
     for win in cw.tagged[tag]:
         print("tagged[{}]={}~{}".format(tag,win['win'].name,win['focused']))
 
-def find_all():
+def invalidate_tags_info():
     cw=cycle_window.instance()
     wlist = i3.get_tree().leaves()
     cw.tagged={}
@@ -137,15 +138,16 @@ def add_acceptable(self, event):
     con = event.container
     for tag in glob_settings:
         try:
-            if con.window_class in glob_settings[tag]["classes"]:
-                cw.tagged[tag].append({'win':con,'focused':con.focused})
-                return
+            if "classes" in glob_settings[tag]:
+                if con.window_class in glob_settings[tag]["classes"]:
+                    cw.tagged[tag].append({'win':con,'focused':con.focused})
+                    return
             elif "instances" in glob_settings[tag]:
                 if con.window_instance in glob_settings[tag]["instances"]:
                     cw.tagged[tag].append({'win':con,'focused':con.focused})
                     return
         except KeyError:
-            find_all()
+            invalidate_tags_info()
             add_acceptable(self, event)
 
 def del_acceptable(self, event):
@@ -153,15 +155,16 @@ def del_acceptable(self, event):
     con = event.container
     for tag in glob_settings:
         try:
-            if con.window_class in glob_settings[tag]["classes"]:
-                del cw.tagged[tag]
-                return
+            if "classes" in glob_settings[tag]:
+                if con.window_class in glob_settings[tag]["classes"]:
+                    del cw.tagged[tag]
+                    return
             elif "instances" in glob_settings[tag]:
                 if con.window_instance in glob_settings[tag]["instances"]:
                     del cw.tagged[tag]
                     return
         except KeyError:
-            find_all()
+            invalidate_tags_info()
             del_acceptable(self, event)
 
 def save_current_win(self,event):
@@ -179,7 +182,7 @@ if __name__ == '__main__':
     if argv["daemon"]:
         cw=cycle_window.instance()
         cw.current_win=i3.get_tree().find_focused()
-        find_all()
+        invalidate_tags_info()
 
         i3.on('window::new', add_acceptable)
         i3.on('window::close', del_acceptable)
