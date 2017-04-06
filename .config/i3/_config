@@ -184,7 +184,7 @@ mode "password" {
 bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
 
 bindsym $mod+x exec python ~/.config/i3/cclient.py next term
-bindsym $mod+1 $ror "[instance=(?i)^(nwim|wim)$]" ~/bin/nwim focus
+bindsym $mod+1 exec python ~/.config/i3/cclient.py next wim
 bindsym $mod+Control+v exec python ~/.config/i3/cclient.py next vm
 bindsym $mod+Control+e exec python ~/.config/i3/cclient.py next steam
 bindsym $mod+w exec python ~/.config/i3/cclient.py next web

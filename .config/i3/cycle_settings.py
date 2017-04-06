@@ -44,4 +44,9 @@ class cycle_settings(object):
                 'instances': { 'MainTerminal' },
                 'prog':"~/bin/term",
             },
+            'wim':{
+                'classes': { '' },
+                'instances': { 'nwim', 'wim' },
+                'prog':"~/bin/nwim",
+            },
         }
