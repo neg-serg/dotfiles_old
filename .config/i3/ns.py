@@ -4,7 +4,6 @@
 
 Usage:
   ns.py daemon
-  ns.py toggle <name>
 
 Options:
   -h --help     Show this screen.
@@ -25,9 +24,8 @@ from docopt import docopt
 from ns_config import *
 
 from queue import Queue
-from threading import Thread, Lock, enumerate
+from threading import Thread
 from singleton_mixin import *
-from threading import Thread, enumerate
 
 import uuid
 import re
@@ -37,18 +35,12 @@ import os
 q = Queue()
 glob_settings=ns_settings().settings
 marked={}
-debug=0
 
 for i in glob_settings:
     marked[i]=list()
 
-def dprint(self, *args):
-    if debug:
-        print(*args)
-
 class named_scratchpad(SingletonMixin):
     def __init__(self):
-        self.debug=0
         self.settings=ns_settings().settings
         self.group_list=[]
         self.fullscreen_list=[]
@@ -84,7 +76,6 @@ class named_scratchpad(SingletonMixin):
             return
 
         for j,i in zip(range(len(marked[gr])), sorted(marked[gr], key=lambda im: im.name)):
-            dprint(i.name, i.id)
             if focused.id == i.id:
                 self.unfocus(gr)
                 return
@@ -106,7 +97,6 @@ class named_scratchpad(SingletonMixin):
                 range(len(marked[gr])),
                 sorted(marked[gr], key=lambda im: im.name)
             ):
-            dprint(i.name, i.id)
             marked[gr][j].command('move scratchpad')
 
         self.restore_fullscreens(gr)
@@ -141,8 +131,6 @@ class named_scratchpad(SingletonMixin):
             range(len(marked[gr])),
             sorted(marked[gr], key=lambda im: im.name)):
 
-            dprint(i.name, i.id)
-            dprint("focused id=",focused.id)
             if focused.id != i.id:
                 marked[gr][j].command('move container to workspace current')
                 i.command('move scratchpad')
@@ -150,15 +138,10 @@ class named_scratchpad(SingletonMixin):
 
     def visible(self, gr):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
-
-        dprint("Visible and marked")
         vmarked = 0
         for w in visible_windows:
             for i in sorted(marked[gr], key=lambda im: im.name):
                 if w.id == i.id:
-                    if self.debug:
-                        print("{name,id}=", i.name, i.id)
-                        print("name=", w.name)
                     vmarked+=1
 
         return vmarked
