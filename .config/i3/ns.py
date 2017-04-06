@@ -157,10 +157,8 @@ class named_scratchpad(SingletonMixin):
         print(v)
 
 def mark_group(self, event):
-    def scratch_move():
-        con.command(ns.make_mark(group))
-        scratch_cmd='move scratchpad, '+ns.parse_geom(group)
-        con.command(scratch_cmd)
+    def scratch_move(by):
+        con.command(ns.make_mark(group)+', move scratchpad,'+ns.parse_geom(group))
         marked[group].append(con)
 
     def check_class():
@@ -171,10 +169,14 @@ def mark_group(self, event):
 
     for group in glob_settings:
         ns=named_scratchpad.instance()
-        con = event.container
+        con=event.container
         try:
-            if check_class() or check_instance():
-                scratch_move()
+            if check_class():
+                scratch_move(by="class")
+                return
+            if check_instance():
+                scratch_move(by="instance")
+                return
         except KeyError:
             pass
 
@@ -206,6 +208,8 @@ def fifo_listner():
                     ns.toggle(args[1])
                 elif args[0] == "next":
                     ns.iterate_over(args[1])
+                elif args[0] == "hide_current":
+                    ns.hide_current(args[1])
 
 def worker():
     while True:
@@ -219,20 +223,13 @@ def mainloop_ns():
         q.put(fifo_listner())
         Thread(target=worker).start()
 
-def mark_all(hide):
+def mark_all(hide=True):
     def scratch_move(by):
-        con.command(ns.make_mark(group))
-
-        if not hide:
-            suff=''
+        if hide:
+            hide_cmd=', [con_id=__focused__] scratchpad show'
         else:
-            if by == "class":
-                suff=', [con_id=__focused__ {}={}] scratchpad show'.format(by,con.window_class)
-            elif by == "instance":
-                suff=', [con_id=__focused__ {}={}] scratchpad show'.format(by,con.window_instance)
-
-        scratch_cmd='move scratchpad, '+ns.parse_geom(group)+suff
-        con.command(scratch_cmd)
+            hide_cmd=''
+        con.command(ns.make_mark(group)+', move scratchpad,'+ns.parse_geom(group)+hide_cmd)
         marked[group].append(con)
 
     def check_class():
@@ -256,9 +253,11 @@ def mark_all(hide):
                 pass
 
 def cleanup_mark(self, event):
-    for i in glob_settings:
-        marked[i]=list()
-    mark_all(hide=False)
+    cwid=event.container.id
+    for tag in glob_settings:
+        for j,win in zip(range(len(marked[tag])),marked[tag]):
+            if win.id == cwid:
+                del marked[tag][j]
 
 def cleanup_all():
     if os.path.exists(fifo_):
