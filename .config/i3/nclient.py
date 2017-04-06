@@ -6,7 +6,7 @@ Usage:
   nclient.py show <name>
   nclient.py hide <name>
   nclient.py toggle <name>
-  nclient.py next <name>
+  nclient.py next
   nclient.py hide_current
   nclient.py (-h | --help)
   nclient.py --version

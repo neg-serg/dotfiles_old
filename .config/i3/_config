@@ -86,7 +86,7 @@ bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/nclient.py toggle 
 bindsym $mod+d exec python3 ~/.config/i3/nclient.py toggle teardrop
 bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
 bindsym $mod+e exec python3 ~/.config/i3/nclient.py toggle im
-bindsym $mod+3 exec python3 ~/.config/i3/nclient.py next im
+bindsym $mod+3 exec python3 ~/.config/i3/nclient.py next
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 

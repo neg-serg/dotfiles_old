@@ -51,39 +51,43 @@ class named_scratchpad(SingletonMixin):
         return 'mark {}'.format(output)
 
     def focus(self, gr):
-        for j,i in zip(range(len(marked[gr])), sorted(marked[gr], key=lambda im: im.name)):
+        for j,i in zip(
+                range(len(marked[gr])),
+                marked[gr]
+            ):
             marked[gr][j].command('move container to workspace current')
 
     def toggle(self, gr):
         if marked[gr] == [] and "prog" in settings_[gr]:
             i3.command("exec {}".format(settings_[gr]["prog"]))
 
+        # We need to hide scratchpad it is visible, regardless it focused or not
         focused = i3.get_tree().find_focused()
-        if self.visible(gr) > 0:
-            self.unfocus(gr)
-            return
 
-        for j,i in zip(range(len(marked[gr])), sorted(marked[gr], key=lambda im: im.name)):
+        if self.visible(gr) > 0:
+            self.unfocus(gr); return
+
+        for i in marked[gr]:
             if focused.id == i.id:
-                self.unfocus(gr)
-                return
+                self.unfocus(gr); return
 
         if focused.fullscreen_mode:
             focused.command('fullscreen toggle')
             self.fullscreen_list.append(focused)
+
         self.focus(gr)
 
-    def restore_fullscreens(self, gr):
-        [i.command('fullscreen toggle') for i in self.fullscreen_list]
-        self.fullscreen_list=[]
-
     def unfocus(self, gr):
+        def restore_fullscreens():
+            [i.command('fullscreen toggle') for i in self.fullscreen_list]
+            self.fullscreen_list=[]
+
         for j,i in zip(
                 range(len(marked[gr])),
-                sorted(marked[gr], key=lambda im: im.name)
+                marked[gr]
             ):
             marked[gr][j].command('move scratchpad')
-        self.restore_fullscreens(gr)
+        restore_fullscreens()
 
     def get_windows_on_ws(self,i3):
         return filter(
@@ -111,7 +115,7 @@ class named_scratchpad(SingletonMixin):
         visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
         vmarked = 0
         for w in visible_windows:
-            for i in sorted(marked[gr], key=lambda im: im.name):
+            for i in marked[gr]:
                 if w.id == i.id:
                     vmarked+=1
         return vmarked
@@ -119,7 +123,7 @@ class named_scratchpad(SingletonMixin):
     def apply_to_current_group(self, func):
         def get_current_group(self,focused):
             for group in settings_:
-                for i in sorted(marked[group], key=lambda im: im.name):
+                for i in marked[group]:
                     if focused.id == i.id:
                         return group
 
@@ -134,7 +138,7 @@ class named_scratchpad(SingletonMixin):
             self.focus(group)
             for number,win in zip(
                     range(len(marked[group])),
-                    sorted(marked[group], key=lambda im: im.name)
+                    marked[group]
                 ):
                 if focused_.id != win.id:
                     marked[group][number].command('move container to workspace current')
@@ -204,12 +208,8 @@ def mark_group(self, event):
         ns=named_scratchpad.instance()
         con=event.container
         try:
-            if check_class():
-                scratch_move(by="class")
-                return
-            if check_instance():
-                scratch_move(by="instance")
-                return
+            if check_class():    scratch_move(by="class")
+            if check_instance(): scratch_move(by="instance")
         except KeyError:
             pass
 
@@ -233,12 +233,8 @@ def mark_all(hide=True):
         ns=named_scratchpad.instance()
         for con in window_list:
             try:
-                if check_class():
-                    scratch_move(by="class")
-                    return
-                if check_instance():
-                    scratch_move(by="instance")
-                    return
+                if check_class():    scratch_move(by="class")
+                if check_instance(): scratch_move(by="instance")
             except KeyError:
                 pass
 
