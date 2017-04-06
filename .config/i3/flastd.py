@@ -3,16 +3,13 @@
 """
 
 Focus last focused window.
-This script should be launch from the .xsessionrc without argument.
-Then you can bind this script with the `--switch` option to one of your
-i3 keybinding.
 
 Usage:
     flastd.py daemon
 
 Options:
     -h, --help  show this help message and exit
-    --switch    Switch to the previous window
+
 """
 
 import i3ipc
@@ -22,6 +19,7 @@ from threading import Thread
 from docopt import docopt
 from singleton_mixin import *
 from queue import Queue
+import time
 
 max_win_history_ = 10
 
@@ -64,25 +62,30 @@ def mainloop_fw():
 class FocusWatcher(SingletonMixin):
     def __init__(self):
         self.window_list = i3.get_tree().leaves()
+        self.prev_time = 0
+        self.curr_time = 0
 
     def alt_tab(self):
+        self.curr_time = time.time()
         windows = set(w.id for w in i3.get_tree().leaves())
         for wid in self.window_list[1:]:
             if wid not in windows:
                 self.window_list.remove(wid)
             else:
-                i3.command('[con_id=%s] focus' % wid)
+                if self.curr_time - self.prev_time > 0.05:
+                    i3.command('[con_id=%s] focus' % wid)
+                    self.prev_time = self.curr_time
+                    self.curr_time = time.time()
                 break
 
-def on_window_focus(i3conn, event):
-    wid = event.container.props.id
+def on_window_focus(self, event):
+    wid = event.container.id
     fw=FocusWatcher.instance()
 
     if wid in fw.window_list:
         fw.window_list.remove(wid)
 
     fw.window_list.insert(0, wid)
-
     if len(fw.window_list) > max_win_history_:
         del fw.window_list[max_win_history_:]
 
