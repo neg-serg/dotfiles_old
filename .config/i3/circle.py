@@ -51,7 +51,11 @@ class cycle_window(SingletonMixin):
             return glob_settings[tag]
 
         def current_class_in_priority():
-            return bool(self.current_win.window_class == tag_conf()["priority"])
+            tag_classes_set=set(glob_settings[tag]["classes"])
+            if self.current_win.window_class not in tag_classes_set:
+                return bool(self.current_win == tag_conf()["priority"])
+            else:
+                return True
 
         def is_priority_attr():
             return bool("priority" in tag_conf())
@@ -82,6 +86,7 @@ class cycle_window(SingletonMixin):
                 go_next_()
             else:
                 target_=self.counters[tag]%len(self.tagged[tag])
+
                 if is_priority_attr() and not current_class_in_priority():
                     for target_,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
                         if class_eq_priority():
