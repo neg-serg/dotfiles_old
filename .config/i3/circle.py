@@ -80,9 +80,9 @@ class cycle_window(SingletonMixin):
             if inc_counter:
                 inc_c()
 
-            if not (cw.to_be_restored is None) and self.restore_now:
-                cw.to_be_restored.command('fullscreen enable')
-                cw.to_be_restored=None
+            if not (self.to_be_restored is None) and self.restore_now:
+                self.to_be_restored.command('fullscreen enable')
+                self.to_be_restored=None
 
         def go_to_not_repeat():
             inc_c()
