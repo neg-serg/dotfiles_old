@@ -47,31 +47,52 @@ class cycle_window(SingletonMixin):
             self.counters[i]=0
 
     def go_next(self, tag):
+        def tag_conf():
+            return glob_settings[tag]
+
+        def current_class_in_priority():
+            return bool(self.current_win.window_class == tag_conf()["priority"])
+
+        def is_priority_attr():
+            return bool("priority" in tag_conf())
+
+        def class_eq_priority():
+            return bool(item['win'].window_class == tag_conf()["priority"])
+
+        def inc_c():
+            self.counters[tag]+=1
+
+        def target_i():
+            return self.tagged[tag][target_]
+
+        def go_next_():
+            target_i()['win'].command('focus')
+            target_i()['focused']=True
+            inc_c()
+
         try:
             if len(self.tagged[tag]) == 0:
-                if "prog" in glob_settings[tag]:
-                    prog=glob_settings[tag]["prog"]
+                if "prog" in tag_conf():
+                    prog=tag_conf()["prog"]
                     i3.command('exec {}'.format(prog))
                 else:
                     return
             elif len(self.tagged[tag]) == 1:
-                self.tagged[tag][0]['win'].command('focus')
-                self.tagged[tag][0]['focused']=True
-                self.counters[tag]+=1
+                target_=0
+                go_next_()
             else:
-                if ("priority" in glob_settings[tag]) and (self.current_win.window_class != glob_settings[tag]["priority"]):
-                    for count,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
-                        if item['win'].window_class == glob_settings[tag]["priority"]:
-                            self.tagged[tag][count]['win'].command('focus')
-                            self.tagged[tag][count]['focused']=True
+                target_=self.counters[tag]%len(self.tagged[tag])
+                if is_priority_attr() and not current_class_in_priority():
+                    for target_,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
+                        if class_eq_priority():
+                            target_i()['win'].command('focus')
+                            target_i()['focused']=True
                             return
-                elif self.current_win.id == self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].id:
-                    self.counters[tag]+=1
+                elif self.current_win.id == target_i()['win'].id:
+                    inc_c()
                     self.go_next(tag)
                 else:
-                    self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['win'].command('focus')
-                    self.tagged[tag][self.counters[tag]%len(self.tagged[tag])]['focused']=True
-                    self.counters[tag]+=1
+                    go_next_()
         except KeyError:
             invalidate_tags_info()
             self.go_next(tag)
