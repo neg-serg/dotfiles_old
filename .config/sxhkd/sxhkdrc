@@ -9,8 +9,9 @@ XF86Audio{Prev,Next,Play,Stop}
 XF86Audio{Lower,Raise}Volume
 	~/bin/scripts/vol_ {-1,+1}
 super + control + XF86Audio{Raise,Lower}Volume
-     dash -c "pactl set-sink-mute $(SCRIPT_OUTPUT=1 ~/bin/pls -sink) 0 ; \
-              pactl set-sink-volume $(SCRIPT_OUTPUT=1 ~/bin/pls -sink) {+,-}5%"
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
+    #dash -c "pactl set-sink-mute $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) 0 ; \
+    #         pactl set-sink-volume $(SCRIPT_OUTPUT=1 ~/bin/pls -sink | head -1) +5%"
 super + 8
     mpc -q volume 0 || amixer -q set Master 0% mute
 super + shift + 8
@@ -36,14 +37,4 @@ alt + grave
     rofi -pid ~/tmp/rofi_runner.pid -show run -location 6 -lines 2 -columns 8 -matching fuzzy -case-sensitive=false -tokenize 
 super + shift + {5,6}
     ~/bin/wl {set,rand}
-
-# Move cursor
-super + ctrl + m : {_,shift + ,shift + super + }{h,j,k,l}
-  m={20,100,200} {x=-1 y=0,x=0 y=1,x=0 y=-1,x=1 y=0}; \
-  xdotool mousemove_relative -- $(( m*x )) $(( m*y ))
-
-# Simulate mouse button click
-super + ctrl + m : {_,shift + ,ctrl + }space
-  xdotool click {1,3,2}
-
 # vim: set ft=sxhkdrc:
