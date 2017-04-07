@@ -19,13 +19,13 @@ year :: 2017
 import i3ipc
 
 from sys import exit
-from subprocess import check_output
 from docopt import docopt
 from ns_config import *
 
 from queue import Queue
 from threading import Thread
 from singleton_mixin import *
+from script_i3_general import *
 
 import uuid
 import re
@@ -89,30 +89,8 @@ class named_scratchpad(SingletonMixin):
             marked[gr][j].command('move scratchpad')
         restore_fullscreens()
 
-    def get_windows_on_ws(self,i3):
-        return filter(
-            lambda x: x.window,
-            i3.get_tree()
-                .find_focused()
-                .workspace()
-                .descendents()
-        )
-
-    def find_visible_windows(self, windows_on_workspace):
-        visible_windows = []
-        for w in windows_on_workspace:
-            try:
-                xprop = check_output(['xprop', '-id', str(w.window)]).decode()
-            except FileNotFoundError:
-                raise SystemExit("The `xprop` utility is not found!"
-                                " Please install it and retry.")
-            if '_NET_WM_STATE_HIDDEN' not in xprop:
-                visible_windows.append(w)
-
-        return visible_windows
-
     def visible(self, gr):
-        visible_windows = self.find_visible_windows(self.get_windows_on_ws(i3))
+        visible_windows = find_visible_windows(get_windows_on_ws())
         vmarked = 0
         for w in visible_windows:
             for i in marked[gr]:

@@ -49,4 +49,20 @@ class cycle_settings(object):
                 'instances': { 'nwim', 'wim' },
                 'prog':"~/bin/nwim",
             },
+            'jetbrains-idea':{
+                'classes': {
+                    'jetbrains-idea',
+                    'clion',
+                    'andrond-studio',
+                },
+                'prog':"~/bin/scripts/jetbrains.sh idea",
+            },
+            'jetbrains-clion':{
+                'classes': {
+                    '^jetbrains-jetbrains-idea.*',
+                    '^jetbrains-clion.*',
+                    '^jetbrains-andrond-studio.*',
+                },
+                'prog':"~/bin/scripts/jetbrains.sh clion",
+            },
         }

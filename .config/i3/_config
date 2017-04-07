@@ -119,7 +119,7 @@ for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to wor
 for_window [class="rdesktop" instance="rdesktop"] floating enable
 for_window [class="spotify"] move container to workspace $spotify
 for_window [class="Sxiv"]  move container to workspace $sxiv, workspace $sxiv, focus
-for_window [class="Sxiv$"] move scratchpad, move position 0 0, resize set 1820 1100, focus
+for_window [class="Sxiv$"] move scratchpad, move position 25 32, resize set 1833 1102, focus
 for_window [class="^(Tilda|Guake)$"] floating enable
 for_window [class="^(Vuze|Ktorrent)$"] move container to workspace $torrent
 for_window [class="^(Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
@@ -180,7 +180,8 @@ mode "password" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
+#bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
+bindsym $mod+F1 ~/.config/i3/cclient.py next jetbrains-idea
 
 bindsym $mod+x exec python ~/.config/i3/cclient.py next term
 bindsym $mod+1 exec python ~/.config/i3/cclient.py next wim
