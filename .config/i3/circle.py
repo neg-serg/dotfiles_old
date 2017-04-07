@@ -12,26 +12,14 @@ year :: 2017
 """
 
 import i3ipc
-import i3 as i3hl
-
-from sys import argv, exit
-
-import subprocess
-
-import uuid
-import re
-
-from subprocess import check_output
-from docopt import docopt
-from cycle_settings import *
-
-from queue import Queue
-
 import re
 import errno
 import os
 
-from itertools import cycle
+from queue import Queue
+from sys import exit
+from docopt import docopt
+from cycle_settings import *
 from singleton_mixin import *
 from threading import Thread, enumerate
 
