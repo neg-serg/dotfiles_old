@@ -30,6 +30,8 @@ class cycle_window(SingletonMixin):
     def __init__(self):
         self.tagged={}
         self.counters={}
+        self.to_be_restored=None
+        self.restore_now=True
         for i in glob_settings:
             self.tagged[i]=list({})
             self.counters[i]=0
@@ -38,10 +40,16 @@ class cycle_window(SingletonMixin):
         def tag_conf():
             return glob_settings[tag]
 
-        def current_class_in_priority():
+        def cur_win():
+            return self.current_win
+
+        def cur_win_in_current_class_set():
             tag_classes_set=set(glob_settings[tag]["classes"])
-            if self.current_win.window_class not in tag_classes_set:
-                return bool(self.current_win == tag_conf()["priority"])
+            return bool(cur_win().window_class in tag_classes_set)
+
+        def current_class_in_priority():
+            if not cur_win_in_current_class_set():
+                return bool(cur_win() == tag_conf()["priority"])
             else:
                 return True
 
@@ -58,10 +66,23 @@ class cycle_window(SingletonMixin):
             return self.tagged[tag][target_]
 
         def go_next_(inc_counter=True):
+            self.restore_now=True
+
+            for con in i3.get_tree().find_fullscreen():
+                if con.id == cur_win().id and cur_win_in_current_class_set():
+                    self.to_be_restored=con
+                    self.to_be_restored.command('fullscreen disable')
+                    self.restore_now=False
+
             target_i()['win'].command('focus')
             target_i()['focused']=True
+
             if inc_counter:
                 inc_c()
+
+            if not (cw.to_be_restored is None) and self.restore_now:
+                cw.to_be_restored.command('fullscreen enable')
+                cw.to_be_restored=None
 
         def go_to_not_repeat():
             inc_c()
