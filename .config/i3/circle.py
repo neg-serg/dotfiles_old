@@ -65,6 +65,10 @@ class cycle_window(SingletonMixin):
         def target_i():
             return self.tagged[tag][target_]
 
+        def run_prog():
+            prog=tag_conf()["prog"]
+            i3.command('exec {}'.format(prog))
+
         def go_next_(inc_counter=True,fullscreen_handler=True):
             self.restore_now=True
 
@@ -92,8 +96,7 @@ class cycle_window(SingletonMixin):
         try:
             if len(self.tagged[tag]) == 0:
                 if "prog" in tag_conf():
-                    prog=tag_conf()["prog"]
-                    i3.command('exec {}'.format(prog))
+                    run_prog()
                 else:
                     return
             elif len(self.tagged[tag]) == 1:
@@ -103,6 +106,10 @@ class cycle_window(SingletonMixin):
                 target_=self.counters[tag] % len(self.tagged[tag])
 
                 if is_priority_attr() and not current_class_in_priority():
+                    if len([ i for i in self.tagged[tag] if i['win'].window_class == tag_conf()["priority"] ]) == 0:
+                        run_prog()
+                        return
+
                     for target_,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
                         if class_eq_priority():
                             go_next_(inc_counter=False); return
