@@ -69,10 +69,15 @@ class cycle_window(SingletonMixin):
         def target_i():
             return self.tagged[tag][target_]
 
-        def go_next_():
+        def go_next_(inc_counter=True):
             target_i()['win'].command('focus')
             target_i()['focused']=True
+            if inc_counter:
+                inc_c()
+
+        def go_to_not_repeat():
             inc_c()
+            self.go_next(tag)
 
         try:
             if len(self.tagged[tag]) == 0:
@@ -85,17 +90,14 @@ class cycle_window(SingletonMixin):
                 target_=0
                 go_next_()
             else:
-                target_=self.counters[tag]%len(self.tagged[tag])
+                target_=self.counters[tag] % len(self.tagged[tag])
 
                 if is_priority_attr() and not current_class_in_priority():
                     for target_,item in zip(range(len(self.tagged[tag])),self.tagged[tag]):
                         if class_eq_priority():
-                            target_i()['win'].command('focus')
-                            target_i()['focused']=True
-                            return
+                            go_next_(inc_counter=False); return
                 elif self.current_win.id == target_i()['win'].id:
-                    inc_c()
-                    self.go_next(tag)
+                    go_to_not_repeat()
                 else:
                     go_next_()
         except KeyError:
