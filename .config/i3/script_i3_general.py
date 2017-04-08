@@ -32,11 +32,23 @@ def get_windows_on_ws():
 
 from queue import Queue
 
+class daemon_manager(SingletonMixin):
+    def __init__(self):
+        self.daemons={}
+
+    def add_daemon(self, name):
+        daemon_=daemon_i3.instance()
+        if daemon_ not in self.daemons.keys():
+            self.daemons[name]=daemon_
+            self.daemons[name].bind_fifo(name)
+
 class daemon_i3(SingletonMixin):
     def __init__(self):
         self.q = Queue()
+        self.fifo_=""
 
-        self.fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
+    def bind_fifo(self, name):
+        self.fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name+'.fifo'))
         if os.path.exists(self.fifo_):
             os.remove(self.fifo_)
 

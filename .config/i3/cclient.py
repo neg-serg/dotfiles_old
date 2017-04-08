@@ -16,7 +16,8 @@ Options:
 from docopt import docopt
 import os.path
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
+name_="circled"
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 cycler over windows')

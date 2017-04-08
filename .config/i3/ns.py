@@ -191,24 +191,27 @@ def cleanup_mark(self, event):
             if win.id == event.container.id:
                 del marked[tag][j]
 
-def cleanup_all():
-    dm=daemon_i3.instance()
-    if os.path.exists(dm.fifo_):
-        os.remove(dm.fifo_)
-
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    i3 = i3ipc.Connection()
-
-    import atexit
-    atexit.register(cleanup_all)
-
-    ns=named_scratchpad.instance()
-    dm=daemon_i3.instance()
-
     if argv["daemon"]:
+        i3 = i3ipc.Connection()
+        name='ns_scratchd'
+
+        mng=daemon_manager.instance()
+        mng.add_daemon(name)
+
+        def cleanup_all():
+            daemon_=mng.daemons[name]
+            if os.path.exists(daemon_.fifo_):
+                os.remove(daemon_.fifo_)
+
+        import atexit
+        atexit.register(cleanup_all)
+
+        ns=named_scratchpad.instance()
         mark_all(hide=True)
+
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
-        mainloop=Thread(target=dm.mainloop, args=(ns,)).start()
+        mainloop=Thread(target=mng.daemons[name].mainloop, args=(ns,)).start()
         i3.main()

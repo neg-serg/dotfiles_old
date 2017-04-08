@@ -20,7 +20,8 @@ Options:
 from docopt import docopt
 import os.path
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
+name_="ns_scratchd"
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')

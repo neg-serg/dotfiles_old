@@ -21,10 +21,10 @@ from sys import exit
 from docopt import docopt
 from cycle_settings import *
 from singleton_mixin import *
+from script_i3_general import *
 from threading import Thread, enumerate
 
 glob_settings=cycle_settings().settings
-q = Queue()
 
 class cycle_window(SingletonMixin):
     def __init__(self):
@@ -32,6 +32,7 @@ class cycle_window(SingletonMixin):
         self.counters={}
         self.to_be_restored=None
         self.restore_now=True
+
         for i in glob_settings:
             self.tagged[i]=list({})
             self.counters[i]=0
@@ -121,41 +122,14 @@ class cycle_window(SingletonMixin):
             invalidate_tags_info()
             self.go_next(tag)
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/i3_tags.fifo'))
-if os.path.exists(fifo_):
-    os.remove(fifo_)
-
-try:
-    os.mkfifo(fifo_)
-except OSError as oe:
-    if oe.errno != errno.EEXIST:
-        raise
-
-def fifo_listner():
-    cw=cycle_window.instance()
-    with open(fifo_) as fifo:
-        while True:
-            data = fifo.read()
-            if len(data) == 0:
-                break
-            eval_str=data.split('\n', 1)[0]
-            args=list(filter(lambda x: x != '', eval_str.split(' ')))
-            if len(args) > 0:
-                if args[0] == "next":
-                    cw.go_next(args[1])
-
-def worker():
-    while True:
-        if q.empty():
-            exit()
-        i = q.get()
-        q.task_done()
-
-def mainloop_cycle():
-    while True:
-        q.put(fifo_listner())
-        Thread(target=worker).start()
-
+    def switch(self, args):
+        switch_ = {
+            "next": self.go_next,
+        }
+        if len(args) == 2:
+            switch_[args[0]](args[1])
+        elif len(args) == 1:
+            switch_[args[0]]()
 
 def find_acceptable_windows_by_class(tag, wlist):
     cw=cycle_window.instance()
@@ -164,11 +138,6 @@ def find_acceptable_windows_by_class(tag, wlist):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
         elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
-
-def print_tagged_info(tag):
-    cw=cycle_window.instance()
-    for win in cw.tagged[tag]:
-        print("tagged[{}]={}~{}".format(tag,win['win'].name,win['focused']))
 
 def invalidate_tags_info():
     cw=cycle_window.instance()
@@ -181,15 +150,12 @@ def invalidate_tags_info():
     for tag in glob_settings:
         find_acceptable_windows_by_class(tag, wlist)
 
-def cleanup_all():
-    if os.path.exists(fifo_):
-        os.remove(fifo_)
-
 def add_acceptable(self, event):
+    cw=cycle_window.instance()
+
     def add_tagged_win():
         cw.tagged[tag].append({'win':con,'focused':con.focused})
 
-    cw=cycle_window.instance()
     con = event.container
     for tag in glob_settings:
         try:
@@ -224,20 +190,30 @@ def save_current_win(self,event):
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 window tag circle 0.5')
-    i3 = i3ipc.Connection()
-
-    import atexit
-    atexit.register(cleanup_all)
 
     if argv["daemon"]:
+        i3 = i3ipc.Connection()
+
         cw=cycle_window.instance()
         cw.current_win=i3.get_tree().find_focused()
+
+        mng=daemon_manager.instance()
+        mng.add_daemon('circled')
+
+        def cleanup_all():
+            daemon_=mng.daemons['circled']
+            if os.path.exists(daemon_.fifo_):
+                os.remove(daemon_.fifo_)
+
+        import atexit
+        atexit.register(cleanup_all)
+
         invalidate_tags_info()
 
         i3.on('window::new', add_acceptable)
         i3.on('window::close', del_acceptable)
         i3.on("window::focus", save_current_win)
 
-        mainloop=Thread(target=mainloop_cycle).start()
+        mainloop=Thread(target=mng.daemons['circled'].mainloop, args=(cw,)).start()
 
         i3.main()
