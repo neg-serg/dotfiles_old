@@ -18,11 +18,9 @@ year :: 2017
 
 import i3ipc
 
-from sys import exit
 from docopt import docopt
 from ns_config import *
 
-from queue import Queue
 from threading import Thread
 from singleton_mixin import *
 from script_i3_general import *
@@ -32,7 +30,6 @@ import re
 import errno
 import os
 
-q = Queue()
 settings_=ns_settings().settings
 marked={i:[] for i in settings_}
 
@@ -129,48 +126,19 @@ class named_scratchpad(SingletonMixin):
     def hide_current(self):
         self.apply_to_current_group(self.unfocus)
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/ns_scratchpad.fifo'))
-if os.path.exists(fifo_):
-    os.remove(fifo_)
+    def switch(self, args):
+        switch_ = {
+            "show": self.focus,
+            "hide": self.unfocus,
+            "next": self.next_win,
+            "toggle": self.toggle,
+            "hide_current": self.hide_current,
+        }
 
-try:
-    os.mkfifo(fifo_)
-except OSError as oe:
-    if oe.errno != errno.EEXIST:
-        raise
-
-def fifo_listner():
-    ns=named_scratchpad.instance()
-    with open(fifo_) as fifo:
-        while True:
-            data = fifo.read()
-            if len(data) == 0:
-                break
-            eval_str=data.split('\n', 1)[0]
-            args=list(filter(lambda x: x != '', eval_str.split(' ')))
-            switch = {
-                "show": ns.focus,
-                "hide": ns.unfocus,
-                "next": ns.next_win,
-                "toggle": ns.toggle,
-                "hide_current": ns.hide_current,
-            }
-            if len(args) == 2:
-                switch[args[0]](args[1])
-            elif len(args) == 1:
-                switch[args[0]]()
-
-def worker():
-    while True:
-        if q.empty():
-            exit()
-        i = q.get()
-        q.task_done()
-
-def mainloop_ns():
-    while True:
-        q.put(fifo_listner())
-        Thread(target=worker).start()
+        if len(args) == 2:
+            switch_[args[0]](args[1])
+        elif len(args) == 1:
+            switch_[args[0]]()
 
 def mark_group(self, event):
     def scratch_move(by):
@@ -224,8 +192,9 @@ def cleanup_mark(self, event):
                 del marked[tag][j]
 
 def cleanup_all():
-    if os.path.exists(fifo_):
-        os.remove(fifo_)
+    dm=daemon_i3.instance()
+    if os.path.exists(dm.fifo_):
+        os.remove(dm.fifo_)
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
@@ -235,13 +204,11 @@ if __name__ == '__main__':
     atexit.register(cleanup_all)
 
     ns=named_scratchpad.instance()
+    dm=daemon_i3.instance()
 
     if argv["daemon"]:
         mark_all(hide=True)
-
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
-
-        mainloop=Thread(target=mainloop_ns).start()
-
+        mainloop=Thread(target=dm.mainloop, args=(ns,)).start()
         i3.main()
