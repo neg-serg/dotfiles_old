@@ -193,15 +193,16 @@ if __name__ == '__main__':
 
     if argv["daemon"]:
         i3 = i3ipc.Connection()
+        name = 'circled'
 
         cw=cycle_window.instance()
         cw.current_win=i3.get_tree().find_focused()
 
         mng=daemon_manager.instance()
-        mng.add_daemon('circled')
+        mng.add_daemon(name)
 
         def cleanup_all():
-            daemon_=mng.daemons['circled']
+            daemon_=mng.daemons[name]
             if os.path.exists(daemon_.fifo_):
                 os.remove(daemon_.fifo_)
 
@@ -214,6 +215,6 @@ if __name__ == '__main__':
         i3.on('window::close', del_acceptable)
         i3.on("window::focus", save_current_win)
 
-        mainloop=Thread(target=mng.daemons['circled'].mainloop, args=(cw,)).start()
+        mainloop=Thread(target=mng.daemons[name].mainloop, args=(cw,)).start()
 
         i3.main()
