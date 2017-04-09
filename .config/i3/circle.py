@@ -208,11 +208,9 @@ def handle_fullscreen(self,event):
         if con.fullscreen_mode:
             if con.id not in cw.restorable:
                 cw.restorable.append(con.id)
-                print("[add] name={} id={}".format(con.name,con.id))
         if not con.fullscreen_mode:
             if con.id in cw.restorable:
                 cw.restorable.remove(con.id)
-                print("[del] name={} id={}".format(con.name,con.id))
 
 
 if __name__ == '__main__':
