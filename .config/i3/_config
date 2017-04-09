@@ -113,7 +113,7 @@ for_window [title="^.*.exe$"] floating enable, move container to workspace $wine
 for_window [class="^jetbrains-(idea|clion|andrond-studio).*"] move container to workspace $ide, workspace $ide, focus
 for_window [class="^(libreoffice|abiword).*$"]  move container to workspace $doc
 for_window [class="^MainTerminal$"] move container to workspace $term, workspace $gimp, focus
-for_window [class="^(MPlayer|mplayer2|mpv|cheese)$"] move container to workspace $media, workspace $media, focus, fullscreen
+for_window [class="^(MPlayer|mplayer2|mpv|cheese)$"] move container to workspace $media, workspace $media, focus
 for_window [class="Nicotine.*" instance="nicotine"] floating enable
 for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to workspace $doc, workspace $doc, focus
 for_window [class="rdesktop" instance="rdesktop"] floating enable
