@@ -15,8 +15,6 @@ class cycle_settings(object):
             },
             'vid':{
                 'classes': {'mpv'},
-                'priority':'mpv',
-                'usual_fullscreen':True,
             },
             'steam':{
                 'classes': {
