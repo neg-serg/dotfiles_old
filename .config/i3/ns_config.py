@@ -35,7 +35,7 @@ class ns_settings(object):
             },
             'teardrop': {
                 'classes' : { 'teardrop' },
-                'geom' : "1844x731+38+2",
+                'geom' : "1844x704+39+4",
                 'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=18\' -e ~/bin/scripts/teardrop"
             }
         }
