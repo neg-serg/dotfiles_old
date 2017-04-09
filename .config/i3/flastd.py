@@ -25,47 +25,20 @@ from script_i3_general import *
 
 max_win_history_ = 10
 
-q = Queue()
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/flastd_i3.fifo'))
-if os.path.exists(fifo_):
-    os.remove(fifo_)
-
-try:
-    os.mkfifo(fifo_)
-except OSError as oe:
-    if oe.errno != errno.EEXIST:
-        raise
-
-def fifo_listner():
-    fw=FocusWatcher.instance()
-    with open(fifo_) as fifo:
-        while True:
-            data = fifo.read()
-            if len(data) == 0:
-                break
-            eval_str=data.split('\n', 1)[0]
-            if len(eval_str) > 0:
-                if eval_str == "switch":
-                    fw.alt_tab()
-
-def worker():
-    while True:
-        if q.empty():
-            exit()
-        i = q.get()
-        q.task_done()
-
-def mainloop_fw():
-    while True:
-        q.put(fifo_listner())
-        Thread(target=worker).start()
-
-
 class FocusWatcher(SingletonMixin):
     def __init__(self):
         self.window_list = i3.get_tree().leaves()
         self.prev_time = 0
         self.curr_time = 0
+
+    def switch(self, args):
+        switch_ = {
+            "switch": self.alt_tab,
+        }
+        if len(args) == 2:
+            switch_[args[0]](args[1])
+        elif len(args) == 1:
+            switch_[args[0]]()
 
     def alt_tab(self, timer=0.05):
         self.curr_time = time.time()
@@ -91,10 +64,6 @@ def on_window_focus(self, event):
     if len(fw.window_list) > max_win_history_:
         del fw.window_list[max_win_history_:]
 
-def cleanup_all():
-    if os.path.exists(fifo_):
-        os.remove(fifo_)
-
 def go_back_if_nothing(self, event):
     con=event.container
     fw=FocusWatcher.instance()
@@ -105,13 +74,25 @@ if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 nice alt-tab 1.0')
     i3 = i3ipc.Connection()
 
-    import atexit
-    atexit.register(cleanup_all)
-
     if argv["daemon"]:
+        name='flastd-i3'
+
+        fw=FocusWatcher.instance()
+
+        mng=daemon_manager.instance()
+        mng.add_daemon(name)
+
+        def cleanup_all():
+            daemon_=mng.daemons[name]
+            if os.path.exists(daemon_.fifo_):
+                os.remove(daemon_.fifo_)
+
+        import atexit
+        atexit.register(cleanup_all)
+
         i3.on('window::focus', on_window_focus)
         i3.on('window::close', go_back_if_nothing)
 
-        mainloop=Thread(target=mainloop_fw).start()
+        mainloop=Thread(target=mng.daemons[name].mainloop, args=(fw,)).start()
 
         i3.main()

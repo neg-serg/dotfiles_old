@@ -16,7 +16,8 @@ Options:
 from docopt import docopt
 import os.path
 
-fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/flastd_i3.fifo'))
+name='flastd-i3'
+fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name+'.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 alt-tabber')
