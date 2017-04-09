@@ -31,7 +31,7 @@ class cycle_window(SingletonMixin):
         self.tagged={}
         self.counters={}
         self.restorable=[]
-        self.restore_now=True
+        self.interact=1
 
         for i in glob_settings:
             self.tagged[i]=list({})
@@ -72,12 +72,11 @@ class cycle_window(SingletonMixin):
 
         def go_next_(inc_counter=True,fullscreen_handler=True):
             if fullscreen_handler:
-                was_focused=i3.get_tree().find_focused()
                 fullscreened=i3.get_tree().find_fullscreen()
-                for con in fullscreened:
-                    if cur_win_in_current_class_set() and con.id == was_focused.id:
-                        self.restorable.append(con)
-                        con.command('fullscreen disable')
+                for win in fullscreened:
+                    if cur_win_in_current_class_set() and cur_win().id == win.id:
+                        self.interact=0
+                        win.command('fullscreen disable')
 
             target_i()['win'].command('focus')
             target_i()['focused']=True
@@ -85,11 +84,13 @@ class cycle_window(SingletonMixin):
                 inc_c()
 
             if fullscreen_handler:
-                now_focused=i3.get_tree().find_focused()
-                for win in self.restorable:
-                    if win.id == now_focused.id:
-                        win.command('fullscreen enable')
-                        self.restorable.remove(win)
+                now_focused=target_i()['win'].id
+                for id in self.restorable:
+                    if id == now_focused:
+                        self.interact=0
+                        i3.command('[con_id=%s] fullscreen enable' % now_focused)
+
+            self.interact=1
 
         def go_to_not_repeat():
             inc_c()
@@ -116,7 +117,10 @@ class cycle_window(SingletonMixin):
                         if class_eq_priority():
                             fullscreened=i3.get_tree().find_fullscreen()
                             for win in fullscreened:
-                                win.command('fullscreen disable')
+                                tag_classes_set=set(glob_settings[tag]["classes"])
+                                if win.window_class in tag_classes_set and win.window_class != glob_settings[tag]["priority"]:
+                                    self.interact=0
+                                    win.command('fullscreen disable')
                             go_next_(inc_counter=False)
                             return
                 elif self.current_win.id == target_i()['win'].id:
@@ -193,6 +197,20 @@ def save_current_win(self,event):
     cw=cycle_window.instance()
     cw.current_win=con
 
+def handle_fullscreen(self,event):
+    cw=cycle_window.instance()
+    con=event.container
+    if cw.interact == 1:
+        if con.fullscreen_mode:
+            if con.id not in cw.restorable:
+                cw.restorable.append(con.id)
+                print("[add]={}".format(con.id))
+        if not con.fullscreen_mode:
+            if con.id in cw.restorable:
+                cw.restorable.remove(con.id)
+                print("[del]={}".format(con.id))
+
+
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 window tag circle 0.5')
 
@@ -219,6 +237,7 @@ if __name__ == '__main__':
         i3.on('window::new', add_acceptable)
         i3.on('window::close', del_acceptable)
         i3.on("window::focus", save_current_win)
+        i3.on("window::fullscreen_mode", handle_fullscreen)
 
         mainloop=Thread(target=mng.daemons[name].mainloop, args=(cw,)).start()
 
