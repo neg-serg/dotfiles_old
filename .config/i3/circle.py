@@ -15,6 +15,7 @@ import i3ipc
 import re
 import errno
 import os
+import time
 
 from queue import Queue
 from sys import exit
@@ -102,7 +103,7 @@ class cycle_window(SingletonMixin):
                     run_prog()
                 else:
                     return
-            elif len(self.tagged[tag]) == 1:
+            elif len(self.tagged[tag]) <= 1:
                 target_=0
                 go_next_(fullscreen_handler=False)
             else:
@@ -178,6 +179,9 @@ def add_acceptable(self, event):
 
 def del_acceptable(self, event):
     def del_tagged_win():
+        if 'win' in cw.tagged[tag]:
+            if cw.tagged[tag]['win'].id in cw.restorable:
+                cw.restorable.remove(cw.tagged[tag]['win'].id)
         del cw.tagged[tag]
 
     cw=cycle_window.instance()
@@ -204,11 +208,11 @@ def handle_fullscreen(self,event):
         if con.fullscreen_mode:
             if con.id not in cw.restorable:
                 cw.restorable.append(con.id)
-                print("[add]={}".format(con.id))
+                print("[add] name={} id={}".format(con.name,con.id))
         if not con.fullscreen_mode:
             if con.id in cw.restorable:
                 cw.restorable.remove(con.id)
-                print("[del]={}".format(con.id))
+                print("[del] name={} id={}".format(con.name,con.id))
 
 
 if __name__ == '__main__':
