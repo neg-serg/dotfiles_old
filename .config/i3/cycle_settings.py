@@ -23,6 +23,7 @@ class cycle_settings(object):
                     'darkest.bin.x86_64',
                     'Steam',
                     'steam',
+                    'explorer.exe',
                 },
                 'prog':"steam",
             },
