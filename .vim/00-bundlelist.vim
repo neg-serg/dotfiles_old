@@ -6,7 +6,7 @@ call dein#begin(expand('~/.vim'))
         call dein#add('powerline/powerline')
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
-
+        call dein#add('vim-airline/vim-airline')
     endif
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
