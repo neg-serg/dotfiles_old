@@ -1,4 +1,4 @@
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
+ " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ misc plugins settings                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:gitgutter_realtime       = 0          " github.com/airblade/vim-gitgutter/issues/106
@@ -23,30 +23,12 @@ if dein#tap('vim-arpeggio')
     call arpeggio#map('i', '', 0, 'jk', '<ESC>l')
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - itchyny/lightline.vim                                                    │ 
-" │ https://github.com/itchyny/lightline.vim                                          │ 
+" │ plugin - vim-airline/vim-airline                                                  │ 
+" │ https://github.com/vim-airline/vim-airline                                        │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
-let g:lightline = {
-      \ 'colorscheme': 'Dracula',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-let g:lightline.mode_map = {
-            \ 'n' : 'N',
-            \ 'i' : 'INSRT',
-            \ 'R' : 'REPLACE',
-            \ 'v' : 'VISUAL',
-            \ 'V' : 'V-LINE',
-            \ "\<C-v>": 'V-BLOCK',
-            \ 'c' : 'CMD',
-            \ 's' : 'SELECT',
-            \ 'S' : 'S-LINE',
-            \ "\<C-s>": 'S-BLOCK',
-            \ 't': 'T',
-            \ }
+if dein#tap('vim-airline')
+    let g:airline_theme='lucius'
+endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lotabout/skim                                                            │ 
 " │ https://github.com/lotabout/skim                                                  │ 
@@ -333,13 +315,6 @@ if dein#tap('YouCompleteMe')
     let g:ycm_autoclose_preview_window_after_insertion = 1
     nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 
-    " let g:ycm_add_preview_to_completeopt = 1
-    " let g:ycm_autoclose_preview_window_after_completion = 0
-    " let g:ycm_autoclose_preview_window_after_insertion = 0 
-
-    " let g:ycm_min_num_of_chars_for_completion = 100
-    " let g:ycm_auto_trigger = 0
-
     let g:ycm_semantic_triggers =  {
         \   'c' : ['->', '.'],
         \   'objc' : ['->', '.'],
@@ -538,17 +513,6 @@ if dein#tap('delimitMate')
     imap <Esc>OF <Plug>delimitMateEnd
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - xolox/vim-easytags.git                                                   │
-" │ https://github.com/xolox/vim-easytags.git                                         │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-easytags')
-    let g:easytags_updatetime_min = 9000
-    let g:easytags_dynamic_files  = 1
-    let g:easytags_events         = ['BufWritePost']
-    let g:easytags_python_enabled = 1
-    let g:easytags_auto_update    = 1
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - benmills/vimux                                                           │
 " │ https://github.com/benmills/vimux.git                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -597,35 +561,6 @@ if dein#tap('vim-fugitive')
     nnoremap <Space>gt :!tig<CR>:redraw!<CR>
     nnoremap <Space>gS :exe "silent !shipit"<CR>:redraw!<CR>
     nnoremap <Space>ggc :silent! Ggrep -i<Space>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - YankRing.vim                                                             │
-" │ https://github.com/vim-scripts/YankRing.vim.git                                   │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('YankRing.vim')
-    let g:yankring_history_dir = '/tmp'
-    let g:yankring_history_file = 'yankring_hist'
-    " this is so that single char deletes don't end up in the yankring
-    let g:yankring_min_element_length = 2
-    let g:yankring_window_height = 14
-
-    nnoremap <leader>r :YRShow<CR>
-    " this makes Y yank from the cursor to the end of the line, which makes more
-    " sense than the default of yanking the whole current line (we can use yy for
-    " that)
-    function! YRRunAfterMaps()
-        nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-    endfunction
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - drmikehenry/vim-fontsize.git                                             │
-" │ https://github.com/drmikehenry/vim-fontsize.git                                   │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-fontsize')
-    nmap <silent> <F11>                       <Plug>FontsizeBegin
-    nmap <silent> <SID>DisableFontsizeInc     <Plug>FontsizeInc
-    nmap <silent> <SID>DisableFontsizeDec     <Plug>FontsizeDec
-    nmap <silent> <SID>DisableFontsizeDefault <Plug>FontsizeDefault
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - dbakker/vim-projectroot.git                                              │
@@ -786,13 +721,6 @@ if dein#tap('vim-vroom')
     let g:vroom_use_zeus = 1     " run tests with zeus || bundle exec
     nnoremap \c :call vroom#RunTestFile()<CR>
     nnoremap \s :call vroom#RunNearestTest()<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - derekwyatt/vim-fswitch                                                   │ 
-" │ https://github.com/derekwyatt/vim-fswitch                                         │ 
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('vim-fswitch')
-    nnoremap <silent> <C-a> :FSHere<cr>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - luochen1990/rainbow                                                      │
