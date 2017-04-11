@@ -6,8 +6,7 @@ call dein#begin(expand('~/.vim'))
         call dein#add('powerline/powerline')
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
-        "lightline is more fancy than default
-        call dein#add('itchyny/lightline.vim.git')
+
     endif
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
@@ -77,10 +76,12 @@ call dein#begin(expand('~/.vim'))
     call dein#add('chrisbra/Join.git') 
     "good mappings and toggles
     call dein#add('tpope/vim-unimpaired.git') 
-    " NeoBundleLazy 'tpope/vim-repeat', { 'mappings' : '.' } "dot for everything
-    " NeoBundleLazy 'sjl/gundo.vim', { 'commands' : 'GundoToggle' }
-    " NeoBundleLazy 'Raimondi/delimitMate', { 'insert' : 1 } "autopair ()[]{}
-    " NeoBundleLazy 'tpope/vim-surround', { 'mappings' : [ ['n', 'cs', 'ds', 'ys', 'yS'], ['x', 'S']] }
+    "dot for everything
+    call dein#add('tpope/vim-repeat')
+    "autopair ()[]{}
+    call dein#add('sjl/gundo.vim', {'on_cmd': ['GundoToggle']})
+    call dein#add('Raimondi/delimitMate')
+    call dein#add('tpope/vim-surround')
     "-----------------------------------------------------------------------------------------
     "stack trace parser
     call dein#add('mattboehm/vim-unstack')
@@ -303,26 +304,19 @@ call dein#begin(expand('~/.vim'))
     "better than default phpcomplete.vim
     call dein#add('shawncplus/phpcomplete.vim.git')
     " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
-    ", { 'autoload': { 'commands': 'VdebugStart' }}
-    call dein#add('joonty/vdebug')
+    call dein#add('joonty/vdebug', {'on_cmd': ['VdebugStart']})
     " html5 autocomplete and syntax
-    "{'autoload': {'filetypes': ['html', 'htmldjango']} }
-    call dein#add('othree/html5.vim')
+    call dein#add('othree/html5.vim', {'on_ft': ['html', 'htmldjango']})
     "expanding abbreviations similar to emmet
     call dein#add('mattn/emmet-vim')
-    " , { 'filetypes' : 'perl' }
-    call dein#add('vim-perl/vim-perl')
-    " , { 'filetypes' : 'dot' }
-    call dein#add('wannesm/wmgraphviz.vim')
+    call dein#add('vim-perl/vim-perl', {'on_ft': ['perl']})
+    call dein#add('wannesm/wmgraphviz.vim', {'on_ft': ['dot']})
     "vim plugin for supercollider
-    ", { 'filetypes' : 'sc' }
-    call dein#add('sbl/scvim.git')
+    call dein#add('sbl/scvim.git', {'on_ft': ['supercollider']})
     "vim erlang support
-    " , { 'filetypes' : 'erl' }
-    call dein#add('oscarh/vimerl')
+    call dein#add('oscarh/vimerl', {'on_ft': ['erlang']})
     "tiny swift support
-    " , { 'filetypes' : 'swift' } 
-    call dein#add('kballard/vim-swift')
+    call dein#add('kballard/vim-swift', {'on_ft': ['swift']})
     "----------------[  DBMS  ]--------------------------------------------------------------
     "Oracle DB IDE
     call dein#add('talek/vorax4')
@@ -339,66 +333,51 @@ call dein#begin(expand('~/.vim'))
     " endif
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
-    ", { 'filetypes' : ['tex'] } 
-    call dein#add('lervag/vimtex')
+    call dein#add('lervag/vimtex', {'on_ft': ['tex']})
     "add latex live preview
-    ", { 'filetypes' : ['tex'] } 
-    call dein#add('xuhdev/vim-latex-live-preview')
+    call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': ['tex']})
     "--[ Web ]-------------------------------------------------------------------------------
     "write html code faster
-    "{ 'filetypes' : ['html'] } 
-    call dein#add('rstacruz/sparkup.git')
+    call dein#add('rstacruz/sparkup.git', {'on_ft': ['html']})
     "realtime markdown preview
-    " , { 'filetypes' : ['markdown'] } 
-    call dein#add('Valloric/vim-instant-markdown')
+    call dein#add('Valloric/vim-instant-markdown', {'on_ft': ['markdown']})
     "tern for vim
-    " , { 'autoload': { 'filetypes': ['javascript'] } }
-    call dein#add('marijnh/tern_for_vim')
+    call dein#add('marijnh/tern_for_vim', {'on_ft': ['javascript']})
     "---------------[ Misc syntax ]----------------------------------------------------------
     " "syntax hi for tmux
-    ", { 'filetypes' : ['tmux'] }
-    call dein#add('vimez/vim-tmux')
+    call dein#add('vimez/vim-tmux', {'on_ft': ['tmux']})
     "syntax hi for json format
-    ", { 'filetypes' : ['json'] }
-    call dein#add('elzr/vim-json')
+    call dein#add('elzr/vim-json', {'on_ft': ['json']})
     "syntax hi for toml format
-    " , { 'filetypes' : ['toml'] } 
-    call dein#add('cespare/vim-toml')
+    call dein#add('cespare/vim-toml', {'on_ft': ['toml']})
     "Mathematica syntax and omnicomp
-    " , { 'filetypes' : ['mathematica'] } 
-    call dein#add('rsmenon/vim-mathematica.git')
+    call dein#add('rsmenon/vim-mathematica.git', {'on_ft': ['mathematica']})
     "js highlighting
-    " , { 'filetypes' : ['javascript'] } 
-    call dein#add('jelera/vim-javascript-syntax.git')
+    call dein#add('jelera/vim-javascript-syntax.git', {'on_ft': ['javascript']})
     "syntax, indent, and filetype plugin files for git
     call dein#add('tpope/vim-git') 
     "dockerfile hi
     call dein#add('ekalinin/Dockerfile.vim')
-    " , { 'filetypes' : ['vimwiki', 'markdown', 'tex', 'html'] }
-    call dein#add('blindFS/vim-regionsyntax')
+    " region syntax highlighting
+    call dein#add('blindFS/vim-regionsyntax', {'on_ft': ['vimwiki', 'markdown', 'tex', 'html']})
     "better css syntax hi
-    " , { 'filetypes' : ['css'] } 
-    call dein#add('JulesWang/css.vim')
+    call dein#add('JulesWang/css.vim', {'on_ft': ['css']})
     "basic moonscript support
-    ", { 'filetypes' : ['moonscript'] } 
-    call dein#add('leafo/moonscript-vim')
+    call dein#add('leafo/moonscript-vim', {'on_ft': ['moonscript']})
     "basic puppet support
-    " , { 'filetypes' : ['puppet'] } 
-    call dein#add('rodjek/vim-puppet')
+    call dein#add('rodjek/vim-puppet', {'on_ft': ['puppet']})
     "nginx runtime files
-    call dein#add('fatih/vim-nginx')
+    call dein#add('fatih/vim-nginx', {'on_ft': ['nginx']})
     "syntax file for irc logs
     call dein#add('trapd00r/irc.vim')
     "syntax file for nim
-    " , { 'filetypes' : ['nim'] } 
-    call dein#add('zah/nim.vim')
+    call dein#add('zah/nim.vim', {'on_ft': ['nim']})
     "pretty markdown-like look
     call dein#add('junegunn/vim-journal')
     "sxhkd config syntax
-    call dein#add('baskerville/vim-sxhkdrc')
-    " , { 'filetypes' : ['qml'] } 
+    call dein#add('baskerville/vim-sxhkdrc', {'on_ft': ['sxhkdrc']})
     "qml syntax file
-    call dein#add('peterhoeg/vim-qml')
+    call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
     "10x faster clighter highlighter replacement
     " call dein#add('bbchung/clighter8')
     if has("nvim")
@@ -428,7 +407,6 @@ call dein#begin(expand('~/.vim'))
     "i3 syntax
     call dein#add('PotatoesMaster/i3-vim-syntax')
 call dein#end()
-endif
 if dein#check_install()
     call dein#install()
 endif
