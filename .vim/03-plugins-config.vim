@@ -44,7 +44,7 @@ if dein#tap('skim.vim')
     nnoremap qe :Files %:p:h<CR>
     nnoremap qE :Files<CR>
     nnoremap ed :Buffers<CR>
-    if !dein#tap('lusty') && !dein#tap('lycosaexplorer') && has("nvim")
+    if !dein#tap('lusty') && has("nvim")
         nnoremap <leader>l :Files %:p:h<CR>
     endif
     " Insert mode completion
@@ -438,17 +438,6 @@ endif
 if dein#tap('Join')
     nmap J :Join<CR>
     vmap J :Join<CR>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - utl.vim                                                                  │
-" │ https://github.com/vim-scripts/utl.vim.git                                        │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('utl')
-    let g:utl_cfg_hdl_scm_http_system = "silent !firefox %u &"
-    let g:utl_cfg_hdl_mt_application_pdf = 'silent :!zathura %p &'
-    let g:utl_cfg_hdl_mt_image_jpeg = 'silent :!sxiv %p &'
-    let g:utl_cfg_hdl_mt_image_gif = 'silent :!sxiv %p &'
-    let g:utl_cfg_hdl_mt_image_png = 'silent :!sxiv %p &'
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - klen/python-mode.git                                                     │
