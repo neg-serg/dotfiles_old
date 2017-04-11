@@ -14,11 +14,6 @@ parser = ArgumentParser(prog='disable-standby-fs',
 
 args = parser.parse_args()
 
-def find_fullscreen(con):
-    # XXX remove me when this method is available on the con in a release
-    return [c for c in con.descendents()
-            if c.type == 'con' and c.fullscreen_mode]
-
 def set_dpms(state):
     if state:
         print('setting dpms on')
@@ -30,10 +25,10 @@ def set_dpms(state):
         call(['xset', '-dpms'])
 
 def on_fullscreen_mode(i3, e):
-    set_dpms(not len(find_fullscreen(i3.get_tree())))
+    set_dpms(not len(i3.get_tree().find_fullscreen()))
 
 def on_window_close(i3, e):
-    if not len(find_fullscreen(i3.get_tree())):
+    if not len(not len(i3.get_tree().find_fullscreen())):
         set_dpms(True)
 
 i3.on('window::fullscreen_mode', on_fullscreen_mode)
