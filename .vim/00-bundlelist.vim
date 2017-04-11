@@ -39,9 +39,7 @@ call dein#begin(expand('~/.vim'))
     endif
     let s:fzf_use=1
     if (s:fzf_use) 
-        " https://github.com/Shougo/dein.vim/issues/74
         " fast fuzzy finder
-        " call dein#add('junegunn/fzf', { 'tag': '0.12.1', 'build': './install', 'rtp': '' })
         call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
         "fzf vim bindings
         call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
@@ -379,7 +377,7 @@ call dein#begin(expand('~/.vim'))
     "qml syntax file
     call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
     "10x faster clighter highlighter replacement
-    " call dein#add('bbchung/clighter8')
+    call dein#add('bbchung/clighter8')
     if has("nvim")
         "gotham colorscheme for nvim
         call dein#add('whatyouhide/vim-gotham')
@@ -394,16 +392,6 @@ call dein#begin(expand('~/.vim'))
     call dein#add('cstrahan/vim-capnp')
     "fancy icons for fonts
     call dein#add('ryanoasis/vim-devicons.git')
-    if has("google_plugs")
-        "vim plugin library
-        call dein#add('google/vim-maktaba')
-        "test coverage visualize, require vim-maktaba
-        call dein#add('google/vim-coverage') 
-        "configuring for maktaba plugins
-        call dein#add('google/vim-glaive')
-        "clang-based codeformatter
-        call dein#add('google/vim-codefmt')
-    endif
     "i3 syntax
     call dein#add('PotatoesMaster/i3-vim-syntax')
 call dein#end()
