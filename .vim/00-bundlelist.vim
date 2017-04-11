@@ -323,14 +323,14 @@ call dein#begin(expand('~/.vim'))
     "----------------[  Tags  ]--------------------------------------------------------------
     "autogen ctags
     call dein#add('szw/vim-tags')
-    " if executable(resolve(expand("gtags")))
-    "     "Gtags v0.64
-    "     call dein#add('yuki777/gtags.vim.git')
-    "     "autogenerate gtags to cscope db
-    "     call dein#add('bbchung/gasynctags.git') 
-    "     "gtags-cscope navigation
-    "     call dein#add('tranngocthachs/gtags-cscope-vim-plugin.git') 
-    " endif
+    if executable(resolve(expand("gtags")))
+        "Gtags v0.64
+        call dein#add('yuki777/gtags.vim.git')
+        "autogenerate gtags to cscope db
+        call dein#add('bbchung/gasynctags.git') 
+        "gtags-cscope navigation
+        call dein#add('tranngocthachs/gtags-cscope-vim-plugin.git') 
+    endif
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
     call dein#add('lervag/vimtex', {'on_ft': ['tex']})
