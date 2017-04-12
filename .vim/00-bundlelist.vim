@@ -385,6 +385,8 @@ call dein#begin(expand('~/.vim'))
     if has("nvim")
         "gotham colorscheme for nvim
         call dein#add('whatyouhide/vim-gotham')
+        "vim-one colorscheme
+        call dein#add('rakr/vim-one')
     endif
     "new colorscheme
     call dein#add('aperezdc/vim-elrond')
