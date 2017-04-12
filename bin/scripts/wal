@@ -5,6 +5,7 @@
 # Created by Dylan Araps
 
 # Speed up script by not using unicode.
+sys_locale="$LANG"
 export LC_ALL=C
 export LANG=C
 
@@ -303,7 +304,6 @@ usage() { printf "%s" "\
 Usage: wal [OPTION] -i '/path/to/dir'
 Example: wal -i '${HOME}/Pictures/Wallpapers/'
          wal -i '${HOME}/Pictures/1.jpg'
-
 Flags:
   -a                      Set terminal background transparency. *Only works in URxvt*
   -c                      Delete all cached colorschemes.
@@ -314,7 +314,6 @@ Flags:
   -q                      Quiet mode, don't print anything.
   -r                      Reload current colorscheme.
   -t                      Fix artifacts in VTE Terminals. (Termite, xfce4-terminal)
-
 "
 }
 
@@ -358,6 +357,31 @@ get_args() {
     fi
 }
 
+# Make custom Oomox theme
+
+make_oomox() {
+		cd /tmp/
+		rm "wal-theme"
+		touch "wal-theme"
+
+		echo 'source "$HOME/.cache/wal/colors.sh"' >> /tmp/wal-theme
+		echo 'NAME="wal-theme"' >> /tmp/wal-theme
+		echo 'NOGUI=True' >> /tmp/wal-theme
+		echo 'BG=${color0:1}' >> /tmp/wal-theme
+		echo 'FG=${color7:1}' >> /tmp/wal-theme
+		echo 'SEL_BG=${color5:1}' >> /tmp/wal-theme
+		echo 'SEL_FG=${color15:1}' >> /tmp/wal-theme
+		echo 'TXT_BG=${color0:1}' >> /tmp/wal-theme
+		echo 'TXT_FG=${color7:1}' >> /tmp/wal-theme
+		echo 'MENU_BG=${color0:1}' >> /tmp/wal-theme
+		echo 'MENU_FG=${color7:1}' >> /tmp/wal-theme
+		echo 'BTN_BG=${color8:1}' >> /tmp/wal-theme
+		echo 'BTN_FG=${color15:1}' >> /tmp/wal-theme
+
+		oomox-cli /tmp/wal-theme >NUL
+		oomox-archdroid-icons-cli /tmp/wal-theme >NUL
+		gtkrc-reload
+}
 
 # FINISH UP
 
@@ -365,26 +389,19 @@ get_args() {
 main () {
     get_args "$@"
 
-    # Get 16 unique colors from the image.
     get_colors
-
-    # Send the color changing sequences to every open terminal emulator.
     send_sequences
-
-    # Set the wallpaper.
     set_wallpaper
-
-    # Export the colors in other formats.
     export_colors
-
-    # Merge colors into X env.
     reload_xrdb
-
-    # Reload env
     reload_env >/dev/null 2>&1
+		make_oomox
+
+    # Set the locale back to the original value.
+    export LC_ALL="$sys_locale"
 
     # Execute custom script.
-    type -p "${external_script[0]}" >/dev/null 2>&1 && "${external_script[@]}"
+    [[ "${external_script[0]}" ]] && bash -c "${external_script[@]}"
 }
 
 main "$@"
