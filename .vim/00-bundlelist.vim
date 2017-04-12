@@ -1,12 +1,16 @@
-"--[ ain ]------------------------------------------------------------------------------
+"--[ Main ]------------------------------------------------------------------------------
 call dein#begin(expand('~/.vim'))
-    "best vim autocomplete engine for now
     call dein#add('Valloric/YouCompleteMe') 
     if !has("nvim")
+        "best vim autocomplete engine for now
         call dein#add('powerline/powerline')
+    elseif has("nvim_loled")
+        call dein#add('Shougo/deoplete.nvim')
+        call dein#add('zchee/deoplete-clang')
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
         call dein#add('vim-airline/vim-airline')
+        call dein#add('vim-airline/vim-airline-themes')
     endif
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
@@ -326,8 +330,8 @@ call dein#begin(expand('~/.vim'))
         call dein#add('yuki777/gtags.vim.git')
         "autogenerate gtags to cscope db
         call dein#add('bbchung/gasynctags.git') 
-        "gtags-cscope navigation
-        call dein#add('tranngocthachs/gtags-cscope-vim-plugin.git') 
+        " my gtags-cscope fork
+        call dein#add('https://github.com/neg-serg/gtags-cscope-vim')
     endif
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
