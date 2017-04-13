@@ -27,7 +27,7 @@ endif
 " │ https://github.com/vim-airline/vim-airline                                        │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-airline')
-    let g:airline_theme='lucius'
+    let g:airline_theme='one'
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lotabout/skim                                                            │ 
@@ -748,30 +748,6 @@ if dein#tap('rainbow')
     let g:sparkupMapsNormal = 0 "default = 0
     let g:sparkupMaps = 1 "default = 1
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
-endif
-" ┌───────────────────────────────────────────────────────────────────────────────────┐
-" │ plugin - tranngocthachs/gtags-cscope-vim-plugin.git                               │
-" │ https://github.com/tranngocthachs/gtags-cscope-vim-plugin.git                     │
-" └───────────────────────────────────────────────────────────────────────────────────┘
-if dein#tap('gtags-cscope-vim-plugin')
-    let g:GtagsCscope_Auto_Load = 1
-    let g:GtagsCscope_Auto_Map = 0
-
-    nmap \s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap \g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap \c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap \t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap \e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap \f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap \i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-
-    nmap \S :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap \G :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap \C :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap \T :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap \E :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap \F :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap \I :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Shougo/denite.nvim                                                       │

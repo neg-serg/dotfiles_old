@@ -4,7 +4,7 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
-let s:nvim_colorscheme = "wim"
+let s:nvim_colorscheme = "one"
 
 if !g:use_base16_colorscheme
     if v:version >= 704
