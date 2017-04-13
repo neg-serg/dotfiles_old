@@ -32,8 +32,6 @@ set $Locker i3lock && sleep 1
 
 set $soft_restart killall -SIGUSR1 i3status
 
-#default_layout tabbed
-
 #--[ Colorscheme ]----------------------------------------------------
 client.focused_inactive #121212   #000000   #121212  #121212   #121212
 client.focused          #002b36   #000000   #002b36  #002b36   #002b36
@@ -82,15 +80,15 @@ set {$spotify,ws13}  13: spotify
 set {$sxiv}  [pic]
 set {$graph}  [graph]
 
-bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/nclient.py toggle ncmpcpp
-bindsym $mod+d exec python3 ~/.config/i3/nclient.py toggle teardrop
+bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
+bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
 bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
-bindsym $mod+e exec python3 ~/.config/i3/nclient.py toggle im
-bindsym $mod+3 exec python3 ~/.config/i3/nclient.py next
+bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
+bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
-bindsym $mod+s exec python ~/.config/i3/nclient.py hide_current
+bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
 
 set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window $browsers  move container to workspace $web, workspace $web, focus
@@ -165,13 +163,13 @@ mode "[alt_e]" {
     bindsym q mode "default", exec ~/bin/mpd_sel.sh
     bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym Control+t mode "default", exec tor-browser-en
-    bindsym m exec python3 ~/.config/i3/nclient.py toggle mutt, mode "default"
     bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
     bindsym {$mod,$alt,}+t exec ~/bin/scripts/telegram, mode "default"
 	bindsym Shift+d floating toggle; $exit
-    bindsym Shift+r exec ~/.config/i3/nclient.py toggle ranger, mode "default"
+    bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
+    bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -181,26 +179,27 @@ mode "password" {
 }
 
 #bindsym $mod+{F1,F2} $ror "[workspace=8]" '~/bin/scripts/jetbrains.sh {idea,clion}' focus
-bindsym $mod+F1 ~/.config/i3/cclient.py next jetbrains-idea
+bindsym $mod+F1 exec ~/.config/i3/circle.py next jetbrains-idea
 
-bindsym $mod+x exec python ~/.config/i3/cclient.py next term
-bindsym $mod+1 exec python ~/.config/i3/cclient.py next wim
-bindsym $mod+Control+v exec python ~/.config/i3/cclient.py next vm
-bindsym $mod+Control+e exec python ~/.config/i3/cclient.py next steam
-bindsym $mod+w exec python ~/.config/i3/cclient.py next web
-bindsym $mod+b exec python ~/.config/i3/cclient.py next vid
-bindsym $mod+o exec python ~/.config/i3/cclient.py next doc
+bindsym $mod+x exec python ~/.config/i3/circle.py next term
+bindsym $mod+1 exec python ~/.config/i3/circle.py next wim
+bindsym $mod+Control+v exec python ~/.config/i3/circle.py next vm
+bindsym $mod+Control+e exec python ~/.config/i3/circle.py next steam
+bindsym $mod+w exec python ~/.config/i3/circle.py next web
+bindsym $mod+b exec python ~/.config/i3/circle.py next vid
+bindsym $mod+o exec python ~/.config/i3/circle.py next doc
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
 bindsym $mod+a exec i3finder -d 'rofi -dmenu -i -fuzzy' -a move
 bindsym $mod+q fullscreen toggle
-bindsym $alt+Tab exec python3 ~/.config/i3/flast.py switch
-bindsym $mod+slash exec python3 ~/.config/i3/flast.py switch
 bindsym $mod+grave exec ~/.config/i3/focus-next-visible.py
 bindsym $mod+Control+grave exec ~/.config/i3/i3-cmd.py
 bindsym $mod+Shift+slash workspace back_and_forth
+
+bindsym $alt+Tab exec python3 ~/.config/i3/flast.py switch
+bindsym $mod+slash exec python3 ~/.config/i3/flast.py switch
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -218,14 +217,14 @@ mode "[resize]" {
 }
 
 mode "[Layout]" {
-    bindsym Shift+{a,d} focus {parent,child}
+    bindsym Shift+{p,c} focus {parent,child}
 	bindsym {grave,t,s,h,v} layout {default,tabbed,stacking,splith,splitv}; $exit
-    bindsym {h,v} split {h,v}; $exit
+    bindsym Shift+{h,v} split {h,v}; $exit
 	bindsym {j,k,h,l} split {vertical,vertical,horizontal,horizontal}; $exit
 
-	bindsym {a,3} layout toggle all
-	bindsym s layout toggle split
-	bindsym t layout toggle
+	bindsym Control+{a,3} layout toggle all
+	bindsym Control+s layout toggle split
+	bindsym Control+t layout toggle
 
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
@@ -258,9 +257,8 @@ mode "gaps-inner" {
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
 exec python3 ~/.config/i3/disable-standby-fs.py
-exec ~/.config/i3/per-workspace-layout.pl
-exec python3 ~/.config/i3/ns.py daemon
-exec python3 ~/.config/i3/circle.py daemon
+exec python3 ~/.config/i3/nsd.py daemon
+exec python3 ~/.config/i3/circled.py daemon
 exec python3 ~/.config/i3/flastd.py daemon
 
 # vim:filetype=i3
