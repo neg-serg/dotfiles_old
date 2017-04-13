@@ -49,7 +49,7 @@ hide_edge_borders both
 #------------------------------------------
 set $exit mode "default"
 bindsym $alt+e mode "[alt_e]"
-bindsym $mod+r mode "[resize]"
+#bindsym $mod+r mode "[resize]"
 bindsym $mod+Shift+w mode "[Layout]"
 #------------------------------------------
 bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
@@ -206,15 +206,15 @@ mode "$mode_system" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-# resize window (you can also use the mouse for that)
-mode "[resize]" {
-    bindsym {h,Shift+h} resize {shrink,grow} left 4
-    bindsym {j,Shift+j} resize {shrink,grow} down 4
-    bindsym {k,Shift+k} resize {shrink,grow} up 4
-    bindsym {l,Shift+l} resize {shrink,grow} right 4
-    bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4
-    bindsym {Return,Escape,Control+C,Control+G} $exit
-}
+# # resize window (you can also use the mouse for that)
+# mode "[resize]" {
+#     bindsym {h,Shift+h} resize {shrink,grow} left 4
+#     bindsym {j,Shift+j} resize {shrink,grow} down 4
+#     bindsym {k,Shift+k} resize {shrink,grow} up 4
+#     bindsym {l,Shift+l} resize {shrink,grow} right 4
+#     bindsym {semicolon,Shift+colon} resize {shrink,grow} right 4
+#     bindsym {Return,Escape,Control+C,Control+G} $exit
+# }
 
 mode "[Layout]" {
     bindsym Shift+{p,c} focus {parent,child}
