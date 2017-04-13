@@ -272,3 +272,9 @@ gimp-2.8/pluginrc
 repos
 .vimperator/info/default/macros
 resurrect
+cycle_settings.pyc
+ns_config.pyc
+script_i3_general.pyc
+singleton_mixin.pyc
+__
+__pycache__
