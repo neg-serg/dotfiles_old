@@ -285,3 +285,9 @@ surf
 .fbless_save
 ./.links
 .lesshst
+.elvish/
+.node_repl_history
+./.config/fish
+.rustup/
+.sqlite_history
+.surf
