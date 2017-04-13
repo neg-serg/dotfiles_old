@@ -271,7 +271,7 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
 alias Cal="${SCRIPT_HOME}/dzen/time-date"
-alias lk="{[[ -x $(which glances)  ]] && glances} || htop || top"
+alias {{h,}top,lk}="{[[ -x $(which glances)  ]] && glances} || htop || top"
 
 user_commands=(
   list-units is-active status show help list-unit-files
