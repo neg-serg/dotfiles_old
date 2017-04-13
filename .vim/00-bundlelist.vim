@@ -1,5 +1,6 @@
 "--[ Main ]------------------------------------------------------------------------------
-call dein#begin(expand('~/.vim'))
+if dein#load_state("/home/neg/.vim/repos")
+    call dein#begin(expand('~/.vim'))
     call dein#add('Valloric/YouCompleteMe') 
     if !has("nvim")
         "best vim autocomplete engine for now
@@ -390,8 +391,6 @@ call dein#begin(expand('~/.vim'))
     endif
     "new colorscheme
     call dein#add('aperezdc/vim-elrond')
-    "nice atom-like colorscheme
-    call dein#add('joshdick/onedark.vim')
     "base16 colorschemes pack
     call dein#add('chriskempson/base16-vim')
     "capnproto syntax highlighting
@@ -400,7 +399,9 @@ call dein#begin(expand('~/.vim'))
     call dein#add('ryanoasis/vim-devicons.git')
     "i3 syntax
     call dein#add('PotatoesMaster/i3-vim-syntax')
-call dein#end()
+    call dein#end()
+    call dein#save_state()
+endif
 if dein#check_install()
     call dein#install()
 endif
