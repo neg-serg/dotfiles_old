@@ -28,6 +28,13 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-airline')
     let g:airline_theme='one'
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols_branch = ''
+    let g:airline_symbols_readonly = ''
+    let g:airline_symbols_linenr = ''
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - lotabout/skim                                                            │ 
