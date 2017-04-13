@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-Text {
+        color:#bebebe;
+      }
+      </style>
+  </defs>
+ <path 
+       style="fill:currentColor;fill-opacity:1;stroke:none"
+	 class="ColorScheme-Text"
+        d="M 3 0.99804688 L 3 3 L 11 3.0019531 L 11 13.001953 L 3 13.001953 L 3 14.998047 L 13 15.003906 L 13 1.0019531 L 3 0.99804688 z M 6 5.0039062 L 6 7.0039062 L 2 7.0039062 L 2 9.0039062 L 6 9.0039062 L 6 11.003906 L 10 8.0039062 L 6 5.0039062 z "
+     />
+</svg>
