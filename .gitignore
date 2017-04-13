@@ -279,3 +279,9 @@ singleton_mixin.pyc
 __
 __pycache__
 .vkquake
+.subversion/
+surf
+.config/VirtualBox/
+.fbless_save
+./.links
+.lesshst
