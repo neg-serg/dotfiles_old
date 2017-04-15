@@ -284,6 +284,7 @@ rc                  00;34
 .theme              01;35
 .tdesktop-theme     01;35
 .tdesktop-pallete   01;35
+.attheme            00;35
 .vim                00;38;5;221
 .viminfo            00;38;5;221
 .vimp               00;38;5;221
