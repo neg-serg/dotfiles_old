@@ -509,6 +509,13 @@ if dein#tap('delimitMate')
     imap <Esc>OF <Plug>delimitMateEnd
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - Raimondi/delimitMate.git                                                 │
+" │ https://github.com/Raimondi/delimitMate.git                                       │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vimfiler.vim')
+    let g:vimfiler_as_default_explorer = 1
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - benmills/vimux                                                           │
 " │ https://github.com/benmills/vimux.git                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
@@ -726,7 +733,7 @@ if dein#tap('rainbow')
     "0 if you want to enable it later via :RainbowToggle
     let g:rainbow_active = 1 
     let g:rainbow_conf = {
-        \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+        \   'guifgs': ['#005F87', '#005F5F', '#2B768D', '#395573'],
         \   'ctermfgs': ['cyan', 'darkcyan', 'blue', 'darkblue'],
         \   'operators': '_,_',
         \   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],

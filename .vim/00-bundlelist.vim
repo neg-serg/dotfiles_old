@@ -136,6 +136,8 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Misc ]------------------------------------------------------------------------------
     " vim nice swapit
     call dein#add('mjbrownie/swapit')
+    " I cannot use vimfiler without unite
+    call dein#add('Shougo/unite.vim')
     " Vim file manager
     call dein#add('Shougo/vimfiler.vim')
     " try to autodelect filetype
@@ -393,15 +395,21 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('aperezdc/vim-elrond')
     "base16 colorschemes pack
     call dein#add('chriskempson/base16-vim')
+    "gruvbox colorscheme
+    call dein#add('morhetz/gruvbox')
+    "deepspace colorscheme
+    call dein#add('tyrannicaltoucan/vim-deep-space')
+    "material colorscheme for nvim
+    call dein#add('tyrannicaltoucan/vim-quantum')
     "capnproto syntax highlighting
     call dein#add('cstrahan/vim-capnp')
     "fancy icons for fonts
     call dein#add('ryanoasis/vim-devicons.git')
     "i3 syntax
     call dein#add('PotatoesMaster/i3-vim-syntax')
-    call dein#end()
-    call dein#save_state()
 endif
+call dein#end()
+call dein#save_state()
 if dein#check_install()
     call dein#install()
 endif
