@@ -330,3 +330,7 @@ function set_proxy(){
         export http_proxy
     fi
 }
+
+
+::() { echo -e "\e[0;31m:: \e[0;32m$*\e[0m" >&2 "$@" }
+

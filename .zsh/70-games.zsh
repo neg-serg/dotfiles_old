@@ -4,7 +4,6 @@ IFS= local wine_progs_="$(echo ${wine_pref_}'/drive_c/Program Files (x86)')"
 
 alias wine="WINEDEBUG=-all LC_ALL=ru_RU.utf8 LC_COLLATE=C LC_MESSAGES=C wine"
 alias crossover="LANG=ru_RU.utf8 setarch i386 -3 /mnt/home/crossover/bin/crossover"
-alias q3="$(echo -e ${games_dir_}/q3/qq/ioquake3)"
 
 function steam_wine(){
     cd "${wine_progs_}/Steam"
@@ -36,6 +35,17 @@ function doom(){
     cd "${wine_progs_}/Steam/steamapps/common/DOOM/"
     local doom_path="DOOMx64vk.exe"
     SDL_AUDIODRIVER="alsa" wine "${doom_path}"
+}
+
+function q3(){
+    [[ -o noshwordsplit ]] && setopt shwordsplit
+    noglob "${games_dir_}/q3/ioquake3" \
+        +set r_fullscreen 1 \
+        +set r_customheight "1200" \
+        +setr_customwidth "1920" \
+        +set r_mode "-1" \
+        +set cg_fov "120"
+    unsetopt shwordsplit
 }
 
 function steam(){
