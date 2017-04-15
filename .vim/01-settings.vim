@@ -4,7 +4,7 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
-let s:nvim_colorscheme = "one"
+let s:nvim_colorscheme = "deep-space"
 
 if !g:use_base16_colorscheme
     if v:version >= 704
