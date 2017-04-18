@@ -3,9 +3,10 @@
 """ i3 Named Scratchpads
 
 Usage:
-  nclient.py next <name>
-  nclient.py (-h | --help)
-  nclient.py --version
+  circle.py next <name>
+  circle.py info <name>
+  circle.py (-h | --help)
+  circle.py --version
 
 Options:
   -h --help     Show this screen.
@@ -21,9 +22,15 @@ fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 cycler over windows')
-    possible_commands=["next"]
+    possible_commands=["next","info"]
 
     for i in argv:
         if argv[i] and i in set(possible_commands):
             with open(fifo_,"w") as fp:
                 fp.write(i+" "+argv["<name>"]+"\n")
+                if i == "info":
+                    import redis
+
+                    r=redis.StrictRedis(host='localhost', port=6379, db=0)
+                    print(int(r.get('count')))
+                    r.delete('count')

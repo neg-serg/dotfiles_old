@@ -24,7 +24,9 @@ from circle_conf import *
 from singleton_mixin import *
 from script_i3_general import *
 from threading import Thread, enumerate
+import redis
 
+redis_db_=redis.StrictRedis(host='localhost', port=6379, db=0)
 glob_settings=cycle_settings().settings
 
 class cycle_window(SingletonMixin):
@@ -132,9 +134,16 @@ class cycle_window(SingletonMixin):
             invalidate_tags_info()
             self.go_next(tag)
 
+    def get_info(self, tag):
+        if tag in cw.tagged.keys():
+            redis_db_.set('count', len(cw.tagged[tag]))
+        else:
+            redis_db_.set('count', 0)
+
     def switch(self, args):
         switch_ = {
             "next": self.go_next,
+            "info": self.get_info,
         }
         if len(args) == 2:
             switch_[args[0]](args[1])
