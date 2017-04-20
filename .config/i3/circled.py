@@ -35,6 +35,7 @@ class cycle_window(SingletonMixin):
         self.counters={}
         self.restorable=[]
         self.interact=1
+        self.repeats=0
 
         for i in glob_settings:
             self.tagged[i]=list({})
@@ -97,7 +98,11 @@ class cycle_window(SingletonMixin):
 
         def go_to_not_repeat():
             inc_c()
-            self.go_next(tag)
+            self.repeats+=1
+            if self.repeats < 16:
+                self.go_next(tag)
+            else:
+                self.repeats=0
 
         try:
             if len(self.tagged[tag]) == 0:
