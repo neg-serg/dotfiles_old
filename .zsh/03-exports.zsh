@@ -170,13 +170,13 @@ export wim_font_size=20
 export wim_sock_path="${HOME}/1st_level/vim.socket"
 export wim_timer=".1s"
 
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 export nwim_font="${wim_font}"
 export nwim_font_s="${wim_font_s}"
 export nwim_font_size=${wim_font_size}
 export nwim_timer=".1s"
 export nvim_server_name="NVIM"
-export nwim_sock_path="/tmp/nvimsocket_tmux"
+export nwim_sock_path="${HOME}/1st_level/nvim.socket"
+export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nwim.socket"
 
 (){
     local _home="/mnt/home"
