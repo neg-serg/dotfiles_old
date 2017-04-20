@@ -37,5 +37,10 @@ class ns_settings(object):
                 'classes' : { 'teardrop' },
                 'geom' : "1844x704+39+4",
                 'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=18\' -e ~/bin/scripts/teardrop"
+            },
+            'console': {
+                'classes' : { 'youtube-get' },
+                'geom': "1339x866+247+13",
+                'prog' : "/bin/true",
             }
         }

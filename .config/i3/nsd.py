@@ -38,6 +38,7 @@ class named_scratchpad(SingletonMixin):
         self.group_list=[]
         self.fullscreen_list=[]
         [self.group_list.append(gr) for gr in settings_]
+        self.prev_id=0
 
     def parse_geom(self, group):
         geom=re.split(r'[x+]', settings_[group]["geom"])
@@ -103,8 +104,11 @@ class named_scratchpad(SingletonMixin):
                         return group
 
         curr_group=get_current_group(self,i3.get_tree().find_focused())
-        if curr_group  != None:
+        if curr_group != None:
             func(curr_group)
+            return True
+        else:
+            return False
 
     def next_win(self):
         focused_=i3.get_tree().find_focused()
@@ -124,7 +128,10 @@ class named_scratchpad(SingletonMixin):
         self.apply_to_current_group(next_win_)
 
     def hide_current(self):
-        self.apply_to_current_group(self.unfocus)
+        groupwins=self.apply_to_current_group(self.unfocus)
+        if not groupwins:
+            self.prev_id=i3.get_tree().find_focused().id
+            i3.command('[con_id=__focused__] scratchpad show')
 
     def switch(self, args):
         switch_ = {

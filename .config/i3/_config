@@ -81,7 +81,7 @@ set {$graph}  [graph]
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
-bindsym $mod+Shift+d [con_mark="console2"] scratchpad show
+bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
 bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
 
@@ -104,7 +104,7 @@ for_window [class="guncharmap"]  move container to workspace $doc
 for_window [class="(?i)dota.*"] floating enable, move container to workspace $wine, workspace $wine, focus
 for_window [class="^(inkscape|simple-scan)$"] move container to workspace $graph
 for_window [class="(?i)^.*vim$"] move container to workspace $dev, workspace $dev, focus
-for_window [class="(?i)^(VirtualBox|vmware|QEMU|spic).*$"] move container to workspace $vm
+for_window [class="(?i)^(VirtualBox|vmware|QEMU|spic).*$"] move container to workspace $vm, focus
 for_window [class="(?i)(Wine|Crossover)"] floating enable, move container to workspace $wine, workspace $wine, focus
 for_window [title="^.*.exe$"] floating enable, move container to workspace $wine, workspace $wine, focus
 for_window [class="^jetbrains-(idea|clion|andrond-studio).*"] move container to workspace $ide, workspace $ide, focus
@@ -122,7 +122,6 @@ for_window [class="^(Vuze|Ktorrent)$"] move container to workspace $torrent
 for_window [class="^(Xmessage|XFontSel|XCalc|Xfce)$"] floating enable
 for_window [class="^(XRebirth|UE4Editor)$"] floating enable, move container to workspace $wine, workspace $wine, focus
 for_window [class="yakuake"] floating enable
-for_window [class="youtube-get"] mark console2, move scratchpad, move absolute position 247 13, resize set 1339 866
 for_window [instance="^(console|gdb|mixer|htop|gcolor2|gpick)$"] floating enable
 for_window [instance="^(gcalctool|galculator)$"] floating enable
 for_window [instance="gparted"] move container to workspace $admin
