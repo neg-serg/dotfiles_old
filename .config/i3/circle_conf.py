@@ -35,7 +35,9 @@ class cycle_settings(object):
             'vm':{
                 'classes': {
                     'VirtualBox',
-                    'vmware'
+                    'vmware',
+                    'qemu-system-x86_64',
+                    "Qemu-system-x86_64",
                 },
             },
             'term':{
