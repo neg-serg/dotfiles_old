@@ -12,7 +12,6 @@ ${SCRIPT_HOME}/systemd_env_forwarding.zsh
     xrdb -load "${HOME}/.Xresources"
 
 pulseaudio --start &
-wmname Sawfish
 
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
@@ -26,6 +25,5 @@ source "${XDG_CONFIG_HOME}/xinit/email.dash"
 eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
-~/bin/pass_notifyd &
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
