@@ -1,0 +1,507 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'rubygems'
+require 'fileutils'
+require 'open-uri'
+require 'stringex'
+require 'taglib'
+require 'yaml'
+
+# Headers
+Ver = '0.1.7'
+Homepage = 'http://git.2f30.org/musicfix/'
+Headers = {'User-Agent' => "musicfix/#{Ver} +#{Homepage}"}
+
+# Concatenate artist list using '&'
+# Convert "Sound, The (2)" to "The Sound"
+# Convert "Unknown (21), The" to "The Unknown"
+def mkartist al
+    nl = al.collect {|a| a['name']}
+    nl.each {|n| n.gsub! /\s\(\d+\)$/, ''}
+    nl.each {|n| n.gsub! /(.*), The$/, 'The \1'}
+    nl.each {|n| n.gsub! /\s\(\d+\)$/, ''}
+    nl.join ' & '
+end
+
+# Convert "3" to (nil, "03")
+# Convert "A" to (nil, "A1")
+# Convert "A3" to (nil, "A3")
+# Convert "2.3" to ("2", "03")
+# Convert "2.03" to ("2", "03")
+# Convert "CD2-3" to ("2", "03")
+def mkdiscnum pos
+    np = pos.gsub /[-.]/, '#'
+    d, n = np.split '#'
+    if not n
+        n = d
+        d = nil
+    else
+        d = d.gsub /\D/, ''
+    end
+    if n.match /[A-Z]/
+        n = n.ljust(2, '1')
+    else
+        n = n.rjust(2, '0')
+    end
+    return d, n
+end
+
+# Add wordings for symbols
+syms = {"≠" => "not equals",
+        "Χ" => "x",
+        "★" => "blackstar",
+        "•" => ""}
+Stringex::Localization.store_translations :en, :transliterations, syms
+
+# Convert to lowercase ASCII without punctuation
+# Convert "Jean-Michel Jarre" to "jean_michel_jarre"
+# Convert "Aaah...!" to "aaah"
+# Convert "Ruh / Spirit" to "ruh_spirit"
+def mkname n
+    # These may be in track titles like "(7'' Version)"
+    n = n.gsub '12"', '12 inch'
+    n = n.gsub "12''", "12 inch"
+    n = n.gsub "12'", "12 inch"
+    n = n.gsub '10"', '10 inch'
+    n = n.gsub "10''", "10 inch"
+    n = n.gsub "10'", "10 inch"
+    n = n.gsub '7"', '7 inch'
+    n = n.gsub "7''", "7 inch"
+    n = n.gsub "7'", "7 inch"
+    n = n.gsub " & ", " and "
+    n = n.gsub '.', ' '
+    n = n.gsub '/', ' '
+    # Transliterate
+    n.to_url.gsub '-', '_'
+end
+
+# Get cover artwork
+def getimages rel
+    return nil unless rel['images']
+    imgs = []
+    rel['images'].each do |img|
+        imgs << img['uri']
+    end
+    imgs
+end
+
+# Construct position list from tracks filter
+# The string "1--3,5,8" becomes ["1", "2", "3", "5", "8"]
+# The string "A2--A4,B3" becomes ["A2", "A3", "A4", "B3"]
+# The string "1-8--1-9,1-10--1-11" becomes ["1-8", "1-9", "1-10", "1-11"]
+# Returns nil on error
+def mkposlist tracks
+    pl = tracks.split(",").map do |r|
+        r = r.split("--")
+        return nil if r.include? ""
+        r = case r.length
+            when 1 then r
+            when 2 then (r[0] .. r[1]).map {|i| i}
+            else return nil
+        end
+        return nil if r.empty?
+        r
+    end
+    pl.flatten
+end
+
+# Formats we care about and their abbreviations
+# http://www.discogs.com/search/#more_facets_format_exact
+# Ignore "Vinyl" in favor of "LP"/"EP"/'7"'/'10"'/'12"' descriptions
+# Ignore "File" in favor of "MP3"/"WAV"/"FLAC" descriptions
+# Avoid too generic descriptions such as "Album"
+# Avoid too specific descriptions such as "Green", "Gatefold"
+@ft = {
+    'CD' => 'CD',
+    'CDr' => 'CDr',
+    'LP' => 'LP',
+    'EP' => 'EP',
+    'Cassette' => 'Cass',
+    '12"' => '12inch',
+    '10"' => '10inch',
+    '7"' => '7inch',
+    'Mini-Album' => 'Mini',
+    'Maxi-Single' => 'Maxi',
+    'Picture Disc' => 'Pic',
+    'Flexi-disc' => 'Flexi',
+    'Promo' => 'Promo',
+    'Reissue' => 'RE',
+    'Remastered' => 'RM',
+    'Remaster' => 'RM',
+    'Repress' => 'RP',
+    'Mispress' => 'MP',
+    'Test Pressing' => 'TP',
+    'Enhanced' => 'Enh',
+    'Digipak ' => 'Dig',
+    'Box Set' => 'Box',
+    'Limited Edition' => 'Ltd',
+    'Club Edition' => 'Club',
+    'Compilation' => 'Comp',
+    'Sampler' => 'Smplr',
+    'Numbered' => 'Num',
+    'Unofficial Release' => 'Unofficial',
+    'Single Sided' => 'S/Sided',
+    'MP3' => 'MP3',
+    'AAC' => 'AAC',
+    'FLAC' => 'FLAC',
+    'WAV' => 'WAV',
+}
+
+# Make a sane format string also using format description
+def mkformat format
+    f = []
+    formats = []
+    if format['name'] then
+        formats << format['name']
+    end
+    if format['descriptions'] then
+        formats += format['descriptions']
+    end
+    formats.each do |d|
+        f << d if @ft.keys.include? d
+    end
+    f.join ' '
+end
+
+# Shorten certain common words that appear in format strings
+def mkshort n
+    # Note that prefix substitution is broken
+    ftre = /(#{@ft.keys.join('|')})/
+    n.gsub(ftre, @ft)
+end
+
+# Return single item if array is full of duplicates
+def flatten_if_one ary
+    if ary.uniq.length == 1 then
+        ary.first
+    else
+        ary.uniq
+    end
+end
+
+# Parse command line
+usage = ''
+usage << "Usage: musicfix [fake] relid [tracks]\n"
+usage << "       musicfix [fake] dump relid [relfile]\n"
+usage << "       musicfix [fake] load [relfile]\n"
+usage << "       musicfix [fake] tags [relfile]\n"
+fake = ARGV[0] == 'fake'
+ARGV.delete 'fake'
+cmd = ARGV[0] || (puts usage; exit)
+case cmd
+when 'load' then
+    relfile = ARGV[1] || nil
+when 'dump' then
+    relid = ARGV[1] || (puts usage; exit)
+    relfile = ARGV[2] || 'release.yaml'
+when 'tags' then
+    relfile = ARGV[1] || 'release.yaml'
+else
+    relid = ARGV[0]
+    tracks = ARGV[1] || nil
+end
+
+# Default configuration
+cfg = {}
+cfg['mdir'] = '~/music'
+cfg['track'] = '"#{mdir}/#{fba}-#{my}-#{fb}-#{fv}/#{d}#{fn}-#{fa}-#{ft}.#{x}"'
+cfg['image'] = '"#{mdir}/#{fba}-#{my}-#{fb}-#{fv}/#{zz}-#{fba}-#{fb}_cover#{i}.jpg"'
+cfg['rdata'] = '"#{mdir}/#{fba}-#{my}-#{fb}-#{fv}/#{zz}-#{fba}-#{fb}_release.yaml"'
+#cfg['after'] = '"mpc update #{fba}-#{my}-#{fb}-#{fv}"'
+cfg['nimg'] = 1
+
+# User configuration overrides
+cfgpath = File.expand_path('~/.musicfixrc')
+if File.exists? cfgpath
+    new = YAML.load File.open(cfgpath, 'r')
+    cfg.merge! new
+end
+
+# Authentication option
+urlopts = ''
+if cfg['token'] then
+    urlopts = "?token=#{cfg['token']}"
+end
+
+# Expand music directory
+cfg['mdir'] = File.expand_path cfg['mdir']
+
+# Print configuration
+puts '# Configuration'
+puts cfg.to_yaml
+
+# Early file checks
+if cmd == 'dump' or cmd == 'tags' then
+    if File.exists? relfile then
+        STDERR.puts "Release file #{relfile} exists!"
+        exit
+    end
+end
+
+unless cmd == 'dump' then
+    # Supported formats
+    fmtre = /mp3|ogg|m4a|mpc|flac|wv|wav|aiff/i
+    # Construct file list
+    fl = Dir['*'].select {|f| File.extname(f).match fmtre}.sort
+    if fl.empty? then
+        STDERR.puts 'No music files found!'
+        exit 1
+    end
+    # Output file list
+    puts '# Files to process'
+    puts fl.to_yaml
+end
+
+# Initialize release info
+if cmd == 'load' then
+    # Load release data from file
+    if relfile then
+        # The user specified some file
+        unless File.exists? relfile then
+            STDERR.puts "Release file #{relfile} not found!"
+            exit 1
+        end
+    else
+        # Look for 'release.yaml' first
+        if File.exists? 'release.yaml' then
+            relfile = 'release.yaml'
+        else
+            # Look for any '.yaml' file
+            relfl = Dir['*'].select {|f| File.extname(f).match /yaml/i}
+            relfile = relfl.sort.first
+        end
+        unless relfile then
+            STDERR.puts 'No release file found!'
+            exit 1
+        end
+    end
+    STDERR.puts "Loading release data from file..."
+    rel = YAML.load File.open(relfile, 'r')
+elsif cmd == 'tags' then
+    # Generate release file from audio file tags
+    STDERR.puts "Generating release data from tags..."
+    rel = {}
+    rel['artist'] = []
+    rel['album'] = []
+    rel['year'] = []
+    rel['masteryear'] = nil
+    rel['genre'] = []
+    rel['format'] = nil
+    rel['comment'] = []
+    rel['images'] = nil
+    rel['tracklist'] = []
+    # Populate tracklist
+    fl.each do |fname|
+        TagLib::FileRef.open(fname) do |f|
+            trk = {}
+            trk['pos'] = f.tag.track
+            trk['artist'] = f.tag.artist
+            trk['title'] = f.tag.title
+            rel['tracklist'] << trk
+            # Make lists and flatten afterwards
+            rel['artist'] << f.tag.artist
+            rel['album'] << f.tag.album
+            rel['year'] << f.tag.year
+            rel['genre'] << f.tag.genre
+            rel['comment'] << f.tag.comment
+        end
+    end
+    if rel['artist'].uniq.length == 1 then
+        # Single-artist release
+        rel['artist'] = rel['artist'].first
+        rel['tracklist'].each do |trk|
+            trk.delete 'artist'
+        end
+    else
+        rel['artist'] = 'Various'
+    end
+    # These should be the same on all files
+    rel['album'] = flatten_if_one rel['album']
+    rel['year'] = flatten_if_one rel['year']
+    rel['genre'] = flatten_if_one rel['genre']
+    rel['comment'] = flatten_if_one rel['comment']
+    # Assumptions
+    rel['masteryear'] = rel['year']
+    rel['format'] = 'CD'
+else
+    # Get release data from Discogs
+    STDERR.puts "Getting release data from Discogs..."
+    r = YAML.load(open("https://api.discogs.com/releases/#{relid}#{urlopts}",
+        Headers))
+    mr = if r['master_id'] then
+        YAML.load(open("https://api.discogs.com/masters/#{r['master_id']}#{urlopts}",
+            Headers))
+    end
+    # Tracklist can contain dummy header tracks, strip them
+    tl = r['tracklist'].select {|t| t['position'] != ''}
+    # Apply tracks filter if given
+    if tracks then
+        pl = mkposlist tracks
+        unless pl
+            STDERR.puts "Invalid tracks filter: #{tracks}"
+            exit 1
+        end
+        tl = tl.select {|t| pl.include? t['position']}
+        if tl.empty?
+            STDERR.puts "Filter returned no tracks: #{tracks}"
+            exit 1
+        end
+    end
+    # Gather release-wide data
+    rel = {}
+    rel['artist'] = mkartist r['artists']
+    rel['album'] = r['title']
+    rel['year'] = r['released']
+    rel['masteryear'] = if mr then mr['year'] end || r['released']
+    # Year can be full-date so keep only the year part
+    rel['year'] = rel['year'].to_s.slice(0..3).to_i
+    rel['masteryear'] = rel['masteryear'].to_s.slice(0..3).to_i
+    rel['genre'] = if r['styles'] then r['styles'].first end ||
+                   if r['genres'] then r['genres'].first end
+    rel['format'] = mkformat r['formats'].first
+    rel['comment'] = "Discogs: #{r['id']}"
+    if tracks then
+        rel['comment'] += ", tracks: #{tracks}"
+    end
+    imgs = getimages(r)
+    rel['images'] = if imgs then imgs.first(cfg['nimg']) end
+    rel['tracklist'] = []
+    # Populate tracklist
+    tl.each do |s|
+        trk = {}
+        trk['pos'] = s['position']
+        trk['artist'] = mkartist s['artists'] if s['artists']
+        trk['title'] = s['title']
+        rel['tracklist'] << trk
+    end
+end
+
+# Output release info
+puts '# Release data'
+puts rel.to_yaml
+if cmd == 'dump' or cmd == 'tags' then
+    STDERR.puts "Save rdata to #{relfile}"
+    unless fake
+        File.open(relfile, 'w') do |f|
+            f.puts rel.to_yaml
+        end
+    end
+    exit
+end
+
+# Variables for use in templates
+mdir = cfg['mdir']
+ba = rel['artist']
+b = rel['album']
+y = rel['year']
+my = rel['masteryear']
+g = rel['genre']
+v = rel['format']
+c = rel['comment']
+fba = mkname ba
+fb = mkname b
+fv = mkname (mkshort v)
+# Internal use only
+tl = rel['tracklist']
+
+# Sanity checks
+if tl.length != fl.length then
+    puts "Found #{tl.length} tracks for #{fl.length} music files."
+    if fl.length < tl.length then
+        # Limit entries to number of files
+        tl = tl.first fl.length
+        print "Use only the first #{fl.length} entries? [y/N] "
+    else
+        # Limit files to available tracks
+        fl = fl.first tl.length
+        print "Use only the first #{fl.length} files? [y/N] "
+    end
+    res = STDIN.readline.strip
+    exit unless res == 'y'
+end
+
+# Loop over the music files and
+#   1. Copy them over with proper names
+#   2. Fix the tags on the new files
+tn = 0
+fl.each do |ofname|
+    tn = tn.next
+    trk = tl[tn - 1]
+    # Use track artist for compilations, fallback to release
+    a = trk['artist'] || rel['artist']
+    d, n = mkdiscnum trk['pos'].to_s
+    t = trk['title']
+    fa = mkname a
+    ft = mkname t
+    fn = mkname n
+    x = File.extname(ofname).delete('.').downcase
+    nfname = eval cfg['track']
+    # Add filename to track descriptor
+    trk['file'] = nfname
+    STDERR.puts "Copy track to #{nfname}"
+    unless fake
+        FileUtils.makedirs(File.dirname nfname)
+        FileUtils.copy(ofname, nfname)
+        TagLib::FileRef.open(nfname) do |f|
+            f.tag.artist = a
+            f.tag.album = b
+            f.tag.title = t
+            f.tag.track = tn
+            f.tag.year = y
+            f.tag.genre = g
+            f.tag.comment = c
+            f.save
+        end
+    end
+end
+
+# Also save the first image of the artwork
+zz = '0' * (mkdiscnum tl.first['pos'].to_s).join.length
+if rel['images'] then
+    relimgs = []
+    rel['images'].each_with_index do |imgurl, idx|
+        pad = rel['images'].length.to_s.length
+        i = idx.to_s.rjust(pad, '0')
+        if rel['images'].length == 1
+            i = ''
+        end
+        # The variable i can be used in the image template
+        imgname = eval cfg['image']
+        STDERR.puts "Save image to #{imgname}"
+        unless fake
+            # Relative path or URL
+            if File.exists? imgurl
+                img = open(imgurl).read
+            else
+                img = open(imgurl, Headers).read
+            end
+            File.open(imgname, 'wb').write img
+            # Update to local relative path now
+            relimgs << (File.basename imgname)
+        end
+    end
+    rel['images'] = relimgs
+end
+# Also save the release file for future use
+relfile = eval cfg['rdata']
+STDERR.puts "Save rdata to #{relfile}"
+unless fake
+    # Sort tracklist in filename order and delete filenames
+    rel['tracklist'].sort_by! {|s| s['file']}
+    rel['tracklist'].each {|s| s.delete 'file'}
+    File.open(relfile, 'w') do |f|
+        f.puts rel.to_yaml
+    end
+end
+
+# Execute command if provided
+if cfg['after'] then
+    run = eval cfg['after']
+    STDERR.puts "Executing #{run}"
+    unless fake
+        puts `#{run}`
+    end
+end
+
+# vim:set ts=4 sw=4 et:
