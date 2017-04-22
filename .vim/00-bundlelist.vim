@@ -1,7 +1,7 @@
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
     call dein#begin(expand('~/.vim'))
-    call dein#add('Valloric/YouCompleteMe') 
+    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     if !has("nvim")
         "best vim autocomplete engine for now
         call dein#add('powerline/powerline')
@@ -60,8 +60,9 @@ if dein#load_state("/home/neg/.vim/repos")
     "rainbow parentheses
     call dein#add('luochen1990/rainbow') 
     "css and colors colorizer
-    call dein#add('chrisbra/colorizer') 
-    " NeoBundleLazy 'chrisbra/unicode.vim', { 'commands' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] } "better digraphs
+    call dein#add('chrisbra/colorizer')
+    "better digraphs
+    call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
     "highlight colors in terminal
     call dein#add('sunaku/vim-hicterm')
     "indent tabs visually with |-es too slow
@@ -81,9 +82,11 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('tpope/vim-unimpaired.git') 
     "dot for everything
     call dein#add('tpope/vim-repeat')
-    "autopair ()[]{}
+    "undo tree
     call dein#add('sjl/gundo.vim', {'on_cmd': ['GundoToggle']})
+    "autopair ()[]{}
     call dein#add('Raimondi/delimitMate')
+    "new commands to vim for (){}[]''""<>
     call dein#add('tpope/vim-surround')
     "-----------------------------------------------------------------------------------------
     "stack trace parser
@@ -134,6 +137,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('wincent/terminus') 
     endif
     "--[ Misc ]------------------------------------------------------------------------------
+    "prevent to much ru-en layout switching with c-s
+    call dein#add('powerman/vim-plugin-ruscmd')
     " vim nice swapit
     call dein#add('mjbrownie/swapit')
     " I cannot use vimfiler without unite
@@ -204,6 +209,8 @@ if dein#load_state("/home/neg/.vim/repos")
         "rtags plugin for vim
         call dein#add('lyuts/vim-rtags.git')
     endif
+    "lldb bindings to neovim
+    call dein#add('critiqjo/lldb.nvim')
     "try it instead of tcommentc
     call dein#add('tpope/vim-commentary.git')
     "to insert endif for if, end for begin and so on
