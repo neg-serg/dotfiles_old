@@ -1,5 +1,3 @@
 #!/bin/sh
 windowmanager=i3
-#windowmanager=notion
-#windowmanager=pantheon
 export windowmanager
