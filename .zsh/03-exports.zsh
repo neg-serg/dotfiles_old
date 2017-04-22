@@ -1,9 +1,6 @@
 source ~/.zsh/03-helpers.zsh
 source ~/.zsh/03-xdg_vars.zsh
 
-0=zsh
-SHELL=$(which zsh)
-
 path_dirs=(
     /usr/{s,}bin
     /usr/lib64/notion/bin
@@ -26,12 +23,12 @@ export PATH="${PATH}:${HOME}/.rvm/bin"
 # Load RVM into a shell session *as a function*
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && \
     source "${HOME}/.rvm/scripts/rvm"
-eval $(perl -I /one/dev/perl5/lib/perl5 -Mlocal::lib=/one/dev/perl5)
+eval $(perl -I $(readlink -f "${HOME}/dev/perl5/lib/perl5") -Mlocal::lib=$(readlink -f "${HOME}/dev/perl5"))
 
 unset SSH_ASKPASS
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
-export AURDEST=~/tmp/pacaur
+export AURDEST=$(readlink -f "${HOME}/tmp/pacaur")
 
 export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
@@ -42,20 +39,12 @@ for q in vim nvim vi;
     && export EDITOR=${q}; break }
 export VISUAL="${SCRIPT_HOME}/v_standalone"
 
-export INPUTRC=${HOME}/.config/inputrc
-
+export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export BROWSER="firefox"
-
-export ACKRC="${XDG_CONFIG_HOME}/ackrc"
-export GIMP2_DIRECTORY=${XDG_CONFIG_HOME}/gimp-2.8
+export GIMP2_DIRECTORY="${XDG_CONFIG_HOME}/gimp-2.8"
 export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
 
 export VAGRANT_HOME="/mnt/home/vagrant"
-
-export NCURSES_ASSUMED_COLORS=3,0
-export NCURSES_NO_MAGIC_COOKIES=1
-export NCURSES_NO_PADDING=1
-
 export PERLBREW_ROOT=${HOME}/.perl5
 
 if [[ -x "$(which "vimpager" 2>/dev/null)" ]]; then
@@ -66,8 +55,6 @@ else
     export PAGER="less"
 fi
 
-export X_OSD_COLOR='#00ffff'
-
 export LESSCHARSET=UTF-8
 export LESS_TERMCAP_mb="$(tput bold; tput setaf 2)" # begin blinking
 export LESS_TERMCAP_md="$(tput bold)"               # begin bold
@@ -77,10 +64,8 @@ export LESS_TERMCAP_se="$(tput sgr0)"               # end standout
 export LESS_TERMCAP_us="$(tput bold; tput setaf 2)" # begin underline
 export LESS_TERMCAP_ue="$(tput sgr0)"               # end underline
 
-export PWS="${XDG_DATA_HOME}/safe/pws"
 export TEXINPUTS=".:${XDG_DATA_HOME}/texmf//:"
 
-# history
 export HISTFILE=${HOME}/.zsh/zsh_history
 export SAVEHIST=100000 # useful for setopt append_history
 export HISTSIZE=$(( $SAVEHIST * 1.10 ))
@@ -88,23 +73,17 @@ export HISTIGNORE="&:ls:[bf]g:exit:reset:clear:cd*:gs:gd"
 export HISTCONTROL=ignoreboth:erasedups # ignoreboth (= ignoredups + ignorespace)
 
 local -a timefmt_=(
-    $(_zwrap "$(_zfwrap "%J")") 
-    $(_zwrap "%U")
-    $(_zwrap "user %S") 
-    $(_zwrap "system %P") 
-    $(_zwrap "cpu %*E total")
-    $(_zwrap "-||-") 
-    $(_zwrap "Mem: %M kb max")
+    "$(_zwrap "$(_zfwrap "%J")")"
+    "$(_zwrap "%U")"
+    "$(_zwrap "user %S")"
+    "$(_zwrap "system %P")"
+    "$(_zwrap "cpu %*E total")"
+    "$(_zwrap "-||-")"
+    "$(_zwrap "Mem: %M kb max")"
 )
 export TIMEFMT="${timefmt_[@]}"
-
 export COLORTERM="yes"
-
-export ACK_COLOR_MATCH="cyan bold"
-export ACK_COLOR_FILENAME="cyan bold on_black"
-export ACK_COLOR_LINENO="bold green"
-export LS_COLORS GREP_COLORS
-
+export LS_COLORS
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>~` '
 
 # dirstack handling
@@ -147,13 +126,14 @@ export SKIM_DEFAULT_COMMAND='ag -l -g ""'
 export SKIM_DEFAULT_OPTIONS="${SKIM_DEFAULT_OPTS} --color=16"
 
 export PULSE_LATENCY_MSEC=60
-export NVIM_TUI_ENABLE_TRUE_COLOR=0
+
+export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 export STEAM_RUNTIME=1
 
-local audio_card_="alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo"
 export QEMU_AUDIO_DRV=pa
 export QEMU_PA_SOURCE=input
+local audio_card_="alsa_output.usb-E-MU_Systems__Inc._E-MU_0204___USB_E-MU-A8-3F19-07DC0212-089A1-8740AT2A-00.analog-stereo"
 export QEMU_PA_SINK="${audio_card_}"
 
 export SXHKD_FIFO="/tmp/sxhkd_fifo"
@@ -181,11 +161,10 @@ export NVIM_LISTEN_ADDRESS="${HOME}/1st_level/nwim.socket"
 (){
     local _home="/mnt/home"
     local _dev="/one/dev"
-    hash -d dev=${_dev}
-    hash -d doc="${_home}/doc"
-    hash -d nv="${_dev}/src/1st_level/neovim"
+    hash -d q=${_dev}
+    hash -d d="${_home}/doc"
     hash -d torrent="${_home}/torrent"
-    hash -d v="${_home}/vid"
-    hash -d z="${_dev}/src"
+    hash -d v="${_home}/vid/new"
+    hash -d {z,s}="${_dev}/src"
     hash -d p='/home/neg/pic'
 }

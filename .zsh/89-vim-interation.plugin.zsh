@@ -146,11 +146,11 @@ function nwim_goto() {
 function nvim_file_open() (
     local file_name="$(resolve_file ${line})"
     file_name=$(bash -c "printf %q '${file_name}'")
-    { nvr --servername /tmp/nvimsocket --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
-        || { while [[ $(nvr --servername /tmp/nvimsocket --remote-expr "g:nvim_is_started" 2>/dev/null) != "on" ]]; do
+    { nvr --servername ${HOME}/1st_level/nvim.socket --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
+        || { while [[ $(nvr --servername ${HOME}/1st_level/nvim.socket --remote-expr "g:nvim_is_started" 2>/dev/null) != "on" ]]; do
             sleep ${nwim_timer}
         done \
-        && nvr --servername /tmp/nvimsocket --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
+        && nvr --servername ${HOME}/1st_level/nvim.socket --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
         local file_size=$(stat -c%s "${file_name}" 2>/dev/null | \
                           numfmt --to=iec-i --suffix=B | \
                           sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
@@ -195,7 +195,7 @@ function nprocess_list() {
     if [[ ${cmd} == ${to_normal} ]]; then
         for line; do nvim_file_open; done
     else
-        nvr --servername /tmp/nvimsocket --remote-send "${cmd}"
+        nvr --servername ${HOME}/1st_level/nvim.socket --remote-send "${cmd}"
         for line; do nvim_file_open; done
     fi
     unset before; unset after
@@ -204,7 +204,7 @@ function nprocess_list() {
 function eprocess_list() {
     nwim_goto
     sleep "$1"; shift   
-    for line; do nvr --servername /tmp/nvimsocket --remote-wait "$@"; done
+    for line; do nvr --servername ${HOME}/1st_level/nvim.socket --remote-wait "$@"; done
 }
 
 function nv { 

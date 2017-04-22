@@ -1,3 +1,5 @@
+SHELL=$(which zsh)
+
 _start_time=$(( $(( $(date +%s) * 1000000000 )) + $(date +%N) ))
 
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
@@ -52,20 +54,6 @@ stty ixany
 stty ixoff -ixon # Disable XON/XOFF flow control; this is required to make C-s work in Vim.
 
 function stty_setup(){
-    #stty intr "^C" 2> /dev/null
-    #stty erase "^?" 2> /dev/null
-    #stty start "undef" 2> /dev/null
-    #stty stop "undef" 2> /dev/null
-    #stty susp "^Z" 2> /dev/null
-    #stty rprnt "^R" 2> /dev/null
-    #stty werase "^W" 2> /dev/null
-    #stty lnext "^B" 2> /dev/null
-    #stty flush "undef" 2> /dev/null
-    ##stty eol "undef" 2> /dev/null
-    ##stty eol2 "undef" 2> /dev/null
-    ##stty swtch "undef" 2> /dev/null
-    ##stty kill "undef" 2> /dev/null
-    ##stty quit "undef" 2> /dev/null
     stty time 0 2> /dev/null
     stty min 0 2> /dev/null
     stty line 6 2> /dev/null
