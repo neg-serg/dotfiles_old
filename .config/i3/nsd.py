@@ -146,7 +146,7 @@ class named_scratchpad(SingletonMixin):
 
 def mark_group(self, event):
     def scratch_move():
-        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.parse_geom(group)
+        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.get_geom(group)
         con.command(con_cmd)
         marked[group].append(con)
 
@@ -171,7 +171,7 @@ def mark_all(hide=True):
         else:
             hide_cmd=''
 
-        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.parse_geom(group)+hide_cmd
+        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.get_geom(group)+hide_cmd
         con.command(con_cmd)
         marked[group].append(con)
 

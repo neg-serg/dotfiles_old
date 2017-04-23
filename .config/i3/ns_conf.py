@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import subprocess
 
 class ns_settings(object):
     def init_i3_win_cmds(self, hide=True, dprefix_="for_window "):
@@ -42,7 +43,7 @@ class ns_settings(object):
                 lst=[item for item in self.settings[tag][key] if item != '']
                 if lst != []:
                     pref=dprefix_+"[" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
-                    for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.parse_geom(tag) + hide_cmd()
+                    for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.get_geom(tag) + hide_cmd()
                     return for_win_cmd
             return ''
 
@@ -54,13 +55,29 @@ class ns_settings(object):
 
         self.cmd_list=filter(lambda str: str!='', cmd_list)
 
-    def parse_geom(self, group):
+    def get_geom(self, tag):
+        return self.parsed_geom[tag]
+
+    def __get_screen_resolution(self):
+        output = subprocess.Popen('xrandr | grep "\*" | cut -d" " -f4',shell=True, stdout=subprocess.PIPE).communicate()[0]
+        resolution = output.split()[0].split(b'x')
+        return {'width': int(resolution[0]), 'height': int(resolution[1])}
+
+    def __parse_geom(self, group):
+
+        resolution_default={'width':1920, 'height':1200}
+
         geom=re.split(r'[x+]', self.settings[group]["geom"])
-        return "move absolute position {2} {3}, resize set {0} {1}".format(*geom)
+        converted_geom=[]
+
+        converted_geom.append(int(int(geom[0])*self.current_resolution['width'] / resolution_default['width']))
+        converted_geom.append(int(int(geom[1])*self.current_resolution['height'] / resolution_default['height']))
+        converted_geom.append(int(int(geom[2])*self.current_resolution['width'] / resolution_default['width']))
+        converted_geom.append(int(int(geom[3])*self.current_resolution['height'] / resolution_default['height']))
+
+        return "move absolute position {2} {3}, resize set {0} {1}".format(*converted_geom)
 
     def __init__(self):
-        self.cmd_list=[]
-
         self.settings = {
             'im' : {
                 'class' : {
@@ -79,7 +96,6 @@ class ns_settings(object):
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
             'mutt': {
-                'class' : { '' },
                 'instance' : { 'mutt' },
                 'geom' : "1250x700+293+0",
                 'prog' : "st -f \'PragmataPro for Powerline:size=12\' -c mutt -e mutt",
@@ -100,3 +116,9 @@ class ns_settings(object):
                 'prog' : "/bin/true",
             }
         }
+
+        self.cmd_list=[]
+        self.parsed_geom={}
+        self.current_resolution=self.__get_screen_resolution()
+        for tag in self.settings:
+            self.parsed_geom[tag] = self.__parse_geom(tag)
