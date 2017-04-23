@@ -30,7 +30,8 @@ import re
 import errno
 import os
 
-settings_=ns_settings().settings
+settings_obj_=ns_settings()
+settings_=settings_obj_.settings
 marked={i:[] for i in settings_}
 
 class named_scratchpad(SingletonMixin):
@@ -39,10 +40,6 @@ class named_scratchpad(SingletonMixin):
         self.fullscreen_list=[]
         [self.group_list.append(gr) for gr in settings_]
         self.prev_id=0
-
-    def parse_geom(self, group):
-        geom=re.split(r'[x+]', settings_[group]["geom"])
-        return "move absolute position {2} {3}, resize set {0} {1}".format(*geom)
 
     def make_mark(self, group):
         output=(group) + str(str(uuid.uuid4().fields[-1]))
@@ -148,49 +145,48 @@ class named_scratchpad(SingletonMixin):
             switch_[args[0]]()
 
 def mark_group(self, event):
-    def scratch_move(by):
-        con.command(ns.make_mark(group)+', move scratchpad,'+ns.parse_geom(group))
+    def scratch_move():
+        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.parse_geom(group)
+        con.command(con_cmd)
         marked[group].append(con)
 
-    def check_class():
-        return bool(con.window_class in settings_[group]["classes"])
-
-    def check_instance():
-        return bool(con.window_instance in settings_[group]["instances"])
+    def check_by(attr):
+        if attr in settings_[group]:
+            return bool(getattr(con, 'window_'+attr) in settings_[group][attr])
+        else:
+            return False
 
     for group in settings_:
         ns=named_scratchpad.instance()
         con=event.container
-        try:
-            if check_class():    scratch_move(by="class")
-            if check_instance(): scratch_move(by="instance")
-        except KeyError:
-            pass
+        for attr in ["class", "instance"]:
+            if check_by(attr):
+                scratch_move()
 
 def mark_all(hide=True):
-    def scratch_move(by):
+    def scratch_move():
         if hide:
             hide_cmd=', [con_id=__focused__] scratchpad show'
         else:
             hide_cmd=''
-        con.command(ns.make_mark(group)+', move scratchpad,'+ns.parse_geom(group)+hide_cmd)
+
+        con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.parse_geom(group)+hide_cmd
+        con.command(con_cmd)
         marked[group].append(con)
 
-    def check_class():
-        return bool(con.window_class in settings_[group]["classes"])
-
-    def check_instance():
-        return bool(con.window_instance in settings_[group]["instances"])
+    def check_by(attr):
+        if attr in settings_[group]:
+            return bool(getattr(con, 'window_'+attr) in settings_[group][attr])
+        else:
+            return False
 
     window_list = i3.get_tree().leaves()
     for group in settings_:
         ns=named_scratchpad.instance()
         for con in window_list:
-            try:
-                if check_class():    scratch_move(by="class")
-                if check_instance(): scratch_move(by="instance")
-            except KeyError:
-                pass
+            for attr in ["class", "instance"]:
+                if check_by(attr):
+                    scratch_move()
 
 def cleanup_mark(self, event):
     for tag in settings_:
@@ -216,9 +212,17 @@ if __name__ == '__main__':
         atexit.register(cleanup_all)
 
         ns=named_scratchpad.instance()
+
         mark_all(hide=True)
+
+        settings_obj_.init_i3_win_cmds(hide=False)
+        for forwindow_cmd in settings_obj_.cmd_list:
+            print(forwindow_cmd)
+            i3.command(forwindow_cmd)
 
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
+
         mainloop=Thread(target=mng.daemons[name].mainloop, args=(ns,)).start()
+
         i3.main()

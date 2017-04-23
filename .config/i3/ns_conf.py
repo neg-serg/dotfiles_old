@@ -3,7 +3,7 @@
 import re
 
 class ns_settings(object):
-    def init_i3_win_cmds(self):
+    def init_i3_win_cmds(self, hide):
         def ch_(list, ch):
             if len(list) > 1:
                 ret=ch
@@ -22,8 +22,8 @@ class ns_settings(object):
                 else:
                     ret+=item
             if len(attrib_list) > 1:
-                ret+=")$"
-            ret+='] '
+                ret+=')$'
+            ret+='"] '
 
             return ret
 
@@ -31,13 +31,17 @@ class ns_settings(object):
             return "move scratchpad, "
 
         def hide_cmd():
-            return ", [con_id=__focused__] scratchpad show"
+            if hide:
+                ret = ", [con_id=__focused__] scratchpad show"
+            else:
+                ret = ""
+            return ret
 
-        def ret_info(key, crop):
+        def ret_info(key):
             if key in attr:
                 lst=[item for item in self.settings[tag][key] if item != '']
                 if lst != []:
-                    pref="for_window [" + '{}='.format(attr[:-crop]) + ch_(self.settings[tag][attr],'^')
+                    pref="for_window [" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
                     for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.parse_geom(tag) + hide_cmd()
                     return for_win_cmd
             return ''
@@ -45,8 +49,8 @@ class ns_settings(object):
         cmd_list=[]
         for tag in self.settings:
             for attr in self.settings[tag]:
-                cmd_list.append(ret_info('classes',2))
-                cmd_list.append(ret_info('instances',1))
+                cmd_list.append(ret_info('class'))
+                cmd_list.append(ret_info('instance'))
 
         self.cmd_list=filter(lambda str: str!='', cmd_list)
 
@@ -59,7 +63,7 @@ class ns_settings(object):
 
         self.settings = {
             'im' : {
-                'classes' : {
+                'class' : {
                     'TelegramDesktop',
                     'Telegram-desktop',
                     'telegram-desktop',
@@ -70,28 +74,28 @@ class ns_settings(object):
                 'geom' : "528x1029+1372+127"
             },
             'ncmpcpp': {
-                'classes' : { 'mpd-pad2' },
+                'class' : { 'mpd-pad2' },
                 'geom' : "1200x600+400+400",
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
             'mutt': {
-                'classes' : { '' },
-                'instances' : { 'mutt' },
+                'class' : { '' },
+                'instance' : { 'mutt' },
                 'geom' : "1250x700+293+0",
                 'prog' : "st -f \'PragmataPro for Powerline:size=12\' -c mutt -e mutt",
             },
             'ranger': {
-                'classes' : { 'ranger' },
+                'class' : { 'ranger' },
                 'geom' : "1132x760+170+18",
                 'prog' : "~/bin/scripts/run_ranger"
             },
             'teardrop': {
-                'classes' : { 'teardrop' },
+                'class' : { 'teardrop' },
                 'geom' : "1844x704+39+4",
                 'prog' : "st -c teardrop -f \'PragmataPro for Powerline:size=18\' -e ~/bin/scripts/teardrop"
             },
             'console': {
-                'classes' : { 'youtube-get' },
+                'class' : { 'youtube-get' },
                 'geom': "1339x866+247+13",
                 'prog' : "/bin/true",
             }
