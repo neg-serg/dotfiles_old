@@ -59,7 +59,7 @@ class ns_settings(object):
         return self.parsed_geom[tag]
 
     def __get_screen_resolution(self):
-        output = subprocess.Popen('xrandr | grep "\*" | cut -d" " -f4',shell=True, stdout=subprocess.PIPE).communicate()[0]
+        output = subprocess.Popen('xrandr | awk \'/*/{print $1}\'',shell=True, stdout=subprocess.PIPE).communicate()[0]
         resolution = output.split()[0].split(b'x')
         return {'width': int(resolution[0]), 'height': int(resolution[1])}
 
