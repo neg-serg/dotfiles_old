@@ -41,7 +41,7 @@ class ns_settings(object):
             if key in attr:
                 lst=[item for item in self.settings[tag][key] if item != '']
                 if lst != []:
-                    pref="for_window [" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
+                    pref="[" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
                     for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.parse_geom(tag) + hide_cmd()
                     return for_win_cmd
             return ''
