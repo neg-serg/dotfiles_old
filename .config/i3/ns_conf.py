@@ -3,7 +3,7 @@
 import re
 
 class ns_settings(object):
-    def init_i3_win_cmds(self, hide):
+    def init_i3_win_cmds(self, hide=True, dprefix_="for_window "):
         def ch_(list, ch):
             if len(list) > 1:
                 ret=ch
@@ -41,7 +41,7 @@ class ns_settings(object):
             if key in attr:
                 lst=[item for item in self.settings[tag][key] if item != '']
                 if lst != []:
-                    pref="[" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
+                    pref=dprefix_+"[" + '{}="'.format(attr) + ch_(self.settings[tag][attr],'^')
                     for_win_cmd=pref + parse_attr_(key) + mv_scratch() + self.parse_geom(tag) + hide_cmd()
                     return for_win_cmd
             return ''

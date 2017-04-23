@@ -156,9 +156,10 @@ def mark_group(self, event):
         else:
             return False
 
+    con=event.container
+
     for group in settings_:
         ns=named_scratchpad.instance()
-        con=event.container
         for attr in ["class", "instance"]:
             if check_by(attr):
                 scratch_move()
@@ -214,11 +215,6 @@ if __name__ == '__main__':
         ns=named_scratchpad.instance()
 
         mark_all(hide=True)
-
-        settings_obj_.init_i3_win_cmds(hide=False)
-        for forwindow_cmd in settings_obj_.cmd_list:
-            print(forwindow_cmd)
-            i3.command(forwindow_cmd)
 
         i3.on('window::new', mark_group)
         i3.on('window::close', cleanup_mark)
