@@ -2,7 +2,7 @@
 "
 " Name:        mirodark
 " Version:     0.5
-" Last Change: 11-16-2013
+" Last Change: 06-02-2016
 " Maintainer:  Jerome Castaneda <djjcast@gmail.com>
 " URL:         https://github.com/djjcast/mirodark
 "
@@ -146,7 +146,7 @@ endif
 "
 " Maintainer: Henry So, Jr. <henryso@panix.com>
 "
-if !has("gui_running") &&
+if !has("gui_running") && (!has('termguicolors') || (has('termguicolors') && !&termguicolors)) && empty($NVIM_TUI_ENABLE_TRUE_COLOR) &&
             \ ((&t_Co == 88 || &t_Co == 256) && !exists("g:mirodark_disable_color_approximation"))
     " returns an approximate grey index for the given grey level
     fun! s:grey_number(x)
@@ -354,7 +354,7 @@ let colors_name="mirodark"
 " }}}
 
 " color scheme variables {{{
-if has("gui_running") ||
+if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR) ||
             \ ((&t_Co == 88 || &t_Co == 256) && !exists("g:mirodark_disable_color_approximation"))
     if !exists("g:mirodark_enable_higher_contrast_mode")
         let s:conf_bclr_hex="121212" " configuration-based background color hexadecimal
@@ -386,7 +386,7 @@ if has("gui_running") ||
     let s:lwht_hex="c0c0c0"        " light white hexadecimal   (color 15)
     let s:culc_hex="272727"        " cursor line/column hexadecimal
 
-    if has("gui_running")
+    if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv="gui" " vim environment (term, cterm, gui)
         let s:bclr="#".s:bclr_hex
         let s:fclr="#".s:fclr_hex
@@ -470,7 +470,13 @@ else
     let s:lcyn="14"
     let s:dwht="7"
     let s:lwht="15"
-    let s:culc=s:dblk
+    if &t_Co == 88
+        let s:culc="80" " #2e2e2e (xterm-88color)
+    elseif &t_Co == 256
+        let s:culc="235" " #262626 (xterm-256color)
+    else
+        let s:culc=s:dblk
+    endif
 endif
 " }}}
 
@@ -542,7 +548,7 @@ call s:HI(      "VertSplit", s:lblk, s:dblk,     "" )
 call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
 call s:HI(    "TabLineFill",     "", s:dblk,     "" )
 call s:HI(     "TabLineSel", s:dblk, s:dwht,     "" )
-call s:HI(         "Cursor", s:lred,     "",     "" )
+call s:HI(         "Cursor", s:lred, s:bclr,     "" )
 call s:HI(     "CursorLine", s:culc,     "", "none" )
 call s:HI(   "CursorLineNr", s:culc, s:dwht, "none" )
 call s:HI(   "CursorColumn", s:culc,     "",     "" )
@@ -608,6 +614,37 @@ endif
 " syntastic colors {{{
 call s:HI(   "SyntasticErrorSign", s:culc, s:lred, "" )
 call s:HI( "SyntasticWarningSign", s:culc, s:lmag, "" )
+" }}}
+
+" EasyMotion colors {{{
+call s:HI(         "EasyMotionShade",     "", s:lblk, "" )
+call s:HI(     "EasyMotionIncCursor", s:lred, s:bclr, "" )
+call s:HI(        "EasyMotionTarget",     "", s:lred, "" )
+call s:HI(  "EasyMotionTarget2First",     "", s:dred, "" )
+call s:HI( "EasyMotionTarget2Second",     "", s:dred, "" )
+" }}}
+
+" Neovim terminal emulator colors {{{
+call s:HI(   "TermCursor",     "", s:lred, "" )
+call s:HI( "TermCursorNC", s:lblk,     "", "" )
+if (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
+    let g:terminal_color_0=s:dblk
+    let g:terminal_color_8=s:lblk
+    let g:terminal_color_1=s:dred
+    let g:terminal_color_9=s:lred
+    let g:terminal_color_2=s:dgrn
+    let g:terminal_color_10=s:lgrn
+    let g:terminal_color_3=s:dylw
+    let g:terminal_color_11=s:lylw
+    let g:terminal_color_4=s:dblu
+    let g:terminal_color_12=s:lblu
+    let g:terminal_color_5=s:dmag
+    let g:terminal_color_13=s:lmag
+    let g:terminal_color_6=s:dcyn
+    let g:terminal_color_14=s:lcyn
+    let g:terminal_color_7=s:dwht
+    let g:terminal_color_15=s:lwht
+endif
 " }}}
 
 " vim: foldenable foldmethod=marker foldmarker={{{,}}} foldlevel=0:
