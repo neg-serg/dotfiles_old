@@ -65,15 +65,15 @@ def on_window_focus(self, event):
         del fw.window_list[max_win_history_:]
 
 def go_back_if_nothing(self, event):
-    # con=event.container
-    # fw=FocusWatcher.instance()
-    # if len(find_visible_windows(get_windows_on_ws())) == 0:
-    #     fw.alt_tab(0)
-    pass
+    con=event.container
+    fw=FocusWatcher.instance()
+    if len(find_visible_windows(get_windows_on_ws())) == 0:
+        fw.alt_tab(0)
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 nice alt-tab 1.0')
     i3 = i3ipc.Connection()
+    wmii_like_goback=True
 
     if argv["daemon"]:
         name='flastd-i3'
@@ -92,7 +92,8 @@ if __name__ == '__main__':
         atexit.register(cleanup_all)
 
         i3.on('window::focus', on_window_focus)
-        i3.on('window::close', go_back_if_nothing)
+        if wmii_like_goback:
+            i3.on('window::close', go_back_if_nothing)
 
         mainloop=Thread(target=mng.daemons[name].mainloop, args=(fw,)).start()
 
