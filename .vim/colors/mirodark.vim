@@ -67,6 +67,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:color89_hex="232030"     " (color 89)
     let s:color62_hex="002B36"     " (color 62)
     let s:color234_hex="080808"    " (color 234)
+    let s:color227_hex="006D39"    " (color 227)
     let s:color228_hex="00406D"    " (color 228)
     let s:color162_hex="CC6666"    " (color 162)
     let s:color127_hex="5F0000"    " (color 127)
@@ -106,6 +107,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:color89="#".s:color89_hex
         let s:color62="#".s:color62_hex
         let s:color234="#".s:color234_hex
+        let s:color227="#".s:color227_hex
         let s:color228="#".s:color228_hex
         let s:color162="#".s:color162_hex
         let s:color127="#".s:color127_hex
@@ -144,6 +146,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:color89=s:rgb(s:color89_hex)
         let s:color62=s:rgb(s:color62_hex)
         let s:color234=s:rgb(s:color234_hex)
+        let s:color227=s:rgb(s:color227_hex)
         let s:color228=s:rgb(s:color228_hex)
         let s:color162=s:rgb(s:color162_hex)
         let s:color127=s:rgb(s:color172_hex)
@@ -205,6 +208,7 @@ else
     let s:color62="62"
     let s:color234="234"
     let s:color228="228"
+    let s:color227="227"
     let s:color162="162"
     let s:color127="127"
     let s:color253="253"
@@ -278,8 +282,8 @@ call s:HI(     "MatchParen", s:dwht, s:dblk,     "" )
 call s:HI(       "ErrorMsg", "NONE", s:color250, "" )
 call s:HI(       "WildMenu", s:dblk, s:dmag,     "" )
 call s:HI(         "Folded", s:color32, s:dwht,  "" )
-call s:HI(         "Search", s:color89, s:color251, "" )
-call s:HI(      "IncSearch", s:color62, s:dwht,     "" )
+call s:HI(         "Search", s:color227, s:lcyn, "" )
+call s:HI(      "IncSearch", s:dblk, s:color227,     "" )
 call s:HI(     "WarningMsg", "NONE", s:color250,     "" )
 call s:HI(       "Question", "NONE", s:lgrn,     "" )
 call s:HI(         "Visual", s:color62, s:dwht,     "" )
