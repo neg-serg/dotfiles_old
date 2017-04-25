@@ -164,6 +164,19 @@ fun! s:HI(group, bg, fg, attr)
 endfun
 
 call s:HI(         "Normal", s:bclr, s:lwht,     "" )
+
+" hi! LineNr  ctermbg=233 ctermfg=8 cterm=NONE
+" hi! SpecialChar ctermbg=NONE ctermfg=30 cterm=NONE 
+" hi! StorageClass ctermbg=NONE ctermfg=31 cterm=NONE 
+" hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
+" hi! ErrorMsg ctermbg=NONE ctermfg=250 cterm=NONE 
+" hi! Folded ctermbg=32 ctermfg=7 cterm=NONE 
+" hi! Search ctermbg=89 ctermfg=251 cterm=bold,underline
+" hi! IncSearch ctermbg=62 ctermfg=7 cterm=NONE 
+" hi! WarningMsg ctermbg=NONE ctermfg=250 cterm=NONE 
+" hi! Visual ctermbg=62 ctermfg=7 cterm=NONE 
+" hi! CursorLine ctermbg=234 ctermfg=NONE cterm=NONE
+
 call s:HI(         "Ignore",     "", s:lblk,     "" )
 call s:HI(        "Comment",     "", s:dwht,     "" )
 call s:HI(         "LineNr",     "", s:lblk,     "" )
@@ -184,11 +197,11 @@ call s:HI(    "SpecialChar",     "", s:lred,     "" )
 call s:HI(         "Number",     "", s:lcyn,     "" )
 call s:HI(     "Identifier",     "", s:lmag,     "" )
 call s:HI(    "Conditional",     "", s:lcyn,     "" )
-call s:HI(         "Repeat",     "", s:lred,     "" )
+call s:HI(         "Repeat",     "", s:lcyn,     "" )
 call s:HI(      "Statement",     "", s:dblu,     "" )
 call s:HI(          "Label",     "", s:lmag,     "" )
-call s:HI(       "Operator",     "", s:dylw,     "" )
-call s:HI(        "Keyword",     "", s:lred,     "" )
+call s:HI(       "Operator",     "", s:dcyn,     "" )
+call s:HI(        "Keyword",     "", s:dcyn,     "" )
 call s:HI(   "StorageClass",     "", s:lylw,     "" )
 call s:HI(      "Structure",     "", s:dmag,     "" )
 call s:HI(        "Typedef",     "", s:dcyn,     "" )
@@ -198,36 +211,36 @@ call s:HI(     "Underlined",     "", s:dblu,     "" )
 call s:HI(          "Title",     "", s:dylw,     "" )
 call s:HI(            "Tag",     "", s:lylw,     "" )
 call s:HI(      "Delimiter",     "", s:lblu,     "" )
-call s:HI( "SpecialComment",     "", s:lred,     "" )
+call s:HI( "SpecialComment",     "", s:dwht,     "underline" )
 call s:HI(        "Boolean",     "", s:dylw,     "" )
-call s:HI(           "Todo", "NONE", s:lred,     "" )
+call s:HI(           "Todo", "NONE", s:dred,     "" )
 call s:HI(        "MoreMsg", "NONE", s:lmag,     "" )
 call s:HI(        "ModeMsg", "NONE", s:lmag,     "" )
 call s:HI(          "Debug", "NONE", s:dred,     "" )
 call s:HI(     "MatchParen", s:dwht, s:dblk,     "" )
 call s:HI(       "ErrorMsg", "NONE", s:dred,     "" )
-call s:HI(       "WildMenu", s:lwht, s:dmag,     "" )
+call s:HI(       "WildMenu", s:dblk, s:dmag,     "" )
 call s:HI(         "Folded", s:dblk, s:dwht,     "" )
 call s:HI(         "Search", s:lwht, s:dred,     "" )
 call s:HI(      "IncSearch", s:lwht, s:dred,     "" )
 call s:HI(     "WarningMsg", s:lwht, s:dred,     "" )
-call s:HI(       "Question", s:lwht, s:lgrn,     "" )
+call s:HI(       "Question", "NONE", s:lgrn,     "" )
 call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
 call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
 call s:HI(         "Visual", s:lwht, s:lblk,     "" )
-call s:HI(     "StatusLine", s:dblk, s:dwht, "none" )
-call s:HI(   "StatusLineNC", s:lblk, s:dblk,     "" )
-call s:HI(      "VertSplit", s:lblk, s:dblk,     "" )
+call s:HI(     "StatusLine", "NONE", s:dblu,     "bold" )
+call s:HI(   "StatusLineNC", "NONE", "NONE",     "none" )
+call s:HI(      "VertSplit", "NONE", "NONE",     "none" )
 call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
-call s:HI(    "TabLineFill",     "", s:dblk,     "" )
+call s:HI(    "TabLineFill", "NONE", s:dblk,     "" )
 call s:HI(     "TabLineSel", s:dblk, s:dwht,     "" )
 call s:HI(         "Cursor", s:lred, s:bclr,     "" )
-call s:HI(     "CursorLine", s:culc,     "", "none" )
-call s:HI(   "CursorLineNr", s:culc, s:dwht, "none" )
-call s:HI(   "CursorColumn", s:culc,     "",     "" )
-call s:HI(    "ColorColumn", s:culc,     "",     "" )
+call s:HI(     "CursorLine", s:culc, "NONE",     "none" )
+call s:HI(   "CursorLineNr", "NONE", s:lylw,     "none" )
+call s:HI(   "CursorColumn", s:culc, "NONE",     "" )
+call s:HI(    "ColorColumn", s:culc, "NONE",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
-call s:HI(     "SignColumn", "NONE",     "",     "" )
+call s:HI(     "SignColumn", "NONE", "NONE",     "" )
 
 call s:HI( "vimCommentTitle",     "", s:lgrn, "" )
 call s:HI(         "vimFold", s:lwht, s:dblk, "" )
@@ -291,3 +304,92 @@ if (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLO
     let g:terminal_color_7=s:dwht
     let g:terminal_color_15=s:lwht
 endif
+
+hi! clear DiffAdd
+hi! clear DiffAdded
+hi! clear DiffRemoved
+hi! clear DiffChange
+hi! clear DiffDelete
+hi! clear DiffText
+
+" hi! DiffAdd ctermfg=15 ctermbg=225 cterm=NONE 
+" hi! DiffChange cterm=NONE ctermfg=15 ctermbg=228  
+" hi! DiffText cterm=NONE ctermbg=NONE ctermfg=7 
+" hi! DiffDelete ctermfg=162 ctermbg=127 cterm=NONE 
+
+" hi! link DiffRemoved Constant
+" hi! link DiffAdded String
+
+" hi! Error ctermfg=162 ctermbg=127
+
+" hi! Pmenu ctermfg=253 ctermbg=234
+" hi! PmenuSel ctermfg=255 ctermbg=200
+" hi! PmenuSbar ctermbg=black
+" hi! PmenuThumb ctermbg=darkgreen
+
+if has("spell")
+    hi! clear SpellBad
+    hi! clear SpellCap
+    hi! clear SpellRare
+    hi! clear SpellLocal
+endif
+
+syn region texZone start="\\begin{lstlisting}" end="\\end{lstlisting}\|%stopzone\>" contains=@Spell
+syn region texZone start="\\begin{minted}" end="\\end{minted}\|%stopzone\>" contains=@Spell
+
+if exists( 'g:loaded_operator_highlight' )
+  finish
+else
+  let g:loaded_operator_highlight = 1
+endif
+
+if !exists('g:ophigh_color')
+  let g:ophigh_color = 22
+endif
+
+if !exists( 'g:ophigh_filetypes_to_ignore' )
+  let g:ophigh_filetypes_to_ignore = {}
+endif
+
+fun! s:IgnoreFiletypeIfNotSet( file_type )
+  if get( g:ophigh_filetypes_to_ignore, a:file_type, 1 )
+    let g:ophigh_filetypes_to_ignore[ a:file_type ] = 1
+  endif
+endfunction
+
+call s:IgnoreFiletypeIfNotSet('help')
+call s:IgnoreFiletypeIfNotSet('markdown')
+call s:IgnoreFiletypeIfNotSet('qf') " This is for the quickfix window
+call s:IgnoreFiletypeIfNotSet('conque_term')
+call s:IgnoreFiletypeIfNotSet('diff')
+call s:IgnoreFiletypeIfNotSet('html')
+call s:IgnoreFiletypeIfNotSet('css')
+call s:IgnoreFiletypeIfNotSet('less')
+call s:IgnoreFiletypeIfNotSet('xml')
+call s:IgnoreFiletypeIfNotSet('tex')
+call s:IgnoreFiletypeIfNotSet('notes')
+call s:IgnoreFiletypeIfNotSet('jinja')
+call s:IgnoreFiletypeIfNotSet('lua')
+call s:IgnoreFiletypeIfNotSet('vidir-ls')
+call s:IgnoreFiletypeIfNotSet('haskell')
+call s:IgnoreFiletypeIfNotSet('text')
+call s:IgnoreFiletypeIfNotSet('lisp')
+
+fun! s:HighlightOperators()
+  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
+    return
+  endif
+  " for the last element of the regex, see :h /\@!
+  " basically, searching for "/" is more complex since we want to avoid
+  " matching against "//" or "/*" which would break C++ comment highlighting
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+  exec "hi OperatorChars ctermfg=" . g:ophigh_color
+endfunction
+
+au Syntax * call s:HighlightOperators()
+
+hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
+hi! cFunctionTag ctermbg=none ctermfg=30 cterm=none 
+
+hi! link DeclRefExpr Normal
+hi! link Conceal Operator
