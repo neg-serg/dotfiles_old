@@ -8,7 +8,7 @@
 let g:mirodark_enable_higher_contrast_mode=1
 
 if !has("gui_running") && (!has('termguicolors') || (has('termguicolors') && !&termguicolors)) && empty($NVIM_TUI_ENABLE_TRUE_COLOR) &&
-            \ ((&t_Co == 88 || &t_Co == 256) && !exists("g:mirodark_disable_color_approximation"))
+            \ (&t_Co == 256 && !exists("g:mirodark_disable_color_approximation"))
     fun! s:rgb_color(x, y, z)
         return 16 + (a:x * 36) + (a:y * 6) + a:z
     endfun
@@ -32,16 +32,10 @@ if exists("syntax on")
 endif
 
 if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR) ||
-            \ ((&t_Co == 88 || &t_Co == 256) && !exists("g:mirodark_disable_color_approximation"))
-    if !exists("g:mirodark_enable_higher_contrast_mode")
-        let s:conf_bclr_hex="121212" " configuration-based background color hexadecimal
-        let s:conf_dblk_hex="3d3d3d" " configuration-based dark black hexadecimal
-        let s:conf_lblk_hex="5e5e5e" " configuration-based light black hexadecimal
-    else
-        let s:conf_bclr_hex="000000"
-        let s:conf_dblk_hex="121212"
-        let s:conf_lblk_hex="3d3d3d"
-    endif
+            \ (&t_Co == 256 && !exists("g:mirodark_disable_color_approximation"))
+    let s:conf_bclr_hex="000000"
+    let s:conf_dblk_hex="121212"
+    let s:conf_lblk_hex="3d3d3d"
 
     let s:bclr_hex=s:conf_bclr_hex " background color hexadecimal
     let s:fclr_hex="999999"        " foreground color hexadecimal
@@ -62,6 +56,23 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:dwht_hex="899ca1"        " dark white hexadecimal    (color 7)
     let s:lwht_hex="c0c0c0"        " light white hexadecimal   (color 15)
     let s:culc_hex="272727"        " cursor line/column hexadecimal
+    let s:color233_hex="040404"    " (color 233)
+    let s:color30_hex="008787"     " (color 30)
+    let s:color31_hex="0087AF"     " (color 31)
+    let s:color32_hex="002B36"     " (color 32)
+    let s:color222_hex="5C9CAA"    " (color 222)
+    let s:color225_hex="25533F"    " (color 225)
+    let s:color250_hex="666666"    " (color 250)
+    let s:color251_hex="AFA0F0"    " (color 251)
+    let s:color89_hex="232030"     " (color 89)
+    let s:color62_hex="002B36"     " (color 62)
+    let s:color234_hex="080808"    " (color 234)
+    let s:color228_hex="00406D"    " (color 228)
+    let s:color162_hex="CC6666"   " (color 162)
+    let s:color127_hex="5F0000"   " (color 127)
+    let s:color253_hex="C5C8C6"   " (color 253)
+    let s:color255_hex="eeeeee"   " (color 255)
+    let s:color200_hex="0C1014"   " (color 200)
 
     if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv="gui" " vim environment (term, cterm, gui)
@@ -84,6 +95,23 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:dwht="#".s:dwht_hex
         let s:lwht="#".s:lwht_hex
         let s:culc="#".s:culc_hex
+        let s:color233="#".s:color233_hex
+        let s:color30="#".s:color30_hex
+        let s:color31="#".s:color31_hex
+        let s:color32="#".s:color32_hex
+        let s:color222="#".s:color222_hex
+        let s:color225="#".s:color225_hex
+        let s:color250="#".s:color250_hex
+        let s:color251="#".s:color251_hex
+        let s:color89="#".s:color89_hex
+        let s:color62="#".s:color62_hex
+        let s:color234="#".s:color234_hex
+        let s:color228="#".s:color228_hex
+        let s:color162="#".s:color162_hex
+        let s:color127="#".s:color127_hex
+        let s:color253="#".s:color253_hex
+        let s:color255="#".s:color255_hex
+        let s:color200="#".s:color200_hex
     else
         let s:venv="cterm"
         let s:bclr=s:rgb(s:bclr_hex)
@@ -105,6 +133,23 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:dwht=s:rgb(s:dwht_hex)
         let s:lwht=s:rgb(s:lwht_hex)
         let s:culc=s:rgb(s:culc_hex)
+        let s:color233=s:rgb(s:color233_hex)
+        let s:color30=s:rgb(s:color30_hex)
+        let s:color31=s:rgb(s:color31_hex)
+        let s:color32=s:rgb(s:color32_hex)
+        let s:color222=s:rgb(s:color222_hex)
+        let s:color225=s:rgb(s:color225_hex)
+        let s:color250=s:rgb(s:color250_hex)
+        let s:color251=s:rgb(s:color251_hex)
+        let s:color89=s:rgb(s:color89_hex)
+        let s:color62=s:rgb(s:color62_hex)
+        let s:color234=s:rgb(s:color234_hex)
+        let s:color228=s:rgb(s:color228_hex)
+        let s:color162=s:rgb(s:color162_hex)
+        let s:color127=s:rgb(s:color172_hex)
+        let s:color253=s:rgb(s:color253_hex)
+        let s:color255=s:rgb(s:color255_hex)
+        let s:color200=s:rgb(s:color200_hex)
     endif
 elseif $TERM == "linux"
     let s:venv="cterm"
@@ -147,13 +192,24 @@ else
     let s:lcyn="14"
     let s:dwht="7"
     let s:lwht="15"
-    if &t_Co == 88
-        let s:culc="80" " #2e2e2e (xterm-88color)
-    elseif &t_Co == 256
-        let s:culc="235" " #262626 (xterm-256color)
-    else
-        let s:culc=s:dblk
-    endif
+    let s:culc="235"
+    let s:color233="233"
+    let s:color30="30"
+    let s:color31="31"
+    let s:color32="32"
+    let s:color222="222"
+    let s:color225="225"
+    let s:color250="250"
+    let s:color251="251"
+    let s:color89="89"
+    let s:color62="62"
+    let s:color234="234"
+    let s:color228="228"
+    let s:color162="162"
+    let s:color127="127"
+    let s:color253="253"
+    let s:color255="255"
+    let s:color200="200"
 endif
 
 fun! s:HI(group, bg, fg, attr)
@@ -165,21 +221,34 @@ endfun
 
 call s:HI(         "Normal", s:bclr, s:lwht,     "" )
 
-" hi! LineNr  ctermbg=233 ctermfg=8 cterm=NONE
-" hi! SpecialChar ctermbg=NONE ctermfg=30 cterm=NONE 
-" hi! StorageClass ctermbg=NONE ctermfg=31 cterm=NONE 
-" hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
-" hi! ErrorMsg ctermbg=NONE ctermfg=250 cterm=NONE 
-" hi! Folded ctermbg=32 ctermfg=7 cterm=NONE 
-" hi! Search ctermbg=89 ctermfg=251 cterm=bold,underline
-" hi! IncSearch ctermbg=62 ctermfg=7 cterm=NONE 
-" hi! WarningMsg ctermbg=NONE ctermfg=250 cterm=NONE 
-" hi! Visual ctermbg=62 ctermfg=7 cterm=NONE 
-" hi! CursorLine ctermbg=234 ctermfg=NONE cterm=NONE
+fun! s:HighlightOperators()
+  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
+    return
+  endif
+  " for the last element of the regex, see :h /\@!
+  " basically, searching for "/" is more complex since we want to avoid
+  " matching against "//" or "/*" which would break C++ comment highlighting
+  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
+  exec "hi OperatorChars ctermfg=" . g:ophigh_color
+endfunction
+
+au Syntax * call s:HighlightOperators()
+
+hi! clear DiffAdd
+hi! clear DiffAdded
+hi! clear DiffRemoved
+hi! clear DiffChange
+hi! clear DiffDelete
+hi! clear DiffText
+
+hi! link DeclRefExpr Normal
+hi! link Conceal Operator
+hi! link DiffRemoved Constant
+hi! link DiffAdded String
 
 call s:HI(         "Ignore",     "", s:lblk,     "" )
 call s:HI(        "Comment",     "", s:dwht,     "" )
-call s:HI(         "LineNr",     "", s:lblk,     "" )
+call s:HI(         "LineNr",     s:color233, s:lblk,     "" )
 call s:HI(          "Float",     "", s:dylw,     "" )
 call s:HI(        "Include",     "", s:dmag,     "" )
 call s:HI(         "Define",     "", s:dgrn,     "" )
@@ -193,7 +262,7 @@ call s:HI(           "Type",     "", s:dcyn,     "" )
 call s:HI(         "String",     "", s:dgrn,     "" )
 call s:HI(       "Constant",     "", s:lmag,     "" )
 call s:HI(        "Special",     "", s:lgrn,     "" )
-call s:HI(    "SpecialChar",     "", s:lred,     "" )
+call s:HI(    "SpecialChar",     "", s:color30,  "" )
 call s:HI(         "Number",     "", s:lcyn,     "" )
 call s:HI(     "Identifier",     "", s:lmag,     "" )
 call s:HI(    "Conditional",     "", s:lcyn,     "" )
@@ -202,10 +271,11 @@ call s:HI(      "Statement",     "", s:dblu,     "" )
 call s:HI(          "Label",     "", s:lmag,     "" )
 call s:HI(       "Operator",     "", s:dcyn,     "" )
 call s:HI(        "Keyword",     "", s:dcyn,     "" )
-call s:HI(   "StorageClass",     "", s:lylw,     "" )
+call s:HI(   "StorageClass",     "", s:color31,  "" )
 call s:HI(      "Structure",     "", s:dmag,     "" )
 call s:HI(        "Typedef",     "", s:dcyn,     "" )
-call s:HI(       "Function",     "", s:lylw,     "" )
+call s:HI(       "Function",     "", s:color222, "" )
+call s:HI(   "cFunctionTag",     "", s:color30,  "" )
 call s:HI(      "Exception",     "", s:dred,     "" )
 call s:HI(     "Underlined",     "", s:dblu,     "" )
 call s:HI(          "Title",     "", s:dylw,     "" )
@@ -218,16 +288,14 @@ call s:HI(        "MoreMsg", "NONE", s:lmag,     "" )
 call s:HI(        "ModeMsg", "NONE", s:lmag,     "" )
 call s:HI(          "Debug", "NONE", s:dred,     "" )
 call s:HI(     "MatchParen", s:dwht, s:dblk,     "" )
-call s:HI(       "ErrorMsg", "NONE", s:dred,     "" )
+call s:HI(       "ErrorMsg", "NONE", s:color250, "" )
 call s:HI(       "WildMenu", s:dblk, s:dmag,     "" )
-call s:HI(         "Folded", s:dblk, s:dwht,     "" )
-call s:HI(         "Search", s:lwht, s:dred,     "" )
-call s:HI(      "IncSearch", s:lwht, s:dred,     "" )
-call s:HI(     "WarningMsg", s:lwht, s:dred,     "" )
+call s:HI(         "Folded", s:color32, s:dwht,  "" )
+call s:HI(         "Search", s:color89, s:color251, "" )
+call s:HI(      "IncSearch", s:color62, s:dwht,     "" )
+call s:HI(     "WarningMsg", "NONE", s:color250,     "" )
 call s:HI(       "Question", "NONE", s:lgrn,     "" )
-call s:HI(          "Pmenu", s:lwht, s:dgrn,     "" )
-call s:HI(       "PmenuSel", s:lwht, s:dred,     "" )
-call s:HI(         "Visual", s:lwht, s:lblk,     "" )
+call s:HI(         "Visual", s:color62, s:dwht,     "" )
 call s:HI(     "StatusLine", "NONE", s:dblu,     "bold" )
 call s:HI(   "StatusLineNC", "NONE", "NONE",     "none" )
 call s:HI(      "VertSplit", "NONE", "NONE",     "none" )
@@ -235,12 +303,21 @@ call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
 call s:HI(    "TabLineFill", "NONE", s:dblk,     "" )
 call s:HI(     "TabLineSel", s:dblk, s:dwht,     "" )
 call s:HI(         "Cursor", s:lred, s:bclr,     "" )
-call s:HI(     "CursorLine", s:culc, "NONE",     "none" )
+call s:HI(     "CursorLine", s:color234, "NONE",     "none" )
 call s:HI(   "CursorLineNr", "NONE", s:lylw,     "none" )
 call s:HI(   "CursorColumn", s:culc, "NONE",     "" )
 call s:HI(    "ColorColumn", s:culc, "NONE",     "" )
 call s:HI(     "FoldColumn", "NONE", s:lblk,     "" )
 call s:HI(     "SignColumn", "NONE", "NONE",     "" )
+call s:HI(        "DiffAdd", s:lwht, s:color225, "" )
+call s:HI(     "DiffChange", s:lwht, s:color228, "" )
+call s:HI(       "DiffText", "NONE", s:lwht, "" )
+call s:HI(     "DiffDelete", s:color162, s:color127, "" )
+call s:HI(          "Error", s:color162, s:color127, "" )
+call s:HI(          "Pmenu", s:color253, s:color234, "" )
+call s:HI(       "PmenuSel", s:color255, s:color200, "" )
+call s:HI(      "PmenuSbar", s:dblk, "NONE", "" )
+call s:HI(     "PmenuThumb", s:dgrn, "NONE", "" )
 
 call s:HI( "vimCommentTitle",     "", s:lgrn, "" )
 call s:HI(         "vimFold", s:lwht, s:dblk, "" )
@@ -305,28 +382,6 @@ if (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLO
     let g:terminal_color_15=s:lwht
 endif
 
-hi! clear DiffAdd
-hi! clear DiffAdded
-hi! clear DiffRemoved
-hi! clear DiffChange
-hi! clear DiffDelete
-hi! clear DiffText
-
-" hi! DiffAdd ctermfg=15 ctermbg=225 cterm=NONE 
-" hi! DiffChange cterm=NONE ctermfg=15 ctermbg=228  
-" hi! DiffText cterm=NONE ctermbg=NONE ctermfg=7 
-" hi! DiffDelete ctermfg=162 ctermbg=127 cterm=NONE 
-
-" hi! link DiffRemoved Constant
-" hi! link DiffAdded String
-
-" hi! Error ctermfg=162 ctermbg=127
-
-" hi! Pmenu ctermfg=253 ctermbg=234
-" hi! PmenuSel ctermfg=255 ctermbg=200
-" hi! PmenuSbar ctermbg=black
-" hi! PmenuThumb ctermbg=darkgreen
-
 if has("spell")
     hi! clear SpellBad
     hi! clear SpellCap
@@ -341,10 +396,6 @@ if exists( 'g:loaded_operator_highlight' )
   finish
 else
   let g:loaded_operator_highlight = 1
-endif
-
-if !exists('g:ophigh_color')
-  let g:ophigh_color = 22
 endif
 
 if !exists( 'g:ophigh_filetypes_to_ignore' )
@@ -374,22 +425,3 @@ call s:IgnoreFiletypeIfNotSet('vidir-ls')
 call s:IgnoreFiletypeIfNotSet('haskell')
 call s:IgnoreFiletypeIfNotSet('text')
 call s:IgnoreFiletypeIfNotSet('lisp')
-
-fun! s:HighlightOperators()
-  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
-    return
-  endif
-  " for the last element of the regex, see :h /\@!
-  " basically, searching for "/" is more complex since we want to avoid
-  " matching against "//" or "/*" which would break C++ comment highlighting
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-  exec "hi OperatorChars ctermfg=" . g:ophigh_color
-endfunction
-
-au Syntax * call s:HighlightOperators()
-
-hi! Function ctermbg=NONE ctermfg=222 cterm=NONE
-hi! cFunctionTag ctermbg=none ctermfg=30 cterm=none 
-
-hi! link DeclRefExpr Normal
-hi! link Conceal Operator

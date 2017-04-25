@@ -3,7 +3,6 @@ hi clear
 if exists("syntax on")
     syntax reset
 endif
-let colors_name="wim"
 
 hi! Normal ctermbg=NONE ctermfg=NONE cterm=NONE
 hi! Ignore ctermbg=NONE ctermfg=8 cterm=NONE
