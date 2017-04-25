@@ -68,11 +68,11 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:color62_hex="002B36"     " (color 62)
     let s:color234_hex="080808"    " (color 234)
     let s:color228_hex="00406D"    " (color 228)
-    let s:color162_hex="CC6666"   " (color 162)
-    let s:color127_hex="5F0000"   " (color 127)
-    let s:color253_hex="C5C8C6"   " (color 253)
-    let s:color255_hex="eeeeee"   " (color 255)
-    let s:color200_hex="0C1014"   " (color 200)
+    let s:color162_hex="CC6666"    " (color 162)
+    let s:color127_hex="5F0000"    " (color 127)
+    let s:color253_hex="C5C8C6"    " (color 253)
+    let s:color255_hex="eeeeee"    " (color 255)
+    let s:color200_hex="0C1014"    " (color 200)
 
     if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv="gui" " vim environment (term, cterm, gui)
@@ -221,19 +221,6 @@ endfun
 
 call s:HI(         "Normal", s:bclr, s:lwht,     "" )
 
-fun! s:HighlightOperators()
-  if get( g:ophigh_filetypes_to_ignore, &filetype, 0 )
-    return
-  endif
-  " for the last element of the regex, see :h /\@!
-  " basically, searching for "/" is more complex since we want to avoid
-  " matching against "//" or "/*" which would break C++ comment highlighting
-  syntax match OperatorChars "?\|+\|-\|\*\|;\|:\|,\|<\|>\|&\||\|!\|\~\|%\|=\|)\|(\|{\|}\|\.\|\[\|\]\|/\(/\|*\)\@!"
-  exec "hi OperatorChars ctermfg=" . g:ophigh_color
-endfunction
-
-au Syntax * call s:HighlightOperators()
-
 hi! clear DiffAdd
 hi! clear DiffAdded
 hi! clear DiffRemoved
@@ -314,8 +301,9 @@ call s:HI(     "DiffChange", s:lwht, s:color228, "" )
 call s:HI(       "DiffText", "NONE", s:lwht, "" )
 call s:HI(     "DiffDelete", s:color162, s:color127, "" )
 call s:HI(          "Error", s:color162, s:color127, "" )
-call s:HI(          "Pmenu", s:color253, s:color234, "" )
-call s:HI(       "PmenuSel", s:color255, s:color200, "" )
+
+call s:HI(          "Pmenu", s:color253, s:color234, "reverse" )
+call s:HI(       "PmenuSel", s:color255, s:color200, "reverse" )
 call s:HI(      "PmenuSbar", s:dblk, "NONE", "" )
 call s:HI(     "PmenuThumb", s:dgrn, "NONE", "" )
 
