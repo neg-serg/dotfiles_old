@@ -67,7 +67,9 @@ def on_window_focus(self, event):
 def go_back_if_nothing(self, event):
     con=event.container
     fw=FocusWatcher.instance()
-    if len(find_visible_windows(get_windows_on_ws())) == 0:
+    focused_=i3.get_tree().find_focused()
+    if not len(find_visible_windows(get_windows_on_ws())) \
+       and "[pic]" in focused_.workspace().name:
         fw.alt_tab(0)
 
 if __name__ == '__main__':
