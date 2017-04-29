@@ -76,8 +76,8 @@ set {$torrent,$ws10}  10:torrent
 set {$vm,$ws11} 11:vm
 set {$wine,$ws12} 12:wine
 set {$spotify,ws13}  13: spotify
-set {$sxiv}  [pic]
-set {$graph}  [graph]
+set {$sxiv}  14: [pic]
+set {$graph}  15: [graph]
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
@@ -164,7 +164,7 @@ mode "[alt_e]" {
     bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
-    bindsym {$mod,$alt,}+t exec ~/bin/scripts/telegram, mode "default"
+    bindsym {$mod,$alt,}+t exec telegram-desktop, mode "default"
 	bindsym Shift+d floating toggle; $exit
     bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
