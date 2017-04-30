@@ -1,6 +1,15 @@
 #!/bin/zsh
 
-source ~/.zsh/03-helpers.zsh
+function resolve_file {
+    if [[ -f "$1" ]]; then
+        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
+    elif [[ "${1#/}" == "$1" ]]; then
+        builtin print "$(pwd)/$1"
+    else
+        builtin print "${1}"
+    fi
+}
+
 source ${XDG_CONFIG_HOME}/sxiv/exec/rofi_config
 
 opt="$1";
@@ -100,7 +109,7 @@ function rep() {
     action=${file[1]} dest=${file[2]}
     if [[ -d "${dest}" ]] ; then
         while read line; do
-            file_name="`resolve_file ${line}`"
+            file_name="$(resolve_file ${line})"
             echo $file_name
             [[ ${action} == "move" ]] && cmd="mv"
             [[ ${action} == "copy" ]] && cmd="cp"
