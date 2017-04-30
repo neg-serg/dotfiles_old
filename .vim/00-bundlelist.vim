@@ -61,8 +61,9 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('luochen1990/rainbow') 
     "css and colors colorizer
     call dein#add('chrisbra/colorizer')
-    "better digraphs
-    call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
+    "better digraphs, need by airline
+    call dein#add('chrisbra/unicode.vim')
+    " call dein#add('chrisbra/unicode.vim', { 'on_cmd' : ['UnicodeComplete','UnicodeGA', 'UnicodeTable'] })
     "highlight colors in terminal
     call dein#add('sunaku/vim-hicterm')
     "indent tabs visually with |-es too slow
