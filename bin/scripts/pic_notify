@@ -10,6 +10,10 @@ function conv_image_(){
     fi
 }
 
+function wf_(){
+    echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
+}
+
 function send_notify_(){ 
     input=${image_}
     local st_=$(highlight_ 4)
