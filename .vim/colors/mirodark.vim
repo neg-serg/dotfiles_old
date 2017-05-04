@@ -223,7 +223,7 @@ fun! s:HI(group, bg, fg, attr)
                 \ . " " . (a:attr != "" ? s:venv . "="   . a:attr : "")
 endfun
 
-call s:HI(         "Normal", s:bclr, s:lwht,     "" )
+call s:HI(         "Normal", "NONE", "NONE", "NONE" )
 
 hi! clear DiffAdd
 hi! clear DiffAdded
