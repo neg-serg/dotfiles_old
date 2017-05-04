@@ -1,4 +1,4 @@
- " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ misc plugins settings                                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 let g:gitgutter_realtime       = 0          " github.com/airblade/vim-gitgutter/issues/106
@@ -27,7 +27,7 @@ endif
 " │ https://github.com/vim-airline/vim-airline                                        │ 
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vim-airline')
-    let g:airline_theme='one'
+    let g:airline_theme='wim'
     let g:airline_left_sep = ''
     let g:airline_left_alt_sep = ''
     let g:airline_right_sep = ''
