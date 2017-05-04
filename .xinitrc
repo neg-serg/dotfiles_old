@@ -6,6 +6,7 @@ export windowmanager
 unset TMUX
 
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
+gpaste-client start
 ~/bin/wl rand
 
 [[ -f "${HOME}/.Xresources" ]] && \

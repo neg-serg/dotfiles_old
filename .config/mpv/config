@@ -3,11 +3,11 @@ fullscreen=yes
   
 ao=pulse
 
-monitoraspect=16:10
 cache=65536
 slang=ru,rus
 alang=en
-geometry=50%:50%
+monitoraspect=16:10
+geometry=100%:100%
 
 profile=opengl-hq
 vd-lavc-threads=9
@@ -58,5 +58,6 @@ target-trc=srgb
 
 [extension.flac]
 term-osd-bar=yes
+
 [extension.mp3]
 term-osd-bar=yes

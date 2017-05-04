@@ -164,7 +164,7 @@ mode "[alt_e]" {
     bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
     bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
     bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
-    bindsym {$mod,$alt,}+t exec telegram-desktop, mode "default"
+    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py toggle im, mode "default"
 	bindsym Shift+d floating toggle; $exit
     bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"

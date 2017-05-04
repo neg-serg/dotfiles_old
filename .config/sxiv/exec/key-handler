@@ -1,6 +1,18 @@
 #!/bin/zsh
 
 function resolve_file {
+    if  [[ ! -L "$1" && -f "$1" ]]; then
+        echo $(readlink -f "$1")
+    elif [[ -L "$1" ]]; then
+        builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
+    elif [[ "${1#/}" == "$1" ]]; then
+        echo "$(pwd)/$1"
+    else
+        echo "${1}"
+    fi
+}
+
+function resolve_file2 {
     if [[ -f "$1" ]]; then
         builtin print "$(cd $(dirname "$1") && pwd -P)/$(basename "$1")"
     elif [[ "${1#/}" == "$1" ]]; then
