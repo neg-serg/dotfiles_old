@@ -116,8 +116,6 @@ vnoremap . :normal .<CR>
 " Easier horizontal scrolling
 map zl zL
 map zh zH
-
-xnoremap <space>c :!octave --silent \| cut -c8-<cr>
 "-------[ Quickfix ]------------------------------------------------
 nnoremap Q q
 nnoremap [Quickfix] <Nop>
