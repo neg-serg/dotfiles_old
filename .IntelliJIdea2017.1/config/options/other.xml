@@ -1,0 +1,10 @@
+<application>
+  <component name="BackgroundImageConfiguration">
+    <option name="filename" value="http://i.imdb.com/Photos/Ss/0266543/Nemo102.jpg" />
+    <option name="localFile" value="false" />
+    <option name="enabled" value="false" />
+  </component>
+  <component name="CvsApplicationLevelConfiguration">
+    <option name="PATH_TO_PASSWORD_FILE" value="$userdir/.cvspass" />
+  </component>
+</application>
