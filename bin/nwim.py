@@ -81,22 +81,14 @@ class wim_runner(object):
             return bool(list(filter(lambda i: i.laddr == self.sock_path, conns)) != [])
 
         def no_approp_win():
-            name_="circled"
-            fifo_=os.path.realpath(os.path.expandvars('$HOME/tmp/'+name_+'.fifo'))
-
-            with open(fifo_,"w") as fp:
-                fp.write("info wim\n")
+            ret_=True
 
             import redis
             r=redis.StrictRedis(host='localhost', port=6379, db=0)
-
-            count_=int(r.get('count'))
-            if count_ > 0:
-                r.delete('count')
-                return False
-
-            r.delete('count')
-            return True
+            count_=(int(r.hmget('count_dict', 'wim')[0]))
+                if count_ > 0:
+                    ret_=False
+            return ret_
 
         try:
             conns=net_connections(kind='unix')
