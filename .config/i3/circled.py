@@ -24,9 +24,11 @@ from circle_conf import *
 from singleton_mixin import *
 from script_i3_general import *
 from threading import Thread, enumerate
+
 import redis
 
 redis_db_=redis.StrictRedis(host='localhost', port=6379, db=0)
+
 glob_settings=cycle_settings().settings
 
 class cycle_window(SingletonMixin):
@@ -139,16 +141,9 @@ class cycle_window(SingletonMixin):
             invalidate_tags_info()
             self.go_next(tag)
 
-    def get_info(self, tag):
-        if tag in cw.tagged.keys():
-            redis_db_.set('count', len(cw.tagged[tag]))
-        else:
-            redis_db_.set('count', 0)
-
     def switch(self, args):
         switch_ = {
             "next": self.go_next,
-            "info": self.get_info,
         }
         if len(args) == 2:
             switch_[args[0]](args[1])
@@ -162,6 +157,9 @@ def find_acceptable_windows_by_class(tag, wlist):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
         elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
+
+    tag_count_dict={tag: len(cw.tagged[tag])}
+    redis_db_.hmset('count_dict', tag_count_dict)
 
 def invalidate_tags_info():
     cw=cycle_window.instance()
@@ -179,6 +177,8 @@ def add_acceptable(self, event):
 
     def add_tagged_win():
         cw.tagged[tag].append({'win':con,'focused':con.focused})
+        tag_count_dict={tag: len(cw.tagged[tag])}
+        redis_db_.hmset('count_dict', tag_count_dict)
 
     con = event.container
     for tag in glob_settings:

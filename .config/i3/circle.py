@@ -28,9 +28,3 @@ if __name__ == '__main__':
         if argv[i] and i in set(possible_commands):
             with open(fifo_,"w") as fp:
                 fp.write(i+" "+argv["<name>"]+"\n")
-                if i == "info":
-                    import redis
-
-                    r=redis.StrictRedis(host='localhost', port=6379, db=0)
-                    print(int(r.get('count')))
-                    r.delete('count')
