@@ -178,13 +178,14 @@ mode "password" {
 
 bindsym $mod+F1 exec ~/.config/i3/circle.py next jetbrains-idea
 
-bindsym $mod+x exec python ~/.config/i3/circle.py next term
-bindsym $mod+1 exec python ~/.config/i3/circle.py next wim
-bindsym $mod+Control+v exec python ~/.config/i3/circle.py next vm
-bindsym $mod+Control+e exec python ~/.config/i3/circle.py next steam
-bindsym $mod+w exec python ~/.config/i3/circle.py next web
-bindsym $mod+b exec python ~/.config/i3/circle.py next vid
-bindsym $mod+o exec python ~/.config/i3/circle.py next doc
+bindsym $mod+x exec ~/.config/i3/circle.py next term
+bindsym $mod+1 exec ~/.config/i3/circle.py next wim
+bindsym $mod+Shift+1 exec ~/.config/i3/circle.py next emacs
+bindsym $mod+Control+v exec ~/.config/i3/circle.py next vm
+bindsym $mod+Control+e exec ~/.config/i3/circle.py next steam
+bindsym $mod+w exec ~/.config/i3/circle.py next web
+bindsym $mod+b exec ~/.config/i3/circle.py next vid
+bindsym $mod+o exec ~/.config/i3/circle.py next doc
 bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
