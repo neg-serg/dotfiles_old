@@ -5,36 +5,76 @@ import socket
 from psutil import net_connections
 import subprocess
 
-def printWindowHierrarchy(window, indent):
-    children = window.query_tree().children
-    for w in children:
-        print(indent, window.get_wm_class())
-        printWindowHierrarchy(w, indent+'-')
-
 class wim_runner(object):
     def __init__(self):
+        self.settings={
+            "use_neovim":True,
+            "debug":True,
+        }
+
         self.font="PragmataPro for Powerline"
         self.fsize=20
+
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
         self.socket_ = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+
         self.vim_commands={
             "to_normal": "<C-\><C-N>:call<SPACE>foreground()<CR>",
         }
 
+        if self.settings["use_neovim"]:
+            self.wim_name="nwim"
+        else:
+            self.wim_name="wim"
+
+    def dprint(self, debug_string):
+        if self.settings["debug"]:
+            print(debug_string)
+
+    def print_windows(window, indent):
+        children = window.query_tree().children
+        for w in children:
+            self.dprint(indent, window.get_wm_class())
+            print_windows(w, indent+'-')
+
+    def wim_goto():
+        def there_is(wm_):
+            pipe = subprocess.popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
+            pid, _ = pipe.communicate()
+            return str(pid) != ""
+
+        if there_is("notion"):
+            self.dprint("there is notion: go to win with it")
+            # subprocess.popen("notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name), stdout=subprocess.PIPE)
+        elif there_is("i3"):
+            self.dprint("there is i3: go to win with it")
+            # subprocess.popen("notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name), stdout=subprocess.PIPE)
+        else:
+            self.dprint("there is nothing, using standard tools")
+            # if [[ -x $(which wmctrl) ]]; then
+            #     wmctrl -i -a $(wmctrl -l -x|awk '/{}.{}/{print $1}')
+            # elif [[ -x $(which xdotool) ]]; then
+            #     xdotool windowfocus $(xdotool search --class {})
+
+
     def wim_run(*args):
         proc="process_list"
         if len(args):
-            if args[0] == "__wim_embed":
-            proc="eprocess_list"
+            if args[0] == "__{}_embed".format(self.wim_name):
+                proc="eprocess_list"
 
-        # wid=$(xdotool search --classname wim)
-        # if [[ -z "${wid}" ]]; then
-        #     st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
-        #         tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
-        #     eval ${proc} ${wim_timer} "$@"
-        # else
-        #     eval ${proc} ${wim_timer} "$@"
-        # fi
+            p = subprocess.popen('xdotool search --classname {}'.format(self.wim_name).split(), stdout=subprocess.PIPE)
+            wid, _ = p.communicate()
+
+            if wid == "":
+                self.dprint("creating new {} server").format(self.wim_name)
+                # st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
+                #     tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
+                self.dprint("eval {} proc").format(self.wim_name)
+                # eval ${proc} ${wim_timer} "$@"
+            else:
+                self.dprint("eval {} proc").format(self.wim_name)
+                # eval ${proc} ${wim_timer} "$@"
 
     def main(self):
         def socket_is_used_():
@@ -49,6 +89,7 @@ class wim_runner(object):
 
             import redis
             r=redis.StrictRedis(host='localhost', port=6379, db=0)
+
             count_=int(r.get('count'))
             if count_ > 0:
                 r.delete('count')
@@ -65,12 +106,11 @@ class wim_runner(object):
                 subprocess.Popen([
                     "st",
                     "-f", "{}:pixelsize={}".format(self.font, self.fsize),
-                    "-c", "nwim",
+                    "-c", "{}".format(self.wim_name),
                     "-e", "tmux", "-S", self.sock_path, "attach-session", "-d", "-t", "nvim"
                 ])
             else:
-                # let's create tmux+nvim server from scratch
-                print("lets the butthurt flow through you!")
+                self.dprint("let's create tmux+nvim server from scratch")
         except Exception as e:
             print("something's wrong. Exception is {}".format(e))
         finally:
@@ -79,20 +119,6 @@ class wim_runner(object):
 if __name__ == '__main__':
     run_=wim_runner()
     run_.main()
-
-
-
-# function wim_goto() {
-#     if [[ $(pidof notion) && -x $(which notionflux) ]]; then
-#         notionflux -e "app.byclass('', 'wim')" > /dev/null
-#     else
-#         if [[ -x $(which wmctrl) ]]; then
-#             wmctrl -i -a $(wmctrl -l -x|awk '/wim.wim/{print $1}')
-#         elif [[ -x $(which xdotool) ]]; then
-#             xdotool windowfocus $(xdotool search --class wim)
-#         fi
-#     fi
-# }
 
 # function vim_file_open() (
 #     local file_name="$(resolve_file ${line})"
