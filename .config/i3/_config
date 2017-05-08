@@ -63,21 +63,21 @@ bindsym $mod+Control+{W,A,S,D} move {up,left,down,right}
 bindsym $mod+Control+G exec ~/.config/i3/i3_switch_workspace
 #------------------------------------------
 
-set {$term,$ws1}   1:term
-set {$web,$ws2}   2:web
-set {$doc,$ws3}   3:doc
-set {$dev,$ws4}   4:dev
-set {$media,$ws5}   5:media
-set {$gimp,$ws6}  6:gimp
-set {$admin,$ws7}  7:admin
-set {$ide,$ws8}   8:ide
-set {$steam,$ws9}   9:steam
-set {$torrent,$ws10}  10:torrent
-set {$vm,$ws11} 11:vm
-set {$wine,$ws12} 12:wine
-set {$spotify,ws13}  13: spotify
-set {$sxiv}  14: [pic]
-set {$graph}  15: [graph]
+set {$term,$ws1}   α:term
+set {$web,$ws2}   β:web
+set {$doc,$ws3}   γ:doc
+set {$dev,$ws4}   δ:dev
+set {$media,$ws5}   ε:media
+set {$gimp,$ws6}  ζ:gimp
+set {$admin,$ws7}  η:admin
+set {$ide,$ws8}   θ:ide
+set {$steam,$ws9}   ι:steam
+set {$torrent,$ws10}  κ:torrent
+set {$vm,$ws11} λ:vm
+set {$wine,$ws12} μ:wine
+set {$spotify,ws13}  ν:spotify
+set {$sxiv}  ξ: [pic]
+set {$graph}  ο: [graph]
 
 bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpcpp
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
