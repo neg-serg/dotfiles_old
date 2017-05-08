@@ -50,6 +50,10 @@ class cycle_settings(object):
                 'instances': { 'nwim', 'wim' },
                 'prog':"~/bin/nwim",
             },
+            'emacs':{
+                'classes': { 'Emacs' },
+                'prog':"emacs",
+            },
             'jetbrains-idea':{
                 'classes': {
                     'jetbrains-idea',
