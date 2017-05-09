@@ -22,6 +22,8 @@ class wim_runner(object):
             "to_normal": "<C-\><C-N>:call<SPACE>foreground()<CR>",
         }
 
+        self.timeout=0.1
+
         if self.settings["use_neovim"]:
             self.wim_name="nwim"
         else:
@@ -37,44 +39,55 @@ class wim_runner(object):
             self.dprint(indent, window.get_wm_class())
             print_windows(w, indent+'-')
 
-    def wim_goto():
+    def wim_goto(self):
         def there_is(wm_):
-            pipe = subprocess.popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
+            pipe = subprocess.Popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
             pid, _ = pipe.communicate()
             return str(pid) != ""
 
         if there_is("notion"):
             self.dprint("there is notion: go to win with it")
-            # subprocess.popen("notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name), stdout=subprocess.PIPE)
+            subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=subprocess.PIPE)
         elif there_is("i3"):
             self.dprint("there is i3: go to win with it")
-            # subprocess.popen("notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name), stdout=subprocess.PIPE)
-        else:
-            self.dprint("there is nothing, using standard tools")
-            # if [[ -x $(which wmctrl) ]]; then
-            #     wmctrl -i -a $(wmctrl -l -x|awk '/{}.{}/{print $1}')
-            # elif [[ -x $(which xdotool) ]]; then
-            #     xdotool windowfocus $(xdotool search --class {})
+            subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=subprocess.PIPE)
 
+    def process_list(timer, *args):
+        return
 
-    def wim_run(*args):
-        proc="process_list"
+    def eprocess_list(timer, *args):
+        return
+
+    def create_wim_server_from_scratch(self):
+        subprocess.Popen([
+                            "st",
+                            "-f",
+                            "{}:pixelsize={}".format(self.font, self.fsize),
+                            "-c",
+                            self.wim_name,
+                            "-e" "bash", "-c" "tmux", "-S", self.sock_path, "new", "-s", "nvim", "-n", "nvim",
+                            "nvim",  "--servername", "NVIM", "&&", "tmux", "-S", self.sock_path, "switch-client" "-t" "nvim",
+                        ], shell=True, stdout=subprocess.PIPE)
+
+    def wim_run(mode, *args):
+        if mode == "default":
+            proc=process_list
+        elif mode == "embedded":
+            proc=eprocess_list
+
         if len(args):
-            if args[0] == "__{}_embed".format(self.wim_name):
-                proc="eprocess_list"
-
-            p = subprocess.popen('xdotool search --classname {}'.format(self.wim_name).split(), stdout=subprocess.PIPE)
+            p = subprocess.Popen('xdotool search --classname {}'.format(self.wim_name).split(), stdout=subprocess.PIPE)
             wid, _ = p.communicate()
 
             if wid == "":
                 self.dprint("creating new {} server").format(self.wim_name)
-                # st -f "${wim_font}:pixelsize=${wim_font_size}" -c 'wim' -e bash -c "tmux -S ${wim_sock_path} new -s vim -n vim \"vim --servername ${vim_server_name}\" && \
-                #     tmux -S ${wim_sock_path} switch-client -t vim" 2>/dev/null &!
+                self.create_wim_server_from_scratch()
                 self.dprint("eval {} proc").format(self.wim_name)
-                # eval ${proc} ${wim_timer} "$@"
+                proc(self.timeout, args)
             else:
                 self.dprint("eval {} proc").format(self.wim_name)
-                # eval ${proc} ${wim_timer} "$@"
+                self.create_wim_server_from_scratch()
+                proc(self.timeout, args)
 
     def main(self):
         def socket_is_used_():
@@ -86,8 +99,9 @@ class wim_runner(object):
             import redis
             r=redis.StrictRedis(host='localhost', port=6379, db=0)
             count_=(int(r.hmget('count_dict', 'wim')[0]))
-                if count_ > 0:
-                    ret_=False
+
+            if count_ > 0:
+                ret_=False
             return ret_
 
         try:
@@ -101,8 +115,12 @@ class wim_runner(object):
                     "-c", "{}".format(self.wim_name),
                     "-e", "tmux", "-S", self.sock_path, "attach-session", "-d", "-t", "nvim"
                 ])
-            else:
+            elif not socket_is_used_():
                 self.dprint("let's create tmux+nvim server from scratch")
+                self.create_wim_server_from_scratch()
+            else:
+                self.dprint("Let's jump to target window")
+                self.wim_goto()
         except Exception as e:
             print("something's wrong. Exception is {}".format(e))
         finally:
