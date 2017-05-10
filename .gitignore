@@ -291,3 +291,17 @@ surf
 .rustup/
 .sqlite_history
 .surf
+.config/deluge
+.config/kritadisplayrc
+.config/kritarc
+.config/libreoffice/
+.config/spotify/
+.ghc/x86_64-linux-8.0.1/
+.rediscli_history
+.IntelliJIdea2017.1/system/
+.config/mpdas/
+/home/neg/.config/menus
+.xsession-errors.old
+.config/composer/
+.config/configstore/
+./.crawl
