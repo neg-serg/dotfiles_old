@@ -14,7 +14,12 @@ class cycle_settings(object):
                 'priority':'Firefox',
             },
             'vid':{
-                'classes': {'mpv'},
+                'classes': {
+                    'mpv',
+                    'mplayer',
+                    'mplayer2',
+                    'Vlc'
+                },
             },
             'steam':{
                 'classes': {

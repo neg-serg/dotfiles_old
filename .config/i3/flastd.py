@@ -5,7 +5,7 @@
 Focus last focused window.
 
 Usage:
-    flastd.py daemon
+    flastd.py
 
 Options:
     -h, --help  show this help message and exit
@@ -77,26 +77,25 @@ if __name__ == '__main__':
     i3 = i3ipc.Connection()
     wmii_like_goback=True
 
-    if argv["daemon"]:
-        name='flastd-i3'
+    name='flastd-i3'
 
-        fw=FocusWatcher.instance()
+    fw=FocusWatcher.instance()
 
-        mng=daemon_manager.instance()
-        mng.add_daemon(name)
+    mng=daemon_manager.instance()
+    mng.add_daemon(name)
 
-        def cleanup_all():
-            daemon_=mng.daemons[name]
-            if os.path.exists(daemon_.fifo_):
-                os.remove(daemon_.fifo_)
+    def cleanup_all():
+        daemon_=mng.daemons[name]
+        if os.path.exists(daemon_.fifo_):
+            os.remove(daemon_.fifo_)
 
-        import atexit
-        atexit.register(cleanup_all)
+    import atexit
+    atexit.register(cleanup_all)
 
-        i3.on('window::focus', on_window_focus)
-        if wmii_like_goback:
-            i3.on('window::close', go_back_if_nothing)
+    i3.on('window::focus', on_window_focus)
+    if wmii_like_goback:
+        i3.on('window::close', go_back_if_nothing)
 
-        mainloop=Thread(target=mng.daemons[name].mainloop, args=(fw,)).start()
+    mainloop=Thread(target=mng.daemons[name].mainloop, args=(fw,)).start()
 
-        i3.main()
+    i3.main()

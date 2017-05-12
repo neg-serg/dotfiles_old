@@ -2,7 +2,7 @@
 
 """ i3 window tag circle
 Usage:
-    circle.py daemon
+    circle.py
 
 Created by :: Neg
 email :: <serg.zorg@gmail.com>
@@ -230,31 +230,30 @@ def handle_fullscreen(self,event):
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 window tag circle 0.5')
 
-    if argv["daemon"]:
-        i3 = i3ipc.Connection()
-        name = 'circled'
+    i3 = i3ipc.Connection()
+    name = 'circled'
 
-        cw=cycle_window.instance()
-        cw.current_win=i3.get_tree().find_focused()
+    cw=cycle_window.instance()
+    cw.current_win=i3.get_tree().find_focused()
 
-        mng=daemon_manager.instance()
-        mng.add_daemon(name)
+    mng=daemon_manager.instance()
+    mng.add_daemon(name)
 
-        def cleanup_all():
-            daemon_=mng.daemons[name]
-            if os.path.exists(daemon_.fifo_):
-                os.remove(daemon_.fifo_)
+    def cleanup_all():
+        daemon_=mng.daemons[name]
+        if os.path.exists(daemon_.fifo_):
+            os.remove(daemon_.fifo_)
 
-        import atexit
-        atexit.register(cleanup_all)
+    import atexit
+    atexit.register(cleanup_all)
 
-        invalidate_tags_info()
+    invalidate_tags_info()
 
-        i3.on('window::new', add_acceptable)
-        i3.on('window::close', del_acceptable)
-        i3.on("window::focus", save_current_win)
-        i3.on("window::fullscreen_mode", handle_fullscreen)
+    i3.on('window::new', add_acceptable)
+    i3.on('window::close', del_acceptable)
+    i3.on("window::focus", save_current_win)
+    i3.on("window::fullscreen_mode", handle_fullscreen)
 
-        mainloop=Thread(target=mng.daemons[name].mainloop, args=(cw,)).start()
+    mainloop=Thread(target=mng.daemons[name].mainloop, args=(cw,)).start()
 
-        i3.main()
+    i3.main()

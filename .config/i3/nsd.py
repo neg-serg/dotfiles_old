@@ -3,7 +3,7 @@
 """ i3 Named Scratchpads
 
 Usage:
-  ns.py daemon
+  ns.py
 
 Options:
   -h --help     Show this screen.
@@ -197,28 +197,27 @@ def cleanup_mark(self, event):
 
 if __name__ == '__main__':
     argv = docopt(__doc__, version='i3 Named Scratchpads 0.3')
-    if argv["daemon"]:
-        i3 = i3ipc.Connection()
-        name='ns_scratchd'
+    i3 = i3ipc.Connection()
+    name='ns_scratchd'
 
-        mng=daemon_manager.instance()
-        mng.add_daemon(name)
+    mng=daemon_manager.instance()
+    mng.add_daemon(name)
 
-        def cleanup_all():
-            daemon_=mng.daemons[name]
-            if os.path.exists(daemon_.fifo_):
-                os.remove(daemon_.fifo_)
+    def cleanup_all():
+        daemon_=mng.daemons[name]
+        if os.path.exists(daemon_.fifo_):
+            os.remove(daemon_.fifo_)
 
-        import atexit
-        atexit.register(cleanup_all)
+    import atexit
+    atexit.register(cleanup_all)
 
-        ns=named_scratchpad.instance()
+    ns=named_scratchpad.instance()
 
-        mark_all(hide=True)
+    mark_all(hide=True)
 
-        i3.on('window::new', mark_group)
-        i3.on('window::close', cleanup_mark)
+    i3.on('window::new', mark_group)
+    i3.on('window::close', cleanup_mark)
 
-        mainloop=Thread(target=mng.daemons[name].mainloop, args=(ns,)).start()
+    mainloop=Thread(target=mng.daemons[name].mainloop, args=(ns,)).start()
 
-        i3.main()
+    i3.main()
