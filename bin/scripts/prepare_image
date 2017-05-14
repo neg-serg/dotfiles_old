@@ -7,7 +7,17 @@ echo "body_=${body_}"
 echo "image_=${image_}"
 echo "urgency_=${urgency_}"
 
-function conv_image_(){ convert -resize ${size_} "$1" "$2" 2>/dev/null }
+function conv_image_(){ 
+    echo 1 :: "$1"
+    echo 2 :: "$2"
+    # if [[ $1 != "" ]]; then
+    echo "[ :: CONVERT :: ]"
+    convert -resize ${size_} "$1" "$2" 2>/dev/null 
+    echo "[ :: COPY :: ]"
+    cp -v "$2" "/tmp/dunst-images/audio-x-generic.png"
+    # fi
+}
+
 function wf_(){
     echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
 }
@@ -73,7 +83,7 @@ function main(){
     local previous_="${dunst_pics_}/prev.png"
 
     echo IMAGE="${image_}"
-    if [[ $(xargs <<< ${image_}) == "info" ]]; then
+    if [[ $(xargs <<< ${image_}) == "info" || $(xargs <<< ${image_}) == "" ]]; then
         image_="${dunst_pics_}/cover_not.png"
         conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
@@ -94,7 +104,7 @@ function main(){
     else
         local dunst_pics_list_=$(setopt nullglob dotglob; builtin print "${dunst_pics_}"/*)
         if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]] \
-           && [[ ${#dunst_pics_list_[@]} -gt 1 ]]; then
+        && [[ ${#dunst_pics_list_[@]} -gt 1 ]]; then
             cp -v "${new_image}" "${previous_}"
             send_notify_ 
             sleep ${timeout_} && rm "${new_image}"
