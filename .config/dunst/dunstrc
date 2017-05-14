@@ -1,10 +1,9 @@
 [global]
     font                  = PragmataPro for Powerline 12
-    allow_markup          = yes
+    markup                = full
     plain_text            = no
     format                = "<b>%s</b>\n%b"
     sort                  = yes
-    indicate_hidden       = no
     alignment             = left
     bounce_freq           = 4
     show_age_threshold    = 60
@@ -29,11 +28,11 @@
     icon_position         = left
     icon_folders          = /home/neg/.icons/dunst_status
     max_icon_size         = 200
-    #title                 = Dunst
-    #class                 = Dunst
-    stack_duplicates      = true
-    hide_duplicates_count = true
-    always_run_stript     = true
+    title                 = Dunst
+    class                 = Dunst
+    stack_duplicates      = yes
+    hide_duplicates_count = yes
+    always_run_stript     = yes
 
 
 [frame]
