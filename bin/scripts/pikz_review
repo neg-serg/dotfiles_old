@@ -1,7 +1,7 @@
 #!/bin/zsh
 wid=$(xdotool search --classname Sxiv)
 if [[ -z "${wid}" ]]; then
-    find ~/{dw,tmp}/ -type d -print0|xargs -0 ~/bin/sx 
+    find ~/{dw,tmp/shots}/ -type d -print0|xargs -0 ~/bin/sx 
     sleep .1s && i3-msg '[class="Sxiv"] focus'
 else
     source ${XDG_CONFIG_HOME}/.windowmanager
