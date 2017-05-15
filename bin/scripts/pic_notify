@@ -4,21 +4,20 @@ image_="$1"
 
 function conv_image_(){ 
     readonly size_=200
-    if ! [[ $1 =~ .*gif ]]; then
-        convert -resize ${size_} "$1" "$2"
-        conv_pid=$$
-    fi
+    [[ ! $1 =~ .*gif ]] && convert -sample ${size_} "$1" "$2"
 }
 
 function wf_(){
-    echo "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
+    builtin print "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
 }
 
 function send_notify_(){ 
     input=${image_}
+
     local st_=$(highlight_ 4)
     local st2_=$(highlight_ 8)
     local st3_=$(highlight_ 6)
+
     local cl_="</span>"
 
     local header="[$input]"
@@ -33,7 +32,7 @@ function send_notify_(){
     local bold_="<span weight='bold'>"
     local prefix_=$(wf_ "➣")
     
-    wait ${conv_pid}
+    wait
     notify-send -a "pic_notify" -i "${new_image}" "${header}" "${output}"
 }
 
@@ -43,17 +42,17 @@ function highlight_(){
 }
 
 function finish_(){
-    (sleep 3s && rm -f "${new_image}")&
+    (sleep 3s && rm -f "${new_image}") &
 }
 
 function main(){
     local shots_pikz="${HOME}/tmp/shots"
     [[ ! -d "${shots_pikz}" ]] && mkdir -p "${shots_pikz}"
     new_image="${HOME}/tmp/$(basename ${image_})_new.png"
-    conv_image_ "${image_}" "${new_image}"
+    conv_image_ "${image_}" "${new_image}" &
     xclip <<< "${image_}"
-    send_notify_ 
     trap finish_ EXIT
+    send_notify_ 
 }
 
 main "$@"
