@@ -51,7 +51,7 @@ bindsym $alt+e mode "[alt_e]"
 #bindsym $mod+r mode "[resize]"
 bindsym $mod+Shift+w mode "[Layout]"
 #------------------------------------------
-bindsym $mod+Control+C exec ~/bin/scripts/pikz_review
+bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
 bindsym $mod+Shift+BackSpace mode "passthrough_keys"
 mode "passthrough_keys" {
     bindsym $mod+Shift+BackSpace mode "default"
@@ -59,8 +59,8 @@ mode "passthrough_keys" {
 #------------------------------------------
 bindsym --release Print exec ~/bin/scripts/screenshot
 bindsym --release Shift+Print ~/bin/scripts/screenshot current
-bindsym $mod+Control+{W,A,S,D} move {up,left,down,right}
-bindsym $mod+Control+G exec ~/.config/i3/i3_switch_workspace
+bindsym $mod+Control+{w,a,s,d} move {up,left,down,right}
+bindsym $mod+Control+g exec ~/.config/i3/i3_switch_workspace
 #------------------------------------------
 
 set {$term,$ws1}   α:term
