@@ -1,9 +1,0 @@
-[Unit]
-Description=last.fm updater for MPD
-After=mpd.service
-
-[Service]
-ExecStart=/usr/sbin/mpdscribble --conf /home/neg/.config/mpdscribble/neg.conf --no-daemon
-
-[Install]
-WantedBy=default.target

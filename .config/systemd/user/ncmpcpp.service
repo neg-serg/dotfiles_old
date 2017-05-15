@@ -1,8 +1,0 @@
-[Unit]
-Description=ncmpcpp client
-After=mpd.service
-
-[Service]
-ExecStart=/bin/urxvtcd -fn xft:Pragmata Pro for Powerline -name mpd-pad2 -e ncmpcpp
-[Install]
-WantedBy=default.target
