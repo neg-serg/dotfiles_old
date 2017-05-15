@@ -1,12 +1,11 @@
 #!/bin/zsh
+unset TMUX
+
 windowmanager="${1}"
 [[ ${windowmanager} ]] || source ${XDG_CONFIG_HOME}/.windowmanager
 export windowmanager
 
-unset TMUX
-
 ${SCRIPT_HOME}/systemd_env_forwarding.zsh
-gpaste-client start
 ~/bin/wl rand
 
 [[ -f "${HOME}/.Xresources" ]] && \
@@ -26,5 +25,7 @@ source "${XDG_CONFIG_HOME}/xinit/email.dash"
 eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
+
+nm-applet &
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
