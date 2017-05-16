@@ -1,2 +1,2 @@
-# !~/bin/zsh
-Z_DATA_FILE=$XDG_DATA_HOME/sxiv_do.data find ~/pic/ -maxdepth 3 -type d -exec Z -a {} \;
+#!/bin/zsh
+find "${HOME}/pic/" -maxdepth 3 -type d|grep -v "${HOME}/pic/.git" | Z_DATA_FILE="${XDG_DATA_HOME}/sxiv_do.data" xargs -n1 Z -a
