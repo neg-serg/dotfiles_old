@@ -4,6 +4,7 @@ import os.path
 import socket
 from psutil import net_connections
 import subprocess
+from sys import argv
 
 class wim_runner(object):
     def __init__(self):
@@ -43,14 +44,14 @@ class wim_runner(object):
         def there_is(wm_):
             pipe = subprocess.Popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
             pid, _ = pipe.communicate()
-            return str(pid) != ""
+            return pid != b''
 
         if there_is("notion"):
             self.dprint("there is notion: go to win with it")
             subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=subprocess.PIPE)
         elif there_is("i3"):
             self.dprint("there is i3: go to win with it")
-            subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=subprocess.PIPE)
+            subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"], stdout=subprocess.PIPE)
 
     def process_list(timer, *args):
         return
@@ -65,8 +66,8 @@ class wim_runner(object):
                             "{}:pixelsize={}".format(self.font, self.fsize),
                             "-c",
                             self.wim_name,
-                            "-e" "bash", "-c" "tmux", "-S", self.sock_path, "new", "-s", "nvim", "-n", "nvim",
-                            "nvim",  "--servername", "NVIM", "&&", "tmux", "-S", self.sock_path, "switch-client" "-t" "nvim",
+                            "-e" "tmux", "-S", self.sock_path, "new", "-s", "nvim", "-n", "nvim",
+                            "nvr", "--servername", "NVIM", "&&", "tmux", "-S", self.sock_path, "switch-client" "-t" "nvim",
                         ], shell=True, stdout=subprocess.PIPE)
 
     def wim_run(mode, *args):
@@ -89,7 +90,12 @@ class wim_runner(object):
                 self.create_wim_server_from_scratch()
                 proc(self.timeout, args)
 
-    def main(self):
+    def print_args(self, *args):
+        self.dprint(":: printing args ::")
+        for arg in args:
+            self.dprint(arg)
+
+    def main(self, *args):
         def socket_is_used_():
             return bool(list(filter(lambda i: i.laddr == self.sock_path, conns)) != [])
 
@@ -106,6 +112,7 @@ class wim_runner(object):
 
         try:
             conns=net_connections(kind='unix')
+            print(files)
             # x11 window is closed, but tmux connection exists
             if socket_is_used_() and no_approp_win():
                 # do not wait for call result
@@ -117,9 +124,11 @@ class wim_runner(object):
                 ])
             elif not socket_is_used_():
                 self.dprint("let's create tmux+nvim server from scratch")
+                self.print_args(args)
                 self.create_wim_server_from_scratch()
-            else:
+            elif not len(args) - 1:
                 self.dprint("Let's jump to target window")
+                self.print_args(args)
                 self.wim_goto()
         except Exception as e:
             print("something's wrong. Exception is {}".format(e))
@@ -128,7 +137,8 @@ class wim_runner(object):
 
 if __name__ == '__main__':
     run_=wim_runner()
-    run_.main()
+    args=argv
+    run_.main(args)
 
 # function vim_file_open() (
 #     local file_name="$(resolve_file ${line})"
@@ -283,60 +293,3 @@ if __name__ == '__main__':
 #     }
 #     unset file_name
 # )
-
-# function nprocess_list() {
-#     sleep "$1"; shift
-#     while getopts ":b:a:c:" opt; do
-#         case ${opt} in
-#             a|c) after="${OPTARG}" ;;
-#             b) before="${before}${OPTARG}" ;;
-#             --) shift ; break ;;
-#         esac
-#     done
-#     shift $((OPTIND-1))
-#     [[ ${after#:} != ${after} && ${after%<CR>} == ${after} ]] && after="${after}<CR>"
-#     [[ ${before#:} != ${before} && ${before%<CR>} == ${before} ]] && before="${before}<CR>"
-#     local cmd="${to_normal}${before}${after}"
-#     if [[ ${cmd} == ${to_normal} ]]; then
-#         for line; do nvim_file_open; done
-#     else
-#         nvr --servername ${HOME}/1st_level/nvim.socket --remote-send "${cmd}"
-#         for line; do nvim_file_open; done
-#     fi
-#     unset before; unset after
-# }
-
-# function eprocess_list() {
-#     nwim_goto
-#     sleep "$1"; shift
-#     for line; do nvr --servername ${HOME}/1st_level/nvim.socket --remote-wait "$@"; done
-# }
-
-# function nv {
-#     while read -r arg; do
-#         nwim_run ${arg[@]}
-#     done <<< "$(printf '%q\n' "$@")"
-#     nwim_goto
-# }
-
-# function nwim_embed { nwim_run "__nwim_embed" "$@" }
-
-# function nwdiff {
-#     local prev_
-#     local arg2_
-#     # or it's maybe better to use :windo diffthis
-#     if [[ $# == 2 ]]; then
-#         prev_="$1"
-#         nwim_run "" && v -b":tabnew" && \
-#         { nwim_run $1; shift } && v -b":diffthis" && \
-#         { v -b":vs" && {
-#             if [[ -d $1 ]]; then
-#                 arg2_="$1/$(basename ${prev_})"
-#             else
-#                 arg2_="$1"
-#             fi
-#             nwim_run ${arg2_};
-#             shift
-#         } && v -b":diffthis" }
-#     fi
-# }
