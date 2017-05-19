@@ -20,23 +20,23 @@ set line-graphics       = utf-8 # Enum: ascii, default, utf-8
 set reference-format    = [branch] <tag> {remote} ~replace~
 
 #--[ How to read content from git ]-----------------------------------------------------
-set commit-order          = default   # Enum: default, topo, date, reverse (main)
-set status-untracked-dirs = yes       # Show files in untracked directories? (status)
-set ignore-space          = no        # Enum: no, all, some, at-eol (diff)
-set show-notes            = yes       # When non-bool passed as `--show-notes=...` (diff)
+set commit-order               = default   # Enum: default, topo, date, reverse (main)
+set status-show-untracked-dirs = yes       # Show files in untracked directories? (status)
+set ignore-space               = no        # Enum: no, all, some, at-eol (diff)
+set show-notes                 = yes       # When non-bool passed as `--show-notes          = ...` (diff)
 
-set refresh-mode          = auto      # Enum: manual, auto, after-command, periodic
-set refresh-interval      = 10        # Interval in seconds between refreshes
-set ignore-case           = no        # Ignore case when searching?
-set focus-child           = yes       # Move focus to child view when opened?
-set horizontal-scroll     = 50%       # Number of columns to scroll as % of width
-set split-view-height     = 67%       # Number of lines for bottom view as % of height
-set vertical-split        = auto      # Enum: horizontal, vertical, auto; Use auto to
-                                      # switch to horizontal split when width allows it
-set editor-line-number    = yes       # Automatically pass line number to editor? Used
-                                      # for opening file at specific line e.g. from a diff
-set mouse                 = no        # Enable mouse support?
-set mouse-scroll          = 3         # Number of lines to scroll via the mouse
+set refresh-mode               = auto      # Enum: manual, auto, after-command, periodic
+set refresh-interval           = 10        # Interval in seconds between refreshes
+set ignore-case                = no        # Ignore case when searching?
+set focus-child                = yes       # Move focus to child view when opened?
+set horizontal-scroll          = 50%       # Number of columns to scroll as % of width
+set split-view-height          = 67%       # Number of lines for bottom view as % of height
+set vertical-split             = auto      # Enum: horizontal, vertical, auto; Use auto to
+                                           # switch to horizontal split when width allows it
+set editor-line-number         = yes       # Automatically pass line number to editor? Used
+                                           # for opening file at specific line e.g. from a diff
+set mouse                      = no        # Enable mouse support?
+set mouse-scroll               = 3         # Number of lines to scroll via the mouse
 
 #--[ View switching ]--------
 bind generic    m   view-main
