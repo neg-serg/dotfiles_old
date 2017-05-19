@@ -23,22 +23,22 @@ else
     uptime=$(uptime | awk '{print $3}' | sed 's/:/h /' | sed 's/,/m/')
 fi
 
-PACKAGES=$(pacman -Q | wc -l)
+PACKAGES=$(pacaur -Q | wc -l)
 ram_used=$(free -m | grep Mem | awk '{print $3" MB"}')
 ram_total=$(free -m | grep Mem | awk '{print $2" MB"}')
 cpu_user=$(mpstat | grep all | awk '{print $4"%"}')
 cpu_sys=$(mpstat | grep all | awk '{print $6"%"}')
 cpu_idle=$(mpstat | grep all | awk '{print $13"%"}')
 temp=$(cat /sys/devices/virtual/thermal/thermal_zone0/temp)
-let "cpu_temp=$temp/1000"
-hdd_temp=$(hddtemp -n /dev/sda)
+let "cpu_temp=${temp}/1000"
+hdd_temp=$(sudo hddtemp -n /dev/sda)
  
 (
 echo "
 ^fg(${fg_title})^fn(${font_title})^p(+55)System Information^p()^fg()" # Fist line goes to title
 # The following lines go to slave window
 echo "   ^fg(#666666)-----------------------------"
-echo "   ^fn(${icons2})^fn(${font1}) ${HOST} "
+echo "   ^fn(${icons2})^fn(${font1}) [${HOST}] "
 echo "   ^fn(${icons2})^fn(${font1}) ${uptime}"
 echo "   ^fn(${icons3})P^fn() ${PACKAGES} packages"
 echo "   ^fg(#666666)-----------------------------"
@@ -55,4 +55,4 @@ echo "   ^fn(${font_title})^fg(${fg_title})^bg(#222222) HDD "
 echo "   ^fn(${icons})^fn(${font1}) ${hdd_temp}°C/55°C
 "
 echo ""
-) | dzen2 -p -x 213 -y 28 -w 250 -bg ${BG} -fg ${FG} -l 19 -sa l -ta c -e 'onstart=uncollapse;button1=exit;button3=exit' -fn "${font1}"
+) | dzen2 -p -x -1 -y -28 -w 250 -bg ${BG} -fg ${FG} -l 19 -sa l -ta c -e 'onstart=uncollapse;button1=exit;button3=exit' -fn "${font1}"
