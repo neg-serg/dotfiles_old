@@ -50,7 +50,8 @@ function pantheon_run(){
 function i3_run(){
     (${BIN_HOME}/term) &
     source "${XDG_CONFIG_HOME}/xinit/hotkeys.zsh"
-    exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
+    [[ ! ${WITHLOGS} -eq "" ]] && exec i3 -V >> "${HOME}/tmp/i3log-$(date +'%F-%k-%M-%S')" 2>&1
+    exec i3 2>&1
 }
 
 function fallback_run(){
