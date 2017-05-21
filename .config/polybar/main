@@ -26,7 +26,7 @@ enable-ipc = true
 padding-left  = 0 # offset from x
 padding-right = 0 # offset from -x
 
-module-margin-right = 1; looks nice
+module-margin-right = 0; looks nice
 module-margin-left  = 0
 
 #separator = 
