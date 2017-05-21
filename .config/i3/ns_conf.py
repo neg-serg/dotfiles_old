@@ -87,6 +87,7 @@ class ns_settings(object):
                     'skypeforlinux',
                     'ViberPC',
                     'finch',
+                    'VK',
                 },
                 'geom' : "528x1029+1372+127"
             },
