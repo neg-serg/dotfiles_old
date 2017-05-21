@@ -2,22 +2,27 @@
 
 # Original taken from : http://www.adminsehow.com/2010/03/shell-script-to-show-network-speed/
 function interface_autodetect(){
-    local host="google.com"
-    local default_net_="enp7s0"
-
-    local host_ip=$(getent ahosts ${host} | head -1 | awk '{print $1}')
-    local active_net_interface=$(ip link show up | \
-        awk -F \: '/state UP/ {print $2}')
-
-    if [[ "${host_ip}" != "" ]]; then
-        local host_dev=$(ip route get "${host_ip}" | \
-            grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]')
-    fi
-
-    if [[ "${host_dev}" != "" && "${host_dev}" ]]; then
+    if [[ $(pgrep NetworkManager) > /dev/null ]]; then
+        host_dev="$(nmcli|awk -F ':' '/connected to/{print $1}')"
         builtin printf "%s\n" "${host_dev}"
     else
-        builtin printf "%s\n" "${default_net_}"
+        local host="google.com"
+        local default_net_="enp7s0"
+
+        local host_ip=$(getent ahosts ${host} | head -1 | awk '{print $1}')
+        local active_net_interface=$(ip link show up | \
+            awk -F \: '/state UP/ {print $2}')
+
+        if [[ "${host_ip}" != "" ]]; then
+            local host_dev=$(ip route get "${host_ip}" | \
+                grep -Po '(?<=(dev )).*(?= src)'|tr -d '[:space:]')
+        fi
+
+        if [[ "${host_dev}" != "" && "${host_dev}" ]]; then
+            builtin printf "%s\n" "${host_dev}"
+        else
+            builtin printf "%s\n" "${default_net_}"
+        fi
     fi
 }
 
@@ -78,9 +83,14 @@ get_bytes
 old_received_bytes="${received_bytes}"
 old_transmitted_bytes="${transmitted_bytes}"
 
+counter=0
+first_blood=true
+
 # Main loop. It will repeat forever.
 while true; do
     local use_terminal_=false
+    local timeout_=60
+    local interface_timeout_=7
 
     # Get new transmitted and received byte number values.
     get_bytes
@@ -94,7 +104,12 @@ while true; do
         builtin printf "%b" "\e[2K"
         builtin printf "%b" "${interface} ${vel_recv}/${vel_trans}\r"
     else
-        builtin printf "%b" "net: ${vel_recv}/${vel_trans}\r"
+        if [[ ${counter} < "${interface_timeout_}" && ${first_blood} == true ]]; then
+            builtin printf "%b" "net: [${interface}] ${vel_recv}/${vel_trans}\r"
+        else
+            builtin printf "%b" "net: ${vel_recv}/${vel_trans}\r"
+            first_blood=false
+        fi
         builtin printf "\n"
     fi
 
@@ -106,5 +121,13 @@ while true; do
         sleep 1s
     else
         sleep "$2"
+    fi
+    let counter=counter+1
+    if [[ ${counter} == ${timeout_} ]]; then
+        interface=$(interface_autodetect)
+        if [[ -e "${interface}" ]]; then
+            echo "net: oOps :("
+            sleep 1m; exit 0
+        fi
     fi
 done
