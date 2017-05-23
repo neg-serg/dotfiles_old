@@ -79,7 +79,7 @@ class wim_runner(object):
     def v(*args):
         # maybe I should add some auto-quoting here, not sure yet
         for file in args:
-            wim_run(args)
+            wim_run("default", args)
         wim_goto()
 
     def process_list(timer=.05, *args):
@@ -115,9 +115,9 @@ class wim_runner(object):
             shlex.split("st "+ "-f '{}:pixelsize={}' ".format(self.font, self.fsize) + \
                         "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
                         " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
-        wim.wait()
+        # wim.wait()
 
-    def wim_run(mode, *args):
+    def wim_run(mode="default", *args):
         if mode == "default":
             proc=process_list
         elif mode == "embedded":
