@@ -22,6 +22,7 @@ from psutil import net_connections
 import subprocess
 import time
 import docopt
+import shlex
 from sys import argv
 
 class wim_runner(object):
@@ -32,9 +33,10 @@ class wim_runner(object):
         }
 
         self.font="PragmataPro for Powerline"
-        self.fsize=20
+        self.fsize=22
 
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
+        self.tmux_sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/tmux_nvim.socket"))
         self.socket_ = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 
         self.vim_commands={
@@ -74,6 +76,12 @@ class wim_runner(object):
             self.dprint("[i3] :: go to win with it")
             subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"], stdout=subprocess.PIPE)
 
+    def v(*args):
+        # maybe I should add some auto-quoting here, not sure yet
+        for file in args:
+            wim_run(args)
+        wim_goto()
+
     def process_list(timer=.05, *args):
         self.wim_goto()
         time.sleep(timer)
@@ -103,15 +111,11 @@ class wim_runner(object):
         return
 
     def create_wim_server_from_scratch(self):
-        subprocess.Popen([
-                            "st",
-                            "-f",
-                            "{}:pixelsize={}".format(self.font, self.fsize),
-                            "-c",
-                            self.wim_name,
-                            "-e" "tmux", "-S", self.sock_path, "new", "-s", "nvim", "-n", "nvim",
-                            "nvr", "--servername", "NVIM", "&&", "tmux", "-S", self.sock_path, "switch-client" "-t" "nvim",
-                        ], shell=True, stdout=subprocess.PIPE)
+        wim=subprocess.Popen(
+            shlex.split("st "+ "-f '{}:pixelsize={}' ".format(self.font, self.fsize) + \
+                        "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
+                        " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
+        wim.wait()
 
     def wim_run(mode, *args):
         if mode == "default":
@@ -140,7 +144,7 @@ class wim_runner(object):
 
     def main(self, *args):
         def socket_is_used_():
-            return bool(list(filter(lambda i: i.laddr == self.sock_path, conns)) != [])
+            return bool(list(filter(lambda i: i.laddr == self.tmux_sock_path, conns)) != [])
 
         def no_approp_win():
             ret_=True
@@ -162,7 +166,7 @@ class wim_runner(object):
                     "st",
                     "-f", "{}:pixelsize={}".format(self.font, self.fsize),
                     "-c", "{}".format(self.wim_name),
-                    "-e", "tmux", "-S", self.sock_path, "attach-session", "-d", "-t", "nvim"
+                    "-e", "tmux", "-S", self.tmux_sock_path, "attach-session", "-d", "-t", "nvim"
                 ])
             elif not socket_is_used_():
                 self.dprint("let's create tmux+nvim server from scratch")
@@ -218,15 +222,6 @@ if __name__ == '__main__':
 #     }
 #     unset file_name
 # )
-
-# function v {
-#     while read -r arg; do
-#         wim_run ${arg[@]}
-#     done <<< "$(printf '%q\n' "$@")"
-#     wim_goto
-# }
-
-# function wim_embed { wim_run "__wim_embed" "$@" }
 
 # function wdiff {
 #     local prev_
