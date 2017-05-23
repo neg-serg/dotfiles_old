@@ -24,6 +24,7 @@ import time
 import docopt
 import shlex
 from sys import argv
+from plumbum import colors
 
 class wim_runner(object):
     def __init__(self):
@@ -36,6 +37,7 @@ class wim_runner(object):
         self.fsize=22
 
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
+        os.environ["NVIM_LISTEN_ADDRESS"]=self.sock_path
         self.tmux_sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/tmux_nvim.socket"))
         self.socket_ = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 
@@ -82,6 +84,68 @@ class wim_runner(object):
             wim_run("default", args)
         wim_goto()
 
+
+    def vim_file_open(line):
+        file_name_=os.readlink(line)
+        self.dprint("file_name={}".format(file_name_))
+
+        def wccount_(filename):
+            out = subprocess.Popen(['wc', '-l', filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0]
+            return int(out.partition(b' ')[0])
+
+        def wrap_string_(str):
+            pass
+
+        def size_msg_wrap_(size):
+            # local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
+            pass
+
+        def len_msg_wrap_(len):
+            # local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
+            pass
+
+        def new_file_msg_wrap_(filename):
+            # local new_file_msg=$(_zwrap new_file)
+            pass
+
+        def dir_msg_wrap_(filename):
+            # local dir_msg=$(_zwrap directory)
+            pass
+
+        def print_prefix_():
+            # local pref=$(_zwrap ">>")
+            pass
+
+
+        # file_name=$(bash -c "printf %q '${file_name}'")
+        file_name_=file_name_
+        file_stats_=os.stat(file_name_)
+        file_size_=file_stats_.si_size
+        file_length=wccount_(file_name_)
+
+        #     if [[ ! -e "${file_name}" ]]; then
+        #         <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${new_file_msg}"
+        #     elif [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
+        #         <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
+        #     else
+        #         if [[ -d "${file_name}" ]]; then
+        #             if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
+        #                 <<< "${pref} $(_zfwrap "current dir") $(_zdelim) ${dir_msg}"
+        #             else
+        #                 <<< "${pref} ${fancy_name} $(_zdelim) ${dir_msg}"
+        #             fi
+        #         fi
+        #     fi
+
+        # { nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
+        #     || { while [[ $(nvr --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
+        #         sleep ${wim_timer}
+        #     done \
+        #     && nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
+        #     ...
+        # }
+
+
     def process_list(timer=.05, *args):
         self.wim_goto()
         time.sleep(timer)
@@ -89,13 +153,11 @@ class wim_runner(object):
         cmd_=self.vim_command["to_normal"]+self.vim_commands["state_before"]+self.vim_commands["state_after"]
         if cmd_ == self.vim_command["to_normal"]:
             for line in args:
-                #vim_file_open()
-                pass
+                vim_file_open(line)
         else:
-            #vim --servername ${vim_server_name} --remote-send "${cmd}"
+            shlex.split("nvr --remote-send "+cmd_, stdout=subprocess.PIPE)
             for line in args:
-                #vim_file_open()
-                pass
+                vim_file_open(line)
         self.vim_commands["state_after"]=""
         self.vim_commands["state_before"]=""
 
@@ -115,7 +177,6 @@ class wim_runner(object):
             shlex.split("st "+ "-f '{}:pixelsize={}' ".format(self.font, self.fsize) + \
                         "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
                         " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
-        # wim.wait()
 
     def wim_run(mode="default", *args):
         if mode == "default":
@@ -186,42 +247,6 @@ if __name__ == '__main__':
     args=argv
     # opts=docopt(__doc__, version='nwim runner')
     run_.main(args)
-
-# function vim_file_open() (
-#     local file_name="$(resolve_file ${line})"
-#     file_name=$(bash -c "printf %q '${file_name}'")
-#     { vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
-#         || { while [[ $(vim --servername ${vim_server_name} --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
-#             sleep ${wim_timer}
-#         done \
-#         && vim --servername ${vim_server_name} --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
-#         local file_size=$(stat -c%s "${file_name}" 2>/dev/null | \
-#                           numfmt --to=iec-i --suffix=B | \
-#                           sed "s/\([KMGT]iB\|B\)/$fg[green]&/")
-#         local file_length=$(wc -l ${file_name} 2>/dev/null| \
-#             grep -owE '[0-9]* '| \
-#             tr -d ' ')
-#         local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
-#         local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
-#         local new_file_msg=$(_zwrap new_file)
-#         local dir_msg=$(_zwrap directory)
-#         local pref=$(_zwrap ">>")
-#         if [[ ! -e "${file_name}" ]]; then
-#             <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${new_file_msg}"
-#         elif [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
-#             <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
-#         else
-#             if [[ -d "${file_name}" ]]; then
-#                 if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
-#                     <<< "${pref} $(_zfwrap "current dir") $(_zdelim) ${dir_msg}"
-#                 else
-#                     <<< "${pref} ${fancy_name} $(_zdelim) ${dir_msg}"
-#                 fi
-#             fi
-#         fi
-#     }
-#     unset file_name
-# )
 
 # function wdiff {
 #     local prev_
