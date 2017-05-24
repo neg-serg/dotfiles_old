@@ -16,15 +16,24 @@ year :: 2017
 
 """
 
-import os.path
-import socket
+# --[ scripts interaction ]-------
 from psutil import net_connections
 import subprocess
 import time
-import docopt
+import os.path
+import socket
+from collections import deque
+
+# --[ shell interaction ]---------
 import shlex
+from pathlib import Path
+
+# --[ options ]-------------------
 from sys import argv
-from plumbum import colors
+import docopt
+
+# --[ colors ]--------------------
+from colored import fg, bg, attr
 
 class wim_runner(object):
     def __init__(self):
@@ -59,12 +68,14 @@ class wim_runner(object):
         if self.settings["debug"]:
             print(debug_string)
 
-    def print_windows(window, indent):
-        children = window.query_tree().children
-        for w in children:
+    # --[ print x11 windows hierarchy ]--
+    def print_windows(self, window, indent):
+        wins = window.query_tree().children
+        for win in wins:
             self.dprint(indent, window.get_wm_class())
-            print_windows(w, indent+'-')
+            print_windows(win, indent+'-')
 
+    # --[ goto neovim window ]--
     def wim_goto(self):
         def there_is(wm_):
             pipe = subprocess.Popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
@@ -78,65 +89,15 @@ class wim_runner(object):
             self.dprint("[i3] :: go to win with it")
             subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"], stdout=subprocess.PIPE)
 
-    def v(*args):
-        # maybe I should add some auto-quoting here, not sure yet
+    # --[ it is the main function in the past, not sure for now ]--
+    def V(self, args):
+        # --[ maybe I should add some auto-quoting here, not sure yet ]--
         for file in args:
-            wim_run("default", args)
+            self.wim_run("default", args)
         wim_goto()
 
-
-    def vim_file_open(line):
-        file_name_=os.readlink(line)
-        self.dprint("file_name={}".format(file_name_))
-
-        def wccount_(filename):
-            out = subprocess.Popen(['wc', '-l', filename], stdout=subprocess.PIPE, stderr=subprocess.STDOUT).communicate()[0]
-            return int(out.partition(b' ')[0])
-
-        def wrap_string_(str):
-            pass
-
-        def size_msg_wrap_(size):
-            # local sz_msg=$(_zwrap "sz$(_zfg 237)~$fg[white]${file_size}")
-            pass
-
-        def len_msg_wrap_(len):
-            # local len_msg=$(_zwrap "len$(_zfg 237)=$fg[white]${file_length}")
-            pass
-
-        def new_file_msg_wrap_(filename):
-            # local new_file_msg=$(_zwrap new_file)
-            pass
-
-        def dir_msg_wrap_(filename):
-            # local dir_msg=$(_zwrap directory)
-            pass
-
-        def print_prefix_():
-            # local pref=$(_zwrap ">>")
-            pass
-
-
-        # file_name=$(bash -c "printf %q '${file_name}'")
-        file_name_=file_name_
-        file_stats_=os.stat(file_name_)
-        file_size_=file_stats_.si_size
-        file_length=wccount_(file_name_)
-
-        #     if [[ ! -e "${file_name}" ]]; then
-        #         <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${new_file_msg}"
-        #     elif [[ -f "${file_name}" ]] && [[ ! -d "${file_name}" ]]; then
-        #         <<< "${pref} $(_zfwrap ${file_name}) $(_zdelim) ${sz_msg} $(_zdelim) ${len_msg}${syn_msg}"
-        #     else
-        #         if [[ -d "${file_name}" ]]; then
-        #             if [[ $(readlink -f ${file_name}) == $(readlink -f $(pwd)) ]]; then
-        #                 <<< "${pref} $(_zfwrap "current dir") $(_zdelim) ${dir_msg}"
-        #             else
-        #                 <<< "${pref} ${fancy_name} $(_zdelim) ${dir_msg}"
-        #             fi
-        #         fi
-        #     fi
-
+    # --[ open file in daemon and print nice file info ]--
+    def vim_file_open(self, line):
         # { nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
         #     || { while [[ $(nvr --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
         #         sleep ${wim_timer}
@@ -145,32 +106,132 @@ class wim_runner(object):
         #     ...
         # }
 
+        file_name_=os.readlink(line)
+        self.dprint("file_name={}".format(file_name_))
 
-    def process_list(timer=.05, *args):
+        # --[ counting with external wc is faster than everything else ]--
+        def wccount_(filename):
+            out = subprocess.Popen(
+                ['wc', '-l', filename],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
+            ).communicate()[0]
+
+            return int(out.partition(b' ')[0])
+
+        # --[ generic string wrapper ]--
+        def wrap_string_(str):
+            return fg(4) + "[" + fg(25) + str + fg(4) + "]"
+
+        def size_msg_wrap_(file_size):
+            return "sz" + fg(237) + "~" + fg(25) + str(file_size)
+
+        def len_msg_wrap_(len):
+            return "len" + fg(237) + "=" + fg(25) + str(len)
+
+        def new_file_msg_wrap_(new_filename):
+            return wrap_string_(new_filename)
+
+        def dir_msg_wrap_(filename):
+            return wrap_string_(filename)
+
+        def print_prefix_():
+            return wrap_string_(">>")
+
+        def delimiter_():
+            return wrap_string_("::")
+
+        def fancy_name_(filename):
+            # add some nice stuff here
+            ret=wrap_string(filename)
+            return ret
+
+        # file_name=$(bash -c "printf %q '${file_name}'")
+        file_name_=file_name_
+        file_stats_=os.stat(file_name_)
+        file_size_=file_stats_.si_size
+        file_length=wccount_(file_name_)
+        file_=Path(file_name_)
+
+        if not file_.exists():
+            print(
+                print_prefix_() + \
+                wrap_string_(file_name_) + \
+                delimiter_() + \
+                new_file_msg_wrap_()
+            )
+        elif file_.is_file() and not file_.is_dir():
+            print(
+                print_prefix_() + \
+                wrap_string_(file_name_) + \
+                delimiter_() + \
+                size_msg_wrap_() + \
+                delimiter_() + \
+                len_msg_wrap_()
+            )
+        elif file_.is_dir():
+            if file_name_ == os.getcwd():
+                print(
+                    print_prefix_() + \
+                    wrap_string_("current dir") + \
+                    delimiter_() + \
+                    dir_msg_wrap_()
+                )
+            else:
+                print(
+                    print_prefix_() + \
+                    fancy_name_(file_name_) + \
+                    delimiter_() + \
+                    dir_msg_wrap_()
+                )
+
+    def process_list(self, args, timer=0.05):
         self.wim_goto()
         time.sleep(timer)
 
-        cmd_=self.vim_command["to_normal"]+self.vim_commands["state_before"]+self.vim_commands["state_after"]
-        if cmd_ == self.vim_command["to_normal"]:
+        cmd_=self.vim_commands["to_normal"] + self.vim_commands["state_before"] + self.vim_commands["state_after"]
+        if cmd_ == self.vim_commands["to_normal"]:
             for line in args:
-                vim_file_open(line)
+                linearized_list=[
+                    item for sublist in list(line) for item in sublist
+                ]
+
+                file_args=deque(linearized_list)
+                file_args.popleft()
+
+                for file_ in linearized_list:
+                    self.vim_file_open(file_)
         else:
-            shlex.split("nvr --remote-send "+cmd_, stdout=subprocess.PIPE)
+            wim=subprocess.Popen(
+                shlex.split("nvr --remote-send "+cmd_),
+                stdout=subprocess.PIPE
+            )
+
             for line in args:
-                vim_file_open(line)
+                linearized_list=[
+                    item for sublist in list(line) for item in sublist
+                ]
+
+                file_args=deque(linearized_list)
+                file_args.popleft()
+
+                for file_ in file_args:
+                    self.vim_file_open(file_)
+
         self.vim_commands["state_after"]=""
         self.vim_commands["state_before"]=""
 
         return
 
-    def eprocess_list(timer=.05, *args):
+    def eprocess_list(self, args, timer=.05):
         self.wim_goto()
         time.sleep(timer)
         for line in args:
             self.dprint(line)
-            # vim --servername ${vim_server_name} --remote-wait "$@"
-            pass
-        return
+            wim=subprocess.Popen(
+                shlex.split("nvr --remote-wait "+' '.join(map(str, args))),
+                stdout=subprocess.PIPE
+            )
 
     def create_wim_server_from_scratch(self):
         wim=subprocess.Popen(
@@ -178,11 +239,11 @@ class wim_runner(object):
                         "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
                         " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
 
-    def wim_run(mode="default", *args):
+    def wim_run(self, args, mode="default"):
         if mode == "default":
-            proc=process_list
+            proc=self.process_list
         elif mode == "embedded":
-            proc=eprocess_list
+            proc=self.eprocess_list
 
         if len(args):
             p = subprocess.Popen('xdotool search --classname {}'.format(self.wim_name).split(), stdout=subprocess.PIPE)
@@ -191,19 +252,19 @@ class wim_runner(object):
             if wid == "":
                 self.dprint("creating new {} server").format(self.wim_name)
                 self.create_wim_server_from_scratch()
-                self.dprint("eval {} proc").format(self.wim_name)
-                proc(self.timeout, args)
+                self.dprint("eval {} proc".format(self.wim_name))
+                proc(args, self.timeout)
             else:
-                self.dprint("eval {} proc").format(self.wim_name)
+                self.dprint("eval {} proc".format(self.wim_name))
                 self.create_wim_server_from_scratch()
-                proc(self.timeout, args)
+                proc(args, self.timeout)
 
-    def print_args(self, *args):
+    def print_args(self, args):
         self.dprint(":: printing args ::")
         for arg in args:
             self.dprint(arg)
 
-    def main(self, *args):
+    def main(self, args):
         def socket_is_used_():
             return bool(list(filter(lambda i: i.laddr == self.tmux_sock_path, conns)) != [])
 
@@ -236,7 +297,7 @@ class wim_runner(object):
             elif not len(args) - 1:
                 self.dprint("Let's jump to target window")
                 self.print_args(args)
-                self.wim_goto()
+                self.V(args)
         except Exception as e:
             print("something's wrong. Exception is {}".format(e))
         finally:
