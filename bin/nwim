@@ -41,7 +41,7 @@ class wim_runner(object):
     def __init__(self):
         self.settings={
             "use_neovim":True,
-            "debug":True,
+            "debug":False,
         }
 
         self.font="PragmataPro for Powerline"
@@ -61,6 +61,7 @@ class wim_runner(object):
         self.timeout=0.1
 
         self.r=redis.StrictRedis(host='localhost', port=6379, db=0)
+        self.cmd_=""
 
         if self.settings["use_neovim"]:
             self.wim_name="nwim"
@@ -109,18 +110,63 @@ class wim_runner(object):
         self.wim_run(args, "default")
         self.wim_goto()
 
-    # --[ open file in daemon and print nice file info ]-----------------
+    # --[ Open file in daemon and print nice file info ]-----------------
+    # --[ Main function with several closures ]--------------------------
     def vim_file_open(self, line):
-        # { nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
-        #     || { while [[ $(nvr --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
-        #         sleep ${wim_timer}
-        #     done \
-        #     && nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null } } && {
-        #     ...
-        # }
+        def remote_send():
+            # --[ helper for remote_send ]-----------[1]
+            def remote_edit_file():
+                self.dprint("[remote edit file]")
+                ret=remote_edit_pipe = subprocess.Popen(
+                    shlex.split(
+                        "nvr --remote-send " + \
+                        "\"" + \
+                        self.vim_commands["to_normal"] + \
+                        ":silent edit " + \
+                        file_name_ + \
+                        "<CR>" + \
+                        self.cmd_ + \
+                        "\""
+                    ),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT
+                ).communicate()[0].decode("utf-8").strip('\n')
+
+            # --[ helper for remote_send ]-----------[2]
+            def wim_is_started():
+                self.dprint("[check for start]")
+                ret=remote_expr_pipe = subprocess.Popen(
+                    shlex.split(""" nvr --remote-expr "printf(\"%s\", g:nvim_is_started)" """),
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT
+                ).communicate()[0].decode("utf-8").strip('\n')
+                if ret == "on":
+                    return True
+                else:
+                    return False
+
+            self.dprint("[remote send]")
+            remote_send_pipe = subprocess.Popen(
+                shlex.split(
+                            "nvr --remote-send " + \
+                            "\"" + \
+                            self.vim_commands["to_normal"] + \
+                            ":silent edit " + \
+                            file_name_ + \
+                            "<CR>" + \
+                            self.cmd_ + \
+                            "\""
+                            ),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
+            )
+            remote_send_result=remote_send_pipe.communicate()[0]
+            if remote_send_pipe.returncode != 0:
+                while not wim_is_started():
+                    time.sleep(self.timeout)
+                remote_edit_file()
 
         file_name_=os.path.realpath(line)
-        self.dprint("file_name={}".format(file_name_))
 
         # --[ counting with external wc is faster than everything else ]--
         def wccount_(filename):
@@ -166,6 +212,9 @@ class wim_runner(object):
         file_length_=wccount_(file_name_)
         file_=Path(file_name_)
 
+        # Open target file
+        remote_send()
+
         if not file_.exists():
             print(
                 print_prefix_() + \
@@ -202,16 +251,16 @@ class wim_runner(object):
         # self.wim_goto()
         time.sleep(timer)
 
-        cmd_=self.vim_commands["to_normal"] + \
+        self.cmd_=self.vim_commands["to_normal"] + \
             self.vim_commands["state_before"] + \
             self.vim_commands["state_after"]
 
-        if cmd_ == self.vim_commands["to_normal"]:
+        if self.cmd_ == self.vim_commands["to_normal"]:
             for line in args:
                 self.vim_file_open(line)
         else:
             wim=subprocess.Popen(
-                shlex.split("nvr --remote-send " + cmd_),
+                shlex.split("nvr --remote-send " + self.cmd_),
                 stdout=subprocess.PIPE
             )
 
@@ -251,7 +300,7 @@ class wim_runner(object):
             ).communicate()[0].decode("utf-8").strip('\n')
 
             if not len(wid):
-                self.dprint("creating new {} server").format(self.wim_name)
+                self.dprint("creating new {} server".format(self.wim_name))
                 self.create_wim_server_from_scratch()
                 proc(file_args)
             else:
@@ -288,8 +337,6 @@ class wim_runner(object):
             elif len(args) > 0:
                 self.dprint_with_args("Let's jump to target window", args)
                 self.V(args)
-        except Exception as e:
-            print("[!!][ WTF! Exception {}]".format(e))
         finally:
             self.socket_.close()
 
