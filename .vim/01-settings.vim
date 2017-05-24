@@ -157,39 +157,39 @@ if !has("gui_running") && !has("nvim")
       let &t_SI = "\e\e]4;258;rgb:32/4c/80\a\e\\"
       let &t_EI = "\e\e]4;258;rgb:b0/d0/f0\a\e\\"
     endif
-
-    if exists('$TMUX')
-        let s:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
-        if s:not_tmuxed_vim =~ "FALSE"
-            set t_ut=
-            if !exists('$ST_TERM')
-                autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-                autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-                autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-                let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
-                let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-                autocmd VimLeave * silent !tmux set status on;
-                    \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            else
-                autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-                autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
-                autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
-                let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
-                let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
-                autocmd VimLeave * silent !tmux set status on;
-                    \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
-            endif
-            autocmd VimEnter * silent !tmux set status off
-            autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
-            set timeout ttimeout
-            set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
-        endif
-    endif
 else
     set background=dark
     if !g:use_base16_colorscheme
         exe "colorscheme ".s:nvim_colorscheme
     endif 
+endif
+
+if !has("gui_running") && exists('$TMUX')
+    let g:not_tmuxed_vim = system(expand("~/bin/scripts/not_tmuxed_wim"))
+    if g:not_tmuxed_vim =~ "FALSE"
+        set t_ut=
+        if !exists('$ST_TERM')
+            autocmd VimEnter * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
+            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
+            let &t_SI="\033Ptmux;\033\033]12;rgb:32/4c/80\007\033\\"
+            let &t_EI="\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+            autocmd VimLeave * silent !tmux set status on;
+                \ echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+        else
+            autocmd VimEnter * silent !echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+            autocmd VimEnter * silent !tmux set -g prefix ^b > /dev/null
+            autocmd VimEnter * silent !tmux bind-key C-b last-window > /dev/null
+            let &t_SI = "\033Ptmux;\033\033]4;258;rgb:32/4c/80\007\033\\"
+            let &t_EI = "\033Ptmux;\033\033]4;258;rgb:b0/d0/f0\007\033\\"
+            autocmd VimLeave * silent !tmux set status on;
+                \ echo -ne "\ePtmux;\e\e]4;258;rgb:b0/d0/f0\a\e\\"
+        endif
+        autocmd VimEnter * silent !tmux set status off
+        autocmd VimLeave * silent !echo -ne "\033Ptmux;\033\033]12;rgb:b0/d0/f0\007\033\\"
+        set timeout ttimeout
+        set timeoutlen=2000 ttimeoutlen=0 " Very fast and also you shouldn't make combination too fast
+    endif
 endif
 
 " convert "\\" to "/" on win32 like environment
