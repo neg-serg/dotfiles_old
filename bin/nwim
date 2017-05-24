@@ -22,7 +22,6 @@ import subprocess
 import time
 import os.path
 import socket
-from collections import deque
 
 # --[ shell interaction ]---------
 import shlex
@@ -34,6 +33,9 @@ import docopt
 
 # --[ colors ]--------------------
 from colored import fg, bg, attr
+
+# --[ interact with redis ]-------
+import redis
 
 class wim_runner(object):
     def __init__(self):
@@ -58,6 +60,7 @@ class wim_runner(object):
 
         self.timeout=0.1
 
+        self.r=redis.StrictRedis(host='localhost', port=6379, db=0)
 
         if self.settings["use_neovim"]:
             self.wim_name="nwim"
@@ -67,6 +70,15 @@ class wim_runner(object):
     def dprint(self, debug_string):
         if self.settings["debug"]:
             print(debug_string)
+
+    def dprint_with_args(self, debug_string, args):
+        def print_args(args):
+            self.dprint("[::] Printing args [::]")
+            for arg in args:
+                self.dprint("{ "+ arg +" }")
+
+        self.dprint("[ " + debug_string + " ]")
+        print_args(args)
 
     # --[ print x11 windows hierarchy ]--
     def print_windows(self, window, indent):
@@ -89,14 +101,15 @@ class wim_runner(object):
             self.dprint("[i3] :: go to win with it")
             subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"], stdout=subprocess.PIPE)
 
-    # --[ it is the main function in the past, not sure for now ]--
+    # --[ it is the main function in the past, not sure for now ]--------
     def V(self, args):
         # --[ maybe I should add some auto-quoting here, not sure yet ]--
-        for file in args:
-            self.wim_run("default", args)
-        wim_goto()
+        self.dprint_with_args("Run V", args)
+        del args[0]
+        self.wim_run(args, "default")
+        self.wim_goto()
 
-    # --[ open file in daemon and print nice file info ]--
+    # --[ open file in daemon and print nice file info ]-----------------
     def vim_file_open(self, line):
         # { nvr --remote-send "${to_normal}:silent edit ${file_name}<CR>" 2>/dev/null \
         #     || { while [[ $(nvr --remote-expr "g:vim_is_started" 2>/dev/null) != "on" ]]; do
@@ -106,7 +119,7 @@ class wim_runner(object):
         #     ...
         # }
 
-        file_name_=os.readlink(line)
+        file_name_=os.path.realpath(line)
         self.dprint("file_name={}".format(file_name_))
 
         # --[ counting with external wc is faster than everything else ]--
@@ -119,7 +132,7 @@ class wim_runner(object):
 
             return int(out.partition(b' ')[0])
 
-        # --[ generic string wrapper ]--
+        # --[ generic string wrapper ]---------------------------------
         def wrap_string_(str):
             return fg(4) + "[" + fg(25) + str + fg(4) + "]"
 
@@ -149,8 +162,8 @@ class wim_runner(object):
         # file_name=$(bash -c "printf %q '${file_name}'")
         file_name_=file_name_
         file_stats_=os.stat(file_name_)
-        file_size_=file_stats_.si_size
-        file_length=wccount_(file_name_)
+        file_size_=file_stats_.st_size
+        file_length_=wccount_(file_name_)
         file_=Path(file_name_)
 
         if not file_.exists():
@@ -158,16 +171,16 @@ class wim_runner(object):
                 print_prefix_() + \
                 wrap_string_(file_name_) + \
                 delimiter_() + \
-                new_file_msg_wrap_()
+                new_file_msg_wrap_(file_name_)
             )
         elif file_.is_file() and not file_.is_dir():
             print(
                 print_prefix_() + \
                 wrap_string_(file_name_) + \
                 delimiter_() + \
-                size_msg_wrap_() + \
+                size_msg_wrap_(file_size_) + \
                 delimiter_() + \
-                len_msg_wrap_()
+                len_msg_wrap_(file_length_)
             )
         elif file_.is_dir():
             if file_name_ == os.getcwd():
@@ -175,53 +188,38 @@ class wim_runner(object):
                     print_prefix_() + \
                     wrap_string_("current dir") + \
                     delimiter_() + \
-                    dir_msg_wrap_()
+                    dir_msg_wrap_(file_name_)
                 )
             else:
                 print(
                     print_prefix_() + \
                     fancy_name_(file_name_) + \
                     delimiter_() + \
-                    dir_msg_wrap_()
+                    dir_msg_wrap_(file_name_)
                 )
 
-    def process_list(self, args, timer=0.05):
-        self.wim_goto()
+    def process_list(self, args, timer=.05):
+        # self.wim_goto()
         time.sleep(timer)
 
-        cmd_=self.vim_commands["to_normal"] + self.vim_commands["state_before"] + self.vim_commands["state_after"]
+        cmd_=self.vim_commands["to_normal"] + \
+            self.vim_commands["state_before"] + \
+            self.vim_commands["state_after"]
+
         if cmd_ == self.vim_commands["to_normal"]:
             for line in args:
-                linearized_list=[
-                    item for sublist in list(line) for item in sublist
-                ]
-
-                file_args=deque(linearized_list)
-                file_args.popleft()
-
-                for file_ in linearized_list:
-                    self.vim_file_open(file_)
+                self.vim_file_open(line)
         else:
             wim=subprocess.Popen(
-                shlex.split("nvr --remote-send "+cmd_),
+                shlex.split("nvr --remote-send " + cmd_),
                 stdout=subprocess.PIPE
             )
 
             for line in args:
-                linearized_list=[
-                    item for sublist in list(line) for item in sublist
-                ]
-
-                file_args=deque(linearized_list)
-                file_args.popleft()
-
-                for file_ in file_args:
-                    self.vim_file_open(file_)
+                self.vim_file_open(line)
 
         self.vim_commands["state_after"]=""
         self.vim_commands["state_before"]=""
-
-        return
 
     def eprocess_list(self, args, timer=.05):
         self.wim_goto()
@@ -239,30 +237,26 @@ class wim_runner(object):
                         "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
                         " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
 
-    def wim_run(self, args, mode="default"):
+    def wim_run(self, file_args, mode="default"):
         if mode == "default":
             proc=self.process_list
         elif mode == "embedded":
             proc=self.eprocess_list
 
-        if len(args):
-            p = subprocess.Popen('xdotool search --classname {}'.format(self.wim_name).split(), stdout=subprocess.PIPE)
-            wid, _ = p.communicate()
+        if len(file_args):
+            wid = subprocess.Popen(
+                'xdotool search --classname {}'.format(self.wim_name).split(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
+            ).communicate()[0].decode("utf-8").strip('\n')
 
-            if wid == "":
+            if not len(wid):
                 self.dprint("creating new {} server").format(self.wim_name)
                 self.create_wim_server_from_scratch()
-                self.dprint("eval {} proc".format(self.wim_name))
-                proc(args, self.timeout)
+                proc(file_args)
             else:
-                self.dprint("eval {} proc".format(self.wim_name))
-                self.create_wim_server_from_scratch()
-                proc(args, self.timeout)
-
-    def print_args(self, args):
-        self.dprint(":: printing args ::")
-        for arg in args:
-            self.dprint(arg)
+                proc(file_args)
+                pass
 
     def main(self, args):
         def socket_is_used_():
@@ -270,11 +264,7 @@ class wim_runner(object):
 
         def no_approp_win():
             ret_=True
-
-            import redis
-            r=redis.StrictRedis(host='localhost', port=6379, db=0)
-            count_=(int(r.hmget('count_dict', 'wim')[0]))
-
+            count_=(int(self.r.hmget('count_dict', 'wim')[0]))
             if count_ > 0:
                 ret_=False
             return ret_
@@ -283,6 +273,7 @@ class wim_runner(object):
             conns=net_connections(kind='unix')
             # x11 window is closed, but tmux connection exists
             if socket_is_used_() and no_approp_win():
+                self.dprint_with_args("Let's attach to existsing wim session", args)
                 # do not wait for call result
                 subprocess.Popen([
                     "st",
@@ -291,23 +282,20 @@ class wim_runner(object):
                     "-e", "tmux", "-S", self.tmux_sock_path, "attach-session", "-d", "-t", "nvim"
                 ])
             elif not socket_is_used_():
-                self.dprint("let's create tmux+nvim server from scratch")
-                self.print_args(args)
+                self.dprint_with_args("Let's create tmux+nvim server from scratch", args)
                 self.create_wim_server_from_scratch()
-            elif not len(args) - 1:
-                self.dprint("Let's jump to target window")
-                self.print_args(args)
+                self.V(args)
+            elif len(args) > 0:
+                self.dprint_with_args("Let's jump to target window", args)
                 self.V(args)
         except Exception as e:
-            print("something's wrong. Exception is {}".format(e))
+            print("[!!][ WTF! Exception {}]".format(e))
         finally:
             self.socket_.close()
 
 if __name__ == '__main__':
     run_=wim_runner()
-    args=argv
-    # opts=docopt(__doc__, version='nwim runner')
-    run_.main(args)
+    run_.main(argv)
 
 # function wdiff {
 #     local prev_
