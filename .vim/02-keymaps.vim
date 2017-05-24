@@ -11,11 +11,6 @@ endif
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-
-nnoremap <Leader>sb :call ToggleBg()<cr>
 
 " paste from clipboard
 map <space>pp :set paste<CR>o<esc> "*]p:set nopaste<cr>
@@ -144,6 +139,7 @@ nnoremap <C-w>+ :resize +10<CR>
 nnoremap <C-w>, :vertical resize -10<CR>
 nnoremap <C-w>. :vertical resize +10<CR>
 
+" quick run for neovim internal terminal 
 if has('nvim')
     nmap <Leader>ds :vsplit<CR>:term<CR>
     function! QuickTerminal()
