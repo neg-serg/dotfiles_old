@@ -115,6 +115,16 @@ class wim_runner(object):
     # --[ Open file in daemon and print nice file info ]----------------------
     # --[ Main function with several closures ]-------------------------------
     def vim_file_open(self, line):
+        # It seems that only bash quoting works correctly
+        # Probably this stuff should be replaced with encodef and friends
+        def bash_quoting(string):
+            quoted_string=subprocess.Popen(
+                shlex.split("bash -c \"printf %q '" + string + "'\""),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
+            ).communicate()[0].decode("utf-8").strip('\n')
+            return quoted_string
+
         def remote_send():
             # --[ helper for remote_send ]---------------------------------[1]
             def remote_edit_file():
@@ -125,7 +135,7 @@ class wim_runner(object):
                         "\"" + \
                         self.vim_commands["to_normal"] + \
                         ":silent edit " + \
-                        file_name_ + \
+                        bash_quoting(file_name_) + \
                         "<CR>" + \
                         self.cmd_ + \
                         "\""
@@ -155,7 +165,7 @@ class wim_runner(object):
                             "\"" + \
                             self.vim_commands["to_normal"] + \
                             ":silent edit " + \
-                            file_name_ + \
+                            bash_quoting(file_name_) + \
                             "<CR>" + \
                             self.cmd_ + \
                             "\""
@@ -169,7 +179,7 @@ class wim_runner(object):
                     time.sleep(self.timeout)
                 remote_edit_file()
 
-        file_name_=os.path.realpath(line)
+        file_name_=os.path.normpath(os.path.realpath(line))
 
         # --[ counting with external wc is faster than everything else ]--
         def wccount_(filename):
