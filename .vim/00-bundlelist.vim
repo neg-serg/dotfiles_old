@@ -170,10 +170,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('ardagnir/vimbed')
     "funny vim hardmode plugin
     call dein#add('wikitopian/hardmode')
-    if has("nvim")
-        "nvim client for jupiter
-        call dein#add('bfredl/nvim-ipy')
-    endif
     " There is no need in fixkey for nvim because of it's default behaviour
     if !has("nvim")
         "fixes key codes for console Vim
