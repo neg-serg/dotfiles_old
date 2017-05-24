@@ -74,6 +74,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
     let s:color253_hex="C5C8C6"    " (color 253)
     let s:color255_hex="eeeeee"    " (color 255)
     let s:color200_hex="0C1014"    " (color 200)
+    let s:colorcursor_hex="375BC1" " (color cursor)
 
     if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
         let s:venv="gui" " vim environment (term, cterm, gui)
@@ -114,6 +115,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:color253="#".s:color253_hex
         let s:color255="#".s:color255_hex
         let s:color200="#".s:color200_hex
+        let s:colorcursor="#".s:colorcursor_hex
     else
         let s:venv="cterm"
         let s:bclr=s:rgb(s:bclr_hex)
@@ -153,6 +155,7 @@ if has("gui_running") || (has('termguicolors') && &termguicolors) || !empty($NVI
         let s:color253=s:rgb(s:color253_hex)
         let s:color255=s:rgb(s:color255_hex)
         let s:color200=s:rgb(s:color200_hex)
+        let s:colorcursor==s:rgb(s:colorcursor_hex)
     endif
 elseif $TERM == "linux"
     let s:venv="cterm"
@@ -214,6 +217,7 @@ else
     let s:color253="253"
     let s:color255="255"
     let s:color200="200"
+    let s:colorcursor="4"
 endif
 
 fun! s:HI(group, bg, fg, attr)
@@ -293,8 +297,8 @@ call s:HI(      "VertSplit", "NONE", "NONE",     "none" )
 call s:HI(        "TabLine", s:dblk, s:dwht,     "" )
 call s:HI(    "TabLineFill", "NONE", s:dblk,     "" )
 call s:HI(     "TabLineSel", s:dblk, s:dwht,     "" )
-call s:HI(         "Cursor", s:lred, s:bclr,     "" )
-call s:HI(     "CursorLine", s:color234, "NONE",     "none" )
+call s:HI(         "Cursor", s:colorcursor, "NONE", "NONE" )
+call s:HI(     "CursorLine", s:color234, "NONE", "none" )
 call s:HI(   "CursorLineNr", "NONE", s:lylw,     "none" )
 call s:HI(   "CursorColumn", s:culc, "NONE",     "" )
 call s:HI(    "ColorColumn", s:culc, "NONE",     "" )
@@ -352,8 +356,8 @@ endif
 call s:HI(   "SyntasticErrorSign", s:culc, s:lred, "" )
 call s:HI( "SyntasticWarningSign", s:culc, s:lmag, "" )
 
-call s:HI(   "TermCursor",     "", s:lred, "" )
-call s:HI( "TermCursorNC", s:lblk,     "", "" )
+call s:HI(   "TermCursor", s:colorcursor, "NONE", "NONE" )
+call s:HI( "TermCursorNC", s:lblk, "NONE", "NONE" )
 
 if (has('termguicolors') && &termguicolors) || !empty($NVIM_TUI_ENABLE_TRUE_COLOR)
     let g:terminal_color_0=s:dblk
