@@ -23,6 +23,8 @@ import time
 import os.path
 import socket
 
+import re
+
 # --[ shell interaction ]---------
 import shlex
 from pathlib import Path
@@ -110,11 +112,11 @@ class wim_runner(object):
         self.wim_run(args, "default")
         self.wim_goto()
 
-    # --[ Open file in daemon and print nice file info ]-----------------
-    # --[ Main function with several closures ]--------------------------
+    # --[ Open file in daemon and print nice file info ]----------------------
+    # --[ Main function with several closures ]-------------------------------
     def vim_file_open(self, line):
         def remote_send():
-            # --[ helper for remote_send ]-----------[1]
+            # --[ helper for remote_send ]---------------------------------[1]
             def remote_edit_file():
                 self.dprint("[remote edit file]")
                 ret=remote_edit_pipe = subprocess.Popen(
@@ -132,7 +134,8 @@ class wim_runner(object):
                     stderr=subprocess.STDOUT
                 ).communicate()[0].decode("utf-8").strip('\n')
 
-            # --[ helper for remote_send ]-----------[2]
+            # --[ helper for remote_send ]---------------------------------[2]
+            # --[ check wim started or not by internal variable in nvim ]--[2]
             def wim_is_started():
                 self.dprint("[check for start]")
                 ret=remote_expr_pipe = subprocess.Popen(
@@ -180,13 +183,13 @@ class wim_runner(object):
 
         # --[ generic string wrapper ]---------------------------------
         def wrap_string_(str):
-            return fg(4) + "[" + fg(25) + str + fg(4) + "]"
+            return fg(4) + "[" + fg(7) + str + fg(4) + "]"
 
         def size_msg_wrap_(file_size):
-            return "sz" + fg(237) + "~" + fg(25) + str(file_size)
+            return wrap_string_(fg(7) + "sz" + fg(237) + "~" + fg(7) + str(file_size))
 
         def len_msg_wrap_(len):
-            return "len" + fg(237) + "=" + fg(25) + str(len)
+            return wrap_string_(fg(7) + "len" + fg(237) + "=" + fg(7) + str(len))
 
         def new_file_msg_wrap_(new_filename):
             return wrap_string_(new_filename)
@@ -198,15 +201,17 @@ class wim_runner(object):
             return wrap_string_(">>")
 
         def delimiter_():
-            return wrap_string_("::")
+            return (fg(200) + " :: " + fg(0))
 
+        # --[ pretty printing for filename ]---------------------------
         def fancy_name_(filename):
-            # add some nice stuff here
-            ret=wrap_string(filename)
-            return ret
+            filename=re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
+            filename=re.sub("/", fg(4) + "/" + fg(7), filename)
+            return wrap_string_(filename)
 
-        # file_name=$(bash -c "printf %q '${file_name}'")
-        file_name_=file_name_
+        # --[ normalize path ]-----------------------------------------
+        file_name_=os.path.normpath(file_name_)
+
         file_stats_=os.stat(file_name_)
         file_size_=file_stats_.st_size
         file_length_=wccount_(file_name_)
@@ -218,14 +223,14 @@ class wim_runner(object):
         if not file_.exists():
             print(
                 print_prefix_() + \
-                wrap_string_(file_name_) + \
+                fancy_name_(file_name_) + \
                 delimiter_() + \
                 new_file_msg_wrap_(file_name_)
             )
         elif file_.is_file() and not file_.is_dir():
             print(
                 print_prefix_() + \
-                wrap_string_(file_name_) + \
+                fancy_name_(file_name_) + \
                 delimiter_() + \
                 size_msg_wrap_(file_size_) + \
                 delimiter_() + \
