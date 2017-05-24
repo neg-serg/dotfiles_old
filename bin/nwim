@@ -93,9 +93,12 @@ class wim_runner(object):
     # --[ goto neovim window ]--
     def wim_goto(self):
         def there_is(wm_):
-            pipe = subprocess.Popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
-            pid, _ = pipe.communicate()
-            return pid != b''
+            if not "DISPLAY" in os.environ:
+                return False
+            else:
+                pipe = subprocess.Popen('pidof {}'.format(wm_).split(), stdout=subprocess.PIPE)
+                pid, _ = pipe.communicate()
+                return pid != b''
 
         if there_is("notion"):
             self.dprint("[notion] :: go to win with it")
