@@ -90,14 +90,10 @@ function eprocess_list() {
 }
 
 function v { 
-    if [[ ! $(which nvim) > /dev/null ]]; then
-        while read -r arg; do
-            wim_run ${arg[@]}
-        done <<< "$(printf '%q\n' "$@")"
-        wim_goto
-    else
-        ${BIN_HOME}/nwim "$@"
-    fi
+    while read -r arg; do
+        wim_run ${arg[@]}
+    done <<< "$(printf '%q\n' "$@")"
+    wim_goto
 }
 
 function wim_embed { wim_run "__wim_embed" "$@" }

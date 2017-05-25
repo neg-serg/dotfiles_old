@@ -30,7 +30,6 @@ local _zsh_files=(
     70-games.zsh
     71-zsh-history-substring-search.zsh
     81-completion_gen.zsh
-    89-vim-interation.plugin.zsh
     96-fzf.zsh
     97-open-pr.plugin.zsh
     98-syntax.zsh
@@ -40,3 +39,9 @@ local _zsh_files=(
 for i in ${_zsh_files[@]}; do
     [[ -f ${_zsh_home}/${i} ]] && source ${_zsh_home}/${i}
 done
+
+if [[ ! -x "/usr/sbin/nvim" ]]; then
+    source 89-vim-interation.plugin.zsh
+else
+    alias v="${BIN_HOME}/nwim"
+fi
