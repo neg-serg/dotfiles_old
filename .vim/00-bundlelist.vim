@@ -144,8 +144,13 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('mjbrownie/swapit')
     " I cannot use vimfiler without unite
     call dein#add('Shougo/unite.vim')
-    " Vim file manager
-    call dein#add('Shougo/vimfiler.vim')
+    if executable(resolve(expand("ranger")))
+        " use ranger as netrw overrider
+        call dein#add('airodactyl/neovim-ranger')
+    else
+        " Vim file manager
+        call dein#add('Shougo/vimfiler.vim')
+    endif
     " try to autodelect filetype
     call dein#add('s3rvac/AutoFenc')
     " language pack collection
@@ -206,8 +211,10 @@ if dein#load_state("/home/neg/.vim/repos")
         "rtags plugin for vim
         call dein#add('lyuts/vim-rtags.git')
     endif
-    "lldb bindings to neovim
-    call dein#add('critiqjo/lldb.nvim')
+    if executable(resolve(expand("lldb")))
+        "lldb bindings to neovim
+        call dein#add('critiqjo/lldb.nvim')
+    endif
     "try it instead of tcommentc
     call dein#add('tpope/vim-commentary.git')
     "to insert endif for if, end for begin and so on
@@ -343,8 +350,12 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
     call dein#add('lervag/vimtex', {'on_ft': ['tex']})
-    "add latex live preview
-    call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': ['tex']})
+    if has("nvim")
+        call dein#add('donRaphaco/neotex', {'on_ft': ['tex']})
+    else
+        "add latex live preview
+        call dein#add('xuhdev/vim-latex-live-preview', {'on_ft': ['tex']})
+    endif
     "--[ Web ]-------------------------------------------------------------------------------
     "write html code faster
     call dein#add('rstacruz/sparkup.git', {'on_ft': ['html']})
@@ -394,6 +405,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('whatyouhide/vim-gotham')
         "vim-one colorscheme
         call dein#add('rakr/vim-one')
+        "FlatColor colorscheme
+        call dein#add('MaxSt/FlatColor')
     endif
     "new colorscheme
     call dein#add('aperezdc/vim-elrond')
