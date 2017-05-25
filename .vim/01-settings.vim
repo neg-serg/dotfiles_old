@@ -4,8 +4,6 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
-" let s:nvim_colorscheme = "deep-space"
-" let s:nvim_colorscheme = "wim24"
 let s:nvim_colorscheme = "mirodark"
 
 if !g:use_base16_colorscheme
@@ -55,8 +53,8 @@ set isfname+=}
 if has("gui_running")
     if !g:use_base16_colorscheme
         if &diff
-            set gfn=PragmataPro\ for\ Powerline\ 10
-            set guifontwide=PragmataPro\ for\ Powerline\ 10
+            set gfn=PragmataPro\ for\ Powerline\ 14
+            set guifontwide=PragmataPro\ for\ Powerline\ 14
             if !has("nvim")
                 colorscheme jellybeans
             else
@@ -64,8 +62,8 @@ if has("gui_running")
                 exe "colorscheme ".s:nvim_colorscheme
             endif
         else
-            set gfn=PragmataPro\ for\ Powerline\ 14
-            set guifontwide=PragmataPro\ for\ Powerline\ 14
+            set gfn=PragmataPro\ for\ Powerline\ 22
+            set guifontwide=PragmataPro\ for\ Powerline\ 22
             let g:mirodark_enable_higher_contrast_mode=0
             if !has("nvim")
                 colorscheme mirodark
