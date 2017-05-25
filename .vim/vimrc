@@ -43,7 +43,7 @@ if has('vim_starting') && has('reltime')
         if !has("nvim")
             autocmd! VimEnter * let g:vim_is_started="on"
         else
-            autocmd! VimEnter * let g:nvim_is_started="on" | let $NVIM_LISTEN_ADDRESS="/tmp/nvimsocket"
+            autocmd! VimEnter * let g:nvim_is_started="on" | let $NVIM_LISTEN_ADDRESS="/home/neg/1st_level/nvim.socket"
         endif
         autocmd VimEnter * let g:startuptime = reltime(g:startuptime)
                     \ | redraw
@@ -100,8 +100,8 @@ endif
 
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
-source ~/.vim/02-keymaps.vim    
+source ~/.vim/02-keymaps.vim
 source ~/.vim/03-plugins-config.vim
-source ~/.vim/04-autocmds.vim   
+source ~/.vim/04-autocmds.vim
 source ~/.vim/11-vimacs.vim
 source ~/.vim/21-langmap.vim
