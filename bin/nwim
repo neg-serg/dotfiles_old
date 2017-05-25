@@ -60,7 +60,7 @@ class wim_runner(object):
             "state_after": "",
         }
 
-        self.timeout=0.1
+        self.timeout=.05
 
         self.r=redis.StrictRedis(host='localhost', port=6379, db=0)
         self.cmd_=""
