@@ -57,6 +57,8 @@ class wim_runner(object):
 
         self.vim_commands={
             "to_normal": "<C-\><C-N>:call<SPACE>foreground()<CR>",
+            "state_before": "",
+            "state_after": "",
         }
 
         self.timeout=.05
@@ -266,11 +268,19 @@ class wim_runner(object):
                     )
         except:
             pass
+            # if e.errno == errno.ENOENT:
+            #     print('path %s does not exist or is a broken symlink'.format(file_name_))
+            # else:
+            #     raise e
 
     def process_list(self, args, timer=.05):
+        # self.wim_goto()
         time.sleep(timer)
 
-        self.cmd_=self.vim_commands["to_normal"]
+        self.cmd_=self.vim_commands["to_normal"] + \
+            self.vim_commands["state_before"] + \
+            self.vim_commands["state_after"]
+
         if self.cmd_ == self.vim_commands["to_normal"]:
             for line in args:
                 self.vim_file_open(line)
@@ -282,6 +292,9 @@ class wim_runner(object):
 
             for line in args:
                 self.vim_file_open(line)
+
+        self.vim_commands["state_after"]=""
+        self.vim_commands["state_before"]=""
 
     def eprocess_list(self, args, timer=.05):
         self.wim_goto()
@@ -356,3 +369,23 @@ class wim_runner(object):
 if __name__ == '__main__':
     run_=wim_runner()
     run_.main(argv)
+
+# function wdiff {
+#     local prev_
+#     local arg2_
+#     # or it's maybe better to use :windo diffthis
+#     if [[ $# == 2 ]]; then
+#         prev_="$1"
+#         wim_run "" && v -b":tabnew" && \
+#         { wim_run $1; shift } && v -b":diffthis" && \
+#         { v -b":vs" && {
+#             if [[ -d $1 ]]; then
+#                 arg2_="$1/$(basename ${prev_})"
+#             else
+#                 arg2_="$1"
+#             fi
+#             wim_run ${arg2_};
+#             shift
+#         } && v -b":diffthis" }
+#     fi
+# }
