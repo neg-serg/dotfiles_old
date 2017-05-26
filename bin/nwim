@@ -21,6 +21,7 @@ from psutil import net_connections
 import subprocess
 import time
 import os.path
+import errno
 import socket
 
 import re
@@ -222,48 +223,55 @@ class wim_runner(object):
             filename=re.sub("/", fg(4) + "/" + fg(7), filename)
             return wrap_string_(filename)
 
-        # --[ normalize path ]-----------------------------------------
-        file_name_=os.path.normpath(file_name_)
+        try:
+            # --[ normalize path ]-----------------------------------------
+            file_name_=os.path.normpath(file_name_)
+            file_=Path(file_name_)
 
-        file_stats_=os.stat(file_name_)
-        file_size_=file_stats_.st_size
-        file_length_=wccount_(file_name_)
-        file_=Path(file_name_)
+            file_stats_=os.stat(file_name_)
+            file_size_=file_stats_.st_size
+            file_length_=wccount_(file_name_)
 
-        # Open target file
-        remote_send()
+            # Open target file
+            remote_send()
 
-        if not file_.exists():
-            print(
-                print_prefix_() + \
-                fancy_name_(file_name_) + \
-                delimiter_() + \
-                new_file_msg_wrap_(file_name_)
-            )
-        elif file_.is_file() and not file_.is_dir():
-            print(
-                print_prefix_() + \
-                fancy_name_(file_name_) + \
-                delimiter_() + \
-                size_msg_wrap_(file_size_) + \
-                delimiter_() + \
-                len_msg_wrap_(file_length_)
-            )
-        elif file_.is_dir():
-            if file_name_ == os.getcwd():
-                print(
-                    print_prefix_() + \
-                    wrap_string_("current dir") + \
-                    delimiter_() + \
-                    dir_msg_wrap_(file_name_)
-                )
-            else:
+            if not file_.exists():
                 print(
                     print_prefix_() + \
                     fancy_name_(file_name_) + \
                     delimiter_() + \
-                    dir_msg_wrap_(file_name_)
+                    new_file_msg_wrap_(file_name_)
                 )
+            elif file_.is_file() and not file_.is_dir():
+                print(
+                    print_prefix_() + \
+                    fancy_name_(file_name_) + \
+                    delimiter_() + \
+                    size_msg_wrap_(file_size_) + \
+                    delimiter_() + \
+                    len_msg_wrap_(file_length_)
+                )
+            elif file_.is_dir():
+                if file_name_ == os.getcwd():
+                    print(
+                        print_prefix_() + \
+                        wrap_string_("current dir") + \
+                        delimiter_() + \
+                        dir_msg_wrap_(file_name_)
+                    )
+                else:
+                    print(
+                        print_prefix_() + \
+                        fancy_name_(file_name_) + \
+                        delimiter_() + \
+                        dir_msg_wrap_(file_name_)
+                    )
+        except:
+            pass
+            # if e.errno == errno.ENOENT:
+            #     print('path %s does not exist or is a broken symlink'.format(file_name_))
+            # else:
+            #     raise e
 
     def process_list(self, args, timer=.05):
         # self.wim_goto()
