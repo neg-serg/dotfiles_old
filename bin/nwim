@@ -135,7 +135,7 @@ class wim_runner(object):
     def vim_file_open(self, line):
         # It seems that only bash quoting works correctly
         # Probably this stuff should be replaced with encodef and friends
-        def bash_quoting(string):
+        def quotestr(string):
             quoted_string=subprocess.Popen(
                 shlex.split("bash -c \"printf %q '" + string + "'\""),
                 stdout=subprocess.PIPE,
@@ -153,7 +153,7 @@ class wim_runner(object):
                         "\"" + \
                         self.vim_commands["to_normal"] + \
                         ":silent edit " + \
-                        bash_quoting(file_name_) + \
+                        quotestr(file_name_) + \
                         "<CR>" + \
                         self.cmd_ + \
                         "\""
@@ -183,7 +183,7 @@ class wim_runner(object):
                             "\"" + \
                             self.vim_commands["to_normal"] + \
                             ":silent edit " + \
-                            bash_quoting(file_name_) + \
+                            quotestr(file_name_) + \
                             "<CR>" + \
                             self.cmd_ + \
                             "\""
@@ -335,9 +335,8 @@ class wim_runner(object):
                 self.dprint("creating new {} server".format(self.wim_name))
                 self.attach_term_to_tmux_if_need()
                 self.create_wim_server_from_scratch()
-                proc()
-            else:
-                proc()
+
+            proc()
 
     def attach_term_to_tmux_if_need(self):
         if self.tmux_socket_is_in_use_() and self.no_wim_x11_win_():
