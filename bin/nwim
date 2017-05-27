@@ -30,7 +30,7 @@ import shlex
 from pathlib import Path
 
 # --[ options ]-------------------
-from sys import argv
+import sys
 import docopt
 
 # --[ colors ]--------------------
@@ -43,7 +43,7 @@ class wim_runner(object):
     def __init__(self):
         self.settings={
             "use_neovim":True,
-            "debug":True,
+            "debug":False,
         }
 
         self.font="PragmataPro for Powerline"
@@ -53,7 +53,7 @@ class wim_runner(object):
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
         self.tmux_sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/tmux_nvim.socket"))
 
-        self.args=argv
+        self.args=sys.argv
 
         if Path(self.sock_path).exists() and \
         (list(filter(lambda i: i.laddr == self.sock_path, self.unix_connections)) == []):
@@ -120,7 +120,10 @@ class wim_runner(object):
             subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=subprocess.PIPE)
         elif there_is("i3"):
             self.dprint("[i3] :: go to win with it")
-            subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"], stdout=subprocess.PIPE)
+            subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"],
+                             stdout=open(os.devnull, 'w'),
+                             stderr=open(os.devnull, 'w')
+            )
 
     # --[ it is the main function in the past, not sure for now ]--------
     def V(self):
