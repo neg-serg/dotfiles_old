@@ -420,9 +420,9 @@ alias vuze="vuze&>/dev/null&"
     done
 }
 
+alias vim=nvim
+
 if inpath vim || inpath nvim; then
-    alias v.="v ."
-    alias vu='nvim -u NONE -U NONE -i NONE -N'
     function gv(){
         v . && sleep .5s
         v -b":GV"
