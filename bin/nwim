@@ -49,8 +49,14 @@ class wim_runner(object):
         self.font="PragmataPro for Powerline"
         self.fsize=22
 
+        self.unix_connections=net_connections(kind='unix')
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
         self.tmux_sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/tmux_nvim.socket"))
+
+        if Path(self.sock_path).exists() and \
+        (list(filter(lambda i: i.laddr == self.sock_path, self.unix_connections)) == []):
+            os.remove(self.sock_path)
+
         os.environ["NVIM_LISTEN_ADDRESS"]=self.sock_path
 
         self.vim_commands={
@@ -321,10 +327,10 @@ class wim_runner(object):
                 pass
 
     def main(self, args):
-        def socket_is_used_():
-            return bool(list(filter(lambda i: i.laddr == self.tmux_sock_path, conns)) != [])
+        def tmux_socket_is_in_use_():
+            return bool(list(filter(lambda i: i.laddr == self.tmux_sock_path, self.unix_connections)) != [])
 
-        def no_approp_win():
+        def no_such_x11win_():
             ret_=True
             count_=(int(self.r.hmget('count_dict', 'wim')[0]))
             if count_ > 0:
@@ -332,9 +338,8 @@ class wim_runner(object):
             return ret_
 
         try:
-            conns=net_connections(kind='unix')
             # x11 window is closed, but tmux connection exists
-            if socket_is_used_() and no_approp_win():
+            if tmux_socket_is_in_use_() and no_such_x11win_():
                 self.dprint_with_args("Let's attach to existsing wim session", args)
                 # do not wait for call result
                 subprocess.Popen([
@@ -343,7 +348,7 @@ class wim_runner(object):
                     "-c", "{}".format(self.wim_name),
                     "-e", "tmux", "-S", self.tmux_sock_path, "attach-session", "-d", "-t", "nvim"
                 ])
-            elif not socket_is_used_():
+            elif not tmux_socket_is_in_use_():
                 self.dprint_with_args("Let's create tmux+nvim server from scratch", args)
                 self.create_wim_server_from_scratch()
                 self.V(args)
