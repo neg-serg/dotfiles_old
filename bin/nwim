@@ -43,7 +43,7 @@ class wim_runner(object):
     def __init__(self):
         self.settings={
             "use_neovim":True,
-            "debug":False,
+            "debug":True,
         }
 
         self.font="PragmataPro for Powerline"
@@ -311,13 +311,6 @@ class wim_runner(object):
                 stdout=subprocess.PIPE
             )
 
-    def create_wim_server_from_scratch(self):
-        if not self.tmux_socket_is_in_use_():
-            wim=subprocess.Popen(
-                shlex.split("st "+ "-f '{}:pixelsize={}' ".format(self.font, self.fsize) + \
-                            "-c "+self.wim_name+" -e sh -c \"tmux -S "+self.tmux_sock_path+ \
-                            " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
-
     def wim_run(self, file_args, mode="default"):
         if mode == "default":
             proc=self.process_list
@@ -325,20 +318,9 @@ class wim_runner(object):
             proc=self.eprocess_list
 
         if len(self.args):
-            wid = subprocess.Popen(
-                'xdotool search --classname {}'.format(self.wim_name).split(),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT
-            ).communicate()[0].decode("utf-8").strip('\n')
-
-            if not len(wid):
-                self.dprint("creating new {} server".format(self.wim_name))
-                self.attach_term_to_tmux_if_need()
-                self.create_wim_server_from_scratch()
-
             proc()
 
-    def attach_term_to_tmux_if_need(self):
+    def attach_term_to_tmux_if_needed(self):
         if self.tmux_socket_is_in_use_() and self.no_wim_x11_win_():
             # do not wait for call result
             # x11 window is closed, but tmux connection exists
@@ -349,9 +331,27 @@ class wim_runner(object):
                 "-e", "tmux", "-S", self.tmux_sock_path, "attach-session", "-d", "-t", "nvim"
             ])
 
+    def create_nvim_server_if_needed(self):
+        def wid_():
+            return subprocess.Popen(
+                'xdotool search --classname {}'.format(self.wim_name).split(),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT
+            ).communicate()[0].decode("utf-8").strip('\n')
+
+        wim=subprocess.Popen(
+            shlex.split("st " + "-f '{}:pixelsize={}' ".format(self.font, self.fsize) + \
+                        "-c " + self.wim_name + " -e sh -c \"tmux -S " + self.tmux_sock_path + \
+                        " new -s nvim -n nvim nvim\""), stdout=subprocess.PIPE)
+
+        while not len(wid_()):
+            self.dprint("wait st from scratch run")
+            time.sleep(self.timeout)
+
     def main(self):
-        self.create_wim_server_from_scratch()
-        self.attach_term_to_tmux_if_need()
+        if not self.tmux_socket_is_in_use_():
+            self.create_nvim_server_if_needed()
+        self.attach_term_to_tmux_if_needed()
         self.V()
 
 if __name__ == '__main__':
