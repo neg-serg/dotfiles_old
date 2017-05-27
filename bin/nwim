@@ -73,6 +73,25 @@ class wim_runner(object):
         else:
             self.wim_name="wim"
 
+    def nvim_openfile(self, filename):
+        def nvim_openfile_cmd(filename):
+            return shlex.split(
+                "nvr --remote-send " + \
+                "\"" + \
+                self.vim_commands["to_normal"] + \
+                ":silent edit " + \
+                self.quote_str(filename) + \
+                "<CR>" + \
+                self.cmd_ + \
+                "\""
+            )
+
+        return subprocess.Popen(
+            nvim_openfile_cmd(filename),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+
     def dprint(self, debug_string):
         if self.settings["debug"]:
             print(debug_string)
@@ -118,37 +137,25 @@ class wim_runner(object):
         self.wim_run(args, "default")
         self.wim_goto()
 
+    # It seems that only bash quoting works correctly
+    # Probably this stuff should be replaced with encodef and friends
+    def quote_str(self, string):
+        quoted_string=subprocess.Popen(
+            shlex.split("bash -c \"printf %q '" + string + "'\""),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        ).communicate()[0].decode("utf-8").strip('\n')
+        return quoted_string
+
     # --[ Open file in daemon and print nice file info ]----------------------
     # --[ Main function with several closures ]-------------------------------
     def vim_file_open(self, line):
-        # It seems that only bash quoting works correctly
-        # Probably this stuff should be replaced with encodef and friends
-        def bash_quoting(string):
-            quoted_string=subprocess.Popen(
-                shlex.split("bash -c \"printf %q '" + string + "'\""),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT
-            ).communicate()[0].decode("utf-8").strip('\n')
-            return quoted_string
-
         def remote_send():
             # --[ helper for remote_send ]---------------------------------[1]
             def remote_edit_file():
                 self.dprint("[remote edit file]")
-                ret=remote_edit_pipe = subprocess.Popen(
-                    shlex.split(
-                        "nvr --remote-send " + \
-                        "\"" + \
-                        self.vim_commands["to_normal"] + \
-                        ":silent edit " + \
-                        bash_quoting(file_name_) + \
-                        "<CR>" + \
-                        self.cmd_ + \
-                        "\""
-                    ),
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT
-                ).communicate()[0].decode("utf-8").strip('\n')
+                p=self.nvim_openfile(file_name_)
+                ret=p.communicate()[0].decode("utf-8").strip('\n')
 
             # --[ helper for remote_send ]---------------------------------[2]
             # --[ check wim started or not by internal variable in nvim ]--[2]
@@ -164,23 +171,9 @@ class wim_runner(object):
                 else:
                     return False
 
-            self.dprint("[remote send]")
-            remote_send_pipe = subprocess.Popen(
-                shlex.split(
-                            "nvr --remote-send " + \
-                            "\"" + \
-                            self.vim_commands["to_normal"] + \
-                            ":silent edit " + \
-                            bash_quoting(file_name_) + \
-                            "<CR>" + \
-                            self.cmd_ + \
-                            "\""
-                            ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT
-            )
-            remote_send_result=remote_send_pipe.communicate()[0]
-            if remote_send_pipe.returncode != 0:
+            p=self.nvim_openfile(file_name_)
+            ret=p.communicate()[0]
+            if ret.returncode != 0:
                 while not wim_is_started():
                     time.sleep(self.timeout)
                 remote_edit_file()
