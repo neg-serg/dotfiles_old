@@ -150,6 +150,16 @@ class cycle_window(SingletonMixin):
         elif len(args) == 1:
             switch_[args[0]]()
 
+def redis_update_count(tag):
+    cw=cycle_window.instance()
+    if tag in cw.tagged and type(cw.tagged[tag]) == list:
+        tag_count_dict={tag: len(cw.tagged[tag])}
+        print("set_count_to={}".format(tag_count_dict))
+        redis_db_.hmset('count_dict', tag_count_dict)
+    else:
+        print("set_count_to={}".format({tag:0}))
+        redis_db_.hmset('count_dict', {tag:0})
+
 def find_acceptable_windows_by_class(tag, wlist):
     cw=cycle_window.instance()
     for con in wlist:
@@ -157,9 +167,7 @@ def find_acceptable_windows_by_class(tag, wlist):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
         elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
             cw.tagged[tag].append({ 'win':con, 'focused':False })
-
-    tag_count_dict={tag: len(cw.tagged[tag])}
-    redis_db_.hmset('count_dict', tag_count_dict)
+    redis_update_count(tag)
 
 def invalidate_tags_info():
     cw=cycle_window.instance()
@@ -177,8 +185,7 @@ def add_acceptable(self, event):
 
     def add_tagged_win():
         cw.tagged[tag].append({'win':con,'focused':con.focused})
-        tag_count_dict={tag: len(cw.tagged[tag])}
-        redis_db_.hmset('count_dict', tag_count_dict)
+        redis_update_count(tag)
 
     con = event.container
     for tag in glob_settings:
@@ -206,6 +213,7 @@ def del_acceptable(self, event):
                 del_tagged_win()
             elif ("instances" in glob_settings[tag]) and (con.window_instance in glob_settings[tag]["instances"]):
                 del_tagged_win()
+            redis_update_count(tag)
         except KeyError:
             invalidate_tags_info()
             del_acceptable(self, event)
