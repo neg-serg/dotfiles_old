@@ -52,18 +52,19 @@ class pretty_printer(object):
         self.cyberblue=fg(200)
         self.default=fg(0)
 
+
     # --[ generic string wrapper ]---------------------------------
     def wrap(self, str):
         return self.darkblue  + "[" + self.darkwhite + str + self.darkblue + "]"
 
-    def size_msg_wrap_(self, file_size):
-        return self.wrap(self.darkwhite + "sz" + self.darkgray + "~" + self.darkwhite + str(file_size))
+    def size(self, sz):
+        return self.wrap(self.darkwhite + "sz" + self.darkgray + "~" + self.darkwhite + str(sz))
 
     def filelen(self, len):
         return self.wrap(self.darkwhite + "len" + self.darkgray + "=" + self.darkwhite + str(len))
 
-    def newfile(self, new_filename):
-        return self.wrap(new_filename)
+    def newfile(self, filename):
+        return self.wrap(filename)
 
     def dir(self, filename):
         return self.wrap(filename)
@@ -107,7 +108,7 @@ class file_info_printer(object):
             self.printer.prefix() + \
             self.printer.fancy_file(filename) + \
             self.printer.delim() + \
-            self.printer.size_msg_wrap_(filename) + \
+            self.printer.size(os.stat(filename).st_size) + \
             self.printer.delim() + \
             self.printer.filelen(self.wccount(filename))
         )
@@ -253,56 +254,37 @@ class wim_runner(object):
             ).communicate()[0].decode("utf-8").strip('\n')
             return quoted_string
 
-        def remote_send():
+        def remote_send(filename):
             # --[ helper for remote_send ]---------------------------------[1]
             def remote_edit_file():
                 self.dprint("[remote edit file]")
-                ret=remote_edit_pipe = subprocess.Popen(
+                return subprocess.Popen(
                     shlex.split(
                         "nvr --remote-send " + \
                         "\"" + \
                         self.vim_commands["to_normal"] + \
                         ":silent edit " + \
-                        quotestr(file_name_) + \
+                        quotestr(filename) + \
                         "<CR>" + \
                         self.cmd_ + \
                         "\""
                     ),
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
-                ).communicate()[0].decode("utf-8").strip('\n')
+                )
 
             self.dprint("[remote send]")
-            remote_send_pipe = subprocess.Popen(
-                shlex.split(
-                            "nvr --remote-send " + \
-                            "\"" + \
-                            self.vim_commands["to_normal"] + \
-                            ":silent edit " + \
-                            quotestr(file_name_) + \
-                            "<CR>" + \
-                            self.cmd_ + \
-                            "\""
-                            ),
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT
-            )
-            remote_send_result=remote_send_pipe.communicate()[0]
-            if remote_send_pipe.returncode != 0:
+            if remote_edit_file().returncode != 0:
                 remote_edit_file()
 
-        file_name_=os.path.normpath(os.path.realpath(line))
+        def mainproc():
+            file_name_=os.path.normpath(os.path.realpath(line))
 
-        try:
             # --[ normalize path ]-----------------------------------------
-            file_name_=os.path.normpath(file_name_)
             file_=Path(file_name_)
 
-            file_stats_=os.stat(file_name_)
-            file_size_=file_stats_.st_size
-
             # Open target file
-            remote_send()
+            remote_send(file_name_)
 
             if not file_.exists():
                 self.printer.nonexistsfile(file_name_)
@@ -313,6 +295,9 @@ class wim_runner(object):
                     self.printer.currentdir(file_name_)
                 else:
                     self.printer.dir(file_name_)
+
+        try:
+            mainproc()
         except:
             pass
 
