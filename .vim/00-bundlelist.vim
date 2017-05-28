@@ -144,13 +144,8 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('mjbrownie/swapit')
     " I cannot use vimfiler without unite
     call dein#add('Shougo/unite.vim')
-    if executable(resolve(expand("ranger")))
-        " use ranger as netrw overrider
-        call dein#add('airodactyl/neovim-ranger')
-    else
-        " Vim file manager
-        call dein#add('Shougo/vimfiler.vim')
-    endif
+    " Vim file manager
+    call dein#add('Shougo/vimfiler.vim')
     " try to autodelect filetype
     call dein#add('s3rvac/AutoFenc')
     " language pack collection
@@ -309,8 +304,10 @@ if dein#load_state("/home/neg/.vim/repos")
             call dein#add('tpope/vim-bundler')
             "provides database access to many dbms
             call dein#add('vim-scripts/dbext.vim')
-            "plugin to run ruby tests
-            call dein#add('skalnik/vim-vroom')
+            if has("loled")
+                "plugin to run ruby tests
+                call dein#add('skalnik/vim-vroom')
+            endif
         endif
     endif
     "--[ Lisp-like ]---------------------------------------------------------------------------
@@ -398,8 +395,12 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('baskerville/vim-sxhkdrc', {'on_ft': ['sxhkdrc']})
     "qml syntax file
     call dein#add('peterhoeg/vim-qml', {'on_ft': ['qml']})
-    "10x faster clighter highlighter replacement
-    call dein#add('bbchung/clighter8')
+    if !has("nvim")
+        "10x faster clighter highlighter replacement
+        call dein#add('bbchung/clighter8')
+    else
+        call dein#add('arakashic/chromatica.nvim')
+    endif
     if has("nvim")
         "gotham colorscheme for nvim
         call dein#add('whatyouhide/vim-gotham')
