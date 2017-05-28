@@ -47,7 +47,7 @@ class wim_runner(object):
         }
 
         self.font="PragmataPro for Powerline"
-        self.fsize=22
+        self.fsize=20
 
         self.unix_connections=net_connections(kind='unix')
         self.sock_path=os.path.realpath(os.path.expandvars("$HOME/1st_level/nvim.socket"))
