@@ -52,8 +52,7 @@ class pretty_printer(object):
         self.cyberblue=fg(200)
         self.default=fg(0)
 
-
-    # --[ generic string wrapper ]---------------------------------
+    # --[ generic string wrapper ]--
     def wrap(self, str):
         return self.darkblue  + "[" + self.darkwhite + str + self.darkblue + "]"
 
@@ -81,6 +80,7 @@ class pretty_printer(object):
         filename=re.sub("/", fg(4) + "/" + fg(7), filename)
         return self.wrap(filename)
 
+# --[ file info printer ] -----------------------------------------
 class file_info_printer(object):
     def __init__(self):
         self.printer=pretty_printer()
@@ -153,6 +153,7 @@ class wim_runner(object):
 
         self.vim_commands={
             "to_normal": "<C-\><C-N>:call<SPACE>foreground()<CR>",
+            "dir": "-c 'doautocmd BufEnter'",
         }
 
         self.timeout=.05
@@ -254,13 +255,13 @@ class wim_runner(object):
             ).communicate()[0].decode("utf-8").strip('\n')
             return quoted_string
 
-        def remote_send(filename):
+        def remote_edit_file(filename, file):
             # --[ helper for remote_send ]---------------------------------[1]
-            def remote_edit_file():
+            def remote_edit_file_():
                 self.dprint("[remote edit file]")
                 return subprocess.Popen(
                     shlex.split(
-                        "nvr --remote-send " + \
+                        "nvr " + add_ + " --remote-send " + \
                         "\"" + \
                         self.vim_commands["to_normal"] + \
                         ":silent edit " + \
@@ -273,28 +274,32 @@ class wim_runner(object):
                     stderr=subprocess.STDOUT
                 )
 
+            add_=""
+            if file.is_dir():
+                add_=self.vim_commands["dir"]
+
             self.dprint("[remote send]")
-            if remote_edit_file().returncode != 0:
-                remote_edit_file()
+            if remote_edit_file_().returncode != 0:
+                remote_edit_file_()
 
         def mainproc():
-            file_name_=os.path.normpath(os.path.realpath(line))
+            filename=os.path.normpath(os.path.realpath(line))
 
             # --[ normalize path ]-----------------------------------------
-            file_=Path(file_name_)
+            file=Path(filename)
 
-            # Open target file
-            remote_send(file_name_)
+            # Open target file / dir
+            remote_edit_file(filename, file)
 
-            if not file_.exists():
-                self.printer.nonexistsfile(file_name_)
-            elif file_.is_file() and not file_.is_dir():
-                self.printer.existsfile(file_name_)
-            elif file_.is_dir():
-                if file_name_ == os.getcwd():
-                    self.printer.currentdir(file_name_)
+            if not file.exists():
+                self.printer.nonexistsfile(filename)
+            elif file.is_file() and not file.is_dir():
+                self.printer.existsfile(filename)
+            elif file.is_dir():
+                if filename == os.getcwd():
+                    self.printer.currentdir(filename)
                 else:
-                    self.printer.dir(file_name_)
+                    self.printer.dir(filename)
 
         try:
             mainproc()
