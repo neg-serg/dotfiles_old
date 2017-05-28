@@ -122,10 +122,10 @@ class wim_runner(object):
 
         if there_is("notion"):
             self.dprint("[notion] :: go to win with it")
-            subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=open(os.devnull, 'w'))
+            p=subprocess.Popen(["notionflux", "-e", "app.byclass('', '{}')".format(self.wim_name)], stdout=open(os.devnull, 'w'))
         elif there_is("i3"):
             self.dprint("[i3] :: go to win with it")
-            subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"],
+            p=subprocess.Popen(["i3-msg", '[instance={}]'.format(self.wim_name), "focus"],
                              stdout=open(os.devnull, 'w'),
                              stderr=open(os.devnull, 'w')
             )
@@ -149,7 +149,7 @@ class wim_runner(object):
             time.sleep(self.timeout)
         while not self.wim_is_started():
             self.dprint("wait for nvim")
-            time.sleep(self.timeout*10)
+            time.sleep(self.timeout)
         self.dprint("wim is started")
         self.wim_run("default")
         self.wim_goto()
@@ -291,9 +291,8 @@ class wim_runner(object):
         except:
             pass
 
-    def process_list(self, timer=.05):
+    def process_list(self):
         self.wim_goto()
-        time.sleep(timer)
 
         self.cmd_=self.vim_commands["to_normal"]
 
@@ -309,9 +308,8 @@ class wim_runner(object):
             for line in self.args:
                 self.vim_file_open(line)
 
-    def eprocess_list(self, timer=.05):
+    def eprocess_list(self):
         self.wim_goto()
-        time.sleep(timer)
         for line in self.args:
             self.dprint(line)
             wim=subprocess.Popen(
