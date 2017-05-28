@@ -154,10 +154,8 @@ def redis_update_count(tag):
     cw=cycle_window.instance()
     if tag in cw.tagged and type(cw.tagged[tag]) == list:
         tag_count_dict={tag: len(cw.tagged[tag])}
-        print("set_count_to={}".format(tag_count_dict))
         redis_db_.hmset('count_dict', tag_count_dict)
     else:
-        print("set_count_to={}".format({tag:0}))
         redis_db_.hmset('count_dict', {tag:0})
 
 def find_acceptable_windows_by_class(tag, wlist):
