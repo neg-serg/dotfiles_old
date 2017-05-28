@@ -46,35 +46,41 @@ import redis
 
 class pretty_printer(object):
     def __init__(self):
+        self.darkblue=fg(4)
+        self.darkwhite=fg(7)
+        self.darkgray=fg(237)
+        self.cyberblue=fg(200)
+        self.default=fg(0)
+
         pass
 
     # --[ generic string wrapper ]---------------------------------
-    def wrap_string_(self, str):
-        return fg(4) + "[" + fg(7) + str + fg(4) + "]"
+    def wrap(self, str):
+        return self.darkblue  + "[" + self.darkwhite + str + self.darkblue + "]"
 
     def size_msg_wrap_(self, file_size):
-        return self.wrap_string_(fg(7) + "sz" + fg(237) + "~" + fg(7) + str(file_size))
+        return self.wrap(self.darkwhite + "sz" + self.darkgray + "~" + self.darkwhite + str(file_size))
 
-    def len_msg_wrap_(self, len):
-        return self.wrap_string_(fg(7) + "len" + fg(237) + "=" + fg(7) + str(len))
+    def filelen(self, len):
+        return self.wrap(self.darkwhite + "len" + self.darkgray + "=" + self.darkwhite + str(len))
 
-    def new_file_msg_wrap_(self, new_filename):
-        return self.wrap_string_(new_filename)
+    def newfile(self, new_filename):
+        return self.wrap(new_filename)
 
-    def dir_msg_wrap_(self, filename):
-        return self.wrap_string_(filename)
+    def dir(self, filename):
+        return self.wrap(filename)
 
-    def print_prefix_(self):
-        return self.wrap_string_(">>")
+    def prefix(self):
+        return self.wrap(">>")
 
-    def delimiter_(self):
-        return (fg(200) + " :: " + fg(0))
+    def delim(self):
+        return (self.cyberblue + " :: " + self.default)
 
     # --[ pretty printing for filename ]---------------------------
-    def fancy_name_(self, filename):
+    def fancy_file(self, filename):
         filename=re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
         filename=re.sub("/", fg(4) + "/" + fg(7), filename)
-        return self.wrap_string_(filename)
+        return self.wrap(filename)
 
 class wim_runner(object):
     def __init__(self):
@@ -265,34 +271,34 @@ class wim_runner(object):
 
             if not file_.exists():
                 print(
-                    self.printer.print_prefix_() + \
-                    self.printer.fancy_name_(file_name_) + \
-                    self.printer.delimiter_() + \
-                    self.printer.new_file_msg_wrap_(file_name_)
+                    self.printer.prefix() + \
+                    self.printer.fancy_file(file_name_) + \
+                    self.printer.delim() + \
+                    self.printer.newfile(file_name_)
                 )
             elif file_.is_file() and not file_.is_dir():
                 print(
-                    self.printer.print_prefix_() + \
-                    self.printer.fancy_name_(file_name_) + \
-                    self.printer.delimiter_() + \
+                    self.printer.prefix() + \
+                    self.printer.fancy_file(file_name_) + \
+                    self.printer.delim() + \
                     self.printer.size_msg_wrap_(file_size_) + \
-                    self.printer.delimiter_() + \
-                    self.printer.len_msg_wrap_(file_length_)
+                    self.printer.delim() + \
+                    self.printer.filelen(file_length_)
                 )
             elif file_.is_dir():
                 if file_name_ == os.getcwd():
                     print(
-                        self.printer.print_prefix_() + \
-                        self.printer.wrap_string_("current dir") + \
-                        self.printer.delimiter_() + \
-                        self.printer.dir_msg_wrap_(file_name_)
+                        self.printer.prefix() + \
+                        self.printer.wrap("current dir") + \
+                        self.printer.delim() + \
+                        self.printer.dir(file_name_)
                     )
                 else:
                     print(
-                        self.printer.print_prefix_() + \
-                        self.printer.fancy_name_(file_name_) + \
-                        self.printer.delimiter_() + \
-                        self.printer.dir_msg_wrap_(file_name_)
+                        self.printer.prefix() + \
+                        self.printer.fancy_file(file_name_) + \
+                        self.printer.delim() + \
+                        self.printer.dir(file_name_)
                     )
         except:
             pass
