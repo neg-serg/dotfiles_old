@@ -52,8 +52,6 @@ class pretty_printer(object):
         self.cyberblue=fg(200)
         self.default=fg(0)
 
-        pass
-
     # --[ generic string wrapper ]---------------------------------
     def wrap(self, str):
         return self.darkblue  + "[" + self.darkwhite + str + self.darkblue + "]"
@@ -81,6 +79,54 @@ class pretty_printer(object):
         filename=re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
         filename=re.sub("/", fg(4) + "/" + fg(7), filename)
         return self.wrap(filename)
+
+class file_info_printer(object):
+    def __init__(self):
+        self.printer=pretty_printer()
+
+    # --[ counting with external wc is faster than everything else ]--
+    def wccount(self, filename):
+        out = subprocess.Popen(
+            ['wc', '-l', filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        ).communicate()[0]
+
+        return int(out.partition(b' ')[0])
+
+    def nonexistsfile(self, filename):
+        print(
+            self.printer.prefix() + \
+            self.printer.fancy_file(filename) + \
+            self.printer.delim() + \
+            self.printer.newfile(filename)
+        )
+
+    def existsfile(self, filename):
+        print(
+            self.printer.prefix() + \
+            self.printer.fancy_file(filename) + \
+            self.printer.delim() + \
+            self.printer.size_msg_wrap_(filename) + \
+            self.printer.delim() + \
+            self.printer.filelen(self.wccount(filename))
+        )
+
+    def currentdir(self, filename):
+        print(
+            self.printer.prefix() + \
+            self.printer.wrap("current dir") + \
+            self.printer.delim() + \
+            self.printer.dir(filename)
+        )
+
+    def dir(self, filename):
+        print(
+            self.printer.prefix() + \
+            self.printer.fancy_file(filename) + \
+            self.printer.delim() + \
+            self.printer.dir(filename)
+        )
 
 class wim_runner(object):
     def __init__(self):
@@ -118,7 +164,7 @@ class wim_runner(object):
         else:
             self.wim_name="wim"
 
-        self.printer=pretty_printer()
+        self.printer=file_info_printer()
 
     def dprint(self, debug_string):
         if self.settings["debug"]:
@@ -247,16 +293,6 @@ class wim_runner(object):
 
         file_name_=os.path.normpath(os.path.realpath(line))
 
-        # --[ counting with external wc is faster than everything else ]--
-        def wccount_(filename):
-            out = subprocess.Popen(
-                ['wc', '-l', filename],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT
-            ).communicate()[0]
-
-            return int(out.partition(b' ')[0])
-
         try:
             # --[ normalize path ]-----------------------------------------
             file_name_=os.path.normpath(file_name_)
@@ -264,42 +300,19 @@ class wim_runner(object):
 
             file_stats_=os.stat(file_name_)
             file_size_=file_stats_.st_size
-            file_length_=wccount_(file_name_)
 
             # Open target file
             remote_send()
 
             if not file_.exists():
-                print(
-                    self.printer.prefix() + \
-                    self.printer.fancy_file(file_name_) + \
-                    self.printer.delim() + \
-                    self.printer.newfile(file_name_)
-                )
+                self.printer.nonexistsfile(file_name_)
             elif file_.is_file() and not file_.is_dir():
-                print(
-                    self.printer.prefix() + \
-                    self.printer.fancy_file(file_name_) + \
-                    self.printer.delim() + \
-                    self.printer.size_msg_wrap_(file_size_) + \
-                    self.printer.delim() + \
-                    self.printer.filelen(file_length_)
-                )
+                self.printer.existsfile(file_name_)
             elif file_.is_dir():
                 if file_name_ == os.getcwd():
-                    print(
-                        self.printer.prefix() + \
-                        self.printer.wrap("current dir") + \
-                        self.printer.delim() + \
-                        self.printer.dir(file_name_)
-                    )
+                    self.printer.currentdir(file_name_)
                 else:
-                    print(
-                        self.printer.prefix() + \
-                        self.printer.fancy_file(file_name_) + \
-                        self.printer.delim() + \
-                        self.printer.dir(file_name_)
-                    )
+                    self.printer.dir(file_name_)
         except:
             pass
 
