@@ -44,6 +44,38 @@ from colored import fg, bg, attr
 # --[ interact with redis ]-------
 import redis
 
+class pretty_printer(object):
+    def __init__(self):
+        pass
+
+    # --[ generic string wrapper ]---------------------------------
+    def wrap_string_(self, str):
+        return fg(4) + "[" + fg(7) + str + fg(4) + "]"
+
+    def size_msg_wrap_(self, file_size):
+        return self.wrap_string_(fg(7) + "sz" + fg(237) + "~" + fg(7) + str(file_size))
+
+    def len_msg_wrap_(self, len):
+        return self.wrap_string_(fg(7) + "len" + fg(237) + "=" + fg(7) + str(len))
+
+    def new_file_msg_wrap_(self, new_filename):
+        return self.wrap_string_(new_filename)
+
+    def dir_msg_wrap_(self, filename):
+        return self.wrap_string_(filename)
+
+    def print_prefix_(self):
+        return self.wrap_string_(">>")
+
+    def delimiter_(self):
+        return (fg(200) + " :: " + fg(0))
+
+    # --[ pretty printing for filename ]---------------------------
+    def fancy_name_(self, filename):
+        filename=re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
+        filename=re.sub("/", fg(4) + "/" + fg(7), filename)
+        return self.wrap_string_(filename)
+
 class wim_runner(object):
     def __init__(self):
         self.settings={
@@ -79,6 +111,8 @@ class wim_runner(object):
             self.wim_name="nwim"
         else:
             self.wim_name="wim"
+
+        self.printer=pretty_printer()
 
     def dprint(self, debug_string):
         if self.settings["debug"]:
@@ -217,34 +251,6 @@ class wim_runner(object):
 
             return int(out.partition(b' ')[0])
 
-        # --[ generic string wrapper ]---------------------------------
-        def wrap_string_(str):
-            return fg(4) + "[" + fg(7) + str + fg(4) + "]"
-
-        def size_msg_wrap_(file_size):
-            return wrap_string_(fg(7) + "sz" + fg(237) + "~" + fg(7) + str(file_size))
-
-        def len_msg_wrap_(len):
-            return wrap_string_(fg(7) + "len" + fg(237) + "=" + fg(7) + str(len))
-
-        def new_file_msg_wrap_(new_filename):
-            return wrap_string_(new_filename)
-
-        def dir_msg_wrap_(filename):
-            return wrap_string_(filename)
-
-        def print_prefix_():
-            return wrap_string_(">>")
-
-        def delimiter_():
-            return (fg(200) + " :: " + fg(0))
-
-        # --[ pretty printing for filename ]---------------------------
-        def fancy_name_(filename):
-            filename=re.sub(os.environ["HOME"], fg(2) + "~" + fg(7), filename)
-            filename=re.sub("/", fg(4) + "/" + fg(7), filename)
-            return wrap_string_(filename)
-
         try:
             # --[ normalize path ]-----------------------------------------
             file_name_=os.path.normpath(file_name_)
@@ -259,34 +265,34 @@ class wim_runner(object):
 
             if not file_.exists():
                 print(
-                    print_prefix_() + \
-                    fancy_name_(file_name_) + \
-                    delimiter_() + \
-                    new_file_msg_wrap_(file_name_)
+                    self.printer.print_prefix_() + \
+                    self.printer.fancy_name_(file_name_) + \
+                    self.printer.delimiter_() + \
+                    self.printer.new_file_msg_wrap_(file_name_)
                 )
             elif file_.is_file() and not file_.is_dir():
                 print(
-                    print_prefix_() + \
-                    fancy_name_(file_name_) + \
-                    delimiter_() + \
-                    size_msg_wrap_(file_size_) + \
-                    delimiter_() + \
-                    len_msg_wrap_(file_length_)
+                    self.printer.print_prefix_() + \
+                    self.printer.fancy_name_(file_name_) + \
+                    self.printer.delimiter_() + \
+                    self.printer.size_msg_wrap_(file_size_) + \
+                    self.printer.delimiter_() + \
+                    self.printer.len_msg_wrap_(file_length_)
                 )
             elif file_.is_dir():
                 if file_name_ == os.getcwd():
                     print(
-                        print_prefix_() + \
-                        wrap_string_("current dir") + \
-                        delimiter_() + \
-                        dir_msg_wrap_(file_name_)
+                        self.printer.print_prefix_() + \
+                        self.printer.wrap_string_("current dir") + \
+                        self.printer.delimiter_() + \
+                        self.printer.dir_msg_wrap_(file_name_)
                     )
                 else:
                     print(
-                        print_prefix_() + \
-                        fancy_name_(file_name_) + \
-                        delimiter_() + \
-                        dir_msg_wrap_(file_name_)
+                        self.printer.print_prefix_() + \
+                        self.printer.fancy_name_(file_name_) + \
+                        self.printer.delimiter_() + \
+                        self.printer.dir_msg_wrap_(file_name_)
                     )
         except:
             pass
