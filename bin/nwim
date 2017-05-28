@@ -154,12 +154,14 @@ class wim_runner(object):
         self.vim_commands={
             "to_normal": "<C-\><C-N>:call<SPACE>foreground()<CR>",
             "dir": "-c 'doautocmd BufEnter'",
+            "rsend":" --remote-send ",
+            "rwait":" --remote-wait ",
         }
 
         self.timeout=.05
 
         self.r=redis.StrictRedis(host='localhost', port=6379, db=0)
-        self.cmd_=""
+        self.cmd=""
 
         if self.settings["use_neovim"]:
             self.wim_name="nwim"
@@ -239,7 +241,7 @@ class wim_runner(object):
             self.dprint("wait for nvim")
             time.sleep(self.timeout)
         self.dprint("wim is started")
-        self.wim_run("default")
+        self.wim_run()
         self.wim_goto()
 
     # --[ Open file in daemon and print nice file info ]----------------------
@@ -261,22 +263,22 @@ class wim_runner(object):
                 self.dprint("[remote edit file]")
                 return subprocess.Popen(
                     shlex.split(
-                        "nvr " + add_ + " --remote-send " + \
+                        "nvr " + prefix_cmd + self.vim_commands["rsend"] + \
                         "\"" + \
                         self.vim_commands["to_normal"] + \
                         ":silent edit " + \
                         quotestr(filename) + \
                         "<CR>" + \
-                        self.cmd_ + \
+                        self.cmd + \
                         "\""
                     ),
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
                 )
 
-            add_=""
+            prefix_cmd=""
             if file.is_dir():
-                add_=self.vim_commands["dir"]
+                prefix_cmd+=self.vim_commands["dir"]
 
             self.dprint("[remote send]")
             if remote_edit_file_().returncode != 0:
@@ -309,33 +311,24 @@ class wim_runner(object):
     def process_list(self):
         self.wim_goto()
 
-        self.cmd_=self.vim_commands["to_normal"]
+        self.cmd=self.vim_commands["to_normal"]
 
-        if self.cmd_ == self.vim_commands["to_normal"]:
+        if self.cmd == self.vim_commands["to_normal"]:
             for line in self.args:
                 self.vim_file_open(line)
         else:
             wim=subprocess.Popen(
-                shlex.split("nvr --remote-send " + self.cmd_),
+                shlex.split("nvr " + self.vim_commands["rsend"] + self.cmd),
                 stdout=subprocess.PIPE
             )
 
             for line in self.args:
                 self.vim_file_open(line)
 
-    def eprocess_list(self):
-        self.wim_goto()
-        for line in self.args:
-            self.dprint(line)
-            wim=subprocess.Popen(
-                shlex.split("nvr --remote-wait "+' '.join(map(str, args))),
-                stdout=subprocess.PIPE
-            )
-
-    def wim_run(self, mode="default"):
-        if mode == "default":
+    def wim_run(self):
+        if self.mode == "default":
             proc=self.process_list
-        elif mode == "embedded":
+        elif self.mode == "embedded":
             proc=self.eprocess_list
 
         if len(self.args):
@@ -369,7 +362,8 @@ class wim_runner(object):
             self.dprint("wait st from scratch run")
             time.sleep(self.timeout)
 
-    def main(self):
+    def main(self, mode="default"):
+        self.mode=mode
         if not self.tmux_socket_is_in_use_():
             self.create_nvim_server_if_needed()
         self.attach_term_to_tmux_if_needed()
