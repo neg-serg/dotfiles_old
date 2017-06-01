@@ -6,7 +6,12 @@ if dein#load_state("/home/neg/.vim/repos")
     if !has("nvim")
         "best vim autocomplete engine for now
         call dein#add('powerline/powerline')
-    elseif g:nvim_deopete == 1
+    endif
+    if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
+        call dein#add('vim-airline/vim-airline')
+        call dein#add('vim-airline/vim-airline-themes')
+    endif
+    if g:nvim_deopete == 1
         call dein#add('Shougo/deoplete.nvim')
         if executable(resolve(expand("clang")))
             call dein#add('Rip-Rip/clang_complete')
@@ -18,10 +23,6 @@ if dein#load_state("/home/neg/.vim/repos")
         endif
     else
         call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
-    endif
-    if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
-        call dein#add('vim-airline/vim-airline')
-        call dein#add('vim-airline/vim-airline-themes')
     endif
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
