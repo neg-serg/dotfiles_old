@@ -290,6 +290,27 @@ if dein#tap('syntastic')
     let g:syntastic_c_check_header = 1
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - Shougo/deoplete.nvim                                                     │
+" │ https://github.com/Shougo/deoplete.nvim                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('deopete')
+    let g:deoplete#enable_at_startup=1
+    let g:deoplete#complete_method="complete"
+    let g:deoplete#enable_camel_case=1
+    let g:deoplete#max_list=90
+    let g:deoplete#max_menu_width=10
+    let g:deoplete#auto_complete_delay=10
+    let g:deoplete#auto_refresh_delay=300
+    let g:deoplete#sources._ = ['buffer', 'tag']
+    call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+    let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+    let g:clang_library_path="/usr/lib/libclang.so"
+    let g:clang_complete_auto = 0
+	let g:clang_auto_select = 0
+	let g:clang_omnicppcomplete_compliance = 0
+    let g:clang_make_default_keymappings = 0
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Valloric/YouCompleteMe.git                                               │
 " │ https://github.com/Valloric/YouCompleteMe.git                                     │
 " └───────────────────────────────────────────────────────────────────────────────────┘
