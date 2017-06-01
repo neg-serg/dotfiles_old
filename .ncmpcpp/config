@@ -58,14 +58,16 @@ state_flags_color = "green"
 main_window_color = "default"
 color1 = "cyan"
 color2 = "default"
-main_window_highlight_color = "blue"
 
 progressbar_color = "white"
 progressbar_elapsed_color = "cyan"
-progressbar_boldness = "no"
 
 statusbar_color = "white"
-active_column_color = "cyan"
+
+current_item_prefix = "$(blue)$r"
+current_item_suffix = "$/r$(end)"
+current_item_inactive_column_prefix="$(default)$r"
+current_item_inactive_column_suffix="$/r$(end)"
 
 song_window_title_format = "ncmpcpp ─╼ {%a - %t} {[%b{%d}]} <{%l}>"
 search_engine_display_mode = "columns" (classic/columns)
