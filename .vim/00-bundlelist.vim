@@ -8,12 +8,11 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('powerline/powerline')
     elseif g:nvim_deopete == 1
         call dein#add('Shougo/deoplete.nvim')
-        call dein#add('Rip-Rip/clang_complete')
+        if executable(resolve(expand("clang")))
+            call dein#add('Rip-Rip/clang_complete')
+        endif
         call dein#add('Shougo/neoinclude.vim')
-        call dein#add('zchee/deoplete-zsh')
-        call dein#add('zchee/deoplete-jedi')
         call dein#add('Shougo/echodoc.vim')
-        call dein#add('php-vim/phpcd.vim')
         if g:intellij_complete == 1
             call dein#add('vhakulinen/neovim-intellij-complete')
         endif
@@ -202,6 +201,9 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('justinmk/vim-gtfo')
     "rename for files even with spaces in filename
     call dein#add('ReekenX/vim-rename2.git')
+    if g:nvim_deopete
+        call dein#add('zchee/deoplete-zsh')
+    endif
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
@@ -253,6 +255,9 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('fs111/pydoc.vim')
     "gf for python
     call dein#add('mkomitee/vim-gf-python.git')
+    if nvim_deopete
+        call dein#add('zchee/deoplete-jedi')
+    endif
     "--[ R ]----------------------------------------------------------------------------------
     if has("nvim")
         "nvim R support
@@ -336,8 +341,14 @@ if dein#load_state("/home/neg/.vim/repos")
     "better clojure support
     call dein#add('guns/vim-clojure-static')
     "--[ Misc Langs ]--------------------------------------------------------------------------
-    "better than default phpcomplete.vim
-    call dein#add('shawncplus/phpcomplete.vim.git')
+    if executable(resolve(expand("php")))
+        if g:nvim_deopete == 1
+            call dein#add('php-vim/phpcd.vim')
+        else
+            "better than default phpcomplete.vim
+            call dein#add('shawncplus/phpcomplete.vim.git')
+        endif
+    endif
     " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
     call dein#add('joonty/vdebug', {'on_cmd': ['VdebugStart']})
     " html5 autocomplete and syntax
