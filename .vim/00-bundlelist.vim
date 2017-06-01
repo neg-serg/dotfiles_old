@@ -1,13 +1,24 @@
+let g:nvim_deopete=1
+let g:intellij_complete=1
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
     call dein#begin(expand('~/.vim'))
-    call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     if !has("nvim")
         "best vim autocomplete engine for now
         call dein#add('powerline/powerline')
-    elseif has("nvim_loled")
+    elseif g:nvim_deopete == 1
         call dein#add('Shougo/deoplete.nvim')
-        call dein#add('zchee/deoplete-clang')
+        call dein#add('Rip-Rip/clang_complete')
+        call dein#add('Shougo/neoinclude.vim')
+        call dein#add('zchee/deoplete-zsh')
+        call dein#add('zchee/deoplete-jedi')
+        call dein#add('Shougo/echodoc.vim')
+        call dein#add('php-vim/phpcd.vim')
+        if g:intellij_complete == 1
+            call dein#add('vhakulinen/neovim-intellij-complete')
+        endif
+    else
+        call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
         call dein#add('vim-airline/vim-airline')
@@ -103,8 +114,12 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('tpope/vim-abolish')
     "syntax checker
     call dein#add('scrooloose/syntastic')
-    "autocompletion for VimL
-    call dein#add('c9s/vimomni.vim')
+    if g:nvim_deopete == 1
+        call dein#add('Shougo/neco-vim')
+    else
+        "autocompletion for VimL
+        call dein#add('c9s/vimomni.vim')
+    endif
     "--[ dcvs ]------------------------------------------------------------------------------
     if executable(resolve(expand("git")))
         "Git stuff. Needed for powerline etc
@@ -254,10 +269,14 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('jstemmer/gotags.git')
     endif
     if executable(resolve(expand("go")))
-        "omnicomplete for go
-        call dein#add('Blackrush/vim-gocode.git')
-        "golang support
-        call dein#add('fatih/vim-go.git')
+        if g:nvim_deopete == 1
+            call dein#add('zchee/deoplete-go')
+        else
+            "omnicomplete for go
+            call dein#add('Blackrush/vim-gocode.git')
+            "golang support
+            call dein#add('fatih/vim-go.git')
+        endif
     endif
     "golang syntax highlight
     call dein#add('jnwhiteh/vim-golang.git')
@@ -290,6 +309,9 @@ if dein#load_state("/home/neg/.vim/repos")
             if has("nvim")
                 "alternative ruby autocompletion
                 call dein#add('osyo-manga/vim-monster')
+                if g:nvim_deopete == 1
+                    call dein#add('zchee/deoplete-go')
+                endif
             else
                 "ruby autocompletion
                 call dein#add('vim-ruby/vim-ruby')
