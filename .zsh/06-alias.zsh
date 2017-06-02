@@ -254,7 +254,7 @@ function yr(){
 }
 
 alias qe='cd *(/om[1])'
-alias hi='_v'
+alias {cat,hi}='ccat'
 
 alias td="[ -z $(pidof transmission-daemon) ] && transmission-daemon"
 
