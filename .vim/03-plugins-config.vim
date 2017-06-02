@@ -297,18 +297,25 @@ if dein#tap('deopete')
     let g:deoplete#enable_at_startup=1
     let g:deoplete#complete_method="complete"
     let g:deoplete#enable_camel_case=1
-    let g:deoplete#max_list=90
-    let g:deoplete#max_menu_width=10
-    let g:deoplete#auto_complete_delay=10
-    let g:deoplete#auto_refresh_delay=300
+    let g:deoplete#max_list=500
+    let g:deoplete#max_menu_width=8
+    let g:deoplete#auto_complete_delay=4
+    let g:deoplete#auto_refresh_delay=100
     let g:deoplete#sources._ = ['buffer', 'tag']
     call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
-    let g:clang_library_path='/usr/lib/llvm-3.8/lib'
-    let g:clang_library_path="/usr/lib/libclang.so"
-    let g:clang_complete_auto = 0
-	let g:clang_auto_select = 0
-	let g:clang_omnicppcomplete_compliance = 0
-    let g:clang_make_default_keymappings = 0
+    " let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+    " let g:clang_library_path="/usr/lib/libclang.so"
+    " let g:clang_complete_auto = 0
+	" let g:clang_auto_select = 0
+	" let g:clang_omnicppcomplete_compliance = 0
+    " let g:clang_make_default_keymappings = 0
+    let g:deoplete#sources#clang#libclang_path ="libclang.so"
+    let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.0"
+    let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Valloric/YouCompleteMe.git                                               │
@@ -675,12 +682,16 @@ if dein#tap('vim-lua-ftplugin')
     let b:lua_compiler_name = '/usr/bin/lualint'
     let g:lua_check_globals = 1
     let g:lua_check_syntax = 0  " done via syntastic
-    let g:lua_complete_keywords = 1 " interferes with YouCompleteMe
-    let g:lua_complete_globals = 1  " interferes with YouCompleteMe?
-    let g:lua_complete_library = 1  " interferes with YouCompleteMe
-    let g:lua_complete_dynamic = 1  " interferes with YouCompleteMe
+    let g:lua_complete_keywords = 0 " interferes with YouCompleteMe
+    let g:lua_complete_globals = 0  " interferes with YouCompleteMe?
+    let g:lua_complete_library = 0  " interferes with YouCompleteMe
+    let g:lua_complete_dynamic = 0  " interferes with YouCompleteMe
     let g:lua_omni_blacklist = ['pl\.strict', 'lgi\..']
-    let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
+    if g:nvim_deopete == 1
+        let g:deoplete#omni#functions.lua = 'xolox#lua#omnifunc'
+    else
+        let g:lua_define_omnifunc = 1  " must be enabled also (g:lua_complete_omni=1, but crashes Vim!)
+    endif
     let g:lua_define_completion_mappings = 0
     let g:lua_internal = 0
 endif
