@@ -1,4 +1,5 @@
 let g:nvim_deopete=1
+let g:nvim_deopete_clang=1
 let g:intellij_complete=1
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
@@ -14,7 +15,11 @@ if dein#load_state("/home/neg/.vim/repos")
     if g:nvim_deopete == 1
         call dein#add('Shougo/deoplete.nvim')
         if executable(resolve(expand("clang")))
-            call dein#add('Rip-Rip/clang_complete')
+            if g:nvim_deopete_clang == 1
+                call dein#add('zchee/deoplete-clang')
+            else
+                call dein#add('Rip-Rip/clang_complete')
+            endif
         endif
         call dein#add('Shougo/neoinclude.vim')
         call dein#add('Shougo/echodoc.vim')
