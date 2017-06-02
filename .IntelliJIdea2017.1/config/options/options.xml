@@ -5,7 +5,7 @@
     <property name="evlsprt3.15" value="11" />
     <property name="installed.kotlin.plugin.version" value="1.1.1-release-IJ2017.1-1" />
     <property name="installation.uid" value="923eef34-ba39-4acd-ab1d-742a05b57e7e" />
-    <property name="android-component-compatibility-check" value="1492125932008" />
+    <property name="android-component-compatibility-check" value="1495628111211" />
     <property name="project.wizard.group" value="JAVA_MODULE" />
     <property name="project.wizard.template" value="Java" />
     <property name="toolwindow.stripes.buttons.info.shown" value="true" />
@@ -26,7 +26,7 @@
     <property name="fileTypeChangedCounter" value="1" />
     <property name="ShowDocumentationInToolWindow" value="false" />
     <property name="FileTemplates.SelectedTemplate" value="HTML File" />
-    <property name="com.chrisrm.idea.MaterialThemeUI.theme" value="Darker" />
+    <property name="com.chrisrm.idea.MaterialThemeUI.theme" value="DARKER" />
     <property name="ExpandBeforeRunStepsPanel" value="true" />
     <property name="run.configuration.edit.ad" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
@@ -81,6 +81,6 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="DEVKIT_SANDBOX_HISTORY" value="$USER_HOME$/.IntelliJIdea2016.1/system/plugins-sandbox" />
     <property name="ignore.ide.sigint.ignored.message" value="true" />
-    <property name="file.gist.reindex.count" value="18859" />
+    <property name="file.gist.reindex.count" value="19663" />
   </component>
 </application>
