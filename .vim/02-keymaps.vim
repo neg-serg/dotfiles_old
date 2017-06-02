@@ -187,3 +187,7 @@ nnoremap <silent> <Up>    :cprevious<CR>
 nnoremap <silent> <Down>  :cnext<CR>
 nnoremap <silent> <Left>  :cpfile<CR>
 nnoremap <silent> <Right> :cnfile<CR>
+
+" deoplete tab-complete
+inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<Tab>"
