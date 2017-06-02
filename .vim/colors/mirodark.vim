@@ -341,6 +341,9 @@ call s:HI( "diffNewFile", "", s:dgrn, "" )
 call s:HI(   "diffAdded", "", s:dblu, "" )
 call s:HI( "diffRemoved", "", s:dred, "" )
 call s:HI( "diffChanged", "", s:dcyn, "" )
+call s:HI( "fzf1", "", s:dred, "" )
+call s:HI( "fzf2", "", s:dylw, "" )
+call s:HI( "fzf3", "", s:lylw, "" )
 
 if has("spell")
     hi clear SpellBad
