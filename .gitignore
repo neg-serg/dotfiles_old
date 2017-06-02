@@ -305,3 +305,5 @@ surf
 .config/composer/
 .config/configstore/
 ./.crawl
+/home/neg/.ideaconfig/config/options/statistics.application.usages.xml
+.IntelliJIdea2017.1/config/options/stubIndex.xml
