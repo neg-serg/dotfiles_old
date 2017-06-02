@@ -307,7 +307,9 @@ function which() {
     if [[ $# > 0 ]]; then
         if [[ -x ${BIN_HOME}/_v ]]; then
             ${BIN_HOME}/_v -c 'set ft=sh' <<< $(builtin which "$@")
-        else
+        elif [[ -x /usr/bin/ccat ]]; then
+            builtin which "$@" | ccat
+        else            
             builtin which "$@"
         fi
     fi
