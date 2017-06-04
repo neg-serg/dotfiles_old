@@ -1,3 +1,4 @@
+#!/bin/perl
       $LOVE=               AMOUR.
     true.cards.        ecstacy.crush 
   .hon.promise.de    .votion.partners.
