@@ -1,0 +1,319 @@
+#!/bin/bash 
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
+# Window-grid 
+# 
+# This script provides tiling-like capabilities for any window-manager.
+# 
+# This script positions an X11 window based on a grid. 
+# The grid is subdivided, by default, into 8 segments in 
+# each direction. (This can be overridden using the -d flag.)
+#
+# Position and size are specified in grid-units and can be relative.
+# for example, the options -x 1 -y 1 will place the top-left of the
+# window 1 grid unit down, and 1 grid-unit right of the top-left of
+# the screen.  You can also use -x +1 or -x -1 to move the window
+# one grid unit to the right or left respectively.
+# 
+# Height and width are specified the same way and can also be relative
+# so if you specify -w +1, the window will be made one grid-unit larger
+# than it currently is.  The minimum size of a window is 1 grid-unit
+# in each-direction.  The maximum is the size of the entire screen.
+# 
+# Note that the actual pixel-size of a grid segment will depend on the
+# your screen size.  For example, for a 1920x1080 display, the default
+# size of a 1x1 grid segment is 240 x 135. 
+# 
+# Multi-monitor support
+#
+# window_grid is multi-display aware and divides each monitor 
+# according to the resolution of that monitor. It can place windows 
+# on multiple screens, and works in most 'normal' multi-monitor setups.
+# 
+# By default, all positions and sizes are relative to the monitor the
+# window is currently on. You can switch the destination monitor 
+# by using the `-s` flag. Screens start at 0 and are enumerated in
+# the order they are returned by xrandr.
+# 
+
+VERSION=1.1.0
+SCREEN_TO_USE=
+DIVISIONS=8
+CLOSEST_SIZE=0
+CLOSEST_POS=0
+
+function display_help() 
+{
+    NAME=$1
+    echo "window-grid v. $VERSION"
+    echo ""
+    echo "Usage: $NAME [args]"
+    echo ""
+    echo "Args:"
+    echo ""
+    echo "  -i WINDOW_ID     - Act on window ID provided"
+    echo "                     (defaults to active window)"
+    echo "  -s SCREEN        - Act on screen provided"
+    echo "  -d DIVISIONS     - Number of squares screen "
+    echo "                     should be divided into"
+    echo "  -w WIDTH         - new window width (in grid-squares)"
+    echo "  -h HEIGHT        - new window height (in grid-squares)"
+    echo "  -x XPOS          - new left position (in grid-squares)"
+    echo "  -y YPOS          - new top position (in grid-squares)"
+    echo "  -c size|pos|both - Fit window to closest grid space "
+    echo "                     using size, position, or both"
+
+}
+
+while getopts c:i:s:w:h:x:y:d:? FLAG; do
+    ARGS=1;
+    case $FLAG in
+        c)
+            if [ $OPTARG == "size" -o $OPTARG == "both" ]; then
+                        CLOSEST_SIZE=1;
+            fi
+            if [ $OPTARG == "pos" -o $OPTARG == "both" ]; then
+                        CLOSEST_POS=1;
+            fi
+            ;;
+        i)
+            WINDOW=$OPTARG
+            ;;
+        s)
+            SCREEN_TO_USE=$OPTARG
+            ;;
+        d) 
+            DIVISIONS=$OPTARG
+            ;;
+        w)
+            NEW_WIDTH=$OPTARG
+            ;;
+        h)
+            NEW_HEIGHT=$OPTARG
+            ;;
+        x)
+            NEW_XPOS=$OPTARG
+            ;;
+        y)
+            NEW_YPOS=$OPTARG
+            ;;
+        ?)
+            display_help $0
+            ;;
+    esac
+done    
+
+if [ "${ARGS}x" == "x" ]; then 
+    display_help $0
+    exit
+fi
+
+if [ "${WINDOW}x" == "x" ]; then
+    WINDOW=$(xdotool getactivewindow)
+fi
+
+declare -a SCREEN_DIMENSIONS
+
+function get_screen_dimensions() 
+{
+    i=0
+    LINES=$(xrandr |grep ' connected' |cut -d\( -f 1 |awk '{print $NF}')
+    while IFS= read -r line; do
+        IFS=: read width height startx starty <<< "${line//[+x]/:}"
+        endx=$(( $width + $startx ))
+        endy=$(( $height + $starty ))
+        SCREEN_DIMENSIONS[$i]="$width $height $startx $starty $endx $endy $i"
+        LAST_SCREEN=$i
+        i=$(( $i + 1 ))
+    done <<< "$LINES"
+}
+
+function which_screen() 
+{
+    XPOS=$1
+    YPOS=$2
+
+    for screen in $(seq 0 $LAST_SCREEN); do
+        f=${SCREEN_DIMENSIONS[$screen]}
+        read -r width height startx starty endx endy screen_num<<< "${f}"
+        if [ $XPOS -ge $startx -a $XPOS -le $endx ]; then
+            if [ $YPOS -ge $starty -a $YPOS -le $endy ]; then
+                echo $f 
+            fi
+        fi
+    done
+}
+
+function get_screen_info() 
+{
+    # $width $height $startx $starty $endx $endy
+    local WIDTH=$1 
+    local HEIGHT=$2 
+    local STARTX=$3 
+    local STARTY=$4 
+    local ENDX=$5 
+    local ENDY=$6 
+    local SCREEN=$7 
+    #exit
+#    eval $(xdotool getdisplaygeometry --shell|awk '{ print  "local " $1}')
+    OFFSET_X=$STARTX
+    OFFSET_Y=$STARTY
+    SEGMENT_WIDTH=$(( $WIDTH / $DIVISIONS ))
+    SEGMENT_HEIGHT=$(( $HEIGHT / $DIVISIONS ))
+    eval $(echo SCREEN${SCREEN}_WIDTH=${WIDTH})
+    eval $(echo SCREEN${SCREEN}_HEIGHT=${HEIGHT})
+    eval $(echo SCREEN${SCREEN}_SEGMENTX=${SEGMENT_WIDTH})
+    eval $(echo SCREEN${SCREEN}_SEGMENTY=${SEGMENT_HEIGHT})
+    eval $(echo SCREEN${SCREEN}_OFFSET_X=${OFFSET_X})
+    eval $(echo SCREEN${SCREEN}_OFFSET_Y=${OFFSET_Y})
+}
+
+#get_screen_info $SCREEN
+
+function get_closest() {
+    local segment=$1
+    local given_size=$2
+    local offset=${3:-0}
+    local size=$(( $given_size - $offset ))
+
+    local half=$(( $segment / 2 ))
+    local closest=$(( (( $size + $half ) / $segment) * $segment ))
+
+    echo $closest
+}
+
+function safe_size() {
+    local size=$1
+    local minimum=0
+    if [ -z "$2" ]; then
+       minimum=0
+    else 
+       minimum=$2
+    fi
+
+    if [ $size -le 0 ]; then
+        size=$minimum;
+    fi
+    echo $size
+}
+
+function set_size() {
+    local window=$1
+    local X=$2
+    local Y=$3
+    local W=$4
+    local H=$5
+    local frame_width=0
+    local frame_height=0
+
+    local frame=$(xprop -id $window|grep _NET_FRAME_EXTENTS |awk -F[=,] '{print $2, $3}')
+    if [ "x${frame}" != "x" ]; then 
+        frame_width=$(echo $frame|cut -d ' ' -f 1)
+        frame_height=$(echo $frame|cut -d ' ' -f 2)
+    fi
+
+    NEW_X=$( safe_size $(( $X - $frame_width )) )
+    NEW_Y=$( safe_size $(( $Y - $frame_height )) )
+    NEW_W=$( safe_size $W 1 )
+    NEW_H=$( safe_size $H 1 )
+
+    local has_max=$(xprop '_NET_WM_STATE' -id $window|grep MAXIMIZED)
+
+    if [ "${has_max}" != "" ]; then 
+        wmctrl -ir $window -b remove,maximized_vert,maximized_horz 
+    fi
+
+    wmctrl -ir $window -e 0,${NEW_X},${NEW_Y},${NEW_W},${NEW_H}
+}
+# get_closest $SCREEN0_SEGMENTX
+
+function handle_offset()
+{
+    local CHANGE=$1
+    local CURRENT=$2
+    local SEGMENT_SIZE=$3
+    local OFFSET=${4:-0}
+    local NEW_VAL
+
+
+    if [ $(expr ${CHANGE} : '^+') == "1" ]; then
+        NEW_VAL=$(( ($CURRENT + $(echo $CHANGE | sed s/^+//)) * $SEGMENT_SIZE ))
+    elif [ $(expr ${CHANGE} : '^-') == "1" ]; then
+        NEW_VAL=$(( ($CURRENT - $(echo $CHANGE | sed s/^-//) ) * $SEGMENT_SIZE ))
+    else
+        NEW_VAL=$(( $SEGMENT_SIZE * $CHANGE ))
+    fi
+    echo $(( $OFFSET + $NEW_VAL ))
+}
+
+# set our geometry from window
+eval $(xdotool getwindowgeometry --shell $WINDOW)
+
+# get screen dimensions for all screens
+get_screen_dimensions 
+
+## if we were told which screen to use, use it.  Otherwise work
+## on the one we are already on
+if [ -n "$SCREEN_TO_USE" -a -n "${SCREEN_DIMENSIONS[$SCREEN_TO_USE]}" ]; then
+    get_screen_info ${SCREEN_DIMENSIONS[$SCREEN_TO_USE]}
+else 
+    get_screen_info $(which_screen $X $Y)
+fi
+
+CURRENT_X=$(( $(get_closest $SEGMENT_WIDTH $X $OFFSET_X) / $SEGMENT_WIDTH ))
+CURRENT_Y=$(( $(get_closest $SEGMENT_HEIGHT $Y $OFFSET_Y) / $SEGMENT_HEIGHT ))
+CURRENT_W=$(( $(get_closest $SEGMENT_WIDTH $WIDTH) / $SEGMENT_WIDTH ))
+CURRENT_H=$(( $(get_closest $SEGMENT_HEIGHT $HEIGHT) / $SEGMENT_HEIGHT ))
+        
+if [ $CLOSEST_POS == "1" ]; then
+    NEW_X=$(get_closest $SEGMENT_WIDTH $X)
+    NEW_Y=$(get_closest $SEGMENT_HEIGHT $Y)
+fi
+
+if [ $CLOSEST_SIZE == "1" ]; then
+    NEW_W=$(get_closest $SEGMENT_WIDTH $WIDTH)
+    NEW_H=$(get_closest $SEGMENT_HEIGHT $HEIGHT)
+fi
+
+if [ "${NEW_X}x" == "x" ]; then
+    NEW_X=$X
+fi
+if [ "${NEW_Y}x" == "x" ]; then
+    NEW_Y=$Y
+fi
+if [ "${NEW_W}x" == "x" ]; then
+    NEW_W=$WIDTH
+fi
+if [ "${NEW_H}x" == "x" ]; then
+    NEW_H=$HEIGHT
+fi
+if [ "${NEW_XPOS}x" != "x" ]; then
+    NEW_X=$(handle_offset $NEW_XPOS $CURRENT_X $SEGMENT_WIDTH $OFFSET_X)
+
+fi
+if [ "${NEW_YPOS}x" != "x" ]; then
+    NEW_Y=$(handle_offset $NEW_YPOS $CURRENT_Y $SEGMENT_HEIGHT $OFFSET_Y)
+fi
+if [ "${NEW_WIDTH}x" != "x" ]; then
+    NEW_W=$(safe_size $(handle_offset $NEW_WIDTH $CURRENT_W $SEGMENT_WIDTH) $SEGMENT_WIDTH)
+fi
+if [ "${NEW_HEIGHT}x" != "x" ]; then
+    NEW_H=$(safe_size $(handle_offset $NEW_HEIGHT $CURRENT_H $SEGMENT_HEIGHT) $SEGMENT_HEIGHT)
+fi
+
+set_size $WINDOW $NEW_X $NEW_Y $NEW_W $NEW_H
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+PUSHPOP=${DIR}/pushpop
+WINDOWGRID=${DIR}/window_grid
+
+RES=$($PUSHPOP)
+
+if [ "${RES}x" == "x" ]; then
+   $WINDOWGRID -d 16 -x 1 -y 1 -w 14 -h 14
+else 
+   NEWPOS=$(echo $RES|cut -d' ' -f 2)
+   wmctrl -r :ACTIVE: -e 0,${NEWPOS}
+fi

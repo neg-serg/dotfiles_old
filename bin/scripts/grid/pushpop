@@ -1,0 +1,82 @@
+#!/bin/bash
+
+ACTION=auto
+FILENAME=${HOME}/.pushpop
+
+while getopts c:i:s:w:h:x:y:d:? FLAG; do
+    ARGS=1;
+    case $FLAG in
+        i)
+            WINDOW=$OPTARG
+            ;;
+        a)
+            ACTION=$OPTARG
+            ;;
+        f)
+            FILENAME=$OPTARG
+            ;;
+    esac
+done    
+
+if [ ! -e $FILENAME ]; then 
+    touch $FILENAME
+fi
+
+
+if [ "${WINDOW}x" == "x" ]; then
+    WINDOW=$(xdotool getactivewindow)
+fi
+
+if [ "$ACTION" == "auto" ]; then 
+    grep -q $WINDOW $FILENAME
+    if [ $? -eq 0 ]; then 
+        ACTION="pop"
+    else
+        ACTION="push"
+    fi
+fi
+
+function get_position() 
+{
+    FILENAME=$1
+    WINDOW=$2
+    grep $WINDOW $FILENAME| tail -1
+}
+
+function get_window_position()
+{
+    WINDOW=$1
+    eval $(xdotool getwindowgeometry --shell $WINDOW)
+    local frame=$(xprop -id $WINDOW|grep _NET_FRAME_EXTENTS |awk -F[=,] '{print $2, $3}')
+    if [ "x${frame}" != "x" ]; then 
+        frame_width=$(echo $frame|cut -d ' ' -f 1)
+        frame_height=$(echo $frame|cut -d ' ' -f 2)
+    fi
+    NEW_X=$(( $X - $frame_width ))
+    NEW_Y=$(( $Y - $frame_height ))
+    echo ${NEW_X},${NEW_Y},${WIDTH},${HEIGHT} $SCREEN
+}
+
+if [ "$ACTION" == "push" ]; then
+    WINDOWPOS=$(get_window_position $WINDOW)
+
+    SIZEDATA=$(get_position $FILENAME $WINDOW)
+
+    NEWSIZEDATA=$(echo $WINDOW $WINDOWPOS)
+   
+    if [ "${SIZEDATA}" != "${NEWSIZEDATA}" ]; then 
+       echo $NEWSIZEDATA >> $FILENAME
+    fi
+fi
+
+if [ "$ACTION" == "pop" ]; then
+    TMPFILE=$(mktemp)
+    SIZEDATA=$(get_position $FILENAME $WINDOW)
+    echo $SIZEDATA 
+    grep -v "$SIZEDATA" $FILENAME > $TMPFILE
+    if [ $? -le 1 ]; then 
+        mv -f $TMPFILE $FILENAME;
+    else 
+        rm $TMPFILE
+    fi
+fi
