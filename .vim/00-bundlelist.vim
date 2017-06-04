@@ -1,5 +1,5 @@
 let g:nvim_deopete=1
-let g:nvim_deopete_clang=1
+let g:nvim_deopete_clang=0
 let g:intellij_complete=1
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
