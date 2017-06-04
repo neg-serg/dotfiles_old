@@ -8,9 +8,10 @@
 QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa qemu-system-x86_64 \
 -enable-kvm \
 -m 8192 \
--smp cores=4,threads=2 -soundhw hda \
--cpu host,kvm=off \
+-smp sockets=1,cores=4,threads=2 -soundhw hda \
+-cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff \
 -vga none -usb -usbdevice host:1e7d:2e22 -usbdevice host:046d:c32b \
+-rtc clock=vm \
 -device virtio-scsi-pci,id=scsi \
 -device vfio-pci,host=01:00.0,multifunction=on \
 -device vfio-pci,host=01:00.1 \
