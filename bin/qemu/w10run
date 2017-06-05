@@ -2,15 +2,24 @@
 
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
+local disk_name="w7"
+local iso_path="/home/neg/1st_level/iso"
+local win7_iso="w7.iso"
+local win10_iso="en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
+local win81_iso="en-ru_windows_8.1_with_update_9600.18684_aio_16in1_x64_v17.05.10_by_adguard.iso"
+local win_iso="${win7_iso}"
+
 qemu_params=(
     -enable-kvm
     -m 8192
     -smp sockets=1,cores=4,threads=2
     -cpu host,kvm=off
+    # -cpu host,kvm=off,hv_spinlocks=0x1fff
+    # -cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff
     -device virtio-scsi-pci,id=scsi
     -drive if=pflash,format=raw,readonly,file=/one/vm/ovmf_code_x64.bin
     -drive if=pflash,format=raw,file=/one/vm/ovmf_vars_x64.bin
-    -drive file=/one/vm/w10.qcow2,id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
+    -drive file="/one/vm/${disk_name}.qcow2",id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
 )
 
 qemu_cpu_norm_params=(
@@ -26,14 +35,15 @@ qemu_rtc_params=(
 )
 
 qemu_source_params=(
-    -drive file=/home/neg/1st_level/iso/en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso,index=0,media=cdrom
-    -drive file=/home/neg/1st_level/iso/virtio-win-0.1.137.iso,index=1,media=cdrom -boot menu=on
+    -drive file="${iso_path}/${win_iso},index=0,media=cdrom"
+    -drive file="${iso_path}/virtio-win-0.1.137.iso,index=1,media=cdrom"
+    -boot menu=on
 )
 
 qemu_pass_video=(
+    -vga none
     -device vfio-pci,host=01:00.0,multifunction=on
     -device vfio-pci,host=01:00.1
-    -vga none
 )
 
 qemu_pass_usb=(
@@ -46,4 +56,14 @@ qemu_emulated_sound=(
     -soundhw ac97
 )
 
-QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa qemu-system-x86_64 "${qemu_params[@]}" "${qemu_source_params[@]}"
+qemu_share=(
+    -net nic -net user,smb=/mnt/qemu 
+)
+
+qemu_separated_console=(
+    -qmp unix:/home/neg/1st_level/qmp.socket,server --monitor stdio \
+    /home/neg/bin/scripts/qmp/qmp-shell /home/neg/1st_level/qmp.socket
+)
+
+QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa \
+qemu-system-x86_64 "${qemu_params[@]}" "${qemu_emulated_sound[@]}" "${qemu_emulated_sound[@]}" "${qemu_source_params[@]}" "${qemu_pass_video[@]}" "${qemu_pass_usb[@]}" 
