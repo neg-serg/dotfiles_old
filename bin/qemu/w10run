@@ -2,19 +2,48 @@
 
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
-# ./default.pa:load-module module-native-protocol-unix srbchannel=1 socket=/home/ivan/.pulse_server
-# ./client.conf:default-server = unix:/home/ivan/.pulse_server
+qemu_params=(
+    -enable-kvm
+    -m 8192
+    -smp sockets=1,cores=4,threads=2
+    -cpu host,kvm=off
+    -device virtio-scsi-pci,id=scsi
+    -drive if=pflash,format=raw,readonly,file=/one/vm/ovmf_code_x64.bin
+    -drive if=pflash,format=raw,file=/one/vm/ovmf_vars_x64.bin
+    -drive file=/one/vm/w10.qcow2,id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
+)
 
-QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa qemu-system-x86_64 \
--enable-kvm \
--m 8192 \
--smp sockets=1,cores=4,threads=2 -soundhw hda \
--cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff \
--vga none -usb -usbdevice host:1e7d:2e22 -usbdevice host:046d:c32b \
--rtc clock=vm \
--device virtio-scsi-pci,id=scsi \
--device vfio-pci,host=01:00.0,multifunction=on \
--device vfio-pci,host=01:00.1 \
--drive if=pflash,format=raw,readonly,file=/one/vm/ovmf_code_x64.bin \
--drive if=pflash,format=raw,file=/one/vm/ovmf_vars_x64.bin \
--drive file=/one/vm/libvirt/w10.qcow2,id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
+qemu_cpu_norm_params=(
+    -cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff
+)
+
+qemu_cpu_slow_params=(
+    -cpu host,kvm=off,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,hv-vendor-id=servo,hv-vpindex,hv-reset,hv-runtime,hv-crash
+)
+
+qemu_rtc_params=(
+    -rtc base=utc,driftfix=slew -no-hpet -global kvm-pit.lost_tick_policy=discard
+)
+
+qemu_source_params=(
+    -drive file=/home/neg/1st_level/iso/en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso,index=0,media=cdrom
+    -drive file=/home/neg/1st_level/iso/virtio-win-0.1.137.iso,index=1,media=cdrom -boot menu=on
+)
+
+qemu_pass_video=(
+    -device vfio-pci,host=01:00.0,multifunction=on
+    -device vfio-pci,host=01:00.1
+    -vga none
+)
+
+qemu_pass_usb=(
+    -usb
+    -usbdevice host:1e7d:2e22
+    -usbdevice host:046d:c32b
+)
+
+qemu_emulated_sound=(
+    -soundhw ac97
+)
+
+QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa qemu-system-x86_64 "${qemu_params[@]}" "${qemu_source_params[@]}"
