@@ -297,6 +297,17 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('rust-lang/rust.vim')
         "rust-cargo bindings
         call dein#add('jtdowney/vimux-cargo')
+        if g:nvim_deopete == 1
+            " deoplete support via racer
+            call dein#add('sebastianmarkow/deoplete-rust')
+        endif
+    endif
+    "--[ Elixir ]-----------------------------------------------------------------------------
+    if executable(resolve(expand("elixir")))
+        " deoplete support via alchemist-server
+        if g:nvim_deopete == 1
+            call dein#add('slashmili/alchemist.vim')
+        endif
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
     if has("nvim")
@@ -369,6 +380,11 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('oscarh/vimerl', {'on_ft': ['erlang']})
     "tiny swift support
     call dein#add('kballard/vim-swift', {'on_ft': ['swift']})
+    "swift autocomplete
+    if g:nvim_deopete == 1
+        "deoplete support
+        call dein#add('mitsuse/autocomplete-swift')
+    endif
     "----------------[  DBMS  ]--------------------------------------------------------------
     "Oracle DB IDE
     call dein#add('talek/vorax4')
@@ -382,6 +398,10 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('bbchung/gasynctags.git') 
         " my gtags-cscope fork
         call dein#add('https://github.com/neg-serg/gtags-cscope-vim')
+        if g:nvim_deopete == 1
+                " deopete support
+                call dein#add('ozelentok/deoplete-gtags')
+            endif
     endif
     "--[ LaTeX ]-----------------------------------------------------------------------------
     "LaTeX-Box replacement
