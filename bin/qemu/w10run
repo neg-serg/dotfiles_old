@@ -2,20 +2,18 @@
 
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
-local disk_name="w7"
+local disk_name="w10"
 local iso_path="/home/neg/1st_level/iso"
 local win7_iso="w7.iso"
 local win10_iso="en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
 local win81_iso="en-ru_windows_8.1_with_update_9600.18684_aio_16in1_x64_v17.05.10_by_adguard.iso"
-local win_iso="${win7_iso}"
+local win_iso="${win10_iso}"
 
 qemu_params=(
     -enable-kvm
     -m 8192
     -smp sockets=1,cores=4,threads=2
     -cpu host,kvm=off
-    # -cpu host,kvm=off,hv_spinlocks=0x1fff
-    # -cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff
     -device virtio-scsi-pci,id=scsi
     -drive if=pflash,format=raw,readonly,file=/one/vm/ovmf_code_x64.bin
     -drive if=pflash,format=raw,file=/one/vm/ovmf_vars_x64.bin
@@ -47,9 +45,9 @@ qemu_pass_video=(
 )
 
 qemu_pass_usb=(
-    -usb
-    -usbdevice host:1e7d:2e22
-    -usbdevice host:046d:c32b
+    # -usb
+    # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
+    # -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
 )
 
 qemu_emulated_sound=(
@@ -65,5 +63,10 @@ qemu_separated_console=(
     /home/neg/bin/scripts/qmp/qmp-shell /home/neg/1st_level/qmp.socket
 )
 
+qemu_network=(
+    -net nic -net tap,vlan=0,ifname=tap0,script=no
+    -net user
+)
+
 QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa \
-qemu-system-x86_64 "${qemu_params[@]}" "${qemu_emulated_sound[@]}" "${qemu_emulated_sound[@]}" "${qemu_source_params[@]}" "${qemu_pass_video[@]}" "${qemu_pass_usb[@]}" 
+qemu-system-x86_64 "${qemu_params[@]}" "${qemu_emulated_sound[@]}" "${qemu_emulated_sound[@]}" "${qemu_source_params[@]}" "${qemu_pass_video[@]}" "${qemu_pass_usb[@]}"  "${qemu_network[@]}"
