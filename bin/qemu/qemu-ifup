@@ -1,0 +1,16 @@
+#!/bin/bash
+
+bridge=virtnet0
+ip=192.168.100.1
+netmask=255.255.255.0
+
+# Create the bridge if needed
+br_exsist=$(brctl show | grep -c ${bridge})
+if [[ "${br_exsist}" -eq 0 ]]; then
+    brctl addbr "${bridge}"
+    brctl setfd "${bridge}" 0
+    ifconfig "${bridge}" inet "${ip}" netmask "${netmask}" up
+fi
+
+ifconfig "$1" "0.0.0.0" promisc up
+brctl addif "${bridge}" "$1"
