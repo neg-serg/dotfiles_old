@@ -44,10 +44,20 @@ qemu_pass_video=(
     -device vfio-pci,host=01:00.1
 )
 
-qemu_pass_usb=(
-    # -usb
-    # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
-    # -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
+qemu_pass_input=(
+    -usb
+    -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
+    -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
+)
+
+qemu_usb_host=(
+  -device ich9-usb-uhci3,id=uhci
+  -device usb-ehci,id=ehci
+  -device nec-usb-xhci,id=xhci
+)
+
+qemu_pass_emu=(
+    # --
 )
 
 qemu_emulated_sound=(
@@ -64,9 +74,13 @@ qemu_separated_console=(
 )
 
 qemu_network=(
-    -net nic -net tap,vlan=0,ifname=tap0,script=no
-    -net user
+    -net nic -net tap,ifname=tap0,script=/home/neg/bin/qemu/qemu-ifup,downscript=/home/neg/bin/qemu/qemu-ifdown
 )
 
-QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa \
-qemu-system-x86_64 "${qemu_params[@]}" "${qemu_emulated_sound[@]}" "${qemu_emulated_sound[@]}" "${qemu_source_params[@]}" "${qemu_pass_video[@]}" "${qemu_pass_usb[@]}"  "${qemu_network[@]}"
+if [[ ! $(pidof synergyc) ]]; then
+    echo "Autostart synergy"
+    synergyc "192.168.100.2"
+fi
+
+QEMU_AUDIO_TIMER_PERIOD=250 QEMU_PA_SAMPLES=1024 QEMU_PA_SERVER=localhost PULSE_SERVER=localhost QEMU_AUDIO_DRV=pa \
+qemu-system-x86_64 "${qemu_params[@]}" "${qemu_emulated_sound[@]}" "${qemu_emulated_sound[@]}" "${qemu_source_params[@]}" "${qemu_pass_video[@]}" "${qemu_pass_input[@]}"  "${qemu_network[@]}"
