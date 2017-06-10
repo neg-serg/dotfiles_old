@@ -15,8 +15,8 @@ Only the first method works for me
 
 ```
 [~/.config/pulse] >> pactl list sinks |& grep -i buff
-                device.buffering.buffer_size = "1048572"
-                device.buffering.fragment_size = "524286"
+device.buffering.buffer_size = "1048572"
+device.buffering.fragment_size = "524286"
 [~/.config/pulse] >> echo $[1048572./(192000*24)]
 0.22755468749999999
 [~/.config/pulse] >> echo $[524286./(192000*24)]
