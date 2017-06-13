@@ -315,10 +315,6 @@ function which() {
     fi
 }
 
-function wnvim(){
-    st nvim &
-}
-
 function set_proxy(){
     if [[ -z ${http_proxy} ]]; then
         echo $(_zpref) $(_zwrap "$(echo "setting proxy to http://127.0.0.1:8118/")")
