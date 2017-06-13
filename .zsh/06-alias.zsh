@@ -113,37 +113,6 @@ function eat(){
 function mp(){ 
     for i; do vid_fancy_print "${i}"; done
     ${VIDEO_PLAYER_} --input-ipc-server=/tmp/mpvsocket "$@"
-
-    # mpvs() {
-    #     local file="$1"
-    #     mpv --sub-file="${file%.*}".srt "$file"
-    # }
-    
-    
-    # # Play subtitles for a film if they exist
-    # movie="$1"
-    # mdir="${movie%/*}"
-    # name="${movie##*/}"
-
-    # cd "$mdir"
-    # for file in *; do
-    #     if [[ ${file%.*} == ${name%.*} ]]; then
-    #         title="${file%.*}"
-    #         for match in "$title"*; do
-    #             if [[ $match =~ @*.(ass|srt|sub) ]]; then
-    #                 subtitles="$match"
-    #             fi
-    #         done
-    #     fi
-    # done
-
-    # if [[ -n $subtitles ]]; then
-    #     mpv --subfile="$subtitles" "$name"
-    # else
-    #     printf "%s\n" "No subs found, playing film anyway..."
-    #     mpv "$name"
-    # fi
-
 }
 
 alias mpa="${VIDEO_PLAYER_} -fs -ao null"
