@@ -29,7 +29,7 @@ local _zsh_files=(
     70-games.zsh
     71-zsh-history-substring-search.zsh
     81-completion_gen.zsh
-    89-vim-interaction.zsh
+    89-neovim-interaction.zsh
     96-fzf.zsh
     97-open-pr.plugin.zsh
     98-syntax.zsh
