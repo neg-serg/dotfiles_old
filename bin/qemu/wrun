@@ -90,4 +90,4 @@ function main(){
         "${qemu_network[@]}"
 }
 
-main
+main "$@"
