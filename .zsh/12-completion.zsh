@@ -97,6 +97,7 @@ mycompletion() {
     zstyle ':completion:*:reserved-words'     list-colors "=*=$color[blue]"
     ### colorize processlist for 'kill'
     zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#) #([^ ]#)*=$color[cyan]=$color[yellow]=$color[green]"
+    zstyle ':completion:*:*:kill:*:processes' command 'ps --forest -e -o pid,user,tty,cmd'
     zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
     zstyle ':completion:*:*:zathura:*'        tag-order files
     zstyle ':completion:*:*:zathura:*'        file-patterns '*(/)|*.{pdf,djvu}'
