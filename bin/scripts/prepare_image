@@ -74,11 +74,17 @@ function send_notify_(){
 
 function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
-function main(){
-    local timeout_=10
-    local tiny_timeout=0.2
+zshexit() { 
+    sleep ${timeout_}
+    rm "${new_image}"
+    find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete 
+}
 
-    local dunst_pics_="/tmp/dunst-images"
+function main(){
+    timeout_=10
+    tiny_timeout=0.2
+
+    dunst_pics_="/tmp/dunst-images"
     [[ ! -d "${dunst_pics_}" ]] && mkdir -p "${dunst_pics_}"
     local previous_="${dunst_pics_}/prev.png"
 
@@ -99,18 +105,14 @@ function main(){
     if [[ ! -f "${previous_}" ]]; then
         cp -v "${new_image}" "${previous_}"
         send_notify_ 
-        sleep ${timeout_} && rm "${new_image}"
-        exit 0
     else
         local dunst_pics_list_=$(setopt nullglob dotglob; builtin print "${dunst_pics_}"/*)
         if [[ $(compare_images_ ${new_image} "${previous_}") == "False" ]] \
         && [[ ${#dunst_pics_list_[@]} -gt 1 ]]; then
             cp -v "${new_image}" "${previous_}"
             send_notify_ 
-            sleep ${timeout_} && rm "${new_image}"
         fi
     fi
-    find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete
 }
 
 readonly size_=200
