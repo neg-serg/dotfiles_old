@@ -86,7 +86,9 @@ old_transmitted_bytes="${transmitted_bytes}"
 counter=0
 first_blood=true
 
-local delim
+local delim="/"
+local lhs_q="["
+local rhs_q="]"
 
 function hi_color(){
     if [[ -x $(which xrq) ]]; then
@@ -102,13 +104,9 @@ function wrap_polybar(){
 }
 
 if [[ "${USE_POLYBAR}" == 1 ]]; then
-    delim=$(wrap_polybar "/")
-    lhs_q=$(wrap_polybar "[")
-    rhs_q=$(wrap_polybar "]")
-else
-    delim="/"
-    lhs_q="["
-    rhs_q="]"
+    delim=$(wrap_polybar "${delim}")
+    lhs_q=$(wrap_polybar "${lhs_q}")
+    rhs_q=$(wrap_polybar "${rhs_q}")
 fi
 
 # Main loop. It will repeat forever.
