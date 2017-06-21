@@ -22,12 +22,10 @@ function windowchef_restart(){
 
 function i3::common_restart(){
     ps -ef | awk -v name="bar" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
-    (
-        polybar -q -c ${polybar_cfg} tiny &
-        while ! pgrep -f "polybar -q -c ${XDG_CONFIG_HOME}/polybar/main tiny"; do
-            wait_a_bit
-        done && sleep 1s && polybar -q -c ${polybar_cfg} main
-    )
+    polybar -q -c ${polybar_cfg} tiny &
+    while ! pgrep -f "polybar -q -c ${XDG_CONFIG_HOME}/polybar/main tiny"; do
+        wait_a_bit
+    done && sleep 1s && polybar -q -c ${polybar_cfg} main
     ppi3 ${XDG_CONFIG_HOME}/i3/_config > ${XDG_CONFIG_HOME}/i3/config
 }
 
@@ -37,18 +35,20 @@ function i3_restart(){
     if [[  $(i3 --version|awk '{print $3}'|grep '^4.13' -ow) == "4.13" ]]; then
         i3::common_restart
         wait_a_bit
+        notify-send "[${wm_}] reload"
         i3-msg reload
     else
         i3::common_restart
         wait_a_bit
+        notify-send "[${wm_}] restart"
         i3-msg restart
     fi
 }
 
 function main() {
     lockfile="${HOME}/tmp/$(basename $0).lock"
-    if ( set -o noclobber; echo "locked" > "$lockfile") 2> /dev/null; then
-        trap 'sleep 10s; rm -f "$lockfile"; exit $?' INT TERM EXIT
+    if (set -o noclobber; echo "locked" > "$lockfile") 2> /dev/null; then
+        zshexit() { sleep 2s; rm -f "$lockfile"; exit $? }
         echo "Locking succeeded" >&2
         #----------------------------------------------
         if [[ ${1} != "" ]]; then
@@ -66,6 +66,7 @@ function main() {
         #----------------------------------------------
     else
         echo "Lock failed - exit" >&2
+        notify-send "Lock failed - exit" 
         exit 1
     fi
 }
