@@ -205,9 +205,9 @@ interval = 0.05
 
 [module/network]
 type = custom/script
-exec = ~/bin/mon/network_speed.sh
+exec = USE_POLYBAR=1 ~/bin/mon/network_speed.sh
 tail = true
-label = %output:0:30:...%
+label = %output:0:128:...%
 format = %{F#287373}[ %{F#fff}<label>%{F#287373}]%{F#fff}
 format-underline = ${colors.border}
 interval = 0

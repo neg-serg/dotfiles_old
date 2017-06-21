@@ -86,6 +86,31 @@ old_transmitted_bytes="${transmitted_bytes}"
 counter=0
 first_blood=true
 
+local delim
+
+function hi_color(){
+    if [[ -x $(which xrq) ]]; then
+        hi_color_="$(xrq color2)"
+    else
+        hi_color_="#287373"
+    fi
+    echo "${hi_color_}"
+}
+
+function wrap_polybar(){
+    builtin print "%{F$(hi_color)}$1%{F#fff}"
+}
+
+if [[ "${USE_POLYBAR}" == 1 ]]; then
+    delim=$(wrap_polybar "/")
+    lhs_q=$(wrap_polybar "[")
+    rhs_q=$(wrap_polybar "]")
+else
+    delim="/"
+    lhs_q="["
+    rhs_q="]"
+fi
+
 # Main loop. It will repeat forever.
 while true; do
     local use_terminal_=false
@@ -102,12 +127,12 @@ while true; do
     # Shows results in the console.
     if [[ ${use_terminal_} == true ]]; then
         builtin printf "%b" "\e[2K"
-        builtin printf "%b" "${interface} ${vel_recv}/${vel_trans}\r"
+        builtin printf "%b" "${interface} ${vel_recv}${delim}${vel_trans}\r"
     else
         if [[ ${counter} < "${interface_timeout_}" && ${first_blood} == true ]]; then
-            builtin printf "%b" "net: [${interface}] ${vel_recv}/${vel_trans}\r"
+            builtin printf "%b" "net: ${lhs_q}${interface}${rhs_q} ${vel_recv}${delim}${vel_trans}\r"
         else
-            builtin printf "%b" "net: ${vel_recv}/${vel_trans}\r"
+            builtin printf "%b" "net: ${vel_recv}${delim}${vel_trans}\r"
             first_blood=false
         fi
         builtin printf "\n"
