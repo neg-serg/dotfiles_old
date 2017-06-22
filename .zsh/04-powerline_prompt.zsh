@@ -10,3 +10,4 @@ function precmd(){
 PS2="%{$fg[magenta]%}» %{$reset_color%}"
 PS3='?# ' # selection prompt used within a select loop.
 PS4='+%N:%i:%_> ' # the execution trace prompt (setopt xtrace). default: '+%N:%i
+SPROMPT="%{${fg[white]}%}Correct: %{${fg[blue]}%}%R%{${reset_color}%} %{${fg[white]}%}-> %{${fg[cyan]}%}%r%{${fg[white]}%} [nyae]? %{${reset_color}%}"

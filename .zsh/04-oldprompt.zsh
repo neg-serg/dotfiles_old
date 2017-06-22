@@ -54,10 +54,11 @@ case ${UID} in
     PS1="${PROMPT}"
     PROMPT2="%{${fg[red]}%}%_> %{${reset_color}%}"
     PS2="${PROMPT2}"
-    SPROMPT="%{${fg[red]}%}correct: %R -> %r [nyae]? %{${reset_color}%}"
+    SPROMPT="%{${fg[white]}%}Correct: %{${fg[blue]}%}%R%{${reset_color}%} %{${fg[white]}%}-> %{${fg[cyan]}%}%r%{${fg[white]}%} [nyae]? %{${reset_color}%}"
     RPROMPT="%{${fg[cyan]}%}[%~]%{${reset_color}%} "
     ;;
 *)
+    SPROMPT="%{${fg[white]}%}Correct: %{${fg[blue]}%}%R%{${reset_color}%} %{${fg[white]}%}-> %{${fg[cyan]}%}%r%{${fg[white]}%} [nyae]? %{${reset_color}%}"
     DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
     _neg_user_pretok="${DARK_BLUE}[${NOCOLOR}"
     function precmd(){ 
