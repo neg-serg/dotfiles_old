@@ -151,7 +151,6 @@ mode "[alt_e]" {
     bindsym $mod+Shift+space mode "default", floating toggle
     bindsym $mod+space mode "default", focus mode_toggle
     bindsym e mode "default", [urgent=latest] focus
-    bindsym {$mod,$alt,}+s exec ~/bin/scripts/skype, mode "default"
     bindsym Control+R mode "default", [class=Cr3] focus
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
@@ -162,7 +161,8 @@ mode "[alt_e]" {
     bindsym Control+t mode "default", exec tor-browser-en
 	bindsym Shift+d floating toggle; $exit
 
-    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py toggle im, mode "default"
+    bindsym {$mod,$alt,}+s exec python3 ~/.config/i3/ns.py run im skype, mode "default"
+    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py run im tel, mode "default"
     bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
 

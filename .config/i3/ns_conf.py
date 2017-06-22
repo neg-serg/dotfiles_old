@@ -89,7 +89,17 @@ class ns_settings(object):
                     'finch',
                     'VK',
                 },
-                'geom' : "528x1029+1372+127"
+                'geom' : "528x1029+1372+127",
+                'prog_dict': {
+                    "tel" : {
+                        "prog": "telegram-desktop",
+                        "includes": { 'TelegramDesktop', 'Telegram-desktop', 'telegram-desktop' },
+                    },
+                    "skype" : {
+                        "prog": "skypeforlinux",
+                        "includes": { 'skypeforlinux' },
+                    }
+                }
             },
             'ncmpcpp': {
                 'class' : { 'mpd-pad2' },

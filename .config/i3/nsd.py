@@ -72,6 +72,36 @@ class named_scratchpad(SingletonMixin):
 
         self.focus(gr)
 
+    def run_prog(self, gr, app):
+        if "prog_dict" in settings_[gr] \
+        and app in settings_[gr]["prog_dict"]:
+            class_list=[win.window_class for win in marked[gr]]
+            target_class_list=settings_[gr]["prog_dict"][app]["includes"]
+            target_class_list_set=set(target_class_list)
+            interlist=[val for val in class_list if val in target_class_list_set]
+            if not len(interlist):
+                i3.command("exec {}".format(settings_[gr]["prog_dict"][app]["prog"]))
+            else:
+                def focus_subgroup(gr):
+                    focused=i3.get_tree().find_focused()
+                    self.focus(gr)
+
+                    visible_windows = find_visible_windows(get_windows_on_ws())
+                    for w in visible_windows:
+                        for i in marked[gr]:
+                            if w.id == i.id:
+                                i3.command('[con_id=%s] focus' % w.id)
+
+                    for j,i in zip(range(len(marked[gr])), marked[gr]):
+                        if not focused.window_class in target_class_list_set:
+                            if marked[gr][j].window_class not in target_class_list_set:
+                                self.next_win()
+                        else:
+                            break
+                focus_subgroup(gr)
+        else:
+            self.toggle(gr)
+
     def unfocus(self, gr):
         def restore_fullscreens():
             [i.command('fullscreen toggle') for i in self.fullscreen_list]
@@ -137,8 +167,11 @@ class named_scratchpad(SingletonMixin):
             "next": self.next_win,
             "toggle": self.toggle,
             "hide_current": self.hide_current,
+            "run": self.run_prog,
         }
 
+        if len(args) == 3:
+            switch_[args[0]](args[1], args[2])
         if len(args) == 2:
             switch_[args[0]](args[1])
         elif len(args) == 1:
