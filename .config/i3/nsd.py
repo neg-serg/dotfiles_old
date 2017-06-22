@@ -84,6 +84,11 @@ class named_scratchpad(SingletonMixin):
             else:
                 def focus_subgroup(gr):
                     focused=i3.get_tree().find_focused()
+
+                    if focused.fullscreen_mode:
+                        focused.command('fullscreen toggle')
+                        self.fullscreen_list.append(focused)
+
                     self.focus(gr)
 
                     visible_windows = find_visible_windows(get_windows_on_ws())
@@ -102,17 +107,17 @@ class named_scratchpad(SingletonMixin):
         else:
             self.toggle(gr)
 
-    def unfocus(self, gr):
-        def restore_fullscreens():
-            [i.command('fullscreen toggle') for i in self.fullscreen_list]
-            self.fullscreen_list=[]
+    def restore_fullscreens(self):
+        [i.command('fullscreen toggle') for i in self.fullscreen_list]
+        self.fullscreen_list=[]
 
+    def unfocus(self, gr):
         for j,i in zip(
                 range(len(marked[gr])),
                 marked[gr]
             ):
             marked[gr][j].command('move scratchpad')
-        restore_fullscreens()
+        self.restore_fullscreens()
 
     def visible(self, gr):
         visible_windows = find_visible_windows(get_windows_on_ws())
