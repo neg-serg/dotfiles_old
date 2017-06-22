@@ -1,0 +1,8 @@
+#!/bin/zsh
+inotifywait -m -q -e close_write -e moved_to -e create --format "%f" ${HOME}/dw | while IFS= read -r file; do
+    echo "File=${file}"
+    if [[ "${file}" =~ ".torrent.added"$ ]]; then
+        notify-send  "Move ["$file"] -> ${HOME}/tmp"
+        mv "${file}" "${HOME}/tmp"
+    fi
+done

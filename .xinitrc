@@ -28,4 +28,6 @@ eval $(gpg-agent --daemon)
 
 nm-applet &
 
+${SCRIPT_HOME}/dw_clean &
+
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
