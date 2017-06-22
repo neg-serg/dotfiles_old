@@ -57,7 +57,7 @@ type = internal/i3
 format-underline = ${colors.border}
 index-sort = true
 fuzzy-match = true
-format = %{F#287373}[%{F#fff}<label-mode> <label-state>%{F#287373} ]
+format = %{F#287373}[%{F#fff}%{F#47959E}<label-mode> %{F#fff}<label-state>%{F#287373} ]
 
 label-focused-font = 4
 label-unfocused-font = 4
