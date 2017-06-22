@@ -47,13 +47,13 @@ gaps outer 8
 hide_edge_borders both 
 #------------------------------------------
 set $exit mode "default"
-bindsym $alt+e mode "[alt_e]"
-#bindsym $mod+r mode "[resize]"
-bindsym $mod+Shift+w mode "[Layout]"
+bindsym $alt+e mode ""
+#bindsym $mod+r mode ""
+bindsym $mod+Shift+w mode ""
 #------------------------------------------
 bindsym $mod+Control+c exec ~/bin/scripts/pikz_review
-bindsym $mod+Shift+BackSpace mode "passthrough_keys"
-mode "passthrough_keys" {
+bindsym $mod+Shift+BackSpace mode " "
+mode " " {
     bindsym $mod+Shift+BackSpace mode "default"
 }
 #------------------------------------------
@@ -145,9 +145,9 @@ for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, 
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
-mode "[alt_e]" {
+mode "" {
     #-------------------------------------------------------
-    bindsym c mode "password"
+    bindsym c mode ""
     bindsym $mod+Shift+space mode "default", floating toggle
     bindsym $mod+space mode "default", focus mode_toggle
     bindsym e mode "default", [urgent=latest] focus
@@ -169,7 +169,7 @@ mode "[alt_e]" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-mode "password" {
+mode "" {
     bindsym {c,p} exec ~/bin/scripts/lpasswd {,type}, $exit
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
@@ -202,7 +202,7 @@ mode "$mode_system" {
 }
 
 # resize window (you can also use the mouse for that)
-mode "[resize]" {
+mode "" {
     bindsym {h,Shift+h} resize {shrink,grow} left 4
     bindsym {j,Shift+j} resize {shrink,grow} down 4
     bindsym {k,Shift+k} resize {shrink,grow} up 4
@@ -211,7 +211,7 @@ mode "[resize]" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-mode "[Layout]" {
+mode "" {
     bindsym Shift+{p,c} focus {parent,child}
 	bindsym {grave,t,s,h,v} layout {default,tabbed,stacking,splith,splitv}; $exit
     bindsym Shift+{h,v} split {h,v}; $exit
@@ -224,7 +224,7 @@ mode "[Layout]" {
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
-mode "gaps" {
+mode "" {
 	bindsym {o,i} mode gaps-{outer,inner}
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
