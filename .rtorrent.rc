@@ -17,14 +17,13 @@ pieces.hash.on_completion.set        = no  ;check hash on finished torrent
 system.umask.set                     = 0027
 #-------------- new ----------------
 #system.file.allocate.set            = yes
-#dht.mode.set                        = auto
-#-------------- new ----------------
-dht.port.set         = 49165
-# trackers.use_udp.set = yes
-# dht.mode.set         = on
-# peer_exchange      = yes
-# dht.add_node       = router.utorrent.com
-# dht.add_node       = dht.transmissionbt.com
+dht.mode.set                         = auto
+dht.port.set                         = 49165
+trackers.use_udp.set                 = yes
+dht.mode.set                         = on
+peer_exchange                        = yes
+#dht.add_node                        = router.utorrent.com
+#dht.add_node                        = dht.transmissionbt.com
 #-------------- new ----------------
 protocol.pex.set         = yes
 protocol.encryption.set  = allow_incoming,try_outgoing,enable_retry
