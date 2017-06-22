@@ -156,18 +156,16 @@ mode "[alt_e]" {
     bindsym a mode "default", [window_type=dialog] scratchpad show
     bindsym w mode "default", exec ~/bin/webcam
     bindsym d mode "default", exec ~/bin/scripts/dzen-dict
-    bindsym f mode "default", [con_mark=_float] scratchpad show
     bindsym {i,o,Shift+O} mode "default", exec ~/bin/pls -{output,sink,vol}
     bindsym q mode "default", exec ~/bin/mpd_sel.sh
     bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym Control+t mode "default", exec tor-browser-en
-    bindsym n [con_mark="nicotine"] mode "default", exec ~/bin/scripts/run_nicotine
-    bindsym Shift+n [con_mark="gdb"] mode "default", exec ~/bin/scripts/run_gdb
-    bindsym Shift+m [con_mark="spotify"] mode "default", exec ~/bin/scripts/run_spotify
-    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py toggle im, mode "default"
 	bindsym Shift+d floating toggle; $exit
+
+    bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py toggle im, mode "default"
     bindsym m exec python3 ~/.config/i3/ns.py toggle mutt, mode "default"
     bindsym Shift+r exec ~/.config/i3/ns.py toggle ranger, mode "default"
+
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
@@ -177,7 +175,6 @@ mode "password" {
 }
 
 bindsym $mod+F1 exec ~/.config/i3/circle.py next jetbrains-idea
-
 bindsym $mod+x exec ~/.config/i3/circle.py next term
 bindsym $mod+1 exec ~/.config/i3/circle.py next wim
 bindsym $mod+Shift+1 exec ~/.config/i3/circle.py next emacs
