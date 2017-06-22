@@ -1,5 +1,0 @@
-#!/bin/zsh
-wim_embed ""
-sleep 1s
-source ~/.zshrc
-wdiff "$1" "$2"

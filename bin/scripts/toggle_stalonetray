@@ -1,2 +1,0 @@
-# !/bin/sh
-if [ -z `pidof stalonetray` ]; then stalonetray -i 16 -bg "#000000" ; else kill `pidof stalonetray`; fi
