@@ -3,6 +3,7 @@
 mpd_menu=(
     "title_copy" 
     "artist_copy" 
+    "album_copy"
     "mpd_show"
 )
 
@@ -22,6 +23,8 @@ function handler(){
     while IFS= read -r arg; do 
         if [[ ${arg} =~ ".*title_copy.*" ]]; then
             mpc current | xsel -bi
+        elif [[ ${arg} =~ ".*album_copy.*" ]]; then
+            mpc current -f "[%album%]"|xsel -bi
         elif [[ ${arg} =~ ".*artist_copy.*" ]]; then
             mpc current -f "[%artist%]"|xsel -bi
         elif [[ ${arg} =~ ".*mpd_show.*" ]]; then
@@ -58,7 +61,7 @@ local rofi_options=(
     -dmenu
     -auto-select
     -font '${rofi_font}'
-    -b -disable-history -columns 3
+    -b -disable-history -columns 8
     -lines 1
     -width $((${mon_width_} - ${gap_}))
     -yoffset -22 -location 6 -p '\>'
