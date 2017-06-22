@@ -796,6 +796,32 @@ if dein#tap('rainbow')
     let g:sparkupExecuteMapping = "<m-i>" "default = <C-e>
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - joshdick/onedark.vim                                                     │
+" │ https://github.com/joshdick/onedark.vim                                           │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('onedark')
+    let g:onedark_color_overrides = {
+    \ "red": { "gui": "#F07178", "cterm": "204", "cterm16": "1" },
+    \ "dark_red": { "gui": "#F07178", "cterm": "196", "cterm16": "9" },
+    \ "green": { "gui": "#C3E88D", "cterm": "114", "cterm16": "2" },
+    \ "yellow": { "gui": "#FFE082", "cterm": "180", "cterm16": "3" },
+    \ "dark_yellow": { "gui": "#FFCB6B", "cterm": "173", "cterm16": "11" },
+    \ "blue": { "gui": "#82AAFF", "cterm": "39", "cterm16": "4" },
+    \ "purple": { "gui": "#C792EA", "cterm": "170", "cterm16": "5" },
+    \ "cyan": { "gui": "#89DDF3", "cterm": "38", "cterm16": "6" },
+    \ "white": { "gui": "#B2CCD6", "cterm": "145", "cterm16": "7" },
+    \ "black": { "gui": "#263238", "cterm": "235", "cterm16": "0" },
+    \ "visual_black": { "gui": "NONE", "cterm": "NONE", "cterm16": "0" },
+    \ "comment_grey": { "gui": "#4F6875", "cterm": "59", "cterm16": "15" },
+    \ "gutter_fg_grey": { "gui": "#3E4A50", "cterm": "238", "cterm16": "15" },
+    \ "cursor_grey": { "gui": "#37625A", "cterm": "236", "cterm16": "8" },
+    \ "visual_grey": { "gui": "#2D3B42", "cterm": "237", "cterm16": "15" },
+    \ "menu_grey": { "gui": "#2D3B42", "cterm": "237", "cterm16": "8" },
+    \ "special_grey": { "gui": "#2D3B42", "cterm": "238", "cterm16": "15" },
+    \ "vertsplit": { "gui": "#202A2F", "cterm": "59", "cterm16": "15" }
+    \}
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Shougo/denite.nvim                                                       │
 " │ https://github.com/Shougo/denite.nvim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘

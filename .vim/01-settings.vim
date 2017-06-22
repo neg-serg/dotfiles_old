@@ -4,6 +4,8 @@ if bufname('%') == ''
   set bufhidden=wipe
 endif
 
+let g:impact_transbg=1
+
 let s:nvim_colorscheme = "mirodark"
 
 if !g:use_base16_colorscheme

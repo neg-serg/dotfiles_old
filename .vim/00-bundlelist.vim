@@ -465,6 +465,10 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('whatyouhide/vim-gotham')
         "vim-one colorscheme
         call dein#add('rakr/vim-one')
+        "onedark colorscheme
+        call dein#add('joshdick/onedark.vim')
+        "neodark colorscheme
+        call dein#add('KeitaNakamura/neodark.vim')
         "FlatColor colorscheme
         call dein#add('MaxSt/FlatColor')
     endif
