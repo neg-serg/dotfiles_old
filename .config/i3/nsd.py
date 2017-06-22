@@ -89,6 +89,9 @@ class named_scratchpad(SingletonMixin):
                         focused.command('fullscreen toggle')
                         self.fullscreen_list.append(focused)
 
+                    if focused.window_class in target_class_list_set:
+                        return
+
                     self.focus(gr)
 
                     visible_windows = find_visible_windows(get_windows_on_ws())
