@@ -121,6 +121,7 @@ alias mpl="mplayer -ao pulse -vo gl_nosw -really-quiet -double -cache 500 -cache
 alias mpclove="mpc sendmessage mpdas love"
 alias mpcunlove="mpc sendmessage mpdas unlove"
 
+alias rg="rg --colors 'match:fg:magenta' --colors 'line:fg:cyan'"
 alias grep="grep --color=auto"
 
 alias mutt="dtach -A ${HOME}/.mutt/mutt.session mutt"
@@ -301,7 +302,7 @@ setopt interactivecomments
 declare -A abk
 abk=(
     'A'    '|& ack -i '
-    'G'    '|& grep -i '
+    'G'    '|& rg -i '
     'C'    '| wc -l'
     'H'    '| head'
     'T'    '| tail'
