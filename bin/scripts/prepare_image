@@ -81,7 +81,7 @@ zshexit() {
 }
 
 function main(){
-    timeout_=10
+    timeout_=4
     tiny_timeout=0.2
 
     dunst_pics_="/tmp/dunst-images"
