@@ -75,13 +75,12 @@ function send_notify_(){
 function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 zshexit() { 
-    sleep ${timeout_}
-    rm "${new_image}"
+    { sleep ${timeout_} && rm "${new_image}" } &
     find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete 
 }
 
 function main(){
-    timeout_=4
+    timeout_=10
     tiny_timeout=0.2
 
     dunst_pics_="/tmp/dunst-images"
