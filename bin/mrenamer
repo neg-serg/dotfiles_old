@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-main(){
+apply_rename(){
     data=$(albumdetails "$@")
 
     artist=$(echo "${data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
@@ -43,6 +43,19 @@ main(){
     result=$(builtin print "${artist}-[${year}]-${album}")
     src=$(echo "$(dirname $1)")
     mv "${src}" "${result}"
+    fix_names.pl -i "${result}"
+    rmdir "${src}"
+}
+
+main(){
+    if [[ "$1" == "current" ]]; then
+        autoload -U zargs
+        dirname="$(awk '/music_directory/{print $2}' /etc/mpd.conf|tr -d '"')/$(dirname "$(mpc -f '%file%'|head -1)")"
+        builtin print "Apply rename to :: [${dirname}] contents ::"
+        zargs -- ${dirname}/** -- apply_rename 
+    else
+        apply_rename "$@"
+    fi
 }
 
 main "$@"
