@@ -44,7 +44,7 @@ apply_rename(){
     src=$(echo "$(dirname $1)")
     mv "${src}" "${result}"
     fix_names.pl -i "${result}"
-    rmdir "${src}"
+    rmdir "${src}" 2> /dev/null
 }
 
 main(){
