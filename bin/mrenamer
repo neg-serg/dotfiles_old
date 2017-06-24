@@ -40,7 +40,7 @@ apply_rename(){
     year=${year//020/xK}
     album=$(echo "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
 
-    result=$(builtin print "${artist}-[${year}]-${album}")
+    result="$(dirname "$src")/$(builtin print "${artist}-[${year}]-${album}")"
     src=$(echo "$(dirname $1)")
     mv "${src}" "${result}"
     fix_names.pl -i "${result}"
