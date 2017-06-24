@@ -3,11 +3,13 @@
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
 function main(){
-
     local disk_name="w10"
-    local iso_path="/home/neg/1st_level/iso"
-    local win10_iso="en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
-    local win_iso="${win10_iso}"
+    local win10_iso="/home/neg/1st_level/iso/en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
+    local virtio_iso="/home/neg/1st_level/iso/virtio-win-0.1.137.iso"
+    local smb_path="/mnt/qemu"
+    local qmp_socket_path="/home/neg/1st_level/qmp.socket"
+    local qmp_sh_script="/home/neg/bin/scripts/qmp/qmp-shell"
+    local install_iso="${win10_iso}"
 
     local -a qemu_params=(
         -enable-kvm
@@ -21,8 +23,8 @@ function main(){
     )
 
     local -a qemu_source_params=(
-        -drive file="${iso_path}/${win_iso},index=0,media=cdrom"
-        -drive file="${iso_path}/virtio-win-0.1.137.iso,index=1,media=cdrom"
+        -drive file="${install_iso},index=0,media=cdrom"
+        -drive file="${virtio_iso},index=1,media=cdrom"
         -boot menu=on
     )
 
@@ -43,12 +45,12 @@ function main(){
     )
 
     local -a qemu_share=(
-        -net nic -net user,smb=/mnt/qemu 
+        -net nic -net user,smb="${smb_path}"
     )
 
     local -a qemu_separated_console=(
-        -qmp unix:/home/neg/1st_level/qmp.socket,server --monitor stdio \
-        /home/neg/bin/scripts/qmp/qmp-shell /home/neg/1st_level/qmp.socket
+        -qmp unix:"${qmp_socket_path}",server --monitor stdio \
+        "${qmp_sh_script}" "${qmp_socket_path}"
     )
 
     local -a qemu_network=(
