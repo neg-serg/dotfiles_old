@@ -20,18 +20,6 @@ function main(){
         -drive file="/one/vm/${disk_name}.qcow2",id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
     )
 
-    local -a qemu_cpu_norm_params=(
-        -cpu host,kvm=off,hv_time,hv_relaxed,hv_vapic,hv_spinlocks=0x1fff
-    )
-
-    local -a qemu_cpu_slow_params=(
-        -cpu host,kvm=off,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time,hv-vendor-id=servo,hv-vpindex,hv-reset,hv-runtime,hv-crash
-    )
-
-    local -a qemu_rtc_params=(
-        -rtc base=utc,driftfix=slew -no-hpet -global kvm-pit.lost_tick_policy=discard
-    )
-
     local -a qemu_source_params=(
         -drive file="${iso_path}/${win_iso},index=0,media=cdrom"
         -drive file="${iso_path}/virtio-win-0.1.137.iso,index=1,media=cdrom"
@@ -48,12 +36,6 @@ function main(){
         -usb
         -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
         -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
-    )
-
-    local -a qemu_usb_host=(
-        -device ich9-usb-uhci3,id=uhci
-        -device usb-ehci,id=ehci
-        -device nec-usb-xhci,id=xhci
     )
 
     local -a qemu_emulated_sound=(
