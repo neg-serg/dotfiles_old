@@ -226,8 +226,6 @@ function yr(){
 alias qe='cd *(/om[1])'
 alias {cat,hi}='ccat'
 
-alias td="[ -z $(pidof transmission-daemon) ] && transmission-daemon"
-
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
 alias hist10='print -l ${(o)history%%*} | uniq -c | sort -nr | head -n 10' # top10 of the history
