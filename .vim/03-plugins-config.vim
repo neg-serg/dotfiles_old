@@ -822,6 +822,101 @@ if dein#tap('onedark')
     \}
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - itchyny/lightline.vim                                                    │
+" │ https://github.com/itchyny/lightline.vim                                          │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('lightline.vim')
+    let g:lightline = {
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'fugitive', 'filename', 'modified' ],
+        \             [ 'ctrlpmark'] ],
+        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+        \ },
+        \ 'component_function': {
+        \   'fugitive': 'LightlineFugitive',
+        \   'ctrlpmark': 'CtrlPMark',
+        \   'filename': 'LightlineFilename',
+        \   'mode': 'LightlineMode',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding'
+        \ },
+        \ 'component_expand': {
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \ },
+        \ 'component_visible_condition': {
+        \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+        \ },
+        \ 'component_type': {
+        \   'syntastic': 'error',
+        \ },
+        \ 'colorscheme': 'onedark',
+        \ 'separator': { 'left': '▒', 'right': '▒' },
+        \ 'subseparator': { 'left': '┆', 'right': '┆' }
+    \ }
+
+    function! LightlineModified()
+        return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    endfunction
+
+    function! LightlineReadonly()
+        return &ft !~? 'help' && &readonly ? 'RO' : ''
+    endfunction
+
+    function! LightlineFugitive()
+        try
+            if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+                let mark = ''  " edit here for cool mark
+                let branch = fugitive#head()
+                return branch !=# '' ? mark.branch : ''
+            endif
+        catch
+        endtry
+        return ''
+    endfunction
+
+    function! LightlineFilename()
+    let fname = expand('%:t')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+            \ fname == '__Tagbar__' ? g:lightline.fname :
+            \ fname =~ '__Gundo\|NERD_tree' ? '' :
+            \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+            \ &ft == 'unite' ? unite#get_status_string() :
+            \ &ft == 'vimshell' ? vimshell#get_status_string() :
+            \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+            \ ('' != fname ? fname : '[No Name]') .
+            \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+    endfunction
+
+    function! LightlineFileformat()
+        return winwidth(0) > 70 ? &fileformat : ''
+    endfunction
+
+    function! LightlineFiletype()
+        return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    endfunction
+
+    function! LightlineFileencoding()
+        return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+    endfunction
+
+    function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+            \ fname == 'ControlP' ? 'CtrlP' :
+            \ fname == '__Gundo__' ? 'Gundo' :
+            \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+            \ fname =~ 'NERD_tree' ? 'NERDTree' :
+            \ &ft == 'unite' ? 'Unite' :
+            \ &ft == 'vimfiler' ? 'VimFiler' :
+            \ &ft == 'vimshell' ? 'VimShell' :
+            \ winwidth(0) > 60 ? lightline#mode() : ''
+    endfunction
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Shougo/denite.nvim                                                       │
 " │ https://github.com/Shougo/denite.nvim                                             │
 " └───────────────────────────────────────────────────────────────────────────────────┘
