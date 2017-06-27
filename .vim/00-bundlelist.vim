@@ -1,6 +1,7 @@
 let g:nvim_deopete=1
 let g:nvim_deopete_clang=0
 let g:intellij_complete=1
+let g:want_airline=0
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
     call dein#begin(expand('~/.vim'))
@@ -9,8 +10,12 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('powerline/powerline')
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
-        call dein#add('vim-airline/vim-airline')
-        call dein#add('vim-airline/vim-airline-themes')
+        if g:want_airline == 1
+            call dein#add('vim-airline/vim-airline')
+            call dein#add('vim-airline/vim-airline-themes')
+        else
+            call dein#add('itchyny/lightline.vim')
+        endif
     endif
     if g:nvim_deopete == 1
         call dein#add('Shougo/deoplete.nvim')
