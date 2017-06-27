@@ -30,6 +30,31 @@ def get_windows_on_ws():
         .descendents()
     )
 
+def Benchmark(func):
+    import time
+    def wrap_(*args, **kwargs):
+        t = time.clock()
+        res = func(*args, **kwargs)
+        print(func.__name__, time.clock() - t)
+        return res
+    return wrap_
+
+def Logging(func):
+    def wrap_(*args, **kwargs):
+        res = func(*args, **kwargs)
+        print(func.__name__, args, kwargs)
+        return res
+    return wrap_
+
+def Counter(func):
+    def wrap_(*args, **kwargs):
+        wrap_.count += 1
+        res = func(*args, **kwargs)
+        print("{0} called for: {1}x".format(func.__name__, wrap_.count))
+        return res
+    wrap_.count = 0
+    return wrap_
+
 from queue import Queue
 
 class daemon_manager(SingletonMixin):
