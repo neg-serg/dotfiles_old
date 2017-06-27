@@ -3,6 +3,16 @@
 typeset -A conv_table
 
 generate_convert_table(){
+    for i in {900..989}; do
+        q=${i:1:5}
+        conv_table[1$i]="1x${q}"
+    done
+
+    for i in {990..999}; do
+        q=${i:2:5}
+        conv_table[1$i]="1x${q}"
+    done
+
     for i in {000..025}; do
         if [[ ${i} != "000" ]]; then
             num=$(sed "s/^0*//" <<< $i)
@@ -35,17 +45,11 @@ apply_rename(){
     artist=$(builtin print "${data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
     year=$(builtin print "${data}"|grep "Year"| cut -d ':' -f 2-|xargs)
 
-    for i in {0..9}; do
-        year=${year//99$i/x$i}
-    done
-
     generate_convert_table
-    debug_print_convert_table
 
     year=${year//$year/$conv_table[$year]}
 
     album=$(builtin print "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
-
     result="$(dirname "${src}")/$(builtin print "${artist}-[${year}]-${album}")"
     src=$(builtin print "$(dirname $1)")
     mv -vi "${src}" "${result}"
