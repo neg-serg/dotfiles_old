@@ -106,9 +106,14 @@ export VIDEO_PLAYER_="mpv"
 
 export AUTOPAIR_INHIBIT_INIT=1
 
-export vim_server_name="VIM"
-export wim_font="PragmataPro for Powerline"
-export wim_font_s="Mensch:size=14"
-export wim_font_size=20
-export wim_sock_path="${HOME}/1st_level/vim.socket"
-export wim_timer=".1s"
+if [ -n "$GTK_MODULES" ]
+then
+  GTK_MODULES="$GTK_MODULES:unity-gtk-module"
+else
+  GTK_MODULES="unity-gtk-module"
+fi
+
+if [ -z "$UBUNTU_MENUPROXY" ]
+then
+  UBUNTU_MENUPROXY=1
+fi 
