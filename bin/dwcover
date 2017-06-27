@@ -18,9 +18,14 @@ main(){
     album=$(echo "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
     sacad "${artist}" "${album}" "${default_coversize}" "${default_covername}"
 
-    for flac_ in *.flac; do
-        metaflac --import-picture-from="${default_covername}" "${flac_}"
-    done
+    {
+        for flac_ in *.flac; do
+            metaflac --import-picture-from="${default_covername}" "${flac_}"
+        done
+        for mp3_ in *.mp3; do
+            eyeD3 --add-image="${default_covername}":FRONT_COVER "${mp3_}"
+        done
+    } 2> /dev/null
 
     popd
 }
