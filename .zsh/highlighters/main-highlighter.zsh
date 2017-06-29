@@ -1085,7 +1085,6 @@ _zsh_highlight_highlighter_main_paint()
         *.pcap)               style=ftype-pcap ;;
         *.am)                 style=ftype-am ;;
         *.in)                 style=ftype-in ;;
-        *.old)                style=ftype-old ;;
         #--[ End of ftype array ]-----------@@@@
         '--'*)   style=double-hyphen-option;;
         '-'*)    style=single-hyphen-option;;
