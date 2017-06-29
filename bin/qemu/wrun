@@ -17,6 +17,8 @@ function main(){
     log_="$(builtin print "l(${amount_of_mem_})/l(2)" | bc -l)"
     mem_="$(builtin print "(${log_}+0.5)/1" | bc)"
     vm_memory="$(builtin print "2^${mem_}/2.0" | bc -l | xargs printf "%1.0f")"
+    hugepagesize="$(awk '/Hugepagesize/{print $2}' /proc/meminfo)"
+    hugepages_amount=$(printf '%.0f00\n' "$[${vm_memory}*1024./${hugepagesize}*1.075/100]")
 
     lscpu_info=("$(lscpu)")
     sockets_amount_="$(awk -F: '/Socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
@@ -73,6 +75,10 @@ function main(){
         sudo -u neg "synergy" & synergy_pid=$!; print "Autostart synergy"
     fi
 
+    # setup hugepages
+    sudo sysctl -w vm.nr_hugepages="${hugepages_amount}"
+
+    KVM_HUGEPAGES=1 \
     QEMU_AUDIO_TIMER_PERIOD=150 \
     QEMU_PA_SAMPLES=1024 \
     QEMU_PA_SERVER=localhost \
@@ -84,6 +90,7 @@ function main(){
         "${qemu_pass_input[@]}" \
         "${qemu_network[@]}"
     kill synergy_pid
+    sudo sysctl -w vm.nr_hugepages=0
 }
 
 main "$@"
