@@ -468,14 +468,18 @@ if dein#load_state("/home/neg/.vim/repos")
     if has("nvim")
         "gotham colorscheme for nvim
         call dein#add('whatyouhide/vim-gotham')
-        "vim-one colorscheme
-        call dein#add('rakr/vim-one')
+        "hybrid colorscheme
+        call dein#add('w0ng/vim-hybrid')
+        "jellybeands colorscheme
+        call dein#add('nanotech/jellybeans.vim')
         "onedark colorscheme
         call dein#add('joshdick/onedark.vim')
         "neodark colorscheme
         call dein#add('KeitaNakamura/neodark.vim')
         "FlatColor colorscheme
         call dein#add('MaxSt/FlatColor')
+        "Pensil colorscheme
+        call dein#add('reedes/vim-colors-pencil')
     endif
     "new colorscheme
     call dein#add('aperezdc/vim-elrond')
