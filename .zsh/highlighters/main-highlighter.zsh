@@ -631,7 +631,7 @@ _zsh_highlight_highlighter_main_paint()
                    # Fall through to the catchall case at the end.
                  fi
                  ;|
-        #---------------------------------------
+        #--[ Begining of ftype array ]------@@@@
         *.exe)                style=ftype-exe ;;
         *.com)                style=ftype-com ;;
         *.btm)                style=ftype-btm ;;
@@ -1086,7 +1086,7 @@ _zsh_highlight_highlighter_main_paint()
         *.am)                 style=ftype-am ;;
         *.in)                 style=ftype-in ;;
         *.old)                style=ftype-old ;;
-        #---------------------------------------
+        #--[ End of ftype array ]-----------@@@@
         '--'*)   style=double-hyphen-option;;
         '-'*)    style=single-hyphen-option;;
         "'"*)    style=single-quoted-argument;;
