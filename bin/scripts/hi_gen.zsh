@@ -54,6 +54,22 @@ function main() {
 
     for t in "${ftype_arr}" "${ftype_rule}"; eat "${t}"
     rm "${tmp_file}"
+
+    cp -iv "${ftype_arr}" ~/.zsh/highlighters/ft_list.zsh
+
+    start_line=$[$(grep -n '#.*Begining of ftype array.*@@@@' ~/.zsh/highlighters/main-highlighter.zsh|cut -f1 -d:)+1]
+    end_line=$[$(grep -n '#.*End of ftype array.*@@@@' ~/.zsh/highlighters/main-highlighter.zsh|cut -f1 -d:)-1]
+
+    if [[ "${start_line}" != "" && "${end_line}" != "" ]]; then
+        # Delete highlight array from file
+        sed -i "${start_line},${end_line}d" ~/.zsh/highlighters/main-highlighter.zsh > /tmp/test
+
+        new_start_line=$[$(grep -n '#.*Begining of ftype array.*@@@@' ~/.zsh/highlighters/main-highlighter.zsh|cut -f1 -d:)]
+        while read line; do
+            sed -i "${new_start_line}a \\\t\t${line}" ~/.zsh/highlighters/main-highlighter.zsh
+        done < "${ftype_rule}"
+    fi
+
 }
 
 main "${1}"
