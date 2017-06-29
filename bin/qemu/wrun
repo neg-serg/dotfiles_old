@@ -13,17 +13,17 @@ function main(){
     local qmp_sh_script="${home_}/bin/scripts/qmp/qmp-shell"
     local install_iso="${win10_iso}"
 
-    amount_of_mem_="$(free -m|awk '/Mem/{print $2}')"
-    log_="$(builtin print "l(${amount_of_mem_})/l(2)" | bc -l)"
-    mem_="$(builtin print "(${log_}+0.5)/1" | bc)"
-    vm_memory="$(builtin print "2^${mem_}/2.0" | bc -l | xargs printf "%1.0f")"
-    hugepagesize="$(awk '/Hugepagesize/{print $2}' /proc/meminfo)"
-    hugepages_amount=$(printf '%.0f00\n' "$[${vm_memory}*1024./${hugepagesize}*1.075/100]")
+    local amount_of_mem_="$(free -m|awk '/Mem/{print $2}')"
+    local log_="$(builtin print "l(${amount_of_mem_})/l(2)" | bc -l)"
+    local mem_="$(builtin print "(${log_}+0.5)/1" | bc)"
+    local vm_memory="$(builtin print "2^${mem_}/2.0" | bc -l | xargs printf "%1.0f")"
+    local hugepagesize="$(awk '/Hugepagesize/{print $2}' /proc/meminfo)"
+    local hugepages_amount=$(printf '%.0f00\n' "$[${amount_of_mem_}*1024./${hugepagesize}*1.075/100]")
 
-    lscpu_info=("$(lscpu)")
-    sockets_amount_="$(awk -F: '/Socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
-    cores_amount_="$(awk -F: '/per socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
-    threads_amount_="$(awk -F: '/Thread/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
+    local lscpu_info=("$(lscpu)")
+    local sockets_amount_="$(awk -F: '/Socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
+    local cores_amount_="$(awk -F: '/per socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
+    local threads_amount_="$(awk -F: '/Thread/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
 
     local -a qemu_params=(
         -enable-kvm
