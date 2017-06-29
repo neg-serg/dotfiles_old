@@ -3,18 +3,30 @@
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
 function main(){
+    local user_=neg
+    local home_=/home/${user_}
     local disk_name="w10"
-    local win10_iso="/home/neg/1st_level/iso/en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
-    local virtio_iso="/home/neg/1st_level/iso/virtio-win-0.1.137.iso"
+    local win10_iso="${home_}/1st_level/iso/en_windows_10_education_version_1607_updated_jul_2016_x64_dvd_9055880.iso"
+    local virtio_iso="${home_}/1st_level/iso/virtio-win-0.1.137.iso"
     local smb_path="/mnt/qemu"
-    local qmp_socket_path="/home/neg/1st_level/qmp.socket"
-    local qmp_sh_script="/home/neg/bin/scripts/qmp/qmp-shell"
+    local qmp_socket_path="${home_}/1st_level/qmp.socket"
+    local qmp_sh_script="${home_}/bin/scripts/qmp/qmp-shell"
     local install_iso="${win10_iso}"
+
+    amount_of_mem_="$(free -m|awk '/Mem/{print $2}')"
+    log_="$(builtin print "l(${amount_of_mem_})/l(2)" | bc -l)"
+    mem_="$(builtin print "(${log_}+0.5)/1" | bc)"
+    vm_memory="$(builtin print "2^${mem_}/2.0" | bc -l | xargs printf "%1.0f")"
+
+    lscpu_info=("$(lscpu)")
+    sockets_amount_="$(awk -F: '/Socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
+    cores_amount_="$(awk -F: '/per socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
+    threads_amount_="$(awk -F: '/Thread/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
 
     local -a qemu_params=(
         -enable-kvm
-        -m 8192
-        -smp sockets=1,cores=4,threads=2
+        -m "${vm_memory}"
+        -smp sockets="${sockets_amount_}",cores="${cores_amount_}",threads="${threads_amount_}"
         -cpu host,kvm=off
         -device virtio-scsi-pci,id=scsi
         -drive if=pflash,format=raw,readonly,file=/one/vm/ovmf_code_x64.bin
@@ -58,7 +70,7 @@ function main(){
     )
 
     if [[ ! $(pidof synergyc) ]]; then
-        sudo -u neg "synergy" & print "Autostart synergy"
+        sudo -u neg "synergy" & synergy_pid=$!; print "Autostart synergy"
     fi
 
     QEMU_AUDIO_TIMER_PERIOD=150 \
@@ -68,10 +80,10 @@ function main(){
     QEMU_AUDIO_DRV=pa \
     qemu-system-x86_64 "${qemu_params[@]}" \
         "${qemu_emulated_sound[@]}" \
-        "${qemu_source_params[@]}" \
         "${qemu_pass_video[@]}" \
-        "${qemu_pass_input[@]}"  \
+        "${qemu_pass_input[@]}" \
         "${qemu_network[@]}"
+    kill synergy_pid
 }
 
 main "$@"
