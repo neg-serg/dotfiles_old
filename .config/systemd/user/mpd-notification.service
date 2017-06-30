@@ -3,7 +3,7 @@ Description=MPD Notification
 After=network.target sound.target mpd2.service
 
 [Service]
-ExecStart=/home/neg/bin/scripts/mpd-notification
+ExecStart=/usr/bin/mpd-notification
 Restart=always
 RestartSec=30
 
