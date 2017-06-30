@@ -71,6 +71,11 @@ function main(){
         -net nic -net tap,ifname=tap0,script=/home/neg/bin/qemu/qemu-ifup,downscript=/home/neg/bin/qemu/qemu-ifdown
     )
 
+    local -a qemu_hugepages_stuff=(
+        -mem-prealloc 
+        -mem-path /dev/hugepages/qemu
+    )
+
     if [[ ! $(pidof synergyc) ]]; then
         sudo -u neg "synergy" & synergy_pid=$!; print "Autostart synergy"
     fi
@@ -78,7 +83,6 @@ function main(){
     # setup hugepages
     sudo sysctl -w vm.nr_hugepages="${hugepages_amount}"
 
-    KVM_HUGEPAGES=1 \
     QEMU_AUDIO_TIMER_PERIOD=150 \
     QEMU_PA_SAMPLES=1024 \
     QEMU_PA_SERVER=localhost \
@@ -88,7 +92,8 @@ function main(){
         "${qemu_emulated_sound[@]}" \
         "${qemu_pass_video[@]}" \
         "${qemu_pass_input[@]}" \
-        "${qemu_network[@]}"
+        "${qemu_network[@]}" \
+        "${qemu_hugepages_stuff[@]}"
     kill synergy_pid
     sudo sysctl -w vm.nr_hugepages=0
 }
