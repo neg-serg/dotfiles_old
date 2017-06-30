@@ -1,4 +1,6 @@
 #!/bin/zsh
+
+# Transmission-related stuff
 inotifywait -m -q -e close_write -e moved_to -e create --format "%f" ${HOME}/dw | while IFS= read -r file; do
     if [[ "${file}" =~ ".torrent.added"$ ]]; then
         notify-send  "Move ["$file"] -> ${HOME}/tmp"
