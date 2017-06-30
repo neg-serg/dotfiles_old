@@ -18,7 +18,7 @@ function main(){
     local mem_="$(builtin print "(${log_}+0.5)/1" | bc)"
     local vm_memory="$(builtin print "2^${mem_}/2.0" | bc -l | xargs printf "%1.0f")"
     local hugepagesize="$(awk '/Hugepagesize/{print $2}' /proc/meminfo)"
-    local hugepages_amount=$(printf '%.0f00\n' "$[${amount_of_mem_}*1024./${hugepagesize}*1.075/100]")
+    local hugepages_amount=$(printf '%.0f00\n' "$[${vm_memory}*1024./${hugepagesize}*1.075/100]")
 
     local lscpu_info=("$(lscpu)")
     local sockets_amount_="$(awk -F: '/Socket/{print $2}' <<< ${lscpu_info[@]}|tr -d '[:space:]')"
@@ -42,15 +42,22 @@ function main(){
         -boot menu=on
     )
 
-    local -a qemu_pass_video=(
+    local -a qemu_vga_none=(
         -vga none
+    )
+
+    local -a qemu_vga_spice=(
+        -vga qxl -spice port=5900,addr=127.0.0.1,disable-ticketing
+    )
+
+    local -a qemu_pass_video=(
         -device vfio-pci,host=01:00.0,multifunction=on
         -device vfio-pci,host=01:00.1
     )
 
     local -a qemu_pass_input=(
         -usb
-        -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
+        # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
         -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
     )
 
@@ -73,7 +80,7 @@ function main(){
 
     local -a qemu_hugepages_stuff=(
         -mem-prealloc 
-        -mem-path /dev/hugepages/qemu
+        -mem-path /dev/hugepages
     )
 
     if [[ ! $(pidof synergyc) ]]; then
@@ -89,12 +96,13 @@ function main(){
     PULSE_SERVER=localhost \
     QEMU_AUDIO_DRV=pa \
     qemu-system-x86_64 "${qemu_params[@]}" \
+        "${qemu_vga_none[@]}" \
         "${qemu_emulated_sound[@]}" \
         "${qemu_pass_video[@]}" \
         "${qemu_pass_input[@]}" \
         "${qemu_network[@]}" \
         "${qemu_hugepages_stuff[@]}"
-    kill synergy_pid
+    kill ${synergy_pid}
     sudo sysctl -w vm.nr_hugepages=0
 }
 
