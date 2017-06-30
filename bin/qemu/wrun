@@ -57,7 +57,7 @@ function main(){
 
     local -a qemu_pass_input=(
         -usb
-        # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
+        -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
         -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
     )
 
