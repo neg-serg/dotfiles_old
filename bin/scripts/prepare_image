@@ -10,12 +10,10 @@ echo "urgency_=${urgency_}"
 function conv_image_(){ 
     echo 1 :: "$1"
     echo 2 :: "$2"
-    # if [[ $1 != "" ]]; then
     echo "[ :: CONVERT :: ]"
     convert -resize ${size_} "$1" "$2" 2>/dev/null 
     echo "[ :: COPY :: ]"
     cp -v "$2" "/tmp/dunst-images/audio-x-generic.png"
-    # fi
 }
 
 function wf_(){
@@ -89,7 +87,7 @@ function main(){
 
     echo IMAGE="${image_}"
     if [[ $(xargs <<< ${image_}) == "info" || $(xargs <<< ${image_}) == "" ]]; then
-        image_="${dunst_pics_}/cover_not.png"
+        image_="/tmp/.mpd-notification-artwork.png"
         conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
     else
