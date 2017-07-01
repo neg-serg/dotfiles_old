@@ -2,17 +2,9 @@
 
 summary_="$2" body_="$3" image_="$4" urgency_="$5"
 
-echo "summary_=${summary_}"
-echo "body_=${body_}"
-echo "image_=${image_}"
-echo "urgency_=${urgency_}"
-
+# There is no need to convert size of something anymore ...
 function conv_image_(){ 
-    echo 1 :: "$1"
-    echo 2 :: "$2"
-    echo "[ :: CONVERT :: ]"
     convert -resize ${size_} "$1" "$2" 2>/dev/null 
-    echo "[ :: COPY :: ]"
     cp -v "$2" "/tmp/dunst-images/audio-x-generic.png"
 }
 
@@ -54,26 +46,26 @@ function send_notify_(){
         c=$[c+1]
     done <<< ${body_}
 
-    length_=(${#bodyarr_[1]} ${#bodyarr_[2]} ${#bodyarr_[3]})
+    length_=(${#bodyarr_[1]} ${#bodyarr_[2]} ${#bodyarr_[3]} ${#bodyarr_[4]})
     length_=($(printf "%s\n" "${length_[@]}"|sort -nr))
     length_=${(@)length_[1]}
 
     bodyarr_[1]=$(wf_ '')"${bodyarr_[1]}\n"
     bodyarr_[2]=$(wf_ '')"${bodyarr_[2]}\n"
     bodyarr_[3]=$(wf_ '》')"${bodyarr_[3]}\n"
+    bodyarr_[4]=$(wf_ '')"${bodyarr_[4]}\n"
 
     local output
     for i in ${bodyarr_[@]}; do output="${output}${i}" done
     summary_=$'\n'"${st2_}$(repeat ${length_} builtin print -n "◇")${cl_}"
     output="\n${output}$(get_lastfm_)\n\n${summary_}"
-    echo "Not :: " "-u "${urgency_}" -i "${new_image}" "${summary_}" "${output}""
     notify-send -a "prepare_image" -u "${urgency_}" -i "${new_image}" "${summary_}" "${output}"  
 }
 
 function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 zshexit() { 
-    { sleep ${timeout_} && rm "${new_image}" } &
+    { sleep ${timeout_} && rm -f "${new_image}" } &
     find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete 
 }
 
@@ -85,10 +77,9 @@ function main(){
     [[ ! -d "${dunst_pics_}" ]] && mkdir -p "${dunst_pics_}"
     local previous_="${dunst_pics_}/prev.png"
 
-    echo IMAGE="${image_}"
     if [[ $(xargs <<< ${image_}) == "info" || $(xargs <<< ${image_}) == "" ]]; then
         image_="/tmp/.mpd-notification-artwork.png"
-        conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
+        ьonv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
     else
         file_name=$(basename "${image_}")
