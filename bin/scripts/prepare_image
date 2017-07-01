@@ -79,7 +79,7 @@ function main(){
 
     if [[ $(xargs <<< ${image_}) == "info" || $(xargs <<< ${image_}) == "" ]]; then
         image_="/tmp/.mpd-notification-artwork.png"
-        ьonv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
+        conv_image_ "${image_}" "${dunst_pics_}/cover_inter.png"
         new_image="${dunst_pics_}/cover_inter.png"
     else
         file_name=$(basename "${image_}")
