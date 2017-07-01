@@ -390,13 +390,6 @@ alias vuze="vuze&>/dev/null&"
 
 alias vim=nvim
 
-if inpath vim || inpath nvim; then
-    function gv(){
-        v . && sleep .5s
-        v -b":GV"
-    }
-fi
-
 alias java='java "$_SILENT_JAVA_OPTIONS"'
 alias zinc="zinc -nailed"
 alias py="bpython"

@@ -341,6 +341,12 @@ function py23switch(){
     fi
 }
 
+if inpath nvim && inpath nvr; then
+    function gv(){
+        nwim
+        nvr --remote-send ":cd $(pwd)<CR>:GV<CR>"
+    }
+fi
 
 ::() { echo -e "\e[0;31m:: \e[0;32m$*\e[0m" >&2 "$@" }
 
