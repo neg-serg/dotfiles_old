@@ -270,7 +270,7 @@ function sp() {
         output=$(du -smc "$@")
     fi
     total=$(tail -1 <<< "${output}")
-    distribution.pl -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
+    distribution.pl --color -g -s=l --char=em <<< $(sed -e '$ d' <<< "${output}")
     _zwrap "Total: $(cut -f1 <<< ${total})"
 }
 
