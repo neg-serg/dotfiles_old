@@ -46,7 +46,14 @@ function send_notify_(){
         c=$[c+1]
     done <<< ${body_}
 
-    length_=(${#bodyarr_[1]} ${#bodyarr_[2]} ${#bodyarr_[3]} ${#bodyarr_[4]})
+    length_=(
+        ${#bodyarr_[1]} 
+        ${#bodyarr_[2]}
+        ${#bodyarr_[3]}
+        ${#bodyarr_[4]}
+        ${#bodyarr_[5]}
+        ${#bodyarr_[6]}
+    )
     length_=($(printf "%s\n" "${length_[@]}"|sort -nr))
     length_=${(@)length_[1]}
 
@@ -54,6 +61,23 @@ function send_notify_(){
     bodyarr_[2]=$(wf_ '')"${bodyarr_[2]}\n"
     bodyarr_[3]=$(wf_ '》')"${bodyarr_[3]}\n"
     bodyarr_[4]=$(wf_ '')"${bodyarr_[4]}\n"
+    current_file="$(mpc -f '%file%'|head -1)"
+    mpd_music_dir="$(awk '/music_directory/{print $2}' /etc/mpd.conf|tr -d '"')"
+    current_dirname="${mpd_music_dir}/$(dirname "${current_file}")"
+    qu="$(find "${current_dirname}" -exec albumdetails '{}' + 2>/dev/null | awk -F ': ' '/Quality/{print $2}' | sed -e 's; / ;·;g' -e 's; channels;;')"
+    metadata="$(sox --i "${mpd_music_dir}/${current_file}")"
+    media_file_encoding="$(awk -F': ' '/Sample Encoding/{print $2}' <<< "${metadata}")"
+    case "${media_file_encoding}" in
+        *FLAC*)
+            file_enc="flac"
+            ;;
+        *MPEG*) 
+            file_enc="mp3"
+            ;;
+    esac
+    file_enc=$(wf_ "${file_enc} :: $(awk -F': ' '/Precision/{print $2}' <<< ${metadata})")
+    bodyarr_[5]=$(wf_ '')"${qu}\n"
+    bodyarr_[6]=$(wf_ '')"${file_enc}\n"
 
     local output
     for i in ${bodyarr_[@]}; do output="${output}${i}" done
