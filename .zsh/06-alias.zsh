@@ -167,6 +167,7 @@ if inpath git; then
     intra_line_diff='--word-diff-regex="[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"'
     intra_line_less='LESS="-R +/-\]|\{\+"' # jump directly to changes in diffs
     alias gdiff="${intra_line_less} git diff ${intra_line_diff}"
+    alias gdiff2="git diff -w -U0 --word-diff-regex=[^[:space:]]"
 
     # commit staged changes with the given message
     alias gcm='git commit -m'
