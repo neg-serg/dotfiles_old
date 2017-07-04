@@ -38,19 +38,33 @@ debug_print_convert_table(){
     done}|sort -h
 }
 
-apply_rename(){
-    data=$(albumdetails "$@")
+apply_rename_files(){
+    Data=$(albumdetails "$@")
+    apply_rename_ "$@"
+}
 
-    artist=$(builtin print "${data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
-    year=$(builtin print "${data}"|grep "Year"| cut -d ':' -f 2-|xargs)
+apply_rename_dir(){
+    Data=$(find "${1}" -exec albumdetails '{}' + 2>/dev/null)
+    apply_rename_ "$@"
+}
+
+apply_rename_(){
+    artist=$(builtin print "${Data}"|grep "Artist"| cut -d ':' -f 2-|xargs)
+    year=$(builtin print "${Data}"|grep "Year"| cut -d ':' -f 2-|xargs)
 
     generate_convert_table
 
     year=${year//$year/$conv_table[$year]}
 
-    album=$(builtin print "${data}"|grep "Album"| cut -d ':' -f 2-|xargs)
+    album=$(builtin print "${Data}"|grep "Album"| cut -d ':' -f 2-|xargs)
+
+    if [[ -d "$1" ]]; then
+        src="$1"
+    else
+        src="$(builtin print "$(dirname ${1})")"
+    fi
+
     result="$(dirname "${src}")/$(builtin print "${artist}-[${year}]-${album}")"
-    src=$(builtin print "$(dirname $1)")
     mv -vi "${src}" "${result}"
     fix_names.pl -i "${result}"
     rmdir "${src}" 2> /dev/null
@@ -63,11 +77,14 @@ main(){
             dirname="$(awk '/music_directory/{print $2}' /etc/mpd.conf|tr -d '"')/$(dirname "$(mpc -f '%file%'|head -1)")"
             cd "${dirname}"
             builtin print "Apply rename to :: [${dirname}] contents ::"
-            zargs -- ${dirname}/** -- apply_rename 
+            zargs -- ${dirname}/** -- apply_rename_files
         ;;
         "files")
             shift
-            apply_rename "$@"
+            apply_rename_files "$@"
+        ;;
+        *)
+            for d; apply_rename_dir "${d}"
         ;;
     esac
 }
