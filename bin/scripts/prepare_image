@@ -96,7 +96,7 @@ function compare_images_(){ ~/bin/scripts/compare_images.py "$1" "$2" }
 
 zshexit() { 
     { sleep ${timeout_} && rm -f "${new_image}" } &
-    find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete 
+    { sleep 900s && find "${dunst_pics_}" -name prev.png -not -newermt '-900 seconds' -delete } &
 }
 
 function main(){
