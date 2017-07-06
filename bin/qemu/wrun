@@ -61,9 +61,13 @@ function main(){
 
     local -a qemu_pass_input=(
         -usb
-        -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
+        -usbdevice host:1038:1702 # SteelSeries ApS
         -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
     )
+    # -usb
+    # -usbdevice host:1038:1702 # SteelSeries ApS
+    # -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
+    # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
 
     local -a qemu_emulated_sound=(
         -soundhw ac97
@@ -106,7 +110,10 @@ function main(){
         "${qemu_pass_input[@]}" \
         "${qemu_network[@]}" \
         "${qemu_hugepages_stuff[@]}"
-    kill ${synergy_pid}
+
+    # Restore settings
+    killall synergy
+    killall synergyc
     sudo sysctl -w vm.nr_hugepages=0
     setxkbmap \
         -option keypad:pointerkeys \
