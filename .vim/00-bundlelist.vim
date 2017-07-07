@@ -527,6 +527,16 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('MaxSt/FlatColor')
         "Pensil colorscheme
         call dein#add('reedes/vim-colors-pencil')
+        "unusual yellow colorscheme
+        call dein#add('KabbAmine/yowish.vim')
+        "great bright colorscheme
+        call dein#add('NLKNguyen/papercolor-theme')
+        "green-brown colorscheme
+        call dein#add('chase/focuspoint-vim')
+        "solarized with better neovim support
+        call dein#add('icymind/NeoSolarized')
+        "dark and cold colorscheme
+        call dein#add('arcticicestudio/nord-vim')
     endif
     "new colorscheme
     call dein#add('aperezdc/vim-elrond')
