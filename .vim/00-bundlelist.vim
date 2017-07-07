@@ -11,14 +11,18 @@ if dein#load_state("/home/neg/.vim/repos")
     endif
     if !(&runtimepath =~ 'site-packages/powerline/bindings/vim') || has("nvim")
         if g:want_airline == 1
-            call dein#add('vim-airline/vim-airline')
-            call dein#add('vim-airline/vim-airline-themes')
+            call dein#add('vim-airline/vim-airline', { 'merged' : 0, 'loadconf' : 1})
+            call dein#add('vim-airline/vim-airline-themes', { 'merged' : 0})
         else
             call dein#add('itchyny/lightline.vim')
         endif
     endif
     if g:nvim_deopete == 1
-        call dein#add('Shougo/deoplete.nvim')
+        "dark-powered completion engine
+        call dein#add('Shougo/deoplete.nvim', {
+          \ 'on_event' : 'InsertEnter',
+          \ 'loadconf' : 1,
+          \ })
         if executable(resolve(expand("clang")))
             if g:nvim_deopete_clang == 1
                 call dein#add('zchee/deoplete-clang')
@@ -26,7 +30,9 @@ if dein#load_state("/home/neg/.vim/repos")
                 call dein#add('Rip-Rip/clang_complete')
             endif
         endif
-        call dein#add('Shougo/neoinclude.vim')
+        "include completion framework for neocomplete/deoplete
+        call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
+        "bettter completions with deoplete
         call dein#add('Shougo/echodoc.vim')
         if g:intellij_complete == 1
             call dein#add('vhakulinen/neovim-intellij-complete')
@@ -93,8 +99,8 @@ if dein#load_state("/home/neg/.vim/repos")
     "visual replace for multiple files
     call dein#add('thinca/vim-qfreplace.git')
     "--[ Edit ]-------------------------------------------------------------------------------
-    "format code by clang, better than astyle -A14
-    call dein#add('rhysd/vim-clang-format.git') 
+    "universal formatter
+    call dein#add('https://github.com/sbdchd/neoformat')
     "Snippets with ycm compatibility
     call dein#add('SirVer/ultisnips.git') 
     "for tabularizing
@@ -133,8 +139,6 @@ if dein#load_state("/home/neg/.vim/repos")
     if executable(resolve(expand("git")))
         "Git stuff. Needed for powerline etc
         call dein#add('tpope/vim-fugitive.git') 
-        "Async operations with git
-        call dein#add('lambdalisue/gina.vim')
         "Git dashboard in vim
         call dein#add('junegunn/vim-github-dashboard.git')
         "github issues autocomp
@@ -237,6 +241,8 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('ntpeters/vim-better-whitespace',  { 'on_cmd' : 'StripWhitespace'})
     "better asterisk commands
     call dein#add('haya14busa/vim-asterisk')
+    "better neovim terminal-based mode
+    call dein#add('Shougo/deol.nvim')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
@@ -254,10 +260,10 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('tpope/vim-dispatch.git')
     if has("nvim")
         "neomake as linter
-        call dein#add('neomake/neomake')
+        call dein#add('neomake/neomake', {'merged' : 0, 'loadconf' : 1 , 'loadconf_before' : 1})
     else         
         "syntax checker
-        call dein#add('scrooloose/syntastic')
+        call dein#add('scrooloose/syntastic', {'on_event': 'WinEnter', 'loadconf' : 1, 'merged' : 0})
     endif
     if executable(resolve(expand("rc")))
         "rtags plugin for vim
@@ -288,15 +294,15 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('derekwyatt/vim-sbt')
     "--[ Python ]-----------------------------------------------------------------------------
     "autochecks for indent
-    call dein#add('vim-scripts/IndentConsistencyCop.git')
+    call dein#add('vim-scripts/IndentConsistencyCop.git', { 'on_ft' : 'python'})
     "python autoindent pep8 compatible
-    call dein#add('hynek/vim-python-pep8-indent.git')
+    call dein#add('hynek/vim-python-pep8-indent.git', { 'on_ft' : 'python'})
     "pydoc integration
-    call dein#add('fs111/pydoc.vim')
+    call dein#add('fs111/pydoc.vim', { 'on_ft' : 'python'})
     "gf for python
-    call dein#add('mkomitee/vim-gf-python.git')
+    call dein#add('mkomitee/vim-gf-python.git', { 'on_ft' : 'python'})
     if nvim_deopete
-        call dein#add('zchee/deoplete-jedi')
+        call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
     endif
     "--[ R ]----------------------------------------------------------------------------------
     if has("nvim")
@@ -315,12 +321,12 @@ if dein#load_state("/home/neg/.vim/repos")
     endif
     if executable(resolve(expand("go")))
         if g:nvim_deopete == 1
-            call dein#add('zchee/deoplete-go')
+            call dein#add('zchee/deoplete-go', {'on_ft' : 'go', 'build': 'make'})
         else
             "omnicomplete for go
             call dein#add('Blackrush/vim-gocode.git')
             "golang support
-            call dein#add('fatih/vim-go.git')
+            call dein#add('fatih/vim-go.git', { 'on_ft' : 'go', 'loadconf_before' : 1})
         endif
     endif
     "golang syntax highlight
@@ -342,7 +348,7 @@ if dein#load_state("/home/neg/.vim/repos")
     if executable(resolve(expand("elixir")))
         " deoplete support via alchemist-server
         if g:nvim_deopete == 1
-            call dein#add('slashmili/alchemist.vim')
+            call dein#add('slashmili/alchemist.vim', { 'on_ft' : 'elixir'})
         endif
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
@@ -400,11 +406,17 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Misc Langs ]--------------------------------------------------------------------------
     if executable(resolve(expand("php")))
         if g:nvim_deopete == 1
-            call dein#add('php-vim/phpcd.vim')
+            call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
         else
             "better than default phpcomplete.vim
             call dein#add('shawncplus/phpcomplete.vim.git')
         endif
+        "modern php syntax file
+        call dein#add('StanAngeloff/php.vim', { 'on_ft' : 'php'})
+        "indenting plugin for php
+        call dein#add('2072/PHP-Indenting-for-VIm', { 'on_ft' : 'php'})
+        "tiny php-spec wrapper
+        call dein#add('rafi/vim-phpspec', { 'on_ft' : 'php'})
     endif
     " Multi-language DBGP debugger client for Vim (PHP, Python, Perl, Ruby, etc.)
     call dein#add('joonty/vdebug', {'on_cmd': ['VdebugStart']})
@@ -417,7 +429,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "perl omnicomplete
     call dein#add('c9s/perlomni.vim', {'on_ft' : 'perl'})
     "expanding abbreviations similar to emmet
-    call dein#add('mattn/emmet-vim')
+    call dein#add('mattn/emmet-vim', { 'on_cmd' : 'EmmetInstall'})
     call dein#add('vim-perl/vim-perl', {'on_ft': ['perl']})
     call dein#add('wannesm/wmgraphviz.vim', {'on_ft': ['dot']})
     "vim plugin for supercollider
@@ -435,6 +447,12 @@ if dein#load_state("/home/neg/.vim/repos")
         "deoplete support
         call dein#add('mitsuse/autocomplete-swift')
     endif
+    " improved Lua 5.3 syntax and indentation support for Vim
+    call dein#add('tbastos/vim-lua', {'on_ft' : 'lua'})
+    "lua support
+    call dein#add('WolfgangMehner/lua-support', {'on_ft' : 'lua'})
+    "lua completion from spacevim
+    call dein#add('SpaceVim/vim-luacomplete', {'on_ft' : 'lua', 'if' : has('lua')})
     "----------------[  DBMS  ]--------------------------------------------------------------
     "Oracle DB IDE
     call dein#add('talek/vorax4')
