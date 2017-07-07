@@ -34,6 +34,8 @@ if dein#load_state("/home/neg/.vim/repos")
     else
         call dein#add('Valloric/YouCompleteMe', {'build': './install.sh --clang-completer'}) 
     endif
+    "startup screen, welcome back
+    call dein#add('mhinz/vim-startify')
     "run a bunch of text
     call dein#add('thinca/vim-quickrun')
     "add neomru source
@@ -43,26 +45,25 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('kopischke/vim-fetch')
     "vim arg wrapper
     call dein#add('FooSoft/vim-argwrap')
-    "is all about surroundings: parentheses, brackets, quotes, XML tags, and more
     "toggle quickfix and location list <leader>l by def
     call dein#add('Valloric/ListToggle.git')
     "better alternate files switcher and more
-    call dein#add('tpope/vim-projectionist')
+    call dein#add('tpope/vim-projectionist', { 'on_cmd' : ['A', 'AS', 'AV',
+        \ 'AT', 'AD', 'Cd', 'Lcd', 'ProjectDo']})
     "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
     call dein#add('lyokha/vim-xkbswitch.git')
     "mappings for simultaneously pressed keys
     call dein#add('kana/vim-arpeggio.git')
-    "open browser with gx
-    call dein#add('tyru/open-browser.vim')
-    "open links in vim
-    call dein#add('tyru/open-browser-github.vim')
     "powerful vim spell-checking with LangTool
     call dein#add('rhysd/vim-grammarous')
     "--[ Search ]-----------------------------------------------------------------------------
-    if executable(resolve(expand("ag")))
-        "ag (ack replacement) wrapper
-        call dein#add('rking/ag.vim.git')
+    if executable(resolve(expand("rg")))
+        call dein#add('jremmen/vim-ripgrep')
     endif
+    "interactive vim-grep
+    call dein#add('dyng/ctrlsf.vim')
+    "yet another interactive grepper
+    call dein#add('mhinz/vim-grepper')
     let s:fzf_use=1
     if (s:fzf_use) 
         " fast fuzzy finder
@@ -97,7 +98,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "Snippets with ycm compatibility
     call dein#add('SirVer/ultisnips.git') 
     "for tabularizing
-    call dein#add('godlygeek/tabular.git') 
+    call dein#add('godlygeek/tabular.git', { 'on_cmd' : 'Tabularize'}) 
     "Extended and fast Join for vim
     call dein#add('chrisbra/Join.git') 
     "good mappings and toggles
@@ -105,7 +106,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "dot for everything
     call dein#add('tpope/vim-repeat')
     "undo tree
-    call dein#add('sjl/gundo.vim', {'on_cmd': ['GundoToggle']})
+    call dein#add('simnalamburt/vim-mundo', {'on_cmd': ['MundoToggle']})
     "autopair ()[]{}
     call dein#add('Raimondi/delimitMate')
     "new commands to vim for (){}[]''""<>
@@ -122,8 +123,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('tpope/vim-eunuch.git')
     "for different case coersion
     call dein#add('tpope/vim-abolish')
-    "syntax checker
-    call dein#add('scrooloose/syntastic')
     if g:nvim_deopete == 1
         call dein#add('Shougo/neco-vim')
     else
@@ -134,6 +133,8 @@ if dein#load_state("/home/neg/.vim/repos")
     if executable(resolve(expand("git")))
         "Git stuff. Needed for powerline etc
         call dein#add('tpope/vim-fugitive.git') 
+        "Async operations with git
+        call dein#add('lambdalisue/gina.vim')
         "Git dashboard in vim
         call dein#add('junegunn/vim-github-dashboard.git')
         "github issues autocomp
@@ -144,8 +145,13 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('junegunn/gv.vim') 
         "diff directories easyer with vim
         call dein#add('vim-scripts/DirDiff.vim.git') 
-        "last changes
-        call dein#add('airblade/vim-gitgutter.git')
+        if has("ololo")
+            "maybe better alternative to gitgutter
+            call dein#add('mhinz/vim-signify')
+        else
+            "show last git changes
+            call dein#add('airblade/vim-gitgutter.git', { 'on_cmd' : 'GitGutterEnable'})
+        endif
         "vimagit like magit from emacs inter. mode
         call dein#add('jreybert/vimagit')
     endif
@@ -215,6 +221,22 @@ if dein#load_state("/home/neg/.vim/repos")
     if g:nvim_deopete
         call dein#add('zchee/deoplete-zsh')
     endif
+    if has("loled")
+        "underline word under cursor
+        call dein#add('itchyny/vim-cursorword')
+    endif
+    "highlight all patterns, not only current
+    call dein#add('haya14busa/incsearch.vim', {'merged' : 0})
+    "fuzzy incsearch
+    call dein#add('haya14busa/incsearch-fuzzy.vim', {'merged' : 0})
+    "indentlines
+    call dein#add('Yggdroot/indentLine')
+    "better interaction with viml
+    call dein#add('tpope/vim-scriptease')
+    "find whitespaces with ease
+    call dein#add('ntpeters/vim-better-whitespace',  { 'on_cmd' : 'StripWhitespace'})
+    "better asterisk commands
+    call dein#add('haya14busa/vim-asterisk')
     "--[ Docs ]------------------------------------------------------------------------------
     "view and search rfc
     call dein#add('mhinz/vim-rfc')
@@ -230,6 +252,13 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('chrisbra/vim-diff-enhanced.git')
     "provide async build via tmux
     call dein#add('tpope/vim-dispatch.git')
+    if has("nvim")
+        "neomake as linter
+        call dein#add('neomake/neomake')
+    else         
+        "syntax checker
+        call dein#add('scrooloose/syntastic')
+    endif
     if executable(resolve(expand("rc")))
         "rtags plugin for vim
         call dein#add('lyuts/vim-rtags.git')
@@ -298,13 +327,15 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('jnwhiteh/vim-golang.git')
     "--[ Rust ]-------------------------------------------------------------------------------
     if executable(resolve(expand("rustc")))
+        "racer support
+        call dein#add('racer-rust/vim-racer', {'on_ft' : 'rust'})
         "detection of rust files
-        call dein#add('rust-lang/rust.vim')
+        call dein#add('rust-lang/rust.vim', {'on_ft' : 'rust', 'merged' : 1})
         "rust-cargo bindings
         call dein#add('jtdowney/vimux-cargo')
         if g:nvim_deopete == 1
             " deoplete support via racer
-            call dein#add('sebastianmarkow/deoplete-rust')
+            call dein#add('sebastianmarkow/deoplete-rust', {'on_ft' : 'rust'})
         endif
     endif
     "--[ Elixir ]-----------------------------------------------------------------------------
@@ -322,13 +353,17 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Haskell ]-----------------------------------------------------------------------------
     if executable(resolve(expand("ghci")))
         "autocomplete for hs using ghc-mod
-        call dein#add('ujihisa/neco-ghc')
+        call dein#add('ujihisa/neco-ghc', { 'on_ft' : 'haskell'})
         "ghc-mod integration
-        call dein#add('eagletmt/ghcmod-vim.git')
+        call dein#add('eagletmt/ghcmod-vim.git', { 'on_ft' : 'haskell'})
         "type-related features
-        call dein#add('bitc/vim-hdevtools')
-        "better haskell syntax hi with better indenting
-        call dein#add('neg-serg/vim2hs')
+        call dein#add('bitc/vim-hdevtools', { 'on_ft' : 'haskell'})
+        if has("nvim")
+            call dein#add('neovimhaskell/haskell-vim', { 'on_ft' : 'haskell'})
+        else
+            "better haskell syntax hi with better indenting
+            call dein#add('neg-serg/vim2hs', { 'on_ft' : 'haskell'})
+        endif
     endif
     "--[ Ruby ]--------------------------------------------------------------------------------
     if has("ruby")
@@ -375,6 +410,12 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('joonty/vdebug', {'on_cmd': ['VdebugStart']})
     " html5 autocomplete and syntax
     call dein#add('othree/html5.vim', {'on_ft': ['html', 'htmldjango']})
+    "swig syntax highlighting
+    call dein#add('SpaceVim/vim-swig')
+    "perl support
+    call dein#add('WolfgangMehner/perl-support', {'on_ft' : 'perl'})
+    "perl omnicomplete
+    call dein#add('c9s/perlomni.vim', {'on_ft' : 'perl'})
     "expanding abbreviations similar to emmet
     call dein#add('mattn/emmet-vim')
     call dein#add('vim-perl/vim-perl', {'on_ft': ['perl']})
@@ -385,6 +426,10 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('oscarh/vimerl', {'on_ft': ['erlang']})
     "tiny swift support
     call dein#add('kballard/vim-swift', {'on_ft': ['swift']})
+    "crystal language support
+    call dein#add('rhysd/vim-crystal', {'on_ft' : 'crystal'})
+    "ocaml support
+    call dein#add('ocaml/merlin', {'on_ft' : 'ocaml', 'rtp' : 'vim/merlin'})
     "swift autocomplete
     if g:nvim_deopete == 1
         "deoplete support
@@ -435,6 +480,8 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('rsmenon/vim-mathematica.git', {'on_ft': ['mathematica']})
     "js highlighting
     call dein#add('jelera/vim-javascript-syntax.git', {'on_ft': ['javascript']})
+    "simple js indenter
+    call dein#add('jiangmiao/simple-javascript-indenter', {'on_ft': ['javascript']})
     "syntax, indent, and filetype plugin files for git
     call dein#add('tpope/vim-git') 
     "dockerfile hi
@@ -496,7 +543,13 @@ if dein#load_state("/home/neg/.vim/repos")
     "fancy icons for fonts
     call dein#add('ryanoasis/vim-devicons.git')
     "i3 syntax
-    call dein#add('PotatoesMaster/i3-vim-syntax')
+    call dein#add('PotatoesMaster/i3-vim-syntax', {'on_ft': ['i3']})
+    "markdown vim mode
+    call dein#add('rcmdnk/vim-markdown', {'on_ft': ['markdown']})
+    "additional ansible-yaml support
+    call dein#add('chase/vim-ansible-yaml', {'on_ft': ['yaml']})
+    "logstash configuration files
+    call dein#add('robbles/logstash.vim', {'on_ft': ['logstash']})
 endif
 call dein#end()
 call dein#save_state()
