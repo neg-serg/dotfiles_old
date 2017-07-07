@@ -65,7 +65,7 @@ apply_rename_(){
     fi
 
     result="$(dirname "${src}")/$(builtin print "${artist}-[${year}]-${album}")"
-    mv -vi "${src}" "${result}"
+    mv -i "${src}" "${result}"
     fix_names.pl -i "${result}"
     rmdir "${src}" 2> /dev/null
 }
