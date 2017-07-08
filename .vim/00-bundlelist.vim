@@ -403,6 +403,8 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Lisp-like ]---------------------------------------------------------------------------
     "better clojure support
     call dein#add('guns/vim-clojure-static')
+    "common lisp dev environment
+    call dein#add('l04m33/vlime', {'on_ft' : 'lisp', 'rtp': 'vim'})
     "--[ Misc Langs ]--------------------------------------------------------------------------
     if executable(resolve(expand("php")))
         if g:nvim_deopete == 1
@@ -483,10 +485,36 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Web ]-------------------------------------------------------------------------------
     "write html code faster
     call dein#add('rstacruz/sparkup.git', {'on_ft': ['html']})
-    "realtime markdown preview
-    call dein#add('Valloric/vim-instant-markdown', {'on_ft': ['markdown']})
+    "markdown vim mode
+    call dein#add('tpope/vim-markdown', {'on_ft': ['markdown']})
+    "vastly improved javascript indentation and syntax
+    call dein#add('pangloss/vim-javascript', { 'on_ft' : ['javascript']})
     "tern for vim
-    call dein#add('marijnh/tern_for_vim', {'on_ft': ['javascript']})
+    call dein#add('marijnh/tern_for_vim', { 'on_ft' : ['javascript'],
+        \ 'build' : 'npm install',
+        \ })
+    if has('nvim')
+        "deoplete tern support
+        call dein#add('carlitux/deoplete-ternjs', { 'on_ft' : ['javascript']})
+    endif
+    "syntax for js libs
+    call dein#add('othree/javascript-libraries-syntax.vim', { 'on_ft' : ['javascript','coffee','ls','typescript']})
+    "detect node.js
+    call dein#add('mmalecki/vim-node.js', { 'on_ft' : ['javascript']})
+    "even better js syntax
+    call dein#add('othree/yajs.vim', { 'on_ft' : ['javascript']})
+    "modern js syntax
+    call dein#add('othree/es.next.syntax.vim', { 'on_ft' : ['javascript']})
+    "neoformat formatter ;)
+    call dein#add('maksimr/vim-jsbeautify', { 'on_ft' : ['javascript']})
+    "highlight through quote syntax
+    call dein#add('joker1007/vim-markdown-quote-syntax', { 'on_ft' : 'markdown'})
+    "plugin to autogenerate table of contents for markdown
+    call dein#add('mzlogin/vim-markdown-toc',{ 'on_ft' : 'markdown'})
+    "markdown preview
+    call dein#add('iamcco/markdown-preview.vim',{ 'on_ft' : 'markdown'})
+    "mathjax support for markdown preview
+    call dein#add('iamcco/mathjax-support-for-mkdp',{ 'on_ft' : 'markdown'})
     "---------------[ Misc syntax ]----------------------------------------------------------
     " "syntax hi for tmux
     call dein#add('vimez/vim-tmux', {'on_ft': ['tmux']})
@@ -572,8 +600,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('ryanoasis/vim-devicons.git')
     "i3 syntax
     call dein#add('PotatoesMaster/i3-vim-syntax', {'on_ft': ['i3']})
-    "markdown vim mode
-    call dein#add('rcmdnk/vim-markdown', {'on_ft': ['markdown']})
     "additional ansible-yaml support
     call dein#add('chase/vim-ansible-yaml', {'on_ft': ['yaml']})
     "logstash configuration files
