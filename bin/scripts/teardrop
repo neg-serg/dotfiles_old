@@ -2,11 +2,12 @@
 
 main(){
     local sock_path="${HOME}/1st_level/teardrop.socket"
-    local tmux_console_counter="$(tmux -S "${sock_path}" list-sessions 2>/dev/null|awk -F ':' '/teardrop/ {print $1}')"
+    local tmux_console_counter
+    tmux_console_counter="$(tmux -S "${sock_path}" list-sessions 2>/dev/null|awk -F ':' '/teardrop/ {print $1}')"
     if [[ "${tmux_console_counter}" = "teardrop" ]]; then
-        tmux -S ${sock_path} a
+        tmux -S "${sock_path}" a
     else
-        tmux -S ${sock_path} new -s teardrop -n pulsemixer pulsemixer \; neww -n glances glances
+        tmux -S "${sock_path}" new -s teardrop -n pulsemixer pulsemixer \; neww -n glances glances \; neww -n stig stig \; select-window -t 1
     fi
 }
 
