@@ -120,8 +120,9 @@ if dein#load_state("/home/neg/.vim/repos")
     "-----------------------------------------------------------------------------------------
     "stack trace parser
     call dein#add('mattboehm/vim-unstack')
+    "jump for vim ids without tags
+    call dein#add('mhinz/vim-lookup')
     "generate config for ycm
-    "ascii to colors
     call dein#add('rdnetto/YCM-Generator')
     "automake dir which didnt exists
     call dein#add('mopp/autodirmake.vim.git')
@@ -130,6 +131,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "for different case coersion
     call dein#add('tpope/vim-abolish')
     if g:nvim_deopete == 1
+        "modern vim autocomplete
         call dein#add('Shougo/neco-vim')
     else
         "autocompletion for VimL
