@@ -5,6 +5,8 @@ if bufname('%') == ''
 endif
 
 let g:impact_transbg=1
+let g:enable_cursorline=0
+let g:enable_cursorcolumn=0
 
 let s:nvim_colorscheme = "mirodark"
 
@@ -27,6 +29,10 @@ set concealcursor=i
 
 if (has('win16') || has('win32') || has('win64'))
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
+if has('filterpipe')
+    set noshelltemp
 endif
 
 " Options initiating with ?m?
@@ -210,6 +216,8 @@ if has('user_commands')
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
     command! -nargs=0 Sw :SudoWrite
+    command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+                \ | wincmd p | diffthis
     "command! -nargs=0 curf let @+=expand("%:p")
 endif
 "----------------------------------------------------------------------------
