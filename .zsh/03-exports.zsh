@@ -38,7 +38,7 @@ export PYTHONIOENCODING='utf-8'
 export GREP_COLOR='37;45'
 export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 
-for q in vim nvim vi; 
+for q in nvim vim vi; 
     { [[ -n ${commands}[(I)${q}] ]] \
     && export EDITOR=${q}; break }
 export VISUAL="nvr"
