@@ -41,7 +41,7 @@ export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 for q in vim nvim vi; 
     { [[ -n ${commands}[(I)${q}] ]] \
     && export EDITOR=${q}; break }
-export VISUAL="${SCRIPT_HOME}/v_standalone"
+export VISUAL="nvr"
 
 export INPUTRC="${XDG_CONFIG_HOME}/inputrc"
 export BROWSER="firefox"
