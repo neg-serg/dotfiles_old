@@ -41,7 +41,7 @@ export GREP_COLORS='ms=0;32:mc=1;33:sl=:cx=:fn=1;32:ln=1;36:bn=36:se=1;30'
 for q in nvim vim vi; 
     { [[ -n ${commands}[(I)${q}] ]] \
     && export EDITOR=${q}; break }
-if [[ "$(which nvr)" ]]; then
+if which nvr > /dev/null; then
     export VISUAL="nvr"
 else
     for q in nvim vim vi; 
