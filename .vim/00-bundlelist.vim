@@ -357,9 +357,13 @@ if dein#load_state("/home/neg/.vim/repos")
         endif
     endif
     "--[ Nim ]---------------------------------------------------------------------------------
-    if has("nvim")
-        "nim support for vim and advanced support for neovim
-        call dein#add('baabelfish/nvim-nim')
+    if has("nvim") && has("use_nim")
+        if executable(resolve(expand("nim"))) && executable(resolve(expand("nimble"))) 
+            "nim support for vim and advanced support for neovim
+            call dein#add('baabelfish/nvim-nim')
+            "syntax file for nim
+            call dein#add('zah/nim.vim', {'on_ft': ['nim']})
+        endif
     endif
     "--[ Haskell ]-----------------------------------------------------------------------------
     if executable(resolve(expand("ghci")))
@@ -549,8 +553,6 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('fatih/vim-nginx', {'on_ft': ['nginx']})
     "syntax file for irc logs
     call dein#add('trapd00r/irc.vim')
-    "syntax file for nim
-    call dein#add('zah/nim.vim', {'on_ft': ['nim']})
     "pretty markdown-like look
     call dein#add('junegunn/vim-journal')
     "sxhkd config syntax
