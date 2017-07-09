@@ -16,7 +16,6 @@ pulseaudio --start &
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-source "${XDG_CONFIG_HOME}/xinit/touchpad.zsh"
 source "${XDG_CONFIG_HOME}/xinit/keyboard_and_mouse.zsh"
 source "${XDG_CONFIG_HOME}/xinit/cursor_swarp.zsh"
 source "${XDG_CONFIG_HOME}/xinit/compositing.zsh"
