@@ -1,4 +1,5 @@
 let g:nvim_deopete=1
+let g:nvim_deopete_clang2=1
 let g:nvim_deopete_clang=0
 let g:intellij_complete=1
 let g:want_airline=0
@@ -24,7 +25,9 @@ if dein#load_state("/home/neg/.vim/repos")
           \ 'loadconf' : 1,
           \ })
         if executable(resolve(expand("clang")))
-            if g:nvim_deopete_clang == 1
+            if g:nvim_deopete_clang2 == 1
+                call dein#add('tweekmonster/deoplete-clang2')
+            elseif g:nvim_deopete_clang == 1
                 call dein#add('zchee/deoplete-clang')
             else
                 call dein#add('Rip-Rip/clang_complete')
@@ -148,7 +151,7 @@ if dein#load_state("/home/neg/.vim/repos")
         "to handle branches/merge conflicts
         call dein#add('idanarye/vim-merginal.git') 
         "yet another git commit browser
-        call dein#add('junegunn/gv.vim') 
+        call dein#add('junegunn/gv.vim', { 'on_cmd' : 'GV'}) 
         "diff directories easyer with vim
         call dein#add('vim-scripts/DirDiff.vim.git') 
         if has("ololo")
@@ -583,6 +586,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('chase/focuspoint-vim')
         "solarized with better neovim support
         call dein#add('icymind/NeoSolarized')
+        "dracula colorscheme
+        call dein#add('dracula/vim')
         "dark and cold colorscheme
         call dein#add('arcticicestudio/nord-vim')
     endif
