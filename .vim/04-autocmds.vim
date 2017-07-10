@@ -231,3 +231,112 @@ endif
 " enter will work in command edit mode as intended, since by default it's
 " mapped to :nohl
 autocmd vimrc CmdwinEnter * noremap <buffer><CR> <CR>
+if has("nvim")
+    augroup Terminal
+        au!
+        au TermOpen * let g:last_terminal_job_id = b:terminal_job_id | IndentLinesDisable
+        au BufWinEnter term://* startinsert | IndentLinesDisable
+    augroup END
+    augroup nvimrc_aucmd
+        autocmd!
+        autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
+    augroup END
+endif
+
+" if get(g:, 'lint_on_save', 1)
+"     augroup Neomake_on_save
+"         au!
+"         autocmd! BufWritePost * call s:neomake()
+"     augroup END
+" endif
+
+" let g:__toggle_syntax_flag = 1
+
+" function! s:neomake() abort
+"     if g:__toggle_syntax_flag == 1
+"         Neomake
+"     endif
+" endfunction
+
+" if get(g:, 'lint_on_the_fly', 0)
+"     let g:neomake_tempfile_enabled = 1
+"     let g:neomake_open_list = 0
+"     augroup Neomake_on_the_fly
+"         au!
+"         autocmd! TextChangedI * call s:neomake()
+"     augroup END
+" endif
+
+" augroup Neomake_on_save
+"     au!
+"     autocmd! BufWritePost * call s:neomake()
+" augroup END
+
+" augroup Vim_core
+"     au!
+"     autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
+"             \   q :cclose<cr>:lclose<cr>
+"     autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
+"             \   bd|
+"             \   q | endif
+"     autocmd FileType html,css,jsp EmmetInstall
+"     autocmd BufRead,BufNewFile *.pp setfiletype puppet
+"     if g:enable_cursorline == 1
+"         autocmd BufEnter,WinEnter,InsertLeave * setl cursorline
+"         autocmd BufLeave,WinLeave,InsertEnter * setl nocursorline
+"     endif
+"     if g:enable_cursorcolumn == 1
+"         autocmd BufEnter,WinEnter,InsertLeave * setl cursorcolumn
+"         autocmd BufLeave,WinLeave,InsertEnter * setl nocursorcolumn
+"     endif
+"     autocmd BufReadPost *
+"             \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"             \   exe "normal! g`\"" |
+"             \ endif
+"     autocmd BufNewFile,BufEnter * set cpoptions+=d " NOTE: ctags find the tags file from the current path instead of the path of currect file
+"     autocmd BufEnter * :syntax sync fromstart " ensure every file does syntax highlighting (full)
+"     autocmd BufNewFile,BufRead *.avs set syntax=avs " for avs syntax file.
+"     autocmd FileType text setlocal textwidth=78 " for all text files set 'textwidth' to 78 characters.
+"     autocmd FileType c,cpp,cs,swig set nomodeline " this will avoid bug in my project with namespace ex, the vim will tree ex:: as modeline.
+"     autocmd FileType c,cpp,java,javascript set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f://
+"     autocmd FileType cs set comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,f:///,f://
+"     autocmd FileType vim set comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",f:\"
+"     autocmd FileType lua set comments=f:--
+"     autocmd FileType vim setlocal foldmethod=marker
+"     autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"     autocmd Filetype html setlocal omnifunc=htmlcomplete#CompleteTags
+"     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"     autocmd FileType xml call XmlFileTypeInit()
+"     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"     autocmd FileType python,coffee call zvim#util#check_if_expand_tab()
+" augroup END
+
+" " Instead of reverting the cursor to the last position in the buffer, we
+" " set it to the first line when editing a git commit message
+" au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+" " disable touchpad when typing
+" if executable('synclient')
+"     let s:touchpadoff = 0
+"     autocmd InsertEnter * call s:disable_touchpad()
+"     autocmd InsertLeave * call s:enable_touchpad()
+"     autocmd FocusLost * call system('synclient touchpadoff=0')
+"     autocmd FocusGained * call s:reload_touchpad_status()
+" endif
+
+" function! s:reload_touchpad_status() abort
+"     if s:touchpadoff
+"         call s:disable_touchpad()
+"     endif
+" endf
+" function! s:disable_touchpad() abort
+"     let s:touchpadoff = 1
+"     call system('synclient touchpadoff=1')
+" endfunction
+" function! s:enable_touchpad() abort
+"     let s:touchpadoff = 0
+"     call system('synclient touchpadoff=0')
+" endfunction
