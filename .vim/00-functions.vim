@@ -381,3 +381,13 @@ endfunction
 function! DequoteLang()
     %s/[‘’]/'/|s/[“”¿¿]/\"/
 endfunction
+
+function! Ienter() abort
+if pumvisible()
+    return "\<c-y>"
+elseif getline('.')[col('.') - 2]==#'{'&&getline('.')[col('.')-1]==#'}'
+    return "\<Enter>\<esc>ko"
+else
+    return "\<Enter>"
+endif
+endfunction
