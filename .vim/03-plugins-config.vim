@@ -259,8 +259,9 @@ endif
 if dein#tap('syntastic')
     " '⚡' '😱' '✗' '➽'
     " ⚑ ⚐ ♒ ⛢ ❕ ❗
-    let g:syntastic_error_symbol='✗'
-    let g:syntastic_warning_symbol='⚠'
+    " ✖ ➤
+    let g:syntastic_error_symbol='✖'
+    let g:syntastic_warning_symbol='➤'
     let g:syntastic_style_error_symbol  = '⚡'
     let g:syntastic_style_warning_symbol  = '⚡'
     let g:syntastic_python_pylint_exe = "pylint2"
@@ -294,7 +295,18 @@ endif
 " │ https://github.com/Shougo/deoplete.nvim                                           │
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('deopete')
+    let g:deoplete#ignore_sources = {}
+    let g:deoplete#omni#input_patterns = {}
+    let g:deoplete#omni_patterns = {}
+
     let g:deoplete#enable_at_startup=1
+    let g:deoplete#enable_ignore_case = 1
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#enable_camel_case = 1
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#max_abbr_width = 0
+    let g:deoplete#max_menu_width = 0
+
     let g:deoplete#complete_method="complete"
     let g:deoplete#enable_camel_case=1
     let g:deoplete#max_list=500
@@ -316,6 +328,71 @@ if dein#tap('deopete')
     function! s:my_cr_function() abort
         return deoplete#close_popup() . "\<CR>"
     endfunction
+    " java && jsp
+    let g:deoplete#omni#input_patterns.java = [
+                \'[^. \t0-9]\.\w*',
+                \'[^. \t0-9]\->\w*',
+                \'[^. \t0-9]\::\w*',
+                \]
+    let g:deoplete#omni#input_patterns.jsp = ['[^. \t0-9]\.\w*']
+    if g:spacevim_enable_javacomplete2_py
+        let g:deoplete#ignore_sources.java = ['omni']
+        call deoplete#custom#set('javacomplete2', 'mark', '')
+    else
+        let g:deoplete#ignore_sources.java = ['javacomplete2']
+        call deoplete#custom#set('omni', 'mark', '')
+    endif
+
+    " go
+    let g:deoplete#ignore_sources.go = ['omni']
+    call deoplete#custom#set('go', 'mark', '')
+    call deoplete#custom#set('go', 'rank', 9999)
+
+    " perl
+    let g:deoplete#omni#input_patterns.perl = [
+                \'[^. \t0-9]\.\w*',
+                \'[^. \t0-9]\->\w*',
+                \'[^. \t0-9]\::\w*',
+                \]
+
+    " javascript
+    "let g:deoplete#omni#input_patterns.javascript = get(g:deoplete#omni#input_patterns, 'javascript', ['[^. \t0-9]\.\w*'])
+    let g:deoplete#ignore_sources.javascript = ['omni']
+    call deoplete#custom#set('ternjs', 'mark', 'tern')
+    call deoplete#custom#set('ternjs', 'rank', 9999)
+
+    " php
+    let g:deoplete#omni#input_patterns.php = [
+                \'[^. \t0-9]\.\w*',
+                \'[^. \t0-9]\->\w*',
+                \'[^. \t0-9]\::\w*',
+                \]
+    let g:deoplete#ignore_sources.php = ['phpcd', 'around', 'member']
+    "call deoplete#custom#set('phpcd', 'mark', '')
+    "call deoplete#custom#set('phpcd', 'input_pattern', '\w*|[^. \t]->\w*|\w*::\w*')
+
+    " gitcommit
+    let g:deoplete#omni#input_patterns.gitcommit = 'gitcommit', [
+                \'[ ]#[ 0-9a-zA-Z]*',
+                \]
+
+    " lua
+    let g:deoplete#omni_patterns.lua = 'lua', '.'
+
+    " c c++
+    call deoplete#custom#set('clang2', 'mark', '')
+    let g:deoplete#ignore_sources.c = 'c', ['omni']
+
+    " rust
+    let g:deoplete#ignore_sources.rust = 'rust', ['omni']
+    call deoplete#custom#set('racer', 'mark', '')
+
+    " public settings
+    call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+    let g:deoplete#ignore_sources._ = get(g:deoplete#ignore_sources, '_', ['around'])
+    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    set isfname-==
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Valloric/YouCompleteMe.git                                               │
@@ -448,6 +525,10 @@ if dein#tap('tagbar')
             \ 'F:singleton methods'
         \ ]
 	\ }
+    let g:tagbar_width = 30
+    let g:tagbar_left = 0
+    let g:tagbar_sort = 0
+    let g:tagbar_compact = 1
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - derekwyatt/vim-fswitch.git                                               │
@@ -542,6 +623,82 @@ endif
 " └───────────────────────────────────────────────────────────────────────────────────┘
 if dein#tap('vimfiler.vim')
     let g:vimfiler_as_default_explorer = 1
+"     let g:vimfiler_restore_alternate_file = 1
+"     let g:vimfiler_tree_indentation = 1
+"     let g:vimfiler_tree_leaf_icon = ''
+"     let g:vimfiler_tree_opened_icon = '▼'
+"     let g:vimfiler_tree_closed_icon = '▷'
+"     let g:vimfiler_file_icon = ''
+"     let g:vimfiler_readonly_file_icon = '*'
+"     let g:vimfiler_marked_file_icon = '√'
+"     let g:vimfiler_direction = 'rightbelow'
+"     let g:vimfiler_ignore_pattern = [
+"         \ '^\.git$',
+"         \ '^\.DS_Store$',
+"         \ '^\.init\.vim-rplugin\~$',
+"         \ '^\.netrwhist$',
+"         \ '\.class$'
+"         \]
+
+"     let g:vimfiler_quick_look_command = 'gloobus-preview'
+
+"     function! s:setcolum() abort
+"         return 'filetypeicon:gitstatus'
+"     endfunction
+
+"     call vimfiler#custom#profile('default', 'context', {
+"         \ 'explorer' : 1,
+"         \ 'winwidth' : 15,
+"         \ 'winminwidth' : 30,
+"         \ 'toggle' : 1,
+"         \ 'auto_expand': 1,
+"         \ 'direction' : g:vimfiler_direction,
+"         \ 'explorer_columns' : s:setcolum(),
+"         \ 'parent': 0,
+"         \ 'status' : 1,
+"         \ 'safe' : 0,
+"         \ 'split' : 1,
+"         \ 'hidden': 1,
+"         \ 'no_quit' : 1,
+"         \ 'force_hide' : 0,
+"         \ })
+
+"     augroup vfinit
+"     au!
+"     autocmd FileType vimfiler call s:vimfilerinit()
+"     autocmd BufEnter * if (!has('vim_starting') && winnr('$') == 1 && &filetype ==# 'vimfiler') |
+"             \ q | endif
+"     augroup END
+"     function! s:vimfilerinit()
+"     setl nonumber
+"     setl norelativenumber
+
+"     silent! nunmap <buffer> <Space>
+"     silent! nunmap <buffer> <C-l>
+"     silent! nunmap <buffer> <C-j>
+"     silent! nunmap <buffer> E
+"     silent! nunmap <buffer> gr
+"     silent! nunmap <buffer> gf
+"     silent! nunmap <buffer> -
+"     silent! nunmap <buffer> s
+
+"     nnoremap <silent><buffer> gr  :<C-u>Denite grep:<C-R>=<SID>selected()<CR> -buffer-name=grep<CR>
+"     nnoremap <silent><buffer> gf  :<C-u>Denite file_rec:<C-R>=<SID>selected()<CR><CR>
+"     nnoremap <silent><buffer> gd  :<C-u>call <SID>change_vim_current_dir()<CR>
+"     nnoremap <silent><buffer><expr> sg  vimfiler#do_action('vsplit')
+"     nnoremap <silent><buffer><expr> sv  vimfiler#do_action('split')
+"     nnoremap <silent><buffer><expr> st  vimfiler#do_action('tabswitch')
+"     nmap <buffer> gx      <Plug>(vimfiler_execute_vimfiler_associated)
+"     nmap <buffer> '       <Plug>(vimfiler_toggle_mark_current_line)
+"     nmap <buffer> v       <Plug>(vimfiler_quick_look)
+"     nmap <buffer> p       <Plug>(vimfiler_preview_file)
+"     nmap <buffer> V       <Plug>(vimfiler_clear_mark_all_lines)
+"     nmap <buffer> i       <Plug>(vimfiler_switch_to_history_directory)
+"     nmap <buffer> <Tab>   <Plug>(vimfiler_switch_to_other_window)
+"     nmap <buffer> <C-r>   <Plug>(vimfiler_redraw_screen)
+"     nmap <buffer> <Left>  <Plug>(vimfiler_smart_h)
+"     nmap <buffer> <Right> <Plug>(vimfiler_smart_l)
+"     endf
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - benmills/vimux                                                           │
@@ -853,7 +1010,7 @@ if dein#tap('lightline.vim')
         \ 'component_type': {
         \   'syntastic': 'error',
         \ },
-        \ 'colorscheme': 'onedark',
+        \ 'colorscheme': 'Dracula',
         \ 'separator': { 'left': '▒', 'right': '▒' },
         \ 'subseparator': { 'left': '┆', 'right': '┆' }
     \ }
@@ -915,6 +1072,218 @@ if dein#tap('lightline.vim')
             \ &ft == 'vimshell' ? 'VimShell' :
             \ winwidth(0) > 60 ? lightline#mode() : ''
     endfunction
+
+    augroup LightLineColorscheme
+        autocmd!
+        autocmd ColorScheme * call s:lightline_update()
+    augroup END
+    function! s:lightline_update()
+        if !exists('g:loaded_lightline')
+            return
+        endif
+        try
+            if g:colors_name =~# 'wombat\|solarized\|landscape\|jellybeans\|Tomorrow\|dracula'
+                let g:lightline.colorscheme = substitute(substitute(g:colors_name, '-', '_', 'g'), '256.*', '', '') .
+                            \ (g:colors_name ==# 'solarized' ? '_' . &background : '')
+                call lightline#init()
+                call lightline#colorscheme()
+                call lightline#update()
+            endif
+        catch
+        endtry
+    endfunction
+
+endif
+
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - mhinz/vim-startify                                                       │
+" │ https://github.com/mhinz/vim-startify                                             │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap("vim-startify")
+    let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
+    let g:startify_files_number = 6
+    let g:startify_list_order = [
+        \ ['   My most recently used files in the current directory:'],
+        \ 'dir',
+        \ ['   My most recently used files:'],
+        \ 'files',
+        \ ['   These are my sessions:'],
+        \ 'sessions',
+        \ ['   These are my bookmarks:'],
+        \ 'bookmarks',
+        \ ]
+    let g:startify_update_oldfiles = 1
+    let g:startify_disable_at_vimenter = 1
+    let g:startify_session_autoload = 1
+    let g:startify_session_persistence = 1
+    let g:startify_change_to_dir = 0
+    let g:startify_skiplist = [
+        \ 'COMMIT_EDITMSG',
+        \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
+        \ 'bundle/.*/doc',
+        \ ]
+    augroup startify_map
+    au!
+    autocmd FileType startify nnoremap <buffer> <F2> <Nop>
+    autocmd FileType startify setl scrolloff=0 nowrap
+    augroup END
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - neomake/neomake                                                          │
+" │ https://github.com/neomake/neomake                                                │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('neomake')
+    " 1 open list and move cursor 2 open list without move cursor
+    let g:neomake_open_list = 2
+    let g:neomake_verbose = 0
+    let g:neomake_error_sign = {
+        \ 'text': '✖',
+        \ 'texthl': 'error',
+        \ }
+    let g:neomake_warning_sign = {
+        \ 'text': '➤',
+        \ 'texthl': 'todo',
+        \ }
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - fatih/vim-go.git                                                         │
+" │ https://github.com/fatih/vim-go.git                                               │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vim-go')
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+    let g:go_fmt_command = 'goimports'
+    let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+    let g:go_snippet_engine = 'UltiSnips'
+    augroup Go
+        au!
+        au FileType go nmap <Buffer><silent><Leader>s <Plug>(go-implements)
+        au FileType go nmap <Buffer><silent><Leader>i <Plug>(go-info)
+        au FileType go nmap <Buffer><silent><Leader>e <Plug>(go-rename)
+        au FileType go nmap <Buffer><silent><Leader>r <Plug>(go-run)
+        au FileType go nmap <Buffer><silent><Leader>b <Plug>(go-build)
+        au FileType go nmap <Buffer><silent><Leader>t <Plug>(go-test)
+        au FileType go nmap <Buffer><silent><Leader>gd <Plug>(go-doc)
+        au FileType go nmap <Buffer><silent><Leader>gv <Plug>(go-doc-vertical)
+        au FileType go nmap <Buffer><silent><Leader>co <Plug>(go-coverage)
+    augroup END
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - l04m33/vlime                                                             │
+" │ https://github.com/l04m33/vlime                                                   │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vlime')
+    "vlime default config taken from spacevim
+    let g:vlime_default_mappings = {
+        \ 'lisp': [
+        \ ['i', '<space>', '<space><c-r>=VlimeKey("space")<cr>'],
+        \ ['i', '<cr>', '<cr><c-r>=VlimeKey("cr")<cr>'],
+        \ ['i', '<tab>', '<c-r>=VlimeKey("tab")<cr>'],
+        \
+        \ ['n', '<LocalLeader>wp', ':call VlimeCloseWindow("preview")<cr>'],
+        \ ['n', '<LocalLeader>wr', ':call VlimeCloseWindow("arglist")<cr>'],
+        \ ['n', '<LocalLeader>wn', ':call VlimeCloseWindow("notes")<cr>'],
+        \ ['n', '<LocalLeader>wR', ':call VlimeCloseWindow("repl")<cr>'],
+        \ ['n', '<LocalLeader>wA', ':call VlimeCloseWindow("")<cr>'],
+        \ ['n', '<LocalLeader>wl', ':call VlimeCloseWindow()<cr>'],
+        \
+        \ ['n', '<LocalLeader>i', ':call VlimeInteractionMode()<cr>'],
+        \ ['n', '<LocalLeader>l', ':call VlimeLoadFile(expand("%:p"))<cr>'],
+        \ ['n', '<LocalLeader>a', ':call VlimeDisassembleForm(vlime#ui#CurExpr())<cr>'],
+        \ ['n', '<LocalLeader>p', ':call VlimeSetPackage()<cr>'],
+        \ ['n', '<LocalLeader>b', ':call VlimeSetBreakpoint()<cr>'],
+        \ ['n', '<LocalLeader>t', ':call VlimeListThreads()<cr>'],
+        \ ],
+        \
+        \ 'sldb': [
+        \ ['n', '<cr>', ':call vlime#ui#sldb#ChooseCurRestart()<cr>'],
+        \ ['n', 'd', ':call vlime#ui#sldb#ShowFrameDetails()<cr>'],
+        \ ['n', 'S', ':<c-u>call vlime#ui#sldb#OpenFrameSource()<cr>'],
+        \ ['n', 'T', ':call vlime#ui#sldb#OpenFrameSource("tabedit")<cr>'],
+        \ ['n', 'r', ':call vlime#ui#sldb#RestartCurFrame()<cr>'],
+        \ ['n', 's', ':call vlime#ui#sldb#StepCurOrLastFrame("step")<cr>'],
+        \ ['n', 'x', ':call vlime#ui#sldb#StepCurOrLastFrame("next")<cr>'],
+        \ ['n', 'o', ':call vlime#ui#sldb#StepCurOrLastFrame("out")<cr>'],
+        \ ['n', 'c', ':call b:vlime_conn.SLDBContinue()<cr>'],
+        \ ['n', 'a', ':call b:vlime_conn.SLDBAbort()<cr>'],
+        \ ['n', 'C', ':call vlime#ui#sldb#InspectCurCondition()<cr>'],
+        \ ['n', 'i', ':call vlime#ui#sldb#InspectInCurFrame()<cr>'],
+        \ ['n', 'e', ':call vlime#ui#sldb#EvalStringInCurFrame()<cr>'],
+        \ ['n', 'D', ':call vlime#ui#sldb#DisassembleCurFrame()<cr>'],
+        \ ['n', 'R', ':call vlime#ui#sldb#ReturnFromCurFrame()<cr>'],
+        \ ],
+        \
+        \ 'repl': [
+        \ ['n', '<c-c>', ':call b:vlime_conn.Interrupt({"name": "REPL-THREAD", "package": "KEYWORD"})<cr>'],
+        \ ['n', '<LocalLeader>I', ':call vlime#ui#repl#InspectCurREPLPresentation()<cr>'],
+        \ ['n', '<LocalLeader>y', ':call vlime#ui#repl#YankCurREPLPresentation()<cr>'],
+        \ ['n', '<LocalLeader>C', ':call vlime#ui#repl#ClearREPLBuffer()<cr>'],
+        \ ],
+        \
+        \ 'inspector': [
+        \ ['n', ['<cr>', '<space>'], ':call vlime#ui#inspector#InspectorSelect()<cr>'],
+        \ ['n', ['<c-n>', '<tab>'], ':call vlime#ui#inspector#NextField(v:true)<cr>'],
+        \ ['n', '<c-p>', ':call vlime#ui#inspector#NextField(v:false)<cr>'],
+        \ ['n', 'p', ':call vlime#ui#inspector#InspectorPop()<cr>'],
+        \ ['n', 'R', ':call b:vlime_conn.InspectorReinspect({c, r -> c.ui.OnInspect(c, r, v:null, v:null)})<cr>'],
+        \ ],
+        \
+        \ 'xref': [
+        \ ['n', '<cr>', ':<c-u>call vlime#ui#xref#OpenCurXref()<cr>'],
+        \ ['n', 't', ':<c-u>call vlime#ui#xref#OpenCurXref(v:true, "tabedit")<cr>'],
+        \ ['n', 's', ':<c-u>call vlime#ui#xref#OpenCurXref(v:true, "split")<cr>'],
+        \ ['n', 'S', ':<c-u>call vlime#ui#xref#OpenCurXref(v:true, "vsplit")<cr>'],
+        \ ],
+        \
+        \ 'notes': [
+        \ ['n', '<cr>', ':<c-u>call vlime#ui#compiler_notes#OpenCurNote()<cr>'],
+        \ ['n', 't', ':<c-u>call vlime#ui#compiler_notes#OpenCurNote("tabedit")<cr>'],
+        \ ['n', 's', ':<c-u>call vlime#ui#compiler_notes#OpenCurNote("split")<cr>'],
+        \ ['n', 'S', ':<c-u>call vlime#ui#compiler_notes#OpenCurNote("vsplit")<cr>'],
+        \ ],
+        \
+        \ 'threads': [
+        \ ['n', '<c-c>', ':call vlime#ui#threads#InterruptCurThread()<cr>'],
+        \ ['n', 'K', ':call vlime#ui#threads#KillCurThread()<cr>'],
+        \ ['n', 'D', ':call vlime#ui#threads#DebugCurThread()<cr>'],
+        \ ['n', 'r', ':call vlime#ui#threads#Refresh()<cr>'],
+        \ ],
+        \
+        \ 'server': [
+        \ ['n', '<LocalLeader>c', ':call VlimeConnectToCurServer()<cr>'],
+        \ ['n', '<LocalLeader>s', ':call VlimeStopCurServer()<cr>'],
+        \ ],
+        \
+        \ 'input': [
+        \ ['n', '<c-p>', ':call vlime#ui#input#NextHistoryItem("backward")<cr>'],
+        \ ['n', '<c-n>', ':call vlime#ui#input#NextHistoryItem("forward")<cr>'],
+        \ ],
+        \ }
+endif
+" ┌───────────────────────────────────────────────────────────────────────────────────┐
+" │ plugin - tpope/vim-markdown                                                       │
+" │ https://github.com/tpope/vim-markdown                                             │
+" └───────────────────────────────────────────────────────────────────────────────────┘
+if dein#tap('vim-markdown')
+    let g:markdown_minlines = 100
+    let g:markdown_syntax_conceal = 0
+    let g:markdown_enable_mappings = 0
+    let g:markdown_enable_insert_mode_leader_mappings = 0
+    let g:markdown_enable_spell_checking = 0
+    let g:markdown_quote_syntax_filetypes = {
+                \ "vim" : {
+                \   "start" : "\\%(vim\\|viml\\)",
+                \},
+                \}
+    if dein#tap('markdown-preview.vim')
+        if executable('firefox')
+            let g:mkdp_path_to_chrome= get(g:, 'mkdp_path_to_chrome', 'firefox')
+        endif
+    endif
 endif
 " ┌───────────────────────────────────────────────────────────────────────────────────┐
 " │ plugin - Shougo/denite.nvim                                                       │
@@ -977,24 +1346,117 @@ if dein#tap('denite.nvim')
     nnoremap <silent><Leader>. :Denite file_mru<CR>
 endif
 
-let g:projectionist_heuristics = {
-      \   '*': {
-      \     '*.c': {
-      \       'alternate': '{}.h',
-      \       'type': 'source'
-      \     },
-      \     '*.h': {
-      \       'alternate': '{}.c',
-      \       'type': 'header'
-      \     },
-      \
-      \     '*.js': {
-      \       'alternate': '{dirname}/__tests__/{basename}-test.js',
-      \       'type': 'source'
-      \     },
-      \     '**/__tests__/*-test.js': {
-      \       'alternate': '{dirname}/{basename}.js',
-      \       'type': 'test'
-      \     }
-      \   }
-      \ }
+" let s:denite_options = {
+"       \ 'default' : {
+"       \ 'winheight' : 15,
+"       \ 'mode' : 'insert',
+"       \ 'quit' : 'true',
+"       \ 'highlight_matched_char' : 'MoreMsg',
+"       \ 'highlight_matched_range' : 'MoreMsg',
+"       \ 'direction': 'rightbelow',
+"       \ 'statusline' : 0,
+"       \ 'prompt' : '➭',
+"       \ }}
+
+" function! s:profile(opts) abort
+"   for fname in keys(a:opts)
+"     for dopt in keys(a:opts[fname])
+"       call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+"     endfor
+"   endfor
+" endfunction
+
+" call s:profile(s:denite_options)
+
+" " buffer source
+" call denite#custom#var(
+"       \ 'buffer',
+"       \ 'date_format', '%m-%d-%Y %H:%M:%S')
+
+" " denite command
+" if executable('rg')
+"     " For ripgrep
+"     " Note: It is slower than ag
+"     call denite#custom#var('file_rec', 'command',
+"                 \ ['rg', '--hidden', '--files', '--glob', '!.git', '--glob', '']
+"                 \ )
+" endif
+
+" if executable('rg')
+"   " Ripgrep command on grep source
+"   call denite#custom#var('grep', 'command', ['rg'])
+"   call denite#custom#var('grep', 'default_opts',
+"         \ ['--vimgrep', '--no-heading'])
+"   call denite#custom#var('grep', 'recursive_opts', [])
+"   call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+"   call denite#custom#var('grep', 'separator', ['--'])
+"   call denite#custom#var('grep', 'final_opts', [])
+" endif
+
+" " enable unite menu compatibility
+" call denite#custom#var('menu', 'unite_source_menu_compatibility', 1)
+
+" " KEY MAPPINGS
+" let s:insert_mode_mappings = [
+"       \  ['jk', '<denite:enter_mode:normal>', 'noremap'],
+"       \ ['<Tab>', '<denite:move_to_next_line>', 'noremap'],
+"       \ ['<S-tab>', '<denite:move_to_previous_line>', 'noremap'],
+"       \  ['<Esc>', '<denite:enter_mode:normal>', 'noremap'],
+"       \  ['<C-N>', '<denite:assign_next_matched_text>', 'noremap'],
+"       \  ['<C-P>', '<denite:assign_previous_matched_text>', 'noremap'],
+"       \  ['<Up>', '<denite:assign_previous_text>', 'noremap'],
+"       \  ['<Down>', '<denite:assign_next_text>', 'noremap'],
+"       \  ['<C-Y>', '<denite:redraw>', 'noremap'],
+"       \ ]
+
+" let s:normal_mode_mappings = [
+"       \   ["'", '<denite:toggle_select_down>', 'noremap'],
+"       \   ['<C-n>', '<denite:jump_to_next_source>', 'noremap'],
+"       \   ['<C-p>', '<denite:jump_to_previous_source>', 'noremap'],
+"       \   ['gg', '<denite:move_to_first_line>', 'noremap'],
+"       \   ['st', '<denite:do_action:tabopen>', 'noremap'],
+"       \   ['sg', '<denite:do_action:vsplit>', 'noremap'],
+"       \   ['sv', '<denite:do_action:split>', 'noremap'],
+"       \   ['q', '<denite:quit>', 'noremap'],
+"       \   ['r', '<denite:redraw>', 'noremap'],
+"       \ ]
+
+" for s:m in s:insert_mode_mappings
+"   call denite#custom#map('insert', s:m[0], s:m[1], s:m[2])
+" endfor
+" for s:m in s:normal_mode_mappings
+"   call denite#custom#map('normal', s:m[0], s:m[1], s:m[2])
+" endfor
+
+" unlet s:m s:insert_mode_mappings s:normal_mode_mappings
+
+" let g:projectionist_heuristics = {
+"       \   '*': {
+"       \     '*.c': {
+"       \       'alternate': '{}.h',
+"       \       'type': 'source'
+"       \     },
+"       \     '*.h': {
+"       \       'alternate': '{}.c',
+"       \       'type': 'header'
+"       \     },
+"       \
+"       \     '*.js': {
+"       \       'alternate': '{dirname}/__tests__/{basename}-test.js',
+"       \       'type': 'source'
+"       \     },
+"       \     '**/__tests__/*-test.js': {
+"       \       'alternate': '{dirname}/{basename}.js',
+"       \       'type': 'test'
+"       \     }
+"       \   }
+"       \ }
+
+let g:racer_experimental_completer = 1
+let g:racer_cmd = $HOME.'/.cargo/bin/racer'
+augroup spacevim_layer_lang_rust
+    au FileType rust nmap <buffer><silent> gd <Plug>(rust-def)
+    au FileType rust nmap <buffer><silent> gs <Plug>(rust-def-split)
+    au FileType rust nmap <buffer><silent> gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <buffer><silent> <leader>gd <Plug>(rust-doc)
+augroup END
