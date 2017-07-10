@@ -240,7 +240,14 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 
 alias cal="task calendar"
 alias Cal="${SCRIPT_HOME}/dzen/time-date"
-alias {{h,}top,lk}="{[[ -x $(which glances)  ]] && glances} || htop || top"
+
+if hash grances >/dev/null; then
+    alias {{h,}top,lk}=glances
+elif hash htop >/dev/null; then
+    alias {{h,}top,lk}=htop
+elif hash top >/dev/null; then
+    alias {{h,}top,lk}=top
+fi
 
 user_commands=(
   list-units is-active status show help list-unit-files
