@@ -241,7 +241,7 @@ alias memgrind='valgrind --tool=memcheck "$@" --leak-check=full'
 alias cal="task calendar"
 alias Cal="${SCRIPT_HOME}/dzen/time-date"
 
-if hash grances >/dev/null; then
+if hash glances >/dev/null; then
     alias {{h,}top,lk}=glances
 elif hash htop >/dev/null; then
     alias {{h,}top,lk}=htop
