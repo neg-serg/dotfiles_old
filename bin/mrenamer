@@ -39,7 +39,7 @@ debug_print_convert_table(){
 }
 
 apply_rename_files(){
-    Data=$(albumdetails "$@")
+    Data=$(albumdetails "$@" 2>/dev/null)
     apply_rename_ "$@"
 }
 
@@ -76,7 +76,6 @@ main(){
             autoload -U zargs
             dirname="$(awk '/music_directory/{print $2}' /etc/mpd.conf|tr -d '"')/$(dirname "$(mpc -f '%file%'|head -1)")"
             cd "${dirname}"
-            builtin print "Apply rename to :: [${dirname}] contents ::"
             zargs -- ${dirname}/** -- apply_rename_files
         ;;
         "files")
