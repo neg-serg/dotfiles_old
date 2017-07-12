@@ -63,11 +63,14 @@ apply_rename_(){
     else
         src="$(builtin print "$(dirname ${1})")"
     fi
-
-    result="$(dirname "${src}")/$(builtin print "${artist}-[${year}]-${album}")"
-    mv -i "${src}" "${result}"
-    fix_names.pl -i "${result}"
-    rmdir "${src}" 2> /dev/null
+    
+    if [[ $(xargs<<<"${artist}") != "" && $(xargs<<<"${year}") != "" && $(xargs<<<"${album}") != "" ]]; then
+        result="$(dirname "${src}")/$(builtin print "${artist}-[${year}]-${album}")"
+        result="$(sed 's;/;.;g' <<< "$(basename "${result}")")"
+        mv -i "${src}" "${result}"
+        fix_names.pl -i "${result}"
+        rmdir "${src}" 2> /dev/null
+    fi
 }
 
 main(){
