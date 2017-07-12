@@ -57,12 +57,10 @@ export CLIVE_CONFIG="${XDG_CONFIG_HOME}/cliverc"
 export VAGRANT_HOME="/mnt/home/vagrant"
 export PERLBREW_ROOT=${HOME}/.perl5
 
-if [[ -x "$(which "vimpager" 2>/dev/null)" ]]; then
-    export PAGER="vimpager -u ~/.vim/vimpagerrc" SDCV_PAGER=${PAGER}
+if hash slit > /dev/null; then
+    export PAGER="slit"
     alias less=${PAGER}
     alias zless=${PAGER}
-else
-    export PAGER="less"
 fi
 
 export LESSCHARSET=UTF-8
