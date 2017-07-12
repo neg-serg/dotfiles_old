@@ -1,4 +1,3 @@
-let base16colorspace=256  " Access colors present in 256 colorspace
 set shell=/bin/bash
 if bufname('%') == ''
   set bufhidden=wipe
@@ -10,16 +9,14 @@ let g:enable_cursorcolumn=0
 
 let s:nvim_colorscheme = "mirodark"
 
-if !g:use_base16_colorscheme
-    if v:version >= 704
-      " The new Vim regex engine is currently slooooow as hell which makes syntax
-      " highlighting slow, which introduces typing latency.
-      " Consider removing this in the future when the new regex engine becomes
-      " faster.
-      " set regexpengine=1
-      " Now I make it autodetect
-      set regexpengine=0
-    endif
+if v:version >= 704
+    " The new Vim regex engine is currently slooooow as hell which makes syntax
+    " highlighting slow, which introduces typing latency.
+    " Consider removing this in the future when the new regex engine becomes
+    " faster.
+    " set regexpengine=1
+    " Now I make it autodetect
+    set regexpengine=0
 endif
 
 set regexpengine=1
@@ -58,88 +55,18 @@ execute 'set path+=/usr/lib/modules/'.system('uname -r')[:-2].'/build/arch/x86/i
 set isfname+={
 set isfname+=}
 
-if has("gui_running")
-    if !g:use_base16_colorscheme
-        if &diff
-            set gfn=PragmataPro\ for\ Powerline\ 14
-            set guifontwide=PragmataPro\ for\ Powerline\ 14
-            if !has("nvim")
-                colorscheme jellybeans
-            else
-                set background=dark
-                exe "colorscheme ".s:nvim_colorscheme
-            endif
-        else
-            set gfn=PragmataPro\ for\ Powerline\ 22
-            set guifontwide=PragmataPro\ for\ Powerline\ 22
-            let g:mirodark_enable_higher_contrast_mode=0
-            if !has("nvim")
-                colorscheme mirodark
-            else
-                set background=dark
-                exe "colorscheme ".s:nvim_colorscheme
-            endif
-        endif
-    endif
-
-    set timeout ttimeout
-    set timeoutlen=2000 ttimeoutlen=10 " Very fast and also you shouldn't make combination too fast
-
-    set lsp=1                          " Space between lines
-    set go=c                           " For text messages instead of gui
-    set background=dark                " Usable for colorschemes
-    set noantialias                    " Disable antialiasing
-    set colorcolumn=0                  " Color eol limiter off
-    set mousehide                      " hide the mouse pointer while typing
-    set mousemodel=popup               " right mouse button pops up a menu in the GUI
-    set mouse=                         " enable full mouse support
-    if !has('nvim')
-        set ttymouse=urxvt             " more accurate mouse tracking
-        set ttyfast                    " more redrawing characters sent to terminal
-    endif
-
-    set synmaxcol=200                  " improve hi performance
-    syntax sync minlines=200           " fit to screen
-    set ttyscroll=0                    " turnoff scrolling
-    set lazyredraw                     " no redraw in macros
-
-    "set selection=exclusive           " exclusive selection is better [?]
-
-    set previewheight=8                " Preview window should be minimal
-
-    set winaltkeys=no                  "
-    set wildcharm=<Tab>                " Want to be able to use <Tab> within our mappings
-
-    set ballooneval                    " add popups for gui
-    set balloondelay=400               " popups delay
-
-    set fillchars=stl:\ ,stlnc:\ ,vert:│
-    set guitablabel=%-0.12t%M
-    set tabpagemax=8                   " Only show 15 tabs
-
-    set guicursor=n-v-c:block-Cursor   " Full cursor for visual,command,normal
-    set guicursor+=i:ver40-iCursor     " It set cursor width in insert mode
-    set guicursor+=n-v-c:blinkon0      " Disable all blinking:
-    set guicursor+=a:blinkon0          " Disable all blinking:
-
-    set guioptions=                    " Disable all gui-oriented options in gvim
-
-endif
-
 if !has("gui_running") && !has("nvim")
     set ttymouse=urxvt                 " more accurate mouse tracking
     set t_Co=256                       " I use 256-color terminals
     set runtimepath+=~/.vim/bundle/powerline/powerline/bindings/vim
 
-    if !g:use_base16_colorscheme
-        if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
-            colorscheme wim
-        elseif &term =~ 'linux'
-            colorscheme darkblue
-            set t_Co=8 " I use 7-color term in $term = linux
-        else
-            colorscheme jellybeans
-        endif
+    if &term == "rxvt-unicode-256color" || &term  == "screen-256color" || &term == "st-256color" || &term == "tmux-256color"
+        colorscheme wim
+    elseif &term =~ 'linux'
+        colorscheme darkblue
+        set t_Co=8 " I use 7-color term in $term = linux
+    else
+        colorscheme jellybeans
     endif
 
     " enable ctrl interpreting for vim
@@ -165,9 +92,7 @@ if !has("gui_running") && !has("nvim")
     endif
 else
     set background=dark
-    if !g:use_base16_colorscheme
-        exe "colorscheme ".s:nvim_colorscheme
-    endif 
+    exe "colorscheme ".s:nvim_colorscheme
 endif
 
 if !has("gui_running") && exists('$TMUX')
