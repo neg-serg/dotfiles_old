@@ -55,7 +55,7 @@ if has('vim_starting')
     filetype off
     set nocompatible
     if !has("nvim")
-        set runtimepath+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
+        set runtimepath+=/usr/lib/python3.6/site-packages/powerline/bindings/vim
     endif
     set runtimepath+=~/.fzf
 endif
@@ -90,14 +90,6 @@ if (&t_Co > 2 || has("gui_running"))
     syntax on
 endif
 filetype plugin indent on
-
-let g:use_base16_colorscheme=''
-if !g:use_base16_colorscheme
-    if filereadable(expand("~/.vimrc_background"))
-        let base16colorspace=256
-        source ~/.vimrc_background
-    endif
-endif
 
 source ~/.vim/00-functions.vim
 source ~/.vim/01-settings.vim
