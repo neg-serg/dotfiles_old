@@ -54,6 +54,8 @@ apply_rename_(){
 
     generate_convert_table
 
+    # take only first word from year
+    year=$(awk '{print $1}' <<< "${year}")
     year=${year//$year/$conv_table[$year]}
 
     album=$(builtin print "${Data}"|grep "Album"| cut -d ':' -f 2-|xargs)
