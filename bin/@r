@@ -80,8 +80,7 @@ main(){
         "current")
             autoload -U zargs
             dirname="$(awk '/music_directory/{print $2}' /etc/mpd.conf|tr -d '"')/$(dirname "$(mpc -f '%file%'|head -1)")"
-            cd "${dirname}"
-            zargs -- ${dirname}/** -- apply_rename_files
+            apply_rename_dir "${dirname}"
         ;;
         "files")
             shift
