@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: set noexpandtab sw=4 ts=4:
 # --
@@ -89,7 +89,15 @@ class Histogram(object):
 		maxVal = 0
 		s.totalValues = int(s.totalValues)
 
-		for k in sorted(tokenDict, key=tokenDict.get, reverse=True):
+		# given a dict, create a comparison tuple that sorts first by the value of a key,
+		# then by the key itself in case of a tie. this allows us to create deterministic sorts
+		# when we have multiple entries in our histogram with the same frequency.
+		def value_key_compare(dict):
+			return lambda key: (dict.get(key), key)
+
+		for k in sorted(tokenDict, key=value_key_compare(tokenDict), reverse=True):
+			# can't remember what feature "if k:" adds - i think there's an
+			# off-by-one death the script sometimes suffers without it.
 			if k:
 				outputDict[k] = tokenDict[k]
 				if len(str(k)) > maxTokenLen: maxTokenLen = len(str(k))
@@ -109,7 +117,9 @@ class Histogram(object):
 		# the first entry will determine these values
 		maxValueWidth = 0
 		maxPctWidth = 0
-		for k in sorted(outputDict, key=outputDict.get, reverse=True):
+		sortedOutput = sorted(outputDict, key=value_key_compare(outputDict), reverse=True)
+		for i in range(0, len(sortedOutput)):
+			k = sortedOutput[i]
 			# can't remember what feature "if k:" adds - i think there's an
 			# off-by-one death the script sometimes suffers without it.
 			if k:
@@ -127,10 +137,16 @@ class Histogram(object):
 					sys.stderr.write("Key".rjust(maxTokenLen) + "|")
 					sys.stderr.write("Ct".ljust(maxValueWidth) + " ")
 					sys.stderr.write("(Pct)".ljust(maxPctWidth) + " ")
-					sys.stderr.write("Histogram\n")
+					sys.stderr.write("Histogram")
 
-				sys.stdout.write(s.keyColour)
-				sys.stdout.write(str(k).rjust(maxTokenLen) + "|")
+	                                # get ready for the output, but sorting gets hosed if we print the
+	                                # colour code before the key, so put it on the line before
+					sys.stderr.write(s.keyColour)
+					sys.stderr.write("\n")
+
+				sys.stdout.write(str(k).rjust(maxTokenLen))
+				sys.stdout.write(s.regularColour)
+				sys.stdout.write("|")
 				sys.stdout.write(s.ctColour)
 
 				outVal = "%s" % outputDict[k]
@@ -143,7 +159,13 @@ class Histogram(object):
 				sys.stdout.write(s.graphColour)
 				sys.stdout.write(self.histogram_bar(s, histWidth, maxVal, outputDict[k]))
 
-				sys.stdout.write(s.regularColour)
+				if i == len(sortedOutput) - 1:
+			                # put the terminal back into a normal-colour mode on last entry
+					sys.stdout.write(s.regularColour)
+				else:
+					# we do these antics of printing $keyColour on the line before
+			                # the key so that piping output to sort will work
+				        sys.stdout.write(s.keyColour)
 				sys.stdout.write("\n")
 
 class InputReader(object):
@@ -189,6 +211,7 @@ class InputReader(object):
 
 		pruneObjects = 0
 		for line in sys.stdin:
+			line = line.rstrip('\n')
 			if s.tokenize:
 				for token in pt.split(line):
 					# user desires to break line into tokens...
@@ -203,7 +226,6 @@ class InputReader(object):
 			else:
 				# user just wants every line to be a token
 				s.totalObjects += 1
-				line = line.rstrip()
 				if pm.match(line):
 					s.totalValues += 1
 					pruneObjects += 1
@@ -348,14 +370,14 @@ class Settings(object):
 				rcOpt = rcOpt.rstrip()
 				rcOpt = rcOpt.split('#')[0]
 				if rcOpt != '':
-					sys.argv.append(rcOpt)
+					sys.argv.insert(0, rcOpt)
 		except:
 			# don't die or in fact do anything if rcfile doesn't exist
 			pass
 
 		# manual argument parsing easier than getopts IMO
 		for arg in sys.argv:
-			if arg == '-h':
+			if arg in ('-h', '--help'):
 				doUsage(self)
 				sys.exit(0)
 			elif arg in ("-c", "--color", "--colour"):
@@ -459,66 +481,69 @@ class Settings(object):
 			self.charWidth = 0.3334;
 			self.graphChars = self.partialLines
 
+		# detect whether the user has passed a multibyte unicode character directly as the histogram char
+		if ord(self.histogramChar[0]) >= 128:
+			self.unicodeMode = True
 
 def doUsage(s):
-	print ""
-	print "usage: <commandWithOutput> | %s" % (scriptName)
-	print "         [--rcfile=<rcFile>]"
-	print "         [--size={sm|med|lg|full} | --width=<width> --height=<height>]"
-	print "         [--color] [--palette=r,k,c,p,g]"
-	print "         [--tokenize=<tokenChar>]"
-	print "         [--graph[=[kv|vk]] [--numonly[=derivative,diff|abs,absolute,actual]]"
-	print "         [--char=<barChars>|<substitutionString>]"
-	print "         [--help] [--verbose]"
-	print "  --keys=K       every %d values added, prune hash to K keys (default 5000)" % (s.keyPruneInterval)
-	print "  --char=C       character(s) to use for histogram character, some substitutions follow:"
-	print "        pl       Use 1/3-width unicode partial lines to simulate 3x actual terminal width"
-	print "        pb       Use 1/8-width unicode partial blocks to simulate 8x actual terminal width"
-	print "        ba       (▬) Bar"
-	print "        bl       (Ξ) Building"
-	print "        em       (—) Emdash"
-	print "        me       (⋯) Mid-Elipses"
-	print "        di       (♦) Diamond"
-	print "        dt       (•) Dot"
-	print "        sq       (□) Square"
-	print "  --color        colourise the output"
-	print "  --graph[=G]    input is already key/value pairs. vk is default:"
-	print "        kv       input is ordered key then value"
-	print "        vk       input is ordered value then key"
-	print "  --height=N     height of histogram, headers non-inclusive, overrides --size"
-	print "  --help         get help"
-	print "  --logarithmic  logarithmic graph"
-	print "  --match=RE     only match lines (or tokens) that match this regexp, some substitutions follow:"
-	print "        word     ^[A-Z,a-z]+\$ - tokens/lines must be entirely alphabetic"
-	print "        num      ^\\d+\$        - tokens/lines must be entirely numeric"
-	print "  --numonly[=N]  input is numerics, simply graph values without labels"
-	print "        actual   input is just values (default - abs, absolute are synonymous to actual)"
-	print "        diff     input monotonically-increasing, graph differences (of 2nd and later values)"
-	print "  --palette=P    comma-separated list of ANSI colour values for portions of the output"
-	print "                 in this order: regular, key, count, percent, graph. implies --color."
-	print "  --rcfile=F     use this rcfile instead of ~/.distributionrc - must be first argument!"
-	print "  --size=S       size of histogram, can abbreviate to single character, overridden by --width/--height"
-	print "        small    40x10"
-	print "        medium   80x20"
-	print "        large    120x30"
-	print "        full     terminal width x terminal height (approximately)"
-	print "  --tokenize=RE  split input on regexp RE and make histogram of all resulting tokens"
-	print "        word     [^\\w] - split on non-word characters like colons, brackets, commas, etc"
-	print "        white    \\s    - split on whitespace"
-	print "  --width=N      width of the histogram report, N characters, overrides --size"
-	print "  --verbose      be verbose"
-	print ""
-	print "You can use single-characters options, like so: -h=25 -w=20 -v. You must still include the ="
-	print ""
-	print "Samples:"
-	print "  du -sb /etc/* | %s --palette=0,37,34,33,32 --graph" % (scriptName)
-	print "  du -sk /etc/* | awk '{print $2\" \"$1}' | %s --graph=kv" % (scriptName)
-	print "  zcat /var/log/syslog*gz | %s --char=o --tokenize=white" % (scriptName)
-	print "  zcat /var/log/syslog*gz | awk '{print \$5}'  | %s -t=word -m-word -h=15 -c=/" % (scriptName)
-	print "  zcat /var/log/syslog*gz | cut -c 1-9        | %s -width=60 -height=10 -char=em" % (scriptName)
-	print "  find /etc -type f       | cut -c 6-         | %s -tokenize=/ -w=90 -h=35 -c=dt" % (scriptName)
-	print "  cat /usr/share/dict/words | awk '{print length(\$1)}' | %s -c=* -w=50 -h=10 | sort -n" % (scriptName)
-	print ""
+	print("")
+	print("usage: <commandWithOutput> | %s" % (scriptName))
+	print("         [--rcfile=<rcFile>]")
+	print("         [--size={sm|med|lg|full} | --width=<width> --height=<height>]")
+	print("         [--color] [--palette=r,k,c,p,g]")
+	print("         [--tokenize=<tokenChar>]")
+	print("         [--graph[=[kv|vk]] [--numonly[=derivative,diff|abs,absolute,actual]]")
+	print("         [--char=<barChars>|<substitutionString>]")
+	print("         [--help] [--verbose]")
+	print("  --keys=K       every %d values added, prune hash to K keys (default 5000)" % (s.keyPruneInterval))
+	print("  --char=C       character(s) to use for histogram character, some substitutions follow:")
+	print("        pl       Use 1/3-width unicode partial lines to simulate 3x actual terminal width")
+	print("        pb       Use 1/8-width unicode partial blocks to simulate 8x actual terminal width")
+	print("        ba       (▬) Bar")
+	print("        bl       (Ξ) Building")
+	print("        em       (—) Emdash")
+	print("        me       (⋯) Mid-Elipses")
+	print("        di       (♦) Diamond")
+	print("        dt       (•) Dot")
+	print("        sq       (□) Square")
+	print("  --color        colourise the output")
+	print("  --graph[=G]    input is already key/value pairs. vk is default:")
+	print("        kv       input is ordered key then value")
+	print("        vk       input is ordered value then key")
+	print("  --height=N     height of histogram, headers non-inclusive, overrides --size")
+	print("  --help         get help")
+	print("  --logarithmic  logarithmic graph")
+	print("  --match=RE     only match lines (or tokens) that match this regexp, some substitutions follow:")
+	print("        word     ^[A-Z,a-z]+\$ - tokens/lines must be entirely alphabetic")
+	print("        num      ^\\d+\$        - tokens/lines must be entirely numeric")
+	print("  --numonly[=N]  input is numerics, simply graph values without labels")
+	print("        actual   input is just values (default - abs, absolute are synonymous to actual)")
+	print("        diff     input monotonically-increasing, graph differences (of 2nd and later values)")
+	print("  --palette=P    comma-separated list of ANSI colour values for portions of the output")
+	print("                 in this order: regular, key, count, percent, graph. implies --color.")
+	print("  --rcfile=F     use this rcfile instead of ~/.distributionrc - must be first argument!")
+	print("  --size=S       size of histogram, can abbreviate to single character, overridden by --width/--height")
+	print("        small    40x10")
+	print("        medium   80x20")
+	print("        large    120x30")
+	print("        full     terminal width x terminal height (approximately)")
+	print("  --tokenize=RE  split input on regexp RE and make histogram of all resulting tokens")
+	print("        word     [^\\w] - split on non-word characters like colons, brackets, commas, etc")
+	print("        white    \\s    - split on whitespace")
+	print("  --width=N      width of the histogram report, N characters, overrides --size")
+	print("  --verbose      be verbose")
+	print("")
+	print("You can use single-characters options, like so: -h=25 -w=20 -v. You must still include the =")
+	print("")
+	print("Samples:")
+	print("  du -sb /etc/* | %s --palette=0,37,34,33,32 --graph" % (scriptName))
+	print("  du -sk /etc/* | awk '{print $2\" \"$1}' | %s --graph=kv" % (scriptName))
+	print("  zcat /var/log/syslog*gz | %s --char=o --tokenize=white" % (scriptName))
+	print("  zcat /var/log/syslog*gz | awk '{print \$5}'  | %s -t=word -m-word -h=15 -c=/" % (scriptName))
+	print("  zcat /var/log/syslog*gz | cut -c 1-9        | %s -width=60 -height=10 -char=em" % (scriptName))
+	print("  find /etc -type f       | cut -c 6-         | %s -tokenize=/ -w=90 -h=35 -c=dt" % (scriptName))
+	print("  cat /usr/share/dict/words | awk '{print length(\$1)}' | %s -c=* -w=50 -h=10 | sort -n" % (scriptName))
+	print("")
 
 # simple argument parsing and call top-level routines
 def main(argv):
@@ -545,4 +570,3 @@ def main(argv):
 scriptName = sys.argv[0]
 if __name__ == "__main__":
 	main(sys.argv[1:])
-

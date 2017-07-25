@@ -37,9 +37,11 @@
 use warnings;
 use strict;
 
-# if your system is dying on this statement, it should be safe to simply comment
-# it out. your timings with --verbose will be very course.
-use Time::HiRes qw( time );
+# Time::HiRes will be used if found, to provide more precise timings
+# with --verbose.
+BEGIN {
+    eval { require Time::HiRes; Time::HiRes->import('time'); 1; };
+}
 
 # for determining how long this program ran
 my $startTime = time() * 1000;
@@ -83,7 +85,7 @@ my $inLine;
 
 # if they want an rcfile, must be first arg
 my $rcFile = $ENV{"HOME"} . "/.distributionrc";
-if ($ARGV && $ARGV[0] =~ /^-+r(cfile)*=(.+)$/) { $rcFile = $2; }
+if (@ARGV && $ARGV[0] =~ /^-+r(cfile)*=(.+)$/) { $rcFile = $2; }
 
 # read in rcfile if it exists - it'll just be args
 if (open (IFILE, "< $rcFile")) {
@@ -324,7 +326,12 @@ exit 0;
 
 # get the keys ordered - we'll only print the most common keys
 sub sortKeysByValueFrequency {
-	my @sortedKeys = reverse sort { int($valuesDict->{$a}) <=> int($valuesDict->{$b}) } keys %{$valuesDict};
+	# sort first by the value of a key, then by the key itself in case of a tie.
+	# this allows us to create deterministic sorts when we have multiple entries
+	# in our histogram with the same frequency. particularly important given that
+	# perl intentionally randomizes the order of dictionary keys, so not even a
+	# stable sort would save us.
+	my @sortedKeys = reverse sort { int($valuesDict->{$a}) <=> int($valuesDict->{$b}) || $a cmp $b } keys %{$valuesDict};
 	return @sortedKeys;
 }
 
@@ -471,8 +478,8 @@ sub addCommas {
 # barWidth->[] - list of the widths of the bars
 sub outputGraph {
 	# print a header with alignment from key names
-	print STDERR "Key";
 	for ($j = 4; $j <= $maxKeyLen; $j++) { print STDERR " "; }
+	print STDERR "Key";
 	print STDERR "|Ct (Pct)";
 	for ($j = 7; $j <= $maxPreBarLen; $j++) { print STDERR " "; }
 	print STDERR "Histogram";
@@ -486,10 +493,10 @@ sub outputGraph {
 
 	for ($i = 0; $i < $height; $i++) {
 		# first the key that we aggregated
+		for ($j = length ($keyText->[$i]); $j < $maxKeyLen; $j++) { print " "; }
 		print $keyText->[$i];
 		print $regularColour;
 		# alignment
-		for ($j = length ($keyText->[$i]); $j < $maxKeyLen; $j++) { print " "; }
 		# separater between keys and count/pct
 		print "|";
 		print $ctColour;
