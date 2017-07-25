@@ -4,8 +4,8 @@ NEOVIM_THERE=$(tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'nvi
 CURRENT_PANE_INDEX=$(tmux display-message -p '#{pane_index}')
 XTITLE=$(xtitle)
 
-[[ -z ${VIM_THERE} ]] && [[ -z ${NEOVIM_THERE} ]] && { echo "TRUE"; exit 0 }
-[[ "${VIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && [[ "${XTITLE}" == "tmux:1 [ vim ]" ]] && { echo "TRUE"; exit 0 }
-[[ "${NEOVIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && {echo "TRUE"; exit 0}
+[[ -z ${VIM_THERE} ]] && [[ -z ${NEOVIM_THERE} ]] && { echo "TRUE"; exit 0; }
+[[ "${VIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && [[ "${XTITLE}" == "tmux:1 [ vim ]" ]] && { echo "TRUE"; exit 0; }
+[[ "${NEOVIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && { echo "TRUE"; exit 0; }
 
 echo "FALSE"; exit 0
