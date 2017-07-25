@@ -3,12 +3,9 @@ VIM_THERE=$(tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'vim --
 NEOVIM_THERE=$(tmux list-pane -F '#{pane_index} #{pane_start_command}'|grep 'nvim'|awk '{print $1}')
 CURRENT_PANE_INDEX=$(tmux display-message -p '#{pane_index}')
 XTITLE=$(xtitle)
-if [[ -z ${VIM_THERE} ]] && [[ -z ${NEOVIM_THERE} ]];then
-    echo "TRUE";
-elif [[ "${VIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && [[ "${XTITLE}" == "tmux:1 [ vim ]" ]]; then
-    echo "TRUE";
-elif [[ "${NEOVIM_THERE}" != "${CURRENT_PANE_INDEX}" ]]; then
-    echo "TRUE";
-else
-    echo "FALSE"; 
-fi
+
+[[ -z ${VIM_THERE} ]] && [[ -z ${NEOVIM_THERE} ]] && { echo "TRUE"; exit 0 }
+[[ "${VIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && [[ "${XTITLE}" == "tmux:1 [ vim ]" ]] && { echo "TRUE"; exit 0 }
+[[ "${NEOVIM_THERE}" != "${CURRENT_PANE_INDEX}" ]] && {echo "TRUE"; exit 0}
+
+echo "FALSE"; exit 0
