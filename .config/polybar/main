@@ -212,6 +212,66 @@ format = %{F#287373}[ %{F#fff}<label>%{F#287373}]%{F#fff}
 format-underline = ${colors.border}
 interval = 0
 
+[module/polybarnetwork]
+type = internal/network
+interface = wlp2s0
+
+interval = 3.0
+udspeed-minwidth = 5
+accumulate-stats = true
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+label-connected =  %essid% %downspeed:9%
+label-connected-foreground = ${colors.background}
+label-connected-background = ${colors.xcolor2}
+label-connected-underline = ${colors.xcolor2}
+label-connected-overline = ${colors.xcolor2}
+label-connected-padding = 2
+label-disconnected = not connected
+label-disconnected-foreground = ${colors.background}
+label-disconnected-background = ${colors.xcolor2}
+label-disconnected-underline = ${colors.xcolor2}
+label-disconnected-overline = ${colors.xcolor2}
+label-disconnected-padding = 2
+ramp-signal-0-background = ${colors.xcolor3}
+ramp-signal-1-background = ${colors.xcolor3}
+ramp-signal-2-background = ${colors.xcolor3}
+ramp-signal-3-background = ${colors.xcolor3}
+ramp-signal-4-background = ${colors.xcolor3}
+ramp-signal-5-background = ${colors.xcolor3}
+ramp-signal-0-foreground = ${colors.foreground}
+ramp-signal-2-foreground = ${colors.foreground}
+ramp-signal-3-foreground = ${colors.foreground}
+ramp-signal-4-foreground = ${colors.foreground}
+ramp-signal-5-foreground = ${colors.foreground}
+ramp-signal-1-foreground = ${colors.foreground}
+ramp-signal-0-underline = ${colors.xcolor3}
+ramp-signal-1-underline = ${colors.xcolor3}
+ramp-signal-2-underline = ${colors.xcolor3}
+ramp-signal-3-underline = ${colors.xcolor3}
+ramp-signal-4-underline = ${colors.xcolor3}
+ramp-signal-5-underline = ${colors.xcolor3}
+ramp-signal-0-overline = ${colors.xcolor3}
+ramp-signal-1-overline = ${colors.xcolor3}
+ramp-signal-2-overline = ${colors.xcolor3}
+ramp-signal-3-overline = ${colors.xcolor3}
+ramp-signal-4-overline = ${colors.xcolor3}
+ramp-signal-5-overline = ${colors.xcolor3}
+
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = ${colors.foreground}
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = ${colors.foreground}
+animation-packetloss-framerate = 500
+
 [module/mail]
 type = custom/script
 exec = ~/bin/mon/mail_count
