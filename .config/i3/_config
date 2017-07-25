@@ -171,7 +171,7 @@ mode "" {
 }
 
 mode "" {
-    bindsym {c,p} exec ~/bin/scripts/lpasswd {,type}, $exit
+    bindsym {c,p} exec ~/bin/scripts/lpwd {,type}, $exit
     bindsym {Return,Escape,Control+C,Control+G} $exit
 }
 
