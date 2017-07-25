@@ -1,6 +1,4 @@
 #!/bin/zsh
-autoload mapfile
-
 package_pattern="^([^/]+)/([^ ]+) ([^ ]+)"
 
 reset="$(printf '\033[0m')"
@@ -8,10 +6,9 @@ green="$(printf '\033[32m')"
 yellow="$(printf '\033[33m')"
 blue="$(printf '\033[34m')"
 
-mapfile -t pkgs < <(
-  pacman -Ss "$@" |
-  sed -rn "/^[^ ]/{s/$/ -/; x; s|$package_pattern|[${blue}\1${reset}] ${yellow}\2${reset} ${green}\3${reset} |; p;}; /^ /{s/^ */ /; x; G; s/\n//; x}" | \
-  $(which fzf) --exact --tac --multi --cycle --ansi --inline-info --prompt='Package> ' --header-lines=1 | awk '{print $2}')
+pacman -Ss "$@" | \
+sed -rn "/^[^ ]/{s/$/ -/; x; s|$package_pattern|[${blue}\1${reset}] ${yellow}\2${reset} ${green}\3${reset} |; p;}; /^ /{s/^ */ /; x; G; s/\n//; x}" | \
+$(which fzf) --exact --tac --multi --cycle --ansi --inline-info --prompt='Package> ' --header-lines=1 | awk '{print $2}'
 
 
-(( ${#pkgs} > 0 )) && sudo pacman -S "${pkgs[@]}" || exit 0
+# (( ${#pkgs} > 0 )) && sudo pacman -S "${pkgs[@]}" || exit 0
