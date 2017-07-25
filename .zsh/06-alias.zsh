@@ -205,11 +205,7 @@ alias iostat='iostat -mtx'
 alias ytmp3='youtube-dl -x --audio-format ogg'
 _zsh_proxy=""
 function yt(){
-    if inpath youtubedown; then
-        ${_zsh_proxy} youtubedown "$@"
-    else
-        ${_zsh_proxy} you-get "$@"
-    fi
+    ${_zsh_proxy} you-get "$@"
 }
 
 function yr(){
