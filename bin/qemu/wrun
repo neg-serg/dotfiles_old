@@ -36,7 +36,7 @@ function main(){
         -drive file="/one/vm/${disk_name}.qcow2",id=disk,format=qcow2,if=none,cache=writeback -device scsi-hd,drive=disk
         -serial none
         -parallel none
-        -balloon none # windows wont support it
+        -balloon none # Windows wont support it
     )
 
     local -a qemu_source_params=(
@@ -61,11 +61,11 @@ function main(){
 
     local -a qemu_pass_input=(
         -usb
-        -usbdevice host:1038:1702 # SteelSeries ApS
+        -usbdevice host:1038:1702 # SteelSeries ApS [ Mouse ]
         -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
     )
     # -usb
-    # -usbdevice host:1038:1702 # SteelSeries ApS
+    # -usbdevice host:1038:1702 # SteelSeries ApS [ Mouse ]
     # -usbdevice host:046d:c32b # Logitech G910 [Keyboard]
     # -usbdevice host:1e7d:2e22 # Roccat kone rtd [ Mouse ]
 
@@ -92,10 +92,10 @@ function main(){
     )
 
     if [[ ! $(pidof synergyc) ]]; then
-        sudo -u neg "synergy" & synergy_pid=$!; print "Autostart synergy"
+        sudo -u neg "synergy"; print "Autostart synergy"
     fi
 
-    # setup hugepages
+    # Setup hugepages
     sudo sysctl -w vm.nr_hugepages="${hugepages_amount}"
 
     QEMU_AUDIO_TIMER_PERIOD=150 \
@@ -112,9 +112,9 @@ function main(){
         "${qemu_hugepages_stuff[@]}"
 
     # Restore settings
-    killall synergy
-    killall synergyc
-    sudo sysctl -w vm.nr_hugepages=0
+    killall synergy # Kill synergy client
+    killall synergyc # Kill synergy server
+    sudo sysctl -w vm.nr_hugepages=0 # Revert hugepages count to 0(zero)
     setxkbmap \
         -option keypad:pointerkeys \
         -layout 'us,ru' \
@@ -122,8 +122,8 @@ function main(){
         -variant altgr-intl \
         -option ctrl:nocaps
 
-    xset m 0 0
-    xset -b r rate 250 50
+    xset m 0 0 # Revert mouse settings
+    xset -b r rate 250 50 # Revert keyboard rate
 }
 
 main "$@"
