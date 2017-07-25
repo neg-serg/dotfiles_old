@@ -311,19 +311,13 @@ if dein#tap('deopete')
     let g:deoplete#enable_camel_case=1
     let g:deoplete#max_list=500
     let g:deoplete#max_menu_width=8
-    let g:deoplete#auto_complete_delay=4
-    let g:deoplete#auto_refresh_delay=100
     let g:deoplete#sources._ = ['buffer', 'tag']
     call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
-    " let g:clang_library_path='/usr/lib/llvm-3.8/lib'
-    " let g:clang_library_path="/usr/lib/libclang.so"
-    " let g:clang_complete_auto = 0
-	" let g:clang_auto_select = 0
-	" let g:clang_omnicppcomplete_compliance = 0
-    " let g:clang_make_default_keymappings = 0
-    let g:deoplete#sources#clang#libclang_path ="libclang.so"
-    let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.0"
+
+    let g:deoplete#sources#clang#libclang_path ="/usr/lib/libclang.so"
+    let g:deoplete#sources#clang#clang_header="/usr/lib/clang/4.0.1"
     let g:deoplete#sources#clang#std={'c': 'c11', 'cpp': 'c++1z', 'objc': 'c11', 'objcpp': 'c++1z'}
+
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function() abort
         return deoplete#close_popup() . "\<CR>"
@@ -368,8 +362,6 @@ if dein#tap('deopete')
                 \'[^. \t0-9]\::\w*',
                 \]
     let g:deoplete#ignore_sources.php = ['phpcd', 'around', 'member']
-    "call deoplete#custom#set('phpcd', 'mark', '')
-    "call deoplete#custom#set('phpcd', 'input_pattern', '\w*|[^. \t]->\w*|\w*::\w*')
 
     " gitcommit
     let g:deoplete#omni#input_patterns.gitcommit = 'gitcommit', [
@@ -387,8 +379,6 @@ if dein#tap('deopete')
     let g:deoplete#ignore_sources.rust = 'rust', ['omni']
     call deoplete#custom#set('racer', 'mark', '')
 
-    " public settings
-    call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
     let g:deoplete#ignore_sources._ = get(g:deoplete#ignore_sources, '_', ['around'])
     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
