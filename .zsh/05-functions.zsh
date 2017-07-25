@@ -348,5 +348,20 @@ if inpath nvim && inpath nvr; then
     }
 fi
 
+function ipaddr(){
+    one_only=1
+
+    # Created by [jvinet], improved by [Neg]
+    for intf in $(ip link |awk -F : '/^[[:alnum:]]+:/{print $2}'|xargs); do
+        ip=$(ip addr show "${intf}" 2>/dev/null | grep 'inet ' | grep -o -E '[0-9\.]+' | head -n 1)
+        if [[ "${ip}" ]]; then
+            builtin print "${intf}: ${ip}"
+            if [[ ! ${one_only} ]]; then
+                exit # only output one, as that's what our conkyrc expects
+            fi
+        fi
+    done
+}
+
 ::() { echo -e "\e[0;31m:: \e[0;32m$*\e[0m" >&2 "$@" }
 
