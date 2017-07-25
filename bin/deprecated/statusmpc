@@ -1,0 +1,79 @@
+#!/bin/zsh
+
+function bar_output(){
+    local bar_char='-'
+    local bar_end_char="\\"
+    local bar_fill_char="─"
+    local length="$3"
+    local current="$1"
+    local maximum="$2"
+    local percentage=$[${maximum}/${length}]
+    local point=$[$current/$percentage]
+    local remainder=$(echo $[$length - $point] | awk -F '.' '{print $1}')
+    local bar_string
+    local pt=$(echo $point| awk -F '.' '{print $1}')
+    if [[ (( $pt  > 0 )) ]]; then
+        bar_string=$(printf $bar_char%.0s {1..$pt})
+    else
+        bar_string=$(printf $bar_char)
+    fi
+    if [[ $current -ne $maximum ]]; then
+        bar_string="$bar_string$bar_end_char"
+    fi
+    local len=${#bar_string}
+    if [[ $len -ne $length ]]; then
+        if [[ (( $remainder > 0 )) ]]; then
+            print_side=$(printf $bar_fill_char%.0s {1..$(($remainder + 1))})
+        else
+            print_side=$(printf $bar_fill_char)
+        fi
+        bar_string="$bar_string$print_side"
+    fi
+    printf '%s\n' $bar_string
+}
+
+function percentage(){
+    bar_output $1 $2 $3
+}
+
+function status_mpc(){
+    name=$(mpc | sed '1!d')
+
+    playlist=$(mpc | awk '/#/ {print $2}' | sed s/\#//g)
+
+    time=$(mpc | awk '/#/ {print $3}' | sed 's/:/./g' | sed 's/\// /')
+    currentTime=$(echo "$time " | awk '{print $1}')
+    maximumTime=$(echo "$time " | awk '{print $2}')
+
+    MPCOUT=${MPCOUT:-/tmp/.mpcout}
+    mpc | grep 'volume' > $MPCOUT
+
+    if [[ $( < $MPCOUT awk '{print $2}') == "on" ]]; then 
+        _repeat="r"; else _repeat="-"
+    fi
+
+    if [[ $( < $MPCOUT awk '{print $4}') == "on" ]]; then
+        _choice="z"; else _choice="-"
+    fi
+
+    if [[ $( < $MPCOUT awk '{print $6}') == "on" ]]; then
+        _single="s"; else _single="-"
+    fi
+
+    if [[ $( < $MPCOUT awk '{print $8}') == "on" ]]; then 
+        _consume="c"; else _consume="-"
+    fi
+
+    if [[ $(mpc | awk '{print $NF}') == 'n/a' ]]; then
+        exit
+    elif [[ $(mpc) != *"#"* ]]; then
+        exit
+    elif [[ $(mpc | awk '/#/ {printf "%s", $1}') == "[paused]" ]]; then
+        printf '%s\n' "[$name] [paused] [$playlist] [$_repeat$_choice$_single$_consume]"
+    else
+        bar=$(percentage $currentTime $maximumTime 40)
+        printf '%s\n' "[$name] [$bar] [$playlist] [$_repeat$_choice$_single$_consume]"
+    fi
+}
+
+status_mpc
