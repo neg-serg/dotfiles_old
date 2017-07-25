@@ -150,8 +150,8 @@ function rfc(){
 #pcp - copy files matching pattern $1 to $2
 function pcp(){ find . -regextype awk -iregex ".*$1.*" -print0 | xargs -0 cp -vR -t "$2" }
 
-fasd_cache="${HOME}/bin/.fasd-init-cache"
-if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "$fasd_cache" ]; then
+fasd_cache="${XDG_CACHE_HOME}/fasd-init-cache"
+if [ "$(command -v fasd)" -nt "${fasd_cache}" -o ! -s "${fasd_cache}" ]; then
     fasd --init auto >| "${fasd_cache}"
 fi
 source "${fasd_cache}"
