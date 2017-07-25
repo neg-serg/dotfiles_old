@@ -1,8 +1,7 @@
-let g:nvim_deopete=1
-let g:nvim_deopete_clang2=1
-let g:nvim_deopete_clang=0
+let g:nvim_deoplete=1
 let g:intellij_complete=1
 let g:want_airline=0
+
 "--[ Main ]------------------------------------------------------------------------------
 if dein#load_state("/home/neg/.vim/repos")
     call dein#begin(expand('~/.vim'))
@@ -18,20 +17,14 @@ if dein#load_state("/home/neg/.vim/repos")
             call dein#add('itchyny/lightline.vim')
         endif
     endif
-    if g:nvim_deopete == 1
+    if g:nvim_deoplete == 1
         "dark-powered completion engine
         call dein#add('Shougo/deoplete.nvim', {
           \ 'on_event' : 'InsertEnter',
           \ 'loadconf' : 1,
           \ })
         if executable(resolve(expand("clang")))
-            if g:nvim_deopete_clang2 == 1
-                call dein#add('tweekmonster/deoplete-clang2')
-            elseif g:nvim_deopete_clang == 1
-                call dein#add('zchee/deoplete-clang')
-            else
-                call dein#add('Rip-Rip/clang_complete')
-            endif
+            call dein#add('tweekmonster/deoplete-clang2')
         endif
         "include completion framework for neocomplete/deoplete
         call dein#add('Shougo/neoinclude.vim', { 'on_event' : 'InsertEnter'})
@@ -133,7 +126,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('tpope/vim-eunuch.git')
     "for different case coersion
     call dein#add('tpope/vim-abolish')
-    if g:nvim_deopete == 1
+    if g:nvim_deoplete == 1
         "modern vim autocomplete
         call dein#add('Shougo/neco-vim')
     else
@@ -159,7 +152,8 @@ if dein#load_state("/home/neg/.vim/repos")
             call dein#add('mhinz/vim-signify')
         else
             "show last git changes
-            call dein#add('airblade/vim-gitgutter.git', { 'on_cmd' : 'GitGutterEnable'})
+            " call dein#add('airblade/vim-gitgutter.git', { 'on_cmd' : 'GitGutterEnable'})
+            call dein#add('airblade/vim-gitgutter.git')
         endif
         "vimagit like magit from emacs inter. mode
         call dein#add('jreybert/vimagit')
@@ -227,7 +221,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('justinmk/vim-gtfo')
     "rename for files even with spaces in filename
     call dein#add('ReekenX/vim-rename2.git')
-    if g:nvim_deopete
+    if g:nvim_deoplete
         call dein#add('zchee/deoplete-zsh')
     endif
     if has("loled")
@@ -306,7 +300,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('fs111/pydoc.vim', { 'on_ft' : 'python'})
     "gf for python
     call dein#add('mkomitee/vim-gf-python.git', { 'on_ft' : 'python'})
-    if nvim_deopete
+    if nvim_deoplete
         call dein#add('zchee/deoplete-jedi', { 'on_ft' : 'python'})
     endif
     "--[ R ]----------------------------------------------------------------------------------
@@ -325,7 +319,7 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('jstemmer/gotags.git')
     endif
     if executable(resolve(expand("go")))
-        if g:nvim_deopete == 1
+        if g:nvim_deoplete == 1
             call dein#add('zchee/deoplete-go', {'on_ft' : 'go', 'build': 'make'})
         else
             "omnicomplete for go
@@ -344,7 +338,7 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('rust-lang/rust.vim', {'on_ft' : 'rust', 'merged' : 1})
         "rust-cargo bindings
         call dein#add('jtdowney/vimux-cargo')
-        if g:nvim_deopete == 1
+        if g:nvim_deoplete == 1
             " deoplete support via racer
             call dein#add('sebastianmarkow/deoplete-rust', {'on_ft' : 'rust'})
         endif
@@ -352,7 +346,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "--[ Elixir ]-----------------------------------------------------------------------------
     if executable(resolve(expand("elixir")))
         " deoplete support via alchemist-server
-        if g:nvim_deopete == 1
+        if g:nvim_deoplete == 1
             call dein#add('slashmili/alchemist.vim', { 'on_ft' : 'elixir'})
         endif
     endif
@@ -386,7 +380,7 @@ if dein#load_state("/home/neg/.vim/repos")
             if has("nvim")
                 "alternative ruby autocompletion
                 call dein#add('osyo-manga/vim-monster')
-                if g:nvim_deopete == 1
+                if g:nvim_deoplete == 1
                     call dein#add('zchee/deoplete-go')
                 endif
             else
@@ -416,7 +410,7 @@ if dein#load_state("/home/neg/.vim/repos")
     call dein#add('l04m33/vlime', {'on_ft' : 'lisp', 'rtp': 'vim'})
     "--[ Misc Langs ]--------------------------------------------------------------------------
     if executable(resolve(expand("php")))
-        if g:nvim_deopete == 1
+        if g:nvim_deoplete == 1
             call dein#add('php-vim/phpcd.vim', { 'on_ft' : 'php', 'build' : 'composer install'})
         else
             "better than default phpcomplete.vim
@@ -454,7 +448,7 @@ if dein#load_state("/home/neg/.vim/repos")
     "ocaml support
     call dein#add('ocaml/merlin', {'on_ft' : 'ocaml', 'rtp' : 'vim/merlin'})
     "swift autocomplete
-    if g:nvim_deopete == 1
+    if g:nvim_deoplete == 1
         "deoplete support
         call dein#add('mitsuse/autocomplete-swift')
     endif
@@ -477,8 +471,8 @@ if dein#load_state("/home/neg/.vim/repos")
         call dein#add('bbchung/gasynctags.git') 
         " my gtags-cscope fork
         call dein#add('https://github.com/neg-serg/gtags-cscope-vim')
-        if g:nvim_deopete == 1
-                " deopete support
+        if g:nvim_deoplete == 1
+                " deoplete support
                 call dein#add('ozelentok/deoplete-gtags')
             endif
     endif
