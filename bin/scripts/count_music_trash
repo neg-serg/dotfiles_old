@@ -1,7 +1,0 @@
-#!/bin/zsh
-function main(){
-    find ~/music/ -regextype posix-egrep \
-        -regex ".*\.(jpg|png|gif|jpeg|tif|tiff|m3u|log|pdf)$" -exec du -sch {} + | sort -h
-}
-
-main "$@"
