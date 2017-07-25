@@ -1,12 +1,11 @@
-#!/bin/bash
+#!/bin/zsh
 
 scr_dir=~/tmp/shots
-scr_prompt=false
 window='root'
 name="screenshot"
 filename="${name}-$(date +%Y-%m-%d_%H-%M-%S).png"
 size_=200
-colorspace='0.96,0.5,0.09'
+colorspace_='0.96,0.5,0.09'
 urgency_=normal
 summary_="${scr_dir}/${filename}"
 
@@ -14,13 +13,25 @@ function shot_notify(){
     ~/bin/scripts/pic_notify "${summary_}"
 }
 
+function make_shot(){
+    local -a arglist=()
+    arglist+=( -p 0 )
+    [[ ${select_window_} == true ]] && arglist+=( -s )
+    [[ ${apply_colorpace_} == true ]] && arglist+=( -c "${colorspace_}" )
+    arglist+="${summary_}"
+    maim ${arglist[@]} && \
+    shot_notify
+}
+
 case $1 in
-    current) 
-        maim -s -p 0 -c ${colorspace} "${summary_}" 
-        shot_notify
+    select)
+        select_window_=true
+        apply_colorpace_=false
+        make_shot "$@"
         ;;
     *) 
-        maim -p 0 -c ${colorspace} "${summary_}" 
-        shot_notify
+        select_window_=false
+        apply_colorpace_=false
+        make_shot "$@"
         ;;
 esac
