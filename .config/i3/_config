@@ -145,6 +145,9 @@ for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, 
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 
+#for_window [class="^headset$"] floating enable
+#for_window [title="^Headset - Player$"] move container to workspace trash
+
 mode "" {
     #-------------------------------------------------------
     bindsym c mode ""
