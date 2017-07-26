@@ -106,6 +106,11 @@ class ns_settings(object):
                 'geom' : "1200x600+400+400",
                 'prog': 'st -f "PragmataPro for Powerline:pixelsize=18" -c mpd-pad2 -e ncmpcpp'
             },
+            'weechat': {
+                'class' : { '_weechat_' },
+                'geom' : "1736x1091+112+33",
+                'prog': 'st -c _weechat_ -f \'Terminus Re33:size=14:style=Bold\' zsh -c \'tmux -S ~/1st_level/weechat.socket new weechat\''
+            },
             'mutt': {
                 'instance' : { 'mutt' },
                 'geom' : "1250x700+293+0",
