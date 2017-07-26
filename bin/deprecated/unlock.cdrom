@@ -2,4 +2,4 @@
 echo 0 > /proc/sys/dev/cdrom/lock
 
 # Permanently unlock the cdrom
-echo “sys.dev.cdrom.lock=0″ >> /etc/sysctl.conf
+echo 'sys.dev.cdrom.lock=0' >> /etc/sysctl.conf
