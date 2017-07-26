@@ -47,8 +47,8 @@ function i3_restart(){
 
 function main() {
     lockfile="${HOME}/tmp/$(basename $0).lock"
-    if (set -o noclobber; echo "locked" > "$lockfile") 2> /dev/null; then
-        zshexit() { sleep 2s; rm -f "$lockfile"; exit $? }
+    if (set -o noclobber && echo ":: Locked ::" > "${lockfile}") 2> /dev/null; then
+        zshexit() { sleep 2s && rm -f "${lockfile}"; exit $? }
         echo "Locking succeeded" >&2
         #----------------------------------------------
         if [[ ${1} != "" ]]; then
