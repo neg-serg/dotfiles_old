@@ -8,7 +8,7 @@ IMAGE=/tmp/i3lock.png
 TEXT="locked"
 SCRIPT=`realpath $0`
 SCRIPTPATH=`dirname $SCRIPT`
-LOCK=$SCRIPTPATH/lock.png
+LOCK=$SCRIPTPATH/lock_prev.png
 RES=$(xrandr --current | grep '*' | uniq | awk '{print $1}')
 #This is a bit cheaty
 BOXSIZE=$(expr $(echo $RES | cut -d 'x' -f1) / 2)
