@@ -5,7 +5,6 @@ windowmanager="${1}"
 [[ ${windowmanager} ]] || source ${XDG_CONFIG_HOME}/.windowmanager
 export windowmanager
 
-${SCRIPT_HOME}/systemd_env_forwarding.zsh
 ~/bin/wl rand
 
 [[ -f "${HOME}/.Xresources" ]] && \
