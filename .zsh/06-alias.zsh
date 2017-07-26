@@ -221,7 +221,7 @@ function yr(){
 }
 
 alias qe='cd *(/om[1])'
-alias {cat,hi}='ccat'
+alias {cat,hi}='ccat -G String="_default_" -G Plaintext="white" -G Punctuation="blue" -G Literal="fuscia" -G Keyword="fuscia" 2>/dev/null'
 
 alias awk="$(whence gawk || whence awk)"
 alias history='history 0'
