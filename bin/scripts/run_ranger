@@ -1,0 +1,26 @@
+#!/bin/zsh
+xterm=true
+function main() {
+    wid=$(wmctrl -lpx|awk '$4 ~ /ranger/ {print}'|grep -ow ranger)
+    if [[ -z "${wid}" ]]; then
+        local font_size=12
+        local font_name="PragmataPro for Powerline"
+        local ranger_font="${font_name}:size=${font_size}"
+        if [[ ! $xterm ]]; then
+            st -c ranger -f "${ranger_font}" \
+                -e tmux -S ~/1st_level/ranger.socket \
+                new ranger \; set status off
+        else
+            xterm -class ranger -fa "${ranger_font}" \
+                -e tmux -S ~/1st_level/ranger.socket \
+                new ranger \; set status off
+        fi
+    else
+        source ${XDG_CONFIG_HOME}/.windowmanager
+        if [[ ${windowmanager} = "i3" ]]; then
+            i3-msg '[con_mark="ranger"] scratchpad show'
+        fi
+    fi
+
+}
+main "$@"
