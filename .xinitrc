@@ -24,8 +24,8 @@ eval $(gpg-agent --daemon)
 
 [[ -e ${LOG_ENABLED_} ]] && ~/bin/scripts/log_runner
 
-(nm-applet &)
-(gpaste-client start &)
+(${XDG_CONFIG_HOME}/xinit/run/network_applet &)
+(${XDG_CONFIG_HOME}/xinit/run/clipboard_daemon &)
 (${SCRIPT_HOME}/dw_clean &)
 
 ${XDG_CONFIG_HOME}/xinit/wm.zsh
