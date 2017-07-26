@@ -256,3 +256,16 @@ function print_hooks() {
     print -C 1 ":::zshaddhistory_functions:" ${zshaddhistory_functions}
     print -C 1 ":::zshexit_functions:" ${zshexit_functions}
 }
+
+function fun::fonts(){
+    alias 2023='toilet -f future'
+    alias gaym='toilet --gay -f mono9 -t'
+    alias gayf='toilet --gay -f future -t'
+    alias gayt='toilet --gay -f term -t'
+    alias gayp='toilet --gay -f pagga -t'
+    alias metm='toilet --metal -f mono9 -t'
+    alias metf='toilet --metal -f future -t'
+    alias mett='toilet --metal -f term -t'
+    alias metp='toilet --metal -f pagga -t'
+    alias 3d='figlet -f 3d'
+}
