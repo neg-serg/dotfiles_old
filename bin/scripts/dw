@@ -1,0 +1,95 @@
+#!/bin/zsh
+
+wf_(){
+    builtin print "${st_}[${cl_}${bold_}$1${cl_}${st_}]${cl_} "
+}
+
+highlight_(){
+    local msg="$(xrq color$1)"
+    builtin print "<span weight='bold' color='${msg}'>"
+}
+
+send_notify_(){ 
+    notify-send  "$(wf_ "Move")$(wf_ "${file}") -> $(wf_ ${HOME}/tmp)"
+}
+
+main(){
+    case "$1" in
+        c*) 
+            shift
+            st_=$(highlight_ 4)
+            bold_="<span weight='bold'>"
+            prefix_=$(wf_ "➣")
+
+            # Transmission-related stuff
+            inotifywait -m -q -e close_write --format "%f" ${XDG_DOWNLOAD_DIR}/ \
+                | while IFS= read -r file; do
+            if [[ "${file}" =~ ".torrent.added"$ ]]; then
+                send_notify_ "Move ["${file}"] -> ${HOME}/tmp"
+                mv "${file}" "${HOME}/tmp"
+            fi
+        done
+        ;;
+        s*)
+            shift
+            local _dw_dir="$(readlink -f ${HOME}/dw/)"
+            local _torrent_dir="$(readlink -f ${HOME}/torrent/)"
+            local _doc_dir="$(readlink -f ${HOME}/doc/new/)"
+            local _vid_dir="$(readlink -f ${HOME}/vid/new/)"
+
+            mkdir -vp ${_dw_dir}/{pic,patches,torrent,jar,img,swf,tar,html,fonts,aud,win,gif,nix,src}
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(gif)$" -exec mv -vnt ${_dw_dir}/gif {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(diff|patch)$" -exec mv -vnt ${_dw_dir}/patches {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(exe|msi)$" -exec mv -vnt ${_dw_dir}/win {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -name "*.torrent" \
+                -exec mv -n -t -f ${_torrent_dir} {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(apk|jar)$" -exec mv -vnt ${_dw_dir}/jar {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -name "*.iso" \
+                -exec mv -n -t ${_dw_dir}/img {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -name "*.swf" \
+                -exec mv -n -t ${_dw_dir}/swf {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(zip|7z|rar|gz|xz|bz2|tgz|tar.*)$" -exec mv -vnt ${_dw_dir}/tar {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(pdf|ps|djvu|txt|doc|docx|fb2|epub|rtf)$" -exec mv -vnt ${_doc_dir}/ {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(html|htm|mht|mhtml|chm|maff)$" -exec mv -vnt ${_dw_dir}/html {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(ttf|otf|woff|pcf|bdf)$" -exec mv -vnt ${_dw_dir}/fonts {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(flv|mp4|avi|mkv|mov|webm|wmv)$" -exec mv -vnt ${_vid_dir}/ {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(mp3|ogg|flac|sid|xm|wma|flac|alac)$" -exec mv -vnt ${_dw_dir}/aud {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(deb|run|bin|rpm|sh|py)$" -exec mv -vnt ${_dw_dir}/nix {} + \
+                2>/dev/null&
+            find ${_dw_dir}/ -maxdepth 1 -regextype posix-egrep -regex \
+                ".*\.(c|cpp|ebuild|js)$" -exec mv -vnt ${_dw_dir}/src {} + \
+                2>/dev/null&
+
+            rmdir -v ${_dw_dir}/{pic,patches,jar,img,swf,tar,html,fonts,aud,win,gif,nix,src} \
+                2> /dev/null&
+            rmdir ${_torrent_dir} \
+                2> /dev/null&
+        ;;
+    esac
+}
+
+main "$@"
