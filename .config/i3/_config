@@ -84,13 +84,13 @@ bindsym $mod+f [con_mark="ncmpcpp"] exec python3 ~/.config/i3/ns.py toggle ncmpc
 bindsym $mod+d exec python3 ~/.config/i3/ns.py toggle teardrop
 bindsym $mod+Shift+d exec python3 ~/.config/i3/ns.py toggle console
 bindsym $mod+e exec python3 ~/.config/i3/ns.py toggle im
+bindsym $mod+Shift+e exec  ~/.config/i3/ns.py toggle weechat
 bindsym $mod+3 exec python3 ~/.config/i3/ns.py next
 
 bindsym $mod+{k,j,h,l} exec i3-cycle {up,down,left,right}
 
 bindsym $mod+s exec python ~/.config/i3/ns.py hide_current
 
-set $weechat_geom move absolute position 144 20, resize set 1612 1099
 for_window $browsers  move container to workspace $web, workspace $web, focus
 for_window [class="^(caja|Pavucontrol|Awf-gtk3|lxappearance|stardict|Conky)$"] floating enable
 for_window [class="com-sun-javaws-Main" instance="sun-awt-X11-XFramePeer"] floating enable, move container to workspace $dev, workspace $dev, focus
@@ -132,7 +132,6 @@ for_window [instance="^(remmina|htop_term|glances_term|gnome-disks)$"] move cont
 for_window [instance="^(subl3|sublime_text)$"] move container to workspace $dev, workspace $dev, focus
 for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floating enable
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
-for_window [instance="_weechat_"] mark _weechat_, move scratchpad, $weechat_geom
 for_window [instance="wicd"] floating enable
 for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
 for_window $sclient move container to workspace $steam, workspace $steam, focus 
@@ -184,7 +183,6 @@ bindsym $mod+Control+e exec ~/.config/i3/circle.py next steam
 bindsym $mod+w exec ~/.config/i3/circle.py next web
 bindsym $mod+b exec ~/.config/i3/circle.py next vid
 bindsym $mod+o exec ~/.config/i3/circle.py next doc
-bindsym $mod+Shift+e exec ~/bin/scripts/weechat
 bindsym $mod+Control+q kill
 bindsym $alt+g exec rofi -show
 bindsym $mod+m exec ~/bin/scripts/rofi_xprop $(pfw)
@@ -256,6 +254,7 @@ for_window [instance="mutt"] move scratchpad, move absolute position 293 0, resi
 for_window [class="ranger"] move scratchpad, move absolute position 170 18, resize set 1132 760
 for_window [class="teardrop"] move scratchpad, move absolute position 39 4, resize set 1844 704
 for_window [class="youtube-get"] move scratchpad, move absolute position 247 13, resize set 1339 866
+for_window [class="_weechat_"] move scratchpad, move absolute position 112 33, resize set 1736 1091
 
 exec_always polybar -c ~/.config/polybar/main {tiny,main}
 
