@@ -138,3 +138,12 @@ class ns_settings(object):
         self.current_resolution=self.__get_screen_resolution()
         for tag in self.settings:
             self.parsed_geom[tag] = self.__parse_geom(tag)
+
+if __name__ == "__main__":
+    def print_info():
+        conf=ns_settings()
+        conf.init_i3_win_cmds()
+        for ns_info in conf.cmd_list:
+            print(ns_info)
+
+    print_info()
