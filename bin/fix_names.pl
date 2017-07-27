@@ -45,6 +45,7 @@ sub fancy_string {
 foreach my $file_name (@ARGV) {
     # Compute the new name
     my $new_name = $file_name;
+    my $delimiter = '.';
     if ($opt_l) {
         $new_name = encode_utf8(lc(decode_utf8($new_name)));
     } elsif ($opt_u) {
