@@ -1,3 +1,17 @@
+set_from_resource $background background
+set_from_resource $foreground foreground
+
+set_from_resource $color54    color54
+set_from_resource $color56    color56
+set_from_resource $color200   color200
+set_from_resource $color204   color204
+set_from_resource $color205   color205
+
+set_from_resource $FOCUS      color204
+set_from_resource $UNFOCUS    color204
+set_from_resource $BORDERF    color205
+set_from_resource $BORDERU    color54
+
 set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
 set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
 set $sclient [class="^(Steam|steam|explorer.exe)$"]
@@ -11,7 +25,7 @@ set $alt Mod1
 floating_modifier $mod
 
 set $myfont PragmataPro for Powerline 10
-set $zerofont PragmataPro for Powerline 0 
+set $zerofont PragmataPro for Powerline 10
 font pango: $zerofont
 
 focus_follows_mouse no
@@ -32,19 +46,18 @@ set $Locker i3lock && sleep 1
 set $soft_restart killall -SIGUSR1 i3status
 
 #--[ Colorscheme ]----------------------------------------------------
-client.focused_inactive #121212   #000000   #121212  #121212   #121212
-client.focused          #002b36   #000000   #002b36  #002b36   #002b36
-client.unfocused        #101010   #000000   #151515  #101010   #101010
-client.urgent           #4c438b   #000000   #4c438b  #4c438b   #4c438b
-client.placeholder      #000000   #000000   #002b36  #000000   #002b36
-client.background       #000000
+client.focused 		  	$color56      $BORDERF  $FOCUS    $BORDERF
+client.focused_inactive	$color54      $UNFOCUS  $UNFOCUS  $UNFOCUS
+client.unfocused		$color205     $BORDERU  $UNFOCUS  $BORDERU
+client.urgent			$color56      $FOCUS    $FOCUS    $FOCUS
+client.background		$UNFOCUS
 
 #--[ Gaps ]--------------------------------
 smart_gaps on
 smart_borders on
 gaps inner 4
 gaps outer 8
-hide_edge_borders both 
+hide_edge_borders both
 #------------------------------------------
 set $exit mode "default"
 bindsym $alt+e mode ""
@@ -134,9 +147,9 @@ for_window [instance="sun-awt-X11-(XWindowPeer|XDialogPeer|XFramePeer)"] floatin
 for_window [instance="^(Update|gnome-keyring|file-progress)$"] floating enable
 for_window [instance="wicd"] floating enable
 for_window [instance="^(wim|nwim)$"] move container to workspace $dev, workspace $dev, focus
-for_window $sclient move container to workspace $steam, workspace $steam, focus 
-for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus 
-for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, focus 
+for_window $sclient move container to workspace $steam, workspace $steam, focus
+for_window $steam_games move container to workspace $steam, workspace $steam, fullscreen enable, focus
+for_window $steam_all mark steam_all, move container to workspace $steam, workspace $steam, focus
 for_window [title="^Compress.*"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
