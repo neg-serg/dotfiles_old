@@ -25,7 +25,7 @@ set $alt Mod1
 floating_modifier $mod
 
 set $myfont PragmataPro for Powerline 10
-set $zerofont PragmataPro for Powerline 10
+set $zerofont PragmataPro for Powerline 0
 font pango: $zerofont
 
 focus_follows_mouse no
