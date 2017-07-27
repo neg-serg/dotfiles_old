@@ -48,9 +48,6 @@ tray-maxsize = 16
 tray-background = ${colors.background}
 
 font-0 = PragmataPro for Powerline:weight=bold:size=12;2
-#font-1 = "Segoe UI Symbol";0
-#font-2 = FreeMono:style=bold:size=12;0
-#font-3 = FontAwesome:style=bold:size=12;0
 
 [module/i3]
 type = internal/i3
