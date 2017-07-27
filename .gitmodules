@@ -48,3 +48,6 @@
 [submodule "/home/neg/.emacs.d"]
 	path = /home/neg/.emacs.d
 	url = https://github.com/hlissner/.emacs.d
+[submodule "/home/neg/.emacs.d_spacemacs"]
+	path = /home/neg/.emacs.d_spacemacs
+	url = https://github.com/syl20bnr/spacemacs
