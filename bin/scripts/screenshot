@@ -23,6 +23,8 @@ function make_shot(){
     shot_notify
 }
 
+[[ ! -d "${scr_dir}" ]] && mkdir "${scr_dir}"
+
 case $1 in
     select)
         select_window_=true
