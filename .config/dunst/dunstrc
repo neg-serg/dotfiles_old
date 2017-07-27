@@ -33,11 +33,9 @@
     stack_duplicates      = yes
     hide_duplicates_count = yes
     always_run_stript     = yes
+    frame_width           = 1
+    frame_color           = "#073642"
 
-
-[frame]
-    width     = 1
-    color     = "#073642"
 
 [shortcuts]
     close_all = mod4+space
