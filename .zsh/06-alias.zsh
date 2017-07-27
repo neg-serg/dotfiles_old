@@ -402,12 +402,12 @@ alias gcp="${BIN_HOME}/1st_level/gcp"
 alias je="bundle exec jekyll serve"
 alias twitch="livestreamer -p ${VIDEO_PLAYER_} twitch.tv/$1 high"
 alias vol="${SCRIPT_HOME}/vol_"
-alias capsesc="xcape -e 'Caps_Lock=Escape'"
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-alias google="${SCRIPT_HOME}/rofi_search"
 alias recordmydesktop="recordmydesktop --no-frame"
-alias xescape='xcape -e "Control_L=Escape" -t 500'
 alias up="rtv -s unixporn"
+#--[ xcape ]---------------
+alias xescape='xcape -e "Control_L=Escape" -t 500'
+alias capsesc="xcape -e 'Caps_Lock=Escape'"
 #--[ Fun ]-----------------
 alias taco='curl -L git.io/taco'
 alias starwars='telnet towel.blinkenlights.nl'
