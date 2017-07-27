@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-local fn_size="17"
+local fn_size="18"
 local fn_name="PragmataPro for Powerline"
 
 local main_detect=$(tmux list-sessions|awk -F ':' '/main/ {print $1}')
