@@ -38,7 +38,7 @@ modules-right = mpd
 background = ${colors.background}
 foreground = ${colors.white}
 
-underline-size = 2
+underline-size = 1
 
 tray-detached = false
 tray-position = right
