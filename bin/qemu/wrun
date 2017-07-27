@@ -92,7 +92,7 @@ function main(){
     )
 
     if [[ ! $(pidof synergyc) ]]; then
-        sudo -u neg "synergy"; print "Autostart synergy"
+        sudo -u neg "synergy"& print "Autostart synergy"
     fi
 
     # Setup hugepages
