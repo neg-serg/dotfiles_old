@@ -1,5 +1,5 @@
 [global]
-    font                  = Iosevka 11
+    font                  = FontAwesome, Iosevka 11
     markup                = full
     plain_text            = no
     format                = "<b>%s</b>\n%b"
@@ -88,3 +88,44 @@
     format     = ""
     script     = "/home/neg/bin/scripts/prepare_image"
     urgency    = normal
+
+
+# thx to [mbellgb]
+#
+[scrot]
+    summary = scrot
+    format = "<b>  %s</b>\n%b"
+
+[mopidy]
+    summary = Mopidy
+    appname = notify-send
+    urgency = low
+    format = "<b>  %s</b>\n%b"
+
+[google-play-music-desktop-player]
+    appname = Electron
+    urgency = low
+    format = "<b>  %s</b>\n%b"
+    #new_icon = applications-multimedia
+    new_icon = "/home/mbell/.local/share/icons/Notifications/gpm.png"
+
+[usb]
+    summary = Automount
+    format = "<b> %s</b>\n%b"
+
+[slack]
+    summary = Slack Notification
+    format = "<b> %s</b>\n%b"
+
+[weechat]
+    appname = weechat
+    format = "<b>  %s</b>\n%b"
+
+[Pushbullet]
+    summary = "*Motorola MotoG3*"
+    format = "<b> %s</b>\n%b"
+    urgency = low
+
+[spotify]
+    appname = Spotify
+    urgency = normal
