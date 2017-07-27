@@ -117,7 +117,6 @@ export JAVA_FONTS=/usr/share/fonts/TTF
 export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.crossplatformlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 _SILENT_JAVA_OPTIONS="${_JAVA_OPTIONS}"
-unset _JAVA_OPTIONS
 
 (( 0 != 0 )) && {
     if which drip > /dev/null 2>&1; then
