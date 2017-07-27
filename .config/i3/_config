@@ -10,7 +10,7 @@ set_from_resource $color205   color205
 set_from_resource $FOCUS      color204
 set_from_resource $UNFOCUS    color204
 set_from_resource $BORDERF    color205
-set_from_resource $BORDERU    color54
+set_from_resource $BORDERU    color0
 
 set_from_resource $black    color0
 
@@ -48,11 +48,11 @@ set $Locker i3lock && sleep 1
 set $soft_restart killall -SIGUSR1 i3status
 
 #--[ Colorscheme ]----------------------------------------------------
-client.focused 		  	$black        $black     $FOCUS    $BORDERF
-client.focused_inactive	$black        $black     $UNFOCUS  $UNFOCUS
-client.unfocused		$black        $color204  $UNFOCUS  $BORDERU
-client.urgent			$black        $FOCUS     $FOCUS    $FOCUS
-client.background		$black
+client.focused 		  	$black  $BORDERF $FOCUS    $BORDERF
+client.focused_inactive	$black  $UNFOCUS $UNFOCUS  $UNFOCUS
+client.unfocused		$black  $BORDERU $UNFOCUS  $BORDERU
+client.urgent			$black  $FOCUS   $FOCUS    $FOCUS
+client.background		$black           
 
 #--[ Gaps ]--------------------------------
 smart_gaps on
