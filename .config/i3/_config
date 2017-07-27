@@ -12,6 +12,8 @@ set_from_resource $UNFOCUS    color204
 set_from_resource $BORDERF    color205
 set_from_resource $BORDERU    color54
 
+set_from_resource $black    color0
+
 set $browsers [class="^(Firefox|Conkeror|Iceweasel|Icecat|Navigator|Vimprobable2|Chromium|brave|Chromium-www|yandex-browser-beta|Opera|Dwb|Tor Browser)$"]
 set $steam_games [class="^(dota2|darkest.bin.x86_64)$"]
 set $sclient [class="^(Steam|steam|explorer.exe)$"]
@@ -46,11 +48,11 @@ set $Locker i3lock && sleep 1
 set $soft_restart killall -SIGUSR1 i3status
 
 #--[ Colorscheme ]----------------------------------------------------
-client.focused 		  	$color56      $BORDERF  $FOCUS    $BORDERF
-client.focused_inactive	$color54      $UNFOCUS  $UNFOCUS  $UNFOCUS
-client.unfocused		$color205     $BORDERU  $UNFOCUS  $BORDERU
-client.urgent			$color56      $FOCUS    $FOCUS    $FOCUS
-client.background		$UNFOCUS
+client.focused 		  	$black        $black     $FOCUS    $BORDERF
+client.focused_inactive	$black        $black     $UNFOCUS  $UNFOCUS
+client.unfocused		$black        $color204  $UNFOCUS  $BORDERU
+client.urgent			$black        $FOCUS     $FOCUS    $FOCUS
+client.background		$black
 
 #--[ Gaps ]--------------------------------
 smart_gaps on
