@@ -45,3 +45,6 @@
 [submodule ".tmux/tmux-prefix-highlight"]
 	path = .tmux/tmux-prefix-highlight
 	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
+[submodule "/home/neg/.emacs.d"]
+	path = /home/neg/.emacs.d
+	url = https://github.com/hlissner/.emacs.d
