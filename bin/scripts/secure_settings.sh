@@ -40,7 +40,7 @@ if [[ $(which sysctl 2>/dev/null) != "" ]]; then
   sysctl -w net.ipv4.conf.all.log_martians=1
   sysctl -w net.ipv4.conf.default.log_martians=1
   #Perfer Privacy Addresses
-  net.ipv6.conf.all.use_tempaddr = 2
-  net.ipv6.conf.default.use_tempaddr = 2
+  sysctl -w net.ipv6.conf.all.use_tempaddr = 2
+  sysctl -w net.ipv6.conf.default.use_tempaddr = 2
   sysctl -p
 fi
