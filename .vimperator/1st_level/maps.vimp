@@ -15,8 +15,8 @@ EOF
 map <C-O> <NOP>
 map <C-\> <NOP>
 
-map e gt
-map E gT
+nnoremap 3 gt
+nnoremap E gT
 map  gr gT
 
 map <C-S-w> <NOP>
