@@ -15,8 +15,12 @@ EOF
 map <C-O> <NOP>
 map <C-\> <NOP>
 
-nnoremap 3 gt
-nnoremap E gT
+noremap # gt
+noremap E gT
+
+map km :set gui=navigation <Enter>
+map kM :set gui=none <Enter>
+
 map  gr gT
 
 map <C-S-w> <NOP>
@@ -153,10 +157,4 @@ map gr gT
 map пк gT
 map пе gt
 
-" Saving/ Ranger Integration:"{{{ 
-" turn ranger popup on file save on and off
-nmap ,r silent !~/bin/ranger/ranger_browser_fm.sh toggle
-
 ignorekeys clear
-"ignorekeys add inbox\\.google\\.com -except=W,b,B,F,T,O,J,K,g,q,Y
-"ignorekeys add mail\\.google\\.com -except=W,b,B,F,T,O,J,K,z
