@@ -22,4 +22,18 @@ function clip_main(){
     $(gpaste_run) select ${selection}
 }
 
-clip_main
+function clipster_main(){
+    local rofi_pid=" -pid /run/user/$(id -u)/rofi_clip.pid"
+    local rofi_font="PragmataPro for Powerline bold 12"
+    declare -a rofi_opts_
+    local x11_width="$(xrandr -q |awk '/Screen/{print $8}')"
+    rofi_opts_=(-font ${rofi_font}  -yoffset -22 -location 6 -width $[x11_width-70] -lines 10 "${rofi_pid}" -i -levenshtein-sort -matching glob -dmenu -p "[>>]" -sep '\x00')
+    local menu=$(clipster -o -n 250 -0|rofi ${rofi_opts_[@]})
+    local selection=$(echo "${menu}" | cut -d ':' -f1)
+    [[ ${selection} != "" ]] && clipster <<< ${selection}
+}
+
+case "$1" in
+    clipster) clipster_main ;;
+    *) clip_main
+esac
