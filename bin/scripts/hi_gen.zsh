@@ -56,9 +56,9 @@ function main() {
     egrep "^${ftype_pref}" -v "${tmp_file}"
     egrep "^${ftype_pref}" "${tmp_file}" | sed ${sed_args} > "${ftype_arr}"
 
-    nohup zsh -c "nvim +'Tabularize/[bf]g=.*' "${ftype_arr}" +'wq'" 2> /tmp/vimlol
+    nohup zsh -c "nvim +'Tabularize/[bf]g=.*' "${ftype_arr}" +'wq'" > /dev/null 2>&1
     sed "s/^${ftype_pref}//" "${ftype_arr}" |awk '{print "*."$1") style=ftype-"$1" ;;"}' > "${ftype_rule}"
-    nohup zsh -c "nvim +'Tabularize/)\zs ' "${ftype_rule}" +'wq'" 2> /tmp/vimlol
+    nohup zsh -c "nvim +'Tabularize/)\zs ' "${ftype_rule}" +'wq'" > /dev/null 2>&1
 
     for t in "${ftype_arr}" "${ftype_rule}"; eat "${t}"
     rm "${tmp_file}"
