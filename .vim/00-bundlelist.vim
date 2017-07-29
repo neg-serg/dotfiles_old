@@ -54,8 +54,11 @@ if dein#load_state("/home/neg/.vim/repos")
         \ 'AT', 'AD', 'Cd', 'Lcd', 'ProjectDo']})
     "Autoswitch on <esc> with libxkb needs xkb-switch-git to run
     call dein#add('lyokha/vim-xkbswitch.git')
-    "mappings for simultaneously pressed keys
-    call dein#add('kana/vim-arpeggio.git')
+    "disable argpeggio because of bad compatibility with cyr
+    if has("ololo")
+        "mappings for simultaneously pressed keys
+        call dein#add('kana/vim-arpeggio.git')
+    endif
     "powerful vim spell-checking with LangTool
     call dein#add('rhysd/vim-grammarous')
     "--[ Search ]-----------------------------------------------------------------------------
