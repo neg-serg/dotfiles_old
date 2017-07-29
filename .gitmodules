@@ -8,10 +8,10 @@
 	branch = master
 [submodule ".vim/bundle/neobundle.vim"]
 	path = .vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
+	url = ssh://github.com/Shougo/neobundle.vim
 [submodule ".tmux/tmux-fingers"]
 	path = .tmux/tmux-fingers
-	url = https://github.com/Morantron/tmux-fingers
+	url = ssh://github.com/Morantron/tmux-fingers
 [submodule ".tmux/tmux-yank"]
 	path = .tmux/tmux-yank
 	url = git://github.com/tmux-plugins/tmux-yank
@@ -20,34 +20,34 @@
 	url = git://git.2f30.org/colors.git
 [submodule "bin/wm/opt"]
 	path = bin/wm/opt
-	url = https://github.com/wmutils/opt
+	url = ssh://github.com/wmutils/opt
 [submodule "bin/wm/contrib"]
 	path = bin/wm/contrib
-	url = https://github.com/wmutils/contrib
+	url = ssh://github.com/wmutils/contrib
 [submodule "bin/wm/wmtls"]
 	path = bin/wm/wmtls
-	url = https://github.com/dkeg/wmtls
+	url = ssh://github.com/dkeg/wmtls
 [submodule ".icons/Flat-Remix"]
 	path = .icons/Flat-Remix
-	url = https://github.com/daniruiz/Flat-Remix
+	url = ssh://github.com/daniruiz/Flat-Remix
 [submodule ".config/i3/i3-sticky"]
 	path = .config/i3/i3-sticky
-	url = https://github.com/Airblader/i3-sticky
+	url = ssh://github.com/Airblader/i3-sticky
 [submodule ".themes/vertex-theme"]
 	path = .themes/vertex-theme
-	url = https://github.com/horst3180/vertex-theme
+	url = ssh://github.com/horst3180/vertex-theme
 [submodule ".themes/Cloak-3.20"]
 	path = .themes/Cloak-3.20
-	url = https://github.com/killhellokitty/Cloak-3.20
+	url = ssh://github.com/killhellokitty/Cloak-3.20
 [submodule ".tmux/tmux-open"]
 	path = .tmux/tmux-open
-	url = https://github.com/tmux-plugins/tmux-open
+	url = ssh://github.com/tmux-plugins/tmux-open
 [submodule ".tmux/tmux-prefix-highlight"]
 	path = .tmux/tmux-prefix-highlight
-	url = https://github.com/tmux-plugins/tmux-prefix-highlight.git
+	url = ssh://github.com/tmux-plugins/tmux-prefix-highlight.git
 [submodule "/home/neg/.emacs.d"]
-	path = /home/neg/.emacs.d
-	url = https://github.com/hlissner/.emacs.d
+	path = .emacs.d
+	url = ssh://github.com/hlissner/.emacs.d
 [submodule "/home/neg/.emacs.d_spacemacs"]
-	path = /home/neg/.emacs.d_spacemacs
-	url = https://github.com/syl20bnr/spacemacs
+	path = .emacs.d_spacemacs
+	url = ssh://github.com/syl20bnr/spacemacs
