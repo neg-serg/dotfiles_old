@@ -1,7 +1,7 @@
 #!/bin/zsh
 
-icon="$(readlink -f lock.png)"
-tmpbg="$(readlink -f lol.png)"
+icon="$(readlink -f $(dirname $0)/lock.png)"
+tmpbg="$(readlink -f $(dirname $0)/lol.png)"
 
 function circle_converter(){
     local file_ext="${1##*.}"
@@ -52,7 +52,7 @@ function main(){
     scrot "${tmpbg}"
     case $1 in
         p*) convert "${tmpbg}" -scale 10% -scale 1000% "${tmpbg}";;
-        *)  convert "${tmpbg}" -blur 0x6 "${tmpbg}";;
+        *) convert "${tmpbg}" -blur 0x6 "${tmpbg}";;
     esac
     convert "${tmpbg}" "$icon" -gravity center -composite -matte "${tmpbg}"
     i3lock "${i3lock_params[@]}"
