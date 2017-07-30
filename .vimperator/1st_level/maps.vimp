@@ -18,9 +18,6 @@ map <C-\> <NOP>
 noremap # gt
 noremap E gT
 
-map km :set gui=navigation <Enter>
-map kM :set gui=none <Enter>
-
 map  gr gT
 
 map <C-S-w> <NOP>
@@ -41,6 +38,10 @@ nmap <C-n> <NOP>
 
 noremap j 3j
 noremap k 3k
+
+noremap km :set gui=navigation <Enter>
+noremap kM :set gui=none <Enter>
+
 map  U :undo<Space>
 map <F4> gn
 
