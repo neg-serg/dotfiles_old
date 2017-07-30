@@ -10,19 +10,22 @@
     <tag>round</tag>
   </resource>
 
-  <resource identifier="gimp-brush-clipboard" checksum="157dcef48665ab465439cfaf10d6feeb">
+  <resource identifier="gimp-brush-clipboard-image" checksum="157dcef48665ab465439cfaf10d6feeb">
+  </resource>
+
+  <resource identifier="gimp-brush-clipboard-mask" checksum="157dcef48665ab465439cfaf10d6feeb">
   </resource>
 
   <resource identifier="${gimp_data_dir}/brushes/Basic/1-pixel.vbr" checksum="b22c1fec1056f979b1d17e4cc80e9112">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/brushes/Basic/Block-01.vbr" checksum="5a8e52d10d9a0cddcc31cf3507a41d06">
+  <resource identifier="${gimp_data_dir}/brushes/Basic/Block-01.vbr" checksum="0c11d7446cf257c986434b8037b53c10">
   </resource>
 
   <resource identifier="${gimp_data_dir}/brushes/Basic/Block-02.vbr" checksum="a6ab0bd0159ddcde4405e9cf0d3a07fc">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/brushes/Basic/Block-03.vbr" checksum="70399a5e4e39151d23cf365749da49f5">
+  <resource identifier="${gimp_data_dir}/brushes/Basic/Block-03.vbr" checksum="496ee7e87ff7fa78888717784a4fc6b0">
   </resource>
 
   <resource identifier="${gimp_data_dir}/brushes/Basic/Hardness-025.vbr" checksum="0e82572c8b71c4155e7364d66bc0ffce">
@@ -211,6 +214,9 @@
   <resource identifier="${gimp_data_dir}/dynamics/Basic/Pressure-Opacity.gdyn" checksum="(null)">
   </resource>
 
+  <resource identifier="${gimp_data_dir}/dynamics/Basic/Pressure-Size.gdyn" checksum="(null)">
+  </resource>
+
   <resource identifier="${gimp_data_dir}/dynamics/Random-Color.gdyn" checksum="(null)">
   </resource>
 
@@ -226,181 +232,181 @@
   <resource identifier="${gimp_data_dir}/dynamics/Velocity-Tapering.gdyn" checksum="(null)">
   </resource>
 
-  <resource identifier="gimp-pattern-clipboard" checksum="eff9598f9f61c1dc78d842f1798c2ab8">
+  <resource identifier="gimp-pattern-clipboard-image" checksum="eff9598f9f61c1dc78d842f1798c2ab8">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/3dgreen.pat" checksum="00052731f14a5bc614daece969b368bc">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/3dgreen.pat" checksum="00052731f14a5bc614daece969b368bc">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/amethyst.pat" checksum="ac004a0215ba837c01964226611635c0">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/amethyst.pat" checksum="ac004a0215ba837c01964226611635c0">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/blue.pat" checksum="9505c5e2df62d486dfd110eb08d9c022">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/blue.pat" checksum="9505c5e2df62d486dfd110eb08d9c022">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/bluegrid.pat" checksum="3ae3c2b4b499381174ccf8a49b8c205f">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/bluegrid.pat" checksum="3ae3c2b4b499381174ccf8a49b8c205f">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/bluesquares.pat" checksum="6ae618f4f9833a1030fbf58c149c7241">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/bluesquares.pat" checksum="6ae618f4f9833a1030fbf58c149c7241">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/blueweb.pat" checksum="b737ccf05a59c87cd120cc7a017224e7">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/blueweb.pat" checksum="b737ccf05a59c87cd120cc7a017224e7">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/brick.pat" checksum="1f241d71810da697b596525c50054ee7">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/brick.pat" checksum="1f241d71810da697b596525c50054ee7">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/burlap.pat" checksum="6046ce5617773e56cbc602842cd55124">
+  <resource identifier="${gimp_data_dir}/patterns/Fabric/burlap.pat" checksum="6046ce5617773e56cbc602842cd55124">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/burlwood.pat" checksum="3362a830595ec24c532d25fca6e82841">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/burlwood.pat" checksum="3362a830595ec24c532d25fca6e82841">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/choc_swirl.pat" checksum="8f00b531d09279a0f7aa0c3208e26206">
+  <resource identifier="${gimp_data_dir}/patterns/Food/choc_swirl.pat" checksum="8f00b531d09279a0f7aa0c3208e26206">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/corkboard.pat" checksum="e0e344790d5425d5afe695b9b67b9a51">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/corkboard.pat" checksum="e0e344790d5425d5afe695b9b67b9a51">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/cracked.pat" checksum="31e59d7417cb4ef2dddd53cf2e136b2d">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/cracked.pat" checksum="31e59d7417cb4ef2dddd53cf2e136b2d">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/Craters.pat" checksum="6286edd005a095e1d20209bd8c63c130">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/Craters.pat" checksum="6286edd005a095e1d20209bd8c63c130">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/crinklepaper.pat" checksum="b53d9e73d9c352e6cc4c94be921ba4d2">
+  <resource identifier="${gimp_data_dir}/patterns/Paper/crinklepaper.pat" checksum="b53d9e73d9c352e6cc4c94be921ba4d2">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/ground1.pat" checksum="00f690561e89d65d4b1257f0823b9977">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/ground1.pat" checksum="00f690561e89d65d4b1257f0823b9977">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/electric.pat" checksum="c81aa3894d24289215497524598da855">
+  <resource identifier="${gimp_data_dir}/patterns/Water/electric.pat" checksum="c81aa3894d24289215497524598da855">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/fibers.pat" checksum="2830a6fc5f66e85493efedb4d4c6a84c">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/fibers.pat" checksum="2830a6fc5f66e85493efedb4d4c6a84c">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/granite1.pat" checksum="c6220b4ee84951282053d96da7c0df91">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/granite1.pat" checksum="c6220b4ee84951282053d96da7c0df91">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/ice.pat" checksum="3248a69c033c15e46356a9ecb996c652">
+  <resource identifier="${gimp_data_dir}/patterns/Water/ice.pat" checksum="3248a69c033c15e46356a9ecb996c652">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/java.pat" checksum="e66740db4790b501508b84b780a4158b">
+  <resource identifier="${gimp_data_dir}/patterns/Food/java.pat" checksum="e66740db4790b501508b84b780a4158b">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/leather.pat" checksum="18fae1b0cb726162fda4c8a850ce6665">
+  <resource identifier="${gimp_data_dir}/patterns/Animal/leather.pat" checksum="18fae1b0cb726162fda4c8a850ce6665">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/leopard.pat" checksum="e8518a613d2df2bfa1ce16c6f19380c0">
+  <resource identifier="${gimp_data_dir}/patterns/Animal/leopard.pat" checksum="e8518a613d2df2bfa1ce16c6f19380c0">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/lightning.pat" checksum="e53b923bdeccd742866cc836127b53cb">
+  <resource identifier="${gimp_data_dir}/patterns/Sky/lightning.pat" checksum="e53b923bdeccd742866cc836127b53cb">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/leaves.pat" checksum="991d0263a630f7d9379f3181cc5cf4dd">
+  <resource identifier="${gimp_data_dir}/patterns/Plant/leaves.pat" checksum="991d0263a630f7d9379f3181cc5cf4dd">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/marble1.pat" checksum="7cca1d947b97e995440affa1a70e7afb">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/marble1.pat" checksum="7cca1d947b97e995440affa1a70e7afb">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/marble2.pat" checksum="b703250ff7bf9a13e0bf1cc7b951e8b4">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/marble2.pat" checksum="b703250ff7bf9a13e0bf1cc7b951e8b4">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/marble3.pat" checksum="188e4483a8ad8d7adad18cb7475f2d4c">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/marble3.pat" checksum="188e4483a8ad8d7adad18cb7475f2d4c">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/nops.pat" checksum="8e398be1aaa1b1ac6392ebb5a8dd5831">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/nops.pat" checksum="8e398be1aaa1b1ac6392ebb5a8dd5831">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/Moonfoot.pat" checksum="690271aaafee910dfc7b3fe2888c65cd">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/Moonfoot.pat" checksum="690271aaafee910dfc7b3fe2888c65cd">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/paper.pat" checksum="460447543ed49484ecf388d14d123eb8">
+  <resource identifier="${gimp_data_dir}/patterns/Paper/paper.pat" checksum="460447543ed49484ecf388d14d123eb8">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/parque1.pat" checksum="f7d5acd98b59f7830ea3b1afe92d29e6">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/parque1.pat" checksum="f7d5acd98b59f7830ea3b1afe92d29e6">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/parque2.pat" checksum="0b6e61665a81c96478faa1e4fe0af354">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/parque2.pat" checksum="0b6e61665a81c96478faa1e4fe0af354">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/parque3.pat" checksum="a99fdcc9bc2814e7d51e05faeb07ec85">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/parque3.pat" checksum="a99fdcc9bc2814e7d51e05faeb07ec85">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/pastel.pat" checksum="9173341213573b8c87467733c34078ba">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/pastel.pat" checksum="9173341213573b8c87467733c34078ba">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/pine.pat" checksum="52fc540af9e485c532b96f3b2724ad74">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/pine.pat" checksum="52fc540af9e485c532b96f3b2724ad74">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/wood2.pat" checksum="615a4ea243b717b73605569459aed362">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/wood2.pat" checksum="615a4ea243b717b73605569459aed362">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/pink_marble.pat" checksum="51a9ca43d2baf5243cb79d8a2f4db20f">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/pink_marble.pat" checksum="51a9ca43d2baf5243cb79d8a2f4db20f">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/pool.pat" checksum="b4f48469ab59632276d2b4d9af9dbde8">
+  <resource identifier="${gimp_data_dir}/patterns/Water/pool.pat" checksum="b4f48469ab59632276d2b4d9af9dbde8">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/qube1.pat" checksum="3b96b82e490bea730e17dd752ffb7bc9">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/qube1.pat" checksum="3b96b82e490bea730e17dd752ffb7bc9">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/rain.pat" checksum="8babfb520276b39f918aa059ca1594be">
+  <resource identifier="${gimp_data_dir}/patterns/Water/rain.pat" checksum="8babfb520276b39f918aa059ca1594be">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/recessed.pat" checksum="2743a836d39c547e0d83de27bffb45c1">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/recessed.pat" checksum="2743a836d39c547e0d83de27bffb45c1">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/redcube.pat" checksum="f64dee0efbc2fa301d7b4f3903a68308">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/redcube.pat" checksum="f64dee0efbc2fa301d7b4f3903a68308">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/rock.pat" checksum="93bc028e503811f0908f4de70681b733">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/rock.pat" checksum="93bc028e503811f0908f4de70681b733">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/sky.pat" checksum="78ffe7ed45f4cd89859a653debebc84c">
+  <resource identifier="${gimp_data_dir}/patterns/Sky/sky.pat" checksum="78ffe7ed45f4cd89859a653debebc84c">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/slate.pat" checksum="fb10d3127362b61330e77ced0edddd7e">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/slate.pat" checksum="fb10d3127362b61330e77ced0edddd7e">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/sm_squares.pat" checksum="4ba7d3135d74ec48bca8ee42c9645866">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/sm_squares.pat" checksum="4ba7d3135d74ec48bca8ee42c9645866">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/starfield.pat" checksum="b21a6bc688e62e02d16150fd5c2a3afe">
+  <resource identifier="${gimp_data_dir}/patterns/Sky/starfield.pat" checksum="b21a6bc688e62e02d16150fd5c2a3afe">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/stone33.pat" checksum="002ee5669bd46d09a642853bfd3a543f">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/stone33.pat" checksum="002ee5669bd46d09a642853bfd3a543f">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/Stripes2px.pat" checksum="7a5292735452fc15bf789fa3ea064ad2">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/Stripes2px.pat" checksum="7a5292735452fc15bf789fa3ea064ad2">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/Stripes1px.pat" checksum="7343d6b31434a2e736de3c5ab5197424">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/Stripes1px.pat" checksum="7343d6b31434a2e736de3c5ab5197424">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/terra.pat" checksum="45c52055d10cc53a7a280777e6b76382">
+  <resource identifier="${gimp_data_dir}/patterns/Stone/terra.pat" checksum="45c52055d10cc53a7a280777e6b76382">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/bark.pat" checksum="3d9dffc8833fe742b90c1a1f2f87e76c">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/bark.pat" checksum="3d9dffc8833fe742b90c1a1f2f87e76c">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/walnut.pat" checksum="56b154ad68b400a4b62c62f314e278d4">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/walnut.pat" checksum="56b154ad68b400a4b62c62f314e278d4">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/warning.pat" checksum="bacf4a9e22fb7e97d705739ebf1aa205">
+  <resource identifier="${gimp_data_dir}/patterns/Legacy/warning.pat" checksum="bacf4a9e22fb7e97d705739ebf1aa205">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/wood5.pat" checksum="9a3b13cfc2d4a3b18bd7754506fe9ac6">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/wood5.pat" checksum="9a3b13cfc2d4a3b18bd7754506fe9ac6">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/wood3.pat" checksum="08109cffa79e14773e39e2390af5bc40">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/wood3.pat" checksum="08109cffa79e14773e39e2390af5bc40">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/wood4.pat" checksum="2040255fdf70572e7d79395a7b191dd6">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/wood4.pat" checksum="2040255fdf70572e7d79395a7b191dd6">
   </resource>
 
-  <resource identifier="${gimp_data_dir}/patterns/wood1.pat" checksum="0c055f250ddbccc1b32d05f8c0ad7012">
+  <resource identifier="${gimp_data_dir}/patterns/Wood/wood1.pat" checksum="0c055f250ddbccc1b32d05f8c0ad7012">
   </resource>
 
   <resource identifier="gimp-gradient-fg-bg-rgb-hardedge" checksum="12ad9439c57e897e50fb0399439e5b2b">
@@ -628,6 +634,9 @@
   <resource identifier="${gimp_data_dir}/gradients/Yellow_Orange.ggr" checksum="428584726006e23e260baa2a7d79f295">
   </resource>
 
+  <resource identifier="gimp-palette-color-history" checksum="f5789827125f3d32fbf0c0e212ee3c73">
+  </resource>
+
   <resource identifier="${gimp_data_dir}/palettes/Bears.gpl" checksum="e82e818c20ac12bdd21049924ea2d1e7">
   </resource>
 
@@ -751,6 +760,24 @@
   <resource identifier="${gimp_data_dir}/palettes/Web.gpl" checksum="f02e8dfa23d01d6acfbab7f895c2dd16">
   </resource>
 
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/16_10.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/16_9.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/3_2-Landscape.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/3_2-Portrait.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/4_3-Landscape.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/4_3-Portrait.gtp" checksum="(null)">
+  </resource>
+
   <resource identifier="${gimp_data_dir}/tool-presets/Paint/Airbrush.gtp" checksum="(null)">
   </resource>
 
@@ -836,6 +863,9 @@
   </resource>
 
   <resource identifier="${gimp_data_dir}/tool-presets/Paint/Splatters.gtp" checksum="(null)">
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/tool-presets/Crop/Square.gtp" checksum="(null)">
   </resource>
 
   <resource identifier="${gimp_data_dir}/tool-presets/Paint/Structure.gtp" checksum="(null)">

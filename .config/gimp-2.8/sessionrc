@@ -35,7 +35,7 @@
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
     (position 0 0)
-    (size 1916 1172))
+    (size 1550 614))
 (session-info "toplevel"
     (factory-entry "gimp-file-export-dialog")
     (position 0 0)
@@ -81,6 +81,7 @@
 
 (hide-docks no)
 (single-window-mode yes)
+(tabs-position 0)
 (last-tip-shown 0)
 
 # end of sessionrc

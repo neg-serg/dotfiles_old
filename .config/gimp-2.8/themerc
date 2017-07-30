@@ -4,7 +4,7 @@
 # It is NOT supposed to be edited manually. Edit your personal
 # gtkrc file instead (/home/neg/.config/gimp-2.8/gtkrc).
 
-include "/usr/share/gimp/2.0/themes/Default/gtkrc"
+include "/usr/share/gimp/2.0/themes/03-Dark/gtkrc"
 include "/home/neg/.config/gimp-2.8/gtkrc"
 
 # end of themerc

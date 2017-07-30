@@ -3,7 +3,7 @@
 # This file will be entirely rewritten each time you exit.
 
 (GimpControllerInfo "Main Mouse Wheel"
-    (stock-id "gimp-controller-wheel")
+    (icon-name "gimp-controller-wheel")
     (enabled yes)
     (debug-events no)
     (controller "GimpControllerWheel")
@@ -19,7 +19,7 @@
         (map "scroll-up-shift-control" "context-brush-select-next")
         (map "scroll-down-control-alt" "context-gradient-select-previous")))
 (GimpControllerInfo "Main Keyboard"
-    (stock-id "gimp-controller-keyboard")
+    (icon-name "gimp-controller-keyboard")
     (enabled yes)
     (debug-events no)
     (controller "GimpControllerKeyboard")
