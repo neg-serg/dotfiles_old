@@ -3,6 +3,13 @@
 icon="$(readlink -f lock.png)"
 tmpbg="$(readlink -f lol.png)"
 
+function circle_converter(){
+    local file_ext="${1##*.}"
+    convert "$1" \
+        \( +clone -threshold -1 -negate -fill white -draw "circle 300,280 256,0" \) \
+        -alpha off -compose copy_opacity -composite ${1%%file_ext}.gif
+}
+
 function i3lock_setup_params(){
     B='#00000000'  # blank
     C='#00000070'  # clear ish
