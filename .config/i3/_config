@@ -115,6 +115,7 @@ for_window [class="^(Emacs|Atom)$"] move container to workspace $dev, workspace 
 for_window [class="Emacs" instance="emacs" title="Question"] floating enable
 for_window [class="(feh|qiv)"] floating enable
 for_window [class="Gimp"] move container to workspace $gimp, workspace $gimp, focus
+for_window [class="darktable"] move container to workspace $gimp, workspace $gimp, focus
 for_window [class="Gimp" window_role="^(gimp-file-{open,save}|gimp-message-dialog|gimp-image-new|gimp-toolbox-color-dialog)$"]  floating enable
 for_window [class="guncharmap"]  move container to workspace $doc
 for_window [class="(?i)dota.*"] floating enable, move container to workspace $wine, workspace $wine, focus
@@ -127,6 +128,7 @@ for_window [class="^jetbrains-(idea|clion|andrond-studio).*"] move container to 
 for_window [class="^(libreoffice|abiword).*$"]  move container to workspace $doc
 for_window [class="^MainTerminal$"] move container to workspace $term, workspace $gimp, focus
 for_window [class="^(MPlayer|mplayer2|mpv|cheese)$"] move container to workspace $media, workspace $media, focus
+for_window [class="^lollypop$"] move container to workspace $media, workspace $media, focus
 for_window [class="Nicotine.*" instance="nicotine"] floating enable
 for_window [class="^(Okular|Apvlv|Zathura|Evince|XDvi)$"]  move container to workspace $doc, workspace $doc, focus
 for_window [class="rdesktop" instance="rdesktop"] floating enable
