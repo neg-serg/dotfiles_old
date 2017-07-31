@@ -207,10 +207,9 @@ def mark_group(self, event):
 
 def mark_all(hide=True):
     def scratch_move():
+        hide_cmd=''
         if hide:
             hide_cmd=', [con_id=__focused__] scratchpad show'
-        else:
-            hide_cmd=''
 
         con_cmd=ns.make_mark(group)+', move scratchpad,'+settings_obj_.get_geom(group)+hide_cmd
         con.command(con_cmd)
