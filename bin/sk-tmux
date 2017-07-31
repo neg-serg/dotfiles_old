@@ -141,4 +141,62 @@ fi
 if tmux list-panes -F '#F' | grep -q Z; then
   zoomed=1
   original_window=$(tmux display-message -p "#{window_id}")
-  tmp_window=$(tmux new-window -d -P -F "#{window_id}" "bash -c 'while :; do for c in \\| / - \\\\; do sleep 0
+  tmp_window=$(tmux new-window -d -P -F "#{window_id}" "bash -c 'while :; do for c in \\| / - \\\\; do sleep 0.2; printf \"\\r\$c sk-tmux is running\\r\"; done; done'")
+  tmux swap-pane -t $tmp_window \; select-window -t $tmp_window
+fi
+
+set -e
+
+# Clean up named pipes on exit
+id=$RANDOM
+argsf="${TMPDIR:-/tmp}/sk-args-$id"
+fifo1="${TMPDIR:-/tmp}/sk-fifo1-$id"
+fifo2="${TMPDIR:-/tmp}/sk-fifo2-$id"
+fifo3="${TMPDIR:-/tmp}/sk-fifo3-$id"
+cleanup() {
+  rm -f $argsf $fifo1 $fifo2 $fifo3
+
+  # Remove temp window if we were zoomed
+  if [[ -n "$zoomed" ]]; then
+    tmux swap-pane -t $original_window \; \
+      select-window -t $original_window \; \
+      kill-window -t $tmp_window \; \
+      resize-pane -Z
+  fi
+}
+trap cleanup EXIT SIGINT SIGTERM
+
+envs="env TERM=$TERM "
+[[ -n "$sk_DEFAULT_OPTS"    ]] && envs="$envs SKIM_DEFAULT_OPTS=$(printf %q "$sk_DEFAULT_OPTS")"
+[[ -n "$sk_DEFAULT_COMMAND" ]] && envs="$envs SKIM_DEFAULT_COMMAND=$(printf %q "$sk_DEFAULT_COMMAND")"
+
+mkfifo -m o+w $fifo2
+mkfifo -m o+w $fifo3
+
+# Build arguments to sk
+opts=""
+for arg in "${args[@]}"; do
+  arg="${arg//\\/\\\\}"
+  arg="${arg//\"/\\\"}"
+  arg="${arg//\`/\\\`}"
+  arg="${arg//$/\\$}"
+  opts="$opts \"$arg\""
+done
+
+if [[ -n "$term" ]] || [[ -t 0 ]]; then
+  cat <<< "\"$sk\" $opts > $fifo2; echo \$? > $fifo3 $close" > $argsf
+  tmux set-window-option synchronize-panes off \;\
+    set-window-option remain-on-exit off \;\
+    split-window $opt "cd $(printf %q "$PWD");$envs bash $argsf" $swap \
+    > /dev/null 2>&1
+else
+  mkfifo $fifo1
+  cat <<< "\"$sk\" $opts < $fifo1 > $fifo2; echo \$? > $fifo3 $close" > $argsf
+  tmux set-window-option synchronize-panes off \;\
+    set-window-option remain-on-exit off \;\
+    split-window $opt "$envs bash $argsf" $swap \
+    > /dev/null 2>&1
+  cat <&0 > $fifo1 &
+fi
+cat $fifo2
+exit "$(cat $fifo3)"
