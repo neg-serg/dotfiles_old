@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 icon="$(readlink -f $(dirname $0)/lock.png)"
-tmpbg="$(readlink -f ${HOME}/tmp/lol.png)"
+tmpbg="$(readlink -f ${HOME}/tmp/lock_shot.png)"
 
 function circle_converter(){
     local file_ext="${1##*.}"
@@ -46,15 +46,33 @@ function i3lock_add_clock(){
     )
 }
 
+function take_shot(){
+    case $1 in
+        maim) magick convert "${tmpbg%%.png}.xwd" "${tmpbg}" ;;
+        xdw) xwd -root -silent -out "${tmpbg%%.png}.xwd" ;;
+        *) scrot "${tmpbg}" ;;
+    esac
+}
+
+function make_blur(){
+    case $1 in
+        p*) magick convert "${tmpbg}" -scale 10% -scale 1000% "${tmpbg}";;
+        *) magick convert "${tmpbg}" -blur 0x6 "${tmpbg}";;
+    esac
+}
+
+function make_composition(){
+    magick convert "${tmpbg}" "${icon}" -gravity center -composite -matte "${tmpbg}"
+}
+
 function main(){
     i3lock_setup_params
     (( $# )) && { icon=$1; }
-    scrot "${tmpbg}"
-    case $1 in
-        p*) gm convert "${tmpbg}" -scale 10% -scale 1000% "${tmpbg}";;
-        *) gm convert "${tmpbg}" -blur 0x6 "${tmpbg}";;
-    esac
-    gm convert "${tmpbg}" "${icon}" -gravity center -composite -matte "${tmpbg}"
+
+    take_shot
+    make_blur
+    make_composition
+
     i3lock "${i3lock_params[@]}"
 }
 
