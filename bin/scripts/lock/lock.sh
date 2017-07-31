@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 icon="$(readlink -f $(dirname $0)/lock.png)"
-tmpbg="$(readlink -f ${HOME}/tmp/lock_shot.png)"
+tmpbg="/tmp/lock_shot.png"
 
 function circle_converter(){
     local file_ext="${1##*.}"
@@ -75,11 +75,20 @@ function main(){
             make_blur
             make_composition ;;
         *)
+            # gblur
+            # histeq
+            # negate
+            # vignette
+
+            hue_val=3
             resolution_=$(xrandr --current | grep '*' | uniq | awk '{print $1}')
-            ffmpeg -f x11grab -video_size "${resolution_}" -y -i ${DISPLAY} -i ${icon} -filter_complex "boxblur=5,hue=s=3,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 ${tmpbg} 2> /dev/null
+            ffmpeg -f x11grab -video_size "${resolution_}" -y -i ${DISPLAY} -i ${icon} \
+                -filter_complex "boxblur=5,hue=s=${hue_val},overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" \
+                -vframes 1 "${tmpbg}" 2> /dev/null
     esac
 
     i3lock "${i3lock_params[@]}"
+    rm -f "${tmpbg}"
 }
 
 main "$@"
