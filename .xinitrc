@@ -28,4 +28,4 @@ eval $(gpg-agent --daemon)
 (${XDG_CONFIG_HOME}/xinit/run/clipboard_daemon &)
 (${SCRIPT_HOME}/dw clean &)
 
-${XDG_CONFIG_HOME}/xinit/wm.zsh
+WITHLOGS=1 ${XDG_CONFIG_HOME}/xinit/wm.zsh

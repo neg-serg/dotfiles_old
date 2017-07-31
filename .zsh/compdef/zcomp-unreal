@@ -1,4 +1,4 @@
-#files: 896	version: 5.3.1
+#files: 911	version: 5.3.1
 
 _comps=(
 '-' '_precommand'
@@ -59,6 +59,8 @@ _comps=(
 'attr' '_attr'
 'augtool' '_augeas'
 'aurbuild' '_aurbuild'
+'aurchain' '_aurchain'
+'aurcheck' '_aurcheck'
 'aursearch' '_aursearch'
 'aursync' '_aursync'
 'aurvote' '_aurvote'
@@ -72,10 +74,12 @@ _comps=(
 'batch' '_at'
 'baz' '_baz'
 'beep' '_beep'
+'beet' '_beet'
 'bg' '_jobs_bg'
 'bibtex' '_bibtex'
 'bindkey' '_bindkey'
 'bison' '_bison'
+'bitcoin-cli' '_bitcoin-cli'
 'bmake' '_make'
 'bogofilter' '_bogofilter'
 'bogotune' '_bogofilter'
@@ -166,6 +170,8 @@ _comps=(
 'clyde' '_clyde'
 'cmake' '_cmake'
 'cmp' '_cmp'
+'cmus' '_cmus'
+'cmus-remote' '_cmus'
 'co' '_rcs'
 'coffee' '_coffee'
 'colorcoke' '_colorcoke'
@@ -328,6 +334,7 @@ _comps=(
 'fetchipac' '_gnu_generic'
 'fetchmail' '_fetchmail'
 'ffcast' '_ffcast'
+'ffind' '_ffind'
 'ffmpeg' '_ffmpeg'
 'ffprobe' '_ffprobe'
 'fg' '_jobs_fg'
@@ -364,6 +371,7 @@ _comps=(
 'fold' '_gnu_generic'
 'folder' '_mh'
 'folders' '_mh'
+'force' '_force'
 'fortune' '_fortune'
 'forw' '_mh'
 'fprev' '_mh'
@@ -454,6 +462,7 @@ _comps=(
 'google' '_google'
 'googler' '_googler'
 'gpasswd' '_gpasswd'
+'gpaste-client' '_gpaste-client'
 'gpatch' '_patch'
 'gpg' '_gpg'
 'gpg2' '_gpg'
@@ -597,6 +606,7 @@ _comps=(
 'journalctl' '_journalctl'
 'jq' '_jq'
 'jrnl' '_jrnl'
+'kak' '_kak'
 'kde-unstable-i686-build' '_devtools'
 'kde-unstable-x86_64-build' '_devtools'
 'kernel-install' '_kernel-install'
@@ -796,6 +806,7 @@ _comps=(
 'netctl-auto' '_netctl'
 'netrik' '_webbrowser'
 'netscape' '_netscape'
+'networkctl' '_networkctl'
 'neutron' '_openstack'
 'new' '_mh'
 'newgrp' '_groups'
@@ -986,6 +997,7 @@ _comps=(
 'ranlib' '_ranlib'
 'rar' '_rar'
 'rc' '_sh'
+'rclone' '_rclone'
 'rcp' '_rlogin'
 'rcs' '_rcs'
 'rcsdiff' '_rcs'
@@ -1018,10 +1030,10 @@ _comps=(
 'remsh' '_rlogin'
 'renice' '_renice'
 'repl' '_mh'
-'repose' '_repose'
 'restart' '_initctl'
 'retawq' '_webbrowser'
 'rfkill' '_rfkill'
+'rg' '_rg'
 'rgbterm' '_rgbterm'
 'rgview' '_vim'
 'rgvim' '_vim'
@@ -1041,6 +1053,7 @@ _comps=(
 'rmshit' '_rmshit'
 'rrdtool' '_rrdtool'
 'rsh' '_rlogin'
+'rslsync' '_rslsync'
 'rspec' '_rspec'
 'rsvm' '_rsvm'
 'rsync' '_rsync'
@@ -1163,6 +1176,7 @@ _comps=(
 'strip' '_strip'
 'stty' '_stty'
 'su' '_su'
+'subl' '_subl'
 'subliminal' '_subliminal'
 '-subscript-' '_subscript'
 'sudo' '_sudo'
@@ -1383,6 +1397,7 @@ _comps=(
 'VBoxManage' '_virtualbox'
 'vcsh' '_vcsh'
 'vdir' '_gnu_generic'
+'vifm' '_vifm'
 'vim' '_vim'
 'vimdiff' '_vim'
 'virsh' '_virsh'
@@ -1479,6 +1494,7 @@ _comps=(
 'yafc' '_yafc'
 'yaourt' '_yaourt'
 'yaourt.static' '_yaourt'
+'yarn' '_yarn'
 'yes' '_gnu_generic'
 'you-get' '_you-get'
 'youtube-dl' '_youtube-dl'
@@ -1497,6 +1513,7 @@ _comps=(
 'zathura' '_pspdf'
 'zcalc' '_zcalc'
 '-zcalc-line-' '_zcalc_line'
+'zcash-cli' '_zcash-cli'
 'zcat' '_zcat'
 'zcompile' '_zcompile'
 'zcp' '_zmv'
@@ -1681,41 +1698,44 @@ autoload -Uz _ack _artisan _autotest _brew _bundler \
             _tr _vagrant _wake _wd.sh _xkcd \
             _xrandr _ack _afew _ag _android \
             _ansible _ansible-galaxy _ansible-playbook _ansible-vault _archinstallscripts \
-            _archlinux-java _artisan _atach _aurbuild _aursearch \
-            _aursync _aurvote _bootctl _bower _bundle \
-            _busctl _cap _cask _cf _chattr \
-            _cheat _choc _cmake _coffee _column \
+            _archlinux-java _artisan _atach _aurbuild _aurchain \
+            _aurcheck _aursearch _aursync _aurvote _beet \
+            _bitcoin-cli _bootctl _bower _bundle _busctl \
+            _cap _cask _cf _chattr _cheat \
+            _choc _cmake _cmus _coffee _column \
             _composer _console _coredumpctl _cower _dad \
             _debuild _devtools _dget _dhcpcd _diana \
             _docker _docpad _downgrade _drush _emulator \
-            _envdir _exportfs _fab _ffcast _fleetctl \
-            _gas _geany _ghc _gist _git-flow \
-            _git-journal _git-pulls _git-wtf _glances _go \
-            _google _googler _gtk-launch _hg _homestead \
-            _hostnamectl _httpie _hub _jmeter _jmeter-plugins \
-            _jonas _journalctl _jq _jrnl _kernel-install \
-            _kitchen _knife _language_codes _localectl _loginctl \
-            _lsattr _lsblk _lunchy _machinectl _middleman \
-            _mina _mix _mkinitcpio _mpv _multirust \
-            _mussh _mvn _netctl _node _nvm \
+            _envdir _exportfs _fab _ffcast _ffind \
+            _fleetctl _force _gas _geany _ghc \
+            _gist _git-flow _git-journal _git-pulls _git-wtf \
+            _glances _go _google _googler _gpaste-client \
+            _gtk-launch _hg _homestead _hostnamectl _httpie \
+            _hub _jmeter _jmeter-plugins _jonas _journalctl \
+            _jq _jrnl _kak _kernel-install _kitchen \
+            _knife _language_codes _localectl _loginctl _lsattr \
+            _lsblk _lunchy _machinectl _middleman _mina \
+            _mix _mkinitcpio _mpv _multirust _mussh \
+            _mvn _netctl _networkctl _node _nvm \
             _openssl _optirun _pacaur _pacman _pass \
             _paste _patool _perf _periscope _pgsql_utils \
             _phing _pixz _pkcon _pkgfile _play \
             _polybar _polybar_msg _port _pulseaudio _pygmentize \
-            _rails _ralio _redis-cli _repose _rfkill \
-            _rkt _rspec _rsvm _rubocop _rustup \
-            _rvm _sbt _scala _scl _scrub \
-            _sdd _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files \
-            _setcap _setup.py _showoff _shutdown _smartmontools \
-            _srm _ssh-copy-id _stack _subliminal _supervisorctl \
-            _svm _sysdig _systemctl _systemd _systemd-analyze \
-            _systemd-delta _systemd-inhibit _systemd-nspawn _systemd-resolve _systemd-run \
-            _systemd-tmpfiles _task _teamocil _the_silver_searcher _thor \
-            _timedatectl _tmuxinator _trash-empty _trash-list _trash-put \
-            _trash-restore _udevadm _udiskie _udiskie-mount _udiskie-umount \
-            _udisksctl _ufw _vagrant _virsh _virtualbox \
-            _vnstat _vpnc _wemux _xinput _yaourt \
-            _you-get _youtube-dl _cdr _all_labels _all_matches \
+            _rails _ralio _rclone _redis-cli _rfkill \
+            _rg _rkt _rslsync _rspec _rsvm \
+            _rubocop _rustup _rvm _sbt _scala \
+            _scl _scrub _sdd _sd_hosts_or_user_at_host _sd_machines \
+            _sd_outputmodes _sd_unit_files _setcap _setup.py _showoff \
+            _shutdown _smartmontools _srm _ssh-copy-id _stack \
+            _subl _subliminal _supervisorctl _svm _sysdig \
+            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
+            _systemd-nspawn _systemd-resolve _systemd-run _systemd-tmpfiles _task \
+            _teamocil _thor _timedatectl _tmuxinator _trash-empty \
+            _trash-list _trash-put _trash-restore _udevadm _udiskie \
+            _udiskie-mount _udiskie-umount _udisksctl _ufw _vagrant \
+            _vifm _virsh _virtualbox _vnstat _vpnc \
+            _wemux _xinput _yaourt _yarn _you-get \
+            _youtube-dl _zcash-cli _cdr _all_labels _all_matches \
             _alternative _approximate _arg_compile _arguments _bash_completions \
             _cache_invalid _call_function _combination _complete _complete_debug \
             _complete_help _complete_help_generic _complete_tag _comp_locale _correct \

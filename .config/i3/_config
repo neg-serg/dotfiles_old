@@ -180,6 +180,7 @@ mode "" {
     bindsym Shift+k mode "default", exec ~/bin/scripts/toggle_keynav
     bindsym Control+t mode "default", exec tor-browser-en
 	bindsym Shift+d floating toggle; $exit
+	bindsym Shift+l exec ~/bin/scripts/lock/lock.sh
 
     bindsym {$mod,$alt,}+s exec python3 ~/.config/i3/ns.py run im skype, mode "default"
     bindsym {$mod+t,$alt+t,t} exec python3 ~/.config/i3/ns.py run im tel, mode "default"
