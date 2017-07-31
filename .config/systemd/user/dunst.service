@@ -6,7 +6,7 @@ After=sockets.target
 Type=simple
 Restart=always
 Environment=DISPLAY=:0
-ExecStart=rm "-r /tmp/dunst-images"
+ExecStartPre=/bin/rm -fr /tmp/dunst-images
 ExecStart=/usr/sbin/dunst
 
 [Install]
