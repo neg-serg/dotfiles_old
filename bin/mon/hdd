@@ -1,2 +1,0 @@
-#!/bin/zsh
-awk -F ',' '{print $1/1024"K""/"$2/1024"K"}' ~/tmp/hd.fifo
