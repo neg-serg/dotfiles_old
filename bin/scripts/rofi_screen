@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+opts_=(
+    "Automatically configure"
+    "Extend to external display"
+    "Mirror to external display"
+    "Disable external display"
+    "Start lxrandr"
+)
+
+res=$(rofi -xoffset 20 -yoffset 20 -location 1 -p "[screen] >> " -dmenu <<< $(for opt in ${opts_}; echo ${opt}))
+icon=""
+externdisplay=$(xrandr | grep -w connected | cut -d' ' -f1 | grep -v eDP1)
+
+case ${res} in
+    [Aa]*)
+        [[ ! -z "${externdisplay}" ]] && { xrandr --output eDP1 --auto --output "${externdisplay}" --auto; exit 0; }
+        xrandr --output eDP1 --auto
+        ;;
+    [Ee]*)
+        [[ ! -z "${externdisplay}" ]] && { xrandr --output "${externdisplay}" --right-of eDP1; exit 0; }
+        notify-send "${icon} Error: No external display attached!" && exit 1
+        ;;
+    [Mm]*)
+        [[ ! -z "${externdisplay}" ]] && { xrandr --output "${externdisplay}" --same-as eDP1; exit 0; }
+        notify-send "${icon} Error: No external display attached!" && exit 1
+        ;;
+    [Dd]*)
+        [[ ! -z "${externdisplay}" ]] && { xrandr --output "${externdisplay}" --off; exit 0; }
+        notify-send "${icon} Error: No external display attached!" && exit 1
+        ;;
+    [Ss]*) 
+        lxrandr 
+        ;;
+esac
+
+exit 0
