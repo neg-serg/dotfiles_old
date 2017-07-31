@@ -9,31 +9,60 @@ colorspace_='0.96,0.5,0.09'
 urgency_=normal
 summary_="${scr_dir}/${filename}"
 
-function shot_notify(){
+shot_notify(){
     ~/bin/scripts/pic_notify "${summary_}"
 }
 
-function make_shot(){
+make_shot(){
+    select_window_=false
+    current_window_=false
+    apply_colorpace_=false
+    delay_min_=false
+    delay_=false
+
     local -a arglist=()
     arglist+=( -p 0 )
+
     [[ ${select_window_} == true ]] && arglist+=( -s )
+    [[ ${current_window_} == true ]] && arglist+=( -i $(xdotool getactivewindow) )
     [[ ${apply_colorpace_} == true ]] && arglist+=( -c "${colorspace_}" )
+    [[ ${delay_min_} == true ]] && arglist+=( -d 0.5 )
+    [[ ${delay_} == true ]] && arglist+=( -d 5 )
+
     arglist+="${summary_}"
+
     maim ${arglist[@]} && \
     shot_notify
 }
 
 [[ ! -d "${scr_dir}" ]] && mkdir "${scr_dir}"
 
+select_(){ select_window_=true; make_shot "$@"; }
+full_(){ make_shot "$@"; }
+current_(){ delay_min_=true; current_window_=true; make_shot "$@"; }
+delay_(){ delay_=true; make_shot "$@"; }
+
+opts_=(
+    "Full shot"
+    "Rectangular selection shot"
+    "Current window"
+    "Delayed shot"
+)
+
+menu_(){
+    res=$(rofi -xoffset 20 -yoffset 20 -location 1 -p "[screen] >> " -dmenu <<< $(for opt in ${opts_}; echo ${opt}))
+    case ${res} in
+        [Rr]*) select_ "$@"  ;;
+        [Ff]*) full_ "$@"    ;;
+        [Cc]*) current_ "$@" ;;
+        [Dd]*) delay_ "$@"   ;;
+    esac
+}
+
 case $1 in
-    select)
-        select_window_=true
-        apply_colorpace_=false
-        make_shot "$@"
-        ;;
-    *) 
-        select_window_=false
-        apply_colorpace_=false
-        make_shot "$@"
-        ;;
+    [Rr]*) select_ "$@"  ;;
+    [Cc]*) current_ "$@" ;;
+    [Dd]*) delay_ "$@"   ;;
+    [Mm]*) menu_ "$@"    ;;
+    *) full_ "$@"     ;;
 esac
