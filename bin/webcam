@@ -5,9 +5,9 @@ local rec_name="${dir_}/rec-$(date +%y%m%d_%H%M)_$$.avi"
 local adev="hw.0,0"
 local frec_pid="${dir_}/f_rec$$.pid"
 
-for i in /dev/v4l/by-id/*; do
+for i in /dev/video[0-9]*; do
     if [[ $1 == "" ]]; then
-        mpv --x11-name="webcam" --title="webcam" --tv-driver=v4l2 --tv-device="${i}"
+        mpv --fullscreen=no --x11-name="webcam" --title="webcam" "av://v4l2:${i}"
     elif [[ $1 =~ s* ]]; then
         ffmpeg -f video4linux2 -i ${i} -f image2 "${snapshot_name}" 2>/dev/null || \
             notify-send "Cannot to take screenshot: You are using webcam now :("
