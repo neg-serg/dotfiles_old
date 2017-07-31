@@ -155,7 +155,7 @@ for_window $steam_all mark steam_all, move container to workspace $steam, worksp
 for_window [title="^Compress.*"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [title="^(screenkey|Debconf|control-center|Pavucontrol|B2[Gg])$"] floating enable
-for_window [title="webcam"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
+for_window [title="^webcam$"] floating enable, move scratchpad, move absolute position center, resize set 1280 720, focus
 for_window [window_type="(?i)^(dialog|menu|utility|toolbar)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [instance="Dialog"] floating enable, move absolute position 180 20, resize set 1556 620, focus
 for_window [window_role="^(GtkFileChooserDialog|Organizer|Manager)$"] floating enable, move absolute position 180 20, resize set 1556 620, focus
