@@ -76,7 +76,7 @@ function main(){
             make_composition ;;
         *)
             resolution_=$(xrandr --current | grep '*' | uniq | awk '{print $1}')
-            ffmpeg -f x11grab -video_size "${resolution_}" -y -i ${DISPLAY} -i ${icon} -filter_complex "boxblur=5,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 ${tmpbg} 2> /dev/null
+            ffmpeg -f x11grab -video_size "${resolution_}" -y -i ${DISPLAY} -i ${icon} -filter_complex "boxblur=5,hue=s=3,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 ${tmpbg} 2> /dev/null
     esac
 
     i3lock "${i3lock_params[@]}"
