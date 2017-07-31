@@ -1,25 +1,37 @@
 SHELL=$(which zsh)
 
-_start_time=$(( $(( $(date +%s) * 1000000000 )) + $(date +%N) ))
-
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
-nexec ssh-agent && eval "$(ssh-agent -s)"
+function start_agent {
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
+}
+
+function ssh_agent_start_(){
+    SSH_ENV="${HOME}/.ssh/environment"
+
+    # Source SSH settings, if applicable
+    if [[ -f "${SSH_ENV}" ]]; then
+        . "${SSH_ENV}" > /dev/null
+        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+            start_agent;
+        }
+    else
+        start_agent;
+    fi
+}
+
+ssh_agent_start_
+
 # Execute code that does not affect the current session in the background.
 {
     # Compile the completion dump to increase startup speed.
     zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-    if [[ "$zcompdump" -nt "${zcompdump}.zwc" || ! -s "${zcompdump}.zwc" ]]; then
+    [[ "$zcompdump" -nt "${zcompdump}.zwc" || ! -s "${zcompdump}.zwc" ]] && \
         zcompile "$zcompdump"
-    fi
-
-    # Set environment variables for launchd processes.
-    if [[ "$OSTYPE" == darwin* ]]; then
-        for env_var in PATH MANPATH; do
-            launchctl setenv "$env_var" "${(P)env_var}"
-        done
-    fi
 } &!
 
 # autoload wrapper - use this one instead of autoload directly
@@ -63,10 +75,8 @@ function stty_setup(){
 [[ $- =~ i ]] && stty_setup
 
 [[ -f ~/.config/dircolors/.dircolors ]] && eval $(dircolors ~/.config/dircolors/.dircolors)
-# fi=00:di=00;34:mh=00:so=01;38;5;075:bd=38;5;24:cd=38;5;24:ex=04;32:no=00;38;5;244:pi=38;5;126:ln=38;5;05:mh=48;5;233;38;5;7;1;3:ow=48;5;233;38;5;7;1;3:su=38;5;137:st=38;5;86;48;5;234:rs=0:';
 
-# No core dumps for now
-ulimit -c 0
+ulimit -c 0 # No core dumps for now
 
 setopt append_history # this is default, but set for share_history
 setopt share_history # import new commands from the history file also in other zsh-session
