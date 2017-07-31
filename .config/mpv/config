@@ -52,8 +52,18 @@ cscale=ewa_lanczossharp
 interpolation
 temporal-dither
 blend-subtitles=yes
-target-prim=bt.709
-target-trc=srgb
+target-prim=adobe
+target-trc=auto
+
+[cuda]
+hwdec=cuda
+scale=ewa_lanczossharp
+cscale=ewa_lanczossharp
+interpolation
+temporal-dither
+blend-subtitles=yes
+target-prim=adobe
+target-trc=auto
 
 [extension.flac]
 term-osd-bar=yes
