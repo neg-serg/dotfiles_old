@@ -20,9 +20,6 @@ export PATH=${(j_:_)path_dirs}
 
 # Add RVM to PATH for scripting
 export PATH="${PATH}:${HOME}/.rvm/bin"
-# Load RVM into a shell session *as a function*
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && \
-    source "${HOME}/.rvm/scripts/rvm"
 
 local perl_lib_path_="$(readlink -f "${HOME}/dev/perl5/lib/perl5")"
 if [[ -d "${perl_lib_path_}" ]]; then

@@ -1,7 +1,10 @@
-powerline-daemon -q
-python_version=$(python --version|grep -wo '[0-9]\.[0-9]')
-local powerline_path_="/usr/lib/python${python_version}/site-packages/powerline"
-source "${powerline_path_}/bindings/zsh/powerline.zsh"
+function neg_powerline_init(){
+    powerline-daemon -q
+    python_version=$(python --version|grep -wo '[0-9]\.[0-9]')
+    local powerline_path_="/usr/lib/python${python_version}/site-packages/powerline"
+    source "${powerline_path_}/bindings/zsh/powerline.zsh"
+}
+
 DARK_BLUE="%{"$'\033[00;38;5;4m'"%}"
 _neg_user_pretok="${DARK_BLUE}[${NOCOLOR}"
 function precmd(){ 
