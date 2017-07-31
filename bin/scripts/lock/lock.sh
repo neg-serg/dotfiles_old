@@ -67,11 +67,17 @@ function make_composition(){
 
 function main(){
     i3lock_setup_params
-    (( $# )) && { icon=$1; }
+    (( $# )) && { icon=$1; shift }
 
-    take_shot
-    make_blur
-    make_composition
+    case $1 in
+        imagemagick)
+            take_shot
+            make_blur
+            make_composition ;;
+        *)
+            ffmpeg -f x11grab -y -i ${DISPLAY} -i ${icon} -filter_complex "boxblur=5,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 ${tmpbg} 2> /dev/null
+            i3lock "${i3lock_params[@]}" ;;
+    esac
 
     i3lock "${i3lock_params[@]}"
 }
