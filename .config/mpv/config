@@ -36,7 +36,6 @@ osd-border-size=1
 osd-color='#CCE6EEFA'
 osd-border-color='#99000000'
 osd-bar-align-y=0.8
-#osd-margin-y=600
 
 ytdl
 ytdl-format=bestvideo+bestaudio
