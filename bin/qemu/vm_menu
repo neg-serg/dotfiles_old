@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+local -a opts_=(
+    "[Exit]"
+    "[Start <Windows 10>]"
+)
+res=$(rofi -i -xoffset 20 -yoffset 20 -location 1 -p "[vm] >> " -dmenu <<< $(for opt in ${opts_}; echo ${opt}))
+
+case "${res}" in
+    *Exit*) 
+        notify-send "[ Do ${res} ]"
+    ;;
+    *"Windows 10"*)
+        os_name=${res:s_Start __}
+        notify-send "Starting ... ${os_name}"
+        sudo ~/bin/qemu/wrun || { notify-send "Start ${os_name} failed" && exit 1 }
+        notify-send "Done"
+    ;;
+esac
