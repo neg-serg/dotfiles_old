@@ -269,3 +269,24 @@ function fun::fonts(){
     alias metp='toilet --metal -f pagga -t'
     alias 3d='figlet -f 3d'
 }
+
+function sh_lsof(){
+    pushd
+    cd /proc
+    for a in * ; do
+        test "${a}" -gt 0 2> /dev/null
+        [[ ! $? = 0 ]] && continue
+        pid_="${a}"
+        name="$(readlink ${a}/exe)"
+        [[ -z "${name}" ]] && continue
+        name="$(basename ${name})"
+        (   cd ${a}/fd
+            for b in * ; do
+                link="$(readlink ${b})"
+                [[ -z "${link}" ]] && continue
+                printf "${pid_}\t${name}\t${link}\n"
+            done
+        )
+    done
+    popd
+}
