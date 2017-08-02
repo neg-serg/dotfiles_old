@@ -3,6 +3,8 @@
 # Script to run windows 10 with geforce 980gtx gpu ;)
 
 function main(){
+    [[ $(id -u) != "0" ]] && echo "Should be runned from root" && exit 0
+
     local user_=neg
     local home_=/home/${user_}
     local disk_name="w10"
