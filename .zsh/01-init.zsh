@@ -3,6 +3,9 @@ SHELL=$(which zsh)
 inpath() { [[ -x "$(which "$1" 2>/dev/null)" ]]; }
 nexec() { [[ -z $(pidof "$1") ]]; }
 
+# Better Z support
+{ [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh &! }
+
 function start_agent {
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
     chmod 600 "${SSH_ENV}"
