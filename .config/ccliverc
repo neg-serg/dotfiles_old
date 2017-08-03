@@ -1,4 +1,0 @@
-#regexp          = /(\w|\s)/g
-progressbar     = simple
-update-interval = 1
-agent           = "Mozilla/5.0"
